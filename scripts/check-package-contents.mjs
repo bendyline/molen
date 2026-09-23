@@ -162,6 +162,11 @@ export function checkWorkspace(root = ROOT) {
 
 /** The files in an npm tarball (`.tgz`), as `{ path, size }`; a plain ustar reader. */
 export function tarballEntries(archive) {
+  return tarballFiles(archive).map(({ path, size }) => ({ path, size }));
+}
+
+/** The files in an npm tarball (`.tgz`) with their bytes, as `{ path, size, data }`. */
+export function tarballFiles(archive) {
   const tar = gunzipSync(readFileSync(archive));
   const entries = [];
   for (let offset = 0; offset + 512 <= tar.length; ) {
@@ -175,7 +180,9 @@ export function tarballEntries(archive) {
     const prefix = text(345, 155);
     const name = prefix ? `${prefix}/${text(0, 100)}` : text(0, 100);
     const size = Number.parseInt(text(124, 12).trim() || '0', 8);
-    if (text(156, 1) === '0' || text(156, 1) === '') entries.push({ path: name, size });
+    if (text(156, 1) === '0' || text(156, 1) === '') {
+      entries.push({ path: name, size, data: tar.subarray(offset + 512, offset + 512 + size) });
+    }
     offset += 512 + Math.ceil(size / 512) * 512;
   }
   return entries;

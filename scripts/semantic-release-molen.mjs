@@ -1,12 +1,12 @@
 // One semantic-release version and Git tag for the fixed @bendyline/molen-* line.
 // Publish in prepare, before semantic-release pushes the tag: an interrupted publish can then
-// be retried at the same version. Existing tarballs are skipped only if their integrity matches.
+// be retried at the same version. Existing tarballs are skipped only if their contents match.
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkTarballEntries, tarballEntries } from './check-package-contents.mjs';
+import { checkTarballEntries, tarballEntries, tarballFiles } from './check-package-contents.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = 'https://registry.npmjs.org';
@@ -171,18 +171,81 @@ function publishedIntegrity(name, version) {
   throw new Error(`Could not inspect ${name}@${version} on npm: ${result.stderr.trim()}`);
 }
 
+const DEPENDENCY_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'optionalDependencies',
+  'peerDependencies',
+];
+
+/**
+ * A packed package.json with its dependency maps sorted. pnpm resolves `workspace:` specifiers
+ * concurrently and writes each back as it settles, so two packs of one commit can order those
+ * keys differently; the order carries no meaning.
+ */
+function canonicalManifest(data) {
+  const manifest = JSON.parse(data.toString('utf8'));
+  for (const field of DEPENDENCY_FIELDS) {
+    if (manifest[field] === undefined) continue;
+    const sorted = Object.keys(manifest[field]).sort();
+    manifest[field] = Object.fromEntries(sorted.map((name) => [name, manifest[field][name]]));
+  }
+  return JSON.stringify(manifest);
+}
+
+/** Whether two tarballs hold the same files byte for byte, up to dependency key order. */
+export function samePackedContent(archive, other) {
+  const files = new Map(tarballFiles(archive).map(({ path, data }) => [path, data]));
+  const others = tarballFiles(other);
+  if (others.length !== files.size) return false;
+  return others.every(({ path, data }) => {
+    const mine = files.get(path);
+    if (mine === undefined) return false;
+    if (path !== 'package/package.json') return mine.equals(data);
+    return canonicalManifest(mine) === canonicalManifest(data);
+  });
+}
+
+/** Download the published tarball of name@version beside the local archive; returns its path. */
+function publishedArchive(name, version, archive) {
+  const directory = join(dirname(archive), 'published');
+  mkdirSync(directory, { recursive: true });
+  const [packed] = JSON.parse(
+    execFileSync(
+      'npm',
+      [
+        'pack',
+        `${name}@${version}`,
+        '--json',
+        `--pack-destination=${directory}`,
+        `--registry=${REGISTRY}`,
+      ],
+      { encoding: 'utf8' },
+    ),
+  );
+  return join(directory, packed.filename);
+}
+
 export function publishRelease(packages, version) {
   for (const item of packages) {
     const local = `sha512-${createHash('sha512').update(readFileSync(item.archive)).digest('base64')}`;
     const remote = publishedIntegrity(item.data.name, version);
     if (remote !== null) {
-      if (remote !== local) {
+      if (remote === local) {
+        process.stdout.write(
+          `Already published ${item.data.name}@${version}; integrity matches.\n`,
+        );
+        continue;
+      }
+      // A repack of the same commit can differ in bytes only (see canonicalManifest).
+      const published = publishedArchive(item.data.name, version, item.archive);
+      if (!samePackedContent(item.archive, published)) {
         throw new Error(
-          `${item.data.name}@${version} already exists with different tarball integrity; ` +
-            'inspect the partial release before retrying.',
+          `${item.data.name}@${version} already exists with different contents; ` +
+            `inspect the partial release (published tarball: ${published}) before retrying.`,
         );
       }
-      process.stdout.write(`Already published ${item.data.name}@${version}; integrity matches.\n`);
+      process.stdout.write(`Already published ${item.data.name}@${version}; contents match.\n`);
       continue;
     }
     execFileSync('npm', ['publish', item.archive, '--access', 'public', `--registry=${REGISTRY}`], {

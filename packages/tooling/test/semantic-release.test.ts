@@ -1,6 +1,7 @@
+import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const release = await import(resolve(__dirname, '../../../scripts/semantic-release-molen.mjs'));
@@ -33,6 +34,22 @@ function fixture(): string {
     '| `ENGINE_VERSION` | `0.0.1` | engine metadata |\n',
   );
   return root;
+}
+
+/** A gzipped tarball of `files` under `package/`, as npm packs it. */
+function tarball(files: Record<string, string>): string {
+  const root = mkdtempSync(join(tmpdir(), 'molen-semantic-release-'));
+  fixtures.push(root);
+  for (const [path, text] of Object.entries(files)) {
+    mkdirSync(dirname(join(root, 'package', path)), { recursive: true });
+    writeFileSync(join(root, 'package', path), text);
+  }
+  const archive = join(root, 'package.tgz');
+  // COPYFILE_DISABLE keeps macOS tar from adding AppleDouble `._*` twins.
+  execFileSync('tar', ['-czf', archive, '-C', root, 'package'], {
+    env: { ...process.env, COPYFILE_DISABLE: '1' },
+  });
+  return archive;
 }
 
 afterEach(() => {
@@ -85,5 +102,29 @@ describe('fixed-line semantic release', () => {
         new Set(['@bendyline/molen-schema', '@bendyline/molen-kernel']),
       ),
     ).toThrow('unresolved dependencies');
+  });
+
+  it('matches a repack whose workspace dependencies settled in another order', () => {
+    const manifest = (dependencies: Record<string, string>) =>
+      JSON.stringify({ name: '@bendyline/molen-terrain', version: '0.1.0', dependencies });
+    const code = { 'dist/index.mjs': 'export {};\n' };
+    const published = tarball({
+      'package.json': manifest({ zod: '^4.0.0', '@bendyline/molen-kernel': '0.1.0', a: '1' }),
+      ...code,
+    });
+    const repacked = tarball({
+      'package.json': manifest({ a: '1', zod: '^4.0.0', '@bendyline/molen-kernel': '0.1.0' }),
+      ...code,
+    });
+    expect(release.samePackedContent(repacked, published)).toBe(true);
+
+    const versions = { '@bendyline/molen-kernel': '0.1.1', a: '1', zod: '^4.0.0' };
+    const bumped = tarball({ 'package.json': manifest(versions), ...code });
+    expect(release.samePackedContent(bumped, published)).toBe(false);
+    const same = manifest({ a: '1', zod: '^4.0.0', '@bendyline/molen-kernel': '0.1.0' });
+    const edited = tarball({ 'package.json': same, 'dist/index.mjs': 'export const x = 1;\n' });
+    expect(release.samePackedContent(edited, published)).toBe(false);
+    const extra = tarball({ 'package.json': same, ...code, 'dist/extra.mjs': '' });
+    expect(release.samePackedContent(extra, published)).toBe(false);
   });
 });

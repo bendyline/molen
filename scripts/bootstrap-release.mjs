@@ -5,8 +5,8 @@
 // that tag. semantic-release reads the previous version from the tag, so later releases continue
 // the 0.x line; after this, the Release workflow creates every tag itself.
 //
-// Safe to rerun after a partial publish: a package already on npm with the same tarball is
-// skipped, and a v0.0.1 tag already on this commit is left as it is.
+// Safe to rerun after a partial publish: a package already on npm with the same tarball contents
+// is skipped, and a v0.0.1 tag already on this commit is left as it is.
 import { execFileSync } from 'node:child_process';
 import {
   packRelease,

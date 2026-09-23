@@ -72,7 +72,7 @@ npm trusted publishers can only be configured on a package that already exists, 
    packages in dependency order. Last, it tags the published commit `v0.0.1` and pushes the tag:
    semantic-release reads the previous version from that tag, so later releases continue the 0.x
    line instead of starting at 1.0.0. The script can be rerun after a partial publish; it skips an
-   existing package version only when the tarball integrity matches, and it leaves a `v0.0.1` tag
+   existing package version only when the tarball contents match, and it leaves a `v0.0.1` tag
    that already names this commit alone.
 3. On npmjs.com, the owner adds a GitHub Actions trusted publisher to **each** of the 14 package
    settings: organization `bendyline`, repository `molen`, workflow filename `release.yml`, no
@@ -102,8 +102,10 @@ and pushed its tag, run `Release` once to deploy the initial docs even if semant
 new version.
 
 If publishing stops partway through, rerun `Release` on the same commit. The publishing step
-recognizes packages already published at the intended version by tarball integrity. A different
-integrity is an error that needs inspection. If a rendering change requires new reference images,
+recognizes packages already published at the intended version by tarball contents: every file
+byte for byte, except that `package.json` dependency keys may be reordered, because pnpm writes
+resolved `workspace:` entries in a racy order. Any other difference is an error that needs
+inspection. If a rendering change requires new reference images,
 run `Update goldens` on the branch first and wait for CI to pass on its resulting commit before
 starting the release flow.
 
