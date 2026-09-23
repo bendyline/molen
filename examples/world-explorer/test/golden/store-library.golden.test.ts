@@ -17,8 +17,15 @@ describe('golden: world explorer identity library', () => {
     const scenario = JSON.parse(
       await readFile(join(ROOT, 'test', 'visual', 'store-library.play.json'), 'utf8'),
     );
-    // These reference images belong to the legacy backend, regardless of runner capabilities.
-    scenario.path += `${scenario.path.includes('?') ? '&' : '?'}backend=webgl&sky=daylight`;
+    // These reference images belong to the legacy backend in fixed daylight, regardless of runner
+    // capabilities or time zone (without `sky=daylight` the sky is noon in the browser's zone,
+    // which on a UTC runner is before dawn here). Pin every page, including the navigation.
+    const pin = (path: string): string =>
+      `${path}${path.includes('?') ? '&' : '?'}backend=webgl&sky=daylight`;
+    scenario.path = pin(scenario.path);
+    for (const action of scenario.actions) {
+      if (action.type === 'navigate') action.path = pin(action.path);
+    }
     const r = await playExperience({ appDir: join(ROOT, 'dist'), scenario, outDir: OUT });
     expect(r.ok, r.error ?? JSON.stringify(r.diagnostics)).toBe(true);
     expect(r.diagnostics?.filter((d) => d.kind === 'page-error')).toEqual([]);
