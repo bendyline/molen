@@ -47,7 +47,13 @@ export type ExperiencePlayAction = ExperiencePlayActionBase &
     | { type: 'click'; selector: string }
     | { type: 'select'; selector: string; value: string }
     | { type: 'navigate'; path: string }
-    | { type: 'screenshot'; name: string; settleMs?: number; fullPage?: boolean }
+    | {
+        type: 'screenshot';
+        name: string;
+        settleMs?: number;
+        fullPage?: boolean;
+        timeoutMs?: number;
+      }
   );
 
 export interface ExperiencePlayScenario {
@@ -114,6 +120,9 @@ const actionSchema: z.ZodType<ExperiencePlayAction> = z.discriminatedUnion('type
     name: z.string().regex(safeFrameName),
     settleMs: z.number().int().nonnegative().optional(),
     fullPage: z.boolean().optional(),
+    // A capture waits for a fresh composited frame; under the software rasterizer one frame of a
+    // dense scene can take many seconds, so heavy scenarios raise this above the default.
+    timeoutMs: z.number().int().positive().optional(),
     ...baseAction,
   }),
 ]);
@@ -567,7 +576,11 @@ export async function playExperience(input: ExperiencePlayInput): Promise<Experi
       } else {
         if (action.settleMs !== undefined) await page.waitForTimeout(action.settleMs);
         const path = join(input.outDir, `${action.name}.png`);
-        await page.screenshot({ path, fullPage: action.fullPage ?? false });
+        await page.screenshot({
+          path,
+          fullPage: action.fullPage ?? false,
+          timeout: action.timeoutMs ?? 30_000,
+        });
         const probes: Record<string, string> = {};
         for (const probe of scenario.probes ?? []) {
           probes[probe.name] =

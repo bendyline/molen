@@ -424,6 +424,11 @@ A scripted browser session over a built app: real keyboard and pointer input in,
               "fullPage": {
                 "type": "boolean"
               },
+              "timeoutMs": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
               "note": {
                 "type": "string"
               }

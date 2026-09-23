@@ -47,10 +47,11 @@ describe('experience play harness', () => {
         { type: 'key-down', keys: ['w'] },
         { type: 'key-up', keys: ['w'] },
         { type: 'drag', selector: 'canvas', from: [0.5, 0.5], to: [0.75, 0.5] },
-        { type: 'screenshot', name: 'after-move' },
+        { type: 'screenshot', name: 'after-move', timeoutMs: 120_000 },
       ],
     });
     expect(scenario.actions).toHaveLength(6);
+    expect(scenario.actions[5]).toMatchObject({ type: 'screenshot', timeoutMs: 120_000 });
     expect(() =>
       parseExperiencePlayScenario({
         format: 'molen/experience-play@1',
