@@ -41,5 +41,5 @@ describe('golden: world explorer synthetic worldgen', () => {
         `${frame.name} golden diff ${g.diffRatio} (UPDATE_GOLDENS=1 to refresh)${g.reason === undefined ? '' : ` — ${g.reason}`}`,
       ).toBe(true);
     }
-  }, 600_000);
+  });
 });

@@ -5,11 +5,13 @@ import { defineConfig } from 'vitest/config';
 //
 // The budget is deliberately generous. A scenario spends most of its time inside `wait-for-stable`
 // on the streaming HUD, and on a software rasterizer that settle can take minutes — the synthetic
-// lineup measured 124s for a single layer switch on a loaded developer machine. These numbers are
+// lineup's switch to Human mode measured 124-133s on a developer machine and about 240s on a
+// 4-vCPU CI runner, which is why that one wait allows 600s. These numbers are
 // "this is definitely wedged" thresholds, not expected durations: a healthy runner finishes far
-// inside them, so raising them costs nothing when things work. They must stay above the sum of a
-// scenario's own action timeouts (test/visual/*.play.json), or vitest kills the run first and the
-// scenario's precise failure message — which action, which probe text — is lost.
+// inside them, so raising them costs nothing when things work. testTimeout must stay above the sum
+// of every scenario's own action timeouts (test/visual/*.play.json), or vitest kills the run first
+// and the scenario's precise failure message — which action, which probe text — is lost; the
+// largest sum today is store-library's and walk-mode's, about 1200s.
 //
 // Files run one at a time, for the reason `test:golden` pins --workspace-concurrency=1: each file
 // drives its own software-rasterized browser, and on a 4-vCPU CI runner three at once starved the
@@ -18,7 +20,7 @@ export default defineConfig({
   test: {
     include: ['test/golden/**/*.test.ts'],
     fileParallelism: false,
-    testTimeout: 600_000,
+    testTimeout: 1_500_000,
     hookTimeout: 60_000,
   },
 });
