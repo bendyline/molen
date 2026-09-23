@@ -64,15 +64,17 @@ one GitHub release. The owner must deliberately change the release rule when Mol
 npm trusted publishers can only be configured on a package that already exists, so the first
 `0.0.1` release of the 14 packages is a one-time authenticated publish:
 
-1. The owner commits the intended public source on `main` and waits for CI to pass. Git operations
-   are reserved for the owner by `AGENTS.md`.
+1. The owner commits the intended public source on `main`, pushes it, and waits for CI to pass.
+   Git operations are reserved for the owner by `AGENTS.md`.
 2. The owner signs into npm with an account authorized to publish the `@bendyline` scope, runs
-   `pnpm all`, then runs `pnpm release:bootstrap`. The script verifies, packs and publishes all
-   14 packages in dependency order. It can be retried after a partial publish; it skips an
-   existing package version only when the tarball integrity matches.
-3. The owner tags that published source commit `v0.0.1` and pushes the tag. Semantic-release
-   requires this baseline tag so it can continue the 0.x line instead of starting at 1.0.0.
-4. On npmjs.com, the owner adds a GitHub Actions trusted publisher to **each** of the 14 package
+   `pnpm all`, then runs `pnpm release:bootstrap` on that clean checkout of `main`. The script
+   checks that the checkout matches `origin/main`, then verifies, packs and publishes all 14
+   packages in dependency order. Last, it tags the published commit `v0.0.1` and pushes the tag:
+   semantic-release reads the previous version from that tag, so later releases continue the 0.x
+   line instead of starting at 1.0.0. The script can be rerun after a partial publish; it skips an
+   existing package version only when the tarball integrity matches, and it leaves a `v0.0.1` tag
+   that already names this commit alone.
+3. On npmjs.com, the owner adds a GitHub Actions trusted publisher to **each** of the 14 package
    settings: organization `bendyline`, repository `molen`, workflow filename `release.yml`, no
    environment, and permission for direct `npm publish`. The filename is entered without
    `.github/workflows/`. The `Release` job has `id-token: write` and uses npm 11.19.1 on Node
@@ -88,14 +90,16 @@ shipped docs, then rebuilds and verifies both packages and site before it packs 
 npm CLI exchanges the job's OIDC identity for short-lived credentials, and automatically publishes
 provenance for public packages from a public repository. The workflow commits release metadata
 once after publication, uploads the built docs site, and deploys it to GitHub Pages. A run with no
-version-triggering commits still refreshes Pages without publishing npm packages. Branch
+version-triggering commits still refreshes Pages without publishing npm packages. The workflow
+creates and pushes each release's `vX.Y.Z` tag itself; nobody pushes tags by hand. Branch
 protection must allow the workflow's `GITHUB_TOKEN` to push its tag and metadata commit.
 
 Before running the workflow, select **GitHub Actions** as the source in repository Settings →
 Pages. Set `molen.dev` as the custom domain there and configure its DNS with the domain provider;
 the site is built for the domain root. GitHub Pages handles the custom domain independently of the
-deployed files, so no `CNAME` file is needed. After the initial authenticated `0.0.1` publish and
-tag, run `Release` once to deploy the initial docs even if semantic-release has no new version.
+deployed files, so no `CNAME` file is needed. After `pnpm release:bootstrap` has published `0.0.1`
+and pushed its tag, run `Release` once to deploy the initial docs even if semantic-release has no
+new version.
 
 If publishing stops partway through, rerun `Release` on the same commit. The publishing step
 recognizes packages already published at the intended version by tarball integrity. A different

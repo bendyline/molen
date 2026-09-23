@@ -202,8 +202,8 @@ export function verifyConditions() {
   if (!tags) {
     throw new Error(
       `Molen needs a reachable ${tag} release tag before semantic-release can run. ` +
-        'Bootstrap the current package versions, register their npm trusted publishers, and ' +
-        `tag the published source commit ${tag}. See CONTRIBUTING.md.`,
+        '`pnpm release:bootstrap` publishes the first version and pushes that tag; then register ' +
+        'the npm trusted publishers. See CONTRIBUTING.md.',
     );
   }
   for (const item of packages) {
