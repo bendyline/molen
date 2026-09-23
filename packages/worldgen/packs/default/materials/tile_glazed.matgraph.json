@@ -1,0 +1,86 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 115,
+  "nodes": [
+    {
+      "id": "courses",
+      "type": "bricks",
+      "params": { "rows": 7, "cols": 9, "mortarWidth": 0.035, "offset": 0 }
+    },
+    {
+      "id": "tiles",
+      "type": "ramp",
+      "input": "courses",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b4babe" },
+          { "t": 0.5, "color": "#b4babe" },
+          { "t": 0.56, "color": "#f5f5ef" },
+          { "t": 1, "color": "#f5f5ef" }
+        ]
+      }
+    },
+    { "id": "curve-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "curve",
+      "type": "ramp",
+      "input": "curve-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#c7cdcd" },
+          { "t": 0.022222222222222223, "color": "#e0e5e3" },
+          { "t": 0.05555555555555555, "color": "#ffffff" },
+          { "t": 0.08888888888888889, "color": "#e0e5e3" },
+          { "t": 0.1111111111111111, "color": "#c7cdcd" },
+          { "t": 0.13333333333333333, "color": "#e0e5e3" },
+          { "t": 0.16666666666666666, "color": "#ffffff" },
+          { "t": 0.2, "color": "#e0e5e3" },
+          { "t": 0.2222222222222222, "color": "#c7cdcd" },
+          { "t": 0.24444444444444446, "color": "#e0e5e3" },
+          { "t": 0.2777777777777778, "color": "#ffffff" },
+          { "t": 0.3111111111111111, "color": "#e0e5e3" },
+          { "t": 0.3333333333333333, "color": "#c7cdcd" },
+          { "t": 0.35555555555555557, "color": "#e0e5e3" },
+          { "t": 0.3888888888888889, "color": "#ffffff" },
+          { "t": 0.4222222222222222, "color": "#e0e5e3" },
+          { "t": 0.4444444444444444, "color": "#c7cdcd" },
+          { "t": 0.4666666666666667, "color": "#e0e5e3" },
+          { "t": 0.5, "color": "#ffffff" },
+          { "t": 0.5333333333333333, "color": "#e0e5e3" },
+          { "t": 0.5555555555555556, "color": "#c7cdcd" },
+          { "t": 0.5777777777777778, "color": "#e0e5e3" },
+          { "t": 0.6111111111111112, "color": "#ffffff" },
+          { "t": 0.6444444444444444, "color": "#e0e5e3" },
+          { "t": 0.6666666666666666, "color": "#c7cdcd" },
+          { "t": 0.6888888888888889, "color": "#e0e5e3" },
+          { "t": 0.7222222222222222, "color": "#ffffff" },
+          { "t": 0.7555555555555555, "color": "#e0e5e3" },
+          { "t": 0.7777777777777778, "color": "#c7cdcd" },
+          { "t": 0.8, "color": "#e0e5e3" },
+          { "t": 0.8333333333333334, "color": "#ffffff" },
+          { "t": 0.8666666666666667, "color": "#e0e5e3" },
+          { "t": 0.8888888888888888, "color": "#c7cdcd" },
+          { "t": 0.911111111111111, "color": "#e0e5e3" },
+          { "t": 0.9444444444444444, "color": "#ffffff" },
+          { "t": 0.9777777777777779, "color": "#e0e5e3" },
+          { "t": 1, "color": "#c7cdcd" }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "tiles", "b": "curve" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.25 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "curve",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

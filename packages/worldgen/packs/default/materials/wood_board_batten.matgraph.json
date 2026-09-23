@@ -1,0 +1,119 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 105,
+  "nodes": [
+    { "id": "board-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "board",
+      "type": "ramp",
+      "input": "board-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b7b4ad" },
+          { "t": 0.011666666666666667, "color": "#efebe3" },
+          { "t": 0.02666666666666667, "color": "#efebe3" },
+          { "t": 0.03333333333333333, "color": "#b7b4ad" },
+          { "t": 0.04, "color": "#ddd8ce" },
+          { "t": 0.15833333333333333, "color": "#e8e2d7" },
+          { "t": 0.16666666666666666, "color": "#b7b4ad" },
+          { "t": 0.17833333333333334, "color": "#efebe3" },
+          { "t": 0.19333333333333333, "color": "#efebe3" },
+          { "t": 0.19999999999999998, "color": "#b7b4ad" },
+          { "t": 0.20666666666666667, "color": "#ddd8ce" },
+          { "t": 0.325, "color": "#e8e2d7" },
+          { "t": 0.3333333333333333, "color": "#b7b4ad" },
+          { "t": 0.345, "color": "#efebe3" },
+          { "t": 0.36000000000000004, "color": "#efebe3" },
+          { "t": 0.3666666666666667, "color": "#b7b4ad" },
+          { "t": 0.37333333333333335, "color": "#ddd8ce" },
+          { "t": 0.4916666666666667, "color": "#e8e2d7" },
+          { "t": 0.5, "color": "#b7b4ad" },
+          { "t": 0.5116666666666666, "color": "#efebe3" },
+          { "t": 0.5266666666666667, "color": "#efebe3" },
+          { "t": 0.5333333333333333, "color": "#b7b4ad" },
+          { "t": 0.54, "color": "#ddd8ce" },
+          { "t": 0.6583333333333333, "color": "#e8e2d7" },
+          { "t": 0.6666666666666666, "color": "#b7b4ad" },
+          { "t": 0.6783333333333333, "color": "#efebe3" },
+          { "t": 0.6933333333333334, "color": "#efebe3" },
+          { "t": 0.7000000000000001, "color": "#b7b4ad" },
+          { "t": 0.7066666666666667, "color": "#ddd8ce" },
+          { "t": 0.8250000000000001, "color": "#e8e2d7" },
+          { "t": 0.8333333333333334, "color": "#b7b4ad" },
+          { "t": 0.8450000000000001, "color": "#efebe3" },
+          { "t": 0.86, "color": "#efebe3" },
+          { "t": 0.8666666666666667, "color": "#b7b4ad" },
+          { "t": 0.8733333333333334, "color": "#ddd8ce" },
+          { "t": 0.9916666666666667, "color": "#e8e2d7" },
+          { "t": 1, "color": "#b7b4ad" }
+        ]
+      }
+    },
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [1, 0.06818181818181818, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 44, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.91, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "board", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.86 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "board",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

@@ -1,0 +1,129 @@
+{
+  "format": "molen/scatter@1",
+  "id": "molen.worldgen.scatter.japan",
+  "title": "Japanese vegetation",
+  "doc": "Dense cedar-like fir and pine forest on hills, oak in parks and shrines, minimal yard planting on tight plots.",
+  "version": 2,
+  "surface": {
+    "default": "#6f7d64",
+    "colors": {
+      "forest": "#3b5f45",
+      "wood": "#3a5b42",
+      "grassland": "#7f9863",
+      "grass": "#7a935f",
+      "farmland": "#8f9a5c",
+      "scrub": "#6c7f5e",
+      "park": "#5f8358",
+      "residential": "#8d8c82",
+      "commercial": "#8f8c86",
+      "industrial": "#847e74",
+      "urban_area": "#88877f",
+      "beach": "#c2b07f",
+      "sand": "#b8a978",
+      "barren": "#8c8270",
+      "wetland": "#6c8a70"
+    }
+  },
+  "defaults": {
+    "avoid": { "roads": 4, "buildings": 2.5, "water": 1.5 },
+    "slopeMax": 0.85,
+    "lod": { "keepByTier": [1, 0.45, 0.18, 0.06], "maxInstancesPerBatch": 9000 }
+  },
+  "rules": [
+    {
+      "id": "hill-forest",
+      "classes": ["forest", "wood"],
+      "densityPerHectare": 190,
+      "minSpacing": 2.1,
+      "clustering": { "scale": 140, "threshold": 0.2, "contrast": 1.65, "seedOffset": 21 },
+      "slopeMax": 0.9,
+      "populations": [
+        {
+          "model": "builtin:tree.conifer.fir",
+          "weight": 6,
+          "scale": { "min": 0.9, "max": 1.5 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.pine",
+          "weight": 3,
+          "scale": { "min": 0.8, "max": 1.3 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.8, "max": 1.2 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "park-trees",
+      "classes": ["park", "garden", "cemetery", "grass"],
+      "densityPerHectare": 25,
+      "minSpacing": 5,
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 2,
+          "scale": { "min": 0.8, "max": 1.2 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.pine",
+          "weight": 1,
+          "scale": { "min": 0.7, "max": 1.1 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "yard-trees",
+      "classes": ["residential"],
+      "densityPerHectare": 12,
+      "minSpacing": 8,
+      "avoid": { "roads": 3, "buildings": 2 },
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 0.9 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "home-canopy",
+      "classes": ["home_canopy"],
+      "densityPerHectare": 140,
+      "minSpacing": 2.7,
+      "slopeMax": 0.65,
+      "altitude": { "max": 1700 },
+      "avoid": { "roads": 4, "buildings": 4, "water": 3 },
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 0.9 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    }
+  ]
+}

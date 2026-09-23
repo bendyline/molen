@@ -1,0 +1,54 @@
+{
+  "name": "@bendyline/molen-pathfinding",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen pathfinding: grid flow fields for many-unit (RTS) movement",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/pathfinding"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/pathfinding",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "pathfinding",
+    "navigation"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@bendyline/molen-kernel": "workspace:*",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

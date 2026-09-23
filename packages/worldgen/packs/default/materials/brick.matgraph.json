@@ -1,0 +1,44 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 14,
+  "nodes": [
+    {
+      "id": "bond",
+      "type": "bricks",
+      "params": { "rows": 12, "cols": 8, "mortarWidth": 0.1, "offset": 0.5 }
+    },
+    {
+      "id": "courses",
+      "type": "ramp",
+      "input": "bond",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b8b2aa" },
+          { "t": 0.5, "color": "#b8b2aa" },
+          { "t": 0.56, "color": "#f2e4dc" },
+          { "t": 1, "color": "#f2e4dc" }
+        ]
+      }
+    },
+    {
+      "id": "grain-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 12, "seedOffset": 4 }
+    },
+    {
+      "id": "grain",
+      "type": "levels",
+      "input": "grain-noise",
+      "params": { "outMin": 0.84, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "courses", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

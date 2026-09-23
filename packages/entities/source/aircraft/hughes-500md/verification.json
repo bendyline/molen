@@ -1,0 +1,40 @@
+{
+  "asset": {
+    "id": "molen.entities.aircraft.h500md",
+    "sourcePath": "packages/entities/source/aircraft/hughes-500md/models/source.glb",
+    "sourceBytes": 974596,
+    "sourceHash": "sha256:7aa022ee92b492ebf5389fe61701e08033a355759e75cafa4bfd14117abe84f3",
+    "runtimePath": "packages/entities/assets/molen/entities/aircraft/h500md/model.glb",
+    "runtimeHash": "sha256:f25afda6bcf1dc01a5aa85afea21e7e41abb4033880cdf456f9872a084655162",
+    "bounds": {
+      "min": [-3.3022, 0.02, -4.99],
+      "max": [4.02, 2.66, 3.5995]
+    },
+    "stats": {
+      "triangles": 12898,
+      "vertices": 9644,
+      "meshes": 138,
+      "primitives": 138,
+      "materials": 11,
+      "textures": 0,
+      "animations": 0,
+      "sizeBytes": 226668
+    },
+    "renderedTriangles": 21798,
+    "collisionHullCount": 128,
+    "extensions": ["KHR_materials_emissive_strength", "KHR_mesh_quantization"],
+    "browser": {
+      "manifest": ".artifacts/aircraft-shell/h500md-world/experience-run.json",
+      "diagnostics": [],
+      "frames": ["01-helicopter-parked", "02-helicopter-cockpit"]
+    }
+  },
+  "limitations": [
+    "Assisted game flight, bounded pitch/bank; not certified performance or exact cockpit replicas.",
+    "No autorotation, vortex-ring model, fuel/engine systems, aerobatics, weapons or crash deformation.",
+    "Physics uses coarse airframe probes against nearby resident geometry; imported hull extraction is capped at 128.",
+    "Cockpit controls are operated by the documented input bindings; most physical switches are visual details.",
+    "Session-local raised practice airfield; aircraft positions do not persist through page reload."
+  ],
+  "visualReview": "Inspected all eight final turntable images, lit apron, side closeups, and world-view boarding/cockpit screenshots. Opaque lower cabin panels enclose the seats, while the upper seatbacks remain visible through glazing. Forward pilot views and instrument visibility remain clear. Ground shadows and original overall scale are retained. After the OH-6 rename, four new turntable views and the lit apron scene were inspected; the source GLB geometry chunk was preserved byte for byte."
+}

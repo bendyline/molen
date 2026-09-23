@@ -1,0 +1,123 @@
+{
+  "format": "molen/scatter@1",
+  "id": "molen.worldgen.scatter.southwest",
+  "title": "Southwest desert vegetation",
+  "doc": "Sparse pinyon and juniper stands (pine stand-in), shrubs across scrub, boulders on bare ground, a few yard trees; warm dry surface tones.",
+  "version": 2,
+  "surface": {
+    "default": "#a89572",
+    "colors": {
+      "forest": "#6b7a55",
+      "wood": "#6d7b58",
+      "grassland": "#b3a76f",
+      "grass": "#a9a06a",
+      "farmland": "#a99a66",
+      "scrub": "#a4956a",
+      "park": "#8d9a62",
+      "residential": "#a89a84",
+      "commercial": "#9f958a",
+      "industrial": "#948c80",
+      "urban_area": "#9c9588",
+      "beach": "#d0bc8c",
+      "sand": "#cbb383",
+      "barren": "#b39a76",
+      "wetland": "#8f9c74"
+    }
+  },
+  "defaults": {
+    "avoid": { "roads": 5, "buildings": 3, "water": 1.5 },
+    "slopeMax": 0.8,
+    "lod": { "keepByTier": [1, 0.5, 0.2, 0.08], "maxInstancesPerBatch": 4000 }
+  },
+  "rules": [
+    {
+      "id": "pinyon-stand",
+      "classes": ["forest", "wood"],
+      "densityPerHectare": 45,
+      "minSpacing": 5,
+      "clustering": { "scale": 120, "threshold": 0.4, "contrast": 1.6, "seedOffset": 11 },
+      "populations": [
+        {
+          "model": "builtin:tree.conifer.pine",
+          "weight": 1,
+          "scale": { "min": 0.5, "max": 0.8 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.1 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "desert-scrub",
+      "classes": ["scrub", "heath", "grassland", "barren"],
+      "densityPerHectare": 70,
+      "minSpacing": 3,
+      "clustering": { "scale": 90, "threshold": 0.3, "contrast": 1.2, "seedOffset": 3 },
+      "populations": [
+        {
+          "model": "builtin:shrub",
+          "weight": 1,
+          "scale": { "min": 0.5, "max": 1.1 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.04, "saturation": 0.1, "lightness": 0.1 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "desert-rock",
+      "classes": ["barren", "bare_rock", "scree", "scrub"],
+      "densityPerHectare": 6,
+      "minSpacing": 6,
+      "slopeMax": 0.95,
+      "populations": [
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.5, "max": 1.8 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "yard-trees",
+      "classes": ["residential", "park"],
+      "densityPerHectare": 5,
+      "minSpacing": 8,
+      "avoid": { "roads": 4, "buildings": 2.5 },
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 0.9 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "home-canopy",
+      "classes": ["home_canopy"],
+      "densityPerHectare": 140,
+      "minSpacing": 2.7,
+      "slopeMax": 0.65,
+      "altitude": { "max": 1700 },
+      "avoid": { "roads": 4, "buildings": 4, "water": 3 },
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 0.9 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    }
+  ]
+}

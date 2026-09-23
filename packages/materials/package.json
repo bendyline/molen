@@ -1,0 +1,55 @@
+{
+  "name": "@bendyline/molen-materials",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen materials: pixel grids, SVG and procedural material graphs (rungs 2-4). No three.js.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/materials"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/materials",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "procedural-materials",
+    "textures"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-schema": "workspace:*",
+    "@resvg/resvg-wasm": "^2.6.2",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "@bendyline/molen-worldgen-earth",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Earth binding for Molen worldgen: terrain-semantics adapter, OSM label mapping, and lon/lat region atlas (kernel) with terrain tile renderers (client)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/worldgen-earth"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/worldgen-earth",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "worldgen",
+    "geospatial",
+    "terrain"
+  ],
+  "exports": {
+    "./kernel": {
+      "types": "./dist/kernel.d.mts",
+      "default": "./dist/kernel.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    },
+    "./worker": {
+      "types": "./dist/worker.d.mts",
+      "default": "./dist/worker.mjs"
+    },
+    "./packs/*": "./packs/*"
+  },
+  "files": [
+    "dist",
+    "packs"
+  ],
+  "scripts": {
+    "build": "tsdown && node scripts/generate-structure-atlas.mjs --check && node scripts/validate-atlas.mjs && node scripts/validate-businesses.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test scripts packs && node ../../scripts/check-dmath.mjs src/kernel",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "@bendyline/molen-worldgen": "workspace:*",
+    "polygon-clipping": "0.15.7",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "three": "0.184.0"
+  },
+  "peerDependenciesMeta": {
+    "@bendyline/molen-client": {
+      "optional": true
+    },
+    "three": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

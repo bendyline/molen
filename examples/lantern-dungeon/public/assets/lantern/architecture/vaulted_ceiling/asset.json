@@ -1,0 +1,72 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.architecture.vaulted_ceiling",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:b91700efeba1b8c63b523c543152404f5248aaaa39e148fb9ddaafe686feccbd",
+  "sourceHash": "sha256:757c88940beaa17837966bf69d10147931081782f4032f60ae338e3807d798f5",
+  "bounds": {
+    "aabb": {
+      "min": [-1.5412, -0.0601, -1.5357],
+      "max": [1.5412, 0.6101, 1.5357]
+    },
+    "sphere": {
+      "center": [0, 0.275, 0],
+      "radius": 2.1264
+    }
+  },
+  "stats": {
+    "triangles": 468,
+    "vertices": 1014,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 3,
+    "animations": 0,
+    "sizeBytes": 273560
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 468
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "Limestone / slate",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Limestone / carved",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Aged brass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.5412, -0.0601, -1.5357, -1.5412, -0.0601, 1.5357, -1.5412, 0.6101, -1.5357, -1.5412,
+          0.6101, 1.5357, 1.5412, -0.0601, -1.5357, 1.5412, -0.0601, 1.5357, 1.5412, 0.6101,
+          -1.5357, 1.5412, 0.6101, 1.5357
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

@@ -1,0 +1,111 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.compact": {
+      "doc": "Compact road car with lightweight, nimble performance.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.compact",
+          "color": "#c94c4c",
+          "spec": {
+            "label": "Compact",
+            "width": 1.72,
+            "length": 3.85,
+            "height": 1.48,
+            "centerOfMass": [0, 0.52, 0],
+            "wheelbase": 2.45,
+            "wheelTrack": 1.4448,
+            "wheelRadius": 0.29,
+            "mass": 1150,
+            "engineForce": 4700,
+            "maxSpeed": 36,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 9,
+            "maxSteer": 0.58,
+            "grip": 7.5,
+            "driverEye": [0.36, 1.16, 0.22],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-rear-right",
+              "wheel-rear-left",
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
+            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["body", "steering-wheel"],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.36, 1.16, 0.22]
+            }
+          ],
+          "exits": [[1.36, 0, 0.22], [-1.36, 0, 0.22]],
+          "reach": 2.5
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.compact",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      },
+      "assets": ["molen.entities.vehicle.compact"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

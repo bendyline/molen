@@ -1,0 +1,88 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "building-interior-walkthrough",
+  "path": "/?synthetic=1&stores=1&quality=balanced&freeze=1&navigation=walk&hud=0&lat=47.6216293438&lon=-122.0146452465&alt=415&yaw=-1.5707963268&pitch=0",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 3000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-entrance"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 7000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-interior"
+    },
+    {
+      "type": "keys",
+      "keys": ["s"],
+      "durationMs": 7000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-exit"
+    },
+    {
+      "type": "navigate",
+      "path": "/?synthetic=1&stores=1&quality=balanced&freeze=1&navigation=walk&hud=0&lat=47.62162934377729&lon=-122.01399845949885&alt=415&yaw=-1.5707963268&pitch=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 3000
+    },
+    {
+      "type": "screenshot",
+      "name": "04-grocery-entrance"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 7000
+    },
+    {
+      "type": "screenshot",
+      "name": "05-grocery-interior"
+    },
+    {
+      "type": "keys",
+      "keys": ["s"],
+      "durationMs": 7000
+    },
+    {
+      "type": "screenshot",
+      "name": "06-grocery-exit"
+    }
+  ]
+}

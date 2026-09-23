@@ -1,0 +1,113 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-moving-transitions",
+  "path": "/?quality=high&alt=850&pitch=-0.28",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 4000,
+      "note": "Capture ongoing semantic refinement instead of hiding a stall"
+    },
+    {
+      "type": "key-down",
+      "keys": ["w", "Shift"]
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-01"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-02"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-03"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-04"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-05"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-06"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-07"
+    },
+    {
+      "type": "wait",
+      "durationMs": 300
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-08"
+    },
+    {
+      "type": "key-up",
+      "keys": ["w", "Shift"]
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain",
+      "stableMs": 700,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "moving-09-settled"
+    }
+  ]
+}

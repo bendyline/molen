@@ -1,0 +1,163 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-aircraft-flight",
+  "path": "/?aircraft=h500md&quality=balanced&freeze=1",
+  "viewport": [1440, 900],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-helicopter-parked"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=h500md]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-helicopter-cockpit"
+    },
+    {
+      "type": "keys",
+      "keys": ["i"],
+      "durationMs": 100
+    },
+    {
+      "type": "key-down",
+      "keys": ["Shift"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status:is([data-power=\"55\"],[data-power=\"56\"],[data-power=\"57\"],[data-power=\"58\"],[data-power=\"59\"],[data-power=\"60\"])",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["Shift"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-flight-state=airborne]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 5000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-helicopter-hover"
+    },
+    {
+      "type": "keys",
+      "keys": ["v"],
+      "durationMs": 100
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 2500
+    },
+    {
+      "type": "screenshot",
+      "name": "04-helicopter-flight"
+    },
+    {
+      "type": "navigate",
+      "path": "/?aircraft=p51d&quality=balanced&freeze=1"
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "05-mustang-parked"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=p51d]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "06-mustang-cockpit"
+    },
+    {
+      "type": "keys",
+      "keys": ["i", "f"],
+      "durationMs": 100
+    },
+    {
+      "type": "key-down",
+      "keys": ["Shift", " "]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-power=\"100\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["Shift", " "]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-flight-state=rotation]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-down",
+      "keys": ["s"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-flight-state=airborne]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["s"]
+    },
+    {
+      "type": "wait",
+      "durationMs": 5000
+    },
+    {
+      "type": "keys",
+      "keys": ["v"],
+      "durationMs": 100
+    },
+    {
+      "type": "screenshot",
+      "name": "07-mustang-flight"
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-flight-state=airborne][data-crashed=false]",
+      "timeoutMs": 240000
+    }
+  ]
+}

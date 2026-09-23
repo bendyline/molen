@@ -1,0 +1,57 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "worldgen-lineup",
+  "path": "/?synthetic=1&lineup=1&style=default&quality=balanced&freeze=1&hud=0&lat=47.620237&lon=-122.014160&alt=415&yaw=-1.5708&pitch=-0.42",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "source",
+      "selector": "#source"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-lineup-human",
+      "settleMs": 400
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"classification\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-lineup-classes",
+      "settleMs": 400
+    }
+  ]
+}

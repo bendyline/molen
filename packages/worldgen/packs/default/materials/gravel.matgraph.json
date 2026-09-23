@@ -1,0 +1,16 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 20,
+  "nodes": [
+    { "id": "stones", "type": "worley", "params": { "scale": 24, "jitter": 1, "output": "f1" } },
+    {
+      "id": "out",
+      "type": "ramp",
+      "input": "stones",
+      "params": { "stops": [{ "t": 0, "color": "#ebe9e3" }, { "t": 1, "color": "#bfbdb6" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

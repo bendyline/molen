@@ -1,0 +1,66 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "residential-buildings",
+  "path": "/?quality=high&lat=47.61449&lon=-122.03397&alt=257&pitch=-0.3&yaw=2.6",
+  "viewport": [1440, 900],
+  "probes": [
+    {
+      "name": "source",
+      "selector": "#source"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-residential-high"
+    },
+    {
+      "type": "navigate",
+      "path": "/?quality=economy&lat=47.61449&lon=-122.03397&alt=257&pitch=-0.3&yaw=2.6"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-residential-economy"
+    }
+  ]
+}

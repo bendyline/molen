@@ -1,0 +1,84 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "store-library",
+  "path": "/?synthetic=1&stores=1&style=default&quality=balanced&freeze=1&hud=0&lat=47.620237&lon=-122.014160&alt=415&yaw=-1.5708&pitch=-0.42",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "source",
+      "selector": "#source"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-stores-human",
+      "settleMs": 400
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"classification\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-stores-classes",
+      "settleMs": 400
+    },
+    {
+      "type": "navigate",
+      "path": "/?synthetic=1&stores=1&style=default&quality=balanced&freeze=1&hud=0&lat=47.6164&lon=-122.014160&alt=650&yaw=-1.5708&pitch=-0.52"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-retail-overview",
+      "settleMs": 400
+    }
+  ]
+}

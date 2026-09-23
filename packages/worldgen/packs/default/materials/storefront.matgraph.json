@@ -1,0 +1,40 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 25,
+  "nodes": [
+    {
+      "id": "frame",
+      "type": "bricks",
+      "params": { "rows": 1, "cols": 1, "mortarWidth": 0.04, "offset": 0 }
+    },
+    {
+      "id": "panes",
+      "type": "ramp",
+      "input": "frame",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#4b4e52" },
+          { "t": 0.5, "color": "#4b4e52" },
+          { "t": 0.56, "color": "#6a8196" },
+          { "t": 1, "color": "#6a8196" }
+        ]
+      }
+    },
+    { "id": "sheen", "type": "gradient", "params": { "kind": "linear", "angleDeg": 55 } },
+    {
+      "id": "sheen-soft",
+      "type": "levels",
+      "input": "sheen",
+      "params": { "outMin": 0.82, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "panes", "b": "sheen-soft" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.22 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

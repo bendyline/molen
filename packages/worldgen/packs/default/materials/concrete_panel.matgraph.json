@@ -1,0 +1,44 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 15,
+  "nodes": [
+    {
+      "id": "joints",
+      "type": "bricks",
+      "params": { "rows": 1, "cols": 1, "mortarWidth": 0.03, "offset": 0 }
+    },
+    {
+      "id": "panels",
+      "type": "ramp",
+      "input": "joints",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#a6a6a4" },
+          { "t": 0.5, "color": "#a6a6a4" },
+          { "t": 0.56, "color": "#e8e8e6" },
+          { "t": 1, "color": "#e8e8e6" }
+        ]
+      }
+    },
+    {
+      "id": "grain-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 9, "seedOffset": 5 }
+    },
+    {
+      "id": "grain",
+      "type": "levels",
+      "input": "grain-noise",
+      "params": { "outMin": 0.9, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "panels", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

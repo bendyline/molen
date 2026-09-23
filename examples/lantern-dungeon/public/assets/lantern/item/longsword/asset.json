@@ -1,0 +1,78 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.item.longsword",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:3867017033d4c11548e4b6c71f63e4a929bba2c278d4ae7e39297937775e64a3",
+  "sourceHash": "sha256:b0744a3c5312076fe36417dcff3217780cde0e5ac3a8774384904dfbdc8217a3",
+  "bounds": {
+    "aabb": {
+      "min": [-0.2657, -0.058, -0.0496],
+      "max": [0.2657, 1.24, 0.0545]
+    },
+    "sphere": {
+      "center": [0, 0.591, 0.0025],
+      "radius": 0.649
+    }
+  },
+  "stats": {
+    "triangles": 1022,
+    "vertices": 2315,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 1,
+    "sizeBytes": 46068
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 1022
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [
+    {
+      "name": "attack",
+      "durationSec": 0.38,
+      "channels": 1
+    }
+  ],
+  "materials": [
+    {
+      "name": "Oxhide",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Aged brass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Polished blade",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -0.2657, -0.058, -0.0496, -0.2657, -0.058, 0.0545, -0.2657, 1.24, -0.0496, -0.2657, 1.24,
+          0.0545, 0.2657, -0.058, -0.0496, 0.2657, -0.058, 0.0545, 0.2657, 1.24, -0.0496, 0.2657,
+          1.24, 0.0545
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

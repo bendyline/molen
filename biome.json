@@ -1,0 +1,41 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!**/dist",
+      "!**/dist-types",
+      "!**/node_modules",
+      "!**/.turbo",
+      "!**/.artifacts",
+      "!**/__output__",
+      "!**/.tmp",
+      "!spikes",
+      "!docs-site/.vitepress/cache",
+      "!examples/world-explorer/public/worldgen",
+      "!examples/world-explorer/public/worldgen-earth",
+      "!examples/world-explorer/public/entities"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "suspicious": {
+        "noExplicitAny": "warn"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always"
+    }
+  }
+}

@@ -1,0 +1,1737 @@
+{
+  "format": "molen/scene@3",
+  "name": "skybound",
+  "seed": "skybound-1",
+  "tickRate": 30,
+  "physics": {
+    "engine": "platformer"
+  },
+  "camera": {
+    "mode": "follow",
+    "entity": "camera-target",
+    "offset": [0, 3, 22],
+    "lookOffset": [0, 3, 0],
+    "fov": 46
+  },
+  "components": {
+    "skyGame": {
+      "description": "Platform run, lives and checkpoint.",
+      "examples": [
+        {
+          "status": "playing",
+          "lives": 3,
+          "coins": 0,
+          "total": 15,
+          "checkpoint": 0,
+          "message": "Follow the floating seeds to the lighthouse."
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "lives": {
+            "type": "number"
+          },
+          "coins": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "checkpoint": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["status", "lives", "coins", "total", "checkpoint", "message"],
+        "additionalProperties": false
+      }
+    },
+    "seedPickup": {
+      "description": "Collectible seed state.",
+      "examples": [
+        {
+          "collected": false
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "collected": {
+            "type": "boolean"
+          }
+        },
+        "required": ["collected"],
+        "additionalProperties": false
+      }
+    },
+    "patrol": {
+      "description": "Patrolling creature; stomp from above.",
+      "examples": [
+        {
+          "left": 27,
+          "right": 32,
+          "direction": 1,
+          "alive": true
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "number"
+          },
+          "right": {
+            "type": "number"
+          },
+          "direction": {
+            "type": "number"
+          },
+          "alive": {
+            "type": "boolean"
+          }
+        },
+        "required": ["left", "right", "direction", "alive"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "commands": {
+    "move": {
+      "doc": "Horizontal movement; y ignored.",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "dir": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["dir"],
+        "additionalProperties": false
+      }
+    },
+    "jump": {
+      "doc": "Request a jump and set held state.",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "held": {
+            "type": "boolean"
+          }
+        },
+        "required": ["held"],
+        "additionalProperties": false
+      }
+    },
+    "restart": {
+      "doc": "Restart the whole level with three lives.",
+      "payload": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    }
+  },
+  "input": {
+    "bindings": {
+      "KeyA": "left",
+      "ArrowLeft": "left",
+      "KeyD": "right",
+      "ArrowRight": "right",
+      "KeyW": "up",
+      "ArrowUp": "up",
+      "KeyS": "down",
+      "ArrowDown": "down",
+      "Space": "jump",
+      "KeyR": "restart"
+    },
+    "emit": [
+      {
+        "kind": "axis2d",
+        "xNeg": "left",
+        "xPos": "right",
+        "yNeg": "up",
+        "yPos": "down",
+        "command": "move",
+        "field": "dir"
+      },
+      {
+        "kind": "press",
+        "action": "jump",
+        "command": "jump",
+        "payload": {
+          "held": true
+        }
+      },
+      {
+        "kind": "release",
+        "action": "jump",
+        "command": "jump",
+        "payload": {
+          "held": false
+        }
+      },
+      {
+        "kind": "press",
+        "action": "restart",
+        "command": "restart",
+        "payload": {}
+      }
+    ]
+  },
+  "scripts": [
+    {
+      "id": "adventure",
+      "path": "scripts/game.ts",
+      "checkpoint": "state",
+      "config": {
+        "spawn": [0, 1.25, 0],
+        "checkpoint": [38, 1.25, 0],
+        "finish": 75
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "background": "#9fd9e1",
+          "ambient": {
+            "intensity": 1.3,
+            "sky": "#effbea",
+            "ground": "#a5c5b8"
+          },
+          "sun": {
+            "direction": [15, 30, 20],
+            "intensity": 2.2,
+            "color": "#ffe0ac",
+            "castShadow": true
+          },
+          "toneMapping": "aces",
+          "exposure": 1.1,
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "game",
+      "components": {
+        "skyGame": {
+          "status": "playing",
+          "lives": 3,
+          "coins": 0,
+          "total": 15,
+          "checkpoint": 0,
+          "message": "Follow the floating seeds to the lighthouse."
+        }
+      }
+    },
+    {
+      "id": "camera-target",
+      "components": {
+        "transform": {
+          "pos": [4, 0, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "island0",
+      "components": {
+        "transform": {
+          "pos": [0.5, -1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [15, 3.2, 4]
+          },
+          "materialRef": "palette:#b8876e"
+        },
+        "platformSolid": {
+          "halfExtents": [7.5, 1.6]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "grass0",
+      "components": {
+        "transform": {
+          "pos": [0.5, 0.65, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [15.12, 0.18, 4.12]
+          },
+          "materialRef": "palette:#5c976c"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root0--6",
+      "components": {
+        "transform": {
+          "pos": [-6, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root0--3",
+      "components": {
+        "transform": {
+          "pos": [-3, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root0-0",
+      "components": {
+        "transform": {
+          "pos": [0, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root0-3",
+      "components": {
+        "transform": {
+          "pos": [3, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root0-6",
+      "components": {
+        "transform": {
+          "pos": [6, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "island1",
+      "components": {
+        "transform": {
+          "pos": [16.5, -1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [11, 3.2, 4]
+          },
+          "materialRef": "palette:#b8876e"
+        },
+        "platformSolid": {
+          "halfExtents": [5.5, 1.6]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "grass1",
+      "components": {
+        "transform": {
+          "pos": [16.5, 0.65, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [11.12, 0.18, 4.12]
+          },
+          "materialRef": "palette:#5c976c"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root1-12",
+      "components": {
+        "transform": {
+          "pos": [12, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root1-15",
+      "components": {
+        "transform": {
+          "pos": [15, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root1-18",
+      "components": {
+        "transform": {
+          "pos": [18, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root1-21",
+      "components": {
+        "transform": {
+          "pos": [21, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "island2",
+      "components": {
+        "transform": {
+          "pos": [32.5, -1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [15, 3.2, 4]
+          },
+          "materialRef": "palette:#b8876e"
+        },
+        "platformSolid": {
+          "halfExtents": [7.5, 1.6]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "grass2",
+      "components": {
+        "transform": {
+          "pos": [32.5, 0.65, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [15.12, 0.18, 4.12]
+          },
+          "materialRef": "palette:#5c976c"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root2-26",
+      "components": {
+        "transform": {
+          "pos": [26, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root2-29",
+      "components": {
+        "transform": {
+          "pos": [29, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root2-32",
+      "components": {
+        "transform": {
+          "pos": [32, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root2-35",
+      "components": {
+        "transform": {
+          "pos": [35, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root2-38",
+      "components": {
+        "transform": {
+          "pos": [38, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "island3",
+      "components": {
+        "transform": {
+          "pos": [50.0, -1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [14, 3.2, 4]
+          },
+          "materialRef": "palette:#b8876e"
+        },
+        "platformSolid": {
+          "halfExtents": [7.0, 1.6]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "grass3",
+      "components": {
+        "transform": {
+          "pos": [50.0, 0.65, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [14.12, 0.18, 4.12]
+          },
+          "materialRef": "palette:#5c976c"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root3-44",
+      "components": {
+        "transform": {
+          "pos": [44, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root3-47",
+      "components": {
+        "transform": {
+          "pos": [47, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root3-50",
+      "components": {
+        "transform": {
+          "pos": [50, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root3-53",
+      "components": {
+        "transform": {
+          "pos": [53, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root3-56",
+      "components": {
+        "transform": {
+          "pos": [56, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "island4",
+      "components": {
+        "transform": {
+          "pos": [70.5, -1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [21, 3.2, 4]
+          },
+          "materialRef": "palette:#b8876e"
+        },
+        "platformSolid": {
+          "halfExtents": [10.5, 1.6]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "grass4",
+      "components": {
+        "transform": {
+          "pos": [70.5, 0.65, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [21.12, 0.18, 4.12]
+          },
+          "materialRef": "palette:#5c976c"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-61",
+      "components": {
+        "transform": {
+          "pos": [61, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-64",
+      "components": {
+        "transform": {
+          "pos": [64, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-67",
+      "components": {
+        "transform": {
+          "pos": [67, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-70",
+      "components": {
+        "transform": {
+          "pos": [70, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-73",
+      "components": {
+        "transform": {
+          "pos": [73, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-76",
+      "components": {
+        "transform": {
+          "pos": [76, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "root4-79",
+      "components": {
+        "transform": {
+          "pos": [79, -3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.5, 2, 2]
+          },
+          "materialRef": "palette:#9d7469"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge0",
+      "components": {
+        "transform": {
+          "pos": [14, 2.8, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [3, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.5, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge1",
+      "components": {
+        "transform": {
+          "pos": [19, 4, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [3, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.5, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge2",
+      "components": {
+        "transform": {
+          "pos": [30, 2.9, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [3, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.5, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge3",
+      "components": {
+        "transform": {
+          "pos": [47, 3, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [3, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.5, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge4",
+      "components": {
+        "transform": {
+          "pos": [54, 4.1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [2.5, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.25, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "ledge5",
+      "components": {
+        "transform": {
+          "pos": [64, 2.7, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [3, 0.4, 2.4]
+          },
+          "materialRef": "palette:#e7c684"
+        },
+        "platformSolid": {
+          "halfExtents": [1.5, 0.2],
+          "oneWay": true
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "player",
+      "components": {
+        "transform": {
+          "pos": [0, 1.25, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.65, 1.05, 0.65]
+          },
+          "materialRef": "palette:#f1a550"
+        },
+        "platformBody": {
+          "halfExtents": [0.35, 0.65],
+          "speed": 7,
+          "jumpSpeed": 12,
+          "gravity": 28
+        },
+        "platformIntent": {
+          "move": 0,
+          "jumpHeld": false
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "hero-head",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.55, 0.5, 0.55]
+          },
+          "materialRef": "palette:#fff0ce"
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [0, 0.65, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "hero-hat",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.76, 0.14, 0.7]
+          },
+          "materialRef": "palette:#39747d"
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [0, 0.94, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "hero-eye",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.12, 0.12, 0.04]
+          },
+          "materialRef": "palette:#253b4b"
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [0.16, 0.69, 0.29],
+          "rot": [0, 0, 0, 1]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "hero-pack",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.2, 0.7, 0.6]
+          },
+          "materialRef": "palette:#427a85"
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [-0.35, 0, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "seed0",
+      "components": {
+        "transform": {
+          "pos": [3, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed1",
+      "components": {
+        "transform": {
+          "pos": [5, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed2",
+      "components": {
+        "transform": {
+          "pos": [12, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed3",
+      "components": {
+        "transform": {
+          "pos": [14, 4, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed4",
+      "components": {
+        "transform": {
+          "pos": [19, 5.1, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed5",
+      "components": {
+        "transform": {
+          "pos": [21, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed6",
+      "components": {
+        "transform": {
+          "pos": [27, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed7",
+      "components": {
+        "transform": {
+          "pos": [30, 4, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed8",
+      "components": {
+        "transform": {
+          "pos": [37, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed9",
+      "components": {
+        "transform": {
+          "pos": [44, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed10",
+      "components": {
+        "transform": {
+          "pos": [47, 4.1, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed11",
+      "components": {
+        "transform": {
+          "pos": [54, 5.2, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed12",
+      "components": {
+        "transform": {
+          "pos": [61, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed13",
+      "components": {
+        "transform": {
+          "pos": [64, 3.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "seed14",
+      "components": {
+        "transform": {
+          "pos": [72, 1.8, 0]
+        }
+      },
+      "prefab": "seed"
+    },
+    {
+      "id": "hazard0",
+      "components": {
+        "transform": {
+          "pos": [18, 0.92, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.1, 0.6, 1]
+          },
+          "materialRef": "palette:#c76974"
+        },
+        "tag": {
+          "name": "hazard"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hazard3",
+      "components": {
+        "transform": {
+          "pos": [67, 0.92, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.1, 0.6, 1]
+          },
+          "materialRef": "palette:#c76974"
+        },
+        "tag": {
+          "name": "hazard"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "critter0",
+      "components": {
+        "transform": {
+          "pos": [27, 1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.8, 0.8, 0.8]
+          },
+          "materialRef": "palette:#786caa"
+        },
+        "patrol": {
+          "left": 27,
+          "right": 32,
+          "direction": 1,
+          "alive": true
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "critter1",
+      "components": {
+        "transform": {
+          "pos": [45, 1, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.8, 0.8, 0.8]
+          },
+          "materialRef": "palette:#786caa"
+        },
+        "patrol": {
+          "left": 45,
+          "right": 49,
+          "direction": 1,
+          "alive": true
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "checkpoint",
+      "components": {
+        "transform": {
+          "pos": [38, 2.1, -0.6]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [0.12, 3, 0.12]
+          },
+          "materialRef": "palette:#fff3cf"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "checkpoint-flag",
+      "components": {
+        "transform": {
+          "pos": [38.5, 3.2, -0.6]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1, 0.55, 0.1]
+          },
+          "materialRef": "palette:#eeac61"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "lighthouse",
+      "components": {
+        "transform": {
+          "pos": [76, 3, -1]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [2, 5, 2]
+          },
+          "materialRef": "palette:#f2e5c1"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "lighthouse-top",
+      "components": {
+        "transform": {
+          "pos": [76, 5.7, -1]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [2.6, 0.55, 2.6]
+          },
+          "materialRef": "palette:#397b85"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "lamp",
+      "components": {
+        "transform": {
+          "pos": [76, 5.1, 0.05]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1.2, 0.7, 0.1]
+          },
+          "materialRef": "palette:#ffd675"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "hill0",
+      "components": {
+        "transform": {
+          "pos": [-5, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 9, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud0",
+      "components": {
+        "transform": {
+          "pos": [-5, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill1",
+      "components": {
+        "transform": {
+          "pos": [4, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 11, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud1",
+      "components": {
+        "transform": {
+          "pos": [4, 11, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill2",
+      "components": {
+        "transform": {
+          "pos": [13, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 13, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud2",
+      "components": {
+        "transform": {
+          "pos": [13, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill3",
+      "components": {
+        "transform": {
+          "pos": [22, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 9, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud3",
+      "components": {
+        "transform": {
+          "pos": [22, 11, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill4",
+      "components": {
+        "transform": {
+          "pos": [31, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 11, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud4",
+      "components": {
+        "transform": {
+          "pos": [31, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill5",
+      "components": {
+        "transform": {
+          "pos": [40, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 13, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud5",
+      "components": {
+        "transform": {
+          "pos": [40, 11, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill6",
+      "components": {
+        "transform": {
+          "pos": [49, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 9, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud6",
+      "components": {
+        "transform": {
+          "pos": [49, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill7",
+      "components": {
+        "transform": {
+          "pos": [58, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 11, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud7",
+      "components": {
+        "transform": {
+          "pos": [58, 11, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill8",
+      "components": {
+        "transform": {
+          "pos": [67, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 13, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud8",
+      "components": {
+        "transform": {
+          "pos": [67, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill9",
+      "components": {
+        "transform": {
+          "pos": [76, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 9, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud9",
+      "components": {
+        "transform": {
+          "pos": [76, 11, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "hill10",
+      "components": {
+        "transform": {
+          "pos": [85, -0.3, -7],
+          "scale": [1, 1.2, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [8, 11, 3]
+          },
+          "materialRef": "palette:#78b5b0"
+        }
+      },
+      "prefab": "sphere"
+    },
+    {
+      "id": "cloud10",
+      "components": {
+        "transform": {
+          "pos": [85, 9, -9],
+          "scale": [1, 0.22, 0.4]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [6, 1.4, 2]
+          },
+          "materialRef": "palette:#e2f1df"
+        }
+      },
+      "prefab": "sphere"
+    }
+  ],
+  "prefabs": {
+    "box": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "sphere": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "sphere",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "cylinder": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "cylinder",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "seed": {
+      "extends": "sphere",
+      "components": {
+        "renderable": {
+          "primitive": {
+            "size": [0.35, 0.5, 0.35]
+          },
+          "materialRef": "palette:#ffe19a"
+        },
+        "seedPickup": {
+          "collected": false
+        }
+      }
+    }
+  }
+}

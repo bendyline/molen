@@ -1,0 +1,161 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.generic.store",
+  "title": "Recognizable storefront",
+  "doc": "One-storey shop envelope with identity-specific facade accents and instanced signs. Source heights and floor counts override defaults.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "supermarket",
+      "grocery",
+      "retail",
+      "fast_food",
+      "restaurant",
+      "cafe",
+      "pharmacy",
+      "department_store",
+      "shop",
+      "bank",
+      "clinic",
+      "fitness_centre"
+    ]
+  },
+  "massing": {
+    "floorHeight": { "min": 4.8, "max": 5.8 },
+    "heightFallback": [{ "levels": { "min": 1, "max": 1 } }],
+    "groundFit": "platform-average",
+    "foundation": { "height": { "min": 0.2, "max": 0.4 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 60,
+      "minWingArea": 200,
+      "secondaryHeightScale": { "min": 1, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": { "min": 0, "max": 0 },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": { "height": { "min": 0.35, "max": 0.55 }, "thickness": 0.5 }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 6, "max": 8 }, "cornerMargin": 1 },
+    "windows": {
+      "style": "none",
+      "width": { "min": 2, "max": 3 },
+      "height": { "min": 2.4, "max": 2.8 },
+      "sill": { "min": 0.3, "max": 0.5 },
+      "probabilityPerBay": 0.2,
+      "groundFloor": "storefront"
+    },
+    "bands": {
+      "base": { "height": { "min": 0.5, "max": 0.8 } },
+      "floorLines": false,
+      "cornice": { "height": 0.22 }
+    },
+    "details": { "awnings": { "depth": 0.9 } }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        { "ref": "matgraph:molen.worldgen.material.concrete_panel", "weight": 2 },
+        { "ref": "matgraph:molen.worldgen.material.stucco", "weight": 1 }
+      ],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [
+        { "ref": "matgraph:molen.worldgen.material.membrane", "weight": 2 },
+        { "ref": "matgraph:molen.worldgen.material.gravel", "weight": 2 }
+      ],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.concrete_plain", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.storefront", "weight": 1 }],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        { "color": "#d8cfc0", "weight": 3, "name": "beige" },
+        { "color": "#c9bfae", "weight": 2, "name": "tan" },
+        { "color": "#b9ae9c", "weight": 1, "name": "khaki" }
+      ],
+      "jitter": { "hue": 0.005, "saturation": 0.03, "lightness": 0.04 }
+    },
+    "roof": {
+      "entries": [{ "color": "#c9c6bf", "weight": 1, "name": "white membrane" }],
+      "jitter": { "hue": 0, "saturation": 0.01, "lightness": 0.03 }
+    },
+    "trim": {
+      "entries": [{ "color": "#2b2b2b", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0, "lightness": 0.03 }
+    }
+  },
+  "props": [
+    {
+      "id": "hvac",
+      "model": "molen.worldgen.prop.rooftop.hvac",
+      "anchor": "roof-flat",
+      "probability": 0.85,
+      "count": { "min": 1, "max": 4 },
+      "perAreaM2": 500,
+      "roof": ["flat"],
+      "spacing": 8,
+      "margin": 4,
+      "scale": { "min": 0.9, "max": 1.3 },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      { "minTier": 1, "keep": ["roof-shape", "facade-texture"] }
+    ]
+  }
+}

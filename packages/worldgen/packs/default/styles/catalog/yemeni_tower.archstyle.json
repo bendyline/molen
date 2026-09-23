@@ -1,0 +1,130 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.catalog.yemeni_tower",
+  "title": "Yemeni earthen tower house",
+  "doc": "Compact tall earthen house with pale horizontal trim and tight ranks of small upper windows. Parametric interpretation: outline, height, floor count and seed remain caller-controlled; large or unusually tall outlines use a compatible flat-roof fallback.",
+  "version": 1,
+  "applicability": {
+    "classes": ["yemeni_tower", "house", "residential", "detached"],
+    "areaMin": 12,
+    "notes": "Regional precedent is descriptive; explicit style requests work in every world."
+  },
+  "massing": {
+    "floorHeight": { "min": 2.85, "max": 3.05 },
+    "heightFallback": [{ "levels": { "min": 6, "max": 6 } }],
+    "groundFit": "platform-average",
+    "foundation": { "height": { "min": 0.3, "max": 0.4 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 20,
+      "minWingArea": 5,
+      "secondaryHeightScale": { "min": 1, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": { "min": 0, "max": 0 },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": { "height": { "min": 0.4, "max": 0.4 }, "thickness": 0.24 }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 2.42, "max": 2.58 }, "cornerMargin": 0.5 },
+    "windows": {
+      "style": "punched",
+      "width": { "min": 0.72, "max": 0.78 },
+      "height": { "min": 1.17, "max": 1.23 },
+      "sill": { "min": 0.82, "max": 0.82 },
+      "probabilityPerBay": 1,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": { "height": { "min": 0.32, "max": 0.32 } },
+      "floorLines": true,
+      "cornice": { "height": 0.22 }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.earth_adobe", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [1.35, 0.75],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.membrane", "weight": 1 }],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.stone", "weight": 1 }],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.window_punched", "weight": 1 }],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [{ "color": "#a67e61", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "roof": {
+      "entries": [{ "color": "#a2a69e", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "trim": {
+      "entries": [{ "color": "#e9deca", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "foundation": {
+      "entries": [{ "color": "#b4aa93", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      { "minTier": 1, "keep": ["roof-shape", "facade-texture", "facade-bands"] },
+      { "minTier": 2, "keep": ["roof-shape"] }
+    ]
+  }
+}

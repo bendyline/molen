@@ -1,0 +1,36 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.nature.boulder": {
+      "doc": "Rounded weathered boulder for alpine, field, shoreline, and fictional terrain.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [1, 1, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.nature.boulder",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "collider": {
+          "shape": "circle",
+          "radius": 1.1,
+          "layer": 1,
+          "mask": 1,
+          "isStatic": true
+        },
+        "tag": {
+          "name": "rock"
+        }
+      },
+      "assets": ["molen.entities.nature.boulder"]
+    }
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.h500md": {
+      "doc": "External OH-6 entity using the generic helicopter solver.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.h500md",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.h500md",
+          "spec": {
+            "label": "OH-6",
+            "model": "helicopter",
+            "mass": 1150,
+            "span": 8.05,
+            "length": 7.01,
+            "height": 2.65,
+            "centerOfMass": [0, 1.25, -0.45],
+            "pilotEye": [-0.38, 1.7, 0.6],
+            "engine": {
+              "position": [0, 2.05, -1.25],
+              "thrustAxis": [0, 1, 0],
+              "power": 235000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 50
+            },
+            "helicopter": {
+              "rotorPosition": [0, 2.64, -0.25],
+              "rotorRadius": 4.025,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 210,
+              "horizontalDrag": 18,
+              "quadraticDrag": 2.5,
+              "groundDeceleration": 9
+            },
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.3,
+            "hardLandingPitch": 0.35,
+            "maxSupportStep": 0.65,
+            "collisionProbes": [
+              [0, 1.4, 0],
+              [0, 1.4, 2.6638],
+              [0, 1.5, -2.804],
+              [-3.4615, 2.6, 0],
+              [3.4615, 2.6, 0]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5.8
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "interior": {
+                "nodes": ["cockpit", "collective"],
+                "bindings": [
+                  {
+                    "node": "needle-airspeed",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.05411764705882353,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "needle-altimeter",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.020614125683207075
+                  },
+                  {
+                    "node": "needle-heading",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "needle-vsi",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.18333333333333335,
+                    "min": -2.2,
+                    "max": 2.2
+                  },
+                  {
+                    "node": "needle-rpm",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 4.6,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "pitch",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "collective",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.45
+                  },
+                  {
+                    "node": "control-stick_1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "control-stick_1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.22
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [0, 0, 0],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.38, 1.7, 0.6]
+            }
+          ],
+          "exits": [[-1.6, 0, 0.8], [1.6, 0, 0.8]],
+          "reach": 3
+        }
+      },
+      "assets": ["molen.entities.aircraft.h500md"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

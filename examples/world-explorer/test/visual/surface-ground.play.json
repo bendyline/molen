@@ -1,0 +1,70 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "surface-ground",
+  "path": "/?quality=balanced&freeze=1&hud=0&lat=47.61394&lon=-122.03568&alt=220&pitch=-0.45&yaw=0.3",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "location",
+      "selector": "#location"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-navigation=\"walk\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-ground",
+      "settleMs": 500
+    },
+    {
+      "type": "keys",
+      "keys": ["d"],
+      "durationMs": 3000
+    },
+    {
+      "type": "wait",
+      "durationMs": 500
+    },
+    {
+      "type": "screenshot",
+      "name": "02-step-right",
+      "settleMs": 500
+    }
+  ]
+}

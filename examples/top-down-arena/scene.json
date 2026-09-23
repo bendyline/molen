@@ -1,0 +1,162 @@
+{
+  "format": "molen/scene@3",
+  "name": "top-down-arena",
+  "seed": "arena-1",
+  "tickRate": 30,
+  "keyframeInterval": 60,
+  "physics": {
+    "engine": "kinematics"
+  },
+  "camera": {
+    "mode": "top-down-ortho",
+    "center": [0, 0],
+    "viewHeight": 26
+  },
+  "input": {
+    "bindings": {
+      "KeyW": "up",
+      "KeyS": "down",
+      "KeyA": "left",
+      "KeyD": "right"
+    },
+    "emit": [
+      {
+        "kind": "axis2d",
+        "xNeg": "left",
+        "xPos": "right",
+        "yNeg": "up",
+        "yPos": "down",
+        "command": "move",
+        "field": "dir"
+      }
+    ]
+  },
+  "commands": {
+    "move": {
+      "doc": "Set the player's planar move direction: dir = [x, z], each in -1..1.",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "dir": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["dir"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "scripts": [
+    {
+      "id": "control",
+      "path": "scripts/control.ts",
+      "config": {
+        "playerSpeed": 9
+      },
+      "checkpoint": "state"
+    },
+    {
+      "id": "spawner",
+      "path": "scripts/spawner.ts",
+      "config": {
+        "interval": 12,
+        "size": 20
+      },
+      "checkpoint": "state"
+    },
+    {
+      "id": "chase",
+      "path": "scripts/chase.ts",
+      "config": {
+        "speed": 5
+      },
+      "checkpoint": "state"
+    },
+    {
+      "id": "combat",
+      "path": "scripts/combat.ts",
+      "checkpoint": "state"
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "type": "arena.player"
+    },
+    {
+      "id": "wall-n",
+      "type": "arena.wall",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -10]
+        },
+        "collider": {
+          "halfExtents": [10, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [20, 1, 1]
+          }
+        }
+      }
+    },
+    {
+      "id": "wall-s",
+      "type": "arena.wall",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 10]
+        },
+        "collider": {
+          "halfExtents": [10, 0.5]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [20, 1, 1]
+          }
+        }
+      }
+    },
+    {
+      "id": "wall-w",
+      "type": "arena.wall",
+      "components": {
+        "transform": {
+          "pos": [-10, 0, 0]
+        },
+        "collider": {
+          "halfExtents": [0.5, 10]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1, 1, 20]
+          }
+        }
+      }
+    },
+    {
+      "id": "wall-e",
+      "type": "arena.wall",
+      "components": {
+        "transform": {
+          "pos": [10, 0, 0]
+        },
+        "collider": {
+          "halfExtents": [0.5, 10]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [1, 1, 20]
+          }
+        }
+      }
+    }
+  ]
+}

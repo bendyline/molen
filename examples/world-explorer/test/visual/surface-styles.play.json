@@ -1,0 +1,92 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "surface-styles",
+  "path": "/?quality=balanced&freeze=1&lat=47.61461&lon=-122.03254&alt=310&pitch=-0.55&yaw=-1.5708",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "surface",
+      "selector": "#surface-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-modern",
+      "settleMs": 500
+    },
+    {
+      "type": "select",
+      "selector": "#surface-style",
+      "value": "1910"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#surface-status",
+      "text": "Circa 1910 treatment",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-1910",
+      "settleMs": 500
+    },
+    {
+      "type": "select",
+      "selector": "#surface-style",
+      "value": "minimal"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#surface-status",
+      "text": "Surface details appear",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-minimal",
+      "settleMs": 500
+    },
+    {
+      "type": "select",
+      "selector": "#surface-style",
+      "value": "modern"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#surface-status",
+      "text": "Surface details appear",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "04-modern-restored",
+      "settleMs": 500
+    }
+  ]
+}

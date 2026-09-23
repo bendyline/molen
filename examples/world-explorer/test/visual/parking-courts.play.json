@@ -1,0 +1,91 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "parking-courts",
+  "path": "/?backend=webgl&quality=high&freeze=1&hud=0&lat=47.6155837&lon=-122.0356056&alt=144.89&yaw=-2.78767&pitch=-0.79174",
+  "viewport": [1280, 800],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-service-court",
+      "settleMs": 1000
+    },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=high&freeze=1&hud=0&lat=47.6134971&lon=-122.0334385&alt=144.89&yaw=-4.31564&pitch=-0.55436"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-service-court",
+      "settleMs": 1000
+    },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=high&freeze=1&hud=0&lat=47.6116088&lon=-122.0353809&alt=145.13&yaw=-5.48533&pitch=-0.45449"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-service-court",
+      "settleMs": 1000
+    }
+  ]
+}

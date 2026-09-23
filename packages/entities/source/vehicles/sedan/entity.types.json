@@ -1,0 +1,111 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.sedan": {
+      "doc": "Full-size sedan with balanced road handling.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.sedan",
+          "color": "#4d76b8",
+          "spec": {
+            "label": "Sedan",
+            "width": 1.82,
+            "length": 4.65,
+            "height": 1.45,
+            "centerOfMass": [0, 0.54, 0],
+            "wheelbase": 2.75,
+            "wheelTrack": 1.5288,
+            "wheelRadius": 0.31,
+            "mass": 1450,
+            "engineForce": 6200,
+            "maxSpeed": 42,
+            "reverseSpeed": 8,
+            "brakeDeceleration": 9.5,
+            "maxSteer": 0.56,
+            "grip": 8,
+            "driverEye": [0.4, 1.14, 0.25],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-rear-right",
+              "wheel-rear-left",
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
+            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["body", "steering-wheel"],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.4, 1.14, 0.25]
+            }
+          ],
+          "exits": [[1.41, 0, 0.25], [-1.41, 0, 0.25]],
+          "reach": 2.5
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.sedan",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      },
+      "assets": ["molen.entities.vehicle.sedan"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

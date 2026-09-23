@@ -1,0 +1,482 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "doc": "Reusable aircraft with external flight tuning and models.",
+  "types": {
+    "molen.entities.aircraft.p51d": {
+      "doc": "External P-51D Mustang entity using the generic airplane solver.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.p51d",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.p51d",
+          "spec": {
+            "label": "P-51D Mustang",
+            "model": "airplane",
+            "mass": 4200,
+            "span": 11.28,
+            "length": 9.83,
+            "height": 3.5,
+            "centerOfMass": [0, 1.05, -0.2],
+            "pilotEye": [0, 2.28, 0.05],
+            "engine": {
+              "position": [0, 1.58, 3.1],
+              "thrustAxis": [0, 0, 1],
+              "power": 1264000,
+              "idleRpm": 0.22,
+              "spoolRate": 0.45,
+              "rotorAngularSpeed": 220
+            },
+            "airplane": {
+              "wingPosition": [0, 1.08, 0],
+              "wingArea": 21.83,
+              "controlAuthoritySpeed": 55,
+              "maxControlAuthority": 1.3,
+              "pitchAuthority": 0.32,
+              "pitchResponse": 0.75,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.1,
+              "rollResponse": 2,
+              "rudderAuthority": 0.24,
+              "groundSteerSpeed": 8,
+              "coordinatedTurnMinSpeed": 25,
+              "groundLevelRate": 2,
+              "maxPitch": 1.3,
+              "maxGroundPitch": 0.22,
+              "maxRoll": 1.35,
+              "camberAngle": 0.045,
+              "flapLift": 0.33,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "yawStability": 1.3,
+              "stallSpeed": 24,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.019,
+              "inducedDrag": 0.055,
+              "gearDrag": 0.018,
+              "flapDrag": 0.035,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.83,
+              "maxThrust": 14500,
+              "minPropellerSpeed": 45,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 7,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12
+            },
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.3,
+            "hardLandingPitch": 0.35,
+            "maxSupportStep": 0.65,
+            "collisionProbes": [
+              [0, 1.4, 0],
+              [0, 1.4, 3.7354],
+              [0, 1.5, -3.932],
+              [-4.8504, 1.1, 0],
+              [4.8504, 1.1, 0]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "propeller",
+                  "axis": "z",
+                  "multiplier": 1
+                }
+              ],
+              "gearNodes": ["gear--1", "gear-1"],
+              "flaps": [
+                {
+                  "node": "flap--1",
+                  "axis": "x",
+                  "multiplier": -0.45
+                },
+                {
+                  "node": "flap-1",
+                  "axis": "x",
+                  "multiplier": -0.45
+                }
+              ],
+              "ailerons": [
+                {
+                  "node": "aileron--1",
+                  "axis": "x",
+                  "multiplier": -0.3
+                },
+                {
+                  "node": "aileron-1",
+                  "axis": "x",
+                  "multiplier": 0.3
+                }
+              ],
+              "interior": {
+                "nodes": ["cockpit"],
+                "bindings": [
+                  {
+                    "node": "needle-airspeed",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.021904761904761903,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "needle-altimeter",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.020614125683207075
+                  },
+                  {
+                    "node": "needle-heading",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "needle-vsi",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.18333333333333335,
+                    "min": -2.2,
+                    "max": 2.2
+                  },
+                  {
+                    "node": "needle-rpm",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 4.6,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "pitch",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.22
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [0, 0, 0],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 2.28, 0.05]
+            }
+          ],
+          "exits": [[1.6, 0, -1.5], [-1.6, 0, -1.5]],
+          "reach": 4
+        }
+      },
+      "assets": ["molen.entities.aircraft.p51d"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "generated-scripts/aircraft/p-51/scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    },
+    "molen.entities.aircraft.h500md": {
+      "doc": "External OH-6 entity using the generic helicopter solver.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.h500md",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.h500md",
+          "spec": {
+            "label": "OH-6",
+            "model": "helicopter",
+            "mass": 1150,
+            "span": 8.05,
+            "length": 7.01,
+            "height": 2.65,
+            "centerOfMass": [0, 1.25, -0.45],
+            "pilotEye": [-0.38, 1.7, 0.6],
+            "engine": {
+              "position": [0, 2.05, -1.25],
+              "thrustAxis": [0, 1, 0],
+              "power": 235000,
+              "idleRpm": 1,
+              "spoolRate": 0.16,
+              "rotorAngularSpeed": 50
+            },
+            "helicopter": {
+              "rotorPosition": [0, 2.64, -0.25],
+              "rotorRadius": 4.025,
+              "cyclicTilt": 0.5,
+              "cyclicResponse": 4,
+              "cyclicDamping": 2.4,
+              "groundLevelRate": 1,
+              "maxTilt": 0.65,
+              "yawRate": 0.85,
+              "liftMultiplier": 2.05,
+              "groundEffect": 0.12,
+              "translationalLift": 0.1,
+              "translationalLiftSpeed": 18,
+              "verticalDrag": 210,
+              "horizontalDrag": 18,
+              "quadraticDrag": 2.5,
+              "groundDeceleration": 9
+            },
+            "hardLandingSpeed": 4.5,
+            "hardLandingRoll": 0.3,
+            "hardLandingPitch": 0.35,
+            "maxSupportStep": 0.65,
+            "collisionProbes": [
+              [0, 1.4, 0],
+              [0, 1.4, 2.6638],
+              [0, 1.5, -2.804],
+              [-3.4615, 2.6, 0],
+              [3.4615, 2.6, 0]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "main-rotor",
+                  "axis": "y",
+                  "multiplier": 1
+                },
+                {
+                  "node": "tail-rotor",
+                  "axis": "x",
+                  "multiplier": 5.8
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "interior": {
+                "nodes": ["cockpit", "collective"],
+                "bindings": [
+                  {
+                    "node": "needle-airspeed",
+                    "source": "airspeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.05411764705882353,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "needle-altimeter",
+                    "source": "altitude",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.020614125683207075
+                  },
+                  {
+                    "node": "needle-heading",
+                    "source": "heading",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "needle-vsi",
+                    "source": "verticalSpeed",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.18333333333333335,
+                    "min": -2.2,
+                    "max": 2.2
+                  },
+                  {
+                    "node": "needle-rpm",
+                    "source": "rpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 4.6,
+                    "offset": -2.3,
+                    "min": -2.3,
+                    "max": 2.3
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1
+                  },
+                  {
+                    "node": "attitude-ball",
+                    "source": "pitch",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "control-stick",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "collective",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.45
+                  },
+                  {
+                    "node": "control-stick_1",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.22
+                  },
+                  {
+                    "node": "control-stick_1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.22
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [0, 0, 0],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.38, 1.7, 0.6]
+            }
+          ],
+          "exits": [[-1.6, 0, 0.8], [1.6, 0, 0.8]],
+          "reach": 3
+        }
+      },
+      "assets": ["molen.entities.aircraft.h500md"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "generated-scripts/aircraft/hughes-500md/scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

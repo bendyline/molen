@@ -1,0 +1,134 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.entities.vehicle.van",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:f44f1add7372c0c833c5553e9bdebb76bc23adb70bf0901fd6c3917b99279959",
+  "sourceHash": "sha256:5f40fc0daf585979f4bb412ea82f384d92bcbeee3e02b9bf297abd592f8eb74d",
+  "bounds": {
+    "aabb": {
+      "min": [-1.0851, 0, -2.5425],
+      "max": [1.0851, 2.0501, 2.5133]
+    },
+    "sphere": {
+      "center": [0, 1.025, -0.0146],
+      "radius": 2.7405
+    }
+  },
+  "stats": {
+    "triangles": 1128,
+    "vertices": 1903,
+    "meshes": 4,
+    "primitives": 4,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 49200
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 640
+    },
+    {
+      "name": "windows",
+      "triangles": 8
+    },
+    {
+      "name": "wheel-mesh",
+      "triangles": 264
+    },
+    {
+      "name": "wheel-mesh",
+      "triangles": 264
+    },
+    {
+      "name": "wheel-mesh",
+      "triangles": 264
+    },
+    {
+      "name": "wheel-mesh",
+      "triangles": 264
+    },
+    {
+      "name": "steering-wheel",
+      "triangles": 216
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "vehicle-paint-and-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "vehicle-glass",
+      "slots": ["baseColor"],
+      "doubleSided": true,
+      "alphaMode": "BLEND"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.0851, 0.2199, -2.5425, -1.0851, 0.2199, 2.5133, -1.0851, 2.0501, -2.5425, -1.0851,
+          2.0501, 2.5133, 1.0851, 0.2199, -2.5425, 1.0851, 0.2199, 2.5133, 1.0851, 2.0501, -2.5425,
+          1.0851, 2.0501, 2.5133
+        ]
+      },
+      {
+        "node": "windows",
+        "points": [
+          -0.897, 1.1201, -2.1285, -0.897, 1.1201, 1.881, -0.897, 1.9899, -2.1285, -0.897, 1.9899,
+          1.881, 0.897, 1.1201, -2.1285, 0.897, 1.1201, 1.881, 0.897, 1.9899, -2.1285, 0.897,
+          1.9899, 1.881
+        ]
+      },
+      {
+        "node": "wheel-mesh",
+        "points": [
+          -1.0025, 0, -1.84, -1.0025, 0, -1.16, -1.0025, 0.68, -1.84, -1.0025, 0.68, -1.16, -0.7525,
+          0, -1.84, -0.7525, 0, -1.16, -0.7525, 0.68, -1.84, -0.7525, 0.68, -1.16
+        ]
+      },
+      {
+        "node": "wheel-mesh",
+        "points": [
+          0.7525, 0, -1.84, 0.7525, 0, -1.16, 0.7525, 0.68, -1.84, 0.7525, 0.68, -1.16, 1.0025, 0,
+          -1.84, 1.0025, 0, -1.16, 1.0025, 0.68, -1.84, 1.0025, 0.68, -1.16
+        ]
+      },
+      {
+        "node": "wheel-mesh",
+        "points": [
+          -1.0025, 0, 1.16, -1.0025, 0, 1.84, -1.0025, 0.68, 1.16, -1.0025, 0.68, 1.84, -0.7525, 0,
+          1.16, -0.7525, 0, 1.84, -0.7525, 0.68, 1.16, -0.7525, 0.68, 1.84
+        ]
+      },
+      {
+        "node": "wheel-mesh",
+        "points": [
+          0.7525, 0, 1.16, 0.7525, 0, 1.84, 0.7525, 0.68, 1.16, 0.7525, 0.68, 1.84, 1.0025, 0, 1.16,
+          1.0025, 0, 1.84, 1.0025, 0.68, 1.16, 1.0025, 0.68, 1.84
+        ]
+      },
+      {
+        "node": "steering-wheel",
+        "points": [
+          0.238, 1.1209, 1.3609, 0.238, 1.1209, 1.3991, 0.238, 1.4991, 1.3609, 0.238, 1.4991,
+          1.3991, 0.622, 1.1209, 1.3609, 0.622, 1.1209, 1.3991, 0.622, 1.4991, 1.3609, 0.622,
+          1.4991, 1.3991
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

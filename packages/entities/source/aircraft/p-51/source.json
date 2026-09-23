@@ -1,0 +1,46 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.aircraft.p51d",
+  "kind": "aircraft",
+  "title": "P-51D Mustang",
+  "order": 0,
+  "files": {
+    "definitions": ["entity.types.json"],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.aircraft.p51d",
+        "output": "assets/molen/entities/aircraft/p51d/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:06e672045110555f530d4a321fd671544bb6dffadf1ac60890d9b957d9cd43d0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      },
+      {
+        "id": "model-baseline",
+        "path": "models/baseline.json"
+      },
+      {
+        "id": "interior-layout",
+        "path": "models/interior.json"
+      },
+      {
+        "id": "interior-builder",
+        "path": "models/interior.mjs"
+      }
+    ],
+    "scripts": [
+      {
+        "id": "interactions",
+        "path": "scripts/interactions.ts"
+      }
+    ],
+    "textures": [],
+    "sounds": [],
+    "documents": ["README.md", "verification.json"]
+  }
+}

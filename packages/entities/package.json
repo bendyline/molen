@@ -1,0 +1,66 @@
+{
+  "name": "@bendyline/molen-entities",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen entity library: curated, AI-legible glTF entities, assets and type registry",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/entities"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/entities",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "gltf",
+    "assets",
+    "entity-library"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./project": "./project.json",
+    "./types": "./types/entities.types.json",
+    "./aircraft-types": "./types/aircraft.types.json",
+    "./vehicle-types": "./types/vehicle.types.json",
+    "./assets/*": "./assets/*"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "source",
+    "types",
+    "scenes",
+    "docs",
+    "project.json",
+    "README.md"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-models.mjs",
+    "build": "tsdown && node scripts/generate-models.mjs --check",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src source scripts test package.json project.json types scenes assets",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "three": "0.184.0",
+    "@bendyline/molen-schema": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

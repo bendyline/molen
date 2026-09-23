@@ -1,0 +1,97 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.generic.box",
+  "title": "Plain box",
+  "doc": "The neutral extrusion as data: a flat-topped box in a sandy render tone for garages, sheds, and anything no other rule claims.",
+  "version": 1,
+  "applicability": {
+    "classes": ["garage", "garages", "shed", "carport", "roof", "yes", "building"]
+  },
+  "massing": {
+    "floorHeight": { "min": 3, "max": 3 },
+    "heightFallback": [
+      { "when": { "areaMax": 60 }, "levels": { "min": 1, "max": 1 } },
+      { "levels": { "min": 1, "max": 2 } }
+    ],
+    "groundFit": "platform-average",
+    "foundation": { "height": { "min": 0.2, "max": 0.3 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 100,
+      "minWingArea": 1,
+      "secondaryHeightScale": { "min": 1, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": { "min": 0, "max": 0 },
+    "complexFootprint": "flat",
+    "choices": [{ "type": "flat", "weight": 1 }],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 3, "max": 3 }, "cornerMargin": 0.5 },
+    "windows": {
+      "style": "none",
+      "width": { "min": 1, "max": 1 },
+      "height": { "min": 1, "max": 1 },
+      "sill": { "min": 1, "max": 1 },
+      "probabilityPerBay": 0,
+      "groundFloor": "none"
+    },
+    "bands": { "base": { "height": { "min": 0, "max": 0 } }, "floorLines": false }
+  },
+  "materials": {
+    "wall": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        { "color": "#b9ab96", "weight": 3 },
+        { "color": "#a99d8a", "weight": 2 },
+        { "color": "#c4b8a4", "weight": 1 }
+      ],
+      "jitter": { "hue": 0.005, "saturation": 0.03, "lightness": 0.05 }
+    },
+    "roof": {
+      "entries": [{ "color": "#9a9186", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0.02, "lightness": 0.04 }
+    }
+  },
+  "props": [],
+  "lod": { "tiers": [{ "minTier": 0, "keep": ["roof-shape"] }] }
+}

@@ -1,0 +1,127 @@
+# Molen
+
+> A reusable, AI-legible 3D engine for the browser. A deterministic headless kernel plus a
+> three.js rendering client, authored through JSON schemas, a small typed API, and a headless
+> dev loop. This bundle is version-locked to the engine release.
+
+Engine version: 0.0.1. three.js pin: 0.184.0. Node ≥ 22.13, ESM only.
+
+## Start here
+
+- [Agent loop](guide/agent-loop.md): the author → validate → simulate → assert → screenshot loop, with copy-paste commands.
+- [Browser experience playback](guide/experience-playback.md): host any built sample, drive real keyboard/pointer navigation, and capture screenshots plus diagnostics.
+- [Projects & types](guide/project.md): project.json, the namespaced entity type registry, reservations, and typed TS authoring (`defineExperience` + `molen types gen`).
+- [Reusable entities](guide/entities.md): the shipped GLTF/asset/type collection and how to bind it through the normal asset index.
+- [Scripting](guide/scripting.md): game logic as scene-data scripts (the verb set, `molen.onCommand` for input) or a setup module; `molen types gen` + `molen scripts check` type-check them. Scripts run with the host process's authority — see "Script trust" below.
+- [Determinism](guide/determinism.md): the contract — what reproduces and at what level per subsystem, what breaks it, what `STATE_FORMAT` means for save files and recorded replays, and what is explicitly not promised.
+- [Browser mount](guide/browser-mount.md): `buildWorld` in a Worker + `await mountExperience` on the page; events and state for HUDs.
+- [Input profiles and joysticks](guide/input.md): keyboard/controller remapping, raw axes, walking/driving/flying profiles, analog commands, and optional React controls.
+- [WebGPU and WebGL](guide/rendering-backends.md): the `backend` option ('auto' | 'webgl' | 'webgpu') on the asynchronous client factories, legacy WebGL fallback, compatible materials, and world-explorer comparisons.
+- [Earth and authored skies](guide/sky.md): day/night cycles, geographic Sun/Moon positions and lunar phases, catalog stars, simulation clocks, custom-world palettes, and the sky observatory.
+- [Weather and physical atmosphere](guide/weather.md): independent clouds, precipitation and visibility; profiles, temperature/pressure/wind for simulation and aircraft physics; cloud/rain/snow rendering.
+- [Graphics performance](guide/graphics-performance.md): sparse transforms, static instancing, worker preparation, staged uploads, animation/light policy and terrain transitions.
+- [Quickstart](guide/quickstart.md): zero-to-cubes in Node and the browser.
+- [Terrain and world explorer](guide/terrain.md): fixed-grid and screen-space pyramid streaming,
+  projected Earth coordinates, optional semantic tile layers, the installable tiled-world package
+  contract, and sample app.
+- [Surface styles and line features](guide/surface-rendering.md): live modern/1910 treatments, roads, parking, intersections, sidewalks, fixtures, and reusable profiles for rail and utility corridors.
+- [Worldgen: styled buildings and scatter](guide/worldgen.md): any outline → a styled building; `worldgenBuilding` component, `molen.worldgen.*` script queries, worker + cache for map tiles
+  (footprint analysis, roofs, walls), labeled polygons → deterministic props, style packs, and the
+  Earth binding (region atlas, terrain-semantics adapter, tile renderers).
+- [Default structure library](guide/structure-library.md): 120 resizable buildings in 13 taxonomies, 45 shared construction materials, regional placement and the interactive model sheet.
+- [Recognizable places](guide/recognizable-places.md): store identity matching, reusable signs, tenant facades and mapped outdoor props.
+- [Building interiors](guide/building-interiors.md): deterministic layouts by use, real entrances and frontage windows, lazy rendering and walk collision.
+- [3D art guidelines](guide/3d-art-guidelines.md): shared polygonal fidelity, scale, material library, LOD and visual review for static and procedural models.
+- [Materials](guide/materials.md): palette and procedural material-graph textures.
+- [3D model assets](guide/3d-model-assets.md): prompt-to-glTF authoring, PBR texture conventions, import, visual QA, and browser hosting.
+- [Logical source bundles](guide/source-bundles.md): one copyable folder per entity, structure, vehicle, prop, or other authored thing, with all definitions and source files listed in `source.json`.
+- [Components](schemas/components.md): the component vocabulary `molen validate` checks against.
+- [Mountable vehicles](guide/vehicles.md): stable parking entities, driver seats, deterministic vehicle physics, safe exits, and cockpit/chase views.
+- [Aircraft](guide/aircraft.md): P-51D and OH-6 assets, flight physics, cockpit instruments, practice airfield and controls.
+- [Vehicle interiors and model signals](guide/vehicle-interiors.md): model-owned cabins, declarative simulation-to-GLB bindings, script-owned telemetry, and nearby detail loading.
+- [Figures](guide/figures.md): stylized humans, bipeds and quadrupeds: presets and descriptors, canonical rigs and sockets, deterministic gaits, `figureAttachment` accessories, riders, and `molen figure preview`.
+- [Complete game samples](guide/game-samples.md): city driving, first-person dungeon, and platformer; shared follow cameras and XY platform physics.
+- [Examples gallery](guide/examples.md): the shipped demos + capability layers (kinematics,
+  character, pathfinding, physics-rapier, terrain) — copy-and-modify starting points.
+
+> **Script trust:** a scene manifest's `scripts` are evaluated **in-process** — by the `molen`
+> CLI and the MCP server too — and run with the authority of that process. The SES `Compartment`
+> and its tamed endowments (`Math` without `random`, `Date`/`Intl`/`Promise` shadowed) exist to
+> make simulation deterministic; they are **not** an isolation boundary. Intrinsics are shared and
+> mutable, and the host global is one expression away. Treat a `scene.json` like source code: only
+> run manifests you would run as a program. A host that needs the boundary calls `hardenScripts()`
+> (SES `lockdown()`, process-global) in a Worker or other kernel-only process — see
+> [guide/scripting.md](guide/scripting.md) "Script trust".
+
+> **Truth rule for agents:** `docs-src/` (this bundle) and `packages/` are the shipped engine.
+> The `docs/` folder is a binding *design plan* that still says "no code exists yet" — treat it as
+> intent, not fact. `molen docs search` searches this bundle by default (`--design` adds `docs/`,
+> tagged). Repo root has an [AGENTS.md](../AGENTS.md) signpost. Scaffold a starter with `molen new`.
+
+## Schema reference (autogenerated)
+
+[schemas/README.md](schemas/README.md) — every registered format with its JSON Schema and a
+valid example. That page is generated from the registry `molen validate` checks against, so it is
+never behind; `molen schema list` prints the same set at runtime.
+
+## Authoring formats (validate everything before running)
+
+All formats carry a `"format": "molen/<kind>@<n>"` (or `"kind"`) envelope and are validated
+with `molen validate <file>`, which prints precise, fixable errors. The shipped specs (JSON
+Schema + example, generated from the registry) live in [schemas/](schemas/README.md):
+
+- [Scene manifest](schemas/scene.md) (`molen/scene@3`: entities, prefabs, `commands`, `components`, camera, input, physics, terrain)
+- [Command envelope](schemas/command.md) · [Assertions](schemas/assert.md)
+- [Keyframe](schemas/keyframe.md) · [Delta](schemas/delta.md) · [Replay](schemas/replay.md)
+- [Components](schemas/components.md) — every component with units and axis conventions
+
+## The API surface
+
+- Script verb set + authoring models: [guide/scripting.md](guide/scripting.md) (shipped truth).
+- Component vocabulary: [schemas/components.md](schemas/components.md) or `molen components`.
+- three.js surface + escape hatch (pinned 0.184.0): [guide/three-surface.md](guide/three-surface.md).
+- Writing a capability package: [guide/capability-authoring.md](guide/capability-authoring.md).
+- Kernel & ECS design notes: [02-packages-and-apis.md §3](../docs/02-packages-and-apis.md) (design plan).
+
+## Tooling — CLI (run `node packages/tooling/dist/cli.mjs <cmd>`, or `molen <cmd>` if on PATH)
+
+- `molen new <name>` — scaffold a runnable project (project.json + scene + type registry + setup + checks)
+- `molen validate <file> [--kind k] [--project p]` — validate an asset (pinpoint, fixable errors; scene `type` refs resolve through the project)
+- `molen sim run <scene|name> --ticks N [--setup m] [--commands f] [--assert f] [--hash]`
+- `molen asset import <file.glb> [--id <id>] [--trimesh]` · `asset inspect <ref> [--verify]` · `asset list` · `asset shot <ref> --out-dir d [--variant ktx2]`
+- `molen asset pack <ref>|--all` — runtime GLB variant (KTX2 textures + mips, 4-8x less GPU memory) · `asset stage --out-dir d [--variant ktx2]` — browser bundle + assets.index.json
+- `molen drive <scene> --actions f --out-dir d [--assert f]` — PLAY a scene: commands in, frames out (deterministic)
+- `molen play <built-app-dir> --scenario f --out-dir d` — PLAY a browser experience: UI inputs in, screenshots/probes/diagnostics out
+- `molen sim watch <scene> --ticks N [...]` — rerun + diff on every file change · `molen types test [ids…]`
+- `molen project info` · `molen types list|check|reserve <ns> --owner <o>|gen [--check]`
+- `molen shot <scene> --out p.png [--ticks N] [--camera x,y,z] [--look x,y,z] [--size WxH] [--terrain d.json --heightmap h.png]`
+- `molen frames <scene> --out-dir d --from N --to M [--step S] [--track f]` — render a PNG sequence
+- `molen replay <fixture> [--setup m] [--record]` — replay; localizes divergence on mismatch
+- `molen diff <a.keyframe.json> <b.keyframe.json>` — component-level keyframe diff
+- `molen material bake <matgraph.json> -o tex.png` — bake a procedural texture
+- `molen uvpaint apply <painted.png> --islands <map.png> -o tex.png` — import a painted UV template
+- `molen schema list | schema get <kind>` · `molen components | component <name>`
+- `molen docs search <query> [-k N] [--design]` · `molen describe [op]`
+- `molen worldgen preview [style.json] [--pack p] [--style id] [--batch f] [--angles N] --out p.png` — generate buildings and render them headlessly · `worldgen bake [batch.json] [--outline "x,z;…" --style id] --out <assets-dir> [--id id]` — bake to a glTF asset + sidecar · `worldgen stats <terrain-package.json> [--tile z/x/y | --auto] [--dump batch.json]` — generate one real tile and report
+- `molen figure preview [descriptor.figure.json] [--preset id[,id]] [--lineup humans|bodies|species|all] [--mode idle|walk|run|sit|jump|fall] [--angles N|review] --out p.png` — render figures headlessly · `figure presets [--json]` — list the shipped presets
+- `molen mcp` — start the MCP server (stdio)
+
+## MCP tools (the server mirrors the CLI 1:1; `molen describe` cross-references both)
+
+`validate_asset`, `run_simulation`, `screenshot_scene`, `export_frames`, `rasterize_material`,
+`run_replay`, `diff_snapshots`, `apply_uv_paint`, `list_schemas`, `get_schema`, `list_components`,
+`get_component`, `search_docs`, `describe_op`, `new_experience`, `get_project`, `list_types`,
+`check_types`, `reserve_type`, `generate_types`, `import_asset`, `inspect_asset`, `pack_asset`, `stage_assets`,
+`list_assets`, `drive_scene` (returns frames as IMAGES), `play_experience` (plays a built browser app and returns frames as IMAGES), `screenshot_asset` (turntable images),
+`test_types`, `worldgen_preview` (generated buildings as IMAGES), `worldgen_bake`, `worldgen_stats`,
+`figure_preview` (figures as IMAGES), `list_figure_presets`. Call `describe_op` for I/O contracts.
+
+- [Review fix migration](guide/review-migration.md): checkpoint state, scoped validation, animation timing, physics scale, and terrain ray contracts.
+
+## Design reference (for deeper questions)
+
+- [Kernel design](../docs/04-kernel-design.md) · [Client design](../docs/05-client-design.md)
+- [Materials & assets](../docs/06-materials-and-assets.md) · [Tooling & testing](../docs/07-tooling-and-testing.md)
+- [Phase plan](../docs/08-phase-plan.md) · [Questions & risks](../docs/09-questions-and-risks.md)
+
+- [Adaptive rendering performance](guide/adaptive-performance.md) — device feedback, frame/GPU timing, live terrain budgets, screen-space object LOD and worker boundaries.

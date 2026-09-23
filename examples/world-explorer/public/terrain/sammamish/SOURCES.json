@@ -1,0 +1,63 @@
+{
+  "format": "molen/terrain-sources@1",
+  "coverageBounds": [-123.15, 46.95, -120.9, 48.3],
+  "detailBounds": [-122.12, 47.55, -121.95, 47.7],
+  "elevation": {
+    "id": "mapzen-terrain-tiles",
+    "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+    "encoding": "terrarium",
+    "minLevel": 8,
+    "maxLevel": 14,
+    "overviewMaxLevel": 10,
+    "outputEncoding": "png16",
+    "outputHeightRange": { "min": -6000, "max": 5000 },
+    "observedHeightRange": [-4953, 4370],
+    "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+    "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+  },
+  "features": {
+    "id": "protomaps-basemap",
+    "release": "2026-09-06T09:11:11.176Z",
+    "url": "https://build.protomaps.com/20260906.pmtiles",
+    "profile": "protomaps-basemap@1",
+    "attribution": "© OpenStreetMap contributors",
+    "maxLevel": 15,
+    "extractMinLevel": 0,
+    "layersPresent": [
+      "boundaries",
+      "buildings",
+      "earth",
+      "landcover",
+      "landuse",
+      "places",
+      "pois",
+      "roads",
+      "water"
+    ],
+    "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+    "dataLicenses": [
+      {
+        "source": "OpenStreetMap",
+        "license": "ODbL-1.0",
+        "attribution": "© OpenStreetMap contributors",
+        "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+      },
+      {
+        "source": "Daylight Landcover, derived from ESA WorldCover",
+        "license": "CC-BY-4.0",
+        "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "appliesTo": "landcover layer, zoom 0-7"
+      },
+      {
+        "source": "Natural Earth",
+        "license": "public domain",
+        "attribution": "Natural Earth",
+        "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+        "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+      }
+    ],
+    "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md"
+  }
+}

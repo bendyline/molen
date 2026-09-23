@@ -1,0 +1,61 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 11,
+  "nodes": [
+    { "id": "lap-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "lap",
+      "type": "ramp",
+      "input": "lap-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#9a9a9a" },
+          { "t": 0.015, "color": "#e4e4e4" },
+          { "t": 0.1125, "color": "#f3f3f3" },
+          { "t": 0.125, "color": "#9a9a9a" },
+          { "t": 0.14, "color": "#e4e4e4" },
+          { "t": 0.2375, "color": "#f3f3f3" },
+          { "t": 0.25, "color": "#9a9a9a" },
+          { "t": 0.265, "color": "#e4e4e4" },
+          { "t": 0.3625, "color": "#f3f3f3" },
+          { "t": 0.375, "color": "#9a9a9a" },
+          { "t": 0.39, "color": "#e4e4e4" },
+          { "t": 0.4875, "color": "#f3f3f3" },
+          { "t": 0.5, "color": "#9a9a9a" },
+          { "t": 0.515, "color": "#e4e4e4" },
+          { "t": 0.6125, "color": "#f3f3f3" },
+          { "t": 0.625, "color": "#9a9a9a" },
+          { "t": 0.64, "color": "#e4e4e4" },
+          { "t": 0.7375, "color": "#f3f3f3" },
+          { "t": 0.75, "color": "#9a9a9a" },
+          { "t": 0.765, "color": "#e4e4e4" },
+          { "t": 0.8625, "color": "#f3f3f3" },
+          { "t": 0.875, "color": "#9a9a9a" },
+          { "t": 0.89, "color": "#e4e4e4" },
+          { "t": 0.9875, "color": "#f3f3f3" },
+          { "t": 1, "color": "#9a9a9a" }
+        ]
+      }
+    },
+    {
+      "id": "grain-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 5, "seedOffset": 1 }
+    },
+    {
+      "id": "grain",
+      "type": "levels",
+      "input": "grain-noise",
+      "params": { "outMin": 0.86, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "lap", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

@@ -1,0 +1,32 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-building-detail",
+  "path": "/?quality=high&freeze=1&navigation=walk&lat=47.6152201&lon=-122.0342126&alt=109.53&yaw=-5.97880",
+  "viewport": [1440, 900],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "performance",
+      "selector": "#performance-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 25000
+    },
+    {
+      "type": "screenshot",
+      "name": "street-facades"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 116,
+  "nodes": [
+    { "id": "squares", "type": "checker", "params": { "scale": 12 } },
+    {
+      "id": "enamel",
+      "type": "ramp",
+      "input": "squares",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#d4e1e2" },
+          { "t": 0.5, "color": "#d4e1e2" },
+          { "t": 0.56, "color": "#f4f1e4" },
+          { "t": 1, "color": "#f4f1e4" }
+        ]
+      }
+    },
+    {
+      "id": "grout",
+      "type": "bricks",
+      "params": { "rows": 12, "cols": 12, "mortarWidth": 0.035, "offset": 0 }
+    },
+    {
+      "id": "joints",
+      "type": "ramp",
+      "input": "grout",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b9b6ae" },
+          { "t": 0.5, "color": "#b9b6ae" },
+          { "t": 0.56, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "enamel", "b": "joints" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.32 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "grout",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

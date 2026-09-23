@@ -1,0 +1,24 @@
+{
+  "format": "molen/assert@1",
+  "assertions": [
+    {
+      "select": "#game .skyGame.status",
+      "op": "eq",
+      "value": "playing"
+    },
+    {
+      "select": "#player .transform.pos[0]",
+      "op": "gt",
+      "value": 12
+    },
+    {
+      "select": "#game .skyGame.lives",
+      "op": "eq",
+      "value": 3
+    },
+    {
+      "event": "seed-collected",
+      "op": "occurred"
+    }
+  ]
+}

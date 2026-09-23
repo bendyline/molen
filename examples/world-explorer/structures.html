@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Molen · Atlas of structures</title>
+    <link rel="stylesheet" href="/src/structure-sheet.css" />
+  </head>
+  <body>
+    <header>
+      <a class="wordmark" href="./">molen<span>RESOURCE LIBRARY / 01</span></a>
+      <div class="intro"><div><p class="eyebrow">ARCHITECTURE, AROUND THE WORLD</p><h1>Atlas of structures</h1>
+      <p class="lede">120 architectural studies. One living world.<br />Explore the default collection, then reshape any building in meters.</p></div>
+      <div class="edition"><strong>120</strong><span>PROCEDURAL STRUCTURES<br />SHARED MATERIALS · REAL SCALE</span></div></div>
+      <nav aria-label="Collection filters"><input id="search" type="search" placeholder="Search a place, building, or material…" aria-label="Search structures" /><select id="taxonomy" aria-label="Taxonomy"><option value="">All taxonomies</option></select><button type="button" id="download" disabled>Download model sheet ↗</button><span id="status" role="status">Preparing materials…</span></nav>
+    </header>
+    <main id="collection" aria-label="Default structure catalog"></main>
+    <footer>Stylized architectural interpretations · Each model uses the production world renderer’s generator.<br />Dimensions are representative examples. Mapped footprints and supplied heights take precedence.</footer>
+    <dialog id="detail"><button type="button" id="close" aria-label="Close detail">×</button><div class="detail-view" id="detail-view"></div><div class="detail-copy"><p class="eyebrow" id="detail-region"></p><h2 id="detail-title">Structure details</h2><p id="detail-description"></p><code id="detail-id"></code><div class="controls"><label>Width <output id="width-value"></output><input id="width" type="range" min="3" max="100" step="0.5" /></label><label>Depth <output id="depth-value"></output><input id="depth" type="range" min="3" max="100" step="0.5" /></label><label>Storeys <output id="levels-value"></output><input id="levels" type="range" min="1" max="12" step="1" /></label><label>View<select id="view"><option value="quarter">Three-quarter</option><option value="front">Front</option><option value="rear">Rear</option></select></label><label>Detail<select id="tier"><option value="0">Full architecture</option><option value="1">World / medium</option><option value="2">Distant silhouette</option></select></label><label class="check"><input id="textures" type="checkbox" checked />Shared textures</label></div><p class="hint">Drag the model to orbit. Resizing regenerates its walls, roof and facade rhythm.</p><p id="detail-stats"></p></div></dialog>
+    <script type="module" src="/src/structure-sheet.ts"></script>
+  </body>
+</html>

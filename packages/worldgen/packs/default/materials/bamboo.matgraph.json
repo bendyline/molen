@@ -1,0 +1,155 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 110,
+  "nodes": [
+    { "id": "poles-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "poles",
+      "type": "ramp",
+      "input": "poles-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b2af96" },
+          { "t": 0.013333333333333334, "color": "#dbd7bb" },
+          { "t": 0.0375, "color": "#f1ecd0" },
+          { "t": 0.06999999999999999, "color": "#d5d1b6" },
+          { "t": 0.08333333333333333, "color": "#b2af96" },
+          { "t": 0.09666666666666666, "color": "#dbd7bb" },
+          { "t": 0.12083333333333333, "color": "#f1ecd0" },
+          { "t": 0.15333333333333332, "color": "#d5d1b6" },
+          { "t": 0.16666666666666666, "color": "#b2af96" },
+          { "t": 0.18000000000000002, "color": "#dbd7bb" },
+          { "t": 0.2041666666666667, "color": "#f1ecd0" },
+          { "t": 0.23666666666666666, "color": "#d5d1b6" },
+          { "t": 0.25, "color": "#b2af96" },
+          { "t": 0.26333333333333336, "color": "#dbd7bb" },
+          { "t": 0.28750000000000003, "color": "#f1ecd0" },
+          { "t": 0.32, "color": "#d5d1b6" },
+          { "t": 0.3333333333333333, "color": "#b2af96" },
+          { "t": 0.3466666666666667, "color": "#dbd7bb" },
+          { "t": 0.37083333333333335, "color": "#f1ecd0" },
+          { "t": 0.4033333333333333, "color": "#d5d1b6" },
+          { "t": 0.4166666666666667, "color": "#b2af96" },
+          { "t": 0.43, "color": "#dbd7bb" },
+          { "t": 0.45416666666666666, "color": "#f1ecd0" },
+          { "t": 0.48666666666666664, "color": "#d5d1b6" },
+          { "t": 0.5, "color": "#b2af96" },
+          { "t": 0.5133333333333333, "color": "#dbd7bb" },
+          { "t": 0.5375, "color": "#f1ecd0" },
+          { "t": 0.57, "color": "#d5d1b6" },
+          { "t": 0.5833333333333334, "color": "#b2af96" },
+          { "t": 0.5966666666666667, "color": "#dbd7bb" },
+          { "t": 0.6208333333333333, "color": "#f1ecd0" },
+          { "t": 0.6533333333333333, "color": "#d5d1b6" },
+          { "t": 0.6666666666666666, "color": "#b2af96" },
+          { "t": 0.68, "color": "#dbd7bb" },
+          { "t": 0.7041666666666666, "color": "#f1ecd0" },
+          { "t": 0.7366666666666667, "color": "#d5d1b6" },
+          { "t": 0.75, "color": "#b2af96" },
+          { "t": 0.7633333333333333, "color": "#dbd7bb" },
+          { "t": 0.7875, "color": "#f1ecd0" },
+          { "t": 0.82, "color": "#d5d1b6" },
+          { "t": 0.8333333333333334, "color": "#b2af96" },
+          { "t": 0.8466666666666667, "color": "#dbd7bb" },
+          { "t": 0.8708333333333332, "color": "#f1ecd0" },
+          { "t": 0.9033333333333333, "color": "#d5d1b6" },
+          { "t": 0.9166666666666666, "color": "#b2af96" },
+          { "t": 0.93, "color": "#dbd7bb" },
+          { "t": 0.9541666666666666, "color": "#f1ecd0" },
+          { "t": 0.9866666666666667, "color": "#d5d1b6" },
+          { "t": 1, "color": "#b2af96" }
+        ]
+      }
+    },
+    {
+      "id": "nodes",
+      "type": "bricks",
+      "params": { "rows": 3, "cols": 12, "mortarWidth": 0.035, "offset": 0.5 }
+    },
+    {
+      "id": "rings",
+      "type": "ramp",
+      "input": "nodes",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#b8b69e" },
+          { "t": 0.5, "color": "#b8b69e" },
+          { "t": 0.56, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "stalks",
+      "type": "blend",
+      "inputs": { "a": "poles", "b": "rings" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [1, 0.07142857142857142, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 42, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.95, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "stalks", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.78 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "poles",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

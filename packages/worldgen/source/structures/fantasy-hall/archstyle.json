@@ -1,0 +1,323 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.fantasy.hall",
+  "title": "Fantasy stone hall",
+  "doc": "A world-agnostic look for invented places: tall stone halls with steep slate roofs, deep eaves, narrow high windows, and heavy exposed foundations. Proves the generator needs only an outline and a label.",
+  "version": 1,
+  "applicability": {
+    "classes": ["hall", "keep", "chapel", "great_hall", "barracks", "building"]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 4,
+      "max": 5.5
+    },
+    "heightFallback": [
+      {
+        "when": {
+          "areaMax": 120
+        },
+        "levels": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    ],
+    "groundFit": "platform-max",
+    "foundation": {
+      "height": {
+        "min": 0.6,
+        "max": 1.2
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 16,
+      "minWingArea": 20,
+      "secondaryHeightScale": {
+        "min": 0.6,
+        "max": 0.9
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0.8,
+      "max": 1.2
+    },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "gable",
+        "weight": 7,
+        "pitchDeg": {
+          "min": 45,
+          "max": 55
+        },
+        "when": {
+          "elongationMin": 1.2
+        }
+      },
+      {
+        "type": "hip",
+        "weight": 2,
+        "pitchDeg": {
+          "min": 40,
+          "max": 50
+        }
+      },
+      {
+        "type": "pyramid",
+        "weight": 1,
+        "pitchDeg": {
+          "min": 45,
+          "max": 55
+        },
+        "when": {
+          "areaMax": 80
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 3.5,
+        "max": 4.5
+      },
+      "cornerMargin": 1
+    },
+    "windows": {
+      "style": "punched",
+      "width": {
+        "min": 0.6,
+        "max": 0.9
+      },
+      "height": {
+        "min": 1.4,
+        "max": 2
+      },
+      "sill": {
+        "min": 1.6,
+        "max": 2
+      },
+      "probabilityPerBay": 0.5,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.8,
+          "max": 1.2
+        }
+      },
+      "floorLines": false
+    },
+    "details": {
+      "framing": {
+        "style": "timber",
+        "width": 0.24
+      },
+      "veranda": {
+        "depth": 1.1,
+        "columns": true
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone",
+          "weight": 1
+        }
+      ],
+      "palette": "stone",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2.5, 2.5],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+          "weight": 1
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+          "weight": 1
+        }
+      ],
+      "palette": "slate",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "palette:#ffffff",
+          "weight": 1
+        }
+      ],
+      "palette": "timber",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone",
+          "weight": 1
+        }
+      ],
+      "palette": "stone",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2.5, 2.5],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_punched",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "stone": {
+      "entries": [
+        {
+          "color": "#7c7a72",
+          "weight": 3,
+          "name": "granite"
+        },
+        {
+          "color": "#6a665e",
+          "weight": 3,
+          "name": "weathered"
+        },
+        {
+          "color": "#8e8b83",
+          "weight": 2,
+          "name": "pale"
+        },
+        {
+          "color": "#59564f",
+          "weight": 1,
+          "name": "dark"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.06
+      }
+    },
+    "slate": {
+      "entries": [
+        {
+          "color": "#3a3f47",
+          "weight": 4,
+          "name": "slate"
+        },
+        {
+          "color": "#2f333a",
+          "weight": 2,
+          "name": "dark slate"
+        },
+        {
+          "color": "#4b4033",
+          "weight": 1,
+          "name": "thatch"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.05
+      }
+    },
+    "timber": {
+      "entries": [
+        {
+          "color": "#3b2f25",
+          "weight": 3,
+          "name": "oak"
+        },
+        {
+          "color": "#5a4a3a",
+          "weight": 1,
+          "name": "beam"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.05
+      }
+    }
+  },
+  "props": [
+    {
+      "id": "chimney",
+      "model": "molen.worldgen.prop.chimney.brick",
+      "anchor": "roof-ridge",
+      "probability": 0.6,
+      "count": {
+        "min": 1,
+        "max": 2
+      },
+      "roof": ["gable", "hip"],
+      "spacing": 4,
+      "margin": 1.2,
+      "scale": {
+        "min": 0.9,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      {
+        "minTier": 1,
+        "keep": ["roof-shape", "facade-texture"]
+      },
+      {
+        "minTier": 2,
+        "keep": ["roof-shape"]
+      }
+    ]
+  }
+}

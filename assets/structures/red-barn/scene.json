@@ -1,0 +1,61 @@
+{
+  "format": "molen/scene@3",
+  "name": "Weathered red barn asset test",
+  "seed": "weathered-red-barn-v1",
+  "tickRate": 30,
+  "lateCommands": "rewrite",
+  "keyframeInterval": 60,
+  "prefabs": {},
+  "entities": [
+    {
+      "id": "barn",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1], "scale": [1, 1, 1] },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "red_barn_weathered",
+          "shadows": { "cast": true, "receive": true }
+        },
+        "tag": { "name": "architecture" }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.12, 0], "rot": [0, 0, 0, 1], "scale": [60, 0.2, 60] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#68765a",
+          "shadows": { "receive": true }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#d8e4ec", "ground": "#5c604f", "intensity": 1.05 },
+          "sun": {
+            "direction": [-8, 14, 10],
+            "color": "#fff0d0",
+            "intensity": 2.35,
+            "castShadow": true
+          },
+          "background": "#a9c5d6",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "scripts": [],
+  "camera": {
+    "mode": "fixed",
+    "position": [15, 8.5, 20],
+    "lookAt": [0, 4.8, 0],
+    "fov": 38
+  },
+  "physics": { "engine": "none" }
+}

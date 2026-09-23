@@ -1,0 +1,120 @@
+{
+  "format": "molen/scene@3",
+  "name": "Molen entities nature gallery",
+  "seed": "molen-entities-gallery-v1",
+  "tickRate": 30,
+  "lateCommands": "rewrite",
+  "keyframeInterval": 60,
+  "prefabs": {},
+  "entities": [
+    {
+      "id": "gallery-1",
+      "type": "molen.entities.tree.conifer.pine",
+      "components": {
+        "transform": {
+          "pos": [-7.2, 0, 1.5],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-2",
+      "type": "molen.entities.tree.conifer.fir",
+      "components": {
+        "transform": {
+          "pos": [-2.8, 0, 1.4],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-3",
+      "type": "molen.entities.tree.deciduous.oak",
+      "components": {
+        "transform": {
+          "pos": [2.3, 0, 1],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-4",
+      "type": "molen.entities.tree.deciduous.birch",
+      "components": {
+        "transform": {
+          "pos": [6.8, 0, 1.2],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-5",
+      "type": "molen.entities.vegetation.shrub",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 4.2],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-6",
+      "type": "molen.entities.nature.boulder",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 4.2],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-ground",
+      "components": {
+        "transform": {
+          "pos": [0, -0.08, -0.8],
+          "scale": [20, 0.15, 13]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#66715d",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "gallery-environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dbe6e8",
+            "ground": "#5d6257",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [7, 12, 6],
+            "color": "#fff1d1",
+            "intensity": 2.1,
+            "castShadow": true
+          },
+          "background": "#b7ced4",
+          "toneMapping": "agx",
+          "exposure": 1.1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "scripts": [],
+  "camera": {
+    "mode": "fixed",
+    "position": [0, 8.5, 25],
+    "lookAt": [0, 4.1, -0.8],
+    "fov": 44
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

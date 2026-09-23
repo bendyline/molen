@@ -1,0 +1,29 @@
+{
+  "name": "@bendyline/molen-examples-skybound",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5225",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
+    "lint": "biome check src test",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:golden": "vitest run --config vitest.golden.config.ts",
+    "predev": "pnpm --filter \"@bendyline/molen-examples-skybound^...\" build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-tooling": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24",
+    "typescript": "catalog:",
+    "vite": "^6.0.7",
+    "vitest": "catalog:"
+  }
+}

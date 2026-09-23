@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.architecture.ashlar_wall",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:2f7cff1214358f75b9cc1f27b6dc6b4b919d0f25908fef3a0980159e04860080",
+  "sourceHash": "sha256:fe627794815038f3bc9c38dbc418636e65444bb56f459b6ce2a056c13b2f4048",
+  "bounds": {
+    "aabb": {
+      "min": [-1.5451, 0, -1.5451],
+      "max": [1.5451, 3.3, 1.5451]
+    },
+    "sphere": {
+      "center": [0, 1.65, 0],
+      "radius": 2.6914
+    }
+  },
+  "stats": {
+    "triangles": 5220,
+    "vertices": 10701,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 3,
+    "animations": 0,
+    "sizeBytes": 536840
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 5220
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "Limestone / slate",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Limestone / carved",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.5451, 0, -1.5451, -1.5451, 0, 1.5451, -1.5451, 3.3, -1.5451, -1.5451, 3.3, 1.5451,
+          1.5451, 0, -1.5451, 1.5451, 0, 1.5451, 1.5451, 3.3, -1.5451, 1.5451, 3.3, 1.5451
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

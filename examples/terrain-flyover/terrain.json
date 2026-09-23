@@ -1,0 +1,15 @@
+{
+  "format": "molen/terrain@2",
+  "name": "island",
+  "chunkSize": 128,
+  "tileResolution": 129,
+  "gridSize": [4, 4],
+  "height": { "min": 0, "max": 120 },
+  "tiles": { "heightUrl": "tiles/h_{x}_{z}.png" },
+  "layers": [
+    { "name": "grass", "tiling": 8 },
+    { "name": "rock", "tiling": 6, "auto": { "slopeMin": 0.45 } },
+    { "name": "snow", "tiling": 4, "auto": { "heightMin": 85 } }
+  ],
+  "lod": { "levels": 4, "distanceBands": [200, 400, 800, 1600], "skirts": true }
+}

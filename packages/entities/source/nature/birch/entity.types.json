@@ -1,0 +1,36 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.tree.deciduous.birch": {
+      "doc": "Slender pale-barked deciduous tree with a light, high canopy.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [1, 1, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.tree.deciduous.birch",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "collider": {
+          "shape": "circle",
+          "radius": 0.28,
+          "layer": 1,
+          "mask": 1,
+          "isStatic": true
+        },
+        "tag": {
+          "name": "tree"
+        }
+      },
+      "assets": ["molen.entities.tree.deciduous.birch"]
+    }
+  }
+}

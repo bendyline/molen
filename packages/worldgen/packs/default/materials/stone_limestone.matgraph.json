@@ -1,0 +1,46 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 121,
+  "nodes": [
+    {
+      "id": "joints",
+      "type": "bricks",
+      "params": { "rows": 4, "cols": 3, "mortarWidth": 0.025, "offset": 0.5 }
+    },
+    {
+      "id": "blocks",
+      "type": "ramp",
+      "input": "joints",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#c7bfb0" },
+          { "t": 0.5, "color": "#c7bfb0" },
+          { "t": 0.56, "color": "#f0eadc" },
+          { "t": 1, "color": "#f0eadc" }
+        ]
+      }
+    },
+    { "id": "pores", "type": "worley", "params": { "scale": 28, "jitter": 0.85, "output": "f1" } },
+    {
+      "id": "pitting",
+      "type": "levels",
+      "input": "pores",
+      "params": { "outMin": 0.92, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "blocks", "b": "pitting" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.91 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "joints",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

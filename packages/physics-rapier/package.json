@@ -1,0 +1,55 @@
+{
+  "name": "@bendyline/molen-physics-rapier",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen opt-in Rapier rigid-body physics: body<->ECS mirroring, hybrid snapshot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/physics-rapier"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/physics-rapier",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "physics",
+    "rapier"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "0.19.3",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

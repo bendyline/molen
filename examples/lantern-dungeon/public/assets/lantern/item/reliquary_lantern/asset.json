@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.item.reliquary_lantern",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:d290d97577f513d62e79c0d767a9e8a8b7bc6fad3859a6c0c5e101897564a840",
+  "sourceHash": "sha256:a5f900a25dca59f274a37f99d31f72420ff26c42f23f034655a75fab754f2146",
+  "bounds": {
+    "aabb": {
+      "min": [-0.25, 0, -0.25],
+      "max": [0.25, 1.0145, 0.25]
+    },
+    "sphere": {
+      "center": [0, 0.5073, 0],
+      "radius": 0.5529
+    }
+  },
+  "stats": {
+    "triangles": 708,
+    "vertices": 1511,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 30244
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 708
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "Aged brass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Soul glass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -0.25, 0, -0.25, -0.25, 0, 0.25, -0.25, 1.0145, -0.25, -0.25, 1.0145, 0.25, 0.25, 0,
+          -0.25, 0.25, 0, 0.25, 0.25, 1.0145, -0.25, 0.25, 1.0145, 0.25
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

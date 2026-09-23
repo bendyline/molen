@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.architecture.broken_floor",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:adf83f6903e976986a453c285771155a950e6e1c92b145afce2270c76327be30",
+  "sourceHash": "sha256:28cf8340c70087f0294bfa62c03ca9053de1959762952b1ab58edc33ab724c5b",
+  "bounds": {
+    "aabb": {
+      "min": [-1.49, -0.13, -1.49],
+      "max": [1.49, 0.001, 1.49]
+    },
+    "sphere": {
+      "center": [0, -0.0645, 0],
+      "radius": 2.0892
+    }
+  },
+  "stats": {
+    "triangles": 550,
+    "vertices": 1137,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 3,
+    "animations": 0,
+    "sizeBytes": 278804
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 550
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "Limestone / slate",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Stone fissure",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.49, -0.13, -1.49, -1.49, -0.13, 1.49, -1.49, 0.001, -1.49, -1.49, 0.001, 1.49, 1.49,
+          -0.13, -1.49, 1.49, -0.13, 1.49, 1.49, 0.001, -1.49, 1.49, 0.001, 1.49
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

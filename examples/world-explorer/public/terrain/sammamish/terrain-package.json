@@ -1,0 +1,108 @@
+{
+  "format": "molen/terrain-package@1",
+  "name": "Sammamish, Washington",
+  "version": "2026-09-06",
+  "coordinateSpace": {
+    "kind": "geospatial",
+    "crs": "EPSG:3857",
+    "ellipsoid": "WGS84",
+    "bounds": [-123.15, 46.95, -120.9, 48.3]
+  },
+  "tileMatrix": {
+    "scheme": "xyz",
+    "minLevel": 8,
+    "maxLevel": 15,
+    "rootTiles": [1, 1],
+    "tileResolution": 257
+  },
+  "elevation": {
+    "source": { "kind": "pmtiles", "path": "elevation.pmtiles" },
+    "encoding": "png16",
+    "height": { "min": -6000, "max": 5000 }
+  },
+  "surface": {
+    "seaLevel": 0,
+    "layers": [
+      { "name": "soil", "color": "#655b49", "tiling": 10 },
+      {
+        "name": "lowland",
+        "color": "#668354",
+        "tiling": 14,
+        "auto": { "heightMin": 0, "heightMax": 900 }
+      },
+      {
+        "name": "alpine",
+        "color": "#7c786d",
+        "tiling": 18,
+        "auto": { "heightMin": 900, "heightMax": 2300 }
+      },
+      { "name": "snow", "color": "#dce5e4", "tiling": 22, "auto": { "heightMin": 1900 } }
+    ]
+  },
+  "landcover": {
+    "source": { "kind": "pmtiles", "path": "world.pmtiles" },
+    "encoding": "mvt",
+    "layer": "landcover",
+    "profile": "protomaps-basemap@1"
+  },
+  "features": {
+    "source": { "kind": "pmtiles", "path": "world.pmtiles" },
+    "encoding": "mvt",
+    "layers": ["water", "transportation", "building", "poi"],
+    "profile": "protomaps-basemap@1"
+  },
+  "attribution": [
+    {
+      "text": "Mapzen/USGS terrain tiles; Mapzen Terrain Tiles, with United States 3DEP, GMTED2010, and SRTM terrain data courtesy of the U.S. Geological Survey",
+      "license": "US public domain and source-specific open-data terms",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "text": "© OpenStreetMap contributors; Protomaps Basemap",
+      "license": "ODbL-1.0",
+      "sourceUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+    },
+    {
+      "text": "Daylight Landcover; © ESA WorldCover project, modified Copernicus Sentinel data",
+      "license": "CC-BY-4.0",
+      "sourceUrl": "https://esa-worldcover.org/en",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "Natural Earth; public domain",
+      "license": "Public domain (Natural Earth terms of use)",
+      "sourceUrl": "https://www.naturalearthdata.com/about/terms-of-use/"
+    }
+  ],
+  "provenance": {
+    "compiler": "world-explorer-sammamish-fixture",
+    "compilerVersion": "1",
+    "sources": [
+      { "id": "mapzen-terrain-tiles", "release": "AWS open-data snapshot accessed 2026-08-30" },
+      { "id": "protomaps-basemap", "release": "2026-09-06T09:11:11.176Z" }
+    ]
+  },
+  "files": [
+    {
+      "path": "elevation.pmtiles",
+      "bytes": 14719561,
+      "sha256": "ae5642daa9cbea8376343a1e64c3b187e92fc4f2218889c48829c9cb06a6d25a"
+    },
+    {
+      "path": "world.pmtiles",
+      "bytes": 8068547,
+      "sha256": "2360b66fd261164fc2e6ed0aa21ce27503087db2f95e4f8a506bbb531e16c28c"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 2430,
+      "sha256": "90d633b7163eca6e82f0b19ce30a144f1069c3a0c379d2b3456913e9a6134b37"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 1989,
+      "sha256": "e3b672661e704db5dd5fc71317ec2870348f4c67951db6fb34a7dc6e3d98592e"
+    }
+  ]
+}

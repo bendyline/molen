@@ -1,0 +1,41 @@
+name: Update goldens
+
+# Manually triggered. Regenerates golden images on the same Ubuntu release as the CI golden job
+# (SwiftShader is deterministic per build, not across machines) and commits them to the branch.
+# Local `molen test golden --update` only produces candidates; this is the authoritative path.
+on:
+  workflow_dispatch:
+
+concurrency: update-goldens-${{ github.ref }}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm -r build
+      - name: Regenerate goldens
+        run: pnpm test:golden
+        env:
+          UPDATE_GOLDENS: '1'
+      - name: Commit regenerated goldens
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -- '**/__goldens__/**'
+          if git diff --cached --quiet; then
+            echo "no golden changes"
+          else
+            git commit -m "chore: refresh golden images"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

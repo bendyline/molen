@@ -1,0 +1,76 @@
+{
+  "name": "@bendyline/molen-client",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen rendering client: three.js wrapper, snapshot sync, interpolation",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/client"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/client",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "threejs",
+    "webgpu",
+    "rendering"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./camera-track": {
+      "types": "./dist/camera-track.d.mts",
+      "default": "./dist/camera-track.mjs"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.mts",
+      "default": "./dist/vite.mjs"
+    },
+    "./vehicles": {
+      "types": "./dist/vehicles.d.mts",
+      "default": "./dist/vehicles.mjs"
+    },
+    "./aircraft": {
+      "types": "./dist/aircraft.d.mts",
+      "default": "./dist/aircraft.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "NOTICE.md"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.vite.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@types/three": "0.184.0",
+    "three": "0.184.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

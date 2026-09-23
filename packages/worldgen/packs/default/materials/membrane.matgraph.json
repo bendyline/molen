@@ -1,0 +1,20 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 19,
+  "nodes": [
+    {
+      "id": "sheet",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 4, "scale": 10, "seedOffset": 8 }
+    },
+    {
+      "id": "out",
+      "type": "ramp",
+      "input": "sheet",
+      "params": { "stops": [{ "t": 0, "color": "#d3d3d1" }, { "t": 1, "color": "#ebebe8" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

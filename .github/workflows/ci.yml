@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # `pretypecheck` builds every package first (replaces turbo's `dependsOn: ^build`).
+      - run: pnpm typecheck
+      # docs-src/schemas/*.md is generated from the built registries; fail if it is stale.
+      - run: pnpm docs:check
+      - run: pnpm lint
+      - run: pnpm audit:prod
+
+  docs-site:
+    # The molen.dev site generates its API reference from the built `.d.mts`, its CLI/MCP
+    # reference from OPS_CATALOG and its sample pages from examples/. Building it proves those
+    # generators still run and that no page carries a dead link or unescaped markup.
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Fails if .vitepress/generated-nav.json is stale (a new export, op, guide or sample).
+      - run: pnpm docs:site:check
+      - run: pnpm docs:site:build
+
+  unit:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Kernel unit tests include the deterministic replay-hash suite. `pretest:unit` builds first.
+      - run: pnpm test:unit
+
+  smoke:
+    # Proves the real agent loop works end to end: scaffold an experience, then validate +
+    # simulate + assert through the published `molen` CLI (a scene WITH entities + commands).
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r build
+      - name: Scaffold + run the headless loop
+        run: |
+          CLI="$GITHUB_WORKSPACE/packages/tooling/dist/cli.mjs"
+          node "$CLI" new smoke-demo --dir /tmp
+          cd /tmp/smoke-demo
+          node "$CLI" validate scenes/main.scene.json
+          node "$CLI" sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+
+  golden:
+    runs-on: ubuntu-24.04
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Golden images are recorded in this CI environment; SwiftShader is deterministic per build.
+      - run: pnpm exec playwright install --with-deps chromium
+      # `pretest:golden` builds first.
+      - run: pnpm test:golden
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: golden-diffs
+          # Most golden tests live under examples/ — omitting them meant the common failure
+          # (an example's frame drifted) uploaded nothing to look at.
+          path: |
+            packages/*/test/golden/__output__/**
+            examples/*/test/golden/__output__/**
+          retention-days: 7

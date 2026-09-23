@@ -1,0 +1,1173 @@
+{
+  "format": "molen/scene@3",
+  "name": "lantern-asset-gallery",
+  "seed": "lantern-art-1",
+  "tickRate": 30,
+  "camera": {
+    "mode": "fixed",
+    "position": [10, 13, -24],
+    "lookAt": [0, 0, 0],
+    "fov": 48
+  },
+  "entities": [
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "background": "#20323d",
+          "ambient": {
+            "sky": "#d1e3e7",
+            "ground": "#69757c",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [-8, 20, -12],
+            "intensity": 3,
+            "color": "#ffe5bf",
+            "castShadow": true
+          },
+          "shadows": "medium",
+          "toneMapping": "aces",
+          "exposure": 1.1
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [0, -0.2, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [27, 0.2, 23]
+          },
+          "materialRef": "palette:#394d5b",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-ossuary-knight",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ossuary-knight",
+      "components": {
+        "transform": {
+          "pos": [-8.75, 0, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.0913705583756346, 1.0913705583756346, 1.0913705583756346]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.ossuary_knight",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-veil-wraith",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "veil-wraith",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.03235144095893904, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.0966590155572558, 1.0966590155572558, 1.0966590155572558]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.veil_wraith",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-mossback",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "mossback",
+      "components": {
+        "transform": {
+          "pos": [-1.75, 0.026060606060606062, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.303030303030303, 1.303030303030303, 1.303030303030303]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.mossback",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-vault-bat",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "vault-bat",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.2274129572498898, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.9475539885412075, 0.9475539885412075, 0.9475539885412075]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.vault_bat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-stone-gargoyle",
+      "components": {
+        "transform": {
+          "pos": [5.25, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "stone-gargoyle",
+      "components": {
+        "transform": {
+          "pos": [5.25, 0.00009475539885412076, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.9475539885412075, 0.9475539885412075, 0.9475539885412075]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.stone_gargoyle",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-ember-imp",
+      "components": {
+        "transform": {
+          "pos": [8.75, -0.045, -7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ember-imp",
+      "components": {
+        "transform": {
+          "pos": [8.75, 0, -7],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.4387044967880085, 1.4387044967880085, 1.4387044967880085]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.mob.ember_imp",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-ashlar-wall",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ashlar-wall",
+      "components": {
+        "transform": {
+          "pos": [-8.75, 0, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.6515151515151515, 0.6515151515151515, 0.6515151515151515]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.ashlar_wall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-moss-wall",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "moss-wall",
+      "components": {
+        "transform": {
+          "pos": [-5.25, 0, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.6515151515151515, 0.6515151515151515, 0.6515151515151515]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.moss_wall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-rune-wall",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "rune-wall",
+      "components": {
+        "transform": {
+          "pos": [-1.75, 0, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.6515151515151515, 0.6515151515151515, 0.6515151515151515]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.rune_wall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-flagstone-floor",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "flagstone-floor",
+      "components": {
+        "transform": {
+          "pos": [1.75, 0.09371979865771811, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.7214765100671141, 0.7214765100671141, 0.7214765100671141]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.flagstone_floor",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-broken-floor",
+      "components": {
+        "transform": {
+          "pos": [5.25, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "broken-floor",
+      "components": {
+        "transform": {
+          "pos": [5.25, 0.09379194630872484, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.7214765100671141, 0.7214765100671141, 0.7214765100671141]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.broken_floor",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-vaulted-ceiling",
+      "components": {
+        "transform": {
+          "pos": [8.75, -0.045, -3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "vaulted-ceiling",
+      "components": {
+        "transform": {
+          "pos": [8.75, 0.0419202569426421, -3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.6975084349857255, 0.6975084349857255, 0.6975084349857255]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.vaulted_ceiling",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-gothic-arch",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "gothic-arch",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.000057180851063829787, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.5718085106382979, 0.5718085106382979, 0.5718085106382979]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.gothic_arch",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-carved-column",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "carved-column",
+      "components": {
+        "transform": {
+          "pos": [-5.25, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.7288135593220338, 0.7288135593220338, 0.7288135593220338]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.architecture.carved_column",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-portcullis",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "portcullis",
+      "components": {
+        "transform": {
+          "pos": [-1.75, 1.0822869127516779, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.7214765100671141, 0.7214765100671141, 0.7214765100671141]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.portcullis",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-wall-torch",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "wall-torch",
+      "components": {
+        "transform": {
+          "pos": [1.75, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.954190147245955, 1.954190147245955, 1.954190147245955]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.wall_torch",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-hanging-brazier",
+      "components": {
+        "transform": {
+          "pos": [5.25, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "hanging-brazier",
+      "components": {
+        "transform": {
+          "pos": [5.25, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.7471152283438973, 1.7471152283438973, 1.7471152283438973]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.hanging_brazier",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-reliquary-lantern",
+      "components": {
+        "transform": {
+          "pos": [8.75, -0.045, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "reliquary-lantern",
+      "components": {
+        "transform": {
+          "pos": [8.75, 0, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.1192705766387383, 2.1192705766387383, 2.1192705766387383]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.item.reliquary_lantern",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-brass-key",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "brass-key",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.13999674426176134, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [3.4999186065440338, 3.4999186065440338, 3.4999186065440338]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.item.brass_key",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-healing-potion",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "healing-potion",
+      "components": {
+        "transform": {
+          "pos": [-5.25, 0, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [4.3, 4.3, 4.3]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.item.healing_potion",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-longsword",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "longsword",
+      "components": {
+        "transform": {
+          "pos": [-1.75, 0.0960708782742681, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.6563944530046224, 1.6563944530046224, 1.6563944530046224]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.item.longsword",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-round-shield",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "round-shield",
+      "components": {
+        "transform": {
+          "pos": [1.75, 0.006107954545454545, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.5449810606060606, 2.5449810606060606, 2.5449810606060606]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.item.round_shield",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-treasure-chest",
+      "components": {
+        "transform": {
+          "pos": [5.25, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "treasure-chest",
+      "components": {
+        "transform": {
+          "pos": [5.25, 0, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.9545454545454544, 1.9545454545454544, 1.9545454545454544]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.treasure_chest",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-oak-barrel",
+      "components": {
+        "transform": {
+          "pos": [8.75, -0.045, 3.5],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "oak-barrel",
+      "components": {
+        "transform": {
+          "pos": [8.75, 0.005908466335482507, 3.5],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.2724870521086564, 2.2724870521086564, 2.2724870521086564]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.oak_barrel",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-supply-crate",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.045, 7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "supply-crate",
+      "components": {
+        "transform": {
+          "pos": [-8.75, -0.03345435684647303, 7],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.2302904564315353, 2.2302904564315353, 2.2302904564315353]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.supply_crate",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-funerary-urn",
+      "components": {
+        "transform": {
+          "pos": [-5.25, -0.045, 7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "funerary-urn",
+      "components": {
+        "transform": {
+          "pos": [-5.25, 0, 7],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.5, 2.5, 2.5]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.funerary_urn",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-bone-pile",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.045, 7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bone-pile",
+      "components": {
+        "transform": {
+          "pos": [-1.75, -0.032412060301507534, 7],
+          "rot": [0, 0, 0, 1],
+          "scale": [2.1608040201005023, 2.1608040201005023, 2.1608040201005023]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.bone_pile",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "plinth-soul-crystals",
+      "components": {
+        "transform": {
+          "pos": [1.75, -0.045, 7],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": {
+            "size": [2.8, 0.09, 2.8]
+          },
+          "materialRef": "palette:#6b7d83",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "soul-crystals",
+      "components": {
+        "transform": {
+          "pos": [1.75, 0.07889908256880733, 7],
+          "rot": [0, 0, 0, 1],
+          "scale": [1.9724770642201832, 1.9724770642201832, 1.9724770642201832]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "lantern.prop.soul_crystals",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+/* Molen brand tokens layered over the VitePress defaults. */
+:root {
+  --vp-c-brand-1: #3d6fd4;
+  --vp-c-brand-2: #5b8def;
+  --vp-c-brand-3: #7ba6f5;
+  --vp-c-brand-soft: rgba(91, 141, 239, 0.14);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #5b8def, #56c2b0);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #5b8def55, #56c2b055);
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark {
+  --vp-c-brand-1: #7ba6f5;
+  --vp-c-brand-2: #5b8def;
+  --vp-c-brand-3: #3d6fd4;
+}
+
+/* The one-line package blurb under an API page title. */
+.api-blurb,
+.sample-tagline {
+  margin-top: -0.5rem;
+  color: var(--vp-c-text-2);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* API pages are long and heading-dense; give the member separators some air. */
+.vp-doc h3 {
+  margin-top: 2.25rem;
+}
+
+.vp-doc hr {
+  margin: 2rem 0;
+}
+
+/* Sample previews read as screenshots, not diagrams. */
+.vp-doc img[src^="/samples/"] {
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 2px 14px rgb(0 0 0 / 12%);
+}
+
+/* Reference tables carry a lot of narrow cells; keep them scannable. */
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+.vp-doc td:first-child,
+.vp-doc th:first-child {
+  white-space: nowrap;
+}

@@ -1,0 +1,60 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 18,
+  "nodes": [
+    {
+      "id": "courses",
+      "type": "bricks",
+      "params": { "rows": 8, "cols": 8, "mortarWidth": 0.06, "offset": 0 }
+    },
+    {
+      "id": "tiles",
+      "type": "ramp",
+      "input": "courses",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#9d9a94" },
+          { "t": 0.5, "color": "#9d9a94" },
+          { "t": 0.56, "color": "#efeeea" },
+          { "t": 1, "color": "#efeeea" }
+        ]
+      }
+    },
+    { "id": "curve-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "curve",
+      "type": "ramp",
+      "input": "curve-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#bdbdbd" },
+          { "t": 0.0625, "color": "#ffffff" },
+          { "t": 0.125, "color": "#bdbdbd" },
+          { "t": 0.1875, "color": "#ffffff" },
+          { "t": 0.25, "color": "#bdbdbd" },
+          { "t": 0.3125, "color": "#ffffff" },
+          { "t": 0.375, "color": "#bdbdbd" },
+          { "t": 0.4375, "color": "#ffffff" },
+          { "t": 0.5, "color": "#bdbdbd" },
+          { "t": 0.5625, "color": "#ffffff" },
+          { "t": 0.625, "color": "#bdbdbd" },
+          { "t": 0.6875, "color": "#ffffff" },
+          { "t": 0.75, "color": "#bdbdbd" },
+          { "t": 0.8125, "color": "#ffffff" },
+          { "t": 0.875, "color": "#bdbdbd" },
+          { "t": 0.9375, "color": "#ffffff" },
+          { "t": 1, "color": "#bdbdbd" }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "tiles", "b": "curve" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

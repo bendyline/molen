@@ -1,0 +1,138 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.catalog.ethiopian_townhouse",
+  "title": "Ethiopian stone townhouse",
+  "doc": "Rough-stone urban house with modest punched windows and a deep hipped metal roof. Parametric interpretation: outline, height, floor count and seed remain caller-controlled; large or unusually tall outlines use a compatible flat-roof fallback.",
+  "version": 1,
+  "applicability": {
+    "classes": ["ethiopian_townhouse", "house", "residential", "detached"],
+    "areaMin": 12,
+    "notes": "Regional precedent is descriptive; explicit style requests work in every world."
+  },
+  "massing": {
+    "floorHeight": { "min": 2.85, "max": 3.05 },
+    "heightFallback": [{ "levels": { "min": 2, "max": 2 } }],
+    "groundFit": "platform-average",
+    "foundation": { "height": { "min": 0.55, "max": 0.65 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 20,
+      "minWingArea": 5,
+      "secondaryHeightScale": { "min": 1, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": { "min": 0.45, "max": 0.45 },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "hip",
+        "weight": 1,
+        "pitchDeg": { "min": 26, "max": 28 },
+        "when": { "levelsMax": 3 }
+      },
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": { "height": { "min": 0.4, "max": 0.4 }, "thickness": 0.24 },
+        "when": { "levelsMin": 4 }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 3.12, "max": 3.28 }, "cornerMargin": 0.5 },
+    "windows": {
+      "style": "punched",
+      "width": { "min": 0.97, "max": 1.03 },
+      "height": { "min": 1.32, "max": 1.38 },
+      "sill": { "min": 0.82, "max": 0.82 },
+      "probabilityPerBay": 1,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": { "height": { "min": 0.6, "max": 0.6 } },
+      "floorLines": false,
+      "cornice": { "height": 0.16 }
+    },
+    "details": { "veranda": { "depth": 1, "columns": true } }
+  },
+  "materials": {
+    "wall": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.stone_basalt", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [1.6, 1.4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.metal_corrugated", "weight": 1 }],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [1.2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.stone", "weight": 1 }],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.window_punched", "weight": 1 }],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [{ "color": "#b6ac94", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "roof": {
+      "entries": [{ "color": "#a2a9a3", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "trim": {
+      "entries": [{ "color": "#dfd7c2", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "foundation": {
+      "entries": [{ "color": "#b4aa93", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      { "minTier": 1, "keep": ["roof-shape", "facade-texture", "facade-bands"] },
+      { "minTier": 2, "keep": ["roof-shape"] }
+    ]
+  }
+}

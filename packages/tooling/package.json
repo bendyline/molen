@@ -1,0 +1,94 @@
+{
+  "name": "@bendyline/molen-tooling",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen agent tooling: molen CLI and MCP server over a shared ops library",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/tooling"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/tooling",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "cli",
+    "mcp",
+    "simulation"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "bin": {
+    "molen": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown && node scripts/build-capture.mjs && node scripts/build-docs.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:golden": "vitest run --config vitest.golden.config.ts"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-figures": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-physics-rapier": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "@bendyline/molen-worldgen": "workspace:*",
+    "@bendyline/molen-worldgen-earth": "workspace:*",
+    "@gltf-transform/core": "4.2.1",
+    "@gltf-transform/extensions": "4.2.1",
+    "@gltf-transform/functions": "4.2.1",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "draco3dgltf": "1.5.7",
+    "ktx2-encoder": "0.6.0",
+    "meshoptimizer": "0.24.0",
+    "pixelmatch": "^6.0.0",
+    "playwright": "^1.60.0",
+    "pmtiles": "4.3.2",
+    "pngjs": "^7.0.0",
+    "quickhull3d": "3.1.1",
+    "sharp": "0.35.4",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "@types/three": "0.184.0",
+    "esbuild": "^0.25.0",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

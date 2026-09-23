@@ -1,0 +1,126 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-walk-mode",
+  "path": "/?synthetic=1&lineup=1&quality=balanced&freeze=1&lat=47.62145000&lon=-122.01290236&alt=415&yaw=-1.5708&style=none",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "location",
+      "selector": "#location"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-navigation=\"walk\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-walk-human-scale"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"bare\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 600
+    },
+    {
+      "type": "screenshot",
+      "name": "02-bare-before-walk"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-navigation=\"walk\"]"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 3000
+    },
+    {
+      "type": "wait",
+      "durationMs": 500
+    },
+    {
+      "type": "screenshot",
+      "name": "02-walk-forward"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 700
+    },
+    {
+      "type": "screenshot",
+      "name": "03-no-flight-on-foot"
+    },
+    {
+      "type": "key-down",
+      "keys": ["Space"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "In air",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["Space"]
+    },
+    {
+      "type": "screenshot",
+      "name": "04-jump",
+      "settleMs": 0
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "05-landed"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-navigation=\"fly\"]"
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Fly mode",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "06-fly"
+    }
+  ]
+}

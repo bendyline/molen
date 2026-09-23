@@ -1,0 +1,65 @@
+/* Optional baseline. Host styles can override these low-specificity selectors. */
+:where([data-molen-input-editor]) {
+  display: grid;
+  gap: 0.75rem;
+  font:
+    0.875rem / 1.5 system-ui,
+    sans-serif;
+  color: inherit;
+}
+:where([data-molen-input-editor]) fieldset {
+  min-inline-size: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--molen-input-border, #aab0bb);
+  border-radius: 0.5rem;
+}
+:where([data-molen-input-editor]) legend {
+  padding: 0 0.4rem;
+  font-weight: 600;
+}
+:where([data-molen-input-editor]) [data-binding] {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+}
+:where([data-molen-input-editor]) label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+:where([data-molen-input-editor]) :is(input, select, button) {
+  font: inherit;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+:where([data-molen-input-editor]) :is(select, button, input[type="number"]) {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--molen-input-border, #aab0bb);
+  border-radius: 0.3rem;
+  color: inherit;
+  background: var(--molen-input-background, transparent);
+}
+:where([data-molen-input-editor]) input[type="number"] {
+  width: 5.5rem;
+}
+:where([data-molen-input-editor]) button {
+  cursor: pointer;
+  justify-self: start;
+}
+:where([data-molen-input-editor]) button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+:where([data-molen-input-editor]) p {
+  margin: 0.25rem 0;
+  overflow-wrap: anywhere;
+}
+:where([data-molen-input-editor]) [role="alert"] {
+  color: var(--molen-input-error, #b32424);
+}

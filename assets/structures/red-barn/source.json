@@ -1,0 +1,27 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "red_barn_weathered",
+  "kind": "static-structure",
+  "title": "Weathered red barn",
+  "files": {
+    "definitions": ["project.json", "scene.json", "checks.json"],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "red_barn_weathered",
+        "output": "assets/red_barn_weathered/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:72ecc66946ab08e03a8d02f772a8344dc558e063db7460ef1abcb7dc0529b34d"
+      }
+    ],
+    "generators": [{ "id": "generate-model", "path": "scripts/generate-barn.mjs" }],
+    "scripts": [],
+    "textures": [
+      { "id": "weathered-red-wood-basecolor", "path": "textures/weathered-red-wood-basecolor.png" },
+      { "id": "weathered-red-wood-normal", "path": "textures/weathered-red-wood-normal.png" },
+      { "id": "weathered-red-wood-roughness", "path": "textures/weathered-red-wood-roughness.png" }
+    ],
+    "sounds": [],
+    "documents": ["README.md", "TEST-RUN.md", "preview.png"]
+  }
+}

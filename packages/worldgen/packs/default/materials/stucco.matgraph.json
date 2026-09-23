@@ -1,0 +1,20 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 13,
+  "nodes": [
+    {
+      "id": "mottle",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 5, "scale": 6, "seedOffset": 3 }
+    },
+    {
+      "id": "out",
+      "type": "ramp",
+      "input": "mottle",
+      "params": { "stops": [{ "t": 0, "color": "#d8d1c5" }, { "t": 1, "color": "#f8f4ed" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

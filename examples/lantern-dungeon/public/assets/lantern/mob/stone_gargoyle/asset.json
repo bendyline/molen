@@ -1,0 +1,84 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.mob.stone_gargoyle",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:d1446bdcafc66bcd669a6e48e61c416ec28e799742589710deebd8ead7b515f1",
+  "sourceHash": "sha256:c260434c0cc468240ac2435f46f8ca1ddfe95e1a1ada953199974f461e1003ae",
+  "bounds": {
+    "aabb": {
+      "min": [-1.1345, -0.0001, -0.36],
+      "max": [1.1345, 1.8313, 0.28]
+    },
+    "sphere": {
+      "center": [0, 0.9156, -0.04],
+      "radius": 1.1876
+    }
+  },
+  "stats": {
+    "triangles": 1068,
+    "vertices": 2177,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 3,
+    "animations": 1,
+    "sizeBytes": 303576
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 1068
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [
+    {
+      "name": "idle",
+      "durationSec": 3,
+      "channels": 1
+    }
+  ],
+  "materials": [
+    {
+      "name": "Limestone / slate",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Limestone / carved",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Soul glass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Old ivory",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.1345, -0.0001, -0.36, -1.1345, -0.0001, 0.28, -1.1345, 1.8313, -0.36, -1.1345, 1.8313,
+          0.28, 1.1345, -0.0001, -0.36, 1.1345, -0.0001, 0.28, 1.1345, 1.8313, -0.36, 1.1345,
+          1.8313, 0.28
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

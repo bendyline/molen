@@ -1,0 +1,85 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-live-quality",
+  "path": "/?synthetic=1&quality=balanced&freeze=1&style=none&alt=850&pitch=-0.28",
+  "viewport": [960, 540],
+  "probes": [
+    {
+      "name": "quality",
+      "selector": "#quality option:checked"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "performance",
+      "selector": "#performance-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#status",
+      "note": "Wait for terrain, not layers: style=none means there are never layers to load, so waiting on those passed instantly while terrain was still streaming. Frames then cost 176-345ms, so the 500ms key hold below advanced no frame and the camera never moved. The separators anchor the count, because '0 loading terrain' also matches '10 loading terrain'.",
+      "text": "\u00b7 0 loading terrain \u00b7",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-before-navigation"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 500
+    },
+    {
+      "type": "wait",
+      "durationMs": 500
+    },
+    {
+      "type": "screenshot",
+      "name": "02-before-quality-switch"
+    },
+    {
+      "type": "select",
+      "selector": "#quality",
+      "value": "economy"
+    },
+    {
+      "type": "wait",
+      "durationMs": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "03-economy"
+    },
+    {
+      "type": "select",
+      "selector": "#quality",
+      "value": "high"
+    },
+    {
+      "type": "wait",
+      "durationMs": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "04-high"
+    },
+    {
+      "type": "select",
+      "selector": "#quality",
+      "value": "auto"
+    },
+    {
+      "type": "wait",
+      "durationMs": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "05-auto"
+    }
+  ]
+}

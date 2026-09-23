@@ -1,0 +1,20 @@
+{
+  "format": "molen/assert@1",
+  "assertions": [
+    {
+      "select": "#game .dungeonGame.status",
+      "op": "eq",
+      "value": "playing"
+    },
+    {
+      "select": "#player .transform.pos[2]",
+      "op": "lt",
+      "value": 8
+    },
+    {
+      "select": "#game .dungeonGame.health",
+      "op": "gt",
+      "value": 0
+    }
+  ]
+}

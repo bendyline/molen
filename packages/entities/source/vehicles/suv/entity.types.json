@@ -1,0 +1,111 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.suv": {
+      "doc": "Tall sport-utility vehicle with heavier road handling.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.suv",
+          "color": "#64735c",
+          "spec": {
+            "label": "SUV",
+            "width": 1.93,
+            "length": 4.75,
+            "height": 1.78,
+            "centerOfMass": [0, 0.68, 0],
+            "wheelbase": 2.8,
+            "wheelTrack": 1.6212,
+            "wheelRadius": 0.36,
+            "mass": 1900,
+            "engineForce": 7000,
+            "maxSpeed": 38,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8.5,
+            "maxSteer": 0.55,
+            "grip": 7,
+            "driverEye": [0.43, 1.43, 0.35],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-rear-right",
+              "wheel-rear-left",
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
+            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["body", "steering-wheel"],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.43, 1.43, 0.35]
+            }
+          ],
+          "exits": [[1.47, 0, 0.35], [-1.47, 0, 0.35]],
+          "reach": 2.7
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.suv",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      },
+      "assets": ["molen.entities.vehicle.suv"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

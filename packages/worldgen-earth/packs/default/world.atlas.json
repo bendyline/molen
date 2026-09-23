@@ -1,0 +1,3210 @@
+{
+  "format": "molen/region-atlas@1",
+  "id": "molen.worldgen.atlas.world",
+  "title": "World style atlas",
+  "doc": "The default 120-structure library supplies deterministic regional architectural variety. Broad geographic envelopes and documented precedents are visual priors, not surveyed building identities. Explicit styles and source dimensions win; unmeasured low-rise residential features use stable weighted variants. Existing regional and worldwide fallbacks remain available.",
+  "version": 3,
+  "regions": [
+    {
+      "id": "us.pnw",
+      "title": "Pacific Northwest",
+      "priority": 10,
+      "bbox": [-125.5, 41.9, -116.4, 51.6],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.pnw.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.pnw.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.pnw.house",
+            "variants": [
+              { "style": "molen.worldgen.pnw.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.craftsman", "weight": 1 },
+              { "style": "molen.worldgen.catalog.prairie", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.pnw.house",
+            "variants": [
+              { "style": "molen.worldgen.pnw.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.craftsman", "weight": 1 },
+              { "style": "molen.worldgen.catalog.prairie", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "semidetached_house",
+                "apartments",
+                "townhouse",
+                "townhouses",
+                "dormitory"
+              ]
+            },
+            "style": "molen.worldgen.pnw.house"
+          },
+          {
+            "when": { "class": ["yes", "building"], "contextClass": ["residential"] },
+            "style": "molen.worldgen.pnw.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["none", "farmland", "grass", "meadow", "forest", "wood"],
+              "areaMax": 300
+            },
+            "style": "molen.worldgen.pnw.house"
+          }
+        ],
+        "scatter": "molen.worldgen.scatter.pnw",
+        "treeFillFactor": 0.9
+      }
+    },
+    {
+      "id": "us.southwest",
+      "title": "New Mexico and Arizona",
+      "priority": 10,
+      "bbox": [-114.9, 31.3, -103, 37],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.southwest.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.southwest.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.southwest.house",
+            "variants": [
+              { "style": "molen.worldgen.southwest.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.southwest.house",
+            "variants": [
+              { "style": "molen.worldgen.southwest.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "terrace",
+                "semidetached_house",
+                "apartments",
+                "townhouse",
+                "townhouses",
+                "cabin",
+                "dormitory"
+              ]
+            },
+            "style": "molen.worldgen.southwest.house"
+          },
+          {
+            "when": { "class": ["yes", "building"], "contextClass": ["residential"] },
+            "style": "molen.worldgen.southwest.house"
+          },
+          {
+            "when": { "class": ["yes", "building"], "contextClass": ["none"], "areaMax": 400 },
+            "style": "molen.worldgen.southwest.house"
+          }
+        ],
+        "scatter": "molen.worldgen.scatter.southwest",
+        "treeFillFactor": 0
+      }
+    },
+    {
+      "id": "jp",
+      "title": "Japan",
+      "priority": 10,
+      "bbox": [122.9, 24, 146.2, 45.8],
+      "polygons": [
+        [
+          [129, 30.9],
+          [131.6, 30.6],
+          [142.4, 34.4],
+          [146.2, 43.4],
+          [141.2, 45.8],
+          [139.4, 41.4],
+          [136, 38.2],
+          [130.8, 35.2],
+          [129, 32.4]
+        ]
+      ],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.japan.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.japan.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.japan.house",
+            "variants": [
+              { "style": "molen.worldgen.japan.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.kyoto_machiya", "weight": 1 },
+              { "style": "molen.worldgen.catalog.gassho_farmhouse", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.japan.house",
+            "variants": [
+              { "style": "molen.worldgen.japan.house", "weight": 4 },
+              { "style": "molen.worldgen.catalog.kyoto_machiya", "weight": 1 },
+              { "style": "molen.worldgen.catalog.gassho_farmhouse", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "residential",
+                "apartments",
+                "terrace",
+                "semidetached",
+                "semidetached_house",
+                "townhouse",
+                "townhouses",
+                "bungalow",
+                "cabin",
+                "dormitory"
+              ]
+            },
+            "style": "molen.worldgen.japan.house"
+          },
+          {
+            "when": { "class": ["yes", "building"], "contextClass": ["residential"] },
+            "style": "molen.worldgen.japan.house"
+          },
+          {
+            "when": { "class": ["yes", "building"], "areaMax": 180, "contextClass": ["none"] },
+            "style": "molen.worldgen.japan.house"
+          }
+        ],
+        "scatter": "molen.worldgen.scatter.japan",
+        "treeFillFactor": 0.3
+      }
+    },
+    {
+      "id": "library.north_america",
+      "title": "North America",
+      "priority": 1,
+      "bbox": [-169, 24, -52, 73],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.cape_cod",
+            "variants": [
+              { "style": "molen.worldgen.catalog.cape_cod", "weight": 1 },
+              { "style": "molen.worldgen.catalog.craftsman", "weight": 1 },
+              { "style": "molen.worldgen.catalog.dutch_colonial", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 },
+              { "style": "molen.worldgen.catalog.shotgun", "weight": 1 },
+              { "style": "molen.worldgen.pnw.house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.prairie", "weight": 1 },
+              { "style": "molen.worldgen.southwest.house", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.cape_cod",
+            "variants": [
+              { "style": "molen.worldgen.catalog.cape_cod", "weight": 1 },
+              { "style": "molen.worldgen.catalog.craftsman", "weight": 1 },
+              { "style": "molen.worldgen.catalog.dutch_colonial", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ranch", "weight": 1 },
+              { "style": "molen.worldgen.catalog.shotgun", "weight": 1 },
+              { "style": "molen.worldgen.pnw.house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.prairie", "weight": 1 },
+              { "style": "molen.worldgen.southwest.house", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["barn"] },
+            "style": "molen.worldgen.catalog.new_england_barn",
+            "variants": [{ "style": "molen.worldgen.catalog.new_england_barn", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.mexico",
+      "title": "Mexico",
+      "priority": 5,
+      "bbox": [-118, 14, -86, 33],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.hacienda",
+            "variants": [
+              { "style": "molen.worldgen.catalog.hacienda", "weight": 1 },
+              { "style": "molen.worldgen.catalog.mexican_patio", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.hacienda",
+            "variants": [
+              { "style": "molen.worldgen.catalog.hacienda", "weight": 1 },
+              { "style": "molen.worldgen.catalog.mexican_patio", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.caribbean",
+      "title": "Caribbean",
+      "priority": 5,
+      "bbox": [-86, 10, -58, 24],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.caribbean_chattel",
+            "variants": [
+              { "style": "molen.worldgen.catalog.caribbean_chattel", "weight": 1 },
+              { "style": "molen.worldgen.catalog.havana_townhouse", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.caribbean_chattel",
+            "variants": [
+              { "style": "molen.worldgen.catalog.caribbean_chattel", "weight": 1 },
+              { "style": "molen.worldgen.catalog.havana_townhouse", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.colombia",
+      "title": "Colombia",
+      "priority": 5,
+      "bbox": [-79, -4, -66, 13],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.cartagena_house",
+            "variants": [{ "style": "molen.worldgen.catalog.cartagena_house", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.cartagena_house",
+            "variants": [{ "style": "molen.worldgen.catalog.cartagena_house", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.andes",
+      "title": "Central Andean highlands",
+      "priority": 4,
+      "bbox": [-82, -23, -57, 1],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.andean_adobe",
+            "variants": [{ "style": "molen.worldgen.catalog.andean_adobe", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.andean_adobe",
+            "variants": [{ "style": "molen.worldgen.catalog.andean_adobe", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.chile",
+      "title": "Chile",
+      "priority": 5,
+      "bbox": [-76, -56, -66, -17],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.chiloe_house",
+            "variants": [{ "style": "molen.worldgen.catalog.chiloe_house", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.chiloe_house",
+            "variants": [{ "style": "molen.worldgen.catalog.chiloe_house", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.brazil",
+      "title": "Brazil",
+      "priority": 3,
+      "bbox": [-74, -34, -34, 6],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.brazilian_sobrado",
+            "variants": [{ "style": "molen.worldgen.catalog.brazilian_sobrado", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.brazilian_sobrado",
+            "variants": [{ "style": "molen.worldgen.catalog.brazilian_sobrado", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.britain",
+      "title": "Britain",
+      "priority": 5,
+      "bbox": [-8, 50, 2, 60],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.scottish_croft",
+            "variants": [
+              { "style": "molen.worldgen.catalog.scottish_croft", "weight": 1 },
+              { "style": "molen.worldgen.catalog.cotswold_cottage", "weight": 1 },
+              { "style": "molen.worldgen.catalog.english_terrace", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.scottish_croft",
+            "variants": [
+              { "style": "molen.worldgen.catalog.scottish_croft", "weight": 1 },
+              { "style": "molen.worldgen.catalog.cotswold_cottage", "weight": 1 },
+              { "style": "molen.worldgen.catalog.english_terrace", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["community_centre"] },
+            "style": "molen.worldgen.fantasy.hall",
+            "variants": [{ "style": "molen.worldgen.fantasy.hall", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.ireland",
+      "title": "Ireland",
+      "priority": 6,
+      "bbox": [-11, 51, -5, 56],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.irish_cottage",
+            "variants": [{ "style": "molen.worldgen.catalog.irish_cottage", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.irish_cottage",
+            "variants": [{ "style": "molen.worldgen.catalog.irish_cottage", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.nordic",
+      "title": "Nordic countries",
+      "priority": 3,
+      "bbox": [4, 54, 32, 71],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.danish_farmhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.danish_farmhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.finnish_log_cabin", "weight": 1 },
+              { "style": "molen.worldgen.catalog.swedish_cottage", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.danish_farmhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.danish_farmhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.finnish_log_cabin", "weight": 1 },
+              { "style": "molen.worldgen.catalog.swedish_cottage", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["boathouse"] },
+            "style": "molen.worldgen.catalog.norwegian_boathouse",
+            "variants": [{ "style": "molen.worldgen.catalog.norwegian_boathouse", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["community_centre"] },
+            "style": "molen.worldgen.fantasy.hall",
+            "variants": [{ "style": "molen.worldgen.fantasy.hall", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.iceland",
+      "title": "Iceland",
+      "priority": 5,
+      "bbox": [-25, 63, -13, 67],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.icelandic_townhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.icelandic_townhouse", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.icelandic_townhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.icelandic_townhouse", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.baltic",
+      "title": "Baltic countries",
+      "priority": 5,
+      "bbox": [21, 53, 29, 60],
+      "bindings": {
+        "buildings": [
+          {
+            "when": { "class": ["warehouse"] },
+            "style": "molen.worldgen.catalog.baltic_warehouse",
+            "variants": [{ "style": "molen.worldgen.catalog.baltic_warehouse", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.france",
+      "title": "France",
+      "priority": 4,
+      "bbox": [-5, 42, 8, 51],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.normandy_farmhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.normandy_farmhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.provencal_mas", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.normandy_farmhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.normandy_farmhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.provencal_mas", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["apartments"] },
+            "style": "molen.worldgen.catalog.paris_mansard",
+            "variants": [{ "style": "molen.worldgen.catalog.paris_mansard", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.low_countries",
+      "title": "Low Countries",
+      "priority": 6,
+      "bbox": [2.5, 49.5, 7.3, 54],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.flemish_townhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.flemish_townhouse", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.flemish_townhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.flemish_townhouse", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.germany",
+      "title": "Germany",
+      "priority": 5,
+      "bbox": [6, 47, 15.5, 55],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.german_fachwerk",
+            "variants": [{ "style": "molen.worldgen.catalog.german_fachwerk", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.german_fachwerk",
+            "variants": [{ "style": "molen.worldgen.catalog.german_fachwerk", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.alps",
+      "title": "Alpine region",
+      "priority": 6,
+      "bbox": [6, 45, 17, 48.5],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.swiss_chalet",
+            "variants": [{ "style": "molen.worldgen.catalog.swiss_chalet", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.swiss_chalet",
+            "variants": [{ "style": "molen.worldgen.catalog.swiss_chalet", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["hotel"] },
+            "style": "molen.worldgen.catalog.austrian_inn",
+            "variants": [{ "style": "molen.worldgen.catalog.austrian_inn", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.italy",
+      "title": "Italy",
+      "priority": 5,
+      "bbox": [7, 36, 19, 46],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.tuscan_farmhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.tuscan_farmhouse", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.tuscan_farmhouse",
+            "variants": [{ "style": "molen.worldgen.catalog.tuscan_farmhouse", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["apartments"] },
+            "style": "molen.worldgen.catalog.italian_palazzo",
+            "variants": [{ "style": "molen.worldgen.catalog.italian_palazzo", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.iberia",
+      "title": "Iberian Peninsula",
+      "priority": 5,
+      "bbox": [-10, 36, 4, 44],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.andalusian_casa",
+            "variants": [
+              { "style": "molen.worldgen.catalog.andalusian_casa", "weight": 1 },
+              { "style": "molen.worldgen.catalog.portuguese_azulejo", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.andalusian_casa",
+            "variants": [
+              { "style": "molen.worldgen.catalog.andalusian_casa", "weight": 1 },
+              { "style": "molen.worldgen.catalog.portuguese_azulejo", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.greece",
+      "title": "Greece",
+      "priority": 6,
+      "bbox": [19, 34, 29, 42],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.cycladic_house",
+            "variants": [{ "style": "molen.worldgen.catalog.cycladic_house", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.cycladic_house",
+            "variants": [{ "style": "molen.worldgen.catalog.cycladic_house", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.eastern_europe",
+      "title": "Eastern Europe",
+      "priority": 3,
+      "bbox": [14, 44, 40, 55],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.balkan_konak",
+            "variants": [
+              { "style": "molen.worldgen.catalog.balkan_konak", "weight": 1 },
+              { "style": "molen.worldgen.catalog.bohemian_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.polish_timber", "weight": 1 },
+              { "style": "molen.worldgen.catalog.transylvanian_farm", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ukrainian_cottage", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.balkan_konak",
+            "variants": [
+              { "style": "molen.worldgen.catalog.balkan_konak", "weight": 1 },
+              { "style": "molen.worldgen.catalog.bohemian_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.polish_timber", "weight": 1 },
+              { "style": "molen.worldgen.catalog.transylvanian_farm", "weight": 1 },
+              { "style": "molen.worldgen.catalog.ukrainian_cottage", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["hotel"] },
+            "style": "molen.worldgen.catalog.carpathian_lodge",
+            "variants": [{ "style": "molen.worldgen.catalog.carpathian_lodge", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.adriatic",
+      "title": "Adriatic coast",
+      "priority": 6,
+      "bbox": [13, 42, 19, 46],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.dalmatian_stone",
+            "variants": [{ "style": "molen.worldgen.catalog.dalmatian_stone", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.dalmatian_stone",
+            "variants": [{ "style": "molen.worldgen.catalog.dalmatian_stone", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.maghreb",
+      "title": "Northwest Africa",
+      "priority": 4,
+      "bbox": [-14, 27, 12, 37],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.moroccan_riad",
+            "variants": [
+              { "style": "molen.worldgen.catalog.moroccan_riad", "weight": 1 },
+              { "style": "molen.worldgen.catalog.tunisian_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.moroccan_riad",
+            "variants": [
+              { "style": "molen.worldgen.catalog.moroccan_riad", "weight": 1 },
+              { "style": "molen.worldgen.catalog.tunisian_house", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.anatolia",
+      "title": "Anatolia",
+      "priority": 6,
+      "bbox": [26, 36, 45, 42],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.anatolian_house",
+            "variants": [{ "style": "molen.worldgen.catalog.anatolian_house", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.anatolian_house",
+            "variants": [{ "style": "molen.worldgen.catalog.anatolian_house", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["retail"] },
+            "style": "molen.worldgen.catalog.anatolian_shop",
+            "variants": [{ "style": "molen.worldgen.catalog.anatolian_shop", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.caucasus",
+      "title": "Caucasus",
+      "priority": 7,
+      "bbox": [40, 40, 47, 44],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.georgian_gallery",
+            "variants": [{ "style": "molen.worldgen.catalog.georgian_gallery", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.georgian_gallery",
+            "variants": [{ "style": "molen.worldgen.catalog.georgian_gallery", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.levant",
+      "title": "Levant",
+      "priority": 6,
+      "bbox": [34, 29, 39, 35],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.levantine_stone",
+            "variants": [{ "style": "molen.worldgen.catalog.levantine_stone", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.levantine_stone",
+            "variants": [{ "style": "molen.worldgen.catalog.levantine_stone", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.iran",
+      "title": "Iran",
+      "priority": 5,
+      "bbox": [44, 25, 64, 40],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.iranian_courtyard",
+            "variants": [{ "style": "molen.worldgen.catalog.iranian_courtyard", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.iranian_courtyard",
+            "variants": [{ "style": "molen.worldgen.catalog.iranian_courtyard", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.arabia",
+      "title": "Arabian Peninsula",
+      "priority": 4,
+      "bbox": [39, 12, 60, 30],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.gulf_courtyard",
+            "variants": [{ "style": "molen.worldgen.catalog.gulf_courtyard", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.gulf_courtyard",
+            "variants": [{ "style": "molen.worldgen.catalog.gulf_courtyard", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.west_africa",
+      "title": "West Africa",
+      "priority": 3,
+      "bbox": [-18, 4, 17, 20],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.sahel_townhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.sahel_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.west_african_compound", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.sahel_townhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.sahel_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.west_african_compound", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["community_centre"] },
+            "style": "molen.worldgen.catalog.asante_courtyard",
+            "variants": [{ "style": "molen.worldgen.catalog.asante_courtyard", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.east_africa",
+      "title": "East Africa",
+      "priority": 3,
+      "bbox": [28, -12, 52, 15],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.ethiopian_townhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.ethiopian_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.swahili_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.ethiopian_townhouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.ethiopian_townhouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.swahili_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["school"] },
+            "style": "molen.worldgen.catalog.east_african_school",
+            "variants": [{ "style": "molen.worldgen.catalog.east_african_school", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.south_africa",
+      "title": "Southern Africa",
+      "priority": 3,
+      "bbox": [16, -35, 33, -22],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.cape_town_cottage",
+            "variants": [{ "style": "molen.worldgen.catalog.cape_town_cottage", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.cape_town_cottage",
+            "variants": [{ "style": "molen.worldgen.catalog.cape_town_cottage", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.madagascar",
+      "title": "Madagascar",
+      "priority": 4,
+      "bbox": [43, -26, 51, -11],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.malagasy_highland",
+            "variants": [{ "style": "molen.worldgen.catalog.malagasy_highland", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.malagasy_highland",
+            "variants": [{ "style": "molen.worldgen.catalog.malagasy_highland", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.south_asia",
+      "title": "South Asia",
+      "priority": 3,
+      "bbox": [60, 5, 93, 37],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.bengali_house",
+            "variants": [
+              { "style": "molen.worldgen.catalog.bengali_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.bhutanese_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.goan_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.kerala_nalukettu", "weight": 1 },
+              { "style": "molen.worldgen.catalog.lahore_haveli", "weight": 1 },
+              { "style": "molen.worldgen.catalog.rajasthani_haveli", "weight": 1 },
+              { "style": "molen.worldgen.catalog.sri_lankan_walauwa", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.bengali_house",
+            "variants": [
+              { "style": "molen.worldgen.catalog.bengali_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.bhutanese_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.goan_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.kerala_nalukettu", "weight": 1 },
+              { "style": "molen.worldgen.catalog.lahore_haveli", "weight": 1 },
+              { "style": "molen.worldgen.catalog.rajasthani_haveli", "weight": 1 },
+              { "style": "molen.worldgen.catalog.sri_lankan_walauwa", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.china",
+      "title": "China",
+      "priority": 2,
+      "bbox": [74, 18, 135, 54],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.siheyuan",
+            "variants": [
+              { "style": "molen.worldgen.catalog.siheyuan", "weight": 1 },
+              { "style": "molen.worldgen.catalog.jiangnan_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.siheyuan",
+            "variants": [
+              { "style": "molen.worldgen.catalog.siheyuan", "weight": 1 },
+              { "style": "molen.worldgen.catalog.jiangnan_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["apartments"] },
+            "style": "molen.worldgen.catalog.square_tulou",
+            "variants": [{ "style": "molen.worldgen.catalog.square_tulou", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.korea",
+      "title": "Korean peninsula",
+      "priority": 7,
+      "bbox": [124, 33, 130, 43],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.hanok",
+            "variants": [{ "style": "molen.worldgen.catalog.hanok", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.hanok",
+            "variants": [{ "style": "molen.worldgen.catalog.hanok", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.taiwan",
+      "title": "Taiwan",
+      "priority": 7,
+      "bbox": [119, 21, 123, 26],
+      "bindings": {
+        "buildings": [
+          {
+            "when": { "class": ["retail"] },
+            "style": "molen.worldgen.catalog.taiwan_shophouse",
+            "variants": [{ "style": "molen.worldgen.catalog.taiwan_shophouse", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.mainland_southeast_asia",
+      "title": "Mainland Southeast Asia",
+      "priority": 5,
+      "bbox": [92, 5, 110, 24],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.khmer_timber",
+            "variants": [
+              { "style": "molen.worldgen.catalog.khmer_timber", "weight": 1 },
+              { "style": "molen.worldgen.catalog.lao_timber_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.thai_timber_house", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.khmer_timber",
+            "variants": [
+              { "style": "molen.worldgen.catalog.khmer_timber", "weight": 1 },
+              { "style": "molen.worldgen.catalog.lao_timber_house", "weight": 1 },
+              { "style": "molen.worldgen.catalog.thai_timber_house", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.maritime_southeast_asia",
+      "title": "Maritime Southeast Asia",
+      "priority": 4,
+      "bbox": [95, -11, 141, 6],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.javanese_limasan",
+            "variants": [{ "style": "molen.worldgen.catalog.javanese_limasan", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.javanese_limasan",
+            "variants": [{ "style": "molen.worldgen.catalog.javanese_limasan", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["retail"] },
+            "style": "molen.worldgen.catalog.penang_shophouse",
+            "variants": [
+              { "style": "molen.worldgen.catalog.penang_shophouse", "weight": 1 },
+              { "style": "molen.worldgen.catalog.singapore_shophouse", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.philippines",
+      "title": "Philippines",
+      "priority": 6,
+      "bbox": [116, 5, 127, 20],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.bahay_na_bato",
+            "variants": [{ "style": "molen.worldgen.catalog.bahay_na_bato", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.bahay_na_bato",
+            "variants": [{ "style": "molen.worldgen.catalog.bahay_na_bato", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.australia",
+      "title": "Australia",
+      "priority": 4,
+      "bbox": [112, -44, 154, -10],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.federation_bungalow",
+            "variants": [
+              { "style": "molen.worldgen.catalog.federation_bungalow", "weight": 1 },
+              { "style": "molen.worldgen.catalog.queenslander", "weight": 1 },
+              { "style": "molen.worldgen.catalog.sydney_terrace", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.federation_bungalow",
+            "variants": [
+              { "style": "molen.worldgen.catalog.federation_bungalow", "weight": 1 },
+              { "style": "molen.worldgen.catalog.queenslander", "weight": 1 },
+              { "style": "molen.worldgen.catalog.sydney_terrace", "weight": 1 }
+            ]
+          },
+          {
+            "when": { "class": ["barn"] },
+            "style": "molen.worldgen.catalog.outback_woolshed",
+            "variants": [{ "style": "molen.worldgen.catalog.outback_woolshed", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.new_zealand",
+      "title": "New Zealand",
+      "priority": 5,
+      "bbox": [166, -48, 179, -34],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.new_zealand_bach",
+            "variants": [
+              { "style": "molen.worldgen.catalog.new_zealand_bach", "weight": 1 },
+              { "style": "molen.worldgen.catalog.new_zealand_villa", "weight": 1 }
+            ]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.new_zealand_bach",
+            "variants": [
+              { "style": "molen.worldgen.catalog.new_zealand_bach", "weight": 1 },
+              { "style": "molen.worldgen.catalog.new_zealand_villa", "weight": 1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.fiji",
+      "title": "Fiji",
+      "priority": 5,
+      "bbox": [176, -21, 180, -15],
+      "bindings": {
+        "buildings": [
+          {
+            "when": { "class": ["community_centre"] },
+            "style": "molen.worldgen.catalog.pacific_meeting_hall",
+            "variants": [{ "style": "molen.worldgen.catalog.pacific_meeting_hall", "weight": 1 }]
+          }
+        ]
+      }
+    },
+    {
+      "id": "library.pacific",
+      "title": "South Pacific",
+      "priority": 4,
+      "bbox": [-176, -25, -130, -8],
+      "bindings": {
+        "buildings": [
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "levelsMin": 4
+            },
+            "style": "molen.worldgen.generic.house"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse"
+              ],
+              "notClass": ["apartments", "dormitory"],
+              "hasHeight": false
+            },
+            "style": "molen.worldgen.catalog.polynesian_bungalow",
+            "variants": [{ "style": "molen.worldgen.catalog.polynesian_bungalow", "weight": 1 }]
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "hasHeight": false,
+              "areaMax": 700
+            },
+            "style": "molen.worldgen.catalog.polynesian_bungalow",
+            "variants": [{ "style": "molen.worldgen.catalog.polynesian_bungalow", "weight": 1 }]
+          },
+          {
+            "when": { "class": ["community_centre"] },
+            "style": "molen.worldgen.catalog.pacific_meeting_hall",
+            "variants": [{ "style": "molen.worldgen.catalog.pacific_meeting_hall", "weight": 1 }]
+          }
+        ]
+      }
+    }
+  ],
+  "default": {
+    "buildings": [
+      {
+        "when": { "class": ["fire_station"] },
+        "style": "molen.worldgen.catalog.brick_fire_station",
+        "variants": [{ "style": "molen.worldgen.catalog.brick_fire_station", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["clinic"] },
+        "style": "molen.worldgen.catalog.community_clinic",
+        "variants": [{ "style": "molen.worldgen.catalog.community_clinic", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["marketplace"] },
+        "style": "molen.worldgen.catalog.market_hall",
+        "variants": [{ "style": "molen.worldgen.catalog.market_hall", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["industrial"] },
+        "style": "molen.worldgen.catalog.light_industrial",
+        "variants": [{ "style": "molen.worldgen.catalog.light_industrial", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["apartments"] },
+        "style": "molen.worldgen.catalog.modern_apartments",
+        "variants": [{ "style": "molen.worldgen.catalog.modern_apartments", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["train_station"] },
+        "style": "molen.worldgen.catalog.railway_station",
+        "variants": [{ "style": "molen.worldgen.catalog.railway_station", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["library"] },
+        "style": "molen.worldgen.catalog.public_library",
+        "variants": [{ "style": "molen.worldgen.catalog.public_library", "weight": 1 }]
+      },
+      {
+        "when": { "class": ["workshop"] },
+        "style": "molen.worldgen.catalog.rural_workshop",
+        "variants": [{ "style": "molen.worldgen.catalog.rural_workshop", "weight": 1 }]
+      }
+    ],
+    "scatter": "molen.worldgen.scatter.global",
+    "treeFillFactor": 0
+  }
+}

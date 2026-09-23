@@ -1,0 +1,210 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 101,
+  "nodes": [
+    { "id": "a-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "a",
+      "type": "ramp",
+      "input": "a-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.00875, "color": "#ffffff" },
+          { "t": 0.1575, "color": "#ffffff" },
+          { "t": 0.165, "color": "#000000" },
+          { "t": 0.17375, "color": "#ffffff" },
+          { "t": 0.24125, "color": "#ffffff" },
+          { "t": 0.25, "color": "#000000" },
+          { "t": 0.25875, "color": "#ffffff" },
+          { "t": 0.4075, "color": "#ffffff" },
+          { "t": 0.41500000000000004, "color": "#000000" },
+          { "t": 0.42374999999999996, "color": "#ffffff" },
+          { "t": 0.49124999999999996, "color": "#ffffff" },
+          { "t": 0.5, "color": "#000000" },
+          { "t": 0.50875, "color": "#ffffff" },
+          { "t": 0.6575, "color": "#ffffff" },
+          { "t": 0.665, "color": "#000000" },
+          { "t": 0.67375, "color": "#ffffff" },
+          { "t": 0.74125, "color": "#ffffff" },
+          { "t": 0.75, "color": "#000000" },
+          { "t": 0.75875, "color": "#ffffff" },
+          { "t": 0.9075, "color": "#ffffff" },
+          { "t": 0.915, "color": "#000000" },
+          { "t": 0.92375, "color": "#ffffff" },
+          { "t": 0.99125, "color": "#ffffff" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    { "id": "b-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "b",
+      "type": "ramp",
+      "input": "b-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.03625, "color": "#ffffff" },
+          { "t": 0.045, "color": "#000000" },
+          { "t": 0.05375, "color": "#ffffff" },
+          { "t": 0.19875, "color": "#ffffff" },
+          { "t": 0.2075, "color": "#000000" },
+          { "t": 0.21625, "color": "#ffffff" },
+          { "t": 0.25, "color": "#ffffff" },
+          { "t": 0.28625, "color": "#ffffff" },
+          { "t": 0.295, "color": "#000000" },
+          { "t": 0.30375, "color": "#ffffff" },
+          { "t": 0.44875, "color": "#ffffff" },
+          { "t": 0.4575, "color": "#000000" },
+          { "t": 0.46625, "color": "#ffffff" },
+          { "t": 0.5, "color": "#ffffff" },
+          { "t": 0.53625, "color": "#ffffff" },
+          { "t": 0.545, "color": "#000000" },
+          { "t": 0.55375, "color": "#ffffff" },
+          { "t": 0.69875, "color": "#ffffff" },
+          { "t": 0.7075, "color": "#000000" },
+          { "t": 0.71625, "color": "#ffffff" },
+          { "t": 0.75, "color": "#ffffff" },
+          { "t": 0.78625, "color": "#ffffff" },
+          { "t": 0.795, "color": "#000000" },
+          { "t": 0.80375, "color": "#ffffff" },
+          { "t": 0.94875, "color": "#ffffff" },
+          { "t": 0.9575, "color": "#000000" },
+          { "t": 0.96625, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    { "id": "rows-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "rows",
+      "type": "ramp",
+      "input": "rows-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.12375, "color": "#ffffff" },
+          { "t": 0.12625, "color": "#000000" },
+          { "t": 0.25, "color": "#000000" },
+          { "t": 0.25, "color": "#ffffff" },
+          { "t": 0.37375, "color": "#ffffff" },
+          { "t": 0.37625, "color": "#000000" },
+          { "t": 0.5, "color": "#000000" },
+          { "t": 0.5, "color": "#ffffff" },
+          { "t": 0.62375, "color": "#ffffff" },
+          { "t": 0.62625, "color": "#000000" },
+          { "t": 0.75, "color": "#000000" },
+          { "t": 0.75, "color": "#ffffff" },
+          { "t": 0.87375, "color": "#ffffff" },
+          { "t": 0.87625, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    { "id": "rows-inverse", "type": "invert", "input": "rows", "params": {} },
+    {
+      "id": "even",
+      "type": "blend",
+      "inputs": { "a": "a", "b": "rows" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "odd",
+      "type": "blend",
+      "inputs": { "a": "b", "b": "rows-inverse" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "headers",
+      "type": "blend",
+      "inputs": { "a": "even", "b": "odd" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "courses",
+      "type": "bricks",
+      "params": { "rows": 8, "cols": 1, "mortarWidth": 0.045, "offset": 0 }
+    },
+    {
+      "id": "bond",
+      "type": "blend",
+      "inputs": { "a": "headers", "b": "courses" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "face",
+      "type": "ramp",
+      "input": "bond",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#bcb7ae" },
+          { "t": 0.5, "color": "#bcb7ae" },
+          { "t": 0.56, "color": "#f0e4da" },
+          { "t": 1, "color": "#f0e4da" }
+        ]
+      }
+    },
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [1, 1, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 18, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.9, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "face", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.9 } },
+    { "id": "normal", "type": "height-to-normal", "input": "bond", "params": { "strength": 0.009 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

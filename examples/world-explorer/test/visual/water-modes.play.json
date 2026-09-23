@@ -1,0 +1,61 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-water-modes",
+  "path": "/?quality=balanced&lat=47.6200&lon=-122.1000&alt=1600&yaw=-1.5708&pitch=-0.58",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "source",
+      "selector": "#source"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain",
+      "stableMs": 700,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 4000,
+      "note": "Allow prioritized nearby hydrology to refine"
+    },
+    {
+      "type": "screenshot",
+      "name": "01-bare-water",
+      "note": "Hydrology remains visible in Bare mode"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"classification\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 2500
+    },
+    {
+      "type": "screenshot",
+      "name": "02-land-classes-water",
+      "note": "Hydrology remains visible with land classification"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 2500
+    },
+    {
+      "type": "screenshot",
+      "name": "03-human-water",
+      "note": "Human features compose over the same hydrology layer"
+    }
+  ]
+}

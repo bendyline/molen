@@ -1,0 +1,276 @@
+{
+  "format": "molen/scene@3",
+  "name": "figures-gallery",
+  "seed": "figures-gallery",
+  "tickRate": 60,
+  "keyframeInterval": 120,
+  "camera": { "mode": "fixed", "position": [0, 3.4, 15], "lookAt": [0, 0.9, 0] },
+  "input": {
+    "bindings": { "Digit1": "idle", "Digit2": "walk", "Digit3": "run" },
+    "emit": [
+      { "kind": "press", "action": "idle", "command": "gait_idle" },
+      { "kind": "press", "action": "walk", "command": "gait_walk" },
+      { "kind": "press", "action": "run", "command": "gait_run" }
+    ]
+  },
+  "commands": {
+    "set_gait": {
+      "doc": "Force every standing figure into a gait (idle clears the override).",
+      "payload": {
+        "type": "object",
+        "properties": { "mode": { "type": "string", "enum": ["idle", "walk", "run"] } },
+        "required": ["mode"],
+        "additionalProperties": false
+      }
+    },
+    "gait_idle": { "doc": "Clear the forced gait (key 1)." },
+    "gait_walk": { "doc": "Walk in place (key 2)." },
+    "gait_run": { "doc": "Run in place (key 3)." }
+  },
+  "scripts": [
+    {
+      "id": "gaits",
+      "code": "function apply(mode) { for (const id of molen.query('figure').without('mounted').ids()) { if (mode === 'idle') { if (molen.has(id, 'figureIntent')) molen.remove(id, 'figureIntent'); } else { molen.set(id, 'figureIntent', { mode }); } } }\nmolen.onCommand('set_gait', (p) => apply(p.mode));\nmolen.onCommand('gait_idle', () => apply('idle'));\nmolen.onCommand('gait_walk', () => apply('walk'));\nmolen.onCommand('gait_run', () => apply('run'));"
+    }
+  ],
+  "prefabs": {
+    "figure": {
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural",
+          "shadows": { "cast": true, "receive": true }
+        }
+      }
+    }
+  },
+  "entities": [
+    {
+      "id": "sky",
+      "components": {
+        "environment": {
+          "ambient": { "sky": "#dfe7ff", "ground": "#4a5240", "intensity": 1.0 },
+          "sun": {
+            "direction": [6, 12, 5],
+            "color": "#fff4e0",
+            "intensity": 1.6,
+            "castShadow": true
+          },
+          "shadows": "medium"
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": { "pos": [0, -0.05, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#6b7f5a",
+          "primitive": { "size": [30, 0.1, 18] },
+          "shadows": { "receive": true }
+        }
+      }
+    },
+
+    {
+      "id": "child",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-6.5, 0, 1.5] },
+        "figure": { "preset": "human.child" }
+      }
+    },
+    {
+      "id": "adult",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-4.6, 0, 1.5] },
+        "figure": { "preset": "human.adult" }
+      }
+    },
+    {
+      "id": "adult-hat",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "cylinder",
+          "materialRef": "palette:#39747d",
+          "primitive": { "size": [0.32, 0.12, 0.32] },
+          "shadows": { "cast": true }
+        },
+        "parent": { "id": "adult" },
+        "figureAttachment": { "socket": "head.top", "offset": { "pos": [0, 0.06, 0] } }
+      }
+    },
+    {
+      "id": "slim",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-2.8, 0, 1.5] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.62,
+          "build": -0.6,
+          "features": { "hair": "long" },
+          "palette": { "top": "#8c3b5a", "bottom": "#2b2b33", "hair": "#e6c27a" }
+        }
+      }
+    },
+    {
+      "id": "heavy",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-1.0, 0, 1.5] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.88,
+          "build": 0.8,
+          "features": { "hair": "none", "sleeves": "short" },
+          "palette": { "top": "#2f5f3a", "bottom": "#4b4b52", "skin": "#8d5a3c" }
+        }
+      }
+    },
+    {
+      "id": "heavy-pack",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#7a4a2a",
+          "primitive": { "size": [0.34, 0.42, 0.18] },
+          "shadows": { "cast": true }
+        },
+        "parent": { "id": "heavy" },
+        "figureAttachment": { "socket": "back", "offset": { "pos": [0, 0, 0.11] } }
+      }
+    },
+    {
+      "id": "elder",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [0.8, 0, 1.5] }, "figure": { "preset": "human.elder" } }
+    },
+    {
+      "id": "dog",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [2.6, 0, 1.5] }, "figure": { "preset": "dog" } }
+    },
+    {
+      "id": "cat",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [4.0, 0, 1.5] }, "figure": { "preset": "cat" } }
+    },
+    {
+      "id": "sheep",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [5.6, 0, 1.5] }, "figure": { "preset": "sheep" } }
+    },
+
+    {
+      "id": "horse",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-4.5, 0, -2.5] },
+        "figure": { "preset": "horse" },
+        "mountable": {
+          "seats": [{ "id": "saddle", "role": "passenger", "position": [0, 1.45, 0] }],
+          "exits": [[1.3, 0, 0], [-1.3, 0, 0], [0, 0, -1.8]],
+          "reach": 2.5
+        }
+      }
+    },
+    {
+      "id": "rider",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-4.5, 1.45, -2.5] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.7,
+          "palette": { "top": "#b3332c", "bottom": "#2b2b33" }
+        },
+        "mounted": { "vehicle": "horse", "seat": "saddle" }
+      }
+    },
+    {
+      "id": "deer",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [-1.0, 0, -2.5] }, "figure": { "preset": "deer" } }
+    },
+    {
+      "id": "cow",
+      "prefab": "figure",
+      "components": { "transform": { "pos": [2.2, 0, -2.5] }, "figure": { "preset": "cow" } }
+    },
+
+    {
+      "id": "sweep-0",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-4.0, 0, 4.8] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.55,
+          "build": -0.8,
+          "palette": { "top": "#4d6d9a" }
+        }
+      }
+    },
+    {
+      "id": "sweep-1",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [-2.0, 0, 4.8] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.65,
+          "build": -0.4,
+          "palette": { "top": "#5d8a6a" }
+        }
+      }
+    },
+    {
+      "id": "sweep-2",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [0.0, 0, 4.8] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.75,
+          "build": 0,
+          "palette": { "top": "#a8783c" }
+        }
+      }
+    },
+    {
+      "id": "sweep-3",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [2.0, 0, 4.8] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.82,
+          "build": 0.4,
+          "palette": { "top": "#8c3b5a" }
+        }
+      }
+    },
+    {
+      "id": "sweep-4",
+      "prefab": "figure",
+      "components": {
+        "transform": { "pos": [4.0, 0, 4.8] },
+        "figure": {
+          "preset": "human.adult",
+          "height": 1.9,
+          "build": 0.8,
+          "palette": { "top": "#4b4b52" }
+        }
+      }
+    }
+  ]
+}

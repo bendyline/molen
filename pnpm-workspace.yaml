@@ -1,0 +1,14 @@
+packages:
+  - packages/*
+  - examples/*
+  - docs-site
+
+catalog:
+  tsdown: ^0.22.2
+  typescript: ^6.0.3
+  vitest: ^4.1.8
+  zod: ^4.6.5
+
+overrides:
+  # AJV's locked 3.1.2 has known URL canonicalization advisories; keep its 3.x line patched.
+  fast-uri: 3.1.8

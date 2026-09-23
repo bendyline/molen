@@ -1,0 +1,80 @@
+{
+  "name": "@bendyline/molen-worldgen",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen worldgen capability: data-driven buildings from outlines and prop placement in labeled polygons (kernel) with three.js uploads (client)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/worldgen"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/worldgen",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "worldgen",
+    "procedural-generation"
+  ],
+  "exports": {
+    "./kernel": {
+      "types": "./dist/kernel.d.mts",
+      "default": "./dist/kernel.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    },
+    "./packs/*": "./packs/*"
+  },
+  "files": [
+    "dist",
+    "packs",
+    "source"
+  ],
+  "scripts": {
+    "build": "node scripts/generate-landmark-index.mjs && tsdown && node scripts/generate-pack.mjs --check && node scripts/generate-structures.mjs --check && node scripts/validate-pack.mjs && node scripts/validate-landmarks.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test packs source scripts && node ../../scripts/check-dmath.mjs src/kernel",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "earcut": "^3.0.2",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "three": "0.184.0"
+  },
+  "peerDependenciesMeta": {
+    "@bendyline/molen-client": {
+      "optional": true
+    },
+    "three": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-entities": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

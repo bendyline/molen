@@ -1,0 +1,118 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-vehicle-driving",
+  "path": "/?synthetic=1&parking=1&quality=balanced&freeze=1&navigation=walk&lat=47.62174226673374&lon=-122.0143923423401&alt=415&yaw=3.14159265359&pitch=0",
+  "viewport": [1440, 900],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"grounded\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 1800
+    },
+    {
+      "type": "keys",
+      "keys": ["s"],
+      "durationMs": 1600
+    },
+    {
+      "type": "screenshot",
+      "name": "00-model-scale"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 1600
+    },
+    {
+      "type": "screenshot",
+      "name": "01-parked"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait",
+      "durationMs": 500
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"driving\"][data-view=\"cockpit\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-cockpit"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 1800
+    },
+    {
+      "type": "screenshot",
+      "name": "03-driving"
+    },
+    {
+      "type": "keys",
+      "keys": ["v"],
+      "durationMs": 100
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "d"],
+      "durationMs": 900
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"driving\"][data-view=\"chase\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "04-chase-turn"
+    },
+    {
+      "type": "keys",
+      "keys": [" "],
+      "durationMs": 1800
+    },
+    {
+      "type": "screenshot",
+      "name": "05-braked"
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait",
+      "durationMs": 500
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"grounded\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "06-exited"
+    }
+  ]
+}

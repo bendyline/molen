@@ -1,0 +1,179 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-navigation",
+  "path": "/?quality=balanced",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "source",
+      "selector": "#source"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-bare-start",
+      "note": "Initial real-data terrain"
+    },
+    {
+      "type": "drag",
+      "selector": "#view",
+      "from": [0.62, 0.52],
+      "to": [0.78, 0.52],
+      "steps": 18
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-bare-turn-right",
+      "note": "LOD transition after a view change"
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "Shift"],
+      "durationMs": 2200
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-bare-forward-7km"
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "Shift"],
+      "durationMs": 2200
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "04-bare-forward-14km"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"classification\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 750
+    },
+    {
+      "type": "screenshot",
+      "name": "05-land-classes"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait",
+      "durationMs": 750
+    },
+    {
+      "type": "screenshot",
+      "name": "06-human-features"
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "Shift"],
+      "durationMs": 1800
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "07-human-forward"
+    },
+    {
+      "type": "keys",
+      "keys": ["d", "Shift"],
+      "durationMs": 1600
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "08-human-strafe"
+    },
+    {
+      "type": "navigate",
+      "path": "/?quality=high&alt=850&pitch=-0.28"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "09-high-start"
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "drag",
+      "selector": "#view",
+      "from": [0.64, 0.5],
+      "to": [0.54, 0.46],
+      "steps": 14
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 1400
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "10-high-human-navigation"
+    }
+  ]
+}

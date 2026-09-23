@@ -1,0 +1,56 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-water-distance",
+  "path": "/?quality=high&nostyles&freeze&lat=47.61&lon=-122.09&alt=1400&yaw=-2.05&pitch=-0.24",
+  "viewport": [1440, 1000],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-lake-north-from-south"
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "Shift"],
+      "durationMs": 2400
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-approaching-north-shore"
+    },
+    {
+      "type": "navigate",
+      "path": "/?quality=economy&nostyles&freeze&lat=47.61&lon=-122.09&alt=1400&yaw=-2.05&pitch=-0.24"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-distant-lake-economy"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "@bendyline/molen-terrain",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen terrain capability: heightfield sampling (kernel) and chunked LOD meshing (client)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/terrain"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/terrain",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "terrain",
+    "heightfield",
+    "lod"
+  ],
+  "exports": {
+    "./kernel": {
+      "types": "./dist/kernel.d.mts",
+      "default": "./dist/kernel.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src && node ../../scripts/check-dmath.mjs src/heightfield.ts src/gen.ts",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-entities": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@mapbox/vector-tile": "2.0.4",
+    "fflate": "^0.8.3",
+    "pbf": "4.0.1",
+    "polygon-clipping": "0.15.7",
+    "pmtiles": "4.3.2",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "three": "0.184.0"
+  },
+  "peerDependenciesMeta": {
+    "@bendyline/molen-client": {
+      "optional": true
+    },
+    "three": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

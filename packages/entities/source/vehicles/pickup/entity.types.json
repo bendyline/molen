@@ -1,0 +1,111 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.pickup": {
+      "doc": "Pickup truck with a long wheelbase and torque-focused performance.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.pickup",
+          "color": "#aa6c3f",
+          "spec": {
+            "label": "Pickup",
+            "width": 1.98,
+            "length": 5.05,
+            "height": 1.8,
+            "centerOfMass": [0, 0.7, -0.08],
+            "wheelbase": 3.1,
+            "wheelTrack": 1.6632,
+            "wheelRadius": 0.37,
+            "mass": 2150,
+            "engineForce": 7900,
+            "maxSpeed": 37,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.54,
+            "grip": 6.5,
+            "driverEye": [0.44, 1.46, 0.65],
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-rear-right",
+              "wheel-rear-left",
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
+            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "interior": {
+              "nodes": ["body", "steering-wheel"],
+              "bindings": [
+                {
+                  "node": "steering-wheel",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 2.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.44, 1.46, 0.65]
+            }
+          ],
+          "exits": [[1.49, 0, 0.65], [-1.49, 0, 0.65]],
+          "reach": 2.8
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.pickup",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      },
+      "assets": ["molen.entities.vehicle.pickup"],
+      "scripts": [
+        {
+          "id": "interactions",
+          "path": "scripts/interactions.ts",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

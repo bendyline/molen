@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse Molen games, world viewers, and engine demos." />
+    <title>Molen examples</title>
+    <link rel="preload" href="/fonts/hanken-grotesk-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/pt-serif-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/src/home.css" />
+    <script type="module" src="/src/home.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to examples</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Molen examples home">Molen</a>
+        <span class="header-section">Examples</span>
+        <a class="docs-link" href="https://molen.dev/guide/quickstart">Documentation <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="page-heading">
+        <div>
+          <h1>Examples</h1>
+          <p>Games, world viewers, and focused engine demos.</p>
+        </div>
+        <label class="search" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4 4" />
+          </svg>
+          <span class="visually-hidden">Search examples</span>
+          <input id="search" type="search" placeholder="Search examples…" autocomplete="off" aria-controls="examples" />
+        </label>
+      </div>
+
+      <div class="toolbar" hidden>
+        <fieldset class="filters">
+          <legend class="visually-hidden">Filter examples by category</legend>
+          <button type="button" data-filter="all" aria-pressed="true" aria-controls="examples">All examples</button>
+          <button type="button" data-filter="games" aria-pressed="false" aria-controls="examples">Games</button>
+          <button type="button" data-filter="world" aria-pressed="false" aria-controls="examples">World &amp; terrain</button>
+          <button type="button" data-filter="engine" aria-pressed="false" aria-controls="examples">Engine demos</button>
+        </fieldset>
+        <span id="result-count" role="status" aria-atomic="true">9 examples</span>
+      </div>
+
+      <div class="list-heading" aria-hidden="true">
+        <span>Example</span>
+        <span>What it covers</span>
+        <span>Category</span>
+        <span></span>
+      </div>
+      <ul id="examples" class="examples" aria-label="Examples">
+        <li data-category="world">
+          <a class="example" href="/world-explorer/">
+            <h2>World Explorer</h2>
+            <p>Real terrain, map layers, street-level walking, and adaptive detail.</p>
+            <span class="category">World &amp; terrain</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="games">
+          <a class="example" href="/lantern-dungeon/">
+            <h2>The Lantern Vault</h2>
+            <p>A first-person dungeon with combat, keys, and a gate to unlock.</p>
+            <span class="category">Games</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="games">
+          <a class="example" href="/city-courier/">
+            <h2>City Courier</h2>
+            <p>A timed delivery route with traffic, vehicle damage, and a chase camera.</p>
+            <span class="category">Games</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="games">
+          <a class="example" href="/skybound/">
+            <h2>Skybound</h2>
+            <p>A platformer with floating islands, collectibles, and moving hazards.</p>
+            <span class="category">Games</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="games">
+          <a class="example" href="/top-down-arena/">
+            <h2>Top-down Arena</h2>
+            <p>Kinematics, pathfinding, combat, and scripted spawning.</p>
+            <span class="category">Games</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="world">
+          <a class="example" href="/terrain-flyover/">
+            <h2>Terrain Flyover</h2>
+            <p>Chunked terrain with level of detail and a deterministic heightmap.</p>
+            <span class="category">World &amp; terrain</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="engine">
+          <a class="example" href="/data-viz/">
+            <h2>Data Viz</h2>
+            <p>Data-bound entities animated along a camera track.</p>
+            <span class="category">Engine demos</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="engine">
+          <a class="example" href="/cubes/">
+            <h2>Cubes</h2>
+            <p>A minimal scene with spawning, drift, rotation, and deterministic replay.</p>
+            <span class="category">Engine demos</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+        <li data-category="engine">
+          <a class="example" href="/figures-gallery/">
+            <h2>Figures Gallery</h2>
+            <p>People and animals, walking gaits, attachment sockets, and a rider.</p>
+            <span class="category">Engine demos</span>
+            <span class="open" aria-hidden="true">Open <span>→</span></span>
+          </a>
+        </li>
+      </ul>
+      <div id="empty-state" class="empty-state" hidden>
+        <h2>No matching examples</h2>
+        <p>Try a different search or category.</p>
+        <button id="reset-filters" type="button">Show all examples</button>
+      </div>
+    </main>
+
+    <footer>
+      <span>Molen <span class="footer-separator">/</span> Bendyline</span>
+      <span>Open an example to try it in your browser.</span>
+    </footer>
+  </body>
+</html>

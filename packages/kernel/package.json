@@ -1,0 +1,93 @@
+{
+  "name": "@bendyline/molen-kernel",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen headless deterministic simulation kernel (no DOM, no three.js)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/kernel"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/kernel",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "simulation",
+    "ecs",
+    "deterministic"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.mts",
+      "default": "./dist/testing.mjs"
+    },
+    "./kinematics": {
+      "types": "./dist/kinematics.d.mts",
+      "default": "./dist/kinematics.mjs"
+    },
+    "./character": {
+      "types": "./dist/character.d.mts",
+      "default": "./dist/character.mjs"
+    },
+    "./scripting": {
+      "types": "./dist/scripting.d.mts",
+      "default": "./dist/scripting.mjs"
+    },
+    "./terrain": {
+      "types": "./dist/terrain.d.mts",
+      "default": "./dist/terrain.mjs"
+    },
+    "./platformer": {
+      "types": "./dist/platformer.d.mts",
+      "default": "./dist/platformer.mjs"
+    },
+    "./determinism": {
+      "types": "./dist/determinism.d.mts",
+      "default": "./dist/determinism.mjs"
+    },
+    "./vehicles": {
+      "types": "./dist/vehicles.d.mts",
+      "default": "./dist/vehicles.mjs"
+    },
+    "./aircraft": {
+      "types": "./dist/aircraft.d.mts",
+      "default": "./dist/aircraft.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src && node ../../scripts/check-dmath.mjs src",
+    "test:unit": "vitest run --passWithNoTests",
+    "bench": "node bench/tick.bench.mjs"
+  },
+  "dependencies": {
+    "@bendyline/molen-schema": "workspace:*",
+    "ses": "^2.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "fast-check": "^3.23.2",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

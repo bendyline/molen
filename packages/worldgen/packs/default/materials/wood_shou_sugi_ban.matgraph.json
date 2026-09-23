@@ -1,0 +1,57 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 108,
+  "nodes": [
+    {
+      "id": "boards",
+      "type": "bricks",
+      "params": { "rows": 1, "cols": 8, "mortarWidth": 0.025, "offset": 0 }
+    },
+    {
+      "id": "crackle",
+      "type": "worley",
+      "params": { "scale": 18, "jitter": 0.9, "output": "f2-f1" }
+    },
+    {
+      "id": "char",
+      "type": "ramp",
+      "input": "crackle",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#a8a9a7" },
+          { "t": 0.045, "color": "#d7d8d5" },
+          { "t": 0.25, "color": "#eeeeea" },
+          { "t": 1, "color": "#eeeeea" }
+        ]
+      }
+    },
+    {
+      "id": "face",
+      "type": "ramp",
+      "input": "boards",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#a2a3a1" },
+          { "t": 0.5, "color": "#a2a3a1" },
+          { "t": 0.56, "color": "#eeeeeb" },
+          { "t": 1, "color": "#eeeeeb" }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "face", "b": "char" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.97 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "crackle",
+      "params": { "strength": 0.009 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

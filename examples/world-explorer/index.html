@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>molen — world explorer</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #9fc4df; }
+      #view { display: block; width: 100vw; height: 100vh; touch-action: none; }
+      #hud {
+        position: fixed; inset: 16px auto auto 16px; width: min(430px, calc(100vw - 32px)); box-sizing: border-box;
+        padding: 14px 16px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 12px;
+        background: rgb(12 24 35 / 82%); box-shadow: 0 14px 45px rgb(0 0 0 / 25%);
+        backdrop-filter: blur(12px); pointer-events: none;
+      }
+      #hud h1 { margin: 0 0 3px; font: 650 17px/1.2 inherit; letter-spacing: .01em; }
+      #source { margin: 0; color: #b9d6e8; font-size: 12px; }
+      #source[data-kind="synthetic"] { color: #ffd79d; }
+      #location {
+        position: fixed; left: 16px; bottom: 32px; margin: 0; max-width: calc(100vw - 56px);
+        padding: 8px 11px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 8px;
+        background: rgb(12 24 35 / 88%); color: #deedf6;
+        font: 12px/1.5 ui-monospace, monospace; white-space: pre-wrap;
+        pointer-events: auto; user-select: text;
+      }
+      #controls { margin-top: 11px; }
+      #sky-controls { margin: 12px 0 0; padding: 10px 0; border: 0; border-block: 1px solid rgb(255 255 255 / 12%); pointer-events: auto; }
+      .sky-heading, .sky-date-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+      #sky-time-label { color: #deedf6; font-size: 13px; font-variant-numeric: tabular-nums; }
+      #sky-time { display: block; width: 100%; margin: 10px 0 3px; accent-color: #bde5c8; cursor: ew-resize; }
+      .sky-ticks { display: flex; justify-content: space-between; color: #9fb8c7; font-size: 10px; margin-bottom: 9px; }
+      #sky-date { min-width: 0; border: 1px solid rgb(255 255 255 / 18%); border-radius: 5px; background: #243746; color: #deedf6; padding: 4px; font: inherit; }
+      #sky-time-zone, #sky-status { margin: 6px 0 0; color: #9fb8c7; font-size: 10px; }
+      #controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; pointer-events: auto; }
+      #modes { display: flex; gap: 7px; margin: 0; padding: 0; border: 0; pointer-events: auto; }
+      #surface-controls { margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
+      #surface-controls legend { float: left; margin-right: 8px; color: #a9c2d1; font-size: 12px; line-height: 28px; }
+      #surface-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 9px 0; }
+      #surface-status { margin: 6px 0 0; color: #9fb8c7; font-size: 11px; }
+      #worldgen-status { margin: 7px 0 0; color: #b9d6e8; font-size: 11px; }
+      #weather-controls { margin: 10px 0; padding: 0 0 10px; border: 0; border-bottom: 1px solid rgb(255 255 255 / 12%); pointer-events: auto; }
+      #weather-status { margin: 7px 0; color: #9fb8c7; font-size: 11px; }
+      #hud { max-height: calc(100vh - 60px); overflow-y: auto; }
+      #navigation { display: flex; gap: 7px; margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
+      #navigation-status { margin: 7px 0 0; color: #bde5c8; font-size: 12px; }
+      button {
+        border: 1px solid rgb(255 255 255 / 18%); border-radius: 7px; padding: 7px 10px;
+        color: #deedf6; background: rgb(255 255 255 / 7%); cursor: pointer; font: 600 12px inherit;
+      }
+      button[aria-pressed="true"] { color: #102230; background: #bde5c8; border-color: #d8f5df; }
+      button:disabled { opacity: .4; cursor: not-allowed; }
+      label { display: flex; align-items: center; gap: 5px; color: #a9c2d1; font-size: 11px; }
+      select {
+        border: 1px solid rgb(255 255 255 / 18%); border-radius: 7px; padding: 6px 7px;
+        color: #deedf6; background: #243746; font: 600 11px inherit;
+      }
+      .weather-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+      .weather-options label { display: flex; flex-direction: column; gap: 4px; }
+      .weather-options input, .weather-options select { box-sizing: border-box; width: 100%; min-width: 0; color: #deedf6; background: #243746; border: 1px solid #526674; border-radius: 4px; padding: 4px; }
+      .weather-options input[type="range"] { padding: 0; accent-color: #bde5c8; }
+      #status, #performance-status { margin: 11px 0 0; color: #d7e8f3; font: 11px/1.5 ui-monospace, monospace; white-space: pre-wrap; }
+      body[data-navigation="walk"] #status, body[data-navigation="walk"] #performance-status { display: none; }
+      details { margin-top: 8px; color: #9fb8c7; font-size: 10px; pointer-events: auto; }
+      summary { cursor: pointer; }
+      #attribution-list { margin: 5px 0 0; padding-left: 18px; }
+      /* ODbL and the OSMF attribution guidelines want the map credit readable without any
+         interaction, so this lives outside #hud and the `hud=0` overlay switch leaves it alone.
+         Its own translucent pill keeps it legible over both sky and terrain. */
+      #credit {
+        position: fixed; right: 14px; top: 14px; margin: 0;
+        max-width: min(540px, calc(100vw - 28px));
+        padding: 4px 8px; border-radius: 6px;
+        background: rgb(12 24 35 / 78%); color: #cfe2ee;
+        font: 10.5px/1.45 inherit; text-align: right; text-wrap: balance;
+        pointer-events: auto; user-select: text;
+      }
+      #credit a { color: #bde5c8; }
+      /* Below ~700px #hud spans the full width from the top, so the credit moves to the other
+         corner rather than sitting on the panel header. It is last among the fixed overlays in
+         document order, so wherever a narrow viewport still makes things collide it paints on
+         top and stays readable — which is the whole point of it. */
+      @media (max-width: 700px) {
+        #credit { top: auto; bottom: 34px; max-width: calc(100vw - 28px); }
+      }
+      #help { position: fixed; right: 14px; bottom: 11px; color: #173141; font-size: 12px; }
+      body[data-navigation="walk"] #help { max-width: calc(100vw - 40px); padding: 8px 10px; border-radius: 6px; color: #e6eef2; background: rgba(15, 29, 39, 0.88); }
+      #error { color: #ffd1c7; }
+    </style>
+  </head>
+  <body>
+    <canvas id="view" tabindex="0" aria-label="World view"></canvas>
+    <aside id="hud">
+      <h1>World explorer</h1>
+      <a href="sky.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Sky observatory ↗</a>
+      <a href="structures.html" style="display:inline-block;margin:6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Explore 120 structures ↗</a>
+      <p id="source">Starting terrain…</p>
+      <fieldset id="sky-controls" aria-label="Sky time" disabled>
+        <div class="sky-heading">
+          <label for="sky-time">Time of day</label>
+          <output id="sky-time-label" for="sky-time">12:00</output>
+        </div>
+        <input id="sky-time" type="range" min="0" max="1440" step="1" value="720" aria-describedby="sky-time-zone" />
+        <div class="sky-ticks" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+        <div class="sky-date-row">
+          <label for="sky-date">Date <input id="sky-date" type="date" min="1901-01-01" max="2099-12-31" /></label>
+          <button id="sky-now" type="button" title="Preview the current date and time">Now</button>
+        </div>
+        <p id="sky-time-zone"></p>
+        <p id="sky-status"></p>
+      </fieldset>
+      <fieldset id="weather-controls" disabled aria-label="Weather">
+        <div class="sky-heading">
+          <label for="weather-profile">Weather</label>
+          <select id="weather-profile">
+            <option value="sunny">Sunny / clear</option><option value="partly-cloudy">Partly cloudy</option>
+            <option value="overcast">Overcast</option><option value="rain">Rain</option>
+            <option value="snow">Snow</option><option value="fog">Fog</option>
+            <option value="custom" disabled>Custom</option>
+          </select>
+        </div>
+        <p id="weather-status" role="status"></p>
+        <details><summary>Weather details</summary>
+          <div class="weather-options">
+            <label>Cloud cover (%)<input id="weather-coverage" type="range" min="0" max="100" step="1" /></label>
+            <label>Cloud density (%)<input id="weather-density" type="range" min="0" max="100" step="1" /></label>
+            <label>Cloud base (m)<input id="weather-base" type="number" min="-500" max="50000" step="100" /></label>
+            <label>Visibility (km)<input id="weather-visibility" type="number" min="0.1" max="100" step="0.01" /></label>
+            <label>Precipitation<select id="weather-precipitation"><option value="none">None</option><option value="rain">Rain</option><option value="snow">Snow</option></select></label>
+            <label>Precipitation intensity (%)<input id="weather-intensity" type="range" min="0" max="100" step="1" /></label>
+            <label>Temperature (°C at sea level)<input id="weather-temperature" type="number" min="-100" max="100" step="0.1" /></label>
+            <label>Pressure (hPa at sea level)<input id="weather-pressure" type="number" min="0" max="2000" step="0.1" /></label>
+            <label>Wind east (m/s)<input id="weather-east" type="number" min="-100" max="100" step="0.1" /></label>
+            <label>Wind north (m/s)<input id="weather-north" type="number" min="-100" max="100" step="0.1" /></label>
+          </div>
+        </details>
+      </fieldset>
+      <div id="controls">
+        <fieldset id="modes" aria-label="Terrain layers">
+          <button type="button" data-mode="bare" aria-pressed="true">Bare</button>
+          <button type="button" data-mode="classification" aria-pressed="false">Land classes</button>
+          <button type="button" data-mode="human" aria-pressed="false">Human</button>
+        </fieldset>
+        <label for="quality">Quality
+          <select id="quality">
+            <option value="auto">Auto (device)</option>
+            <option value="economy">Economy</option>
+            <option value="balanced">Balanced</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+      <fieldset id="surface-controls">
+        <legend>Surfaces</legend>
+        <select id="surface-style" aria-label="Surface rendering style">
+          <option value="modern">Modern traffic</option>
+          <option value="1910">Circa 1910</option>
+          <option value="minimal">Simple surfaces</option>
+        </select>
+        <details>
+          <summary>Surface details</summary>
+          <div id="surface-options">
+            <label><input type="checkbox" data-surface-detail="markings">Markings</label>
+            <label><input type="checkbox" data-surface-detail="sidewalks">Sidewalks</label>
+            <label><input type="checkbox" data-surface-detail="crossings">Crossings</label>
+            <label><input type="checkbox" data-surface-detail="streetlights">Streetlights</label>
+            <label><input type="checkbox" data-surface-detail="trafficSignals">Signals</label>
+            <label><input type="checkbox" data-surface-detail="parkedCars">Parked cars</label>
+            <label title="Infer parking from service aisles and access-road courts near large buildings"><input id="infer-parking" type="checkbox" checked>Infer parking</label>
+          </div>
+        </details>
+        <p id="surface-status" role="status"></p>
+      </fieldset>
+      <fieldset id="navigation" aria-label="Navigation mode">
+        <button type="button" data-navigation="fly" aria-pressed="true">Fly</button>
+        <button type="button" data-navigation="walk" aria-pressed="false">Walk mode</button>
+      </fieldset>
+      <p id="worldgen-status" role="status" hidden>Loading buildings…</p>
+      <p id="navigation-status" role="status">Fly mode · Explore from above</p>
+      <fieldset id="aircraft-picker" aria-label="Visit practice airfield" style="display:flex;gap:7px;border:0;padding:0;margin-top:8px;pointer-events:auto">
+        <button type="button" data-aircraft="p51d" title="Visit the P-51D at the practice runway">P-51 Mustang</button>
+        <button type="button" data-aircraft="h500md" title="Visit the OH-6 helipad">OH-6</button>
+      </fieldset>
+      <pre id="status"></pre>
+      <pre id="performance-status"></pre>
+      <details>
+        <summary>Data attribution</summary>
+        <ul id="attribution-list"></ul>
+      </details>
+    </aside>
+    <section id="location" aria-label="Current camera location">Locating camera…</section>
+    <div id="help">WASD travel · Q/E altitude · drag look · Shift boost · R reset origin</div>
+    <!-- Filled from the loaded package's attribution[] and revealed only when real map data is on
+         screen; see the corner-credit block in src/main.ts. It starts hidden so a failed load
+         never leaves a stale credit on a map that has no third-party data in it. Keep it last:
+         document order is what keeps it on top of the other overlays on a narrow viewport. -->
+    <p id="credit" hidden></p>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

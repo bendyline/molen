@@ -1,0 +1,89 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.mob.mossback",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:eae702655270f1f4bb961fae85cca3f1f7430109c1a6848c1e73262c392613ad",
+  "sourceHash": "sha256:a57bede72ac4ab054ef2011b0a79c8c86d87e2a61ebd76f3c8e2cbe8f5244497",
+  "bounds": {
+    "aabb": {
+      "min": [-0.7, -0.02, -0.7],
+      "max": [0.7, 1.63, 0.7]
+    },
+    "sphere": {
+      "center": [0, 0.805, 0],
+      "radius": 0.8811
+    }
+  },
+  "stats": {
+    "triangles": 1644,
+    "vertices": 3354,
+    "meshes": 1,
+    "primitives": 5,
+    "materials": 5,
+    "textures": 3,
+    "animations": 1,
+    "sizeBytes": 320104
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 1644
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [
+    {
+      "name": "idle",
+      "durationSec": 2,
+      "channels": 1
+    }
+  ],
+  "materials": [
+    {
+      "name": "Mushroom gills",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Limestone / lichen",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Verdigris mushroom",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Soul glass",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Old ivory",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -0.7, -0.02, -0.7, -0.7, -0.02, 0.7, -0.7, 1.63, -0.7, -0.7, 1.63, 0.7, 0.7, -0.02, -0.7,
+          0.7, -0.02, 0.7, 0.7, 1.63, -0.7, 0.7, 1.63, 0.7
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

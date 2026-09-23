@@ -1,0 +1,3971 @@
+{
+  "format": "molen/scene@3",
+  "name": "lantern-dungeon",
+  "seed": "lantern-7",
+  "tickRate": 30,
+  "physics": {
+    "engine": "kinematics"
+  },
+  "camera": {
+    "mode": "follow",
+    "entity": "player",
+    "offset": [0, 1.6, 0],
+    "lookOffset": [0, 1.6, -1],
+    "space": "local",
+    "fov": 72
+  },
+  "components": {
+    "dungeonGame": {
+      "description": "Dungeon health, inventory and objective state.",
+      "examples": [
+        {
+          "status": "playing",
+          "health": 100,
+          "key": false,
+          "doorOpen": false,
+          "potions": 1,
+          "kills": 0,
+          "roll": 0,
+          "attackTick": -100,
+          "message": "Find the brass key. Open the north gate. Claim the lantern."
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "health": {
+            "type": "number"
+          },
+          "key": {
+            "type": "boolean"
+          },
+          "doorOpen": {
+            "type": "boolean"
+          },
+          "potions": {
+            "type": "number"
+          },
+          "kills": {
+            "type": "number"
+          },
+          "roll": {
+            "type": "number"
+          },
+          "attackTick": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "health",
+          "key",
+          "doorOpen",
+          "potions",
+          "kills",
+          "roll",
+          "attackTick",
+          "message"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sentinel": {
+      "description": "Enemy spawn and combat state.",
+      "examples": [
+        {
+          "home": [0, 0, 0],
+          "hp": 14,
+          "alive": true,
+          "attackAt": 0
+        }
+      ],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "home": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "hp": {
+            "type": "number"
+          },
+          "alive": {
+            "type": "boolean"
+          },
+          "attackAt": {
+            "type": "number"
+          }
+        },
+        "required": ["home", "hp", "alive", "attackAt"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "commands": {
+    "move": {
+      "doc": "Strafe and walk [strafe, backward].",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "dir": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["dir"],
+        "additionalProperties": false
+      }
+    },
+    "turn": {
+      "doc": "Keyboard turning; x axis controls yaw.",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "dir": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": ["dir"],
+        "additionalProperties": false
+      }
+    },
+    "look": {
+      "doc": "Relative yaw in radians, supplied by pointer movement.",
+      "payload": {
+        "type": "object",
+        "properties": {
+          "yaw": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          }
+        },
+        "required": ["yaw"],
+        "additionalProperties": false
+      }
+    },
+    "attack": {
+      "doc": "Strike the first wall/enemy along your gaze; cooldown 0.4s.",
+      "payload": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "interact": {
+      "doc": "Open the gate with the key, or claim the lantern.",
+      "payload": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "heal": {
+      "doc": "Drink your one healing potion.",
+      "payload": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "restart": {
+      "doc": "Reset the dungeon and inventory.",
+      "payload": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    }
+  },
+  "input": {
+    "bindings": {
+      "KeyW": "up",
+      "KeyS": "down",
+      "KeyA": "left",
+      "KeyD": "right",
+      "ArrowLeft": "turnLeft",
+      "ArrowRight": "turnRight",
+      "ArrowUp": "up",
+      "ArrowDown": "down",
+      "Space": "attack",
+      "KeyE": "interact",
+      "KeyH": "heal",
+      "KeyR": "restart"
+    },
+    "emit": [
+      {
+        "kind": "axis2d",
+        "xNeg": "left",
+        "xPos": "right",
+        "yNeg": "up",
+        "yPos": "down",
+        "command": "move",
+        "field": "dir"
+      },
+      {
+        "kind": "axis2d",
+        "xNeg": "turnLeft",
+        "xPos": "turnRight",
+        "yNeg": "up",
+        "yPos": "down",
+        "command": "turn",
+        "field": "dir"
+      },
+      {
+        "kind": "press",
+        "action": "attack",
+        "command": "attack",
+        "payload": {}
+      },
+      {
+        "kind": "press",
+        "action": "interact",
+        "command": "interact",
+        "payload": {}
+      },
+      {
+        "kind": "press",
+        "action": "heal",
+        "command": "heal",
+        "payload": {}
+      },
+      {
+        "kind": "press",
+        "action": "restart",
+        "command": "restart",
+        "payload": {}
+      }
+    ]
+  },
+  "scripts": [
+    {
+      "id": "dungeon",
+      "path": "scripts/game.ts",
+      "checkpoint": "state",
+      "config": {
+        "speed": 4.5,
+        "turnSpeed": 1.8,
+        "spawn": [0, 0, 12],
+        "gate": [0, 0, -3],
+        "key": [-9, 0, 6],
+        "exit": [0, 0, -12]
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "background": "#15242a",
+          "ambient": {
+            "intensity": 1.45,
+            "sky": "#c3d4d4",
+            "ground": "#646963"
+          },
+          "sun": {
+            "direction": [8, 18, 12],
+            "intensity": 0.7,
+            "color": "#ffe0b1",
+            "castShadow": false
+          },
+          "toneMapping": "aces",
+          "exposure": 1.18,
+          "shadows": "off",
+          "fog": {
+            "color": "#15242a",
+            "near": 9,
+            "far": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "game",
+      "components": {
+        "dungeonGame": {
+          "status": "playing",
+          "health": 100,
+          "key": false,
+          "doorOpen": false,
+          "potions": 1,
+          "kills": 0,
+          "roll": 0,
+          "attackTick": -100,
+          "message": "Find the brass key. Open the north gate. Claim the lantern."
+        }
+      }
+    },
+    {
+      "id": "player",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 12],
+          "rot": [0, 0, 0, 1]
+        },
+        "collider": {
+          "shape": "circle",
+          "radius": 0.38,
+          "layer": 4,
+          "mask": 3
+        },
+        "kinematicBody": {
+          "vel": [0, 0, 0],
+          "slide": true
+        }
+      }
+    },
+    {
+      "id": "floor",
+      "components": {
+        "transform": {
+          "pos": [0, -0.28, 0]
+        },
+        "renderable": {
+          "primitive": {
+            "size": [33, 0.4, 33]
+          },
+          "materialRef": "palette:#293643"
+        }
+      },
+      "prefab": "box"
+    },
+    {
+      "id": "wall-0-0",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-1-0",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-2-0",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-0",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-4-0",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-5-0",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-6-0",
+      "components": {
+        "transform": {
+          "pos": [3, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-0",
+      "components": {
+        "transform": {
+          "pos": [6, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-8-0",
+      "components": {
+        "transform": {
+          "pos": [9, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-9-0",
+      "components": {
+        "transform": {
+          "pos": [12, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-0",
+      "components": {
+        "transform": {
+          "pos": [15, 0, -15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-1",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, -12],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-1",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-1",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-3-1",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-1",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-1",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-1",
+      "components": {
+        "transform": {
+          "pos": [3, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-7-1",
+      "components": {
+        "transform": {
+          "pos": [6, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-1",
+      "components": {
+        "transform": {
+          "pos": [9, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-1",
+      "components": {
+        "transform": {
+          "pos": [12, 0, -12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-1",
+      "components": {
+        "transform": {
+          "pos": [15, 0, -12],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-2",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, -9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-2",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-2",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-2",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-2",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-2",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-2",
+      "components": {
+        "transform": {
+          "pos": [3, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-2",
+      "components": {
+        "transform": {
+          "pos": [6, 0, -9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-2",
+      "components": {
+        "transform": {
+          "pos": [9, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-2",
+      "components": {
+        "transform": {
+          "pos": [12, 0, -9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-2",
+      "components": {
+        "transform": {
+          "pos": [15, 0, -9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-3",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, -6],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-3",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-3",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-3-3",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-3",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-3",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-3",
+      "components": {
+        "transform": {
+          "pos": [3, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-7-3",
+      "components": {
+        "transform": {
+          "pos": [6, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-3",
+      "components": {
+        "transform": {
+          "pos": [9, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-3",
+      "components": {
+        "transform": {
+          "pos": [12, 0, -6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-3",
+      "components": {
+        "transform": {
+          "pos": [15, 0, -6],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-4",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-1-4",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-2-4",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-4",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-4-4",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-6-4",
+      "components": {
+        "transform": {
+          "pos": [3, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-4",
+      "components": {
+        "transform": {
+          "pos": [6, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-8-4",
+      "components": {
+        "transform": {
+          "pos": [9, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-9-4",
+      "components": {
+        "transform": {
+          "pos": [12, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-4",
+      "components": {
+        "transform": {
+          "pos": [15, 0, -3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-5",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 0],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-5",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-5",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-3-5",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-5",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-5",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-5",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-7-5",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-5",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-5",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-5",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 0],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-6",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-6",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 3]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-2-6",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-6",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-6",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 3]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-6",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 3]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-6",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 3]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-6",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-8-6",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-6",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 3]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-6",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 3],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-7",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 6],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-7",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-7",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-3-7",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-7",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-7",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-7",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-7-7",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-7",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-7",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 6]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-7",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 6],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-8",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-8",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-8",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-8",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-8",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-8",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-8",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-8",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-8",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-8",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 9]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-8",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 9],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-9",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 12],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-1-9",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-2-9",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-3-9",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-4-9",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-5-9",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-6-9",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-7-9",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-8-9",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.flagstone_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "tile-9-9",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 12]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.broken_floor"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-9",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 12],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-0-10",
+      "components": {
+        "transform": {
+          "pos": [-15, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-1-10",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-2-10",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-3-10",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-4-10",
+      "components": {
+        "transform": {
+          "pos": [-3, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.rune_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-5-10",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-6-10",
+      "components": {
+        "transform": {
+          "pos": [3, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-7-10",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-8-10",
+      "components": {
+        "transform": {
+          "pos": [9, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.moss_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-9-10",
+      "components": {
+        "transform": {
+          "pos": [12, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "wall-10-10",
+      "components": {
+        "transform": {
+          "pos": [15, 0, 15],
+          "scale": [1, 1.16, 1]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.ashlar_wall"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 1.5],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "gate",
+      "components": {
+        "transform": {
+          "pos": [0, 1.5, -3]
+        },
+        "renderable": {
+          "ref": "lantern.prop.portcullis"
+        },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1.5, 0.25],
+          "layer": 1,
+          "mask": 6,
+          "isStatic": true
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "key",
+      "components": {
+        "transform": {
+          "pos": [-9, 0.81, 6],
+          "scale": [1.4, 1.4, 1.4]
+        },
+        "renderable": {
+          "ref": "lantern.item.brass_key"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "relic",
+      "components": {
+        "transform": {
+          "pos": [0, 0.83, -12],
+          "scale": [1.3, 1.3, 1.3]
+        },
+        "renderable": {
+          "ref": "lantern.item.reliquary_lantern"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "pedestal",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -12],
+          "scale": [1.8, 0.28, 1.8]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "sentinel0",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 3]
+        },
+        "sentinel": {
+          "home": [0, 0, 3],
+          "hp": 14,
+          "alive": true,
+          "attackAt": 0
+        },
+        "renderable": {
+          "ref": "lantern.mob.ossuary_knight"
+        }
+      },
+      "prefab": "sentinel"
+    },
+    {
+      "id": "sentinel1",
+      "components": {
+        "transform": {
+          "pos": [-6, 0, -6]
+        },
+        "sentinel": {
+          "home": [-6, 0, -6],
+          "hp": 14,
+          "alive": true,
+          "attackAt": 0
+        },
+        "renderable": {
+          "ref": "lantern.mob.veil_wraith"
+        }
+      },
+      "prefab": "sentinel"
+    },
+    {
+      "id": "sentinel2",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 6]
+        },
+        "sentinel": {
+          "home": [6, 0, 6],
+          "hp": 14,
+          "alive": true,
+          "attackAt": 0
+        },
+        "renderable": {
+          "ref": "lantern.mob.mossback"
+        }
+      },
+      "prefab": "sentinel"
+    },
+    {
+      "id": "torch0",
+      "components": {
+        "transform": {
+          "pos": [-13.42, 1.5, 12],
+          "rot": [0, -0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch1",
+      "components": {
+        "transform": {
+          "pos": [13.42, 1.5, 12],
+          "rot": [0, 0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch2",
+      "components": {
+        "transform": {
+          "pos": [-13.42, 1.5, 0],
+          "rot": [0, -0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch3",
+      "components": {
+        "transform": {
+          "pos": [13.42, 1.5, 0],
+          "rot": [0, 0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch4",
+      "components": {
+        "transform": {
+          "pos": [0, 1.5, -4.58],
+          "rot": [0, 1.0, 0, 6.123233995736766e-17]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch5",
+      "components": {
+        "transform": {
+          "pos": [-13.42, 1.5, -12],
+          "rot": [0, -0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "torch6",
+      "components": {
+        "transform": {
+          "pos": [13.42, 1.5, -12],
+          "rot": [0, 0.7071067811865476, 0, 0.7071067811865476]
+        },
+        "renderable": {
+          "ref": "lantern.prop.wall_torch"
+        }
+      },
+      "prefab": "model"
+    },
+    {
+      "id": "lantern-light",
+      "components": {
+        "transform": {
+          "pos": [0, 1.6, 12],
+          "rot": [0, 0, 0, 1]
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [0, 1.6, 0.15],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#f4d7a3",
+          "intensity": 12,
+          "range": 10
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-3-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-6, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-7-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [6, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, -12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-3-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-6, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-7-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [6, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, -6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-3-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-6, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-7-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [6, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-6",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, 3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-6",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, 3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-6",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, 3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-6",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, 3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-6",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, 3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-3-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-6, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-7-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [6, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-7",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-8",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-1-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-2-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-3-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-6, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-4-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-3, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-5-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-6-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [3, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-7-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [6, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-8-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "roof-tile-9-9",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12, 3.3, 12],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.vaulted_ceiling"
+        }
+      }
+    },
+    {
+      "id": "torch0-light",
+      "components": {
+        "transform": {
+          "pos": [-13.02, 2.32, 12.0],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch1-light",
+      "components": {
+        "transform": {
+          "pos": [13.02, 2.32, 12.0],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch2-light",
+      "components": {
+        "transform": {
+          "pos": [-13.02, 2.32, -2.4492935982947065e-17],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch3-light",
+      "components": {
+        "transform": {
+          "pos": [13.02, 2.32, -2.4492935982947065e-17],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch4-light",
+      "components": {
+        "transform": {
+          "pos": [-4.898587196589413e-17, 2.32, -4.18],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch5-light",
+      "components": {
+        "transform": {
+          "pos": [-13.02, 2.32, -12.0],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "torch6-light",
+      "components": {
+        "transform": {
+          "pos": [13.02, 2.32, -12.0],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffbd76",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "north-arch",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 0, -3],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.gothic_arch"
+        }
+      }
+    },
+    {
+      "id": "column-0",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-4.1, 0, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "column-1",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.1, 0, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "column-2",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-4.1, 0, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "column-3",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.1, 0, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "column-4",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-4.1, 0, -10],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "column-5",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.1, 0, -10],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.architecture.carved_column"
+        }
+      }
+    },
+    {
+      "id": "key-chest",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-9, 0, 6],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.treasure_chest"
+        }
+      }
+    },
+    {
+      "id": "barrel-left",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12.5, 0, 11.7],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.oak_barrel"
+        }
+      }
+    },
+    {
+      "id": "barrel-right",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [12.6, 0, 1],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.oak_barrel"
+        }
+      }
+    },
+    {
+      "id": "crate-entrance",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.9, 0, 12.5],
+          "rot": [0, 0.09983341664682815, 0, 0.9950041652780258]
+        },
+        "renderable": {
+          "ref": "lantern.prop.supply_crate"
+        }
+      }
+    },
+    {
+      "id": "crate-west",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12, 0, 8.5],
+          "rot": [0, -0.09983341664682815, 0, 0.9950041652780258]
+        },
+        "renderable": {
+          "ref": "lantern.prop.supply_crate"
+        }
+      }
+    },
+    {
+      "id": "urn-west",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-4.5, 0, 12.7],
+          "rot": [0, 0.0, 0, 1.0],
+          "scale": [1.2, 1.2, 1.2]
+        },
+        "renderable": {
+          "ref": "lantern.prop.funerary_urn"
+        }
+      }
+    },
+    {
+      "id": "urn-east",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.5, 0, 3.9],
+          "rot": [0, 0.0, 0, 1.0],
+          "scale": [1.2, 1.2, 1.2]
+        },
+        "renderable": {
+          "ref": "lantern.prop.funerary_urn"
+        }
+      }
+    },
+    {
+      "id": "bones-west",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-2.1, 0, 9.5],
+          "rot": [0, 0.14943813247359922, 0, 0.9887710779360422]
+        },
+        "renderable": {
+          "ref": "lantern.prop.bone_pile"
+        }
+      }
+    },
+    {
+      "id": "bones-north",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-5, 0, -11.5],
+          "rot": [0, 0.43496553411123023, 0, 0.9004471023526769]
+        },
+        "renderable": {
+          "ref": "lantern.prop.bone_pile"
+        }
+      }
+    },
+    {
+      "id": "crystals-east",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [7.1, 0, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.soul_crystals"
+        }
+      }
+    },
+    {
+      "id": "crystals-vault",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [2.5, 0, -12.5],
+          "rot": [0, 0.0, 0, 1.0],
+          "scale": [1.3, 1.3, 1.3]
+        },
+        "renderable": {
+          "ref": "lantern.prop.soul_crystals"
+        }
+      }
+    },
+    {
+      "id": "potion-cache",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [4.9, 0.79, 12.5],
+          "rot": [0, 0.0, 0, 1.0],
+          "scale": [1.25, 1.25, 1.25]
+        },
+        "renderable": {
+          "ref": "lantern.item.healing_potion"
+        }
+      }
+    },
+    {
+      "id": "shield-cache",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-12.5, 0.3, 11.34],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.item.round_shield"
+        }
+      }
+    },
+    {
+      "id": "brazier-gate",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 2.18, -0.7],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.hanging_brazier"
+        }
+      }
+    },
+    {
+      "id": "brazier-entry",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 2.18, 9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.hanging_brazier"
+        }
+      }
+    },
+    {
+      "id": "brazier-vault",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 2.18, -9],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.prop.hanging_brazier"
+        }
+      }
+    },
+    {
+      "id": "bat-roost",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [-10.4, 2, -9],
+          "rot": [0, 0.0, 0, 1.0],
+          "scale": [0.7, 0.7, 0.7]
+        },
+        "renderable": {
+          "ref": "lantern.mob.vault_bat",
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "gargoyle-effigy",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [9.7, 0, -11.6],
+          "rot": [0, 0.19866933079506122, 0, 0.9800665778412416]
+        },
+        "renderable": {
+          "ref": "lantern.mob.stone_gargoyle",
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "imp-scout",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [11.2, 0, -5.8],
+          "rot": [0, -0.24740395925452294, 0, 0.9689124217106447]
+        },
+        "renderable": {
+          "ref": "lantern.mob.ember_imp",
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        }
+      }
+    },
+    {
+      "id": "fill-entry",
+      "components": {
+        "transform": {
+          "pos": [0, 2.6, 9],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffb96d",
+          "intensity": 22,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "fill-gate",
+      "components": {
+        "transform": {
+          "pos": [0, 2.6, -0.7],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffb96d",
+          "intensity": 20,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "fill-vault",
+      "components": {
+        "transform": {
+          "pos": [0, 2.6, -9],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#ffb96d",
+          "intensity": 16,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "fill-relic",
+      "components": {
+        "transform": {
+          "pos": [0, 1.7, -12],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#70ffdc",
+          "intensity": 16,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "fill-crystal",
+      "components": {
+        "transform": {
+          "pos": [7.1, 0.8, 9],
+          "rot": [0, 0, 0, 1]
+        },
+        "light": {
+          "type": "point",
+          "color": "#79eacd",
+          "intensity": 7,
+          "range": 9
+        }
+      }
+    },
+    {
+      "id": "held-sword",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.item.longsword",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [0.3, 1.07, -0.65],
+          "rot": [0, 0, -0.12, 0.992774],
+          "scale": [0.55, 0.55, 0.55]
+        }
+      }
+    },
+    {
+      "id": "held-lantern",
+      "prefab": "model",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0.0, 0, 1.0]
+        },
+        "renderable": {
+          "ref": "lantern.item.reliquary_lantern",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        },
+        "parent": {
+          "id": "player"
+        },
+        "localTransform": {
+          "pos": [-0.25, 1.15, -0.86],
+          "rot": [0, 0, 0, 1],
+          "scale": [0.34, 0.34, 0.34]
+        }
+      }
+    }
+  ],
+  "prefabs": {
+    "box": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "sphere": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "sphere",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "cylinder": {
+      "components": {
+        "transform": {
+          "rot": [0, 0, 0, 1],
+          "pos": [0, 0, 0]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "cylinder",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    "sentinel": {
+      "extends": "model",
+      "components": {
+        "renderable": {
+          "ref": "lantern.mob.ossuary_knight",
+          "animation": {
+            "clip": "idle",
+            "loop": "repeat"
+          }
+        },
+        "collider": {
+          "shape": "circle",
+          "radius": 0.48,
+          "layer": 2,
+          "mask": 5
+        },
+        "kinematicBody": {
+          "vel": [0, 0, 0],
+          "slide": true
+        }
+      }
+    },
+    "model": {
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          },
+          "ref": "lantern.architecture.ashlar_wall"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 16,
+  "nodes": [
+    { "id": "cells", "type": "worley", "params": { "scale": 8, "jitter": 1, "output": "f1" } },
+    {
+      "id": "speckle",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 14, "seedOffset": 6 }
+    },
+    {
+      "id": "mix",
+      "type": "blend",
+      "inputs": { "a": "cells", "b": "speckle" },
+      "params": { "mode": "mix", "factor": 0.5 }
+    },
+    {
+      "id": "out",
+      "type": "ramp",
+      "input": "mix",
+      "params": { "stops": [{ "t": 0, "color": "#cdcdc9" }, { "t": 1, "color": "#ecece8" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

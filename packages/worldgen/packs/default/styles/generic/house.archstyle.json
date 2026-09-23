@@ -1,0 +1,188 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.generic.house",
+  "title": "Generic house",
+  "doc": "Worldwide fallback for small residential footprints: hip or gable roofs, neutral render and brick tones, modest eaves. Residential footprints retain this style regardless of area; known heights take precedence, and four or more resolved floors use flat roofs.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "house",
+      "detached",
+      "semidetached",
+      "terrace",
+      "residential",
+      "bungalow",
+      "hut",
+      "cabin",
+      "farm",
+      "yes",
+      "building",
+      "semidetached_house",
+      "apartments",
+      "townhouse",
+      "townhouses",
+      "dormitory"
+    ]
+  },
+  "massing": {
+    "floorHeight": { "min": 2.7, "max": 3.1 },
+    "heightFallback": [
+      { "when": { "areaMax": 90 }, "levels": { "min": 1, "max": 1 } },
+      { "when": { "areaMax": 220 }, "levels": { "min": 1, "max": 2 } },
+      { "levels": { "min": 2, "max": 2 } }
+    ],
+    "groundFit": "platform-average",
+    "foundation": { "height": { "min": 0.3, "max": 0.5 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 18,
+      "minWingArea": 16,
+      "secondaryHeightScale": { "min": 0.7, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": { "min": 0.3, "max": 0.5 },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "hip",
+        "weight": 5,
+        "pitchDeg": { "min": 22, "max": 32 },
+        "when": { "levelsMax": 3 }
+      },
+      {
+        "type": "gable",
+        "weight": 4,
+        "pitchDeg": { "min": 26, "max": 38 },
+        "when": { "elongationMin": 1.15, "levelsMax": 3 }
+      },
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": { "height": { "min": 0.4, "max": 0.6 }, "thickness": 0.3 },
+        "when": { "levelsMin": 4 }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 2.8, "max": 3.6 }, "cornerMargin": 0.5 },
+    "windows": {
+      "style": "punched",
+      "width": { "min": 1, "max": 1.4 },
+      "height": { "min": 1.2, "max": 1.5 },
+      "sill": { "min": 0.8, "max": 1 },
+      "probabilityPerBay": 0.75,
+      "groundFloor": "same"
+    },
+    "bands": { "base": { "height": { "min": 0.2, "max": 0.4 } }, "floorLines": false },
+    "details": { "shutters": true }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        { "ref": "matgraph:molen.worldgen.material.siding_lap", "weight": 3 },
+        { "ref": "matgraph:molen.worldgen.material.brick", "weight": 2 },
+        { "ref": "matgraph:molen.worldgen.material.stucco", "weight": 2 }
+      ],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [3, 2.4],
+      "uvOffset": "meters",
+      "uvMirror": true
+    },
+    "roof": {
+      "choices": [
+        { "ref": "matgraph:molen.worldgen.material.shingle_asphalt", "weight": 3 },
+        { "ref": "matgraph:molen.worldgen.material.tile_ceramic", "weight": 1 }
+      ],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.concrete_plain", "weight": 1 }],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.window_punched", "weight": 1 }],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        { "color": "#d9d2c5", "weight": 3, "name": "render" },
+        { "color": "#b9b1a2", "weight": 3, "name": "stone" },
+        { "color": "#8f8a80", "weight": 1, "name": "grey" },
+        { "color": "#a3765b", "weight": 2, "name": "brick" }
+      ],
+      "jitter": { "hue": 0.01, "saturation": 0.05, "lightness": 0.06 }
+    },
+    "roof": {
+      "entries": [
+        { "color": "#4a4744", "weight": 4, "name": "dark slate" },
+        { "color": "#6b5a4a", "weight": 2, "name": "brown tile" },
+        { "color": "#3c4a52", "weight": 1, "name": "blue slate" }
+      ],
+      "jitter": { "hue": 0.01, "saturation": 0.04, "lightness": 0.05 }
+    },
+    "trim": {
+      "entries": [{ "color": "#efece4", "weight": 3 }, { "color": "#4a4a4a", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0.02, "lightness": 0.03 }
+    },
+    "foundation": {
+      "entries": [{ "color": "#8a8782", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0.02, "lightness": 0.04 }
+    }
+  },
+  "props": [
+    {
+      "id": "chimney",
+      "model": "molen.worldgen.prop.chimney.brick",
+      "anchor": "roof-ridge",
+      "probability": 0.35,
+      "count": { "min": 1, "max": 1 },
+      "roof": ["gable", "hip"],
+      "spacing": 4,
+      "margin": 1.2,
+      "scale": { "min": 0.9, "max": 1.15 },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      { "minTier": 1, "keep": ["roof-shape", "facade-texture"] },
+      { "minTier": 2, "keep": ["roof-shape"] }
+    ]
+  }
+}

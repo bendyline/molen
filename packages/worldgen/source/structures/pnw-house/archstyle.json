@@ -1,0 +1,397 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.pnw.house",
+  "title": "Pacific Northwest house",
+  "doc": "Wood-sided single-family homes: steep gable and hip roofs, deep eaves, muted sage, slate, and cedar palettes, exposed foundations on slopes. Residential footprints retain this style regardless of area; known heights take precedence, and four or more resolved floors use flat roofs.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "house",
+      "detached",
+      "semidetached",
+      "residential",
+      "bungalow",
+      "cabin",
+      "terrace",
+      "yes",
+      "building",
+      "semidetached_house",
+      "apartments",
+      "townhouse",
+      "townhouses",
+      "dormitory"
+    ],
+    "contextClasses": ["residential", "none", "farmland", "forest", "wood"]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 2.7,
+      "max": 3.1
+    },
+    "heightFallback": [
+      {
+        "when": {
+          "areaMax": 90
+        },
+        "levels": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "when": {
+          "areaMax": 220
+        },
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      },
+      {
+        "levels": {
+          "min": 2,
+          "max": 2
+        }
+      }
+    ],
+    "groundFit": "platform-max",
+    "foundation": {
+      "height": {
+        "min": 0.4,
+        "max": 0.9
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 18,
+      "minWingArea": 18,
+      "secondaryHeightScale": {
+        "min": 0.6,
+        "max": 0.95
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0.45,
+      "max": 0.75
+    },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "gable",
+        "weight": 6,
+        "pitchDeg": {
+          "min": 30,
+          "max": 42
+        },
+        "when": {
+          "elongationMin": 1.15,
+          "levelsMax": 3
+        }
+      },
+      {
+        "type": "hip",
+        "weight": 3,
+        "pitchDeg": {
+          "min": 25,
+          "max": 35
+        },
+        "when": {
+          "levelsMax": 3
+        }
+      },
+      {
+        "type": "pyramid",
+        "weight": 1,
+        "pitchDeg": {
+          "min": 25,
+          "max": 32
+        },
+        "when": {
+          "elongationMax": 1.15,
+          "areaMax": 90,
+          "levelsMax": 3
+        }
+      },
+      {
+        "type": "flat",
+        "weight": 1,
+        "when": {
+          "levelsMin": 4
+        },
+        "parapet": {
+          "height": {
+            "min": 0.3,
+            "max": 0.5
+          },
+          "thickness": 0.25
+        }
+      }
+    ],
+    "fallback": "flat",
+    "features": {
+      "dormers": {
+        "probability": 0.35,
+        "perRidgeMeters": 5,
+        "style": "gable",
+        "when": {
+          "areaMin": 110
+        }
+      }
+    }
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 2.6,
+        "max": 3.6
+      },
+      "cornerMargin": 0.6
+    },
+    "windows": {
+      "style": "punched",
+      "width": {
+        "min": 1,
+        "max": 1.5
+      },
+      "height": {
+        "min": 1.2,
+        "max": 1.5
+      },
+      "sill": {
+        "min": 0.8,
+        "max": 1
+      },
+      "probabilityPerBay": 0.8,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.3,
+          "max": 0.5
+        }
+      },
+      "floorLines": false,
+      "cornice": {
+        "height": 0.18
+      }
+    },
+    "details": {
+      "framing": {
+        "style": "timber",
+        "width": 0.16
+      },
+      "veranda": {
+        "depth": 1.1,
+        "columns": true
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.siding_lap",
+          "weight": 4
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.siding_shingle",
+          "weight": 1
+        }
+      ],
+      "palette": "siding",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [3, 2.4],
+      "uvOffset": "meters",
+      "uvMirror": true
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+          "weight": 1
+        }
+      ],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "palette:#ffffff",
+          "weight": 1
+        }
+      ],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.concrete_plain",
+          "weight": 1
+        }
+      ],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [2, 2],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_punched",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "siding": {
+      "entries": [
+        {
+          "color": "#8b9a7a",
+          "weight": 3,
+          "name": "sage"
+        },
+        {
+          "color": "#5e6b7a",
+          "weight": 3,
+          "name": "slate"
+        },
+        {
+          "color": "#a89f8e",
+          "weight": 2,
+          "name": "warm grey"
+        },
+        {
+          "color": "#7a5a45",
+          "weight": 2,
+          "name": "cedar"
+        },
+        {
+          "color": "#ece7dc",
+          "weight": 1,
+          "name": "cream"
+        }
+      ],
+      "jitter": {
+        "hue": 0.015,
+        "saturation": 0.06,
+        "lightness": 0.06
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#3f4245",
+          "weight": 5,
+          "name": "charcoal shingle"
+        },
+        {
+          "color": "#5a4a3c",
+          "weight": 2,
+          "name": "brown shingle"
+        },
+        {
+          "color": "#2f3a34",
+          "weight": 2,
+          "name": "moss green"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.05
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#f4f1ea",
+          "weight": 4
+        },
+        {
+          "color": "#d9d4c7",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    },
+    "foundation": {
+      "entries": [
+        {
+          "color": "#8d8a83",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.05
+      }
+    }
+  },
+  "props": [
+    {
+      "id": "chimney",
+      "model": "molen.worldgen.prop.chimney.brick",
+      "anchor": "roof-ridge",
+      "probability": 0.55,
+      "count": {
+        "min": 1,
+        "max": 1
+      },
+      "roof": ["gable", "hip"],
+      "spacing": 4,
+      "margin": 1.2,
+      "scale": {
+        "min": 0.9,
+        "max": 1.15
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+      },
+      {
+        "minTier": 1,
+        "keep": ["roof-shape", "facade-texture"]
+      },
+      {
+        "minTier": 2,
+        "keep": ["roof-shape"]
+      }
+    ]
+  }
+}

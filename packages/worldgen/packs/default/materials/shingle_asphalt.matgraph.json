@@ -1,0 +1,44 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 17,
+  "nodes": [
+    {
+      "id": "courses",
+      "type": "bricks",
+      "params": { "rows": 14, "cols": 6, "mortarWidth": 0.05, "offset": 0.5 }
+    },
+    {
+      "id": "shingles",
+      "type": "ramp",
+      "input": "courses",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#8c8c8c" },
+          { "t": 0.5, "color": "#8c8c8c" },
+          { "t": 0.56, "color": "#d9d9d9" },
+          { "t": 1, "color": "#d9d9d9" }
+        ]
+      }
+    },
+    {
+      "id": "grain-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 16, "seedOffset": 7 }
+    },
+    {
+      "id": "grain",
+      "type": "levels",
+      "input": "grain-noise",
+      "params": { "outMin": 0.78, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "shingles", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough" }
+}

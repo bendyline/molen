@@ -1,0 +1,68 @@
+{
+  "name": "@bendyline/molen-input-react",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen optional React controls for editing keyboard and joystick profiles",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/input-react"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/input-react",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "react",
+    "3d",
+    "input",
+    "controls"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./style.css": "./src/style.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:golden": "vitest run --config vitest.golden.config.ts"
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "playwright": "^1.60.0",
+    "esbuild": "^0.28.0",
+    "@types/node": "^24"
+  }
+}

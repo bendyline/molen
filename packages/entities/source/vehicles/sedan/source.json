@@ -1,0 +1,28 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.vehicle.sedan",
+  "kind": "vehicle",
+  "title": "Sedan",
+  "order": 1,
+  "files": {
+    "definitions": ["entity.types.json"],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.vehicle.sedan",
+        "output": "assets/molen/entities/vehicle/sedan/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ea88b54f4c6982a40a7d977128a976ea977f521db3a55ad9b8893f23b23523f6"
+      }
+    ],
+    "scripts": [
+      {
+        "id": "interactions",
+        "path": "scripts/interactions.ts"
+      }
+    ],
+    "textures": [],
+    "sounds": [],
+    "documents": ["README.md"]
+  }
+}

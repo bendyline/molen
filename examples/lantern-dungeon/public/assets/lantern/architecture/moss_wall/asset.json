@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "lantern.architecture.moss_wall",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:cec7488c5aa516a6208927fcfecfb7595f0f9d871497ded4eb27969dba03cc35",
+  "sourceHash": "sha256:d27fe968c2142f6a047bb565e323365c1e2f76a69c3542cf8cb253dcc42942e6",
+  "bounds": {
+    "aabb": {
+      "min": [-1.5451, 0, -1.5451],
+      "max": [1.5451, 3.3, 1.5451]
+    },
+    "sphere": {
+      "center": [0, 1.65, 0],
+      "radius": 2.6914
+    }
+  },
+  "stats": {
+    "triangles": 5220,
+    "vertices": 10701,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 3,
+    "animations": 0,
+    "sizeBytes": 536840
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "triangles": 5220
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "Limestone / slate",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Limestone / lichen",
+      "slots": ["baseColor", "roughness", "metalness", "normal"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "body",
+        "points": [
+          -1.5451, 0, -1.5451, -1.5451, 0, 1.5451, -1.5451, 3.3, -1.5451, -1.5451, 3.3, 1.5451,
+          1.5451, 0, -1.5451, 1.5451, 0, 1.5451, 1.5451, 3.3, -1.5451, 1.5451, 3.3, 1.5451
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

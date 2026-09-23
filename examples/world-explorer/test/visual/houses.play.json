@@ -1,0 +1,92 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "residential-walkthrough",
+  "path": "/?synthetic=1&houses=1&quality=economy&freeze=1&navigation=walk&hud=0&lat=47.62170200200782&lon=-122.0142499877784&alt=415&yaw=0&pitch=0",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "location",
+      "selector": "#location"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 3000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-house-front"
+    },
+    {
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#location",
+      "text": "-122.01421",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
+    },
+    {
+      "type": "key-down",
+      "keys": ["a"]
+    },
+    {
+      "type": "wait-for",
+      "selector": "#location",
+      "text": "47.62171",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["a"]
+    },
+    {
+      "type": "screenshot",
+      "name": "02-staircase"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 8500
+    },
+    {
+      "type": "screenshot",
+      "name": "03-upper-landing"
+    },
+    {
+      "type": "keys",
+      "keys": ["d"],
+      "durationMs": 1100
+    },
+    {
+      "type": "keys",
+      "keys": ["s", "d"],
+      "durationMs": 6000
+    },
+    {
+      "type": "screenshot",
+      "name": "04-upstairs-bedroom"
+    }
+  ]
+}

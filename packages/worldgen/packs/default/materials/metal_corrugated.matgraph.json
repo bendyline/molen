@@ -1,0 +1,153 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 118,
+  "nodes": [
+    { "id": "flutes-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "flutes",
+      "type": "ramp",
+      "input": "flutes-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#bfc6c8" },
+          { "t": 0.015625, "color": "#dce1e1" },
+          { "t": 0.03125, "color": "#f4f5f2" },
+          { "t": 0.046875, "color": "#dce1e1" },
+          { "t": 0.0625, "color": "#bfc6c8" },
+          { "t": 0.078125, "color": "#dce1e1" },
+          { "t": 0.09375, "color": "#f4f5f2" },
+          { "t": 0.109375, "color": "#dce1e1" },
+          { "t": 0.125, "color": "#bfc6c8" },
+          { "t": 0.140625, "color": "#dce1e1" },
+          { "t": 0.15625, "color": "#f4f5f2" },
+          { "t": 0.171875, "color": "#dce1e1" },
+          { "t": 0.1875, "color": "#bfc6c8" },
+          { "t": 0.203125, "color": "#dce1e1" },
+          { "t": 0.21875, "color": "#f4f5f2" },
+          { "t": 0.234375, "color": "#dce1e1" },
+          { "t": 0.25, "color": "#bfc6c8" },
+          { "t": 0.265625, "color": "#dce1e1" },
+          { "t": 0.28125, "color": "#f4f5f2" },
+          { "t": 0.296875, "color": "#dce1e1" },
+          { "t": 0.3125, "color": "#bfc6c8" },
+          { "t": 0.328125, "color": "#dce1e1" },
+          { "t": 0.34375, "color": "#f4f5f2" },
+          { "t": 0.359375, "color": "#dce1e1" },
+          { "t": 0.375, "color": "#bfc6c8" },
+          { "t": 0.390625, "color": "#dce1e1" },
+          { "t": 0.40625, "color": "#f4f5f2" },
+          { "t": 0.421875, "color": "#dce1e1" },
+          { "t": 0.4375, "color": "#bfc6c8" },
+          { "t": 0.453125, "color": "#dce1e1" },
+          { "t": 0.46875, "color": "#f4f5f2" },
+          { "t": 0.484375, "color": "#dce1e1" },
+          { "t": 0.5, "color": "#bfc6c8" },
+          { "t": 0.515625, "color": "#dce1e1" },
+          { "t": 0.53125, "color": "#f4f5f2" },
+          { "t": 0.546875, "color": "#dce1e1" },
+          { "t": 0.5625, "color": "#bfc6c8" },
+          { "t": 0.578125, "color": "#dce1e1" },
+          { "t": 0.59375, "color": "#f4f5f2" },
+          { "t": 0.609375, "color": "#dce1e1" },
+          { "t": 0.625, "color": "#bfc6c8" },
+          { "t": 0.640625, "color": "#dce1e1" },
+          { "t": 0.65625, "color": "#f4f5f2" },
+          { "t": 0.671875, "color": "#dce1e1" },
+          { "t": 0.6875, "color": "#bfc6c8" },
+          { "t": 0.703125, "color": "#dce1e1" },
+          { "t": 0.71875, "color": "#f4f5f2" },
+          { "t": 0.734375, "color": "#dce1e1" },
+          { "t": 0.75, "color": "#bfc6c8" },
+          { "t": 0.765625, "color": "#dce1e1" },
+          { "t": 0.78125, "color": "#f4f5f2" },
+          { "t": 0.796875, "color": "#dce1e1" },
+          { "t": 0.8125, "color": "#bfc6c8" },
+          { "t": 0.828125, "color": "#dce1e1" },
+          { "t": 0.84375, "color": "#f4f5f2" },
+          { "t": 0.859375, "color": "#dce1e1" },
+          { "t": 0.875, "color": "#bfc6c8" },
+          { "t": 0.890625, "color": "#dce1e1" },
+          { "t": 0.90625, "color": "#f4f5f2" },
+          { "t": 0.921875, "color": "#dce1e1" },
+          { "t": 0.9375, "color": "#bfc6c8" },
+          { "t": 0.953125, "color": "#dce1e1" },
+          { "t": 0.96875, "color": "#f4f5f2" },
+          { "t": 0.984375, "color": "#dce1e1" },
+          { "t": 1, "color": "#bfc6c8" }
+        ]
+      }
+    },
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [1, 1, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 12, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.96, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "flutes", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.56 } },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "flutes",
+      "params": { "strength": 0.009 }
+    },
+    { "id": "metalness", "type": "const", "params": { "value": 0.62 } }
+  ],
+  "outputs": {
+    "baseColor": "out",
+    "roughness": "rough",
+    "normal": "normal",
+    "metalness": "metalness"
+  }
+}

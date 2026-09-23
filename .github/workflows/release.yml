@@ -1,0 +1,80 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.18.0
+          registry-url: https://registry.npmjs.org
+      # Trusted publishing needs npm >=11.5.1. Keep this pinned alongside the release toolchain.
+      - run: npm install --global npm@11.19.1
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      # All release checks are also reachable from `pnpm all` locally.
+      - run: pnpm verify
+      - run: pnpm docs:site:check
+      # Verify that Pages is enabled before publishing packages, then build the entire site.
+      # The plugin rebuilds it after stamping a new version; on a docs-only run this build
+      # is the artifact that gets deployed.
+      - uses: actions/configure-pages@v5
+      - run: pnpm docs:site:build
+      # One semantic-release run decides one version for all 13 packages. Its Molen plugin
+      # stamps, rebuilds, verifies, packs and publishes before the tag is pushed. npm's CLI
+      # exchanges this job's OIDC identity for a short-lived publish credential.
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm exec semantic-release
+      # As in squisq, record metadata once after all packages publish. This avoids one push
+      # per package and keeps a failed/partial publish retryable at the same version.
+      - name: Commit release metadata
+        run: |
+          git config user.name semantic-release-bot
+          git config user.email semantic-release-bot@martynus.net
+          git add -- packages/*/package.json packages/kernel/src/version.ts docs-src/llms.txt docs-src/guide/determinism.md
+          if [ -f CHANGELOG.md ]; then git add -- CHANGELOG.md; fi
+          if git diff --cached --quiet; then
+            echo "No release metadata changed."
+            exit 0
+          fi
+          git commit -m 'chore(release): update package versions [skip ci]'
+          git push origin HEAD:main
+      - name: Upload documentation site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs-site/.vitepress/dist/
+
+  deploy-docs:
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy documentation to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

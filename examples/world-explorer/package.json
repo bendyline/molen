@@ -1,0 +1,38 @@
+{
+  "name": "@bendyline/molen-examples-world-explorer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5225",
+    "build": "vite build",
+    "play:visual": "pnpm run build && node ../../packages/tooling/dist/cli.mjs play dist --scenario test/visual/navigation.play.json --out-dir .artifacts/world-explorer",
+    "data:sammamish": "node scripts/build-sammamish-package.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src scripts",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "predev": "node scripts/sync-worldgen-packs.mjs",
+    "prebuild": "node scripts/sync-worldgen-packs.mjs",
+    "test:golden": "vitest run --config vitest.golden.config.ts"
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-entities": "workspace:*",
+    "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "@bendyline/molen-worldgen": "workspace:*",
+    "@bendyline/molen-worldgen-earth": "workspace:*",
+    "three": "0.184.0",
+    "@bendyline/molen-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@bendyline/molen-tooling": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "pngjs": "^7.0.0",
+    "typescript": "catalog:",
+    "vite": "^6.0.7",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "format": "molen/types@1",
+  "namespace": "arena",
+  "owner": "examples",
+  "doc": "Entity vocabulary for the top-down arena. Scenes instantiate these; the spawner script spawns enemies with the same component shape as arena.enemy.",
+  "types": {
+    "arena.wall": {
+      "doc": "Static arena boundary segment. Override collider.halfExtents + renderable.primitive.size per wall.",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "collider": {
+          "shape": "aabb",
+          "halfExtents": [1, 1],
+          "layer": 1,
+          "mask": 1,
+          "isStatic": true
+        },
+        "renderable": { "kind": "primitive", "ref": "box", "materialRef": "palette:#3a3f4b" }
+      }
+    },
+    "arena.player": {
+      "doc": "The player-controlled body: kinematic circle, 10 hp, driven by the move command.",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "collider": { "shape": "circle", "radius": 0.8, "layer": 1, "mask": 1 },
+        "kinematicBody": { "vel": [0, 0, 0], "slide": true },
+        "health": { "hp": 10 },
+        "tag": { "name": "player" },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#4ade80",
+          "primitive": { "size": [1.5, 1, 1.5] }
+        }
+      }
+    },
+    "arena.enemy": {
+      "doc": "A chaser: 1 hp kinematic circle that damages the player on contact.",
+      "components": {
+        "transform": { "pos": [0, 0, 0], "rot": [0, 0, 0, 1] },
+        "collider": { "shape": "circle", "radius": 0.6, "layer": 1, "mask": 1 },
+        "kinematicBody": { "vel": [0, 0, 0], "slide": true },
+        "health": { "hp": 1 },
+        "tag": { "name": "enemy" },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#e63946",
+          "primitive": { "size": [1.1, 1, 1.1] }
+        }
+      }
+    }
+  }
+}

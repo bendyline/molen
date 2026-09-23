@@ -1,0 +1,15 @@
+{
+  "format": "molen/scene@3",
+  "name": "cubes",
+  "seed": "cubes-phase0",
+  "tickRate": 30,
+  "keyframeInterval": 60,
+  "camera": { "mode": "fixed", "position": [0, 6, 26], "lookAt": [0, 0, 0] },
+  "input": {
+    "bindings": { "Space": "spawn" },
+    "emit": [{ "kind": "press", "action": "spawn", "command": "spawn_cube" }]
+  },
+  "commands": {
+    "spawn_cube": { "doc": "Spawn one more cube at a seeded random pose." }
+  }
+}

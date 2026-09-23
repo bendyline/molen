@@ -1,0 +1,41 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "building-scale",
+  "path": "/?quality=balanced&freeze=1&hud=0&lat=47.61415&lon=-122.03237&alt=182&pitch=-0.45&yaw=3.14159",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    },
+    {
+      "name": "surface",
+      "selector": "#surface-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "click",
+      "selector": "button[data-mode=\"human\"]"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain \u00b7 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-shopping-center",
+      "settleMs": 500
+    }
+  ]
+}

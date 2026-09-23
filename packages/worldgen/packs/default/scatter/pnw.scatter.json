@@ -1,0 +1,212 @@
+{
+  "format": "molen/scatter@1",
+  "id": "molen.worldgen.scatter.pnw",
+  "title": "Pacific Northwest vegetation",
+  "doc": "Dense fir and pine forest with birch at low elevation, oak and fir in parks, sparse yard trees in residential land, shrubs in scrub, boulders on bare ground.",
+  "version": 2,
+  "surface": {
+    "default": "#6f7d64",
+    "colors": {
+      "forest": "#3f6347",
+      "wood": "#3a5f43",
+      "grassland": "#7d9562",
+      "grass": "#79915e",
+      "farmland": "#999866",
+      "scrub": "#6e8060",
+      "park": "#64845c",
+      "residential": "#8a8b7f",
+      "commercial": "#8d8a84",
+      "industrial": "#827c72",
+      "urban_area": "#85857d",
+      "beach": "#c0ae7d",
+      "sand": "#b6a777",
+      "glacier": "#d7e3e5",
+      "barren": "#8a806c",
+      "wetland": "#6e8a72"
+    }
+  },
+  "defaults": {
+    "avoid": { "roads": 5, "buildings": 3, "water": 1.5 },
+    "slopeMax": 0.75,
+    "lod": { "keepByTier": [1, 0.45, 0.18, 0.06], "maxInstancesPerBatch": 9000 }
+  },
+  "rules": [
+    {
+      "id": "conifer-forest",
+      "classes": ["forest", "wood"],
+      "densityPerHectare": 190,
+      "minSpacing": 2.1,
+      "clustering": { "scale": 160, "threshold": 0.2, "contrast": 1.65, "seedOffset": 0 },
+      "slopeMax": 0.8,
+      "altitude": { "max": 1700 },
+      "populations": [
+        {
+          "model": "builtin:tree.conifer.fir",
+          "weight": 6,
+          "scale": { "min": 0.85, "max": 1.4 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.pine",
+          "weight": 3,
+          "scale": { "min": 0.8, "max": 1.3 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.06, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.deciduous.birch",
+          "weight": 1,
+          "scale": { "min": 0.8, "max": 1.1 },
+          "yaw": "random",
+          "align": "up",
+          "altitude": { "max": 900 },
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.1 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "forest-understory",
+      "classes": ["forest", "wood"],
+      "densityPerHectare": 40,
+      "minSpacing": 2,
+      "populations": [
+        {
+          "model": "builtin:shrub",
+          "weight": 1,
+          "scale": { "min": 0.7, "max": 1.3 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "park-trees",
+      "classes": ["park", "garden", "cemetery", "grass", "meadow"],
+      "densityPerHectare": 25,
+      "minSpacing": 6,
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 3,
+          "scale": { "min": 0.8, "max": 1.2 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.fir",
+          "weight": 1,
+          "scale": { "min": 0.9, "max": 1.3 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "yard-trees",
+      "classes": ["residential"],
+      "densityPerHectare": 12,
+      "minSpacing": 7,
+      "avoid": { "roads": 4, "buildings": 2.5 },
+      "populations": [
+        {
+          "model": "builtin:tree.deciduous.oak",
+          "weight": 1,
+          "scale": { "min": 0.7, "max": 1 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.fir",
+          "weight": 1,
+          "scale": { "min": 0.8, "max": 1.2 },
+          "yaw": "random",
+          "align": "up",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "scrub",
+      "classes": ["scrub", "heath"],
+      "densityPerHectare": 90,
+      "minSpacing": 2.5,
+      "populations": [
+        {
+          "model": "builtin:shrub",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 1.4 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "alpine-rock",
+      "classes": ["barren", "bare_rock", "scree"],
+      "densityPerHectare": 4,
+      "minSpacing": 8,
+      "slopeMax": 0.9,
+      "populations": [
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.6, "max": 2.2 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    },
+    {
+      "id": "home-canopy",
+      "classes": ["home_canopy"],
+      "densityPerHectare": 140,
+      "minSpacing": 2.7,
+      "slopeMax": 0.65,
+      "altitude": { "max": 1700 },
+      "avoid": { "roads": 4, "buildings": 4, "water": 3 },
+      "populations": [
+        {
+          "model": "builtin:tree.conifer.fir",
+          "weight": 6,
+          "scale": { "min": 0.85, "max": 1.4 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.conifer.pine",
+          "weight": 3,
+          "scale": { "min": 0.8, "max": 1.3 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.02, "saturation": 0.06, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        },
+        {
+          "model": "builtin:tree.deciduous.birch",
+          "weight": 1,
+          "scale": { "min": 0.8, "max": 1.1 },
+          "yaw": "random",
+          "align": "up",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.1 },
+          "widthScale": { "min": 0.8, "max": 1.25 }
+        }
+      ]
+    }
+  ]
+}
