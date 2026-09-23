@@ -10,6 +10,8 @@ import type { SkyCaptureOptions } from '../fixtures/sky-harness';
 
 // Behavioral pixel checks in the browser lane; deliberately no platform-specific reference PNGs.
 const OUT = join(process.cwd(), 'test/golden/__output__/sky');
+// MOLEN_SKIP_WEBGPU=1 (set by CI) skips the WebGPU case as if no adapter existed.
+const SKIP_WEBGPU = process.env.MOLEN_SKIP_WEBGPU === '1';
 let server: CaptureServer;
 let browser: Browser;
 let gpu = false;
@@ -83,7 +85,7 @@ function difference(a: PNG, b: PNG): number {
 describe('sky rendering and clock integration', () => {
   for (const backend of ['webgl', 'webgpu'] as const)
     it(`${backend}: renders day, night, lunar phase, stars, rebasing and environment removal`, async (context) => {
-      if (backend === 'webgpu' && !gpu) {
+      if (backend === 'webgpu' && (SKIP_WEBGPU || !gpu)) {
         expect(process.env.MOLEN_REQUIRE_WEBGPU).not.toBe('1');
         context.skip();
         return;

@@ -7,6 +7,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 let server: PreviewServer, browser: Browser, url: string;
 const out = join(process.cwd(), 'test/golden/__output__/weather');
+// CI sets MOLEN_SKIP_WEBGPU=1: its CPU-only runners lose the SwiftShader WebGPU device on this
+// scene, so the WebGPU case skips as if no adapter existed and the WebGL case still runs.
+const skipWebGpu = process.env.MOLEN_SKIP_WEBGPU === '1';
 beforeAll(async () => {
   await mkdir(out, { recursive: true });
   server = await preview({ configFile: false, preview: { host: '127.0.0.1', port: 0 } });
@@ -63,7 +66,8 @@ describe('weather profiles in the explorer', () => {
         await page.goto(`${url}/weather-probe`);
         if (
           backend === 'webgpu' &&
-          !(await page.evaluate(async () => !!(await navigator.gpu?.requestAdapter())))
+          (skipWebGpu ||
+            !(await page.evaluate(async () => !!(await navigator.gpu?.requestAdapter()))))
         ) {
           expect(process.env.MOLEN_REQUIRE_WEBGPU).not.toBe('1');
           context.skip();

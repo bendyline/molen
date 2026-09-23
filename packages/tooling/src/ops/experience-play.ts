@@ -398,14 +398,37 @@ async function waitForStableText(
   const locator = page.locator(action.selector).first();
   await locator.waitFor({ state: 'visible', timeout: timeoutMs });
   let previous = '';
-  let unchangedSince = Date.now();
+  let unchangedSince: number | undefined;
   while (Date.now() < deadline) {
-    const current = (await locator.textContent()) ?? '';
+    // Stability is measured in rendered frames, not wall-clock time. A status written from
+    // requestAnimationFrame cannot change while one slow frame holds the main thread, so a
+    // wall-clock poll would count that stall as stable and pass on text from before a click.
+    // Each read therefore waits for a full page frame, and uses the timestamp of the frame
+    // that started it.
+    const { text: current, frameTime } = await locator.evaluate(
+      (element) =>
+        new Promise<{ text: string; frameTime: number }>((resolve) => {
+          const scope = globalThis as unknown as {
+            requestAnimationFrame: (callback: (time: number) => void) => number;
+          };
+          scope.requestAnimationFrame((frameTime) => {
+            scope.requestAnimationFrame(() =>
+              resolve({ text: element.textContent ?? '', frameTime }),
+            );
+          });
+        }),
+    );
     const eligible = action.text === undefined || current.includes(action.text);
-    if (current !== previous || !eligible) {
+    // An earlier frame time means the page loaded a new document, which restarts its clock.
+    if (
+      unchangedSince === undefined ||
+      frameTime < unchangedSince ||
+      current !== previous ||
+      !eligible
+    ) {
       previous = current;
-      unchangedSince = Date.now();
-    } else if (Date.now() - unchangedSince >= stableMs) {
+      unchangedSince = frameTime;
+    } else if (frameTime - unchangedSince >= stableMs) {
       return;
     }
     await page.waitForTimeout(100);

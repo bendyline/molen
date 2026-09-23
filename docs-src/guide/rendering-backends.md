@@ -219,6 +219,13 @@ software WebGPU adapter, supply
 instead. The suite writes capability diagnostics with browser version, launch flags and
 adapter information, so a passing run can be identified as hardware or software execution.
 
+`MOLEN_SKIP_WEBGPU=1` does the opposite: every golden suite treats WebGPU as unavailable, so
+WebGPU cases report a skip while the WebGL, fallback and node-WebGL cases still run. CI's golden
+job sets it. Its CPU-only runners expose a SwiftShader WebGPU adapter but lose the device on the
+world explorer's scenes, which leaves a blank canvas and "Instance dropped" errors. WebGPU coverage
+therefore comes from local runs and from GPU runners with `MOLEN_REQUIRE_WEBGPU=1`. The two
+switches contradict each other; with both set, the suites fail.
+
 This backend integration does not add GPU-driven terrain selection, compute culling, indirect
 draws or a new lighting pipeline. Those are separate optimizations to evaluate after measuring
 the shared rendering path.

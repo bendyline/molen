@@ -28,6 +28,8 @@ jobs:
         run: pnpm test:golden
         env:
           UPDATE_GOLDENS: '1'
+          # Same WebGL-only lane as the CI golden job (see ci.yml).
+          MOLEN_SKIP_WEBGPU: '1'
       - name: Commit regenerated goldens
         run: |
           git config user.name "github-actions[bot]"

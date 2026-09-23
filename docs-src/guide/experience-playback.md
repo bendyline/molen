@@ -47,7 +47,10 @@ work.
 
 Use `wait-for-stable` on an experience's status or loading indicator before capture. This avoids
 blessing transient tiles as a golden image while still exposing stalls: the action times out when
-the required text never appears or the probe keeps changing.
+the required text never appears or the probe keeps changing. Stability is measured in rendered
+frames: each read waits for the page to draw a frame, and `stableMs` counts frame time. So a status
+written from the render loop cannot pass while one slow frame keeps it stale, as happens under a
+software rasterizer on a busy machine.
 
 The same operation is exported as `playExperience()` from `@bendyline/molen-tooling` and as the
 `play_experience` MCP tool. MCP results include the captured frames as images so an agent can run

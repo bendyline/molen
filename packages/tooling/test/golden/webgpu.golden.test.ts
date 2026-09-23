@@ -12,6 +12,9 @@ import type { BackendCaptureOptions, BackendCaptureStats } from '../fixtures/web
 // assert visible pixels and rendering behavior without encoding driver-specific golden PNGs.
 const OUT = join(process.cwd(), 'test', 'golden', '__output__', 'webgpu');
 const REQUIRE_WEBGPU = process.env.MOLEN_REQUIRE_WEBGPU === '1';
+// MOLEN_SKIP_WEBGPU=1 (set by CI) runs the suite as if WebGPU were missing: every page gets the
+// `missing` fault, so WebGPU cases skip while the WebGL and fallback cases still run.
+const SKIP_WEBGPU = process.env.MOLEN_SKIP_WEBGPU === '1';
 const BROWSER_CHANNEL = process.env.MOLEN_WEBGPU_CHANNEL;
 const GPU_ARGS = process.env.MOLEN_WEBGPU_ARGS
   ? (JSON.parse(process.env.MOLEN_WEBGPU_ARGS) as string[])
@@ -68,7 +71,7 @@ beforeAll(async () => {
         },
       };
     });
-    gpuAvailable = probe.available;
+    gpuAvailable = probe.available && !SKIP_WEBGPU;
     await writeFile(
       join(OUT, 'capabilities.json'),
       JSON.stringify(
@@ -76,6 +79,7 @@ beforeAll(async () => {
           browser: browser.version(),
           channel: BROWSER_CHANNEL ?? 'bundled-chromium',
           args: GPU_ARGS,
+          skipWebGpu: SKIP_WEBGPU,
           ...probe,
         },
         null,
@@ -94,7 +98,8 @@ afterAll(async () => {
 
 type Fault = 'missing' | 'adapter-null' | 'adapter-reject' | 'device-reject';
 
-async function open(fault?: Fault): Promise<{ page: Page; errors: string[] }> {
+async function open(requested?: Fault): Promise<{ page: Page; errors: string[] }> {
+  const fault = requested ?? (SKIP_WEBGPU ? 'missing' : undefined);
   const page = await browser.newPage({
     viewport: { width: 640, height: 480 },
     deviceScaleFactor: 1,

@@ -91,8 +91,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # Golden images are recorded in this CI environment; SwiftShader is deterministic per build.
       - run: pnpm exec playwright install --with-deps chromium
-      # `pretest:golden` builds first.
+      # `pretest:golden` builds first. These CPU-only runners find a SwiftShader WebGPU adapter
+      # but lose the device on the explorer's scenes (blank canvas, "Instance dropped"), so
+      # WebGPU cases skip here and every WebGL and fallback case still runs. Run them locally or
+      # on a GPU runner; see docs-src/guide/rendering-backends.md.
       - run: pnpm test:golden
+        env:
+          MOLEN_SKIP_WEBGPU: '1'
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
