@@ -66,6 +66,12 @@ export type { CameraTarget, InputRuleOptions } from './scene-bindings';
 export { applyInputRules, applySceneCamera, followCameraPose } from './scene-bindings';
 export type { CelestialPosition, EarthSkyState } from './sky/astronomy';
 export { evaluateEarthSky, skyTimeMs, starDirection } from './sky/astronomy';
+export {
+  decodeStarCatalog,
+  decodeStarCatalogRows,
+  encodeStarCatalog,
+  type StarCatalogRow,
+} from './sky/star-catalog';
 export type { SkyFrame, SkyStar, SkyVisualOptions } from './sky/visual';
 export { defaultSkyPalette, SkyVisual } from './sky/visual';
 export type { LightData, Renderable, SceneBackend } from './sync';

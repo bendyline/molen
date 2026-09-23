@@ -3,6 +3,7 @@ import type {
   CommandQueueState,
   ComponentMap,
   ComponentRegistry,
+  ContentIdentity,
   EngineEvent,
   EntityId,
   JsonObject,
@@ -27,6 +28,7 @@ import {
   type SubmitResult,
 } from './commands';
 import { type ComponentType, snapshotComponentDefaults } from './component';
+import { freezeContent } from './content';
 import { createRng, type Rng, rngFromState } from './rng';
 
 export type Phase = 'commands' | 'update' | 'physics' | 'late';
@@ -78,6 +80,11 @@ export interface WorldOptions {
   validateSpawn?: boolean;
   /** Late-command policy (command.tick <= currentTick). Default 'rewrite'. */
   lateCommands?: LateCommandPolicy;
+  /**
+   * Which content the world is built from (see ContentIdentity). Recorded in keyframes next to
+   * the state hash, never in it; loading a keyframe with different content fails by name.
+   */
+  content?: ContentIdentity;
 }
 
 interface RegisteredSystem {
@@ -111,6 +118,8 @@ interface DeferredRemove {
  */
 export class World {
   readonly componentRegistry: ComponentRegistry;
+  /** Content this world was built from, by domain; empty when none was declared. */
+  readonly content: Readonly<ContentIdentity>;
   readonly tickRate: number;
   readonly dt: number;
   private readonly devFreeze: boolean;
@@ -166,6 +175,7 @@ export class World {
 
   constructor(opts?: WorldOptions) {
     this.componentRegistry = createComponentRegistry({}, { base: opts?.registry }).registry;
+    this.content = freezeContent(opts?.content);
     this.tickRate = opts?.tickRate ?? 30;
     if (!Number.isInteger(this.tickRate) || this.tickRate < 1) {
       throw new Error(`tickRate must be a positive integer, got ${this.tickRate}`);

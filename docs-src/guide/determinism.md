@@ -98,6 +98,11 @@ The script Compartment enforces the first three. The rest are yours to keep.
   `GroundField` and the rest of that package is projection and streaming. The lint is lexical — it
   cannot see a transcendental reached through an import, which is why
   `worldgen-earth` carries its own `dmath`-based `projection.ts` instead of importing terrain's.
+- **Systems never read a content library at tick time.** Entity types, landmark models and
+  business catalogs are content: a host loads them and hands them over as libraries
+  (`createTypeLibrary`, `createLandmarkLibrary`, `createBusinessCatalog`). Anything a tick needs
+  from them is copied into components when the entity spawns, which keeps the state hash complete
+  on its own and lets a replay run without the library.
 
 ### Ways a host breaks it from outside
 
@@ -157,6 +162,29 @@ silently drift: the target world's `tickRate` must match, `entityOrder` must nam
 exactly once, and any script that has not declared `"checkpoint": "state"` refuses a restore at a
 nonzero tick — because its durable state may be sitting in closures the engine cannot serialize.
 Restore into the same systems, component vocabulary, script ids and plugin providers.
+
+### Content identity
+
+A world can record which content it was built from: `buildWorld(scene, setup, { content })`, where
+`content` names each domain with the hash of the library that loaded it and, optionally, the packs
+it came from (`{ types: { hash: typeLibrary.hash, packs: ['molen.entities@0.0.1'] } }`). The
+identity is recorded **next to** the state hash, never inside it: keyframes carry it under the
+reserved `plugins.$content` key, and a replay fixture records it as `content`. Content that affects
+the simulation already reaches the hash through the components written at spawn; folding pack
+hashes in as well would make a hash depend on content no tick read.
+
+What the identity buys is a named error instead of a divergence at tick 0. Loading a keyframe into
+a world built from different content throws before any state changes:
+
+```
+keyframe was saved with different content: content "types" was sha256:ab… (molen.entities@0.0.1) but the loaded content is sha256:cd… (molen.entities@0.0.2)
+```
+
+`applyKeyframeTo(world, keyframe, { allowContentDrift: true })` loads anyway. `molen replay` checks
+a fixture's `content` before it runs and suggests `--record`, which writes the identity the build
+ran against. Only domains both sides name are compared, so a fixture recorded before a domain
+existed, or a host that loads extra content, is not a mismatch. `worldFromKeyframe` restores the
+identity the keyframe recorded.
 
 ## How to check it yourself
 

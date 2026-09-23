@@ -4,11 +4,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
 
 async function load(kind, version) {
-  const sourceDirectory = kind === 'p51d' ? 'p-51' : 'hughes-500md';
+  const sourceDirectory = kind === 'p51d' ? 'p-51' : 'oh-6';
   const path =
     version === 'source'
-      ? `../source/aircraft/${sourceDirectory}/models/source.glb`
-      : `../assets/molen/entities/aircraft/${kind}/model.glb`;
+      ? `../../../content/entities/source/aircraft/${sourceDirectory}/models/source.glb`
+      : `../../../content/entities/assets/molen/entities/aircraft/${kind}/model.glb`;
   const bytes = await readFile(new URL(path, import.meta.url));
   const { scene } = await new GLTFLoader().parseAsync(
     bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
@@ -41,8 +41,8 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
           expect(normal.x * side).toBeGreaterThan(0);
         }
   });
-  it('encloses both Hughes door bottoms and the cabin roof with solid panels', async () => {
-    const scene = await load('h500md', version);
+  it('encloses both OH-6 door bottoms and the cabin roof with solid panels', async () => {
+    const scene = await load('oh6', version);
     for (const side of [-1, 1])
       for (const y of [1.38, 1.42, 1.46])
         for (const z of [-0.1, 0.45, 0.85]) {
@@ -60,7 +60,7 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
   });
   it.each([
     ['p51d', [0, 2.28, 0.05]],
-    ['h500md', [-0.38, 1.7, 0.6]],
+    ['oh6', [-0.38, 1.7, 0.6]],
   ])('keeps forward visibility through the %s windscreen', async (kind, eye) => {
     const scene = await load(kind, version);
     // Look just beside the central windscreen divider.

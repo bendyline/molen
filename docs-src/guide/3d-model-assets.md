@@ -131,7 +131,8 @@ molen asset inspect barn.weathered --verify
 molen asset list
 ```
 
-Without `molen` on `PATH`, use `node <repo>/packages/tooling/dist/cli.mjs`. The importer writes
+In a project that installs `@bendyline/molen-tooling`, run these as `npx molen …`; from a clone of
+the repository, `node <repo>/packages/tooling/dist/cli.mjs`. The importer writes
 `assets/<id with dots as path>/model.glb`, creates `asset.json`, extracts per-node convex hulls,
 and registers the sidecar in the surrounding `project.json`. Add `--trimesh` only when static,
 concave collision justifies its extra size. Use `--project <project.json>` when project discovery

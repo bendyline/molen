@@ -5,12 +5,6 @@ import {
   aircraftCameraPose,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
-import {
-  createMolenEntitiesAssetIndex,
-  getMolenAircraft,
-  getMolenEntityComponents,
-  type MolenAircraftEntityId,
-} from '@bendyline/molen-entities';
 import { Transform, type TransformData, type World } from '@bendyline/molen-kernel';
 import {
   Aircraft,
@@ -21,18 +15,18 @@ import {
   initialAircraftState,
   installAircraft,
 } from '@bendyline/molen-kernel/aircraft';
+import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity, Vehicle, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import type { AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
+import type { AircraftData, AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { WalkCollision } from './walk-collision';
 
 const PLAYER = 'world-player';
-type AircraftChoice = 'p51d' | 'h500md';
-const KINDS: AircraftChoice[] = ['p51d', 'h500md'];
-const ENTITY_IDS: Record<AircraftChoice, MolenAircraftEntityId> = {
+type AircraftChoice = 'p51d' | 'oh6';
+const KINDS: AircraftChoice[] = ['p51d', 'oh6'];
+const ENTITY_IDS: Record<AircraftChoice, string> = {
   p51d: 'molen.entities.aircraft.p51d',
-  h500md: 'molen.entities.aircraft.h500md',
+  oh6: 'molen.entities.aircraft.oh6',
 };
 const choiceForId = (id: string): AircraftChoice | undefined =>
   KINDS.find((choice) => ENTITY_IDS[choice] === id);
@@ -56,12 +50,10 @@ export class WorldAircraft {
     private readonly root: THREE.Object3D,
     private readonly terrainHeight: (x: number, z: number) => number | undefined,
     initial: [number, number, number],
-    private readonly loadModel: (kind: AircraftChoice) => Promise<THREE.Object3D> = async (
-      kind,
-    ) => {
-      const index = createMolenEntitiesAssetIndex(new URL('./entities/', location.href));
-      return (await new GLTFLoader().loadAsync(index[ENTITY_IDS[kind]])).scene;
-    },
+    /** Load an aircraft's model by entity type id, e.g. from the entities content pack. */
+    private readonly loadModel: (id: string) => Promise<THREE.Object3D>,
+    /** Entity types: aircraft specs, cockpit and spawn components. */
+    private readonly types: TypeLibrary,
   ) {
     this.center = [initial[0] + 500, initial[2]];
     this.object.name = 'world:airfield';
@@ -70,6 +62,9 @@ export class WorldAircraft {
       groundHeight: (x, z) => this.groundHeight(x, z),
       canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
     });
+  }
+  private aircraftData(id: string): AircraftData {
+    return this.types.component<AircraftData>(id, 'aircraft');
   }
   get mountedKind(): AircraftChoice | undefined {
     const id = this.world.get(PLAYER, Mounted)?.vehicle;
@@ -117,8 +112,8 @@ export class WorldAircraft {
     this.loading = true;
     void Promise.all(
       KINDS.map(async (kind) => {
-        const model = await this.loadModel(kind);
-        const aircraft = getMolenAircraft(ENTITY_IDS[kind]);
+        const model = await this.loadModel(ENTITY_IDS[kind]);
+        const aircraft = this.aircraftData(ENTITY_IDS[kind]);
         const visual = createAircraftVisual(model, aircraft.spec);
         if (this.disposed) {
           visual.dispose();
@@ -126,7 +121,7 @@ export class WorldAircraft {
         }
         this.visuals.set(kind, visual);
         this.object.add(visual.object);
-        const components = structuredClone(getMolenEntityComponents(ENTITY_IDS[kind]));
+        const components = this.types.components(ENTITY_IDS[kind]);
         components.transform = { pos: this.spawnPosition(kind), rot: [0, 0, 0, 1] };
         this.world.spawnRaw(components, `aircraft-${kind}`);
       }),
@@ -172,8 +167,8 @@ export class WorldAircraft {
     for (const kind of KINDS) {
       const t = this.world.get(`aircraft-${kind}`, Transform);
       if (!t) continue;
-      const components = getMolenEntityComponents(ENTITY_IDS[kind]);
-      const aircraft = getMolenAircraft(ENTITY_IDS[kind]);
+      const components = this.types.components(ENTITY_IDS[kind]);
+      const aircraft = this.aircraftData(ENTITY_IDS[kind]);
       const mountable = components.mountable as { reach: number };
       const eye = vehicleLocalPoint(t, aircraft.spec.pilotEye);
       if (Math.hypot(...eye.map((v, i) => v - (position[i] ?? 0))) < mountable.reach) return kind;
@@ -189,7 +184,7 @@ export class WorldAircraft {
     this.collision.update(this.root, position[0], position[2]);
     const a = new THREE.Vector3().fromArray(position).sub(this.collision.origin);
     const b = new THREE.Vector3()
-      .fromArray(vehicleLocalPoint(t, getMolenAircraft(ENTITY_IDS[kind]).spec.pilotEye))
+      .fromArray(vehicleLocalPoint(t, this.aircraftData(ENTITY_IDS[kind]).spec.pilotEye))
       .sub(this.collision.origin);
     const hit = this.collision.octree.rayIntersect(new THREE.Ray(a, b.clone().sub(a).normalize()));
     if (hit && hit.distance < a.distanceTo(b) - 0.1) return false;
@@ -271,7 +266,7 @@ export class WorldAircraft {
     if (!kind) return;
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (!t) return;
-    return aircraftCameraPose(t, getMolenAircraft(ENTITY_IDS[kind]).spec, {
+    return aircraftCameraPose(t, this.aircraftData(ENTITY_IDS[kind]).spec, {
       view,
       lookYaw,
       lookPitch,
@@ -299,7 +294,7 @@ export class WorldAircraft {
                 ? 'Rotate gently — S'
                 : 'On ground'
               : 'Airborne');
-    const spec = getMolenAircraft(ENTITY_IDS[kind]).spec;
+    const spec = this.aircraftData(ENTITY_IDS[kind]).spec;
     const airplane = spec.model === 'airplane';
     return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${this.inputs.gear ? 'down' : 'up'} · Flaps ${this.inputs.flaps ? 'down' : 'up'} · ` : ''}${alert}`;
   }

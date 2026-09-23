@@ -5,6 +5,7 @@ import {
   type SkyData,
   THREE,
 } from '@bendyline/molen-client';
+import { loadSkyStars } from './content';
 
 const input = (id: string): HTMLInputElement => document.getElementById(id) as HTMLInputElement;
 const select = (id: string): HTMLSelectElement => document.getElementById(id) as HTMLSelectElement;
@@ -25,6 +26,11 @@ const renderer = await Renderer.create({
         : 'auto',
   reverseDepthBuffer: true,
 });
+// Stars come from the sky content pack; the bundled catalog shows until it arrives.
+void loadSkyStars(new URL('./', location.href)).then(
+  (stars) => renderer.setStarCatalog(stars),
+  (reason) => console.warn(`[molen] star catalog unavailable: ${(reason as Error).message}`),
+);
 let seconds = 0;
 let epoch = Date.parse(`${input('date').value}Z`);
 let scale = Number(select('speed').value);

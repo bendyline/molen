@@ -10,8 +10,10 @@ import { dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   type ArchStyleDoc,
+  createLandmarkLibrary,
   generateLandmarkModel,
   generateWorldgenBatch,
+  type LandmarkDefinitions,
   type MeshBuffers,
   type PlacementSet,
   type ResolvedStylePack,
@@ -95,6 +97,8 @@ interface PreviewScenePayload {
   filesBaseUrl: string;
   assetIndex: Record<string, string>;
   materialRefs: string[];
+  /** Landmark models the placements may name as `builtin:<id>`. */
+  landmarks: LandmarkDefinitions;
   ground: { y: number; minX: number; minZ: number; maxX: number; maxZ: number };
   clearColor: string;
 }
@@ -110,7 +114,10 @@ interface PreviewResponse extends WorldgenPreviewRenderStats {
 }
 
 /** World-space bounds of everything generated (buildings, props, scatter). */
-export function worldgenPreviewBounds(output: WorldgenBatchOutput): {
+export function worldgenPreviewBounds(
+  output: WorldgenBatchOutput,
+  landmarks: LandmarkDefinitions = {},
+): {
   min: [number, number, number];
   max: [number, number, number];
 } {
@@ -138,7 +145,7 @@ export function worldgenPreviewBounds(output: WorldgenBatchOutput): {
     // Mapped trees have a normalized unit envelope; identity/furniture generators expose
     // their actual geometry. Including these extents keeps prop-only previews in frame.
     const model = set.modelRef.startsWith('builtin:')
-      ? generateLandmarkModel(set.modelRef.slice(8))
+      ? generateLandmarkModel(set.modelRef.slice(8), landmarks)
       : undefined;
     const points =
       set.modelRef === 'builtin:box' || set.modelRef.startsWith('builtin:tree.mapped.')
@@ -182,6 +189,8 @@ export function previewWorldgen(input: WorldgenPreviewInput): Promise<WorldgenPr
 
 async function previewWorldgenImpl(input: WorldgenPreviewInput): Promise<WorldgenPreviewOutput> {
   const loaded = await loadStylePackFromDisk(input.packPath);
+  const landmarks =
+    loaded.landmarks !== undefined ? createLandmarkLibrary(loaded.landmarks).definitions : {};
   let pack: ResolvedStylePack = loaded.pack;
   let styleId = input.styleId;
   if (input.stylePath !== undefined) {
@@ -203,7 +212,7 @@ async function previewWorldgenImpl(input: WorldgenPreviewInput): Promise<Worldge
 
   const size = input.size ?? [1280, 720];
   const angles = Math.max(1, Math.floor(input.angles ?? 1));
-  const bounds = worldgenPreviewBounds(output);
+  const bounds = worldgenPreviewBounds(output, landmarks);
   const centre: [number, number, number] = [
     (bounds.min[0] + bounds.max[0]) / 2,
     (bounds.min[1] + bounds.max[1]) / 2,
@@ -275,6 +284,7 @@ async function previewWorldgenImpl(input: WorldgenPreviewInput): Promise<Worldge
       })),
       filesBaseUrl,
       assetIndex: stylePackAssetIndex(pack, filesBaseUrl),
+      landmarks,
       materialRefs: stylePackMaterialRefs(pack),
       ground: {
         y: groundY,

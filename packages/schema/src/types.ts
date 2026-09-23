@@ -206,9 +206,20 @@ export interface ProjectManifest {
   reservations: NamespaceReservation[];
   /** Default setup/Experience module for sim/shot (project-relative). */
   setup?: string;
+  /** Content packs to load, in order; a later pack wins on duplicate ids. */
+  packs: ProjectPackRef[];
   /** Custom component vocabulary shared by every scene in the project. */
   components: Record<string, CustomComponentDecl>;
   codegen: { out: string };
+}
+
+/** A content pack a project loads (see molen/pack@1). */
+export interface ProjectPackRef {
+  id: string;
+  /** Project-relative pack file or source directory, or an http(s) URL. */
+  source: string;
+  /** Expected pack contentHash; loading fails when the pack's differs. */
+  contentHash?: string;
 }
 
 export interface RngState {
@@ -222,6 +233,20 @@ export interface CommandQueueState {
   highestSeq: Record<string, number>;
   latePolicy: 'rewrite' | 'reject';
 }
+
+/** One content domain a world was built from (e.g. "types", "places"). */
+export interface ContentIdentityEntry {
+  /** Hash of the domain's content, from the library that loaded it. */
+  hash: string;
+  /** The packs it came from, as "id@version". */
+  packs?: string[];
+}
+
+/**
+ * Which content a world was built from, by domain. Recorded next to the state hash (never in it),
+ * so a keyframe or replay can refuse to run against different content with a named error.
+ */
+export type ContentIdentity = Record<string, ContentIdentityEntry>;
 
 export interface Keyframe {
   kind: 'keyframe';
@@ -263,6 +288,8 @@ export interface ReplayFixture {
   ticks: number;
   commands: Command[];
   expected?: { stateHash: string; eventCount?: number; tickHashes?: string[] };
+  /** The content the replay was recorded with; replaying against different content fails. */
+  content?: ContentIdentity;
 }
 
 export type SelectOp =

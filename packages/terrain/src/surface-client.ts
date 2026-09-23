@@ -1,7 +1,6 @@
-import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
-import { getMolenVehicle, MOLEN_VEHICLE_ENTITY_IDS } from '@bendyline/molen-entities';
-import type { VehiclePlacement } from '@bendyline/molen-schema';
 /** Styled roads and paved areas, built on the reusable line-feature renderer. */
+import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
+import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import {
   appendTerrainLineBand,
@@ -21,7 +20,11 @@ import type {
 } from './semantic-types';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
-import { resolveTerrainSurfaceStyle, type TerrainSurfaceOptions } from './surface-styles';
+import {
+  resolveTerrainSurfaceStyle,
+  type TerrainParkedVehicle,
+  type TerrainSurfaceOptions,
+} from './surface-styles';
 
 export interface TerrainSurfaceStats {
   roads: number;
@@ -78,6 +81,7 @@ export function createTerrainSurfaceObject(
 ): THREE.Group {
   const style = resolveTerrainSurfaceStyle(options.style, options.details);
   const details = options.details ?? {};
+  const parkedVehicles = details.parkedVehicles ?? [];
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
   const group = new THREE.Group();
@@ -567,6 +571,7 @@ export function createTerrainSurfaceObject(
             const seed = hash(center[0] + context.origin[0], center[1] + context.origin[1]);
             if (
               style.parkedCars &&
+              parkedVehicles.length > 0 &&
               fixtureCount < maxFixtures &&
               seed < (details.parkingOccupancy ?? 0.7)
             ) {
@@ -580,11 +585,11 @@ export function createTerrainSurfaceObject(
               ] as string;
               const wx = context.origin[0] + x,
                 wz = context.origin[1] + z;
-              const kind =
-                MOLEN_VEHICLE_ENTITY_IDS[
-                  Math.floor(hash(wx + 19.7, wz - 37.1) * MOLEN_VEHICLE_ENTITY_IDS.length)
-                ] ?? 'molen.entities.vehicle.sedan';
-              const spec = getMolenVehicle(kind).spec;
+              const vehicle = parkedVehicles[
+                Math.floor(hash(wx + 19.7, wz - 37.1) * parkedVehicles.length)
+              ] as TerrainParkedVehicle;
+              const kind = vehicle.id;
+              const spec = vehicle.spec;
               const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
                 [-spec.width * 0.42, spec.width * 0.42].map(
                   (wheelX) =>

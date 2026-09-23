@@ -2,8 +2,12 @@ import { hashJson } from '@bendyline/molen-kernel/determinism';
 import type { JsonValue } from '@bendyline/molen-schema';
 /** Versioned, curated identities. Extend aliases/categories and the shared sign library together. */
 import type { TerrainPoiFeature } from '@bendyline/molen-terrain/kernel';
-import { LANDMARK_DEFINITIONS } from '@bendyline/molen-worldgen/kernel';
-import { BUSINESS_CATALOG, type BusinessCategory } from './business-catalog-schema';
+import type { LandmarkDefinitions, LandmarkLibrary } from '@bendyline/molen-worldgen/kernel';
+import {
+  type BusinessCatalogDoc,
+  type BusinessCategory,
+  validateBusinessCatalogDocuments,
+} from './business-catalog-schema';
 
 export interface BusinessProfile {
   id: string;
@@ -14,23 +18,27 @@ export interface BusinessProfile {
   wall: string;
   accent: string;
 }
-export const BUSINESS_CATALOG_VERSION: number = BUSINESS_CATALOG.version;
-export const BUSINESS_CATALOG_HASH: string = hashJson(BUSINESS_CATALOG as unknown as JsonValue);
-export const BUSINESS_PROFILES: readonly BusinessProfile[] = BUSINESS_CATALOG.profiles.map(
-  (profile) => {
-    const doc = LANDMARK_DEFINITIONS[profile.landmark];
-    if (doc?.generator !== 'sign') throw new Error(`Unknown business visual: ${profile.landmark}`);
+
+function profilesOf(
+  doc: BusinessCatalogDoc,
+  definitions: LandmarkDefinitions,
+): readonly BusinessProfile[] {
+  return doc.profiles.map((profile) => {
+    const visual = definitions[profile.landmark];
+    if (visual?.generator !== 'sign') {
+      throw new Error(`Unknown business visual: ${profile.landmark}`);
+    }
     return {
       id: profile.id,
       aliases: profile.aliases,
       brandIds: profile.brandIds,
       categories: profile.categories,
-      sign: doc.id.slice(5),
-      wall: doc.appearance.wall,
-      accent: doc.appearance.accent,
+      sign: visual.id.slice(5),
+      wall: visual.appearance.wall,
+      accent: visual.appearance.accent,
     };
-  },
-);
+  });
+}
 
 export interface ResolvedBusiness {
   category: BusinessCategory;
@@ -48,15 +56,17 @@ function normalized(value: string): string {
     .toLowerCase()
     .replace(/[’'\s.\-_/]/g, '');
 }
-function categoryFor(kind: string): ResolvedBusiness['category'] | undefined {
-  return BUSINESS_CATALOG.categories.find((category) => category.kinds.includes(kind))?.id;
-}
+type PoiIdentity = Pick<TerrainPoiFeature, 'class' | 'name' | 'brand' | 'brandId'>;
 
 /** Exact normalized aliases with category checks; never substring-match a business name. */
-export function resolveBusiness(
-  poi: Pick<TerrainPoiFeature, 'class' | 'name' | 'brand' | 'brandId'>,
-  catalog: readonly BusinessProfile[] = BUSINESS_PROFILES,
+function resolveWith(
+  poi: PoiIdentity,
+  doc: BusinessCatalogDoc,
+  catalog: readonly BusinessProfile[],
+  definitions: LandmarkDefinitions,
 ): ResolvedBusiness | undefined {
+  const categoryFor = (kind: string): ResolvedBusiness['category'] | undefined =>
+    doc.categories.find((category) => category.kinds.includes(kind))?.id;
   let profile: BusinessProfile | undefined,
     matchedBy: ResolvedBusiness['matchedBy'] = 'category';
   const allows = (p: BusinessProfile): boolean =>
@@ -86,10 +96,10 @@ export function resolveBusiness(
   if (!category) return undefined;
   const model = profile
     ? `sign.${profile.sign}`
-    : BUSINESS_CATALOG.categories.find((c) => c.id === category)?.landmark;
+    : doc.categories.find((c) => c.id === category)?.landmark;
   if (!model) return undefined;
-  const doc = LANDMARK_DEFINITIONS[model];
-  const visual = doc?.generator === 'sign' ? doc : undefined;
+  const landmark = definitions[model];
+  const visual = landmark?.generator === 'sign' ? landmark : undefined;
   return {
     category,
     ...(profile ? { profile } : {}),
@@ -99,5 +109,29 @@ export function resolveBusiness(
     width: visual?.storefront.width ?? 18,
     sharedWidth: visual?.storefront.sharedWidth ?? 9,
     ...(visual?.storefront.style ? { style: visual.storefront.style } : {}),
+  };
+}
+
+/** A business identity catalog, resolved against the landmark models its signs use. */
+export interface BusinessCatalog {
+  /** Hash of the validated catalog; a cache key for generated tiles. */
+  readonly hash: string;
+  readonly version: number;
+  readonly doc: BusinessCatalogDoc;
+  readonly profiles: readonly BusinessProfile[];
+  /** Identify a mapped place, or undefined when it is not a business this catalog knows. */
+  resolve(poi: PoiIdentity): ResolvedBusiness | undefined;
+}
+
+/** Validate a molen/business-catalog@1 document against a landmark library. */
+export function createBusinessCatalog(doc: unknown, landmarks: LandmarkLibrary): BusinessCatalog {
+  const validated = validateBusinessCatalogDocuments(doc, landmarks.definitions);
+  const profiles = profilesOf(validated, landmarks.definitions);
+  return {
+    hash: hashJson(validated as unknown as JsonValue),
+    version: validated.version,
+    doc: validated,
+    profiles,
+    resolve: (poi) => resolveWith(poi, validated, profiles, landmarks.definitions),
   };
 }

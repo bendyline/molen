@@ -1,11 +1,17 @@
 import { distancePointToSegment, pointInPolygon, ringBounds } from './geometry2d';
 import { resolveInteriorProfile } from './interior-catalog';
-import type { BuildingOpening, InteriorSite, InteriorStorey } from './interior-types';
+import type {
+  BuildingOpening,
+  InteriorCatalogDoc,
+  InteriorSite,
+  InteriorStorey,
+} from './interior-types';
 import type { BuildingRequest, HeightSampler, Vec2, Vec3 } from './types';
 
 /** Structural access only. This deliberately does not run a layout algorithm. */
 export function createInteriorSite(
   request: BuildingRequest,
+  catalog: InteriorCatalogDoc,
   outline: Vec2[],
   holes: Vec2[][],
   floor: number,
@@ -17,11 +23,10 @@ export function createInteriorSite(
   // Cut pieces do not describe a complete navigable space; elevated parts need vertical access.
   if (request.clipped || (request.minHeight ?? 0) > 0 || ceiling - floor < 2.35) return undefined;
   const residential =
-    resolveInteriorProfile([
-      ...(request.interiorLabels ?? []),
-      ...request.labels,
-      request.context ?? '',
-    ]).algorithm === 'residential';
+    resolveInteriorProfile(
+      [...(request.interiorLabels ?? []), ...request.labels, request.context ?? ''],
+      catalog,
+    ).algorithm === 'residential';
   const anchor = request.storefronts?.[0]?.at;
   let best: { edge: number; length: number; score: number } | undefined;
   for (let edge = 0; edge < outline.length; edge++) {

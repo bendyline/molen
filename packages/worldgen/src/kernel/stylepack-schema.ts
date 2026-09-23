@@ -39,6 +39,11 @@ const stylePackSchema = z.strictObject({
   assets: idToPath
     .describe('Asset id to pack-relative molen/asset@1 sidecar path (props).')
     .default({}),
+  interiors: relPath
+    .describe(
+      'Pack-relative molen/interior-catalog@1 path: layouts for enterable buildings. Without one, the pack generates no interiors.',
+    )
+    .optional(),
   defaults: z.strictObject({
     style: dottedId.describe('Archstyle used when no rule matches.'),
     scatter: dottedId.describe('Scatter rule set used when a binding names none.').optional(),
@@ -53,7 +58,10 @@ const stylePackSchema = z.strictObject({
         namespace: dottedId.describe(
           "External asset namespace the pack may reference, e.g. 'molen.entities'.",
         ),
-        package: z.string().optional(),
+        package: z
+          .string()
+          .describe('Informational: where the namespace comes from, e.g. a content pack id.')
+          .optional(),
         note: z.string().optional(),
       }),
     )
@@ -147,6 +155,7 @@ export const STYLEPACK_EXAMPLE: JsonValue = {
   assets: {
     'molen.worldgen.prop.chimney.brick': 'assets/prop/chimney/brick/asset.json',
   },
+  interiors: 'interiors/catalog.json',
   defaults: {
     style: 'molen.worldgen.generic.box',
     scatter: 'molen.worldgen.scatter.global',
@@ -164,8 +173,7 @@ export const STYLEPACK_EXAMPLE: JsonValue = {
   imports: [
     {
       namespace: 'molen.entities',
-      package: '@bendyline/molen-entities',
-      note: 'Trees, shrub, boulder.',
+      note: 'The molen.entities content pack: trees, shrub, boulder.',
     },
   ],
   attribution: [{ text: 'Molen default world styles', license: 'MIT' }],
@@ -177,7 +185,7 @@ export function registerStylePackSchema(): void {
     id: 'molen/stylepack@1',
     title: 'Style pack manifest',
     description:
-      'Index of a shippable look: archstyles, scatter rules, materials, prop assets, default style rules, imports, and attribution. One directory is one pack; the version feeds every seed.',
+      'Index of a shippable look: archstyles, scatter rules, materials, prop assets, an optional interior catalog, default style rules, imports, and attribution. One directory is one pack; the version feeds every seed.',
     examples: [STYLEPACK_EXAMPLE],
     docsRef: 'guide/worldgen.md',
     validate: validateStylePack,

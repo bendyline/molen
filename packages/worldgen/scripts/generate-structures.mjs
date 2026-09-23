@@ -8,8 +8,8 @@ import { formatJson } from './format-json.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { REFERENCES, STRUCTURE_ORDER, TAXONOMIES } from './structure-catalog-data.mjs';
 
-const packDir = resolve(dirname(fileURLToPath(import.meta.url)), '../packs/default');
-const sourceDir = resolve(dirname(fileURLToPath(import.meta.url)), '../source/structures');
+const packDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../../content/worldgen');
+const sourceDir = resolve(packDir, 'source/structures');
 const check = process.argv.includes('--check');
 const root = JSON.parse(await readFile(resolve(packDir, 'stylepack.json'), 'utf8'));
 const outputs = new Map();

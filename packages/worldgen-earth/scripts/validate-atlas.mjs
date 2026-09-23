@@ -1,7 +1,7 @@
 // Validate the shipped region atlas and check that every style and scatter id it binds exists in
 // the default style pack. Run after `tsdown` (imports the built kernels).
 //
-//   node scripts/validate-atlas.mjs [packs/default/world.atlas.json]
+//   node scripts/validate-atlas.mjs [atlas path, default content/earth/world.atlas.json]
 
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -11,8 +11,8 @@ import { resolveStylePackDocuments } from '@bendyline/molen-worldgen/kernel';
 import '../dist/kernel.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const atlasPath = resolve(root, process.argv[2] ?? 'packs/default/world.atlas.json');
-const packDir = resolve(root, '../worldgen/packs/default');
+const atlasPath = resolve(root, process.argv[2] ?? '../../content/earth/world.atlas.json');
+const packDir = resolve(root, '../../content/worldgen');
 
 const parsed = validateByKind('region-atlas', JSON.parse(await readFile(atlasPath, 'utf8')));
 if (!parsed.ok) {

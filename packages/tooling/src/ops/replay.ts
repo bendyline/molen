@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import {
   applyKeyframeTo,
+  contentDrift,
   keyframeStateFormat,
   STATE_FORMAT,
   type World,
@@ -15,7 +16,7 @@ import {
   runHeadless,
   type WorldSetup,
 } from '@bendyline/molen-kernel/testing';
-import type { Keyframe, ReplayFixture } from '@bendyline/molen-schema';
+import type { ContentIdentity, Keyframe, ReplayFixture } from '@bendyline/molen-schema';
 import { validate } from '@bendyline/molen-schema';
 import { loadSceneDocument, loadSetupLike, resolveSetupModule } from '../project';
 import {
@@ -172,13 +173,33 @@ export async function runReplayFile(input: RunReplayInput): Promise<RunReplayOut
   const { fixture, build } = resolved;
   const commands = fixture.commands;
   const ticks = fixture.ticks;
+  // Build once up front: a bad initial keyframe fails here with its own message, and the world's
+  // content identity is compared with the recording before any tick runs.
+  let content: ContentIdentity;
+  try {
+    content = build().content;
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : String(error) };
+  }
+  if (input.record !== true && fixture.content !== undefined) {
+    const drift = contentDrift(fixture.content, content);
+    if (drift.length > 0) {
+      return {
+        ok: false,
+        error: `replay was recorded with different content: ${drift.join('; ')}. Load the same packs, or re-record with: molen replay ${input.path} --record`,
+      };
+    }
+  }
 
   if (input.record === true) {
     const tickHashes = perTickHashes(build, commands, ticks);
     const stateHash = tickHashes[tickHashes.length - 1] ?? '';
     const eventCount = runHeadless(build, { commands, ticks }).events.length;
+    const { content: _previous, ...rest } = fixture;
     const updated: ReplayFixture = {
-      ...fixture,
+      ...rest,
+      // Record the content this build ran against; a build without declared content drops it.
+      ...(Object.keys(content).length > 0 ? { content: { ...content } } : {}),
       expected: { ...fixture.expected, stateHash, eventCount, tickHashes },
     };
     await writeFile(input.path, `${JSON.stringify(updated, null, 2)}\n`);

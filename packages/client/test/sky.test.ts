@@ -3,7 +3,6 @@ import type { EarthSkyData, Vec3 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { evaluateEarthSky, skyTimeMs, starDirection } from '../src/sky/astronomy';
-import { brightStars } from '../src/sky/bright-stars';
 import { SkyVisual } from '../src/sky/visual';
 
 const time = Date.parse('2024-03-20T12:00:00Z');
@@ -110,21 +109,6 @@ describe('Earth ephemeris', () => {
     expect(shiftedPole[0]).toBeCloseTo(-pole[2], 8);
     expect(turned.sun.direction[1]).toBeCloseTo(state.sun.direction[1], 12);
     expect(turned.sun.direction[0]).toBeCloseTo(-state.sun.direction[2], 12);
-  });
-
-  it('ships catalog stars including Sirius and both hemispheres', () => {
-    expect(brightStars).toHaveLength(8404);
-    expect(
-      brightStars.some(
-        ([ra, dec, mag]) =>
-          Math.abs(ra - 101.287) < 0.01 && Math.abs(dec + 16.716) < 0.01 && mag < -1.4,
-      ),
-    ).toBe(true);
-    expect(
-      brightStars.every(
-        ([ra, dec, mag]) => ra >= 0 && ra < 360 && Math.abs(dec) <= 90 && mag <= 6.5,
-      ),
-    ).toBe(true);
   });
 });
 

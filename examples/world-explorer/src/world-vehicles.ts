@@ -5,13 +5,9 @@ import {
   type VehicleVisual,
   vehicleCameraPose,
 } from '@bendyline/molen-client/vehicles';
-import {
-  createMolenEntitiesAssetIndex,
-  getMolenEntityComponents,
-  type MolenVehicleEntityId,
-} from '@bendyline/molen-entities';
 import { Transform, World } from '@bendyline/molen-kernel';
 import { Aircraft } from '@bendyline/molen-kernel/aircraft';
+import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
   driveVehicle,
   initialVehicleState,
@@ -29,12 +25,12 @@ import {
 } from '@bendyline/molen-kernel/vehicles';
 import type { VehicleData, VehiclePlacement, VehicleSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
 import { WalkCollision } from './walk-collision';
 
 const PLAYER = 'world-player';
+
 /** ECS is the source of truth; terrain owns only dormant instance rendering.
  * Interacted vehicles stay resident for this session, including after source-tile eviction.
  */
@@ -60,12 +56,10 @@ export class WorldVehicles {
   constructor(
     private readonly root: THREE.Object3D,
     private readonly sampleHeight: (x: number, z: number) => number | undefined,
-    private readonly loadModel: (kind: MolenVehicleEntityId) => Promise<THREE.Object3D> = async (
-      kind,
-    ) => {
-      const index = createMolenEntitiesAssetIndex(new URL('./entities/', location.href));
-      return (await new GLTFLoader().loadAsync(index[kind])).scene;
-    },
+    /** Load a vehicle's model by entity type id, e.g. from the entities content pack. */
+    private readonly loadModel: (kind: string) => Promise<THREE.Object3D>,
+    /** Entity types, for the vehicle components a parked car becomes when it is driven. */
+    private readonly types: TypeLibrary,
   ) {
     this.object.name = 'world:vehicles';
     root.add(this.object);
@@ -102,7 +96,7 @@ export class WorldVehicles {
     });
     for (const [id, p] of resident)
       if (!this.world.exists(id)) {
-        const components = structuredClone(getMolenEntityComponents(p.kind));
+        const components = this.types.components(p.kind);
         const vehicle = components.vehicle as unknown as VehicleData;
         vehicle.color = p.color;
         vehicle.spec = p.spec;
@@ -428,7 +422,7 @@ export class WorldVehicles {
     if (this.loading.has(id) || this.active.has(id)) return;
     this.loading.add(id);
     try {
-      const model = await this.loadModel(vehicle.kind as MolenVehicleEntityId);
+      const model = await this.loadModel(vehicle.kind);
       const visual = createVehicleVisual(model, vehicle);
       if (
         this.disposed ||

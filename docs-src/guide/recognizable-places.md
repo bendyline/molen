@@ -12,7 +12,7 @@ The Earth catalog recognizes **44 mapped source businesses** by exact aliases an
 IDs. Each match selects a generic descriptor model rather than a source-business sign: for example,
 Walmart maps to `sign.mart_store`, Taco Bell maps to `sign.taco_place`, Best Buy maps to
 `sign.electronics_store`, and The Home Depot maps to `sign.hardware_store`. The
-[retail catalog](../../packages/worldgen-earth/packs/default/businesses/README.md) documents the
+[retail catalog](../../content/earth/businesses/README.md) documents the
 source data and mapping policy.
 
 Nine generic treatments cover grocery, restaurant, cafe, pharmacy, shop, department store, shopping
@@ -21,7 +21,7 @@ Unknown identities keep the normal architectural fallback. This is a stylized de
 not a complete global business database.
 
 Matching lives in
-[the Earth business catalog](../../packages/worldgen-earth/packs/default/businesses/catalog.json).
+[the Earth business catalog](../../content/earth/businesses/catalog.json).
 A stable canonical ID selects an appearance; aliases and verified brand:wikidata IDs map source
 records onto it. Explicit source IDs take precedence. An explicit conflicting ID blocks name-based
 guesses. Name aliases must match exactly after punctuation/spacing normalization and pass category
@@ -48,17 +48,19 @@ generally absent from the archive.
 
 ## External model manifests
 
-The reusable definitions are source JSON files shipped in the package's `packs` directory:
+The reusable definitions are JSON content, not package code. The landmarks ship in the
+`molen.worldgen.default` content pack (role `landmarks`) and the business catalog in the
+`molen.earth` pack (role `businesses`); their sources are in the repository's `content/`:
 
 | What to edit | Source |
 | --- | --- |
-| Model index and file paths | [Landmark catalog](../../packages/worldgen/packs/default/landmarks/catalog.json) |
-| Burger-restaurant descriptor, source-inspired palette and frontage | [burger_restaurant.landmark.json](../../packages/worldgen/packs/default/landmarks/burger_restaurant.landmark.json) |
-| Unbranded grocery treatment | [grocery.landmark.json](../../packages/worldgen/packs/default/landmarks/grocery.landmark.json) |
-| Store aliases, source IDs and category matching | [Business catalog](../../packages/worldgen-earth/packs/default/businesses/catalog.json) |
-| Lamp, bench, rack and charger geometry recipes | [Landmark library](../../packages/worldgen/packs/default/landmarks/README.md) |
-| Base building proportions and architectural rules | [Generic store style](../../packages/worldgen/packs/default/styles/generic/store.archstyle.json) |
-| Shared surface patterns | [Material library](../../packages/worldgen/packs/default/materials/README.md) |
+| Model index and file paths | [Landmark catalog](../../content/worldgen/landmarks/catalog.json) |
+| Burger-restaurant descriptor, source-inspired palette and frontage | [burger_restaurant.landmark.json](../../content/worldgen/landmarks/burger_restaurant.landmark.json) |
+| Unbranded grocery treatment | [grocery.landmark.json](../../content/worldgen/landmarks/grocery.landmark.json) |
+| Store aliases, source IDs and category matching | [Business catalog](../../content/earth/businesses/catalog.json) |
+| Lamp, bench, rack and charger geometry recipes | [Landmark library](../../content/worldgen/landmarks/README.md) |
+| Base building proportions and architectural rules | [Generic store style](../../content/worldgen/styles/generic/store.archstyle.json) |
+| Shared surface patterns | [Material library](../../content/worldgen/materials/README.md) |
 
 A `molen/landmark@1` sign manifest contains its stable model ID, text, initial-based emblem, palette,
 wall/accent appearance and default standalone/shared storefront widths. Its optional
@@ -73,18 +75,21 @@ titles. Source recognition stays in the Earth catalog; model-facing names and em
 Furniture uses `generator: "boxes"` with ordered
 metric parts and optional detail tiers (0 near, 1 medium, 2 distant).
 
-The default application bundles these files for synchronous worker and browser use. Editing
-a source manifest requires a build and reload; it is not runtime hot reload. The build generates
-only the import index, validates the documents and cross-references, and includes the same files
-in the published package. Rendering cache keys include catalog content hashes, so palette and
+A host reads the documents from the packs and builds the libraries once, synchronously:
+`createPlacesContent({ landmarks: { catalog, models }, businesses })` from
+`@bendyline/molen-worldgen-earth/kernel` validates both and cross-checks every sign. Pass the
+result as `places` to `semanticTileToBatch`, `createInThreadWorldgenGenerator` and
+`createWorldgenSemanticRenderers`; a worker bridge takes the same content as plain documents, so
+only data crosses the Worker boundary. Without `places`, mapped businesses are not recognized and
+no street furniture is placed. Rendering cache keys include both content hashes, so palette and
 recipe changes invalidate cached terrain render output.
 
-Custom hosts can read external JSON through `resolveLandmarkCatalogDocuments(catalog, readDocument)`
-and pass the resulting definitions to `generateLandmarkModel(id, tier, definitions)` or
-`new ModelLibrary(assetLoader, definitions)`. The reader owns file/network access and resolves paths
-relative to the catalog. These APIs do not automatically replace the default Earth business
-catalog or register new references in scene validation; extend the shipped catalogs and rebuild
-for the ordinary world-explorer workflow.
+Landmarks alone are `createLandmarkLibrary({ catalog, models })` from
+`@bendyline/molen-worldgen/kernel`, or `resolveLandmarkCatalogDocuments(catalog, readDocument)` for
+just the definitions; pass definitions to `generateLandmarkModel(id, definitions, tier)` or
+`new ModelLibrary(assetLoader, definitions)`. A `ModelLibrary` without definitions serves no
+landmark models. In the repository, edit the sources and rebuild the packs (the world explorer
+does it before `dev`); editing is not runtime hot reload.
 
 ## Extending the library
 
@@ -98,7 +103,7 @@ for the ordinary world-explorer workflow.
    title. Reserve other geometric marks for non-business category signs and props. A new silhouette
    needs a bounded generator implementation and schema update.
 4. Increment the edited document version to record the revision. Run `molen validate <file>`
-   for structural validation, then `pnpm -r build` for catalog references and generated imports.
+   for structural validation, then `pnpm -r build` to validate catalog cross-references.
    Content hashes handle cache invalidation independently of manual version bumps.
 5. For behavioral or visual changes, add positive and misleading-name cases, a standalone and
    shared-building example, and inspect near/distant captures. Follow the

@@ -3,6 +3,7 @@ import {
   createTerrainSurfaceWorkerBridge,
   resolveTerrainSurfaceStyle,
   TERRAIN_SURFACE_STYLES,
+  type TerrainParkedVehicle,
   type TerrainQualityPreset,
   type TerrainSurfaceDetails,
   type TerrainSurfaceRenderer,
@@ -15,7 +16,10 @@ export interface SurfaceControls extends TerrainSurfaceRenderer {
 }
 
 /** Surface controls update resident meshes in place and keep shareable URL preferences. */
-export function createSurfaceControls(quality: TerrainQualityPreset): SurfaceControls {
+export function createSurfaceControls(
+  quality: TerrainQualityPreset,
+  parkedVehicles: readonly TerrainParkedVehicle[],
+): SurfaceControls {
   const select = document.getElementById('surface-style') as HTMLSelectElement;
   const status = document.getElementById('surface-status') as HTMLParagraphElement;
   const inputs = [...document.querySelectorAll<HTMLInputElement>('[data-surface-detail]')];
@@ -24,7 +28,10 @@ export function createSurfaceControls(quality: TerrainQualityPreset): SurfaceCon
   let style: TerrainSurfaceStyleId = Object.hasOwn(TERRAIN_SURFACE_STYLES, requested)
     ? (requested as TerrainSurfaceStyleId)
     : 'modern';
-  let details: TerrainSurfaceDetails = { preferMappedProps: params.get('style') !== 'none' };
+  let details: TerrainSurfaceDetails = {
+    preferMappedProps: params.get('style') !== 'none',
+    parkedVehicles,
+  };
   for (const input of inputs) {
     const key = input.dataset.surfaceDetail as
       | 'markings'
@@ -101,7 +108,7 @@ export function createSurfaceControls(quality: TerrainQualityPreset): SurfaceCon
   });
   select.addEventListener('change', () => {
     style = select.value as TerrainSurfaceStyleId;
-    details = { preferMappedProps: params.get('style') !== 'none' };
+    details = { preferMappedProps: params.get('style') !== 'none', parkedVehicles };
     void update();
   });
   for (const input of inputs)

@@ -111,7 +111,9 @@ await surfaces.setOptions({
   overlapping sidewalk and asphalt fills remain stable at walking height. Land cover, paved
   polygons, roads, and markings are clipped to the same rendered terrain grid and cell diagonals,
   so large footprints follow dips and hills without covering streets or intersecting each other. Parking receives rows of bays aligned to mapped aisles (or a regular fallback grid) and deterministic parked cars;
-  layout checks keep bays out of mapped aisles, holes, buildings and water.
+  layout checks keep bays out of mapped aisles, holes, buildings and water. Cars are drawn from
+  `details.parkedVehicles`, a list of `{ id, spec }` a host builds from loaded vehicle types (the
+  world explorer uses the `molen.entities` pack's, in type order); without it no cars are parked.
 - Some basemaps omit parking polygons. Service-aisle pairs can infer pavement inside mapped
   commercial/retail sites, near large buildings outside mapped residential areas, or with explicit
   `parking_aisle` metadata. These pairs can be angled and 9–60 world units apart, with at least

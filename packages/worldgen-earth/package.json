@@ -39,17 +39,15 @@
     "./worker": {
       "types": "./dist/worker.d.mts",
       "default": "./dist/worker.mjs"
-    },
-    "./packs/*": "./packs/*"
+    }
   },
   "files": [
-    "dist",
-    "packs"
+    "dist"
   ],
   "scripts": {
     "build": "tsdown && node scripts/generate-structure-atlas.mjs --check && node scripts/validate-atlas.mjs && node scripts/validate-businesses.mjs",
     "typecheck": "tsc -p tsconfig.json",
-    "lint": "biome check src test scripts packs && node ../../scripts/check-dmath.mjs src/kernel",
+    "lint": "biome check src test scripts && node ../../scripts/check-dmath.mjs src/kernel",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
@@ -61,13 +59,9 @@
     "zod": "catalog:"
   },
   "peerDependencies": {
-    "@bendyline/molen-client": "workspace:*",
-    "three": "0.184.0"
+    "three": ">=0.184.0 <0.187.0"
   },
   "peerDependenciesMeta": {
-    "@bendyline/molen-client": {
-      "optional": true
-    },
     "three": {
       "optional": true
     }

@@ -24,6 +24,8 @@ jobs:
       # docs-src/schemas/*.md is generated from the built registries; fail if it is stale.
       - run: pnpm docs:check
       - run: pnpm lint
+      # Source bundles are part of `pnpm verify`, the release gate; CI runs the same checks.
+      - run: pnpm source:check
       - run: pnpm audit:prod
 
   docs-site:
@@ -58,9 +60,11 @@ jobs:
       # Kernel unit tests include the deterministic replay-hash suite. `pretest:unit` builds first.
       - run: pnpm test:unit
 
-  smoke:
-    # Proves the real agent loop works end to end: scaffold an experience, then validate +
-    # simulate + assert through the published `molen` CLI (a scene WITH entities + commands).
+  packed:
+    # What a user gets from npm: pack the release tarballs (with the release's manifest and
+    # content checks), install them with npm into a fresh project beside the newest three.js the
+    # peer range allows, import every entry point, run the installed CLI's scaffold loop, and read
+    # content packs with the packages. See scripts/smoke-packed.mjs.
     runs-on: ubuntu-latest
     needs: check
     steps:
@@ -72,13 +76,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r build
-      - name: Scaffold + run the headless loop
-        run: |
-          CLI="$GITHUB_WORKSPACE/packages/tooling/dist/cli.mjs"
-          node "$CLI" new smoke-demo --dir /tmp
-          cd /tmp/smoke-demo
-          node "$CLI" validate scenes/main.scene.json
-          node "$CLI" sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+      - run: pnpm smoke:packed
 
   golden:
     runs-on: ubuntu-24.04

@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { checkTarballEntries, tarballEntries } from './check-package-contents.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = 'https://registry.npmjs.org';
@@ -150,6 +151,10 @@ export function packRelease(packages, version, root = ROOT) {
       }),
     );
     checkPackedManifest(packed, version, names);
+    const content = checkTarballEntries(packed.name, tarballEntries(archive), dirname(item.path));
+    if (content.length > 0) {
+      throw new Error(`${packed.name} would publish content:\n  ${content.join('\n  ')}`);
+    }
     process.stdout.write(`Packed and validated ${packed.name}@${version}.\n`);
     return { ...item, archive };
   });

@@ -23,6 +23,6 @@ export type { ResolvedMaterialSet } from './client/materials';
 export { createResolvedMaterialSet, createVertexColorMaterialSet } from './client/materials';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';
-export { loadStylePack } from './client/stylepack-loader';
+export { loadStylePack, withStylePackDocuments } from './client/stylepack-loader';
 export type { WorldgenMaterialSet } from './client/upload';
 export { buffersToObject3D, disposeWorldgenObject } from './client/upload';

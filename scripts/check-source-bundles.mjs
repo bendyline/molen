@@ -27,7 +27,8 @@ async function discover(directory) {
   }
 }
 
-for (const base of ['assets', 'examples', 'packages']) await discover(resolve(root, base));
+for (const base of ['assets', 'content', 'examples', 'packages'])
+  await discover(resolve(root, base));
 
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const listedPaths = (manifest) => [
@@ -59,10 +60,13 @@ async function projectRoot(directory) {
   let current = directory;
   let packageRoot;
   while (current.startsWith(root)) {
-    try {
-      await access(resolve(current, 'project.json'));
-      return current;
-    } catch {}
+    // A bundle's outputs are relative to the project or content pack that owns it.
+    for (const marker of ['project.json', 'molen-pack.source.json']) {
+      try {
+        await access(resolve(current, marker));
+        return current;
+      } catch {}
+    }
     try {
       await access(resolve(current, 'package.json'));
       packageRoot ??= current;

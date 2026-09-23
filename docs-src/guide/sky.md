@@ -114,8 +114,9 @@ applyEnvironment(renderer, {
 
 Directions must be nonzero; their length is ignored. The Moon's terminator follows the Sun's
 direction. Omit `moonBody` for a moonless world. `starRotationDeg` is an XYZ Euler rotation in
-degrees. The default custom sky reuses the Earth catalog's pattern; low-level `new SkyVisual(data,
-{ stars })` accepts an authored star list with `direction`, `magnitude`, and optional hex `color`.
+degrees. A custom sky uses whatever star catalog the renderer has, rotated this way: the Earth
+catalog's pattern, or an authored list. Low-level `new SkyVisual(data, { stars })` accepts an
+authored star list with `direction`, `magnitude`, and optional hex `color`.
 Attach its `lights` group to the world scene, call `update(seconds)` and `prepareCamera(camera)`,
 and render its `scene`/`camera` as a background pass before your scene. Dispose it when removed.
 
@@ -130,6 +131,23 @@ geometry; sky colors and lights do not configure it. The background has its own 
 range, so it stays stable through floating-origin rebases, distant terrain and reversed depth.
 Orthographic views use a 60° perspective sky oriented along the orthographic camera's view.
 
+## The star catalog is content
+
+No package ships star data. The Earth catalog is the `molen.sky` content pack (source
+`content/sky/`): `stars.bin`, 8,404 stars in the 50 KB `molen/stars@1` binary format. Load it
+once and hand it to the renderer; until then skies have no stars.
+
+```ts
+import { createClient, decodeStarCatalog } from '@bendyline/molen-client';
+import { openPack } from '@bendyline/molen-pack';
+
+const sky = await openPack('/packs/molen.sky.zip'); // wherever the app hosts it
+const stars = decodeStarCatalog(await sky.readBytes('stars.bin'));
+const client = await createClient(link, { stars }); // or later: client.renderer.setStarCatalog(stars)
+```
+
+`setStarCatalog` applies to the current sky at once and to every later one.
+
 ## Accuracy, sources and scope
 
 The supported UTC date interval is 1900–2100. Sun and Moon positions use compact orbital
@@ -142,15 +160,16 @@ hemispheres, poles, solstices, equinox, phase changes, and the date-range endpoi
 tolerances are 0.03° for the Sun and 0.15° for the Moon; these are fixture tolerances, not a
 guaranteed error bound over the entire interval.
 
-The bundled 8,404 stars through visual magnitude 6.5 are numerical position/photometry records
+The `molen.sky` pack's 8,404 stars through visual magnitude 6.5 are numerical position/photometry records
 from **Hoffleit, D. & Warren, W. H. Jr. (1991), Bright Star Catalogue, 5th Revised Edition
 (Preliminary Version)**, [CDS V/50](https://cdsarc.cds.unistra.fr/ftp/V/50/), also described by
 [NASA HEASARC](https://heasarc.gsfc.nasa.gov/W3Browse/star-catalog/bsc5p.html).
 The default magnitude cutoff is 6. Stellar colors approximate B−V; visual splat sizes are
 exaggerated for visibility. J2000 coordinates receive precession and rotate with local sidereal
-time. Proper motion, variability, stellar parallax and nutation are omitted. Regenerate the
-numeric catalog with `packages/client/scripts/generate-star-catalog.mjs /path/to/catalog.gz`;
-the generated header records its input checksum.
+time. Proper motion, variability, stellar parallax and nutation are omitted. Positions are
+quantized to about 0.005° and magnitudes to 0.04. Regenerate `content/sky/stars.bin` with
+`node packages/client/scripts/generate-star-catalog.mjs /path/to/catalog.gz`; the pack's NOTICE
+records the input checksum.
 
 No atmospheric refraction, horizon dip, terrain horizon calculation, eclipses, planetary bodies,
 Milky Way texture, lunar libration or photographic lunar map are modeled. The procedural lunar

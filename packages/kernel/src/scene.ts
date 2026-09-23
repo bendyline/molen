@@ -2,6 +2,7 @@ import {
   blockingIssues,
   type ComponentMap,
   type ComponentRegistry,
+  type ContentIdentity,
   commandPayloadValidator,
   createComponentRegistry,
   formatIssues,
@@ -36,7 +37,11 @@ export { resolveEntityComponents, resolvePrefab } from '@bendyline/molen-schema'
  */
 export function createWorldFromScene(
   manifest: SceneManifest,
-  opts?: { devFreeze?: boolean; validateSpawn?: boolean } & SceneResolveOptions,
+  opts?: {
+    devFreeze?: boolean;
+    validateSpawn?: boolean;
+    content?: ContentIdentity;
+  } & SceneResolveOptions,
 ): World {
   const vocabulary = createComponentRegistry(manifest.components ?? {}, {
     base: opts?.registry,
@@ -52,6 +57,7 @@ export function createWorldFromScene(
     lateCommands: manifest.lateCommands,
     ...(opts?.devFreeze !== undefined ? { devFreeze: opts.devFreeze } : {}),
     ...(opts?.validateSpawn !== undefined ? { validateSpawn: opts.validateSpawn } : {}),
+    ...(opts?.content !== undefined ? { content: opts.content } : {}),
   });
   if (opts?.gameplay !== false) installGameplay(world);
   // Same-package physics installs automatically; rapier (a separate WASM package) is wired by
@@ -105,6 +111,11 @@ export type WorldSetup = (world: World, manifest: SceneManifest) => void;
 export interface BuildWorldOptions extends SceneResolveOptions {
   devFreeze?: boolean;
   validateSpawn?: boolean;
+  /**
+   * Which content the world is built from (see ContentIdentity), e.g. a type library's hash.
+   * Recorded in keyframes and replays next to the state hash, never inside it.
+   */
+  content?: ContentIdentity;
   /**
    * Physics plugin hook (e.g. rapier), run after the data-declared systems and before `setup`.
    * May return script-api extension namespaces (`{ physics: rapierScriptApi(handle) }`).

@@ -14,7 +14,7 @@ npm i @bendyline/molen-figures
 
 Node >= 22.13, ESM only. There is deliberately **no `.` export**: import
 `@bendyline/molen-figures/kernel` or `@bendyline/molen-figures/client`. The client half needs the
-optional peers `three` (pinned to exactly `0.184.0`) and `@bendyline/molen-client`; the kernel
+optional peers `three` (`>=0.184.0 <0.187.0`) and `@bendyline/molen-client`; the kernel
 half needs neither, and runs in a Worker and in Node.
 
 ## Use

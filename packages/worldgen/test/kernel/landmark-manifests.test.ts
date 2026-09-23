@@ -3,13 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { validateByKind } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import { ModelLibrary } from '../../src/client/instanced-models';
-import { LANDMARK_CATALOG, LANDMARK_DEFINITIONS } from '../../src/kernel/landmark-catalog';
+import { resolveLandmarkCatalogDocuments } from '../../src/kernel/landmark-docs';
 import { generateLandmarkModel } from '../../src/kernel/landmark-models';
-import {
-  registerLandmarkSchemas,
-  resolveLandmarkCatalogDocuments,
-} from '../../src/kernel/landmark-schema';
-import { BUILTIN_MODELS } from '../../src/kernel/schema-common';
+import { registerLandmarkSchemas } from '../../src/kernel/landmark-schema';
+import { LANDMARK_DEFINITIONS, LANDMARK_DOCS } from '../helpers/content';
 
 registerLandmarkSchemas();
 
@@ -20,7 +17,7 @@ describe('external landmark manifests', () => {
     ) as Record<string, string>;
     for (const [key, expected] of Object.entries(hashes)) {
       const [id, tier] = key.split('@');
-      const mesh = generateLandmarkModel(id ?? '', Number(tier) as 0 | 1 | 2);
+      const mesh = generateLandmarkModel(id ?? '', LANDMARK_DEFINITIONS, Number(tier) as 0 | 1 | 2);
       if (!mesh) throw new Error(`Missing model ${id}`);
       const hash = createHash('sha256');
       for (const a of [mesh.positions, mesh.normals, mesh.uvs, mesh.colors, mesh.indices])
@@ -29,14 +26,16 @@ describe('external landmark manifests', () => {
       expect(hash.digest('hex'), key).toBe(expected);
     }
   });
-  it('loads all referenced files and derives builtin registrations from the catalog', async () => {
-    const defs = await resolveLandmarkCatalogDocuments(LANDMARK_CATALOG, async (path) =>
+  it('loads all referenced files through the catalog', async () => {
+    const defs = await resolveLandmarkCatalogDocuments(LANDMARK_DOCS.catalog, async (path) =>
       JSON.parse(
-        await readFile(new URL(`../../packs/default/landmarks/${path}`, import.meta.url), 'utf8'),
+        await readFile(
+          new URL(`../../../../content/worldgen/landmarks/${path}`, import.meta.url),
+          'utf8',
+        ),
       ),
     );
     expect(defs).toEqual(LANDMARK_DEFINITIONS);
-    for (const id of Object.keys(defs)) expect(BUILTIN_MODELS).toContain(`builtin:${id}`);
   });
   it('accepts a new data-only sign in the kernel and model loader without a switch case', async () => {
     const definition = { ...LANDMARK_DEFINITIONS['sign.grocery'], id: 'sign.testshop' };
@@ -48,8 +47,8 @@ describe('external landmark manifests', () => {
       },
       async () => definition,
     );
-    expect(generateLandmarkModel('sign.testshop', 0, defs)?.triangleCount).toBeGreaterThan(0);
-    expect(generateLandmarkModel('sign.testshop')).toBeUndefined();
+    expect(generateLandmarkModel('sign.testshop', defs)?.triangleCount).toBeGreaterThan(0);
+    expect(generateLandmarkModel('sign.testshop', LANDMARK_DEFINITIONS)).toBeUndefined();
     const library = new ModelLibrary(undefined, defs);
     try {
       expect((await library.prepare('builtin:sign.testshop')).bounds.isEmpty()).toBe(false);
@@ -66,13 +65,13 @@ describe('external landmark manifests', () => {
     ).toBe(false);
     await expect(
       resolveLandmarkCatalogDocuments(
-        { ...LANDMARK_CATALOG, models: { bench: '../outside.json' } },
+        { ...(LANDMARK_DOCS.catalog as object), models: { bench: '../outside.json' } },
         async () => LANDMARK_DEFINITIONS.bench,
       ),
     ).rejects.toThrow();
     await expect(
       resolveLandmarkCatalogDocuments(
-        { ...LANDMARK_CATALOG, models: { bench: 'bench.json' } },
+        { ...(LANDMARK_DOCS.catalog as object), models: { bench: 'bench.json' } },
         async () => LANDMARK_DEFINITIONS.charger,
       ),
     ).rejects.toThrow('does not match');

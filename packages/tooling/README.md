@@ -26,18 +26,18 @@ The inner loop. Each step prints structured, fixable text and exits non-zero on 
 composes into CI or an agent's turn:
 
 ```sh
-molen new my-experience && cd my-experience
-npm install                          # the scaffold lists typescript as a devDependency
+npx @bendyline/molen-tooling new my-experience && cd my-experience
+npm install                          # the scaffold lists this CLI and typescript as devDependencies
 
-molen validate scenes/main.scene.json
-molen scripts check
-molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
-molen shot main --ticks 30 --out shot.png
+npx molen validate scenes/main.scene.json
+npx molen scripts check
+npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+npx molen shot main --ticks 30 --out shot.png
 ```
 
 ```
 tick: 30
-hash: sha256:15b8fc099b055ac0d262bbc518e3099c15f9c6f845ae9ec31fee4b8d5ba8ade9
+hash: sha256:2fda347ff2efaa7f9110d4f89f3131b12326c45d08b8485052617f3fb29ba657
 events: 0
 physics: kinematics (cross-platform deterministic)
 ✓ 4/4 assertions passed
@@ -50,11 +50,23 @@ compares a recorded command log tick by tick and names the first tick that diver
 
 | Surface | For |
 |---|---|
-| the `molen` bin | 37 operations, including `validate`, `sim run`, `sim watch`, `shot`, `frames`, `drive`, `play`, `replay`, `diff`, `new`, `asset import`/`inspect`/`pack`/`stage`/`shot`, `project info`, `types list`/`check`/`reserve`/`gen`/`test`, `scripts check`, `material bake`, `uvpaint apply`, `worldgen preview`/`bake`/`stats`, `figure preview` |
+| the `molen` bin | 42 operations, including `validate`, `sim run`, `sim watch`, `shot`, `frames`, `drive`, `play`, `replay`, `diff`, `new`, `asset import`/`inspect`/`pack`/`stage`/`shot`, `pack build`/`inspect`/`verify`/`extract`/`fetch`, `project info`, `types list`/`check`/`reserve`/`gen`/`test`, `scripts check`, `material bake`, `uvpaint apply`, `worldgen preview`/`bake`/`stats`, `figure preview` |
 | `molen mcp` | every operation but the file watcher, as MCP tools over stdio; `drive_scene`, `play_experience`, `worldgen_preview` and `figure_preview` return frames as images |
 | `molen describe [op]` | the machine-readable contract for every operation, CLI flags and MCP tool name side by side — the surface to build an agent against |
 | discovery, no source reading | `molen schema list`/`get`, `molen components`/`component <name>`, `molen docs search <q>` over the engine docs bundle shipped inside this package |
 | `.` (the ops library) | every op as a plain async `(input) => output`: `validateAsset`, `runSimulation`, `screenshotScene`, `runReplayFile`, `driveScene`, `playExperience`, `rasterizeMaterial`, `checkScripts`, `generateTypes`, `importAsset`, `scaffoldExperience`, … plus `OPS_CATALOG`, and `compareGolden`/`diffImages` for your own image tests |
+
+Ops that need content (entity types, a style pack, a region atlas) read it from content packs,
+never from npm packages: the project's `project.json` `packs` list (paths or pinned URLs), then
+`MOLEN_PACKS`, plus `--pack` on the worldgen commands. URL packs are cached in
+`MOLEN_CACHE_DIR`, and `MOLEN_OFFLINE=1` never fetches. `molen pack build` makes a pack from a
+directory with a `molen-pack.source.json`.
+
+The CLI and the MCP server act with the authority of the process that runs them. Path arguments
+are trusted user intent, read, written or imported as given wherever they point, and a scene's
+scripts and a project's setup module run in-process. To limit what an agent can reach, run the
+server in a process whose own permissions fit; see
+[SECURITY.md](https://github.com/bendyline/molen/blob/main/SECURITY.md).
 
 Rendering ops (`shot`, `frames`, `drive`, `play`, `asset shot`, `figure preview`,
 `worldgen preview`) render in headless Chromium over a software-rasterized WebGL context, so a

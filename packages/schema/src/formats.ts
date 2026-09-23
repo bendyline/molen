@@ -16,6 +16,7 @@ import {
   type ValidationResult,
 } from './issues';
 import type { JsonValue } from './json';
+import type { PackIndex, PackManifest, PackSourceConfig } from './pack';
 import { unsafePatterns } from './regex-safety';
 import { getLegacySchema, getSchema, registerSchema, schemaKinds } from './registry';
 import { type ResolvedTypes, resolveEntityComponents, resolvePrefab } from './scene-resolve';
@@ -515,8 +516,27 @@ const deltaSchema = z.strictObject({
     .default([]),
 });
 
+/** Which content a world was built from, by domain (see ContentIdentity). */
+const contentIdentitySchema = z
+  .record(
+    z.string().min(1),
+    z.strictObject({
+      hash: z.string().min(1).describe("Hash of the domain's content."),
+      packs: z
+        .array(z.string().min(1))
+        .describe('Packs the content came from, as "id@version".')
+        .optional(),
+    }),
+  )
+  .describe('Content the world was built from, by domain (e.g. types, places).');
+
 const replayFields = {
   format: z.literal('molen/replay@1').describe("Format envelope; always 'molen/replay@1'."),
+  content: contentIdentitySchema
+    .describe(
+      'Content the replay was recorded with; replaying against different content fails before the first tick.',
+    )
+    .optional(),
   engine: z.string().min(1).describe('Engine version the fixture was recorded with.'),
   seed: seedValue
     .describe('Seed override (string or number; defaults to the scene seed).')
@@ -1131,6 +1151,34 @@ const projectSchema = z.strictObject({
       'Project-relative path of the setup module (setup.mjs) exporting setup(world, manifest).',
     )
     .optional(),
+  packs: z
+    .array(
+      z.strictObject({
+        id: namespaceId.describe("Pack id (the pack manifest's id)."),
+        source: z
+          .union([
+            // Unlike project files, a pack may sit outside the project (a shared content/
+            // directory, a vendored copy): relative paths may climb, but stay portable.
+            z
+              .string()
+              .min(1)
+              .regex(/^(?![A-Za-z]:|[/\\])(?!.*\\).+$/),
+            z.string().regex(/^https?:\/\/\S+$/),
+          ])
+          .describe(
+            'Pack file or source directory relative to project.json (it may be outside the project), or an http(s) URL.',
+          ),
+        contentHash: z
+          .string()
+          .regex(/^sha256:[0-9a-f]{64}$/)
+          .describe("Expected pack contentHash; loading fails when the pack's differs.")
+          .optional(),
+      }),
+    )
+    .describe(
+      'Content packs the project loads, in order. When two packs provide the same id, the later one wins.',
+    )
+    .default([]),
   /** Custom component vocabulary shared by every scene in the project. */
   components: z
     .record(customComponentName, customComponentDeclSchema)
@@ -1292,6 +1340,9 @@ export interface SchemaKindMap {
   types: TypesDoc;
   asset: AssetSidecar;
   'source-bundle': SourceBundle;
+  pack: PackManifest;
+  'pack-source': PackSourceConfig;
+  'pack-index': PackIndex;
 }
 
 export type SchemaKind = keyof SchemaKindMap;

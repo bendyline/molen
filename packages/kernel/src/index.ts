@@ -16,6 +16,7 @@ export {
   Lifetime,
   Transform,
 } from './component';
+export { CONTENT_KEY, contentDrift, keyframeContent } from './content';
 export type { DMath } from './dmath';
 export { dmath } from './dmath';
 export type { Experience, ExperienceDef } from './experience';
@@ -112,6 +113,7 @@ export {
   scriptsHardened,
 } from './scripting';
 export {
+  type ApplyKeyframeOptions,
   applyDelta,
   applyKeyframeTo,
   keyframeStateFormat,
@@ -120,6 +122,11 @@ export {
   takeKeyframe,
   worldFromKeyframe,
 } from './snapshot';
+export {
+  createTypeLibrary,
+  type TypeLibrary,
+  type TypeLibraryOptions,
+} from './type-library';
 export { ENGINE_VERSION, STATE_FORMAT, STATE_FORMAT_KEY } from './version';
 export type { AtmosphereSample } from './weather';
 export { sampleAtmosphere, Weather, weatherOf } from './weather';

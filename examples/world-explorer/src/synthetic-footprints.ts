@@ -11,6 +11,7 @@ import {
   type TerrainSemanticTile,
   WEB_MERCATOR_HALF_WORLD_METERS,
 } from '@bendyline/molen-terrain/kernel';
+import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import { businessShowcaseTile } from './business-showcase';
 import { houseShowcaseTile } from './house-showcase';
 import { parkingShowcaseTile } from './parking-showcase';
@@ -232,7 +233,8 @@ function tileWorldSize(address: TerrainPyramidTileAddress): number {
 }
 
 export interface SyntheticFeatureTileOptions {
-  stores?: boolean;
+  /** Lay out the store review block from this business catalog and its landmark signs. */
+  stores?: PlacesContent;
   houses?: boolean;
   parking?: boolean;
   /** Lay one building of each shape class along the road instead of the hashed spread. */
@@ -246,7 +248,7 @@ export function syntheticFeatureTile(
 ): TerrainSemanticTile {
   if (options.parking) return parkingShowcaseTile(tileWorldSize(address));
   if (options.houses) return houseShowcaseTile(tileWorldSize(address));
-  if (options.stores) return businessShowcaseTile(tileWorldSize(address));
+  if (options.stores) return businessShowcaseTile(tileWorldSize(address), options.stores);
   const tile = createEmptyTerrainSemanticTile();
   const lineup = options.lineup === true;
   if (!lineup && ((address.z % 3) + 3) % 3 !== 0) return tile;

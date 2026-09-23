@@ -6,7 +6,6 @@
 
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { LANDMARK_DEFINITIONS } from '../kernel/landmark-catalog';
 import { generateLandmarkModel } from '../kernel/landmark-models';
 import type { LandmarkDefinitions } from '../kernel/landmark-types';
 import { packedColorAttribute } from './color-attribute';
@@ -80,8 +79,8 @@ function builtinGeometry(
 ): THREE.BufferGeometry | undefined {
   const landmark = generateLandmarkModel(
     name,
-    coarse === 'distant' ? 2 : coarse ? 1 : 0,
     definitions,
+    coarse === 'distant' ? 2 : coarse ? 1 : 0,
   );
   if (landmark !== undefined) {
     const geometry = new THREE.BufferGeometry();
@@ -130,7 +129,8 @@ export class ModelLibrary {
 
   constructor(
     private readonly loadModel: ModelLoader | undefined = undefined,
-    private readonly landmarks: LandmarkDefinitions = LANDMARK_DEFINITIONS,
+    /** Landmark models served as `builtin:<id>`; none unless the host loads a landmark library. */
+    private readonly landmarks: LandmarkDefinitions = {},
   ) {
     this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
     this.material.name = 'worldgen:models';

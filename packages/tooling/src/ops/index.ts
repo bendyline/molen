@@ -77,6 +77,26 @@ export type {
 export { previewFigure } from './figure-preview';
 export type { GenerateTypesInput, GenerateTypesOutput } from './generate-types';
 export { generateTypes, renderTypesModule } from './generate-types';
+export type {
+  BuildPackInput,
+  BuildPackOutput,
+  ExtractPackInput,
+  ExtractPackOutput,
+  FetchedPack,
+  FetchPackInput,
+  FetchPackOutput,
+  InspectPackInput,
+  InspectPackOutput,
+  VerifyPackIssue,
+  VerifyPackOutput,
+} from './pack';
+export {
+  buildContentPack,
+  extractContentPack,
+  fetchContentPack,
+  inspectContentPack,
+  verifyContentPack,
+} from './pack';
 export type { NodePmtilesArchive } from './pmtiles-node';
 export { NodeFileRangeSource, openNodePmtiles } from './pmtiles-node';
 export type {
@@ -127,8 +147,7 @@ export { bakeWorldgen, glbMaterialsForBuffers } from './worldgen-bake';
 export type { LineupShape, LoadedStylePackFiles } from './worldgen-pack';
 export {
   batchInputFromDoc,
-  defaultRegionAtlasPath,
-  defaultStylePackPath,
+  contentPacksFor,
   LINEUP_SHAPES,
   lineupBatchDoc,
   loadBatchDoc,

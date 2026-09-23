@@ -70,6 +70,13 @@ ground field (`installTerrain` on `@bendyline/molen-kernel/terrain`), so:
   `raycast(origin, dir, maxDist)` (a ray-march against the surface);
 - captures render the same heightmap under the entities.
 
+`raycast` is sampled: it marches in fixed steps (`installTerrain`'s `rayStep`, default half the
+field's cell size), then bisects the first above-to-below crossing, including a final partial step
+and rays shorter than one step. The hit lies on the ray at the reported distance, and an origin
+already below the surface hits at distance 0. Invalid input, or a ray that needs more than
+`maxRaySteps` (default 4096) steps, throws instead of reporting a false miss. Choose a step
+suited to the terrain's feature size.
+
 In your own host, `buildWorld(manifest, setup, { terrain: (world) => ({ terrain:
 terrainScriptApi(installTerrain(world, heightfield)) }) })` does the same. The kernel's
 `GroundField` contract is structural (`sampleHeight` + `normalAt`), so any height source can be

@@ -1,5 +1,4 @@
 import { readFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
@@ -7,11 +6,13 @@ import { createInstancedPlacements, unitBoxGeometry } from '../../src/client/ins
 import { ModelLibrary, mergeSceneGeometry } from '../../src/client/instanced-models';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
 
-const require = createRequire(import.meta.url);
-const FIR = '@bendyline/molen-entities/assets/tree/conifer/fir/model.glb';
+const FIR = new URL(
+  '../../../../content/entities/assets/tree/conifer/fir/model.glb',
+  import.meta.url,
+);
 
-async function loadGlb(specifier: string): Promise<THREE.Group> {
-  const bytes = await readFile(require.resolve(specifier));
+async function loadGlb(specifier: URL): Promise<THREE.Group> {
+  const bytes = await readFile(specifier);
   const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
   const gltf = await new GLTFLoader().parseAsync(buffer, '');
   return gltf.scene;

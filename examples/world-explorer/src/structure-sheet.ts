@@ -1,16 +1,10 @@
-import {
-  AssetCache,
-  createGltfLoader,
-  createUrlAssetProvider,
-  MaterialResolver,
-} from '@bendyline/molen-client';
+import { AssetCache, createGltfLoader, MaterialResolver } from '@bendyline/molen-client';
 import {
   buffersToObject3D,
   createInstancedPlacements,
   createResolvedMaterialSet,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
-  loadStylePack,
   ModelLibrary,
   unitBoxGeometry,
 } from '@bendyline/molen-worldgen/client';
@@ -20,6 +14,7 @@ import {
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
+import { loadExplorerContent } from './content';
 
 interface Entry {
   style: string;
@@ -119,20 +114,23 @@ function requestFor(
 }
 
 async function main(): Promise<void> {
-  const catalogResponse = await fetch(
-    new URL('worldgen/default/structures/catalog.json', location.href),
+  const content = await loadExplorerContent(new URL('./', location.href), { styleId: 'default' });
+  if (content.worldgen === undefined) throw new Error(content.worldgenError ?? 'no style pack');
+  const catalog = await content.packs.readJson<Catalog>(
+    'pack:molen.worldgen.default/structures/catalog.json',
   );
-  if (!catalogResponse.ok) throw new Error(`Structure catalog: HTTP ${catalogResponse.status}`);
-  const catalog = (await catalogResponse.json()) as Catalog;
   if (catalog.entries.length !== 120)
     throw new Error(`Expected120 catalog entries; got ${catalog.entries.length}`);
-  const loaded = await loadStylePack(new URL('worldgen/default/', location.href));
-  const provider = createUrlAssetProvider(loaded.baseUrl, loaded.assetIndex);
+  const loaded = { pack: content.worldgen.pack };
+  const provider = content.assets;
   const resolver = new MaterialResolver(provider);
   const materials = createResolvedMaterialSet(resolver);
   const flat = createVertexColorMaterialSet();
   const assets = new AssetCache(provider, createGltfLoader());
-  const models = new ModelLibrary(async (ref) => (await assets.instance(ref)).scene);
+  const models = new ModelLibrary(
+    async (ref) => (await assets.instance(ref)).scene,
+    content.worldgen.places.landmarks.definitions,
+  );
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(1);
   renderer.setSize(640, 440);

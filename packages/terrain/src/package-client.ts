@@ -20,7 +20,13 @@ import {
   wgs84ToWebMercator,
 } from './geospatial';
 import { Heightfield } from './heightfield';
-import type { TerrainPackageArchiveSource, TerrainPackageDescriptor } from './package-types';
+import type {
+  TerrainPackageArchiveSource,
+  TerrainPackageDescriptor,
+  TerrainPackageSemanticContent,
+  TerrainSemanticTileDecoder,
+  TerrainTileArchive,
+} from './package-types';
 import { decodePng16, type Gray16 } from './png16';
 import {
   createTerrainPyramidStream,
@@ -47,27 +53,6 @@ import {
   heightfieldTileFromPng,
   type TerrainTileAddress,
 } from './tile';
-
-export interface TerrainArchiveTile {
-  data: ArrayBuffer;
-}
-
-export interface TerrainArchiveHeader {
-  minZoom: number;
-  maxZoom: number;
-  tileType?: number;
-}
-
-/** Small archive seam implemented by PMTiles and easy to fake in tests/native hosts. */
-export interface TerrainTileArchive {
-  getZxy(
-    level: number,
-    x: number,
-    y: number,
-    signal?: AbortSignal,
-  ): Promise<TerrainArchiveTile | undefined>;
-  getHeader?(): Promise<TerrainArchiveHeader>;
-}
 
 export interface OpenTerrainPackageOptions {
   /** Fixed PMTiles detail level used by this stream instance. */
@@ -149,25 +134,6 @@ export interface TerrainPackagePyramidHeightSourceOptions {
   /** Bounded LRU of decoded archive tiles shared by exact and descendant fallback requests. */
   maxDecodedArchiveTiles?: number;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
-}
-
-export type TerrainPackageSemanticContent = 'landcover' | 'features';
-
-export interface TerrainSemanticTileDecodeContext {
-  /** Logical XYZ-style address used by the terrain renderer (+Z south). */
-  address: TerrainPyramidTileAddress;
-  content: TerrainPackageSemanticContent | 'all';
-  encoding: 'mvt' | 'png8';
-  /** Source layer names declared by terrain-package.json. */
-  layers: readonly string[];
-}
-
-/** Source-format adapter implemented by a pipeline/app-specific MVT or PNG8 decoder. */
-export interface TerrainSemanticTileDecoder {
-  decode(
-    data: Uint8Array,
-    context: TerrainSemanticTileDecodeContext,
-  ): TerrainSemanticTile | Promise<TerrainSemanticTile>;
 }
 
 export interface TerrainPackageSemanticSource {

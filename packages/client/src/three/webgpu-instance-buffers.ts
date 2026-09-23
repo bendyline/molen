@@ -7,8 +7,10 @@ interface InstanceBinding {
 }
 
 /**
- * Pinned Three r184 adapter. Instance matrices that fit a UBO are uploaded unconditionally by
- * NodeUniformBuffer, even though InstancedBufferAttribute already supplies change versions.
+ * Three r184–r186 adapter (the client's three peer range); it patches the WebGPU backend's
+ * `updateBinding`, so re-check that and `NodeUniformBuffer` before widening the range. Instance
+ * matrices that fit a UBO are uploaded unconditionally by NodeUniformBuffer, even though
+ * InstancedBufferAttribute already supplies change versions.
  * Keep the existing shader/binding layout, and skip only a known, unchanged matrix UBO upload.
  * Other uniforms (camera, materials, time), initial uploads and normal needsUpdate writes pass through.
  */

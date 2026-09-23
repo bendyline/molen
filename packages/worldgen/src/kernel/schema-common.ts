@@ -1,4 +1,3 @@
-import { rawLandmarkDocuments } from './landmark-manifests';
 /** Shared grammar for ids and references used by every worldgen format. */
 
 /** Namespaced dotted id, e.g. `molen.worldgen.pnw.house`. */
@@ -16,9 +15,13 @@ export const MATERIAL_REF_RE: RegExp = /^(palette:#[0-9a-fA-F]{6}|matgraph:\S+|p
 export const MODEL_REF_RE: RegExp =
   /^(builtin:[a-z][a-z0-9_.]*|[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+)$/;
 
+/**
+ * The procedural builtin models. Landmarks (`builtin:bench`, `builtin:sign.grocery`) are builtins
+ * too, but they come from the landmark library the host loads, so they are checked when a model
+ * library prepares them rather than here.
+ */
 export const BUILTIN_MODELS: readonly string[] = [
   'builtin:box',
-  ...Object.keys(rawLandmarkDocuments).map((id) => `builtin:${id}`),
   'builtin:tree.mapped.broadleaf',
   'builtin:tree.mapped.needleleaf',
   'builtin:tree.conifer',

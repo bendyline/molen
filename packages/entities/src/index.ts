@@ -1,11 +1,13 @@
-import type { AircraftData, ComponentMap, VehicleData } from '@bendyline/molen-schema';
-import aircraftTypes from '../types/aircraft.types.json' with { type: 'json' };
-import entityTypes from '../types/entities.types.json' with { type: 'json' };
-import vehicleTypes from '../types/vehicle.types.json' with { type: 'json' };
+/**
+ * Ids and small helpers for the `molen.entities` content pack. The models and type documents are
+ * content, not code: load the pack (or list it in a project's `packs`) and pass its type library.
+ */
+import type { TypeLibrary } from '@bendyline/molen-kernel/content';
+import type { AircraftData, VehicleData } from '@bendyline/molen-schema';
 
 export const MOLEN_AIRCRAFT_ENTITY_IDS = [
   'molen.entities.aircraft.p51d',
-  'molen.entities.aircraft.h500md',
+  'molen.entities.aircraft.oh6',
 ] as const;
 
 export const MOLEN_VEHICLE_ENTITY_IDS = [
@@ -19,7 +21,7 @@ export const MOLEN_VEHICLE_ENTITY_IDS = [
 export type MolenAircraftEntityId = (typeof MOLEN_AIRCRAFT_ENTITY_IDS)[number];
 export type MolenVehicleEntityId = (typeof MOLEN_VEHICLE_ENTITY_IDS)[number];
 
-/** Stable asset/type ids shipped by the Molen entities collection. */
+/** Stable asset/type ids of the `molen.entities` content pack. */
 export const MOLEN_ENTITY_IDS = [
   'molen.entities.tree.conifer.pine',
   'molen.entities.tree.conifer.fir',
@@ -28,7 +30,7 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.vegetation.shrub',
   'molen.entities.nature.boulder',
   'molen.entities.aircraft.p51d',
-  'molen.entities.aircraft.h500md',
+  'molen.entities.aircraft.oh6',
   'molen.entities.vehicle.compact',
   'molen.entities.vehicle.sedan',
   'molen.entities.vehicle.suv',
@@ -46,7 +48,7 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.vegetation.shrub': 'assets/vegetation/shrub/model.glb',
   'molen.entities.nature.boulder': 'assets/nature/boulder/model.glb',
   'molen.entities.aircraft.p51d': 'assets/molen/entities/aircraft/p51d/model.glb',
-  'molen.entities.aircraft.h500md': 'assets/molen/entities/aircraft/h500md/model.glb',
+  'molen.entities.aircraft.oh6': 'assets/molen/entities/aircraft/oh6/model.glb',
   'molen.entities.vehicle.compact': 'assets/molen/entities/vehicle/compact/model.glb',
   'molen.entities.vehicle.sedan': 'assets/molen/entities/vehicle/sedan/model.glb',
   'molen.entities.vehicle.suv': 'assets/molen/entities/vehicle/suv/model.glb',
@@ -54,63 +56,23 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.vehicle.van': 'assets/molen/entities/vehicle/van/model.glb',
 };
 
-interface RawTypeDef {
-  extends?: string;
-  components?: ComponentMap;
+/** Resolved aircraft data for one of the pack's aircraft, from a type library holding it. */
+export function molenAircraft(types: TypeLibrary, id: MolenAircraftEntityId): AircraftData {
+  return types.component<AircraftData>(id, 'aircraft');
 }
 
-const TYPE_DEFS: Record<string, RawTypeDef> = {
-  ...(entityTypes.types as Record<string, RawTypeDef>),
-  ...(aircraftTypes.types as Record<string, RawTypeDef>),
-  ...(vehicleTypes.types as Record<string, RawTypeDef>),
-};
-
-function mergeObjects(base: unknown, override: unknown): unknown {
-  if (
-    base !== null &&
-    override !== null &&
-    typeof base === 'object' &&
-    typeof override === 'object' &&
-    !Array.isArray(base) &&
-    !Array.isArray(override)
-  ) {
-    const merged = { ...(base as Record<string, unknown>) };
-    for (const [key, value] of Object.entries(override as Record<string, unknown>)) {
-      merged[key] = mergeObjects(merged[key], value);
-    }
-    return merged;
-  }
-  return override;
-}
-
-/** Resolve an entity's external type components, including inherited defaults. */
-export function getMolenEntityComponents(id: string, seen: string[] = []): ComponentMap {
-  if (seen.includes(id)) throw new Error(`entity type cycle: ${[...seen, id].join(' -> ')}`);
-  const def = TYPE_DEFS[id];
-  if (def === undefined) throw new Error(`unknown Molen entity type "${id}"`);
-  const base =
-    def.extends === undefined ? {} : getMolenEntityComponents(def.extends, [...seen, id]);
-  return mergeObjects(base, def.components ?? {}) as ComponentMap;
-}
-
-/** Fully resolved external aircraft component data for a concrete entity type. */
-export function getMolenAircraft(id: MolenAircraftEntityId): AircraftData {
-  return getMolenEntityComponents(id).aircraft as unknown as AircraftData;
-}
-
-/** Fully resolved external vehicle component data for a concrete entity type. */
-export function getMolenVehicle(id: MolenVehicleEntityId): VehicleData {
-  return getMolenEntityComponents(id).vehicle as unknown as VehicleData;
+/** Resolved vehicle data for one of the pack's vehicles, from a type library holding it. */
+export function molenVehicle(types: TypeLibrary, id: MolenVehicleEntityId): VehicleData {
+  return types.component<VehicleData>(id, 'vehicle');
 }
 
 /**
- * Build the existing molen client `assets.index` mapping for this library.
- *
- * `baseUrl` should point at the published package root (or a copied static directory). When used
- * directly from the package, the default resolves beside `dist/` into the shipped asset tree.
+ * Build the molen client `assets.index` mapping for this library from a directory holding the
+ * `molen.entities` content pack's files (`molen pack extract`), served as static files. This
+ * package ships no models; with the pack itself, use its asset provider instead.
  */
 export function createMolenEntitiesAssetIndex(
-  baseUrl: string | URL = new URL('../', import.meta.url),
+  baseUrl: string | URL,
 ): Record<MolenEntityId, string> {
   return Object.fromEntries(
     MOLEN_ENTITY_IDS.map((id) => [id, new URL(MODEL_PATHS[id], baseUrl).href]),

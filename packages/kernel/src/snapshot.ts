@@ -1,5 +1,6 @@
 import type { ComponentMap, Delta, EntityId, JsonValue, Keyframe } from '@bendyline/molen-schema';
 import { cloneJson } from './clone';
+import { CONTENT_KEY, contentDrift, contentPlugin, keyframeContent } from './content';
 import { hashJson } from './hash';
 import { rngFromState } from './rng';
 import { ENGINE_VERSION, STATE_FORMAT, STATE_FORMAT_KEY } from './version';
@@ -37,8 +38,11 @@ export function takeKeyframe(world: World): Keyframe {
   const entities = captureEntities(world);
   const plugins = emptyRecord<JsonValue>();
   for (const [name, provider] of internal.snapshotProviders) plugins[name] = provider.save();
-  // Reserved key, written last so a plugin can never shadow it: the state format is what load
-  // compares, while `engine` below is metadata for humans and bug reports.
+  // Reserved keys, written last so a plugin can never shadow them: the state format is what load
+  // compares, while `engine` below is metadata for humans and bug reports. Content identity is
+  // recorded the same way; neither enters stateHash, which reads only snapshot providers.
+  const content = contentPlugin(world.content);
+  if (content !== undefined) plugins[CONTENT_KEY] = content;
   plugins[STATE_FORMAT_KEY] = STATE_FORMAT;
   const keyframe: Keyframe = {
     kind: 'keyframe',
@@ -67,12 +71,25 @@ export function keyframeStateFormat(keyframe: Keyframe): number {
   return typeof value === 'number' ? value : 1;
 }
 
+export interface ApplyKeyframeOptions {
+  /**
+   * Load even when the keyframe recorded different content than the world was built from
+   * (default false: that is an error naming the domain and both hashes).
+   */
+  allowContentDrift?: boolean;
+}
+
 /**
  * Load a keyframe's state into an existing world in place (replacing entities, RNG, tick, and
  * counter), keeping its registered systems/commands. The replay scrubber uses this to seek.
- * Acceptance is gated on the STATE_FORMAT generation, never on the engine version.
+ * Acceptance is gated on the STATE_FORMAT generation, never on the engine version, and on the
+ * content both sides recorded.
  */
-export function applyKeyframeTo(world: World, keyframe: Keyframe): void {
+export function applyKeyframeTo(
+  world: World,
+  keyframe: Keyframe,
+  options: ApplyKeyframeOptions = {},
+): void {
   const internal = world._internal();
   // Gate on the state format, not the package version: a patch release that changes nothing
   // about the simulation must not invalidate every save file and recorded replay.
@@ -84,6 +101,15 @@ export function applyKeyframeTo(world: World, keyframe: Keyframe): void {
   }
   if (keyframe.tickRate !== world.tickRate)
     throw new Error('keyframe tickRate does not match the target world');
+  const recorded = keyframeContent(keyframe);
+  if (recorded !== undefined && options.allowContentDrift !== true) {
+    const drift = contentDrift(recorded, world.content);
+    if (drift.length > 0) {
+      throw new Error(
+        `keyframe was saved with different content: ${drift.join('; ')}. Load the same packs, or pass allowContentDrift to load anyway.`,
+      );
+    }
+  }
   const order = keyframe.entityOrder ?? Object.keys(keyframe.entities);
   if (
     new Set(order).size !== order.length ||
@@ -136,10 +162,24 @@ export function applyKeyframeTo(world: World, keyframe: Keyframe): void {
   internal.clearDirty();
 }
 
-/** Reconstruct a world from a keyframe. Restores entities, RNG, tick, and entity counter. */
-export function worldFromKeyframe(keyframe: Keyframe, opts?: WorldOptions): World {
-  const world = new World({ tickRate: keyframe.tickRate, seed: keyframe.seed, ...opts });
-  applyKeyframeTo(world, keyframe);
+/**
+ * Reconstruct a world from a keyframe. Restores entities, RNG, tick, and entity counter. Without
+ * `opts.content`, the world takes the content identity the keyframe recorded.
+ */
+export function worldFromKeyframe(
+  keyframe: Keyframe,
+  opts?: WorldOptions & ApplyKeyframeOptions,
+): World {
+  const content = opts?.content ?? keyframeContent(keyframe);
+  const world = new World({
+    tickRate: keyframe.tickRate,
+    seed: keyframe.seed,
+    ...opts,
+    ...(content !== undefined ? { content } : {}),
+  });
+  applyKeyframeTo(world, keyframe, {
+    ...(opts?.allowContentDrift !== undefined ? { allowContentDrift: opts.allowContentDrift } : {}),
+  });
   return world;
 }
 

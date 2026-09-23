@@ -19,6 +19,7 @@ import {
 } from '@bendyline/molen-schema';
 import type { ArchStyleDoc } from './archstyle-types';
 import { anyClassMatches } from './classes';
+import type { InteriorCatalogDoc } from './interior-types';
 import type { ScatterDoc } from './scatter-types';
 import { registerWorldgenSchemas } from './schema';
 import { isUrlishRef, parseMaterialRef } from './schema-common';
@@ -39,6 +40,8 @@ export interface ResolvedStylePack {
   materials: Readonly<Record<string, 'matgraph' | 'pixelgrid'>>;
   /** Asset id to pack-relative sidecar path. */
   assets: Readonly<Record<string, string>>;
+  /** Layouts for enterable buildings; undefined when the pack has none. */
+  interiors?: InteriorCatalogDoc;
   warnings: string[];
 }
 
@@ -50,13 +53,37 @@ function failed(label: string, issues: ValidationIssue[]): Error {
   return new Error(formatIssues(label, issues));
 }
 
-async function readValidated<T>(
+/**
+ * Reads in flight at once. A pack references ~170 small documents, and over a network each read
+ * is a round trip, so reading them one at a time dominated pack load time.
+ */
+const READ_CONCURRENCY = 16;
+
+type ReadResult = { ok: true; doc: unknown } | { ok: false; error: unknown };
+
+/** Read every path with bounded concurrency; failures are kept per path, not thrown here. */
+async function readAll(
   readDoc: StylePackDocumentReader,
-  path: string,
-  kind: string,
-  label: string,
-): Promise<T> {
-  const doc = await readDoc(path);
+  paths: readonly string[],
+): Promise<Map<string, ReadResult>> {
+  const queue = [...new Set(paths)];
+  const results = new Map<string, ReadResult>();
+  let next = 0;
+  const worker = async (): Promise<void> => {
+    while (next < queue.length) {
+      const path = queue[next++] as string;
+      try {
+        results.set(path, { ok: true, doc: await readDoc(path) });
+      } catch (error) {
+        results.set(path, { ok: false, error });
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(READ_CONCURRENCY, queue.length) }, worker));
+  return results;
+}
+
+function validated<T>(doc: unknown, path: string, kind: string, label: string): T {
   const parsed = validateByKind(kind as never, doc);
   if (!parsed.ok) throw new Error(`${label} (${path}):\n${parsed.formatted}`);
   return parsed.value as T;
@@ -71,18 +98,32 @@ export async function resolveStylePackDocuments(
   const parsedRoot = validateByKind('stylepack' as never, rootDoc);
   if (!parsedRoot.ok) throw new Error(parsedRoot.formatted);
   const root = parsedRoot.value as StylePackDoc;
+  // Read everything up front, then validate in manifest order, so the result, its hash and the
+  // first error reported are the same as reading one document at a time.
+  const reads = await readAll(readDoc, [
+    ...Object.values(root.styles),
+    ...Object.values(root.scatter),
+    ...Object.values(root.materials),
+    ...Object.values(root.assets),
+    ...(root.interiors !== undefined ? [root.interiors] : []),
+  ]);
+  const read = (path: string): unknown => {
+    const result = reads.get(path) as ReadResult;
+    if (!result.ok) throw result.error;
+    return result.doc;
+  };
   const warnings: string[] = [];
   const archstyles: Record<string, ArchStyleDoc> = {};
   for (const [id, path] of Object.entries(root.styles)) {
-    archstyles[id] = await readValidated<ArchStyleDoc>(readDoc, path, 'archstyle', `style "${id}"`);
+    archstyles[id] = validated<ArchStyleDoc>(read(path), path, 'archstyle', `style "${id}"`);
   }
   const scatters: Record<string, ScatterDoc> = {};
   for (const [id, path] of Object.entries(root.scatter)) {
-    scatters[id] = await readValidated<ScatterDoc>(readDoc, path, 'scatter', `scatter "${id}"`);
+    scatters[id] = validated<ScatterDoc>(read(path), path, 'scatter', `scatter "${id}"`);
   }
   const materials: Record<string, 'matgraph' | 'pixelgrid'> = {};
   for (const [id, path] of Object.entries(root.materials)) {
-    const doc = await readDoc(path);
+    const doc = read(path);
     const kind = detectKind(doc);
     if (kind !== 'matgraph' && kind !== 'pixelgrid') {
       throw new Error(
@@ -99,21 +140,37 @@ export async function resolveStylePackDocuments(
   }
   const assets: Record<string, string> = {};
   for (const [id, path] of Object.entries(root.assets)) {
-    const sidecar = await readValidated<AssetSidecar>(readDoc, path, 'asset', `asset "${id}"`);
+    const sidecar = validated<AssetSidecar>(read(path), path, 'asset', `asset "${id}"`);
     if (sidecar.id !== id) {
       throw new Error(`asset "${id}" (${path}) declares id "${sidecar.id}"`);
     }
     assets[id] = path;
   }
+  const interiors =
+    root.interiors === undefined
+      ? undefined
+      : validated<InteriorCatalogDoc>(
+          read(root.interiors),
+          root.interiors,
+          'interior-catalog',
+          'interior catalog',
+        );
   const pack: ResolvedStylePack = {
     id: root.name,
     version: root.version,
-    hash: hashJson({ root, archstyles, scatters, materials } as unknown as JsonValue),
+    hash: hashJson({
+      root,
+      archstyles,
+      scatters,
+      materials,
+      ...(interiors !== undefined ? { interiors } : {}),
+    } as unknown as JsonValue),
     root,
     archstyles,
     scatters,
     materials,
     assets,
+    ...(interiors !== undefined ? { interiors } : {}),
     warnings,
   };
   const issues = validateStylePackBundle(pack);

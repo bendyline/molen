@@ -1,10 +1,10 @@
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
-import { getMolenVehicle } from '@bendyline/molen-entities';
 import { Transform } from '@bendyline/molen-kernel';
 import { VehicleState } from '@bendyline/molen-kernel/vehicles';
-import type { VehiclePlacement } from '@bendyline/molen-schema';
+import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
+import { ENTITY_TYPES } from './test-content';
 import { WorldVehicles } from './world-vehicles';
 
 function setup() {
@@ -16,7 +16,7 @@ function setup() {
       id: 'car',
       kind,
       color: '#566d82',
-      spec: getMolenVehicle(kind).spec,
+      spec: ENTITY_TYPES.component<VehicleData>(kind, 'vehicle').spec,
       position: [1000, 0, 2000],
       yaw: 0,
     },
@@ -29,6 +29,7 @@ function setup() {
     root,
     () => 0,
     async () => new THREE.Group(),
+    ENTITY_TYPES,
   );
   vehicles.sync(0);
   return { root, tile, placements, vehicles };
@@ -70,6 +71,7 @@ describe('world vehicle integration', () => {
         new Promise((resolve) => {
           finish = resolve;
         }),
+      ENTITY_TYPES,
     );
     vehicles.sync(0, [1000, 1.7, 2004]);
     vehicles.dispose();

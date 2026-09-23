@@ -1,17 +1,24 @@
 /**
- * Shared loading for the worldgen ops: style packs and region atlases from disk (defaulting to
- * the packs shipped with the worldgen packages), batch documents, and the built-in lineup batch
+ * Shared loading for the worldgen ops: style packs and region atlases (from a path, or from the
+ * content packs a project uses; nothing is built in), batch documents, and the built-in lineup batch
  * (one building of every footprint class) used when a preview has no batch of its own.
  */
 
 import { readFile, stat } from 'node:fs/promises';
-import { createRequire } from 'node:module';
-import { dirname, resolve } from 'node:path';
-import { formatIssues, validateByKind } from '@bendyline/molen-schema';
+import { dirname, join, resolve } from 'node:path';
+import type { Pack, PackSet } from '@bendyline/molen-pack';
+import { extractPack, PACK_SOURCE_FILE } from '@bendyline/molen-pack/node';
+import {
+  formatIssues,
+  type ProjectManifest,
+  validate,
+  validateByKind,
+} from '@bendyline/molen-schema';
 import {
   type ArchStyleDoc,
   type BuildingRequest,
   groundSamplerForBatch,
+  type LandmarkDocs,
   type ResolvedStylePack,
   resolveStylePackDocuments,
   type StyleRule,
@@ -20,19 +27,66 @@ import {
   type WorldgenBatchDoc,
   type WorldgenBatchInput,
 } from '@bendyline/molen-worldgen/kernel';
-import type { RegionAtlasDoc } from '@bendyline/molen-worldgen-earth/kernel';
+import {
+  createPlacesContent,
+  type PlacesContent,
+  type RegionAtlasDoc,
+} from '@bendyline/molen-worldgen-earth/kernel';
+import { openContentPack, openProjectPacks, packCacheDir } from '../content';
+import { findProjectFile } from '../project';
 import { parseJson } from './build';
 
-const require = createRequire(import.meta.url);
+const MISSING_STYLE_PACK =
+  'no style pack: pass --pack <pack.zip | pack directory | stylepack.json>, or list a pack that provides "stylepack" in project.json `packs` or MOLEN_PACKS';
+const MISSING_ATLAS =
+  'no region atlas: pass --atlas <pack.zip | pack directory | world.atlas.json>, or list a pack that provides "atlas" in project.json `packs` or MOLEN_PACKS';
 
-/** The default style pack shipped with `@bendyline/molen-worldgen`. */
-export function defaultStylePackPath(): string {
-  return require.resolve('@bendyline/molen-worldgen/packs/default/stylepack.json');
+/** The content packs a worldgen op can draw on: the project's (found from `cwd`) and MOLEN_PACKS. */
+export async function contentPacksFor(
+  options: { projectPath?: string; cwd?: string } = {},
+): Promise<PackSet> {
+  const cwd = resolve(options.cwd ?? process.cwd());
+  const projectPath =
+    options.projectPath !== undefined
+      ? resolve(cwd, options.projectPath)
+      : await findProjectFile(cwd);
+  let project: { dir: string; packs: ProjectManifest['packs'] } | undefined;
+  if (projectPath !== undefined) {
+    const parsed = validate('project', parseJson(await readFile(projectPath, 'utf8')));
+    if (!parsed.ok) throw new Error(parsed.formatted);
+    project = { dir: dirname(projectPath), packs: parsed.value.packs };
+  }
+  return openProjectPacks(project, { cwd });
 }
 
-/** The default region atlas shipped with `@bendyline/molen-worldgen-earth`. */
-export function defaultRegionAtlasPath(): string {
-  return require.resolve('@bendyline/molen-worldgen-earth/packs/default/world.atlas.json');
+/**
+ * A directory holding a pack's files: a pack source directory is used as it is; a built or
+ * downloaded pack is extracted once into the cache, keyed by its content hash.
+ */
+export async function packDirectory(pack: Pack): Promise<string> {
+  try {
+    if ((await stat(pack.label)).isDirectory()) return pack.label;
+  } catch {}
+  const dir = join(packCacheDir(), 'extracted', pack.manifest.contentHash.replace('sha256:', ''));
+  const done = join(dir, PACK_SOURCE_FILE);
+  try {
+    await stat(done);
+  } catch {
+    await extractPack(pack, dir);
+  }
+  return dir;
+}
+
+const isUrl = (path: string): boolean => /^https?:\/\//.test(path);
+
+/** A path that names a content pack (built file, URL, or source directory) rather than a document. */
+async function asContentPack(path: string): Promise<Pack | undefined> {
+  if (isUrl(path) || path.endsWith('.zip')) return openContentPack(path, process.cwd());
+  try {
+    if ((await stat(join(path, PACK_SOURCE_FILE))).isFile())
+      return openContentPack(path, process.cwd());
+  } catch {}
+  return undefined;
 }
 
 export interface LoadedStylePackFiles {
@@ -40,12 +94,44 @@ export interface LoadedStylePackFiles {
   /** Directory every pack path resolves against. */
   dir: string;
   path: string;
+  /** Landmark models (signs, street furniture) from the pack that provides them, if any. */
+  landmarks?: LandmarkDocs;
 }
 
-/** Load a pack from `stylepack.json` (or its directory); default: the shipped default pack. */
-export async function loadStylePackFromDisk(packPath?: string): Promise<LoadedStylePackFiles> {
-  let path = packPath !== undefined ? resolve(packPath) : defaultStylePackPath();
-  if ((await stat(path)).isDirectory()) path = resolve(path, 'stylepack.json');
+type PackOptions = { projectPath?: string; cwd?: string };
+
+/** Where `role` comes from: the named pack when it provides it, else the project's packs. */
+async function providedBy(
+  role: string,
+  own: Pack | undefined,
+  options: PackOptions,
+): Promise<{ pack: Pack; path: string } | undefined> {
+  const path = own?.manifest.provides[role]?.[0];
+  if (own !== undefined && path !== undefined) return { pack: own, path };
+  return (await contentPacksFor(options)).provided(role).at(-1);
+}
+
+/** A landmark catalog and its model documents, read from a pack. */
+async function landmarkDocs(source: { pack: Pack; path: string }): Promise<LandmarkDocs> {
+  const base = source.path.slice(0, source.path.lastIndexOf('/') + 1);
+  const catalog = await source.pack.readJson<{ models?: Record<string, string> }>(source.path);
+  const models: Record<string, unknown> = {};
+  for (const [id, path] of Object.entries(catalog.models ?? {})) {
+    models[id] = await source.pack.readJson(`${base}${path}`);
+  }
+  return { catalog, models };
+}
+
+async function withLandmarks(
+  loaded: LoadedStylePackFiles,
+  own: Pack | undefined,
+  options: PackOptions,
+): Promise<LoadedStylePackFiles> {
+  const source = await providedBy('landmarks', own, options);
+  return source === undefined ? loaded : { ...loaded, landmarks: await landmarkDocs(source) };
+}
+
+async function stylePackAt(path: string): Promise<LoadedStylePackFiles> {
   const dir = dirname(path);
   const root = parseJson(await readFile(path, 'utf8'));
   const pack = await resolveStylePackDocuments(root, async (relative) =>
@@ -54,11 +140,76 @@ export async function loadStylePackFromDisk(packPath?: string): Promise<LoadedSt
   return { pack, dir, path };
 }
 
-export async function loadRegionAtlasFromDisk(atlasPath?: string): Promise<RegionAtlasDoc> {
-  const path = atlasPath !== undefined ? resolve(atlasPath) : defaultRegionAtlasPath();
-  const parsed = validateByKind('region-atlas' as never, parseJson(await readFile(path, 'utf8')));
+async function stylePackIn(content: Pack): Promise<LoadedStylePackFiles> {
+  const entry = content.manifest.provides.stylepack?.[0];
+  if (entry === undefined) {
+    throw new Error(`pack ${content.manifest.id} does not provide a "stylepack"`);
+  }
+  return stylePackAt(join(await packDirectory(content), ...entry.split('/')));
+}
+
+/**
+ * Load a style pack from `packPath` (a stylepack.json, a directory holding one, a content pack
+ * file, URL or source directory) or, without one, from the content packs the project uses.
+ */
+export async function loadStylePackFromDisk(
+  packPath?: string,
+  options: PackOptions = {},
+): Promise<LoadedStylePackFiles> {
+  if (packPath !== undefined) {
+    const content = await asContentPack(packPath);
+    if (content !== undefined) return withLandmarks(await stylePackIn(content), content, options);
+    let path = resolve(packPath);
+    if ((await stat(path)).isDirectory()) path = resolve(path, 'stylepack.json');
+    return withLandmarks(await stylePackAt(path), undefined, options);
+  }
+  const hits = (await contentPacksFor(options)).provided('stylepack');
+  const hit = hits[hits.length - 1];
+  if (hit === undefined) throw new Error(MISSING_STYLE_PACK);
+  return withLandmarks(await stylePackIn(hit.pack), hit.pack, options);
+}
+
+/**
+ * Landmarks plus the business catalog for mapped places: the catalog from the atlas's content pack
+ * when `atlasPath` names one, else from the project's packs. Undefined when either is missing.
+ */
+export async function loadPlacesFromDisk(
+  landmarks: LandmarkDocs | undefined,
+  atlasPath?: string,
+  options: PackOptions = {},
+): Promise<PlacesContent | undefined> {
+  if (landmarks === undefined) return undefined;
+  const atlasPack = atlasPath !== undefined ? await asContentPack(atlasPath) : undefined;
+  const source = await providedBy('businesses', atlasPack, options);
+  if (source === undefined) return undefined;
+  return createPlacesContent({ landmarks, businesses: await source.pack.readJson(source.path) });
+}
+
+async function regionAtlasDoc(raw: unknown): Promise<RegionAtlasDoc> {
+  const parsed = validateByKind('region-atlas' as never, raw);
   if (!parsed.ok) throw new Error(parsed.formatted);
   return parsed.value as RegionAtlasDoc;
+}
+
+/** Load a region atlas from a file or content pack, or from the project's content packs. */
+export async function loadRegionAtlasFromDisk(
+  atlasPath?: string,
+  options: PackOptions = {},
+): Promise<RegionAtlasDoc> {
+  if (atlasPath !== undefined) {
+    const content = await asContentPack(atlasPath);
+    if (content === undefined) {
+      return regionAtlasDoc(parseJson(await readFile(resolve(atlasPath), 'utf8')));
+    }
+    const entry = content.manifest.provides.atlas?.[0];
+    if (entry === undefined)
+      throw new Error(`pack ${content.manifest.id} does not provide an "atlas"`);
+    return regionAtlasDoc(await content.readJson(entry));
+  }
+  const hits = (await contentPacksFor(options)).provided('atlas');
+  const hit = hits[hits.length - 1];
+  if (hit === undefined) throw new Error(MISSING_ATLAS);
+  return regionAtlasDoc(await hit.pack.readJson(hit.path));
 }
 
 export async function loadArchStyleFromDisk(stylePath: string): Promise<ArchStyleDoc> {

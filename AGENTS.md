@@ -25,8 +25,8 @@ If `molen` is on your PATH (via the `bin`), drop the `node packages/tooling/dist
 
 ## The truth rule (important)
 
-- **`docs/`** is the binding **DESIGN PLAN** (it literally says *"No code exists yet"*). Treat it
-  as intent, not fact.
+- **`docs/`** is the original **DESIGN PLAN**: historical, not maintained, and it may lag the code
+  (see [docs/README.md](docs/README.md)). Treat it as intent, not fact.
 - **`docs-src/`** (shipped docs bundle) and **`packages/`** (the implementation) are the
   **shipped truth**. When they disagree with `docs/`, trust `docs-src/` + `packages/`.
 - `search_docs` / `molen docs search` default to `docs-src/` only; pass `--design` to also search
@@ -107,8 +107,9 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Build before typecheck/test**: packages consume each other's `dist`. The root scripts encode
   this (`pretypecheck`/`pretest:unit` run `pnpm -r build`); run `pnpm typecheck`, `pnpm test:unit`
   from the root, or `pnpm -r build` first if invoking `tsc`/`vitest` in a package directly.
-- **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, docs:check, test:unit, production audit),
-  then `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and
+- **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, source and docs checks,
+  test:unit, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
+  into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and
   `verify` is also the Release workflow's gate, so a green `pnpm all` means a release will not
   fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
@@ -116,8 +117,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
-  `/determinism`, `/vehicles`, `/aircraft`; `@bendyline/molen-client` also exposes
+  `/determinism`, `/content`, `/vehicles`, `/aircraft`; `@bendyline/molen-client` also exposes
   `/camera-track`, `/vite`, `/vehicles`, `/aircraft`; `@bendyline/molen-terrain`
   and `@bendyline/molen-figures` expose only `/kernel` and `/client` (no `.`).
+- **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
+  one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
+  `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

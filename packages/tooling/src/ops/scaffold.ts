@@ -1,5 +1,6 @@
 import { mkdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
+import { ENGINE_VERSION } from '@bendyline/molen-kernel';
 import { generateTypes } from './generate-types';
 
 export interface ScaffoldInput {
@@ -335,6 +336,9 @@ const TSCONFIG = `{
 `;
 
 function packageJson(name: string): string {
+  // The engine packages move on one version line, and on 0.x a minor bump may break: pin the
+  // scaffold to the line it was generated from, as the caret does for 0.x versions.
+  const engine = `^${ENGINE_VERSION}`;
   const pkg = {
     name,
     private: true,
@@ -346,12 +350,21 @@ function packageJson(name: string): string {
       typecheck: 'tsc -p tsconfig.json && tsc -p scenes/scripts/tsconfig.json',
     },
     dependencies: {
-      '@bendyline/molen-client': '*',
-      '@bendyline/molen-figures': '*',
-      '@bendyline/molen-kernel': '*',
-      '@bendyline/molen-schema': '*',
+      '@bendyline/molen-client': engine,
+      '@bendyline/molen-figures': engine,
+      '@bendyline/molen-kernel': engine,
+      '@bendyline/molen-schema': engine,
+      // three.js is a peer of the client; the app owns the one copy both share.
+      three: '^0.184.0',
     },
-    devDependencies: { typescript: '^6.0.3', vite: '^6.0.7' },
+    // The CLI is a dev dependency so `npx molen` runs this line's CLI (the unscoped `molen` on
+    // npm is an unrelated package), and TypeScript is the one `molen scripts check` uses.
+    devDependencies: {
+      '@bendyline/molen-tooling': engine,
+      '@types/three': '^0.184.0',
+      typescript: '^6.0.3',
+      vite: '^6.0.7',
+    },
   };
   return `${JSON.stringify(pkg, null, 2)}\n`;
 }
@@ -370,43 +383,42 @@ The game is **data + scripts**: scenes/main.scene.json declares the world, the \
 
 ## Install first
 
-\`molen scripts check\` type-checks with **this project's** TypeScript, so install the
-devDependencies before running it (everything else works without an install):
-
 \`\`\`
-pnpm install   # or npm install
+npm install                       # the engine, the molen CLI, TypeScript and Vite
+npx playwright install chromium   # once per machine, for shot and drive
 \`\`\`
 
-## The headless loop (copy-paste; \`molen\` = \`node <repo>/packages/tooling/dist/cli.mjs\`)
+## The headless loop (copy-paste)
 
 \`\`\`
 # 1. validate (the cheap inner loop)
-molen validate scenes/main.scene.json
-molen types check
+npx molen validate scenes/main.scene.json
+npx molen types check
 
 # 2. simulate + assert (scene names from project.json work; setup.mjs loads automatically)
-molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
 
 # 3. screenshot (camera comes from the scene's own camera block)
-molen shot main --ticks 30 --out shot.png
+npx molen shot main --ticks 30 --out shot.png
 
 # 4. play it: commands in, frames out
-molen drive main --actions actions.json --out-dir shots
+npx molen drive main --actions actions.json --out-dir shots
 
 # 5. regenerate the typed handles + the scripts' ambient declarations
-molen types gen
+npx molen types gen
 
-# 6. type-check the scene's scripts (needs the install above)
-molen scripts check
+# 6. type-check the scene's scripts with this project's TypeScript
+npx molen scripts check
 \`\`\`
 
 ## In the browser
 
 \`\`\`
-pnpm dev       # Vite: kernel in a Worker, client mounted with mountExperience
+npm run dev    # Vite: kernel in a Worker, client mounted with mountExperience
 \`\`\`
 
-See docs-src/guide/agent-loop.md, scripting.md, and browser-mount.md.
+Guides: https://molen.dev/guide/agent-loop, https://molen.dev/guide/scripting and
+https://molen.dev/guide/browser-mount, or search them offline with \`npx molen docs search <topic>\`.
 `;
 }
 
@@ -492,13 +504,14 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
       // check first and only worked inside this repo, where TypeScript happens to be hoisted.
       nextSteps: [
         `cd ${dir}`,
-        'npm install                       # or pnpm install (installs TypeScript for the checks below)',
-        'molen validate scenes/main.scene.json',
-        'molen types check',
-        'molen scripts check',
-        'molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash',
-        'molen shot main --ticks 30 --out shot.png',
-        'molen drive main --actions actions.json --out-dir shots',
+        'npm install                       # the engine, the molen CLI and TypeScript',
+        'npx playwright install chromium   # once per machine, for shot and drive',
+        'npx molen validate scenes/main.scene.json',
+        'npx molen types check',
+        'npx molen scripts check',
+        'npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash',
+        'npx molen shot main --ticks 30 --out shot.png',
+        'npx molen drive main --actions actions.json --out-dir shots',
       ],
     };
   } catch (e) {

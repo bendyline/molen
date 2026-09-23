@@ -11,20 +11,20 @@
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src scripts",
     "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
-    "predev": "node scripts/sync-worldgen-packs.mjs",
-    "prebuild": "node scripts/sync-worldgen-packs.mjs",
+    "predev": "node scripts/build-content-packs.mjs",
+    "prebuild": "node scripts/build-content-packs.mjs",
     "test:golden": "vitest run --config vitest.golden.config.ts"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",
-    "@bendyline/molen-entities": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
     "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-pack": "workspace:*",
     "@bendyline/molen-schema": "workspace:*",
     "@bendyline/molen-terrain": "workspace:*",
     "@bendyline/molen-worldgen": "workspace:*",
     "@bendyline/molen-worldgen-earth": "workspace:*",
-    "three": "0.184.0",
-    "@bendyline/molen-kernel": "workspace:*"
+    "three": "0.184.0"
   },
   "devDependencies": {
     "@bendyline/molen-tooling": "workspace:*",

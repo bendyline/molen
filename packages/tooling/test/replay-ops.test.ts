@@ -97,6 +97,34 @@ describe('runReplayFile', () => {
     expect((await runReplayFile({ path: replayPath })).ok).toBe(true);
   });
 
+  it('refuses a replay recorded with different content, and records the content it ran with', async () => {
+    const replayPath = join(dir, 'content.replay.json');
+    const recorded = { types: { hash: 'sha256:aaa', packs: ['demo.types@1'] } };
+    const fixture = {
+      format: 'molen/replay@1',
+      engine: '0.0.1',
+      ticks: 3,
+      commands: [],
+      // The world restored from this keyframe carries its content identity.
+      initialKeyframe: keyframe({
+        entities: { p: { health: { hp: 2 } } },
+        plugins: { $content: { types: { hash: 'sha256:bbb', packs: ['demo.types@2'] } } },
+      }),
+    };
+    await writeFile(replayPath, JSON.stringify({ ...fixture, content: recorded }));
+    const refused = await runReplayFile({ path: replayPath });
+    expect(refused.ok).toBe(false);
+    expect(refused.error).toMatch(
+      /recorded with different content: content "types" was sha256:aaa \(demo\.types@1\) but the loaded content is sha256:bbb/,
+    );
+    // Re-recording replaces the stale identity with the one the build ran against.
+    expect((await runReplayFile({ path: replayPath, record: true })).ok).toBe(true);
+    const { readFile } = await import('node:fs/promises');
+    const rewritten = JSON.parse(await readFile(replayPath, 'utf8'));
+    expect(rewritten.content).toEqual({ types: { hash: 'sha256:bbb', packs: ['demo.types@2'] } });
+    expect((await runReplayFile({ path: replayPath })).ok).toBe(true);
+  });
+
   it('rejects fixtures recorded with an incompatible state format', async () => {
     const replayPath = join(dir, 'future.replay.json');
     await writeFile(

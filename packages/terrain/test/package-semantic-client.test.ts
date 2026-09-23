@@ -1,10 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import type { TerrainTileArchive } from '../src/package-client';
 import {
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackageSemanticLayers,
 } from '../src/package-semantic-client';
-import type { TerrainPackageDescriptor } from '../src/package-types';
+import type { TerrainPackageDescriptor, TerrainTileArchive } from '../src/package-types';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
 

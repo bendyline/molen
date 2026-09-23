@@ -48,6 +48,11 @@ Run it from the repository root:
 pnpm --filter @bendyline/molen-examples-world-explorer dev
 ```
 
+Before `dev` and `build`, `scripts/build-content-packs.mjs` builds the repository's `content/`
+directories into `public/packs/` with an `index.json`. The page opens the entities, style,
+earth and sky packs in parallel: small packs arrive in one request each, and car and aircraft
+models are range-read from the entities pack only when one is shown.
+
 Run the repeatable browser navigation review (ten frames plus HUD probes and browser/network
 diagnostics) after building `@bendyline/molen-tooling`:
 

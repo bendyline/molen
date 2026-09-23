@@ -39,6 +39,10 @@ Each includes a command-only victory regression and a real-browser gameplay test
   from a `moveIntent` component.
 - **Pathfinding** (`@bendyline/molen-pathfinding`): flow-field navigation over a grid.
 - **Physics (Rapier)** (`@bendyline/molen-physics-rapier`): opt-in rigid-body plugin (WASM).
+  Colliders apply a positive uniform `transform.scale`, including offsets, asset geometry and
+  heightfields, and a scale change rebuilds the collider while keeping the body and its velocity.
+  Nonuniform, zero or negative scale on a physical entity fails with a diagnostic; bake it into
+  the collision geometry. Purely visual entities keep per-axis scale.
 - **Terrain** (`@bendyline/molen-terrain`): `/kernel` heightfield queries + `/client` LOD meshes.
 - **Worldgen** (`@bendyline/molen-worldgen`): `/kernel` outline → styled building and labeled
   polygon → prop generation; `/client` buffer uploads and style packs.

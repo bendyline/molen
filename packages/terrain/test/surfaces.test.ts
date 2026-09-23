@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import type * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
@@ -23,7 +24,9 @@ import {
 } from '../src/surface-client';
 import { SurfaceNetwork } from '../src/surface-network';
 import { inferTerrainParkingAreas } from '../src/surface-parking';
+import type { TerrainParkedVehicle, TerrainSurfaceDetails } from '../src/surface-styles';
 import { resolveTerrainSurfaceStyle } from '../src/surface-styles';
+import { PARKED_VEHICLES } from './helpers/content';
 
 function context(): TerrainPyramidTileLayerContext {
   return {
@@ -273,7 +276,9 @@ describe('surface styles', () => {
   it('builds fully paved parking with holes, clipped markings, four corner lights and bounded parked cars', () => {
     const tile = fixture();
     const ctx = context();
-    const object = createTerrainSurfaceObject(tile, ctx, { details: { maxFixturesPerTile: 30 } });
+    const object = createTerrainSurfaceObject(tile, ctx, {
+      details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
+    });
     expect(stats(object)).toMatchObject({
       roads: 2,
       parkingAreas: 1,
@@ -319,6 +324,35 @@ describe('surface styles', () => {
         ),
       ).toBe(true);
     }
+  });
+
+  it('pins parked-car placements, which the vehicle type specs drive', () => {
+    // The vehicle types moved out of @bendyline/molen-entities into a content pack with the
+    // same kinds, order and wheel-sampled poses.
+    const object = createTerrainSurfaceObject(fixture(), context(), {
+      details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
+    });
+    const cars = object.userData.vehicles as unknown[];
+    const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: 'ef0661f79ab69837' });
+  });
+
+  it('draws parked cars from an injected vehicle list', () => {
+    const fromLibrary = PARKED_VEHICLES;
+    const place = (parkedVehicles: TerrainSurfaceDetails['parkedVehicles']) => {
+      const object = createTerrainSurfaceObject(fixture(), context(), {
+        details: { maxFixturesPerTile: 30, parkedVehicles },
+      });
+      return { cars: object.userData.vehicles as { kind: string }[], stats: stats(object) };
+    };
+    const same = place(fromLibrary).cars;
+    const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
+    expect(digest).toBe('ef0661f79ab69837');
+    const vans = place([fromLibrary.at(-1) as TerrainParkedVehicle]).cars;
+    expect(new Set(vans.map((car) => car.kind))).toEqual(new Set(['molen.entities.vehicle.van']));
+    const none = place([]);
+    expect(none.cars).toEqual([]);
+    expect(none.stats.parkedCars).toBe(0);
   });
 
   it('keeps lane dividers out of intersections and does not detect bridges or grade-separated crossings', () => {
@@ -406,7 +440,7 @@ describe('surface styles', () => {
     await Promise.all([a, b]);
     expect(dispose).toHaveBeenCalledTimes(1);
     expect(controller.stats()).toMatchObject({ style: 'minimal', tiles: 1, parkedCars: 0 });
-    await controller.setOptions({ style: 'modern' });
+    await controller.setOptions({ style: 'modern', details: { parkedVehicles: PARKED_VEHICLES } });
     expect(controller.stats().parkedCars).toBeGreaterThan(0);
     disposeTerrainSemanticObject(object);
     expect(controller.stats().tiles).toBe(0);

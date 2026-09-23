@@ -1,7 +1,7 @@
 import { getSchema, type JsonValue, registerSchema } from '@bendyline/molen-schema';
-import { LANDMARK_DEFINITIONS, type LandmarkDefinitions } from '@bendyline/molen-worldgen/kernel';
+import type { LandmarkDefinitions } from '@bendyline/molen-worldgen/kernel';
 import { z } from 'zod';
-import source from '../../packs/default/businesses/catalog.json';
+
 export type BusinessCategory =
   | 'grocery'
   | 'restaurant'
@@ -56,9 +56,10 @@ const businessCatalogSchema: z.ZodType<BusinessCatalogDoc> = z.strictObject({
     }),
   ),
 });
+/** Validate a catalog and check that every sign it names is a sign in `definitions`. */
 export function validateBusinessCatalogDocuments(
   data: unknown,
-  definitions: LandmarkDefinitions = LANDMARK_DEFINITIONS,
+  definitions: LandmarkDefinitions,
 ): BusinessCatalogDoc {
   const doc = businessCatalogSchema.parse(data);
   const ids = new Set<string>(),
@@ -90,7 +91,24 @@ export function validateBusinessCatalogDocuments(
   }
   return doc;
 }
-export const BUSINESS_CATALOG: BusinessCatalogDoc = validateBusinessCatalogDocuments(source);
+// Documentation example only; the business catalog is content (the molen.earth pack).
+const EXAMPLE: BusinessCatalogDoc = {
+  format: 'molen/business-catalog@1',
+  version: 1,
+  profiles: [
+    {
+      id: 'neighborhood_grocery',
+      aliases: ['Neighborhood Grocery'],
+      brandIds: ['Q0000001'],
+      categories: ['supermarket', 'grocery'],
+      landmark: 'sign.neighborhood_grocery',
+    },
+  ],
+  categories: [
+    { id: 'grocery', kinds: ['supermarket', 'grocery'], landmark: 'sign.grocery' },
+    { id: 'cafe', kinds: ['cafe', 'coffee_shop'], landmark: 'sign.cafe' },
+  ],
+};
 export function registerBusinessCatalogSchema(): void {
   if (getSchema('business-catalog')) return;
   registerSchema('business-catalog', businessCatalogSchema, {
@@ -98,7 +116,7 @@ export function registerBusinessCatalogSchema(): void {
     title: 'Business identity catalog',
     description:
       'Map source brand IDs, aliases and place categories onto reusable landmark manifests.',
-    examples: [BUSINESS_CATALOG as unknown as JsonValue],
+    examples: [EXAMPLE as unknown as JsonValue],
     docsRef: 'guide/recognizable-places.md',
   });
 }

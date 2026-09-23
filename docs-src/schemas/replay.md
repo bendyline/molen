@@ -43,6 +43,36 @@ Initial state plus command log; determinism regenerates everything else. Used by
           "const": "molen/replay@1",
           "description": "Format envelope; always 'molen/replay@1'."
         },
+        "content": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "hash": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Hash of the domain's content."
+              },
+              "packs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Packs the content came from, as \"id@version\"."
+              }
+            },
+            "required": [
+              "hash"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Content the replay was recorded with; replaying against different content fails before the first tick."
+        },
         "engine": {
           "type": "string",
           "minLength": 1,
@@ -379,6 +409,36 @@ Initial state plus command log; determinism regenerates everything else. Used by
           "type": "string",
           "const": "molen/replay@1",
           "description": "Format envelope; always 'molen/replay@1'."
+        },
+        "content": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "hash": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Hash of the domain's content."
+              },
+              "packs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Packs the content came from, as \"id@version\"."
+              }
+            },
+            "required": [
+              "hash"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Content the replay was recorded with; replaying against different content fails before the first tick."
         },
         "engine": {
           "type": "string",

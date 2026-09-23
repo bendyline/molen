@@ -17,11 +17,10 @@ import {
   openTerrainPackagePyramid,
   openTerrainPackageSemantics,
   resolveTerrainPackageArchiveUrl,
-  type TerrainTileArchive,
   terrainDescriptorFromPackage,
   terrainPyramidDescriptorFromPackage,
 } from '../src/package-client';
-import type { TerrainPackageDescriptor } from '../src/package-types';
+import type { TerrainPackageDescriptor, TerrainTileArchive } from '../src/package-types';
 import { encodePng16 } from '../src/png16';
 import { terrainPyramidTileOrigin, terrainPyramidTileSize } from '../src/pyramid-types';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';

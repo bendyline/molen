@@ -7,10 +7,7 @@ import {
   type VectorTileLayer,
 } from '@mapbox/vector-tile';
 import Pbf from 'pbf';
-import type {
-  TerrainSemanticTileDecodeContext,
-  TerrainSemanticTileDecoder,
-} from './package-client';
+import type { TerrainSemanticTileDecodeContext, TerrainSemanticTileDecoder } from './package-types';
 import {
   createEmptyTerrainSemanticTile,
   type TerrainBuildingFeature,

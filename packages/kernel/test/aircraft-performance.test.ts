@@ -1,14 +1,14 @@
 import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
-import { getMolenAircraft } from '../../entities/src/index';
 import { IDLE_AIRCRAFT_INPUT, initialAircraftState, stepAircraft } from '../src/aircraft';
 import type { TransformData } from '../src/component';
 import { vehicleLocalPoint, vehicleRotation } from '../src/vehicles';
+import { molenAircraft } from './helpers/entities';
 
-const mustang = getMolenAircraft('molen.entities.aircraft.p51d').spec;
+const mustang = molenAircraft('molen.entities.aircraft.p51d').spec;
 const mustangEngine = mustang.engine;
 if (!mustangEngine) throw new Error('Missing Mustang engine');
-const helicopter = getMolenAircraft('molen.entities.aircraft.h500md').spec;
+const helicopter = molenAircraft('molen.entities.aircraft.oh6').spec;
 const flat = { groundHeight: () => 0 };
 const clean: AircraftInputData = {
   ...IDLE_AIRCRAFT_INPUT,

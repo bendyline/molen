@@ -14,6 +14,7 @@ import {
   unitBoxGeometry,
 } from '@bendyline/molen-worldgen/client';
 import {
+  type LandmarkDefinitions,
   MeshBufferBuilder,
   type MeshBuffers,
   type MeshGroup,
@@ -40,6 +41,7 @@ interface ScenePayload {
   filesBaseUrl: string;
   assetIndex: Record<string, string>;
   materialRefs: string[];
+  landmarks: LandmarkDefinitions;
   ground: { y: number; minX: number; minZ: number; maxX: number; maxZ: number };
   clearColor: string;
 }
@@ -156,7 +158,10 @@ async function buildSession(scene: ScenePayload, size: [number, number]): Promis
     root.add(buffersToObject3D(meshBuffers(scene.buffers), materials, 'preview:buildings'));
   }
   const assets = new AssetCache(provider, createGltfLoader());
-  const models = new ModelLibrary(async (ref) => (await assets.instance(ref)).scene);
+  const models = new ModelLibrary(
+    async (ref) => (await assets.instance(ref)).scene,
+    scene.landmarks,
+  );
   let instances = 0;
   for (const entry of scene.placements) {
     const data = float32(entry.data);

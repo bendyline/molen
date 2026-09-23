@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 
 const materialDir = resolve(
   dirname(fileURLToPath(import.meta.url)),
-  '../../packs/default/materials',
+  '../../../../content/worldgen/materials',
 );
 
 async function material(id: string, size = 64): Promise<MatGraphDoc> {

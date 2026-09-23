@@ -19,7 +19,7 @@ assets already in the repo; playing requires no art-generation step or Python in
 ![The Lantern Vault](lantern-dungeon/preview.png)
 ![Skybound](skybound/preview.png)
 
-These games share scene data, sandboxed scripts, deterministic headless simulation, a Worker
+These games share scene data, deterministic scene scripts, headless simulation, a Worker
 host, and the standard browser client. Each has a complete win/loss/restart loop, input schemas,
 headless assertions, checkpoint tests, a command-only victory regression, and a browser test.
 See [the shared services guide](../docs-src/guide/game-samples.md) to reuse their camera and physics patterns.

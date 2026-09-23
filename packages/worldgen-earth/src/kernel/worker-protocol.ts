@@ -16,6 +16,7 @@ import {
   type WorldgenBudgets,
   worldgenTransferables,
 } from '@bendyline/molen-worldgen/kernel';
+import { createPlacesContent, type PlacesContent, type PlacesContentDocs } from './places';
 import { createRegionResolver, type RegionResolver } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
 import type { TileGeometry } from './semantic-adapter';
@@ -26,6 +27,8 @@ export interface WorldgenWorkerConfigure {
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
   metersPerUnit: number;
+  /** Places content as documents; the worker builds the libraries (none when omitted). */
+  places?: PlacesContentDocs;
 }
 
 export interface WorldgenWorkerGenerate {
@@ -79,6 +82,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
   let pack: ResolvedStylePack | undefined;
   let atlas: RegionAtlasDoc | undefined;
   let regions: RegionResolver | undefined;
+  let places: PlacesContent | undefined;
   const cancelled = new Set<number>();
   const active = new Set<number>();
 
@@ -102,6 +106,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           pack,
           ...(atlas !== undefined ? { atlas } : {}),
           ...(regions !== undefined ? { regions } : {}),
+          ...(places !== undefined ? { places } : {}),
           ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
           ...(request.features !== undefined ? { features: request.features } : {}),
           ...(request.tierOffset !== undefined ? { tierOffset: request.tierOffset } : {}),
@@ -162,6 +167,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
             message.atlas !== undefined
               ? createRegionResolver(message.atlas, { metersPerUnit: message.metersPerUnit })
               : undefined;
+          places = message.places !== undefined ? createPlacesContent(message.places) : undefined;
           return;
         case 'cancel':
           if (active.has(message.id)) cancelled.add(message.id);

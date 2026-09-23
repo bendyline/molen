@@ -1,6 +1,5 @@
 import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
-import { getMolenAircraft } from '../../entities/src/index';
 import {
   AircraftInput,
   AircraftState,
@@ -17,8 +16,9 @@ import { Transform, type TransformData } from '../src/component';
 import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { mountEntity, unmountEntity } from '../src/vehicles';
 import { World } from '../src/world';
+import { molenAircraft } from './helpers/entities';
 
-const single = getMolenAircraft('molen.entities.aircraft.p51d').spec;
+const single = molenAircraft('molen.entities.aircraft.p51d').spec;
 const engine = single.engine;
 if (!engine || !single.airplane) throw new Error('Missing Mustang fixture');
 const { engine: _singleEngine, ...airframe } = single;

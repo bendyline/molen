@@ -1,15 +1,33 @@
 # Quickstart
 
-## Prerequisites
+## Start your own project
 
-Node ≥ 22.13, pnpm. Clone the repo and install:
+Node ≥ 22.13. Scaffold a project from npm and install it:
+
+```
+npx @bendyline/molen-tooling new my-experience
+cd my-experience
+npm install                       # the engine, the molen CLI, TypeScript and Vite
+npx playwright install chromium   # once per machine, for screenshots
+npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+npm run dev                       # the same scene in the browser
+```
+
+`my-experience/` is a runnable project (project.json + scene + type registry + setup + commands +
+checks), and `new` prints the exact headless-loop commands. Use the scoped package name for the
+first command: the unscoped `molen` on npm is unrelated. See the [agent loop](agent-loop.md) and
+[projects & types](project.md).
+
+## Run the samples from a clone
+
+With pnpm, clone the repository and build it:
 
 ```
 pnpm install
 pnpm build
 ```
 
-## Run the cubes demo in the browser
+### The cubes demo in the browser
 
 ```
 pnpm --filter @bendyline/molen-examples-cubes dev
@@ -19,7 +37,7 @@ Open the printed URL. ~50 cubes spin and drift, simulated at 30 Hz in a Web Work
 rendered with interpolation. Press **Space** to spawn a cube — the keypress emits a command that
 the kernel validates and adjudicates; the client never mutates simulation state directly.
 
-## Run the same scene headlessly
+### The same scene headlessly
 
 ```
 pnpm --filter @bendyline/molen-examples-cubes test:unit
@@ -29,15 +47,7 @@ This runs the cubes scene in Node for 300 ticks, asserts on world state, and che
 hash is identical across runs — the same determinism the browser demo relies on for smooth
 interpolation and replay.
 
-## Start your own (scaffold)
-
-```
-node packages/tooling/dist/cli.mjs new my-experience
-```
-
-Creates a runnable `my-experience/` project (project.json + scene + type registry + setup +
-commands + checks) and prints the exact headless-loop commands. See the
-[agent loop](agent-loop.md) and [projects & types](project.md).
+From a clone, the CLI is `node packages/tooling/dist/cli.mjs`.
 
 ## The shape of things
 

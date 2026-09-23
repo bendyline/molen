@@ -1,15 +1,16 @@
 /** Supplemental review blocks keep the original eight-store/interior walkthrough coordinates stable. */
 import type { TerrainSemanticPoint, TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
-import { LANDMARK_DEFINITIONS } from '@bendyline/molen-worldgen/kernel';
-import { BUSINESS_CATALOG, BUSINESS_PROFILES } from '@bendyline/molen-worldgen-earth/kernel';
+import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 
 export function appendRetailExpansion(
   tile: TerrainSemanticTile,
   point: (x: number, z: number) => TerrainSemanticPoint,
+  places: PlacesContent,
 ): void {
   tile.pois ??= [];
-  BUSINESS_PROFILES.slice(8).forEach((profile, index) => {
-    const visual = LANDMARK_DEFINITIONS[`sign.${profile.sign}`];
+  const profiles = places.businesses.profiles;
+  profiles.slice(8).forEach((profile, index) => {
+    const visual = places.landmarks.get(`sign.${profile.sign}`);
     if (visual?.generator !== 'sign') return;
     const style = visual.storefront.style?.split('.').at(-1);
     const [width, depth, height] =
@@ -96,7 +97,7 @@ export function appendRetailExpansion(
     // A real mixed-tenant test: preserve independent brands without recoloring the center.
     if (kind === 'mall' || kind === 'strip_mall') {
       for (const [i, name] of ['best_buy', 'panera', 'petco'].entries()) {
-        const profile = BUSINESS_PROFILES.find((p) => p.id === name);
+        const profile = profiles.find((p) => p.id === name);
         if (profile)
           tile.pois.push({
             id: `${id}:tenant:${name}`,
@@ -106,7 +107,7 @@ export function appendRetailExpansion(
           });
       }
     }
-    if (!BUSINESS_CATALOG.categories.some((c) => c.id === kind))
+    if (!places.businesses.doc.categories.some((c) => c.id === kind))
       throw new Error(`Missing retail category ${kind}`);
   }
   for (let row = 0; row < 6; row++)

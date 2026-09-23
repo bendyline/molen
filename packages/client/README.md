@@ -10,13 +10,15 @@ kernel, a three.js client, and a dev loop an agent can drive end to end.
 ## Install
 
 ```sh
-npm i @bendyline/molen-client
+npm i @bendyline/molen-client three
+npm i -D @types/three   # TypeScript projects
 ```
 
 ESM only; the runtime target is the browser, and Node >= 22.13 is what the toolchain around it
-expects. three.js is a pinned **dependency** (0.184.0) with its types, not a peer — nothing else
-to install, and nothing to reconcile with a different three version. The `./vite` subpath is a
-build-time plugin and the one Node-only entry point.
+expects. three.js is a **peer dependency** (`>=0.184.0 <0.187.0`, developed against 0.184.0), so
+your app and the engine share one copy and `instanceof` checks hold across them. `@types/three` is
+an optional peer in the same range. The client still re-exports three as `THREE` for convenience.
+The `./vite` subpath is a build-time plugin and the one Node-only entry point.
 
 ## Use
 
@@ -68,7 +70,10 @@ probe — a pinned backend is what makes a captured frame reproducible.
 
 Renderables are data, not three.js objects: primitives and glTF assets described by a
 `renderable` component, with materials resolved from `palette:`, `matgraph:` and `pixelgrid:`
-refs at load time. When you do need the real object, `client.getObject(id)` hands it over (and
+refs at load time. Models and textures come from wherever the app keeps them: an `assets.index`
+of URLs, or any `assets.provider` such as a content pack's (`@bendyline/molen-pack`). Earth skies
+draw stars from a catalog the app supplies (`stars`, or `renderer.setStarCatalog`), usually
+`decodeStarCatalog` of the `molen.sky` pack; this package ships no star data. When you do need the real object, `client.getObject(id)` hands it over (and
 un-batches the entity so your edits stay visible); `client.backend` and `client.renderer` are the
 wider escape hatches.
 
@@ -76,8 +81,8 @@ wider escape hatches.
 
 0.x. The wrapper surface (`mountExperience`, `client.*`) is the stable part; everything reached
 through `backend`, `renderer` or `getObject` is explicitly unstable — you own whatever you mutate.
-The three.js pin moves with engine releases, so treat 0.184.0 idioms as authoritative over older
-ones. WebGPU support is newer than the WebGL path; `backend: 'auto'` reaches for it and falls
+The supported three.js range moves with engine releases, and the engine is developed against
+0.184.0, so treat 0.184 idioms as authoritative over older ones. WebGPU support is newer than the WebGL path; `backend: 'auto'` reaches for it and falls
 back, and `backend: 'webgl'` opts out.
 
 ## Docs

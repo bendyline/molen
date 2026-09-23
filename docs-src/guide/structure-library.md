@@ -7,14 +7,14 @@ details, and a representative footprint and floor count. These are original styl
 not surveyed replicas or static meshes stretched to fit a parcel.
 
 The generated runtime index is
-[`structures/catalog.json`](../../packages/worldgen/packs/default/structures/catalog.json),
-exported at `@bendyline/molen-worldgen/packs/default/structures/catalog.json`. All 120 styles are
+[`structures/catalog.json`](../../content/worldgen/structures/catalog.json), shipped in the
+`molen.worldgen.default` content pack (role `structures`). All 120 styles are
 registered in the default style pack. The editable source for each logical building lives in its
 own copyable directory under
-[`source/structures/`](../../packages/worldgen/source/structures/); its `source.json` inventories
+[`source/structures/`](../../content/worldgen/source/structures/); its `source.json` inventories
 the local recipe or archstyle and definition metadata. Supporting architectural references are
 maintained in the collection-wide
-[`catalog.json`](../../packages/worldgen/source/shared/structure-library/catalog.json).
+[`catalog.json`](../../content/worldgen/source/shared/structure-library/catalog.json).
 
 ## See and reshape every structure
 
@@ -91,13 +91,13 @@ Details use the actual facade rhythm, a bounded perimeter allocation, and the ex
 precedence. Dormers use `roof.features.dormers` on eligible pitched wings. Simplified budget
 representations omit ornament while retaining their footprint, primary roof and measured envelope.
 
-The [standard material catalog](../../packages/worldgen/packs/default/materials/README.md)
+The [standard material catalog](../../content/worldgen/materials/README.md)
 groups all 45 shared graphs by construction. It includes several brick bonds, cut/rubble stone,
 clapboard and board-and-batten, shingles, clay tiles, slate, thatch, rammed earth and metal roofs.
 Physical repeat sizes live in `scripts/standard-materials.mjs`. Common textures are 256² and
 prepared once per shared material set. Window graphs use cell UVs; solid surfaces use meter UVs.
 
-Edit the applicable `packages/worldgen/source/structures/<style>/` bundle. Generated styles use
+Edit the applicable `content/worldgen/source/structures/<style>/` bundle. Generated styles use
 `recipe.json`; the original styles carry their complete `archstyle.json`. After editing:
 
 ```sh

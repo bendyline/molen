@@ -6,9 +6,8 @@ import { buildChunkGeometry, type ChunkGeometry } from './mesh';
 import {
   createTerrainPackagePyramidHeightSource,
   type TerrainParentFallbackEvent,
-  type TerrainTileArchive,
 } from './package-client';
-import type { TerrainPackageDescriptor } from './package-types';
+import type { TerrainPackageDescriptor, TerrainTileArchive } from './package-types';
 import { surfaceDescriptor, type TerrainPyramidHeightSource } from './pyramid-stream';
 import type { TerrainPyramidDescriptor, TerrainPyramidTileAddress } from './pyramid-types';
 

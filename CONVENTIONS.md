@@ -18,7 +18,7 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Truth vs plan
 
-- `docs/` = design plan (states "no code exists yet"); `docs-src/` + `packages/` = shipped truth.
+- `docs/` = historical design plan (may lag the code); `docs-src/` + `packages/` = shipped truth.
   Don't implement against `docs/` without checking the code.
 
 ## Build & test
@@ -26,11 +26,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
   (`pnpm typecheck`, `pnpm test:unit`, `pnpm lint`) which run `pnpm -r build` first via `pre*`
   hooks, or run `pnpm -r build` before invoking `tsc`/`vitest` inside a package.
-- CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm test:unit`,
-  `pnpm audit:prod`, `pnpm docs:check`, `pnpm docs:site:check`, `pnpm test:golden`.
-  Local green must equal CI green.
+- CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
+  `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
+  `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.
   `pnpm all` runs the lot in the right order; `pnpm verify` is the fast subset of it (lint,
-  typecheck, docs:check, test:unit, production audit) that also gates the Release workflow, so a green `pnpm all`
+  typecheck, source and docs checks, test:unit, production audit) that also gates the Release workflow, so a green `pnpm all`
   means a release will not fail on a check you could have run yourself. `check-release-gate.mjs`
   in `pnpm lint` enforces that: every script the Release workflow runs must be reachable from
   `all`. Local source copies without `.github/workflows` explicitly skip that comparison; CI
@@ -72,7 +72,7 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   (register new components with `registerComponent`).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
-  `/platformer`, `/determinism`, `/vehicles`, `/aircraft`.
+  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`.
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel
@@ -83,6 +83,17 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   subpaths of the same name. Put the next `createXVisual` there, not in `index.ts`.
 - `@bendyline/molen-terrain` is a capability package split into `/kernel` and `/client` — it has
   **no `.` export**. New capability packages follow this kernel/client-halves pattern.
+- `@bendyline/molen-pack` depends only on schema (+ `fflate`). Its `.` entry runs in browsers,
+  Workers and Node and imports no `node:` modules; file-system helpers live in `/node`. The
+  client does not depend on it: a pack set hands the client an `AssetProvider`-shaped object.
+- **Content is not in npm packages.** Models, style packs, catalogs and the star table live under
+  the top-level `content/<pack>/` directories, each with a `molen-pack.source.json`, and ship as
+  content packs. A package's `files` is `["dist"]`. Library code never fetches content on its own
+  and never names a host; the app passes in documents or a pack, and without them the feature is
+  simply absent (no stars, no parked cars, no recognized businesses), never a hidden default.
+  `scripts/check-package-contents.mjs` enforces this in `pnpm lint` and again on the release
+  tarballs: no content files or directories, no JSON reached outside a package, no chunk large
+  enough to be data.
 - `@bendyline/molen-tooling` sits on top; nothing imports it. All logic lives in `src/ops/*` as
   `(input) => output`; the CLI and MCP server are thin mappings over those ops.
 

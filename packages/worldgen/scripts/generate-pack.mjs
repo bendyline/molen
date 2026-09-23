@@ -4,7 +4,7 @@
  * (core glTF 2.0 GLBs with `molen/asset@1` sidecars). Runs after `tsdown` (imports the built
  * kernel for the mesh builder and GLB encoder).
  *
- *   node scripts/generate-pack.mjs            write packs/default/{materials,assets}
+ *   node scripts/generate-pack.mjs            write content/worldgen/{materials,assets}
  *   node scripts/generate-pack.mjs --check    fail when any generated file is missing or stale
  */
 
@@ -16,8 +16,8 @@ import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { formatJson } from './format-json.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const packDir = resolve(root, 'packs/default');
-const propSourceDir = resolve(root, 'source/props');
+const packDir = resolve(root, '../../content/worldgen');
+const propSourceDir = resolve(packDir, 'source/props');
 const check = process.argv.includes('--check');
 
 // ------------------------------------------------------------------ materials
@@ -1013,12 +1013,12 @@ async function emit(relativePath, bytes) {
       current = await readFile(destination);
     } catch {
       throw new Error(
-        `packs/default/${relativePath} is missing; run node scripts/generate-pack.mjs`,
+        `content/worldgen/${relativePath} is missing; run node scripts/generate-pack.mjs`,
       );
     }
     if (!current.equals(bytes)) {
       stale++;
-      console.error(`stale: packs/default/${relativePath}`);
+      console.error(`stale: content/worldgen/${relativePath}`);
     }
     return;
   }

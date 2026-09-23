@@ -16,6 +16,7 @@ import {
 } from './footprint';
 import { distancePointToSegment, ringBounds } from './geometry2d';
 import { createInteriorSite } from './interior-site';
+import type { InteriorCatalogDoc } from './interior-types';
 import type { MeshBufferBuilder } from './mesh-buffers';
 import { type PropPlacement, placeProps, type RidgeLine, yawForDirection } from './props';
 import { type BuildingRecipe, resolveBuildingRecipe, visibleProps } from './recipe';
@@ -66,8 +67,8 @@ export interface BuildingGenerateInput {
   collapseMaterials?: boolean;
   /** Budget fallback: retain roof shape and bounded facades; collapseMaterials defaults true. */
   simplified?: boolean;
-  /** Generate real openings and storey metadata for lazy interiors. */
-  enterable?: boolean;
+  /** Generate real openings and storey metadata for lazy interiors laid out by this catalog. */
+  interiors?: InteriorCatalogDoc;
 }
 
 export interface BuildingResult {
@@ -191,7 +192,7 @@ export function generateBuilding(
     : analysis.holes;
   const fit = groundFit(input.request.groundOutline ?? outline, input.ground);
   const base =
-    recipe.groundFit === 'platform-max' || input.enterable === true
+    recipe.groundFit === 'platform-max' || input.interiors !== undefined
       ? fit.maxGround
       : recipe.groundFit === 'platform-min'
         ? fit.minGround
@@ -455,7 +456,7 @@ export function generateBuilding(
       ceiling: wallBase + Math.min(3, eave - wallBase) - 0.12,
     });
   const site =
-    input.enterable === true
+    input.interiors !== undefined
       ? createInteriorSite(
           {
             ...input.request,
@@ -466,6 +467,7 @@ export function generateBuilding(
               ...input.style.applicability.classes,
             ],
           },
+          input.interiors,
           outline,
           holes,
           wallBase,

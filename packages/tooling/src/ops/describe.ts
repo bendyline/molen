@@ -360,6 +360,68 @@ export const OPS_CATALOG: OpDescriptor[] = [
     ],
   },
   {
+    name: 'build_pack',
+    summary:
+      'Build a content pack (molen/pack@1 zip) from a source directory holding molen-pack.source.json. Writes <id>-<hash>.zip and updates index.json in outDir.',
+    cli: 'molen pack build <sourceDir> --out-dir <d> [--no-solid]',
+    mcpTool: 'build_pack',
+    params: [
+      p('sourceDir', 'string', true, 'Pack source directory (holds molen-pack.source.json).'),
+      p('outDir', 'string', true, 'Output directory for the pack file and index.json.'),
+      p(
+        'solid',
+        'boolean',
+        false,
+        "Group small text files into compressed solid blocks (default: the source's setting).",
+      ),
+    ],
+  },
+  {
+    name: 'inspect_pack',
+    summary:
+      'Summarize a content pack: id, version, contentHash, sizes, solid blocks, asset ids, roles and the largest files.',
+    cli: 'molen pack inspect <source>',
+    mcpTool: 'inspect_pack',
+    params: [
+      p('source', 'string', true, 'Built pack file, pack source directory, or http(s) URL.'),
+    ],
+  },
+  {
+    name: 'verify_pack',
+    summary:
+      'Read every file of a content pack checking CRC and sha256, validate each JSON document against its registered schema, and check asset sidecar hashes against their models.',
+    cli: 'molen pack verify <source>',
+    mcpTool: 'verify_pack',
+    params: [
+      p('source', 'string', true, 'Built pack file, pack source directory, or http(s) URL.'),
+    ],
+  },
+  {
+    name: 'extract_pack',
+    summary:
+      'Write every file of a content pack into a directory, with a molen-pack.source.json that builds it back to the same content.',
+    cli: 'molen pack extract <source> --out-dir <d>',
+    mcpTool: 'extract_pack',
+    params: [
+      p('source', 'string', true, 'Built pack file or http(s) URL.'),
+      p('outDir', 'string', true, 'Directory to write the files into.'),
+    ],
+  },
+  {
+    name: 'fetch_pack',
+    summary:
+      'Download content packs (a pack URL, or a molen/pack-index@1 URL) into the project and pin them in project.json `packs` with their contentHash, so the project runs offline.',
+    cli: 'molen pack fetch <url> [ids…] [--out-dir <d>] [--project <path>]',
+    mcpTool: 'fetch_pack',
+    params: [
+      p('url', 'string', true, 'URL of a pack file, or of a pack index.'),
+      p('ids', 'string[]', false, 'With an index URL, fetch only these pack ids (default: all).'),
+      p('outDir', 'string', false, 'Download directory (default: packs/ beside project.json).'),
+      projectPathParam(),
+      cwdParam(),
+    ],
+  },
+  {
     name: 'test_types',
     summary:
       'Smoke-test every registry type standalone: resolved shape validates, spawns, and survives N simulated ticks.',
@@ -551,7 +613,7 @@ export const OPS_CATALOG: OpDescriptor[] = [
         'packPath',
         'string',
         false,
-        'Style pack manifest or directory (default: the shipped pack).',
+        "Style pack: a stylepack.json or its directory, or a content pack file, URL or source directory (default: the project's content packs).",
       ),
       p('styleId', 'string', false, 'Force every building onto this style id.'),
       p('batchPath', 'string', false, 'A molen/worldgen-batch@1 document (default: the lineup).'),
@@ -576,7 +638,7 @@ export const OPS_CATALOG: OpDescriptor[] = [
         'packPath',
         'string',
         false,
-        'Style pack manifest or directory (default: the shipped pack).',
+        "Style pack: a stylepack.json or its directory, or a content pack file, URL or source directory (default: the project's content packs).",
       ),
       p('outDir', 'string', true, 'Assets root; the asset lands in <outDir>/<id>/.'),
       p('id', 'string', false, 'Asset id (default: the batch name).'),
@@ -599,9 +661,14 @@ export const OPS_CATALOG: OpDescriptor[] = [
         'packPath',
         'string',
         false,
-        'Style pack manifest or directory (default: the shipped pack).',
+        "Style pack: a stylepack.json or its directory, or a content pack file, URL or source directory (default: the project's content packs).",
       ),
-      p('atlasPath', 'string', false, 'Region atlas (default: the shipped atlas).'),
+      p(
+        'atlasPath',
+        'string',
+        false,
+        "Region atlas: a world.atlas.json, or a content pack that provides one (default: the project's content packs).",
+      ),
       p('styleId', 'string', false, 'Force every building onto this style id.'),
       p('quality', "'economy'|'balanced'|'high'", false, 'Tile budget preset (default balanced).'),
       p('dumpPath', 'string', false, 'Write the adapted molen/worldgen-batch@1 here.'),

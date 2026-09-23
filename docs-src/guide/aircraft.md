@@ -7,8 +7,7 @@ The world explorer includes a P-51D Mustang and OH-6 interpretation, each with a
 GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera. Use the
 **P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to board.
 The aircraft buttons also work from the example hub's world view. A direct link can use
-`?aircraft=p51d` or `?aircraft=h500md`.
-The OH-6 retains the `h500md` URL token and entity/asset ID so existing scene references work.
+`?aircraft=p51d` or `?aircraft=oh6`.
 
 The practice airfield is a raised 900-meter runway and helipad near the initial camera position.
 Its foundation clears streamed buildings; it is a fictional practice location, not a mapped airport.
@@ -54,10 +53,13 @@ rotors, controls, gear, flaps and ailerons animate from simulation state.
 
 ## Reuse in another experience
 
-Bind `@bendyline/molen-entities/project` or `@bendyline/molen-entities/aircraft-types` and the asset map through
-your project. The entity type IDs and GLTF refs are `molen.entities.aircraft.p51d` and
-`molen.entities.aircraft.h500md`. The world explorer stages the assets with its existing prebuild
-and predev content sync, so authoring tools are not required to launch it.
+Both aircraft ship in the `molen.entities` content pack (source: `content/entities`), with their
+type documents and models. List the pack in your project.json `packs` and the CLI resolves the
+types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
+`createPackSet([pack]).assetProvider()` as the client's asset provider. The entity type IDs and
+glTF refs are `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6`. The world
+explorer builds the pack into `public/packs` before dev and build, so authoring tools are not
+required to launch it.
 
 These are not kernel presets. Each type document contains the concrete aircraft's mass and center
 of gravity, engine and thrust geometry, wing or rotor geometry, control response, lift/drag or
@@ -205,9 +207,9 @@ geometry; it does not model deformation or distant unloaded obstacles.
 ## Reproducible review
 
 The source brief, generator, provenance and verification notes are in
-the copyable [P-51 source bundle](../../packages/entities/source/aircraft/p-51/README.md) and
-[OH-6 source bundle](../../packages/entities/source/aircraft/hughes-500md/README.md).
-`packages/entities/scenes/aircraft.scene.json` is the neutral apron scene. The browser flight
+the copyable [P-51 source bundle](../../content/entities/source/aircraft/p-51/README.md) and
+[OH-6 source bundle](../../content/entities/source/aircraft/oh-6/README.md).
+`content/entities/scenes/aircraft.scene.json` is the neutral apron scene. The browser flight
 scenario is `examples/world-explorer/test/visual/aircraft.play.json`.
 
 `packages/kernel/test/aircraft-performance.test.ts` exercises level acceleration, part-throttle

@@ -2,7 +2,7 @@ import type { Quat, SkyData, Vec3, WeatherData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { WebGPURenderer } from 'three/webgpu';
 import { type FrameAdmissionOptions, FrameAdmissionQueue } from '../frame-admission';
-import { SkyVisual } from '../sky/visual';
+import { type SkyStar, SkyVisual } from '../sky/visual';
 import { WeatherVisual } from '../weather/visual';
 import { applyEnvironment, defaultEnvironment } from './environment';
 import {
@@ -60,6 +60,11 @@ export interface RendererOptions {
   autoWorldOrigin?: AutoWorldOriginOptions;
   /** Background clear color, default a mid grey. */
   clearColor?: string;
+  /**
+   * Stars for every sky, e.g. `decodeStarCatalog` of the `molen.sky` content pack's `stars.bin`.
+   * Without a catalog, skies show no stars; `setStarCatalog` supplies one later.
+   */
+  stars?: readonly SkyStar[];
 }
 
 export interface AutoWorldOriginOptions {
@@ -208,6 +213,7 @@ export class Renderer {
   private deviceLossReason: string | undefined;
   private readonly optimizer: WebGpuSceneOptimizer | undefined;
   private activeSky: SkyVisual | undefined;
+  private starCatalog: readonly SkyStar[] | undefined;
   private activeWeather: WeatherVisual | undefined;
   private weatherTimeOverride: number | undefined;
   private readonly weatherLightIntensities = new WeakMap<THREE.Light, number>();
@@ -244,7 +250,12 @@ export class Renderer {
 
   /** @internal Environment binding hook; hosts use applyEnvironment to replace the complete lighting rig. */
   setSky(data: SkyData | undefined, shadows: 'off' | 'low' | 'medium' | 'high' = 'off'): void {
-    const next = data ? new SkyVisual(data, { shadows }) : undefined;
+    const next = data
+      ? new SkyVisual(data, {
+          shadows,
+          ...(this.starCatalog !== undefined ? { stars: this.starCatalog } : {}),
+        })
+      : undefined;
     try {
       next?.update(this.environmentTimeOverride ?? this.environmentSeconds);
     } catch (error) {
@@ -254,6 +265,16 @@ export class Renderer {
     this.activeSky?.dispose();
     this.activeSky = next;
     if (next) this.scene.add(next.lights);
+  }
+
+  /**
+   * Stars for every sky this renderer shows, e.g. `decodeStarCatalog` of a content pack's
+   * molen/stars@1 file. Applies to the current sky at once and survives sky changes;
+   * `undefined` removes the stars.
+   */
+  setStarCatalog(stars: readonly SkyStar[] | undefined): void {
+    this.starCatalog = stars;
+    this.activeSky?.setStars(stars);
   }
 
   /** Absolute simulation seconds, shared by live playback, paused snapshots and captures. */
@@ -324,6 +345,7 @@ export class Renderer {
 
   constructor(opts: RendererOptions = {}, initialized?: InitializedRenderer) {
     validateRendererOptions(opts);
+    this.starCatalog = opts.stars;
     this.admission = new FrameAdmissionQueue({
       // Three's WebGPU node preparation is indivisible and commonly takes 3–5 ms per mesh.
       // A 2 ms budget admits only one such mesh per frame and delays large worlds for minutes.

@@ -15,33 +15,46 @@ molen shot scene.json --ticks 30 --camera 0,6,16 --out shot.png
 
 ## Try it
 
-The packages are not on npm yet, so build from a clone:
+Node 22.13 or newer:
 
 ```sh
-pnpm install && pnpm -r build     # packages consume each other's dist
-node packages/tooling/dist/cli.mjs new my-experience
+npx @bendyline/molen-tooling new my-experience
+cd my-experience
+npm install                       # the engine, the molen CLI, TypeScript and Vite
+npx playwright install chromium   # once per machine; only screenshots need a browser
 ```
 
 That scaffolds a runnable project: a scene manifest, two scene scripts, a setup module, an
-entity type registry, assertions and a Vite app. From inside it, the whole inner loop works with
-no install and no browser:
+entity type registry, assertions and a Vite app. From inside it, the whole inner loop runs
+headless:
 
 ```sh
-molen validate scenes/main.scene.json   # ✓ scenes/main.scene.json is a valid scene
-molen types check                       # ✓ types check passed
-molen scripts check                     # ✓ 2 scripts type-check clean
-molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
-                                        # ✓ 4/4 assertions passed
-molen shot main --ticks 30 --out shot.png
-pnpm dev                                # the same scene in the browser
+npx molen validate scenes/main.scene.json   # ✓ scenes/main.scene.json is a valid scene
+npx molen types check                       # ✓ types check passed
+npx molen scripts check                     # ✓ 2 scripts type-check clean
+npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+                                            # ✓ 4/4 assertions passed
+npx molen shot main --ticks 30 --out shot.png
+npm run dev                                 # the same scene in the browser
 ```
 
-Every one of those commands is also an MCP tool with the same input and output contract, so an
-agent drives the engine without reading its source. `molen describe` prints the contracts,
-`molen docs search <query>` searches the shipped guides offline.
+Use the scoped name the first time: the unscoped `molen` package on npm is unrelated. Inside the
+project, `npx molen` runs the CLI the project installed.
 
-To see finished experiences instead, `pnpm dev` from the repository root opens a gallery of nine
-samples, including three complete games.
+Every one of those commands is also an MCP tool with the same input and output contract
+(`npx molen mcp` starts the server over stdio), so an agent drives the engine without reading its
+source. `molen describe` prints the contracts, and `molen docs search <query>` searches the
+shipped guides offline. The guides are also at [molen.dev](https://molen.dev).
+
+### From a clone
+
+To work on the engine itself, or to see finished experiences:
+
+```sh
+pnpm install && pnpm -r build     # packages consume each other's dist
+pnpm dev                          # a gallery of nine samples, including three complete games
+node packages/tooling/dist/cli.mjs --help
+```
 
 ## What makes it different
 
@@ -77,10 +90,12 @@ and a render-only `/client` half: [terrain](packages/terrain),
 [worldgen](packages/worldgen), [worldgen-earth](packages/worldgen-earth),
 [figures](packages/figures), plus [physics-rapier](packages/physics-rapier),
 [pathfinding](packages/pathfinding) and the [entities](packages/entities) asset library.
+[pack](packages/pack) builds and reads content packs: zip files of models and documents that an
+app hosts wherever it likes.
 
 ## Status
 
-Molen is pre-release. Version 0.x, ESM only, Node 22.13 or newer, three.js pinned per release.
+Molen is pre-release. Version 0.x, ESM only, Node 22.13 or newer, three.js 0.184 to 0.186 as a peer dependency.
 
 - **The formats are beta.** A breaking change bumps the version in the envelope
   (`molen/scene@3`) rather than shipping a migration.

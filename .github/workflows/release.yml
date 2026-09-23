@@ -39,19 +39,20 @@ jobs:
       # is the artifact that gets deployed.
       - uses: actions/configure-pages@v5
       - run: pnpm docs:site:build
-      # One semantic-release run decides one version for all 13 packages. Its Molen plugin
+      # One semantic-release run decides one version for all 14 packages. Its Molen plugin
       # stamps, rebuilds, verifies, packs and publishes before the tag is pushed. npm's CLI
       # exchanges this job's OIDC identity for a short-lived publish credential.
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm exec semantic-release
-      # As in squisq, record metadata once after all packages publish. This avoids one push
-      # per package and keeps a failed/partial publish retryable at the same version.
+      # Record the stamped versions once, after all packages publish. This avoids one push per
+      # package and keeps a failed or partial publish retryable at the same version. The commit
+      # is authored as GitHub's own Actions bot, the identity GITHUB_TOKEN pushes as.
       - name: Commit release metadata
         run: |
-          git config user.name semantic-release-bot
-          git config user.email semantic-release-bot@martynus.net
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- packages/*/package.json packages/kernel/src/version.ts docs-src/llms.txt docs-src/guide/determinism.md
           if [ -f CHANGELOG.md ]; then git add -- CHANGELOG.md; fi
           if git diff --cached --quiet; then

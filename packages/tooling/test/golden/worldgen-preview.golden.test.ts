@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 const DIR = join(process.cwd(), 'test', 'golden');
 const OUT = join(DIR, '__output__');
 const GOLDENS = join(DIR, '__goldens__');
+const STYLE_PACK = join(process.cwd(), '..', '..', 'content', 'worldgen');
 
 // Generation to pixels, closed: the default pack's lineup (one building of every footprint
 // class) rendered through the worldgen preview page, on flat and sloped ground. The generated
@@ -20,6 +21,7 @@ describe('golden: worldgen preview', () => {
       const candidate = join(OUT, `${name}.png`);
       const r = await previewWorldgen({
         ground,
+        packPath: STYLE_PACK,
         size: [640, 360],
         outPath: candidate,
       });

@@ -149,8 +149,7 @@ command-driven victory, replay continuation, combat and weapon-animation reset.
 
 `import-report.json` records source/import hashes, bounds, sizes and full importer statistics.
 Raw turntable frames and `capture-report.json` are reproducible under `.artifacts/assets/`;
-`catalog.png` retains their front views for convenient browsing. See [verification.md](verification.md)
-for results from the completed implementation.
+`catalog.png` retains their front views for convenient browsing.
 
 The importer intentionally leaves repeating UV coordinates unquantized and logs that decision.
 No Draco or KTX decoder is required. Extracted sidecar hulls are inspection metadata; gameplay

@@ -34,17 +34,38 @@ scripts in the process that invoked them.
 
 So a report that a script can reach the host from an ordinary, un-hardened host
 is describing documented behavior rather than a vulnerability. See
-[the scripting guide](docs-src/guide/scripting.md).
+[the scripting guide](https://molen.dev/guide/scripting).
 
-These, by contrast, are in scope and we want to hear about them:
+### Paths given to the CLI and the MCP server are trusted user intent
+
+The `molen` CLI and the MCP server act for the person who runs them, with that
+process's authority, like any other developer tool. A path argument (a scene,
+project, setup module, batch, output directory or image path) is read, written
+or imported as given, wherever it points. An MCP client acts for the user who
+connected it, so the paths an agent passes are that user's intent too. To limit
+what an agent can reach, run the server in a process whose own permissions are
+limited (a container, a sandboxed user, a restricted working tree); Molen does
+not confine its path arguments.
+
+What a code-bearing document names is run the same way: a project's `setup`
+module, a scene's scripts, and the scene and project a replay fixture replays.
+So reports that a CLI or MCP path argument can reach outside a project, or that
+a project or replay fixture runs the setup module it names, describe documented
+behavior.
+
+### In scope
+
+These are in scope, and we want to hear about them:
 
 - An escape from a host that called `hardenScripts()` (SES `lockdown`), where
   isolation is the stated intent.
-- A path that reaches the filesystem, the network, or another process without
-  going through a script the operator chose to run — for example through a
-  crafted asset, keyframe, replay fixture, or terrain package.
-- Path traversal or arbitrary write in the CLI, the MCP server, or the local
-  capture and playback servers they start.
+- Data that reaches the filesystem, the network, or another process. Assets
+  (glTF files and their sidecars), keyframes, terrain packages, content packs
+  and images are data, not code: a crafted one that reads or writes a file,
+  makes a request, or runs code is a vulnerability — for example a content pack
+  whose extraction writes outside its target directory.
+- A request to the local capture or playback servers the CLI starts that reads
+  a file outside the directory the server was given.
 - A crafted document that makes the validator, a loader, or a decoder hang,
   exhaust memory, or crash a host that was only validating it.
 - Anything in a published package that executes at install or import time

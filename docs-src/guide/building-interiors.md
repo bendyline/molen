@@ -21,13 +21,16 @@ opaque identities and use labels. The Earth adapter supplies those labels from m
 without changing the exterior classification of towers. Source feature identities, or the
 existing quantized location identity when absent, stabilize the result.
 
-1. `generateBuilding({ ..., enterable: true }, builder)` cuts a real entrance and frontage
+The interior catalog is content: the style pack names it (`"interiors"` in `stylepack.json`) and
+the resolved pack carries it as `pack.interiors`. A pack without one generates no interiors.
+
+1. `generateBuilding({ ..., interiors: catalog }, builder)` cuts a real entrance and frontage
    windows into the exterior. Homes also have bounded side/rear and upper-storey apertures. Its `record.interior` is an `InteriorSite`:
    canonical outline and courtyard holes, floor and ceiling, door/window apertures, access ramp,
    available storey heights, labels and identity. This stage generates **no floor plan or furniture**.
-2. `generateInteriorPlan(site, options)` returns a data-only `InteriorPlan`: rooms, fixtures,
+2. `generateInteriorPlan(site, { catalog })` returns a data-only `InteriorPlan`: rooms, fixtures,
    storeys, stair runs, reserved circulation strips, seed and work statistics.
-3. `generateInteriorGeometry(plan, catalog?)` produces structure, furniture, glass, visible
+3. `generateInteriorGeometry(plan, catalog)` produces structure, furniture, glass, visible
    stair-step and smooth stair-collision buffers. Structure includes floors, ceiling, interior-facing shell walls, room partitions
    with doorways, and an entrance ramp. Furniture is a merged vertex-color batch of structured
    low-poly models: stocked shelving, racks, counters/registers, tables/chairs, beds, desks,
@@ -39,7 +42,7 @@ import {
   generateInteriorPlan, generateInteriorGeometry, validateInteriorCatalog,
 } from '@bendyline/molen-worldgen/kernel';
 
-const catalog = validateInteriorCatalog(myCatalogJson);
+const catalog = pack.interiors ?? validateInteriorCatalog(myCatalogJson);
 const plan = generateInteriorPlan(site, { catalog, maxFixtures: 160, maxCandidates: 1024 });
 const buffers = generateInteriorGeometry(plan, catalog);
 ```
@@ -52,7 +55,8 @@ cooperatively on the main thread; exterior generation continues through the exis
 
 `molen/interior-catalog@1` is a registered JSON format. Validate it with
 `molen validate catalog.json`; discover its fields with `molen schema get interior-catalog`.
-`DEFAULT_INTERIOR_CATALOG` is a complete editable starting catalog with 15 profiles:
+The default style pack's `interiors/catalog.json` (in the `molen.worldgen.default` content pack,
+source `content/worldgen/interiors/`) is a complete editable starting catalog with 15 profiles:
 
 | Program | Algorithm and furnishings |
 | --- | --- |
@@ -113,8 +117,9 @@ origin. Call `register(root, sites, [originX, originZ])` after creating a region
 `update([cameraX, cameraY, cameraZ])` before collision, and `unregister(root)` on disposal.
 The supplied root must be attached to a visible scene hierarchy.
 
-The Earth renderer wires registration/disposal automatically when created with
-`interiors: true` or an `InteriorStreamingOptions` object. The host calls
+`new InteriorStreamer({ catalog })` takes the same catalog. The Earth renderer wires
+registration/disposal automatically when created with `interiors: true` or streaming options,
+using the style pack's catalog (and generating no interiors when the pack has none). The host calls
 `renderers.updateInteriors(cameraPosition)` each frame. Only complete buildings at the finest
 semantic level receive sites; coarse representations retain the cheap exterior path.
 

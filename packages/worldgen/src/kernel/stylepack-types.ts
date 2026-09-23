@@ -42,6 +42,8 @@ export interface StylePackDoc {
   materials: Record<string, string>;
   /** Asset id to pack-relative `molen/asset@1` sidecar path. */
   assets: Record<string, string>;
+  /** Pack-relative `molen/interior-catalog@1` path; without one the pack has no interiors. */
+  interiors?: string;
   defaults: StylePackDefaults;
   imports: StylePackImport[];
   attribution: StylePackAttribution[];

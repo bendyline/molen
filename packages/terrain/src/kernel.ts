@@ -29,19 +29,17 @@ export {
 export type {
   TerrainArchiveHeader,
   TerrainArchiveTile,
-  TerrainPackageSemanticContent,
-  TerrainSemanticTileDecodeContext,
-  TerrainSemanticTileDecoder,
-  TerrainTileArchive,
-} from './package-client';
-export type {
   TerrainPackageArchiveSource,
   TerrainPackageAttribution,
   TerrainPackageCoordinateSpace,
   TerrainPackageDescriptor,
   TerrainPackageFileRecord,
+  TerrainPackageSemanticContent,
   TerrainPackageSemanticProfile,
   TerrainPackageSourceRecord,
+  TerrainSemanticTileDecodeContext,
+  TerrainSemanticTileDecoder,
+  TerrainTileArchive,
 } from './package-types';
 export { decodePng16, encodePng16, type Gray16 } from './png16';
 export {

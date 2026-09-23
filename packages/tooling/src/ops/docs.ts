@@ -6,8 +6,8 @@ export interface SearchDocsInput {
   query: string;
   k?: number;
   /**
-   * Also search the binding design plan in docs/ (which states "no code exists yet"). Off by
-   * default — those hits describe intent, not the shipped engine. When on, they are tagged.
+   * Also search the historical design plan in docs/, which may lag the code. Off by default —
+   * those hits describe intent, not the shipped engine. When on, they are tagged.
    */
   includeDesign?: boolean;
   /** Override the base dir to search from (defaults to the located bundle root). */

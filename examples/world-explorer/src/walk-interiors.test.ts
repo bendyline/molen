@@ -9,6 +9,7 @@ import {
   FLAT_GROUND,
   generateBuilding,
   generateInteriorPlan,
+  type InteriorCatalogDoc,
   interiorToLocal,
   interiorToWorld,
   MeshBufferBuilder,
@@ -16,8 +17,9 @@ import {
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import commercialRaw from '../../../packages/worldgen/packs/default/styles/generic/commercial.archstyle.json?raw';
-import houseRaw from '../../../packages/worldgen/packs/default/styles/generic/house.archstyle.json?raw';
+import interiorsRaw from '../../../content/worldgen/interiors/catalog.json?raw';
+import commercialRaw from '../../../content/worldgen/styles/generic/commercial.archstyle.json?raw';
+import houseRaw from '../../../content/worldgen/styles/generic/house.archstyle.json?raw';
 import { WalkCollision } from './walk-collision';
 import { WalkController } from './walk-controller';
 
@@ -25,6 +27,8 @@ function required<T>(value: T | undefined): T {
   if (value === undefined) throw new Error('Missing generated fixture');
   return value;
 }
+
+const INTERIORS = JSON.parse(interiorsRaw) as InteriorCatalogDoc;
 
 function styleOf(source: string): ArchStyleDoc {
   const result = validateByKind('archstyle', JSON.parse(source));
@@ -48,12 +52,12 @@ describe('walkable generated interiors', () => {
         pack: { name: 'test', version: '1' },
         ground: FLAT_GROUND,
         tier: 0,
-        enterable: true,
+        interiors: INTERIORS,
       },
       builder,
     );
     const site = required(result.record?.interior);
-    const plan = generateInteriorPlan(site);
+    const plan = generateInteriorPlan(site, { catalog: INTERIORS });
     expect(plan.profile).toBe('house');
     expect(plan.storeys).toHaveLength(2);
     const stair = required(plan.stairs[0]);
@@ -83,7 +87,7 @@ describe('walkable generated interiors', () => {
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshBasicMaterial());
     ground.rotation.x = -Math.PI / 2;
     region.add(ground);
-    const stream = new InteriorStreamer({ frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS });
     stream.register(region, [site]);
     const start = interiorToWorld(site, [0, -3]);
     for (let i = 0; i < 30; i++) stream.update([start[0], 1.7, start[1]]);
@@ -173,7 +177,7 @@ describe('walkable generated interiors', () => {
         pack: { name: 'walk-fixture', version: '1' },
         ground: FLAT_GROUND,
         tier: 0,
-        enterable: true,
+        interiors: INTERIORS,
       },
       builder,
     );
@@ -187,7 +191,7 @@ describe('walkable generated interiors', () => {
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshBasicMaterial());
     ground.rotation.x = -Math.PI / 2;
     region.add(ground);
-    const stream = new InteriorStreamer({ frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ frameBudgetMs: 50, catalog: INTERIORS });
     stream.register(region, [site]);
     const start: [number, number, number] = [
       site.entrance[0] - site.inward[0] * 3,

@@ -47,7 +47,6 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@bendyline/molen-entities": "workspace:*",
     "@bendyline/molen-schema": "workspace:*",
     "@mapbox/vector-tile": "2.0.4",
     "fflate": "^0.8.3",
@@ -58,7 +57,7 @@
   },
   "peerDependencies": {
     "@bendyline/molen-client": "workspace:*",
-    "three": "0.184.0"
+    "three": ">=0.184.0 <0.187.0"
   },
   "peerDependenciesMeta": {
     "@bendyline/molen-client": {
@@ -70,6 +69,7 @@
   },
   "devDependencies": {
     "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
     "@biomejs/biome": "^2.5.0",
     "@types/three": "0.184.0",
     "three": "0.184.0",

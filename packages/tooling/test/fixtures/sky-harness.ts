@@ -1,7 +1,9 @@
 import {
   createSnapshotViewer,
+  decodeStarCatalog,
   type MolenClient,
   type SkyData,
+  type SkyStar,
   THREE,
 } from '@bendyline/molen-client';
 import type { Keyframe } from '@bendyline/molen-schema';
@@ -27,6 +29,12 @@ declare global {
   }
 }
 let viewer: MolenClient | undefined;
+// The molen.sky pack's catalog, which the test serves beside this page.
+let stars: Promise<SkyStar[]> | undefined;
+const starCatalog = (): Promise<SkyStar[]> =>
+  (stars ??= fetch('./stars.bin')
+    .then((response) => response.arrayBuffer())
+    .then((bytes) => decodeStarCatalog(bytes)));
 let marker: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial> | undefined;
 async function present(): Promise<void> {
   await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
@@ -61,6 +69,7 @@ window.__skyCapture = {
       height: 400,
       backend: options.backend,
       reverseDepthBuffer: true,
+      stars: await starCatalog(),
     });
     viewer.backend.setAnimationTick(keyframe.tick, keyframe.tickRate);
     viewer.renderer.sky?.update(keyframe.tick / keyframe.tickRate);

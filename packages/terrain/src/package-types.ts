@@ -1,4 +1,6 @@
 import type { TerrainLayer } from './descriptor-types';
+import type { TerrainPyramidTileAddress } from './pyramid-types';
+import type { TerrainSemanticTile } from './semantic-types';
 
 export type TerrainPackageArchiveSource =
   | {
@@ -86,4 +88,47 @@ export interface TerrainPackageDescriptor {
     sources: TerrainPackageSourceRecord[];
   };
   files: TerrainPackageFileRecord[];
+}
+
+// Archive and decoder seams. They live here, not in package-client, so the kernel entry can export
+// them without its declarations reaching the client's three.js-typed streams.
+
+export interface TerrainArchiveTile {
+  data: ArrayBuffer;
+}
+
+export interface TerrainArchiveHeader {
+  minZoom: number;
+  maxZoom: number;
+  tileType?: number;
+}
+
+/** Small archive seam implemented by PMTiles and easy to fake in tests/native hosts. */
+export interface TerrainTileArchive {
+  getZxy(
+    level: number,
+    x: number,
+    y: number,
+    signal?: AbortSignal,
+  ): Promise<TerrainArchiveTile | undefined>;
+  getHeader?(): Promise<TerrainArchiveHeader>;
+}
+
+export type TerrainPackageSemanticContent = 'landcover' | 'features';
+
+export interface TerrainSemanticTileDecodeContext {
+  /** Logical XYZ-style address used by the terrain renderer (+Z south). */
+  address: TerrainPyramidTileAddress;
+  content: TerrainPackageSemanticContent | 'all';
+  encoding: 'mvt' | 'png8';
+  /** Source layer names declared by terrain-package.json. */
+  layers: readonly string[];
+}
+
+/** Source-format adapter implemented by a pipeline/app-specific MVT or PNG8 decoder. */
+export interface TerrainSemanticTileDecoder {
+  decode(
+    data: Uint8Array,
+    context: TerrainSemanticTileDecodeContext,
+  ): TerrainSemanticTile | Promise<TerrainSemanticTile>;
 }

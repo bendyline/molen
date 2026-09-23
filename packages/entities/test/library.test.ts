@@ -6,7 +6,7 @@ import { validate } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import { createMolenEntitiesAssetIndex, MOLEN_ENTITY_IDS } from '../src/index';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../content/entities');
 
 describe('molen entities library', () => {
   it('exposes stable client URLs for every asset id', () => {
@@ -64,9 +64,9 @@ describe('molen entities library', () => {
 
   it.each([
     'p51d',
-    'h500md',
+    'oh6',
   ])('keeps the editable %s master paired with its imported asset', async (kind) => {
-    const sourceDirectory = kind === 'p51d' ? 'p-51' : 'hughes-500md';
+    const sourceDirectory = kind === 'p51d' ? 'p-51' : 'oh-6';
     const sidecar = JSON.parse(
       await readFile(resolve(root, `assets/molen/entities/aircraft/${kind}/asset.json`), 'utf8'),
     ) as { sourceHash: string };

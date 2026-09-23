@@ -15,7 +15,7 @@ import {
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
 import type { BuildingPiece } from './building-parts';
-import { type ResolvedBusiness, resolveBusiness } from './business-catalog';
+import type { BusinessCatalog, ResolvedBusiness } from './business-catalog';
 
 interface Occupant {
   poi: TerrainPoiFeature;
@@ -34,6 +34,7 @@ function boundsContain(p: TerrainSemanticPoint, b: readonly number[]): boolean {
 export function associateBusinesses(
   tile: TerrainSemanticTile,
   pieces: readonly BuildingPiece[],
+  catalog: BusinessCatalog,
 ): BuildingOccupants {
   const output: BuildingOccupants = new Map();
   const candidates = pieces
@@ -48,7 +49,7 @@ export function associateBusinesses(
     const key = identity(poi);
     if (seen.has(key)) continue;
     seen.add(key);
-    const business = resolveBusiness(poi);
+    const business = catalog.resolve(poi);
     if (!business) continue;
     const contained = candidates.filter(
       (c) => boundsContain(poi.point, c.bounds) && pointInPolygon(poi.point, c.piece.polygon),
@@ -69,7 +70,7 @@ export function associateBusinesses(
   }
   for (const piece of pieces) {
     if (output.has(piece)) continue;
-    const business = resolveBusiness({
+    const business = catalog.resolve({
       class: piece.feature.subclass ?? piece.feature.class ?? 'building',
       name: piece.feature.name,
       brand: piece.feature.brand,

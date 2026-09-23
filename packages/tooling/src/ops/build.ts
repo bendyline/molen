@@ -10,7 +10,7 @@ import {
 } from '@bendyline/molen-kernel';
 import { installTerrain, terrainScriptApi } from '@bendyline/molen-kernel/terrain';
 import type { ShapeResolvers } from '@bendyline/molen-physics-rapier';
-import type { ComponentRegistry, SceneManifest } from '@bendyline/molen-schema';
+import type { ComponentRegistry, ContentIdentity, SceneManifest } from '@bendyline/molen-schema';
 import { decodeCollisionTrimesh, validate, validateByKind } from '@bendyline/molen-schema';
 import {
   type Heightfield,
@@ -57,6 +57,8 @@ export interface SceneBuildOptions {
   resolvers?: ShapeResolvers;
   /** The scene's terrain (see loadSceneTerrain); becomes the world's ground field. */
   terrain?: SceneTerrain;
+  /** Which pack content the world is built from, recorded in keyframes and replays. */
+  content?: ContentIdentity;
 }
 
 /**
@@ -67,6 +69,9 @@ export interface SceneBuildOptions {
 export async function sceneBuildOptionsFor(loaded: LoadedScene): Promise<SceneBuildOptions> {
   const opts: SceneBuildOptions = { registry: loaded.project?.componentRegistry };
   if (loaded.project?.resolvedTypes !== undefined) opts.types = loaded.project.resolvedTypes;
+  if (loaded.project !== undefined && Object.keys(loaded.project.content).length > 0) {
+    opts.content = loaded.project.content;
+  }
   if (loaded.project !== undefined && loaded.manifest.physics?.engine === 'rapier') {
     opts.resolvers = await collisionResolvers(loaded.project);
   }
@@ -93,6 +98,7 @@ export async function prepareSceneBuilder(
   const buildOpts: BuildWorldOptions = {
     registry: opts?.registry,
     ...(opts?.types !== undefined ? { types: opts.types } : {}),
+    ...(opts?.content !== undefined ? { content: opts.content } : {}),
     // Figures are always available (an empty query costs nothing): molen.figures.* in scripts.
     capabilities: [(world) => ({ figures: figuresScriptApi(installFigures(world)) })],
     ...(terrain !== undefined

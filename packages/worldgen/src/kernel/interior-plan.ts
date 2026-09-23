@@ -55,7 +55,7 @@ export function interiorRectFits(site: InteriorSite, bounds: Bounds2, clearance 
 /** Cooperative pure layout pass. Named coordinate draws keep retained modules stable under caps. */
 export function* generateInteriorPlanSteps(
   site: InteriorSite,
-  options: InteriorGenerateOptions = {},
+  options: InteriorGenerateOptions,
 ): Generator<void, InteriorPlan, void> {
   const profile = resolveInteriorProfile(site.labels, options.catalog);
   const maxFixtures = Math.max(0, Math.min(512, Math.floor(options.maxFixtures ?? 160)));
@@ -146,7 +146,7 @@ export function* generateInteriorPlanSteps(
 
 export function generateInteriorPlan(
   site: InteriorSite,
-  options: InteriorGenerateOptions = {},
+  options: InteriorGenerateOptions,
 ): InteriorPlan {
   const steps = generateInteriorPlanSteps(site, options);
   for (;;) {

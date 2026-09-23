@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { InteriorStreamer } from '../../src/client/interior-streamer';
 import { createInteriorSite } from '../../src/kernel/interior-site';
 import { FLAT_GROUND, type Vec2 } from '../../src/kernel/types';
+import { INTERIORS } from '../helpers/content';
 
 function fixture(identity: string, x = 0) {
   const outline: Vec2[] = [
@@ -13,6 +14,7 @@ function fixture(identity: string, x = 0) {
   ];
   const site = createInteriorSite(
     { identity, labels: ['supermarket'], outline },
+    INTERIORS,
     outline,
     [],
     0,
@@ -31,7 +33,7 @@ describe('lazy interior lifecycle', () => {
     const region = new THREE.Group();
     scene.add(region);
     const site = fixture('flight');
-    const stream = new InteriorStreamer({ frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, frameBudgetMs: 50 });
     stream.register(region, [site]);
     const outline = site.outline;
     const readOutline = vi.fn(() => outline);
@@ -67,6 +69,7 @@ describe('lazy interior lifecycle', () => {
       ];
     }
     const stream = new InteriorStreamer({
+      catalog: INTERIORS,
       frameBudgetMs: 50,
       loadDistance: 0.2,
       unloadDistance: 1,
@@ -109,7 +112,7 @@ describe('lazy interior lifecycle', () => {
     const scene = new THREE.Group(),
       region = new THREE.Group();
     scene.add(region);
-    const stream = new InteriorStreamer({ frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, frameBudgetMs: 50 });
     const s = fixture('one');
     stream.register(region, [s]);
     const gate = region.children[0] as THREE.Mesh;
@@ -143,7 +146,7 @@ describe('lazy interior lifecycle', () => {
     const scene = new THREE.Group(),
       region = new THREE.Group();
     scene.add(region);
-    const stream = new InteriorStreamer({ maxResident: 1, frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, maxResident: 1, frameBudgetMs: 50 });
     stream.register(region, [fixture('one'), fixture('two', 40)], [9_000_000, 0]);
     settle(stream, [9_000_010, 1.7, 10]);
     expect(stream.stats().resident).toBe(1);
@@ -162,7 +165,7 @@ describe('lazy interior lifecycle', () => {
     const scene = new THREE.Group(),
       region = new THREE.Group();
     scene.add(region);
-    const stream = new InteriorStreamer({ maxBytes: 1, frameBudgetMs: 50 });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, maxBytes: 1, frameBudgetMs: 50 });
     stream.register(region, [fixture('one')]);
     settle(stream, [10, 1000, 10]);
     expect(stream.stats().generated).toBe(0);

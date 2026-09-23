@@ -45,6 +45,34 @@ concrete type id as `config.type`, so one reusable script can react only to inst
 whose behavior it defines. The project loaders inline file-backed type scripts before `buildWorld`;
 the same trust and determinism rules as scene scripts apply.
 
+## Content packs (`packs`)
+
+Shared content (entity types and models, style packs, catalogs) is not in any npm package; it
+comes in content packs, `molen/pack@1` zip files built with `molen pack build`. A project lists
+the packs it uses, in order, and their types join the registry like the project's own:
+
+```json
+{
+  "format": "molen/project@1",
+  "name": "rail-yard",
+  "scenes": { "main": "scenes/main.scene.json" },
+  "packs": [
+    { "id": "molen.entities", "source": "vendor/molen.entities-3f2a9c1b04d7.zip" },
+    { "id": "molen.worldgen.default", "source": "https://example.com/packs/molen.worldgen.default.zip",
+      "contentHash": "sha256:…" }
+  ]
+}
+```
+
+A `source` is a path relative to project.json (a built pack or a pack source directory) or an
+`https://` URL. `molen pack fetch <url>` downloads a pack and pins it with its `contentHash`; a pack
+whose content does not match its pin is refused. URL packs are cached in `MOLEN_CACHE_DIR`
+(default `~/.cache/molen/packs`) and fetched once; `MOLEN_OFFLINE=1` never fetches. `MOLEN_PACKS`
+adds packs (paths or URLs, separated like `PATH`) after the project's. When two packs provide the
+same id, the later one wins. `molen sim run --hash` prints which packs the types came from, and a
+recorded replay keeps that identity (see [determinism](determinism.md)). A project with no
+`packs` needs none: `molen new` scaffolds one that stands alone.
+
 ## Reservations (multi-agent vocabulary partitioning)
 
 `reservations` in project.json assign dotted namespaces to owners. A reservation covers the

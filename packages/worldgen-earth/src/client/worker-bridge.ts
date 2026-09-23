@@ -12,6 +12,7 @@ import {
   type ResolvedStylePack,
   type WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
+import type { PlacesContentDocs } from '../kernel/places';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { TileGeometry } from '../kernel/semantic-adapter';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
@@ -55,6 +56,11 @@ export interface WorldgenWorkerBridgeOptions {
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
   metersPerUnit: number;
+  /**
+   * Places content documents to generate with (none when omitted). Give the renderer the
+   * same content as `places` so its tile cache keys match what the worker generates.
+   */
+  places?: PlacesContentDocs;
   /** Terminate the worker on dispose (default true). */
   ownsWorker?: boolean;
 }
@@ -102,6 +108,7 @@ export function createWorldgenWorkerBridge(
     pack: options.pack,
     ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
     metersPerUnit: options.metersPerUnit,
+    ...(options.places !== undefined ? { places: options.places } : {}),
   };
   worker.postMessage(configure);
 

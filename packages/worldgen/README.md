@@ -12,9 +12,11 @@ kernel, a three.js client, and a dev loop an agent can drive end to end.
 npm i @bendyline/molen-worldgen
 ```
 
-Node >= 22.13, ESM only, and no `.` export: import `@bendyline/molen-worldgen/kernel`,
-`@bendyline/molen-worldgen/client`, or a pack document from `@bendyline/molen-worldgen/packs/*`.
-The client half needs the optional peers `three` (pinned to exactly `0.184.0`) and
+Node >= 22.13, ESM only, and no `.` export: import `@bendyline/molen-worldgen/kernel` or
+`@bendyline/molen-worldgen/client`. The default style pack is content, not code: it ships as the
+`molen.worldgen.default` content pack (see `@bendyline/molen-pack`), built from `content/worldgen`
+in the repository.
+The client half needs the optional peers `three` (`>=0.184.0 <0.187.0`) and
 `@bendyline/molen-client`; the kernel half needs neither. This package knows nothing about maps —
 `@bendyline/molen-worldgen-earth` is the binding that feeds it real map data.
 
@@ -25,12 +27,12 @@ three.js. The client half uploads those buffers.
 
 ```ts
 // Node or a Worker: the kernel half
-import { readFile } from 'node:fs/promises';
+import { openPack } from '@bendyline/molen-pack';
 import { generateWorldgenBatch, resolveStylePackDocuments } from '@bendyline/molen-worldgen/kernel';
 
-const packUrl = import.meta.resolve('@bendyline/molen-worldgen/packs/default/stylepack.json');
-const readDoc = async (rel: string): Promise<unknown> =>
-  JSON.parse(await readFile(new URL(rel, packUrl), 'utf8'));
+// Wherever your app keeps the pack: a URL, a file, bytes, or a Blob.
+const styles = await openPack('https://example.com/packs/molen.worldgen.default.zip');
+const readDoc = (path: string): Promise<unknown> => styles.readJson(path);
 const pack = await resolveStylePackDocuments(await readDoc('stylepack.json'), readDoc);
 
 const out = generateWorldgenBatch({
@@ -52,7 +54,9 @@ import {
   loadStylePack,
 } from '@bendyline/molen-worldgen/client';
 
-const { pack } = await loadStylePack('/worldgen/default/');
+// A style pack extracted to static files (`molen pack extract`); or resolve one from a content
+// pack with `resolveStylePackDocuments`, as above.
+const { pack } = await loadStylePack('/styles/default/');
 const hall = createBuildingObject(
   { identity: 'room:hall-1', labels: ['hall'], outline: [[0, 0], [24, 0], [24, 10], [0, 10]] },
   pack.archstyles['molen.worldgen.fantasy.hall'],
@@ -68,20 +72,23 @@ if (hall) viewer.renderer.worldRoot.add(hall);
 | --- | --- |
 | `./kernel` | The formats (`archstyle`, `scatter`, `stylepack`, `worldgen-batch`, `landmark`), footprint analysis, wings, roofs, walls, facades, the batch generator, interiors, the landmark and sign library, `encodeGlb`, the seed scheme, and the gameplay index (`installWorldgen`, `molen.worldgen.*`). |
 | `./client` | Buffers to three.js (`buffersToObject3D`, `createBuildingObject`), instanced placements and their LOD, `ModelLibrary`, interior streaming, material sets, the `worldgenBuilding` entity layer, and `loadStylePack`. |
-| `./packs/*` | The default pack: 120 resizable structures in 13 taxonomies, 45 shared materials, scatter rules, landmarks and signs. |
 
-## Authoring the shipped things
+## The default content
 
-The default pack is compiled from copyable logical source bundles under `source/`:
+The default style pack is not in this npm package. It ships as the `molen.worldgen.default`
+content pack: 120 resizable structures in 13 taxonomies, 45 shared materials, scatter rules,
+landmarks and signs, and the interior catalog. Its source is `content/worldgen/` in the repository, compiled from copyable
+logical source bundles under `content/worldgen/source/`:
 
 - `source/structures/<style>/` owns one building's catalog definition and recipe or complete
   archstyle;
 - `source/landmarks/<landmark>/` owns one landmark definition;
 - `source/props/<prop>/` owns one procedural model recipe.
 
-Each directory has a validated `molen/source-bundle@1` `source.json`. Generated runtime documents
-and models remain under `packs/default/`. The generic footprint, building, landmark, and mesh
-solvers are shared engine capabilities rather than copied into each content bundle.
+Each directory has a validated `molen/source-bundle@1` `source.json`. The generated runtime
+documents and models sit beside them in `content/worldgen/`, and `molen pack build` turns the
+directory into the pack. The generic footprint, building, landmark, and mesh solvers are shared
+engine capabilities rather than copied into each content bundle.
 
 ## Status
 
@@ -90,9 +97,12 @@ versioned and beta, and a pack or style version bump is the only way to re-roll 
 participate in every seed). Known limits: windows are surface quads rather than openings, dormers
 and setbacks are declared but not built, and pieces clipped at a tile edge get flat roofs.
 
-The default pack ships real chain names, sign designs and storefront treatments so that mapped
-real-world places read as themselves; those names and marks belong to their owners, and
-[NOTICE](../../NOTICE.md) at the repository root records what is used.
+The default pack's storefronts are generic: landmark IDs, titles and wordmarks are descriptors
+such as `mart_store` and `taco_place`, and emblems are formed from the descriptor's initials, not
+from any company's logo. Some color palettes are inspired by real businesses. Real company names
+appear only in the `@bendyline/molen-worldgen-earth` business catalog, which uses them to recognize
+mapped places and route them to these generic models. [NOTICE](https://github.com/bendyline/molen/blob/main/NOTICE.md) at the repository
+root has the full trademark statement.
 
 ## Docs
 

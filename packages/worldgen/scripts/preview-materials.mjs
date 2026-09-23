@@ -8,7 +8,7 @@ import { validateByKind } from '@bendyline/molen-schema';
 import { formatJson } from './format-json.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const packDir = resolve(here, '../packs/default/materials');
+const packDir = resolve(here, '../../../content/worldgen/materials');
 const require = createRequire(resolve(here, '../../tooling/package.json'));
 const sharp = require('sharp');
 const outIndex = process.argv.indexOf('--out');

@@ -1,8 +1,9 @@
 import { expect, it } from 'vitest';
 import { businessShowcaseTile } from './business-showcase';
+import { placesContent } from './test-content';
 
 it('keeps the original stores accessible and all 40 new treatments inside the review tile', () => {
-  const tile = businessShowcaseTile(1000);
+  const tile = businessShowcaseTile(1000, placesContent());
   expect(tile.buildings).toHaveLength(49);
   expect(tile.buildings.find((b) => b.id === 'showcase:mcdonalds')?.polygons[0]?.outer[0]).toEqual([
     0.433, 0.371,

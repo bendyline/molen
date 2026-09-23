@@ -4,7 +4,7 @@ import { expect, it } from 'vitest';
 
 const models = [
   ['aircraft', 'p-51', 'aircraft', 'p51d'],
-  ['aircraft', 'hughes-500md', 'aircraft', 'h500md'],
+  ['aircraft', 'oh-6', 'aircraft', 'oh6'],
   ...['compact', 'sedan', 'suv', 'pickup', 'van'].map((name) => [
     'vehicles',
     name,
@@ -16,7 +16,7 @@ const models = [
 it.each(
   models,
 )('%s/%s interior bindings resolve in its source and imported main GLB', async (category, name, runtimeCategory, runtimeName) => {
-  const root = new URL(`../source/${category}/${name}/`, import.meta.url);
+  const root = new URL(`../../../content/entities/source/${category}/${name}/`, import.meta.url);
   const doc = JSON.parse(await readFile(new URL('entity.types.json', root), 'utf8'));
   const components = Object.values(doc.types)[0].components;
   const visual = components.aircraft?.spec.visual ?? components.vehicle.visual;
@@ -25,7 +25,7 @@ it.each(
   for (const path of [
     new URL('models/source.glb', root),
     new URL(
-      `../assets/molen/entities/${runtimeCategory}/${runtimeName}/model.glb`,
+      `../../../content/entities/assets/molen/entities/${runtimeCategory}/${runtimeName}/model.glb`,
       import.meta.url,
     ),
   ]) {

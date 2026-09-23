@@ -4,8 +4,10 @@ import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { stripScriptTypes } from '@bendyline/molen-client/vite';
 import { isExperience, type ResolvedTypes, type WorldSetup } from '@bendyline/molen-kernel';
+import type { PackSet } from '@bendyline/molen-pack';
 import type {
   ComponentRegistry,
+  ContentIdentity,
   JsonObject,
   ProjectManifest,
   SceneManifest,
@@ -21,6 +23,7 @@ import {
   sceneTypeRefIssues,
   validate,
 } from '@bendyline/molen-schema';
+import { openProjectPacks, packTypeDocuments } from './content';
 import { parseJson } from './ops/parse';
 
 export const PROJECT_FILENAME = 'project.json';
@@ -65,6 +68,10 @@ export interface ProjectContext {
   typeIssues: ValidationIssue[];
   /** Flattened type id -> final component map (what the kernel consumes). */
   resolvedTypes: ResolvedTypes;
+  /** Content packs the project uses (project.json `packs`, then MOLEN_PACKS). */
+  packs: PackSet;
+  /** Which pack content the project's worlds are built from; empty without packs. */
+  content: ContentIdentity;
   componentRegistry: ComponentRegistry;
   /** Resolve a scene name (from manifest.scenes) or a path into an absolute scene path. */
   resolveScenePath(nameOrPath: string): string;
@@ -115,8 +122,20 @@ export async function loadProject(path: string): Promise<ProjectContext> {
     typesDocs.push({ doc, source: rel });
   }
 
+  // Ownership and asset checks cover the project's own documents; pack types belong to their
+  // pack. A project type with the same id as a pack type wins (it is indexed first).
   const typeIssues = checkTypes(manifest, typesDocs);
-  const { index } = buildTypeIndex(typesDocs);
+  const packs = await openProjectPacks({ dir, packs: manifest.packs });
+  const fromPacks = await packTypeDocuments(
+    packs,
+    (raw, source) => {
+      const result = validate('types', raw, { registry: componentRegistry });
+      if (!result.ok) throw new Error(`${source}\n${result.formatted}`);
+      return result.value;
+    },
+    stripScriptTypes,
+  );
+  const { index } = buildTypeIndex([...typesDocs, ...fromPacks.docs]);
   const resolvedTypes = resolveAllTypes(index);
 
   return {
@@ -127,6 +146,8 @@ export async function loadProject(path: string): Promise<ProjectContext> {
     typeScriptFiles,
     typeIssues,
     resolvedTypes,
+    packs,
+    content: fromPacks.identity ?? {},
     componentRegistry,
     resolveScenePath: (nameOrPath: string): string => {
       const fromName = manifest.scenes[nameOrPath];

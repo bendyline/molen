@@ -288,7 +288,10 @@ describe('surface worker', () => {
     expect(initialRevision).toBeGreaterThan(0);
     const oldGeometry = (object.getObjectByName('surface:areas') as THREE.Mesh).geometry;
     const disposal = vi.spyOn(oldGeometry, 'dispose');
-    const modern = controller.setOptions({ style: 'modern' });
+    const modern = controller.setOptions({
+      style: 'modern',
+      details: { parkedVehicles: PARKED_VEHICLES },
+    });
     expect(object.getObjectByName('semantic:surfaces')?.userData.surfaceStyle).toBe('minimal');
     expect(disposal).not.toHaveBeenCalled();
     expect(controller.stats().geometryRevision).toBe(initialRevision);
@@ -323,3 +326,4 @@ describe('surface worker', () => {
 });
 
 import { Buffer } from 'node:buffer';
+import { PARKED_VEHICLES } from './helpers/content';

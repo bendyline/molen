@@ -20,13 +20,17 @@ For enterable buildings and lazy ground-floor furnishings, see [Building interio
 @bendyline/molen-worldgen           world-agnostic core
   /kernel   formats, footprint analysis, roofs and walls, batch generator, GLB encoder, seeds
   /client   buffers to three.js meshes, instanced boxes, style-pack loader
-  packs/default   the shipped looks (styles, scatter rules) - one directory is one pack
 
 @bendyline/molen-worldgen-earth     Earth binding (terrain-semantics, OSM classes, lon/lat)
   /kernel   molen/region-atlas@1, tile adapter, tile-edge ownership, budgets by quality
   /client   TerrainSemanticTileRenderer implementations, atlas loader
-  packs/default/world.atlas.json    which style applies where
+
+content/worldgen   the shipped looks (styles, scatter rules), the molen.worldgen.default pack
+content/earth      world.atlas.json (which style applies where) and the business catalog, molen.earth
 ```
+
+The npm packages carry code only. The default looks are content packs (`molen/pack@1` zips) built
+from the repository's `content/` directories; an app loads them from wherever it hosts them.
 
 The core package has no terrain dependency and a test forbids map vocabulary in its sources. Core
 inputs are `BuildingRequest` (identity, labels, outline, optional height/levels/minHeight) and
@@ -48,10 +52,15 @@ pnpm --filter @bendyline/molen-examples-world-explorer dev
 From code, one building from one outline, no map involved:
 
 ```ts
+import { openPack } from '@bendyline/molen-pack';
 import { createBuildingObject, createVertexColorMaterialSet } from '@bendyline/molen-worldgen/client';
-import { loadStylePack } from '@bendyline/molen-worldgen/client';
+import { resolveStylePackDocuments } from '@bendyline/molen-worldgen/kernel';
 
-const { pack } = await loadStylePack('/worldgen/default/');
+// The default style pack, from wherever the app hosts it.
+const styles = await openPack('/packs/molen.worldgen.default.zip');
+const pack = await resolveStylePackDocuments(await styles.readJson('stylepack.json'), (path) =>
+  styles.readJson(path),
+);
 const style = pack.archstyles['molen.worldgen.fantasy.hall'];
 const hall = createBuildingObject(
   { identity: 'room:hall-1', labels: ['hall'], outline: [[0, 0], [24, 0], [24, 10], [0, 10]], levels: 2 },
@@ -71,12 +80,15 @@ const out = generateWorldgenBatch({ buildings: [request], pack });
 const glb = encodeGlb(out.buildings);   // core glTF 2.0, one primitive per material group
 ```
 
-From the command line (or the MCP tools of the same names), without writing code:
+From the command line (or the MCP tools of the same names), without writing code. The commands
+need a style pack: pass `--pack` (a content pack zip, a pack source directory, or a
+`stylepack.json`), list one in the project's `packs`, or set `MOLEN_PACKS`. In this repository:
 
 ```sh
+export MOLEN_PACKS=content/worldgen:content/earth
 molen worldgen preview --out preview.png --angles 4          # the lineup of every shape class
 molen worldgen preview my.archstyle.json --out preview.png   # a style file, injected into the pack
-molen worldgen bake packages/worldgen/packs/default/fixtures/fantasy-hall.batch.json --out assets --id hall
+molen worldgen bake content/worldgen/fixtures/fantasy-hall.batch.json --out assets --id hall
 molen worldgen bake --outline "0,0;18,0;18,9;10,9;10,14;0,14" --style molen.worldgen.fantasy.hall --out assets --id keep
 molen worldgen stats examples/world-explorer/public/terrain/sammamish/terrain-package.json --auto --dump tile.batch.json
 ```
@@ -90,7 +102,8 @@ footprint and roof histograms, sizes, timings, and whether both runs hashed the 
 writes the adapted batch (`molen/worldgen-batch@1`, identities of clipped pieces suffixed so
 they stay unique) for `preview` and `bake`. A `molen/worldgen-batch@1` document is the
 interchange: ground (`flat` or `slope`), building requests, optional mapped props and a scatter request, rules,
-and a detail tier. Two ship in the default pack under `fixtures/`.
+and a detail tier. Two example batches live in `content/worldgen/fixtures/`, beside the pack
+source but not packed.
 
 ## 3. Authoring a look: `molen/archstyle@1`
 
@@ -222,7 +235,7 @@ seeds are unchanged.
 ## 6. Packs: `molen/stylepack@1`
 
 ```
-packs/default/
+content/worldgen/
   stylepack.json           name, version (seeds), namespace, id → path maps, defaults, imports
   styles/**/*.archstyle.json
   scatter/*.scatter.json
@@ -233,7 +246,8 @@ packs/default/
 height presence, elongation, rectangularity) and `defaults.style` closes the chain. Loading a pack
 validates every document and cross-checks ids, material kinds, and model sources; a dangling id
 fails loudly with the candidate list. `resolveStylePackDocuments(root, readDoc)` is the pure
-resolver; `loadStylePack(baseUrl)` fetches a directory in the browser.
+resolver: give it a content pack's `readJson` and it reads everything from one zip.
+`loadStylePack(baseUrl)` fetches an extracted directory in the browser.
 
 ## 7. Earth binding: `molen/region-atlas@1`
 

@@ -1,0 +1,40 @@
+{
+  "asset": {
+    "id": "molen.entities.aircraft.p51d",
+    "sourcePath": "content/entities/source/aircraft/p-51/models/source.glb",
+    "sourceBytes": 746556,
+    "sourceHash": "sha256:06e672045110555f530d4a321fd671544bb6dffadf1ac60890d9b957d9cd43d0",
+    "runtimePath": "content/entities/assets/molen/entities/aircraft/p51d/model.glb",
+    "runtimeHash": "sha256:c6c7ba1695e68591ed2aa6367f16567a95385e68f97da911a9c21546be47d319",
+    "bounds": {
+      "min": [-5.6355, -0.03, -4.98],
+      "max": [5.6355, 3.265, 4.835]
+    },
+    "stats": {
+      "triangles": 8194,
+      "vertices": 6938,
+      "meshes": 77,
+      "primitives": 77,
+      "materials": 12,
+      "textures": 0,
+      "animations": 0,
+      "sizeBytes": 171680
+    },
+    "renderedTriangles": 16886,
+    "collisionHullCount": 128,
+    "extensions": ["KHR_materials_emissive_strength", "KHR_mesh_quantization"],
+    "browser": {
+      "manifest": ".artifacts/aircraft-shell/p51d-world/experience-run.json",
+      "diagnostics": [],
+      "frames": ["05-mustang-parked", "06-mustang-cockpit"]
+    }
+  },
+  "limitations": [
+    "Assisted game flight, bounded pitch/bank; not certified performance or exact cockpit replicas.",
+    "No autorotation, vortex-ring model, fuel/engine systems, aerobatics, weapons or crash deformation.",
+    "Physics uses coarse airframe probes against nearby resident geometry; imported hull extraction is capped at 128.",
+    "Cockpit controls are operated by the documented input bindings; most physical switches are visual details.",
+    "Session-local raised practice airfield; aircraft positions do not persist through page reload."
+  ],
+  "visualReview": "Inspected all eight final turntable images, lit apron, side closeups, and world-view boarding/cockpit screenshots. Opaque lower cabin panels enclose the seats, while the upper seatbacks remain visible through glazing. Forward pilot views and instrument visibility remain clear. Ground shadows and original overall scale are retained."
+}

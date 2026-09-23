@@ -38,7 +38,11 @@ import {
 import { parseJson } from './build';
 import { guardOp } from './errors';
 import { openNodePmtiles } from './pmtiles-node';
-import { loadRegionAtlasFromDisk, loadStylePackFromDisk } from './worldgen-pack';
+import {
+  loadPlacesFromDisk,
+  loadRegionAtlasFromDisk,
+  loadStylePackFromDisk,
+} from './worldgen-pack';
 
 export interface WorldgenStatsInput {
   /** terrain-package.json path. */
@@ -216,17 +220,24 @@ async function worldgenStatsImpl(input: WorldgenStatsInput): Promise<WorldgenSta
       metersPerUnit: descriptor.metersPerUnit ?? 1,
       levelBelowMax: Math.max(0, maxLevel - address.level),
     };
-    const { pack } = await loadStylePackFromDisk(input.packPath);
+    const { pack, landmarks } = await loadStylePackFromDisk(input.packPath);
     if (input.styleId !== undefined && pack.archstyles[input.styleId] === undefined) {
       return { ok: false, error: `style "${input.styleId}" is not in the pack` };
     }
     const atlas: RegionAtlasDoc = await loadRegionAtlasFromDisk(input.atlasPath);
+    const places = await loadPlacesFromDisk(landmarks, input.atlasPath);
+    if (places === undefined) {
+      warnings.push(
+        'no landmark and business content packs: mapped businesses and street furniture are skipped',
+      );
+    }
     const regions = createRegionResolver(atlas, { metersPerUnit: geom.metersPerUnit });
     const quality = input.quality ?? 'balanced';
     const batch = semanticTileToBatch(tile, geom, {
       pack,
       atlas,
       regions,
+      ...(places !== undefined ? { places } : {}),
       budgets: worldgenTileBudgetForQuality(quality, geom.levelBelowMax),
       tierOffset: quality === 'economy' ? 1 : 0,
     });

@@ -289,7 +289,9 @@ Errors carry the script id: `script "chase" tick handler at tick 12: …`, or
 
 Use a code module for ECS **systems** in any phase and for typed TypeScript authoring. Pass it
 with `--setup ./setup.mjs`, or set `"setup": "setup.mjs"` in project.json and every scene op
-picks it up.
+picks it up. Within a phase, systems run by `priority` (lower first, default 0), then in
+registration order; the character controller, for example, prepares at -100 and reconciles with
+the ground at 100.
 
 ```js
 export function setup(world, manifest) {

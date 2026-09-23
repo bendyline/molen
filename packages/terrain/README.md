@@ -14,7 +14,7 @@ npm i @bendyline/molen-terrain
 
 Node >= 22.13, ESM only. There is deliberately **no `.` export**: import
 `@bendyline/molen-terrain/kernel` or `@bendyline/molen-terrain/client`. The client half needs the
-optional peers `three` (pinned to exactly `0.184.0`) and `@bendyline/molen-client`; the kernel half
+optional peers `three` (`>=0.184.0 <0.187.0`) and `@bendyline/molen-client`; the kernel half
 needs neither and never touches three.js or the DOM.
 
 ## Use
@@ -68,11 +68,12 @@ The projection, decode and streaming code is not simulation math.
 0.x, on one fixed version line with every other `@bendyline/molen-*` package. Formats are
 versioned and beta (`molen/terrain@2`, `molen/terrain-package@1`): a breaking change bumps the
 envelope instead of shipping migrations. The projected-Earth runtime is explicitly constrained to
-EPSG:3857 with a square root tile matrix, and three.js is pinned exactly.
+EPSG:3857 with a square root tile matrix, and its three.js peer follows the client's supported
+range (`>=0.184.0 <0.187.0`).
 
 No map data ships here. When you point this at third-party tiles — OpenStreetMap-derived
 Protomaps basemaps included — the source's licence and attribution obligations travel with the
-data; see [NOTICE](../../NOTICE.md) at the repository root for the sample data this repo ships.
+data; see [NOTICE](https://github.com/bendyline/molen/blob/main/NOTICE.md) at the repository root for the sample data this repo ships.
 
 ## Docs
 

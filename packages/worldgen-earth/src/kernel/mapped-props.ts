@@ -3,6 +3,7 @@ import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { TerrainPoiFeature, TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
 import {
   hashString,
+  type LandmarkLibrary,
   type ModelPlacementRequest,
   type ScatterExclusion,
   unit01,
@@ -50,11 +51,15 @@ function heading(poi: TerrainPoiFeature, tile: TerrainSemanticTile): number {
   }
   return yaw;
 }
+/**
+ * Mapped trees (when `trees`) and street furniture. Furniture is placed only for landmark models
+ * the `furniture` library holds; pass undefined for none.
+ */
 export function mappedPropRequests(
   tile: TerrainSemanticTile,
   geom: TileGeometry,
   trees: boolean,
-  furniture: boolean,
+  furniture: Pick<LandmarkLibrary, 'get'> | undefined,
 ): ModelPlacementRequest[] {
   if (geom.levelBelowMax !== 0) return [];
   const output: ModelPlacementRequest[] = [],
@@ -81,7 +86,7 @@ export function mappedPropRequests(
       const diameter = Math.max(0.3, Math.min(40, poi.crownDiameter ?? h * (needle ? 0.45 : 0.65)));
       scale = [diameter, h, diameter];
       yaw = unit01(hashString(identity), 1) * dmath.TAU;
-    } else if (furniture) {
+    } else if (furniture !== undefined) {
       model = (
         {
           street_lamp: 'builtin:street_lamp',
@@ -96,6 +101,7 @@ export function mappedPropRequests(
         /tesla|supercharger/i.test(poi.brand ?? poi.name ?? '')
       )
         model = 'builtin:charger.fast';
+      if (furniture.get(model.slice('builtin:'.length)) === undefined) continue;
       if (poi.class === 'street_lamp' && poi.height !== undefined)
         scale = [1, Math.max(0.25, Math.min(4, poi.height / 7.2)), 1];
       if (poi.class === 'bicycle_parking' && poi.capacity !== undefined)

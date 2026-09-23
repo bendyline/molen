@@ -6,12 +6,15 @@ import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+// The entities content (a Molen project: types, assets, scenes, source bundles) lives outside the
+// package, in content/entities, and ships as a content pack rather than in the npm tarball.
+const root = resolve(packageRoot, '../../content/entities');
 const sourceRoot = resolve(root, 'source');
 const check = process.argv.includes('--check');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const biome = resolve(
-  root,
+  packageRoot,
   'node_modules/.bin',
   process.platform === 'win32' ? 'biome.cmd' : 'biome',
 );

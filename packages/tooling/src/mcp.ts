@@ -10,12 +10,15 @@ import { previewFigure } from './ops/figure-preview';
 import {
   applyUvPaintOp,
   bakeWorldgen,
+  buildContentPack,
   checkScripts,
   checkTypesOp,
   describeOps,
   diffSnapshots,
   driveScene,
   exportFrames,
+  extractContentPack,
+  fetchContentPack,
   formatOp,
   formatPacked,
   generateTypes,
@@ -23,6 +26,7 @@ import {
   getSchemaOp,
   importAsset,
   inspectAsset,
+  inspectContentPack,
   listAssets,
   listComponentsOp,
   listSchemasOp,
@@ -42,6 +46,7 @@ import {
   stageAssets,
   testTypes,
   validateAsset,
+  verifyContentPack,
   worldgenStats,
 } from './ops/index';
 import { loadComponentRegistry } from './ops/schema';
@@ -765,6 +770,110 @@ export function createMcpServer(): McpServer {
           ),
           `index: ${r.indexPath}`,
           ...(r.warnings ?? []),
+        ].join('\n'),
+      );
+    },
+  );
+
+  server.registerTool(
+    'build_pack',
+    {
+      title: 'Build a content pack',
+      description:
+        'Build a molen/pack@1 zip from a source directory holding molen-pack.source.json. Writes <id>-<hash>.zip into outDir and records it in outDir/index.json. Small text files are grouped into compressed solid blocks unless solid is false.',
+      inputSchema: {
+        sourceDir: z.string(),
+        outDir: z.string(),
+        solid: z.boolean().optional(),
+      },
+    },
+    async (args) => {
+      const r = await buildContentPack(args);
+      if (!r.ok) return text(r.error ?? 'pack build failed', true);
+      return text(
+        `${r.id}@${r.version}: ${r.files} files -> ${r.path} (${r.size} bytes)\ncontentHash ${r.contentHash}\nindex ${r.indexPath}`,
+      );
+    },
+  );
+
+  server.registerTool(
+    'inspect_pack',
+    {
+      title: 'Inspect a content pack',
+      description:
+        'Summarize a content pack (built file, source directory, or http(s) URL): id, version, contentHash, sizes, solid blocks, asset ids, roles and the largest files, as JSON.',
+      inputSchema: { source: z.string() },
+    },
+    async (args) => {
+      const r = await inspectContentPack(args);
+      if (!r.ok) return text(r.error ?? 'pack inspect failed', true);
+      const { ok: _ok, ...summary } = r;
+      return text(JSON.stringify(summary, null, 2));
+    },
+  );
+
+  server.registerTool(
+    'verify_pack',
+    {
+      title: 'Verify a content pack',
+      description:
+        'Read every file of a content pack checking CRC and sha256, validate each JSON document against its registered schema, and check asset sidecar hashes against their models. Returns the problems found.',
+      inputSchema: { source: z.string() },
+    },
+    async (args) => {
+      const r = await verifyContentPack(args);
+      if (r.error !== undefined) return text(r.error, true);
+      const summary = `${r.id}: ${r.checked} files checked, ${r.validated} documents validated`;
+      if (!r.ok) {
+        return text(
+          [summary, ...(r.issues ?? []).map((issue) => `${issue.path}: ${issue.message}`)].join(
+            '\n',
+          ),
+          true,
+        );
+      }
+      return text(`ok — ${summary}`);
+    },
+  );
+
+  server.registerTool(
+    'extract_pack',
+    {
+      title: 'Extract a content pack',
+      description:
+        'Write every file of a content pack into outDir, with a molen-pack.source.json that builds it back to the same content.',
+      inputSchema: { source: z.string(), outDir: z.string() },
+    },
+    async (args) => {
+      const r = await extractContentPack(args);
+      if (!r.ok) return text(r.error ?? 'pack extract failed', true);
+      return text(`${r.id}: ${r.files} files -> ${r.outDir}`);
+    },
+  );
+
+  server.registerTool(
+    'fetch_pack',
+    {
+      title: 'Fetch content packs into a project',
+      description:
+        'Download a pack (or the packs listed by a molen/pack-index@1 URL, optionally only ids) into outDir (default packs/ beside project.json) and pin each in project.json `packs` with its contentHash, so the project runs offline.',
+      inputSchema: {
+        url: z.string(),
+        ids: z.array(z.string()).optional(),
+        outDir: z.string().optional(),
+        projectPath: z.string().optional(),
+        cwd: z.string().optional(),
+      },
+    },
+    async (args) => {
+      const r = await fetchContentPack(args);
+      if (!r.ok) return text(r.error ?? 'pack fetch failed', true);
+      return text(
+        [
+          ...(r.packs ?? []).map(
+            (pack) => `${pack.id}@${pack.version} -> ${r.outDir}/${pack.file} (${pack.size} bytes)`,
+          ),
+          r.projectPath !== undefined ? `pinned in ${r.projectPath}` : 'no project.json to pin in',
         ].join('\n'),
       );
     },

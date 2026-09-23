@@ -56,23 +56,23 @@ fixed version line across every `@bendyline/molen-*` package. Owner commits on `
 [Conventional Commits](https://www.conventionalcommits.org/): `fix:` produces a patch release,
 `feat:` a minor release, and `feat!:` or a `BREAKING CHANGE:` footer a minor release while Molen
 is on 0.x. `chore:` and `docs:` commits do not publish by themselves. Semantic-release writes one
-root changelog, publishes all 13 packages at one version, then pushes one `vX.Y.Z` tag and creates
+root changelog, publishes all 14 packages at one version, then pushes one `vX.Y.Z` tag and creates
 one GitHub release. The owner must deliberately change the release rule when Molen is ready for 1.0.
 
 ### First release and trusted publisher setup
 
-The 13 Molen packages are not yet on npm. npm trusted publishers are configured in each existing
-package's settings, so the first `0.0.1` release needs a one-time authenticated publish:
+npm trusted publishers can only be configured on a package that already exists, so the first
+`0.0.1` release of the 14 packages is a one-time authenticated publish:
 
 1. The owner commits the intended public source on `main` and waits for CI to pass. Git operations
    are reserved for the owner by `AGENTS.md`.
 2. The owner signs into npm with an account authorized to publish the `@bendyline` scope, runs
    `pnpm all`, then runs `pnpm release:bootstrap`. The script verifies, packs and publishes all
-   13 packages in dependency order. It can be retried after a partial publish; it skips an
+   14 packages in dependency order. It can be retried after a partial publish; it skips an
    existing package version only when the tarball integrity matches.
 3. The owner tags that published source commit `v0.0.1` and pushes the tag. Semantic-release
    requires this baseline tag so it can continue the 0.x line instead of starting at 1.0.0.
-4. On npmjs.com, the owner adds a GitHub Actions trusted publisher to **each** of the 13 package
+4. On npmjs.com, the owner adds a GitHub Actions trusted publisher to **each** of the 14 package
    settings: organization `bendyline`, repository `molen`, workflow filename `release.yml`, no
    environment, and permission for direct `npm publish`. The filename is entered without
    `.github/workflows/`. The `Release` job has `id-token: write` and uses npm 11.19.1 on Node

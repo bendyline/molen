@@ -99,7 +99,7 @@ describe('scripts check needs the project install first', () => {
     // Compare COMMAND lines, not prose: the install section names the command it enables.
     const lines = (await readFile(join(created.dir as string, 'README.md'), 'utf8')).split('\n');
     const readmeInstall = lines.findIndex((line) => /^(npm|pnpm) install\b/.test(line));
-    const readmeCheck = lines.findIndex((line) => /^molen scripts check\b/.test(line));
+    const readmeCheck = lines.findIndex((line) => /^(npx )?molen scripts check\b/.test(line));
     expect(readmeInstall).toBeGreaterThanOrEqual(0);
     expect(readmeCheck).toBeGreaterThanOrEqual(0);
     expect(readmeInstall).toBeLessThan(readmeCheck);

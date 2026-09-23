@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { EarthSkyData, SkyData } from '@bendyline/molen-client';
 import { build } from 'esbuild';
@@ -29,6 +29,7 @@ beforeAll(async () => {
     target: 'es2022',
     outfile: join(OUT, 'harness.js'),
   });
+  await copyFile(join(process.cwd(), '../../content/sky/stars.bin'), join(OUT, 'stars.bin'));
   await writeFile(
     join(OUT, 'capture.html'),
     '<!doctype html><html><head><link rel="icon" href="data:,"><style>body{margin:0}canvas{display:block}</style></head><body><canvas></canvas><script type="module" src="./harness.js"></script></body></html>',

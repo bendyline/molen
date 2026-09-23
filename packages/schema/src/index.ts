@@ -1,3 +1,4 @@
+import './pack';
 import './source-bundle';
 
 export * from './aircraft';
@@ -50,6 +51,15 @@ export type { JsonObject, JsonPrimitive, JsonValue } from './json';
 export { deepMergeJson } from './merge';
 export type { ModelSignalBinding, ModelSignalSource, ModelSignalSpec } from './model-signals';
 export { modelSignalsSchema } from './model-signals';
+export type {
+  PackBlock,
+  PackEntry,
+  PackIndex,
+  PackIndexEntry,
+  PackManifest,
+  PackSourceConfig,
+} from './pack';
+export { PACK_MANIFEST_ENTRY, PACK_RESERVED_PREFIX } from './pack';
 export type {
   CommandMessage,
   ControlAction,
@@ -107,6 +117,8 @@ export type {
   Command,
   CommandQueueState,
   ComponentMap,
+  ContentIdentity,
+  ContentIdentityEntry,
   CustomComponentDecl,
   Delta,
   EngineEvent,
@@ -118,6 +130,7 @@ export type {
   NamespaceReservation,
   Prefab,
   ProjectManifest,
+  ProjectPackRef,
   Quat,
   ReplayFixture,
   RngState,

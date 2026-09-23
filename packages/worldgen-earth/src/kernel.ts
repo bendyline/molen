@@ -1,19 +1,22 @@
-export type { BusinessProfile, ResolvedBusiness } from './kernel/business-catalog';
-export {
-  BUSINESS_CATALOG_HASH,
-  BUSINESS_CATALOG_VERSION,
-  BUSINESS_PROFILES,
-  resolveBusiness,
+export type {
+  BusinessCatalog,
+  BusinessProfile,
+  ResolvedBusiness,
 } from './kernel/business-catalog';
+export { createBusinessCatalog } from './kernel/business-catalog';
 export type { BusinessCatalogDoc, BusinessCategory } from './kernel/business-catalog-schema';
 export {
-  BUSINESS_CATALOG,
   registerBusinessCatalogSchema,
   validateBusinessCatalogDocuments,
 } from './kernel/business-catalog-schema';
 export { associateBusinesses } from './kernel/businesses';
 export { buildingLabels, contextLabelAt, landcoverLabel } from './kernel/labels';
 export { mappedPropExclusions, mappedPropRequests } from './kernel/mapped-props';
+export {
+  createPlacesContent,
+  type PlacesContent,
+  type PlacesContentDocs,
+} from './kernel/places';
 export type {
   ProjectedRegion,
   RegionResolver,

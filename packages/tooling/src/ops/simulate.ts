@@ -10,6 +10,7 @@ import {
 import type {
   AssertionDoc,
   Command,
+  ContentIdentity,
   SceneManifest,
   ValidationIssue,
 } from '@bendyline/molen-schema';
@@ -57,6 +58,8 @@ export interface SimulateOutput {
   physics?: NonNullable<SceneManifest['physics']>['engine'];
   /** Non-fatal advisories (e.g. deprecated scene format). */
   notices?: ValidationIssue[];
+  /** The pack content the world was built from (project.json `packs`, MOLEN_PACKS). */
+  content?: ContentIdentity;
   /** Set when something failed before running (bad scene, etc.). */
   error?: string;
 }
@@ -156,6 +159,7 @@ async function runSimulationImpl(input: SimulateInput): Promise<SimulateOutput> 
     ok: allPass,
     tick: headless.world.tick,
     stateHash: headless.finalHash,
+    ...(buildOpts.content !== undefined ? { content: buildOpts.content } : {}),
     eventCount: headless.events.length,
     events: headless.events,
     assertionResults,

@@ -1,15 +1,14 @@
 import {
   AdaptiveQualityController,
   AssetCache,
+  type AssetProvider,
   applyEnvironment,
-  createUrlAssetProvider,
   createViewer,
   MaterialResolver,
   type MolenClient,
 } from '@bendyline/molen-client';
-import { createMolenEntitiesAssetIndex, getMolenAircraft } from '@bendyline/molen-entities';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
-import { validateByKind } from '@bendyline/molen-schema';
+import { type AircraftData, validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
@@ -41,7 +40,6 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import {
   createResolvedMaterialSet,
-  loadStylePack,
   ModelLibrary,
   type ScreenSpaceLodPolicy,
 } from '@bendyline/molen-worldgen/client';
@@ -51,9 +49,9 @@ import {
   createWorldgenSemanticRenderers,
   createWorldgenTileCache,
   createWorldgenWorkerBridge,
-  loadRegionAtlas,
   type WorldgenSemanticRenderers,
 } from '@bendyline/molen-worldgen-earth/client';
+import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { createExplorerFog, createExplorerSky, updateExplorerFog } from './atmosphere.js';
@@ -65,6 +63,7 @@ import {
   cameraRight,
   terrainViewNeedsImmediateUpdate,
 } from './camera-controls.js';
+import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { afterPreparation } from './deferred-renderer.js';
 import { formatCameraLocation } from './location-readout.js';
 import {
@@ -85,7 +84,7 @@ const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
 const DEMO_RESOLUTION = 33;
 const START = { longitude: -122.0356, latitude: 47.6163, label: 'Sammamish, Washington' };
-type AircraftKind = 'p51d' | 'h500md';
+type AircraftKind = 'p51d' | 'oh6';
 const aircraftEntityId = (kind: AircraftKind) => `molen.entities.aircraft.${kind}` as const;
 
 const DEMO_PACKAGE: TerrainPackageDescriptor = {
@@ -364,7 +363,8 @@ const humanFeatureLayer: TerrainTileLayer = {
 /** Adaptive synthetic layers; the worldgen renderers take over when a style pack is loaded. */
 function createSyntheticAdaptiveLayers(options: {
   lineup: boolean;
-  stores: boolean;
+  /** The store review block's catalog; undefined when `?stores` is off or places did not load. */
+  stores: PlacesContent | undefined;
   houses: boolean;
   parking: boolean;
   surfaceRenderer: TerrainSurfaceRenderer;
@@ -382,8 +382,8 @@ function createSyntheticAdaptiveLayers(options: {
             ? syntheticFeatureTile(address, { parking: true })
             : options.houses
               ? syntheticFeatureTile(address, { houses: true })
-              : options.stores && address.level === DEMO_LEVEL
-                ? syntheticFeatureTile(address, { stores: true })
+              : options.stores !== undefined && address.level === DEMO_LEVEL
+                ? syntheticFeatureTile(address, { stores: options.stores })
                 : syntheticLandcoverTile(address),
       },
       renderer:
@@ -406,7 +406,9 @@ function createSyntheticAdaptiveLayers(options: {
         load: async (address) =>
           syntheticFeatureTile(address, {
             lineup: options.lineup && address.level === DEMO_LEVEL,
-            stores: options.stores && address.level === DEMO_LEVEL,
+            ...(options.stores !== undefined && address.level === DEMO_LEVEL
+              ? { stores: options.stores }
+              : {}),
             houses: options.houses,
             parking: options.parking,
           }),
@@ -426,12 +428,14 @@ interface ExplorerWorldgen extends WorldgenSemanticRenderers {
   prepareMaterials(): Promise<void>;
 }
 
-/** Load the style pack and atlas named by `?style=` (default `default`; `none` disables). */
+/** Worldgen renderers over the style pack, atlas and places content loaded from the packs. */
 async function loadWorldgen(options: {
   telemetry: GraphicsTelemetry;
   startupStage: (name: string) => void;
   prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
-  styleId: string;
+  content: ExplorerWorldgenContent;
+  /** Every pack's assets: entity models, style-pack props and material documents. */
+  assets: AssetProvider;
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
@@ -439,21 +443,14 @@ async function loadWorldgen(options: {
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
 }): Promise<ExplorerWorldgen> {
-  const appBase = new URL('./', location.href);
-  const packBase = new URL(`worldgen/${options.styleId}/`, appBase);
-  const atlasUrl = new URL(`worldgen-earth/${options.styleId}/world.atlas.json`, appBase);
-  const loaded = await loadStylePack(packBase);
-  options.startupStage('style-pack');
-  const atlas = await loadRegionAtlas(atlasUrl);
-  options.startupStage('region-atlas');
+  const { pack, atlas, places, placesDocs } = options.content;
   const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
-  // Prop models: the entities library (synced into /entities/) plus the pack's own assets.
-  const provider = createUrlAssetProvider(location.href, {
-    ...createMolenEntitiesAssetIndex(new URL('entities/', appBase)),
-    ...loaded.assetIndex,
-  });
+  const provider = options.assets;
   const assets = new AssetCache(provider, new GLTFLoader());
-  const models = new ModelLibrary(async (ref) => (await assets.instance(ref)).scene);
+  const models = new ModelLibrary(
+    async (ref) => (await assets.instance(ref)).scene,
+    places.landmarks.definitions,
+  );
   // Shared texture work starts after the first camera frame. Building tiles wait for it;
   // terrain, water, sky and navigation can run while the worker pool prepares the facades.
   const baker =
@@ -466,6 +463,7 @@ async function loadWorldgen(options: {
           { onTiming: (ms) => options.telemetry.record('material-bake', ms) },
         )
       : undefined;
+  // Material docs come from the style pack's solid block, already in memory once opened.
   const materials = createResolvedMaterialSet(new MaterialResolver(provider, baker));
   let preparation: Promise<void> | undefined;
   let disposed = false;
@@ -476,7 +474,7 @@ async function loadWorldgen(options: {
       if (status) status.hidden = false;
       options.startupStage('material-baking-start');
       try {
-        await materials.prepare(stylePackMaterialRefs(loaded.pack));
+        await materials.prepare(stylePackMaterialRefs(pack));
         if (disposed) return;
         for (const [ref, reason] of materials.failures)
           console.warn(`[molen] worldgen material ${ref}: ${reason}`);
@@ -494,10 +492,11 @@ async function loadWorldgen(options: {
   const generator = options.worker
     ? createWorldgenWorkerBridge(
         new Worker(new URL('./worldgen-worker.ts', import.meta.url), { type: 'module' }),
-        { pack: loaded.pack, atlas, metersPerUnit: options.metersPerUnit },
+        { pack, atlas, metersPerUnit: options.metersPerUnit, places: placesDocs },
       )
     : undefined;
-  const renderers = createWorldgenSemanticRenderers(loaded.pack, {
+  const renderers = createWorldgenSemanticRenderers(pack, {
+    places,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     onTileStats: (output, elapsed) => {
       options.telemetry.record('worldgen-total', elapsed);
@@ -663,6 +662,16 @@ async function main(): Promise<void> {
     performanceStatus.dataset.startup = JSON.stringify(startupTimings);
   };
   startupStage('module-ready');
+  const styleId = new URLSearchParams(location.search).has('nostyles')
+    ? 'none'
+    : (new URLSearchParams(location.search).get('style') ?? 'default');
+  // Content packs download while the terrain manifest loads.
+  const contentLoad = loadExplorerContent(new URL('./', location.href), { styleId }).then(
+    (content) => {
+      startupStage('content-packs');
+      return content;
+    },
+  );
   const loaded = await loadPackage();
   startupStage('terrain-manifest');
   const start = selectedStart();
@@ -679,7 +688,8 @@ async function main(): Promise<void> {
       ? explorerPerformanceTier(performanceLevel).objectPixelError
       : 2,
   };
-  const surfaceRenderer = createSurfaceControls(quality);
+  const content = await contentLoad;
+  const surfaceRenderer = createSurfaceControls(quality, content.parkedVehicles);
   const pyramidBudget = automaticQuality
     ? explorerPerformanceTier(performanceLevel).terrain
     : terrainPyramidBudgetForQuality(quality);
@@ -747,11 +757,10 @@ async function main(): Promise<void> {
     space.kind === 'geospatial'
       ? webMercatorScaleAtLatitude((space.bounds[1] + space.bounds[3]) / 2)
       : 1;
-  const styleId = params.has('nostyles') ? 'none' : (params.get('style') ?? 'default');
   const useWorker = params.get('worker') !== '0';
   let worldgen: ExplorerWorldgen | undefined;
-  let styleUnavailableReason: string | undefined;
-  if (adaptive && styleId !== 'none') {
+  let styleUnavailableReason: string | undefined = content.worldgenError;
+  if (adaptive && content.worldgen !== undefined) {
     try {
       worldgen = await loadWorldgen({
         telemetry: graphics,
@@ -762,7 +771,8 @@ async function main(): Promise<void> {
                 viewer.renderer.prepareObject(object, signal),
             }
           : {}),
-        styleId,
+        content: content.worldgen,
+        assets: content.assets,
         metersPerUnit,
         quality,
         worker: useWorker,
@@ -810,7 +820,7 @@ async function main(): Promise<void> {
   const adaptiveLayers = semanticDemo
     ? createSyntheticAdaptiveLayers({
         lineup: params.has('lineup'),
-        stores: params.has('stores'),
+        stores: params.has('stores') ? content.worldgen?.places : undefined,
         houses: params.has('houses'),
         parking: params.has('parking'),
         renderers: worldgen,
@@ -964,6 +974,11 @@ async function main(): Promise<void> {
     ? pyramidBudget.viewDistance
     : fixedBudget.loadRadius * finestTileSize;
   if (params.get('sky') === 'daylight') await addAtmosphere(viewer);
+  // The star catalog comes from the sky pack; until it arrives the bundled stars show.
+  void content.stars().then(
+    (stars) => viewer.renderer.setStarCatalog(stars),
+    (error) => console.warn(`[molen] star catalog unavailable: ${(error as Error).message}`),
+  );
   const skyControls = createSkyControls(viewer.renderer, params);
   startupStage('environment-controls');
   viewer.renderer.worldRoot.add(stream.object);
@@ -1079,13 +1094,19 @@ async function main(): Promise<void> {
   let aircraft: WorldAircraft | undefined;
   const sampleHeight = (x: number, z: number): number | undefined =>
     aircraft?.groundHeight(x, z) ?? stream.sampleHeight(x, z);
-  const vehicles = new WorldVehicles(stream.object, sampleHeight);
+  // Cars and aircraft: definitions from the entities pack's types, models read from the same pack
+  // the first time each is shown.
+  const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
+    (await new GLTFLoader().parseAsync(await content.packs.readBytes(id), '')).scene;
+  const vehicles = new WorldVehicles(stream.object, sampleHeight, loadEntityModel, content.types);
   const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
   aircraft = new WorldAircraft(
     vehicles.world,
     stream.object,
     (x, z) => stream.sampleHeight(x, z),
     camera.pos,
+    loadEntityModel,
+    content.types,
   );
   const flight = aircraft;
   let visitingAircraft: AircraftKind | undefined;
@@ -1260,7 +1281,7 @@ async function main(): Promise<void> {
   window.addEventListener('resize', resizeRenderer);
 
   if (params.get('navigation') === 'walk') setNavigation('walk');
-  if (params.get('aircraft') === 'p51d' || params.get('aircraft') === 'h500md')
+  if (params.get('aircraft') === 'p51d' || params.get('aircraft') === 'oh6')
     visitAircraft(params.get('aircraft') as AircraftKind);
   let lastTime = performance.now();
   let statusTime = 0;
@@ -1517,7 +1538,7 @@ async function main(): Promise<void> {
       navigationStatus.textContent = flight.mountedKind
         ? flight.status()
         : nearAircraft
-          ? `E · Board ${getMolenAircraft(aircraftEntityId(nearAircraft)).spec.label} · I starts the engine`
+          ? `E · Board ${content.types.component<AircraftData>(aircraftEntityId(nearAircraft), 'aircraft').spec.label} · I starts the engine`
           : flight.message ||
             (vehicles.mountedId
               ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`

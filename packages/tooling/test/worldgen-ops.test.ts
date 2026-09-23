@@ -1,6 +1,6 @@
 import { access, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { delimiter, join, resolve } from 'node:path';
 import { validateByKind } from '@bendyline/molen-schema';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import {
@@ -17,12 +17,20 @@ const SAMMAMISH = resolve(
   '../../../examples/world-explorer/public/terrain/sammamish/terrain-package.json',
 );
 
+// The worldgen ops read their style pack and atlas from content packs; there is no built-in
+// default. These tests use the repository's pack sources, as a project would through MOLEN_PACKS.
+const CONTENT = resolve(__dirname, '../../../content');
+const previousPacks = process.env.MOLEN_PACKS;
+
 let dir: string;
 beforeAll(async () => {
   dir = await mkdtemp(join(tmpdir(), 'molen-worldgen-ops-'));
+  process.env.MOLEN_PACKS = [join(CONTENT, 'worldgen'), join(CONTENT, 'earth')].join(delimiter);
 });
 afterAll(async () => {
   await rm(dir, { recursive: true, force: true });
+  if (previousPacks === undefined) delete process.env.MOLEN_PACKS;
+  else process.env.MOLEN_PACKS = previousPacks;
 });
 
 async function exists(path: string): Promise<boolean> {
@@ -47,6 +55,22 @@ describe('worldgen pack helpers', () => {
     expect(() => batchInputFromDoc(doc, pack, { styleId: 'nope' })).toThrow('not in the pack');
   });
 
+  it('loads a style pack from a pack directory or a built pack, and names the fix without one', async () => {
+    const fromDir = await loadStylePackFromDisk(join(CONTENT, 'worldgen'));
+    expect(fromDir.pack.hash).toBe(
+      'sha256:e60d6a93ec150d5173414413222ee4094e358aebc1a41f45287a59daa7fd0215',
+    );
+    const saved = process.env.MOLEN_PACKS;
+    delete process.env.MOLEN_PACKS;
+    try {
+      await expect(loadStylePackFromDisk(undefined, { cwd: dir })).rejects.toThrow(
+        /no style pack: pass --pack/,
+      );
+    } finally {
+      process.env.MOLEN_PACKS = saved;
+    }
+  });
+
   it('parses outlines and rejects malformed ones', () => {
     expect(parseOutline('0,0; 10,0 ;10,8;0,8')).toEqual([
       [0, 0],
@@ -63,7 +87,7 @@ describe('worldgen bake', () => {
   it('bakes the lineup to a glTF asset with a sidecar', async () => {
     const outDir = join(dir, 'assets');
     const r = await bakeWorldgen({
-      batchPath: resolve(__dirname, '../../worldgen/packs/default/fixtures/lineup.batch.json'),
+      batchPath: resolve(__dirname, '../../../content/worldgen/fixtures/lineup.batch.json'),
       outDir,
       id: 'lineup',
     });
@@ -77,7 +101,7 @@ describe('worldgen bake', () => {
     const sidecar = JSON.parse(await readFile(join(outDir, 'lineup', 'asset.json'), 'utf8'));
     expect(validateByKind('asset', sidecar).ok).toBe(true);
     const again = await bakeWorldgen({
-      batchPath: resolve(__dirname, '../../worldgen/packs/default/fixtures/lineup.batch.json'),
+      batchPath: resolve(__dirname, '../../../content/worldgen/fixtures/lineup.batch.json'),
       outDir,
       id: 'lineup',
       force: true,

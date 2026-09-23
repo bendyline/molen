@@ -96,7 +96,10 @@ export function bakeWorldgen(input: WorldgenBakeInput): Promise<WorldgenBakeOutp
 }
 
 async function bakeWorldgenImpl(input: WorldgenBakeInput): Promise<WorldgenBakeOutput> {
-  const { pack } = await loadStylePackFromDisk(input.packPath);
+  const { pack } = await loadStylePackFromDisk(
+    input.packPath,
+    input.projectPath !== undefined ? { projectPath: input.projectPath } : {},
+  );
   let doc: WorldgenBatchDoc;
   if (input.batchPath !== undefined) {
     doc = await loadBatchDoc(input.batchPath);

@@ -46,23 +46,26 @@
     "test:golden": "vitest run --config vitest.golden.config.ts"
   },
   "dependencies": {
-    "@bendyline/molen-client": "workspace:*",
     "@bendyline/molen-schema": "workspace:*"
   },
   "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
     "react": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
     "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@types/three": "0.184.0",
+    "esbuild": "^0.28.0",
+    "playwright": "^1.60.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "three": "0.184.0",
     "tsdown": "catalog:",
     "typescript": "catalog:",
-    "vitest": "catalog:",
-    "playwright": "^1.60.0",
-    "esbuild": "^0.28.0",
-    "@types/node": "^24"
+    "vitest": "catalog:"
   }
 }

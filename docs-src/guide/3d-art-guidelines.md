@@ -107,7 +107,7 @@ rather than copying a linear buffer value into an sRGB authoring field.
 
 Reuse the default pack's stable material IDs before adding another texture. The library already
 contains brick, stucco, concrete, siding, stone, roofing and glazing; the
-[material catalog](../../packages/worldgen/packs/default/materials/README.md) records intended
+[material catalog](../../content/worldgen/materials/README.md) records intended
 uses and physical repeat sizes.
 
 Use 256² or 512² seamless procedural maps for common repeated surfaces. Larger textures belong
@@ -123,7 +123,7 @@ Runtime matgraph textures remain small and shared; they do not pass through asse
 ## Persisting reusable models
 
 Store individual sign and furniture definitions in the default pack's
-[landmark manifests](../../packages/worldgen/packs/default/landmarks/README.md), with stable IDs,
+[landmark manifests](../../content/worldgen/landmarks/README.md), with stable IDs,
 versioned parameters and shared generators. Keep source-ID/name matching in the Earth business
 catalog. Reuse architectural styles and material graphs instead of copying their rules into each
 mapped-business descriptor. A new store palette or an existing sign-symbol variation should be a

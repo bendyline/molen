@@ -7,7 +7,6 @@ import {
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { type EarthSkyState, evaluateEarthSky, skyDirection, skyTimeMs } from './astronomy';
-import { brightStars } from './bright-stars';
 
 const RAD = Math.PI / 180;
 const clamp = (x: number): number => Math.max(0, Math.min(1, x));
@@ -46,7 +45,10 @@ export interface SkyStar {
 }
 
 export interface SkyVisualOptions {
-  /** Replace the bundled Earth catalog for authored worlds or external catalogs. */
+  /**
+   * The star catalog: `decodeStarCatalog` of the `molen.sky` pack for Earth, or an authored
+   * world's own. Without one the sky has no stars.
+   */
   stars?: readonly SkyStar[];
   shadows?: 'off' | 'low' | 'medium' | 'high';
 }
@@ -79,7 +81,29 @@ function mesh(
   return result;
 }
 
-function starColor(bv: number): THREE.Color {
+interface CatalogStar {
+  direction: THREE.Vector3;
+  color: THREE.Color;
+  magnitude: number;
+}
+
+/** Seven vertices per star (a centre and six rim points), fanned into six triangles. */
+function starGeometry(count: number): THREE.BufferGeometry {
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute(
+    'position',
+    new THREE.Float32BufferAttribute(new Float32Array(count * 7 * 3), 3),
+  );
+  const indices: number[] = [];
+  for (let i = 0; i < count; i++) {
+    for (let j = 0; j < 6; j++) indices.push(i * 7, i * 7 + j + 1, i * 7 + ((j + 1) % 6) + 1);
+  }
+  geometry.setIndex(indices);
+  return geometry;
+}
+
+/** Star colour from its B−V colour index. */
+export function starColor(bv: number): THREE.Color {
   return new THREE.Color('#b6d1ff')
     .lerp(new THREE.Color('#fff4e8'), smooth(-0.3, 0.5, bv))
     .lerp(new THREE.Color('#ffb46c'), smooth(0.5, 1.8, bv));
@@ -102,11 +126,7 @@ export class SkyVisual {
   private readonly sun = mesh(new THREE.SphereGeometry(1, 32, 16), -70, true);
   private readonly moon = mesh(new THREE.SphereGeometry(1, 64, 32), -60, true);
   private readonly stars: ReturnType<typeof mesh>;
-  private readonly catalog: readonly {
-    direction: THREE.Vector3;
-    color: THREE.Color;
-    magnitude: number;
-  }[];
+  private catalog: readonly CatalogStar[];
   private readonly palette: Record<keyof Required<SkyPalette>, THREE.Color>;
   private lastTime: number | undefined;
   private cloudAttenuation = 0;
@@ -132,43 +152,8 @@ export class SkyVisual {
     this.moon.name = 'molen:sky-moon';
     // Each star is a small six-segment radial splat in one mesh, including a soft alpha edge.
     // Unlike GL_POINTS, this renders at the same angular size on native WebGPU.
-    const limit = data.stars?.magnitudeLimit ?? 6;
-    this.catalog =
-      data.stars?.enabled === false
-        ? []
-        : options.stars
-          ? options.stars
-              .filter((s) => s.magnitude <= limit)
-              .map((s) => {
-                if (!Number.isFinite(s.magnitude)) throw new Error('Star magnitude must be finite');
-                return {
-                  direction: new THREE.Vector3(...skyDirection(s.direction)),
-                  color: new THREE.Color(s.color ?? '#ffffff'),
-                  magnitude: s.magnitude,
-                };
-              })
-          : brightStars
-              .filter((s) => s[2] <= limit)
-              .map(([ra, dec, magnitude, bv]) => ({
-                direction: new THREE.Vector3(
-                  Math.cos(ra * RAD) * Math.cos(dec * RAD),
-                  Math.sin(ra * RAD) * Math.cos(dec * RAD),
-                  Math.sin(dec * RAD),
-                ),
-                color: starColor(bv),
-                magnitude,
-              }));
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new THREE.Float32BufferAttribute(new Float32Array(this.catalog.length * 7 * 3), 3),
-    );
-    const indices: number[] = [];
-    for (let i = 0; i < this.catalog.length; i++) {
-      for (let j = 0; j < 6; j++) indices.push(i * 7, i * 7 + j + 1, i * 7 + ((j + 1) % 6) + 1);
-    }
-    geometry.setIndex(indices);
-    this.stars = mesh(geometry, -80, true);
+    this.catalog = this.catalogFrom(options.stars);
+    this.stars = mesh(starGeometry(this.catalog.length), -80, true);
     this.stars.material.blending = THREE.AdditiveBlending;
     this.stars.name = 'molen:sky-stars';
     this.scene.add(this.dome, this.stars, this.sun, this.moon);
@@ -421,6 +406,40 @@ export class SkyVisual {
     colors.needsUpdate = true;
     // A sphere must show only its near-facing surface for correct lunar phases.
     body.material.side = THREE.FrontSide;
+  }
+
+  /**
+   * Replace the star catalog, e.g. once a catalog loaded from a content pack arrives. `undefined`
+   * removes the stars. Takes effect on the next update.
+   */
+  setStars(stars: readonly SkyStar[] | undefined): void {
+    if (this.disposed) throw new Error('SkyVisual has been disposed');
+    this.catalog = this.catalogFrom(stars);
+    const previous = this.stars.geometry;
+    this.stars.geometry = starGeometry(this.catalog.length);
+    const colors = this.stars.geometry.getAttribute('position').count * 4;
+    this.stars.geometry.setAttribute(
+      'color',
+      new THREE.Float32BufferAttribute(new Float32Array(colors), 4),
+    );
+    previous.dispose();
+    // Force the next update to rewrite star positions even at an unchanged time.
+    this.lastTime = undefined;
+  }
+
+  private catalogFrom(stars: readonly SkyStar[] | undefined): readonly CatalogStar[] {
+    const limit = this.data.stars?.magnitudeLimit ?? 6;
+    if (this.data.stars?.enabled === false || stars === undefined) return [];
+    return stars
+      .filter((s) => s.magnitude <= limit)
+      .map((s) => {
+        if (!Number.isFinite(s.magnitude)) throw new Error('Star magnitude must be finite');
+        return {
+          direction: new THREE.Vector3(...skyDirection(s.direction)),
+          color: new THREE.Color(s.color ?? '#ffffff'),
+          magnitude: s.magnitude,
+        };
+      });
   }
 
   private updateStars(

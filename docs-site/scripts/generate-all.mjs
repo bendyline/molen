@@ -22,7 +22,7 @@ function guideSidebar(guides) {
     { text: 'Getting started', until: 'experience-playback' },
     { text: 'Samples and worlds', until: 'building-interiors' },
     { text: 'Content and art', until: '3d-art-guidelines' },
-    { text: 'Rendering and performance', until: 'review-migration' },
+    { text: 'Rendering and performance', until: 'capability-authoring' },
   ];
   const items = [];
   let cursor = 0;

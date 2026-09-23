@@ -8,9 +8,9 @@ import { formatJson } from '../../worldgen/scripts/format-json.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = JSON.parse(
-  await readFile(resolve(root, '../worldgen/packs/default/structures/catalog.json'), 'utf8'),
+  await readFile(resolve(root, '../../content/worldgen/structures/catalog.json'), 'utf8'),
 );
-const path = resolve(root, 'packs/default/world.atlas.json');
+const path = resolve(root, '../../content/earth/world.atlas.json');
 const atlas = JSON.parse(await readFile(path, 'utf8'));
 const homes = new Set(['house', 'bungalow', 'cabin', 'farmhouse', 'townhouse']);
 const residential = [

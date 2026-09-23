@@ -1,16 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { encodeGlb } from '../../src/kernel/glb';
-import { generateLandmarkModel, SIGN_DESIGNS } from '../../src/kernel/landmark-models';
+import { generateLandmarkModel } from '../../src/kernel/landmark-models';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 import { buildStorefronts } from '../../src/kernel/storefronts';
 import type { StorefrontRequest } from '../../src/kernel/types';
+import { LANDMARK_DEFINITIONS, LANDMARKS } from '../helpers/content';
 
 describe('canonical identity geometry', () => {
   it('builds deterministic finite signs with cheap distant silhouettes and exportable geometry', () => {
-    for (const id of Object.keys(SIGN_DESIGNS)) {
-      const a = generateLandmarkModel(`sign.${id}`);
-      const b = generateLandmarkModel(`sign.${id}`);
-      const distant = generateLandmarkModel(`sign.${id}`, 2);
+    for (const id of Object.keys(LANDMARKS.signDesigns)) {
+      const a = generateLandmarkModel(`sign.${id}`, LANDMARK_DEFINITIONS);
+      const b = generateLandmarkModel(`sign.${id}`, LANDMARK_DEFINITIONS);
+      const distant = generateLandmarkModel(`sign.${id}`, LANDMARK_DEFINITIONS, 2);
       if (!a || !b || !distant) throw new Error(`Missing sign model: ${id}`);
       expect(a.positions).toEqual(b.positions);
       expect([...a.positions, ...a.normals].every(Number.isFinite)).toBe(true);

@@ -1,14 +1,12 @@
 import {
-  buildTypeIndex,
   type MessageLink,
   type ResolvedTypes,
-  resolveAllTypes,
   type SceneManifest,
-  type TypesDoc,
   validate,
 } from '@bendyline/molen-schema';
 import { KernelHost, type KernelHostOptions } from './host';
 import { type BuildWorldOptions, buildWorld, inlineScriptSources, type WorldSetup } from './scene';
+import { resolveTypeDocuments, scriptSourceFor } from './type-library';
 import type { World } from './world';
 
 // Every host repeats the same two blocks: validate the scene and its type registry and inline the
@@ -40,27 +38,6 @@ export interface LoadedProject {
   types?: ResolvedTypes;
 }
 
-/** Find the one source key that ends with a script's declared `path`. */
-function sourceFor(path: string, scripts: Readonly<Record<string, string>>): string {
-  const direct = scripts[path];
-  if (direct !== undefined) return direct;
-  const matches = Object.keys(scripts).filter((key) => key.endsWith(`/${path}`));
-  if (matches.length === 1) {
-    const only = matches[0] as string;
-    return scripts[only] as string;
-  }
-  const known = Object.keys(scripts).sort().join(', ');
-  if (matches.length === 0) {
-    throw new Error(
-      `no source for script "${path}": none of the given keys end with it (have: ${known || 'none'})`,
-    );
-  }
-  throw new Error(
-    `ambiguous source for script "${path}": ${matches.sort().join(' and ')} both match. ` +
-      'Narrow the glob, or key the sources by the exact path the scene declares.',
-  );
-}
-
 /**
  * Validate a project's documents and hand back what a host needs: the scene manifest with its
  * scripts inlined, and the resolved type registry. Throws with the validator's formatted error —
@@ -71,26 +48,10 @@ export function loadProject(options: LoadProjectOptions): LoadedProject {
   const parsedScene = validate('scene', options.scene);
   if (!parsedScene.ok) throw new Error(parsedScene.formatted);
 
-  let types: ResolvedTypes | undefined;
-  if (options.types !== undefined) {
-    const docs = Array.isArray(options.types) ? options.types : [options.types];
-    const parsed = docs.map((doc, i) => {
-      const result = validate('types', doc);
-      if (!result.ok) throw new Error(result.formatted);
-      for (const def of Object.values(result.value.types)) {
-        for (const script of def.scripts) {
-          if (script.path === undefined) continue;
-          const source = sourceFor(script.path, options.scripts ?? {});
-          script.code = source;
-          delete script.path;
-        }
-      }
-      return { doc: result.value as TypesDoc, source: `types[${i}]` };
-    });
-    const { index, issues } = buildTypeIndex(parsed);
-    if (issues.length > 0) throw new Error(issues.map((issue) => issue.message).join('; '));
-    types = resolveAllTypes(index);
-  }
+  const types =
+    options.types === undefined
+      ? undefined
+      : resolveTypeDocuments(options.types, options.scripts ?? {});
 
   const scripts = options.scripts;
   const manifest =
@@ -101,7 +62,7 @@ export function loadProject(options: LoadProjectOptions): LoadedProject {
           Object.fromEntries(
             (parsedScene.value.scripts ?? [])
               .filter((script): script is typeof script & { path: string } => script.path != null)
-              .map((script) => [script.path, sourceFor(script.path, scripts)]),
+              .map((script) => [script.path, scriptSourceFor(script.path, scripts)]),
           ),
         );
 

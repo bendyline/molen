@@ -140,10 +140,10 @@ for a controlled comparison. This does not change backend selection, resolution 
 Small instance sets use Three's uniform-buffer shaders. Molen avoids uploading unchanged
 instance matrices again, using the attribute's `version` rather than comparing matrix contents.
 After `setMatrixAt` or direct array edits, set `mesh.instanceMatrix.needsUpdate = true`, as
-required by Three. Shared LOD attributes retain their identity. A local adapter for the pinned
-Three r184 backend applies this check only to recognized instance-matrix buffers; camera,
-material, animation and other uniforms continue updating normally. Revalidate this adapter
-when upgrading Three. Large instance buffers retain Three's vertex-attribute path.
+required by Three. Shared LOD attributes retain their identity. A local adapter for Three's
+WebGPU backend (r184–r186, the supported peer range) applies this check only to recognized
+instance-matrix buffers; camera, material, animation and other uniforms continue updating
+normally. Revalidate this adapter before widening the three peer range. Large instance buffers retain Three's vertex-attribute path.
 
 Use `renderer.createRenderGroup()` for independent opaque terrain/content chunks. It returns
 a managed WebGPU `BundleGroup`, or a normal Three `Group` on WebGL. The pyramid terrain stream

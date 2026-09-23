@@ -37,9 +37,8 @@ import type {
   ResolvedStylePack,
   WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
-import { LANDMARK_CATALOG_HASH } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
-import { BUSINESS_CATALOG_HASH } from '../kernel/business-catalog';
+import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { TileGeometry } from '../kernel/semantic-adapter';
@@ -52,6 +51,12 @@ import type { WorldgenGenerator } from './worker-bridge';
 export interface WorldgenRendererOptions {
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
+  /**
+   * Landmarks and business identities for mapped places; without them businesses are not
+   * recognized and street furniture is not placed. With a worker `generator`, pass the worker the
+   * same content; tile cache keys include its hashes.
+   */
+  places?: PlacesContent;
   materials?: WorldgenMaterialSet;
   /** Prepared prop models; without it the classification layer keeps the default tree cones. */
   models?: ModelLibrary;
@@ -67,8 +72,11 @@ export interface WorldgenRendererOptions {
   landcoverGenerator?: TerrainLandcoverGenerator;
   /** Camera-distance vegetation LOD and spatial culling (default true). */
   propLod?: boolean;
-  /** Real openings and bounded lazy interiors, including residential upstairs (opt in). */
-  interiors?: boolean | InteriorStreamingOptions;
+  /**
+   * Real openings and bounded lazy interiors, including residential upstairs (opt in). They are
+   * laid out by the style pack's interior catalog; a pack without one generates no interiors.
+   */
+  interiors?: boolean | Omit<InteriorStreamingOptions, 'catalog'>;
   /** Shared screen-space policy for resident building and vegetation LODs. */
   lodPolicy?: ScreenSpaceLodPolicy;
   /** Buildings generated between cooperative yields (default 48, in-thread only). */
@@ -139,9 +147,13 @@ export function createWorldgenSemanticRenderers(
   const materials = options.materials ?? createVertexColorMaterialSet();
   const ownsMaterials = options.materials === undefined;
   const metersPerUnit = options.metersPerUnit ?? 1;
-  const interiors = options.interiors
-    ? new InteriorStreamer(typeof options.interiors === 'object' ? options.interiors : {})
-    : undefined;
+  const interiors =
+    options.interiors && pack.interiors !== undefined
+      ? new InteriorStreamer({
+          ...(typeof options.interiors === 'object' ? options.interiors : {}),
+          catalog: pack.interiors,
+        })
+      : undefined;
   let quality = options.quality ?? 'balanced';
   interface ResidentBuildings {
     tile: TerrainSemanticTile;
@@ -173,11 +185,13 @@ export function createWorldgenSemanticRenderers(
     createInThreadWorldgenGenerator(pack, {
       ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
       ...(options.regions !== undefined ? { regions: options.regions } : {}),
+      ...(options.places !== undefined ? { places: options.places } : {}),
       ...(options.yieldEveryBuildings !== undefined
         ? { yieldEveryBuildings: options.yieldEveryBuildings }
         : {}),
     });
   const ownsGenerator = options.generator === undefined;
+  const places = options.places;
   const cache = options.cache;
   const atlasHash =
     options.atlas !== undefined ? hashJson(options.atlas as unknown as JsonValue) : undefined;
@@ -193,8 +207,8 @@ export function createWorldgenSemanticRenderers(
               tierOffset: request.tierOffset ?? 0,
               interiors: request.features?.interiors ?? false,
               renderCellsOnly: request.renderCellsOnly ?? false,
-              identities: BUSINESS_CATALOG_HASH,
-              models: LANDMARK_CATALOG_HASH,
+              identities: places?.businesses.hash ?? null,
+              models: places?.landmarks.hash ?? null,
               semantics: request.tile,
               geometry: request.geom,
             } as unknown as JsonValue),

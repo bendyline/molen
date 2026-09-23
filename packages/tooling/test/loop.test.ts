@@ -1,6 +1,7 @@
 import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { ENGINE_VERSION } from '@bendyline/molen-kernel';
 import { registerComponent } from '@bendyline/molen-schema';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
@@ -37,8 +38,11 @@ describe('canonical headless loop (scaffold -> validate -> simulate -> assert)',
 
     const packageJson = JSON.parse(await readFile(join(dir, 'package.json'), 'utf8')) as {
       scripts: { dev: string };
+      dependencies: Record<string, string>;
     };
     expect(packageJson.scripts.dev).toBe('vite --port 5225');
+    // Engine packages are pinned to the scaffold's own version line, never '*'.
+    expect(packageJson.dependencies['@bendyline/molen-kernel']).toBe(`^${ENGINE_VERSION}`);
 
     // 1. validate: project + scene + checks; the type registry cross-checks pass.
     const p = await validateAsset({ path: projectPath });

@@ -1,7 +1,7 @@
 import {
   getSchema,
   type JsonValue,
-  nearest,
+  nearestWithDistance,
   registerSchema,
   type ValidationIssue,
 } from '@bendyline/molen-schema';
@@ -215,14 +215,19 @@ export function validateScatter(data: unknown): ValidationIssue[] {
           message: 'widthScale min exceeds max',
         });
       }
-      if (entry.model.startsWith('builtin:') && !BUILTIN_MODELS.includes(entry.model)) {
-        const near = nearest(entry.model, [...BUILTIN_MODELS]);
+      // Any other builtin may be a landmark from the loaded library; only a near miss of a
+      // procedural builtin is certainly a typo.
+      const near =
+        entry.model.startsWith('builtin:') && !BUILTIN_MODELS.includes(entry.model)
+          ? nearestWithDistance(entry.model, [...BUILTIN_MODELS])
+          : undefined;
+      if (near !== undefined && near.distance <= 2) {
         issues.push({
           path: `${entryPath}/model`,
           code: 'unknown_builtin_model',
           message: `unknown builtin model "${entry.model}"`,
-          expected: `one of: ${BUILTIN_MODELS.join(' ')}`,
-          ...(near !== undefined ? { hint: `did you mean "${near}"?` } : {}),
+          expected: `a landmark id or one of: ${BUILTIN_MODELS.join(' ')}`,
+          hint: `did you mean "${near.candidate}"?`,
         });
       }
       const altitude = entry.altitude ?? rule.altitude;

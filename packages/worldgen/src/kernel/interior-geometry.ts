@@ -19,7 +19,7 @@ import { buildWalls } from './walls';
 /** Structured low-poly furniture, baked into one shared vertex-color batch per interior. */
 export function* generateInteriorGeometrySteps(
   plan: InteriorPlan,
-  catalog?: InteriorCatalogDoc,
+  catalog: InteriorCatalogDoc,
 ): Generator<void, InteriorGeometry, void> {
   const site = plan.site;
   const palette = resolveInteriorProfile(site.labels, catalog).palette;
@@ -286,7 +286,7 @@ export function* generateInteriorGeometrySteps(
 }
 export function generateInteriorGeometry(
   plan: InteriorPlan,
-  catalog?: InteriorCatalogDoc,
+  catalog: InteriorCatalogDoc,
 ): InteriorGeometry {
   const steps = generateInteriorGeometrySteps(plan, catalog);
   for (;;) {

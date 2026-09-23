@@ -44,7 +44,7 @@ export {
 } from './kernel/footprint';
 export type { Bounds2 } from './kernel/geometry2d';
 export { clipRingToRect, pointInRing, ringArea, ringCentroid } from './kernel/geometry2d';
-export { DEFAULT_INTERIOR_CATALOG, validateInteriorCatalog } from './kernel/interior-catalog';
+export { resolveInteriorProfile, validateInteriorCatalog } from './kernel/interior-catalog';
 export {
   generateInteriorGeometry,
   generateInteriorGeometrySteps,
@@ -67,10 +67,14 @@ export type {
   InteriorStair,
   InteriorStorey,
 } from './kernel/interior-types';
-export { LANDMARK_CATALOG_HASH, LANDMARK_DEFINITIONS } from './kernel/landmark-catalog';
+export { resolveLandmarkCatalogDocuments } from './kernel/landmark-docs';
+export {
+  createLandmarkLibrary,
+  type LandmarkDocs,
+  type LandmarkLibrary,
+} from './kernel/landmark-library';
 export type { SignDesign } from './kernel/landmark-models';
-export { generateLandmarkModel, generateSignModel, SIGN_DESIGNS } from './kernel/landmark-models';
-export { resolveLandmarkCatalogDocuments } from './kernel/landmark-schema';
+export { generateLandmarkModel, generateSignModel } from './kernel/landmark-models';
 export type {
   BoxLandmarkDoc,
   LandmarkBoxPart,

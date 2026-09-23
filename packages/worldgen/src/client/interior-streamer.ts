@@ -96,7 +96,7 @@ export class InteriorStreamer {
     lastWorkMs: 0,
   };
 
-  constructor(options: InteriorStreamingOptions = {}) {
+  constructor(options: InteriorStreamingOptions) {
     this.options = {
       loadDistance: options.loadDistance ?? 65,
       unloadDistance: options.unloadDistance ?? 90,
@@ -113,10 +113,7 @@ export class InteriorStreamer {
       throw new RangeError(
         'Interior streaming needs positive finite budgets, an integer resident cap, and unloadDistance > loadDistance',
       );
-    this.generation = {
-      ...options,
-      ...(options.catalog ? { catalog: validateInteriorCatalog(options.catalog) } : {}),
-    };
+    this.generation = { ...options, catalog: validateInteriorCatalog(options.catalog) };
   }
 
   register(root: THREE.Object3D, sites: readonly InteriorSite[], origin: Vec2 = [0, 0]): void {

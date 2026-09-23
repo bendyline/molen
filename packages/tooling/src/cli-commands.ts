@@ -8,12 +8,15 @@ import { type FigureLineup, previewFigure } from './ops/figure-preview';
 import {
   applyUvPaintOp,
   bakeWorldgen,
+  buildContentPack,
   checkScripts,
   checkTypesOp,
   describeOps,
   diffSnapshots,
   driveScene,
   exportFrames,
+  extractContentPack,
+  fetchContentPack,
   formatBytes,
   formatOp,
   formatPacked,
@@ -23,6 +26,7 @@ import {
   getSchemaOp,
   importAsset,
   inspectAsset,
+  inspectContentPack,
   listAssets,
   listComponentsOp,
   listSchemasOp,
@@ -45,6 +49,7 @@ import {
   stageAssets,
   testTypes,
   validateAsset,
+  verifyContentPack,
   worldgenStats,
 } from './ops/index';
 import { loadComponentRegistry } from './ops/schema';
@@ -318,7 +323,12 @@ async function cmdSim(args: ParsedArgs): Promise<number> {
     return 1;
   }
   out(`tick: ${result.tick}`);
-  if (args.flags.hash === true) out(`hash: ${result.stateHash}`);
+  if (args.flags.hash === true) {
+    out(`hash: ${result.stateHash}`);
+    for (const [domain, entry] of Object.entries(result.content ?? {})) {
+      out(`content: ${domain} ${entry.hash}${entry.packs ? ` (${entry.packs.join(', ')})` : ''}`);
+    }
+  }
   out(`events: ${result.eventCount}`);
   if (result.physics !== undefined && result.physics !== 'none') {
     out(
@@ -823,6 +833,93 @@ async function cmdAsset(args: ParsedArgs): Promise<number> {
   err(
     'usage: molen asset import <file> | inspect <ref> [--verify] | list | shot <ref> --out-dir <d> | pack <ref>|--all | stage --out-dir <d>',
   );
+  return 2;
+}
+
+const PACK_USAGE =
+  'usage: molen pack build <sourceDir> --out-dir <d> [--no-solid] | inspect <source> | verify <source> | extract <source> --out-dir <d> | fetch <url> [ids…] [--out-dir <d>] [--project <path>]';
+
+async function cmdPack(args: ParsedArgs): Promise<number> {
+  const [sub, target, ...rest] = args.positionals;
+  const outDir = str(args.flags['out-dir']);
+  if (sub === 'build' && target !== undefined && outDir !== undefined) {
+    const r = await buildContentPack({
+      sourceDir: target,
+      outDir,
+      ...(args.flags['no-solid'] === true ? { solid: false } : {}),
+    });
+    if (!r.ok) {
+      err(r.error ?? 'pack build failed');
+      return 1;
+    }
+    out(`${r.id}@${r.version}: ${r.files} files -> ${r.path} (${formatBytes(r.size ?? 0)})`);
+    out(`  contentHash ${r.contentHash}`);
+    out(`  index ${r.indexPath}`);
+    return 0;
+  }
+  if (sub === 'inspect' && target !== undefined) {
+    const r = await inspectContentPack({ source: target });
+    if (!r.ok) {
+      err(r.error ?? 'pack inspect failed');
+      return 1;
+    }
+    const size = r.fileSize !== undefined ? `, ${formatBytes(r.fileSize)} packed` : '';
+    out(`${r.id}@${r.version}${r.title !== undefined ? ` — ${r.title}` : ''}`);
+    out(`  ${r.files} files, ${formatBytes(r.contentSize ?? 0)} of content${size}`);
+    out(`  contentHash ${r.contentHash}${r.license !== undefined ? `, license ${r.license}` : ''}`);
+    for (const block of r.blocks ?? []) {
+      out(`  block ${block.name}: ${block.files} files, ${formatBytes(block.size)}`);
+    }
+    for (const [role, paths] of Object.entries(r.provides ?? {})) {
+      out(`  provides ${role}: ${paths.join(', ')}`);
+    }
+    out(`  ${Object.keys(r.ids ?? {}).length} asset ids`);
+    for (const file of r.largest ?? [])
+      out(`  ${formatBytes(file.size).padStart(10)}  ${file.path}`);
+    return 0;
+  }
+  if (sub === 'verify' && target !== undefined) {
+    const r = await verifyContentPack({ source: target });
+    if (r.error !== undefined) {
+      err(r.error);
+      return 1;
+    }
+    for (const issue of r.issues ?? []) err(`✗ ${issue.path}: ${issue.message}`);
+    const summary = `${r.checked} files checked, ${r.validated} documents validated`;
+    if (!r.ok) {
+      err(`${r.id}: ${(r.issues ?? []).length} problems (${summary})`);
+      return 1;
+    }
+    out(`✓ ${r.id}: ${summary}`);
+    return 0;
+  }
+  if (sub === 'extract' && target !== undefined && outDir !== undefined) {
+    const r = await extractContentPack({ source: target, outDir });
+    if (!r.ok) {
+      err(r.error ?? 'pack extract failed');
+      return 1;
+    }
+    out(`${r.id}: ${r.files} files -> ${r.outDir}`);
+    return 0;
+  }
+  if (sub === 'fetch' && target !== undefined) {
+    const r = await fetchContentPack({
+      url: target,
+      ...(rest.length > 0 ? { ids: rest } : {}),
+      ...(outDir !== undefined ? { outDir } : {}),
+      ...(str(args.flags.project) !== undefined ? { projectPath: str(args.flags.project) } : {}),
+    });
+    if (!r.ok) {
+      err(r.error ?? 'pack fetch failed');
+      return 1;
+    }
+    for (const pack of r.packs ?? []) {
+      out(`${pack.id}@${pack.version} -> ${r.outDir}/${pack.file} (${formatBytes(pack.size)})`);
+    }
+    out(r.projectPath !== undefined ? `pinned in ${r.projectPath}` : 'no project.json to pin in');
+    return 0;
+  }
+  err(PACK_USAGE);
   return 2;
 }
 
@@ -1402,6 +1499,7 @@ export const CLI_COMMANDS: Record<string, (args: ParsedArgs) => number | Promise
   component: cmdComponent,
   describe: cmdDescribe,
   asset: cmdAsset,
+  pack: cmdPack,
   drive: cmdDrive,
   play: cmdPlay,
   project: cmdProject,

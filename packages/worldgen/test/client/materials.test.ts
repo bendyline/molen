@@ -9,7 +9,7 @@ import { resolveStylePackDocuments, stylePackMaterialRefs } from '../../src/kern
 import '../../src/kernel';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const packDir = resolve(here, '../../packs/default');
+const packDir = resolve(here, '../../../../content/worldgen');
 
 async function readJson(path: string): Promise<unknown> {
   return JSON.parse(await readFile(resolve(packDir, path), 'utf8'));

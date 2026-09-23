@@ -34,18 +34,15 @@
     "./client": {
       "types": "./dist/client.d.mts",
       "default": "./dist/client.mjs"
-    },
-    "./packs/*": "./packs/*"
+    }
   },
   "files": [
-    "dist",
-    "packs",
-    "source"
+    "dist"
   ],
   "scripts": {
     "build": "node scripts/generate-landmark-index.mjs && tsdown && node scripts/generate-pack.mjs --check && node scripts/generate-structures.mjs --check && node scripts/validate-pack.mjs && node scripts/validate-landmarks.mjs",
     "typecheck": "tsc -p tsconfig.json",
-    "lint": "biome check src test packs source scripts && node ../../scripts/check-dmath.mjs src/kernel",
+    "lint": "biome check src test scripts && node ../../scripts/check-dmath.mjs src/kernel",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
@@ -57,7 +54,7 @@
   },
   "peerDependencies": {
     "@bendyline/molen-client": "workspace:*",
-    "three": "0.184.0"
+    "three": ">=0.184.0 <0.187.0"
   },
   "peerDependenciesMeta": {
     "@bendyline/molen-client": {
@@ -69,7 +66,6 @@
   },
   "devDependencies": {
     "@bendyline/molen-client": "workspace:*",
-    "@bendyline/molen-entities": "workspace:*",
     "@biomejs/biome": "^2.5.0",
     "@types/three": "0.184.0",
     "three": "0.184.0",

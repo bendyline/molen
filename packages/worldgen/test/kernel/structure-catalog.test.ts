@@ -25,7 +25,7 @@ interface CatalogEntry {
   existing: boolean;
 }
 
-const packDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../packs/default');
+const packDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../content/worldgen');
 const readJson = async (path: string): Promise<unknown> =>
   JSON.parse(await readFile(resolve(packDir, path), 'utf8'));
 const catalog = (await readJson('structures/catalog.json')) as {

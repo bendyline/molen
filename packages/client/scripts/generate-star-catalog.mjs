@@ -1,10 +1,13 @@
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
+import { encodeStarCatalog } from '../dist/index.mjs';
 
-// Offline regeneration: node scripts/generate-star-catalog.mjs /path/to/catalog.gz
+// Offline regeneration of the molen.sky pack's star catalog, after `pnpm build`:
+//   node packages/client/scripts/generate-star-catalog.mjs /path/to/catalog.gz
 // Source: https://cdsarc.cds.unistra.fr/ftp/V/50/catalog.gz
 // Columns: https://cdsarc.cds.unistra.fr/ftp/V/50/ReadMe
+// Writes content/sky/stars.bin (molen/stars@1); content/sky/NOTICE.md carries the attribution.
 const input = process.argv[2];
 if (!input) throw new Error('Pass the downloaded V/50 catalog.gz path');
 const bytes = await readFile(input);
@@ -19,9 +22,8 @@ for (const line of gunzipSync(bytes).toString('ascii').split('\n')) {
   const bv = line.slice(109, 114).trim() ? num(110, 114) : 0;
   rows.push([ra, dec, magnitude, bv].map((v) => Number(v.toFixed(5))));
 }
-const header = `// Generated from Bright Star Catalogue V/50, Hoffleit & Warren (1991), via CDS.\n// https://cdsarc.cds.unistra.fr/ftp/V/50/ — see guide/sky.md for attribution.\n// Input SHA256: ${createHash('sha256').update(bytes).digest('hex')}\n// ${rows.length} stars through visual magnitude 6.5. J2000 RA/Dec degrees, V magnitude, B-V.\n// Regenerate with packages/client/scripts/generate-star-catalog.mjs; do not edit.\n// biome-ignore-all format: generated numeric catalog\nexport const brightStars: ReadonlyArray<readonly [number, number, number, number]> = [\n`;
-await writeFile(
-  new URL('../src/sky/bright-stars.ts', import.meta.url),
-  `${header}${rows.map((row) => `  [${row.join(', ')}],`).join('\n')}\n];\n`,
+const out = encodeStarCatalog(rows);
+await writeFile(new URL('../../../content/sky/stars.bin', import.meta.url), out);
+console.log(
+  `Wrote content/sky/stars.bin: ${rows.length} stars, ${out.length} bytes (input sha256 ${createHash('sha256').update(bytes).digest('hex')})`,
 );
-console.log(`Generated ${rows.length} stars`);

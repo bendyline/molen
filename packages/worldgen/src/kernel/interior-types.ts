@@ -120,7 +120,8 @@ export interface InteriorPlan {
   stats: { candidates: number; rejected: number; truncated: boolean };
 }
 export interface InteriorGenerateOptions {
-  catalog?: InteriorCatalogDoc;
+  /** The interior catalog, usually the style pack's `interiors`. */
+  catalog: InteriorCatalogDoc;
   maxFixtures?: number;
   maxCandidates?: number;
 }

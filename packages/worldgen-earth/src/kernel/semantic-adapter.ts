@@ -31,6 +31,7 @@ import { buildingPieces } from './building-parts';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
 import { contextLabelForPolygon, landcoverLabel } from './labels';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
+import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
 import { residentialTreePolygons } from './residential-trees';
@@ -63,6 +64,11 @@ export interface SemanticAdapterOptions {
   keep?: number;
   /** Added to the detail tier derived from the level (economy quality starts one tier lower). */
   tierOffset?: number;
+  /**
+   * Landmarks and business identities for mapped places. Without them, mapped businesses are
+   * not recognized and street furniture is not placed.
+   */
+  places?: PlacesContent;
 }
 
 export interface SemanticBatch extends WorldgenBatchInput {
@@ -185,8 +191,8 @@ export function semanticTileToBatch(
   if (options.features?.buildings !== false) {
     const pieces = buildingPieces(tile.buildings);
     const businesses =
-      geom.levelBelowMax === 0 && !tile.buildingsGeneralized
-        ? associateBusinesses(tile, pieces)
+      geom.levelBelowMax === 0 && !tile.buildingsGeneralized && options.places !== undefined
+        ? associateBusinesses(tile, pieces, options.places.businesses)
         : new Map();
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
@@ -260,7 +266,7 @@ export function semanticTileToBatch(
       tile,
       geom,
       options.features?.scatter !== false,
-      options.features?.buildings !== false,
+      options.features?.buildings !== false ? options.places?.landmarks : undefined,
     ),
     ...(scatter !== undefined ? { scatter } : {}),
     pack: options.pack,

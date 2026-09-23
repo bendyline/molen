@@ -67,5 +67,3 @@ project registration under `assets/red_barn_weathered/`.
 ## Result
 
 ![Weathered red barn rendered by Molen](preview.png)
-
-See [TEST-RUN.md](TEST-RUN.md) for the verified hashes and render statistics.

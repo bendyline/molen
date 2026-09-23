@@ -1,6 +1,5 @@
 import type { AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
-import { getMolenAircraft } from '../../entities/src/index';
 import {
   AircraftInput,
   AircraftState,
@@ -15,12 +14,13 @@ import { Transform, type TransformData } from '../src/component';
 import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { Mounted, mountEntity, unmountEntity, vehicleRotation } from '../src/vehicles';
 import { World } from '../src/world';
+import { molenAircraft } from './helpers/entities';
 
 const flat = { groundHeight: () => 0 };
 const running: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT, engine: true, power: 1, brake: false };
-type TestAircraft = 'p51d' | 'h500md';
+type TestAircraft = 'p51d' | 'oh6';
 const specFor = (kind: TestAircraft): AircraftSpec =>
-  getMolenAircraft(`molen.entities.aircraft.${kind}`).spec;
+  molenAircraft(`molen.entities.aircraft.${kind}`).spec;
 function setup(kind: TestAircraft) {
   const spec = specFor(kind);
   const w = new World({ tickRate: 60, seed: 'flight' });
@@ -86,7 +86,7 @@ describe('aircraft flight and mounting', () => {
     expect(w.get('craft', AircraftState)?.crashed).toBe(false);
   });
   it('spools the helicopter before lifting and cyclic produces horizontal flight', () => {
-    const w = setup('h500md');
+    const w = setup('oh6');
     mountEntity(w, 'pilot', 'craft');
     flyAircraft(w, 'pilot', { ...running, power: 0.56 });
     w.stepN(120);
@@ -123,7 +123,7 @@ describe('aircraft flight and mounting', () => {
         result.transform,
         result.state,
         { ...running, power: 0.49 },
-        specFor('h500md'),
+        specFor('oh6'),
         1 / 60,
         flat,
       );
@@ -176,7 +176,7 @@ describe('aircraft flight and mounting', () => {
       flat,
     );
     expect(landing.state.crashed).toBe(true);
-    const w = setup('h500md');
+    const w = setup('oh6');
     mountEntity(w, 'pilot', 'craft');
     w.patch('craft', AircraftState, { rpm: 0.8 });
     expect(unmountEntity(w, 'pilot', flat)).toBe(false);
@@ -187,7 +187,7 @@ describe('aircraft flight and mounting', () => {
   });
   it.each([
     'p51d',
-    'h500md',
+    'oh6',
   ] as const)('restores %s flight, control, rotor phase, and pilot state exactly', (kind) => {
     const a = setup(kind);
     mountEntity(a, 'pilot', 'craft');

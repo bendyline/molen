@@ -4,7 +4,6 @@
  * or encode the same buffers with encodeGlb for a static asset.
  */
 import { dmath } from '@bendyline/molen-kernel/determinism';
-import { LANDMARK_CATALOG, LANDMARK_DEFINITIONS } from './landmark-catalog';
 import type { LandmarkDefinitions, SignDesign } from './landmark-types';
 import { MeshBufferBuilder } from './mesh-buffers';
 import { modelBox, modelStroke } from './model-primitives';
@@ -12,12 +11,6 @@ import { parseColor } from './schema-common';
 import type { MeshBuffers, Vec2 } from './types';
 
 export type { SignDesign } from './landmark-types';
-export const LANDMARK_MODEL_VERSION: number = LANDMARK_CATALOG.version;
-export const SIGN_DESIGNS: Readonly<Record<string, SignDesign>> = Object.fromEntries(
-  Object.values(LANDMARK_DEFINITIONS)
-    .filter((doc) => doc.generator === 'sign')
-    .map((doc) => [doc.id.slice(5), doc.sign]),
-);
 
 // A tiny deterministic block-letter alphabet; contiguous runs are quads, not tiny cubes.
 const FONT: Readonly<Record<string, string>> = {
@@ -375,11 +368,15 @@ export function generateSignModel(design: SignDesign, detail: 0 | 1 | 2 = 0): Me
   return out.finalize();
 }
 
-/** Generate a manifest's sign or metric box recipe; detail 2 retains the main silhouette. */
+/**
+ * Generate a landmark's sign or metric box recipe from the loaded definitions (a landmark
+ * library's `definitions`); undefined when `name` is not among them. Detail 2 retains the main
+ * silhouette.
+ */
 export function generateLandmarkModel(
   name: string,
+  definitions: LandmarkDefinitions,
   detail: 0 | 1 | 2 = 0,
-  definitions: LandmarkDefinitions = LANDMARK_DEFINITIONS,
 ): MeshBuffers | undefined {
   const doc = Object.hasOwn(definitions, name) ? definitions[name] : undefined;
   if (!doc) return undefined;

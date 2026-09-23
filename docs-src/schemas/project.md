@@ -130,6 +130,45 @@ Binds an experience project together: scenes by name, type-registry documents, i
       "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.(?:\\/|$)).+$",
       "description": "Project-relative path of the setup module (setup.mjs) exporting setup(world, manifest)."
     },
+    "packs": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$",
+            "description": "Pack id (the pack manifest's id)."
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\).+$"
+              },
+              {
+                "type": "string",
+                "pattern": "^https?:\\/\\/\\S+$"
+              }
+            ],
+            "description": "Pack file or source directory relative to project.json (it may be outside the project), or an http(s) URL."
+          },
+          "contentHash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$",
+            "description": "Expected pack contentHash; loading fails when the pack's differs."
+          }
+        },
+        "required": [
+          "id",
+          "source"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Content packs the project loads, in order. When two packs provide the same id, the later one wins."
+    },
     "components": {
       "default": {},
       "type": "object",

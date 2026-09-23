@@ -28,11 +28,15 @@ wheeled-vehicle solver; every `vehicle` component supplies its own `spec` and `v
 are meters and seconds; +Y is up, +Z forward, and +X is the driver's left side. Positive steering
 turns right.
 
+The car itself is data. List the `molen.entities` content pack in `project.json` `packs` and
+declare it in the scene as `{ "id": "car", "type": "molen.entities.vehicle.sedan", ... }`; the
+type supplies its `vehicle`, `mountable` and renderable components. The setup adds the player and
+the commands:
+
 ```js
 import {
   installVehicles, mountEntity, driveVehicle, unmountEntity,
 } from '@bendyline/molen-kernel/vehicles';
-import { getMolenEntityComponents } from '@bendyline/molen-entities';
 
 export function setup(world) {
   const environment = {
@@ -42,10 +46,6 @@ export function setup(world) {
     // Add canExit(position, actor, vehicle) for safe person-sized exits.
   };
   installVehicles(world, environment);
-  // A scene would normally set `type: "molen.entities.vehicle.sedan"` instead.
-  const car = structuredClone(getMolenEntityComponents('molen.entities.vehicle.sedan'));
-  car.transform = { pos: [0, 0, 0], rot: [0, 0, 0, 1] };
-  world.spawnRaw(car, 'car');
   world.spawnRaw({ transform: { pos: [1.6, 0, 0], rot: [0, 0, 0, 1] } }, 'player');
   world.registerCommand('enter', () => mountEntity(world, 'player', 'car'));
   world.registerCommand('drive', (_w, command) =>
@@ -53,6 +53,10 @@ export function setup(world) {
   world.registerCommand('exit', () => unmountEntity(world, 'player', environment));
 }
 ```
+
+Outside a scene, resolve a type's components from the pack's type documents with
+`createTypeLibrary(docs).components('molen.entities.vehicle.sedan')` from
+`@bendyline/molen-kernel/content`, and spawn a copy.
 
 Declare commands and input bindings in the scene using the normal input schema. Give `drive`
 a payload schema with `throttle` and `steering` numbers in [-1,1] and a boolean `brake`.

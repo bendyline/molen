@@ -1,3 +1,5 @@
+import type { VehicleSpec } from '@bendyline/molen-schema';
+
 /** Data-only surface art direction. The 1910 preset is an interpretation, not historical data. */
 export type TerrainSurfaceStyleId = 'modern' | '1910' | 'minimal';
 
@@ -110,6 +112,17 @@ export interface TerrainSurfaceDetails {
   maxDetailElements?: number;
   /** Render details at this many levels below the finest level, default 0. */
   detailLevelsBelowMax?: number;
+  /**
+   * The vehicles parked cars are drawn from, in order: a kind id and its spec, such as the
+   * vehicle types of the `molen.entities` content pack. Omitted or empty, no cars are parked.
+   */
+  parkedVehicles?: readonly TerrainParkedVehicle[];
+}
+
+/** One kind of parked car: the entity type id and the vehicle spec that sizes and seats it. */
+export interface TerrainParkedVehicle {
+  id: string;
+  spec: VehicleSpec;
 }
 
 export interface TerrainSurfaceOptions {

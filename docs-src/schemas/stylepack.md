@@ -1,6 +1,6 @@
 # Style pack manifest (`molen/stylepack@1`)
 
-Index of a shippable look: archstyles, scatter rules, materials, prop assets, default style rules, imports, and attribution. One directory is one pack; the version feeds every seed.
+Index of a shippable look: archstyles, scatter rules, materials, prop assets, an optional interior catalog, default style rules, imports, and attribution. One directory is one pack; the version feeds every seed.
 
 ## Example
 
@@ -27,6 +27,7 @@ Index of a shippable look: archstyles, scatter rules, materials, prop assets, de
   "assets": {
     "molen.worldgen.prop.chimney.brick": "assets/prop/chimney/brick/asset.json"
   },
+  "interiors": "interiors/catalog.json",
   "defaults": {
     "style": "molen.worldgen.generic.box",
     "scatter": "molen.worldgen.scatter.global",
@@ -60,8 +61,7 @@ Index of a shippable look: archstyles, scatter rules, materials, prop assets, de
   "imports": [
     {
       "namespace": "molen.entities",
-      "package": "@bendyline/molen-entities",
-      "note": "Trees, shrub, boulder."
+      "note": "The molen.entities content pack: trees, shrub, boulder."
     }
   ],
   "attribution": [
@@ -156,6 +156,12 @@ Index of a shippable look: archstyles, scatter rules, materials, prop assets, de
         "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.(?:\\/|$)).+$"
       },
       "description": "Asset id to pack-relative molen/asset@1 sidecar path (props)."
+    },
+    "interiors": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.(?:\\/|$)).+$",
+      "description": "Pack-relative molen/interior-catalog@1 path: layouts for enterable buildings. Without one, the pack generates no interiors."
     },
     "defaults": {
       "type": "object",
@@ -352,7 +358,8 @@ Index of a shippable look: archstyles, scatter rules, materials, prop assets, de
             "description": "External asset namespace the pack may reference, e.g. 'molen.entities'."
           },
           "package": {
-            "type": "string"
+            "type": "string",
+            "description": "Informational: where the namespace comes from, e.g. a content pack id."
           },
           "note": {
             "type": "string"

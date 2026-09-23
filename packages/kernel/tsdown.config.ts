@@ -10,6 +10,7 @@ export default defineConfig({
     'src/terrain.ts',
     'src/platformer.ts',
     'src/determinism.ts',
+    'src/content-entry.ts',
     'src/vehicles.ts',
     'src/aircraft.ts',
   ],

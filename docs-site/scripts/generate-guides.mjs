@@ -102,7 +102,6 @@ const GUIDE_ORDER = [
   'adaptive-performance',
   'three-surface',
   'capability-authoring',
-  'review-migration',
 ];
 
 export async function generateGuides() {

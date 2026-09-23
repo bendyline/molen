@@ -3,16 +3,19 @@ import {
   createEmptyTerrainSemanticTile,
   type TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import { BUSINESS_PROFILES } from '@bendyline/molen-worldgen-earth/kernel';
+import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import { appendRetailExpansion } from './retail-expansion-showcase';
-export function businessShowcaseTile(size: number): TerrainSemanticTile {
+
+/** The review block, laid out from the loaded business catalog and landmark signs. */
+export function businessShowcaseTile(size: number, places: PlacesContent): TerrainSemanticTile {
+  const profiles = places.businesses.profiles;
   const tile = createEmptyTerrainSemanticTile();
   const point = (x: number, z: number): [number, number] => [
     0.5 + x / size,
     0.5 + (z - 120) / size,
   ];
   tile.pois = [];
-  BUSINESS_PROFILES.slice(0, 8).forEach((profile, i) => {
+  profiles.slice(0, 8).forEach((profile, i) => {
     const x = ((i % 4) - 1.5) * 36,
       z = Math.floor(i / 4) * 42;
     const id = `showcase:${profile.id}`;
@@ -45,11 +48,7 @@ export function businessShowcaseTile(size: number): TerrainSemanticTile {
     height: 5.4,
     polygons: [{ outer: [point(-48, 77), point(48, 77), point(48, 95), point(-48, 95)] }],
   });
-  for (const [i, profile] of [
-    BUSINESS_PROFILES[0],
-    BUSINESS_PROFILES[4],
-    BUSINESS_PROFILES[6],
-  ].entries())
+  for (const [i, profile] of [profiles[0], profiles[4], profiles[6]].entries())
     if (profile)
       tile.pois.push({
         id: `tenant:${profile.id}`,
@@ -83,6 +82,6 @@ export function businessShowcaseTile(size: number): TerrainSemanticTile {
       ...(kind === 'charging_station' ? { name: 'Tesla Supercharger' } : {}),
     });
   }
-  appendRetailExpansion(tile, point);
+  appendRetailExpansion(tile, point, places);
   return tile;
 }

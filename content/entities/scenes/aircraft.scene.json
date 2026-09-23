@@ -1,0 +1,80 @@
+{
+  "format": "molen/scene@3",
+  "name": "Molen aircraft apron",
+  "seed": "aircraft-v1",
+  "tickRate": 30,
+  "lateCommands": "rewrite",
+  "keyframeInterval": 60,
+  "prefabs": {},
+  "entities": [
+    {
+      "id": "mustang",
+      "type": "molen.entities.aircraft.p51d",
+      "components": {
+        "transform": {
+          "pos": [-6.5, 0, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "oh6",
+      "type": "molen.entities.aircraft.oh6",
+      "components": {
+        "transform": {
+          "pos": [6, 0, 0],
+          "rot": [0, 0, 0, 1]
+        }
+      }
+    },
+    {
+      "id": "gallery-ground",
+      "components": {
+        "transform": {
+          "pos": [0, -0.1, 0],
+          "scale": [38, 0.2, 28]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#66715d",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "gallery-environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dbe6e8",
+            "ground": "#5d6257",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [7, 12, 6],
+            "color": "#fff1d1",
+            "intensity": 2.1,
+            "castShadow": true
+          },
+          "background": "#b7ced4",
+          "toneMapping": "agx",
+          "exposure": 1.1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "scripts": [],
+  "camera": {
+    "mode": "fixed",
+    "position": [19, 10, 24],
+    "lookAt": [0, 1, 0],
+    "fov": 45
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

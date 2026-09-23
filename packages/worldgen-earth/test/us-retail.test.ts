@@ -2,16 +2,10 @@ import {
   createEmptyTerrainSemanticTile,
   type TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import {
-  FLAT_GROUND,
-  generateWorldgenBatch,
-  LANDMARK_DEFINITIONS,
-} from '@bendyline/molen-worldgen/kernel';
+import { FLAT_GROUND, generateWorldgenBatch } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
-import { BUSINESS_PROFILES, resolveBusiness } from '../src/kernel/business-catalog';
-import { BUSINESS_CATALOG } from '../src/kernel/business-catalog-schema';
 import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
-import { loadDefaultPack } from './helpers/pack';
+import { loadDefaultPack, PLACES } from './helpers/pack';
 
 const pack = await loadDefaultPack();
 const geom: TileGeometry = {
@@ -45,40 +39,45 @@ function host(kind = 'building'): TerrainSemanticTile {
 
 describe('expanded U.S. retail library', () => {
   it('resolves every exact alias and source ID while rejecting misleading names and categories', () => {
-    expect(BUSINESS_PROFILES.length).toBeGreaterThanOrEqual(44);
-    for (const profile of BUSINESS_PROFILES) {
+    expect(PLACES.businesses.profiles.length).toBeGreaterThanOrEqual(44);
+    for (const profile of PLACES.businesses.profiles) {
       for (const name of profile.aliases)
         for (const kind of profile.categories) {
-          expect(resolveBusiness({ class: kind, name })?.profile?.id, name).toBe(profile.id);
+          expect(PLACES.businesses.resolve({ class: kind, name })?.profile?.id, name).toBe(
+            profile.id,
+          );
           expect(
-            resolveBusiness({ class: kind, name: `${name} Book Exchange` })?.profile,
+            PLACES.businesses.resolve({ class: kind, name: `${name} Book Exchange` })?.profile,
           ).toBeUndefined();
           expect(
-            resolveBusiness({ class: kind, name, brandId: 'conflicting-source-id' })?.profile,
+            PLACES.businesses.resolve({ class: kind, name, brandId: 'conflicting-source-id' })
+              ?.profile,
           ).toBeUndefined();
         }
       for (const brandId of profile.brandIds)
         expect(
-          resolveBusiness({
+          PLACES.businesses.resolve({
             class: profile.categories[0] ?? 'building',
             name: 'Local name',
             brandId,
           })?.profile?.id,
         ).toBe(profile.id);
       expect(
-        resolveBusiness({ class: 'books', name: profile.aliases[0] })?.profile,
+        PLACES.businesses.resolve({ class: 'books', name: profile.aliases[0] })?.profile,
       ).toBeUndefined();
     }
     expect(
-      resolveBusiness({ class: 'supermarket', name: "Lowe's Market" })?.profile,
+      PLACES.businesses.resolve({ class: 'supermarket', name: "Lowe's Market" })?.profile,
     ).toBeUndefined();
-    expect(resolveBusiness({ class: 'clothes', name: 'Nordstrom Rack' })?.profile).toBeUndefined();
     expect(
-      resolveBusiness({ class: 'department_store', name: "Macy's Backstage" })?.profile,
+      PLACES.businesses.resolve({ class: 'clothes', name: 'Nordstrom Rack' })?.profile,
+    ).toBeUndefined();
+    expect(
+      PLACES.businesses.resolve({ class: 'department_store', name: "Macy's Backstage" })?.profile,
     ).toBeUndefined();
   });
   it('binds architecture hints to shipped styles and preserves measured dimensions', () => {
-    for (const profile of BUSINESS_PROFILES.slice(8)) {
+    for (const profile of PLACES.businesses.profiles.slice(8)) {
       const tile = host();
       const feature = tile.buildings[0];
       if (!feature) throw new Error('Missing host');
@@ -92,8 +91,8 @@ describe('expanded U.S. retail library', () => {
           point: [0.4, 0.65],
         },
       ];
-      const request = semanticTileToBatch(tile, geom, { pack }).buildings[0];
-      const visual = LANDMARK_DEFINITIONS[`sign.${profile.sign}`];
+      const request = semanticTileToBatch(tile, geom, { pack, places: PLACES }).buildings[0];
+      const visual = PLACES.landmarks.definitions[`sign.${profile.sign}`];
       if (visual?.generator !== 'sign' || !visual.storefront.style)
         throw new Error('Missing architecture');
       expect(pack.archstyles[visual.storefront.style]).toBeDefined();
@@ -112,7 +111,7 @@ describe('expanded U.S. retail library', () => {
   it('selects distinct unmeasured restaurant, warehouse and department-store envelopes', () => {
     const records = ['taco_bell', 'costco', 'macys'].map((id) => {
       const tile = host();
-      const profile = BUSINESS_PROFILES.find((p) => p.id === id);
+      const profile = PLACES.businesses.profiles.find((p) => p.id === id);
       if (!profile) throw new Error(id);
       tile.pois = [
         {
@@ -122,7 +121,7 @@ describe('expanded U.S. retail library', () => {
           point: [0.4, 0.65],
         },
       ];
-      const batch = semanticTileToBatch(tile, geom, { pack });
+      const batch = semanticTileToBatch(tile, geom, { pack, places: PLACES });
       return generateWorldgenBatch({ ...batch, ground: FLAT_GROUND }).records[0];
     });
     expect(records[0]?.height).toBeLessThan(records[1]?.height ?? 0);
@@ -130,7 +129,7 @@ describe('expanded U.S. retail library', () => {
     expect(new Set(records.map((r) => r?.styleId)).size).toBe(3);
   });
   it('treats unnamed centers as categories, preserving courtyard and independent tenants', () => {
-    for (const category of BUSINESS_CATALOG.categories.filter((c) =>
+    for (const category of PLACES.businesses.doc.categories.filter((c) =>
       ['mall', 'department_store', 'outlet_mall', 'strip_mall'].includes(c.id),
     )) {
       const tile = host(category.kinds[0]);
@@ -150,11 +149,13 @@ describe('expanded U.S. retail library', () => {
         { id: 3, class: 'fast_food', name: 'Panera Bread', point: [0.75, 0.65] },
         { id: 4, class: 'fast_food', name: 'Subway', point: [0.5, 0.4] },
       ];
-      const batch = semanticTileToBatch(tile, geom, { pack });
+      const batch = semanticTileToBatch(tile, geom, { pack, places: PLACES });
       const request = batch.buildings[0];
       expect(request?.appearance).toBeUndefined();
       expect(request?.holes).toHaveLength(1);
-      expect(request?.style).toBe(resolveBusiness({ class: category.kinds[0] ?? '' })?.style);
+      expect(request?.style).toBe(
+        PLACES.businesses.resolve({ class: category.kinds[0] ?? '' })?.style,
+      );
       expect(request?.storefronts?.map((s) => s.signModel)).toEqual([
         `builtin:${category.landmark}`,
         'builtin:sign.electronics_store',
@@ -162,7 +163,10 @@ describe('expanded U.S. retail library', () => {
       ]);
       const a = generateWorldgenBatch(batch);
       const b = generateWorldgenBatch(
-        semanticTileToBatch({ ...tile, pois: [...tile.pois].reverse() }, geom, { pack }),
+        semanticTileToBatch({ ...tile, pois: [...tile.pois].reverse() }, geom, {
+          pack,
+          places: PLACES,
+        }),
       );
       expect(a.hash).toBe(b.hash);
     }
@@ -170,9 +174,11 @@ describe('expanded U.S. retail library', () => {
   it('keeps tenant styles off civic hosts and malls and tolerates custom packs without retail styles', () => {
     for (const kind of ['apartments', 'school', 'mall']) {
       const tile = host(kind);
-      const before = generateWorldgenBatch(semanticTileToBatch(tile, geom, { pack })).records[0];
+      const before = generateWorldgenBatch(
+        semanticTileToBatch(tile, geom, { pack, places: PLACES }),
+      ).records[0];
       tile.pois = [{ id: 2, class: 'fast_food', name: 'Taco Bell', point: [0.4, 0.65] }];
-      const request = semanticTileToBatch(tile, geom, { pack });
+      const request = semanticTileToBatch(tile, geom, { pack, places: PLACES });
       const after = generateWorldgenBatch(request).records[0];
       expect(after?.styleId).toBe(before?.styleId);
       expect(after?.height).toBe(before?.height);
@@ -182,7 +188,10 @@ describe('expanded U.S. retail library', () => {
     tile.pois = [{ id: 1, class: 'electronics', name: 'Best Buy', point: [0.4, 0.65] }];
     const archstyles = { ...pack.archstyles };
     delete archstyles['molen.worldgen.generic.big_box'];
-    const batch = semanticTileToBatch(tile, geom, { pack: { ...pack, archstyles } });
+    const batch = semanticTileToBatch(tile, geom, {
+      pack: { ...pack, archstyles },
+      places: PLACES,
+    });
     expect(batch.buildings[0]?.style).not.toBe('molen.worldgen.generic.big_box');
     expect(batch.buildings[0]?.storefronts?.[0]?.signModel).toBe('builtin:sign.electronics_store');
   });

@@ -1,0 +1,60 @@
+{
+  "name": "@bendyline/molen-pack",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen content packs: build, open and read zip packs of models and documents from any source",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/pack"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/pack",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "assets",
+    "zip",
+    "content"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./node": {
+      "types": "./dist/node.d.mts",
+      "default": "./dist/node.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-schema": "workspace:*",
+    "fflate": "0.8.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

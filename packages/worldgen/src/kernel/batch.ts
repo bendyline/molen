@@ -46,7 +46,7 @@ export interface WorldgenBatchInput {
   budgets?: Partial<WorldgenBudgets>;
   /** Detail tier for the batch (0 = full). */
   tier?: number;
-  /** Real ground-floor openings and lazy interior descriptors. */
+  /** Real ground-floor openings and lazy interior descriptors; needs the pack's `interiors`. */
   interiors?: boolean;
 }
 
@@ -192,6 +192,13 @@ export function* generateWorldgenBatchSteps(
   const ground = input.ground ?? FLAT_GROUND;
   const pack = input.pack;
   const identity = packIdentity(pack);
+  if (input.interiors === true && pack.interiors === undefined) {
+    throw new Error(
+      `interiors need an interior catalog, and style pack "${pack.id}" has none ("interiors" in stylepack.json)`,
+    );
+  }
+  const catalog = input.interiors === true ? pack.interiors : undefined;
+  const interiors = catalog !== undefined ? { interiors: catalog } : {};
   const stats = emptyWorldgenStats();
   stats.buildingsIn = input.buildings.length;
   const queue = queueBuildings(input, stats);
@@ -221,7 +228,7 @@ export function* generateWorldgenBatchSteps(
           tier: baseTier,
           analysis: item.analysis,
           simplified: true,
-          enterable: input.interiors === true,
+          ...interiors,
         },
         mesh,
       );
@@ -289,7 +296,7 @@ export function* generateWorldgenBatchSteps(
             ground,
             tier,
             analysis: item.analysis,
-            enterable: input.interiors === true,
+            ...interiors,
           },
           candidate,
         );
@@ -309,7 +316,7 @@ export function* generateWorldgenBatchSteps(
               tier,
               analysis: item.analysis,
               collapseMaterials: true,
-              enterable: input.interiors === true,
+              ...interiors,
             },
             candidate,
           );
@@ -348,7 +355,7 @@ export function* generateWorldgenBatchSteps(
           analysis: item.analysis,
           simplified: true,
           collapseMaterials: false,
-          enterable: input.interiors === true,
+          ...interiors,
         },
         textured,
       );
