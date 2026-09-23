@@ -141,7 +141,7 @@ describe('node helpers', () => {
     for (const file of files) {
       expect(new Uint8Array(await pack.readBytes(file.path)), file.path).toEqual(file.bytes);
     }
-  });
+  }, 30_000); // Packs, reopens and reads back every file of the default style pack.
 });
 
 describe('openDirPack', () => {

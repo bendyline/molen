@@ -82,5 +82,5 @@ describe('canonical construction material library', () => {
       }
       expect(seamDifference / 512, id).toBeLessThan(8);
     }
-  });
+  }, 30_000); // Bakes four full material graphs at 256².
 });

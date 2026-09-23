@@ -163,7 +163,7 @@ describe('default structure catalog', () => {
       silhouettes.add(createHash('sha256').update(first.mesh.positions).digest('hex'));
     }
     expect(silhouettes.size).toBe(120);
-  });
+  }, 30_000); // Builds all 120 canonical structures twice.
 
   it('rebuilds independent width/depth changes and respects caller-supplied height for all120 styles', () => {
     for (const entry of catalog.entries) {

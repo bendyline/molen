@@ -111,7 +111,7 @@ describe('scatter sampling', () => {
           ]),
         ).toContainEqual(data);
       }
-  });
+  }, 30_000); // Samples a dense 400 × 400 forest seven times.
 
   it('is deterministic and world-anchored across neighbouring and nested batches', () => {
     const whole = positions(sample(request([0, 0, 400, 400])));

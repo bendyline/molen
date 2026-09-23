@@ -10,9 +10,14 @@ import { defineConfig } from 'vitest/config';
 // inside them, so raising them costs nothing when things work. They must stay above the sum of a
 // scenario's own action timeouts (test/visual/*.play.json), or vitest kills the run first and the
 // scenario's precise failure message — which action, which probe text — is lost.
+//
+// Files run one at a time, for the reason `test:golden` pins --workspace-concurrency=1: each file
+// drives its own software-rasterized browser, and on a 4-vCPU CI runner three at once starved the
+// streaming scenarios until they missed their 240s settles with layers still loading.
 export default defineConfig({
   test: {
     include: ['test/golden/**/*.test.ts'],
+    fileParallelism: false,
     testTimeout: 600_000,
     hookTimeout: 60_000,
   },
