@@ -132,7 +132,7 @@ Two constants live in `packages/kernel/src/version.ts` and they do different job
 
 | Constant | Today | Role |
 |---|---|---|
-| `ENGINE_VERSION` | `0.0.1` | metadata. Written into a keyframe's `engine` field so a save says which build wrote it. **Never compared on load, never hashed.** |
+| `ENGINE_VERSION` | `0.0.2` | metadata. Written into a keyframe's `engine` field so a save says which build wrote it. **Never compared on load, never hashed.** |
 | `STATE_FORMAT` | `1` | the gate. Written into a keyframe under the reserved `plugins.$format` key, compared by `applyKeyframeTo`, and folded into `stateHash` as `stateFormat`. |
 
 So a release — even one that moves every package on the fixed version line — keeps your keyframes

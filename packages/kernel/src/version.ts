@@ -3,7 +3,7 @@
  * save file says which build wrote it, and it is NOT compared on load and NOT hashed. Keep it in
  * step with packages/kernel/package.json (a unit test pins the two together).
  */
-export const ENGINE_VERSION = '0.0.1';
+export const ENGINE_VERSION = '0.0.2';
 
 /**
  * The state-format generation: what actually has to match for a keyframe to be loadable and for
