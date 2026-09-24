@@ -1,5 +1,11 @@
 # Play with Molen
 
+You do not need this repository to play or copy the samples. Every one of them plays in the
+browser at [molen.dev/play](https://molen.dev/play/), and the smaller ones ship in the npm
+packages as templates (`npx @bendyline/molen-tooling new my-game --template skybound`; see
+[the samples gallery](https://molen.dev/guide/examples)). The rest of this page is for working
+inside the engine repository.
+
 From the repository root, install once:
 
 ```sh
@@ -22,9 +28,9 @@ assets already in the repo; playing requires no art-generation step or Python in
 These games share scene data, deterministic scene scripts, headless simulation, a Worker
 host, and the standard browser client. Each has a complete win/loss/restart loop, input schemas,
 headless assertions, checkpoint tests, a command-only victory regression, and a browser test.
-See [the shared services guide](../docs-src/guide/game-samples.md) to reuse their camera and physics patterns.
+See [the shared services guide](https://molen.dev/guide/game-samples) to reuse their camera and physics patterns.
 
-For smaller building blocks and terrain demos, see the [full examples gallery](../docs-src/guide/examples.md).
+For smaller building blocks and terrain demos, see the [full examples gallery](https://molen.dev/guide/examples).
 
 See [editable assets and ready-to-run games](ASSETS.md) for the source/runtime storage contract,
 hand-editing workflow, freshness checks and deployment instructions.

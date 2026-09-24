@@ -25,12 +25,17 @@ For enterable buildings and lazy ground-floor furnishings, see [Building interio
   /kernel   molen/region-atlas@1, tile adapter, tile-edge ownership, budgets by quality
   /client   TerrainSemanticTileRenderer implementations, atlas loader
 
-content/worldgen   the shipped looks (styles, scatter rules), the molen.worldgen.default pack
-content/earth      world.atlas.json (which style applies where) and the business catalog, molen.earth
+molen.worldgen.default  content pack: the shipped looks (styles, scatter rules, structures)
+molen.earth             content pack: world.atlas.json (which style applies where), business catalog
 ```
 
-The npm packages carry code only. The default looks are content packs (`molen/pack@1` zips) built
-from the repository's `content/` directories; an app loads them from wherever it hosts them.
+The npm packages carry code only. The default looks are content packs (`molen/pack@1` zips),
+published with each release at `https://molen.dev/packs/`. In a project,
+`npx molen pack fetch https://molen.dev/packs/index.json` downloads them into `packs/` and pins
+them in project.json, and an app serves the same zips from wherever it hosts them. Their sources
+are [`content/worldgen`](https://github.com/bendyline/molen/tree/main/content/worldgen) and
+[`content/earth`](https://github.com/bendyline/molen/tree/main/content/earth) in the engine
+repository.
 
 The core package has no terrain dependency and a test forbids map vocabulary in its sources. Core
 inputs are `BuildingRequest` (identity, labels, outline, optional height/levels/minHeight) and
@@ -40,14 +45,13 @@ inputs are `BuildingRequest` (identity, labels, outline, optional height/levels/
 
 ## 2. Quick start
 
-World explorer, real data:
+World explorer, real data, in the browser:
 
-```sh
-pnpm --filter @bendyline/molen-examples-world-explorer dev
-# open /                 styled Sammamish buildings in the Human mode
-# open /?synthetic=1&lineup=1   one building of every footprint class along a road
-# open /?style=none     today's flat extrusions (no pack)
-```
+- [molen.dev/play/world-explorer](https://molen.dev/play/world-explorer/): styled Sammamish
+  buildings in the Human mode.
+- [`?synthetic=1&lineup=1`](https://molen.dev/play/world-explorer/?synthetic=1&lineup=1): one
+  building of every footprint class along a road.
+- [`?style=none`](https://molen.dev/play/world-explorer/?style=none): flat extrusions, no pack.
 
 From code, one building from one outline, no map involved:
 
@@ -82,15 +86,15 @@ const glb = encodeGlb(out.buildings);   // core glTF 2.0, one primitive per mate
 
 From the command line (or the MCP tools of the same names), without writing code. The commands
 need a style pack: pass `--pack` (a content pack zip, a pack source directory, or a
-`stylepack.json`), list one in the project's `packs`, or set `MOLEN_PACKS`. In this repository:
+`stylepack.json`), list one in the project's `packs`, or set `MOLEN_PACKS`. In a project:
 
 ```sh
-export MOLEN_PACKS=content/worldgen:content/earth
-molen worldgen preview --out preview.png --angles 4          # the lineup of every shape class
-molen worldgen preview my.archstyle.json --out preview.png   # a style file, injected into the pack
-molen worldgen bake content/worldgen/fixtures/fantasy-hall.batch.json --out assets --id hall
-molen worldgen bake --outline "0,0;18,0;18,9;10,9;10,14;0,14" --style molen.worldgen.fantasy.hall --out assets --id keep
-molen worldgen stats examples/world-explorer/public/terrain/sammamish/terrain-package.json --auto --dump tile.batch.json
+npx molen pack fetch https://molen.dev/packs/index.json          # once: packs/ + project.json pins
+npx molen worldgen preview --out preview.png --angles 4          # the lineup of every shape class
+npx molen worldgen preview my.archstyle.json --out preview.png   # a style file, injected into the pack
+npx molen worldgen bake --outline "0,0;18,0;18,9;10,9;10,14;0,14" --style molen.worldgen.fantasy.hall --out assets --id keep
+npx molen worldgen bake hall.batch.json --out assets --id hall  # a molen/worldgen-batch@1 document
+npx molen worldgen stats path/to/terrain-package.json --auto --dump tile.batch.json
 ```
 
 `preview` generates in Node and renders the buffers, props, and scatter in headless Chromium
@@ -102,8 +106,10 @@ footprint and roof histograms, sizes, timings, and whether both runs hashed the 
 writes the adapted batch (`molen/worldgen-batch@1`, identities of clipped pieces suffixed so
 they stay unique) for `preview` and `bake`. A `molen/worldgen-batch@1` document is the
 interchange: ground (`flat` or `slope`), building requests, optional mapped props and a scatter request, rules,
-and a detail tier. Two example batches live in `content/worldgen/fixtures/`, beside the pack
-source but not packed.
+and a detail tier; `molen schema get worldgen-batch` prints its schema. Two example batches live
+in the engine repository's
+[`content/worldgen/fixtures/`](https://github.com/bendyline/molen/tree/main/content/worldgen/fixtures),
+beside the pack source but not packed.
 
 ## 3. Authoring a look: `molen/archstyle@1`
 
@@ -234,8 +240,12 @@ seeds are unchanged.
 
 ## 6. Packs: `molen/stylepack@1`
 
+A style pack's source directory looks like this (the default pack's is
+[`content/worldgen/`](https://github.com/bendyline/molen/tree/main/content/worldgen) in the engine
+repository); `molen pack build <dir>` turns one into a content pack.
+
 ```
-content/worldgen/
+my-stylepack/
   stylepack.json           name, version (seeds), namespace, id → path maps, defaults, imports
   styles/**/*.archstyle.json
   scatter/*.scatter.json

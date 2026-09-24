@@ -6,7 +6,11 @@ Recover a brass key, unlock the north gate, and claim the lantern. Sentinels pur
 
 ## Play
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/lantern-dungeon](https://molen.dev/play/lantern-dungeon/).
+
+This sample is not an npm template: its 28 GLB models are content, and Molen's npm packages never
+carry content. To run and change it, clone the engine repository and, from the root, after
+`pnpm install` (engine dependencies build automatically):
 
 ```sh
 pnpm dev:dungeon

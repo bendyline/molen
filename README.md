@@ -15,7 +15,10 @@ molen shot scene.json --ticks 30 --camera 0,6,16 --out shot.png
 
 ## Try it
 
-Node 22.13 or newer:
+Play first, with nothing to install: every sample runs in the browser at
+[molen.dev/play](https://molen.dev/play/), including three complete games.
+
+Then build your own from npm. Node 22.13 or newer:
 
 ```sh
 npx @bendyline/molen-tooling new my-experience
@@ -41,20 +44,29 @@ npm run dev                                 # the same scene in the browser
 Use the scoped name the first time: the unscoped `molen` package on npm is unrelated. Inside the
 project, `npx molen` runs the CLI the project installed.
 
-Every one of those commands is also an MCP tool with the same input and output contract
+Every one of those loop commands is also an MCP tool with the same input and output contract
 (`npx molen mcp` starts the server over stdio), so an agent drives the engine without reading its
 source. `molen describe` prints the contracts, and `molen docs search <query>` searches the
-shipped guides offline. The guides are also at [molen.dev](https://molen.dev).
+shipped guides offline. The guides are also at [molen.dev](https://molen.dev), and the whole
+bundle, version-locked, is `node_modules/@bendyline/molen-tooling/dist/docs-src/llms.txt` in any
+project that installs the tooling.
 
-### From a clone
-
-To work on the engine itself, or to see finished experiences:
+To start from one of the samples instead, copy it with `--template`. The templates ship inside
+the tooling package, version-locked to the engine, and keep each sample's scripts, checks, replay
+fixture and tests:
 
 ```sh
-pnpm install && pnpm -r build     # packages consume each other's dist
-pnpm dev                          # a gallery of nine samples, including three complete games
-node packages/tooling/dist/cli.mjs --help
+npx @bendyline/molen-tooling templates                  # cubes, skybound, city-courier, ...
+npx @bendyline/molen-tooling new my-game --template skybound
 ```
+
+Shared content (entity models, the default building style pack, Earth catalogs, the star table)
+never ships in npm packages. It comes as content packs:
+`npx molen pack fetch https://molen.dev/packs/index.json` downloads them into a project and pins
+them in `project.json`.
+
+You do not need this repository to build on Molen. It is for working on the engine itself; see
+[Contributing](#contributing).
 
 ## What makes it different
 
@@ -140,8 +152,14 @@ Participation is subject to the [Code of Conduct](CODE_OF_CONDUCT.md). For help,
 [Support](SUPPORT.md); report vulnerabilities privately through the
 [Security Policy](SECURITY.md).
 
-To build it yourself, start at [AGENTS.md](AGENTS.md) for the architecture and
+To build the engine itself from a clone, start at [AGENTS.md](AGENTS.md) for the architecture and
 [CONVENTIONS.md](CONVENTIONS.md) for the house rules.
+
+```sh
+pnpm install && pnpm -r build     # packages consume each other's dist
+pnpm dev                          # the samples gallery, served from source
+node packages/tooling/dist/cli.mjs --help
+```
 
 One invariant matters more than the rest: **build before you typecheck or test**, because packages
 consume each other's `dist`. The root scripts encode it.

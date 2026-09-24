@@ -2,14 +2,18 @@
 
 Seven rows of JSON become seven entities, a kernel system grows them into a bar chart, and a `molen/cameratrack@1` document orbits the camera around it. The engine used for something that is not a game: no player, no input, no win condition. This is the reference for `spawnFromData` and for camera tracks — the machinima path, where the camera is authored rather than driven.
 
-![Data viz](preview.png)
+![Data viz](https://raw.githubusercontent.com/bendyline/molen/main/examples/data-viz/preview.png)
 
 ## Run
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/data-viz](https://molen.dev/play/data-viz/). To run and change
+your own copy, make one from the npm packages (no clone of the engine repository needed):
 
 ```sh
-pnpm --filter @bendyline/molen-examples-data-viz dev
+npx @bendyline/molen-tooling new my-data-viz --template data-viz
+cd my-data-viz
+npm install
+npm run dev
 ```
 
 No controls. The scene declares no `input` block; `src/main.ts` mounts with `frameLoop: 'manual'` and drives the camera itself from wall-clock time, so the track loops forever.
@@ -24,16 +28,20 @@ No controls. The scene declares no `input` block; `src/main.ts` mounts with `fra
 
 ## Verify
 
-From the repository root:
+From this directory:
 
 ```sh
-node packages/tooling/dist/cli.mjs validate examples/data-viz/scene.json
-pnpm --filter @bendyline/molen-examples-data-viz test:unit
-pnpm --filter @bendyline/molen-examples-data-viz test:golden
+npx molen validate scene.json
+npx molen validate camera-track.json
+npm test
 ```
 
 `test/headless.test.ts` checks one bar per datum, growth over time toward `value * heightScale`, height ordering (taller means bigger), the camera track validating and actually moving, and a **pinned state hash** at 60 ticks alongside run-to-run equality.
 
-`test/golden/viz.golden.test.ts` is the render half: `screenshotScene` at tick 40 from the track's own pose at tick 40, 512x320, asserting seven rendered entities and comparing against the committed `test/golden/__goldens__/viz.png`. It then runs `exportFrames` from tick 0 to 60 in steps of 30 along the same track and asserts three PNGs — the machinima sequence in miniature. There is no replay fixture: nothing here takes commands.
+In the engine repository, `test/golden/viz.golden.test.ts` is the render half (golden tests stay there; a template copy does not include them): `screenshotScene` at tick 40 from the track's own pose at tick 40, 512x320, asserting seven rendered entities and comparing against the committed `test/golden/__goldens__/viz.png`. It then runs `exportFrames` from tick 0 to 60 in steps of 30 along the same track and asserts three PNGs — the machinima sequence in miniature. There is no replay fixture: nothing here takes commands.
 
-One wrinkle worth knowing: `src/viz.ts` imports `data.json` without an import attribute, which Vite and Vitest supply and plain Node does not. Passing `--setup examples/data-viz/src/viz.ts` to `molen sim run` or `molen shot` therefore fails to load the module, which is why the headless render and the frame export run inside Vitest rather than from the CLI.
+One wrinkle worth knowing: `src/viz.ts` imports `data.json` without an import attribute, which Vite and Vitest supply and plain Node does not. Passing `--setup src/viz.ts` to `molen sim run` or `molen shot` therefore fails to load the module, which is why the headless render and the frame export run inside Vitest rather than from the CLI.
+
+In the engine repository this sample lives in `examples/data-viz/`. The same commands run from
+that directory, and `pnpm --filter @bendyline/molen-examples-data-viz test:unit` (or `test:golden`) runs its tests from the
+root.

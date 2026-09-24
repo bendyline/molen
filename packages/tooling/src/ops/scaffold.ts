@@ -1,7 +1,8 @@
-import { mkdir, stat, writeFile } from 'node:fs/promises';
-import { dirname, join, relative, resolve } from 'node:path';
+import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import { ENGINE_VERSION } from '@bendyline/molen-kernel';
 import { generateTypes } from './generate-types';
+import { loadTemplateBundle, type TemplateManifest } from './templates';
 
 export interface ScaffoldInput {
   /** Experience name; also the output folder name and the type namespace. */
@@ -10,6 +11,11 @@ export interface ScaffoldInput {
   dir?: string;
   /** Replace scaffold-owned files that already exist. Default false. */
   force?: boolean;
+  /**
+   * Copy a shipped sample instead of the built-in starter: a template id from `listTemplates()`
+   * (`molen templates`), e.g. `cubes` or `top-down-arena`.
+   */
+  template?: string;
 }
 
 export interface ScaffoldOutput {
@@ -315,7 +321,14 @@ export default defineConfig({
   plugins: [molenScripts()],
   // Worker bundles get their own plugin pipeline in Vite, and the kernel runs in the Worker.
   worker: { format: 'es', plugins: () => [molenScripts()] },
-  build: { target: 'es2022' },
+  build: {
+    target: 'es2022',
+    // src/main.ts mounts with a top-level \`await\`, and the client lazy-loads its WebGPU driver.
+    // Left in the entry chunk, three.js and the client would make that lazy chunk import the entry
+    // while the entry is still suspended at the \`await\`, and the built page would stay blank in
+    // every browser with WebGPU. Their own chunk breaks the cycle.
+    rollupOptions: { output: { manualChunks: { vendor: ['three', '@bendyline/molen-client'] } } },
+  },
 });
 `;
 
@@ -433,14 +446,263 @@ function actionsJson(): string {
   return `${JSON.stringify(actions, null, 2)}\n`;
 }
 
-/** Scaffold a complete, runnable project (manifest + scene + types + scripts + setup + browser app). */
+type ScaffoldFile = [path: string, content: string | Uint8Array];
+
+const AGENTS_MD = 'AGENTS.md';
+
+/** Project-relative, `/`-separated. */
+function projectRelative(dir: string, path: string): string {
+  return relative(dir, path).split(sep).join('/');
+}
+
+/** The scaffold-owned files already in `dir` (the force check). */
+async function existingFiles(dir: string, paths: string[]): Promise<string[]> {
+  const existing: string[] = [];
+  for (const rel of paths) {
+    try {
+      await stat(join(dir, rel));
+      existing.push(rel);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
+  }
+  return existing;
+}
+
+async function writeScaffoldFiles(
+  dir: string,
+  files: ScaffoldFile[],
+  force: boolean,
+): Promise<void> {
+  for (const [rel, content] of files) {
+    const abs = join(dir, rel);
+    await mkdir(dirname(abs), { recursive: true });
+    await writeFile(abs, content, force ? undefined : { flag: 'wx' });
+  }
+}
+
+/** Refresh the typed handles and the scripts' ambient declarations from the installed registry. */
+async function refreshGeneratedTypes(dir: string): Promise<{ files?: string[]; error?: string }> {
+  const generated = await generateTypes({ projectPath: join(dir, 'project.json') });
+  if (!generated.ok)
+    return { error: generated.error ?? 'failed to generate types for the new project' };
+  return {
+    files: [
+      projectRelative(dir, generated.outPath as string),
+      ...(generated.scriptArtifacts ?? []).map((a) => projectRelative(dir, a.path)),
+    ],
+  };
+}
+
+interface AgentsMdInput {
+  name: string;
+  template?: TemplateManifest;
+  /** The project's headless loop, run from its directory. */
+  loop: string[];
+  /** Generated files, project-relative; empty when the project has no project.json. */
+  generated: string[];
+}
+
+/**
+ * Word-wrap Markdown prose at 100 columns without breaking an inline code span. `first` prefixes
+ * the first line (a bullet's `- `); continuation lines are indented to match it.
+ */
+function wrap(text: string, first = ''): string {
+  const indent = ' '.repeat(first.length);
+  const lines: string[] = [];
+  let line = '';
+  for (const token of text.match(/(?:[^\s`]*`[^`]*`)+[^\s`]*|\S+/g) ?? []) {
+    if (line.length === 0) {
+      line = `${lines.length === 0 ? first : indent}${token}`;
+    } else if (line.length + 1 + token.length > 100) {
+      lines.push(line);
+      line = `${indent}${token}`;
+    } else {
+      line = `${line} ${token}`;
+    }
+  }
+  lines.push(line);
+  return lines.join('\n');
+}
+
+/**
+ * The signpost for a coding agent working in the new project: where the version-locked docs are,
+ * how to discover the ops, this project's own loop, and the rules that are cheap to break.
+ */
+function agentsMd({ name, template, loop, generated }: AgentsMdInput): string {
+  const origin =
+    template === undefined ? 'the `molen new` starter' : `the \`${template.id}\` sample`;
+  const generatedRule =
+    generated.length > 0
+      ? `Generated files are never hand-edited: ${generated.map((f) => `\`${f}\``).join(', ')}. Change the scene or its type documents, then run \`npx molen types gen\` (\`npx molen types gen --check\` reports staleness).`
+      : "Generated files are never hand-edited. Once the project has a `project.json` (https://molen.dev/guide/project), `npx molen types gen` writes its typed handles and each scripts directory's `molen-scripts.d.ts`; regenerate them instead.";
+  return [
+    `# AGENTS.md — ${name}`,
+    '',
+    wrap(
+      `${name} is a Molen experience built from npm packages (engine ${ENGINE_VERSION}), scaffolded from ${origin}. Run every command below from this directory.`,
+    ),
+    '',
+    '## Docs for this exact engine version',
+    '',
+    wrap(
+      'Start at `node_modules/@bendyline/molen-tooling/dist/docs-src/llms.txt`, then `guide/agent-loop.md` and `guide/scripting.md` beside it. They ship with the installed CLI, so they match the engine you are running; https://molen.dev/guide/agent-loop is the online copy.',
+      '- ',
+    ),
+    wrap('`npx molen docs search <query>` searches that bundle offline.', '- '),
+    wrap(
+      "`npx molen describe [op]` prints every operation's contract; `npx molen mcp` serves the same operations as MCP tools over stdio. `npx molen schema get <kind>` and `npx molen component <name>` give exact document and component shapes.",
+      '- ',
+    ),
+    '',
+    '## The headless loop',
+    '',
+    wrap(
+      'Install once with `npm install` (and `npx playwright install chromium` for `shot` and `drive`), then validate after every edit — a failure names the field and how to fix it:',
+    ),
+    '',
+    '```sh',
+    ...loop,
+    '```',
+    '',
+    '## Rules',
+    '',
+    wrap(generatedRule, '- '),
+    wrap(
+      'Scene scripts run with the authority of the process that loads them; the CLI and the MCP server evaluate them in-process. Treat `scene.json` like source code and only run scenes you would run as a program.',
+      '- ',
+    ),
+    wrap(
+      'Determinism: randomness through `molen.rng` and math through `molen.math` (in setup code, the world RNG and `dmath`); never `Math.random`, `Date` or wall-clock time in simulation code.',
+      '- ',
+    ),
+    wrap(
+      'Reads are immutable: never mutate what `molen.get` / `world.get` returns; write with `set` / `patch`.',
+      '- ',
+    ),
+    '',
+  ].join('\n');
+}
+
+/** The built-in starter's loop, run from the project directory. */
+const STARTER_LOOP = [
+  'npx molen validate scenes/main.scene.json',
+  'npx molen types check',
+  'npx molen scripts check',
+  'npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash',
+  'npx molen shot main --ticks 30 --out shot.png',
+  'npx molen drive main --actions actions.json --out-dir shots',
+];
+
+/** A template's loop: validate, check scripts, simulate (+ assert), replay, then its tests. */
+function templateLoop(template: TemplateManifest, scriptsCheck: boolean): string[] {
+  return [
+    ...template.validate.map((doc) => `npx molen validate ${doc}`),
+    ...(scriptsCheck ? ['npx molen scripts check'] : []),
+    ...(template.sim !== null ? [`npx molen ${template.sim}`] : []),
+    ...template.replays.map((fixture) => `npx molen replay ${fixture}`),
+    ...(template.tests ? ['npm test'] : []),
+  ];
+}
+
+/** The template's manifest as the new project's: its name, engine deps on this CLI's version line. */
+function templatePackageJson(source: string, name: string): string {
+  const { name: _name, ...manifest } = JSON.parse(source) as Record<string, unknown>;
+  const onEngineLine = (deps: unknown): Record<string, string> | undefined =>
+    deps === undefined
+      ? undefined
+      : Object.fromEntries(
+          Object.entries(deps as Record<string, string>).map(([dep, spec]) => [
+            dep,
+            spec.startsWith('workspace:') ? `^${ENGINE_VERSION}` : spec,
+          ]),
+        );
+  const pkg = {
+    name,
+    ...manifest,
+    dependencies: onEngineLine(manifest.dependencies),
+    devDependencies: onEngineLine(manifest.devDependencies),
+  };
+  return `${JSON.stringify(pkg, null, 2)}\n`;
+}
+
+async function scaffoldTemplate(
+  input: ScaffoldInput & { template: string },
+  dir: string,
+): Promise<ScaffoldOutput> {
+  const bundle = await loadTemplateBundle();
+  const template = bundle.templates.find((t) => t.id === input.template);
+  if (template === undefined) {
+    return {
+      ok: false,
+      error: `unknown template "${input.template}"; available templates: ${bundle.templates
+        .map((t) => t.id)
+        .join(', ')} (molen templates describes them)`,
+    };
+  }
+  const force = input.force === true;
+  const files: ScaffoldFile[] = [];
+  for (const rel of template.files) {
+    const source = await readFile(join(bundle.root, template.id, rel));
+    files.push([
+      rel,
+      rel === 'package.json' ? templatePackageJson(source.toString('utf8'), input.name) : source,
+    ]);
+  }
+  if (!force) {
+    const existing = await existingFiles(dir, [...files.map(([rel]) => rel), AGENTS_MD]);
+    if (existing.length > 0) {
+      return {
+        ok: false,
+        error: `${dir} already contains scaffold files: ${existing.join(', ')} (pass force: true to replace them)`,
+      };
+    }
+  }
+  await writeScaffoldFiles(dir, files, force);
+  // A template ships the declarations its sample committed; regenerate them from the registry of
+  // the CLI doing the scaffolding, so `molen types gen --check` is clean in the new project.
+  let generated: string[] = [];
+  if (template.project) {
+    const refreshed = await refreshGeneratedTypes(dir);
+    if (refreshed.error !== undefined) return { ok: false, error: refreshed.error };
+    generated = refreshed.files ?? [];
+  }
+  const scriptsCheck = generated.some((f) => f.endsWith('molen-scripts.d.ts'));
+  const loop = templateLoop(template, scriptsCheck);
+  await writeScaffoldFiles(
+    dir,
+    [[AGENTS_MD, agentsMd({ name: input.name, template, loop, generated })]],
+    force,
+  );
+  return {
+    ok: true,
+    dir,
+    files: [...new Set([...files.map(([rel]) => rel), ...generated, AGENTS_MD])].sort(),
+    nextSteps: [
+      `cd ${dir}`,
+      'npm install                       # the engine, the molen CLI, TypeScript and Vite',
+      'npx playwright install chromium   # once per machine, for shot and drive',
+      ...loop,
+      'npm run dev',
+    ],
+  };
+}
+
+/**
+ * Scaffold a complete, runnable project: the built-in starter (manifest + scene + types + scripts
+ * + setup + browser app), or with `template` a copy of one of the shipped samples. Either way the
+ * project gets an AGENTS.md pointing a coding agent at the version-locked docs and its loop.
+ */
 export async function scaffoldExperience(input: ScaffoldInput): Promise<ScaffoldOutput> {
   if (!/^[a-zA-Z][\w-]*$/.test(input.name)) {
     return { ok: false, error: `invalid name "${input.name}" (use letters, digits, - and _)` };
   }
   const dir = resolve(input.dir ?? process.cwd(), input.name);
   try {
-    const files: [string, string][] = [
+    if (input.template !== undefined) {
+      return await scaffoldTemplate({ ...input, template: input.template }, dir);
+    }
+    const files: ScaffoldFile[] = [
       ['project.json', projectJson(input.name)],
       ['scenes/main.scene.json', sceneJson(input.name)],
       ['types/main.types.json', typesJson(input.name)],
@@ -460,16 +722,9 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
       ['package.json', packageJson(input.name)],
       ['README.md', readme(input.name)],
     ];
-    if (input.force !== true) {
-      const existing: string[] = [];
-      for (const [rel] of files) {
-        try {
-          await stat(join(dir, rel));
-          existing.push(rel);
-        } catch (error) {
-          if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-        }
-      }
+    const force = input.force === true;
+    if (!force) {
+      const existing = await existingFiles(dir, [...files.map(([rel]) => rel), AGENTS_MD]);
       if (existing.length > 0) {
         return {
           ok: false,
@@ -477,28 +732,21 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
         };
       }
     }
-    for (const [rel, content] of files) {
-      const abs = join(dir, rel);
-      await mkdir(dirname(abs), { recursive: true });
-      await writeFile(abs, content, input.force === true ? undefined : { flag: 'wx' });
-    }
+    await writeScaffoldFiles(dir, files, force);
     // Generate the typed handles and the scripts' ambient declarations, so a fresh project is
     // type-checked from its first tick instead of after someone discovers the command.
-    const generated = await generateTypes({ projectPath: join(dir, 'project.json') });
-    if (!generated.ok) {
-      return {
-        ok: false,
-        error: generated.error ?? 'failed to generate types for the new project',
-      };
-    }
-    const generatedFiles = [
-      relative(dir, generated.outPath as string),
-      ...(generated.scriptArtifacts ?? []).map((a) => relative(dir, a.path)),
-    ];
+    const generated = await refreshGeneratedTypes(dir);
+    if (generated.error !== undefined) return { ok: false, error: generated.error };
+    const generatedFiles = generated.files ?? [];
+    await writeScaffoldFiles(
+      dir,
+      [[AGENTS_MD, agentsMd({ name: input.name, loop: STARTER_LOOP, generated: generatedFiles })]],
+      force,
+    );
     return {
       ok: true,
       dir,
-      files: [...files.map(([rel]) => rel), ...generatedFiles],
+      files: [...files.map(([rel]) => rel), ...generatedFiles, AGENTS_MD],
       // `molen scripts check` compiles with the PROJECT's TypeScript (an optional peer dependency
       // of the tooling package), so the install has to come before it — the old order printed the
       // check first and only worked inside this repo, where TypeScript happens to be hoisted.
@@ -506,12 +754,7 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
         `cd ${dir}`,
         'npm install                       # the engine, the molen CLI and TypeScript',
         'npx playwright install chromium   # once per machine, for shot and drive',
-        'npx molen validate scenes/main.scene.json',
-        'npx molen types check',
-        'npx molen scripts check',
-        'npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash',
-        'npx molen shot main --ticks 30 --out shot.png',
-        'npx molen drive main --actions actions.json --out-dir shots',
+        ...STARTER_LOOP,
       ],
     };
   } catch (e) {

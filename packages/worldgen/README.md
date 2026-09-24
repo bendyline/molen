@@ -14,8 +14,9 @@ npm i @bendyline/molen-worldgen
 
 Node >= 22.13, ESM only, and no `.` export: import `@bendyline/molen-worldgen/kernel` or
 `@bendyline/molen-worldgen/client`. The default style pack is content, not code: it ships as the
-`molen.worldgen.default` content pack (see `@bendyline/molen-pack`), built from `content/worldgen`
-in the repository.
+`molen.worldgen.default` content pack (see `@bendyline/molen-pack`), published at
+[molen.dev/packs](https://molen.dev/packs/index.json); `npx molen pack fetch https://molen.dev/packs/index.json` downloads it
+into a project.
 The client half needs the optional peers `three` (`>=0.184.0 <0.187.0`) and
 `@bendyline/molen-client`; the kernel half needs neither. This package knows nothing about maps —
 `@bendyline/molen-worldgen-earth` is the binding that feeds it real map data.
@@ -77,8 +78,10 @@ if (hall) viewer.renderer.worldRoot.add(hall);
 
 The default style pack is not in this npm package. It ships as the `molen.worldgen.default`
 content pack: 120 resizable structures in 13 taxonomies, 45 shared materials, scatter rules,
-landmarks and signs, and the interior catalog. Its source is `content/worldgen/` in the repository, compiled from copyable
-logical source bundles under `content/worldgen/source/`:
+landmarks and signs, and the interior catalog. Get it into a project with
+`npx molen pack fetch https://molen.dev/packs/index.json`, which downloads the packs and pins them in `project.json`.
+Its source is [`content/worldgen/`](https://github.com/bendyline/molen/tree/main/content/worldgen) in the engine repository,
+compiled from copyable logical source bundles under `content/worldgen/source/`:
 
 - `source/structures/<style>/` owns one building's catalog definition and recipe or complete
   archstyle;

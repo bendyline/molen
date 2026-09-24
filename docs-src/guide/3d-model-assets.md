@@ -1,8 +1,11 @@
 # 3D model assets
 
 This is the shipped, agent-facing workflow for turning a prompt or supplied model into a textured
-Molen asset. It covers the current engine. Proposed pipeline improvements live in
-[`../../docs/11-3d-model-assets.md`](../../docs/11-3d-model-assets.md).
+Molen asset. It covers the current engine and runs entirely from the published CLI
+(`npx molen …` in a project that installs `@bendyline/molen-tooling`). Proposed pipeline
+improvements live in the design plan,
+[`docs/11-3d-model-assets.md`](https://github.com/bendyline/molen/blob/main/docs/11-3d-model-assets.md), which is historical and
+may lag the code.
 
 ## What “done” means
 
@@ -76,7 +79,7 @@ Generators should preserve hand edits before writing any outputs. Record generat
 hashes separately from the current imported source hash so an artist can edit and re-import a
 master without rewriting its provenance. Verify the current source/runtime relationship with
 Node checks; keep Python/DCC reproducibility checks in the optional authoring workflow. The
-[Lantern Vault example contract](../../examples/ASSETS.md) implements both paths.
+[Lantern Vault example contract](https://github.com/bendyline/molen/blob/main/examples/ASSETS.md) implements both paths.
 
 ## 3. Author geometry for glTF
 
@@ -123,16 +126,15 @@ tools complement GLB-embedded PBR textures; they do not generate model geometry.
 
 ## 5. Import through the project
 
-Build the repository once before using the local CLI. From inside the asset's Molen project, run:
+From inside the asset's Molen project, run:
 
 ```sh
-molen asset import asset-src/red-barn/model-source.glb --id barn.weathered
-molen asset inspect barn.weathered --verify
-molen asset list
+npx molen asset import asset-src/red-barn/model-source.glb --id barn.weathered
+npx molen asset inspect barn.weathered --verify
+npx molen asset list
 ```
 
-In a project that installs `@bendyline/molen-tooling`, run these as `npx molen …`; from a clone of
-the repository, `node <repo>/packages/tooling/dist/cli.mjs`. The importer writes
+The importer writes
 `assets/<id with dots as path>/model.glb`, creates `asset.json`, extracts per-node convex hulls,
 and registers the sidecar in the surrounding `project.json`. Add `--trimesh` only when static,
 concave collision justifies its extra size. Use `--project <project.json>` when project discovery
@@ -282,5 +284,7 @@ Keep a concise README or machine-readable build report next to the source. Recor
 - exact import/inspect/validate/sim/shot commands and their outcomes;
 - visible QA notes, known compromises, and the final screenshot path.
 
-The runnable library asset at [`../../assets/structures/red-barn/`](../../assets/structures/red-barn/) demonstrates
-this complete path with three embedded PBR textures and real-time Molen shadows.
+The runnable library asset
+[`assets/structures/red-barn/`](https://github.com/bendyline/molen/tree/main/assets/structures/red-barn) in the engine
+repository demonstrates this complete path with three embedded PBR textures and real-time Molen
+shadows.

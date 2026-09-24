@@ -1,8 +1,13 @@
 // Generate the samples gallery and one page per shipped example.
 //
-// Facts come from disk (package name, npm scripts, preview image, the parsed scene manifest), so
-// a sample that gains a script, a golden test or more entities updates itself. Only the editorial
-// framing below — what a sample is FOR and which concepts it teaches — is hand-written.
+// Facts come from disk (package name, npm scripts, preview image, the parsed scene manifest, and
+// whether the tooling build ships the sample as a `molen new --template`), so a sample that gains
+// a script, a test, more entities or a template updates itself. Only the editorial framing below —
+// what a sample is FOR and which concepts it teaches — is hand-written.
+//
+// Every page is written for someone using the published npm packages: play the sample at
+// molen.dev/play, copy it with `--template`, read the source on GitHub. Nothing here assumes a
+// clone of this repository.
 //
 // Output: docs-site/samples/*.md and docs-site/public/samples/*.png.
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -12,8 +17,15 @@ import { repoRoot, siteDir, yamlString } from './packages.mjs';
 const samplesDir = join(siteDir, 'samples');
 const publicDir = join(siteDir, 'public', 'samples');
 
-// Set this once a public mirror of the samples exists; until then paths render as plain code.
-const SOURCE_BASE = null; // e.g. 'https://github.com/bendyline/molen/tree/main'
+// Where sample source is browsable. Set to null to render source paths as plain code.
+const SOURCE_BASE = 'https://github.com/bendyline/molen/tree/main';
+
+// The hosted builds the site staging step publishes beside the docs (see docs-site/README.md).
+// Absolute, so VitePress renders them as external links instead of routing them as doc pages.
+const PLAY_BASE = 'https://molen.dev/play';
+
+// The templates `molen new --template` offers, as the tooling build wrote them.
+const TEMPLATE_INDEX = join(repoRoot, 'packages', 'tooling', 'dist', 'templates', 'index.json');
 
 /**
  * Editorial framing per example. `kind` drives gallery grouping; `concepts` are the things you
@@ -199,12 +211,29 @@ async function exists(path) {
   }
 }
 
+/** Template ids the built tooling ships; empty (with a warning) when it has not been built. */
+async function templateIds() {
+  try {
+    const index = JSON.parse(await readFile(TEMPLATE_INDEX, 'utf8'));
+    const entries = Array.isArray(index) ? index : (index.templates ?? []);
+    return new Set(entries.map((entry) => (typeof entry === 'string' ? entry : entry.id)));
+  } catch {
+    console.warn(`samples: no ${TEMPLATE_INDEX}; build @bendyline/molen-tooling first`);
+    return new Set();
+  }
+}
+
 /** Facts read off disk so a sample page cannot drift from the sample. */
-async function inspect(sample) {
+async function inspect(sample, templates) {
   const dir = join(repoRoot, 'examples', sample.dir);
   const manifest = JSON.parse(await readFile(join(dir, 'package.json'), 'utf8'));
   const files = await readdir(dir);
-  const facts = { pkg: manifest.name, scripts: manifest.scripts ?? {}, files };
+  const facts = {
+    pkg: manifest.name,
+    scripts: manifest.scripts ?? {},
+    files,
+    template: templates.has(sample.dir),
+  };
 
   if (files.includes('scene.json')) {
     try {
@@ -233,19 +262,49 @@ function sourceRef(path) {
   return SOURCE_BASE === null ? `\`${path}\`` : `[\`${path}\`](${SOURCE_BASE}/${path})`;
 }
 
+/** The commands that make and start a copy of a template, as a user types them. */
+function copyCommands(dir) {
+  return [
+    `npx @bendyline/molen-tooling new my-${dir} --template ${dir}`,
+    `cd my-${dir}`,
+    'npm install',
+    'npm run dev',
+  ].join('\n');
+}
+
 function samplePage(sample, facts) {
   const s = facts.scene;
-  const runs = [`pnpm --filter ${facts.pkg} dev`];
-  const checks = [];
-  if (facts.scripts['test:unit']) checks.push(`pnpm --filter ${facts.pkg} test:unit`);
-  if (facts.scripts['test:golden']) checks.push(`pnpm --filter ${facts.pkg} test:golden`);
+  const play = `${PLAY_BASE}/${sample.dir}/`;
+
+  const makeItYours = facts.template
+    ? `## Make it yours
+
+The sample ships inside \`@bendyline/molen-tooling\` as a template, locked to the engine version
+you install. Copy it into a standalone npm project (no clone of the engine repository needed):
+
+\`\`\`sh
+${copyCommands(sample.dir)}
+\`\`\`
+
+The copy keeps the sample's scene, scripts, commands, checks and headless tests${
+        facts.files.some((f) => f.endsWith('.replay.json')) ? ', plus its replay fixture' : ''
+      }${facts.scripts['test:unit'] ? '; `npm test` runs them' : ''}.
+
+`
+    : `## Make it yours
+
+This sample is not an npm template: it carries content (models, terrain or packs) that Molen's
+npm packages never include. Read its source on GitHub, then build the same thing in a project of
+your own; its README walks through how it is put together.
+
+`;
 
   const sceneTable =
     s === undefined
       ? ''
       : `## The scene at a glance
 
-Read straight out of \`examples/${sample.dir}/scene.json\`:
+Read straight out of the sample's \`scene.json\`:
 
 | | |
 |---|---|
@@ -260,16 +319,16 @@ Read straight out of \`examples/${sample.dir}/scene.json\`:
 `;
 
   const headless =
-    s === undefined
+    s === undefined || !facts.template
       ? ''
       : `## Run it headlessly
 
-Every sample is also a headless fixture — no browser needed:
+Every sample is also a headless fixture, so no browser is needed. From your copy:
 
 \`\`\`sh
-molen validate examples/${sample.dir}/scene.json
-molen sim run examples/${sample.dir}/scene.json --ticks 60 --hash
-molen shot examples/${sample.dir}/scene.json --ticks 60 --out ${sample.dir}.png
+npx molen validate scene.json
+npx molen sim run scene.json --ticks 60 --hash
+npx molen shot scene.json --ticks 60 --out ${sample.dir}.png
 \`\`\`
 
 `;
@@ -282,25 +341,22 @@ title: ${yamlString(sample.title)}
 
 <p class="sample-tagline">${sample.tagline}</p>
 
-${facts.preview ? `![${sample.title}](/samples/${sample.dir}.png)\n` : ''}
+${facts.preview ? `[![${sample.title}](/samples/${sample.dir}.png)](${play})\n` : ''}
 ${sample.body}
 
-## Run it
+## Play it
 
-\`\`\`sh
-${runs.join('\n')}
-\`\`\`
+**[Play ${sample.title} in your browser](${play})**. Nothing to install.
 
-${checks.length > 0 ? `Verify it the way CI does:\n\n\`\`\`sh\n${checks.join('\n')}\n\`\`\`\n` : ''}
-## What it teaches
+${makeItYours}## What it teaches
 
 ${sample.concepts.map((c) => `- ${c}`).join('\n')}
 
 ${sceneTable}${headless}## Source
 
-${sourceRef(`examples/${sample.dir}/`)} — package \`${facts.pkg}\`.${
-    facts.readme ? ` A walkthrough README ships alongside it.` : ''
-  }
+${sourceRef(`examples/${sample.dir}`)}${
+  facts.readme ? '. A walkthrough README ships alongside it' : ''
+}${facts.template && facts.readme ? ' and in every copy' : ''}.
 
 ## Read next
 
@@ -317,9 +373,11 @@ function galleryPage(entries) {
 
 ${sample.tagline}
 
-${facts.preview ? `[![${sample.title}](/samples/${sample.dir}.png)](/samples/${sample.dir})\n\n` : ''}\`\`\`sh
-pnpm --filter ${facts.pkg} dev
-\`\`\`
+${facts.preview ? `[![${sample.title}](/samples/${sample.dir}.png)](/samples/${sample.dir})\n\n` : ''}[Play it](${PLAY_BASE}/${sample.dir}/)${
+        facts.template
+          ? ` · copy it with \`--template ${sample.dir}\``
+          : ' · play and read only (carries content)'
+      }
 
 ${sample.concepts.map((c) => `\`${c}\``).join(' · ')}
 `,
@@ -333,24 +391,31 @@ title: "Samples"
 
 # Samples
 
-Every sample below is a real workspace package that is simultaneously a browser demo **and** a
-headless regression test. They are the intended copy-and-modify starting points — pick the one
-closest to what you are building and change it.
+Every sample below is simultaneously a browser demo **and** a headless regression test. They are
+the intended copy-and-modify starting points: pick the one closest to what you are building and
+change it. None of this needs a clone of the engine repository.
+
+- **Play** every sample in the browser at [molen.dev/play](${PLAY_BASE}/), with nothing to install.
+- **Copy** one into your own npm project. The smaller samples ship inside
+  \`@bendyline/molen-tooling\` as templates, locked to the engine version you install:
 
 \`\`\`sh
-pnpm install          # once
-pnpm dev              # the gallery: every browser sample from one local URL
+npx @bendyline/molen-tooling templates                    # list them
+npx @bendyline/molen-tooling new my-game --template skybound
+cd my-game && npm install && npm run dev
 \`\`\`
+
+- **Read** the source of any of them [on GitHub](${SOURCE_BASE}/examples).
 
 ${sections.filter(Boolean).join('\n')}
 ## Start from nothing instead
 
-\`molen new <name>\` scaffolds a runnable experience — project manifest, scene with camera/input/
-commands, scripts, a setup module, assertions and a Vite app — already wired into the
-[agent loop](/guide/agent-loop).
+\`molen new <name>\` without \`--template\` scaffolds a runnable experience — project manifest,
+scene with camera/input/commands, scripts, a setup module, assertions and a Vite app — already
+wired into the [agent loop](/guide/agent-loop).
 
 \`\`\`sh
-molen new my-experience
+npx @bendyline/molen-tooling new my-experience
 \`\`\`
 `;
 }
@@ -360,6 +425,7 @@ export async function generateSamples() {
   await mkdir(samplesDir, { recursive: true });
   await mkdir(publicDir, { recursive: true });
 
+  const templates = await templateIds();
   const entries = [];
   for (const sample of SAMPLES) {
     const dir = join(repoRoot, 'examples', sample.dir);
@@ -367,7 +433,7 @@ export async function generateSamples() {
       console.warn(`samples: skipping ${sample.dir} (not on disk)`);
       continue;
     }
-    const facts = await inspect(sample);
+    const facts = await inspect(sample, templates);
     await writeFile(join(samplesDir, `${sample.dir}.md`), samplePage(sample, facts));
     if (facts.preview) {
       await copyFile(join(dir, 'preview.png'), join(publicDir, `${sample.dir}.png`));

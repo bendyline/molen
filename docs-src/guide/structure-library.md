@@ -7,18 +7,22 @@ details, and a representative footprint and floor count. These are original styl
 not surveyed replicas or static meshes stretched to fit a parcel.
 
 The generated runtime index is
-[`structures/catalog.json`](../../content/worldgen/structures/catalog.json), shipped in the
+[`structures/catalog.json`](https://github.com/bendyline/molen/blob/main/content/worldgen/structures/catalog.json), shipped in the
 `molen.worldgen.default` content pack (role `structures`). All 120 styles are
 registered in the default style pack. The editable source for each logical building lives in its
 own copyable directory under
-[`source/structures/`](../../content/worldgen/source/structures/); its `source.json` inventories
+[`source/structures/`](https://github.com/bendyline/molen/tree/main/content/worldgen/source/structures); its `source.json` inventories
 the local recipe or archstyle and definition metadata. Supporting architectural references are
 maintained in the collection-wide
-[`catalog.json`](../../content/worldgen/source/shared/structure-library/catalog.json).
+[`catalog.json`](https://github.com/bendyline/molen/blob/main/content/worldgen/source/shared/structure-library/catalog.json)
+in the engine repository. Get the pack itself with
+`npx molen pack fetch https://molen.dev/packs/index.json`.
 
 ## See and reshape every structure
 
-Run the world explorer and open **`/structures.html`**, or use its **Explore 120 structures** link.
+Open the [structure library](https://molen.dev/play/world-explorer/structures.html) in the
+browser, or use the **Explore 120 structures** link in
+[World Explorer](https://molen.dev/play/world-explorer/).
 The collection renders the actual shipped generators and shared material graphs. Search by name,
 country, construction material or description; filter by taxonomy; select any card to change
 width, depth and storeys, orbit, compare front and rear, or inspect the silhouette without textures.
@@ -26,7 +30,7 @@ The detail menu uses the production geometry tiers. The sheet shows complete ext
 enterable interiors are generated separately by the world renderer.
 
 **Download model sheet** exports all 120 rendered entries as a labeled PNG. For reproducible
-captures, build once and run:
+captures in the engine repository, build once and run:
 
 ```sh
 pnpm -r build
@@ -91,14 +95,20 @@ Details use the actual facade rhythm, a bounded perimeter allocation, and the ex
 precedence. Dormers use `roof.features.dormers` on eligible pitched wings. Simplified budget
 representations omit ornament while retaining their footprint, primary roof and measured envelope.
 
-The [standard material catalog](../../content/worldgen/materials/README.md)
+The [standard material catalog](https://github.com/bendyline/molen/blob/main/content/worldgen/materials/README.md)
 groups all 45 shared graphs by construction. It includes several brick bonds, cut/rubble stone,
 clapboard and board-and-batten, shingles, clay tiles, slate, thatch, rammed earth and metal roofs.
 Physical repeat sizes live in `scripts/standard-materials.mjs`. Common textures are 256² and
 prepared once per shared material set. Window graphs use cell UVs; solid surfaces use meter UVs.
 
-Edit the applicable `content/worldgen/source/structures/<style>/` bundle. Generated styles use
-`recipe.json`; the original styles carry their complete `archstyle.json`. After editing:
+To vary a structure in your own project, copy its `archstyle.json` (or write a new one), preview
+it with `npx molen worldgen preview my.archstyle.json --out preview.png`, and ship your styles as
+your own style pack with `molen pack build`. [Worldgen](worldgen.md) covers the format.
+
+The library itself is maintained in the engine repository. Edit the applicable
+`content/worldgen/source/structures/<style>/` bundle there. Generated styles use `recipe.json`;
+the original styles carry their complete `archstyle.json`. After editing, from the repository
+root:
 
 ```sh
 node packages/worldgen/scripts/generate-structures.mjs

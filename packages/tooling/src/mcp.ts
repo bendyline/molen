@@ -30,6 +30,7 @@ import {
   listAssets,
   listComponentsOp,
   listSchemasOp,
+  listTemplates,
   listTypes,
   packAsset,
   playExperience,
@@ -1025,9 +1026,10 @@ export function createMcpServer(): McpServer {
     {
       title: 'New experience',
       description:
-        'Scaffold a runnable experience (scene + scripts + setup + commands + checks) on disk.',
+        'Scaffold a runnable experience (scene + scripts + setup + commands + checks + AGENTS.md) on disk, or pass `template` to copy a shipped sample as a standalone npm project (list_templates lists the ids).',
       inputSchema: {
         name: z.string(),
+        template: z.string().optional(),
         dir: z.string().optional(),
         force: z.boolean().optional(),
       },
@@ -1038,6 +1040,21 @@ export function createMcpServer(): McpServer {
       return text(
         `created ${r.dir}\n${(r.files ?? []).join('\n')}\n\nnext:\n${(r.nextSteps ?? []).join('\n')}`,
       );
+    },
+  );
+
+  server.registerTool(
+    'list_templates',
+    {
+      title: 'List templates',
+      description:
+        'List the sample templates new_experience can copy with `template`: id + one-line description, as JSON.',
+      inputSchema: {},
+    },
+    async () => {
+      const r = await listTemplates();
+      if (!r.ok) return text(r.error ?? 'failed to list templates', true);
+      return text(JSON.stringify(r.templates, null, 2));
     },
   );
 

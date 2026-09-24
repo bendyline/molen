@@ -48,8 +48,28 @@ the same trust and determinism rules as scene scripts apply.
 ## Content packs (`packs`)
 
 Shared content (entity types and models, style packs, catalogs) is not in any npm package; it
-comes in content packs, `molen/pack@1` zip files built with `molen pack build`. A project lists
-the packs it uses, in order, and their types join the registry like the project's own:
+comes in content packs, `molen/pack@1` zip files built with `molen pack build`. Molen's own packs
+are published with each release at `https://molen.dev/packs/`, listed by a `molen/pack-index@1`
+index:
+
+| Pack | What it carries |
+| --- | --- |
+| `molen.entities` | Entity types and models: trees, a shrub, a boulder, aircraft and road vehicles ([entities](entities.md)) |
+| `molen.worldgen.default` | The default style pack: archstyles, materials, scatter rules, landmarks, 120 structures ([worldgen](worldgen.md)) |
+| `molen.earth` | The region atlas and the business identity catalog ([recognizable places](recognizable-places.md)) |
+| `molen.sky` | The Bright Star Catalogue as `molen/stars@1` columns ([sky](sky.md)) |
+
+```sh
+npx molen pack fetch https://molen.dev/packs/index.json                  # all of them
+npx molen pack fetch https://molen.dev/packs/index.json molen.entities   # just one
+```
+
+`pack fetch` downloads into `packs/` beside project.json and pins each pack's `contentHash` in
+the project's `packs`, so the project keeps working offline and a later re-publish never changes
+it underneath you. A browser app serves the same zips from wherever it hosts its static files.
+
+A project lists the packs it uses, in order, and their types join the registry like the
+project's own:
 
 ```json
 {

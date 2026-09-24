@@ -2,14 +2,18 @@
 
 A `molen/terrain@2` descriptor plus one deterministically generated 16-bit heightmap become a 4x4 grid of chunked, level-of-detail meshes you can fly over. This is the reference for the terrain capability in isolation: `@bendyline/molen-terrain/kernel` samples heights, `/client` meshes them, and the two agree — which is what keeps collision honest.
 
-![Terrain flyover](preview.png)
+![Terrain flyover](https://raw.githubusercontent.com/bendyline/molen/main/examples/terrain-flyover/preview.png)
 
 ## Run
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/terrain-flyover](https://molen.dev/play/terrain-flyover/). To run and change
+your own copy, make one from the npm packages (no clone of the engine repository needed):
 
 ```sh
-pnpm --filter @bendyline/molen-examples-terrain-flyover dev
+npx @bendyline/molen-tooling new my-terrain-flyover --template terrain-flyover
+cd my-terrain-flyover
+npm install
+npm run dev
 ```
 
 WASD: fly. Drag: look. Shift: boost. There is no scene manifest and no `input` block in this sample — the camera is a plain browser loop in `src/main.ts`, clamped to four metres above `hf.sampleHeight(x, z)` so you cannot fly through the island.
@@ -24,16 +28,19 @@ No heightmap image is checked in. It is generated from the fixed seed, so the de
 
 ## Verify
 
-From the repository root:
+From this directory:
 
 ```sh
-node packages/tooling/dist/cli.mjs validate examples/terrain-flyover/terrain.json
-pnpm --filter @bendyline/molen-examples-terrain-flyover test:unit
-pnpm --filter @bendyline/molen-examples-terrain-flyover test:golden
+npx molen validate terrain.json
+npm test
 ```
 
 `test/headless.test.ts` proves the seed is deterministic (identical heightmap twice), walks a 9x9 grid of `raycastDown` samples that must all sit inside the declared height range with the island centre above its edge, and meshes all sixteen chunks through `buildChunkGeometry` to more than 10,000 triangles.
 
-`test/golden/flyover.golden.test.ts` renders the island with `screenshotScene` and a `terrain: { descriptor, heightmapPng }` input — zero entities, 512x288, `FLYOVER_CAMERA`, more than 50,000 triangles after distance LOD — and compares it against the committed `test/golden/__goldens__/flyover.png`.
+In the engine repository, `test/golden/flyover.golden.test.ts` renders the island with `screenshotScene` and a `terrain: { descriptor, heightmapPng }` input — zero entities, 512x288, `FLYOVER_CAMERA`, more than 50,000 triangles after distance LOD — and compares it against the committed `test/golden/__goldens__/flyover.png`.
 
 There is no pinned state hash and no replay fixture: nothing in this sample is simulated. `molen shot` can render it too, but it needs both a scene to hang the terrain on and a heightmap already on disk (`--terrain terrain.json --heightmap <png>`), which is why the golden test generates the PNG in process instead.
+
+In the engine repository this sample lives in `examples/terrain-flyover/`. The same commands run from
+that directory, and `pnpm --filter @bendyline/molen-examples-terrain-flyover test:unit` (or `test:golden`) runs its tests from the
+root.

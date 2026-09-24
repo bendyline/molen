@@ -49,9 +49,12 @@ const GROUPS = [
   },
   {
     title: 'Projects and types',
-    blurb: 'Scaffold an experience and manage the namespaced entity type registry.',
+    blurb:
+      'Scaffold an experience (the starter, or a copy of a shipped sample) and manage the ' +
+      'namespaced entity type registry.',
     ops: [
       'new_experience',
+      'list_templates',
       'get_project',
       'list_types',
       'check_types',

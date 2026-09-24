@@ -245,14 +245,29 @@ export const OPS_CATALOG: OpDescriptor[] = [
   },
   {
     name: 'new_experience',
-    summary: 'Scaffold a new experience (scene + scripts + commands + checks) ready for the loop.',
-    cli: 'molen new <name> [--dir <path>] [--force]',
+    summary:
+      'Scaffold a new experience (scene + scripts + commands + checks + AGENTS.md) ready for the loop, or a standalone copy of a shipped sample with --template.',
+    cli: 'molen new <name> [--template <id>] [--dir <path>] [--force]',
     mcpTool: 'new_experience',
     params: [
       p('name', 'string', true, 'Experience name (also the output folder name).'),
+      p(
+        'template',
+        'string',
+        false,
+        'Copy this sample instead of the built-in starter (list_templates / molen templates lists the ids).',
+      ),
       p('dir', 'string', false, 'Parent directory (default: cwd).'),
       p('force', 'boolean', false, 'Replace existing scaffold-owned files (default false).'),
     ],
+  },
+  {
+    name: 'list_templates',
+    summary:
+      'List the sample templates new_experience can copy (id + one-line description); each scaffolds as a standalone npm project.',
+    cli: 'molen templates [--json]',
+    mcpTool: 'list_templates',
+    params: [],
   },
   {
     name: 'drive_scene',

@@ -15,7 +15,7 @@
     "typecheck": "pnpm -r typecheck",
     "source:check": "node scripts/check-source-bundles.mjs",
     "audit:prod": "pnpm audit --prod",
-    "lint": "pnpm -r lint && biome check . && node scripts/check-release-gate.mjs && node scripts/check-package-contents.mjs",
+    "lint": "pnpm -r lint && biome check . && node scripts/check-release-gate.mjs && node scripts/check-package-contents.mjs && node scripts/check-shipped-docs.mjs",
     "pretest:unit": "pnpm -r build",
     "test:unit": "pnpm -r --no-bail test:unit",
     "test": "pnpm test:unit",

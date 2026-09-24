@@ -16,8 +16,10 @@ npm i @bendyline/molen-entities @bendyline/molen-pack
 ```
 
 Node >= 22.13, ESM only, one `.` export. The package itself is a few kilobytes of ids and
-functions; load the `molen.entities` pack from wherever your app hosts it with
-`@bendyline/molen-pack`.
+functions. The `molen.entities` pack is published at
+[molen.dev/packs](https://molen.dev/packs/index.json): `npx molen pack fetch https://molen.dev/packs/index.json`
+downloads it into a project and pins it in `project.json`. Serve the zip from wherever your app
+hosts it and load it with `@bendyline/molen-pack`.
 
 ## Use
 
@@ -67,8 +69,8 @@ low-poly models; the pack's NOTICE carries the trademark statement.
 
 ## Docs
 
-- [Reusable entities](https://molen.dev/guide/entities): binding the pack, and how the sources are
-  authored and regenerated in the repository
+- [Reusable entities](https://molen.dev/guide/entities): getting and binding the pack, and how the
+  sources are authored and regenerated in the engine repository
 - [Aircraft](https://molen.dev/guide/aircraft): controls, flight physics and cockpit instruments
 - [Mountable vehicles](https://molen.dev/guide/vehicles)
 - [Projects and content packs](https://molen.dev/guide/project)

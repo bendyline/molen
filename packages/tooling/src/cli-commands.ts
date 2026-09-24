@@ -30,6 +30,7 @@ import {
   listAssets,
   listComponentsOp,
   listSchemasOp,
+  listTemplates,
   listTypes,
   OPS_CATALOG,
   type OpDescriptor,
@@ -651,13 +652,19 @@ function cmdDescribe(args: ParsedArgs): number {
 async function cmdNew(args: ParsedArgs): Promise<number> {
   const name = args.positionals[0];
   if (name === undefined) {
-    err('usage: molen new <name> [--dir <path>] [--force]');
+    err('usage: molen new <name> [--template <id>] [--dir <path>] [--force]');
     return 2;
   }
+  if (args.flags.template === true) {
+    err('--template needs a template id (molen templates lists them)');
+    return 2;
+  }
+  const template = str(args.flags.template);
   const result = await scaffoldExperience({
     name,
     dir: str(args.flags.dir),
     force: args.flags.force === true,
+    ...(template !== undefined ? { template } : {}),
   });
   if (!result.ok) {
     err(result.error ?? 'scaffold failed');
@@ -667,6 +674,22 @@ async function cmdNew(args: ParsedArgs): Promise<number> {
   for (const f of result.files ?? []) out(`  ${f}`);
   out('\nnext:');
   for (const step of result.nextSteps ?? []) out(`  ${step}`);
+  return 0;
+}
+
+async function cmdTemplates(args: ParsedArgs): Promise<number> {
+  const result = await listTemplates();
+  if (!result.ok) {
+    err(result.error ?? 'failed to list templates');
+    return 1;
+  }
+  if (args.flags.json === true) {
+    out(JSON.stringify(result.templates, null, 2));
+    return 0;
+  }
+  const width = Math.max(...result.templates.map((t) => t.id.length)) + 2;
+  for (const t of result.templates) out(`${t.id.padEnd(width)}${t.description}`);
+  out('\nstart from one: molen new <name> --template <id>');
   return 0;
 }
 
@@ -1506,6 +1529,7 @@ export const CLI_COMMANDS: Record<string, (args: ParsedArgs) => number | Promise
   types: cmdTypes,
   scripts: cmdScripts,
   new: cmdNew,
+  templates: cmdTemplates,
   figure: cmdFigure,
   worldgen: cmdWorldgen,
   mcp: cmdMcp,

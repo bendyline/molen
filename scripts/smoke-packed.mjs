@@ -10,7 +10,7 @@
 // release's manifest and content checks run too.
 
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +32,21 @@ const peer = (name, dep) =>
     dep
   ];
 
+// The sample templates typecheck, test and build with their own dev tools; install the ranges
+// their manifests declare, once, so every template project below resolves them from here.
+const TEMPLATES = join(ROOT, 'packages', 'tooling', 'dist', 'templates');
+function templateDevRange(dep) {
+  const { templates } = JSON.parse(readFileSync(join(TEMPLATES, 'index.json'), 'utf8'));
+  const ranges = new Set(
+    templates
+      .map(({ id }) => JSON.parse(readFileSync(join(TEMPLATES, id, 'package.json'), 'utf8')))
+      .map((manifest) => manifest.devDependencies?.[dep])
+      .filter((range) => range !== undefined),
+  );
+  if (ranges.size !== 1) throw new Error(`templates disagree on ${dep}: ${[...ranges].join(', ')}`);
+  return [...ranges][0];
+}
+
 const dir = mkdtempSync(join(tmpdir(), 'molen-packed-'));
 try {
   writeFileSync(
@@ -50,6 +65,10 @@ try {
       'react@19',
       'react-dom@19',
       'typescript@6',
+      `vite@${templateDevRange('vite')}`,
+      `vitest@${templateDevRange('vitest')}`,
+      `@types/three@${templateDevRange('@types/three')}`,
+      `@types/node@${templateDevRange('@types/node')}`,
     ],
     dir,
     { stdio: 'inherit' },
@@ -101,6 +120,33 @@ console.log('imported ' + ids.length + ' entry points');
     ),
   );
 
+  // Every sample template, scaffolded by the installed CLI and driven through the loop `molen new`
+  // printed for it: validate, scripts check, sim run with its commands and checks, replay. Then
+  // the npm scripts a user runs: typecheck, the headless tests and a Vite build. The projects sit
+  // inside this directory, so they resolve the installed tarballs from its node_modules (npm run
+  // puts every ancestor's node_modules/.bin on PATH) instead of each running npm install.
+  const templates = JSON.parse(run(molen, ['templates', '--json'], dir));
+  if (templates.length === 0) throw new Error('molen templates listed nothing');
+  const templatesDir = join(dir, 'templates');
+  mkdirSync(templatesDir);
+  for (const { id } of templates) {
+    process.stdout.write(`\n# template ${id}\n`);
+    const printed = run(molen, ['new', id, '--template', id], templatesDir);
+    const project = join(templatesDir, id);
+    const steps = printed
+      .slice(printed.indexOf('\nnext:\n'))
+      .split('\n')
+      .map((line) => line.trim().replace(/\s+#.*$/, ''));
+    const loop = steps.filter((step) => step.startsWith('npx molen '));
+    if (loop.length === 0) throw new Error(`molen new --template ${id} printed no headless loop`);
+    for (const step of loop) {
+      process.stdout.write(run(molen, step.slice('npx molen '.length).split(/\s+/), project));
+    }
+    run('npm', ['run', 'typecheck'], project, { stdio: 'inherit' });
+    if (steps.includes('npm test')) run('npm', ['test'], project, { stdio: 'inherit' });
+    run('npm', ['run', 'build', '--', '--logLevel', 'warn'], project, { stdio: 'inherit' });
+  }
+
   // Content comes from packs: build two with the installed CLI and read them with the packages.
   const packs = join(dir, 'packs');
   for (const source of ['entities', 'sky']) {
@@ -129,7 +175,9 @@ console.log(\`read the P-51D (\${model.byteLength} bytes of glTF) and \${stars.l
 `,
   );
   process.stdout.write(run('node', ['content.mjs'], dir));
-  console.log(`smoke-packed: ${archives.length} tarballs installed and used from ${dir}`);
+  console.log(
+    `smoke-packed: ${archives.length} tarballs installed and used from ${dir}; ${templates.length} templates scaffolded, checked, tested and built`,
+  );
 } finally {
   if (keep) console.log(`kept ${dir}`);
   else rmSync(dir, { recursive: true, force: true });

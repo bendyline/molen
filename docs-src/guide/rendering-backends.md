@@ -169,8 +169,9 @@ The world explorer also accepts `gpuOptimizations=0` for an uncached WebGPU comp
 
 ## Testing the world explorer
 
-Run the example with `pnpm --filter @bendyline/molen-examples-world-explorer dev`, then compare
-the same location and settings using `?backend=webgpu` and `?backend=webgl`. Omitting the
+Open [World Explorer](https://molen.dev/play/world-explorer/), then compare the same location
+and settings using [`?backend=webgpu`](https://molen.dev/play/world-explorer/?backend=webgpu) and
+[`?backend=webgl`](https://molen.dev/play/world-explorer/?backend=webgl). Omitting the
 parameter, or using `?backend=auto`, enables automatic selection. The performance HUD displays
 the backend that actually rendered and any automatic fallback reason; its
 `#performance-status` element also exposes `data-backend` and `data-fallback-reason` for tests.
@@ -194,8 +195,8 @@ API/shader correctness and fallback testing, but their timings do not predict ha
 Keep WebGL reference screenshots pinned to `backend=webgl`; test WebGPU separately rather than
 silently regenerating a backend's visual baseline from another renderer.
 
-After building, `pnpm -r test:golden` runs browser regression coverage, including the backend
-suite. That suite's default launch uses explicit SwiftShader flags for portable software
+In the engine repository, after building, `pnpm -r test:golden` runs browser regression coverage,
+including the backend suite. That suite's default launch uses explicit SwiftShader flags for portable software
 execution; WebGPU cases report a skip if Chromium cannot create an adapter/device, while the
 WebGL and fallback cases still run. Require WebGPU and use the browser's normal hardware
 selection with these PowerShell commands:

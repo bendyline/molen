@@ -134,6 +134,8 @@ export type {
 export { screenshotScene } from './screenshot';
 export type { SimulateInput, SimulateOutput } from './simulate';
 export { runSimulation } from './simulate';
+export type { ListTemplatesOutput, TemplateEntry } from './templates';
+export { listTemplates } from './templates';
 export type { TestTypesInput, TestTypesOutput, TypeTestResult } from './types-test';
 export { testTypes } from './types-test';
 export type { ApplyUvPaintInput, ApplyUvPaintOutput } from './uvpaint';

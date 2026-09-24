@@ -16,6 +16,24 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - The plan's `@bendyline/molen-docs` package was never built: the shipped docs bundle lives inside
   `@bendyline/molen-tooling` (`dist/docs-src`). Don't create it.
 
+## Shipped docs are written for npm users
+
+- The reader of `docs-src/`, package READMEs, the samples' READMEs and molen.dev has installed from
+  npm and never cloned this repository. Commands are `npx molen …` / `npm …` run inside their
+  project (or a `--template` copy of a sample), never `pnpm …` or `node packages/tooling/dist/cli.mjs`.
+  Something that genuinely needs the repository (regenerating a catalog, the golden suites) says
+  "in the engine repository" where it starts.
+- Samples reach users three ways, and a sample page names each that applies: play it at
+  `molen.dev/play/<id>/` (the site build stages every example's `dist/`), copy it with
+  `molen new <name> --template <id>` (the smaller samples ship in `@bendyline/molen-tooling`
+  `dist/templates/`), read it on GitHub. A sample README runs from the sample's own directory, so
+  the same commands work in the repo and in a copy; link outside the sample with absolute URLs.
+- Content packs reach users from `molen.dev/packs/index.json` (`molen pack fetch`), staged by the
+  site build from `content/`. Document that, not `content/` paths.
+- Links out of `docs-src/` are absolute (`https://github.com/bendyline/molen/…` or
+  `https://molen.dev/…`): a relative link that climbs out of the bundle is dead inside the npm
+  tarball and dropped on the site. `scripts/check-shipped-docs.mjs` (in `pnpm lint`) enforces it.
+
 ## Truth vs plan
 
 - `docs/` = historical design plan (may lag the code); `docs-src/` + `packages/` = shipped truth.

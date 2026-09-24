@@ -46,21 +46,39 @@ physics: kinematics (cross-platform deterministic)
 The hash is the determinism check: same build, same ticks, same hash. `molen replay <fixture>`
 compares a recorded command log tick by tick and names the first tick that diverges.
 
+### Start from a sample
+
+The small samples ship inside this package as templates, so starting from one needs no clone of
+the engine repository. `molen templates` lists them (`--json` for the structured list); each
+scaffolds as a standalone npm project with its scene, scripts, headless tests and replay fixtures:
+
+```sh
+npx @bendyline/molen-tooling templates
+npx @bendyline/molen-tooling new my-arena --template top-down-arena && cd my-arena
+npm install && npm test && npm run dev
+```
+
+`molen new` prints the project's own headless loop, and every scaffolded project — template or
+starter — carries an `AGENTS.md` that points a coding agent at the version-locked docs bundle in
+`node_modules/@bendyline/molen-tooling/dist/docs-src/llms.txt` and at that loop.
+
 ## What's in it
 
 | Surface | For |
 |---|---|
-| the `molen` bin | 42 operations, including `validate`, `sim run`, `sim watch`, `shot`, `frames`, `drive`, `play`, `replay`, `diff`, `new`, `asset import`/`inspect`/`pack`/`stage`/`shot`, `pack build`/`inspect`/`verify`/`extract`/`fetch`, `project info`, `types list`/`check`/`reserve`/`gen`/`test`, `scripts check`, `material bake`, `uvpaint apply`, `worldgen preview`/`bake`/`stats`, `figure preview` |
+| the `molen` bin | 43 operations, including `validate`, `sim run`, `sim watch`, `shot`, `frames`, `drive`, `play`, `replay`, `diff`, `new`, `templates`, `asset import`/`inspect`/`pack`/`stage`/`shot`, `pack build`/`inspect`/`verify`/`extract`/`fetch`, `project info`, `types list`/`check`/`reserve`/`gen`/`test`, `scripts check`, `material bake`, `uvpaint apply`, `worldgen preview`/`bake`/`stats`, `figure preview` |
 | `molen mcp` | every operation but the file watcher, as MCP tools over stdio; `drive_scene`, `play_experience`, `worldgen_preview` and `figure_preview` return frames as images |
 | `molen describe [op]` | the machine-readable contract for every operation, CLI flags and MCP tool name side by side — the surface to build an agent against |
 | discovery, no source reading | `molen schema list`/`get`, `molen components`/`component <name>`, `molen docs search <q>` over the engine docs bundle shipped inside this package |
-| `.` (the ops library) | every op as a plain async `(input) => output`: `validateAsset`, `runSimulation`, `screenshotScene`, `runReplayFile`, `driveScene`, `playExperience`, `rasterizeMaterial`, `checkScripts`, `generateTypes`, `importAsset`, `scaffoldExperience`, … plus `OPS_CATALOG`, and `compareGolden`/`diffImages` for your own image tests |
+| `.` (the ops library) | every op as a plain async `(input) => output`: `validateAsset`, `runSimulation`, `screenshotScene`, `runReplayFile`, `driveScene`, `playExperience`, `rasterizeMaterial`, `checkScripts`, `generateTypes`, `importAsset`, `scaffoldExperience`, `listTemplates`, … plus `OPS_CATALOG`, and `compareGolden`/`diffImages` for your own image tests |
 
 Ops that need content (entity types, a style pack, a region atlas) read it from content packs,
 never from npm packages: the project's `project.json` `packs` list (paths or pinned URLs), then
 `MOLEN_PACKS`, plus `--pack` on the worldgen commands. URL packs are cached in
-`MOLEN_CACHE_DIR`, and `MOLEN_OFFLINE=1` never fetches. `molen pack build` makes a pack from a
-directory with a `molen-pack.source.json`.
+`MOLEN_CACHE_DIR`, and `MOLEN_OFFLINE=1` never fetches. Molen's own packs are published at
+molen.dev: `npx molen pack fetch https://molen.dev/packs/index.json` downloads them into a project
+and pins them in `project.json`. `molen pack build` makes a pack of your own from a directory with
+a `molen-pack.source.json`.
 
 The CLI and the MCP server act with the authority of the process that runs them. Path arguments
 are trusted user intent, read, written or imported as given wherever they point, and a scene's

@@ -5,6 +5,9 @@ import generated from './generated-nav.json' with { type: 'json' };
 // OPS_CATALOG, docs-src and examples on disk. Only the framing below is hand-written.
 const { sidebar, counts } = generated;
 
+/** Static directories staged beside the site by scripts/stage-hosted.mjs; see `markdown.config`. */
+const HOSTED_PATH = /^\/(?:play|packs)(?:[/?#]|$)/;
+
 export default defineConfig({
   title: 'Molen',
   description:
@@ -28,6 +31,8 @@ export default defineConfig({
     nav: [
       { text: 'Guides', link: '/guide/quickstart', activeMatch: '^/guide/' },
       { text: 'Samples', link: '/samples/', activeMatch: '^/samples/' },
+      // A staged directory, not a page: `_self` makes it a full page load (see `markdown.config`).
+      { text: 'Play', link: '/play/', target: '_self' },
       { text: 'API', link: '/api/', activeMatch: '^/api/' },
       { text: 'Schemas', link: '/schemas/', activeMatch: '^/schemas/' },
       {
@@ -63,5 +68,23 @@ export default defineConfig({
 
   markdown: {
     theme: { light: 'github-light', dark: 'github-dark' },
+    // /play/ (the samples) and /packs/ (the content packs) are not pages: scripts/stage-hosted.mjs
+    // copies them into the build after VitePress finishes. A root-relative link to them would
+    // fail the dead-link check, and on the live site the client router would intercept the click
+    // and render its 404 page in place of the sample. A `target` attribute opts a link out of
+    // both, so the browser does a full page load. Full https://molen.dev/play/ URLs are external
+    // links and already carry one. A nav or sidebar entry pointing there needs `target: '_self'`.
+    config(md) {
+      md.core.ruler.push('molen-hosted-links', (state) => {
+        for (const block of state.tokens) {
+          for (const token of block.children ?? []) {
+            const href = token.type === 'link_open' ? token.attrGet('href') : null;
+            if (href !== null && HOSTED_PATH.test(href) && token.attrGet('target') === null) {
+              token.attrSet('target', '_self');
+            }
+          }
+        }
+      });
+    },
   },
 });

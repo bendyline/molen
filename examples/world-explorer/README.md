@@ -1,9 +1,15 @@
 # World explorer
 
+Explore it in the browser at [molen.dev/play/world-explorer](https://molen.dev/play/world-explorer/),
+along with its [structure library](https://molen.dev/play/world-explorer/structures.html) and
+[sky observatory](https://molen.dev/play/world-explorer/sky.html). It is not an npm template: it
+streams terrain tiles and content packs that Molen's npm packages never carry. To run and change
+it, clone the engine repository and run `pnpm install && pnpm dev` from the root.
+
 The standalone [sky observatory](sky.html) previews the reusable Earth/custom sky system without
 loading terrain. Open `/sky.html` on the dev server for date/location controls, accelerated time,
 Sun/Moon tracking, a full-moon preset and an authored fantasy world. See
-[the sky guide](../../docs-src/guide/sky.md).
+[the sky guide](https://molen.dev/guide/sky).
 
 The terrain explorer includes a **00:00–24:00 time slider**, date picker and **Now** button.
 It opens at noon today; scrubbing previews the Sun, Moon, stars and terrain lighting without
@@ -17,7 +23,7 @@ The Weather dropdown combines independent cloud, precipitation and visibility se
 Sunny, Partly cloudy, Overcast, Rain, Snow and Fog profiles. Expand Weather details to mix
 those variables and change temperature, pressure or wind. These conditions also drive the
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
-freezes cloud/particle motion. See [weather and atmosphere](../../docs-src/guide/weather.md).
+freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
 
 The first camera frame does not wait for building textures. They prepare in background workers;
 Human tiles wait for the shared material set before becoming visible, while Bare terrain, water,

@@ -6,6 +6,13 @@ protocol, over a data-only **schema** package, with an agent **tooling** package
 CLI + an MCP server) on top. Its #1 design goal is that an agent can build a complete small
 experience with **zero human intervention** from shipped docs, schemas, and the headless loop.
 
+> **Building an app on Molen? You do not need this repository.** Install from npm
+> (`npx @bendyline/molen-tooling new <name> [--template <sample>]`), then read the version-locked
+> docs bundle at `node_modules/@bendyline/molen-tooling/dist/docs-src/llms.txt`; every scaffolded
+> project carries its own `AGENTS.md` pointing there. Samples play at https://molen.dev/play/ and
+> content packs come from `molen pack fetch https://molen.dev/packs/index.json`. This file is for
+> agents working **on** the engine.
+
 ## START HERE
 
 1. Read the shipped agent bundle: **[docs-src/llms.txt](docs-src/llms.txt)** (index) →
