@@ -15,7 +15,8 @@ npm i @bendyline/molen-worldgen-earth
 
 Node >= 22.13, ESM only, and no `.` export: import `/kernel`, `/client` or `/worker`. The region
 atlas and business catalog are content, not code: they ship as the `molen.earth` content pack
-(see `@bendyline/molen-pack`), built from `content/earth` in the repository.
+(see `@bendyline/molen-pack`), published at [molen.dev/packs](https://molen.dev/packs/index.json);
+`npx molen pack fetch https://molen.dev/packs/index.json` downloads it into a project.
 `@bendyline/molen-terrain` and `@bendyline/molen-worldgen` come with it. The client half also needs
 `three` (`>=0.184.0 <0.187.0`, an optional peer) and `@bendyline/molen-client`, which worldgen's
 client half uses; the kernel half needs neither.

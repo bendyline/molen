@@ -188,10 +188,13 @@ identity the keyframe recorded.
 
 ## How to check it yourself
 
+The commands below run in a copy of the Skybound sample, made from the npm packages with
+`npx @bendyline/molen-tooling new skybound --template skybound` (then `cd skybound && npm install`).
+
 **One run, one hash.**
 
 ```
-molen sim run examples/skybound/scene.json --ticks 30 --hash
+npx molen sim run scene.json --ticks 30 --hash
 ```
 
 ```
@@ -210,7 +213,7 @@ same-JS-engine overall. Use the table above for the whole scene.
 command log, and `expected.stateHash` plus `expected.tickHashes`.
 
 ```
-molen replay examples/skybound/first-leap.replay.json
+npx molen replay first-leap.replay.json
 ```
 
 ```
@@ -234,8 +237,8 @@ classifies what it finds:
   → if the change was intentional, re-record with: molen replay <fixture> --record
 ```
 
-**Two regression artifacts per example, doing different jobs.** A pinned `stateHash` literal in an
-example's `test/headless.test.ts` freezes one run of the current build; a run compared with itself
+**Two regression artifacts per sample, doing different jobs.** A pinned `stateHash` literal in a
+sample's `test/headless.test.ts` freezes one run of the current build; a run compared with itself
 only proves reproducibility, so that literal is what catches a refactor that quietly moved the
 whole simulation. The committed `*.replay.json` beside the scene freezes the command log and the
 per-tick hashes, so a failure names the tick. Keep both.
@@ -245,12 +248,14 @@ two snapshots, including continuation differences under the reserved `$world` ps
 `molen sim watch scene.json --ticks N` reruns on every file change and reports hash flips, event
 deltas and assertion transitions.
 
-**Golden images** are a different mechanism with a different guarantee. `pnpm -r test:golden`
-renders in a pinned headless Chromium on a software rasterizer and compares against a committed
-PNG with a perceptual tolerance (per-pixel threshold 0.1, at most 0.3% differing pixels). A
-missing golden **fails** rather than adopting the candidate. Record with `UPDATE_GOLDENS=1`;
-locally that produces a candidate only, and the authoritative refresh is the `update-goldens`
-workflow, which records on the same Ubuntu 24.04 runner as the CI golden job.
+**Golden images** are a different mechanism with a different guarantee. `compareGolden` from
+`@bendyline/molen-tooling` compares a render (from `molen shot`, or `screenshotScene` in a test)
+against a committed PNG with a perceptual tolerance (per-pixel threshold 0.1, at most 0.3%
+differing pixels by default). A missing golden **fails** rather than adopting the candidate.
+Record with `UPDATE_GOLDENS=1`. The engine's own golden suites (`pnpm -r test:golden` in the
+engine repository) render in a pinned headless Chromium on a software rasterizer, and their
+authoritative refresh is the `update-goldens` workflow, which records on the same Ubuntu 24.04
+runner as the CI golden job. Record your own goldens on one pinned machine for the same reason.
 
 ## What is not promised
 

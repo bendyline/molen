@@ -53,13 +53,12 @@ rotors, controls, gear, flaps and ailerons animate from simulation state.
 
 ## Reuse in another experience
 
-Both aircraft ship in the `molen.entities` content pack (source: `content/entities`), with their
-type documents and models. List the pack in your project.json `packs` and the CLI resolves the
-types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
+Both aircraft ship in the `molen.entities` content pack, with their type documents and models.
+`npx molen pack fetch https://molen.dev/packs/index.json molen.entities` downloads it and lists it
+in your project.json `packs`, and the CLI then resolves the types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
 `createPackSet([pack]).assetProvider()` as the client's asset provider. The entity type IDs and
-glTF refs are `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6`. The world
-explorer builds the pack into `public/packs` before dev and build, so authoring tools are not
-required to launch it.
+glTF refs are `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6`. Fly both in
+[World Explorer](https://molen.dev/play/world-explorer/) to see the finished integration.
 
 These are not kernel presets. Each type document contains the concrete aircraft's mass and center
 of gravity, engine and thrust geometry, wing or rotor geometry, control response, lift/drag or
@@ -206,10 +205,10 @@ geometry; it does not model deformation or distant unloaded obstacles.
 
 ## Reproducible review
 
-The source brief, generator, provenance and verification notes are in
-the copyable [P-51 source bundle](../../content/entities/source/aircraft/p-51/README.md) and
-[OH-6 source bundle](../../content/entities/source/aircraft/oh-6/README.md).
-`content/entities/scenes/aircraft.scene.json` is the neutral apron scene. The browser flight
+The source brief, generator, provenance and verification notes are in the engine repository, in
+the copyable [P-51 source bundle](https://github.com/bendyline/molen/blob/main/content/entities/source/aircraft/p-51/README.md) and
+[OH-6 source bundle](https://github.com/bendyline/molen/blob/main/content/entities/source/aircraft/oh-6/README.md).
+`content/entities/scenes/aircraft.scene.json` there is the neutral apron scene. The browser flight
 scenario is `examples/world-explorer/test/visual/aircraft.play.json`.
 
 `packages/kernel/test/aircraft-performance.test.ts` exercises level acceleration, part-throttle

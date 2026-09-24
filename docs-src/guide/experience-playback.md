@@ -5,9 +5,8 @@ experience, performs player-like inputs, and leaves screenshots plus diagnostics
 inspect.
 
 ```sh
-molen play examples/world-explorer/dist \
-  --scenario examples/world-explorer/test/visual/navigation.play.json \
-  --out-dir .artifacts/world-explorer
+npm run build                                   # your app's static build, e.g. Vite's dist/
+npx molen play dist --scenario walkthrough.play.json --out-dir .artifacts/walkthrough
 ```
 
 The host uses an ephemeral localhost port and supports HTTP byte ranges, so PMTiles and other

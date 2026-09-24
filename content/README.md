@@ -5,6 +5,11 @@ Molen's npm packages carry code, schemas and types. Everything else ships as con
 inside an Electron app, as bytes in its bundle, or a file the user picks) and opens with
 `@bendyline/molen-pack`.
 
+Every release publishes these packs at `https://molen.dev/packs/` with a `molen/pack-index@1`
+index (the docs site build stages them; see [docs-site/README.md](../docs-site/README.md)), so a
+user of the npm packages runs `npx molen pack fetch https://molen.dev/packs/index.json` rather
+than building them from this directory.
+
 Each directory here is the source of one pack. Its `molen-pack.source.json` names the pack, its
 license, which files go in, and which roles it `provides`.
 

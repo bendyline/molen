@@ -37,6 +37,10 @@ export default defineConfig({
   plugins: [molenScripts()],
   // Worker bundles have their own plugin pipeline in Vite, and the kernel runs in the Worker.
   worker: { format: 'es', plugins: () => [molenScripts()] },
+  build: {
+    // Keep three.js and the client out of the entry chunk; see "Production builds" below.
+    rollupOptions: { output: { manualChunks: { vendor: ['three', '@bendyline/molen-client'] } } },
+  },
 });
 ```
 
@@ -84,6 +88,16 @@ backend is what makes a captured frame reproducible. `client.renderer.backend` r
 that actually initialized, and `client.renderer.fallbackReason` explains a fallback. See
 [rendering backends](rendering-backends.md) for strict selection, material compatibility and
 diagnostics.
+
+### Production builds
+
+A page that mounts with a top-level `await`, as above, needs three.js and
+`@bendyline/molen-client` in a chunk of their own (the `manualChunks` line in the Vite config
+above). The client lazy-loads its WebGPU driver. If the bundler leaves three.js and the client in
+the entry chunk, that lazy chunk imports the entry while the entry is still suspended at the
+`await`, the import never settles, and the built page stays blank in every browser with WebGPU,
+with no error. The dev server does not bundle, so only the production build shows it. `molen new`
+and every sample template already carry the setting.
 
 ## Feedback from the simulation
 

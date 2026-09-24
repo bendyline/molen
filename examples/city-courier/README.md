@@ -2,14 +2,18 @@
 
 Complete five deliveries in a compact city before the clock runs out. Traffic and buildings damage your car; follow the mint beacon and the route map. Arcade acceleration, reverse, steering, braking, collision damage, victory and loss all run in a deterministic Worker simulation.
 
-![City Courier](preview.png)
+![City Courier](https://raw.githubusercontent.com/bendyline/molen/main/examples/city-courier/preview.png)
 
 ## Play
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/city-courier](https://molen.dev/play/city-courier/). To run and change
+your own copy, make one from the npm packages (no clone of the engine repository needed):
 
 ```sh
-pnpm dev:driving
+npx @bendyline/molen-tooling new my-city-courier --template city-courier
+cd my-city-courier
+npm install
+npm run dev
 ```
 
 W/S or Up/Down: accelerate and reverse. A/D or Left/Right: steer. Space: handbrake. R: restart.
@@ -27,21 +31,23 @@ The car is an arcade controller with a conservative circular collision footprint
 
 ## Verify
 
-From the repository root:
+From this directory:
 
 ```sh
-node packages/tooling/dist/cli.mjs validate examples/city-courier/scene.json
-node packages/tooling/dist/cli.mjs sim run examples/city-courier/scene.json --ticks 90 --commands examples/city-courier/commands.json --assert examples/city-courier/checks.json --hash
-node packages/tooling/dist/cli.mjs shot examples/city-courier/scene.json --ticks 3 --out .artifacts/city-courier.png
-pnpm --filter @bendyline/molen-examples-city-courier test:unit
-pnpm --filter @bendyline/molen-examples-city-courier test:golden
+npx molen validate scene.json
+npx molen sim run scene.json --ticks 90 --commands commands.json --assert checks.json --hash
+npx molen replay delivery-run.replay.json
+npx molen shot scene.json --ticks 3 --out city-courier.png
+npm test
 ```
 
-Build before tests when engine code changes. The browser test plays the actual built Worker app,
-checks HUD/state and diagnostics, exercises restart and resizing, and writes screenshots under
-`.artifacts/`. Visuals are original primitive-based art with palette materials; no downloads,
-API keys, licensed asset packs, or runtime asset generation are required.
+`npm test` includes the command-only playthrough and replays `delivery-run.replay.json`, so a behaviour
+change reports the first divergent tick. Visuals are original primitive-based art with palette
+materials; no downloads, API keys, licensed asset packs, or runtime asset generation are required.
+`npm run build` writes a static `dist/` with relative URLs, so it can be hosted beneath any
+subdirectory (molen.dev/play hosts this exact build).
 
-The [shared asset and startup contract](../ASSETS.md) explains editing masters, checked-in
-runtime files and deployment. `pnpm -r build` produces this game's `dist/`; its `preview` script
-serves that build. Relative URLs support hosting the same build beneath a subdirectory.
+In the engine repository this sample lives in `examples/city-courier/`. There, a browser test plays the
+built Worker app (HUD, restart, resizing) under `pnpm --filter @bendyline/molen-examples-city-courier test:golden`,
+and the [shared asset and startup contract](https://github.com/bendyline/molen/blob/main/examples/ASSETS.md)
+explains editing masters and checked-in runtime files.

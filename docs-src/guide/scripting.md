@@ -2,7 +2,8 @@
 
 A molen experience is **data plus scripts**. The scene manifest declares the world, the commands
 it accepts, and its scripts; the scripts hold the logic. A code setup module exists for the rare
-things scripts cannot express, and for typed TypeScript authoring inside a workspace package.
+things scripts cannot express, and for typed TypeScript authoring inside a project that installs
+the engine packages.
 
 ## 1. Scene-data scripts (the default)
 
@@ -309,7 +310,8 @@ export default setup;
 A setup module loaded from an arbitrary folder can't import the kernel (no `node_modules`
 there), so it uses `world.spawnRaw(componentMap)`, `world.registerCommand`, `world.addSystem`,
 and string-named component handles (`w.patch(id, { name: 'kinematicBody' }, …)`). Inside a
-workspace package you can import handles from `@bendyline/molen-kernel` and use the typed
+project that installs `@bendyline/molen-kernel` (anything `molen new` scaffolds) you can import
+handles from it and use the typed
 `world` API or `defineExperience({...})` (see [project.md](project.md)).
 
 A command type may carry many handlers: a scene-declared `move` can be handled by a script and by

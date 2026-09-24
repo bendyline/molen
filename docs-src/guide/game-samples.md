@@ -4,17 +4,29 @@ The new samples exercise the same scene → `buildWorld` → Worker → `mountEx
 CLI. Each is JSON data + scene scripts, with declared command/component schemas, input
 bindings, semantic prefabs, durable state, a HUD, restart, and a tested win condition.
 
-| Sample | Play from repo root | Loop | Engine services |
+| Sample | Play | Loop | Engine services |
 |---|---|---|---|
-| City Courier | `pnpm dev:driving` | Five deliveries, traffic, damage and a time limit | XZ kinematics, hierarchy, follow camera |
-| The Lantern Vault | `pnpm dev:dungeon` | Key, melee combat, healing, gate and relic | XZ kinematics/raycast, seeded RNG, hierarchy, tween, local follow camera |
-| Skybound | `pnpm dev:platformer` | Islands, seeds, stomps, hazards, checkpoint and finish | XY platform controller, hierarchy, world follow camera |
+| City Courier | [molen.dev/play/city-courier](https://molen.dev/play/city-courier/) | Five deliveries, traffic, damage and a time limit | XZ kinematics, hierarchy, follow camera |
+| The Lantern Vault | [molen.dev/play/lantern-dungeon](https://molen.dev/play/lantern-dungeon/) | Key, melee combat, healing, gate and relic | XZ kinematics/raycast, seeded RNG, hierarchy, tween, local follow camera |
+| Skybound | [molen.dev/play/skybound](https://molen.dev/play/skybound/) | Islands, seeds, stomps, hazards, checkpoint and finish | XY platform controller, hierarchy, world follow camera |
 
-Install with `pnpm install`; each launch command builds its engine dependencies automatically.
-The games use checked-in runtime assets and need no art-generation tools to play. Each README documents
-controls and exact validate/simulate/assert/screenshot commands. `test/playthrough.test.js`
-in each sample proves its objective is reachable using player commands alone. Headless tests
-also verify checkpoint continuation; browser tests exercise the actual Worker and DOM inputs.
+To take one apart, copy it into your own npm project:
+
+```
+npx @bendyline/molen-tooling new my-courier --template city-courier   # or skybound
+cd my-courier && npm install
+npx molen sim run scene.json --ticks 90 --commands commands.json --assert checks.json --hash
+npm test                                                             # includes the playthrough
+npm run dev
+```
+
+The Lantern Vault is not a template, because its 28 GLB models are content and npm packages never
+include content. Play it at molen.dev and read it
+[on GitHub](https://github.com/bendyline/molen/tree/main/examples/lantern-dungeon).
+
+Each sample's README documents controls and the exact validate/simulate/assert/screenshot
+commands. `test/playthrough.test.js` in each sample proves its objective is reachable using player
+commands alone. Headless tests also verify checkpoint continuation.
 
 ## Follow cameras
 
@@ -89,12 +101,12 @@ asset/component APIs as the headless tools. Three creatures participate in comba
 ambient dressing. The project index maps every model to a sidecar under `public/assets/`, so Vite
 serves the same files that CLI captures verify.
 
-See the [illustrated catalog](../../examples/lantern-dungeon/asset-src/CATALOG.md) and
-[editable sources and regeneration guide](../../examples/lantern-dungeon/asset-src/README.md).
-Run `pnpm --filter @bendyline/molen-examples-lantern-dungeon assets:check` to verify byte-for-byte
-regeneration, and `assets:shot` to capture four angles of every model.
-
-The [example asset contract](../../examples/ASSETS.md) preserves editable masters and optimized
-runtime copies separately. The dungeon supports hand-edited GLBs, protects them from accidental
-regeneration, and checks source/runtime freshness with `assets:verify` (Node only). All three
-game builds use relative URLs and have browser coverage under a hosting subdirectory.
+See the [illustrated catalog](https://github.com/bendyline/molen/blob/main/examples/lantern-dungeon/asset-src/CATALOG.md)
+and the [editable sources and regeneration guide](https://github.com/bendyline/molen/blob/main/examples/lantern-dungeon/asset-src/README.md).
+The [example asset contract](https://github.com/bendyline/molen/blob/main/examples/ASSETS.md)
+keeps editable masters and optimized runtime copies separately. The dungeon supports hand-edited
+GLBs, protects them from accidental regeneration, and checks source/runtime freshness with a
+Node-only verification script. [3D model assets](3d-model-assets.md) describes the same workflow
+for your own project with the published CLI (`molen asset import`, `asset inspect --verify`,
+`asset shot`). All three game builds use relative URLs, so each one can be hosted beneath a
+subdirectory, as molen.dev/play does.

@@ -133,9 +133,11 @@ Orthographic views use a 60° perspective sky oriented along the orthographic ca
 
 ## The star catalog is content
 
-No package ships star data. The Earth catalog is the `molen.sky` content pack (source
-`content/sky/`): `stars.bin`, 8,404 stars in the 50 KB `molen/stars@1` binary format. Load it
-once and hand it to the renderer; until then skies have no stars.
+No package ships star data. The Earth catalog is the `molen.sky` content pack: `stars.bin`, 8,404
+stars in the 50 KB `molen/stars@1` binary format. Get it with
+`npx molen pack fetch https://molen.dev/packs/index.json molen.sky`, serve the zip with your
+app, load it once and hand it to the renderer; until then skies have no stars. Its source is
+[`content/sky/`](https://github.com/bendyline/molen/tree/main/content/sky) in the engine repository.
 
 ```ts
 import { createClient, decodeStarCatalog } from '@bendyline/molen-client';
@@ -167,9 +169,9 @@ from **Hoffleit, D. & Warren, W. H. Jr. (1991), Bright Star Catalogue, 5th Revis
 The default magnitude cutoff is 6. Stellar colors approximate B−V; visual splat sizes are
 exaggerated for visibility. J2000 coordinates receive precession and rotate with local sidereal
 time. Proper motion, variability, stellar parallax and nutation are omitted. Positions are
-quantized to about 0.005° and magnitudes to 0.04. Regenerate `content/sky/stars.bin` with
-`node packages/client/scripts/generate-star-catalog.mjs /path/to/catalog.gz`; the pack's NOTICE
-records the input checksum.
+quantized to about 0.005° and magnitudes to 0.04. The engine repository regenerates
+`content/sky/stars.bin` with `node packages/client/scripts/generate-star-catalog.mjs
+/path/to/catalog.gz`; the pack's NOTICE records the input checksum.
 
 No atmospheric refraction, horizon dip, terrain horizon calculation, eclipses, planetary bodies,
 Milky Way texture, lunar libration or photographic lunar map are modeled. The procedural lunar
@@ -180,12 +182,11 @@ Volumetric atmospheric scattering remains future work.
 
 ## Try it
 
-Run `pnpm --filter @bendyline/molen-examples-world-explorer dev` and open
-`http://localhost:5225/sky.html`. Choose a location, UTC date, time speed,
+Open the [sky observatory](https://molen.dev/play/world-explorer/sky.html). Choose a location, UTC date, time speed,
 or the authored Amethyst world; drag to look around and use **Face Sun** / **Face Moon**.
 **Use current time** reads the host clock once and starts normal time flow.
 `?backend=webgl` / `?backend=webgpu` select a backend; `?hud=0` hides controls for capture.
-The terrain explorer at `/index.html` includes a 24-hour slider, date picker and Now button.
+The terrain explorer, [World Explorer](https://molen.dev/play/world-explorer/), includes a 24-hour slider, date picker and Now button.
 It starts at noon today and shows times in the browser's labeled local time zone. Scrubbing
 keeps the camera fixed while the sky, celestial bodies and scene lighting follow the selected
 instant and camera location. Use `?date=2024-03-25T05:00:00Z` for a repeatable instant or

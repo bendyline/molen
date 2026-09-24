@@ -10,6 +10,9 @@ hero:
       text: Quickstart
       link: /guide/quickstart
     - theme: alt
+      text: Play the samples
+      link: https://molen.dev/play/
+    - theme: alt
       text: Browse samples
       link: /samples/
     - theme: alt
@@ -37,25 +40,33 @@ features:
 
 ## Zero to running
 
-```sh
-pnpm install && pnpm -r build     # packages consume each other's dist
-molen new my-experience           # a runnable project: scene, scripts, setup, checks, a Vite app
-```
-
-Then run the inner loop — cheap checks first, pixels last:
+Everything runs from the published npm packages; Node 22.13 or newer.
 
 ```sh
-molen validate scene.json                                   # constantly; errors are precise
-molen sim run scene.json --ticks 30 --assert checks.json --hash
-molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
+npx @bendyline/molen-tooling new my-experience   # scene, scripts, setup, checks, a Vite app
+cd my-experience && npm install
 ```
+
+Or start from one of the samples: `new my-game --template skybound` copies it into a project of
+your own (`npx @bendyline/molen-tooling templates` lists them). Then run the inner loop — cheap
+checks first, pixels last:
+
+```sh
+npx molen validate scenes/main.scene.json                   # constantly; errors are precise
+npx molen sim run main --ticks 30 --commands cmds.json --assert checks.json --hash
+npx molen shot main --ticks 30 --out shot.png
+npm run dev                                                 # the same scene in the browser
+```
+
+Shared content (models, the default building styles, Earth catalogs, stars) comes as content
+packs: `npx molen pack fetch https://molen.dev/packs/index.json` adds them to a project.
 
 ## What each section is
 
 | | |
 |---|---|
 | **[Guides](/guide/quickstart)** | How the engine is meant to be used, written for a reader building something. Start with the [quickstart](/guide/quickstart), then [the agent loop](/guide/agent-loop) and [scripting](/guide/scripting). |
-| **[Samples](/samples/)** | Nine runnable experiences, from ~50 spinning cubes to three complete games. Each is a browser demo and a headless test — the intended copy-and-modify starting points. |
+| **[Samples](/samples/)** | Nine runnable experiences, from ~50 spinning cubes to three complete games. Each is a browser demo and a headless test — the intended copy-and-modify starting points. [Play them all](https://molen.dev/play/) in the browser, or copy one with `--template`. |
 | **[API reference](/api/)** | Every exported symbol of every published package, generated from the built `.d.mts` files that npm actually ships. |
 | **[Schemas](/schemas/)** | Every `molen/<kind>@n` format with its JSON Schema and a valid example, generated from the registry that `molen validate` checks against. |
 | **[CLI](/reference/cli) & [MCP](/reference/mcp)** | The `molen` command and the MCP server that mirrors it 1:1, generated from the shipped op catalog. |
@@ -63,11 +74,13 @@ molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
 ## For agents
 
 The whole documentation bundle is available as a flat, version-locked markdown set indexed by
-**[llms.txt](/llms.txt)**. The same bundle ships inside the package and is searchable offline:
+**[llms.txt](/llms.txt)**. The same bundle ships inside `@bendyline/molen-tooling`
+(`node_modules/@bendyline/molen-tooling/dist/docs-src/llms.txt` in a project) and is searchable
+offline:
 
 ```sh
-molen docs search "camera track"
-molen describe                    # every op and its I/O contract
-molen schema list                 # every format
-molen components                  # the component vocabulary
+npx molen docs search "camera track"
+npx molen describe                    # every op and its I/O contract
+npx molen schema list                 # every format
+npx molen components                  # the component vocabulary
 ```

@@ -41,10 +41,10 @@
     "NOTICE.md"
   ],
   "scripts": {
-    "build": "tsdown && node scripts/build-capture.mjs && node scripts/build-docs.mjs",
+    "build": "tsdown && node scripts/build-capture.mjs && node scripts/build-docs.mjs && node scripts/build-templates.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src",
-    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\" --exclude \"dist/**\"",
     "test:golden": "vitest run --config vitest.golden.config.ts"
   },
   "peerDependencies": {

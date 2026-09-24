@@ -56,7 +56,8 @@ cooperatively on the main thread; exterior generation continues through the exis
 `molen/interior-catalog@1` is a registered JSON format. Validate it with
 `molen validate catalog.json`; discover its fields with `molen schema get interior-catalog`.
 The default style pack's `interiors/catalog.json` (in the `molen.worldgen.default` content pack,
-source `content/worldgen/interiors/`) is a complete editable starting catalog with 15 profiles:
+source [`content/worldgen/interiors/`](https://github.com/bendyline/molen/tree/main/content/worldgen/interiors)) is a complete
+editable starting catalog with 15 profiles:
 
 | Program | Algorithm and furnishings |
 | --- | --- |

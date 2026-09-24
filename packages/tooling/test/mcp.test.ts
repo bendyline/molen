@@ -48,6 +48,7 @@ describe('MCP server v0', () => {
         'list_components',
         'list_figure_presets',
         'list_schemas',
+        'list_templates',
         'list_types',
         'new_experience',
         'pack_asset',
@@ -83,6 +84,30 @@ describe('MCP server v0', () => {
     const t = textOf(r as never);
     expect(t).toContain('molen/matgraph@1');
     expect(t).toContain('jsonSchema');
+  });
+
+  it('list_templates and new_experience({ template }) copy a shipped sample', async () => {
+    const listed = await client.callTool({ name: 'list_templates', arguments: {} });
+    const templates = JSON.parse(textOf(listed as never)) as { id: string; description: string }[];
+    expect(templates.map((t) => t.id)).toContain('top-down-arena');
+
+    const { mkdtemp } = await import('node:fs/promises');
+    const { tmpdir } = await import('node:os');
+    const { join } = await import('node:path');
+    const dir = await mkdtemp(join(tmpdir(), 'molen-mcp-template-'));
+    const made = await client.callTool({
+      name: 'new_experience',
+      arguments: { name: 'arena', dir, template: 'top-down-arena' },
+    });
+    expect((made as { isError?: boolean }).isError).toBeUndefined();
+    expect(textOf(made as never)).toContain('npx molen replay arena-skirmish.replay.json');
+
+    const unknown = await client.callTool({
+      name: 'new_experience',
+      arguments: { name: 'x', dir, template: 'nope' },
+    });
+    expect((unknown as { isError?: boolean }).isError).toBe(true);
+    expect(textOf(unknown as never)).toContain('available templates: cubes');
   });
 
   it('validate_asset accepts a valid inline scene and rejects a bad one', async () => {

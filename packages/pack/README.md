@@ -43,17 +43,22 @@ the small documents. Other files are read on demand with HTTP range requests; re
 together are merged when they sit close in the file, at most six run at once, and transient
 failures are retried. A server that ignores `Range` just sends the whole file, which is used as is.
 
-Build packs with the CLI (`molen pack build <dir> --out-dir <d>`) or in code:
+Molen's own packs (entities, the default style pack, the Earth catalogs, the star table) are
+published at [molen.dev/packs](https://molen.dev/packs/index.json).
+`npx molen pack fetch https://molen.dev/packs/index.json` downloads them and pins each one's
+`contentHash` in `project.json`.
+
+Build your own packs with the CLI (`molen pack build <dir> --out-dir <d>`) or in code:
 
 ```ts
 import { buildPack, openDirPack } from '@bendyline/molen-pack/node';
 
 // A directory with a molen-pack.source.json describing the pack.
-const built = await buildPack('content/entities', { outDir: 'dist/packs' });
-built.file; // 'molen.entities-3f2a9c1e5b7d.zip', named by a hash of its bytes
+const built = await buildPack('content/my-props', { outDir: 'dist/packs' });
+built.file; // 'my.props-3f2a9c1e5b7d.zip', named by a hash of its bytes
 
 // The same content, unzipped: handy in tests and during development.
-const pack = await openDirPack('content/entities');
+const pack = await openDirPack('content/my-props');
 ```
 
 ## What's in it

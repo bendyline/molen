@@ -2,14 +2,18 @@
 
 Survive a swarm in a walled arena: you move with WASD, chasers appear on a random edge every twelve ticks and cost you a hit point on contact. The whole game is **data** — `scene.json` declares the physics, the orthographic camera, the command and its payload schema, the input rule and four scripts, and there is no setup module at all. This is the reference for how far scene data plus a project type registry can take you, and the engine's central design bet: an agent can write this game as JSON.
 
-![Top-down arena](preview.png)
+![Top-down arena](https://raw.githubusercontent.com/bendyline/molen/main/examples/top-down-arena/preview.png)
 
 ## Play
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/top-down-arena](https://molen.dev/play/top-down-arena/). To run and change
+your own copy, make one from the npm packages (no clone of the engine repository needed):
 
 ```sh
-pnpm --filter @bendyline/molen-examples-top-down-arena dev
+npx @bendyline/molen-tooling new my-top-down-arena --template top-down-arena
+cd my-top-down-arena
+npm install
+npm run dev
 ```
 
 W/A/S/D: move. The scene folds the four keys into a single `axis2d` rule that emits `move` with `dir: [x, z]`, each component in -1..1. The command declares a JSON Schema payload, so a malformed direction is refused at submit with a JSON pointer into the payload rather than misbehaving later.
@@ -27,19 +31,22 @@ W/A/S/D: move. The scene folds the four keys into a single `axis2d` rule that em
 
 ## Verify
 
-From the repository root:
+From this directory:
 
 ```sh
-node packages/tooling/dist/cli.mjs validate examples/top-down-arena/scene.json
-node packages/tooling/dist/cli.mjs sim run examples/top-down-arena/scene.json --ticks 90 --hash
-node packages/tooling/dist/cli.mjs replay examples/top-down-arena/arena-skirmish.replay.json
-node packages/tooling/dist/cli.mjs shot examples/top-down-arena/scene.json --ticks 150 --clear-color '#1a1d24' --out .artifacts/arena.png
-pnpm --filter @bendyline/molen-examples-top-down-arena test:unit
-pnpm --filter @bendyline/molen-examples-top-down-arena test:golden
+npx molen validate scene.json
+npx molen sim run scene.json --ticks 90 --hash
+npx molen replay arena-skirmish.replay.json
+npx molen shot scene.json --ticks 150 --clear-color '#1a1d24' --out arena.png
+npm test
 ```
 
-From inside this directory, `molen types gen --check` reports whether the generated declarations are stale and `molen scripts check` type-checks all four scripts against them.
+`npx molen types gen --check` reports whether the generated declarations are stale and `molen scripts check` type-checks all four scripts against them.
 
-This sample carries **both** determinism artifacts, and they do different jobs. `test/headless.test.ts` pins a state hash at 90 ticks (through `runHeadless`, which is not the hash `sim run` prints) next to spawn, movement-stopped-by-wall, payload-rejection and contact-damage checks. `arena-skirmish.replay.json` freezes a recorded run — four `move` commands, 150 ticks, 45 events, per-tick reference hashes — and `test/replay.test.ts` replays it as part of `test:unit`, so a behaviour drift reports the first divergent tick instead of only "the hash moved". Re-record an intentional change with `molen replay <fixture> --record`.
+This sample carries **both** determinism artifacts, and they do different jobs. `test/headless.test.ts` pins a state hash at 90 ticks (through `runHeadless`, which is not the hash `sim run` prints) next to spawn, movement-stopped-by-wall, payload-rejection and contact-damage checks. `arena-skirmish.replay.json` freezes a recorded run — four `move` commands, 150 ticks, 45 events, per-tick reference hashes — and `test/replay.test.ts` replays it as part of `npm test`, so a behaviour drift reports the first divergent tick instead of only "the hash moved". Re-record an intentional change with `molen replay <fixture> --record`.
 
-Three golden images cover the visuals: the scene's own ortho camera block (`arena-ortho`), an angled top-down camera (`arena`), and a **played** scenario (`drive`) that walks the player east through `driveScene` while enemies spawn, asserting on the outcome and on two captured frames.
+In the engine repository, three golden images cover the visuals (golden tests stay there; a template copy does not include them): the scene's own ortho camera block (`arena-ortho`), an angled top-down camera (`arena`), and a **played** scenario (`drive`) that walks the player east through `driveScene` while enemies spawn, asserting on the outcome and on two captured frames.
+
+In the engine repository this sample lives in `examples/top-down-arena/`. The same commands run from
+that directory, and `pnpm --filter @bendyline/molen-examples-top-down-arena test:unit` (or `test:golden`) runs its tests from the
+root.

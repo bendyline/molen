@@ -172,7 +172,9 @@ molen shot scene.json --out island.png --camera 256,160,580 --look 256,20,256 --
 ```
 
 (The `screenshotScene` op / `screenshot_scene` MCP tool also accept a `terrain` payload so the
-flyover renders without any live entities.) See `examples/terrain-flyover` for the full slice.
+flyover renders without any live entities.) The terrain-flyover sample is the full slice:
+[play it](https://molen.dev/play/terrain-flyover/), or copy it with
+`npx @bendyline/molen-tooling new my-terrain --template terrain-flyover`.
 
 ### Walk through the world explorer
 
@@ -181,7 +183,7 @@ backends. At low altitude, the fade spans 2 to 20 kilometres, preserving nearby 
 while softening the horizon. Both distances extend at flight altitude and stay inside the streamed
 range; it does not otherwise change with the terrain quality preset.
 
-In `examples/world-explorer`, select **Walk mode** to move from the aerial viewer to open ground
+In [World Explorer](https://molen.dev/play/world-explorer/), select **Walk mode** to move from the aerial viewer to open ground
 near your current position. The camera sits 1.7 meters above your feet, with a 5 cm near clipping
 plane, so nearby buildings retain their real, human-scale dimensions. Human features turn on
 when available; the terrain layer buttons remain independent of navigation.
@@ -334,8 +336,8 @@ matrix, guarded horizontal-cone selection ahead of exact six-plane/horizon culli
 decoder for unknown MVT/PNG8 profiles alongside the explicit built-in Protomaps MVT profile. TMS Y
 addresses,
 sidecar-header validation, normalized semantic meshes, and parent-safe adaptive refinement are
-handled automatically. See the binding roadmap in `docs/10-earth-terrain.md` in the source
-repository.
+handled automatically. See the binding roadmap in the design plan,
+[`docs/10-earth-terrain.md`](https://github.com/bendyline/molen/blob/main/docs/10-earth-terrain.md).
 
 With parent fallback enabled, a package pyramid may extend above the elevation archive's
 maximum zoom. For example, a zoom-15 vector archive can use cropped/resampled zoom-14 elevation

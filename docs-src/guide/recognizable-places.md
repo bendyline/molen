@@ -12,7 +12,7 @@ The Earth catalog recognizes **44 mapped source businesses** by exact aliases an
 IDs. Each match selects a generic descriptor model rather than a source-business sign: for example,
 Walmart maps to `sign.mart_store`, Taco Bell maps to `sign.taco_place`, Best Buy maps to
 `sign.electronics_store`, and The Home Depot maps to `sign.hardware_store`. The
-[retail catalog](../../content/earth/businesses/README.md) documents the
+[retail catalog](https://github.com/bendyline/molen/blob/main/content/earth/businesses/README.md) documents the
 source data and mapping policy.
 
 Nine generic treatments cover grocery, restaurant, cafe, pharmacy, shop, department store, shopping
@@ -21,7 +21,7 @@ Unknown identities keep the normal architectural fallback. This is a stylized de
 not a complete global business database.
 
 Matching lives in
-[the Earth business catalog](../../content/earth/businesses/catalog.json).
+[the Earth business catalog](https://github.com/bendyline/molen/blob/main/content/earth/businesses/catalog.json).
 A stable canonical ID selects an appearance; aliases and verified brand:wikidata IDs map source
 records onto it. Explicit source IDs take precedence. An explicit conflicting ID blocks name-based
 guesses. Name aliases must match exactly after punctuation/spacing normalization and pass category
@@ -50,17 +50,18 @@ generally absent from the archive.
 
 The reusable definitions are JSON content, not package code. The landmarks ship in the
 `molen.worldgen.default` content pack (role `landmarks`) and the business catalog in the
-`molen.earth` pack (role `businesses`); their sources are in the repository's `content/`:
+`molen.earth` pack (role `businesses`). `npx molen pack fetch https://molen.dev/packs/index.json`
+brings both into a project. Their sources are in the engine repository's `content/`:
 
 | What to edit | Source |
 | --- | --- |
-| Model index and file paths | [Landmark catalog](../../content/worldgen/landmarks/catalog.json) |
-| Burger-restaurant descriptor, source-inspired palette and frontage | [burger_restaurant.landmark.json](../../content/worldgen/landmarks/burger_restaurant.landmark.json) |
-| Unbranded grocery treatment | [grocery.landmark.json](../../content/worldgen/landmarks/grocery.landmark.json) |
-| Store aliases, source IDs and category matching | [Business catalog](../../content/earth/businesses/catalog.json) |
-| Lamp, bench, rack and charger geometry recipes | [Landmark library](../../content/worldgen/landmarks/README.md) |
-| Base building proportions and architectural rules | [Generic store style](../../content/worldgen/styles/generic/store.archstyle.json) |
-| Shared surface patterns | [Material library](../../content/worldgen/materials/README.md) |
+| Model index and file paths | [Landmark catalog](https://github.com/bendyline/molen/blob/main/content/worldgen/landmarks/catalog.json) |
+| Burger-restaurant descriptor, source-inspired palette and frontage | [burger_restaurant.landmark.json](https://github.com/bendyline/molen/blob/main/content/worldgen/landmarks/burger_restaurant.landmark.json) |
+| Unbranded grocery treatment | [grocery.landmark.json](https://github.com/bendyline/molen/blob/main/content/worldgen/landmarks/grocery.landmark.json) |
+| Store aliases, source IDs and category matching | [Business catalog](https://github.com/bendyline/molen/blob/main/content/earth/businesses/catalog.json) |
+| Lamp, bench, rack and charger geometry recipes | [Landmark library](https://github.com/bendyline/molen/blob/main/content/worldgen/landmarks/README.md) |
+| Base building proportions and architectural rules | [Generic store style](https://github.com/bendyline/molen/blob/main/content/worldgen/styles/generic/store.archstyle.json) |
+| Shared surface patterns | [Material library](https://github.com/bendyline/molen/blob/main/content/worldgen/materials/README.md) |
 
 A `molen/landmark@1` sign manifest contains its stable model ID, text, initial-based emblem, palette,
 wall/accent appearance and default standalone/shared storefront widths. Its optional
@@ -88,10 +89,15 @@ Landmarks alone are `createLandmarkLibrary({ catalog, models })` from
 `@bendyline/molen-worldgen/kernel`, or `resolveLandmarkCatalogDocuments(catalog, readDocument)` for
 just the definitions; pass definitions to `generateLandmarkModel(id, definitions, tier)` or
 `new ModelLibrary(assetLoader, definitions)`. A `ModelLibrary` without definitions serves no
-landmark models. In the repository, edit the sources and rebuild the packs (the world explorer
-does it before `dev`); editing is not runtime hot reload.
+landmark models. Editing is not runtime hot reload: change the documents, rebuild the pack with
+`molen pack build`, and reload.
 
 ## Extending the library
+
+In your own project, put new or overriding landmark and catalog documents in a content pack of
+your own (`molen pack build <dir>`) and list it in project.json `packs` after the default packs:
+when two packs provide the same id, the later one wins. The steps below are how the engine's own
+catalogs are extended in the engine repository.
 
 1. Copy the nearest `.landmark.json`, assign a stable ID, and edit its parameters.
    Add the ID and relative file path to the landmark catalog. Adding a design that uses an
@@ -134,17 +140,17 @@ The ordinary Protomaps extract usually supplies position/category, not detailed 
 
 ## Repeatable visual review
 
-Build the repository and run the world explorer with `?synthetic=1&stores=1&style=default`
+Open [World Explorer with `?synthetic=1&stores=1&style=default`](https://molen.dev/play/world-explorer/?synthetic=1&stores=1&style=default)
 to inspect all 44 mapped descriptor variants, four additional retail-center treatments, mixed tenants and outdoor
 props. The original eight stores and interior walkthrough coordinates remain in place; the new
 chains occupy the southern blocks and the retail centers flank them.
-The [store-library batch fixture](../../packages/worldgen-earth/test/fixtures/store-library.batch.json)
+In the engine repository, the [store-library batch fixture](https://github.com/bendyline/molen/blob/main/packages/worldgen-earth/test/fixtures/store-library.batch.json)
 supports deterministic close views:
 
 ```sh
 molen worldgen preview --batch packages/worldgen-earth/test/fixtures/store-library.batch.json --out .artifacts/store-library.png --angles 4
 ```
-The [U.S. retail batch](../../packages/worldgen-earth/test/fixtures/us-retail-library.batch.json)
+The [U.S. retail batch](https://github.com/bendyline/molen/blob/main/packages/worldgen-earth/test/fixtures/us-retail-library.batch.json)
 includes all 40 additions plus Target, including a courtyard mall and independent mixed tenants:
 
 ```sh

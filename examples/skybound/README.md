@@ -2,14 +2,18 @@
 
 Cross five floating islands, collect fifteen seeds, stomp purple creatures, avoid pink thorns, and reach the lighthouse. A midpoint checkpoint saves your progress through falls. Three lives, full restart, short/full jumps, one-way ledges, and optional elevated collectibles give the small level a complete loop.
 
-![Skybound](preview.png)
+![Skybound](https://raw.githubusercontent.com/bendyline/molen/main/examples/skybound/preview.png)
 
 ## Play
 
-From the repository root, after `pnpm install` (engine dependencies build automatically):
+Play it in the browser at [molen.dev/play/skybound](https://molen.dev/play/skybound/). To run and change
+your own copy, make one from the npm packages (no clone of the engine repository needed):
 
 ```sh
-pnpm dev:platformer
+npx @bendyline/molen-tooling new my-skybound --template skybound
+cd my-skybound
+npm install
+npm run dev
 ```
 
 A/D or Left/Right: run. Space: jump; hold for a full jump, release for a short hop. R: restart.
@@ -27,21 +31,23 @@ The shared `physics.engine: "platformer"` service owns swept XY box collision, g
 
 ## Verify
 
-From the repository root:
+From this directory:
 
 ```sh
-node packages/tooling/dist/cli.mjs validate examples/skybound/scene.json
-node packages/tooling/dist/cli.mjs sim run examples/skybound/scene.json --ticks 90 --commands examples/skybound/commands.json --assert examples/skybound/checks.json --hash
-node packages/tooling/dist/cli.mjs shot examples/skybound/scene.json --ticks 3 --out .artifacts/skybound.png
-pnpm --filter @bendyline/molen-examples-skybound test:unit
-pnpm --filter @bendyline/molen-examples-skybound test:golden
+npx molen validate scene.json
+npx molen sim run scene.json --ticks 90 --commands commands.json --assert checks.json --hash
+npx molen replay first-leap.replay.json
+npx molen shot scene.json --ticks 3 --out skybound.png
+npm test
 ```
 
-Build before tests when engine code changes. The browser test plays the actual built Worker app,
-checks HUD/state and diagnostics, exercises restart and resizing, and writes screenshots under
-`.artifacts/`. Visuals are original primitive-based art with palette materials; no downloads,
-API keys, licensed asset packs, or runtime asset generation are required.
+`npm test` includes the command-only playthrough and replays `first-leap.replay.json`, so a behaviour
+change reports the first divergent tick. Visuals are original primitive-based art with palette
+materials; no downloads, API keys, licensed asset packs, or runtime asset generation are required.
+`npm run build` writes a static `dist/` with relative URLs, so it can be hosted beneath any
+subdirectory (molen.dev/play hosts this exact build).
 
-The [shared asset and startup contract](../ASSETS.md) explains editing masters, checked-in
-runtime files and deployment. `pnpm -r build` produces this game's `dist/`; its `preview` script
-serves that build. Relative URLs support hosting the same build beneath a subdirectory.
+In the engine repository this sample lives in `examples/skybound/`. There, a browser test plays the
+built Worker app (HUD, restart, resizing) under `pnpm --filter @bendyline/molen-examples-skybound test:golden`,
+and the [shared asset and startup contract](https://github.com/bendyline/molen/blob/main/examples/ASSETS.md)
+explains editing masters and checked-in runtime files.

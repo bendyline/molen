@@ -100,11 +100,15 @@ terrain-alignment `pitch` and `roll`. IDs derive from world-space bay positions 
 than tile IDs. Instance meshes retain `userData.vehicleIds` for promotion and duplicate suppression.
 The worker transports the same placement records as synchronous generation.
 
-For repeatable visual review use `?synthetic=1&parking=1`. The browser scenario
-`examples/world-explorer/test/visual/vehicles.play.json` visits a car, enters the cockpit,
-drives, turns in chase view, brakes, and exits:
+For repeatable visual review open
+[World Explorer with `?synthetic=1&parking=1`](https://molen.dev/play/world-explorer/?synthetic=1&parking=1).
+In the engine repository, the browser scenario
+[`vehicles.play.json`](https://github.com/bendyline/molen/blob/main/examples/world-explorer/test/visual/vehicles.play.json)
+visits a car, enters the cockpit, drives, turns in chase view, brakes, and exits; it is also a
+working reference for scripting [`molen play`](experience-playback.md) against your own build:
 
 ```sh
-pnpm --filter @bendyline/molen-examples-world-explorer build
-node packages/tooling/dist/cli.mjs play examples/world-explorer/dist --scenario examples/world-explorer/test/visual/vehicles.play.json --out-dir .artifacts/vehicles
+# in the engine repository, from examples/world-explorer/
+pnpm build
+npx molen play dist --scenario test/visual/vehicles.play.json --out-dir .artifacts/vehicles
 ```
