@@ -1,20 +1,21 @@
-import { Transform } from '@bendyline/molen-kernel';
+import { EarthVehicles } from '@bendyline/molen-earth/client';
 import { AircraftState } from '@bendyline/molen-kernel/aircraft';
+import { Transform } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { ENTITY_TYPES } from './test-content';
-import { WorldAircraft } from './world-aircraft';
-import { WorldVehicles } from './world-vehicles';
+import { aircraftBlocks, WorldAircraft } from './world-aircraft';
 
 async function setup() {
   const root = new THREE.Group();
   let flight: WorldAircraft;
-  const vehicles = new WorldVehicles(
+  const vehicles: EarthVehicles = new EarthVehicles({
     root,
-    (x, z) => flight?.groundHeight(x, z) ?? 0,
-    async () => new THREE.Group(),
-    ENTITY_TYPES,
-  );
+    sampleHeight: (x, z) => flight?.groundHeight(x, z) ?? 0,
+    loadModel: async () => new THREE.Group(),
+    types: ENTITY_TYPES,
+    obstacles: (box, except) => aircraftBlocks(vehicles.world, box, except),
+  });
   flight = new WorldAircraft(
     vehicles.world,
     root,
@@ -72,12 +73,12 @@ describe('world aircraft', () => {
     flight.dispose();
     vehicles.dispose();
     const root = new THREE.Group(),
-      empty = new WorldVehicles(
+      empty = new EarthVehicles({
         root,
-        () => undefined,
-        async () => new THREE.Group(),
-        ENTITY_TYPES,
-      );
+        sampleHeight: () => undefined,
+        loadModel: async () => new THREE.Group(),
+        types: ENTITY_TYPES,
+      });
     const delayed = new WorldAircraft(
       empty.world,
       root,

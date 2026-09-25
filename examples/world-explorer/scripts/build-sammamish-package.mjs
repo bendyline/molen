@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { encodePng16 } from '@bendyline/molen-terrain/kernel';
+import { encodePng16, writePmtilesArchive } from '@bendyline/molen-terrain/kernel';
 import pngjs from 'pngjs';
 
 const { PNG } = pngjs;
@@ -98,115 +98,6 @@ function tileAddresses(coverageBounds, detailBounds, minLevel, maxLevel, overvie
   return addresses;
 }
 
-function rotate(n, x, y, rx, ry) {
-  if (ry === 0) {
-    if (rx !== 0) return [n - 1 - y, n - 1 - x];
-    return [y, x];
-  }
-  return [x, y];
-}
-
-function zxyToTileId(level, x, y) {
-  let accumulator = ((1 << level) * (1 << level) - 1) / 3;
-  let bit = level - 1;
-  let tileX = x;
-  let tileY = y;
-  for (let scale = 1 << bit; scale > 0; scale >>= 1) {
-    const rx = tileX & scale;
-    const ry = tileY & scale;
-    accumulator += ((3 * rx) ^ ry) * (1 << bit);
-    [tileX, tileY] = rotate(scale, tileX, tileY, rx, ry);
-    bit--;
-  }
-  return accumulator;
-}
-
-function appendVarint(output, value) {
-  let remaining = value;
-  while (remaining >= 0x80) {
-    output.push((remaining % 0x80) | 0x80);
-    remaining = Math.floor(remaining / 0x80);
-  }
-  output.push(remaining);
-}
-
-function serializeDirectory(entries) {
-  const output = [];
-  appendVarint(output, entries.length);
-  let previousTileId = 0;
-  for (const entry of entries) {
-    appendVarint(output, entry.tileId - previousTileId);
-    previousTileId = entry.tileId;
-  }
-  for (const _entry of entries) appendVarint(output, 1);
-  for (const entry of entries) appendVarint(output, entry.data.byteLength);
-  for (let index = 0; index < entries.length; index++) appendVarint(output, index === 0 ? 1 : 0);
-  return Uint8Array.from(output);
-}
-
-function writeUint64(view, offset, value) {
-  view.setBigUint64(offset, BigInt(value), true);
-}
-
-function createPmtiles(entries, options) {
-  const sorted = [...entries].sort((left, right) => left.tileId - right.tileId);
-  const directory = serializeDirectory(sorted);
-  const metadata = Buffer.from(
-    JSON.stringify({
-      name: options.name,
-      type: 'baselayer',
-      format: 'png',
-      bounds: options.bounds.join(','),
-      minzoom: String(options.minLevel),
-      maxzoom: String(options.maxLevel),
-      attribution: options.attribution,
-    }),
-  );
-  const headerSize = 127;
-  const rootOffset = headerSize;
-  const metadataOffset = rootOffset + directory.byteLength;
-  const tileDataOffset = metadataOffset + metadata.byteLength;
-  const tileDataLength = sorted.reduce((total, entry) => total + entry.data.byteLength, 0);
-  const archive = Buffer.alloc(tileDataOffset + tileDataLength);
-  archive.write('PMTiles', 0, 'ascii');
-  archive.set(directory, rootOffset);
-  archive.set(metadata, metadataOffset);
-
-  let tileOffset = tileDataOffset;
-  for (const entry of sorted) {
-    archive.set(entry.data, tileOffset);
-    tileOffset += entry.data.byteLength;
-  }
-
-  const view = new DataView(archive.buffer, archive.byteOffset, archive.byteLength);
-  view.setUint8(7, 3);
-  writeUint64(view, 8, rootOffset);
-  writeUint64(view, 16, directory.byteLength);
-  writeUint64(view, 24, metadataOffset);
-  writeUint64(view, 32, metadata.byteLength);
-  writeUint64(view, 40, tileDataOffset);
-  writeUint64(view, 48, 0);
-  writeUint64(view, 56, tileDataOffset);
-  writeUint64(view, 64, tileDataLength);
-  writeUint64(view, 72, sorted.length);
-  writeUint64(view, 80, sorted.length);
-  writeUint64(view, 88, sorted.length);
-  view.setUint8(96, 1); // clustered
-  view.setUint8(97, 1); // no internal compression
-  view.setUint8(98, 1); // no tile compression
-  view.setUint8(99, 2); // PNG
-  view.setUint8(100, options.minLevel);
-  view.setUint8(101, options.maxLevel);
-  view.setInt32(102, Math.round(options.bounds[0] * 10_000_000), true);
-  view.setInt32(106, Math.round(options.bounds[1] * 10_000_000), true);
-  view.setInt32(110, Math.round(options.bounds[2] * 10_000_000), true);
-  view.setInt32(114, Math.round(options.bounds[3] * 10_000_000), true);
-  view.setUint8(118, Math.min(options.maxLevel, options.minLevel + 2));
-  view.setInt32(119, Math.round(((options.bounds[0] + options.bounds[2]) / 2) * 10_000_000), true);
-  view.setInt32(123, Math.round(((options.bounds[1] + options.bounds[3]) / 2) * 10_000_000), true);
-  return archive;
-}
-
 async function fetchWithRetry(url) {
   let lastError;
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -294,7 +185,9 @@ async function buildElevation(
         }
       }
       output[index] = {
-        tileId: zxyToTileId(address.level, address.x, address.y),
+        z: address.level,
+        x: address.x,
+        y: address.y,
         data: encodePng16({ width: 257, height: 257, data: normalized }),
       };
       if ((index + 1) % 20 === 0 || index + 1 === addresses.length) {
@@ -391,12 +284,24 @@ const elevation = await buildElevation(
   overviewMaxLevel,
   elevationTemplate,
 );
-const elevationArchive = createPmtiles(elevation.entries, {
-  name: 'Sammamish elevation',
+// The shared molen writer emits leaf directories as needed, so larger regions stay readable.
+const elevationArchive = writePmtilesArchive(elevation.entries, {
+  tileType: 'png',
   bounds: coverageBounds,
-  minLevel,
-  maxLevel: elevationMaxLevel,
-  attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
+  center: [
+    (coverageBounds[0] + coverageBounds[2]) / 2,
+    (coverageBounds[1] + coverageBounds[3]) / 2,
+    Math.min(elevationMaxLevel, minLevel + 2),
+  ],
+  metadata: {
+    name: 'Sammamish elevation',
+    type: 'baselayer',
+    format: 'png',
+    bounds: coverageBounds.join(','),
+    minzoom: String(minLevel),
+    maxzoom: String(elevationMaxLevel),
+    attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
+  },
 });
 const elevationPath = resolve(outputDirectory, 'elevation.pmtiles');
 await replaceFile(elevationPath, elevationArchive);

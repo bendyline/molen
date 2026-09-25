@@ -1,19 +1,36 @@
 import {
   AdaptiveQualityController,
-  AssetCache,
   type AssetProvider,
   applyEnvironment,
   createViewer,
-  MaterialResolver,
   type MolenClient,
 } from '@bendyline/molen-client';
-import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
+import {
+  applyCameraLookDelta,
+  cameraForward,
+  cameraPlanarForward,
+  cameraRight,
+  viewNeedsImmediateUpdate,
+  WALK_EYE_HEIGHT,
+  WalkCollision,
+  WalkController,
+} from '@bendyline/molen-client/navigation';
+import {
+  createEarthFog,
+  createEarthSky,
+  createEarthWorldgen,
+  EarthVehicles,
+  type EarthWorldgen,
+  earthPerformanceTier,
+  earthPixelRatio,
+  earthQualityLevel,
+  updateEarthFog,
+} from '@bendyline/molen-earth/client';
 import { type AircraftData, validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
-  createTerrainLandcoverWorkerBridge,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
   createTerrainSemanticPyramidLayer,
@@ -38,47 +55,19 @@ import {
   webMercatorToWgs84,
   wgs84ToWebMercator,
 } from '@bendyline/molen-terrain/kernel';
-import {
-  createResolvedMaterialSet,
-  ModelLibrary,
-  type ScreenSpaceLodPolicy,
-} from '@bendyline/molen-worldgen/client';
-import { stylePackMaterialRefs } from '@bendyline/molen-worldgen/kernel';
-import {
-  createRegionResolver,
-  createWorldgenSemanticRenderers,
-  createWorldgenTileCache,
-  createWorldgenWorkerBridge,
-  type WorldgenSemanticRenderers,
-} from '@bendyline/molen-worldgen-earth/client';
+import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/client';
 import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { createExplorerFog, createExplorerSky, updateExplorerFog } from './atmosphere.js';
 import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
-import {
-  applyCameraLookDelta,
-  cameraForward,
-  cameraPlanarForward,
-  cameraRight,
-  terrainViewNeedsImmediateUpdate,
-} from './camera-controls.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
-import { afterPreparation } from './deferred-renderer.js';
 import { formatCameraLocation } from './location-readout.js';
-import {
-  explorerPerformanceTier,
-  explorerPixelRatio,
-  manualQualityLevel,
-} from './performance-policy.js';
 import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
-import { WalkCollision } from './walk-collision.js';
-import { WALK_EYE_HEIGHT, WalkController } from './walk-controller.js';
 import { createWeatherControls } from './weather-controls.js';
-import { AIRCRAFT_HELP, WorldAircraft } from './world-aircraft.js';
-import { WorldVehicles } from './world-vehicles.js';
+import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 
 const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
@@ -424,9 +413,7 @@ function createSyntheticAdaptiveLayers(options: {
   ];
 }
 
-interface ExplorerWorldgen extends WorldgenSemanticRenderers {
-  prepareMaterials(): Promise<void>;
-}
+type ExplorerWorldgen = EarthWorldgen;
 
 /** Worldgen renderers over the style pack, atlas and places content loaded from the packs. */
 async function loadWorldgen(options: {
@@ -443,61 +430,36 @@ async function loadWorldgen(options: {
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
 }): Promise<ExplorerWorldgen> {
-  const { pack, atlas, places, placesDocs } = options.content;
-  const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
-  const provider = options.assets;
-  const assets = new AssetCache(provider, new GLTFLoader());
-  const models = new ModelLibrary(
-    async (ref) => (await assets.instance(ref)).scene,
-    places.landmarks.definitions,
-  );
-  // Shared texture work starts after the first camera frame. Building tiles wait for it;
-  // terrain, water, sky and navigation can run while the worker pool prepares the facades.
-  const baker =
-    options.worker && new URLSearchParams(location.search).get('materialWorker') !== '0'
-      ? createMaterialBakeWorkerPool(
-          Array.from(
-            { length: 2 },
-            () => new Worker(new URL('./material-worker.ts', import.meta.url), { type: 'module' }),
-          ),
-          { onTiming: (ms) => options.telemetry.record('material-bake', ms) },
-        )
-      : undefined;
-  // Material docs come from the style pack's solid block, already in memory once opened.
-  const materials = createResolvedMaterialSet(new MaterialResolver(provider, baker));
-  let preparation: Promise<void> | undefined;
-  let disposed = false;
-  const prepareMaterials = (): Promise<void> => {
-    if (disposed) return Promise.resolve();
-    preparation ??= (async () => {
-      const status = document.getElementById('worldgen-status');
-      if (status) status.hidden = false;
-      options.startupStage('material-baking-start');
-      try {
-        await materials.prepare(stylePackMaterialRefs(pack));
-        if (disposed) return;
-        for (const [ref, reason] of materials.failures)
-          console.warn(`[molen] worldgen material ${ref}: ${reason}`);
-        options.startupStage('material-baking');
-      } finally {
-        baker?.dispose();
-        if (disposed) materials.dispose();
-        if (status) status.hidden = true;
-      }
-    })();
-    return preparation;
-  };
-  // Off-thread generation: the worker gets the same pack and atlas, and the renderer treats it
-  // like the in-thread generator. Either way, repeat tiles come from the CPU cache.
-  const generator = options.worker
-    ? createWorldgenWorkerBridge(
-        new Worker(new URL('./worldgen-worker.ts', import.meta.url), { type: 'module' }),
-        { pack, atlas, metersPerUnit: options.metersPerUnit, places: placesDocs },
-      )
-    : undefined;
-  const renderers = createWorldgenSemanticRenderers(pack, {
-    places,
+  const params = new URLSearchParams(location.search);
+  const worldgen = createEarthWorldgen({
+    content: options.content,
+    assets: options.assets,
+    surfaceRenderer: options.surfaceRenderer,
+    metersPerUnit: options.metersPerUnit,
+    quality: options.quality,
+    lodPolicy: options.lodPolicy,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
+    // Shared texture work starts after the first camera frame; building tiles wait for it.
+    // Vite bundles a worker only from the literal `new Worker(new URL(...))` pattern.
+    workers: options.worker
+      ? {
+          worldgen: () =>
+            new Worker(new URL('./worldgen-worker.ts', import.meta.url), { type: 'module' }),
+          landcover: () =>
+            new Worker(new URL('./landcover-worker.ts', import.meta.url), { type: 'module' }),
+          ...(params.get('materialWorker') !== '0'
+            ? {
+                material: () =>
+                  new Worker(new URL('./material-worker.ts', import.meta.url), {
+                    type: 'module',
+                  }),
+              }
+            : {}),
+        }
+      : {},
+    propLod: params.get('propLod') !== '0',
+    interiors: params.get('interiors') !== '0',
+    onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
     onTileStats: (output, elapsed) => {
       options.telemetry.record('worldgen-total', elapsed);
       if (output.generationMs !== undefined)
@@ -505,38 +467,28 @@ async function loadWorldgen(options: {
       if (output.preparationMs !== undefined)
         options.telemetry.record('worldgen-preparation', output.preparationMs);
     },
-    atlas,
-    regions,
-    models,
-    materials,
-    metersPerUnit: options.metersPerUnit,
-    quality: options.quality,
-    lodPolicy: options.lodPolicy,
-    propLod: new URLSearchParams(location.search).get('propLod') !== '0',
-    interiors: new URLSearchParams(location.search).get('interiors') !== '0',
-    ...(options.worker
-      ? {
-          landcoverGenerator: createTerrainLandcoverWorkerBridge(
-            new Worker(new URL('./landcover-worker.ts', import.meta.url), { type: 'module' }),
-          ),
-        }
-      : {}),
-    roads: { surfaceRenderer: options.surfaceRenderer },
-    ...(generator !== undefined ? { generator } : {}),
-    cache: createWorldgenTileCache({ maxEntries: 512, maxBytes: 192 * 1024 * 1024 }),
+    onMaterialFailures: (failures) => {
+      for (const [ref, reason] of failures)
+        console.warn(`[molen] worldgen material ${ref}: ${reason}`);
+    },
   });
+  let preparation: Promise<void> | undefined;
   return {
-    ...renderers,
-    prepareMaterials,
-    humanFeatures: afterPreparation(renderers.humanFeatures, prepareMaterials),
-    dispose() {
-      if (disposed) return;
-      disposed = true;
-      baker?.dispose();
-      renderers.dispose();
-      generator?.dispose();
-      materials.dispose();
-      assets.dispose();
+    ...worldgen,
+    // Surface baking progress in the HUD and the startup timeline.
+    prepareMaterials(): Promise<void> {
+      preparation ??= (async () => {
+        const status = document.getElementById('worldgen-status');
+        if (status) status.hidden = false;
+        options.startupStage('material-baking-start');
+        try {
+          await worldgen.prepareMaterials();
+          options.startupStage('material-baking');
+        } finally {
+          if (status) status.hidden = true;
+        }
+      })();
+      return preparation;
     },
   };
 }
@@ -630,8 +582,8 @@ async function addAtmosphere(viewer: MolenClient): Promise<void> {
     toneMapping: 'agx',
     exposure: 0.9,
   });
-  viewer.renderer.scene.fog = createExplorerFog(viewer.renderer.backend);
-  const sky = await createExplorerSky(viewer.renderer.backend);
+  viewer.renderer.scene.fog = createEarthFog(viewer.renderer.backend);
+  const sky = await createEarthSky(viewer.renderer.backend);
   viewer.renderer.scene.add(sky);
 }
 
@@ -680,18 +632,16 @@ async function main(): Promise<void> {
   let quality = selectedQuality();
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
-  let performanceLevel = automaticQuality ? 3 : manualQualityLevel(quality);
+  let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
   const qualityController = new AdaptiveQualityController({ initialLevel: performanceLevel });
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
-    maxPixelError: automaticQuality
-      ? explorerPerformanceTier(performanceLevel).objectPixelError
-      : 2,
+    maxPixelError: automaticQuality ? earthPerformanceTier(performanceLevel).objectPixelError : 2,
   };
   const content = await contentLoad;
   const surfaceRenderer = createSurfaceControls(quality, content.parkedVehicles);
   const pyramidBudget = automaticQuality
-    ? explorerPerformanceTier(performanceLevel).terrain
+    ? earthPerformanceTier(performanceLevel).terrain
     : terrainPyramidBudgetForQuality(quality);
   const fixedBudget = terrainStreamBudgetForQuality(quality);
   // Adaptive coverage is the normal perspective path at every altitude. ?level=N intentionally
@@ -985,7 +935,7 @@ async function main(): Promise<void> {
   const gpuTimer = viewer.renderer.createGpuTimer();
   const resizeRenderer = (): void => {
     const ratio = automaticQuality
-      ? explorerPixelRatio(
+      ? earthPixelRatio(
           performanceLevel,
           window.innerWidth,
           window.innerHeight,
@@ -997,7 +947,7 @@ async function main(): Promise<void> {
     lodPolicy.viewportHeight = canvas.height;
   };
   const applyPerformanceLevel = (): void => {
-    const tier = explorerPerformanceTier(performanceLevel);
+    const tier = earthPerformanceTier(performanceLevel);
     if (automaticQuality) quality = tier.quality;
     lodPolicy.maxPixelError = automaticQuality ? tier.objectPixelError : 2;
     const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(quality);
@@ -1025,7 +975,7 @@ async function main(): Promise<void> {
     if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
     performanceLevel = automaticQuality
       ? Math.min(performanceLevel, 3)
-      : manualQualityLevel(quality);
+      : earthQualityLevel(quality);
     qualityController.setLevel(performanceLevel);
     applyPerformanceLevel();
     history.replaceState(null, '', next);
@@ -1098,7 +1048,13 @@ async function main(): Promise<void> {
   // the first time each is shown.
   const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
     (await new GLTFLoader().parseAsync(await content.packs.readBytes(id), '')).scene;
-  const vehicles = new WorldVehicles(stream.object, sampleHeight, loadEntityModel, content.types);
+  const vehicles: EarthVehicles = new EarthVehicles({
+    root: stream.object,
+    sampleHeight,
+    loadModel: loadEntityModel,
+    types: content.types,
+    obstacles: (box, except) => aircraftBlocks(vehicles.world, box, except),
+  });
   const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
   aircraft = new WorldAircraft(
     vehicles.world,
@@ -1430,7 +1386,7 @@ async function main(): Promise<void> {
     // the camera can briefly face resident-but-hidden terrain and expose a horizon-sized hole.
     const terrainViewChanged =
       adaptive &&
-      terrainViewNeedsImmediateUpdate(
+      viewNeedsImmediateUpdate(
         streamedPosition,
         streamedDirection,
         camera.pos,
@@ -1493,7 +1449,7 @@ async function main(): Promise<void> {
     });
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;
-    if (fog instanceof THREE.Fog) updateExplorerFog(fog, fogViewDistance, camera.pos[1]);
+    if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
     gpuTimer?.begin();
     weatherControls.update(now / 1000);
     viewer.renderFrame();
@@ -1640,7 +1596,7 @@ async function main(): Promise<void> {
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
-          ? `Auto · ${explorerPerformanceTier(performanceLevel).name} · target 60 FPS · ${control.reason === 'manual' ? 'measuring' : (control.reason ?? 'measuring')}`
+          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · target 60 FPS · ${control.reason === 'manual' ? 'measuring' : (control.reason ?? 'measuring')}`
           : `Manual · ${quality}`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,
         `CPU ${previousCpuMs.toFixed(1)}ms · GPU ${lastGpuMs?.toFixed(1) ?? 'unavailable'}ms · resolution ${canvas.width}×${canvas.height}`,

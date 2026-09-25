@@ -90,7 +90,16 @@ Earth packages use Web Mercator, which inflates horizontal distance by 1/cos(lat
 projected frame by `metersPerUnit = cos(center latitude)` (recorded on the descriptor), so tiles,
 meshes, semantic densities, character speeds, and entity XZ are all in ground meters. Convert
 between world and projected space with `projectedToWorld` / `worldToProjected`; `webMercatorToWgs84`
-takes projected coordinates (divide world XZ by `metersPerUnit` first).
+takes projected coordinates (divide world XZ by `metersPerUnit` first). `wgs84ToWorld(metersPerUnit,
+lon, lat)` and `worldToWgs84` do both steps for placing cameras, markers, and entities.
+
+The scale is exact at one latitude, the **frame**. It defaults to the center of the package bounds,
+which suits a regional package. A worldwide package centers on the equator, so pass the latitude you
+are viewing: `createTerrainPackagePyramidStream(pkg, { frame: { latitude }, … })` (every package
+open/descriptor helper accepts the same `frame`). `terrainPackageMetersPerUnit(pkg, frame)` returns the
+matching scale for your own placement math and for worldgen's `metersPerUnit`. The error grows by
+roughly 1–1.5% per degree of latitude away from the frame at mid-latitudes, so re-anchor — rebuild
+the streams on a new frame — after moving more than about a degree north or south.
 
 ## 3. Render it (client side)
 
@@ -215,6 +224,26 @@ Validate the manifest with `molen validate terrain-package.json`. A compiler/rel
 also run `molen validate terrain-package.json --verify-files`; that streams every declared file
 and checks directory containment, byte size, and SHA-256 without loading an archive into memory.
 
+A source may also be a **split archive family**: `{ "kind": "pmtiles-set", "url": ".../archive-set.json" }`
+(or a package-relative `path`) names a `molen/archive-set@1` document instead of one archive. Planet
+data outgrows what CDNs cache as a single object, so producers cut it into a coarse `base` archive
+plus detail archives, each owning a disjoint set of cells at `partitionLevel` (as run-length indices
+`y * 2^partitionLevel + x`). The package adapter opens the document lazily and routes every tile to
+the archive owning its ancestor cell, opening members on demand in a small LRU. Hosts with their own
+transport call `createTerrainArchiveSetArchive(urlOrDocument, { openArchive })` from
+`@bendyline/molen-terrain/client` and pass the result as `archive`, `landcoverArchive`, or
+`featuresArchive`; `createTerrainArchiveSetRouter` in the kernel half is the pure routing function,
+and `encodeTerrainArchiveSetPartitions` writes the run-length lists. Validate a set document with
+`molen validate archive-set.json`.
+
+Compilers write package archives with the portable PMTiles v3 writer in
+`@bendyline/molen-terrain/kernel` (Node, Workers and browsers). `writePmtilesArchive(tiles,
+{ tileType: 'png', bounds })` builds a whole archive in memory; for archives too large for memory,
+stream the tile payloads to disk in tile-id order (`pmtilesTileId(z, x, y)`) and write
+`createPmtilesPrefix(records, dataLength, options)` in front of them. Official readers fetch only the
+first 16 KiB to find the root directory, so the writer moves entries into gzip-compressed leaf
+directories once one root would overflow that window; archives of any size stay readable.
+
 The optional `surface` block declares `seaLevel` and portable height/slope material bands. If it is
 omitted, the projected-Earth adapter supplies a conservative dirt/sand/grass/rock/snow palette.
 
@@ -311,6 +340,16 @@ Water is separated from transportation/buildings even when
 they share one `features` PMTiles sidecar. When both sections reference one MVT archive, the
 renderer layers share one in-flight range read and full decode; decoded semantic documents are not
 retained as a second long-lived cache.
+
+The opposite split works too: when the terrain refines past a sidecar's last level (a zoom-13 vector
+archive under zoom-14 elevation), the finer tiles overzoom the sidecar's finest tiles by default.
+`overzoomTerrainSemanticTile` rescales an ancestor's normalized geometry onto the descendant, clips
+roads, waterways and areas to it (plus a 1/64 buffer, like decoded tiles), and keeps each building
+and point in exactly the one descendant that holds its center, so nothing is cut or drawn twice.
+`createOverzoomTerrainSemanticSource` wraps any semantic source this way and keeps recently decoded
+ancestors, since one ancestor serves up to four children at a time. Layers created by
+`createTerrainPackageSemanticLayers` then reach the package's `maxLevel`; pass `overzoom: false`
+to stop them at the sidecar's levels.
 
 The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightSource` walks to the
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into

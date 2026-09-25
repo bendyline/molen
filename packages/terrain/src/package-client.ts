@@ -8,21 +8,20 @@
  */
 
 import { PMTiles, TileType } from 'pmtiles';
+import { createTerrainArchiveSetArchive } from './archive-set-client';
 import type { TerrainDescriptor } from './descriptor-types';
 import {
   createTerrainElevationWorkerSource,
   type ElevationStageTiming,
   type ElevationWorkerLike,
 } from './elevation-worker';
-import {
-  WEB_MERCATOR_HALF_WORLD_METERS,
-  webMercatorScaleAtLatitude,
-  wgs84ToWebMercator,
-} from './geospatial';
+import { WEB_MERCATOR_HALF_WORLD_METERS, wgs84ToWebMercator } from './geospatial';
 import { Heightfield } from './heightfield';
+import { terrainPackageMetersPerUnit } from './package-frame';
 import type {
   TerrainPackageArchiveSource,
   TerrainPackageDescriptor,
+  TerrainPackageFrame,
   TerrainPackageSemanticContent,
   TerrainSemanticTileDecoder,
   TerrainTileArchive,
@@ -64,6 +63,8 @@ export interface OpenTerrainPackageOptions {
   /** Use the nearest available ancestor elevation tile when requested detail is missing. */
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
+  /** Metric frame for projected packages; defaults to the bounds' center latitude. */
+  frame?: TerrainPackageFrame;
 }
 
 export interface OpenTerrainPackageElevation {
@@ -80,6 +81,8 @@ export interface TerrainPackageStreamOptions extends TerrainStreamOptions {
   archive?: TerrainTileArchive;
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
+  /** Metric frame for projected packages; defaults to the bounds' center latitude. */
+  frame?: TerrainPackageFrame;
 }
 
 export interface TerrainPackageStream extends OpenTerrainPackageElevation {
@@ -97,6 +100,11 @@ export interface OpenTerrainPackagePyramidOptions {
   /** Use the nearest available ancestor elevation tile when exact pyramid detail is absent. */
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
+  /**
+   * Metric frame for projected packages; defaults to the bounds' center latitude. Pass the
+   * viewer's latitude for a worldwide package (see `TerrainPackageFrame`).
+   */
+  frame?: TerrainPackageFrame;
 }
 
 export interface OpenTerrainPackagePyramid {
@@ -215,7 +223,7 @@ function defaultPackageSurfaceLayers(pkg: TerrainPackageDescriptor): TerrainDesc
 /** Build the generic planar quadtree represented by a package's complete elevation pyramid. */
 export function terrainPyramidDescriptorFromPackage(
   pkg: TerrainPackageDescriptor,
-  levels: { minLevel?: number; maxLevel?: number } = {},
+  levels: { minLevel?: number; maxLevel?: number; frame?: TerrainPackageFrame } = {},
 ): TerrainPyramidDescriptor {
   checkPackageLevel(pkg, levels.minLevel ?? pkg.tileMatrix.minLevel);
   checkPackageLevel(pkg, levels.maxLevel ?? pkg.tileMatrix.maxLevel);
@@ -250,7 +258,7 @@ export function terrainPyramidDescriptorFromPackage(
     // Mercator meters are inflated by 1/cos(lat); scale the whole projected frame once, here,
     // so tiles, meshes, semantic densities, and entity XZ are all metric downstream.
     const [west, south, east, north] = pkg.coordinateSpace.bounds;
-    const s = webMercatorScaleAtLatitude((south + north) / 2);
+    const s = terrainPackageMetersPerUnit(pkg, levels.frame);
     metersPerUnit = s;
     origin = [-WEB_MERCATOR_HALF_WORLD_METERS * s, -WEB_MERCATOR_HALF_WORLD_METERS * s];
     rootSize = WEB_MERCATOR_HALF_WORLD_METERS * 2 * s;
@@ -277,6 +285,7 @@ export function terrainPyramidDescriptorFromPackage(
 export function terrainDescriptorFromPackage(
   pkg: TerrainPackageDescriptor,
   level: number,
+  frame?: TerrainPackageFrame,
 ): TerrainDescriptor {
   checkPackageLevel(pkg, level);
   const count = 2 ** level;
@@ -299,8 +308,7 @@ export function terrainDescriptorFromPackage(
         `projected Earth streaming currently supports EPSG:3857, got ${pkg.coordinateSpace.crs}`,
       );
     }
-    const [, south, , north] = pkg.coordinateSpace.bounds;
-    const s = webMercatorScaleAtLatitude((south + north) / 2);
+    const s = terrainPackageMetersPerUnit(pkg, frame);
     metersPerUnit = s;
     origin = [-WEB_MERCATOR_HALF_WORLD_METERS * s, -WEB_MERCATOR_HALF_WORLD_METERS * s];
     chunkSize = ((WEB_MERCATOR_HALF_WORLD_METERS * 2) / count) * s;
@@ -359,11 +367,22 @@ function sameTerrainPackageArchiveSource(
   left: TerrainPackageArchiveSource,
   right: TerrainPackageArchiveSource,
 ): boolean {
-  return terrainPackageArchiveSourceLocation(left) === terrainPackageArchiveSourceLocation(right);
+  return (
+    left.kind === right.kind &&
+    terrainPackageArchiveSourceLocation(left) === terrainPackageArchiveSourceLocation(right)
+  );
 }
 
-function packageArchiveUrl(pkg: TerrainPackageDescriptor, baseUrl?: string | URL): string {
-  return resolveTerrainPackageArchiveUrl(pkg.elevation.source, baseUrl);
+/**
+ * Open a declared package source with the default transport: the official PMTiles reader for a
+ * single archive, or a lazily routed archive set (`molen/archive-set@1`) for `pmtiles-set`.
+ */
+export function openTerrainPackageArchive(
+  source: TerrainPackageArchiveSource,
+  baseUrl?: string | URL,
+): TerrainTileArchive {
+  const url = resolveTerrainPackageArchiveUrl(source, baseUrl);
+  return source.kind === 'pmtiles-set' ? createTerrainArchiveSetArchive(url) : new PMTiles(url);
 }
 
 /** Adapt one declared semantic sidecar into normalized, format-neutral tile geometry. */
@@ -524,9 +543,7 @@ export async function openTerrainPackageSemantics(
   let landcoverArchive = options.landcoverArchive;
   let featuresArchive = options.featuresArchive;
   if (pkg.landcover !== undefined && landcoverArchive === undefined) {
-    landcoverArchive = new PMTiles(
-      resolveTerrainPackageArchiveUrl(pkg.landcover.source, options.baseUrl),
-    );
+    landcoverArchive = openTerrainPackageArchive(pkg.landcover.source, options.baseUrl);
   }
   if (pkg.features !== undefined && featuresArchive === undefined) {
     if (
@@ -536,9 +553,7 @@ export async function openTerrainPackageSemantics(
     ) {
       featuresArchive = landcoverArchive;
     } else {
-      featuresArchive = new PMTiles(
-        resolveTerrainPackageArchiveUrl(pkg.features.source, options.baseUrl),
-      );
+      featuresArchive = openTerrainPackageArchive(pkg.features.source, options.baseUrl);
     }
   }
   let landcover: OpenTerrainPackageSemanticSidecar | undefined;
@@ -793,8 +808,9 @@ export async function openTerrainPackageElevation(
   options: OpenTerrainPackageOptions,
 ): Promise<OpenTerrainPackageElevation> {
   checkPackageLevel(pkg, options.level);
-  const descriptor = terrainDescriptorFromPackage(pkg, options.level);
-  const archive = options.archive ?? new PMTiles(packageArchiveUrl(pkg, options.baseUrl));
+  const descriptor = terrainDescriptorFromPackage(pkg, options.level, options.frame);
+  const archive =
+    options.archive ?? openTerrainPackageArchive(pkg.elevation.source, options.baseUrl);
   const parentFallback = options.parentFallback ?? true;
   let minAvailableLevel = pkg.tileMatrix.minLevel;
   let maxAvailableLevel = options.level;
@@ -833,7 +849,8 @@ export async function openTerrainPackagePyramid(
   pkg: TerrainPackageDescriptor,
   options: OpenTerrainPackagePyramidOptions = {},
 ): Promise<OpenTerrainPackagePyramid> {
-  const archive = options.archive ?? new PMTiles(packageArchiveUrl(pkg, options.baseUrl));
+  const archive =
+    options.archive ?? openTerrainPackageArchive(pkg.elevation.source, options.baseUrl);
   let minLevel = pkg.tileMatrix.minLevel;
   let maxLevel = pkg.tileMatrix.maxLevel;
   if (archive.getHeader !== undefined) {
@@ -852,7 +869,11 @@ export async function openTerrainPackagePyramid(
       );
     }
   }
-  const descriptor = terrainPyramidDescriptorFromPackage(pkg, { minLevel, maxLevel });
+  const descriptor = terrainPyramidDescriptorFromPackage(pkg, {
+    minLevel,
+    maxLevel,
+    ...(options.frame !== undefined ? { frame: options.frame } : {}),
+  });
   const source = options.elevationWorker
     ? createTerrainElevationWorkerSource(options.elevationWorker, pkg, descriptor, archive, {
         ...(options.onElevationTiming ? { onTiming: options.onElevationTiming } : {}),
@@ -874,9 +895,11 @@ export async function createTerrainPackageStream(
   pkg: TerrainPackageDescriptor,
   options: TerrainPackageStreamOptions,
 ): Promise<TerrainPackageStream> {
-  const { level, baseUrl, archive, parentFallback, onParentFallback, ...streamOptions } = options;
+  const { level, baseUrl, archive, parentFallback, onParentFallback, frame, ...streamOptions } =
+    options;
   const opened = await openTerrainPackageElevation(pkg, {
     level,
+    ...(frame !== undefined ? { frame } : {}),
     ...(baseUrl !== undefined ? { baseUrl } : {}),
     ...(archive !== undefined ? { archive } : {}),
     ...(parentFallback !== undefined ? { parentFallback } : {}),
@@ -900,9 +923,11 @@ export async function createTerrainPackagePyramidStream(
     onParentFallback,
     elevationWorker,
     onElevationTiming,
+    frame,
     ...streamOptions
   } = options;
   const opened = await openTerrainPackagePyramid(pkg, {
+    ...(frame !== undefined ? { frame } : {}),
     ...(elevationWorker ? { elevationWorker } : {}),
     ...(onElevationTiming ? { onElevationTiming } : {}),
     ...(baseUrl !== undefined ? { baseUrl } : {}),

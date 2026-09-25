@@ -107,6 +107,23 @@ const SAMPLES = [
     guides: [['Figures', '/guide/figures']],
   },
   {
+    dir: 'earth-view',
+    title: 'Earth view',
+    kind: 'capability',
+    tagline: 'The whole real-world view in one mountEarthView call.',
+    body:
+      'The `@bendyline/molen-earth` facade on a page: streamed Sammamish terrain in a metric ' +
+      'frame, styled buildings and street surfaces from the content packs, orbit, walk and drive ' +
+      'navigation with parked cars, a photo-pin marker placed by latitude/longitude, and the ' +
+      'required data credits. Workers are one-line imports of the package entries.',
+    concepts: ['Earth view facade', 'Orbit / walk / drive', 'World markers', 'Worker entries'],
+    guides: [
+      ['Earth view', '/guide/earth-view'],
+      ['Camera navigation', '/guide/navigation'],
+      ['World markers', '/guide/markers'],
+    ],
+  },
+  {
     dir: 'world-explorer',
     title: 'World explorer',
     kind: 'capability',

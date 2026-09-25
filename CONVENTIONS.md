@@ -90,17 +90,24 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   (register new components with `registerComponent`).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
-  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`.
+  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world` (the ECS
+  World without the SES scripting runtime, for main-thread hosts).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel
   internals. (materials is pure CPU — the client's MaterialResolver bakes doc-backed
-  materialRefs at load time.) Subpaths: `/camera-track`, `/vite`, `/vehicles`, `/aircraft`. The
-  main barrel is the rendering surface only: finished game content sits behind a subpath that
-  mirrors the kernel's, so `/vehicles` and `/aircraft` are the render halves of the kernel
-  subpaths of the same name. Put the next `createXVisual` there, not in `index.ts`.
+  materialRefs at load time.) Subpaths: `/camera-track`, `/vite`, `/vehicles`, `/aircraft`,
+  `/navigation`, `/markers`. The main barrel is the rendering surface only: finished game
+  content sits behind a subpath that mirrors the kernel's, so `/vehicles` and `/aircraft` are
+  the render halves of the kernel subpaths of the same name. Put the next `createXVisual`
+  there, not in `index.ts`. `/navigation` (camera controllers and input) and `/markers` (world
+  billboards) are host-side rendering aids with no kernel twin.
 - `@bendyline/molen-terrain` is a capability package split into `/kernel` and `/client` — it has
   **no `.` export**. New capability packages follow this kernel/client-halves pattern.
+- `@bendyline/molen-earth` is a composition, not a capability: `/client` (the `mountEarthView`
+  facade and the pieces it is built from) plus one-line `/workers/*` entries. It depends on the
+  capability packages and never the reverse, so keep Earth-host policy (modes, quality tiers,
+  re-anchoring) here and generic mechanisms in the packages it composes.
 - `@bendyline/molen-pack` depends only on schema (+ `fflate`). Its `.` entry runs in browsers,
   Workers and Node and imports no `node:` modules; file-system helpers live in `/node`. The
   client does not depend on it: a pack set hands the client an `AssetProvider`-shaped object.

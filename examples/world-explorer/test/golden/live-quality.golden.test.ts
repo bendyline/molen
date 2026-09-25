@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { earthPerformanceTier } from '@bendyline/molen-earth/client';
 import { playExperience } from '@bendyline/molen-tooling';
 import { describe, expect, it } from 'vitest';
-import { explorerPerformanceTier } from '../../src/performance-policy';
 
 // Live quality changes must retain the camera and mounted viewer. This intentionally avoids
 // FPS assertions: software rendering in CI is useful for lifecycle coverage, not device ratings.
@@ -35,7 +35,7 @@ describe('browser: live device quality', () => {
     expect(frames.get('05-auto')?.quality?.toLowerCase()).toContain('auto');
     const performance = frames.get('05-auto')?.performance ?? '';
     const tierName = performance.match(/Auto · ([^·]+) ·/)?.[1]?.trim();
-    const tier = Array.from({ length: 6 }, (_, level) => explorerPerformanceTier(level)).find(
+    const tier = Array.from({ length: 6 }, (_, level) => earthPerformanceTier(level)).find(
       (candidate) => candidate.name === tierName,
     );
     expect(tier, performance).toBeDefined();

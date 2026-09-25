@@ -39,6 +39,7 @@
     "dev:driving": "pnpm --filter @bendyline/molen-examples-city-courier dev",
     "dev:dungeon": "pnpm --filter @bendyline/molen-examples-lantern-dungeon dev",
     "dev:platformer": "pnpm --filter @bendyline/molen-examples-skybound dev",
+    "dev:packages": "pnpm --filter \"./packages/**\" -r build && pnpm --filter \"./packages/**\" -r --parallel exec tsdown --watch",
     "predocs:site:gen": "pnpm -r build",
     "predocs:site:check": "pnpm -r build",
     "predocs:site:build": "pnpm -r build"

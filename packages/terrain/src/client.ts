@@ -4,6 +4,11 @@ import type { Heightfield } from './heightfield';
 import { buildChunkGeometry, type ChunkMeshOptions, lodStepForDistance } from './mesh';
 
 export {
+  createTerrainArchiveSetArchive,
+  type TerrainArchiveSetArchive,
+  type TerrainArchiveSetArchiveOptions,
+} from './archive-set-client';
+export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
   type TerrainLandcoverGenerator,
@@ -46,6 +51,7 @@ export {
   type OpenTerrainPackageSemanticSidecar,
   type OpenTerrainPackageSemantics,
   type OpenTerrainPackageSemanticsOptions,
+  openTerrainPackageArchive,
   openTerrainPackageElevation,
   openTerrainPackagePyramid,
   openTerrainPackageSemantics,

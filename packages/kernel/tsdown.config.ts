@@ -13,6 +13,7 @@ export default defineConfig({
     'src/content-entry.ts',
     'src/vehicles.ts',
     'src/aircraft.ts',
+    'src/world-entry.ts',
   ],
   format: 'esm',
   dts: true,

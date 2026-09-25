@@ -61,6 +61,13 @@ export interface RendererOptions {
   /** Background clear color, default a mid grey. */
   clearColor?: string;
   /**
+   * WebGL only: `dispose()` also releases the GL context (`forceContextLoss`). Browsers cap live
+   * contexts per page (Chromium keeps 16), so a single-page host that mounts and unmounts viewers
+   * should enable this; each mount then needs a fresh canvas, because a lost context stays
+   * attached to its canvas. Default false keeps a canvas reusable after dispose.
+   */
+  releaseContextOnDispose?: boolean;
+  /**
    * Stars for every sky, e.g. `decodeStarCatalog` of the `molen.sky` content pack's `stars.bin`.
    * Without a catalog, skies show no stars; `setStarCatalog` supplies one later.
    */
@@ -210,6 +217,7 @@ export class Renderer {
   private readonly autoWorldOrigin: AutoWorldOriginOptions | undefined;
   private readonly timers = new Set<GpuFrameTimer>();
   private disposed = false;
+  private readonly releaseContextOnDispose: boolean;
   private deviceLossReason: string | undefined;
   private readonly optimizer: WebGpuSceneOptimizer | undefined;
   private activeSky: SkyVisual | undefined;
@@ -362,6 +370,7 @@ export class Renderer {
     const cameraNear = opts.cameraNear ?? 0.1;
     const cameraFar = opts.cameraFar ?? 5000;
     this.autoWorldOrigin = opts.autoWorldOrigin;
+    this.releaseContextOnDispose = opts.releaseContextOnDispose ?? false;
     this.cameraNear = cameraNear;
     this.cameraFar = cameraFar;
     this.viewportWidth = width;
@@ -442,6 +451,11 @@ export class Renderer {
 
   getWorldOrigin(): Vec3 {
     return [...this.worldOrigin];
+  }
+
+  /** Drawing size in CSS pixels as last passed to `setSize` (before the pixel ratio). */
+  getViewportSize(): [number, number] {
+    return [this.viewportWidth, this.viewportHeight];
   }
 
   setCameraClip(near: number, far: number): void {
@@ -870,6 +884,9 @@ export class Renderer {
     this.optimizer?.dispose();
     this.worldRoot.clear();
     this.three.dispose();
+    if (this.releaseContextOnDispose && this.backend === 'webgl') {
+      (this.three as THREE.WebGLRenderer).forceContextLoss();
+    }
   }
 }
 

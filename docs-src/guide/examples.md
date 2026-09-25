@@ -24,6 +24,7 @@ meant to be copied. Three ways in, none of which needs a clone of the engine rep
 | Top-down arena | a complete small game as **pure data**: `scene.json` declares kinematics, the `move` command + WASD input, and four scripts (control/spawner/chaser/combat); no setup module | [play](https://molen.dev/play/top-down-arena/) | `top-down-arena` |
 | Terrain flyover | chunked LOD terrain from a descriptor + deterministic 16-bit heightmap | [play](https://molen.dev/play/terrain-flyover/) | `terrain-flyover` |
 | Figures gallery | a lineup of every figure preset, a body-type sweep, a hat on a head socket and a rider on a horse; `?walk=1` (or the `set_gait` command) animates the gaits in place | [play](https://molen.dev/play/figures-gallery/) | `figures-gallery` |
+| Earth view | the [`mountEarthView`](earth-view.md) facade in one page: real Sammamish terrain, styled buildings, orbit / walk / drive with parked cars, a photo-pin marker and credits (`?mode=walk`, `?lat=&lon=&range=`) | [play](https://molen.dev/play/earth-view/) | [source](https://github.com/bendyline/molen/tree/main/examples/earth-view) |
 | World explorer | streamed Web Mercator terrain with adaptive package LOD, bare / land-classification / human-feature modes, and styled buildings from the default worldgen pack (`?style=`, `?synthetic=1&lineup=1`) | [play](https://molen.dev/play/world-explorer/) | [source](https://github.com/bendyline/molen/tree/main/examples/world-explorer) |
 
 ## Playable game samples

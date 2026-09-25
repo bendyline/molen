@@ -62,6 +62,9 @@ importers:
       '@bendyline/molen-examples-data-viz':
         specifier: workspace:*
         version: link:../examples/data-viz
+      '@bendyline/molen-examples-earth-view':
+        specifier: workspace:*
+        version: link:../examples/earth-view
       '@bendyline/molen-examples-figures-gallery':
         specifier: workspace:*
         version: link:../examples/figures-gallery
@@ -200,6 +203,43 @@ importers:
       '@types/three':
         specifier: 0.184.0
         version: 0.184.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: ^6.4.0
+        version: 6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1)
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.1(@types/node@24.13.2)(vite@6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1))
+
+  examples/earth-view:
+    dependencies:
+      '@bendyline/molen-client':
+        specifier: workspace:*
+        version: link:../../packages/client
+      '@bendyline/molen-earth':
+        specifier: workspace:*
+        version: link:../../packages/earth
+      '@bendyline/molen-terrain':
+        specifier: workspace:*
+        version: link:../../packages/terrain
+      three:
+        specifier: 0.184.0
+        version: 0.184.0
+    devDependencies:
+      '@bendyline/molen-examples-world-explorer':
+        specifier: workspace:*
+        version: link:../world-explorer
+      '@biomejs/biome':
+        specifier: ^2.5.0
+        version: 2.5.0
+      '@types/three':
+        specifier: 0.184.0
+        version: 0.184.0
+      playwright:
+        specifier: ^1.63.0
+        version: 1.63.0
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -409,6 +449,9 @@ importers:
       '@bendyline/molen-client':
         specifier: workspace:*
         version: link:../../packages/client
+      '@bendyline/molen-earth':
+        specifier: workspace:*
+        version: link:../../packages/earth
       '@bendyline/molen-kernel':
         specifier: workspace:*
         version: link:../../packages/kernel
@@ -474,6 +517,52 @@ importers:
       '@types/node':
         specifier: ^24
         version: 24.13.2
+      '@types/three':
+        specifier: 0.184.0
+        version: 0.184.0
+      three:
+        specifier: 0.184.0
+        version: 0.184.0
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.2(typescript@6.0.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.1(@types/node@24.13.2)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(yaml@2.9.1))
+
+  packages/earth:
+    dependencies:
+      '@bendyline/molen-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+      '@bendyline/molen-materials':
+        specifier: workspace:*
+        version: link:../materials
+      '@bendyline/molen-pack':
+        specifier: workspace:*
+        version: link:../pack
+      '@bendyline/molen-schema':
+        specifier: workspace:*
+        version: link:../schema
+      '@bendyline/molen-terrain':
+        specifier: workspace:*
+        version: link:../terrain
+      '@bendyline/molen-worldgen':
+        specifier: workspace:*
+        version: link:../worldgen
+      '@bendyline/molen-worldgen-earth':
+        specifier: workspace:*
+        version: link:../worldgen-earth
+    devDependencies:
+      '@bendyline/molen-client':
+        specifier: workspace:*
+        version: link:../client
+      '@biomejs/biome':
+        specifier: ^2.5.0
+        version: 2.5.0
       '@types/three':
         specifier: 0.184.0
         version: 0.184.0
