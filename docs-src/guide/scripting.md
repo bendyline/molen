@@ -1,6 +1,6 @@
 # Game logic: scripts and setup
 
-A molen experience is **data plus scripts**. The scene manifest declares the world, the commands
+A Molen experience is **data plus scripts**. The scene manifest declares the world, the commands
 it accepts, and its scripts; the scripts hold the logic. A code setup module exists for the rare
 things scripts cannot express, and for typed TypeScript authoring inside a project that installs
 the engine packages.
@@ -24,7 +24,8 @@ Erasure is whitespace-preserving, so the evaluated source keeps the exact line a
 of the file you wrote and `script "chase" tick handler at tick 12: …` still points at the right
 line. Nothing is emitted next to your source, and there is no build step to run by hand.
 
-> **Renamed:** the verb set was injected as `api` in earlier builds and is now `molen`. There is
+> [!NOTE]
+> **Renamed.** The verb set was injected as `api` in earlier builds and is now `molen`. There is
 > no alias — a script that references `api` throws at evaluation with the new name in the
 > message, so the fix is a find-and-replace of `api.` with `molen.`.
 

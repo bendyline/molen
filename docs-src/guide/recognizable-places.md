@@ -109,8 +109,9 @@ catalogs are extended in the engine repository.
    title. Reserve other geometric marks for non-business category signs and props. A new silhouette
    needs a bounded generator implementation and schema update.
 4. Increment the edited document version to record the revision. Run `molen validate <file>`
-   for structural validation, then `pnpm -r build` to validate catalog cross-references.
-   Content hashes handle cache invalidation independently of manual version bumps.
+   for structural validation, then `pnpm -r build` in the engine repository to validate catalog
+   cross-references. Content hashes handle cache invalidation independently of manual version
+   bumps.
 5. For behavioral or visual changes, add positive and misleading-name cases, a standalone and
    shared-building example, and inspect near/distant captures. Follow the
    [3D art guidelines](3d-art-guidelines.md).

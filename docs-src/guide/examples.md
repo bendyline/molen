@@ -7,7 +7,7 @@ meant to be copied. Three ways in, none of which needs a clone of the engine rep
 - **Copy** a sample into your own npm project with `--template`. The templates ship inside
   `@bendyline/molen-tooling`, locked to the engine version you install, so they work offline:
 
-  ```
+  ```sh
   npx @bendyline/molen-tooling new my-game --template skybound
   cd my-game && npm install && npm run dev
   ```

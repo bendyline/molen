@@ -1,15 +1,14 @@
 # Mountable vehicles and driving
 
-For the P-51D Mustang and OH-6, see [Aircraft](aircraft.md). They share the mount/seat
-foundation and add separate flight controls, physics, assets and cockpit cameras.
-
 World explorer's parking cars are external entity types with stable IDs, metric dimensions, and five
-models: compact, sedan, SUV, pickup and van. Each type owns its GLB reference, complete physics
-configuration, seats, named visual bindings, and optional deterministic scripts. Dormant cars use
-generic dimension-driven instance proxies; approaching or entering one loads its independent GLB
-with its own interior and controls. See [Vehicle interiors](vehicle-interiors.md).
-No concrete car model or handling catalog is compiled into schema,
-kernel, or client.
+models: compact, sedan, SUV, pickup and van. You can walk up to one, get in and drive it.
+
+Each type owns its GLB reference, complete physics configuration, seats, named visual bindings,
+and optional deterministic scripts. Dormant cars use generic dimension-driven instance proxies;
+approaching or entering one loads its independent GLB with its own interior and controls. See
+[Vehicle interiors](vehicle-interiors.md). No concrete car model or handling catalog is compiled
+into schema, kernel, or client. The P-51D Mustang and OH-6 share the same mount/seat foundation
+and add separate flight controls, physics, assets and cockpit cameras; see [Aircraft](aircraft.md).
 
 In **Walk mode**, approach a car and press **E** to enter its driver seat. **W/S** accelerate or
 brake then reverse; **A/D** steer; **Space** brakes; **V** switches cockpit/chase views. Mouse look

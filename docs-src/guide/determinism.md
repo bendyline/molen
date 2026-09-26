@@ -1,6 +1,6 @@
 # Determinism: what is guaranteed
 
-Determinism is molen's headline guarantee. This page is the contract: what reproduces, how
+Determinism is Molen's headline guarantee. This page is the contract: what reproduces, how
 exactly, what breaks it, and what happens to your save files when you upgrade.
 
 ## The short version
@@ -126,7 +126,7 @@ runs as ordinary code, and nothing lints it.
 
 ## Upgrades and save files
 
-**Upgrading molen does not invalidate your saves unless the state format changed.**
+**Upgrading Molen does not invalidate your saves unless the state format changed.**
 
 Two constants live in `packages/kernel/src/version.ts` and they do different jobs:
 
@@ -142,13 +142,13 @@ before the key existed is read as format 1, the layout in use when it was introd
 
 **What a mismatch looks like.** Loading a keyframe whose format does not match throws:
 
-```
+```text
 keyframe state format 7 does not match 1 (written by engine 0.0.1)
 ```
 
 `molen replay` checks the same thing before it runs anything, and tells you the fix:
 
-```
+```text
 replay was recorded with state format 99; this build reads 1. Re-record it with: molen replay <fixture> --record
 ```
 
@@ -176,7 +176,7 @@ hashes in as well would make a hash depend on content no tick read.
 What the identity buys is a named error instead of a divergence at tick 0. Loading a keyframe into
 a world built from different content throws before any state changes:
 
-```
+```text
 keyframe was saved with different content: content "types" was sha256:ab… (molen.entities@0.0.1) but the loaded content is sha256:cd… (molen.entities@0.0.2)
 ```
 
@@ -193,11 +193,11 @@ The commands below run in a copy of the Skybound sample, made from the npm packa
 
 **One run, one hash.**
 
-```
+```sh
 npx molen sim run scene.json --ticks 30 --hash
 ```
 
-```
+```text
 tick: 30
 hash: sha256:ba22126aec5915b2de74b445cce75077e859ed5f1837cc3f13d4508c7222ccb9
 events: 30
@@ -212,11 +212,11 @@ same-JS-engine overall. Use the table above for the whole scene.
 **A recorded run, localized on failure.** A `*.replay.json` fixture holds the scene reference, the
 command log, and `expected.stateHash` plus `expected.tickHashes`.
 
-```
+```sh
 npx molen replay first-leap.replay.json
 ```
 
-```
+```text
 ✓ replay matches (150 ticks, hash sha256:ede1d58b…, 128 events)
 ```
 
@@ -229,7 +229,7 @@ classifies what it finds:
 - **`behavior-drift`** — the build is deterministic but no longer matches the recording. If the
   per-tick hashes are recorded, you get the first tick that differs:
 
-```
+```text
 ✖ replay diverged from the recording (the build is deterministic):
   expected: sha256:deadbeef
   actual:   sha256:ede1d58b…
@@ -271,7 +271,7 @@ Read this list before you build something that depends on a guarantee it does no
   polynomial approximations is a one-file change. Today its transcendentals are thin re-exports of
   native `Math`, so every "same JS engine" row above stays same-JS-engine until that swap happens.
   Routing through `dmath` buys you the swap point, not the result.
-- **There is no cross-JS-engine CI.** Every environment molen tests in — Node, headless Chromium,
+- **There is no cross-JS-engine CI.** Every environment Molen tests in — Node, headless Chromium,
   the browser goldens, the materials cross-environment test — runs V8. No claim in this repo has
   been checked against JavaScriptCore or SpiderMonkey.
 - **Worldgen's content hashes are same-engine.** They are cache keys and regression signals, and

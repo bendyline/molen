@@ -123,7 +123,7 @@ function renderComponents() {
   const lines = [
     '# Components',
     '',
-    'Components are pure-JSON data attached to entities. molen ships a known component vocabulary;',
+    'Components are pure-JSON data attached to entities. Molen ships a known component vocabulary;',
     "`molen validate` checks component data against it, so a typo'd name (`helth` → `health`) or a",
     'wrong field (`transform.position` → `pos`) is caught in the cheap pre-sim loop. **Inventing your',
     "own components is fine** — a name that doesn't resemble a known one is accepted as-is (declare it",

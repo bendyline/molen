@@ -356,7 +356,7 @@ title: ${yamlString(sample.title)}
 
 # ${sample.title}
 
-<p class="sample-tagline">${sample.tagline}</p>
+${sample.tagline}
 
 ${facts.preview ? `[![${sample.title}](/samples/${sample.dir}.png)](${play})\n` : ''}
 ${sample.body}

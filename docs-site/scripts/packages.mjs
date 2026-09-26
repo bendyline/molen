@@ -117,7 +117,10 @@ export function escapeProse(markdown) {
         inFence = !inFence;
         return line;
       }
-      return inFence ? line : mdText(line);
+      if (inFence) return line;
+      // A leading `>` is blockquote (and `> [!TIP]` alert) syntax, not prose: keep it.
+      const [, quote, rest] = line.match(/^(\s*(?:>\s?)*)(.*)$/);
+      return quote + mdText(rest);
     })
     .join('\n');
 }

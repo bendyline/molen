@@ -121,7 +121,8 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
-  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`.
+  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
+  follow [docs-site/STYLE.md](docs-site/STYLE.md), which `pnpm docs:site:check` enforces.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`

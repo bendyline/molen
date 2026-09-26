@@ -30,6 +30,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   the same commands work in the repo and in a copy; link outside the sample with absolute URLs.
 - Content packs reach users from `molen.dev/packs/index.json` (`molen pack fetch`), staged by the
   site build from `content/`. Document that, not `content/` paths.
+- Every molen.dev page follows [docs-site/STYLE.md](docs-site/STYLE.md): the look (tokens in the
+  theme, never on a page), one `#` title, a lede, nested headings, a language on every code block,
+  GitHub alerts (`> [!TIP]`) rather than `:::` in `docs-src/`, and "in the engine repository" before
+  any `pnpm` or `node packages/…` command. `docs-site/scripts/check-style.mjs` (in
+  `pnpm docs:site:check`) enforces the mechanical rules.
 - Links out of `docs-src/` are absolute (`https://github.com/bendyline/molen/…` or
   `https://molen.dev/…`): a relative link that climbs out of the bundle is dead inside the npm
   tarball and dropped on the site. `scripts/check-shipped-docs.mjs` (in `pnpm lint`) enforces it.

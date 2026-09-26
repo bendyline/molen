@@ -176,7 +176,7 @@ calls, instances, loading/failure counts, and evictions for live quality diagnos
 
 ## 4. Screenshot it headlessly
 
-```
+```sh
 molen shot scene.json --out island.png --camera 256,160,580 --look 256,20,256 --size 1280x720
 ```
 
