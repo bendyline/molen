@@ -1,9 +1,10 @@
 # Inferred building interiors
 
-World explorer enables lazy interiors in the styled **Human** layer. Choose
-**Walk**, approach a building, and walk through its framed entrance. Near the entrance, the
-windows become transparent and reveal the same interior you can enter. `?interiors=0`
-disables this capability. `?synthetic=1&stores=1` provides a repeatable block of recognizable
+World explorer enables lazy interiors in the styled **Human** layer: choose **Walk**, approach
+a building, and walk through its framed entrance. Near the entrance, the windows become
+transparent and reveal the same interior you can enter.
+
+`?interiors=0` disables this capability. `?synthetic=1&stores=1` provides a repeatable block of recognizable
 stores; `test/visual/interiors.play.json` walks into and out of its fast-food restaurant and grocery store.
 Use `?synthetic=1&houses=1` for a residential block with two-storey houses and a bungalow.
 `test/visual/houses.play.json` walks through its entrance, climbs the stairs, and enters a bedroom.

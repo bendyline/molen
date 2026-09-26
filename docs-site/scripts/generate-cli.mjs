@@ -153,15 +153,16 @@ outline: [2, 3]
 drift from the shipped commands.
 
 ::: tip Running the CLI
-After \`pnpm install && pnpm -r build\`, invoke it as \`node packages/tooling/dist/cli.mjs <cmd>\`
-(note \`.mjs\`). If the package \`bin\` is on your \`PATH\`, just \`molen <cmd>\`.
+Inside a project that installs \`@bendyline/molen-tooling\` (every \`molen new\` project does), run
+\`npx molen <cmd>\`; the usage lines below drop the \`npx\`. To create that project, name the
+scoped package — the unscoped \`molen\` on npm is unrelated.
 :::
 
 \`\`\`sh
-molen new my-experience            # scaffold a runnable project
-molen validate scene.json          # cheap — do it constantly
-molen sim run scene.json --ticks 30 --assert checks.json --hash
-molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
+npx @bendyline/molen-tooling new my-experience   # scaffold a runnable project
+npx molen validate scene.json                    # cheap — do it constantly
+npx molen sim run scene.json --ticks 30 --assert checks.json --hash
+npx molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
 \`\`\`
 
 ${OPS_CATALOG.filter((o) => o.cli).length} commands, in the order you tend to meet them. Each entry

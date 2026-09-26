@@ -39,7 +39,7 @@ every char is in the palette — with row/column pinpointed. Bake: `molen materi
 
 Author vector art and rasterize it deterministically (resvg, identical bytes in Node/browser/CI):
 
-```
+```sh
 molen material bake badge.svg -o badge.png
 ```
 
@@ -86,7 +86,7 @@ evidence across environments rather than a proof across JS engines; see
 
 Bake and inspect:
 
-```
+```sh
 molen material bake rock.matgraph.json -o rock.png
 ```
 
@@ -101,7 +101,7 @@ Full node vocabulary and per-field schema: [schemas/matgraph.md](../schemas/matg
 For textured models: a sidecar pairs a model with island annotations and a painted template, so a
 flat color/paint pass re-imports into the right UV islands (masked + gutter-dilated).
 
-```
+```sh
 molen validate scout.uvpaint.json
 molen uvpaint apply scout-painted.png --islands scout-islands.png -o scout-tex.png
 # (same op over MCP: apply_uv_paint)

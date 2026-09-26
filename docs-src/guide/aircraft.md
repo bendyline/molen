@@ -1,13 +1,13 @@
 # Aircraft in the world explorer
 
-See [Vehicle interiors and instruments](vehicle-interiors.md) for cockpit source files,
-per-model instrument bindings and the shared exterior/seated GLB contract.
-
 The world explorer includes a P-51D Mustang and OH-6 interpretation, each with an editable
-GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera. Use the
-**P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to board.
-The aircraft buttons also work from the example hub's world view. A direct link can use
-`?aircraft=p51d` or `?aircraft=oh6`.
+GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera.
+
+Use the **P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to
+board. The aircraft buttons also work from the example hub's world view. A direct link can use
+`?aircraft=p51d` or `?aircraft=oh6`. See [Vehicle interiors and instruments](vehicle-interiors.md)
+for cockpit source files, per-model instrument bindings and the shared exterior/seated GLB
+contract.
 
 The practice airfield is a raised 900-meter runway and helipad near the initial camera position.
 Its foundation clears streamed buildings; it is a fictional practice location, not a mapped airport.

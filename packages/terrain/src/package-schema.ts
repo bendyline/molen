@@ -24,6 +24,18 @@ const archiveSource = z.union([
     kind: z.literal('pmtiles').describe("Archive kind; always 'pmtiles'."),
     url: z.url().describe('Absolute URL of the PMTiles archive.'),
   }),
+  z.strictObject({
+    kind: z
+      .literal('pmtiles-set')
+      .describe("Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."),
+    path: packagePath.describe('Package-relative path of the archive-set document.'),
+  }),
+  z.strictObject({
+    kind: z
+      .literal('pmtiles-set')
+      .describe("Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."),
+    url: z.url().describe('Absolute URL of the archive-set document.'),
+  }),
 ]);
 const surfaceLayer = z.strictObject({
   name: z.string().min(1).describe("Layer name, e.g. 'grass' or 'rock'."),

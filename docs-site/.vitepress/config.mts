@@ -1,4 +1,5 @@
-import { defineConfig } from 'vitepress';
+import { type HeadConfig, defineConfig } from 'vitepress';
+import { molenDark, molenLight } from './code-theme.mts';
 import generated from './generated-nav.json' with { type: 'json' };
 
 // Everything under `sidebar` is produced by `scripts/generate-all.mjs` from the packages,
@@ -16,16 +17,29 @@ export default defineConfig({
   lang: 'en-US',
   cleanUrls: true,
   lastUpdated: true,
-  appearance: 'dark',
+  // Follow the reader's system setting, as the samples gallery at /play/ does.
+  appearance: true,
 
-  // `scripts/` is build tooling, not content; the package README is not a page.
-  srcExclude: ['**/README.md', 'scripts/**'],
+  // `scripts/` is build tooling, not content; the package README and the style guide are not pages.
+  srcExclude: ['**/README.md', 'STYLE.md', 'scripts/**'],
 
   head: [
-    ['meta', { name: 'theme-color', content: '#5b8def' }],
+    ['meta', { name: 'theme-color', content: '#eae5d6', media: '(prefers-color-scheme: light)' }],
+    ['meta', { name: 'theme-color', content: '#292d24', media: '(prefers-color-scheme: dark)' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Molen — an AI-legible 3D experience engine' }],
   ],
+
+  // The theme's two fonts (theme/fonts/) are on every page: fetch them with the HTML, not after
+  // the stylesheet is parsed.
+  transformHead({ assets }) {
+    return assets
+      .filter((file) => /\/(?:hanken-grotesk|pt-serif-400)\.[\w-]+\.woff2$/.test(file))
+      .map((href): HeadConfig => [
+        'link',
+        { rel: 'preload', href, as: 'font', type: 'font/woff2', crossorigin: '' },
+      ]);
+  },
 
   themeConfig: {
     nav: [
@@ -58,7 +72,7 @@ export default defineConfig({
       message:
         `${counts.guides} guides · ${counts.schemas} schema formats · ${counts.entryPoints} API entry points · ${counts.samples} samples. ` +
         'API, CLI and schema pages are generated from the shipped build.',
-      copyright: 'Molen',
+      copyright: 'Molen / <a href="https://bendyline.com">Bendyline</a>',
     },
   },
 
@@ -67,7 +81,7 @@ export default defineConfig({
   ignoreDeadLinks: [/^\/llms\.txt$/],
 
   markdown: {
-    theme: { light: 'github-light', dark: 'github-dark' },
+    theme: { light: molenLight, dark: molenDark },
     // /play/ (the samples) and /packs/ (the content packs) are not pages: scripts/stage-hosted.mjs
     // copies them into the build after VitePress finishes. A root-relative link to them would
     // fail the dead-link check, and on the live site the client router would intercept the click

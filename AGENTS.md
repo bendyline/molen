@@ -121,12 +121,14 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
-  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`.
+  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
+  follow [docs-site/STYLE.md](docs-site/STYLE.md), which `pnpm docs:site:check` enforces.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
-  `/determinism`, `/content`, `/vehicles`, `/aircraft`; `@bendyline/molen-client` also exposes
-  `/camera-track`, `/vite`, `/vehicles`, `/aircraft`; `@bendyline/molen-terrain`
-  and `@bendyline/molen-figures` expose only `/kernel` and `/client` (no `.`).
+  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
+  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`;
+  `@bendyline/molen-terrain` and `@bendyline/molen-figures` expose only `/kernel` and `/client`
+  (no `.`).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).

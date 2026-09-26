@@ -1,0 +1,32 @@
+{
+  "name": "@bendyline/molen-examples-earth-view",
+  "version": "0.0.0",
+  "private": true,
+  "description": "mountEarthView in one page: real terrain, styled buildings, orbit/walk/drive and a photo-pin marker",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5226",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test",
+    "predev": "node ../world-explorer/scripts/build-content-packs.mjs",
+    "prebuild": "node ../world-explorer/scripts/build-content-packs.mjs",
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:golden": "pnpm run build && vitest run --config vitest.golden.config.ts"
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-earth": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "three": "0.184.0"
+  },
+  "devDependencies": {
+    "@bendyline/molen-examples-world-explorer": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "playwright": "^1.63.0",
+    "typescript": "catalog:",
+    "vite": "^6.4.0",
+    "vitest": "catalog:"
+  }
+}

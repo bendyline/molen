@@ -12,7 +12,7 @@ install: three complete games, the capability demos and the small starters.
 
 Scaffold a project from npm and install it:
 
-```
+```sh
 npx @bendyline/molen-tooling new my-experience
 cd my-experience
 npm install                       # the engine, the molen CLI, TypeScript and Vite
@@ -32,7 +32,7 @@ CLI the project installed. See the [agent loop](agent-loop.md) and
 The smaller samples ship inside `@bendyline/molen-tooling` as templates, locked to the engine
 version you install. `--template` copies one into a standalone npm project that you own:
 
-```
+```sh
 npx @bendyline/molen-tooling templates                  # list them
 npx @bendyline/molen-tooling new my-game --template skybound
 cd my-game

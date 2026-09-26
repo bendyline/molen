@@ -1,7 +1,9 @@
 ---
 layout: home
 
-hero:
+# The top of this page is drawn by .vitepress/theme/MolenHome.vue from `intro`, `showcase` and
+# `pillars` below; the markdown after the frontmatter renders beneath it. See STYLE.md.
+intro:
   name: Molen
   text: An AI-legible 3D experience engine
   tagline: A deterministic headless kernel, a three.js client, and a dev loop an agent can drive end to end — no human in the middle.
@@ -13,13 +15,17 @@ hero:
       text: Play the samples
       link: https://molen.dev/play/
     - theme: alt
-      text: Browse samples
-      link: /samples/
-    - theme: alt
       text: API reference
       link: /api/
 
-features:
+showcase:
+  image: /samples/lantern-dungeon.png
+  alt: The Lantern Vault, seen in first person — a torch-lit stone vault, a lantern in one hand and a sword in the other.
+  title: The Lantern Vault
+  caption: a first-person dungeon with combat, keys and a locked gate, made from a scene manifest and scene scripts.
+  link: https://molen.dev/play/lantern-dungeon/
+
+pillars:
   - title: Deterministic by construction
     details: Same seed, same commands, same state hash — on any machine. Randomness routes through the world RNG and math through dmath, so a replay mismatch localizes the exact diverging tick.
     link: /guide/agent-loop
@@ -63,7 +69,7 @@ packs: `npx molen pack fetch https://molen.dev/packs/index.json` adds them to a 
 
 ## What each section is
 
-| | |
+| Section | What it is |
 |---|---|
 | **[Guides](/guide/quickstart)** | How the engine is meant to be used, written for a reader building something. Start with the [quickstart](/guide/quickstart), then [the agent loop](/guide/agent-loop) and [scripting](/guide/scripting). |
 | **[Samples](/samples/)** | Nine runnable experiences, from ~50 spinning cubes to three complete games. Each is a browser demo and a headless test — the intended copy-and-modify starting points. [Play them all](https://molen.dev/play/) in the browser, or copy one with `--template`. |

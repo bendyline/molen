@@ -8,8 +8,13 @@ drift from the engine.
 pnpm docs:site:dev       # generate, then serve with hot reload
 pnpm docs:site:build     # generate, then build to .vitepress/dist
 pnpm docs:site:preview   # serve the built output
-pnpm docs:site:check     # CI: fail if the generated navigation is stale
+pnpm docs:site:check     # CI: fail if the generated navigation is stale or a page is off-style
 ```
+
+Every page follows [STYLE.md](STYLE.md): the warm Bendyline look shared with the `/play/` gallery,
+the page anatomy (one title, a lede, nested headings), and writing for a reader who installed from
+npm. `scripts/check-style.mjs` checks the mechanical rules at the end of every generation run:
+warnings while you work, a failure under `docs:site:check`.
 
 Each of those runs `pnpm -r build` first — the generators read packages' built `dist/`, per the
 repo's build invariant, and the build stages the examples' `dist/` output.
@@ -49,9 +54,12 @@ fails until it is.
 
 ## What IS hand-written
 
-- `index.md` — the landing page.
+- `index.md` — the landing page. Its frontmatter (`intro`, `showcase`, `pillars`) is drawn by
+  `.vitepress/theme/MolenHome.vue`; its markdown body renders below.
 - `.vitepress/config.mts` — site framing; its `sidebar` is imported from generated JSON.
-- `.vitepress/theme/custom.css` — brand tokens.
+- `.vitepress/theme/custom.css` — the palette and type every page uses, with the fonts in
+  `.vitepress/theme/fonts/`; `.vitepress/code-theme.mts` — syntax colours in the same palette.
+- `STYLE.md` — the style guide those files implement; not a page.
 - The editorial arrays: `SAMPLES` and `KINDS` in `generate-samples.mjs` (what a sample is *for*),
   `GROUPS` in `generate-cli.mjs` (how commands are grouped), `GUIDE_ORDER` in
   `generate-guides.mjs` (learning order). Each generator warns on stdout when something on disk

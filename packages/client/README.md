@@ -67,6 +67,8 @@ probe — a pinned backend is what makes a captured frame reproducible.
 | `./vite` | `molenScripts()` — a Vite plugin that type-strips `*.ts?raw` scene scripts so the browser never sees TypeScript |
 | `./vehicles` | `createVehicleVisual`, `createParkedVehicleBatch`, `vehicleCameraPose` — car visuals and cockpit/chase views, the render half of `@bendyline/molen-kernel/vehicles` |
 | `./aircraft` | `createAircraftVisual`, `aircraftCameraPose` — animated airframe and instrumented cockpit, the render half of `@bendyline/molen-kernel/aircraft` |
+| `./navigation` | `OrbitController`, `FlyController`, `WalkController` + `WalkCollision`, `FollowController`, `NavigationInputSource` (keys, gamepad, pointer gestures) and `createTouchJoystick` — camera navigation for `createViewer` hosts |
+| `./markers` | `createMarkerLayer`, `composeMarkerImage`, `projectWorldToScreen` — screen-sized, ground-snapped, pickable world markers such as photo pins |
 
 Renderables are data, not three.js objects: primitives and glTF assets described by a
 `renderable` component, with materials resolved from `palette:`, `matgraph:` and `pixelgrid:`

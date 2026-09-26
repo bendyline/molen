@@ -31,6 +31,7 @@ function fakeDriver() {
     setOpaqueSort: vi.fn(),
     setTransparentSort: vi.fn(),
     dispose: vi.fn(),
+    forceContextLoss: vi.fn(),
     shadowMap: { enabled: false, type: 0 },
     onDeviceLost: undefined as ((info: { message: string }) => void) | undefined,
   };
@@ -228,6 +229,22 @@ describe('renderer backend selection', () => {
     expect(webgpu.setPixelRatio).toHaveBeenCalledExactlyOnceWith(1.5);
     expect(webgpu.setSize).toHaveBeenCalledExactlyOnceWith(800, 400, false);
     renderer.dispose();
+  });
+
+  it('releases the WebGL context on dispose only when the host opts in', async () => {
+    const kept = await Renderer.create({ backend: 'webgl' });
+    kept.dispose();
+    expect(webgl.dispose).toHaveBeenCalledTimes(1);
+    expect(webgl.forceContextLoss).not.toHaveBeenCalled();
+
+    const released = await Renderer.create({ backend: 'webgl', releaseContextOnDispose: true });
+    released.dispose();
+    released.dispose();
+    expect(webgl.forceContextLoss).toHaveBeenCalledTimes(1);
+
+    const gpu = await Renderer.create({ backend: 'webgpu', releaseContextOnDispose: true });
+    gpu.dispose();
+    expect(webgpu.forceContextLoss).not.toHaveBeenCalled();
   });
 
   it('uses the legacy renderer directly when WebGL is requested', async () => {

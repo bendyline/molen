@@ -1,3 +1,14 @@
+export {
+  createTerrainArchiveSetRouter,
+  encodeTerrainArchiveSetPartitions,
+  parseTerrainArchiveSetPartitions,
+  type TerrainArchiveSetBase,
+  type TerrainArchiveSetDescriptor,
+  type TerrainArchiveSetEntry,
+  type TerrainArchiveSetRoute,
+  type TerrainArchiveSetRouter,
+  type TerrainArchiveSetTileType,
+} from './archive-set';
 export type {
   TerrainDescriptor,
   TerrainLayer,
@@ -15,7 +26,9 @@ export {
   webMercatorToWgs84,
   wgs84ToWebMercator,
   wgs84ToWebMercatorTile,
+  wgs84ToWorld,
   worldToProjected,
+  worldToWgs84,
 } from './geospatial';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
 export {
@@ -26,6 +39,7 @@ export {
   type TerrainMvtSemanticLayerNames,
   type TerrainMvtSemanticPropertyNames,
 } from './mvt-semantic-decoder';
+export { terrainPackageFrameLatitude, terrainPackageMetersPerUnit } from './package-frame';
 export type {
   TerrainArchiveHeader,
   TerrainArchiveTile,
@@ -34,6 +48,7 @@ export type {
   TerrainPackageCoordinateSpace,
   TerrainPackageDescriptor,
   TerrainPackageFileRecord,
+  TerrainPackageFrame,
   TerrainPackageSemanticContent,
   TerrainPackageSemanticProfile,
   TerrainPackageSourceRecord,
@@ -41,6 +56,22 @@ export type {
   TerrainSemanticTileDecoder,
   TerrainTileArchive,
 } from './package-types';
+export {
+  buildPmtilesDirectories,
+  createPmtilesPrefix,
+  PMTILES_HEADER_BYTES,
+  type PmtilesArchiveOptions,
+  type PmtilesDirectories,
+  type PmtilesDirectoryEntry,
+  type PmtilesPrefixOptions,
+  type PmtilesTileCompression,
+  type PmtilesTileRecord,
+  type PmtilesTileType,
+  type PmtilesWriterTile,
+  pmtilesTileId,
+  serializePmtilesDirectory,
+  writePmtilesArchive,
+} from './pmtiles-writer';
 export { decodePng16, encodePng16, type Gray16 } from './png16';
 export {
   clampBounds,
@@ -68,6 +99,12 @@ export {
   terrainPyramidTileSize,
 } from './pyramid-types';
 export { registerTerrainSchemas } from './schema';
+export {
+  createOverzoomTerrainSemanticSource,
+  overzoomTerrainSemanticTile,
+  type TerrainSemanticOverzoomOptions,
+  type TerrainSemanticTileLoader,
+} from './semantic-overzoom';
 export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,

@@ -5,7 +5,7 @@ import {
   aircraftCameraPose,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
-import { Transform, type TransformData, type World } from '@bendyline/molen-kernel';
+import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
   AircraftInput,
@@ -17,9 +17,10 @@ import {
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity, Vehicle, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
+import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
 import type { AircraftData, AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { WalkCollision } from './walk-collision';
+import { OBB } from 'three/addons/math/OBB.js';
 
 const PLAYER = 'world-player';
 type AircraftChoice = 'p51d' | 'oh6';
@@ -34,6 +35,25 @@ export const AIRCRAFT_HELP: string =
   'I engine · Shift/Ctrl power · W/S pitch · A/D bank · Q/Z pedals · Space brakes · G gear · F flaps · V view · E exit · R recover after impact';
 
 /** Two persistent ECS aircraft on a session-local practice airfield, under the floating origin. */
+/** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
+export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
+  for (const [id, t, aircraft] of world.query(Transform, Aircraft)) {
+    if (id === except) continue;
+    const spec = aircraft.spec;
+    const q = new THREE.Quaternion().fromArray(t.rot);
+    const center = new THREE.Vector3(0, spec.height / 2, 0)
+      .applyQuaternion(q)
+      .add(new THREE.Vector3().fromArray(t.pos));
+    const bounds = new OBB(
+      center,
+      new THREE.Vector3(spec.span / 2, spec.height / 2, spec.length / 2),
+      new THREE.Matrix3().setFromMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(q)),
+    );
+    if (box.intersectsOBB(bounds)) return true;
+  }
+  return false;
+}
+
 export class WorldAircraft {
   readonly object: THREE.Group = new THREE.Group();
   readonly center: [number, number];

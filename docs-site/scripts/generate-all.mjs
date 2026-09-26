@@ -4,10 +4,14 @@
 // package export, a new op in OPS_CATALOG, or a new guide in docs-src should appear in the site
 // navigation without anyone remembering to add it.
 //
+// Every page is then checked against STYLE.md (scripts/check-style.mjs): a problem is a warning
+// while writing, and fails the --check run CI makes.
+//
 //   node scripts/generate-all.mjs          # write (pnpm docs:site:gen)
-//   node scripts/generate-all.mjs --check  # fail if anything is stale (CI)
+//   node scripts/generate-all.mjs --check  # fail if anything is stale or off-style (CI)
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { checkStyle } from './check-style.mjs';
 import { generateApi } from './generate-api.mjs';
 import { generateCli } from './generate-cli.mjs';
 import { generateGuides } from './generate-guides.mjs';
@@ -155,6 +159,17 @@ async function main() {
     }
   } else {
     await writeFile(outPath, next);
+  }
+
+  const style = checkStyle();
+  if (style.length > 0) {
+    for (const problem of style) console.warn(problem);
+    const summary = `${style.length} page style problem(s); see docs-site/STYLE.md.`;
+    if (check) {
+      console.error(summary);
+      process.exit(1);
+    }
+    console.warn(summary);
   }
 
   const c = nav.counts;

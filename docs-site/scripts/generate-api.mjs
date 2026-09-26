@@ -14,6 +14,7 @@ import {
   entryLabel,
   entrySlug,
   escapeProse,
+  mdText,
   publicPackages,
   repoRoot,
   siteDir,
@@ -61,7 +62,8 @@ function reshape(markdown, { label, specifier, pkg }) {
     '',
     `# \`${label}\``,
     '',
-    `<p class="api-blurb">${pkg.description}</p>`,
+    // The lede (see STYLE.md): the package description, as a sentence.
+    `${mdText(pkg.description)}${/[.!?]$/.test(pkg.description) ? '' : '.'}`,
     '',
     '```ts',
     `import { /* … */ } from '${specifier}';`,
@@ -168,9 +170,9 @@ outline: [2, 3]
 # API reference
 
 Generated from the built \`.d.mts\` of every published package — the same files npm ships — so
-this reference always matches the current release. Regenerate with \`pnpm docs:site:gen\`.
+this reference always matches the current release.
 
-Every package is ESM-only and requires Node ≥ 22. Capability packages (terrain, worldgen,
+Every package is ESM-only and needs Node 22.13 or newer. Capability packages (terrain, worldgen,
 figures) have **no \`.\` export**: import \`/kernel\` for simulation-side code and \`/client\`
 for the three.js side.
 

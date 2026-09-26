@@ -7,6 +7,8 @@ import {
   webMercatorToWgs84,
   wgs84ToWebMercator,
   wgs84ToWebMercatorTile,
+  wgs84ToWorld,
+  worldToWgs84,
 } from '../src/geospatial';
 import {
   createTerrainPackageCombinedSemanticSource,
@@ -20,6 +22,7 @@ import {
   terrainDescriptorFromPackage,
   terrainPyramidDescriptorFromPackage,
 } from '../src/package-client';
+import { terrainPackageFrameLatitude, terrainPackageMetersPerUnit } from '../src/package-frame';
 import type { TerrainPackageDescriptor, TerrainTileArchive } from '../src/package-types';
 import { encodePng16 } from '../src/png16';
 import { terrainPyramidTileOrigin, terrainPyramidTileSize } from '../src/pyramid-types';
@@ -652,6 +655,52 @@ describe('terrain package metersPerUnit (Mercator scale)', () => {
     const fixed = terrainDescriptorFromPackage(pkg, 8);
     expect(fixed.metersPerUnit).toBeCloseTo(s, 12);
     expect(fixed.chunkSize).toBeCloseTo(((WEB_MERCATOR_HALF_WORLD_METERS * 2) / 2 ** 8) * s, 6);
+  });
+
+  it('renders a worldwide package in a host-chosen frame instead of the equator', async () => {
+    const pkg = packageDescriptor();
+    // Worldwide bounds center on the equator: without a frame the scene is non-metric elsewhere.
+    expect(terrainPackageMetersPerUnit(pkg)).toBe(1);
+    expect(terrainPyramidDescriptorFromPackage(pkg).metersPerUnit).toBe(1);
+
+    const frame = { latitude: 47.6 };
+    const s = webMercatorScaleAtLatitude(47.6);
+    expect(terrainPackageFrameLatitude(pkg, frame)).toBe(47.6);
+    expect(terrainPackageMetersPerUnit(pkg, frame)).toBeCloseTo(s, 12);
+    const pyramid = terrainPyramidDescriptorFromPackage(pkg, { frame });
+    expect(pyramid.metersPerUnit).toBeCloseTo(s, 12);
+    expect(pyramid.rootSize).toBeCloseTo(WEB_MERCATOR_HALF_WORLD_METERS * 2 * s, 3);
+    expect(terrainDescriptorFromPackage(pkg, 4, frame).metersPerUnit).toBeCloseTo(s, 12);
+
+    // The open path threads the frame into the descriptor the stream (and worker) receive.
+    const archive: TerrainTileArchive = { getZxy: async () => undefined };
+    const opened = await openTerrainPackagePyramid(pkg, { archive, frame });
+    expect(opened.descriptor.metersPerUnit).toBeCloseTo(s, 12);
+    const fixed = await openTerrainPackageElevation(pkg, { level: 3, archive, frame });
+    expect(fixed.descriptor.metersPerUnit).toBeCloseTo(s, 12);
+  });
+
+  it('places WGS84 points in a frame and round-trips them', () => {
+    const s = webMercatorScaleAtLatitude(47.6);
+    const [x, z] = wgs84ToWorld(s, -122.3321, 47.6062);
+    const [projectedX, projectedZ] = wgs84ToWebMercator(-122.3321, 47.6062);
+    expect(x).toBeCloseTo(projectedX * s, 6);
+    expect(z).toBeCloseTo(projectedZ * s, 6);
+    const [longitude, latitude] = worldToWgs84(s, x, z);
+    expect(longitude).toBeCloseTo(-122.3321, 9);
+    expect(latitude).toBeCloseTo(47.6062, 9);
+    // One kilometer east in the frame is one kilometer on the ground at the frame latitude.
+    const [eastLongitude] = worldToWgs84(s, x + 1000, z);
+    const metersPerDegree = (Math.PI / 180) * 6_378_137 * Math.cos((47.6062 * Math.PI) / 180);
+    expect((eastLongitude + 122.3321) * metersPerDegree).toBeCloseTo(1000, 0);
+  });
+
+  it('rejects frames outside the Web Mercator latitude range', () => {
+    const pkg = packageDescriptor();
+    expect(() => terrainPackageMetersPerUnit(pkg, { latitude: 89 })).toThrow(/frame latitude/);
+    expect(() => terrainPackageMetersPerUnit(pkg, { latitude: Number.NaN })).toThrow(
+      /frame latitude/,
+    );
   });
 
   it('leaves local packages unscaled', () => {

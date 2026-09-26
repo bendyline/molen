@@ -99,7 +99,7 @@ recorded replay keeps that identity (see [determinism](determinism.md)). A proje
 namespace and everything under it on dot boundaries (`train` covers `train.car`, not
 `trainer.x`), for **both type ids and asset ids**. Reserve before you author:
 
-```
+```sh
 molen types reserve train --owner agent:layout
 ```
 

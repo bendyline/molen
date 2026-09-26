@@ -1,0 +1,87 @@
+{
+  "name": "@bendyline/molen-earth",
+  "version": "0.0.2",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen Earth view: an embeddable real-world 3D view (streamed terrain, worldgen buildings, orbit/walk/drive navigation, vehicles, and map markers) behind one mountEarthView call",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/earth"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/earth",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "earth",
+    "terrain",
+    "map"
+  ],
+  "exports": {
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    },
+    "./workers/elevation": {
+      "types": "./dist/workers/elevation.d.mts",
+      "default": "./dist/workers/elevation.mjs"
+    },
+    "./workers/landcover": {
+      "types": "./dist/workers/landcover.d.mts",
+      "default": "./dist/workers/landcover.mjs"
+    },
+    "./workers/surface": {
+      "types": "./dist/workers/surface.d.mts",
+      "default": "./dist/workers/surface.mjs"
+    },
+    "./workers/worldgen": {
+      "types": "./dist/workers/worldgen.d.mts",
+      "default": "./dist/workers/worldgen.mjs"
+    },
+    "./workers/material": {
+      "types": "./dist/workers/material.d.mts",
+      "default": "./dist/workers/material.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-materials": "workspace:*",
+    "@bendyline/molen-pack": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "@bendyline/molen-worldgen": "workspace:*",
+    "@bendyline/molen-worldgen-earth": "workspace:*"
+  },
+  "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "three": ">=0.184.0 <0.187.0"
+  },
+  "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

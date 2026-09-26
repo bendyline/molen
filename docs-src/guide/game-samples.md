@@ -1,8 +1,9 @@
 # Three complete games, one authoring path
 
-The new samples exercise the same scene → `buildWorld` → Worker → `mountExperience` path as the
-CLI. Each is JSON data + scene scripts, with declared command/component schemas, input
-bindings, semantic prefabs, durable state, a HUD, restart, and a tested win condition.
+City Courier, The Lantern Vault and Skybound are complete games that exercise the same scene →
+`buildWorld` → Worker → `mountExperience` path as the CLI. Each is JSON data + scene scripts,
+with declared command/component schemas, input bindings, semantic prefabs, durable state, a HUD,
+restart, and a tested win condition.
 
 | Sample | Play | Loop | Engine services |
 |---|---|---|---|
@@ -12,7 +13,7 @@ bindings, semantic prefabs, durable state, a HUD, restart, and a tested win cond
 
 To take one apart, copy it into your own npm project:
 
-```
+```sh
 npx @bendyline/molen-tooling new my-courier --template city-courier   # or skybound
 cd my-courier && npm install
 npx molen sim run scene.json --ticks 90 --commands commands.json --assert checks.json --hash

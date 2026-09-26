@@ -84,6 +84,8 @@ export class InputMap {
   private baselineButtons = false;
   private values = new Map<string, number>();
   private padValues = new Map<string, number>();
+  /** Software controls (touch joysticks, on-screen buttons): source → action → value. */
+  private readonly virtualValues = new Map<string, Map<string, number>>();
   private pads: InputGamepad[] = [];
   private enabled = true;
   private disposed = false;
@@ -296,6 +298,41 @@ export class InputMap {
     if (this.keys.delete(code)) this.recompute();
   }
 
+  /**
+   * Drive an action from a software control such as a touch joystick or an on-screen button.
+   * `source` names the control so several can feed one action; like every device, the strongest
+   * contribution wins. A value persists until changed, `clearVirtual`, or a reset (focus loss,
+   * suspension, profile switch), and is ignored while input is not accepted.
+   */
+  setVirtual(source: string, action: string, value: number): void {
+    if (this.disposed || !Number.isFinite(value)) return;
+    let values = this.virtualValues.get(source);
+    if (value === 0) {
+      if (values?.delete(action) !== true) return;
+      if (values.size === 0) this.virtualValues.delete(source);
+    } else {
+      if (!this.accepting) return;
+      if (values === undefined) {
+        values = new Map();
+        this.virtualValues.set(source, values);
+      }
+      if (values.get(action) === value) return;
+      values.set(action, value);
+    }
+    this.recompute();
+  }
+
+  /** Release every action a software control drives (all controls when `source` is omitted). */
+  clearVirtual(source?: string): void {
+    if (source !== undefined) {
+      if (this.virtualValues.delete(source)) this.recompute();
+      return;
+    }
+    if (this.virtualValues.size === 0) return;
+    this.virtualValues.clear();
+    this.recompute();
+  }
+
   /** Numeric action value; strongest absolute contribution wins, keyboard wins ties. */
   value(action: string): number {
     return this.values.get(action) ?? 0;
@@ -319,6 +356,8 @@ export class InputMap {
         if (action !== undefined) this.contribute(next, action, 1);
       }
       for (const [action, value] of this.padValues) this.contribute(next, action, value);
+      for (const values of this.virtualValues.values())
+        for (const [action, value] of values) this.contribute(next, action, value);
     }
     this.commit(next);
   }
@@ -355,6 +394,7 @@ export class InputMap {
     for (const key of this.keys) this.blockedKeys.add(key);
     this.keys.clear();
     this.padValues.clear();
+    this.virtualValues.clear();
     this.baselineButtons = true;
     this.commit(new Map());
     for (const fn of this.resetHandlers) fn();
