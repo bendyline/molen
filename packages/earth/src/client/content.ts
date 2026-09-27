@@ -20,8 +20,8 @@ import {
   type PlacesContent,
   type PlacesContentDocs,
   type RegionAtlasDoc,
-  type StructureIndex,
   type StructureCatalogDoc,
+  type StructureIndex,
 } from '@bendyline/molen-worldgen-earth/kernel';
 
 /** Content-pack ids an Earth view looks for. */
@@ -81,7 +81,7 @@ async function readTypes(pack: Pack): Promise<TypeLibrary> {
 async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenContent> {
   const stylepackPath = styles.manifest.provides.stylepack?.[0] ?? 'stylepack.json';
   const landmarkPath = styles.manifest.provides.landmarks?.[0] ?? 'landmarks/catalog.json';
-  const structuresPath = earth.manifest.provides.structures?.[0];
+  const structuresPaths = earth.manifest.provides.structures ?? [];
   const landmarkDir = landmarkPath.slice(0, landmarkPath.lastIndexOf('/') + 1);
   const [pack, atlas, catalog, businesses, structures] = await Promise.all([
     styles
@@ -90,14 +90,11 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     earth.readJson<RegionAtlasDoc>(earth.manifest.provides.atlas?.[0] ?? 'world.atlas.json'),
     styles.readJson<{ models: Record<string, string> }>(landmarkPath),
     earth.readJson(earth.manifest.provides.businesses?.[0] ?? 'businesses/catalog.json'),
-    structuresPath === undefined
-      ? Promise.resolve<StructureCatalogDoc>({
-          format: 'molen/structure-placements@1',
-          title: 'No geographic structures',
-          entries: [],
-        })
-      : earth.readJson<StructureCatalogDoc>(structuresPath),
+    Promise.all(structuresPaths.map((path) => earth.readJson<StructureCatalogDoc>(path))),
   ]);
+  for (const doc of structures)
+    if (doc.format !== 'molen/structure-placements@1')
+      throw new Error('invalid structure catalog format');
   const models: Record<string, unknown> = {};
   await Promise.all(
     Object.entries(catalog.models).map(async ([key, path]) => {
@@ -111,7 +108,12 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     atlas,
     places: createPlacesContent(placesDocs),
     placesDocs,
-    structures: createStructureIndex(structures),
+    structures: createStructureIndex({
+      format: 'molen/structure-placements@1',
+      title: 'Earth structures',
+      entries: structures.flatMap((doc) => doc.entries),
+      rules: structures.flatMap((doc) => doc.rules ?? []),
+    }),
   };
 }
 

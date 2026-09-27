@@ -13,8 +13,8 @@ import {
   createResolvedMaterialSet,
   ModelLibrary,
   type ScreenSpaceLodPolicy,
+  StructureModelLibrary,
 } from '@bendyline/molen-worldgen/client';
-import { stylePackMaterialRefs } from '@bendyline/molen-worldgen/kernel';
 import {
   createRegionResolver,
   createWorldgenSemanticRenderers,
@@ -78,13 +78,8 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     places.landmarks.definitions,
   );
   // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
-  // and merged geometry leave memory when the last tile using the asset is evicted.
-  const structureLoader = new GLTFLoader();
-  const structureModels = new ModelLibrary(
-    async (ref) => (await structureLoader.parseAsync(await options.assets.load(ref), '')).scene,
-    {},
-    true,
-  );
+  // resources leave memory when the last tile using the asset is evicted. Keep the original
+  // hierarchy and PBR materials: flattening prop geometry would discard landmark textures.
   const baker =
     workers.material !== undefined
       ? createMaterialBakeWorkerPool(
@@ -97,13 +92,22 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
     progressive: true,
   });
+  const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
+  const structureLoader = new GLTFLoader();
+  const structureObjects = new StructureModelLibrary(
+    async (ref) => (await structureLoader.parseAsync(await options.assets.load(ref), '')).scene,
+    {
+      resolveSurface: ({ ref, slot }) =>
+        sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
+    },
+  );
   let preparation: Promise<void> | undefined;
   let disposed = false;
   const prepareMaterials = (): Promise<void> => {
     if (disposed) return Promise.resolve();
     preparation ??= (async () => {
       try {
-        await materials.prepare(stylePackMaterialRefs(pack));
+        await materials.prepare([...sharedRefs]);
         if (!disposed && materials.failures.size > 0)
           options.onMaterialFailures?.(materials.failures);
       } finally {
@@ -129,7 +133,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     atlas,
     regions,
     models,
-    structureModels,
+    structureObjects,
     materials,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
@@ -153,8 +157,8 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       baker?.dispose();
       renderers.dispose();
       generator?.dispose();
+      structureObjects.dispose();
       materials.dispose();
-      structureModels.dispose();
       models.dispose();
       assets.dispose();
     },

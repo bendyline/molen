@@ -18,12 +18,12 @@ describe('style pack document loading', () => {
     const pack = await resolveStylePackDocuments(await readJson('stylepack.json'), readJson);
     // Pinned against the shipped pack, including the authored structure assets.
     expect(pack.hash).toBe(
-      'sha256:62e4104d7c8a173568affa84e232c1b1bcd628294a2f571337246a73904c8540',
+      'sha256:ebc093b6bfc0655c7ad5d6e0799575bea874cf404583a3fb01084432c11dcf86',
     );
     expect(pack.interiors?.profiles).toHaveLength(15);
     expect(Object.keys(pack.archstyles)).toHaveLength(120);
-    expect(Object.keys(pack.materials)).toHaveLength(45);
-    expect(pack.warnings).toHaveLength(112);
+    expect(Object.keys(pack.materials)).toHaveLength(51);
+    expect(pack.warnings).toHaveLength(123);
   });
 
   it('reads documents concurrently, at most 16 at a time, and each only once', async () => {

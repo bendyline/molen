@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -135,12 +136,14 @@ describe('node helpers', () => {
     const files = source.files;
     const raw = files.reduce((total, file) => total + file.bytes.length, 0);
     const { bytes } = await createPack(files, { id: 'molen.worldgen.default', version: '1' });
-    // The 100 imported structure GLBs leave the complete pack below one quarter of raw size.
+    // The imported structures leave the complete pack below one quarter of raw size.
     expect(bytes.length).toBeLessThan(raw / 4);
     const pack = await openPack(bytes);
     for (const file of files) {
-      expect(new Uint8Array(await pack.readBytes(file.path)), file.path).toEqual(file.bytes);
+      // Exact byte equality without allocating a deep-matcher node per byte of large GLBs.
+      expect(Buffer.from(await pack.readBytes(file.path)).equals(file.bytes), file.path).toBe(true);
     }
+    pack.close();
   }, 30_000); // Packs, reopens and reads back every file of the default style pack.
 });
 

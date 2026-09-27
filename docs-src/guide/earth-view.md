@@ -135,7 +135,57 @@ mapped parallel bridge lines inside it are replaced only after the model loads s
 Outside approach fragments remain procedural. `deckHeight` joins those approaches to the
 model's deck height above its origin, blending back over 100 m; include that margin in `bounds`.
 If `replaceFootprint` is set, a nongeneralized mapped building is suppressed only when the
-anchor falls inside its polygon. An Earth pack without a placement document still loads.
+anchor falls inside its polygon and the replacement model has loaded. Failed models keep the
+procedural building. An Earth pack without a placement document still loads.
+
+For unsurveyed orientation, `orientation: 'mapped'` requires an explicit
+`mapIdentity: { wikidata: 'Q…', maxDistance: 150 }`. The viewer admits that model only after a
+nearby matching building, directed POI, or bridge supplies an orientation. Exact name aliases
+are supported only when the catalog supplies no Wikidata ID. A footprint's longest edge gives
+an undirected axis, not proof of the entrance direction. `lengthAxis: 'x' | 'z'` identifies the
+authored longitudinal axis. Entries with surveyed catalog headings use `orientation: 'fixed'`
+(the default). No matching geometry means no speculative placement for a mapped entry.
+
+### Reusable mapped categories
+
+An Earth pack can list multiple `provides.structures` documents. Alongside geographic `entries`,
+each document may contain `rules` for deliberately generic assets. The shipped
+`structures/map-rules.json` recognizes windmills and wind turbines from class, subclass, or
+explicit map tags. Unique named landmarks never become arbitrary category replacements.
+
+```json
+{
+  "id": "generic.windmill",
+  "title": "Smock windmill",
+  "asset": "molen.worldgen.structure.map_smock_windmill",
+  "match": { "classes": ["windmill"] },
+  "dimensions": [23.3, 30.6, 16.5],
+  "orientation": "direction",
+  "fit": "native",
+  "minLevel": 14,
+  "maxPerTile": 16,
+  "source": "https://wiki.openstreetmap.org/wiki/Tag:man_made%3Dwindmill"
+}
+```
+
+Match fields are AND conditions; the values within a field are alternatives. Put separate
+rules in priority order for alternative source schemas. `dimensions` are authored X/Y/Z meters
+with the base at Y=0 and front along +Z. `fit: 'footprint'` fits horizontal dimensions to a
+confirmed nongeneralized building; `native` retains authored proportions. Measured heights
+uniformly scale native models, bounded from 0.2 to 5 times native dimensions; footprint fitting
+adjusts the three dimensions independently. Explicit source `direction`
+or compass bearings take priority; otherwise footprints use their longest axis and points
+default north. This default is an estimate, especially for rotatable turbine nacelles.
+Rules with `replaceFootprint: true` can also replace a nongeneralized footprint containing a
+matching POI, after the asset loads. This is useful when a windmill is a POI plus an unclassified
+building outline; the default leaves point features independent of building shells.
+
+The renderer admits at most 64 category models per tile and obeys each rule's smaller budget.
+It owns points with half-open tile bounds, deduplicates building/POI pairs and nearby named
+landmarks, samples terrain at each model base, and releases shared model resources on tile
+eviction. Rules require source classification evidence: a cafe with “Windmill” in its name is
+not a windmill. Providers that omit POIs, classifications, or structure tags cannot imply that
+object. The semantic decoder preserves public structure tags and Wikidata IDs when supplied.
 
 `content.worldgen.structures.query([west, south, east, north])` returns preview placements in a
 geographic rectangle. Pass `true` as the second argument to include drafts. The default
@@ -144,6 +194,49 @@ repository. Model geometry and previews live in `content/worldgen/source/site-st
 The terrain stream queries only cells intersecting resident tiles. Chicago models are not fetched
 while viewing Seattle; a structure model is released from CPU and GPU memory when the last tile
 using it leaves view. Returning to the area loads it again. Draft entries never fetch models.
+Geographic and category models use `StructureModelLibrary`, preserving the authored mesh
+hierarchy, UV coordinates, texture maps, material assignments and PBR parameters. Instances
+share those resources until the last reference is released. Long static models retain their
+UVs, vertex attributes and material groups when clipped at tile edges; textures do not restart
+at each seam. The library accepts static assets: skinned or animated structures require a host
+animation implementation. Procedural scatter continues to use the separate instanced prop path.
+
+### Shared architectural surfaces
+
+Authored GLB materials can opt into the same texture library as procedural buildings. Set
+the material's glTF `extras.molenSurface` (available as Three.js material `userData.molenSurface`):
+
+```json
+{
+  "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+  "slot": "wall",
+  "uv": "repeats"
+}
+```
+
+`encodeGlb` exposes this as `GlbMaterialMeta.sharedSurface`. Author UV0 in texture repeats:
+divide local surface coordinates in meters by the material's `repeatMeters` once during
+authoring. Wood grain must follow the timber; masonry courses remain horizontal. Put color
+variants in vertex colors with a white base-color factor, so white painted wood and green
+painted wood share the same maps and material. Model-specific artwork and special PBR effects
+keep their original unbound materials. GLBs retain portable fallback PBR materials for other
+viewers and ordinary asset previews; the Earth viewer applies shared surfaces explicitly.
+
+The default library has 51 procedural surfaces, including brick bonds, stone, timber, painted
+wood, shingles, concrete, metal, plaster, glass and canvas. Its authoring catalog, physical
+repeat sizes, tint variants, swatches and texture audit live in
+`content/worldgen/source/material-library/` in the engine repository. Color variants do not
+duplicate texture images. The current Earth viewer prepares the registered library after the
+first frame and retains it until viewer disposal. Structure eviction releases model geometry
+and private materials while preserving shared surfaces used by other structures. A separate
+on-demand material eviction policy is not yet implemented.
+
+Hosts composing their own renderer can supply `StructureModelLibrary` with
+`resolveSurface: ({ ref, slot }) => materials.materialFor(slot, ref)` using a
+`createResolvedMaterialSet` instance. Restrict references to the host's registered material
+library and keep it alive until all structure libraries have been disposed. Missing bindings
+or UVs preserve the GLB fallback. A new bake upgrades progressive materials in place without
+rebuilding model geometry.
 
 Mapped roads with `bridge: true` receive solid decks, edge barriers and regularly spaced
 supports in the shared terrain surface renderer, including its worker path. Road, rail and

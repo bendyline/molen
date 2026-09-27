@@ -81,7 +81,7 @@ describe('default pack', () => {
       id: string;
     }[];
     expect(catalog).toHaveLength(97);
-    expect(Object.keys(pack.assets)).toHaveLength(108);
+    expect(Object.keys(pack.assets)).toHaveLength(113);
     for (const { id } of catalog) {
       expect(index[id], id).toBe(
         `https://example.test/pack/assets/${id.replaceAll('.', '/')}/model.glb`,
@@ -110,7 +110,7 @@ describe('default pack', () => {
       if (!parsed.ok) throw new Error(parsed.formatted);
       expect(meanLuminance(parsed.value as MatGraphDoc), id).toBeGreaterThanOrEqual(0.55);
     }
-  }, 60_000); // Full-resolution validation covers all 45 materials and their PBR channels.
+  }, 60_000); // Full-resolution validation covers all 51 materials and their PBR channels.
 
   it('generates textured buildings with props from every house style', () => {
     const outline = SHAPES.L as Vec2[];

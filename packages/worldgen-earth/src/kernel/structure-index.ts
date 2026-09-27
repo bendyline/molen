@@ -1,4 +1,5 @@
 /** Indexed, geographic placements for authored structure assets. Coordinates are WGS84. */
+import { dmath } from '@bendyline/molen-kernel/determinism';
 import { type BuildingMetrics, matchesWhen } from '@bendyline/molen-worldgen/kernel';
 import { projectWgs84 } from './projection';
 import { createRegionResolver, regionStyleRules } from './region';
@@ -25,6 +26,12 @@ export interface StructurePlacement {
   replaceRoads?: { length: number; width: number; deckHeight?: number };
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
+  /** Optional confirmed map identity used to refine orientation from a nearby feature. */
+  mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
+  /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
+  orientation?: 'fixed' | 'mapped';
+  /** Model horizontal axis aligned to the longest mapped edge (default +X). */
+  lengthAxis?: 'x' | 'z';
   /** The model enters adaptive terrain at this level. */
   minLevel?: number;
   /** Draft records are discoverable but never drawn. */
@@ -33,15 +40,36 @@ export interface StructurePlacement {
   note?: string;
 }
 
+/** A deliberately reusable model. Never inferred from a unique landmark's category. */
+export interface StructureMapRule {
+  id: string;
+  title: string;
+  asset: string;
+  /** All supplied fields must match; values within each array are alternatives. */
+  match: { classes?: string[]; subclasses?: string[]; tags?: Record<string, string[]> };
+  /** Native model dimensions in meters, in +X,+Y,+Z order. Base must be Y=0. */
+  dimensions: [number, number, number];
+  orientation?: 'direction' | 'longest-edge' | 'north';
+  lengthAxis?: 'x' | 'z';
+  fit?: 'native' | 'footprint';
+  /** Also replace a nongeneralized building containing a matching point feature. */
+  replaceFootprint?: boolean;
+  minLevel?: number;
+  maxPerTile?: number;
+  source: string;
+}
+
 export interface StructureCatalogDoc {
   format: 'molen/structure-placements@1';
   title: string;
   entries: StructurePlacement[];
+  rules?: StructureMapRule[];
 }
 
 export interface StructureIndex {
   readonly entries: readonly StructurePlacement[];
   readonly cells: ReadonlyMap<string, readonly StructurePlacement[]>;
+  readonly rules: readonly StructureMapRule[];
   /** Geographic rectangle [west, south, east, north]. */
   query(
     bounds: readonly [number, number, number, number],
@@ -114,11 +142,65 @@ function candidateCells(bounds: readonly [number, number, number, number]): stri
   return [...cells];
 }
 
+type GeographicBox = [number, number, number, number];
+
+function lookupBounds(entry: StructurePlacement): GeographicBox[] {
+  if (entry.bounds) return [entry.bounds];
+  const [longitude, latitude] = entry.anchor;
+  if (entry.orientation !== 'mapped') return [[longitude, latitude, longitude, latitude]];
+  // Include the identity search neighborhood so a reference coordinate in the next tile
+  // does not prevent that feature's true owning tile from resolving it.
+  const latRadius = (entry.mapIdentity?.maxDistance ?? 150) / 110000;
+  const lonRadius = Math.min(
+    180,
+    latRadius / Math.max(1e-6, dmath.cos((latitude * dmath.PI) / 180)),
+  );
+  const south = Math.max(-90, latitude - latRadius),
+    north = Math.min(90, latitude + latRadius);
+  if (lonRadius === 180) return [[-180, south, 180, north]];
+  const west = longitude - lonRadius,
+    east = longitude + lonRadius;
+  if (west < -180)
+    return [
+      [west + 360, south, 180, north],
+      [-180, south, east, north],
+    ];
+  if (east > 180)
+    return [
+      [west, south, 180, north],
+      [-180, south, east - 360, north],
+    ];
+  return [[west, south, east, north]];
+}
+
 export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
   if (doc.format !== 'molen/structure-placements@1')
     throw new Error('invalid structure catalog format');
   const ids = new Set<string>();
+  for (const rule of doc.rules ?? []) {
+    if (ids.has(rule.id)) throw new Error(`duplicate structure map rule ${rule.id}`);
+    ids.add(rule.id);
+    if (
+      !rule.asset ||
+      !rule.source ||
+      rule.dimensions.length !== 3 ||
+      rule.dimensions.some((n) => !Number.isFinite(n) || n <= 0) ||
+      ![
+        ...(rule.match.classes ?? []),
+        ...(rule.match.subclasses ?? []),
+        ...Object.values(rule.match.tags ?? {}).flat(),
+      ].length
+    )
+      throw new Error(`invalid structure map rule ${rule.id}`);
+    if (
+      rule.maxPerTile !== undefined &&
+      (!Number.isInteger(rule.maxPerTile) || rule.maxPerTile < 1 || rule.maxPerTile > 64)
+    )
+      throw new Error(`invalid structure map rule budget ${rule.id}`);
+  }
   const cells = new Map<string, StructurePlacement[]>();
+  const boxes = new Map<string, GeographicBox[]>();
+  const unbucketed: StructurePlacement[] = [];
   for (const entry of doc.entries) {
     if (ids.has(entry.id)) throw new Error(`duplicate structure placement ${entry.id}`);
     ids.add(entry.id);
@@ -141,10 +223,16 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       throw new Error(`invalid absolute structure extent ${entry.id}`);
     if (entry.replaceRoads && !entry.bounds)
       throw new Error(`road replacement requires an extent ${entry.id}`);
-    const keys = entry.bounds
-      ? candidateCells(entry.bounds)
-      : [encodeStructureGeohash(entry.anchor[0], entry.anchor[1])];
-    if (!keys) throw new Error(`structure extent is too large: ${entry.id}`);
+    const extent = lookupBounds(entry);
+    boxes.set(entry.id, extent);
+    const keys = new Set<string>();
+    for (const box of extent) {
+      const candidates = candidateCells(box);
+      if (!candidates) {
+        if (entry.bounds) throw new Error(`structure extent is too large: ${entry.id}`);
+        unbucketed.push(entry);
+      } else for (const key of candidates) keys.add(key);
+    }
     for (const cell of keys) {
       const bucket = cells.get(cell) ?? [];
       bucket.push(entry);
@@ -154,6 +242,7 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
   return {
     entries: doc.entries,
     cells,
+    rules: doc.rules ?? [],
     query(bounds, includeDraft = false) {
       const spans: Array<readonly [number, number, number, number]> =
         bounds[0] <= bounds[2]
@@ -166,20 +255,18 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       for (const span of spans) {
         const keys = candidateCells(span);
         const candidates =
-          keys === undefined ? doc.entries : keys.flatMap((key) => cells.get(key) ?? []);
+          keys === undefined
+            ? doc.entries
+            : [...unbucketed, ...keys.flatMap((key) => cells.get(key) ?? [])];
         for (const entry of candidates) {
-          const box: [number, number, number, number] = entry.bounds ?? [
-            entry.anchor[0],
-            entry.anchor[1],
-            entry.anchor[0],
-            entry.anchor[1],
-          ];
           if (
             (includeDraft || entry.status === 'preview') &&
-            box[2] >= span[0] &&
-            box[0] <= span[2] &&
-            box[3] >= span[1] &&
-            box[1] <= span[3]
+            boxes
+              .get(entry.id)
+              ?.some(
+                (box) =>
+                  box[2] >= span[0] && box[0] <= span[2] && box[3] >= span[1] && box[1] <= span[3],
+              )
           )
             found.set(entry.id, entry);
         }

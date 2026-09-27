@@ -18,6 +18,14 @@ export interface TerrainSemanticPolygon {
   holes?: TerrainSemanticRing[];
 }
 
+/** Source identity and a bounded set of public map classification tags. */
+export interface TerrainStructureIdentity {
+  wikidata?: string;
+  tags?: Record<string, string>;
+  /** Rotation about +Y in radians; authored model front is +Z. */
+  heading?: number;
+}
+
 export interface TerrainLandcoverFeature {
   id?: string | number;
   class: string;
@@ -37,8 +45,9 @@ export interface TerrainWaterFeature {
   width?: number;
 }
 
-export interface TerrainTransportationFeature {
+export interface TerrainTransportationFeature extends TerrainStructureIdentity {
   id?: string | number;
+  name?: string;
   class: string;
   /** Finer category, e.g. residential, parking_aisle or footway. */
   subclass?: string;
@@ -62,7 +71,7 @@ export interface TerrainTransportationFeature {
   tunnel?: boolean;
 }
 
-export interface TerrainBuildingFeature {
+export interface TerrainBuildingFeature extends TerrainStructureIdentity {
   id?: string | number;
   class?: string;
   /** Finer source category when the schema carries one (e.g. Protomaps `kind_detail`). */
@@ -81,7 +90,7 @@ export interface TerrainBuildingFeature {
 }
 
 /** A mapped business, amenity, or individual outdoor object. */
-export interface TerrainPoiFeature {
+export interface TerrainPoiFeature extends TerrainStructureIdentity {
   id?: string | number;
   class: string;
   subclass?: string;
@@ -167,6 +176,21 @@ function assertClass(value: string, path: string): void {
   }
 }
 
+function assertStructureIdentity(feature: TerrainStructureIdentity): void {
+  if (feature.wikidata !== undefined && !/^Q[1-9][0-9]*$/.test(feature.wikidata))
+    throw new Error('structure wikidata must be a Wikidata item id');
+  if (feature.heading !== undefined) assertFinite(feature.heading, 'structure heading');
+  if (feature.tags !== undefined) {
+    if (typeof feature.tags !== 'object' || Array.isArray(feature.tags) || feature.tags === null)
+      throw new Error('structure tags must be a string map');
+    if (Object.keys(feature.tags).length > 32) throw new Error('too many structure tags');
+    for (const [key, value] of Object.entries(feature.tags)) {
+      assertClass(key, 'structure tag key');
+      assertClass(value, `structure tag ${key}`);
+    }
+  }
+}
+
 /** Fail early when a source decoder violates the renderer's normalized semantic contract. */
 export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
   if (tile.format !== 'molen/terrain-semantics@1') {
@@ -178,6 +202,8 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
   }
   if (tile.pois !== undefined && !Array.isArray(tile.pois))
     throw new Error('terrain semantic pois must be an array');
+  for (const feature of [...tile.buildings, ...tile.transportation, ...(tile.pois ?? [])])
+    assertStructureIdentity(feature);
   for (const [index, feature] of (tile.pois ?? []).entries()) {
     const path = `/pois/${index}`;
     assertClass(feature.class, `${path}/class`);

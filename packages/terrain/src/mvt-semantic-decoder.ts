@@ -17,6 +17,7 @@ import {
   type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
+  type TerrainStructureIdentity,
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
 } from './semantic-types';
@@ -193,6 +194,58 @@ function featureId(feature: VectorTileFeature): string | number | undefined {
   return feature.id;
 }
 
+// Preserve only useful public classification tags, rather than copying arbitrary source data.
+const STRUCTURE_TAGS = [
+  'man_made',
+  'historic',
+  'building',
+  'building:use',
+  'tourism',
+  'amenity',
+  'power',
+  'generator:source',
+  'generator:type',
+  'tower:type',
+  'waterway',
+  'bridge',
+  'railway',
+  'aeroway',
+  'industrial',
+  'religion',
+  'denomination',
+  'location',
+] as const;
+
+function structureIdentity(properties: MvtProperties): TerrainStructureIdentity {
+  const identity: TerrainStructureIdentity = {};
+  const wikidata = optionalStringProperty(properties, ['wikidata']);
+  if (wikidata !== undefined && /^Q[1-9][0-9]*$/.test(wikidata)) identity.wikidata = wikidata;
+  const tags: Record<string, string> = {};
+  for (const key of STRUCTURE_TAGS) {
+    const value = optionalStringProperty(properties, [key]);
+    if (value !== undefined) tags[key] = value;
+  }
+  if (Object.keys(tags).length) identity.tags = tags;
+  const raw = firstProperty(properties, ['direction', 'building:direction']);
+  const compass: Record<string, number> = {
+    n: 0,
+    ne: 45,
+    e: 90,
+    se: 135,
+    s: 180,
+    sw: 225,
+    w: 270,
+    nw: 315,
+  };
+  const bearing =
+    typeof raw === 'string' && Object.hasOwn(compass, raw.toLowerCase())
+      ? compass[raw.toLowerCase()]
+      : Number(raw);
+  if (raw !== undefined && Number.isFinite(bearing))
+    identity.heading = ((180 - (bearing as number)) * Math.PI) / 180;
+  return identity;
+}
+
 function consumeFeature(budget: DecodeBudget): void {
   budget.features++;
   if (budget.features > budget.maxFeatures) {
@@ -340,6 +393,10 @@ function decodeTransportation(
       linearUnitScale,
     );
     const decoded: TerrainTransportationFeature = {
+      ...structureIdentity(feature.properties),
+      ...(optionalStringProperty(feature.properties, ['name', 'name:en']) !== undefined
+        ? { name: optionalStringProperty(feature.properties, ['name', 'name:en']) }
+        : {}),
       ...(featureId(feature) !== undefined ? { id: featureId(feature) } : {}),
       class: stringProperty(feature.properties, properties.transportationClass, 'road'),
       lines,
@@ -386,6 +443,7 @@ function decodeBuildings(
     const layer = numberProperty(feature.properties, properties.buildingLayer);
     const name = optionalStringProperty(feature.properties, properties.buildingName);
     const decoded: TerrainBuildingFeature = {
+      ...structureIdentity(feature.properties),
       ...(featureId(feature) !== undefined ? { id: featureId(feature) } : {}),
       class: stringProperty(feature.properties, properties.buildingClass, 'building'),
       ...(subclass !== undefined ? { subclass } : {}),
@@ -418,10 +476,21 @@ function decodePois(
       for (const point of normalizeLine(line, feature.extent, budget)) {
         const properties = feature.properties;
         const poi: TerrainPoiFeature = {
+          ...structureIdentity(properties),
           ...(featureId(feature) !== undefined ? { id: featureId(feature) } : {}),
           class: stringProperty(
             properties,
-            ['kind', 'class', 'amenity', 'shop', 'natural', 'highway'],
+            [
+              'kind',
+              'class',
+              'amenity',
+              'shop',
+              'natural',
+              'highway',
+              'man_made',
+              'historic',
+              'power',
+            ],
             'unknown',
           ),
           point,
@@ -444,8 +513,6 @@ function decodePois(
           const value = numberProperty(properties, names, scale);
           if (value !== undefined && value > 0) poi[field] = value;
         }
-        const bearing = numberProperty(properties, ['direction']);
-        if (bearing !== undefined) poi.heading = ((180 - bearing) * Math.PI) / 180;
         pois.push(poi);
       }
     }

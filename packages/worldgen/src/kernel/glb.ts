@@ -4,7 +4,14 @@
  * plain PBR materials. Uses DataView only, so it runs anywhere the core runs.
  */
 
-import type { MeshBuffers } from './types';
+import type { MaterialSlot, MeshBuffers } from './types';
+
+/** Opt-in shared surface. UVs must already be in texture repeats; fallback PBR stays portable. */
+export interface GlbSharedSurface {
+  ref: string;
+  slot: MaterialSlot;
+  uv: 'repeats';
+}
 
 export interface GlbMaterialMeta {
   name: string;
@@ -12,6 +19,7 @@ export interface GlbMaterialMeta {
   baseColorFactor?: [number, number, number, number];
   roughness?: number;
   metallic?: number;
+  sharedSurface?: GlbSharedSurface;
 }
 
 const GLB_MAGIC = 0x46546c67;
@@ -111,6 +119,7 @@ export function encodeGlb(
       },
       doubleSided: false,
       alphaMode: 'OPAQUE',
+      ...(meta?.sharedSurface ? { extras: { molenSurface: meta.sharedSurface } } : {}),
     };
   });
   const json = {

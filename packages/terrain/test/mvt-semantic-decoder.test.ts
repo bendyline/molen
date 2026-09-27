@@ -494,3 +494,86 @@ it('preserves POI identity, detail and measured props independently of label min
     ),
   ).toThrow(/geometry points/);
 });
+
+it('preserves windmill and named structure identity without copying arbitrary map properties', () => {
+  const tile = createProtomapsTerrainMvtDecoder().decode(
+    encodeTile([
+      {
+        name: 'pois',
+        features: [
+          {
+            id: 1,
+            type: 1,
+            properties: {
+              man_made: 'windmill',
+              wikidata: 'Q42',
+              direction: 'NE',
+              note: 'not copied',
+            },
+            geometry: [[{ x: 2000, y: 2000 }]],
+          },
+        ],
+      },
+      {
+        name: 'buildings',
+        features: [
+          {
+            id: 2,
+            type: 3,
+            properties: {
+              kind: 'building',
+              kind_detail: 'windmill',
+              wikidata: 'Q123',
+              'building:direction': 90,
+            },
+            geometry: [outer],
+          },
+        ],
+      },
+      {
+        name: 'roads',
+        features: [
+          {
+            id: 3,
+            type: 2,
+            properties: {
+              kind: 'major_road',
+              name: 'Named bridge',
+              wikidata: 'Q456',
+              is_bridge: true,
+            },
+            geometry: [
+              [
+                { x: 0, y: 0 },
+                { x: 4096, y: 4096 },
+              ],
+            ],
+          },
+        ],
+      },
+    ]),
+    {
+      address: { level: 15, x: 0, z: 0 },
+      encoding: 'mvt',
+      content: 'all',
+      layers: ['poi', 'building', 'transportation'],
+    },
+  );
+  expect(tile.pois?.[0]).toMatchObject({
+    class: 'windmill',
+    wikidata: 'Q42',
+    tags: { man_made: 'windmill' },
+    heading: Math.PI * 0.75,
+  });
+  expect(tile.pois?.[0]?.tags).not.toHaveProperty('note');
+  expect(tile.buildings[0]).toMatchObject({
+    subclass: 'windmill',
+    wikidata: 'Q123',
+    heading: Math.PI / 2,
+  });
+  expect(tile.transportation[0]).toMatchObject({
+    name: 'Named bridge',
+    wikidata: 'Q456',
+    bridge: true,
+  });
+});

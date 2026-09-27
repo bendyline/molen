@@ -116,6 +116,7 @@ export {
   type TerrainSemanticPolygon,
   type TerrainSemanticRing,
   type TerrainSemanticTile,
+  type TerrainStructureIdentity,
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
 } from './semantic-types';

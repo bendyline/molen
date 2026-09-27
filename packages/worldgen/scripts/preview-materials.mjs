@@ -5,7 +5,9 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { bakeMatGraph } from '@bendyline/molen-materials';
 import { validateByKind } from '@bendyline/molen-schema';
+import { MATERIAL_PREVIEW_TINTS } from './architectural-material-catalog.mjs';
 import { formatJson } from './format-json.mjs';
+import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const packDir = resolve(here, '../../../content/worldgen/materials');
@@ -15,50 +17,17 @@ const outIndex = process.argv.indexOf('--out');
 const destination = resolve(
   outIndex >= 0 ? process.argv[outIndex + 1] : 'artifacts/material-sheet.png',
 );
-const tints = {
-  brick: '#b5785c',
-  brick_flemish: '#b78168',
-  brick_stack: '#bd8c6b',
-  brick_longformat: '#a9795e',
-  brick_glazed: '#7daba1',
-  wood_board_batten: '#bca27a',
-  wood_vertical: '#c6a476',
-  wood_log: '#c3a274',
-  wood_shou_sugi_ban: '#626766',
-  wood_weatherboard: '#a5ada5',
-  bamboo: '#c6b881',
-  slate: '#8c9ba7',
-  shingle_cedar: '#b19a76',
-  thatch: '#c0ae77',
-  tile_flat: '#c78f70',
-  tile_glazed: '#7c9d8f',
-  tile_ceramic: '#bf8a6c',
-  tile_mosaic: '#9eb8ba',
-  metal_standing_seam: '#929f9b',
-  metal_corrugated: '#a9b2b2',
-  metal_copper: '#8db2a0',
-  stone: '#b4b09e',
-  stone_ashlar: '#c7c1b0',
-  stone_limestone: '#d2c8ae',
-  stone_sandstone: '#c6a981',
-  stone_basalt: '#818b86',
-  stone_drywall: '#aaa997',
-  earth_adobe: '#d0b38b',
-  earth_rammed: '#c8b293',
-  plaster_lime: '#e4dfce',
-  plaster_tadelakt: '#ccbaa3',
-  concrete_boardformed: '#b6b7ac',
-  terracotta_screen: '#c68e6c',
-  siding_lap: '#acb8ae',
-  siding_shingle: '#bda990',
-  shingle_asphalt: '#858e93',
-  concrete_panel: '#c2c4ba',
-  concrete_plain: '#b9bcb5',
-  stucco: '#e4d8be',
-  membrane: '#99a19e',
-  gravel: '#c1b8a5',
-};
-const files = (await readdir(packDir)).filter((name) => name.endsWith('.matgraph.json')).sort();
+const selected = process.argv
+  .find((arg) => arg.startsWith('--ids='))
+  ?.slice(6)
+  .split(',');
+const files = (await readdir(packDir))
+  .filter(
+    (name) =>
+      name.endsWith('.matgraph.json') &&
+      (!selected || selected.includes(name.replace('.matgraph.json', ''))),
+  )
+  .sort();
 const cols = 5;
 const cellW = 360;
 const cellH = 246;
@@ -80,7 +49,7 @@ for (const [index, file] of files.entries()) {
   const image = baked.slots.baseColor;
   const roughness = baked.slots.roughness;
   if (image === undefined || roughness === undefined) throw new Error(`${id}: missing PBR channel`);
-  const tint = tints[id] ?? '#ffffff';
+  const tint = MATERIAL_PREVIEW_TINTS[id] ?? '#ffffff';
   const factors = [1, 3, 5].map((start) => Number.parseInt(tint.slice(start, start + 2), 16) / 255);
   const tinted = Buffer.from(image.data);
   let luminance = 0;
@@ -125,10 +94,11 @@ for (const [index, file] of files.entries()) {
     roughness: Number((roughness.data[0] / 255).toFixed(3)),
     channels: Object.keys(baked.slots),
     previewTint: tint,
+    repeatMeters: MATERIAL_REPEAT_METERS[id],
   });
 }
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" font-family="Segoe UI, sans-serif" fill="#243e36"><rect width="100%" height="100%" fill="#e9eee9"/><text x="32" y="47" font-size="31" font-weight="700">Molen · Standard architectural surfaces</text><text x="32" y="79" font-size="16" fill="#50655c">45 shared 256² procedural materials · actual baked base-color maps · representative palette tints · near and repeated views</text>${labels.join('')}</svg>`;
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" font-family="Segoe UI, sans-serif" fill="#243e36"><rect width="100%" height="100%" fill="#e9eee9"/><text x="32" y="47" font-size="31" font-weight="700">Molen · Standard architectural surfaces</text><text x="32" y="79" font-size="16" fill="#50655c">${files.length} shared 256² procedural materials · actual baked base-color maps · representative palette tints · near and repeated views</text>${labels.join('')}</svg>`;
 await mkdir(dirname(destination), { recursive: true });
 await sharp(Buffer.from(svg)).composite(composite).png().toFile(destination);
 await writeFile(destination.replace(/\.png$/i, '.json'), `${formatJson(report)}\n`);

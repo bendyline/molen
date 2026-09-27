@@ -1,0 +1,102 @@
+{
+  "planId": "N0002",
+  "id": "N0002",
+  "assetId": "molen.worldgen.structure.n0002_pont_de_normandie",
+  "title": "Pont de Normandie",
+  "visualBrief": "The asymmetric full crossing: inverted-Y concrete pylons, 184 paired stays, aerodynamic box deck, curved vertical alignment, blue cornices, narrow cycle and pedestrian margins, pier viaducts and modeled cable anchor hardware",
+  "size": [
+    2141.25,
+    214,
+    47
+  ],
+  "referenceCoordinate": {
+    "latitude": 49.432222222,
+    "longitude": 0.273888888
+  },
+  "referencePages": [
+    "https://www.pontsnormandietancarville.fr/lhistoire/pont-de-normandie/le-pont-en-details/",
+    "https://www.pontsnormandietancarville.fr/wp-content/uploads/2020/04/fiche-technique-pontdenormandie-01.pdf",
+    "https://www.pontsnormandietancarville.fr/lhistoire/pont-de-normandie/lorigine-du-projet/"
+  ],
+  "scaleBasis": "Main dimensions and construction systems follow the cited CCI Seine Estuaire technical sheet. Approach allocation, exact road curvature and fittings remain reconstructed; see limitations.",
+  "geometrySource": "Original deterministic Molen mesh generator; no third-party model or bitmap texture.",
+  "placementStatus": "Main-span midpoint and longitudinal axis have OSM evidence; CMH vertical datum conversion and road fit remain unresolved. Do not activate as a terrain-draped point landmark.",
+  "quality": "detailed",
+  "reviewStatus": "source-geometry; visual and geographic verification required",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X south",
+    "transverse": "+Z",
+    "origin": "Main-span midpoint horizontally; Y=0 is CMH low-water chart datum, not mean sea level"
+  },
+  "qaCameras": [
+    {
+      "name": "near-pylon",
+      "position": [
+        -625,
+        105,
+        180
+      ],
+      "lookAt": [
+        -428,
+        113,
+        0
+      ]
+    },
+    {
+      "name": "near-deck",
+      "position": [
+        -402,
+        64,
+        16
+      ],
+      "lookAt": [
+        -350,
+        63.4,
+        9.5
+      ]
+    },
+    {
+      "name": "far-crossing",
+      "position": [
+        100,
+        490,
+        1900
+      ],
+      "lookAt": [
+        -95,
+        80,
+        0
+      ]
+    }
+  ],
+  "sourceFacts": {
+    "overallLengthMeters": 2141.25,
+    "mainSpanMeters": 856,
+    "publishedOverallWidthMeters": 23.6,
+    "deckSteelBoxWidthMeters": 21.2,
+    "deckSteelBoxDepthMeters": 3,
+    "steelCenterLengthMeters": 624,
+    "pylonTopCmhMeters": 214,
+    "pylonFootingCmhMeters": 12,
+    "pylonJunctionCmhMeters": 139,
+    "pylonDeckCmhMeters": 59,
+    "pylonBaseLegSpacingMeters": 30,
+    "stays": 184,
+    "maximumStayDiameterMeters": 0.168,
+    "viaductPiersNorth": 15,
+    "viaductPiersSouth": 11,
+    "maximumApproachGrade": 0.06
+  },
+  "limitations": [
+    "The operator technical sheet has dated/rounded dimensions. Main dimensions and cable count are sourced; approach endpoint allocation, exact vertical road curvature, pier stationing and local fittings are reconstructed.",
+    "CMH is the Carte Marine Havraise tidal datum. Geographic placement requires a checked vertical conversion; interpreting Y=0 as a generic terrain elevation would be incorrect.",
+    "No toll plaza, embankments, submerged piles, maintenance interiors, traffic or navigation lights are included.",
+    "Original vertex-color PBR geometry is detailed, but texture weathering, site-fit verification and collision refinement are pending. This is not a survey reconstruction or a maximum-fidelity completion claim."
+  ],
+  "sourceLicense": "Original Molen geometry. Referenced operator documents are consulted, not copied or redistributed.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Whole-crossing position quantization destroys 0.13 m road stripes and 0.11–0.168 m cables over a 2,141 m envelope. Preserve float positions until a segmented/LOD import is authored."
+}

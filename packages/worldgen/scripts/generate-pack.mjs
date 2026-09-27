@@ -13,6 +13,7 @@ import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { architecturalMaterialCatalog } from './architectural-material-catalog.mjs';
 import { formatJson } from './format-json.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -179,6 +180,141 @@ const glass = (rows, cols, mortarWidth, frame, pane, roughness) => ({
 });
 
 const MATERIALS = {
+  wood_plain: {
+    doc: 'Continuous neutral timber grain without board joints, for individually modeled beams, planks and trim. U follows the grain; species color comes from the asset tint.',
+    seed: 205,
+    nodes: [
+      ...fibers(2, 36, 0.88),
+      ramp('out', 'fiber-noise', [
+        [0, '#cecece'],
+        [0.3, '#e3e3e3'],
+        [0.65, '#f0f0f0'],
+        [1, '#f7f7f7'],
+      ]),
+      levels('rough', 'fiber-noise', 0.77, 0.91),
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'fiber-noise',
+        params: { strength: 0.0013 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  fabric_canvas: {
+    doc: 'Neutral canvas-like woven cloth for sails and awnings; fine crosswise yarns with restrained normal response. Seams, hems, folds and tension remain model geometry.',
+    seed: 206,
+    nodes: [
+      ...profile('warp', 32, 0, [
+        [0, '#999999'],
+        [0.25, '#dddddd'],
+        [0.5, '#ffffff'],
+        [0.75, '#dddddd'],
+        [1, '#999999'],
+      ]),
+      ...profile('weft', 32, 90, [
+        [0, '#999999'],
+        [0.25, '#dddddd'],
+        [0.5, '#ffffff'],
+        [0.75, '#dddddd'],
+        [1, '#999999'],
+      ]),
+      blend('weave', 'warp', 'weft', 'mix', 0.5),
+      levels('out', 'weave', 0.87, 0.98),
+      levels('rough', 'weave', 0.91, 0.99),
+      { id: 'normal', type: 'height-to-normal', input: 'weave', params: { strength: 0.001 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  wood_painted_lap: {
+    doc: 'Painted horizontal wood lap boards: eight 200 mm exposures, restrained grain beneath an intact matte paint film. White, cream and blue are shared tint variants.',
+    seed: 201,
+    nodes: [
+      ...profile('lap-height', 8, 90, [
+        [0, '#101010'],
+        [0.04, '#101010'],
+        [0.06, '#999999'],
+        [0.96, '#cccccc'],
+        [1, '#101010'],
+      ]),
+      ramp('paint', 'lap-height', [
+        [0, '#bcbcbc'],
+        [0.1, '#e9e9e9'],
+        [0.25, '#f7f7f7'],
+        [1, '#f7f7f7'],
+      ]),
+      ...fibers(2, 46, 0.985),
+      multiply('out', 'paint', 'fiber'),
+      levels('rough', 'fiber-noise', 0.58, 0.7),
+      blend('height', 'lap-height', 'fiber-noise', 'mix', 0.025),
+      { id: 'normal', type: 'height-to-normal', input: 'height', params: { strength: 0.007 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  wood_painted_shingle: {
+    doc: 'Painted wood shingles with eight 200 mm exposures, staggered 200 mm widths, narrow butt joints and fine vertical grain under the coating. Green and white are tint variants.',
+    seed: 202,
+    nodes: [
+      bricks('seams', 8, 8, 0.018, 0.5),
+      ...profile('exposure', 8, 90, [
+        [0, '#101010'],
+        [0.04, '#101010'],
+        [0.06, '#777777'],
+        [0.96, '#bbbbbb'],
+        [1, '#101010'],
+      ]),
+      multiply('shingle-height', 'seams', 'exposure'),
+      twoTone('paint', 'seams', '#b5b5b5', '#f6f6f6'),
+      ...fibers(42, 3, 0.974),
+      multiply('out', 'paint', 'fiber'),
+      levels('rough', 'fiber-noise', 0.65, 0.79),
+      blend('height', 'shingle-height', 'fiber-noise', 'mix', 0.035),
+      { id: 'normal', type: 'height-to-normal', input: 'height', params: { strength: 0.007 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  metal_painted: {
+    doc: 'Continuous coated steel with subtle paint-film stipple; dielectric paint conceals the metal substrate. Rivets, panel edges, welds and damage remain asset geometry or unique art.',
+    seed: 203,
+    nodes: [
+      ...fibers(34, 34, 0.99),
+      ramp('out', 'fiber-noise', [
+        [0, '#f1f1f1'],
+        [1, '#f8f8f8'],
+      ]),
+      levels('rough', 'fiber-noise', 0.49, 0.61),
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'fiber-noise',
+        params: { strength: 0.0008 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_granite: {
+    doc: 'Fine matte dressed granite without masonry joints: low-contrast interlocking mineral flecks and shallow granular microstructure. Joint courses belong to geometry or a masonry graph.',
+    seed: 204,
+    nodes: [
+      ...fibers(38, 38, 0.93),
+      {
+        id: 'minerals',
+        type: 'worley',
+        input: 'fiber-uv',
+        params: { scale: 38, jitter: 0.93, output: 'f1' },
+      },
+      ramp('speckle', 'minerals', [
+        [0, '#a9a9a9'],
+        [0.18, '#d2d2d2'],
+        [0.48, '#efefef'],
+        [1, '#d7d7d7'],
+      ]),
+      multiply('out', 'speckle', 'fiber'),
+      levels('rough', 'fiber-noise', 0.82, 0.94),
+      { id: 'normal', type: 'height-to-normal', input: 'minerals', params: { strength: 0.0012 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
   siding_lap: {
     doc: 'Horizontal lap siding: eight boards per repeat with a shadow line under each board.',
     seed: 11,
@@ -1037,6 +1173,13 @@ for (const [name, entry] of Object.entries(MATERIALS)) {
     Buffer.from(`${formatJson(materialDocument(entry))}\n`),
   );
 }
+const materialCatalog = architecturalMaterialCatalog(
+  Object.fromEntries(
+    Object.entries(MATERIALS).map(([key, entry]) => [key, materialDocument(entry)]),
+  ),
+  Object.fromEntries(Object.entries(MATERIALS).map(([key, entry]) => [key, entry.doc])),
+);
+await emit('source/material-library/catalog.json', Buffer.from(`${formatJson(materialCatalog)}\n`));
 for (const model of PROPS) {
   const id = model.id;
   const name = id.replace('molen.worldgen.prop.', '');

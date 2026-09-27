@@ -8,62 +8,146 @@ import { wgs84ToWorld } from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
 import type { StructurePlacement } from '../kernel/structure-index';
 
-/** Clip transformed prepared-model triangles, including their colors and normals. Ownership
- * follows terrain coverage, so a bridge end survives even when its anchor tile is absent. */
+/** Clip static triangles in tile space while retaining UV sets, vertex colors, tangents and
+ * material groups. The source geometry remains shared and untouched. */
 export function clipStructureGeometry(
   source: THREE.BufferGeometry,
   matrix: THREE.Matrix4,
   size: number,
 ): THREE.BufferGeometry {
-  const geometry = source.clone().applyMatrix4(matrix);
-  const names = ['position', 'normal', 'color'] as const;
+  const geometry = source.clone();
+  // glTF quantization uses normalized integer attributes: expand before a world transform
+  // so a kilometer-long bridge does not get clamped to the integer's normalized range.
+  for (const name of ['position', 'normal', 'tangent']) {
+    const attribute = geometry.getAttribute(name);
+    if (!attribute || (attribute.array instanceof Float32Array && !attribute.normalized)) continue;
+    const data = new Float32Array(attribute.count * attribute.itemSize);
+    for (let i = 0; i < attribute.count; i++)
+      for (let k = 0; k < attribute.itemSize; k++)
+        data[i * attribute.itemSize + k] = attribute.getComponent(i, k);
+    geometry.setAttribute(name, new THREE.BufferAttribute(data, attribute.itemSize));
+  }
+  geometry.applyMatrix4(matrix);
+  const names = [
+    'position',
+    ...Object.keys(geometry.attributes).filter((name) => name !== 'position'),
+  ];
   const attributes = names.map((name) => geometry.getAttribute(name));
   const arrays = names.map(() => [] as number[]);
   const index = geometry.index;
   const count = index?.count ?? geometry.getAttribute('position').count;
-  for (let i = 0; i < count; i += 3) {
-    let polygon = [0, 1, 2].map((j) => {
-      const v = index ? index.getX(i + j) : i + j;
-      return attributes.flatMap((a) => (a ? [a.getX(v), a.getY(v), a.getZ(v)] : [1, 1, 1]));
-    });
-    for (const [axis, edge, sign] of [
-      [0, 0, 1],
-      [0, size, -1],
-      [2, 0, 1],
-      [2, size, -1],
-    ] as const) {
-      const input = polygon;
-      polygon = [];
-      for (let j = 0; j < input.length; j++) {
-        const a = input[j] as number[],
-          b = input[(j + 1) % input.length] as number[];
-        const da = ((a[axis] as number) - edge) * sign,
-          db = ((b[axis] as number) - edge) * sign;
-        if (da >= 0) polygon.push(a);
-        if (da >= 0 !== db >= 0) {
-          const t = da / (da - db);
-          const cut = a.map((v, k) => v + ((b[k] as number) - v) * t);
-          cut[axis] = edge;
-          polygon.push(cut);
+  const mirrored = matrix.determinant() < 0;
+  const result = new THREE.BufferGeometry();
+  const groups = geometry.groups.length ? geometry.groups : [{ start: 0, count, materialIndex: 0 }];
+  for (const group of groups) {
+    const start = (arrays[0] as number[]).length / 3;
+    const first = Math.max(group.start, geometry.drawRange.start);
+    const end = Math.min(
+      group.start + group.count,
+      count,
+      geometry.drawRange.start + geometry.drawRange.count,
+    );
+    for (let i = first; i + 2 < end; i += 3) {
+      let polygon = (mirrored ? [0, 2, 1] : [0, 1, 2]).map((j) => {
+        const v = index ? index.getX(i + j) : i + j;
+        return attributes.flatMap((attribute) =>
+          Array.from({ length: attribute.itemSize }, (_, k) => attribute.getComponent(v, k)),
+        );
+      });
+      for (const [axis, edge, sign] of [
+        [0, 0, 1],
+        [0, size, -1],
+        [2, 0, 1],
+        [2, size, -1],
+      ] as const) {
+        const input = polygon;
+        polygon = [];
+        for (let j = 0; j < input.length; j++) {
+          const a = input[j] as number[],
+            b = input[(j + 1) % input.length] as number[];
+          const da = ((a[axis] as number) - edge) * sign,
+            db = ((b[axis] as number) - edge) * sign;
+          if (da >= 0) polygon.push(a);
+          if (da >= 0 !== db >= 0) {
+            const t = da / (da - db);
+            const cut = a.map((v, k) => v + ((b[k] as number) - v) * t);
+            cut[axis] = edge;
+            polygon.push(cut);
+          }
         }
       }
+      for (let j = 1; j + 1 < polygon.length; j++)
+        for (const p of [polygon[0], polygon[j], polygon[j + 1]] as number[][]) {
+          let offset = 0;
+          attributes.forEach((attribute, k) => {
+            (arrays[k] as number[]).push(...p.slice(offset, offset + attribute.itemSize));
+            offset += attribute.itemSize;
+          });
+        }
     }
-    for (let j = 1; j + 1 < polygon.length; j++)
-      for (const p of [polygon[0], polygon[j], polygon[j + 1]] as number[][]) {
-        names.forEach((_, k) => {
-          (arrays[k] as number[]).push(...p.slice(k * 3, k * 3 + 3));
-        });
-      }
+    const emitted = (arrays[0] as number[]).length / 3 - start;
+    if (emitted > 0) result.addGroup(start, emitted, group.materialIndex);
   }
   geometry.dispose();
-  const result = new THREE.BufferGeometry();
   names.forEach((name, i) => {
-    result.setAttribute(name, new THREE.Float32BufferAttribute(arrays[i] as number[], 3));
+    result.setAttribute(
+      name,
+      new THREE.Float32BufferAttribute(
+        arrays[i] as number[],
+        (attributes[i] as THREE.BufferAttribute).itemSize,
+      ),
+    );
   });
-  result.normalizeNormals();
+  if (result.getAttribute('normal')) result.normalizeNormals();
+  const tangents = result.getAttribute('tangent');
+  if (tangents) {
+    const direction = new THREE.Vector3();
+    for (let i = 0; i < tangents.count; i++) {
+      direction.fromBufferAttribute(tangents, i).normalize();
+      tangents.setXYZ(i, direction.x, direction.y, direction.z);
+      if (mirrored) tangents.setW(i, -tangents.getW(i));
+    }
+  }
   result.computeBoundingBox();
   result.computeBoundingSphere();
   return result;
+}
+
+/** Extended structures are static and clipped per mesh, preserving their original materials. */
+export function clipStructureObject(source: THREE.Object3D, size: number): THREE.Group {
+  const result = new THREE.Group();
+  source.updateMatrixWorld(true);
+  try {
+    source.traverseVisible((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh) return;
+      if (
+        (mesh as THREE.SkinnedMesh).isSkinnedMesh ||
+        (mesh as THREE.InstancedMesh).isInstancedMesh ||
+        Object.keys(mesh.geometry.morphAttributes).length > 0
+      )
+        throw new Error('Extended structure models require static meshes');
+      const geometry = clipStructureGeometry(mesh.geometry, mesh.matrixWorld, size);
+      if (geometry.getAttribute('position').count === 0) {
+        geometry.dispose();
+        return;
+      }
+      const part = new THREE.Mesh(geometry, mesh.material);
+      part.name = mesh.name;
+      part.renderOrder = mesh.renderOrder;
+      part.castShadow = true;
+      part.receiveShadow = true;
+      part.userData.worldgenOwnedGeometry = true;
+      result.add(part);
+    });
+    return result;
+  } catch (error) {
+    result.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (mesh.isMesh) mesh.geometry.dispose();
+    });
+    throw error;
+  }
 }
 
 /** Exact segment/rectangle subtraction: keep approach fragments, including lines whose

@@ -94,6 +94,13 @@ Use glTF 2.0 conventions and these Molen authoring expectations:
 - prefer a self-contained GLB for reliable serving and capture;
 - avoid extensions unless the client has the required decoder configuration.
 
+World-viewer structures can also bind reusable surfaces through material
+`extras.molenSurface`, preserving a portable fallback inside the GLB. See
+[shared architectural surfaces](earth-view.md#shared-architectural-surfaces) for the
+reference contract, metric UV scale, tinting and shared texture lifetime. Keep unique signs,
+murals and facade art as their own materials. Inspect the model in the Earth renderer as well
+as its portable asset preview when it uses these bindings.
+
 The importer decodes supported input, then deduplicates, prunes, welds, and quantizes by default.
 Use `--no-optimize` only to diagnose a transformation issue. Repeating UVs outside `[0,1]` are
 valid, but the optimizer currently leaves those UV accessors unquantized and reports that choice.

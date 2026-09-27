@@ -24,9 +24,6 @@ export type {
   WorldBounds,
 } from './kernel/region';
 export { createRegionResolver, regionScatterId, regionStyleRules } from './kernel/region';
-export type { StructureCatalogDoc, StructureIndex, StructurePlacement, StyleSuggestion } from './kernel/structure-index';
-export { createStructureIndex, encodeStructureGeohash, suggestStructureStyles } from './kernel/structure-index';
-export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 export {
   REGION_ATLAS_EXAMPLE,
   registerRegionAtlasSchema,
@@ -48,6 +45,20 @@ export {
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';
+export type {
+  StructureCatalogDoc,
+  StructureIndex,
+  StructureMapRule,
+  StructurePlacement,
+  StyleSuggestion,
+} from './kernel/structure-index';
+export {
+  createStructureIndex,
+  encodeStructureGeohash,
+  suggestStructureStyles,
+} from './kernel/structure-index';
+export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
+export { matchMapStructures, orientMappedStructure } from './kernel/structure-matching';
 export type { WorldgenQualityPreset } from './kernel/tile-budgets';
 export { worldgenTileBudgetForQuality } from './kernel/tile-budgets';
 export type { EdgeDecision } from './kernel/tile-edges';

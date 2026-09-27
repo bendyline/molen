@@ -119,7 +119,7 @@ describe('resolved material set', () => {
     expect(unprepared).toBe(set.materialFor('wall', 'palette:#ffffff'));
     set.dispose();
     expect(wall.map?.image).toBeDefined();
-  }, 60_000); // Prepare the full shared 45-material library, including normal/PBR maps.
+  }, 60_000); // Prepare the shared procedural material library, including normal/PBR maps.
 
   it('records failures instead of throwing and keeps rendering flat', async () => {
     const resolver = new MaterialResolver(undefined);

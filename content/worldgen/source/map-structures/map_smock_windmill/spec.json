@@ -1,0 +1,161 @@
+{
+  "id": "map_smock_windmill",
+  "assetId": "molen.worldgen.structure.map_smock_windmill",
+  "title": "Traditional gallery smock windmill",
+  "category": "windmill",
+  "quality": "detailed",
+  "visualBrief": "Octagonal brick base, tapered timber smock with individually lapped boards, framed windows, supported timber gallery, ogee cap, four lattice-and-cloth sails, windshaft, manual winding tailpole and access stair.",
+  "size": [
+    23.3,
+    30.6,
+    16.5
+  ],
+  "actualBounds": {
+    "min": [
+      -11.5,
+      0,
+      -9.028800010681152
+    ],
+    "max": [
+      11.5,
+      30.540918350219727,
+      7.408353805541992
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Tower base at ground level; rotor axis points toward +Z"
+  },
+  "scaleBasis": "Original generic gallery-mill design, not a measured replica. Construction vocabulary is based on museum/archival descriptions; dimensions are authored art values.",
+  "referencePages": [
+    "https://collection.sciencemuseumgroup.org.uk/objects/co50772/sectioned-model-scale-1-24-of-smock-windmill-from-cranbrook-kent-c-1840-windmills",
+    "https://millsarchive.org/2019/09/13/technical-descriptions-of-english-windmills/20/"
+  ],
+  "geometrySource": "Original deterministic Molen mesh; reference publications inform construction systems and dimensions only. No third-party mesh or image is embedded.",
+  "sourceLicense": "Original geometry under repository license; reference links retain their own rights.",
+  "materialMethod": "Shared material-graph references in GLB material extras with metric repeat UVs; original vertex colors supply tints. Standalone GLB keeps portable PBR fallback materials. Textures are resolved from the shared library and are not duplicated per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ],
+      "projection": "face-tangent"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ],
+      "projection": "courses"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ],
+      "projection": "courses"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ],
+      "projection": "long-edge"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ],
+      "projection": "face-tangent"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ],
+      "projection": "face-tangent"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ],
+      "projection": "long-edge"
+    }
+  ],
+  "animation": "Static rotor pose; no animation clips.",
+  "limitations": [
+    "Exterior only; no milling machinery, working yaw/sail animation, collision refinement or site-specific mill identity. Do not replace a uniquely identified mill with this class fallback when a dedicated model is available.",
+    "Visual QA and site-specific orientation/height checking are required. This source has not been certified as a maximum-fidelity finished replica."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve small sail lattice, bolts and service fittings until a measured LOD chain is authored.",
+  "qaCameras": [
+    {
+      "name": "near-sails",
+      "position": [
+        12,
+        20,
+        25
+      ],
+      "lookAt": [
+        0,
+        19,
+        3
+      ]
+    },
+    {
+      "name": "near-gallery",
+      "position": [
+        15,
+        8,
+        17
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        44,
+        24,
+        61
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ]
+}

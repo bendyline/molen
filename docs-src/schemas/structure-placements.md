@@ -159,6 +159,43 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "replaceFootprint": {
             "type": "boolean"
           },
+          "mapIdentity": {
+            "type": "object",
+            "properties": {
+              "wikidata": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              },
+              "names": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "maxDistance": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 10000
+              }
+            },
+            "additionalProperties": false
+          },
+          "orientation": {
+            "type": "string",
+            "enum": [
+              "fixed",
+              "mapped"
+            ]
+          },
+          "lengthAxis": {
+            "type": "string",
+            "enum": [
+              "x",
+              "z"
+            ]
+          },
           "minLevel": {
             "type": "integer",
             "minimum": 0,
@@ -185,6 +222,131 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "asset",
           "anchor",
           "status",
+          "source"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "classes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "subclasses": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "tags": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "additionalProperties": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "dimensions": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "orientation": {
+            "type": "string",
+            "enum": [
+              "direction",
+              "longest-edge",
+              "north"
+            ]
+          },
+          "lengthAxis": {
+            "type": "string",
+            "enum": [
+              "x",
+              "z"
+            ]
+          },
+          "fit": {
+            "type": "string",
+            "enum": [
+              "native",
+              "footprint"
+            ]
+          },
+          "replaceFootprint": {
+            "type": "boolean"
+          },
+          "minLevel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 26
+          },
+          "maxPerTile": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 64
+          },
+          "source": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "asset",
+          "match",
+          "dimensions",
           "source"
         ],
         "additionalProperties": false

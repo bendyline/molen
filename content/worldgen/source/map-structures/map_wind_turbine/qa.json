@@ -1,0 +1,89 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.map_wind_turbine",
+  "sourceHash": "sha256:edcfa1c3822b078bd41c2c965c1fe138a9b761fe0898e52521f03c7f6329e9ea",
+  "runtimeHash": "sha256:7dde0ccd1cb6c76f65d42b12f159de182d0099c24cf905a341e52055aa8bb239",
+  "captureReportHash": "sha256:184f79cbfb782a10e2fe3541e6c5d5292b7eb7288679d38ccbcbe80060680d37",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Static exterior geometry at all eight source captures, plus actual GLB placement and shared-surface rendering in the map integration fixture.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-nacelle.png",
+      "shots/near-tower.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all four sides, tower base/door, nacelle, rotor roots and far silhouette. The standalone source views use portable PBR fallback materials; shared painted metal and concrete were inspected in the additional runtime map views."
+  },
+  "geographicReview": {
+    "status": "not-applicable",
+    "notes": "Reusable category model with +Z front and Y=0 base. The synthetic semantic tile confirms mapped position, supplied heading and terrain contact. Real-site identity, height and orientation still depend on map evidence; this model has no unique geographic anchor."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "The blade exterior uses an approximate symmetric airfoil section and reference planform, not the full aerodynamic airfoil data. The rotor is static, with no drivetrain internals or structural/collision certification. Declared size is the swept envelope, larger than the static three-blade AABB. Close blade roots retain approximate profile transitions. This review does not certify maximum fidelity."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "examples/world-explorer/captures/map-structures/capture.json",
+    "captureHash": "sha256:d81dba8065d393224f7fed5599e6a736903e6c332a0081a6229823d91cc0c1bf",
+    "materialGraphs": {
+      "molen.worldgen.material.metal_painted": {
+        "path": "content/worldgen/materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "molen.worldgen.material.concrete_plain": {
+        "path": "content/worldgen/materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      {
+        "name": "overview",
+        "path": "examples/world-explorer/captures/map-structures/overview.png",
+        "hash": "sha256:9cd993d53d20ed0ea052247d5a1cabb28065a823982a15c66f71f9bcccbde99c"
+      },
+      {
+        "name": "windmill",
+        "path": "examples/world-explorer/captures/map-structures/windmill.png",
+        "hash": "sha256:4c8e8f1813218278cacc8903baabfb45364ad9e6800891db59c2c35e0260c956"
+      },
+      {
+        "name": "mill-materials",
+        "path": "examples/world-explorer/captures/map-structures/mill-materials.png",
+        "hash": "sha256:9219d112cb0878db59cb3c7fbd3ba152e5cda01c4d5619e907e4acb5514f24cf"
+      },
+      {
+        "name": "mill-gallery",
+        "path": "examples/world-explorer/captures/map-structures/mill-gallery.png",
+        "hash": "sha256:47374dff9777affe32a7a66237424628cb59bb5c4ba548dad35b73301b99d736"
+      },
+      {
+        "name": "turbine",
+        "path": "examples/world-explorer/captures/map-structures/turbine.png",
+        "hash": "sha256:ad18b11f72121da79546d487bbf6f6b0f5d88cbd22f9dd048ccc9b3bc48a6002"
+      },
+      {
+        "name": "turbine-base",
+        "path": "examples/world-explorer/captures/map-structures/turbine-base.png",
+        "hash": "sha256:8ec78ea1f49d9362c08d9ca50b96db4104418d7c7600615844dd2de31f847589"
+      },
+      {
+        "name": "turbine-nacelle",
+        "path": "examples/world-explorer/captures/map-structures/turbine-nacelle.png",
+        "hash": "sha256:b2621da9220409928e051302cd0c5d0817bf2e44579fcf41d038eba6876b026a"
+      },
+      {
+        "name": "missing-tags",
+        "path": "examples/world-explorer/captures/map-structures/missing-tags.png",
+        "hash": "sha256:be9e028830382e57e901e9158fe2cbd5a3752dfafc224e44a32ff66fab3d22cc"
+      }
+    ],
+    "notes": "Reviewed painted-metal tower, door, nacelle and blades plus concrete footing at close range. Metric-repeat UVs resolve canonical graphs with vertex-color tint; no per-model image copies. The fixture proves one graph read per surface and the same painted-metal texture object across both GLBs. A fixture sun bias adjustment reduced self-shadow banding before the final captures; minor shadow-map aliasing remains at small fittings."
+  }
+}

@@ -3,12 +3,17 @@ import {
   createTerrainSurfaceRenderer,
   type TerrainPyramidTileLayerContext,
 } from '@bendyline/molen-terrain/client';
-import { createEmptyTerrainSemanticTile, Heightfield } from '@bendyline/molen-terrain/kernel';
-import { ModelLibrary } from '@bendyline/molen-worldgen/client';
+import {
+  createEmptyTerrainSemanticTile,
+  Heightfield,
+  worldToWgs84,
+} from '@bendyline/molen-terrain/kernel';
+import { ModelLibrary, StructureModelLibrary } from '@bendyline/molen-worldgen/client';
 import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { createWorldgenSemanticRenderers } from '../src/client/renderers';
+import type { WorldgenGenerateRequest } from '../src/client/worker-bridge';
 import { createStructureIndex } from '../src/kernel/structure-index';
 import type { WorldgenTileOutput } from '../src/kernel/tile-generate';
 import { loadDefaultPack } from './helpers/pack';
@@ -106,6 +111,219 @@ function fixture(prepareObject?: (object: THREE.Object3D, signal: AbortSignal) =
 }
 
 describe('worldgen human-feature tile orchestration', () => {
+  it('disposes resident clipped geometry on renderer shutdown and tolerates a later tile eviction', async () => {
+    const geometry = new THREE.BoxGeometry(600, 8, 20);
+    const material = new THREE.MeshStandardMaterial();
+    const source = new THREE.Group().add(new THREE.Mesh(geometry, material));
+    const releaseSource = vi.spyOn(geometry, 'dispose');
+    const releaseMaterial = vi.spyOn(material, 'dispose');
+    const objects = new StructureModelLibrary(async () => source);
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Span',
+        entries: [
+          {
+            id: 'span',
+            title: 'Span',
+            asset: 'unique.span',
+            anchor: [0, 0],
+            bounds: [-0.003, -0.001, 0.003, 0.001],
+            datum: 'sea-level',
+            minLevel: 0,
+            status: 'preview',
+            source: 'https://example.com',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const ctx = context(new AbortController().signal);
+    ctx.origin = [-100, -100];
+    const root = await renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), ctx);
+    if (!root) throw new Error('Missing structure tile');
+    const scene = new THREE.Scene();
+    scene.add(root);
+    const mesh = root
+      .getObjectByName('structure:span')
+      ?.getObjectByProperty('isMesh', true) as THREE.Mesh;
+    const releaseClipped = vi.spyOn(mesh.geometry, 'dispose');
+    renderers.dispose();
+    expect(root.parent).toBeNull();
+    expect(releaseSource).toHaveBeenCalledOnce();
+    expect(releaseClipped).toHaveBeenCalledOnce();
+    expect(releaseMaterial).toHaveBeenCalledOnce();
+    renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+    expect(releaseSource).toHaveBeenCalledOnce();
+    expect(releaseClipped).toHaveBeenCalledOnce();
+    expect(releaseMaterial).toHaveBeenCalledOnce();
+  });
+
+  it('keeps original structure UVs, textures, and PBR materials until its final tile is released', async () => {
+    const geometry = new THREE.BoxGeometry(10, 20, 8);
+    const texture = new THREE.DataTexture(new Uint8Array([100, 120, 140, 255]), 1, 1);
+    const material = new THREE.MeshStandardMaterial({
+      map: texture,
+      metalness: 0.8,
+      roughness: 0.2,
+    });
+    const source = new THREE.Group().add(new THREE.Mesh(geometry, material));
+    const releaseGeometry = vi.spyOn(geometry, 'dispose');
+    const releaseTexture = vi.spyOn(texture, 'dispose');
+    const releaseMaterial = vi.spyOn(material, 'dispose');
+    const objects = new StructureModelLibrary(async () => source);
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Detailed',
+        entries: [
+          {
+            id: 'detailed',
+            title: 'Detailed',
+            asset: 'unique.detailed',
+            anchor: worldToWgs84(1, 50, 60),
+            heading: Math.PI / 3,
+            scale: [2, 1, 2],
+            elevation: 4,
+            minLevel: 0,
+            status: 'preview',
+            source: 'https://example.com',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      createEmptyTerrainSemanticTile(),
+      context(new AbortController().signal),
+    );
+    const placed = root?.getObjectByName('structure:detailed');
+    const mesh = placed?.getObjectByProperty('isMesh', true) as THREE.Mesh;
+    expect(mesh.geometry.getAttribute('uv')).toBe(geometry.getAttribute('uv'));
+    expect(mesh.material).toBe(material);
+    expect((mesh.material as THREE.MeshStandardMaterial).map).toBe(texture);
+    expect(placed?.position.x).toBeCloseTo(50);
+    expect(placed?.position.z).toBeCloseTo(60);
+    expect(placed?.position.y).toBe(4);
+    expect(placed?.rotation.y).toBeCloseTo(Math.PI / 3);
+    expect(releaseGeometry).not.toHaveBeenCalled();
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    expect(releaseGeometry).toHaveBeenCalledOnce();
+    expect(releaseTexture).toHaveBeenCalledOnce();
+    expect(releaseMaterial).toHaveBeenCalledOnce();
+    renderers.dispose();
+    objects.dispose();
+  });
+  it.each([
+    false,
+    true,
+  ])('suppresses a category building only after its model loads (failure=%s)', async (fails) => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const source = new THREE.Group().add(
+      new THREE.Mesh(new THREE.BoxGeometry(8, 20, 8), new THREE.MeshStandardMaterial()),
+    );
+    const loads = vi.fn(async () => {
+      if (fails) throw new Error('missing model');
+      return source;
+    });
+    const models = new ModelLibrary(loads);
+    const generated = vi.fn(async (_input: WorldgenGenerateRequest) => output());
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Categories',
+        entries: [],
+        rules: [
+          {
+            id: 'mill',
+            title: 'Mill',
+            asset: 'generic.mill',
+            source: 'https://example.com',
+            dimensions: [8, 20, 8],
+            match: { classes: ['windmill'] },
+            minLevel: 0,
+          },
+        ],
+      }),
+      structureModels: models,
+      roads: { renderTransportation: false },
+      generator: { generate: generated, dispose() {} },
+    });
+    const tile = createEmptyTerrainSemanticTile();
+    tile.buildings = [
+      {
+        id: 1,
+        class: 'windmill',
+        polygons: [
+          {
+            outer: [
+              [0.4, 0.4],
+              [0.5, 0.4],
+              [0.5, 0.5],
+              [0.4, 0.5],
+            ],
+          },
+        ],
+      },
+    ];
+    try {
+      const root = await renderers.humanFeatures.createTile(
+        tile,
+        context(new AbortController().signal),
+      );
+      expect(loads).toHaveBeenCalledOnce();
+      expect(generated.mock.calls[0]?.[0]?.tile.buildings).toHaveLength(fails ? 1 : 0);
+      if (!fails) expect(models.get('generic.mill')).toBeDefined();
+      if (root) renderers.humanFeatures.disposeTile?.(root);
+      expect(models.get('generic.mill')).toBeUndefined();
+    } finally {
+      renderers.dispose();
+      models.dispose();
+      warn.mockRestore();
+    }
+  });
+
+  it('does not load a unique model without matching orientation evidence', async () => {
+    const loads = vi.fn(async () => new THREE.Group());
+    const models = new ModelLibrary(loads);
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Gated',
+        entries: [
+          {
+            id: 'landmark',
+            title: 'Landmark',
+            asset: 'unique.landmark',
+            anchor: worldToWgs84(1, 100, 100),
+            orientation: 'mapped',
+            mapIdentity: { wikidata: 'Q42' },
+            minLevel: 0,
+            status: 'preview',
+            source: 'https://example.com',
+          },
+        ],
+      }),
+      structureModels: models,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      createEmptyTerrainSemanticTile(),
+      context(new AbortController().signal),
+    );
+    expect(loads).not.toHaveBeenCalled();
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    models.dispose();
+  });
+
   it.each([
     false,
     true,
@@ -289,14 +507,18 @@ describe('worldgen human-feature tile orchestration', () => {
         createEmptyTerrainSemanticTile(),
         ctx,
       )) as THREE.Object3D;
-      const mesh = root.getObjectByName('structure:span') as THREE.Mesh;
+      const mesh = root
+        .getObjectByName('structure:span')
+        ?.getObjectByProperty('isMesh', true) as THREE.Mesh;
       expect(mesh.geometry.boundingBox?.min.x).toBeGreaterThanOrEqual(0);
       expect(mesh.geometry.boundingBox?.max.x).toBeLessThanOrEqual(200);
       expect(mesh.geometry.boundingBox?.min.y).toBe(9);
       roots.push(root);
     }
     expect(loads).toHaveBeenCalledOnce();
-    const mesh = roots[0]?.getObjectByName('structure:span') as THREE.Mesh;
+    const mesh = roots[0]
+      ?.getObjectByName('structure:span')
+      ?.getObjectByProperty('isMesh', true) as THREE.Mesh;
     const disposed = vi.spyOn(mesh.geometry, 'dispose');
     renderers.humanFeatures.disposeTile?.(roots[0] as THREE.Object3D);
     expect(disposed).toHaveBeenCalledOnce();

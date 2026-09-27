@@ -5,9 +5,17 @@
   "title": "Molen earth: region atlas, businesses, and geographic structures",
   "license": "MIT AND BSD-3-Clause",
   "notice": "businesses/README.md",
+  "exclude": [
+    "structures/evidence/**",
+    "structures/alignments/**",
+    "structures/readiness.json",
+    "structures/georeferencing.json",
+    "structures/identity-review.json",
+    "structures/EVIDENCE.md"
+  ],
   "provides": {
     "atlas": "world.atlas.json",
     "businesses": "businesses/catalog.json",
-    "structures": "structures/placements.json"
+    "structures": ["structures/placements.json", "structures/map-rules.json"]
   }
 }

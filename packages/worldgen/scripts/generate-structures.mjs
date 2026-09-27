@@ -293,6 +293,12 @@ for (const name of [
   'plaster_tadelakt',
   'concrete_boardformed',
   'terracotta_screen',
+  'wood_painted_lap',
+  'wood_painted_shingle',
+  'metal_painted',
+  'stone_granite',
+  'wood_plain',
+  'fabric_canvas',
 ])
   materialNames.add(name);
 for (const name of [...materialNames].sort())
@@ -319,8 +325,7 @@ root.defaults.rules = [
   ...directRules,
   ...root.defaults.rules.filter((rule) => !managedRules.has(JSON.stringify(rule.when))),
 ];
-root.doc =
-  '120 resizable real-world structure interpretations across 13 architectural taxonomies, with 45 reusable standard material graphs. Catalog metadata, dimensions and source references are in structures/catalog.json. Explicit structure labels and regional identity-based rules select the same shipped archstyles.';
+root.doc = `120 resizable real-world structure interpretations across 13 architectural taxonomies, with ${Object.keys(root.materials).length} reusable standard material graphs. Catalog metadata, dimensions and source references are in structures/catalog.json. Explicit structure labels and regional identity-based rules select the same shipped archstyles.`;
 entries.sort(
   (a, b) =>
     TAXONOMIES.findIndex((group) => group.id === a.taxonomy) -

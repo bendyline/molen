@@ -1,0 +1,139 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 201,
+  "nodes": [
+    { "id": "lap-height-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "lap-height",
+      "type": "ramp",
+      "input": "lap-height-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#101010" },
+          { "t": 0.005, "color": "#101010" },
+          { "t": 0.0075, "color": "#999999" },
+          { "t": 0.12, "color": "#cccccc" },
+          { "t": 0.125, "color": "#101010" },
+          { "t": 0.13, "color": "#101010" },
+          { "t": 0.1325, "color": "#999999" },
+          { "t": 0.245, "color": "#cccccc" },
+          { "t": 0.25, "color": "#101010" },
+          { "t": 0.255, "color": "#101010" },
+          { "t": 0.2575, "color": "#999999" },
+          { "t": 0.37, "color": "#cccccc" },
+          { "t": 0.375, "color": "#101010" },
+          { "t": 0.38, "color": "#101010" },
+          { "t": 0.3825, "color": "#999999" },
+          { "t": 0.495, "color": "#cccccc" },
+          { "t": 0.5, "color": "#101010" },
+          { "t": 0.505, "color": "#101010" },
+          { "t": 0.5075, "color": "#999999" },
+          { "t": 0.62, "color": "#cccccc" },
+          { "t": 0.625, "color": "#101010" },
+          { "t": 0.63, "color": "#101010" },
+          { "t": 0.6325, "color": "#999999" },
+          { "t": 0.745, "color": "#cccccc" },
+          { "t": 0.75, "color": "#101010" },
+          { "t": 0.755, "color": "#101010" },
+          { "t": 0.7575, "color": "#999999" },
+          { "t": 0.87, "color": "#cccccc" },
+          { "t": 0.875, "color": "#101010" },
+          { "t": 0.88, "color": "#101010" },
+          { "t": 0.8825, "color": "#999999" },
+          { "t": 0.995, "color": "#cccccc" },
+          { "t": 1, "color": "#101010" }
+        ]
+      }
+    },
+    {
+      "id": "paint",
+      "type": "ramp",
+      "input": "lap-height",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#bcbcbc" },
+          { "t": 0.1, "color": "#e9e9e9" },
+          { "t": 0.25, "color": "#f7f7f7" },
+          { "t": 1, "color": "#f7f7f7" }
+        ]
+      }
+    },
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [0.043478260869565216, 1, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 46, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.985, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "paint", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "rough",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.58, "outMax": 0.7 }
+    },
+    {
+      "id": "height",
+      "type": "blend",
+      "inputs": { "a": "lap-height", "b": "fiber-noise" },
+      "params": { "mode": "mix", "factor": 0.025 }
+    },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "height",
+      "params": { "strength": 0.007 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

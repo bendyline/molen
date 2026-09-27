@@ -127,6 +127,29 @@ async function fetchBytes(response: Response): Promise<Uint8Array> {
   return new Uint8Array(await response.arrayBuffer());
 }
 
+/** Missing Content-Range is allowed for CORS hosts which do not expose this header. */
+function contentRange(value: string | undefined, url: string) {
+  if (value === undefined) return undefined;
+  const match = /^bytes (\d+)-(\d+)\/(\d+|\*)$/i.exec(value.trim());
+  const start = Number(match?.[1]);
+  const end = Number(match?.[2]);
+  const size = match?.[3] === '*' ? undefined : Number(match?.[3]);
+  if (
+    !Number.isSafeInteger(start) ||
+    !Number.isSafeInteger(end) ||
+    start < 0 ||
+    end < start ||
+    (size !== undefined && (!Number.isSafeInteger(size) || size <= end))
+  ) {
+    throw new Error(`invalid Content-Range for ${url}: ${value}`);
+  }
+  return { start, end, size };
+}
+
+function strongEtag(value: string | undefined): string | undefined {
+  return value !== undefined && !value.startsWith('W/') ? value : undefined;
+}
+
 /**
  * Open a pack URL. A server that honours Range gets range reads; one that ignores it (200 to a
  * range request) has already sent the whole file, which is used as is.
@@ -151,7 +174,7 @@ export async function openUrl(url: string, options: UrlOptions): Promise<OpenedU
     options.onResponse(bytes.length);
     return { kind: 'whole', bytes };
   }
-  const first = await withRetry(
+  let first = await withRetry(
     async (attemptSignal) => {
       const response = await fetcher(url, {
         headers: { Range: `bytes=-${TAIL_BYTES}` },
@@ -172,9 +195,59 @@ export async function openUrl(url: string, options: UrlOptions): Promise<OpenedU
   );
   options.onResponse(first.bytes.length);
   if (first.status === 200) return { kind: 'whole', bytes: first.bytes };
-  const total = first.range === undefined ? undefined : Number(first.range.split('/')[1]);
+  let range = contentRange(first.range, url);
+  const total = range?.size;
+  if (
+    total !== undefined &&
+    (range?.start !== Math.max(0, total - TAIL_BYTES) ||
+      range?.end !== total - 1 ||
+      first.bytes.length !== Math.min(total, TAIL_BYTES))
+  ) {
+    // Some static servers interpret a suffix as bytes 0-N. Use their reported total to
+    // request the actual tail explicitly, retaining range loading for larger packs.
+    const validator = strongEtag(first.etag);
+    const start = Math.max(0, total - TAIL_BYTES);
+    first = await withRetry(
+      async (attemptSignal) => {
+        const headers: Record<string, string> = { Range: `bytes=${start}-${total - 1}` };
+        if (validator !== undefined) headers['If-Range'] = validator;
+        const response = await fetcher(url, { headers, signal: attemptSignal });
+        if (
+          validator !== undefined &&
+          (response.status === 200 ||
+            (response.headers.has('etag') && response.headers.get('etag') !== validator))
+        ) {
+          throw new PackChangedError(url);
+        }
+        if (response.status !== 200 && response.status !== 206)
+          throw new HttpStatusError(url, response.status);
+        return {
+          status: response.status,
+          bytes: await fetchBytes(response),
+          etag: response.headers.get('etag') ?? validator,
+          range: response.headers.get('content-range') ?? undefined,
+        };
+      },
+      retry,
+      signal,
+    );
+    options.onResponse(first.bytes.length);
+    if (first.status === 200) return { kind: 'whole', bytes: first.bytes };
+    range = contentRange(first.range, url);
+    if (
+      first.bytes.length !== total - start ||
+      (range !== undefined &&
+        (range.start !== start ||
+          range.end !== total - 1 ||
+          (range.size !== undefined && range.size !== total)))
+    ) {
+      throw new Error(`tail range ${start}-${total - 1} of ${url} was not honoured`);
+    }
+  } else if (range !== undefined && first.bytes.length !== range.end - range.start + 1) {
+    throw new Error(`Content-Range length does not match response bytes for ${url}`);
+  }
   // If-Range needs a strong validator; without one a mid-read change can't be detected.
-  const etag = first.etag !== undefined && !first.etag.startsWith('W/') ? first.etag : undefined;
+  const etag = strongEtag(first.etag);
   return {
     kind: 'range',
     tail: first.bytes,
@@ -203,6 +276,18 @@ export async function openUrl(url: string, options: UrlOptions): Promise<OpenedU
               return all.subarray(offset, offset + length);
             }
             if (response.status !== 206) throw new HttpStatusError(url, response.status);
+            const returnedRange = contentRange(
+              response.headers.get('content-range') ?? undefined,
+              url,
+            );
+            if (
+              returnedRange !== undefined &&
+              (returnedRange.start !== offset ||
+                returnedRange.end !== offset + length - 1 ||
+                (returnedRange.size !== undefined && returnedRange.size !== size))
+            ) {
+              throw new Error(`range ${offset}+${length} of ${url} was not honoured`);
+            }
             const bytes = await fetchBytes(response);
             options.onResponse(bytes.length);
             if (bytes.length !== length) {

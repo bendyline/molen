@@ -18,6 +18,34 @@ const catalog = JSON.parse(
 const atlas = await loadDefaultAtlas();
 
 describe('geographic structures', () => {
+  it('finds identity candidates across tile and antimeridian boundaries without moving fixed placements', () => {
+    const entry = {
+      id: 'nearby',
+      title: 'Nearby',
+      asset: 'sample.model',
+      anchor: [179.9995, 0] as [number, number],
+      status: 'preview' as const,
+      source: 'https://example.com',
+      orientation: 'mapped' as const,
+      mapIdentity: { wikidata: 'Q42', maxDistance: 200 },
+    };
+    const index = createStructureIndex({
+      format: 'molen/structure-placements@1',
+      title: 'Nearby',
+      entries: [entry],
+    });
+    expect(index.query([-180, -0.001, -179.9995, 0.001]).map((item) => item.id)).toEqual([
+      'nearby',
+    ]);
+    expect(index.query([179.9996, -0.001, 180, 0.001]).map((item) => item.id)).toEqual(['nearby']);
+    expect(index.query([179.99, -0.001, 179.995, 0.001])).toEqual([]);
+    const fixed = createStructureIndex({
+      format: 'molen/structure-placements@1',
+      title: 'Fixed',
+      entries: [{ ...entry, orientation: 'fixed' }],
+    });
+    expect(fixed.query([-180, -0.001, -179.9995, 0.001])).toEqual([]);
+  });
   it('indexes placed Seattle assets, keeping unsurveyed drafts hidden', () => {
     const index = createStructureIndex(catalog);
     // The Needle is just west of the c22/c23 seam; nearby downtown is in c23.

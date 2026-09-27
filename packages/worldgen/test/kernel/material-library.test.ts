@@ -28,9 +28,9 @@ function value(image: RGBAImage, u: number, v: number): number {
 }
 
 describe('canonical construction material library', () => {
-  it('ships 45 shared 256-square materials with independently usable surface response', async () => {
+  it('ships 51 shared 256-square materials with independently usable surface response', async () => {
     const files = (await readdir(materialDir)).filter((name) => name.endsWith('.matgraph.json'));
-    expect(files.length).toBe(45);
+    expect(files.length).toBe(51);
     for (const file of files) {
       const id = file.replace('.matgraph.json', '');
       const baked = bakeMatGraph(await material(id, 32));

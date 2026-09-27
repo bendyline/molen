@@ -1,0 +1,31 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0002_pont_de_normandie",
+  "sourceHash": "sha256:703f9955740690aae21f24b423793fbdd4c1db8dc454897f80fce66959338c9d",
+  "runtimeHash": "sha256:94fd8f209bf4f95b93b0be427d69afd5043cad30dff65d6d60ad2057555daa90",
+  "captureReportHash": "sha256:5e2461c1c86fad67daeffdc3aec59fc6eb4aca16204a2e5b2ec23e8cee9b6008",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Static exterior rendering and geometry integrity at the captured views.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-pylon.png",
+      "shots/near-deck.png",
+      "shots/far-crossing.png"
+    ],
+    "notes": "Inspected pylon, cable fans, deck margins/railings and four whole-model turntables. Subpixel cables alias in distant captures; near views retain cable geometry. Default neutral framing is too wide for detailed whole-crossing review; dedicated near-deck and near-pylon views were inspected."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "Measured horizontal anchor/heading is draft. CMH-to-IGN69 conversion is documented; viewer DEM datum and road/approach fit are unresolved."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "The operator technical sheet has dated/rounded dimensions. Main dimensions and cable count are sourced; approach endpoint allocation, exact vertical road curvature, pier stationing and local fittings are reconstructed. CMH is the Carte Marine Havraise tidal datum. Geographic placement requires a checked vertical conversion; interpreting Y=0 as a generic terrain elevation would be incorrect. No toll plaza, embankments, submerged piles, maintenance interiors, traffic or navigation lights are included. Original vertex-color PBR geometry is detailed, but texture weathering, site-fit verification and collision refinement are pending. This is not a survey reconstruction or a maximum-fidelity completion claim."
+  }
+}

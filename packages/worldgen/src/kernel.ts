@@ -173,7 +173,7 @@ export {
   WorldgenBuilding,
 } from './kernel/components';
 export type { FacadeBands, FacadeStats, FacadeWindows } from './kernel/facade';
-export type { GlbMaterialMeta } from './kernel/glb';
+export type { GlbMaterialMeta, GlbSharedSurface } from './kernel/glb';
 export { encodeGlb } from './kernel/glb';
 export type { HeightGrid } from './kernel/heights';
 export { createHeightSampler, heightGridFromSampler } from './kernel/heights';

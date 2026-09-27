@@ -1,10 +1,17 @@
 # Canonical architectural materials
 
-The default resource pack shares **45 procedural building materials**, including 30 construction
+The default resource pack shares **51 procedural building materials**, including 30 construction
 patterns added for the global structure catalog. Their stable prefix is `molen.worldgen.material.`;
 use `matgraph:molen.worldgen.material.brick` in a style or scene. Reuse these documents across
 building families. Change palette tints to represent local clay, timber species, paint or stone;
 do not duplicate a graph just to recolor it.
+
+The authoring catalog in [source/material-library/catalog.json](../source/material-library/catalog.json)
+records semantic families, intended uses, physical repeats, PBR channels and named tint variants.
+For example, `white_painted_wood` uses the neutral `wood_painted_lap` graph with `#eeeae0` vertex
+color; `green_shingled_wood` uses `wood_painted_shingle` with `#486a56`. Color variants share the
+same texture maps. [The material-library guide](../source/material-library/README.md) describes
+static GLB binding, texture ownership, the extraction audit and reviewed swatches.
 
 All maps bake at **256 × 256** and remain shared by material reference. Every material includes a
 roughness map; new jointed or profiled surfaces also have restrained height-derived normals, and
@@ -28,6 +35,7 @@ mipmapping. Glazing keeps its own blue-gray color and should not receive an opaq
 | stone_sandstone | Coursed sedimentary stone with horizontal strata | 1.80 × 1.50 m | 0.96 |
 | stone_basalt | Tightly coursed split volcanic stone; use a dark palette | 1.60 × 1.40 m | 0.97 |
 | stone_drywall | Dry-laid fieldstone with open joints | 2 × 2 m | 0.98 |
+| stone_granite | Dressed granite mineral flecks, without built-in block joints | 2 × 2 m | 0.82–0.94 |
 | earth_adobe | Broad hand-formed earth blocks | 1.35 × 0.75 m | 0.99 |
 | earth_rammed | Six broad compacted lifts, subtle layered sediment | 2 × 1.20 m | 0.99 |
 | terracotta_screen | Thick ceramic webs and inset square openings | 1.20 × 1.20 m | 0.88 |
@@ -46,6 +54,10 @@ open lattice or a silhouette that needs visible holes.
 | wood_log | Seven rounded horizontal log courses | 2 × 1.75 m | 0.92 |
 | wood_shou_sugi_ban | Charred vertical cedar with crackle; tint charcoal | 1.60 × 2 m | 0.97 |
 | wood_weatherboard | Five wide weathered horizontal boards, silver grain | 2 × 1.25 m | 0.94 |
+| wood_painted_lap | Eight painted horizontal wood courses, restrained underlying grain | 2 × 1.60 m | 0.58–0.70 |
+| wood_painted_shingle | Eight staggered painted shingle courses; green and white tint variants | 1.60 × 1.60 m | 0.65–0.79 |
+| wood_plain | Grain without board joints for modeled timbers/planks; U along grain | 2 × 0.25 m | 0.77–0.91 |
+| fabric_canvas | Canvas-like woven yarns for sails and awnings | 0.25 × 0.25 m | 0.91–0.99 |
 | bamboo | Twelve vertical poles with offset stem nodes | 0.96 × 1.80 m | 0.78 |
 | shingle_cedar | Broad cedar shakes with vertical grain and seven exposures | 1.80 × 1.75 m | 0.96 |
 | thatch | Dense vertical reed bundles in four broad courses | 1.60 × 1.20 m | 0.99 |
@@ -63,12 +75,15 @@ open lattice or a silhouette that needs visible holes.
 | metal_standing_seam | Five broad pans with narrow folded ribs | 2.50 × 3 m | 0.50 |
 | metal_corrugated | Sixteen narrow rounded vertical flutes | 1.20 × 2 m | 0.56 |
 | metal_copper | Staggered soldered sheets, soft patination | 1.80 × 1.80 m | 0.63 |
+| metal_painted | Continuous intact paint film for modeled steel; no built-in joints | 2 × 2 m | 0.49–0.61 |
 | membrane | Low-contrast flat roofing | 4 × 4 m | 0.88 |
 | gravel | Roof ballast and surface aggregate | 2 × 2 m | 0.88 |
 
 For sloped roofs, U runs across the ribs and V along the drainage direction where the roof
 generator provides slope-aligned UVs. Metalness is 0.45 for coated standing seam, 0.62 for
 galvanized corrugation and 0.58 for patinated copper; these are stylized responses, not surveys.
+The new `metal_painted` surface is dielectric (metalness zero): its intact paint covers the
+substrate. Corrosion, exposed metal, rivets and welds need their own geometry or authored treatment.
 
 ## Render, concrete and glazing
 

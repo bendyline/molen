@@ -13,6 +13,8 @@ interface ServerOptions {
   /** Answer this many requests with 503 first. */
   failures?: number;
   status?: number;
+  /** Reproduce static servers which incorrectly serve bytes0-N for a suffix request. */
+  suffixAsPrefix?: boolean;
 }
 
 /** A fetch that serves one file the way a static host would. */
@@ -44,8 +46,13 @@ function fakeServer(initial: Uint8Array, options: ServerOptions = {}) {
     }
     const size = state.bytes.length;
     const [, from, to] = /bytes=(\d*)-(\d*)/.exec(range) ?? [];
-    const start = from === '' ? Math.max(0, size - Number(to)) : Number(from);
-    const end = from === '' ? size - 1 : Math.min(size - 1, Number(to));
+    const brokenSuffix = from === '' && options.suffixAsPrefix === true;
+    const start = brokenSuffix ? 0 : from === '' ? Math.max(0, size - Number(to)) : Number(from);
+    const end = brokenSuffix
+      ? Math.min(size - 1, Number(to))
+      : from === ''
+        ? size - 1
+        : Math.min(size - 1, Number(to));
     if (options.exposeRange !== false) out.set('content-range', `bytes ${start}-${end}/${size}`);
     return new Response(state.bytes.slice(start, end + 1), { status: 206, headers: out });
   }) as typeof fetch;
@@ -87,6 +94,61 @@ describe('openPack(url)', () => {
     expect(new Uint8Array(await pack.readBytes('models/z.glb'))).toEqual(noise(150_000, 11));
     expect(new Uint8Array(await pack.readBytes('models/b.glb'))).toEqual(noise(1_000, 12));
     expect(state.requests).toHaveLength(1);
+  });
+
+  it('repairs a suffix served as a prefix without downloading the entire large pack', async () => {
+    const { bytes } = await createPack([...sampleFiles(), ...LARGE], OPTIONS);
+    const { state, fetcher } = fakeServer(bytes, { suffixAsPrefix: true, etag: 'W/"v1"' });
+    const progress: number[] = [];
+    const pack = await openPack('https://packs.example/p.zip', {
+      fetch: fetcher,
+      sizeHint: bytes.length,
+      wholeThreshold: 65536,
+      onProgress: (p) => progress.push(p.requests),
+    });
+    expect(state.requests).toEqual([
+      { range: 'bytes=-65536' },
+      { range: `bytes=${bytes.length - 65536}-${bytes.length - 1}` },
+    ]);
+    expect(await pack.readJson('types/aircraft.types.json')).toEqual({ b: 'two' });
+    expect(new Uint8Array(await pack.readBytes('models/z.glb'))).toEqual(noise(150_000, 11));
+    expect(state.requests).toHaveLength(3);
+    expect(state.requests.every((request) => request.range !== undefined)).toBe(true);
+    expect(progress).toEqual([1, 2, 3]);
+    pack.close();
+  });
+
+  it('keeps the strong validator while repairing a misserved suffix', async () => {
+    const { bytes } = await createPack([...sampleFiles(), ...LARGE], OPTIONS);
+    const { state, fetcher } = fakeServer(bytes, { suffixAsPrefix: true, etag: '"v1"' });
+    const changing = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      if (state.requests.length === 1) state.etag = '"v2"';
+      return fetcher(input, init);
+    }) as typeof fetch;
+    await expect(
+      openPack('https://packs.example/p.zip', { fetch: changing }),
+    ).rejects.toBeInstanceOf(PackChangedError);
+    expect(state.requests).toHaveLength(2);
+    expect(state.requests[1]?.ifRange).toBe('"v1"');
+  });
+
+  it('rejects a later range at the wrong offset even when its byte count is correct', async () => {
+    const { bytes } = await createPack([...sampleFiles(), ...LARGE], OPTIONS);
+    const { state, fetcher } = fakeServer(bytes);
+    const misaddressed = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const response = await fetcher(input, init);
+      if (state.requests.length > 1) {
+        const body = await response.arrayBuffer();
+        return new Response(body, {
+          status: 206,
+          headers: { 'content-range': `bytes 1-${body.byteLength}/${bytes.length}` },
+        });
+      }
+      return response;
+    }) as typeof fetch;
+    const pack = await openPack('https://packs.example/p.zip', { fetch: misaddressed });
+    await expect(pack.readBytes('models/z.glb')).rejects.toThrow(/range .* was not honoured/);
+    pack.close();
   });
 
   it('downloads small packs in one plain request when their size is known', async () => {

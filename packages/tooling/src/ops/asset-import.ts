@@ -3,10 +3,17 @@ import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import type { AssetHull, AssetSidecar } from '@bendyline/molen-schema';
 import { encodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
-import type { Document, ILogger, Mesh } from '@gltf-transform/core';
+import type {
+  Document,
+  ILogger,
+  Material,
+  Mesh,
+  Primitive,
+  PrimitiveTarget,
+} from '@gltf-transform/core';
 import { getBounds, Node, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { dedup, prune, quantize, weld } from '@gltf-transform/functions';
+import { dedup, listTextureInfoByMaterial, prune, quantize, weld } from '@gltf-transform/functions';
 import { findProjectFile, updateProjectFile } from '../project';
 
 export interface ImportAssetInput {
@@ -217,6 +224,84 @@ function buildStats(doc: Document, sizeBytes: number): AssetSidecar['stats'] {
 
 const NODE_CAP = 128;
 
+/** Only the explicit, supported extras contract makes unused UV0 meaningful at runtime. */
+function sharedSurfaceRef(material: Material | null): string | undefined {
+  const value = material?.getExtras().molenSurface;
+  if (value === null || typeof value !== 'object') return undefined;
+  const surface = value as Record<string, unknown>;
+  return surface.uv === 'repeats' &&
+    typeof surface.ref === 'string' &&
+    surface.ref.trim().length > 0 &&
+    typeof surface.slot === 'string' &&
+    ['wall', 'roof', 'trim', 'foundation', 'window', 'door'].includes(surface.slot)
+    ? surface.ref
+    : undefined;
+}
+
+/** Keep opted-in UV0 across pruning without retaining unused attributes on other primitives. */
+async function prunePreservingSharedSurfaceUvs(doc: Document): Promise<void> {
+  const saved = new Map<Primitive, string>();
+  for (const mesh of doc.getRoot().listMeshes()) {
+    for (const primitive of mesh.listPrimitives()) {
+      const uv = primitive.getAttribute('TEXCOORD_0');
+      if (sharedSurfaceRef(primitive.getMaterial()) === undefined || uv === null) continue;
+      // A temporary custom semantic keeps the accessor referenced even when prune removes UV0.
+      let semantic = '_MOLEN_SHARED_UV0';
+      while (primitive.getAttribute(semantic) !== null) semantic += '_';
+      primitive.setAttribute(semantic, uv);
+      saved.set(primitive, semantic);
+    }
+  }
+  await doc.transform(prune());
+  const groups = new Map<Material, Primitive[]>();
+  for (const mesh of doc.getRoot().listMeshes()) {
+    for (const primitive of mesh.listPrimitives()) {
+      const material = primitive.getMaterial();
+      if (material === null || sharedSurfaceRef(material) === undefined) continue;
+      const group = groups.get(material) ?? [];
+      group.push(primitive);
+      groups.set(material, group);
+    }
+  }
+  for (const [material, primitives] of groups) {
+    // prune can compact a fallback texture's UV1 into UV0. Move that surviving coordinate
+    // set aside before restoring repeat UVs; update every primitive using this material.
+    const shift = primitives.some((primitive) => {
+      const semantic = saved.get(primitive);
+      const uv = primitive.getAttribute('TEXCOORD_0');
+      return uv !== null && (semantic === undefined || uv !== primitive.getAttribute(semantic));
+    });
+    if (shift) {
+      const shiftUvs = (primitive: Primitive | PrimitiveTarget): void => {
+        const coordinates = primitive
+          .listSemantics()
+          .filter((semantic) => /^TEXCOORD_\d+$/.test(semantic))
+          .map((semantic) => Number(semantic.slice(9)))
+          .sort((a, b) => b - a);
+        for (const index of coordinates) {
+          primitive.setAttribute(
+            `TEXCOORD_${index + 1}`,
+            primitive.getAttribute(`TEXCOORD_${index}`),
+          );
+          primitive.setAttribute(`TEXCOORD_${index}`, null);
+        }
+      };
+      for (const primitive of primitives) {
+        shiftUvs(primitive);
+        for (const target of primitive.listTargets()) shiftUvs(target);
+      }
+      for (const info of listTextureInfoByMaterial(material))
+        info.setTexCoord(info.getTexCoord() + 1);
+    }
+    for (const primitive of primitives) {
+      const semantic = saved.get(primitive);
+      if (semantic === undefined) continue;
+      primitive.setAttribute('TEXCOORD_0', primitive.getAttribute(semantic));
+      primitive.setAttribute(semantic, null);
+    }
+  }
+}
+
 interface ResolvedImportProject {
   projectPath?: string;
   warning?: string;
@@ -291,8 +376,25 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     // The reader copies the IO's logger onto the Document; set it again so a transform pass can
     // never fall back to the console.log-backed default (see gltfLogger).
     doc.setLogger(gltfLogger);
+    const sharedSurfaces = [
+      ...new Set(
+        doc
+          .getRoot()
+          .listMaterials()
+          .map(sharedSurfaceRef)
+          .filter((ref): ref is string => ref !== undefined),
+      ),
+    ].sort();
+    if (sharedSurfaces.length > 0) {
+      warnings.push(
+        `shared surfaces are external runtime dependencies: ${sharedSurfaces.join(', ')}; ` +
+          'hosts without these surfaces render the embedded PBR fallback',
+      );
+    }
     if (input.optimize !== false) {
-      await doc.transform(dedup(), prune(), weld(), quantize());
+      await doc.transform(dedup());
+      await prunePreservingSharedSurfaceUvs(doc);
+      await doc.transform(weld(), quantize());
     }
 
     const root = doc.getRoot();

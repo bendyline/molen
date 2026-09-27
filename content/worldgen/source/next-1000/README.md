@@ -2,8 +2,9 @@
 
 This is a **candidate inventory**, not a claim that 1,000 finished GLBs are ready for Earth
 placement. [Browse the searchable gallery](gallery.html) or use the machine-readable
-[catalog](candidates.json). Five original, stylized model studies have been generated, imported,
-and rendered; 995 entries remain candidates. The first 100 site structure assets and 120
+[catalog](candidates.json). Five original studies plus detailed Pont de Normandie, Gamla bron
+and Severn Bridge models are imported; 992 entries still lack source models. None of these eight has completed the new
+maximum-fidelity and geographic review gates. The first 100 site structure assets and 120
 resizable procedural building styles are separate from this list.
 
 ## Selection method
@@ -55,7 +56,41 @@ studies: exact facade details, surveyed footprint/orientation, LOD, collision, a
 placement remain open. The Stari Most master needs sections and a driveable/walkable deck
 aligned with the terrain before Earth use.
 
-## Production path for the remaining 995
+## Maximum-fidelity production
+
+[Pont de Normandie](models/n0002_pont_de_normandie/README.md) adds researched pylons, the
+856 m main span, 184 stays, cable anchor fittings, approach viaducts, deck edges, lane markings,
+and railings. Its 178,388-triangle source preserves thin cables at the full 2,141.25 m crossing
+scale. Texture weathering, precise approach geometry, terrain height datum, and geographic
+fit remain open; detailed geometry alone does not certify a finished replica.
+
+[Gamla bron](models/n0003_gamla_bron/README.md) adds ten bowstring steel spans, braced trestles,
+masonry piers and utility details (165,156 triangles).
+[Severn Bridge](models/n0005_severn_bridge/README.md) adds its original suspension geometry,
+inclined hangers, steel towers, deck and fittings (308,648 triangles). Both have reviewed
+lit, turntable and close-detail captures; reconstructed measurements and geographic datum
+remain explicit limitations. [Skopje's Stone Bridge](models/n0004_stone_bridge_in_skopje/README.md)
+has a researched brief with conflicting span evidence and no speculative GLB.
+
+Two separate [reusable map models](../map-structures/) provide a traditional smock windmill
+and modern wind turbine. The Earth pack contains explicit rules for supported map tags and
+classes. These generic models are additional assets, not replacements for named candidates.
+
+The [readiness ledger](../../../earth/structures/readiness.json) covers all 1,000 candidates,
+with source facts, OSM geometry evidence, source/runtime hashes, current-world identity
+concerns, captures and remaining blockers. Its [evidence guide](../../../earth/structures/EVIDENCE.md)
+defines the review contract. A reference coordinate or undirected footprint axis does not
+establish a model's front, origin or elevation. Historical, underground and unsuitable
+identities remain visible with recommendations; they have not silently been replaced.
+
+The viewer retains original glTF UVs, textures, material groups and PBR properties. Assets
+load on demand for resident tiles and shared resources are released after the last consumer.
+Extended static models retain material groups and interpolated UVs when clipped across tiles.
+Map-driven matching preserves the procedural fallback when an asset fails to load. Map
+providers must actually supply a supported classification or tag for category selection;
+the runtime cannot recover omitted OSM fields from a stripped vector tile.
+
+## Production path for the remaining candidates
 
 1. **Review candidate identity and map coverage.** Confirm that the item is a present-day
    physical structure or a deliberately historical layer. Resolve complexes into actual
@@ -87,8 +122,12 @@ From the repository root, after `pnpm -r build`:
 & packages/worldgen/scripts/fetch-next-1000-candidates.ps1
 node packages/worldgen/scripts/refresh-next-1000-candidates.mjs
 node packages/worldgen/scripts/generate-next-1000-models.mjs
+node packages/worldgen/scripts/generate-gamla-bron.mjs
+node packages/worldgen/scripts/generate-severn-bridge.mjs
+node packages/worldgen/scripts/generate-map-structures.mjs
 node packages/worldgen/scripts/import-next-1000-models.mjs
 node packages/worldgen/scripts/capture-next-1000-models.mjs
+node packages/worldgen-earth/scripts/build-structure-readiness.mjs
 node packages/worldgen/scripts/build-next-1000-gallery.mjs
 node packages/worldgen/scripts/generate-next-1000-models.mjs --check
 node packages/worldgen/scripts/import-next-1000-models.mjs --check
@@ -96,7 +135,13 @@ node scripts/check-source-bundles.mjs
 node packages/tooling/dist/cli.mjs pack verify content/worldgen
 ```
 
+Imports and captures accept `--ids=N0002,map_smock_windmill,map_wind_turbine` for a bounded
+batch. Imports verify hashes and reuse unchanged runtime files. Captures resume from their
+hash-bound reports; `--force` repeats them. New captures include a lit scene, four neutral
+turntable views, and each asset's authored near/far cameras. They run the normal Molen scene
+validation, 30-tick simulation, and capture path. Image presence never grants visual approval.
+
 Capturing scenes uses Chromium and may need `PLAYWRIGHT_BROWSERS_PATH` set to the locally
-installed browser directory. All five scenes also pass `molen validate`, 30-tick headless
-simulation, and a two-angle turntable. The verified default content pack now contains 448
-files and packages to about 2.1 MB. Geographic matching remains the key viewer dependency.
+installed browser directory. Research snapshots and candidate metadata are excluded from
+runtime packs. Hosts should serve packs with byte ranges so nearby models can be fetched
+without downloading distant assets.

@@ -58,10 +58,22 @@ describe('browser: earth view', () => {
       { timeout: 90_000 },
     );
     const height = await page.evaluate(() => {
-      const mesh = window.__earthView?.viewer.renderer.worldRoot.getObjectByName(
+      const model = window.__earthView?.viewer.renderer.worldRoot.getObjectByName(
         'structure:seattle.space-needle',
-      ) as THREE.Mesh | undefined;
-      return mesh?.geometry.boundingBox?.getSize(mesh.position.clone()).y;
+      );
+      let bounds: THREE.Box3 | undefined;
+      model?.updateWorldMatrix(true, true);
+      model?.traverse((object) => {
+        const mesh = object as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        mesh.geometry.computeBoundingBox();
+        const part = mesh.geometry.boundingBox?.clone().applyMatrix4(mesh.matrixWorld);
+        if (part !== undefined) {
+          if (bounds === undefined) bounds = part;
+          else bounds.union(part);
+        }
+      });
+      return bounds === undefined ? undefined : bounds.max.y - bounds.min.y;
     });
     expect(height).toBeGreaterThan(150);
     expect((await page.evaluate(() => window.__earthView?.stats()))?.failedTiles).toBe(0);
