@@ -19,7 +19,7 @@ export {
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
 } from './client/interior-streamer';
-export type { ResolvedMaterialSet } from './client/materials';
+export type { ResolvedMaterialSet, ResolvedMaterialSetOptions } from './client/materials';
 export { createResolvedMaterialSet, createVertexColorMaterialSet } from './client/materials';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';

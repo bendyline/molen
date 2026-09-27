@@ -55,6 +55,10 @@ export interface TerrainTransportationFeature {
   /** Suggested rendered width in world units (meters for Earth packages). */
   width?: number;
   bridge?: boolean;
+  /** Optional surveyed bridge deck elevation in absolute world Y units. */
+  deckElevation?: number;
+  /** Join an inferred approach to an authored deck. Points use normalized tile coordinates. */
+  bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
   tunnel?: boolean;
 }
 
@@ -227,6 +231,15 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
     if (feature.surface !== undefined)
       assertClass(feature.surface, `/transportation/${index}/surface`);
     if (feature.layer !== undefined) assertFinite(feature.layer, `/transportation/${index}/layer`);
+    if (feature.deckElevation !== undefined)
+      assertFinite(feature.deckElevation, `/transportation/${index}/deckElevation`);
+    for (const connection of feature.bridgeConnections ?? []) {
+      assertFinite(connection.point[0], 'bridge connection x');
+      assertFinite(connection.point[1], 'bridge connection z');
+      assertFinite(connection.elevation, 'bridge connection elevation');
+      assertFinite(connection.radius, 'bridge connection radius');
+      if (connection.radius <= 0) throw new Error('bridge connection radius must be positive');
+    }
     if (feature.service !== undefined)
       assertClass(feature.service, `/transportation/${index}/service`);
     if (feature.link !== undefined && typeof feature.link !== 'boolean')

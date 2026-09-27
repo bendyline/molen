@@ -1,4 +1,4 @@
-// The whole Earth view in one call: mountEarthView over the Sammamish terrain package and the
+// The whole Earth view in one call: mountEarthView over host-selected terrain packages and the
 // content packs, with worker offload, a photo-pin marker, mode buttons and the required credits.
 // `?mode=walk` starts on foot; `?lat=&lon=&range=` choose the first view.
 
@@ -25,18 +25,25 @@ const stage = document.getElementById('stage') as HTMLDivElement;
 const message = document.getElementById('message') as HTMLParagraphElement;
 const credit = document.getElementById('credit') as HTMLParagraphElement;
 
-const manifestUrl = new URL('terrain/sammamish/terrain-package.json', location.href);
-const [terrain, content] = await Promise.all([
-  fetch(manifestUrl).then((response) => response.json() as Promise<TerrainPackageDescriptor>),
-  openPacksFromIndex(new URL('packs/index.json', location.href)).then((packs) =>
-    loadEarthContent(packs),
-  ),
-]);
+const content = await openPacksFromIndex(new URL('packs/index.json', location.href)).then((packs) =>
+  loadEarthContent(packs),
+);
+const manifests = new Map<string, TerrainPackageDescriptor>();
 
 const view = await mountEarthView({
   canvas,
-  terrain,
-  baseUrl: manifestUrl,
+  terrainSource: async ({ longitude }, signal) => {
+    const region = longitude < -122.15 ? 'seattle-bellevue-sammamish' : 'sammamish';
+    const manifestUrl = new URL(`terrain/${region}/terrain-package.json`, location.href);
+    let terrain = manifests.get(region);
+    if (terrain === undefined) {
+      const response = await fetch(manifestUrl, { signal });
+      if (!response.ok) throw new Error(`Terrain ${region}: HTTP ${response.status}`);
+      terrain = (await response.json()) as TerrainPackageDescriptor;
+      manifests.set(region, terrain);
+    }
+    return { key: region, terrain, baseUrl: manifestUrl };
+  },
   content,
   camera: {
     latitude: Number(params.get('lat') ?? 47.6163),
@@ -90,20 +97,28 @@ view.setMarkers([
 ]);
 view.on('markerclick', ({ id }) => show(`Marker ${id}`));
 
-// Required, always-visible credits.
-credit.replaceChildren();
-for (const [index, entry] of view.credits.entries()) {
-  if (index > 0) credit.append(' · ');
-  if (entry.url === undefined) credit.append(entry.label);
-  else {
-    const link = document.createElement('a');
-    link.href = entry.url;
-    link.target = '_blank';
-    link.rel = 'noreferrer';
-    link.textContent = entry.label;
-    credit.append(link);
+// Required, always-visible credits follow the active terrain region.
+function showCredits(): void {
+  credit.replaceChildren();
+  for (const [index, entry] of view.credits.entries()) {
+    if (index > 0) credit.append(' · ');
+    if (entry.url === undefined) credit.append(entry.label);
+    else {
+      const link = document.createElement('a');
+      link.href = entry.url;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      link.textContent = entry.label;
+      credit.append(link);
+    }
   }
 }
+showCredits();
+view.on('terrainchange', showCredits);
+
+document.getElementById('seattle')?.addEventListener('click', () => {
+  view.flyTo({ latitude: 47.62051, longitude: -122.3493, range: 950, heading: 0.9, pitch: 0.48 });
+});
 
 let hideTimer = 0;
 function show(text: string): void {

@@ -49,6 +49,160 @@ const VIEW = {
 };
 
 describe('screen-space terrain pyramid', () => {
+  it('refines detailed ancestors in small families instead of waiting for every distant leaf', async () => {
+    const d = descriptor();
+    const pending = new Map<string, (object: THREE.Object3D) => void>();
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 32,
+        maxResidentTiles: 64,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 20,
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              if (address.level < 2) return new THREE.Group();
+              return new Promise<THREE.Object3D>((resolve) =>
+                pending.set(terrainPyramidTileKey(address), resolve),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      stream.setBudget({ maxScreenSpaceError: 1 });
+      await expect.poll(() => pending.size).toBe(16);
+      expect(stream.displayedTiles()).toHaveLength(4);
+      expect(stream.displayedTiles().every((address) => address.level === 1)).toBe(true);
+      for (let x = 0; x < 2; x++)
+        for (let z = 0; z < 2; z++) pending.get(`2/${x}/${z}`)?.(new THREE.Group());
+      await expect
+        .poll(() => stream.displayedTiles().filter((address) => address.level === 2).length)
+        .toBe(4);
+      expect(stream.displayedTiles().filter((address) => address.level === 1)).toHaveLength(3);
+      expect(stream.stats().loadingLayers).toBe(12);
+      for (const resolve of pending.values()) resolve(new THREE.Group());
+      await stream.whenIdle();
+      expect(stream.displayedTiles()).toHaveLength(16);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('publishes nearby detail without waiting for every new layer under a bare ancestor', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const pending = new Map<string, (object: THREE.Object3D) => void>();
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            minLevel: 1,
+            createTile({ address }) {
+              return new Promise<THREE.Object3D>((resolve) =>
+                pending.set(terrainPyramidTileKey(address), resolve),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await expect.poll(() => pending.size).toBe(4);
+      pending.get('1/0/0')?.(new THREE.Group());
+      await expect
+        .poll(() => stream.object.getObjectByName('layer:human:1/0/0')?.visible)
+        .toBe(true);
+      expect(stream.stats().loadingLayers).toBe(3);
+      expect(stream.displayedTiles()).toHaveLength(4);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('keeps overlapping detail visible through the surface fallback during a 20 degree turn', async () => {
+    const d = descriptor({ rootSize: 256, maxLevel: 4 });
+    const view = {
+      ...VIEW,
+      position: [120, 10, 120] as [number, number, number],
+      direction: [0, 0, -1] as [number, number, number],
+      aspect: 1.4,
+    };
+    let hold = false;
+    const pending: Array<() => void> = [];
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        async load(address) {
+          if (hold) await new Promise<void>((resolve) => pending.push(resolve));
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: view,
+        maxScreenSpaceError: 1,
+        viewDistance: 300,
+        maxSelectedTiles: 128,
+        maxResidentTiles: 256,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            minLevel: 4,
+            createTile: () => new THREE.Group(),
+          },
+        ],
+      },
+    );
+    const visibleDetail = (): Set<string> => {
+      const result = new Set<string>();
+      stream.object.traverseVisible((object) => {
+        if (object.name.startsWith('layer:human:')) result.add(object.name);
+      });
+      return result;
+    };
+    try {
+      await stream.whenIdle();
+      const before = visibleDetail();
+      expect(before.size).toBeGreaterThan(0);
+      hold = true;
+      stream.update({ ...view, direction: [Math.sin(Math.PI / 9), 0, -Math.cos(Math.PI / 9)] });
+      expect(stream.stats().fallbackLeaves).toBeGreaterThan(0);
+      const after = visibleDetail();
+      expect([...before].filter((key) => after.has(key)).length).toBeGreaterThan(before.size / 2);
+      hold = false;
+      for (const finish of pending) finish();
+      await stream.whenIdle();
+      stream.update(view);
+      await stream.whenIdle();
+      expect(visibleDetail()).toEqual(before);
+    } finally {
+      stream.dispose();
+      for (const finish of pending) finish();
+    }
+  });
+
   it('does not pin usable descendants behind a bare ancestor after a layer exhausts retries', async () => {
     const d = descriptor({ maxLevel: 1 });
     let available = false;
@@ -630,7 +784,7 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
-  it('releases a staged handoff when its unfinished layer is hidden and discards late results', async () => {
+  it('publishes staged layers when an unfinished layer is hidden and discards late results', async () => {
     const d = descriptor({ maxLevel: 1 });
     const pending: Array<{ resolve: (object: THREE.Object3D) => void; signal: AbortSignal }> = [];
     let disposed = 0;
@@ -668,7 +822,8 @@ describe('screen-space terrain pyramid', () => {
     );
     try {
       await expect.poll(() => pending.length).toBe(4);
-      expect(stream.displayedTiles()).toEqual([{ level: 0, x: 0, z: 0 }]);
+      expect(stream.displayedTiles()).toHaveLength(4);
+      expect(stream.object.getObjectByName('layer:landuse:1/0/0')?.visible).toBe(false);
       stream.setLayerVisible('buildings', false);
       await stream.whenIdle();
       expect(stream.displayedTiles()).toHaveLength(4);

@@ -195,7 +195,7 @@ const output = execFileSync(
   { input: `${formatJson(atlas)}\n`, encoding: 'utf8' },
 );
 if (process.argv.includes('--check')) {
-  if ((await readFile(path, 'utf8')) !== output)
+  if ((await readFile(path, 'utf8')).replaceAll('\r\n', '\n') !== output.replaceAll('\r\n', '\n'))
     throw new Error(
       'Structure atlas is stale: run node packages/worldgen-earth/scripts/generate-structure-atlas.mjs',
     );

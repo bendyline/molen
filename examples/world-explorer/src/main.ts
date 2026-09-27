@@ -439,7 +439,7 @@ async function loadWorldgen(options: {
     quality: options.quality,
     lodPolicy: options.lodPolicy,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
-    // Shared texture work starts after the first camera frame; building tiles wait for it.
+    // Shared texture work starts after the first camera frame; buildings gain textures as it finishes.
     // Vite bundles a worker only from the literal `new Worker(new URL(...))` pattern.
     workers: options.worker
       ? {
@@ -509,7 +509,7 @@ async function loadPackage(): Promise<{
       synthetic: true,
     };
   }
-  const manifestParam = params.get('package') ?? 'terrain/sammamish/terrain-package.json';
+  const manifestParam = params.get('package') ?? 'terrain/seattle-bellevue-sammamish/terrain-package.json';
   const manifestUrl = new URL(manifestParam, location.href);
   const response = await fetch(manifestUrl);
   if (!response.ok) throw new Error(`terrain package failed: HTTP ${response.status}`);
@@ -1309,7 +1309,8 @@ async function main(): Promise<void> {
       camera.pos[2] += direction[2] * amount;
     };
     worldgen?.updateInteriors(camera.pos);
-    flight.sync();
+    // Keep the practice runway out of real geography until the visitor chooses an aircraft.
+    if (loaded.synthetic || visitingAircraft !== undefined) flight.sync();
     if (visitingAircraft && flight.ready) {
       const position = flight.visitPosition(visitingAircraft);
       setNavigation('walk');

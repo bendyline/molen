@@ -16,16 +16,14 @@ const delay = (ms: number): Promise<void> => new Promise((done) => setTimeout(do
 describe('style pack document loading', () => {
   it('resolves the default pack to the same hash as the one-at-a-time loader', async () => {
     const pack = await resolveStylePackDocuments(await readJson('stylepack.json'), readJson);
-    // Captured from the serial loader before reads were parallelised (sha256:5373d809…), then
-    // re-pinned when the pack gained its interior catalog: the hash covers it, geometry did not
-    // change.
+    // Pinned against the shipped pack, including the authored structure assets.
     expect(pack.hash).toBe(
-      'sha256:e60d6a93ec150d5173414413222ee4094e358aebc1a41f45287a59daa7fd0215',
+      'sha256:62e4104d7c8a173568affa84e232c1b1bcd628294a2f571337246a73904c8540',
     );
     expect(pack.interiors?.profiles).toHaveLength(15);
     expect(Object.keys(pack.archstyles)).toHaveLength(120);
     expect(Object.keys(pack.materials)).toHaveLength(45);
-    expect(pack.warnings).toHaveLength(7);
+    expect(pack.warnings).toHaveLength(112);
   });
 
   it('reads documents concurrently, at most 16 at a time, and each only once', async () => {

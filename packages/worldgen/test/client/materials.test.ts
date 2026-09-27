@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { type AssetProvider, MaterialResolver } from '@bendyline/molen-client';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createResolvedMaterialSet } from '../../src/client/materials';
 import { resolveStylePackDocuments, stylePackMaterialRefs } from '../../src/kernel/stylepack';
 import '../../src/kernel';
@@ -31,6 +31,64 @@ const provider: AssetProvider = {
 };
 
 describe('resolved material set', () => {
+  it('upgrades visible progressive materials in place without rebuilding geometry', async () => {
+    let finish: ((material: THREE.MeshStandardMaterial) => void) | undefined;
+    const resolver = {
+      acquire: vi.fn(
+        () =>
+          new Promise<THREE.MeshStandardMaterial>((resolve) => {
+            finish = resolve;
+          }),
+      ),
+      release: vi.fn(),
+    };
+    const set = createResolvedMaterialSet(resolver as unknown as MaterialResolver, {
+      progressive: true,
+    });
+    const ref = 'matgraph:brick';
+    const material = set.materialFor('wall', ref) as THREE.MeshStandardMaterial;
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(), material);
+    const preparation = set.prepare([ref]);
+    expect(material.map).toBeNull();
+    expect(material.vertexColors).toBe(true);
+    expect(set.materialFor('roof', ref)).toBe(material);
+    const source = new THREE.MeshStandardMaterial({ map: new THREE.Texture(), roughness: 0.4 });
+    finish?.(source);
+    await preparation;
+    expect(mesh.material).toBe(material);
+    expect(material.map).toBe(source.map);
+    expect(material.roughness).toBe(0.4);
+    expect(material.vertexColors).toBe(true);
+    expect(material.map?.wrapS).toBe(THREE.RepeatWrapping);
+    await set.prepare([ref]);
+    expect(resolver.acquire).toHaveBeenCalledTimes(1);
+    set.dispose();
+    expect(resolver.release).toHaveBeenCalledExactlyOnceWith(source);
+    mesh.geometry.dispose();
+  });
+
+  it('releases a bake that completes after the viewer is disposed', async () => {
+    let finish: ((material: THREE.MeshStandardMaterial) => void) | undefined;
+    const resolver = {
+      acquire: () =>
+        new Promise<THREE.MeshStandardMaterial>((resolve) => {
+          finish = resolve;
+        }),
+      release: vi.fn(),
+    };
+    const set = createResolvedMaterialSet(resolver as unknown as MaterialResolver, {
+      progressive: true,
+    });
+    const preparation = set.prepare(['matgraph:brick']);
+    const placeholder = set.materialFor('wall', 'matgraph:brick') as THREE.MeshStandardMaterial;
+    set.dispose();
+    const source = new THREE.MeshStandardMaterial({ map: new THREE.Texture() });
+    finish?.(source);
+    await preparation;
+    expect(placeholder.map).toBeNull();
+    expect(resolver.release).toHaveBeenCalledExactlyOnceWith(source);
+  });
+
   it('bakes every pack material once with vertex colors and repeat wrapping', async () => {
     const resolver = new MaterialResolver(provider);
     const set = createResolvedMaterialSet(resolver);

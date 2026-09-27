@@ -58,6 +58,8 @@ Before `dev` and `build`, `scripts/build-content-packs.mjs` builds the repositor
 directories into `public/packs/` with an `index.json`. The page opens the entities, style,
 earth and sky packs in parallel: small packs arrive in one request each, and car and aircraft
 models are range-read from the entities pack only when one is shown.
+In real geography, the practice runway and parked aircraft appear only after choosing an aircraft
+from the controls, so they do not cover a mapped city while exploring landmarks.
 
 Run the repeatable browser navigation review (ten frames plus HUD probes and browser/network
 diagnostics) after building `@bendyline/molen-tooling`:
@@ -80,7 +82,7 @@ for all hydrology loads to settle before capturing each view.
 Economy quality, after terrain and semantic loads settle. Run it with `molen play` against the
 built example to review the zoom-15 building detail and residential height/roof fallbacks.
 
-With no query parameters, the example opens the bundled 21.7 MiB Sammamish package: Mapzen/USGS
+With no query parameters, the example opens the bundled Seattle–Bellevue–Sammamish package: Mapzen/USGS
 elevation compiled to seam-safe PNG16 PMTiles plus a pinned Protomaps/OpenStreetMap regional vector
 extract. A broad level 8-10 elevation overview surrounds the level 11-14 detail window, with
 ancestor-derived fallback between them. Vectors continue through zoom 15 for individual building
@@ -110,7 +112,8 @@ automatically enable the layer controls. The example opens and validates those P
 normalizes Protomaps geometry, and never overlays its invented trees, roads, or buildings onto real
 coordinates. Undeclared profiles and PNG8 classification remain bare rather than being guessed.
 
-Use `?lat=47.6163&lon=-122.0356` to choose a camera reference and `quality=economy|balanced|high`
+Use `?lat=47.62051&lon=-122.3493` to inspect the Space Needle, or
+`?lat=47.6163&lon=-122.0356` for Sammamish. `quality=economy|balanced|high`
 to select portable streaming budgets. `?alt=17000&pitch=-0.35` reproduces a high-altitude camera;
 `yaw` and `pitch` are radians. The HUD exposes attribution, adaptive level/error state, fallback
 counts, resident samples, geometry memory, triangle/draw estimates, instances, failures, and
@@ -124,7 +127,7 @@ Local-coordinate packages show local X/Z instead of WGS84 coordinates.
 Rebuild the bundled regional package with the pinned official `go-pmtiles` executable:
 
 ```sh
-pnpm --filter @bendyline/molen-examples-world-explorer data:sammamish -- \
+pnpm --filter @bendyline/molen-examples-world-explorer data:seattle -- \
   --pmtiles-cli /path/to/pmtiles
 ```
 
@@ -137,8 +140,8 @@ small real-data fixture; the size-preset production pipeline lives outside this 
 The bundled package is third-party open data and is **not** covered by the repository's MIT
 license. The vector tiles are an ODbL 1.0 Derivative Database — share-alike — and the archive also
 carries CC BY 4.0 landcover. Per-source terms and the required credit strings are in
-[the package's LICENSES.md](public/terrain/sammamish/LICENSES.md), the machine-readable
-[SOURCES.json](public/terrain/sammamish/SOURCES.json), and the repository root
+[the package's LICENSES.md](public/terrain/seattle-bellevue-sammamish/LICENSES.md), the machine-readable
+[SOURCES.json](public/terrain/seattle-bellevue-sammamish/SOURCES.json), and the repository root
 [NOTICE](../../NOTICE.md).
 
 When a real package is loaded the app renders a small always-visible credit in the top-right corner

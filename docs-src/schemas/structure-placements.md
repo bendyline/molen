@@ -1,0 +1,201 @@
+# Geographic structure placements (`molen/structure-placements@1`)
+
+WGS84 anchors for authored models; draft entries are indexed but not rendered.
+
+## Example
+
+```json
+{
+  "format": "molen/structure-placements@1",
+  "title": "Example structures",
+  "entries": [
+    {
+      "id": "sample.tower",
+      "title": "Sample tower",
+      "asset": "sample.structure.tower",
+      "anchor": [
+        -122.3493,
+        47.62051
+      ],
+      "status": "draft",
+      "source": "https://example.com/tower"
+    }
+  ]
+}
+```
+
+## JSON Schema
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "molen/structure-placements@1"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "anchor": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "heading": {
+            "type": "number"
+          },
+          "scale": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "datum": {
+            "type": "string",
+            "enum": [
+              "terrain",
+              "sea-level"
+            ]
+          },
+          "elevation": {
+            "type": "number"
+          },
+          "bounds": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              }
+            ],
+            "items": false,
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "replaceRoads": {
+            "type": "object",
+            "properties": {
+              "length": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "width": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "deckHeight": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "length",
+              "width"
+            ],
+            "additionalProperties": false
+          },
+          "replaceFootprint": {
+            "type": "boolean"
+          },
+          "minLevel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 26
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "preview",
+              "draft"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "format": "uri"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "asset",
+          "anchor",
+          "status",
+          "source"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "format",
+    "title",
+    "entries"
+  ],
+  "additionalProperties": false
+}
+```

@@ -111,7 +111,7 @@ export function mdText(value) {
 export function escapeProse(markdown) {
   let inFence = false;
   return markdown
-    .split('\n')
+    .split(/\r?\n/)
     .map((line) => {
       if (/^\s*(```|~~~)/.test(line)) {
         inFence = !inFence;

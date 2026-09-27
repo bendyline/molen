@@ -16,6 +16,7 @@ import {
   type TerrainSemanticTile,
   type TerrainSemanticTileRenderer,
 } from '@bendyline/molen-terrain/client';
+import { pointInPolygon, wgs84ToWorld, worldToWgs84 } from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
   createBuildingCellLod,
@@ -42,10 +43,12 @@ import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { TileGeometry } from '../kernel/semantic-adapter';
+import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
 import { type WorldgenQualityPreset, worldgenTileBudgetForQuality } from '../kernel/tile-budgets';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
+import { clipStructureGeometry, withoutStructureRoads } from './structure-geometry';
 import type { WorldgenGenerator } from './worker-bridge';
 
 export interface WorldgenRendererOptions {
@@ -57,9 +60,13 @@ export interface WorldgenRendererOptions {
    * same content; tile cache keys include its hashes.
    */
   places?: PlacesContent;
+  /** Authored geographic structures, indexed by geohash for tile lookup. */
+  structures?: StructureIndex;
   materials?: WorldgenMaterialSet;
   /** Prepared prop models; without it the classification layer keeps the default tree cones. */
   models?: ModelLibrary;
+  /** Streamed geographic models; defaults to `models` when no separate library is supplied. */
+  structureModels?: ModelLibrary;
   quality?: WorldgenQualityPreset;
   budgets?: Partial<WorldgenBudgets>;
   /** cos(center latitude) factor of the terrain package (1 for local packages). */
@@ -167,6 +174,7 @@ export function createWorldgenSemanticRenderers(
   let disposed = false;
   const flatMaterials = options.lodPolicy ? createVertexColorMaterialSet() : undefined;
   const models = options.models;
+  const structureModels = options.structureModels ?? models;
   const warnedModels = new Set<string>();
   const stats: WorldgenRenderStats = {
     tiles: 0,
@@ -322,6 +330,7 @@ export function createWorldgenSemanticRenderers(
     if (output.buildingCells && options.lodPolicy && flatMaterials) {
       const policy = options.lodPolicy;
       try {
+        const assembly: Promise<void>[] = [];
         for (const cell of output.buildingCells) {
           const create = (): THREE.Object3D =>
             createBuildingCellLod(
@@ -331,21 +340,33 @@ export function createWorldgenSemanticRenderers(
               policy,
               `${name}:buildings`,
             );
-          const object = context.admission
-            ? await context.admission.run(create, {
-                signal: context.signal,
-                label: 'building-assembly',
-                bytes:
-                  cell.positions.byteLength +
-                  cell.normals.byteLength +
-                  cell.colors.byteLength +
-                  cell.uvs.byteLength +
-                  cell.indices.byteLength +
-                  cell.structuralIndices.byteLength,
-              })
-            : create();
-          group.add(object);
+          if (context.admission) {
+            // Queue independent cells together. Awaiting each admission separately imposes
+            // one animation frame per cell even when the frame still has ample work budget.
+            assembly.push(
+              context.admission.run(
+                () => {
+                  group.add(create());
+                },
+                {
+                  signal: context.signal,
+                  label: 'building-assembly',
+                  bytes:
+                    cell.positions.byteLength +
+                    cell.normals.byteLength +
+                    cell.colors.byteLength +
+                    cell.uvs.byteLength +
+                    cell.indices.byteLength +
+                    cell.structuralIndices.byteLength,
+                },
+              ),
+            );
+          } else group.add(create());
         }
+        // Drain cancelled/failed jobs before disposing the group so no late cell can leak.
+        const results = await Promise.allSettled(assembly);
+        const failed = results.find((result) => result.status === 'rejected');
+        if (failed?.status === 'rejected') throw failed.reason;
       } catch (error) {
         disposeWorldgenObject(group);
         throw error;
@@ -377,6 +398,115 @@ export function createWorldgenSemanticRenderers(
     }
     for (const object of await instancedProps(output.placements, context, name)) group.add(object);
     return group;
+  }
+
+  function structuresForTile(context: TerrainPyramidTileLayerContext): StructurePlacement[] {
+    if (options.structures === undefined) return [];
+    const [west, north] = worldToWgs84(metersPerUnit, context.origin[0], context.origin[1]);
+    const [east, south] = worldToWgs84(
+      metersPerUnit,
+      context.origin[0] + context.tileSize,
+      context.origin[1] + context.tileSize,
+    );
+    return options.structures.query([west, south, east, north]).filter((entry) => {
+      if (context.address.level < (entry.minLevel ?? 11)) return false;
+      if (entry.bounds) return true;
+      const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+      return (
+        x >= context.origin[0] &&
+        x < context.origin[0] + context.tileSize &&
+        z >= context.origin[1] &&
+        z < context.origin[1] + context.tileSize
+      );
+    });
+  }
+
+  function withoutReplacedFootprints(
+    tile: TerrainSemanticTile,
+    context: TerrainPyramidTileLayerContext,
+    structures: readonly StructurePlacement[],
+  ): TerrainSemanticTile {
+    if (tile.buildingsGeneralized || !structures.some((entry) => entry.replaceFootprint))
+      return tile;
+    const anchors = structures
+      .filter((entry) => entry.replaceFootprint)
+      .map((entry) => {
+        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+        return [
+          (x - context.origin[0]) / context.tileSize,
+          (z - context.origin[1]) / context.tileSize,
+        ] as [number, number];
+      });
+    const buildings = tile.buildings.filter(
+      (feature) =>
+        !feature.polygons.some((polygon) =>
+          anchors.some((anchor) => pointInPolygon(anchor, polygon)),
+        ),
+    );
+    return buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
+  }
+
+  async function placeStructures(
+    group: THREE.Group,
+    context: TerrainPyramidTileLayerContext,
+    structures: readonly StructurePlacement[],
+  ): Promise<void> {
+    if (structureModels === undefined) return;
+    for (const entry of structures) {
+      let held = false;
+      try {
+        const prepared = await structureModels.acquire(entry.asset);
+        held = true;
+        if (context.signal.aborted || disposed) {
+          structureModels.release(entry.asset);
+          return;
+        }
+        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+        const mesh = new THREE.Mesh(prepared.geometry, prepared.material);
+        mesh.name = `structure:${entry.id}`;
+        mesh.position.set(
+          x - context.origin[0],
+          (entry.datum === 'sea-level' ? 0 : context.heightfield.sampleHeight(x, z)) +
+            (entry.elevation ?? 0),
+          z - context.origin[1],
+        );
+        mesh.rotation.y = entry.heading ?? 0;
+        if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
+        if (entry.bounds) {
+          mesh.updateMatrix();
+          mesh.geometry = clipStructureGeometry(prepared.geometry, mesh.matrix, context.tileSize);
+          mesh.position.set(0, 0, 0);
+          mesh.rotation.set(0, 0, 0);
+          mesh.scale.set(1, 1, 1);
+          mesh.userData.worldgenOwnedGeometry = true;
+        }
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        group.add(mesh);
+        let refs = group.userData.structureModelRefs as string[] | undefined;
+        if (refs === undefined) {
+          refs = [];
+          group.userData.structureModelRefs = refs;
+        }
+        refs.push(entry.asset);
+        held = false;
+      } catch (error) {
+        if (held) structureModels.release(entry.asset);
+        if (!warnedModels.has(entry.asset)) {
+          warnedModels.add(entry.asset);
+          console.warn(`[molen] structure "${entry.id}": ${(error as Error).message}`);
+        }
+      }
+    }
+  }
+
+  function releaseStructureModels(root: THREE.Object3D): void {
+    root.traverse((object) => {
+      const refs = object.userData.structureModelRefs as string[] | undefined;
+      if (refs === undefined) return;
+      for (const ref of refs) structureModels?.release(ref);
+      delete object.userData.structureModelRefs;
+    });
   }
 
   function registerInteriors(
@@ -419,6 +549,7 @@ export function createWorldgenSemanticRenderers(
           }
           if (controller.signal.aborted) continue;
           replacement = await assembleBuildings(generated.output, context, root.name);
+          await placeStructures(replacement, context, structuresForTile(context));
           if (controller.signal.aborted || !residents.has(root) || preset !== quality) continue;
           await options.prepareObject?.(replacement, controller.signal);
           const publish = (): void => {
@@ -430,6 +561,7 @@ export function createWorldgenSemanticRenderers(
             )
               return;
             interiors?.unregister(resident.architecture);
+            releaseStructureModels(resident.architecture);
             disposeWorldgenObject(resident.architecture);
             resident.architecture.removeFromParent();
             root.add(replacement);
@@ -450,7 +582,10 @@ export function createWorldgenSemanticRenderers(
             console.warn('[molen] building quality update failed:', error);
           }
         } finally {
-          if (replacement) disposeWorldgenObject(replacement);
+          if (replacement) {
+            releaseStructureModels(replacement);
+            disposeWorldgenObject(replacement);
+          }
           delete resident.pending;
         }
       }
@@ -465,46 +600,77 @@ export function createWorldgenSemanticRenderers(
       const group = new THREE.Group();
       group.name = `worldgen:${context.address.level}/${context.address.x}/${context.address.z}`;
       try {
+        const structures = structuresForTile(context);
+        const mappedTile = withoutReplacedFootprints(tile, context, structures);
+        const structureGroup = new THREE.Group();
+        group.add(structureGroup);
+        const structureTask = placeStructures(structureGroup, context, structures);
         // Roads and buildings have independent worker queues. Start both before waiting, and
         // settle both so a late road result cannot leak geometry after the building job fails.
         const preset = quality;
-        const buildingsTask = generate(tile, context, { buildings: true, scatter: false }, preset);
+        const buildingsTask = generate(
+          mappedTile,
+          context,
+          { buildings: true, scatter: false },
+          preset,
+        );
         const roadsTask = (async (): Promise<THREE.Object3D | undefined> => {
-          if (options.roads?.surfaceRenderer && options.roads.renderTransportation !== false) {
-            return options.roads.surfaceRenderer.createTileAsync(tile, context);
+          let roadTile = tile;
+          if (structures.some((entry) => entry.replaceRoads)) {
+            await structureTask;
+            roadTile = withoutStructureRoads(
+              tile,
+              context,
+              structures.filter((entry) => structureGroup.getObjectByName(`structure:${entry.id}`)),
+              metersPerUnit,
+            );
           }
-          return createTerrainSemanticObject(tile, context, {
+          if (options.roads?.surfaceRenderer && options.roads.renderTransportation !== false) {
+            return options.roads.surfaceRenderer.createTileAsync(roadTile, context);
+          }
+          return createTerrainSemanticObject(roadTile, context, {
             ...options.roads,
             renderLandcover: false,
             renderWater: false,
             renderBuildings: false,
           });
         })();
-        const [roads, generated] = await Promise.allSettled([roadsTask, buildingsTask]);
+        const [roads, generated] = await Promise.allSettled([
+          roadsTask,
+          buildingsTask,
+          structureTask,
+        ]);
         if (roads.status === 'fulfilled' && roads.value) group.add(roads.value);
         if (roads.status === 'rejected') throw roads.reason;
         if (generated.status === 'rejected') throw generated.reason;
         if (context.signal.aborted || disposed || generated.value === undefined) {
+          releaseStructureModels(group);
           disposeTerrainSemanticObject(group);
+          disposeWorldgenObject(group);
           return undefined;
         }
         const { output } = generated.value;
         const architecture = await assembleBuildings(output, context, group.name);
+        await structureTask;
+        if (structureGroup.children.length) architecture.add(structureGroup);
+        else structureGroup.removeFromParent();
         group.add(architecture);
         if (context.signal.aborted || disposed) {
+          releaseStructureModels(group);
           disposeTerrainSemanticObject(group);
           disposeWorldgenObject(group);
           return undefined;
         }
         stats.buildings += output.stats.buildingsRendered;
         registerInteriors(architecture, output, context);
-        residents.set(group, { tile, context, architecture, quality: preset });
+        residents.set(group, { tile: mappedTile, context, architecture, quality: preset });
         void rebuildResidents();
         stats.boxes += output.stats.buildingsBoxed;
         stats.skippedByOwnership += output.skippedByOwnership;
         stats.geometryBytes += output.stats.meshBytes + output.stats.instanceBytes;
         return group;
       } catch (error) {
+        releaseStructureModels(group);
         disposeTerrainSemanticObject(group);
         disposeWorldgenObject(group);
         throw error;
@@ -517,6 +683,7 @@ export function createWorldgenSemanticRenderers(
         interiors?.unregister(resident.architecture);
         residents.delete(object);
       }
+      releaseStructureModels(object);
       disposeTerrainSemanticObject(object);
       disposeWorldgenObject(object);
     },
@@ -609,7 +776,10 @@ export function createWorldgenSemanticRenderers(
     }),
     dispose(): void {
       disposed = true;
-      for (const resident of residents.values()) resident.pending?.abort();
+      for (const [root, resident] of residents) {
+        resident.pending?.abort();
+        releaseStructureModels(root);
+      }
       residents.clear();
       interiors?.dispose();
       if (ownsMaterials) materials.dispose?.();

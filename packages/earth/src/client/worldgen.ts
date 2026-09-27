@@ -1,6 +1,6 @@
 // Styled buildings, landcover and street props for an Earth view: worldgen renderers over the
 // style pack, region atlas and places content, with optional worker offload. Building materials
-// are baked lazily after the first frame; tiles that need them wait, everything else streams.
+// are baked lazily after the first frame; geometry streams immediately and gains textures in place.
 
 import { AssetCache, type AssetProvider, MaterialResolver } from '@bendyline/molen-client';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
@@ -26,7 +26,6 @@ import type { WorldgenTileOutput } from '@bendyline/molen-worldgen-earth/kernel'
 import type * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import type { EarthWorldgenContent } from './content';
-import { afterPreparation } from './deferred';
 
 /** Factories for module workers; each is optional and its work runs in-thread without it. */
 export interface EarthViewWorkers {
@@ -43,7 +42,7 @@ export interface EarthViewWorkers {
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
-  /** Bake the style pack's materials (idempotent); building tiles wait for it. */
+  /** Bake the style pack's materials (idempotent); visible buildings gain textures as they finish. */
   prepareMaterials(): Promise<void>;
 }
 
@@ -70,13 +69,21 @@ export interface CreateEarthWorldgenOptions {
 
 /** Worldgen renderers for an Earth view's classification and human-feature layers. */
 export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthWorldgen {
-  const { pack, atlas, places, placesDocs } = options.content;
+  const { pack, atlas, places, placesDocs, structures } = options.content;
   const workers = options.workers ?? {};
   const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
   const assets = new AssetCache(options.assets, new GLTFLoader());
   const models = new ModelLibrary(
     async (ref) => (await assets.instance(ref)).scene,
     places.landmarks.definitions,
+  );
+  // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
+  // and merged geometry leave memory when the last tile using the asset is evicted.
+  const structureLoader = new GLTFLoader();
+  const structureModels = new ModelLibrary(
+    async (ref) => (await structureLoader.parseAsync(await options.assets.load(ref), '')).scene,
+    {},
+    true,
   );
   const baker =
     workers.material !== undefined
@@ -87,7 +94,9 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
             : {},
         )
       : undefined;
-  const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker));
+  const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
+    progressive: true,
+  });
   let preparation: Promise<void> | undefined;
   let disposed = false;
   const prepareMaterials = (): Promise<void> => {
@@ -115,10 +124,12 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
     places,
+    structures,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     atlas,
     regions,
     models,
+    structureModels,
     materials,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
@@ -136,7 +147,6 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   return {
     ...renderers,
     prepareMaterials,
-    humanFeatures: afterPreparation(renderers.humanFeatures, prepareMaterials),
     dispose() {
       if (disposed) return;
       disposed = true;
@@ -144,6 +154,8 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       renderers.dispose();
       generator?.dispose();
       materials.dispose();
+      structureModels.dispose();
+      models.dispose();
       assets.dispose();
     },
   };

@@ -1,6 +1,7 @@
 import { mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { type Browser, chromium, type Page } from 'playwright';
+import type * as THREE from 'three';
 import { type PreviewServer, preview } from 'vite';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -42,6 +43,50 @@ async function settled(page: Page): Promise<void> {
 }
 
 describe('browser: earth view', () => {
+  it('streams Seattle terrain and places the indexed Space Needle model', async () => {
+    const page = await browser.newPage({ viewport: { width: 960, height: 640 } });
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.goto(`${url}/?lat=47.62051&lon=-122.3493&range=950`);
+    await settled(page);
+    await page.waitForFunction(
+      () =>
+        window.__earthView?.viewer.renderer.worldRoot.getObjectByName(
+          'structure:seattle.space-needle',
+        ) !== undefined,
+      null,
+      { timeout: 90_000 },
+    );
+    const height = await page.evaluate(() => {
+      const mesh = window.__earthView?.viewer.renderer.worldRoot.getObjectByName(
+        'structure:seattle.space-needle',
+      ) as THREE.Mesh | undefined;
+      return mesh?.geometry.boundingBox?.getSize(mesh.position.clone()).y;
+    });
+    expect(height).toBeGreaterThan(150);
+    expect((await page.evaluate(() => window.__earthView?.stats()))?.failedTiles).toBe(0);
+    expect(errors).toEqual([]);
+    await page.screenshot({ path: join(out, '03-seattle-space-needle.png') });
+    await page.evaluate(() =>
+      window.__earthView?.jumpTo({
+        latitude: 47.6163,
+        longitude: -122.0356,
+        range: 1_800,
+      }),
+    );
+    await page.evaluate(() => window.__earthView?.whenIdle());
+    await page.waitForFunction(
+      () =>
+        window.__earthView?.viewer.renderer.worldRoot.getObjectByName(
+          'structure:seattle.space-needle',
+        ) === undefined,
+    );
+    expect(
+      (await page.evaluate(() => window.__earthView?.stats()))?.displayedTiles,
+    ).toBeGreaterThan(0);
+    await page.close();
+  });
+
   it('mounts real terrain with buildings, a marker and credits, then walks on the ground', async () => {
     const page = await browser.newPage({ viewport: { width: 960, height: 640 } });
     const errors: string[] = [];

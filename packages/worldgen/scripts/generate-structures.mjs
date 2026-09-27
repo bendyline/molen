@@ -345,7 +345,7 @@ for (const [path, value] of outputs) {
   const expected = `${formatJson(value)}\n`;
   const target = resolve(packDir, path);
   const current = await readFile(target, 'utf8').catch(() => undefined);
-  if (current === expected) continue;
+  if (current?.replaceAll('\r\n', '\n') === expected) continue;
   if (check) {
     console.error(`Stale generated structure resource: ${path}`);
     stale = true;

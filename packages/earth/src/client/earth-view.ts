@@ -111,10 +111,28 @@ export interface EarthViewStyle {
   water?: string;
 }
 
+/** A host-selected geographic data package for the current camera region. */
+export interface EarthTerrainSource {
+  terrain: TerrainPackageDescriptor;
+  /** Stable region key; changing it replaces the active terrain stream. */
+  key?: string;
+  baseUrl?: string | URL;
+  archives?: {
+    elevation?: TerrainTileArchive;
+    landcover?: TerrainTileArchive;
+    features?: TerrainTileArchive;
+  };
+}
+
 export interface EarthViewOptions {
   canvas: HTMLCanvasElement;
-  /** A `molen/terrain-package@1` manifest. */
-  terrain: TerrainPackageDescriptor;
+  /** A fixed `molen/terrain-package@1` manifest. Omit when using `terrainSource`. */
+  terrain?: TerrainPackageDescriptor;
+  /** Resolve PMTiles and terrain for each geographic region. Called on mount and after travel. */
+  terrainSource?: (
+    target: Readonly<{ latitude: number; longitude: number }>,
+    signal: AbortSignal,
+  ) => Promise<EarthTerrainSource>;
   /** URL of the manifest (resolves package-relative archives). */
   baseUrl?: string | URL;
   /** Host transports for the package's archives, e.g. archive sets with offline packs. */
@@ -150,6 +168,8 @@ export interface EarthViewOptions {
 
 export interface EarthViewEvents {
   camerachange: EarthCameraState;
+  /** A host-provided terrain region became active; update visible attribution. */
+  terrainchange: { key?: string; credits: EarthCredit[] };
   markerclick: { id: string };
   modechange: { mode: EarthViewMode };
   /** A short explanation for the user, e.g. why a vehicle could not be entered. */
@@ -202,6 +222,8 @@ export interface EarthView {
 const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
 /** Re-anchor the metric frame once the view is this far (degrees latitude) from it. */
 const REANCHOR_DEGREES = 1;
+/** Recheck a host's regional source after roughly five kilometers of manual panning. */
+const SOURCE_CHECK_DEGREES = 0.05;
 const DEFAULT_ENVIRONMENT: EnvironmentData = {
   ambient: { sky: '#d7eaf2', ground: '#283b32', intensity: 0.48 },
   sun: { direction: [-6, 10, 4], color: '#fff0ce', intensity: 2.05 },
@@ -234,7 +256,22 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 
 /** Mount an Earth view into a canvas. Dispose it (or abort `signal`) to release everything. */
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
-  const { canvas, terrain: pkg, content, signal } = options;
+  const { canvas, content, signal } = options;
+  const sourceAbort = new AbortController();
+  const forwardAbort = (): void => sourceAbort.abort();
+  if (signal?.aborted) sourceAbort.abort();
+  else signal?.addEventListener('abort', forwardAbort, { once: true });
+  if (options.terrain === undefined && options.terrainSource === undefined)
+    throw new Error('Earth view needs terrain or terrainSource');
+  let source: EarthTerrainSource =
+    options.terrainSource !== undefined
+      ? await options.terrainSource(options.camera, sourceAbort.signal)
+      : {
+          terrain: options.terrain as TerrainPackageDescriptor,
+          ...(options.baseUrl !== undefined ? { baseUrl: options.baseUrl } : {}),
+          ...(options.archives !== undefined ? { archives: options.archives } : {}),
+        };
+  let pkg = source.terrain;
   const report =
     options.onError ?? ((error, context) => console.warn(`[molen-earth] ${context}`, error));
   const automatic = (options.quality ?? 'auto') === 'auto';
@@ -271,6 +308,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   });
   const renderer = viewer.renderer;
   const disposers: Array<() => void> = [() => viewer.dispose()];
+  disposers.push(() => {
+    sourceAbort.abort();
+    signal?.removeEventListener('abort', forwardAbort);
+  });
   let disposed = false;
   const disposeAll = (): void => {
     disposed = true;
@@ -348,7 +389,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const createStack = async (
       frameLatitude: number,
       view: NavigationPose,
+      selected: EarthTerrainSource = source,
     ): Promise<EarthStack> => {
+      const pkg = selected.terrain;
       const frame = { latitude: frameLatitude };
       const metersPerUnit = terrainPackageMetersPerUnit(pkg, frame);
       const parts: Array<() => void> = [];
@@ -399,12 +442,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
-              ...(options.baseUrl !== undefined ? { baseUrl: options.baseUrl } : {}),
-              ...(options.archives?.landcover !== undefined
-                ? { landcoverArchive: options.archives.landcover }
+              ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
+              ...(selected.archives?.landcover !== undefined
+                ? { landcoverArchive: selected.archives.landcover }
                 : {}),
-              ...(options.archives?.features !== undefined
-                ? { featuresArchive: options.archives.features }
+              ...(selected.archives?.features !== undefined
+                ? { featuresArchive: selected.archives.features }
                 : {}),
               waterLayer: { visible: true, mesh: { materials: { water }, waterOffset: 0.65 } },
               landcoverLayer:
@@ -427,9 +470,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const budget = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
         const [viewWidth, viewHeight] = viewport();
         const opened = await createTerrainPackagePyramidStream(pkg, {
-          ...(options.baseUrl !== undefined ? { baseUrl: options.baseUrl } : {}),
-          ...(options.archives?.elevation !== undefined
-            ? { archive: options.archives.elevation }
+          ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
+          ...(selected.archives?.elevation !== undefined
+            ? { archive: selected.archives.elevation }
             : {}),
           frame,
           ...budget,
@@ -482,6 +525,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     // Initial frame, camera and stack.
     let frameLatitude = options.camera.latitude;
+    let sourceCheckedLatitude = frameLatitude;
+    let sourceCheckedLongitude = options.camera.longitude;
     let metersPerUnit = terrainPackageMetersPerUnit(pkg, { latitude: frameLatitude });
     const toWorld = (latitude: number, longitude: number): [number, number] =>
       wgs84ToWorld(metersPerUnit, longitude, latitude);
@@ -527,6 +572,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     const listeners: Listeners = {
       camerachange: new Set(),
+      terrainchange: new Set(),
       markerclick: new Set(),
       modechange: new Set(),
       message: new Set(),
@@ -653,33 +699,66 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     // Re-anchoring rebuilds the terrain stack in a frame at the new latitude.
     let anchoring: Promise<void> | undefined;
-    const reanchor = (latitude: number): void => {
-      if (anchoring !== undefined || stack === undefined) return;
+    let queuedAnchor: Readonly<{ latitude: number; longitude: number }> | undefined;
+    const reanchor = (target: Readonly<{ latitude: number; longitude: number }>): void => {
+      if (anchoring !== undefined || stack === undefined) {
+        queuedAnchor = target;
+        return;
+      }
       const previous = stack;
-      const center = orbit.state;
-      const ground = toLatLon(center.target[0], center.target[2]);
       anchoring = (async () => {
-        previous.dispose();
-        stack = undefined;
-        frameLatitude = latitude;
-        metersPerUnit = terrainPackageMetersPerUnit(pkg, { latitude });
-        const [x, z] = toWorld(ground.latitude, ground.longitude);
-        orbit.set({ target: [x, center.target[1], z] });
-        placeMarkers();
-        pose = orbit.update(0, input.read(0), environment);
         try {
-          const next = await createStack(latitude, pose);
+          const selected =
+            options.terrainSource !== undefined
+              ? await options.terrainSource(target, sourceAbort.signal)
+              : source;
+          if (disposed || sourceAbort.signal.aborted) return;
+          sourceCheckedLatitude = target.latitude;
+          sourceCheckedLongitude = target.longitude;
+          const sameSource =
+            selected.key !== undefined && source.key !== undefined
+              ? selected.key === source.key
+              : selected.terrain === source.terrain &&
+                selected.baseUrl === source.baseUrl &&
+                selected.archives === source.archives;
+          if (sameSource && Math.abs(target.latitude - frameLatitude) <= REANCHOR_DEGREES) return;
+          // A newer jump may have moved the orbit during the host request. Rebase its latest
+          // position, then process the queued destination after this stack is ready.
+          const center = orbit.state;
+          const ground = toLatLon(center.target[0], center.target[2]);
+          previous.dispose();
+          stack = undefined;
+          source = selected;
+          pkg = selected.terrain;
+          frameLatitude = target.latitude;
+          metersPerUnit = terrainPackageMetersPerUnit(pkg, { latitude: frameLatitude });
+          const [x, z] = toWorld(ground.latitude, ground.longitude);
+          orbit.set({ target: [x, center.target[1], z] });
+          placeMarkers();
+          pose = orbit.update(0, input.read(0), environment);
+          const next = await createStack(frameLatitude, pose, selected);
           if (disposed) next.dispose();
-          else stack = next;
+          else {
+            stack = next;
+            emit('terrainchange', {
+              ...(source.key !== undefined ? { key: source.key } : {}),
+              credits: earthCredits(pkg.attribution),
+            });
+          }
         } catch (error) {
           report(error, 're-anchor');
         } finally {
           anchoring = undefined;
+          if (queuedAnchor !== undefined && stack !== undefined && !disposed) {
+            const next = queuedAnchor;
+            queuedAnchor = undefined;
+            reanchor(next);
+          }
         }
       })();
     };
 
-    let pendingAnchor: number | undefined;
+    let pendingAnchor: { latitude: number; longitude: number } | undefined;
     const camera = (): EarthCameraState => {
       const target =
         mode === 'orbit'
@@ -720,8 +799,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         reanchor(pendingAnchor);
         pendingAnchor = undefined;
       } else if (!orbit.flying && anchoring === undefined) {
-        const { latitude } = toLatLon(next.lookAt[0], next.lookAt[2]);
-        if (Math.abs(latitude - frameLatitude) > REANCHOR_DEGREES * 1.5) reanchor(latitude);
+        const ground = toLatLon(next.lookAt[0], next.lookAt[2]);
+        if (
+          Math.abs(ground.latitude - frameLatitude) > REANCHOR_DEGREES * 1.5 ||
+          (options.terrainSource !== undefined &&
+            (Math.abs(ground.latitude - sourceCheckedLatitude) > SOURCE_CHECK_DEGREES ||
+              Math.abs(ground.longitude - sourceCheckedLongitude) > SOURCE_CHECK_DEGREES))
+        )
+          reanchor(ground);
       }
       return next;
     };
@@ -897,11 +982,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     document.addEventListener('visibilitychange', onVisibility);
     disposers.push(() => document.removeEventListener('visibilitychange', onVisibility));
 
-    const credits = earthCredits(pkg.attribution);
     return {
       viewer,
       input,
-      credits,
+      get credits() {
+        return earthCredits(pkg.attribution);
+      },
       get mode() {
         return mode;
       },
@@ -909,13 +995,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       flyTo(target, flyOptions = {}) {
         if (mode !== 'orbit') setMode('orbit');
         const far = Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES;
-        pendingAnchor = far ? target.latitude : undefined;
+        pendingAnchor = far || options.terrainSource !== undefined ? target : undefined;
         orbit.flyTo(orbitTarget(target), flyOptions);
       },
       jumpTo(target) {
         if (mode !== 'orbit') setMode('orbit');
         orbit.set(orbitTarget(target));
-        if (Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES) reanchor(target.latitude);
+        if (
+          Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES ||
+          options.terrainSource !== undefined
+        )
+          reanchor(target);
       },
       getCamera: camera,
       setMarkers(next) {
@@ -931,7 +1021,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         };
       },
       async whenIdle() {
-        await anchoring;
+        while (anchoring !== undefined) await anchoring;
         await stack?.stream.whenIdle();
       },
       stats() {

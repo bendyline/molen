@@ -24,6 +24,9 @@ export type {
   WorldBounds,
 } from './kernel/region';
 export { createRegionResolver, regionScatterId, regionStyleRules } from './kernel/region';
+export type { StructureCatalogDoc, StructureIndex, StructurePlacement, StyleSuggestion } from './kernel/structure-index';
+export { createStructureIndex, encodeStructureGeohash, suggestStructureStyles } from './kernel/structure-index';
+export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 export {
   REGION_ATLAS_EXAMPLE,
   registerRegionAtlasSchema,
@@ -68,7 +71,9 @@ export { createWorldgenWorkerHandler } from './kernel/worker-protocol';
 
 import { registerBusinessCatalogSchema } from './kernel/business-catalog-schema';
 import { registerRegionAtlasSchema } from './kernel/region-atlas-schema';
+import { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 
 // Register the atlas format on import so tooling can validate it.
 registerRegionAtlasSchema();
 registerBusinessCatalogSchema();
+registerStructurePlacementsSchema();

@@ -22,6 +22,7 @@ export {
   type EarthCameraState,
   type EarthCameraTarget,
   type EarthMarker,
+  type EarthTerrainSource,
   type EarthView,
   type EarthViewEvents,
   type EarthViewMode,

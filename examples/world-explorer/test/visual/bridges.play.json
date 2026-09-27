@@ -1,0 +1,78 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "seattle-bridges",
+  "path": "/?backend=webgl&quality=balanced&hud=0&lat=47.63&lon=-122.2587&alt=1100&yaw=-1.5708&pitch=-0.67",
+  "viewport": [1440, 900],
+  "probes": [
+    { "name": "status", "selector": "#status" },
+    { "name": "location", "selector": "#location" }
+  ],
+  "actions": [
+    { "type": "wait-for", "selector": "#status", "text": "resident", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 2000,
+      "timeoutMs": 600000
+    },
+    { "type": "screenshot", "name": "sr520-overview" },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=balanced&hud=0&lat=47.6389&lon=-122.2587&alt=75&yaw=-1.5708&pitch=-0.34"
+    },
+    { "type": "wait-for", "selector": "#status", "text": "resident", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 2000,
+      "timeoutMs": 600000
+    },
+    { "type": "screenshot", "name": "sr520-deck" },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=balanced&hud=0&lat=47.6418&lon=-122.2748&alt=90&yaw=-1.1&pitch=-0.38"
+    },
+    { "type": "wait-for", "selector": "#status", "text": "resident", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 2000,
+      "timeoutMs": 600000
+    },
+    { "type": "screenshot", "name": "sr520-west-end" },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=balanced&hud=0&lat=47.6373&lon=-122.2448&alt=90&yaw=-0.9&pitch=-0.45"
+    },
+    { "type": "wait-for", "selector": "#status", "text": "resident", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 2000,
+      "timeoutMs": 600000
+    },
+    { "type": "screenshot", "name": "sr520-east-end" },
+    {
+      "type": "navigate",
+      "path": "/?backend=webgl&quality=balanced&hud=0&lat=47.646&lon=-122.3065&alt=95&yaw=-0.75&pitch=-0.45"
+    },
+    { "type": "wait-for", "selector": "#status", "text": "resident", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 2000,
+      "timeoutMs": 600000
+    },
+    { "type": "screenshot", "name": "montlake-procedural" }
+  ]
+}

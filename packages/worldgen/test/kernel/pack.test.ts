@@ -45,13 +45,16 @@ function meanLuminance(doc: MatGraphDoc): number {
 }
 
 describe('default pack', () => {
-  it('references generated materials and prop models that resolve', () => {
+  it('references generated materials, prop models, and site structures that resolve', async () => {
     expect(Object.keys(pack.materials).length).toBeGreaterThanOrEqual(15);
     expect(Object.keys(pack.assets)).toEqual(
       expect.arrayContaining([
         'molen.worldgen.prop.chimney.brick',
         'molen.worldgen.prop.rooftop.hvac',
         'molen.worldgen.prop.canale',
+        'molen.worldgen.structure.space_needle',
+        'molen.worldgen.structure.golden_gate_bridge',
+        'molen.worldgen.structure.sr_520_floating_bridge',
       ]),
     );
     const refs = stylePackMaterialRefs(pack);
@@ -65,6 +68,25 @@ describe('default pack', () => {
     expect(index['molen.worldgen.prop.canale']).toBe(
       'https://example.test/pack/assets/prop/canale/model.glb',
     );
+    for (const [id, slug] of [
+      ['molen.worldgen.structure.space_needle', 'space_needle'],
+      ['molen.worldgen.structure.golden_gate_bridge', 'golden_gate_bridge'],
+      ['molen.worldgen.structure.sr_520_floating_bridge', 'sr_520_floating_bridge'],
+    ]) {
+      expect(index[id]).toBe(
+        `https://example.test/pack/assets/molen/worldgen/structure/${slug}/model.glb`,
+      );
+    }
+    const catalog = (await readJson('source/site-structures/asset-index.json')) as {
+      id: string;
+    }[];
+    expect(catalog).toHaveLength(97);
+    expect(Object.keys(pack.assets)).toHaveLength(108);
+    for (const { id } of catalog) {
+      expect(index[id], id).toBe(
+        `https://example.test/pack/assets/${id.replaceAll('.', '/')}/model.glb`,
+      );
+    }
     expect(index['molen.worldgen.material.stucco']).toBe(
       'https://example.test/pack/materials/stucco.matgraph.json',
     );

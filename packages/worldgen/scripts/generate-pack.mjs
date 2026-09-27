@@ -1016,7 +1016,12 @@ async function emit(relativePath, bytes) {
         `content/worldgen/${relativePath} is missing; run node scripts/generate-pack.mjs`,
       );
     }
-    if (!current.equals(bytes)) {
+    const same =
+      current.equals(bytes) ||
+      (relativePath.endsWith('.json') &&
+        current.toString('utf8').replaceAll('\r\n', '\n') ===
+          bytes.toString('utf8').replaceAll('\r\n', '\n'));
+    if (!same) {
       stale++;
       console.error(`stale: content/worldgen/${relativePath}`);
     }

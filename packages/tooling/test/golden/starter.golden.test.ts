@@ -1,6 +1,5 @@
-import { mkdtemp, realpath, symlink } from 'node:fs/promises';
+import { mkdir, mkdtemp, realpath, symlink } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
@@ -12,7 +11,9 @@ import { scaffoldExperience } from '../../src/ops/index';
 it('F01/F08: the generated starter boots its Worker and responds to input', async () => {
   // realpath: on macOS tmpdir() sits under the /var -> /private/var symlink, and Vite emits
   // chunk names relative to the resolved root.
-  const parent = await realpath(await mkdtemp(join(tmpdir(), 'molen-browser-starter-')));
+  const output = resolve('test/golden/__output__');
+  await mkdir(output, { recursive: true });
+  const parent = await realpath(await mkdtemp(join(output, 'molen-browser-starter-')));
   const result = await scaffoldExperience({ name: 'browserdemo', dir: parent });
   expect(result.ok).toBe(true);
   if (result.dir === undefined) throw new Error(result.error ?? 'scaffold produced no directory');

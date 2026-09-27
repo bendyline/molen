@@ -20,6 +20,10 @@ license, which files go in, and which roles it `provides`.
 | [earth/](earth/) | `molen.earth` | The region atlas and the business identity catalog |
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
 
+The worldgen authoring source also carries a [next 1,000 structure candidate catalog](worldgen/source/next-1000/README.md),
+with five imported GLB studies and a searchable gallery. Candidate metadata is excluded from
+the runtime pack.
+
 Authoring sources (`worldgen/source/`, `entities/source/`), fixtures and the entities authoring
 project sit beside the files they generate but are excluded from the packs.
 

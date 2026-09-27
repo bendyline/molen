@@ -135,8 +135,8 @@ describe('node helpers', () => {
     const files = source.files;
     const raw = files.reduce((total, file) => total + file.bytes.length, 0);
     const { bytes } = await createPack(files, { id: 'molen.worldgen.default', version: '1' });
-    // ~800 KB of JSON and small models: solid blocks bring it to about a tenth.
-    expect(bytes.length).toBeLessThan(raw / 8);
+    // The 100 imported structure GLBs leave the complete pack below one quarter of raw size.
+    expect(bytes.length).toBeLessThan(raw / 4);
     const pack = await openPack(bytes);
     for (const file of files) {
       expect(new Uint8Array(await pack.readBytes(file.path)), file.path).toEqual(file.bytes);

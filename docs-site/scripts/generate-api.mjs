@@ -22,11 +22,14 @@ import {
 } from './packages.mjs';
 
 const apiDir = join(siteDir, 'api');
-const typedocBin = join(siteDir, 'node_modules', '.bin', 'typedoc');
+const typedocBin = join(siteDir, 'node_modules', 'typedoc', 'bin', 'typedoc');
 
 function run(args, cwd) {
   return new Promise((resolve, reject) => {
-    const child = spawn(typedocBin, args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] });
+    const child = spawn(process.execPath, [typedocBin, ...args], {
+      cwd,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
     let err = '';
     child.stdout.on('data', () => {});
     child.stderr.on('data', (d) => {
@@ -80,7 +83,9 @@ export async function generateApi() {
 
   const index = [];
   for (const pkg of pkgs) {
-    const entryPoints = pkg.entries.map((e) => join(pkg.dir, e.types.replace(/^\.\//, '')));
+    const entryPoints = pkg.entries.map((e) =>
+      join(pkg.dir, e.types.replace(/^\.\//, '')).replaceAll('\\', '/'),
+    );
     const outDir = join(apiDir, pkg.slug);
     await run(
       [

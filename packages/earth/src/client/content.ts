@@ -16,9 +16,12 @@ import {
 } from '@bendyline/molen-worldgen/kernel';
 import {
   createPlacesContent,
+  createStructureIndex,
   type PlacesContent,
   type PlacesContentDocs,
   type RegionAtlasDoc,
+  type StructureIndex,
+  type StructureCatalogDoc,
 } from '@bendyline/molen-worldgen-earth/kernel';
 
 /** Content-pack ids an Earth view looks for. */
@@ -43,6 +46,8 @@ export interface EarthWorldgenContent {
   places: PlacesContent;
   /** The same places content as plain documents, for the generation worker. */
   placesDocs: PlacesContentDocs;
+  /** Indexed geographic positions for authored landmark models. */
+  structures: StructureIndex;
 }
 
 export interface EarthContent {
@@ -76,14 +81,22 @@ async function readTypes(pack: Pack): Promise<TypeLibrary> {
 async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenContent> {
   const stylepackPath = styles.manifest.provides.stylepack?.[0] ?? 'stylepack.json';
   const landmarkPath = styles.manifest.provides.landmarks?.[0] ?? 'landmarks/catalog.json';
+  const structuresPath = earth.manifest.provides.structures?.[0];
   const landmarkDir = landmarkPath.slice(0, landmarkPath.lastIndexOf('/') + 1);
-  const [pack, atlas, catalog, businesses] = await Promise.all([
+  const [pack, atlas, catalog, businesses, structures] = await Promise.all([
     styles
       .readJson(stylepackPath)
       .then((root) => resolveStylePackDocuments(root, (path) => styles.readJson(path))),
     earth.readJson<RegionAtlasDoc>(earth.manifest.provides.atlas?.[0] ?? 'world.atlas.json'),
     styles.readJson<{ models: Record<string, string> }>(landmarkPath),
     earth.readJson(earth.manifest.provides.businesses?.[0] ?? 'businesses/catalog.json'),
+    structuresPath === undefined
+      ? Promise.resolve<StructureCatalogDoc>({
+          format: 'molen/structure-placements@1',
+          title: 'No geographic structures',
+          entries: [],
+        })
+      : earth.readJson<StructureCatalogDoc>(structuresPath),
   ]);
   const models: Record<string, unknown> = {};
   await Promise.all(
@@ -98,6 +111,7 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     atlas,
     places: createPlacesContent(placesDocs),
     placesDocs,
+    structures: createStructureIndex(structures),
   };
 }
 

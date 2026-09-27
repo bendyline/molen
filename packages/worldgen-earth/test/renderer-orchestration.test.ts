@@ -1,3 +1,4 @@
+import { FrameAdmissionQueue } from '@bendyline/molen-client';
 import {
   createTerrainSurfaceRenderer,
   type TerrainPyramidTileLayerContext,
@@ -8,6 +9,7 @@ import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { createWorldgenSemanticRenderers } from '../src/client/renderers';
+import { createStructureIndex } from '../src/kernel/structure-index';
 import type { WorldgenTileOutput } from '../src/kernel/tile-generate';
 import { loadDefaultPack } from './helpers/pack';
 
@@ -104,6 +106,263 @@ function fixture(prepareObject?: (object: THREE.Object3D, signal: AbortSignal) =
 }
 
 describe('worldgen human-feature tile orchestration', () => {
+  it.each([
+    false,
+    true,
+  ])('batches building cells within the frame budget and cleans cancellation (%s)', async (cancel) => {
+    const frames: Array<() => void> = [];
+    const queue = new FrameAdmissionQueue({
+      schedule: (callback) => frames.push(callback),
+      now: () => 0,
+      maxJobs: 2,
+    });
+    const generated = output();
+    generated.buildingCells = Array.from({ length: 3 }, (_, i) => ({
+      key: String(i),
+      positions: new Float32Array([0, 0, 0, 1, 0, 0, 0, 0, 1]),
+      normals: new Float32Array(9),
+      uvs: new Float32Array(6),
+      colors: new Uint8Array(9),
+      indices: new Uint16Array([0, 1, 2]),
+      structuralIndices: new Uint16Array([0, 1, 2]),
+      groups: [],
+      bounds: [0, 0, 0, 1, 1, 1] as [number, number, number, number, number, number],
+    }));
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      lodPolicy: { viewportHeight: 720, maxPixelError: 2 },
+      roads: { renderTransportation: false },
+      generator: { generate: async () => generated, dispose() {} },
+    });
+    const controller = new AbortController();
+    const disposeGeometry = vi.spyOn(THREE.BufferGeometry.prototype, 'dispose');
+    try {
+      const pending = renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), {
+        ...context(controller.signal),
+        admission: queue,
+      });
+      await vi.waitFor(() => expect(queue.pending).toBe(3));
+      expect(frames).toHaveLength(1);
+      frames.shift()?.();
+      expect(queue.pending).toBe(1); // Respects the existing two-job frame budget.
+      if (cancel) {
+        controller.abort();
+        await expect(pending).rejects.toMatchObject({ name: 'AbortError' });
+        expect(queue.pending).toBe(0);
+        expect(disposeGeometry).toHaveBeenCalledTimes(6); // Three LODs per completed cell.
+        return;
+      }
+      frames.shift()?.();
+      const root = await pending;
+      expect(
+        root?.children.find((child) => child.name.endsWith(':architecture'))?.children,
+      ).toHaveLength(3);
+      if (root) renderers.humanFeatures.disposeTile?.(root);
+    } finally {
+      queue.dispose();
+      renderers.dispose();
+      disposeGeometry.mockRestore();
+    }
+  });
+
+  it('loads only nearby structures and releases their geometry with the tile', async () => {
+    const loads: string[] = [];
+    const structureModels = new ModelLibrary(async (ref) => {
+      loads.push(ref);
+      return new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
+    });
+    const structures = createStructureIndex({
+      format: 'molen/structure-placements@1',
+      title: 'Resident landmarks',
+      entries: [
+        {
+          id: 'near',
+          title: 'Near',
+          asset: 'near-model',
+          anchor: [0.0001, -0.0001],
+          minLevel: 0,
+          status: 'preview',
+          source: 'test',
+        },
+        {
+          id: 'chicago',
+          title: 'Chicago',
+          asset: 'far-model',
+          anchor: [-87.6, 41.9],
+          minLevel: 0,
+          status: 'preview',
+          source: 'test',
+        },
+      ],
+    });
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures,
+      structureModels,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      createEmptyTerrainSemanticTile(),
+      context(new AbortController().signal),
+    );
+    expect(root?.getObjectByName('structure:near')).toBeDefined();
+    expect(loads).toEqual(['near-model']);
+    expect(structureModels.get('near-model')).toBeDefined();
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    expect(structureModels.get('near-model')).toBeUndefined();
+    renderers.dispose();
+    structureModels.dispose();
+  });
+
+  it('assigns an exact tile-edge anchor to one tile', async () => {
+    const structureModels = new ModelLibrary();
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Boundary',
+        entries: [
+          {
+            id: 'boundary',
+            title: 'Boundary',
+            asset: 'builtin:box',
+            anchor: [0, 0],
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureModels,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const left = context(new AbortController().signal);
+    left.origin = [-200, 0];
+    const right = context(new AbortController().signal);
+    const first = await renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), left);
+    const second = await renderers.humanFeatures.createTile(
+      createEmptyTerrainSemanticTile(),
+      right,
+    );
+    expect(first?.getObjectByName('structure:boundary')).toBeUndefined();
+    expect(second?.getObjectByName('structure:boundary')).toBeDefined();
+    if (first) renderers.humanFeatures.disposeTile?.(first);
+    if (second) renderers.humanFeatures.disposeTile?.(second);
+    renderers.dispose();
+    structureModels.dispose();
+  });
+
+  it('loads extended bridge ends without the anchor tile and releases clipped geometry and shared assets', async () => {
+    const loads = vi.fn(async () =>
+      new THREE.Group().add(
+        new THREE.Mesh(new THREE.BoxGeometry(600, 6, 20), new THREE.MeshStandardMaterial()),
+      ),
+    );
+    const models = new ModelLibrary(loads);
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Bridge',
+        entries: [
+          {
+            id: 'span',
+            title: 'Span',
+            asset: 'span',
+            anchor: [0, 0],
+            bounds: [-0.003, -0.001, 0.003, 0.001],
+            datum: 'sea-level',
+            elevation: 12,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureModels: models,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const roots: THREE.Object3D[] = [];
+    for (const x of [-300, 100]) {
+      const ctx = context(new AbortController().signal);
+      ctx.origin = [x, -100];
+      const root = (await renderers.humanFeatures.createTile(
+        createEmptyTerrainSemanticTile(),
+        ctx,
+      )) as THREE.Object3D;
+      const mesh = root.getObjectByName('structure:span') as THREE.Mesh;
+      expect(mesh.geometry.boundingBox?.min.x).toBeGreaterThanOrEqual(0);
+      expect(mesh.geometry.boundingBox?.max.x).toBeLessThanOrEqual(200);
+      expect(mesh.geometry.boundingBox?.min.y).toBe(9);
+      roots.push(root);
+    }
+    expect(loads).toHaveBeenCalledOnce();
+    const mesh = roots[0]?.getObjectByName('structure:span') as THREE.Mesh;
+    const disposed = vi.spyOn(mesh.geometry, 'dispose');
+    renderers.humanFeatures.disposeTile?.(roots[0] as THREE.Object3D);
+    expect(disposed).toHaveBeenCalledOnce();
+    expect(models.get('span')).toBeDefined();
+    renderers.humanFeatures.disposeTile?.(roots[1] as THREE.Object3D);
+    expect(models.get('span')).toBeUndefined();
+    renderers.dispose();
+    models.dispose();
+  });
+
+  it('keeps procedural bridge roads when an authored replacement fails to load', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const models = new ModelLibrary(async () => {
+      throw new Error('missing model');
+    });
+    const roadGenerate = vi.fn(async () => new THREE.Group());
+    const surfaces = createTerrainSurfaceRenderer({}, { generate: roadGenerate, dispose() {} });
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Missing',
+        entries: [
+          {
+            id: 'missing',
+            title: 'Missing',
+            asset: 'missing',
+            anchor: [0, 0],
+            bounds: [-0.003, -0.001, 0.003, 0.001],
+            datum: 'sea-level',
+            replaceRoads: { length: 600, width: 20 },
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureModels: models,
+      roads: { surfaceRenderer: surfaces },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    try {
+      const tile = createEmptyTerrainSemanticTile();
+      tile.transportation.push({
+        class: 'highway',
+        bridge: true,
+        lines: [
+          [
+            [0, 0],
+            [1, 0],
+          ],
+        ],
+      });
+      const root = await renderers.humanFeatures.createTile(
+        tile,
+        context(new AbortController().signal),
+      );
+      expect(roadGenerate.mock.calls[0]?.[0]).toBe(tile);
+      if (root) renderers.humanFeatures.disposeTile?.(root);
+    } finally {
+      renderers.dispose();
+      models.dispose();
+      surfaces.dispose();
+      warn.mockRestore();
+    }
+  });
+
   it('retains resident architecture until replacement resource preparation finishes', async () => {
     const prepared = deferred<void>();
     const prepare = vi.fn(() => prepared.promise);

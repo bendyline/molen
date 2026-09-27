@@ -198,7 +198,22 @@ export function overzoomTerrainSemanticTile(
   });
   const transportation = tile.transportation.flatMap((feature) => {
     const clipped = lines(feature.lines);
-    return clipped.length > 0 ? [{ ...feature, lines: clipped }] : [];
+    return clipped.length > 0
+      ? [
+          {
+            ...feature,
+            lines: clipped,
+            ...(feature.bridgeConnections
+              ? {
+                  bridgeConnections: feature.bridgeConnections.map((connection) => ({
+                    ...connection,
+                    point: transformPoint(connection.point, scale, ox, oy),
+                  })),
+                }
+              : {}),
+          },
+        ]
+      : [];
   });
   // A building belongs to the one descendant holding its footprint's center: never cut, never
   // drawn twice.

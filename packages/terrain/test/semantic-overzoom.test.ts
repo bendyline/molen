@@ -76,6 +76,26 @@ describe('semantic overzoom', () => {
     expect(bottomRight.pois?.[0]?.point[1]).toBeCloseTo(0.6, 9);
   });
 
+  it('transforms bridge connection points while retaining metric heights and blend radii', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0, 0.25],
+          [1, 0.25],
+        ],
+      ],
+      bridgeConnections: [{ point: [0.5, 0.25], elevation: 18, radius: 100 }],
+    });
+    const zoomed = overzoomTerrainSemanticTile(tile, parent, child(1, 0));
+    expect(zoomed.transportation[0]?.bridgeConnections).toEqual([
+      { point: [0, 0.5], elevation: 18, radius: 100 },
+    ]);
+    expect(tile.transportation[0]?.bridgeConnections?.[0]?.point).toEqual([0.5, 0.25]);
+  });
+
   it('keeps each building whole in exactly one descendant', () => {
     const counts = [child(0, 0), child(1, 0), child(0, 1), child(1, 1)].map(
       (address) => overzoomTerrainSemanticTile(sample(), parent, address).buildings.length,

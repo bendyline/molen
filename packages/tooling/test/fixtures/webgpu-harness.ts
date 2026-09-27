@@ -12,7 +12,7 @@ import {
 } from '@bendyline/molen-terrain/client';
 import { buffersToObject3D, createBuildingDetailLod } from '@bendyline/molen-worldgen/client';
 import type { MeshBuffers } from '@bendyline/molen-worldgen/kernel';
-import { createExplorerSky } from '../../../../examples/world-explorer/src/atmosphere';
+import { createEarthSky } from '../../../../packages/earth/src/client/atmosphere';
 
 export interface BackendCaptureOptions {
   backend?: 'auto' | 'webgl' | 'webgpu';
@@ -309,7 +309,7 @@ window.__backendCapture = {
       waterMesh.rotation.x = -Math.PI / 2;
       waterMesh.position.y = -0.1;
       viewer.renderer.worldRoot.add(waterMesh);
-      const sky = await createExplorerSky(viewer.renderer.backend);
+      const sky = await createEarthSky(viewer.renderer.backend);
       own(sky.material);
       own(sky.geometry);
       viewer.renderer.scene.add(sky);
@@ -450,7 +450,7 @@ window.__backendCapture = {
     const light = new THREE.DirectionalLight('#ffffff', 3);
     light.position.set(3, 8, 2);
     scene.add(light);
-    const sky = await createExplorerSky('webgpu');
+    const sky = await createEarthSky('webgpu');
     scene.add(sky);
     const water = await createTerrainWaterMaterialAsync(
       { waveScale: 0.4, waveStrength: 0.2 },

@@ -3,8 +3,8 @@
  *
  * This module has no geographic or archive assumptions. It selects square planar tiles by
  * projected sample spacing, requests ancestors before descendants, and keeps an ancestor visible
- * until its replacement surfaces and enabled layers are prepared. That whole-tile transition
- * avoids holes, exposed layer construction and partial-refinement z-fighting while moving.
+ * until replacements for its visible layers are prepared. Detailed tiles refine in small
+ * families; bare surfaces need not wait for newly requested detail across an entire region.
  */
 
 import type { SceneAdmission } from '@bendyline/molen-client';
@@ -1462,8 +1462,26 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const previousDisplayed = this.displayed;
     const candidates = new Set<string>();
     for (const leaf of this.selected.values()) {
+      // Refine an already detailed tile one generation at a time. Jumping straight from a
+      // large parent to dozens of leaves hides every finished leaf behind the slowest one.
+      // Intermediate families keep the handoff atomic while allowing nearby families to
+      // finish independently. Missing/evicted intermediates do not block resident leaves.
+      let replacementLevel = leaf.level;
+      for (const previousKey of previousDisplayed) {
+        const previous = this.resident.get(previousKey);
+        if (
+          previous &&
+          previous.address.level < leaf.level &&
+          pyramidAddressesOverlap(previous.address, leaf) &&
+          [...this.displayedLayers.values()].some((keys) => keys.has(previousKey)) &&
+          this.resident.has(
+            terrainPyramidTileKey(terrainPyramidAncestor(leaf, previous.address.level + 1)),
+          )
+        )
+          replacementLevel = Math.min(replacementLevel, previous.address.level + 1);
+      }
       let covered = false;
-      for (let level = leaf.level; level >= this.descriptor.minLevel; level--) {
+      for (let level = replacementLevel; level >= this.descriptor.minLevel; level--) {
         const address = terrainPyramidAncestor(leaf, level);
         const key = terrainPyramidTileKey(address);
         if (this.resident.has(key)) {
@@ -1502,18 +1520,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       for (const previousKey of previousDisplayed) {
         const previousTile = this.resident.get(previousKey);
         if (previousTile && pyramidAddressesOverlap(tile.address, previousTile.address)) {
-          // After bounded retries, a bare ancestor has no missing detail to preserve.
-          // Publish the usable replacement layers instead of pinning an entire region to it.
-          // A complete old tile still wins when it can supply a layer the replacement lost.
-          if (
-            this.layersReady(tile, true) &&
-            ![...previousTile.layers.keys()].some(
-              (id) =>
-                this.layerVisibility.get(id) === true &&
-                this.layerRetries.state(`${key}:${id}`) === 'failed',
-            )
-          )
-            continue;
+          // A bare ancestor has no detail to preserve. Do not pin an entire region to it
+          // while new building layers finish; only wait for layers it actually displays.
+          if (!this.losesVisibleLayers(previousKey, tile)) continue;
           prepared.add(previousKey);
           retained = true;
         }
@@ -1582,6 +1591,25 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return true;
   }
 
+  /** Only existing, visible detail needs an atomic replacement. New layers can arrive later. */
+  private losesVisibleLayers(previousKey: string, replacement: ResidentTile): boolean {
+    for (const [id, displayed] of this.displayedLayers) {
+      if (
+        displayed.has(previousKey) &&
+        this.layerVisibility.get(id) === true &&
+        this.resident.get(previousKey)?.layers.has(id) &&
+        this.layerEligible(
+          this.layerById.get(id) as TerrainPyramidTileLayer,
+          replacement.address.level,
+        ) &&
+        !replacement.layers.has(id) &&
+        !replacement.emptyLayers.has(id)
+      )
+        return true;
+    }
+    return false;
+  }
+
   /** Publish enabled layers together, retaining detail during explicit layer toggles. */
   private updateLayerVisibility(): void {
     for (const layer of this.layerById.values()) {
@@ -1590,7 +1618,20 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (this.layerVisibility.get(layer.id) === true) {
         for (const key of this.displayed) {
           const tile = this.resident.get(key);
-          if (tile === undefined || !this.layerEligible(layer, tile.address.level)) continue;
+          if (tile === undefined) continue;
+          // A camera turn may temporarily use a surface-only ancestor. Keep already visible
+          // detail beneath it until the selected replacement is ready; explicit coarsening
+          // and layer toggles still retire that detail.
+          if (!this.layerEligible(layer, tile.address.level)) {
+            if (!this.selected.has(key)) {
+              for (const previousKey of previous) {
+                const old = this.resident.get(previousKey);
+                if (old && pyramidAddressesOverlap(tile.address, old.address))
+                  candidates.add(previousKey);
+              }
+            }
+            continue;
+          }
           if (
             this.layersReady(tile, true) &&
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
@@ -1800,6 +1841,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           tile,
           inView: view === undefined || intersectsHorizontalView(view, bounds, 0),
           selected: this.selected.has(terrainPyramidTileKey(tile.address)),
+          replacement: this.replacementTiles.has(terrainPyramidTileKey(tile.address)),
           distance:
             view === undefined
               ? 0
@@ -1809,6 +1851,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       .sort(
         (a, b) =>
           Number(b.inView) - Number(a.inView) ||
+          Number(b.replacement) - Number(a.replacement) ||
           Number(b.selected) - Number(a.selected) ||
           a.distance - b.distance ||
           b.tile.address.level - a.tile.address.level ||

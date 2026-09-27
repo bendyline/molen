@@ -9,13 +9,15 @@ import pngjs from 'pngjs';
 const { PNG } = pngjs;
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const exampleDirectory = resolve(scriptDirectory, '..');
-const defaultOutputDirectory = resolve(exampleDirectory, 'public/terrain/sammamish');
-const defaultDetailBounds = [-122.12, 47.55, -121.95, 47.7];
+const defaultOutputDirectory = resolve(exampleDirectory, 'public/terrain/seattle-bellevue-sammamish');
+const defaultDetailBounds = [-122.46, 47.55, -121.95, 47.7];
 const defaultCoverageBounds = [-123.15, 46.95, -120.9, 48.3];
-const defaultVectorUrl = 'https://build.protomaps.com/20260906.pmtiles';
+const defaultVectorUrl = 'https://build.protomaps.com/20260925.pmtiles';
 const defaultElevationTemplate =
   'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
-const heightRange = { min: -6000, max: 5000 };
+// The viewer draws a separate sea/lake surface. This fixture encodes the visible land surface,
+// not bathymetry; flatten all negative Terrarium values to the water datum before PNG16 packing.
+const heightRange = { min: 0, max: 5000 };
 
 function formatJson(value, indent = 0) {
   if (value === null || typeof value !== 'object') return JSON.stringify(value);
@@ -136,6 +138,7 @@ async function buildElevation(
   const sourceCache = new Map();
   let observedMin = Number.POSITIVE_INFINITY;
   let observedMax = Number.NEGATIVE_INFINITY;
+  let flattenedSubseaSamples = 0;
 
   const loadSource = (level, x, y) => {
     const key = `${level}/${x}/${y}`;
@@ -175,7 +178,9 @@ async function buildElevation(
           const image = y === 256 ? (x === 256 ? southeast : south) : x === 256 ? east : center;
           const sourceX = x === 256 ? 0 : x;
           const sourceY = y === 256 ? 0 : y;
-          const height = decodeTerrariumPixel(image, sourceX, sourceY);
+          const decoded = decodeTerrariumPixel(image, sourceX, sourceY);
+          const height = Math.max(0, decoded);
+          if (decoded < 0) flattenedSubseaSamples++;
           observedMin = Math.min(observedMin, height);
           observedMax = Math.max(observedMax, height);
           normalized[y * 257 + x] = Math.max(
@@ -201,7 +206,7 @@ async function buildElevation(
       `observed elevation ${observedMin.toFixed(1)}..${observedMax.toFixed(1)}m exceeds configured range`,
     );
   }
-  return { entries: output, observedMin, observedMax, tileCount: addresses.length };
+  return { entries: output, observedMin, observedMax, flattenedSubseaSamples, tileCount: addresses.length };
 }
 
 async function run(command, arguments_) {
@@ -294,7 +299,7 @@ const elevationArchive = writePmtilesArchive(elevation.entries, {
     Math.min(elevationMaxLevel, minLevel + 2),
   ],
   metadata: {
-    name: 'Sammamish elevation',
+    name: 'Seattle–Bellevue–Sammamish elevation',
     type: 'baselayer',
     format: 'png',
     bounds: coverageBounds.join(','),
@@ -320,12 +325,14 @@ const sourceLock = {
     outputEncoding: 'png16',
     outputHeightRange: heightRange,
     observedHeightRange: [elevation.observedMin, elevation.observedMax],
+    flattenedSubseaSamples: elevation.flattenedSubseaSamples,
+    subseaPolicy: 'Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.',
     attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
     licenseReference: 'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
   },
   features: {
     id: 'protomaps-basemap',
-    release: '2026-09-06T09:11:11.176Z',
+    release: '2026-09-25 daily archive',
     url: vectorUrl,
     profile: 'protomaps-basemap@1',
     maxLevel,
@@ -417,8 +424,8 @@ const files = await Promise.all(
 );
 const manifest = {
   format: 'molen/terrain-package@1',
-  name: 'Sammamish, Washington',
-  version: '2026-09-06',
+  name: 'Seattle, Bellevue, and Sammamish, Washington',
+  version: '2026-09-25',
   coordinateSpace: {
     kind: 'geospatial',
     crs: 'EPSG:3857',
@@ -486,11 +493,11 @@ const manifest = {
     },
   ],
   provenance: {
-    compiler: 'world-explorer-sammamish-fixture',
+    compiler: 'world-explorer-seattle-region-fixture',
     compilerVersion: '1',
     sources: [
       { id: 'mapzen-terrain-tiles', release: 'AWS open-data snapshot accessed 2026-08-30' },
-      { id: 'protomaps-basemap', release: '2026-09-06T09:11:11.176Z' },
+      { id: 'protomaps-basemap', release: '2026-09-25 daily archive' },
     ],
   },
   files,

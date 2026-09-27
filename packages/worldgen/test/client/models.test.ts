@@ -19,6 +19,40 @@ async function loadGlb(specifier: URL): Promise<THREE.Group> {
 }
 
 describe('model library', () => {
+  it('preserves node scale when glTF positions use normalized quantized integers', () => {
+    const source = new THREE.BufferGeometry();
+    source.setAttribute(
+      'position',
+      new THREE.Int16BufferAttribute([0, 0, 0, 32767, 0, 0, 0, 32767, 0], 3, true),
+    );
+    source.setAttribute('normal', new THREE.Float32BufferAttribute([0, 0, 1, 0, 0, 1, 0, 0, 1], 3));
+    const mesh = new THREE.Mesh(source, new THREE.MeshBasicMaterial());
+    mesh.scale.setScalar(100);
+    const merged = mergeSceneGeometry(mesh);
+    expect(merged?.boundingBox?.max.x).toBeCloseTo(100, 3);
+    expect(merged?.boundingBox?.max.y).toBeCloseTo(100, 3);
+    merged?.dispose();
+    source.dispose();
+  });
+
+  it('corrects reversed source faces so authored outward surfaces remain visible', () => {
+    const source = new THREE.BufferGeometry();
+    source.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute([0, 0, 0, 0, 1, 0, 1, 0, 0], 3),
+    );
+    source.setAttribute('normal', new THREE.Float32BufferAttribute([0, 0, 1, 0, 0, 1, 0, 0, 1], 3));
+    source.setAttribute('color', new THREE.Float32BufferAttribute([1, 0, 0, 0, 1, 0, 0, 0, 1], 3));
+    const merged = mergeSceneGeometry(new THREE.Mesh(source, new THREE.MeshBasicMaterial()));
+    expect(merged).toBeDefined();
+    const positions = merged?.getAttribute('position') as THREE.BufferAttribute;
+    const colors = merged?.getAttribute('color') as THREE.BufferAttribute;
+    expect([positions.getX(1), positions.getY(1)]).toEqual([1, 0]);
+    expect([colors.getX(1), colors.getY(1), colors.getZ(1)]).toEqual([0, 0, 1]);
+    merged?.dispose();
+    source.dispose();
+  });
+
   it('merges an authored glTF model into one vertex-colored geometry', async () => {
     const scene = await loadGlb(FIR);
     const materials = new Set<THREE.Material>();
@@ -79,6 +113,46 @@ describe('model library', () => {
     );
     library.dispose();
     expect(library.get('molen.entities.tree.conifer.fir')).toBeUndefined();
+  });
+
+  it('keeps a streamed model only while resident tiles hold it', async () => {
+    let loads = 0;
+    const library = new ModelLibrary(
+      async () => {
+        loads++;
+        return new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
+      },
+      {},
+      true,
+    );
+    const first = await library.acquire('landmark');
+    expect(await library.acquire('landmark')).toBe(first);
+    expect(loads).toBe(1);
+    library.release('landmark');
+    expect(library.get('landmark')).toBe(first);
+    library.release('landmark');
+    expect(library.get('landmark')).toBeUndefined();
+    await library.acquire('landmark');
+    expect(loads).toBe(2);
+    library.release('landmark');
+    library.dispose();
+  });
+
+  it('evicts a pending model when its tile leaves before loading completes', async () => {
+    let complete!: (value: THREE.Object3D) => void;
+    const library = new ModelLibrary(
+      () =>
+        new Promise((resolve) => {
+          complete = resolve;
+        }),
+    );
+    const loading = library.acquire('faraway');
+    library.release('faraway');
+    complete(new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial()));
+    await loading;
+    await Promise.resolve();
+    expect(library.get('faraway')).toBeUndefined();
+    library.dispose();
   });
 
   it('instances a placement set with per-instance transforms and tints', () => {

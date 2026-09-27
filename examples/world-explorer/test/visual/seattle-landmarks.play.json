@@ -1,0 +1,33 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "seattle-landmark-placements",
+  "path": "/?quality=balanced&hud=0&lat=47.6185&lon=-122.3535&alt=280&pitch=-0.3&yaw=-0.6",
+  "viewport": [1440, 900],
+  "probes": [
+    { "name": "source", "selector": "#source" },
+    { "name": "status", "selector": "#status" },
+    { "name": "location", "selector": "#location" }
+  ],
+  "actions": [
+    { "type": "wait", "durationMs": 12000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    { "type": "wait", "durationMs": 18000 },
+    { "type": "screenshot", "name": "01-space-needle" },
+    {
+      "type": "navigate",
+      "path": "/?quality=balanced&hud=0&lat=47.6027&lon=-122.3365&alt=350&pitch=-0.3&yaw=-0.25"
+    },
+    { "type": "wait", "durationMs": 12000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    { "type": "wait", "durationMs": 18000 },
+    { "type": "screenshot", "name": "02-downtown-towers" },
+    {
+      "type": "navigate",
+      "path": "/?quality=balanced&hud=0&lat=47.589&lon=-122.337&alt=240&pitch=-0.32&yaw=-0.4"
+    },
+    { "type": "wait", "durationMs": 12000 },
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    { "type": "wait", "durationMs": 18000 },
+    { "type": "screenshot", "name": "03-stadiums" }
+  ]
+}

@@ -259,6 +259,76 @@ describe('mountEarthView', () => {
     view.dispose();
   });
 
+  it('asks the host for terrain after a longitude-only hop and replaces the old stream', async () => {
+    const requests: number[] = [];
+    const other: TerrainPackageDescriptor = {
+      ...earth,
+      name: 'other-region',
+      attribution: [{ text: 'Other terrain provider', license: 'CC0-1.0' }],
+    };
+    const view = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000 },
+      style: { sky: false },
+      terrainSource: async (target) => {
+        requests.push(target.longitude);
+        return target.longitude < -100
+          ? { key: 'seattle', terrain: earth, archives: { elevation: archive } }
+          : { key: 'faraway', terrain: other, archives: { elevation: archive } };
+      },
+    });
+    await pump(5);
+    const initialChildren = [...view.viewer.renderer.worldRoot.children];
+    const regions: string[] = [];
+    view.on('terrainchange', ({ key }) => regions.push(key ?? 'unknown'));
+    expect(view.credits[0]?.label).toBe('© OpenStreetMap contributors');
+    view.jumpTo({ latitude: 47.6, longitude: -87.6, range: 2_000 });
+    await pump(40);
+    await view.whenIdle();
+    await pump(5);
+    expect(requests).toEqual([-122.33, -87.6]);
+    expect(regions).toEqual(['faraway']);
+    expect(view.credits[0]?.label).toBe('Other terrain provider');
+    expect(view.getCamera().longitude).toBeCloseTo(-87.6, 5);
+    expect(view.stats().displayedTiles).toBeGreaterThan(0);
+    expect(view.viewer.renderer.worldRoot.children).toHaveLength(initialChildren.length);
+    expect(
+      initialChildren.some((child) => !view.viewer.renderer.worldRoot.children.includes(child)),
+    ).toBe(true);
+    view.dispose();
+  });
+
+  it('uses the latest destination when another jump arrives during terrain resolution', async () => {
+    const requests: number[] = [];
+    const selected = (key: string) => ({ key, terrain: earth, archives: { elevation: archive } });
+    let resolveMiddle!: (source: ReturnType<typeof selected>) => void;
+    const middle = new Promise<ReturnType<typeof selected>>((resolve) => {
+      resolveMiddle = resolve;
+    });
+    const view = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000 },
+      style: { sky: false },
+      terrainSource: async (target) => {
+        requests.push(target.longitude);
+        return target.longitude < -120
+          ? selected('home')
+          : target.longitude < -95
+            ? middle
+            : selected('destination');
+      },
+    });
+    view.jumpTo({ latitude: 47.6, longitude: -100, range: 2_000 });
+    view.jumpTo({ latitude: 47.6, longitude: -87.6, range: 2_000 });
+    resolveMiddle(selected('middle'));
+    await pump(40);
+    await view.whenIdle();
+    expect(requests).toEqual([-122.33, -100, -87.6]);
+    expect(view.getCamera().longitude).toBeCloseTo(-87.6, 5);
+    expect(view.stats().displayedTiles).toBeGreaterThan(0);
+    view.dispose();
+  });
+
   it('pauses rendering and releases everything on dispose', async () => {
     const { view, canvas } = await mount();
     await pump(3);
