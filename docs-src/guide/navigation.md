@@ -63,18 +63,30 @@ scale. Shift sprints.
 limit. It integrates at a fixed 120 Hz, so the same input produces the same path at any frame rate.
 Its world position is `feet`; render the camera `WALK_EYE_HEIGHT` above it. Collision comes from
 `WalkCollision`, which builds a small bounding-volume tree from the **visible** meshes under a root
-(usually your terrain stream's object) within about 24 m of the walker. Rebuilds happen only when
-the walker moves or that nearby geometry changes, and stay correct across floating-origin rebasing.
+(usually your terrain stream's object) within a neighborhood of the walker: 24 m by default,
+rebuilt once the walker has moved 6 m from its center or the geometry inside it changed. It stays
+correct across floating-origin rebasing.
 
 ```ts
 const walker = new WalkController();
-const collision = new WalkCollision();
+// Each scan visits every visible mesh under the root; 5 Hz still catches streamed changes.
+const collision = new WalkCollision({ rescanIntervalMs: 200 });
 walker.reset(x, z);
 // each frame:
+if (!walker.ready) collision.invalidate(); // placement must see geometry published this frame
 collision.update(stream.object, walker.feet.x, walker.feet.z);
 if (!walker.ready) walker.place(collision, sampleHeight); // finds open ground, not a roof
 walker.update(dt, { forward, right, yaw, sprint, jump }, collision, sampleHeight);
 ```
+
+`update` scans the scene when the subject leaves the neighborhood, when `rescanIntervalMs` has
+passed (default 0: every call), or after `invalidate()`, and rebuilds the tree only when the nearby
+meshes changed. Terrain tiles and building cells are walked through a per-geometry spatial index,
+so a rebuild costs the triangles near the subject, not the whole tile. Faster subjects widen the
+neighborhood and bound it vertically: `new WalkCollision({ radius: 48, rebuildDistance: 24,
+verticalRadius: 40 })` with `update(root, x, z, y)` keeps ground far below an aircraft out of the
+tree entirely. Queries reach at most `radius - rebuildDistance` from the subject. Leave
+`verticalRadius` unset for a walker, whose placement ray scans the whole column.
 
 Meshes opt out with `userData.walkIgnore = true`. Water materials and landcover overlays are never
 solid. A missing terrain tile pauses movement until it arrives, rather than dropping the walker.

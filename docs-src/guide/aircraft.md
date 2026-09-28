@@ -107,6 +107,15 @@ and `airplane.yawStability` sets sideslip restoring response (1/s at reference a
 The authored engine thrust axis is respected. Engine positions relative to the center of mass
 produce thrust-induced yaw; wing position remains metadata rather than a distributed lift model.
 
+## Engine sound
+
+The P-51D carries an `audioSource` that plays `aircraft.engine.piston`, a Rolls-Royce Merlin
+recording. The OH-6 plays `aircraft.engine.helicopter`. Both take pitch and gain from
+`aircraftState.rpm`: they are silent until `I` starts the engine, and spool up and down with it.
+The OH-6 also leans a little on `aircraftInput.power`, since its governed rotor holds rpm while the
+collective changes load. Any host that plays audio from the entity world hears them with no extra
+code; see [Sound and music](audio.md).
+
 ## Multiple engines and engine failures
 
 An airplane can keep the existing `spec.engine` (implicitly named `main`), or replace it with a

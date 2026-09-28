@@ -1,4 +1,4 @@
-import { type HeadConfig, defineConfig } from 'vitepress';
+import { defineConfig, type HeadConfig } from 'vitepress';
 import { molenDark, molenLight } from './code-theme.mts';
 import generated from './generated-nav.json' with { type: 'json' };
 
@@ -35,10 +35,12 @@ export default defineConfig({
   transformHead({ assets }) {
     return assets
       .filter((file) => /\/(?:hanken-grotesk|pt-serif-400)\.[\w-]+\.woff2$/.test(file))
-      .map((href): HeadConfig => [
-        'link',
-        { rel: 'preload', href, as: 'font', type: 'font/woff2', crossorigin: '' },
-      ]);
+      .map(
+        (href): HeadConfig => [
+          'link',
+          { rel: 'preload', href, as: 'font', type: 'font/woff2', crossorigin: '' },
+        ],
+      );
   },
 
   themeConfig: {

@@ -116,6 +116,31 @@ function showCredits(): void {
 showCredits();
 view.on('terrainchange', showCredits);
 
+// Sound comes from the molen.sounds pack in packs/index.json; the button mutes it (remembered).
+const soundButton = document.getElementById('sound') as HTMLButtonElement;
+const readMuted = (): boolean => {
+  try {
+    return localStorage.getItem('molen.earth-view.muted') === '1';
+  } catch {
+    return false;
+  }
+};
+const applySound = (muted: boolean): void => {
+  view.audio?.setMuted(muted);
+  soundButton.setAttribute('aria-pressed', String(!muted));
+  try {
+    localStorage.setItem('molen.earth-view.muted', muted ? '1' : '0');
+  } catch {
+    // Storage can be unavailable (private windows); the choice just is not remembered.
+  }
+};
+soundButton.addEventListener('click', () =>
+  applySound(soundButton.getAttribute('aria-pressed') === 'true'),
+);
+// The audio layer loads after the view mounts; apply the remembered choice once it exists.
+view.on('audioready', () => applySound(readMuted()));
+if (view.audio !== undefined) applySound(readMuted());
+
 document.getElementById('seattle')?.addEventListener('click', () => {
   view.flyTo({ latitude: 47.62051, longitude: -122.3493, range: 950, heading: 0.9, pitch: 0.48 });
 });

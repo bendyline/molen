@@ -4,6 +4,7 @@ import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { featureLines, fitMapFrame } from '../../worldgen-earth/scripts/structure-map-geometry.mjs';
+import { biomeJson } from './format-json.mjs';
 import { skopjeResearch } from './stone-bridge-skopje-model.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -93,7 +94,7 @@ Source publications and photographs are consulted, not redistributed. The editab
 A future mesh generator must protect artist-edited source bytes, reuse Molen's mesh/GLB pipeline, record its dimensions and limitations, and pass source/runtime hash-bound visual, maximum-fidelity and geographic reviews before runtime activation.
 `;
 for (const [name, body] of [
-  ['research.json', `${JSON.stringify(evidence, null, 2)}\n`],
+  ['research.json', biomeJson(evidence, resolve(dir, 'research.json'))],
   ['README.md', readme],
 ]) {
   const path = resolve(dir, name);

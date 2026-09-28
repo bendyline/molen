@@ -5,6 +5,23 @@
 // never hardened. Everything here is also re-exported from the root.
 
 export type { JsonObject, JsonPrimitive, JsonValue } from '@bendyline/molen-schema';
+export type {
+  AudioMusicPayload,
+  AudioPlayOptions,
+  AudioPlayPayload,
+  AudioScriptApi,
+  AudioStopPayload,
+} from './audio';
+export {
+  AUDIO_MUSIC,
+  AUDIO_PLAY,
+  AUDIO_STOP,
+  AudioEnvironment,
+  AudioSource,
+  AudioZone,
+  audioEnvironmentOf,
+  audioScriptApi,
+} from './audio';
 export type { ComponentType, LifetimeData, TransformData } from './component';
 export {
   componentDefaults,

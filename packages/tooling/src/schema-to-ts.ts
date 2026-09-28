@@ -23,6 +23,15 @@ function literal(value: unknown): string {
   return `'${value.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
 }
 
+/** True when a node prints as a top-level `a | b` union. */
+function isUnion(node: JsonSchemaNode | undefined): boolean {
+  if (node === undefined || node.const !== undefined) return false;
+  if (node.enum !== undefined) return node.enum.length > 1;
+  const union = node.anyOf ?? node.oneOf;
+  if (union !== undefined) return union.length > 1;
+  return Array.isArray(node.type) && node.type.length > 1;
+}
+
 /** Print a JSON Schema node as a TS type expression. Unknown constructs degrade to `unknown`. */
 export function schemaToTsType(schema: unknown, indent = ''): string {
   const node = schema as JsonSchemaNode;
@@ -60,7 +69,8 @@ export function schemaToTsType(schema: unknown, indent = ''): string {
       ) {
         return `[${Array.from({ length: node.minItems }, () => item).join(', ')}]`;
       }
-      return `${item}[]`;
+      // A union item needs parentheses: `(a | b)[]`, not `a | b[]`.
+      return isUnion(node.items) ? `(${item})[]` : `${item}[]`;
     }
     case 'object': {
       const props = node.properties ?? {};

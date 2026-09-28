@@ -101,6 +101,7 @@ const GUIDE_ORDER = [
   'rendering-backends',
   'sky',
   'weather',
+  'audio',
   'graphics-performance',
   'adaptive-performance',
   'three-surface',

@@ -2,6 +2,7 @@ import {
   AdaptiveQualityController,
   type AssetProvider,
   applyEnvironment,
+  createIndexedDbMaterialStore,
   createViewer,
   type MolenClient,
 } from '@bendyline/molen-client';
@@ -19,6 +20,7 @@ import {
   createEarthFog,
   createEarthSky,
   createEarthWorldgen,
+  type EarthAudio,
   EarthVehicles,
   type EarthWorldgen,
   earthPerformanceTier,
@@ -60,6 +62,7 @@ import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/
 import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { startExplorerAudio } from './audio.js';
 import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { formatCameraLocation } from './location-readout.js';
@@ -419,7 +422,11 @@ type ExplorerWorldgen = EarthWorldgen;
 async function loadWorldgen(options: {
   telemetry: GraphicsTelemetry;
   startupStage: (name: string) => void;
-  prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
   content: ExplorerWorldgenContent;
   /** Every pack's assets: entity models, style-pack props and material documents. */
   assets: AssetProvider;
@@ -431,6 +438,9 @@ async function loadWorldgen(options: {
   worker: boolean;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
+  // Baked building materials persist across visits; ?materialCache=0 bakes every time.
+  const materialStore =
+    params.get('materialCache') !== '0' ? createIndexedDbMaterialStore() : undefined;
   const worldgen = createEarthWorldgen({
     content: options.content,
     assets: options.assets,
@@ -457,6 +467,7 @@ async function loadWorldgen(options: {
             : {}),
         }
       : {},
+    ...(materialStore !== undefined ? { materialStore } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
     onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
@@ -509,7 +520,8 @@ async function loadPackage(): Promise<{
       synthetic: true,
     };
   }
-  const manifestParam = params.get('package') ?? 'terrain/seattle-bellevue-sammamish/terrain-package.json';
+  const manifestParam =
+    params.get('package') ?? 'terrain/seattle-bellevue-sammamish/terrain-package.json';
   const manifestUrl = new URL(manifestParam, location.href);
   const response = await fetch(manifestUrl);
   if (!response.ok) throw new Error(`terrain package failed: HTTP ${response.status}`);
@@ -658,7 +670,10 @@ async function main(): Promise<void> {
     admission: {
       onSample: (sample) => {
         graphics.record(sample.label, sample.workMs);
-        graphics.record('admission-wait', sample.queueMs);
+        graphics.record(
+          sample.background ? 'admission-wait-background' : 'admission-wait',
+          sample.queueMs,
+        );
         if (sample.overBudget) graphics.count('admission-overruns');
       },
     },
@@ -717,8 +732,11 @@ async function main(): Promise<void> {
         startupStage,
         ...(params.get('warmup') !== '0'
           ? {
-              prepareObject: (object: THREE.Object3D, signal: AbortSignal) =>
-                viewer.renderer.prepareObject(object, signal),
+              prepareObject: (
+                object: THREE.Object3D,
+                signal: AbortSignal,
+                parent?: THREE.Object3D,
+              ) => viewer.renderer.prepareObject(object, signal, parent),
             }
           : {}),
         content: content.worldgen,
@@ -893,8 +911,11 @@ async function main(): Promise<void> {
         ...(params.get('admission') !== '0' ? { admission: viewer.renderer.admission } : {}),
         ...(params.get('warmup') !== '0'
           ? {
-              prepareObject: (object: THREE.Object3D, signal: AbortSignal) =>
-                viewer.renderer.prepareObject(object, signal),
+              prepareObject: (
+                object: THREE.Object3D,
+                signal: AbortSignal,
+                parent?: THREE.Object3D,
+              ) => viewer.renderer.prepareObject(object, signal, parent),
             }
           : {}),
         createTileGroup: () => viewer.renderer.createRenderGroup(),
@@ -1039,7 +1060,9 @@ async function main(): Promise<void> {
   const keys = new Set<string>();
   let jumpRequested = false;
   const walker = new WalkController();
-  const walkCollision = new WalkCollision();
+  // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
+  // rescans still catch streamed changes, and placement forces one.
+  const walkCollision = new WalkCollision({ rescanIntervalMs: 200 });
   let navigation: 'fly' | 'walk' = 'fly';
   let aircraft: WorldAircraft | undefined;
   const sampleHeight = (x: number, z: number): number | undefined =>
@@ -1066,6 +1089,13 @@ async function main(): Promise<void> {
   );
   const flight = aircraft;
   let visitingAircraft: AircraftKind | undefined;
+  // Sound loads beside everything else; the explorer runs silent until (or unless) it arrives.
+  let audio: EarthAudio | undefined;
+  void startExplorerAudio(new URL('./', location.href), vehicles.world, viewer.renderer, params)
+    .then((started) => {
+      audio = started;
+    })
+    .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
     'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
   const exitVehicle = (): boolean => {
@@ -1088,6 +1118,7 @@ async function main(): Promise<void> {
   };
   window.addEventListener('pagehide', (event) => {
     if (!event.persisted) {
+      audio?.dispose();
       flight.dispose();
       vehicles.dispose();
     }
@@ -1344,6 +1375,7 @@ async function main(): Promise<void> {
       viewDirection = direction.toArray();
       jumpRequested = false;
     } else if (navigation === 'walk') {
+      if (!walker.ready) walkCollision.invalidate();
       walkCollision.update(stream.object, camera.pos[0], camera.pos[2]);
       if (!walker.ready) {
         const ground = sampleHeight(camera.pos[0], camera.pos[2]);
@@ -1451,6 +1483,16 @@ async function main(): Promise<void> {
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
+    const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
+    audio?.update({
+      nowMs: now,
+      ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
+      position: [camera.pos[0], camera.pos[1], camera.pos[2]],
+      forward: [viewDirection[0], viewDirection[1], viewDirection[2]],
+      mode: flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation,
+      ...(navigation === 'walk' && !vehicleCamera ? { grounded: walker.grounded } : {}),
+      ...(viewer.renderer.weather ? { weather: viewer.renderer.weather.data } : {}),
+    });
     gpuTimer?.begin();
     weatherControls.update(now / 1000);
     viewer.renderFrame();

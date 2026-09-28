@@ -8,5 +8,6 @@ molen.on('collision', (e) => {
   if (tag?.name !== 'enemy') return;
   const hp = molen.get('player', 'health');
   if (hp) molen.set('player', 'health', { hp: hp.hp - 1 });
+  molen.emit('player-hit', { enemy });
   molen.destroy(enemy);
 });

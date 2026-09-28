@@ -137,7 +137,7 @@ type MolenAircraftData = {
         nodes: string[];
         sources?: Record<string, {
             component: string;
-            path: string | number[];
+            path: (string | number)[];
           }>;
         bindings: {
           node: string;
@@ -193,6 +193,138 @@ type MolenAircraftStateData = {
   grounded: boolean;
   crashed: boolean;
   waitingForTerrain: boolean;
+};
+/** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+type MolenAudioEnvironmentData = {
+  buses?: Record<string, number>;
+  ambience?: {
+    sound: string;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+    gain?: number;
+    gainFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    pitchFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    fadeS?: number;
+  }[];
+  music?: {
+    playlist: string[];
+    mode?: 'sequence' | 'shuffle';
+    crossfadeS?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  events?: Record<string, {
+      sound: string;
+      at?: string;
+      gain?: number;
+      pitch?: number;
+      bus?: string;
+    }>;
+  footsteps?: {
+    sound: string;
+    surfaces?: Record<string, string>;
+    strideM?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  listenerEntity?: string;
+  maxVoices?: number;
+};
+/** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+type MolenAudioSourceData = {
+  sound: string;
+  loop?: boolean;
+  autoplay?: boolean;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  spatial?: false | {
+    refDistance?: number;
+    maxDistance?: number;
+    rolloff?: number;
+    model?: 'linear' | 'inverse' | 'exponential';
+  };
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
+  gainFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  pitchFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  triggerFrom?: {
+    signal: string;
+    every?: number;
+    onChange?: boolean;
+    sound?: string;
+  };
+  startTick?: number;
+};
+/** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+type MolenAudioZoneData = {
+  sound: string;
+  shape: {
+    kind: 'sphere';
+    radius: number;
+  } | {
+    kind: 'box';
+    halfExtents: [number, number, number];
+  };
+  fade?: number;
+  gain?: number;
+  bus?: string;
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
 };
 /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
 type MolenCharacterData = {
@@ -515,7 +647,7 @@ type MolenLocalTransformData = {
 type MolenModel_signalsData = {
   sources: Record<string, {
       component: string;
-      path: string | number[];
+      path: (string | number)[];
     }>;
   bindings: {
     node: string;
@@ -692,7 +824,7 @@ type MolenVehicleData = {
       nodes: string[];
       sources?: Record<string, {
           component: string;
-          path: string | number[];
+          path: (string | number)[];
         }>;
       bindings: {
         node: string;
@@ -787,6 +919,12 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
+  /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+  'audioEnvironment': MolenAudioEnvironmentData;
+  /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+  'audioSource': MolenAudioSourceData;
+  /** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+  'audioZone': MolenAudioZoneData;
   /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
   'character': MolenCharacterData;
   /** 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. */
@@ -991,6 +1129,29 @@ interface MolenMath {
   cbrt(...args: number[]): number;
 }
 
+/** Options for `molen.audio.play`. Omit entity and position for a non-positional sound. */
+interface MolenAudioPlayOptions {
+  /** Play at (and follow) this entity's transform. */
+  entity?: MolenEntityId;
+  /** Play at a fixed world position. */
+  position?: MolenVec3;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  /** Loop until stopped; default the sound's own loop flag. */
+  loop?: boolean;
+}
+
+/** `molen.audio`: each call emits an `audio.*` event the client plays (guide/audio.md). */
+interface MolenAudioApi {
+  /** Play a sound-bank id; returns a handle for `stop`. */
+  play(sound: string, opts?: MolenAudioPlayOptions): string;
+  /** Stop by handle, or every voice matching an entity and/or sound. */
+  stop(target: string | { entity?: MolenEntityId; sound?: string }, fadeS?: number): void;
+  /** Switch background music to a track or playlist; null stops it. */
+  music(playlist: string | string[] | null, opts?: { crossfadeS?: number }): void;
+}
+
 /** The verb set injected into every scene-data script as `molen`. */
 interface MolenApi {
   /** Spawn from a component map. */
@@ -1047,6 +1208,8 @@ interface MolenApi {
     handler: (payload: MolenCommands[T], ctx: MolenTickContext, command: MolenCommand) => void,
   ): MolenUnsubscribe;
   emit(type: string, payload?: MolenJsonValue): void;
+  /** Sound: play/stop one-shots and loops, switch music. Never affects the simulation. */
+  readonly audio: MolenAudioApi;
   raycast(origin: MolenVec3, dir: MolenVec3, maxDist: number, mask?: number): MolenRayHit | null;
   overlapCircle(center: MolenVec3, radius: number, mask?: number): string[];
   /** Emit `event` after `ticks` ticks (snapshot-safe world timer). Returns the timer id. */

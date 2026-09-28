@@ -3,7 +3,16 @@
 // are baked lazily after the first frame; geometry streams immediately and gains textures in place.
 
 import { AssetCache, type AssetProvider, MaterialResolver } from '@bendyline/molen-client';
-import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
+import {
+  type BakedMaterialStore,
+  bakeMatGraph,
+  bakePixelGrid,
+  createMaterialBakeWorkerPool,
+  type MaterialBaker,
+  type MatGraphDoc,
+  type PixelGridDoc,
+  withBakedMaterialStore,
+} from '@bendyline/molen-materials';
 import {
   createTerrainLandcoverWorkerBridge,
   type TerrainQualityPreset,
@@ -54,7 +63,11 @@ export interface CreateEarthWorldgenOptions {
   quality: TerrainQualityPreset;
   lodPolicy: ScreenSpaceLodPolicy;
   workers?: EarthViewWorkers;
-  prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
   /** Called with material failures after baking (ref → reason). */
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
@@ -65,7 +78,21 @@ export interface CreateEarthWorldgenOptions {
   onTileStats?: (output: WorldgenTileOutput, elapsedMs: number) => void;
   /** Milliseconds each material bake took in a worker. */
   onMaterialBakeTiming?: (milliseconds: number) => void;
+  /**
+   * Keep baked building materials across visits, e.g. `createIndexedDbMaterialStore()` from
+   * `@bendyline/molen-client`. A later visit reads them instead of baking.
+   */
+  materialStore?: BakedMaterialStore;
 }
+
+/** The resolver's own synchronous bake, behind the baker interface a material store wraps. */
+const inThreadBaker: MaterialBaker = {
+  async bake(format: 'matgraph' | 'pixelgrid', doc: MatGraphDoc | PixelGridDoc) {
+    return format === 'matgraph'
+      ? bakeMatGraph(doc as MatGraphDoc)
+      : bakePixelGrid(doc as PixelGridDoc);
+  },
+};
 
 /** Worldgen renderers for an Earth view's classification and human-feature layers. */
 export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthWorldgen {
@@ -80,7 +107,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
   // resources leave memory when the last tile using the asset is evicted. Keep the original
   // hierarchy and PBR materials: flattening prop geometry would discard landmark textures.
-  const baker =
+  const pool =
     workers.material !== undefined
       ? createMaterialBakeWorkerPool(
           Array.from({ length: 2 }, () => (workers.material as () => Worker)()),
@@ -89,6 +116,10 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
             : {},
         )
       : undefined;
+  const baker =
+    options.materialStore === undefined
+      ? pool
+      : withBakedMaterialStore(pool ?? inThreadBaker, options.materialStore);
   const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
     progressive: true,
   });
@@ -111,7 +142,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         if (!disposed && materials.failures.size > 0)
           options.onMaterialFailures?.(materials.failures);
       } finally {
-        baker?.dispose();
+        pool?.dispose();
         if (disposed) materials.dispose();
       }
     })();
@@ -154,7 +185,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     dispose() {
       if (disposed) return;
       disposed = true;
-      baker?.dispose();
+      pool?.dispose();
       renderers.dispose();
       generator?.dispose();
       structureObjects.dispose();

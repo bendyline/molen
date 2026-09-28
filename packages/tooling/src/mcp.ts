@@ -12,6 +12,7 @@ import {
   bakeWorldgen,
   buildContentPack,
   checkScripts,
+  checkSoundbank,
   checkTypesOp,
   describeOps,
   diffSnapshots,
@@ -25,6 +26,7 @@ import {
   getComponentOp,
   getSchemaOp,
   importAsset,
+  importSound,
   inspectAsset,
   inspectContentPack,
   listAssets,
@@ -33,6 +35,7 @@ import {
   listTemplates,
   listTypes,
   packAsset,
+  planAudio,
   playExperience,
   previewWorldgen,
   projectInfo,
@@ -877,6 +880,87 @@ export function createMcpServer(): McpServer {
           r.projectPath !== undefined ? `pinned in ${r.projectPath}` : 'no project.json to pin in',
         ].join('\n'),
       );
+    },
+  );
+
+  server.registerTool(
+    'plan_audio',
+    {
+      title: "Plan a scene's audio",
+      description:
+        "Run a scene headlessly and list the sounds it would play: looping voices with start/stop ticks, peak gain and pitch range, one-shots by tick, audio.* script events, plus unknown sound ids and signals. Sound banks come from bankPaths or the project's packs (provides.soundbank). Returns the text timeline followed by the JSON report.",
+      inputSchema: {
+        scenePath: z.string(),
+        ticks: z.number().int().positive(),
+        bankPaths: z.array(z.string()).optional(),
+        commandsPath: z.string().optional(),
+        setupModule: z.string().optional(),
+        listener: z.string().optional(),
+        mode: z.string().optional(),
+        weather: z.string().optional(),
+        daylight: z.number().min(0).max(1).optional(),
+        projectPath: z.string().optional(),
+      },
+    },
+    async (args) => {
+      const r = await planAudio(args);
+      if (r.error !== undefined) return text(r.error, true);
+      const { timeline, ...report } = r;
+      return text(`${timeline}\n\n${JSON.stringify(report, null, 2)}`, !r.ok);
+    },
+  );
+
+  server.registerTool(
+    'import_sound',
+    {
+      title: 'Import a sound',
+      description:
+        'Add an audio clip to a molen/soundbank@1 file: copy it beside the bank, hash it, probe its duration, record license and provenance (source url, site, author, or prompt + generator). append adds a variation to an existing sound id. Rejects a license the bank policy does not allow.',
+      inputSchema: {
+        file: z.string(),
+        id: z.string(),
+        bankPath: z.string(),
+        license: z.string(),
+        source: z.string().optional(),
+        site: z.string().optional(),
+        author: z.string().optional(),
+        prompt: z.string().optional(),
+        generator: z.string().optional(),
+        description: z.string().optional(),
+        loop: z.boolean().optional(),
+        loopStart: z.number().nonnegative().optional(),
+        loopEnd: z.number().nonnegative().optional(),
+        bus: z.string().optional(),
+        gain: z.number().nonnegative().optional(),
+        durationS: z.number().positive().optional(),
+        append: z.boolean().optional(),
+        copyTo: z.string().optional(),
+      },
+    },
+    async (args) => {
+      const r = await importSound(args);
+      const notes = r.warnings.map((w) => `! ${w}`).join('\n');
+      if (!r.ok) return text([notes, r.error ?? 'import failed'].filter(Boolean).join('\n'), true);
+      return text(
+        [notes, `${r.id}: ${r.clip} -> ${r.bankPath}`, JSON.stringify(r.entry, null, 2)]
+          .filter(Boolean)
+          .join('\n'),
+      );
+    },
+  );
+
+  server.registerTool(
+    'check_soundbank',
+    {
+      title: 'Check a sound bank',
+      description:
+        'Check a molen/soundbank@1 file and every clip it names: files present, hashes unchanged since import, durations and loop points consistent, provenance recorded. Returns issues and a license summary as JSON.',
+      inputSchema: { bankPath: z.string() },
+    },
+    async (args) => {
+      const r = await checkSoundbank(args);
+      if (r.error !== undefined) return text(r.error, true);
+      return text(JSON.stringify(r, null, 2), !r.ok);
     },
   );
 

@@ -425,7 +425,7 @@ export const OPS_CATALOG: OpDescriptor[] = [
   {
     name: 'fetch_pack',
     summary:
-      'Download content packs (a pack URL, or a molen/pack-index@1 URL) into the project and pin them in project.json `packs` with their contentHash, so the project runs offline.',
+      'Download content packs (a pack URL, or a molen/pack-index@1 URL) into the project, list them in index.json in the download directory (so a page can open them), and pin them in project.json `packs` with their contentHash, so the project runs offline.',
     cli: 'molen pack fetch <url> [ids…] [--out-dir <d>] [--project <path>]',
     mcpTool: 'fetch_pack',
     params: [
@@ -435,6 +435,75 @@ export const OPS_CATALOG: OpDescriptor[] = [
       projectPathParam(),
       cwdParam(),
     ],
+  },
+  {
+    name: 'plan_audio',
+    summary:
+      "Run a scene headlessly and list the sounds it would play: looping voices with start/stop ticks, peak gain and pitch range, one-shots by tick, audio.* script events, and unknown sound ids or signals. Hear a scene's audio annotations without a browser.",
+    cli: 'molen audio plan <scene|name> --ticks <N> [--bank <bank.json,…>] [--commands <f>] [--setup <m>] [--listener <entity>] [--mode <walk|drive|fly>] [--weather <profile>] [--daylight <0..1>] [--project <project.json>] [--json]',
+    mcpTool: 'plan_audio',
+    params: [
+      p('scenePath', 'string', true, 'Scene file path or project scene name.'),
+      p('ticks', 'int>0', true, 'Ticks to simulate.'),
+      p(
+        'bankPaths',
+        'string[]',
+        false,
+        "molen/soundbank@1 files (default: every provides.soundbank in the project's packs).",
+      ),
+      p('commandsPath', 'string', false, 'JSON array (or {commands:[...]}) of command envelopes.'),
+      p('setupModule', 'string', false, 'ESM module exporting setup(world, manifest).'),
+      p(
+        'listener',
+        'string',
+        false,
+        'Entity whose transform is the listener (default: the scene camera).',
+      ),
+      p('mode', 'string', false, 'listener.mode for rules: walk, drive, fly…'),
+      p(
+        'weather',
+        'string',
+        false,
+        'Weather profile: sunny, partly-cloudy, overcast, rain, snow, fog.',
+      ),
+      p('daylight', 'number', false, 'sky.daylight 0 (night) – 1 (day); default 1.'),
+      projectPathParam(),
+    ],
+  },
+  {
+    name: 'import_sound',
+    summary:
+      'Add an audio clip to a molen/soundbank@1 file: copy it beside the bank, hash it, probe its duration, and record license and provenance. --append adds a variation to an existing sound.',
+    cli: 'molen audio import <file> --id <sound.id> --bank <bank.json> --license <spdx> [--source <url>] [--site s] [--author a] [--prompt p] [--generator g] [--description d] [--loop] [--loop-start s] [--loop-end s] [--bus b] [--gain g] [--duration s] [--append] [--copy-to <dir>]',
+    mcpTool: 'import_sound',
+    params: [
+      p('file', 'string', true, 'Audio file (MP3 recommended; WAV and Ogg accepted).'),
+      p('id', 'string', true, 'Sound id, e.g. "ambience.rain.medium".'),
+      p('bankPath', 'string', true, 'Sound bank JSON to update (created when missing).'),
+      p('license', 'string', true, 'SPDX license of the recording, e.g. "CC0-1.0".'),
+      p('source', 'string', false, 'Page of the original recording.'),
+      p('site', 'string', false, 'Origin site: freesound, kenney, opengameart, …'),
+      p('author', 'string', false, 'Recordist or creator.'),
+      p('prompt', 'string', false, 'Generation prompt, for generated clips.'),
+      p('generator', 'string', false, 'Generator/model name, for generated clips.'),
+      p('description', 'string', false, 'What it sounds like (agents choose sounds by it).'),
+      p('loop', 'boolean', false, 'Loop the clip (ambience, engines).'),
+      p('loopStart', 'number', false, 'Loop start in seconds.'),
+      p('loopEnd', 'number', false, 'Loop end in seconds.'),
+      p('bus', 'string', false, 'Default bus: music, ambience, sfx, ui, voice.'),
+      p('gain', 'number', false, 'Base gain (default 1).'),
+      p('durationS', 'number', false, 'Duration in seconds; overrides the probed value.'),
+      p('append', 'boolean', false, 'Add as another variation of an existing sound.'),
+      p('copyTo', 'string', false, 'Directory under the bank for copied files (default audio).'),
+    ],
+  },
+  {
+    name: 'check_soundbank',
+    summary:
+      'Check a molen/soundbank@1 file and every clip it names: files present, hashes unchanged, durations and loop points consistent, provenance recorded; prints a license summary.',
+    cli: 'molen audio check <bank.json>',
+    mcpTool: 'check_soundbank',
+    params: [p('bankPath', 'string', true, 'Sound bank JSON.')],
   },
   {
     name: 'test_types',

@@ -58,7 +58,7 @@ describe('worldgen pack helpers', () => {
   it('loads a style pack from a pack directory or a built pack, and names the fix without one', async () => {
     const fromDir = await loadStylePackFromDisk(join(CONTENT, 'worldgen'));
     expect(fromDir.pack.hash).toBe(
-      'sha256:62e4104d7c8a173568affa84e232c1b1bcd628294a2f571337246a73904c8540',
+      'sha256:ebc093b6bfc0655c7ad5d6e0799575bea874cf404583a3fb01084432c11dcf86',
     );
     const saved = process.env.MOLEN_PACKS;
     delete process.env.MOLEN_PACKS;

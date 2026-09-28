@@ -198,6 +198,93 @@ describe('renderer backend selection', () => {
     material.dispose();
   });
 
+  it('prepares the LOD level the camera will show first and the other levels afterwards', async () => {
+    const renderer = await Renderer.create({ admission: { schedule: () => {}, maxJobs: 1 } });
+    const geometry = new THREE.BoxGeometry(),
+      material = new THREE.MeshStandardMaterial();
+    const near = new THREE.InstancedMesh(geometry, material, 2);
+    const far = new THREE.InstancedMesh(geometry, material, 0);
+    far.count = near.count;
+    far.instanceMatrix = near.instanceMatrix;
+    const lod = new THREE.LOD();
+    lod.addLevel(near, 0);
+    lod.addLevel(far, 100);
+    const root = new THREE.Group().add(lod);
+    const tile = new THREE.Group();
+    tile.position.set(0, 0, -1000);
+    renderer.worldRoot.add(tile);
+    renderer.camera.updateMatrixWorld();
+    const compiled = (): THREE.Object3D[] => webgpu.compileAsync.mock.calls.map((args) => args[0]);
+    const ready = renderer.prepareObject(root, new AbortController().signal, tile);
+    renderer.admission.flush();
+    await ready;
+    expect(compiled()).toEqual([far]);
+    expect(root.parent).toBeNull();
+    expect(lod.getCurrentLevel()).toBe(1);
+
+    // Published, the camera closes in before the near level is ready: keep drawing the far one
+    // (drawing near would build its shaders mid-frame) and hurry near's preparation.
+    tile.add(root);
+    tile.updateMatrixWorld(true);
+    renderer.camera.position.set(0, 0, -1000);
+    renderer.camera.updateMatrixWorld();
+    lod.update(renderer.camera);
+    expect([near.visible, far.visible]).toEqual([false, true]);
+    expect(Object.hasOwn(lod, 'update')).toBe(true);
+    renderer.admission.flush();
+    expect(compiled()).toEqual([far, near]);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    lod.update(renderer.camera);
+    expect([near.visible, far.visible]).toEqual([true, false]);
+    expect(Object.hasOwn(lod, 'update')).toBe(false);
+    renderer.camera.position.set(0, 0, 10);
+    renderer.camera.updateMatrixWorld();
+    tile.remove(root);
+
+    // Deferred work for an evicted tile is dropped with its meshes.
+    const nextNear = new THREE.InstancedMesh(geometry, material, 2);
+    const nextFar = new THREE.InstancedMesh(geometry, material, 2);
+    const next = new THREE.LOD();
+    next.addLevel(nextNear, 0);
+    next.addLevel(nextFar, 100);
+    const nextReady = renderer.prepareObject(next, new AbortController().signal, tile);
+    renderer.admission.flush();
+    await nextReady;
+    nextNear.dispose();
+    while (renderer.admission.pending) renderer.admission.flush();
+    expect(compiled()).toEqual([far, near, nextFar]);
+    renderer.dispose();
+    for (const mesh of [near, far, nextFar]) mesh.dispose();
+    geometry.dispose();
+    material.dispose();
+  });
+
+  it('drops queued preparation once every caller waiting for it has aborted', async () => {
+    const renderer = await Renderer.create({ admission: { schedule: () => {} } });
+    const geometry = new THREE.BoxGeometry(),
+      material = new THREE.MeshStandardMaterial();
+    const mesh = new THREE.InstancedMesh(geometry, material, 1);
+    const a = new AbortController(),
+      b = new AbortController();
+    const first = renderer.prepareObject(mesh, a.signal).catch((error) => error.name);
+    const second = renderer.prepareObject(mesh, b.signal).catch((error) => error.name);
+    a.abort();
+    expect(renderer.admission.pending).toBe(1);
+    b.abort();
+    expect(renderer.admission.pending).toBe(0);
+    expect(await first).toBe('AbortError');
+    expect(await second).toBe('AbortError');
+    // A later caller schedules afresh instead of joining the cancelled job.
+    const third = renderer.prepareObject(mesh);
+    renderer.admission.flush();
+    await third;
+    expect(webgpu.compileAsync).toHaveBeenCalledOnce();
+    renderer.dispose();
+    mesh.dispose();
+    geometry.dispose();
+    material.dispose();
+  });
+
   it('defaults asynchronous construction to WebGPU and configures the initialized driver', async () => {
     const options = { width: 600, height: 400, pixelRatio: 2, antialias: true };
     const renderer = await Renderer.create(options);

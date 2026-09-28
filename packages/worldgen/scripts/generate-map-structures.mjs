@@ -10,6 +10,7 @@ import {
   smoothMeshNormals,
   validateAuthoredMesh,
 } from './authored-structure-mesh.mjs';
+import { biomeJson } from './format-json.mjs';
 import { mapStructures } from './map-structure-models.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 
@@ -340,7 +341,7 @@ for (const asset of mapStructures) {
     ['scene.json', scene],
     ['source.json', source],
   ])
-    await emit(resolve(dir, name), Buffer.from(`${JSON.stringify(data, null, 2)}\n`));
+    await emit(resolve(dir, name), Buffer.from(biomeJson(data, resolve(dir, name))));
   await emit(resolve(dir, 'README.md'), Buffer.from(readme));
   console.log(
     `${asset.id}: ${mesh.triangleCount} triangles, ${glb.length} bytes; bounds ${JSON.stringify({ min, max })}`,

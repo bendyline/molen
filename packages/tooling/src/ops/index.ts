@@ -31,6 +31,22 @@ export type { AssetShotInput, AssetShotOutput } from './asset-shot';
 export { screenshotAsset } from './asset-shot';
 export type { StageAssetsInput, StageAssetsOutput, StagedAsset } from './asset-stage';
 export { ASSET_INDEX_FILE, stageAssets } from './asset-stage';
+export type {
+  CheckSoundbankInput,
+  CheckSoundbankOutput,
+  SoundbankIssue,
+} from './audio-check';
+export { checkSoundbank } from './audio-check';
+export type { ImportSoundInput, ImportSoundOutput } from './audio-import';
+export { importSound } from './audio-import';
+export type {
+  PlanAudioInput,
+  PlanAudioIssue,
+  PlanAudioOutput,
+  PlannedOneShot,
+  PlannedVoice,
+} from './audio-plan';
+export { planAudio } from './audio-plan';
 export type { SceneBuildOptions } from './build';
 export { assetFileIndex, collisionResolvers, prepareSceneBuilder } from './build';
 export type { CameraSpec, CaptureCamera, OrthoSpec } from './camera';

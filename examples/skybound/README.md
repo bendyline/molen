@@ -29,6 +29,19 @@ A/D or Left/Right: run. Space: jump; hold for a full jump, release for a short h
 
 The shared `physics.engine: "platformer"` service owns swept XY box collision, gravity, coyote time, jump buffering, and variable jump height. `platformSolid` boxes are static and axis-aligned; `oneWay` ledges only catch descending bodies. Moving-platform carry, slopes, and rigid-body interactions are outside this small controller. Use Rapier for those needs. Edit `platformBody` tuning and authored level entities; scripts never implement wall or floor collision.
 
+## Sound
+
+The `audio` entity's `audioEnvironment` plays wind that rises with the camera (`listener.y`) and heroic music, and maps pickups, stomps, the checkpoint, respawns and the finish to sounds. `scripts/game.ts` calls `molen.audio.play('game.jump')` for a jump that can happen. `src/audio.ts` loads the CC0 `molen.sounds` content pack and plays the rules; without it the
+game is silent. In your own copy, fetch the pack once:
+
+```sh
+npx molen pack fetch https://molen.dev/packs/index.json molen.sounds --out-dir public/packs
+npx molen audio plan scene.json --ticks 300
+```
+
+`molen audio plan` lists the loops and one-shots the scene would play, without a browser. See
+[Sound and music](https://molen.dev/guide/audio).
+
 ## Verify
 
 From this directory:

@@ -4,6 +4,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { importAsset, inspectAsset } from '../../tooling/dist/index.mjs';
+import { biomeJson } from './format-json.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const content = resolve(root, 'content/worldgen');
@@ -36,6 +37,10 @@ for (const key of dirs) {
     });
     if (!imported.ok || imported.registered !== true)
       throw new Error(`${key}: ${imported.error ?? 'not registered'}`);
+    // importAsset writes 2-space JSON; the content repository is linted by biome.
+    const sidecarPath = resolve(content, sidecarRelative);
+    const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
+    await writeFile(sidecarPath, biomeJson(sidecar, sidecarPath));
   }
   const inspected = await inspectAsset({ ref: spec.id, projectPath, verify: true });
   if (!inspected.ok || inspected.sidecar === undefined)

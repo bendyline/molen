@@ -43,14 +43,17 @@ const EXPECTED: Record<string, string> = {
   'molen.entities.tree.deciduous.birch': 'f7c7fe60979b33a9',
   'molen.entities.vegetation.shrub': 'cf7b14bc177a1179',
   'molen.entities.nature.boulder': 'd5024b7e67235a24',
-  'molen.entities.aircraft.p51d': '763c02ab57af3a70',
+  // Vehicles and aircraft re-pinned when they gained their engine `audioSource`; without it each
+  // digest is unchanged (p51d 763c02ab57af3a70, oh6 7739baef99209b0b, compact bb880d241b7b9fe6,
+  // sedan da38b9c7f244b008, suv e6911853a1adfc0f, pickup c921e8481fcc853f, van f5f95b1ec7c8bb4f).
+  'molen.entities.aircraft.p51d': 'da554c949c096740',
   // Re-pinned when the OH-6 was renamed from `h500md`: only its own id and script path changed.
-  'molen.entities.aircraft.oh6': '7739baef99209b0b',
-  'molen.entities.vehicle.compact': 'bb880d241b7b9fe6',
-  'molen.entities.vehicle.sedan': 'da38b9c7f244b008',
-  'molen.entities.vehicle.suv': 'e6911853a1adfc0f',
-  'molen.entities.vehicle.pickup': 'c921e8481fcc853f',
-  'molen.entities.vehicle.van': 'f5f95b1ec7c8bb4f',
+  'molen.entities.aircraft.oh6': 'c37fbb1f9eddc5ac',
+  'molen.entities.vehicle.compact': '892391c94513b298',
+  'molen.entities.vehicle.sedan': '3c324833ffeada83',
+  'molen.entities.vehicle.suv': 'ff15d0ee93028404',
+  'molen.entities.vehicle.pickup': '678ceddeec38bd4e',
+  'molen.entities.vehicle.van': '399ee8512788edd4',
 };
 
 describe('entity content parity', () => {

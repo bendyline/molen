@@ -57,7 +57,7 @@ const viewer = await createViewer({
     maxMilliseconds: 2, // explicit low-latency budget; WebGPU default is 8
     maxBytes: 2 * 1024 * 1024,
     maxJobs: 32,
-    onSample(sample) { /* label, workMs, queueMs, bytes, overBudget */ },
+    onSample(sample) { /* label, workMs, queueMs, bytes, overBudget, background */ },
   },
 });
 ```
@@ -66,19 +66,25 @@ The queue limits synchronous work started per animation frame. One oversized ind
 runs alone and is reported as over budget. This is not a hard GPU/driver time bound. Texture
 initialization, geometry preparation and async shader compilation use public Three facilities;
 shared resources share pending preparation promises. A cancelled tile cannot cancel another
-tile waiting on the same resource. Prepared static batches replace ordinary meshes only when
-ready; stale batch results are discarded.
+tile waiting on the same resource; queued work is dropped once every tile waiting for it has
+cancelled. Prepared static batches replace ordinary meshes only when ready; stale batch results
+are discarded.
 Instanced LOD meshes each prepare their own WebGPU node builder even when every buffer is
-shared. Resident world-generation quality replacements use the same preparation/publication
-path when supplied with `WorldgenRendererOptions.prepareObject` (enabled in World Explorer).
+shared. When `prepareObject` receives the parent the object will join, it evaluates LODs for
+the current camera and waits only for the selected levels. The other levels prepare in the
+queue's background lane (`priority: 'background'`), which runs only in budget that normal jobs
+leave, and are dropped if their mesh or geometry is disposed first. Resident world-generation
+quality replacements use the same preparation/publication path when supplied with
+`WorldgenRendererOptions.prepareObject` (enabled in World Explorer).
 
-For custom streamed geometry, call `await renderer.prepareObject(object, signal)` before
-publication. Connect the same queue to terrain:
+For custom streamed geometry, call `await renderer.prepareObject(object, signal, parent)` before
+publication. Connect the same queue to terrain, which passes each layer's tile group as `parent`:
 
 ```ts
 const terrain = await createTerrainPackagePyramidStream(packageDescriptor, {
   admission: viewer.renderer.admission,
-  prepareObject: (object, signal) => viewer.renderer.prepareObject(object, signal),
+  prepareObject: (object, signal, parent) =>
+    viewer.renderer.prepareObject(object, signal, parent),
   elevationWorker: new Worker(new URL('./elevation-worker.ts', import.meta.url), { type: 'module' }),
   onElevationTiming: sample => { /* decode, resample, mesh; milliseconds */ },
 });
@@ -98,6 +104,14 @@ constructor argument, and dispose the pool when finished. Pixel grids and materi
 return the synchronous baker's exact pixels through transferables. World Explorer uses two
 startup workers and releases them when its style pack is baked; `materialWorker=0` retains
 synchronous baking for comparisons. Its `material-bake` timing reports worker CPU time.
+
+`withBakedMaterialStore(baker, store)` serves bakes from a persistent `BakedMaterialStore`, such as
+`createIndexedDbMaterialStore()` from `@bendyline/molen-client`, so a later visit reads textures
+instead of rasterizing them. Keys combine the document's content with a fingerprint of the
+rasterizers (a tiny bake that exercises every node type), so a changed baker never serves stale
+pixels and its old entries are pruned. Store failures fall back to baking. `createEarthWorldgen`
+and `mountEarthView` accept the store as `materialStore`; World Explorer passes the IndexedDB store
+unless `materialCache=0`.
 
 World-generation workers also prepare building spatial cells and full/structural LOD indices.
 The renderer requests `renderCellsOnly` when using cell LODs so it does not retain a redundant
@@ -151,6 +165,24 @@ triangles and finish at their exact target positions with fixed horizontal coord
 semantic layers use coverage-preserving atomic replacement and hysteresis instead. Enabling
 one finishes any surface morph before layer publication. Coarsening does not height-morph.
 World Explorer uses 180 ms for bare terrain; deterministic `freeze` captures disable morphing.
+
+## Collision neighborhoods
+
+`WalkCollision` from `@bendyline/molen-client/navigation` gives walkers, driven cars and piloted
+aircraft a triangle tree of the visible geometry around them. Two costs matter. The **scan** visits
+every visible mesh under the root to notice streamed changes; it runs on `update` only when the
+subject has left the neighborhood, when `rescanIntervalMs` has passed (the Earth hosts use 200 ms)
+or after `invalidate()`. The **rebuild** transforms the nearby triangles into the tree; geometries
+of 4096 triangles or more are walked through a per-geometry XZ index, built on first use and kept
+with the geometry, so a terrain tile or building cell contributes only the triangles that can reach
+the neighborhood instead of every triangle it holds.
+
+A subject that moves tens of meters a second would otherwise recenter the tree every few frames.
+Vehicles and aircraft use a wider `radius` with a larger `rebuildDistance`, and a `verticalRadius`
+with `update(root, x, z, y)` so the ground far below an airframe never enters the tree; while it
+flies high the tree is empty and rebuilds are free. World Explorer's aircraft use 48 m / 24 m / 40 m,
+its cars 32 m / 12 m / 24 m; walkers keep the 24 m / 6 m default and the whole column, which their
+placement ray needs. The kernel's own ground contact (`groundHeight`) does not depend on this tree.
 
 ## Measurement
 

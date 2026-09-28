@@ -10,6 +10,13 @@ export {
 } from './client/atmosphere';
 export { type EarthCredit, earthCredits, formatEarthCredits } from './client/attribution';
 export {
+  createEarthAudio,
+  EARTH_AUDIO_ENVIRONMENT,
+  type EarthAudio,
+  type EarthAudioFrame,
+  type EarthAudioOptions,
+} from './client/audio';
+export {
   EARTH_PACK_IDS,
   type EarthContent,
   type EarthWorldgenContent,

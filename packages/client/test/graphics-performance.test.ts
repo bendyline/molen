@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { AssetCache } from '../src/assets';
-import { FrameAdmissionQueue } from '../src/frame-admission';
+import { type AdmissionSample, FrameAdmissionQueue } from '../src/frame-admission';
 import { InterpolationBuffer, type InterpTransform } from '../src/interpolation';
 import { ThreeSceneBackend } from '../src/three/backend';
 import { StaticMeshBatches } from '../src/three/static-batches';
@@ -67,6 +67,38 @@ describe('sparse graphics work', () => {
     queue.flush();
     await Promise.all([first, second, third]);
     expect(published).toEqual([1, 2, 3]);
+    queue.dispose();
+  });
+
+  it('runs background admission only in budget normal work leaves, and promotes on demand', async () => {
+    const samples: AdmissionSample[] = [];
+    const queue = new FrameAdmissionQueue({
+      maxJobs: 2,
+      schedule: () => {},
+      onSample: (sample) => samples.push(sample),
+    });
+    const order: string[] = [];
+    const late = queue.run(() => order.push('b1'), { priority: 'background' });
+    const promoted = queue.run(() => order.push('b2'), { priority: 'background' });
+    const abort = new AbortController();
+    const cancelled = queue
+      .run(() => order.push('b3'), { priority: 'background', signal: abort.signal })
+      .catch((error) => error.name);
+    for (const name of ['n1', 'n2', 'n3']) void queue.run(() => order.push(name));
+    queue.promote(promoted);
+    queue.promote(promoted);
+    abort.abort();
+    expect(await cancelled).toBe('AbortError');
+    expect(queue.pending).toBe(5);
+    queue.flush();
+    expect(order).toEqual(['n1', 'n2']);
+    queue.flush();
+    expect(order).toEqual(['n1', 'n2', 'n3', 'b2']);
+    queue.flush();
+    await Promise.all([late, promoted]);
+    expect(order).toEqual(['n1', 'n2', 'n3', 'b2', 'b1']);
+    expect(samples.map((sample) => sample.background)).toEqual([false, false, false, false, true]);
+    expect(queue.pending).toBe(0);
     queue.dispose();
   });
 

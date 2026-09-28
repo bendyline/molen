@@ -167,49 +167,117 @@ function parkedTemplate(spec: VehicleSpec, color: string): THREE.BufferGeometry 
   return geometry;
 }
 
-/** Shared proxy geometry and instance batches for dormant terrain-owned entities. */
+/**
+ * Dormant terrain-owned cars merged into one static mesh per tile. A plain mesh shares its
+ * compiled shader with every other tile; an instanced batch per model and paint would build one
+ * of its own. `userData.vehicleIds[i]` owns vertex range `userData.vehicleRanges[2i..2i+1]`;
+ * hide and restore a car with `setParkedVehicleHidden`.
+ */
 export function createParkedVehicleBatch(
   placements: readonly VehiclePlacement[],
   origin: [number, number] = [0, 0],
 ): THREE.Group {
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
-  const buckets = new Map<string, VehiclePlacement[]>();
-  for (const placement of placements) {
-    const key = `${placement.kind}:${placement.color}`;
-    const list = buckets.get(key) ?? [];
-    list.push(placement);
-    buckets.set(key, list);
-  }
+  if (placements.length === 0) return group;
+  const templates = placements.map((placement) => parkedTemplate(placement.spec, placement.color));
+  const vertices = templates.reduce(
+    (sum, template) => sum + template.getAttribute('position').count,
+    0,
+  );
+  const positions = new Float32Array(vertices * 3);
+  const normals = new Float32Array(vertices * 3);
+  const colors = new Float32Array(vertices * 3);
+  const ranges = new Uint32Array(placements.length * 2);
   const matrix = new THREE.Matrix4();
+  const normalMatrix = new THREE.Matrix3();
   const rotation = new THREE.Quaternion();
   const position = new THREE.Vector3();
   const scale = new THREE.Vector3(1, 1, 1);
-  for (const list of buckets.values()) {
-    const first = list[0] as VehiclePlacement;
-    const mesh = new THREE.InstancedMesh(
-      parkedTemplate(first.spec, first.color),
-      parkedMaterial,
-      list.length,
+  const vertex = new THREE.Vector3();
+  let offset = 0;
+  placements.forEach((placement, index) => {
+    const template = templates[index] as THREE.BufferGeometry;
+    position.set(
+      placement.position[0] - origin[0],
+      placement.position[1],
+      placement.position[2] - origin[1],
     );
-    mesh.name = `vehicle:${first.kind}`;
-    mesh.userData.vehicleIds = list.map((placement) => placement.id);
-    mesh.userData.terrainOwnedInstances = true;
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    list.forEach((placement, index) => {
-      position.set(
-        placement.position[0] - origin[0],
-        placement.position[1],
-        placement.position[2] - origin[1],
-      );
-      rotation.setFromEuler(
-        new THREE.Euler(placement.pitch ?? 0, placement.yaw, placement.roll ?? 0, 'YXZ'),
-      );
-      mesh.setMatrixAt(index, matrix.compose(position, rotation, scale));
-    });
-    mesh.computeBoundingSphere();
-    group.add(mesh);
-  }
+    rotation.setFromEuler(
+      new THREE.Euler(placement.pitch ?? 0, placement.yaw, placement.roll ?? 0, 'YXZ'),
+    );
+    matrix.compose(position, rotation, scale);
+    normalMatrix.getNormalMatrix(matrix);
+    const source = template.getAttribute('position');
+    const sourceNormals = template.getAttribute('normal');
+    const sourceColors = template.getAttribute('color');
+    for (let i = 0; i < source.count; i++) {
+      vertex
+        .fromBufferAttribute(source, i)
+        .applyMatrix4(matrix)
+        .toArray(positions, (offset + i) * 3);
+      vertex
+        .fromBufferAttribute(sourceNormals, i)
+        .applyMatrix3(normalMatrix)
+        .normalize()
+        .toArray(normals, (offset + i) * 3);
+      vertex.fromBufferAttribute(sourceColors, i).toArray(colors, (offset + i) * 3);
+    }
+    ranges[index * 2] = offset;
+    ranges[index * 2 + 1] = source.count;
+    offset += source.count;
+  });
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
+  const mesh = new THREE.Mesh(geometry, parkedMaterial);
+  mesh.name = 'vehicle:parked';
+  mesh.userData.vehicleIds = placements.map((placement) => placement.id);
+  mesh.userData.vehicleRanges = ranges;
+  mesh.userData.terrainOwnedGeometry = true;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  group.add(mesh);
   return group;
+}
+
+/** Whether `setParkedVehicleHidden` currently hides car `index` of a parked batch. */
+export function isParkedVehicleHidden(batch: THREE.Mesh, index: number): boolean {
+  return (
+    (batch.userData.vehicleHidden as Map<number, Float32Array> | undefined)?.has(index) ?? false
+  );
+}
+
+/**
+ * Hide (collapse to a point) or restore one car of a parked batch, e.g. while its detailed
+ * model or a driven entity stands in for it. Returns whether the geometry changed.
+ */
+export function setParkedVehicleHidden(batch: THREE.Mesh, index: number, hidden: boolean): boolean {
+  const ranges = batch.userData.vehicleRanges as Uint32Array | undefined;
+  const start = ranges?.[index * 2];
+  const count = ranges?.[index * 2 + 1];
+  if (start === undefined || count === undefined) return false;
+  let saved = batch.userData.vehicleHidden as Map<number, Float32Array> | undefined;
+  if (saved === undefined) {
+    saved = new Map();
+    batch.userData.vehicleHidden = saved;
+  }
+  if (saved.has(index) === hidden) return false;
+  const attribute = batch.geometry.getAttribute('position') as THREE.BufferAttribute;
+  const array = attribute.array as Float32Array;
+  const from = start * 3,
+    to = (start + count) * 3;
+  if (hidden) {
+    saved.set(index, array.slice(from, to));
+    array.fill(0, from, to);
+  } else {
+    array.set(saved.get(index) as Float32Array, from);
+    saved.delete(index);
+  }
+  attribute.addUpdateRange(from, to - from);
+  attribute.needsUpdate = true;
+  return true;
 }

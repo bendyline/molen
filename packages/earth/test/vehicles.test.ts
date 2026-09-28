@@ -1,9 +1,9 @@
-import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
+import { createParkedVehicleBatch, isParkedVehicleHidden } from '@bendyline/molen-client/vehicles';
 import { VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { EarthVehicles } from '../src/client/vehicles';
 import { ENTITY_TYPES } from './entity-types';
 
@@ -41,14 +41,11 @@ describe('earth vehicles', () => {
     await Promise.resolve();
     const cabinModel = vehicles.object.children[0];
     expect(cabinModel).toBeDefined();
-    const mesh = (tile.children[0] as THREE.Group).children[0] as THREE.InstancedMesh;
-    const matrix = new THREE.Matrix4();
-    mesh.getMatrixAt(0, matrix);
-    expect(matrix.elements[5]).toBe(0);
+    const mesh = (tile.children[0] as THREE.Group).children[0] as THREE.Mesh;
+    expect(isParkedVehicleHidden(mesh, 0)).toBe(true);
     vehicles.sync(performance.now() + 1000, [2000, 2, 3000]);
     expect(vehicles.object.children).toHaveLength(0);
-    mesh.getMatrixAt(0, matrix);
-    expect(matrix.elements[5]).not.toBe(0);
+    expect(isParkedVehicleHidden(mesh, 0)).toBe(false);
     vehicles.sync(performance.now() + 2000, [1000, 1.7, 2004]);
     await Promise.resolve();
     const reloaded = vehicles.object.children[0];
@@ -97,10 +94,8 @@ describe('earth vehicles', () => {
     tile.add(createParkedVehicleBatch(placements, [1000, 2000]));
     root.add(tile);
     vehicles.sync(performance.now() + 2000);
-    const mesh = (tile.children[0] as THREE.Group).children[0] as THREE.InstancedMesh,
-      matrix = new THREE.Matrix4();
-    mesh.getMatrixAt(0, matrix);
-    expect(matrix.elements[5]).toBe(0);
+    const mesh = (tile.children[0] as THREE.Group).children[0] as THREE.Mesh;
+    expect(isParkedVehicleHidden(mesh, 0)).toBe(true);
     expect(vehicles.exit()).toBeUndefined();
     for (let i = 0; i < 120; i++)
       vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
@@ -143,19 +138,30 @@ describe('earth vehicles', () => {
 });
 
 it('blocks the chassis against buildings and prevents a chase camera from passing through a wall', () => {
-  const { root, vehicles } = setup();
-  const wall = new THREE.Mesh(new THREE.BoxGeometry(20, 4, 0.4), new THREE.MeshBasicMaterial());
-  wall.position.set(1000, 2, 2010);
-  root.add(wall);
-  expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
-  for (let i = 0; i < 300; i++) vehicles.update(1 / 60, { throttle: 1, steering: 0, brake: false });
-  expect(vehicles.world.get('car', Transform)?.pos[2]).toBeLessThan(2007.6);
-  expect(vehicles.speed).toBe(0);
-  const rearWall = new THREE.Mesh(new THREE.BoxGeometry(20, 4, 0.4), new THREE.MeshBasicMaterial());
-  rearWall.position.set(1000, 2, (vehicles.world.get('car', Transform)?.pos[2] ?? 0) - 3);
-  root.add(rearWall);
-  vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
-  vehicles.view = 'chase';
-  const pose = vehicles.cameraPose();
-  expect(pose?.position[2]).toBeGreaterThan(rearWall.position.z);
+  // The collision tree rescans the scene at most every 200 ms while the car stays put.
+  vi.useFakeTimers({ toFake: ['performance'] });
+  try {
+    const { root, vehicles } = setup();
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(20, 4, 0.4), new THREE.MeshBasicMaterial());
+    wall.position.set(1000, 2, 2010);
+    root.add(wall);
+    expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+    for (let i = 0; i < 300; i++)
+      vehicles.update(1 / 60, { throttle: 1, steering: 0, brake: false });
+    expect(vehicles.world.get('car', Transform)?.pos[2]).toBeLessThan(2007.6);
+    expect(vehicles.speed).toBe(0);
+    const rearWall = new THREE.Mesh(
+      new THREE.BoxGeometry(20, 4, 0.4),
+      new THREE.MeshBasicMaterial(),
+    );
+    rearWall.position.set(1000, 2, (vehicles.world.get('car', Transform)?.pos[2] ?? 0) - 3);
+    root.add(rearWall);
+    vi.advanceTimersByTime(250);
+    vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
+    vehicles.view = 'chase';
+    const pose = vehicles.cameraPose();
+    expect(pose?.position[2]).toBeGreaterThan(rearWall.position.z);
+  } finally {
+    vi.useRealTimers();
+  }
 });

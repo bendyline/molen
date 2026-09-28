@@ -18,7 +18,12 @@ import {
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity, Vehicle, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
 import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
-import type { AircraftData, AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
+import type {
+  AircraftData,
+  AircraftInputData,
+  AircraftSpec,
+  VehicleSpec,
+} from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 
@@ -63,7 +68,15 @@ export class WorldAircraft {
   private visuals = new Map<AircraftChoice, AircraftVisual>();
   private loading = false;
   private disposed = false;
-  private collision = new WalkCollision(true);
+  // An airframe moves tens of meters a second: a wider neighborhood rebuilt every 24 m, bounded
+  // vertically so the ground far below never enters the tree, and rescanned at 5 Hz while hovering.
+  private collision = new WalkCollision({
+    ignoreVehicles: true,
+    radius: 48,
+    rebuildDistance: 24,
+    verticalRadius: 40,
+    rescanIntervalMs: 200,
+  });
   private inputs: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
   constructor(
     readonly world: World,
@@ -201,7 +214,7 @@ export class WorldAircraft {
     const id = `aircraft-${kind}`,
       t = this.world.get(id, Transform);
     if (!t) return false;
-    this.collision.update(this.root, position[0], position[2]);
+    this.collision.update(this.root, position[0], position[2], position[1]);
     const a = new THREE.Vector3().fromArray(position).sub(this.collision.origin);
     const b = new THREE.Vector3()
       .fromArray(vehicleLocalPoint(t, this.aircraftData(ENTITY_IDS[kind]).spec.pilotEye))
@@ -237,7 +250,7 @@ export class WorldAircraft {
     const kind = this.mountedKind;
     if (!kind) return;
     const t = this.world.get(`aircraft-${kind}`, Transform);
-    if (t) this.collision.update(this.root, t.pos[0], t.pos[2]);
+    if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
     const held = (key: string): number => Number(focused && keys.has(key));
     this.inputs = {
       ...this.inputs,
@@ -323,6 +336,19 @@ export class WorldAircraft {
       'Land, stop, press I to shut down, and wait for the rotor to stop before exiting';
   }
   private canOccupy(t: TransformData, spec: AircraftSpec, id: string): boolean {
+    // Every resident parked car is an entity. Gather the few that could touch this airframe
+    // once per step, instead of scanning all of them again for each probe.
+    let probeReach = 0;
+    for (const offset of spec.collisionProbes)
+      probeReach = Math.max(probeReach, Math.hypot(offset[0], offset[1], offset[2]));
+    const nearbyCars: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
+    for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
+      if (Math.hypot(carT.pos[0] - t.pos[0], carT.pos[2] - t.pos[2]) > probeReach + 5) continue;
+      nearbyCars.push({ transform: carT, spec: car.spec });
+    }
+    const others: Array<[number, number, number]> = [];
+    for (const [other, otherT] of this.world.query(Transform, Aircraft))
+      if (other !== id) others.push([otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2]]);
     for (const offset of spec.collisionProbes) {
       const point = vehicleLocalPoint(t, offset);
       const sphere = new THREE.Sphere(
@@ -332,9 +358,8 @@ export class WorldAircraft {
       if (this.collision.octree.sphereIntersect(sphere)) {
         return false;
       }
-      for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
+      for (const { transform: carT, spec: carSpec } of nearbyCars) {
         if (Math.hypot(carT.pos[0] - point[0], carT.pos[2] - point[2]) > 5) continue;
-        const carSpec = car.spec;
         const localPoint = new THREE.Vector3()
           .fromArray(point)
           .sub(new THREE.Vector3().fromArray(carT.pos))
@@ -345,15 +370,9 @@ export class WorldAircraft {
         );
         if (bounds.intersectsSphere(new THREE.Sphere(localPoint, 0.3))) return false;
       }
-      for (const [other, otherT] of this.world.query(Transform, Aircraft)) {
-        if (
-          id !== other &&
-          new THREE.Vector3()
-            .fromArray(point)
-            .distanceTo(new THREE.Vector3(otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2])) < 1.5
-        )
+      for (const other of others)
+        if (Math.hypot(point[0] - other[0], point[1] - other[1], point[2] - other[2]) < 1.5)
           return false;
-      }
     }
     return true;
   }

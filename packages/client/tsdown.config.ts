@@ -9,6 +9,7 @@ export default defineConfig({
     'src/aircraft.ts',
     'src/navigation.ts',
     'src/markers.ts',
+    'src/audio.ts',
   ],
   format: 'esm',
   dts: true,

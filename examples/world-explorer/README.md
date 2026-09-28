@@ -25,11 +25,12 @@ those variables and change temperature, pressure or wind. These conditions also 
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
 
-The first camera frame does not wait for building textures. They prepare in background workers;
-Human tiles wait for the shared material set before becoming visible, while Bare terrain, water,
-sky and camera controls remain usable. A loading message indicates this preparation. Startup
-milestones (milliseconds since navigation) are available in `#performance-status`'s
-`data-startup` attribute, alongside the existing graphics diagnostics.
+The first camera frame does not wait for building textures. They bake in background workers;
+buildings appear in flat colours and gain their textures in place as each material finishes, and a
+loading message indicates the baking. Baked materials are kept in IndexedDB, so later visits read
+them instead of baking; `?materialCache=0` bakes every time. Startup milestones (milliseconds since
+navigation) are available in `#performance-status`'s `data-startup` attribute, alongside the
+existing graphics diagnostics.
 
 This browser example exercises molen's large-world terrain foundation in three modes:
 

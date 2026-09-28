@@ -97,6 +97,23 @@
             "cast": true,
             "receive": true
           }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1.1,
+          "gain": 1.1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [10.8, 1.15], [23.4, 1.45], [36, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+          }
         }
       },
       "assets": ["molen.entities.vehicle.compact"],
@@ -200,6 +217,23 @@
           "shadows": {
             "cast": true,
             "receive": true
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1,
+          "gain": 1.2,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [12.6, 1.15], [27.3, 1.45], [42, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
           }
         }
       },
@@ -305,6 +339,23 @@
             "cast": true,
             "receive": true
           }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 0.9,
+          "gain": 1.25,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [11.4, 1.15], [24.7, 1.45], [38, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+          }
         }
       },
       "assets": ["molen.entities.vehicle.suv"],
@@ -409,6 +460,23 @@
             "cast": true,
             "receive": true
           }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 1,
+          "gain": 1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [11.1, 1.15], [24.1, 1.45], [37, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+          }
         }
       },
       "assets": ["molen.entities.vehicle.pickup"],
@@ -512,6 +580,23 @@
           "shadows": {
             "cast": true,
             "receive": true
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.92,
+          "gain": 1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [9.9, 1.15], [21.4, 1.45], [33, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
           }
         }
       },

@@ -9,7 +9,10 @@ import pngjs from 'pngjs';
 const { PNG } = pngjs;
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const exampleDirectory = resolve(scriptDirectory, '..');
-const defaultOutputDirectory = resolve(exampleDirectory, 'public/terrain/seattle-bellevue-sammamish');
+const defaultOutputDirectory = resolve(
+  exampleDirectory,
+  'public/terrain/seattle-bellevue-sammamish',
+);
 const defaultDetailBounds = [-122.46, 47.55, -121.95, 47.7];
 const defaultCoverageBounds = [-123.15, 46.95, -120.9, 48.3];
 const defaultVectorUrl = 'https://build.protomaps.com/20260925.pmtiles';
@@ -19,7 +22,9 @@ const defaultElevationTemplate =
 // not bathymetry; flatten all negative Terrarium values to the water datum before PNG16 packing.
 const heightRange = { min: 0, max: 5000 };
 
-function formatJson(value, indent = 0) {
+// `prefix` is the width of the `"key": ` that precedes the value on its line; biome counts it
+// toward the 100-column limit when deciding whether an array stays inline.
+function formatJson(value, indent = 0, prefix = 0) {
   if (value === null || typeof value !== 'object') return JSON.stringify(value);
 
   const indentation = ' '.repeat(indent);
@@ -28,7 +33,7 @@ function formatJson(value, indent = 0) {
     if (value.length === 0) return '[]';
     if (value.every((item) => item === null || typeof item !== 'object')) {
       const inline = `[${value.map((item) => JSON.stringify(item)).join(', ')}]`;
-      if (indent + inline.length <= 100) return inline;
+      if (indent + prefix + inline.length <= 100) return inline;
     }
     return `[\n${value
       .map((item) => `${childIndentation}${formatJson(item, indent + 2)}`)
@@ -38,9 +43,10 @@ function formatJson(value, indent = 0) {
   const entries = Object.entries(value);
   if (entries.length === 0) return '{}';
   return `{\n${entries
-    .map(
-      ([key, item]) => `${childIndentation}${JSON.stringify(key)}: ${formatJson(item, indent + 2)}`,
-    )
+    .map(([key, item]) => {
+      const name = JSON.stringify(key);
+      return `${childIndentation}${name}: ${formatJson(item, indent + 2, name.length + 2)}`;
+    })
     .join(',\n')}\n${indentation}}`;
 }
 
@@ -206,7 +212,13 @@ async function buildElevation(
       `observed elevation ${observedMin.toFixed(1)}..${observedMax.toFixed(1)}m exceeds configured range`,
     );
   }
-  return { entries: output, observedMin, observedMax, flattenedSubseaSamples, tileCount: addresses.length };
+  return {
+    entries: output,
+    observedMin,
+    observedMax,
+    flattenedSubseaSamples,
+    tileCount: addresses.length,
+  };
 }
 
 async function run(command, arguments_) {
@@ -326,7 +338,8 @@ const sourceLock = {
     outputHeightRange: heightRange,
     observedHeightRange: [elevation.observedMin, elevation.observedMax],
     flattenedSubseaSamples: elevation.flattenedSubseaSamples,
-    subseaPolicy: 'Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.',
+    subseaPolicy:
+      'Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.',
     attribution: 'Mapzen; terrain data courtesy of the U.S. Geological Survey',
     licenseReference: 'https://github.com/tilezen/joerd/blob/master/docs/attribution.md',
   },

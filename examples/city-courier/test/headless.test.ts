@@ -37,7 +37,7 @@ describe('city-courier: authored scene + scripts', () => {
     command(w, 'drive', { dir: [0, -1] });
     w.stepN(90);
     expect(stateHash(w)).toBe(
-      'sha256:d5bb47f21578dd28540e1027fd1acfb282bebd1e26aa03ecba155ff87d16d6ef',
+      'sha256:d82352ff8a1969ea1f702d38a963b09efe7b9c6d00a2f067fed247b239451fdb',
     );
   });
 

@@ -11,12 +11,13 @@
     "lint": "biome check src test",
     "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
     "test:golden": "vitest run --config vitest.golden.config.ts",
-    "predev": "pnpm --filter \"@bendyline/molen-examples-skybound^...\" build",
+    "predev": "pnpm --filter \"@bendyline/molen-examples-skybound^...\" build && molen pack build ../../content/sounds --out-dir public/packs",
     "preview": "vite preview"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",
     "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-pack": "workspace:*",
     "@bendyline/molen-schema": "workspace:*",
     "@bendyline/molen-tooling": "workspace:*",
     "three": "0.184.0"

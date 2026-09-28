@@ -238,6 +238,18 @@
           ],
           "exits": [[1.6, 0, -1.5], [-1.6, 0, -1.5]],
           "reach": 4
+        },
+        "audioSource": {
+          "sound": "aircraft.engine.piston",
+          "loop": true,
+          "pitchFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0.45], [0.22, 0.75], [1, 1.2]]
+          },
+          "gainFrom": {
+            "signal": "aircraftState.rpm",
+            "curve": [[0, 0], [0.05, 0.25], [0.22, 0.6], [1, 1]]
+          }
         }
       },
       "assets": ["molen.entities.aircraft.p51d"],

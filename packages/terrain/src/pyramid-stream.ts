@@ -123,7 +123,15 @@ export interface TerrainPyramidStreamOptions
   morphMilliseconds?: number;
   /** Shared frame budget for construction/publication, also passed to semantic adapters. */
   admission?: SceneAdmission;
-  prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
+  /**
+   * Prepare GPU resources before publication. `parent` is the tile group a layer object will
+   * join, so a renderer can prepare the LOD levels the camera will see first.
+   */
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
   /** Optional renderer-owned tile group, e.g. a managed WebGPU render-command cache. */
   createTileGroup?: () => THREE.Group;
   material?: THREE.Material;
@@ -1743,7 +1751,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         });
         if (object !== undefined) {
           try {
-            if (!signal.aborted) await this.options.prepareObject?.(object, signal);
+            if (!signal.aborted) await this.options.prepareObject?.(object, signal, tile.object);
             if (signal.aborted) throw signal.reason;
           } catch (error) {
             layer.disposeTile?.(object);

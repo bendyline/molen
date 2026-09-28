@@ -1,0 +1,99 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-engines",
+  "path": "/?synthetic=1&parking=1&quality=balanced&freeze=1&navigation=walk&lat=47.62174226673374&lon=-122.0143923423401&alt=415&yaw=3.14159265359&pitch=0",
+  "viewport": [1280, 720],
+  "probes": [
+    { "name": "sound", "selector": "#sound-status" },
+    { "name": "navigation", "selector": "#navigation-status" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"grounded\"]",
+      "timeoutMs": 240000
+    },
+    { "type": "wait-for", "selector": "#sound-status", "text": "Playing", "timeoutMs": 60000 },
+    { "type": "wait", "durationMs": 1800 },
+    { "type": "screenshot", "name": "01-parked" },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"driving\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait-for",
+      "selector": "#sound-status",
+      "text": "vehicle.engine",
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "02-car-idle" },
+    { "type": "key-down", "keys": ["w"] },
+    { "type": "wait", "durationMs": 1500 },
+    { "type": "screenshot", "name": "03-car-throttle" },
+    { "type": "key-up", "keys": ["w"] },
+    { "type": "keys", "keys": [" "], "durationMs": 2500 },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"grounded\"]",
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 3000 },
+    { "type": "screenshot", "name": "04-car-exited" },
+    { "type": "navigate", "path": "/?aircraft=oh6&quality=balanced&freeze=1" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 240000
+    },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=oh6]",
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 1000 },
+    { "type": "screenshot", "name": "05-helicopter-cold" },
+    { "type": "keys", "keys": ["i"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#sound-status",
+      "text": "aircraft.engine.helicopter",
+      "timeoutMs": 60000
+    },
+    { "type": "wait", "durationMs": 6000 },
+    { "type": "screenshot", "name": "06-helicopter-running" },
+    { "type": "navigate", "path": "/?aircraft=p51d&quality=balanced&freeze=1" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=grounded]",
+      "timeoutMs": 240000
+    },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=p51d]",
+      "timeoutMs": 240000
+    },
+    { "type": "keys", "keys": ["i"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#sound-status",
+      "text": "aircraft.engine.piston",
+      "timeoutMs": 60000
+    },
+    { "type": "wait", "durationMs": 3000 },
+    { "type": "screenshot", "name": "07-mustang-idle" },
+    { "type": "key-down", "keys": ["Shift", " "] },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-power=\"100\"]",
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 3000 },
+    { "type": "screenshot", "name": "08-mustang-full-power" },
+    { "type": "key-up", "keys": ["Shift", " "] }
+  ]
+}

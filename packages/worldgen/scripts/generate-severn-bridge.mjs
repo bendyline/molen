@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { smoothMeshNormals, validateAuthoredMesh } from './authored-structure-mesh.mjs';
+import { biomeJson } from './format-json.mjs';
 import { buildSevern, severnStudy as study } from './severn-bridge-model.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
@@ -207,7 +208,7 @@ for (const [name, data] of [
   ['scene.json', scene],
   ['source.json', source],
 ])
-  await emit(resolve(dir, name), Buffer.from(`${JSON.stringify(data, null, 2)}\n`));
+  await emit(resolve(dir, name), Buffer.from(biomeJson(data, resolve(dir, name))));
 await emit(resolve(dir, 'README.md'), Buffer.from(readme));
 console.log(
   `${key}: ${mesh.triangleCount} triangles, ${glb.length} bytes, ${hash(glb)}; bounds ${JSON.stringify({ min, max })}`,

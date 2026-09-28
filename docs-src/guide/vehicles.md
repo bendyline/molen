@@ -85,6 +85,16 @@ All durable simulation state and mount relationships live in ECS components and 
 and replay. Install the same systems/environment when restoring. Host streaming and render resources
 are separate from those checkpoints.
 
+## Engine sound
+
+Every `molen.entities` vehicle type carries an `audioSource`: the compact, sedan and SUV run
+`vehicle.engine.car`, the pickup and van `vehicle.engine.diesel`, each with its own pitch. The
+engine plays only while someone drives (`self.occupied`), rises in pitch with
+`vehicleState.speed`, and grows louder with `vehicleInput.throttle`. Any host that plays audio from
+the entity world, such as `mountEarthView` or a page with `createAudioLayer(...).attachWorld(world)`,
+hears it with no extra code. Override the component on a type or entity to change the sound; see
+[Sound and music](audio.md).
+
 ## Reusable views and parking data
 
 `@bendyline/molen-client/vehicles` exports `createVehicleVisual`, `createParkedVehicleBatch`,

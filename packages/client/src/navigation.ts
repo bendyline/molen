@@ -55,7 +55,7 @@ export {
   TouchStick,
   type TouchStickOptions,
 } from './navigation/touch-joystick';
-export { WalkCollision } from './navigation/walk-collision';
+export { WalkCollision, type WalkCollisionOptions } from './navigation/walk-collision';
 export {
   RUN_SPEED,
   WALK_EYE_HEIGHT,

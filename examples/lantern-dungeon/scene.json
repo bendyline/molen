@@ -316,6 +316,53 @@
       }
     },
     {
+      "id": "audio",
+      "components": {
+        "audioEnvironment": {
+          "buses": {
+            "music": 0.5
+          },
+          "ambience": [
+            {
+              "sound": "ambience.dungeon",
+              "gain": 0.8
+            }
+          ],
+          "music": {
+            "playlist": ["music.dungeon"],
+            "gain": 0.7
+          },
+          "footsteps": {
+            "sound": "footstep.stone",
+            "strideM": 0.9,
+            "gain": 0.8
+          },
+          "events": {
+            "strike": {
+              "sound": "impact.punch",
+              "at": "payload.entity"
+            },
+            "hurt": {
+              "sound": "impact.punch",
+              "gain": 1.2
+            },
+            "heal": {
+              "sound": "game.powerup"
+            },
+            "key-found": {
+              "sound": "game.pickup"
+            },
+            "gate-opened": {
+              "sound": "foley.door.open"
+            },
+            "victory": {
+              "sound": "sting.fanfare"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "player",
       "components": {
         "transform": {
@@ -3796,6 +3843,15 @@
           "color": "#ffb96d",
           "intensity": 16,
           "range": 9
+        },
+        "audioZone": {
+          "sound": "ambience.wind",
+          "shape": {
+            "kind": "sphere",
+            "radius": 3
+          },
+          "fade": 6,
+          "gain": 0.5
         }
       }
     },

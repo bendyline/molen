@@ -239,6 +239,46 @@
       }
     },
     {
+      "id": "audio",
+      "components": {
+        "audioEnvironment": {
+          "buses": {
+            "music": 0.55
+          },
+          "ambience": [
+            {
+              "sound": "ambience.wind",
+              "gainFrom": {
+                "signal": "listener.y",
+                "curve": [[0, 0.15], [30, 0.7]]
+              }
+            }
+          ],
+          "music": {
+            "playlist": ["music.hero"],
+            "gain": 0.8
+          },
+          "events": {
+            "seed-collected": {
+              "sound": "game.pickup"
+            },
+            "stomp": {
+              "sound": "impact.soft"
+            },
+            "checkpoint": {
+              "sound": "sting.checkpoint"
+            },
+            "respawn": {
+              "sound": "ui.error"
+            },
+            "victory": {
+              "sound": "sting.win"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "camera-target",
       "components": {
         "transform": {

@@ -11,6 +11,44 @@ export type {
   AssetTrimeshHeader,
 } from './assets';
 export { decodeCollisionTrimesh, encodeCollisionTrimesh } from './assets';
+export type {
+  AudioAmbienceLayer,
+  AudioCondition,
+  AudioEnvironmentData,
+  AudioEventRule,
+  AudioFootsteps,
+  AudioMusicSpec,
+  AudioScalar,
+  AudioSignalBinding,
+  AudioSignalDrive,
+  AudioSourceData,
+  AudioTrigger,
+  AudioWhen,
+  AudioZoneData,
+  SoundbankDoc,
+  SoundEntry,
+  SoundSource,
+  SoundSpatial,
+} from './audio';
+export {
+  AUDIO_BUS_PATTERN,
+  AUDIO_BUSES,
+  AUDIO_SIGNALS,
+  audioEnvironmentSchema,
+  audioSignalBindingSchema,
+  audioSignalBindings,
+  audioSignalDriveSchema,
+  audioSignalIssues,
+  audioSignalRefs,
+  audioSoundRefs,
+  audioSourceSchema,
+  audioWhenSchema,
+  audioZoneSchema,
+  SOUND_ID_PATTERN,
+  SOUNDBANK_EXAMPLE,
+  soundbankSchema,
+  validateSoundbank,
+} from './audio';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {

@@ -19,6 +19,7 @@ license, which files go in, and which roles it `provides`.
 | [worldgen/](worldgen/) | `molen.worldgen.default` | The default style pack: archstyles, material graphs, scatter rules, props, landmarks, and the structure catalog |
 | [earth/](earth/) | `molen.earth` | The region atlas and the business identity catalog |
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
+| [sounds/](sounds/) | `molen.sounds` | 63 CC0 sounds and six music tracks behind a `molen/soundbank@1` bank; provenance in `sources.json` and `NOTICE.md` |
 
 The worldgen authoring source also carries a [next 1,000 structure candidate catalog](worldgen/source/next-1000/README.md),
 with five imported GLB studies and a searchable gallery. Candidate metadata is excluded from
@@ -35,7 +36,7 @@ molen pack inspect dist-packs/molen.worldgen.default-<hash>.zip
 molen pack verify dist-packs/molen.worldgen.default-<hash>.zip
 ```
 
-The world explorer builds all four into `examples/world-explorer/public/packs/` (with an
+The world explorer builds all five into `examples/world-explorer/public/packs/` (with an
 `index.json`) before `dev` and `build`.
 
 ## Using packs from the CLI
@@ -58,3 +59,6 @@ MOLEN_PACKS=content/worldgen:content/earth molen worldgen preview --out preview.
   there write `worldgen/`.
 - `node packages/client/scripts/generate-star-catalog.mjs <catalog.gz>` writes `sky/stars.bin` from
   the CDS Bright Star Catalogue download.
+- `node content/sounds/tools/fetch.mjs` then `node content/sounds/tools/build.mjs` rebuild
+  `sounds/audio/`, `sounds.soundbank.json` and `NOTICE.md` from `sounds/sources.json` (needs ffmpeg);
+  see [sounds/README.md](sounds/README.md).

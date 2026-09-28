@@ -102,11 +102,12 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel
   internals. (materials is pure CPU — the client's MaterialResolver bakes doc-backed
   materialRefs at load time.) Subpaths: `/camera-track`, `/vite`, `/vehicles`, `/aircraft`,
-  `/navigation`, `/markers`. The main barrel is the rendering surface only: finished game
+  `/navigation`, `/markers`, `/audio`. The main barrel is the rendering surface only: finished game
   content sits behind a subpath that mirrors the kernel's, so `/vehicles` and `/aircraft` are
   the render halves of the kernel subpaths of the same name. Put the next `createXVisual`
-  there, not in `index.ts`. `/navigation` (camera controllers and input) and `/markers` (world
-  billboards) are host-side rendering aids with no kernel twin.
+  there, not in `index.ts`. `/navigation` (camera controllers and input), `/markers` (world
+  billboards) and `/audio` (the sound director and Web Audio backend) are host-side aids with no
+  kernel twin; `/audio` is three-free at runtime so tooling runs its director in Node.
 - `@bendyline/molen-terrain` is a capability package split into `/kernel` and `/client` — it has
   **no `.` export**. New capability packages follow this kernel/client-halves pattern.
 - `@bendyline/molen-earth` is a composition, not a capability: `/client` (the `mountEarthView`

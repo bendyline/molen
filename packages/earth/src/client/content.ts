@@ -30,11 +30,13 @@ export const EARTH_PACK_IDS: {
   readonly style: 'molen.worldgen.default';
   readonly earth: 'molen.earth';
   readonly sky: 'molen.sky';
+  readonly sounds: 'molen.sounds';
 } = {
   entities: 'molen.entities',
   style: 'molen.worldgen.default',
   earth: 'molen.earth',
   sky: 'molen.sky',
+  sounds: 'molen.sounds',
 };
 
 /** Worldgen style, region atlas and recognizable places, resolved from the packs. */

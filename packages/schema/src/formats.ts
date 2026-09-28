@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { AssetSidecar } from './assets';
+import type { SoundbankDoc } from './audio';
 import { compileCommandPayload } from './commands';
 import {
   type ComponentValidateOptions,
@@ -1343,6 +1344,7 @@ export interface SchemaKindMap {
   pack: PackManifest;
   'pack-source': PackSourceConfig;
   'pack-index': PackIndex;
+  soundbank: SoundbankDoc;
 }
 
 export type SchemaKind = keyof SchemaKindMap;

@@ -7,6 +7,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { biomeJson } from './format-json.mjs';
 import { buildBridge } from './structure-bridges.mjs';
 import { buildLandmark } from './structure-landmarks.mjs';
 import { buildInfrastructure, buildUrban } from './structure-recipes.mjs';
@@ -147,19 +148,30 @@ function previewScene(spec) {
   };
 }
 
-async function emit(path, bytes, semanticJson = false) {
+async function emit(path, bytes) {
   if (check) {
     const old = await readFile(path);
-    const same = semanticJson
-      ? JSON.stringify(JSON.parse(old.toString('utf8'))) ===
-        JSON.stringify(JSON.parse(bytes.toString('utf8')))
-      : old.equals(bytes) ||
-        old.toString('utf8').replaceAll('\r\n', '\n') ===
-          bytes.toString('utf8').replaceAll('\r\n', '\n');
+    const same =
+      old.equals(bytes) ||
+      old.toString('utf8').replaceAll('\r\n', '\n') ===
+        bytes.toString('utf8').replaceAll('\r\n', '\n');
     if (!same) throw new Error(`${path}: generated structure source is stale`);
   } else {
     await mkdir(resolve(path, '..'), { recursive: true });
     await writeFile(path, bytes);
+  }
+}
+
+// JSON sources are compared by value: --check runs on every build, and formatting 291 documents
+// through biome there would dominate it. Only writes pay for biome.
+async function emitJson(path, value) {
+  if (check) {
+    const old = JSON.parse(await readFile(path, 'utf8'));
+    if (JSON.stringify(old) !== JSON.stringify(value))
+      throw new Error(`${path}: generated structure source is stale`);
+  } else {
+    await mkdir(resolve(path, '..'), { recursive: true });
+    await writeFile(path, biomeJson(value, path));
   }
 }
 
@@ -240,17 +252,9 @@ for (const entry of pending) {
   };
   const readme = `# ${entry.title} — ${entry.planId} structure asset\n\n![Lit Molen preview](preview.png)\n\nOriginal stylized geometry generated from the [100-structure plan](../../../../../examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md) by \`packages/worldgen/scripts/generate-structure-catalog.mjs\`. Visual brief: ${entry.brief}.\n\nProvisional dimensions: ${spec.size[0]} × ${spec.size[1]} × ${spec.size[2]} meters (X × Y × Z). These dimensions are artistic working values and require measured terrain/footprint alignment before geographic placement. +Y is up; the model is centered at ground or water datum. The runtime asset ID is \`${id}\`.\n\nSource: \`spec.json\`, \`models/source.glb\`; the imported runtime GLB and sidecar are under \`content/worldgen/assets/${id.replaceAll('.', '/')}\`. \`source.json\` pins the source hash. There are no third-party meshes, bitmap textures or texture-generation prompts. The preview is rendered by Molen from \`scene.json\`.\n\nRebuild and re-import from the repository root using \`node packages/worldgen/scripts/generate-structure-catalog.mjs\` and \`node packages/worldgen/scripts/import-structure-catalog.mjs\`. Verify with \`node packages/worldgen/scripts/generate-structure-catalog.mjs --check\`, \`node scripts/check-source-bundles.mjs\`, and \`molen asset inspect ${id} --project content/worldgen/project.json --verify\`.\n\n${entry.planId[0] === 'C' ? 'The full-span design master needs tile-sized sections, measured approach transitions and segmented driveable collision before Earth placement.' : 'Site anchor, exact facade detail, LOD and collision refinement remain to be completed before in-place Earth-viewer release.'}\n`;
   await emit(resolve(dir, 'models/source.glb'), glb);
-  await emit(resolve(dir, 'spec.json'), Buffer.from(`${JSON.stringify(spec, null, 2)}\n`), true);
-  await emit(
-    resolve(dir, 'scene.json'),
-    Buffer.from(`${JSON.stringify(previewScene(spec), null, 2)}\n`),
-    true,
-  );
-  await emit(
-    resolve(dir, 'source.json'),
-    Buffer.from(`${JSON.stringify(source, null, 2)}\n`),
-    true,
-  );
+  await emitJson(resolve(dir, 'spec.json'), spec);
+  await emitJson(resolve(dir, 'scene.json'), previewScene(spec));
+  await emitJson(resolve(dir, 'source.json'), source);
   await emit(resolve(dir, 'README.md'), Buffer.from(readme));
   console.log(
     `${entry.planId} ${key}: ${buffers.triangleCount} triangles, ${glb.length} source bytes`,

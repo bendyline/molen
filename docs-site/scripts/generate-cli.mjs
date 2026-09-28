@@ -68,6 +68,11 @@ const GROUPS = [
     ops: ['import_asset', 'inspect_asset', 'list_assets', 'pack_asset', 'stage_assets'],
   },
   {
+    title: 'Audio',
+    blurb: 'Hear what a scene would play without a browser, and build sound banks with provenance.',
+    ops: ['plan_audio', 'import_sound', 'check_soundbank'],
+  },
+  {
     title: 'Materials and textures',
     blurb: 'Bake procedural material graphs and round-trip hand-painted UV templates.',
     ops: ['rasterize_material', 'apply_uv_paint'],

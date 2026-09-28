@@ -9,6 +9,7 @@ import type {
   Vec3,
 } from '@bendyline/molen-schema';
 import { blockingIssues, componentIssues, formatIssues } from '@bendyline/molen-schema';
+import { type AudioScriptApi, audioScriptApi } from './audio';
 import { cloneJson, deepFreeze, patchJson } from './clone';
 import { type ComponentType, componentHandle as comp } from './component';
 import { dmath } from './dmath';
@@ -144,6 +145,12 @@ export interface ScriptAPI {
     handler: (payload: JsonValue, ctx: TickContext, command: Command) => void,
   ): Unsubscribe;
   emit(type: string, payload: JsonValue): void;
+  /**
+   * Sound: `play(sound, { entity | position, gain, pitch, bus, loop })` → handle, `stop(handle |
+   * { entity, sound }, fadeS?)`, `music(playlist | null)`. Each emits an `audio.*` event the client
+   * plays; nothing enters the state hash. See guide/audio.md.
+   */
+  readonly audio: AudioScriptApi;
   raycast(origin: Vec3, dir: Vec3, maxDist: number, mask?: number): RayHit | null;
   overlapCircle(center: Vec3, radius: number, mask?: number): EntityId[];
   /** Emit `event` after `ticks` ticks (snapshot-safe world timer). Returns the timer id. */
@@ -499,6 +506,7 @@ export function installScripting(
       return subscribeCommand(currentOwner, type, handler);
     },
     emit: (type, payload) => world.emit(type, payload),
+    audio: Object.freeze(audioScriptApi(world)),
     raycast: (origin, dir, maxDist, mask) => raycast(world, origin, dir, maxDist, mask),
     overlapCircle: (center, radius, mask) => overlapCircle(world, center, radius, mask),
     after: (ticks, event, payload) =>

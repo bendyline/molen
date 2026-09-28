@@ -1,5 +1,5 @@
 // Build the content packs the explorer loads (entities, the default style pack, the earth atlas
-// and business catalog, the star catalog) from the repository's content/ sources into
+// and business catalog, the star catalog, the sound bank) from the repository's content/ sources into
 // public/packs, with an index.json. public/packs is gitignored; content/ is the source of truth.
 
 import { rm } from 'node:fs/promises';
@@ -12,7 +12,7 @@ const content = resolve(root, '../../content');
 const outDir = resolve(root, 'public/packs');
 
 await rm(outDir, { recursive: true, force: true });
-for (const name of ['entities', 'worldgen', 'earth', 'sky']) {
+for (const name of ['entities', 'worldgen', 'earth', 'sky', 'sounds']) {
   const built = await buildPack(resolve(content, name), { outDir });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);
 }

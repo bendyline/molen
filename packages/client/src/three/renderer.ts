@@ -4,7 +4,7 @@ import type { WebGPURenderer } from 'three/webgpu';
 import { type FrameAdmissionOptions, FrameAdmissionQueue } from '../frame-admission';
 import { type SkyStar, SkyVisual } from '../sky/visual';
 import { WeatherVisual } from '../weather/visual';
-import { applyEnvironment, defaultEnvironment } from './environment';
+import { applyEnvironment, defaultEnvironment, findEnvironmentRig } from './environment';
 import {
   createGpuFrameTimer,
   type GpuFrameTimer,
@@ -192,6 +192,12 @@ export class Renderer {
   private warmupMaterial: THREE.MeshBasicMaterial | undefined;
   private readonly warmedPrograms = new WeakMap<THREE.Material, Map<string, Promise<unknown>>>();
   private readonly warmedMeshes = new WeakMap<THREE.Mesh, Promise<unknown>>();
+  private readonly warmups = new WeakMap<Promise<unknown>, Warmup>();
+  /** Deferred meshes whose preparation has not settled, with the interest that can promote it. */
+  private readonly deferredMeshes = new WeakMap<THREE.Object3D, WarmupInterest>();
+  private readonly guardedLods = new WeakSet<THREE.LOD>();
+  /** Shared by every interest, so none captures the scope (and object tree) that created it. */
+  private readonly cancel = (warmup: Warmup): void => this.cancelWarmup(warmup);
   readonly three: ThreeRenderer;
   readonly backend: RendererBackend;
   private fallback: string | undefined;
@@ -564,147 +570,303 @@ export class Renderer {
     else this.camera.updateProjectionMatrix();
   }
 
-  /** Prepare shared resources once; all dependants await the same admission jobs. */
-  async prepareObject(root: THREE.Object3D, signal?: AbortSignal): Promise<void> {
-    const jobs = new Set<Promise<unknown>>();
-    type Attribute = THREE.BufferAttribute | THREE.InterleavedBuffer;
-    const glAttributes = new Set<Attribute>();
-    const glBatches: Array<{ meshes: THREE.Mesh[]; attributes: Attribute[]; bytes: number }> = [];
-    root.updateWorldMatrix(true, true);
+  /**
+   * Prepare shared resources once; all dependants await the same admission jobs.
+   *
+   * With `parent` (the object this root will be added to), LODs are evaluated for the current
+   * camera as if attached: the levels they select are prepared before this resolves, and the
+   * other levels afterwards in the background, so publication waits only for what can be seen.
+   * Queued work is cancelled once every caller waiting for it has aborted, and background work
+   * once its mesh or geometry is disposed.
+   */
+  async prepareObject(
+    root: THREE.Object3D,
+    signal?: AbortSignal,
+    parent?: THREE.Object3D,
+  ): Promise<void> {
+    if (signal?.aborted) throw new DOMException('Preparation cancelled', 'AbortError');
+    updateDetachedWorldMatrix(root, parent);
+    const lods = parent === undefined ? undefined : unselectedLodLevels(root, this.camera);
+    const deferredLevels = lods === undefined ? undefined : new Set([...lods.values()].flat());
+    const foreground = createLane(false);
+    const background = createLane(true);
+    const interest: WarmupInterest | 'pinned' =
+      signal === undefined ? 'pinned' : new WarmupInterest(this.cancel);
+    const deferred: THREE.Mesh[] = [];
     root.traverse((object) => {
       const mesh = object as THREE.Mesh;
       if (!mesh.isMesh) return;
-      const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-      const key = `${Boolean((mesh as THREE.InstancedMesh).isInstancedMesh)}/${Boolean((mesh as THREE.SkinnedMesh).isSkinnedMesh)}/${Object.keys(mesh.geometry.attributes).sort().join(',')}`;
-      const variants: Array<{ map: Map<string, Promise<unknown>>; key: string }> = [];
-      for (const material of materials) {
-        for (const value of Object.values(material)) {
-          if (!(value instanceof THREE.Texture)) continue;
-          const existing = this.preparedResources.get(value);
-          if (existing?.version === value.version) {
-            jobs.add(existing.promise);
-            continue;
-          }
-          const promise = this.admission.run(() => this.three.initTexture(value), {
-            label: 'texture-upload',
-            bytes: textureBytes(value),
-          });
-          this.rememberPreparation([value], promise);
-          jobs.add(promise);
-        }
-        let map = this.warmedPrograms.get(material);
-        if (!map) {
-          map = new Map();
-          this.warmedPrograms.set(material, map);
-        }
-        const variantKey = `${material.version}/${key}`;
-        const existing = map.get(variantKey);
-        if (existing) jobs.add(existing);
-        else variants.push({ map, key: variantKey });
-      }
-      const instanced = mesh as THREE.InstancedMesh;
-      const attributes = [
-        ...Object.values(mesh.geometry.attributes).map((a) =>
-          a instanceof THREE.InterleavedBufferAttribute ? a.data : a,
-        ),
-        ...(mesh.geometry.index ? [mesh.geometry.index] : []),
-        ...(instanced.isInstancedMesh
-          ? [
-              instanced.instanceMatrix,
-              ...(instanced.instanceColor ? [instanced.instanceColor] : []),
-            ]
-          : []),
-      ];
-      const fresh = attributes.filter((attribute) => {
-        if (glAttributes.has(attribute)) return false;
-        const existing = this.preparedResources.get(attribute);
-        if (existing?.version === attribute.version) {
-          jobs.add(existing.promise);
-          return false;
-        }
-        return true;
-      });
-      let compilation: Promise<unknown> | undefined;
-      // Three keys instanced/skinned/morph node builders by object identity. LODs can share
-      // every buffer and material while still needing their own builder before first visibility.
-      const objectSpecific =
-        instanced.isInstancedMesh ||
-        (mesh as THREE.SkinnedMesh).isSkinnedMesh ||
-        mesh.morphTargetInfluences !== undefined;
-      const previousMesh = this.warmedMeshes.get(mesh);
-      if (previousMesh) jobs.add(previousMesh);
-      if (
-        variants.length > 0 ||
-        (this.backend === 'webgpu' && (fresh.length > 0 || (objectSpecific && !previousMesh)))
-      ) {
-        compilation = this.admission.run(() => this.compileMesh(mesh), {
-          label:
-            this.backend === 'webgpu' && fresh.length > 0
-              ? 'geometry-upload-and-shader'
-              : 'shader-warmup',
-          bytes:
-            this.backend === 'webgpu' ? fresh.reduce((sum, a) => sum + a.array.byteLength, 0) : 0,
-        });
-        jobs.add(compilation);
-        if (this.backend === 'webgpu') {
-          this.warmedMeshes.set(mesh, compilation);
-          void compilation.catch(() => {
-            if (this.warmedMeshes.get(mesh) === compilation) this.warmedMeshes.delete(mesh);
-          });
-        }
-        for (const variant of variants) {
-          variant.map.set(variant.key, compilation);
-          void compilation.catch(() => {
-            if (variant.map.get(variant.key) === compilation) variant.map.delete(variant.key);
-          });
-        }
-      }
-      if (fresh.length > 0) {
-        if (this.backend === 'webgpu') {
-          const upload = compilation as Promise<unknown>;
-          this.rememberPreparation(fresh, upload);
-          jobs.add(upload);
-        } else {
-          const bytes = fresh.reduce((sum, a) => sum + a.array.byteLength, 0);
-          let batch = glBatches.at(-1);
-          if (!batch || batch.meshes.length >= 16 || batch.bytes + bytes > this.uploadBatchBytes) {
-            batch = { meshes: [], attributes: [], bytes: 0 };
-            glBatches.push(batch);
-          }
-          batch.meshes.push(mesh);
-          batch.attributes.push(...fresh);
-          batch.bytes += bytes;
-          for (const attribute of fresh) glAttributes.add(attribute);
-        }
-      }
+      if (deferredLevels !== undefined && withinAny(mesh, root, deferredLevels))
+        deferred.push(mesh);
+      else this.prepareMesh(mesh, foreground, interest);
     });
-    for (const batch of glBatches) {
-      const upload = this.admission.run(() => this.prepareWebGlGeometries(batch.meshes), {
-        label: 'geometry-upload',
-        bytes: batch.bytes,
+    this.flushWebGlBatches(foreground);
+    // After the foreground, so buffers shared with a visible level upload with it.
+    const deferredInterests = deferred.map((mesh) => {
+      const meshInterest = new WarmupInterest(this.cancel);
+      this.prepareMesh(mesh, background, meshInterest);
+      return meshInterest;
+    });
+    this.flushWebGlBatches(background);
+    deferred.forEach((mesh, index) => {
+      const meshInterest = deferredInterests[index] as WarmupInterest;
+      releaseOnDispose(mesh, meshInterest);
+      this.deferredMeshes.set(mesh, meshInterest);
+      void meshInterest.settled().then(() => {
+        if (this.deferredMeshes.get(mesh) === meshInterest) this.deferredMeshes.delete(mesh);
       });
-      this.rememberPreparation(batch.attributes, upload);
-      jobs.add(upload);
+    });
+    for (const [lod, levels] of lods ?? []) if (levels.length > 0) this.guardLod(lod);
+    // Shared resource work belongs to the renderer: one caller's cancellation cancels a queued
+    // job only when no other caller still waits for it. The caller's signal decides publication.
+    const release = (): void => {
+      if (interest !== 'pinned') interest.release();
+    };
+    signal?.addEventListener('abort', release, { once: true });
+    let results: PromiseSettledResult<unknown>[];
+    try {
+      results = await Promise.allSettled(foreground.jobs);
+    } finally {
+      signal?.removeEventListener('abort', release);
     }
-    // Shared resource work belongs to the renderer. Cancelling one tile must not cancel another
-    // tile awaiting the same shader/texture. The caller checks its signal before publication.
-    const results = await Promise.allSettled(jobs);
     if (signal?.aborted) throw new DOMException('Preparation cancelled', 'AbortError');
     const failure = results.find((result) => result.status === 'rejected');
     if (failure?.status === 'rejected') throw failure.reason;
   }
 
-  private rememberPreparation(
-    resources: readonly { version: number }[],
-    promise: Promise<unknown>,
+  private prepareMesh(
+    mesh: THREE.Mesh,
+    lane: PreparationLane,
+    interest: WarmupInterest | 'pinned',
   ): void {
+    const need = (promise: Promise<unknown>): void => {
+      lane.jobs.add(promise);
+      const warmup = this.warmups.get(promise);
+      if (warmup === undefined || warmup.settled) return;
+      if (interest === 'pinned') warmup.pinned = true;
+      else interest.join(warmup);
+      if (!lane.background) this.admission.promote(promise);
+    };
+    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    const key = `${Boolean((mesh as THREE.InstancedMesh).isInstancedMesh)}/${Boolean((mesh as THREE.SkinnedMesh).isSkinnedMesh)}/${Object.keys(mesh.geometry.attributes).sort().join(',')}`;
+    const variants: Array<{ map: Map<string, Promise<unknown>>; key: string }> = [];
+    for (const material of materials) {
+      for (const value of Object.values(material)) {
+        if (!(value instanceof THREE.Texture)) continue;
+        const existing = this.preparedResources.get(value);
+        if (existing?.version === value.version) {
+          need(existing.promise);
+          continue;
+        }
+        const upload = this.warmup(() => this.three.initTexture(value), lane, {
+          label: 'texture-upload',
+          bytes: textureBytes(value),
+        });
+        this.rememberPreparation([value], upload);
+        need(upload.promise);
+      }
+      let map = this.warmedPrograms.get(material);
+      if (!map) {
+        map = new Map();
+        this.warmedPrograms.set(material, map);
+      }
+      const variantKey = `${material.version}/${key}`;
+      const existing = map.get(variantKey);
+      if (existing) need(existing);
+      else variants.push({ map, key: variantKey });
+    }
+    const instanced = mesh as THREE.InstancedMesh;
+    const attributes = [
+      ...Object.values(mesh.geometry.attributes).map((a) =>
+        a instanceof THREE.InterleavedBufferAttribute ? a.data : a,
+      ),
+      ...(mesh.geometry.index ? [mesh.geometry.index] : []),
+      ...(instanced.isInstancedMesh
+        ? [instanced.instanceMatrix, ...(instanced.instanceColor ? [instanced.instanceColor] : [])]
+        : []),
+    ];
+    const fresh = attributes.filter((attribute) => {
+      if (lane.glAttributes.has(attribute)) return false;
+      const existing = this.preparedResources.get(attribute);
+      if (existing?.version === attribute.version) {
+        need(existing.promise);
+        return false;
+      }
+      return true;
+    });
+    // Three keys instanced/skinned/morph node builders by object identity. LODs can share
+    // every buffer and material while still needing their own builder before first visibility.
+    const objectSpecific =
+      instanced.isInstancedMesh ||
+      (mesh as THREE.SkinnedMesh).isSkinnedMesh ||
+      mesh.morphTargetInfluences !== undefined;
+    const previousMesh = this.warmedMeshes.get(mesh);
+    if (previousMesh) need(previousMesh);
+    let compilation: Warmup | undefined;
+    if (
+      variants.length > 0 ||
+      (this.backend === 'webgpu' && (fresh.length > 0 || (objectSpecific && !previousMesh)))
+    ) {
+      const warmup = this.warmup(() => this.compileMesh(mesh), lane, {
+        label:
+          this.backend === 'webgpu' && fresh.length > 0
+            ? 'geometry-upload-and-shader'
+            : 'shader-warmup',
+        bytes:
+          this.backend === 'webgpu' ? fresh.reduce((sum, a) => sum + a.array.byteLength, 0) : 0,
+      });
+      compilation = warmup;
+      need(warmup.promise);
+      if (this.backend === 'webgpu') {
+        this.warmedMeshes.set(mesh, warmup.promise);
+        const forget = (): void => {
+          if (this.warmedMeshes.get(mesh) === warmup.promise) this.warmedMeshes.delete(mesh);
+        };
+        warmup.forget.push(forget);
+        void warmup.promise.catch(forget);
+      }
+      for (const variant of variants) {
+        variant.map.set(variant.key, warmup.promise);
+        const forget = (): void => {
+          if (variant.map.get(variant.key) === warmup.promise) variant.map.delete(variant.key);
+        };
+        warmup.forget.push(forget);
+        void warmup.promise.catch(forget);
+      }
+    }
+    if (fresh.length === 0) return;
+    if (this.backend === 'webgpu') {
+      this.rememberPreparation(fresh, compilation as Warmup);
+      return;
+    }
+    const bytes = fresh.reduce((sum, a) => sum + a.array.byteLength, 0);
+    let batch = lane.glBatches.at(-1);
+    if (!batch || batch.meshes.length >= 16 || batch.bytes + bytes > this.uploadBatchBytes) {
+      batch = { meshes: [], attributes: [], bytes: 0, interests: new Set() };
+      lane.glBatches.push(batch);
+    }
+    batch.meshes.push(mesh);
+    batch.attributes.push(...fresh);
+    batch.bytes += bytes;
+    batch.interests.add(interest);
+    for (const attribute of fresh) lane.glAttributes.add(attribute);
+  }
+
+  private flushWebGlBatches(lane: PreparationLane): void {
+    for (const batch of lane.glBatches) {
+      const upload = this.warmup(() => this.prepareWebGlGeometries(batch.meshes), lane, {
+        label: 'geometry-upload',
+        bytes: batch.bytes,
+      });
+      this.rememberPreparation(batch.attributes, upload);
+      lane.jobs.add(upload.promise);
+      for (const interest of batch.interests) {
+        if (interest === 'pinned') upload.pinned = true;
+        else interest.join(upload);
+      }
+    }
+    lane.glBatches.length = 0;
+  }
+
+  /** Queue one cancellable warm-up job in the lane's admission priority. */
+  private warmup(
+    task: () => unknown,
+    lane: PreparationLane,
+    options: { label: string; bytes: number },
+  ): Warmup {
+    const controller = new AbortController();
+    const promise = this.admission.run(task, {
+      ...options,
+      signal: controller.signal,
+      priority: lane.background ? 'background' : 'normal',
+    });
+    const warmup: Warmup = {
+      promise,
+      controller,
+      waiters: 0,
+      pinned: false,
+      settled: false,
+      forget: [],
+    };
+    const settled = (): void => {
+      warmup.settled = true;
+      warmup.forget.length = 0;
+    };
+    void promise.then(settled, settled);
+    this.warmups.set(promise, warmup);
+    return warmup;
+  }
+
+  /**
+   * Until every level is prepared, an LOD keeps showing a prepared level rather than the one it
+   * selects: drawing an unprepared level would build its shaders synchronously, mid-frame. The
+   * wanted level's background work moves to the normal lane. Three and the scene optimizer call
+   * `update` each frame for visible LODs, so the guard costs nothing elsewhere and removes itself.
+   */
+  private guardLod(lod: THREE.LOD): void {
+    if (this.guardedLods.has(lod)) return;
+    this.guardedLods.add(lod);
+    const own = Object.hasOwn(lod, 'update');
+    const update = lod.update;
+    lod.update = (camera: THREE.Camera): void => {
+      const shown = lod.levels.findIndex((level) => level.object.visible);
+      update.call(lod, camera);
+      if (this.holdUnpreparedLevel(lod, shown)) return;
+      if (own) lod.update = update;
+      else delete (lod as Partial<Pick<THREE.LOD, 'update'>>).update;
+      this.guardedLods.delete(lod);
+    };
+  }
+
+  /** Returns whether any level is still being prepared. */
+  private holdUnpreparedLevel(lod: THREE.LOD, shown: number): boolean {
+    const ready = lod.levels.map((level) => !this.pendingWithin(level.object, false));
+    if (ready.every(Boolean)) return false;
+    const wanted = lod.getCurrentLevel();
+    if (ready[wanted] === true) return true;
+    this.pendingWithin(lod.levels[wanted]?.object, true);
+    let fallback = shown >= 0 && ready[shown] === true ? shown : -1;
+    for (let offset = 1; fallback < 0 && offset < ready.length; offset++) {
+      if (ready[wanted - offset] === true) fallback = wanted - offset;
+      else if (ready[wanted + offset] === true) fallback = wanted + offset;
+    }
+    if (fallback >= 0)
+      lod.levels.forEach((level, index) => {
+        level.object.visible = index === fallback;
+      });
+    return true;
+  }
+
+  /** Whether `object` still has deferred preparation, optionally moving it to the normal lane. */
+  private pendingWithin(object: THREE.Object3D | undefined, promote: boolean): boolean {
+    let pending = false;
+    object?.traverse((child) => {
+      const interest = this.deferredMeshes.get(child);
+      if (interest === undefined) return;
+      pending = true;
+      if (promote) for (const promise of interest.promises()) this.admission.promote(promise);
+    });
+    return pending;
+  }
+
+  /** Nobody waits any longer: drop the job from every cache first, then from the queue. */
+  private cancelWarmup(warmup: Warmup): void {
+    if (warmup.settled || warmup.pinned || warmup.waiters > 0) return;
+    for (const forget of warmup.forget.splice(0)) forget();
+    warmup.controller.abort();
+  }
+
+  private rememberPreparation(resources: readonly { version: number }[], warmup: Warmup): void {
+    const promise = warmup.promise;
     for (const resource of resources)
       this.preparedResources.set(resource, { version: resource.version, promise });
-    void promise.catch(() => {
+    const forget = (): void => {
       for (const resource of resources)
         if (this.preparedResources.get(resource)?.promise === promise)
           this.preparedResources.delete(resource);
-    });
+    };
+    warmup.forget.push(forget);
+    void promise.catch(forget);
   }
 
   private compileMesh(mesh: THREE.Mesh): Promise<unknown> {
@@ -766,7 +928,7 @@ export class Renderer {
     sky?.setCloudAttenuation(weather?.cloudAttenuation ?? 0);
     sky?.update(this.environmentTimeOverride ?? this.environmentSeconds);
     // Only the environment rig is weather-managed; authored lamps remain independent.
-    this.scene.getObjectByName('$environment')?.traverse((object) => {
+    findEnvironmentRig(this.scene)?.traverse((object) => {
       if (!(object instanceof THREE.Light)) return;
       let base = this.weatherLightIntensities.get(object);
       if (!weather) {
@@ -873,7 +1035,7 @@ export class Renderer {
     this.activeSky = undefined;
     this.activeWeather?.dispose();
     this.activeWeather = undefined;
-    this.scene.getObjectByName('$environment')?.traverse((object) => {
+    findEnvironmentRig(this.scene)?.traverse((object) => {
       if (object instanceof THREE.Light) object.dispose();
     });
     this.admission.dispose();
@@ -888,6 +1050,127 @@ export class Renderer {
       (this.three as THREE.WebGLRenderer).forceContextLoss();
     }
   }
+}
+
+type Attribute = THREE.BufferAttribute | THREE.InterleavedBuffer;
+type DisposeTarget = {
+  addEventListener(type: 'dispose', listener: () => void): void;
+  removeEventListener(type: 'dispose', listener: () => void): void;
+};
+
+/** A queued warm-up job shared by every preparation that awaits it. */
+interface Warmup {
+  promise: Promise<unknown>;
+  controller: AbortController;
+  /** Interested parties that can still withdraw; an unsignalled caller pins the job instead. */
+  waiters: number;
+  pinned: boolean;
+  settled: boolean;
+  /** Drop the job from the preparation caches, synchronously, before cancelling it. */
+  forget: Array<() => void>;
+}
+
+/** One party's interest in queued warm-ups: a caller's signal, or a deferred mesh's lifetime. */
+class WarmupInterest {
+  private readonly joined = new Set<Warmup>();
+  private released = false;
+  constructor(private readonly cancel: (warmup: Warmup) => void) {}
+  join(warmup: Warmup): void {
+    if (this.released || this.joined.has(warmup)) return;
+    this.joined.add(warmup);
+    warmup.waiters++;
+  }
+  release(): void {
+    if (this.released) return;
+    this.released = true;
+    for (const warmup of this.joined) {
+      warmup.waiters--;
+      this.cancel(warmup);
+    }
+    this.joined.clear();
+  }
+  settled(): Promise<unknown> {
+    return Promise.allSettled(this.promises());
+  }
+  promises(): Promise<unknown>[] {
+    return [...this.joined].map((warmup) => warmup.promise);
+  }
+}
+
+interface PreparationLane {
+  /** Background work runs after normal admission work, and nobody awaits it. */
+  readonly background: boolean;
+  readonly jobs: Set<Promise<unknown>>;
+  readonly glAttributes: Set<Attribute>;
+  readonly glBatches: Array<{
+    meshes: THREE.Mesh[];
+    attributes: Attribute[];
+    bytes: number;
+    interests: Set<WarmupInterest | 'pinned'>;
+  }>;
+}
+
+function createLane(background: boolean): PreparationLane {
+  return { background, jobs: new Set(), glAttributes: new Set(), glBatches: [] };
+}
+
+/** World matrices as if `root` were already a child of `parent`, without attaching it. */
+function updateDetachedWorldMatrix(root: THREE.Object3D, parent: THREE.Object3D | undefined): void {
+  if (parent === undefined || root.parent !== null) {
+    root.updateWorldMatrix(true, true);
+    return;
+  }
+  parent.updateWorldMatrix(true, false);
+  root.parent = parent;
+  try {
+    root.updateWorldMatrix(false, true);
+  } finally {
+    root.parent = null;
+  }
+}
+
+/** Per automatic LOD, the levels it would not show to `camera` now; the rest are needed first. */
+function unselectedLodLevels(
+  root: THREE.Object3D,
+  camera: THREE.Camera,
+): Map<THREE.LOD, THREE.Object3D[]> {
+  const unselected = new Map<THREE.LOD, THREE.Object3D[]>();
+  root.traverse((object) => {
+    const lod = object as THREE.LOD;
+    if (!lod.isLOD || !lod.autoUpdate || lod.levels.length < 2) return;
+    lod.update(camera);
+    const selected = lod.getCurrentLevel();
+    unselected.set(
+      lod,
+      lod.levels.filter((_, index) => index !== selected).map((level) => level.object),
+    );
+  });
+  return unselected;
+}
+
+function withinAny(
+  object: THREE.Object3D,
+  root: THREE.Object3D,
+  set: Set<THREE.Object3D>,
+): boolean {
+  for (let node: THREE.Object3D | null = object; node !== null; node = node.parent) {
+    if (set.has(node)) return true;
+    if (node === root) return false;
+  }
+  return false;
+}
+
+/** Deferred work stays wanted while its mesh lives; tile eviction disposes one or the other. */
+function releaseOnDispose(mesh: THREE.Mesh, interest: WarmupInterest): void {
+  const targets = [mesh, mesh.geometry] as unknown as DisposeTarget[];
+  const release = (): void => {
+    for (const target of targets) target.removeEventListener('dispose', release);
+    interest.release();
+  };
+  for (const target of targets) target.addEventListener('dispose', release);
+  void interest.settled().then(() => {
+    for (const target of targets) target.removeEventListener('dispose', release);
+  });
 }
 
 function textureBytes(texture: THREE.Texture): number {

@@ -12,6 +12,7 @@ import {
   type MolenClient,
   type RendererBackendPreference,
 } from '@bendyline/molen-client';
+import type { AudioLayer } from '@bendyline/molen-client/audio';
 import {
   createMarkerLayer,
   type MarkerLayer,
@@ -33,6 +34,7 @@ import {
   WalkCollision,
   WalkController,
 } from '@bendyline/molen-client/navigation';
+import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackagePyramidStream,
@@ -59,6 +61,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { createEarthFog, createEarthSky, type EarthSkyStyle, updateEarthFog } from './atmosphere';
 import { type EarthCredit, earthCredits } from './attribution';
+import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
 import { earthPerformanceTier, earthPixelRatio, earthQualityLevel } from './performance';
 import { EarthVehicles } from './vehicles';
@@ -143,12 +146,23 @@ export interface EarthViewOptions {
   };
   /** Content packs; without them buildings are plain extrusions and there are no cars. */
   content?: EarthContent;
+  /**
+   * Sound from the content packs' sound banks (the `molen.sounds` pack): weather and nature
+   * ambience, footsteps, traffic and engines. Starts silent until the first click or key press.
+   * false turns it off; without a sound bank the view is silent.
+   */
+  audio?: EarthAudioOptions | false;
   /** The first view. */
   camera: EarthCameraTarget;
   /** `'auto'` adapts to measured frame times (default). */
   quality?: 'auto' | TerrainQualityPreset;
   /** Worker factories; each piece of work runs in-thread without its worker. */
   workers?: EarthViewWorkers;
+  /**
+   * Keep baked building materials across visits, e.g. `createIndexedDbMaterialStore()` from
+   * `@bendyline/molen-client`; a later visit reads them instead of baking.
+   */
+  materialStore?: BakedMaterialStore;
   style?: EarthViewStyle;
   /** Keyboard target (default the canvas, which should have `tabindex="0"`). */
   keyTarget?: NavigationKeyTarget;
@@ -174,6 +188,8 @@ export interface EarthViewEvents {
   modechange: { mode: EarthViewMode };
   /** A short explanation for the user, e.g. why a vehicle could not be entered. */
   message: { text: string };
+  /** Sound loaded: `view.audio` is now set (volume, mute, bus gains). */
+  audioready: Record<string, never>;
 }
 
 export interface EarthViewStats {
@@ -214,6 +230,8 @@ export interface EarthView {
   /** Resolves when the terrain for the current view has streamed in. */
   whenIdle(): Promise<void>;
   stats(): EarthViewStats;
+  /** The sound layer (volume, mute, bus gains) once it has loaded; undefined when silent. */
+  readonly audio: AudioLayer | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
   setPaused(paused: boolean): void;
   dispose(): void;
@@ -431,8 +449,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 quality: quality(),
                 lodPolicy,
                 ...(options.workers !== undefined ? { workers: options.workers } : {}),
-                prepareObject: (object, prepareSignal) =>
-                  renderer.prepareObject(object, prepareSignal),
+                ...(options.materialStore !== undefined
+                  ? { materialStore: options.materialStore }
+                  : {}),
+                prepareObject: (object, prepareSignal, parent) =>
+                  renderer.prepareObject(object, prepareSignal, parent),
                 onMaterialFailures: (failures) =>
                   report(new Error([...failures.keys()].join(', ')), 'worldgen materials'),
               })
@@ -478,7 +499,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ...budget,
           ...(elevationWorker !== undefined ? { elevationWorker } : {}),
           admission: renderer.admission,
-          prepareObject: (object, prepareSignal) => renderer.prepareObject(object, prepareSignal),
+          prepareObject: (object, prepareSignal, parent) =>
+            renderer.prepareObject(object, prepareSignal, parent),
           createTileGroup: () => renderer.createRenderGroup(),
           morphMilliseconds: 180,
           layers,
@@ -576,6 +598,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       markerclick: new Set(),
       modechange: new Set(),
       message: new Set(),
+      audioready: new Set(),
     };
     const emit = <K extends keyof EarthViewEvents>(event: K, payload: EarthViewEvents[K]): void => {
       for (const handler of listeners[event]) {
@@ -590,7 +613,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Navigation state.
     let mode: EarthViewMode = 'orbit';
     const walker = new WalkController();
-    const collision = new WalkCollision();
+    // Scanning every visible mesh each frame is the walk mode's largest fixed cost; 5 Hz rescans
+    // still catch streamed changes, and placement below forces a scan.
+    const collision = new WalkCollision({ rescanIntervalMs: 200 });
     const look = { yaw: 0, pitch: 0 };
 
     const applyProfile = (): void => {
@@ -824,6 +849,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       );
       look.yaw = turned.yaw;
       look.pitch = turned.pitch;
+      // Placement must see everything that has streamed in, not a tree up to 200 ms old.
+      if (!walker.ready) collision.invalidate();
       collision.update(current.stream.object, walker.feet.x, walker.feet.z);
       if (!walker.ready) {
         const stats = current.stream.stats();
@@ -891,6 +918,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       return { position: view.position, lookAt: view.lookAt, direction };
     };
 
+    let audio: EarthAudio | undefined;
+    let audioStack: EarthStack | undefined;
+    if (options.audio !== false && content !== undefined) {
+      void createEarthAudio(content.packs, renderer, options.audio ?? {})
+        .then((started) => {
+          if (disposed) started?.dispose();
+          else if (started !== undefined) {
+            audio = started;
+            emit('audioready', {});
+          }
+        })
+        .catch((error: unknown) => report(error, 'audio'));
+      disposers.push(() => audio?.dispose());
+    }
+
     const frame = (now: number): void => {
       frameHandle = requestAnimationFrame(frame);
       const frameMs = now - last;
@@ -949,6 +991,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       markers.update(pose.position);
       viewer.setCamera({ position: pose.position, lookAt: pose.lookAt });
+      if (audio !== undefined) {
+        if (audioStack !== current) {
+          audioStack = current;
+          audio.attachWorld(current?.vehicles?.world);
+        }
+        const ground = groundHeight(pose.position[0], pose.position[2]);
+        audio.update({
+          nowMs: now,
+          position: pose.position,
+          forward: pose.direction,
+          mode,
+          ...(ground !== undefined ? { heightAboveGround: pose.position[1] - ground } : {}),
+          ...(mode === 'walk' ? { grounded: walker.grounded } : {}),
+        });
+      }
       const origin = renderer.getWorldOrigin();
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
       viewer.renderFrame();
@@ -990,6 +1047,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       },
       get mode() {
         return mode;
+      },
+      get audio() {
+        return audio?.layer;
       },
       setMode,
       flyTo(target, flyOptions = {}) {
@@ -1044,6 +1104,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       setPaused(next) {
         if (next === paused || disposed) return;
         paused = next;
+        audio?.layer.setSuspended(paused);
         if (paused) {
           cancelAnimationFrame(frameHandle);
           input.map.reset();

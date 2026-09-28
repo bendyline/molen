@@ -1,0 +1,57 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-audio",
+  "path": "/?synthetic=1&quality=balanced&freeze=1&lat=47.62145000&lon=-122.01290236&alt=415&yaw=-1.5708&style=none&weather=sunny",
+  "viewport": [1280, 720],
+  "probes": [
+    { "name": "sound", "selector": "#sound-status" },
+    { "name": "navigation", "selector": "#navigation-status" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 800,
+      "timeoutMs": 240000
+    },
+    { "type": "wait-for", "selector": "#sound-status", "text": "Playing", "timeoutMs": 60000 },
+    { "type": "click", "selector": "button[data-navigation=\"walk\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "On ground",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait-for",
+      "selector": "#sound-status",
+      "text": "ambience.birds",
+      "timeoutMs": 30000
+    },
+    { "type": "wait", "durationMs": 1500 },
+    { "type": "screenshot", "name": "01-walk" },
+    { "type": "click", "selector": "button[data-navigation=\"fly\"]" },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status",
+      "text": "Fly mode",
+      "timeoutMs": 60000
+    },
+    { "type": "wait", "durationMs": 1500 },
+    { "type": "screenshot", "name": "02-fly-low" },
+    { "type": "keys", "keys": ["KeyE"], "durationMs": 3000 },
+    { "type": "wait", "durationMs": 3000 },
+    { "type": "screenshot", "name": "03-fly-high" },
+    { "type": "select", "selector": "#weather-profile", "value": "rain" },
+    {
+      "type": "wait-for",
+      "selector": "#sound-status",
+      "text": "ambience.rain",
+      "timeoutMs": 30000
+    },
+    { "type": "wait", "durationMs": 3000 },
+    { "type": "screenshot", "name": "04-rain" }
+  ]
+}

@@ -90,6 +90,22 @@ simulation. Validation, headless play, replay/checkpoints, browser play, and scr
 the same scene and scripts. The new camera and platform services remove duplicated host logic
 and sample-specific collision solvers from ordinary game authoring.
 
+## Sound
+
+Each game annotates its scene for sound, and `src/audio.ts` plays it from the `molen.sounds` pack:
+
+| Sample | Scene data | Script calls |
+| --- | --- | --- |
+| City Courier | City traffic ambience, racing music; an engine on the player pitched by `self.speed` and quieter engines on the traffic cars; `crash` and `delivery` events mapped to sounds | `molen.audio.play('sting.win')` when the route is complete, `'ui.error'` on a loss |
+| The Lantern Vault | Dungeon ambience and music, stone footsteps, a draft `audioZone` by the vault; `strike`, `hurt`, `heal`, `key-found`, `gate-opened` and `victory` mapped to sounds | `molen.audio.play('weapon.slash')` on every swing |
+| Skybound | Wind that rises with the camera (`listener.y`), heroic music; pickups, stomps, checkpoint, respawn and victory mapped to sounds | `molen.audio.play('game.jump')` on a jump that can happen |
+| Top-down arena | Arena music; `player-hit` mapped to a hit sound | `molen.emit('player-hit', …)` on contact |
+
+`npx molen audio plan scene.json --ticks 300 --commands commands.json` prints what each one plays.
+In a copy made with `--template`, fetch the sounds first with
+`npx molen pack fetch https://molen.dev/packs/index.json molen.sounds --out-dir public/packs`.
+See [Sound and music](audio.md).
+
 These are compact single-player examples, not demonstrations of authoritative remote servers,
 network prediction, vehicle suspension, full tabletop rules, or large-world streaming. The
 world-explorer and terrain-flyover samples remain the terrain starting points.

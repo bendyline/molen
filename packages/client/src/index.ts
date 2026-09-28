@@ -59,6 +59,7 @@ export type { InputBindings, InputGamepad, InputMapOptions } from './input';
 export { InputMap, normalizeInputAxis, resolveAction } from './input';
 export type { InterpTransform } from './interpolation';
 export { InterpolationBuffer } from './interpolation';
+export { createIndexedDbMaterialStore } from './material-store';
 export { lerp3, nlerp4 } from './math';
 export type { ModelSignals, ModelSignalVisual } from './model-signals';
 export { createModelSignalVisual, readModelSignals } from './model-signals';

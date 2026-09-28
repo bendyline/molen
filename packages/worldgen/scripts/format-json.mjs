@@ -3,8 +3,28 @@
  * objects and arrays inline when they fit, numeric arrays filled line by line otherwise), so
  * generated documents are byte-stable under `biome check`.
  */
+import { execFileSync } from 'node:child_process';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const WIDTH = 100;
+const biome = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../node_modules/@biomejs/biome/bin/biome',
+);
+
+/**
+ * `JSON.stringify(value, null, 2)` run through `biome format`, trailing newline included. Biome
+ * keeps an object expanded when its input is, so this is not `formatJson`: it reproduces what
+ * `biome check --write` makes of a 2-space document, which source bundles whose bytes are pinned
+ * by QA hashes already contain.
+ */
+export function biomeJson(value, path) {
+  return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
+    input: JSON.stringify(value, null, 2),
+    encoding: 'utf8',
+  });
+}
 
 export function formatJson(value, indent = 0, prefix = 0) {
   if (value === null || typeof value !== 'object') return JSON.stringify(value);

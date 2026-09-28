@@ -96,8 +96,15 @@ export interface WorldgenRendererOptions {
   generator?: WorldgenGenerator;
   /** CPU-side cache of generated tiles keyed by pack, atlas, quality, and address. */
   cache?: WorldgenTileCache;
-  /** Prepare replacement architecture before a resident quality change becomes visible. */
-  prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
+  /**
+   * Prepare replacement architecture before a resident quality change becomes visible. `parent`
+   * is the layer object the replacement will join.
+   */
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
   onTileStats?: (output: WorldgenTileOutput, generateMs: number) => void;
 }
 
@@ -603,7 +610,7 @@ export function createWorldgenSemanticRenderers(
           if (controller.signal.aborted) continue;
           replacement.add(await assembleBuildings(generated.output, context, root.name));
           if (controller.signal.aborted || !residents.has(root) || preset !== quality) continue;
-          await options.prepareObject?.(replacement, controller.signal);
+          await options.prepareObject?.(replacement, controller.signal, root);
           const publish = (): void => {
             if (
               controller.signal.aborted ||

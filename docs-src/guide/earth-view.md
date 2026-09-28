@@ -84,8 +84,8 @@ the destination's terrain region. `stats().frameLatitude` reports the current an
 Without `content` the view still draws terrain, water, roads and extruded buildings. Content packs
 add styled architecture, recognizable businesses, street furniture, trees and drivable cars:
 
-- `openPacksFromIndex(indexUrl)` opens `molen.entities`, `molen.worldgen.default`, `molen.earth`
-  and `molen.sky` from a pack index you host.
+- `openPacksFromIndex(indexUrl)` opens `molen.entities`, `molen.worldgen.default`, `molen.earth`,
+  `molen.sky` and `molen.sounds` from a pack index you host.
 - `loadEarthContent(packs)` reads them. A missing pack turns its feature off instead of failing.
 
 The terrain package can reference split archive families (`pmtiles-set` sources), or you can pass
@@ -265,6 +265,27 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 - `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 
+## Sound
+
+With the `molen.sounds` pack in `content`, the view plays the Earth soundscape: rain and wind
+from the weather, birds by day and crickets at night, traffic near streets, footsteps while
+walking, and an engine on the car or aircraft you board. Birds, crickets and traffic come from
+the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
+up. Traffic also fades with distance from the nearest street. Sound starts on the first click or
+key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
+mute and bus gains (`view.audio.setBusGain('music', 0)` turns music off).
+
+```ts
+const view = await mountEarthView({ canvas, content, terrain, audio: { volume: 0.6, music: false } });
+view.on('audioready', () => view.audio?.setMuted(localStorage.getItem('muted') === '1'));
+```
+
+Pass `audio: false` to keep the view silent, or `audio: { environment }` to replace the rules.
+The default rules are exported as `EARTH_AUDIO_ENVIRONMENT`, and `createEarthAudio` builds the
+same soundscape for a host that composes its own view. See [Sound and music](audio.md) for the
+rule format.
+
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,
-`EarthVehicles`, `createEarthSky`/`createEarthFog`, `earthPerformanceTier` and `earthCredits`.
+`EarthVehicles`, `createEarthSky`/`createEarthFog`, `createEarthAudio`, `earthPerformanceTier` and
+`earthCredits`.
 The [World Explorer](https://molen.dev/play/world-explorer/) sample is built from them.

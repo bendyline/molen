@@ -101,7 +101,9 @@ and every sample template already carry the setting.
 
 ## Feedback from the simulation
 
-The client exposes what a HUD, sound, or win screen needs — no wire-protocol parsing:
+The client exposes what a HUD, sound, or win screen needs — no wire-protocol parsing. For sound,
+`createAudioLayer(...).attachClient(client)` from `@bendyline/molen-client/audio` plays a scene's
+audio rules and `molen.audio.*` events; see [Sound and music](audio.md).
 
 ```ts
 client.onEvent('collision', (e, tick) => flash());

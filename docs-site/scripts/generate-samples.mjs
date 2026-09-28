@@ -138,11 +138,13 @@ const SAMPLES = [
       'Earth projection',
       'Worldgen style packs',
       'Adaptive performance',
+      'Weather-driven soundscape',
     ],
     guides: [
       ['Terrain', '/guide/terrain'],
       ['Worldgen', '/guide/worldgen'],
       ['Adaptive performance', '/guide/adaptive-performance'],
+      ['Sound and music', '/guide/audio'],
     ],
   },
   {
@@ -159,10 +161,12 @@ const SAMPLES = [
       'Follow cameras',
       'Win/loss/restart loop',
       'Victory regression',
+      'Sound from scene data',
     ],
     guides: [
       ['Game samples', '/guide/game-samples'],
       ['Vehicles', '/guide/vehicles'],
+      ['Sound and music', '/guide/audio'],
     ],
   },
   {

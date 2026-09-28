@@ -69,6 +69,7 @@ probe — a pinned backend is what makes a captured frame reproducible.
 | `./aircraft` | `createAircraftVisual`, `aircraftCameraPose` — animated airframe and instrumented cockpit, the render half of `@bendyline/molen-kernel/aircraft` |
 | `./navigation` | `OrbitController`, `FlyController`, `WalkController` + `WalkCollision`, `FollowController`, `NavigationInputSource` (keys, gamepad, pointer gestures) and `createTouchJoystick` — camera navigation for `createViewer` hosts |
 | `./markers` | `createMarkerLayer`, `composeMarkerImage`, `projectWorldToScreen` — screen-sized, ground-snapped, pickable world markers such as photo pins |
+| `./audio` | `createAudioLayer`, `AudioDirector`, `WebAudioBackend`, `loadPackSoundbanks`, `attachAutoplayUnlock` — plays sound banks and a scene's `audioEnvironment`/`audioSource`/`audioZone` rules and `molen.audio.*` events; three-free at runtime, so the director also runs in Node |
 
 Renderables are data, not three.js objects: primitives and glTF assets described by a
 `renderable` component, with materials resolved from `palette:`, `matgraph:` and `pixelgrid:`

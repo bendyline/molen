@@ -28,6 +28,14 @@ export const defaultEnvironment: EnvironmentData = {
 
 const RIG_NAME = '$environment';
 
+/**
+ * The environment rig, always a direct child of the scene. `getObjectByName` would search the
+ * world graph first (every resident tile, hidden or not) before reaching it.
+ */
+export function findEnvironmentRig(scene: THREE.Scene): THREE.Object3D | undefined {
+  return scene.children.find((child) => child.name === RIG_NAME);
+}
+
 const SHADOW_MAP_SIZE: Record<'low' | 'medium' | 'high', number> = {
   low: 1024,
   medium: 2048,
@@ -42,7 +50,7 @@ const SHADOW_MAP_SIZE: Record<'low' | 'medium' | 'high', number> = {
 export function applyEnvironment(renderer: Renderer, env: EnvironmentData): void {
   renderer.setSky(env.sky, env.shadows ?? 'off');
   const scene = renderer.scene;
-  const existing = scene.getObjectByName(RIG_NAME);
+  const existing = findEnvironmentRig(scene);
   if (existing !== undefined) {
     existing.traverse((object) => {
       if ((object as THREE.Light).isLight) (object as THREE.Light).dispose();

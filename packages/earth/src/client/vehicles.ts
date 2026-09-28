@@ -2,6 +2,7 @@ import { readModelSignals } from '@bendyline/molen-client';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   createVehicleVisual,
+  setParkedVehicleHidden,
   type VehicleCameraPose,
   type VehicleVisual,
   vehicleCameraPose,
@@ -67,9 +68,15 @@ export class EarthVehicles {
   private retained = new Set<string>();
   private nearby = new Set<string>();
   private disposed = false;
-  private readonly collision = new WalkCollision(true);
-  private readonly matrix = new THREE.Matrix4();
-  private readonly hidden = new THREE.Matrix4().makeScale(0, 0, 0);
+  // Cars move fast and only ever meet geometry near road level: a wider neighborhood rebuilt every
+  // 12 m, a vertical band around the car, and 5 Hz rescans keep the tree cheap at speed.
+  private readonly collision = new WalkCollision({
+    ignoreVehicles: true,
+    radius: 32,
+    rebuildDistance: 12,
+    verticalRadius: 24,
+    rescanIntervalMs: 200,
+  });
   private lastSync = -Infinity;
 
   private readonly root: THREE.Object3D;
@@ -112,11 +119,12 @@ export class EarthVehicles {
     if (now - this.lastSync < 200) return;
     this.lastSync = now;
     const resident = new Map<string, VehiclePlacement>();
-    const batches: THREE.InstancedMesh[] = [];
+    const batches: THREE.Mesh[] = [];
     this.root.traverseVisible((object) => {
       for (const p of (object.userData.vehicles ?? []) as VehiclePlacement[])
         if (!resident.has(p.id)) resident.set(p.id, p);
-      if (object instanceof THREE.InstancedMesh && object.userData.vehicleIds) batches.push(object);
+      if ((object as THREE.Mesh).isMesh && object.userData.vehicleIds)
+        batches.push(object as THREE.Mesh);
     });
     for (const [id, p] of resident)
       if (!this.world.exists(id)) {
@@ -168,37 +176,12 @@ export class EarthVehicles {
     const visible = new Set<string>();
     for (const mesh of batches) {
       const ids = mesh.userData.vehicleIds as string[];
-      let changed = false;
       for (let i = 0; i < ids.length; i++) {
         const id = ids[i] as string;
         const hide =
           this.active.has(id) || (this.retained.has(id) && this.loading.has(id)) || visible.has(id);
-        mesh.getMatrixAt(i, this.matrix);
-        const wasHidden =
-          this.matrix.elements[0] === 0 &&
-          this.matrix.elements[5] === 0 &&
-          this.matrix.elements[10] === 0;
-        if (hide && !wasHidden) {
-          mesh.userData.vehicleMatrices ??= new Map<number, THREE.Matrix4>();
-          const saved = mesh.userData.vehicleMatrices as Map<number, THREE.Matrix4>;
-          saved.set(i, this.matrix.clone());
-          mesh.setMatrixAt(i, this.hidden);
-          changed = true;
-        } else if (!hide && wasHidden) {
-          const saved = (
-            mesh.userData.vehicleMatrices as Map<number, THREE.Matrix4> | undefined
-          )?.get(i);
-          if (saved) {
-            mesh.setMatrixAt(i, saved);
-            changed = true;
-          }
-        }
+        setParkedVehicleHidden(mesh, i, hide);
         if (!hide) visible.add(id);
-      }
-      if (changed) {
-        mesh.instanceMatrix.needsUpdate = true;
-        mesh.computeBoundingSphere();
-        mesh.computeBoundingBox();
       }
     }
   }
@@ -318,7 +301,7 @@ export class EarthVehicles {
     this.message = '';
     const id = this.nearest(position);
     if (!id) return false;
-    this.collision.update(this.root, position[0], position[2]);
+    this.collision.update(this.root, position[0], position[2], position[1]);
     this.world.patch(PLAYER, Transform, { pos: [...position] });
     const t = this.world.get(id, Transform);
     if (!t) return false;
@@ -358,7 +341,8 @@ export class EarthVehicles {
     this.message = '';
     const id = this.mountedId;
     const transform = id ? this.world.get(id, Transform) : undefined;
-    if (transform) this.collision.update(this.root, transform.pos[0], transform.pos[2]);
+    if (transform)
+      this.collision.update(this.root, transform.pos[0], transform.pos[2], transform.pos[1]);
     if (!unmountEntity(this.world, PLAYER, this.environment)) {
       this.message =
         Math.abs(this.speed) > 0.7
@@ -372,7 +356,7 @@ export class EarthVehicles {
     const id = this.mountedId;
     if (id && this.world.has(id, Vehicle)) {
       const t = this.world.get(id, Transform);
-      if (t) this.collision.update(this.root, t.pos[0], t.pos[2]);
+      if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
       driveVehicle(this.world, PLAYER, input);
     }
     this.accumulator += Math.min(0.1, Math.max(0, dt));

@@ -1,3 +1,5 @@
+export type { BakedMaterialStore } from './bake-store';
+export { materialBakerFingerprint, withBakedMaterialStore } from './bake-store';
 export type { MaterialBaker, MaterialBakeWorker } from './bake-worker';
 export { createMaterialBakeWorkerPool, installMaterialBakeWorker } from './bake-worker';
 export { bakeMatGraph } from './matgraph';

@@ -221,3 +221,106 @@ it('keeps walking collision stable as distant regions stream, but refreshes near
   expect(build).toHaveBeenCalledTimes(3);
   expect(collision.origin.x).toBe(4000);
 });
+
+describe('collision neighborhood options', () => {
+  it('rescans on the interval, on movement, or when invalidated', () => {
+    let clock = 0;
+    const root = new THREE.Group();
+    root.add(box(200, 1, 200, 0, -0.5, 0));
+    const collision = new WalkCollision({ rescanIntervalMs: 200, now: () => clock });
+    collision.update(root, 0, 0);
+    const build = vi.spyOn(collision.octree, 'build');
+    const wall = box(1, 5, 10, 4, 2.5, 0);
+    root.add(wall);
+    collision.update(root, 0, 0);
+    expect(build).not.toHaveBeenCalled();
+    clock = 199;
+    collision.update(root, 0, 0);
+    expect(build).not.toHaveBeenCalled();
+    clock = 200;
+    collision.update(root, 0, 0);
+    expect(build).toHaveBeenCalledTimes(1);
+    wall.visible = false;
+    collision.update(root, 0, 0);
+    expect(build).toHaveBeenCalledTimes(1);
+    collision.invalidate();
+    collision.update(root, 0, 0);
+    expect(build).toHaveBeenCalledTimes(2);
+    wall.visible = true;
+    collision.update(root, 6, 0);
+    expect(build).toHaveBeenCalledTimes(3);
+    expect(collision.origin.x).toBe(6);
+  });
+
+  it('bounds the neighborhood vertically for airborne subjects', () => {
+    const root = new THREE.Group();
+    root.add(box(200, 1, 200, 0, -0.5, 0));
+    const collision = new WalkCollision({ verticalRadius: 20 });
+    const down = new THREE.Vector3(0, -1, 0);
+    collision.update(root, 0, 0, 100);
+    expect(
+      collision.octree.rayIntersect(new THREE.Ray(new THREE.Vector3(0, 105, 0), down)),
+    ).toBeFalsy();
+    // Descending by more than the rebuild distance recenters the band onto the ground.
+    collision.update(root, 0, 0, 10);
+    const hit = collision.octree.rayIntersect(new THREE.Ray(new THREE.Vector3(0, 15, 0), down));
+    expect(hit ? hit.distance : undefined).toBe(15);
+    // Without a y the same tree spans the whole column, as a walker's placement ray needs.
+    const column = new WalkCollision({ verticalRadius: 20 });
+    column.update(root, 0, 0);
+    const far = column.octree.rayIntersect(new THREE.Ray(new THREE.Vector3(0, 10_000, 0), down));
+    expect(far ? far.distance : undefined).toBe(10_000);
+  });
+
+  it('honors a wider radius and rebuild distance', () => {
+    const root = new THREE.Group();
+    // Finely tessellated ground: triangles are kept whole, so coarse ones would reach past the radius.
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400, 100, 100));
+    ground.rotation.x = -Math.PI / 2;
+    root.add(ground);
+    const collision = new WalkCollision({ radius: 48, rebuildDistance: 24 });
+    collision.update(root, 0, 0);
+    const build = vi.spyOn(collision.octree, 'build');
+    const down = new THREE.Vector3(0, -1, 0);
+    const at = (x: number): number | undefined => {
+      const hit = collision.octree.rayIntersect(new THREE.Ray(new THREE.Vector3(x, 5, 0), down));
+      return hit ? hit.distance : undefined;
+    };
+    expect(at(40)).toBe(5);
+    expect(at(60)).toBeUndefined();
+    collision.update(root, 20, 0);
+    expect(build).not.toHaveBeenCalled();
+    collision.update(root, 24, 0);
+    expect(build).toHaveBeenCalledTimes(1);
+    expect(() => new WalkCollision({ radius: 10, rebuildDistance: 10 })).toThrow(RangeError);
+  });
+
+  it('walks large geometries through their spatial index with the same result', () => {
+    const root = new THREE.Group();
+    // 80,000 triangles: well above the indexing threshold, like a terrain tile.
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(800, 800, 200, 200));
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = 3;
+    root.add(ground);
+    const collision = new WalkCollision();
+    collision.update(root, 100, -50);
+    const down = new THREE.Vector3(0, -1, 0);
+    const heightAt = (x: number, z: number): number | undefined => {
+      const hit = collision.octree.rayIntersect(
+        new THREE.Ray(new THREE.Vector3(x - collision.origin.x, 20, z - collision.origin.z), down),
+      );
+      return hit ? hit.position.y : undefined;
+    };
+    expect(heightAt(100, -50)).toBeCloseTo(3, 6);
+    expect(heightAt(120, -30)).toBeCloseTo(3, 6);
+    expect(heightAt(77, -73)).toBeCloseTo(3, 6);
+    expect(heightAt(130, -50)).toBeUndefined();
+    const walker = new WalkController();
+    walker.reset(100, -50);
+    expect(walker.place(collision, () => 3)).toBe(true);
+    for (let i = 0; i < 60; i++)
+      walker.update(1 / 60, { ...STILL, forward: 1 }, collision, () => 3);
+    expect(walker.feet.y).toBeCloseTo(3, 3);
+    expect(walker.grounded).toBe(true);
+  });
+});

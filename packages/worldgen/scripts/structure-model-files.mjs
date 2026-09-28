@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { biomeJson } from './format-json.mjs';
 
 export const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 export const content = resolve(root, 'content/worldgen');
@@ -24,7 +25,7 @@ export async function registerSourceDocuments(dir, paths) {
   const manifest = await readOptionalJson(path);
   if (!manifest) throw new Error(`Missing source manifest in ${dir}`);
   manifest.files.documents = [...new Set([...manifest.files.documents, ...paths])];
-  await writeFile(path, `${JSON.stringify(manifest, null, 2)}\n`);
+  await writeFile(path, biomeJson(manifest, path));
 }
 
 export async function authoredModels() {

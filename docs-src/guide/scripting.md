@@ -88,6 +88,7 @@ A script may also declare `function setup(molen, config) { … }` instead of top
 | `get` / `set` / `patch` / `remove` / `has` | `(id, component, …)` | component is a **string name**; `set` and the final shallow-merged `patch` value are validated against this world's vocabulary |
 | `query` | `(...componentNames)` | iterable result with `.ids()`, `.count()`, `.first()`, `.without(...names)` |
 | `emit` | `(type, payload)` | events reach other scripts, `molen.on` handlers, the client (`client.onEvent`), and `drive`/assert |
+| `audio` | `molen.audio.play(sound, { entity?, position?, gain?, pitch?, bus?, loop? })` → handle / `stop(handle \| { entity?, sound? }, fadeS?)` / `music(playlist \| null)` | sound one-shots, loops and music; each call emits an `audio.*` event and never changes simulation state. See [audio.md](audio.md) |
 | `raycast` / `overlapCircle` | spatial queries (kinematics layer) | |
 | `after` / `every` | `(ticks, event, payload?)` | snapshot-safe world timers that EMIT (no callbacks); returns timer id. The handler receives `{ entity, timerId, payload }`. |
 | `cancelTimer` | `(timerId, entity?)` | |
