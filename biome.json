@@ -12,7 +12,9 @@
       "!**/.tmp",
       "!spikes",
       "!docs-site/.vitepress/cache",
-      "!examples/*/public/packs"
+      "!examples/*/public/packs",
+      "!content/entities/gen",
+      "!content/entities/types/generated-scripts"
     ]
   },
   "formatter": {
@@ -41,8 +43,33 @@
       "includes": ["**/*.vue"],
       "linter": {
         "rules": {
-          "correctness": { "noUnusedVariables": "off", "noUnusedImports": "off" }
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
         }
+      }
+    },
+    {
+      "includes": [
+        "content/**/assets/**/*.json",
+        "content/**/source/**/*.json",
+        "content/entities/types/**/*.json",
+        "content/entities/scenes/**/*.json",
+        "content/worldgen/styles/**/*.json",
+        "content/worldgen/landmarks/**/*.json",
+        "content/worldgen/scatter/**/*.json",
+        "content/worldgen/fixtures/**/*.json",
+        "content/worldgen/interiors/**/*.json",
+        "content/worldgen/structures/**/*.json",
+        "content/earth/businesses/catalog.json",
+        "content/earth/structures/evidence/bridge-terrain/**/*.json",
+        "content/earth/world.atlas.json",
+        "examples/**/captures/**/*.json",
+        "examples/**/public/terrain/**/SOURCES.json"
+      ],
+      "formatter": {
+        "enabled": false
       }
     }
   ]

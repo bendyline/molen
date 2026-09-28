@@ -5,12 +5,22 @@ dist-types/
 coverage/
 .tmp/
 shots/
+# Authored structure reviews and gallery images are part of their source bundles.
+!content/worldgen/source/places/**/shots/
+!content/worldgen/source/places/**/shots/**
+!content/worldgen/source/reusable/**/shots/
+!content/worldgen/source/reusable/**/shots/**
+!content/worldgen/source/map-structures/*/shots/
+!content/worldgen/source/map-structures/*/shots/**
 test-results/
 .turbo/
 .artifacts/
 .pnpm-store/
 debug.log
 .DS_Store
+# Full-detail model binaries are restored from hash-pinned GitHub release asset packs.
+# See asset-lock.json and content/ASSET-PACKS.md. Keep generators and sidecars in Git.
+*.glb
 examples/*/public/packs/
 
 # docs-site: pages generated from packages/, docs-src/ and examples/ (pnpm docs:site:gen).

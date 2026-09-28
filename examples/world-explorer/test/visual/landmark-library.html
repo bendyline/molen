@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Landmark library review</title>
+    <style>
+      body { margin: 0; background: #bfcfda; font-family: system-ui, sans-serif; }
+      canvas { display: block; }
+      #caption { position: fixed; top: 18px; left: 24px; color: #18313b; }
+      h1 { margin: 0; font-size: 24px; }
+      p { font-size: 14px; margin: 6px 0; }
+      #status { position: fixed; bottom: 18px; left: 24px; background: #18313bea;
+        color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <div id="caption"><h1 id="title">Landmark library</h1><p id="detail"></p></div>
+    <div id="status">Loading shared material library</div>
+    <script type="module" src="./landmark-library.ts"></script>
+  </body>
+</html>

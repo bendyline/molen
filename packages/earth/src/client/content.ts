@@ -23,6 +23,7 @@ import {
   type StructureCatalogDoc,
   type StructureIndex,
 } from '@bendyline/molen-worldgen-earth/kernel';
+import { withModelArchives } from './model-archives';
 
 /** Content-pack ids an Earth view looks for. */
 export const EARTH_PACK_IDS: {
@@ -121,7 +122,8 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
 
 /**
  * Open the packs with the given ids from a `molen/pack-index@1` document at `indexUrl`, in
- * parallel and hash-checked. Ids the index does not list are skipped.
+ * parallel and hash-checked. Ids the index does not list are skipped. The supplied fetch
+ * handles the index, archive opening and later asset range requests.
  */
 export async function openPacksFromIndex(
   indexUrl: string | URL,
@@ -132,17 +134,44 @@ export async function openPacksFromIndex(
   const response = await fetchImpl(url);
   if (!response.ok) throw new Error(`content packs: HTTP ${response.status} for ${url}`);
   const index = (await response.json()) as PackIndex;
-  const opened = await Promise.all(
-    ids.map((id) => {
+  const opened = await Promise.allSettled(
+    ids.map(async (id) => {
       const entry = index.packs[id];
       if (entry === undefined) return undefined;
-      return openPack(new URL(entry.file, url).href, {
+      const core = await openPack(new URL(entry.file, url).href, {
+        fetch: fetchImpl,
         sizeHint: entry.size,
         expect: { contentHash: entry.contentHash },
       });
+      try {
+        return await withModelArchives(core, (archiveId, contentHash, signal) => {
+          const archive = index.packs[archiveId];
+          if (!archive || archive.contentHash !== contentHash)
+            throw new Error(`Missing or stale model archive in index: ${archiveId}`);
+          return openPack(new URL(archive.file, url).href, {
+            fetch: fetchImpl,
+            mode: 'range',
+            sizeHint: archive.size,
+            expect: { contentHash },
+            integrity: 'sha256',
+            maxCacheBytes: 4 * 1024 * 1024,
+            signal,
+          });
+        });
+      } catch (error) {
+        core.close();
+        throw error;
+      }
     }),
   );
-  return opened.filter((pack): pack is Pack => pack !== undefined);
+  const failure = opened.find((result) => result.status === 'rejected');
+  if (failure?.status === 'rejected') {
+    for (const result of opened) if (result.status === 'fulfilled') result.value?.close();
+    throw failure.reason;
+  }
+  return opened.flatMap((result) =>
+    result.status === 'fulfilled' && result.value ? [result.value] : [],
+  );
 }
 
 /** Read what an Earth view needs from opened packs. Missing packs turn features off, not errors. */

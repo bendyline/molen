@@ -88,9 +88,13 @@ describe('lazy interior lifecycle', () => {
         Array.isArray((o as THREE.Mesh).material)
           ? (o as THREE.Mesh).material
           : [(o as THREE.Mesh).material],
-      ) as THREE.MeshLambertMaterial[]
+      ) as THREE.MeshStandardMaterial[]
     ).find((m) => m.map !== null);
     if (!textured?.map) throw new Error('No shared texture');
+    expect(textured.isMeshStandardMaterial).toBe(true);
+    expect(textured.roughness).toBe(0.9);
+    expect(textured.metalness).toBe(0);
+    expect(textured.vertexColors).toBe(true);
     const materialDispose = vi.spyOn(textured, 'dispose'),
       textureDispose = vi.spyOn(textured.map, 'dispose');
     settle(stream, [50, 4.7, 10], 40);

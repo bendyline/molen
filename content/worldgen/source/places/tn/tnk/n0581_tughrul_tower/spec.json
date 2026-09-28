@@ -1,0 +1,165 @@
+{
+  "id": "N0581",
+  "planId": "N0581",
+  "assetId": "molen.worldgen.structure.n0581_tughrul_tower",
+  "title": "Tughrul Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q3437688"
+  },
+  "wikidataId": "Q3437688",
+  "visualBrief": "The current roofless Seljuk mausoleum at Rey: a deep stellar brick shaft, opposed entry portals, three ranks of recessed muqarnas beneath the corbelled brick cornice, reconstructed upper band and a genuinely open cylindrical court.",
+  "size": [
+    16.8,
+    20,
+    16.8
+  ],
+  "actualBounds": {
+    "min": [
+      -8.399999618530273,
+      0,
+      -8.399999618530273
+    ],
+    "max": [
+      8.399999618530273,
+      20,
+      8.399999618530273
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the lighter southern entry portal; −Z is the northern portal with the elevated staircase opening",
+    "origin": "Mapped current tower center at ground contact Y=0"
+  },
+  "scaleBasis": "Bernard O’Kane’s architectural study supplies the current 20 m height, 16.6 m diameter, twenty-two flanges, three corbel tiers and opposed north/south portals. Photographer-owned ground and upward views establish the round opening below a pointed blind relieving arch, three-dimensional recessed cells and brick relief courses. The mapped open courtyard supports an approximately 10.5 m inner diameter.",
+  "geographicProposal": {
+    "anchor": [
+      51.445610934,
+      35.600652903
+    ],
+    "heading": 0,
+    "source": "https://www.openstreetmap.org/relation/8048810",
+    "evidence": "The exact-identity mapped circular outside wall and inner courtyard establish the center and diameters. The architecture study explicitly places the lighter entry on the south and elevated stair opening over the north portal, fixing +Z south; the arbitrary polygon bounding-box axis is not used.",
+    "orientationConfidence": "published-cardinal-portals-and-mapped-concentric-court",
+    "limitations": "The historic conical roof no longer exists and is deliberately absent. Garden paths and unrelated adjacent structures are not part of this tower asset.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-identity mapped circular outside wall and inner courtyard establish the center and diameters. The architecture study explicitly places the lighter entry on the south and elevated stair opening over the north portal, fixing +Z south; the arbitrary polygon bounding-box axis is not used. The historic conical roof no longer exists and is deliberately absent. Garden paths and unrelated adjacent structures are not part of this tower asset."
+  },
+  "sourceFacts": {
+    "currentHeightMeters": 20,
+    "outerDiameterMeters": 16.6,
+    "solidFlanges": 22,
+    "portalBays": 2,
+    "muqarnasTiers": 3,
+    "northStairOpeningMeters": 7,
+    "currentRoof": "lost; open to sky"
+  },
+  "referencePages": [
+    "https://www.iranicaonline.org/articles/borj-e-togrol-tomb-tower-of-the-saljuq-period/",
+    "https://commons.wikimedia.org/wiki/File:Burj_Tughrul_Ground.jpg",
+    "https://commons.wikimedia.org/wiki/File:Burj_Tughrul_bala.jpg",
+    "https://commons.wikimedia.org/wiki/File:Detail_of_brickwork_on_cornice_and_squinches.jpg",
+    "https://www.openstreetmap.org/relation/8048810"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The twenty-four-position exterior rhythm contains twenty-two projecting flanges and two opposed portal bays, reconciling the study’s flange count with common descriptions counting all rhythm positions.",
+    "Eroded and reconstructed brickwork is represented by original geometric corbel cells and metric surfaces. No lost Kufic text or hypothetical medieval roof is invented.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "south-portal",
+      "position": [
+        12,
+        7,
+        20
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "muqarnas-cornice",
+      "position": [
+        14,
+        21,
+        17
+      ],
+      "lookAt": [
+        0,
+        17.8,
+        0
+      ]
+    },
+    {
+      "name": "open-court",
+      "position": [
+        20,
+        35,
+        23
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "north-stair",
+      "position": [
+        -13,
+        10,
+        -22
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        40,
+        20,
+        49
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    }
+  ]
+}

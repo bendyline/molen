@@ -293,8 +293,8 @@ async function cmdSim(args: ParsedArgs): Promise<number> {
       projectPath: str(args.flags.project),
       onRun: (result, diff) => {
         const stamp = `— tick ${result.tick}, ${result.eventCount} events`;
-        if (result.error !== undefined) err(`✖ ${result.error}`);
-        else out(`${result.ok ? '✓' : '✖'} ${stamp}  [${diff}]`);
+        if (result.error !== undefined) err(`× ${result.error}`);
+        else out(`${result.ok ? '✓' : '×'} ${stamp}  [${diff}]`);
         if (result.assertionsFormatted !== undefined) out(result.assertionsFormatted);
       },
     });
@@ -537,7 +537,7 @@ async function cmdReplay(args: ParsedArgs): Promise<number> {
     err(result.error);
     return 1;
   }
-  out(result.report ?? (result.ok ? '✓ replay matches' : '✖ replay diverged'));
+  out(result.report ?? (result.ok ? '✓ replay matches' : '× replay diverged'));
   return result.ok ? 0 : 1;
 }
 
@@ -702,14 +702,19 @@ async function cmdAsset(args: ParsedArgs): Promise<number> {
     const path = args.positionals[1];
     if (path === undefined) {
       err(
-        'usage: molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--project <project.json>] [--force]',
+        'usage: molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--asset-dir <d>] [--project <project.json>] [--force]',
       );
+      return 2;
+    }
+    if (args.flags['asset-dir'] !== undefined && typeof args.flags['asset-dir'] !== 'string') {
+      err('--asset-dir requires a directory value');
       return 2;
     }
     const r = await importAsset({
       path,
       id: str(args.flags.id),
       outDir: str(args.flags['out-dir']),
+      assetDir: str(args.flags['asset-dir']),
       trimesh: args.flags.trimesh === true,
       ...(args.flags['no-optimize'] === true ? { optimize: false } : {}),
       projectPath: str(args.flags.project),
@@ -1180,7 +1185,7 @@ async function cmdScripts(args: ParsedArgs): Promise<number> {
   out(
     r.ok
       ? `✓ ${r.checked ?? 0} script${r.checked === 1 ? '' : 's'} type-check clean`
-      : `✖ ${(r.diagnostics ?? []).length} problem(s) in ${r.checked ?? 0} script(s)`,
+      : `× ${(r.diagnostics ?? []).length} problem(s) in ${r.checked ?? 0} script(s)`,
   );
   return r.ok ? 0 : 1;
 }
@@ -1209,7 +1214,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
     }
     if ((r.issues ?? []).length > 0) err(formatIssues('project types', r.issues ?? []));
     if (r.codegenStale === true) err('codegen is stale — run: molen types gen');
-    out(r.ok ? '✓ types check passed' : '✖ types check failed');
+    out(r.ok ? '✓ types check passed' : '× types check failed');
     return r.ok ? 0 : 1;
   }
   if (sub === 'reserve') {
@@ -1249,7 +1254,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
     if (args.flags.check === true) {
       out(
         r.stale === true
-          ? `✖ ${r.outPath} is stale — run: molen types gen`
+          ? `× ${r.outPath} is stale — run: molen types gen`
           : '✓ codegen up to date',
       );
       return r.ok ? 0 : 1;
@@ -1269,7 +1274,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
       return 1;
     }
     for (const t of r.results ?? []) {
-      out(`${t.ok ? '✓' : '✖'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}`);
+      out(`${t.ok ? '✓' : '×'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}`);
       for (const issue of t.issues ?? []) out(`    ${issue.path}: ${issue.message}`);
     }
     return r.ok ? 0 : 1;

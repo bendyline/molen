@@ -107,6 +107,42 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "elevation": {
             "type": "number"
           },
+          "terrainReference": {
+            "type": "object",
+            "properties": {
+              "anchor": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "modelHeight": {
+                "type": "number"
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "anchor",
+              "modelHeight",
+              "basis"
+            ],
+            "additionalProperties": false
+          },
           "bounds": {
             "type": "array",
             "prefixItems": [
@@ -146,8 +182,41 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                 "type": "number",
                 "exclusiveMinimum": 0
               },
+              "outline": {
+                "minItems": 3,
+                "maxItems": 512,
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
               "deckHeight": {
                 "type": "number"
+              },
+              "deckHeights": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
               }
             },
             "required": [
@@ -158,6 +227,39 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           },
           "replaceFootprint": {
             "type": "boolean"
+          },
+          "groundCutout": {
+            "type": "object",
+            "properties": {
+              "outline": {
+                "minItems": 3,
+                "maxItems": 512,
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "outline",
+              "basis"
+            ],
+            "additionalProperties": false
           },
           "mapIdentity": {
             "type": "object",
@@ -205,8 +307,39 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
             "type": "string",
             "enum": [
               "preview",
-              "draft"
+              "draft",
+              "historical"
             ]
+          },
+          "appearance": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "historical"
+              },
+              "currentWorldEligible": {
+                "type": "boolean",
+                "const": false
+              },
+              "representedDate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "validFrom": {
+                "type": "string"
+              },
+              "validUntil": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind",
+              "currentWorldEligible",
+              "validFrom",
+              "validUntil"
+            ],
+            "additionalProperties": false
           },
           "source": {
             "type": "string",

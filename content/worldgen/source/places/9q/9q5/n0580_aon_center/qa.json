@@ -1,0 +1,60 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0580_aon_center",
+  "sourceHash": "sha256:562e4fb52c5bbec9769c8b846b606cf7266cf09c5cf98515f91d2425afe52af9",
+  "runtimeHash": "sha256:b3567cb9251a68ca5d77b64931580343cb7c26207c738a225bfb4acaf206175f",
+  "captureReportHash": "sha256:1991b93e4602114122d0c41ccf0daebc148474114011e2fc46747650a8f0ade2",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed world-viewer exterior reconstruction",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/wilshire-entrance.png",
+      "shots/curtain-wall.png",
+      "shots/crown-signs.png",
+      "shots/helipad-and-services.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": [
+      "Inspected all 10 portable frames: complete proportions, stepped pale corners, bronze curtain-wall grid, four red crown signs, south-east entrance canopy, southwest helipad, roof services and four-sided silhouette are intact.",
+      "The thin, regular facade mullions produce expected subpixel aliasing in distant turntable frames; close cameras confirm continuous geometry and outward-facing panels."
+    ]
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ed71a91df5aee65f062720c0483b7cf7835b490364beb2d99115aae2051ef250",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/wilshire-entrance.png",
+      "shots/shared/curtain-wall.png",
+      "shots/shared/crown-signs.png",
+      "shots/shared/helipad-and-services.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": [
+      "Inspected all 10 current sky-PMREM shared frames, including close facade, crown, roof, entrance and north-up geographic placement.",
+      "Corrected pale cladding now uses neutral concrete_plain with actual modeled panel seams, eliminating the incorrect masonry-block texture. Bronze spandrels and glazing remain distinct under world-viewer reflections; shared-material and load/unload assertions passed."
+    ]
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f0aec21fba94a050f9636f90efab1fcfc9e08113088b1b364b4a2b82c555ace2",
+    "notes": [
+      "Exact-QID OpenStreetMap way 428021714 provides the center and stepped plan. The north-up frame shows the complete tower aligned within this footprint; entrance canopy projection is intentional.",
+      "Owner aerial context confirms the long axis, south-east Wilshire entrance and southwest roof helipad. Native +X runs northeast and native +Z southeast at heading 0.904196755804 radians. Ground contact is Y=0."
+    ]
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Completed detailed world-viewer exterior based on the owner’s current photographs and brochure, the city’s published 858-foot roof height, and exact mapped perimeter. The owner’s 62-story description takes precedence over the inconsistent map level count. Roof services, aerial sizes and lobby door dimensions are photo reconstructions. Individual blind states and dynamic reflections are intentionally not baked; adjoining independently mapped garage is outside the asset. These do not prevent the finished landmark exterior from matching the documented massing, facade and roof identity."
+  }
+}

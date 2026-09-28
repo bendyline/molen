@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0691_lusail_stadium",
+  "sourceHash": "sha256:7271f23bee36c947d215ef7cc71ce25003afcb8ffcc95c5bd7ed2bd0fa0ea532",
+  "runtimeHash": "sha256:c081842b3128456d63b0a0c4f0f122cb483b27ef024ac57e4486d6c4b2eac56d",
+  "captureReportHash": "sha256:d46b358233c482927bee82f2b17d6e74ba3d29e6537016cc4d51c67d423bdbe5",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed completed exterior and visible football bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-golden-apertures.png",
+      "shots/near-base-gates.png",
+      "shots/near-curved-v-frame.png",
+      "shots/near-roof-diamonds.png",
+      "shots/near-double-cables.png",
+      "shots/near-sand-seating.png",
+      "shots/near-hospitality.png",
+      "shots/near-oculus-screen.png",
+      "shots/near-podium.png",
+      "shots/far-saddle.png"
+    ],
+    "notes": "All fifteen portable and fifteen shared frames inspected, including full-resolution continuous V-frame close views. The final curved tubes remove internal segment-cap artifacts. Folded gold aperture geometry, saddle profile, GFRC base gates, diamond roof membrane, double cable net, sand seating, hospitality glazing, screens, lights and podium steps are visible and coherent."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:df2faa4248f8e14d260ca7b64bca06d56696059911af4afbc1b9366913ad8020",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:12eebc998255033a8dc6272f2ca54b4ee5df73b94d4d8179912e96a6793a3e6a",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-golden-apertures.png",
+      "shots/shared/near-base-gates.png",
+      "shots/shared/near-curved-v-frame.png",
+      "shots/shared/near-roof-diamonds.png",
+      "shots/shared/near-double-cables.png",
+      "shots/shared/near-sand-seating.png",
+      "shots/shared/near-hospitality.png",
+      "shots/shared/near-oculus-screen.png",
+      "shots/shared/near-podium.png",
+      "shots/shared/far-saddle.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared concrete, painted metal and membrane retain metric UV scale. The colored metal finish preserves the completed golden facade in both render paths. Glazing, seats and grass retain local PBR. Geographic sky-PMREM, terrain-hole visibility restoration and unload assertions passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f7cf198be1dd5ed661809566edb4122adab6296f0af001f5085b7521d89ad7b3",
+    "notes": "The exact mapped pitch-surround axis directs +Z north-northwest; its oversize footprint supplies orientation rather than playing-field dimensions. Published 307m roof and312m outer vessel intentionally overhang the cached276m ground/body trace. High saddle points lie east/west. Terrain contact meets the outer podium steps; the explicit cutout preserves the recessed field."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "AFL completed photographs, ALUTEC fabricated-cladding evidence, FHECOR tender topology and the ASCE project-team account establish the individual vessel,24 plinths,48 V-frame legs, pierced folded skin and double cable roof. Exact chair inventory, facade assembly subdivision, member sections, relative concourse levels and cable pre-camber are photographic reconstructions. Surrounding urban precinct, temporary event equipment and enclosed service interiors are outside the authored envelope."
+  }
+}

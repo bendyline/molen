@@ -1,0 +1,202 @@
+{
+  "id": "N0595",
+  "planId": "N0595",
+  "assetId": "molen.worldgen.structure.n0595_leaning_tower_of_torun",
+  "title": "Leaning Tower of Toruń",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q2234463"
+  },
+  "wikidataId": "Q2234463",
+  "visualBrief": "Leaning medieval brick tower with the asymmetric jettied timber north wall, measured floor tiers, slit windows and Gothic friezes, zinc shed roof, south buttresses, west garderobe and gallery, and the roofed east timber stair.",
+  "size": [
+    29,
+    19.6,
+    19
+  ],
+  "actualBounds": {
+    "min": [
+      -16.213573455810547,
+      0,
+      -11.332558631896973
+    ],
+    "max": [
+      9.777313232421875,
+      19.600000381469727,
+      7.323170185089111
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z faces the Vistula-side south brick elevation; the half-timbered entrance is on -Z toward the town",
+    "origin": "Mapped tower footprint center at north street level in plan; Y=0 is the exposed south-slope foundation, with north street at Y=4 m"
+  },
+  "scaleBasis": "The municipal 2019 restoration record supplies plans, section, north elevation and photographs of every exterior. The exact-identity OSM outline establishes its horizontal frame; the section supplies the floor levels and roof slope. Published street/slope height descriptions refer to different ground levels: the visible southern base is preserved below the north street. The 1.46 m northward lean is applied above that street reference, with continuation through the exposed basement.",
+  "geographicProposal": {
+    "anchor": [
+      18.6020742,
+      53.0083824
+    ],
+    "heading": -0.178170601621,
+    "source": "https://www.openstreetmap.org/way/81882855",
+    "evidence": "Exact-QID footprint axis is signed using the measured plan compass and National Heritage Institute identification of the half-timbered north face, east stairs and western gallery. Native +Z points south-southeast, +X east-southeast; the 1.46 m lean is applied toward geographic north.",
+    "orientationConfidence": "published-cardinal-facades-and-exact-map-outline",
+    "limitations": "Y=0 uses the lower exposed southern base, while the northern entry is 4 m higher. Terrain must preserve this slope rather than flatten the whole footprint. The gallery extends beyond the shaft map outline; do not scale the full ensemble to that outline.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID footprint axis is signed using the measured plan compass and National Heritage Institute identification of the half-timbered north face, east stairs and western gallery. Native +Z points south-southeast, +X east-southeast; the 1.46 m lean is applied toward geographic north. Y=0 uses the lower exposed southern base, while the northern entry is 4 m higher. Terrain must preserve this slope rather than flatten the whole footprint. The gallery extends beyond the shaft map outline; do not scale the full ensemble to that outline."
+  },
+  "sourceFacts": {
+    "mappedShaftEnvelopeMeters": [
+      10.382,
+      8.181
+    ],
+    "reportedNorthwardLeanMeters": 1.46,
+    "northStreetDatumMeters": 4,
+    "measuredFloorLevelsAboveStreetMeters": [
+      0,
+      2.8,
+      5.58,
+      8.69,
+      11.62
+    ],
+    "southSlopeEnvelopeMeters": 19,
+    "upperParapetAboveStreetMeters": 15,
+    "eastStairClearWidthMeters": 0.83,
+    "standingSeamPitchMeters": 0.58
+  },
+  "referencePages": [
+    "https://bip.tak.torun.pl/bip_att.php?id=749",
+    "https://zabytek.pl/pl/obiekty/torun-baszta-miejska-tzw-krzywa-wieza",
+    "https://visittorun.com/en/node/53",
+    "https://www.openstreetmap.org/way/81882855"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Facade massing, visible exterior openings, floor tiers, lean direction and attached timber circulation are reconstructed from the municipal measured record. Fine brick weathering, hand-painted frieze strokes and individual timber repairs use original polygonal and shared-material approximations.",
+    "The north-street versus south-slope datum is explicit. Terrain contact must retain the raised northern street; the source does not contain a fake flat ground platform. The broader city-wall network and neighboring buildings remain separate features.",
+    "No visitor interior or surrounding vegetation is included. The documented restored zinc roof is represented rather than copying corrosion from the pre-restoration photographs.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "timber-north-and-gallery",
+      "position": [
+        -22,
+        14,
+        -32
+      ],
+      "lookAt": [
+        -3,
+        11,
+        -3
+      ]
+    },
+    {
+      "name": "southern-friezes-and-lean",
+      "position": [
+        19,
+        12,
+        31
+      ],
+      "lookAt": [
+        0,
+        11,
+        2
+      ]
+    },
+    {
+      "name": "east-covered-stair",
+      "position": [
+        22,
+        11,
+        -17
+      ],
+      "lookAt": [
+        5,
+        8,
+        -2
+      ]
+    },
+    {
+      "name": "roof-and-latrine",
+      "position": [
+        -22,
+        29,
+        15
+      ],
+      "lookAt": [
+        -2,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        44,
+        29,
+        53
+      ],
+      "lookAt": [
+        -3,
+        9,
+        -2
+      ]
+    }
+  ]
+}

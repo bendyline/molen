@@ -132,6 +132,10 @@ function frame(cameraPosition: [number, number, number]) {
 }
 ```
 
+`reverseDepthBuffer` preserves depth precision across a large view range. On WebGL devices without
+`EXT_clip_control`, Molen automatically uses logarithmic depth on the same canvas and context.
+Logarithmic depth costs early-fragment performance; devices supporting reversed depth keep it.
+
 The source interface returns decoded height tiles, so archive readers, procedural worlds, and tests
 do not change residency behavior. HTTP 404 is a stable missing tile; call `retryFailed()` only after
 the backing data has changed. A *thrown* error is not: a dropped range request, a 503, or a CORS

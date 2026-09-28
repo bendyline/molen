@@ -1,0 +1,213 @@
+{
+  "planId": "N0139",
+  "id": "N0139",
+  "assetId": "molen.worldgen.structure.n0139_abeno_harukas",
+  "title": "Abeno Harukas",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q16318627",
+  "referenceCoordinate": {
+    "latitude": 34.645947222,
+    "longitude": 135.514266666
+  },
+  "visualBrief": "A three-stage asymmetric glass tower rising from the western end of the mapped station/department-store podium, with projecting facade fins, horizontal metal courses, terrace gardens and an open sky court inside the glazed observation crown.",
+  "size": [
+    275.1217498779297,
+    300,
+    88.1357307434082
+  ],
+  "actualBounds": {
+    "min": [
+      -137.56082153320312,
+      0,
+      -44.06793212890625
+    ],
+    "max": [
+      137.56092834472656,
+      300,
+      44.06779861450195
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Center of whole mapped podium ground datum; main tower is at nativeX about -89 m"
+  },
+  "sourceFacts": {
+    "heightMeters": 300,
+    "floorsAboveGround": 60,
+    "completion": 2014,
+    "setbacks": "Approximately100 m vertical sections",
+    "towerLocation": "Western former department-store portion per operator construction history"
+  },
+  "reconstruction": {
+    "towerCenterLocalXZ": [
+      -89,
+      -7
+    ],
+    "towerBase": "Exact mapped Tower-Kan way488467176 perimeter",
+    "officeSizeMeters": [
+      78,
+      66
+    ],
+    "hotelSizeMeters": [
+      76,
+      42
+    ],
+    "setbackLevelsMeters": [
+      80,
+      190,
+      287
+    ],
+    "geographicEvidence": "Separate named Tower-Kan way488467176 confirms the western tower plan and center within the whole podium; preserved in map-parts.json"
+  },
+  "referencePages": [
+    "https://www.abenoharukas-300.jp/en/",
+    "https://www.takenaka.co.jp/takenaka_e/abeno/design/de-04.html",
+    "https://www.takenaka.co.jp/takenaka_e/abeno/h300/h300-02.html",
+    "https://www.jisf.or.jp/en/activity/sctt/documents/SCTT38.pdf",
+    "https://www.abenoharukas-300.jp/en/observatory/guide.html",
+    "https://www.openstreetmap.org/way/488467176"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      135.514466712,
+      34.645750596
+    ],
+    "heading": -0.281124683885,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/187296989",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/187296989"
+    ],
+    "wikidataId": "Q16318627",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Whole station/mall outline fixes the global frame. Separate named Tower-Kan way488467176 supplies the actual western tower perimeter, including its clipped corner and southern entrance notch. Upper tier offsets remain exterior reconstructions inside that measured tower part."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Ground tower perimeter is independently mapped; upper tier setbacks and facade fins remain reconstructed from exterior references. Individual planting and service units are simplified."
+  ],
+  "qaCameras": [
+    {
+      "name": "setback-gardens",
+      "position": [
+        -9,
+        208,
+        126
+      ],
+      "lookAt": [
+        -88,
+        181,
+        -5
+      ]
+    },
+    {
+      "name": "fins-glazing",
+      "position": [
+        -48,
+        152,
+        58
+      ],
+      "lookAt": [
+        -88,
+        142,
+        20
+      ]
+    },
+    {
+      "name": "sky-court",
+      "position": [
+        -18,
+        326,
+        54
+      ],
+      "lookAt": [
+        -88,
+        290,
+        -18
+      ]
+    },
+    {
+      "name": "station-podium",
+      "position": [
+        100,
+        66,
+        163
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -464,
+        272,
+        552
+      ],
+      "lookAt": [
+        -62,
+        146,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 170849,
+    "vertices": 494279,
+    "materials": 4,
+    "bytes": 19352768,
+    "sha256": "sha256:22c01ca4d72683cf8bb92a43dd5c127ac3c5f946e7b0bcc9b192fd860fb5228a"
+  }
+}

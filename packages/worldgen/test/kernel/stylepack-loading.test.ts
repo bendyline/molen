@@ -15,15 +15,22 @@ const delay = (ms: number): Promise<void> => new Promise((done) => setTimeout(do
 
 describe('style pack document loading', () => {
   it('resolves the default pack to the same hash as the one-at-a-time loader', async () => {
-    const pack = await resolveStylePackDocuments(await readJson('stylepack.json'), readJson);
-    // Pinned against the shipped pack, including the authored structure assets.
-    expect(pack.hash).toBe(
-      'sha256:ebc093b6bfc0655c7ad5d6e0799575bea874cf404583a3fb01084432c11dcf86',
-    );
-    expect(pack.interiors?.profiles).toHaveLength(15);
-    expect(Object.keys(pack.archstyles)).toHaveLength(120);
-    expect(Object.keys(pack.materials)).toHaveLength(51);
-    expect(pack.warnings).toHaveLength(123);
+    const manifest = await readJson('stylepack.json');
+    // Serialize the underlying reads, even when the resolver schedules them concurrently.
+    // Compare actual results so adding a catalog entry does not require a new hash pin.
+    let queue: Promise<void> = Promise.resolve();
+    const serialReader = (path: string): Promise<unknown> => {
+      const result = queue.then(() => readJson(path));
+      queue = result.then(() => undefined);
+      return result;
+    };
+    const sequential = await resolveStylePackDocuments(manifest, serialReader);
+    const concurrent = await resolveStylePackDocuments(manifest, readJson);
+    expect(concurrent.hash).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(concurrent).toStrictEqual(sequential);
+    expect(Object.keys(concurrent.archstyles)).toEqual(Object.keys(concurrent.root.styles));
+    expect(Object.keys(concurrent.materials)).toEqual(Object.keys(concurrent.root.materials));
+    expect(concurrent.assets).toEqual(concurrent.root.assets);
   });
 
   it('reads documents concurrently, at most 16 at a time, and each only once', async () => {

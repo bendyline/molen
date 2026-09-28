@@ -1,5 +1,6 @@
 /** Shared, metric line construction for roads, tracks, fences and utility corridors. */
 import * as THREE from 'three';
+import { markTerrainGroundSurface } from './ground-cutout';
 import { normalizeRing } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type {
@@ -270,6 +271,7 @@ export class TerrainSurfaceMeshBuilder {
     mesh.name = name;
     mesh.receiveShadow = true;
     mesh.userData.terrainOwnedGeometry = true;
+    markTerrainGroundSurface(mesh);
     return mesh;
   }
 }

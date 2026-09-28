@@ -1,9 +1,15 @@
-import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { decodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { importAsset, inspectAsset, listAssets, scaffoldExperience } from '../src/ops/index';
+import {
+  importAsset,
+  inspectAsset,
+  listAssets,
+  scaffoldExperience,
+  stageAssets,
+} from '../src/ops/index';
 import { buildCubeGlb } from './fixtures/build-glb';
 
 let dir: string;
@@ -16,6 +22,171 @@ beforeAll(async () => {
 });
 
 describe('asset import (glTF -> asset@1 sidecar)', () => {
+  it('keeps stable IDs in custom bundle directories through reimport, inspection and staging', async () => {
+    const parent = await mkdtemp(join(tmpdir(), 'molen-asset-layout-'));
+    const project = await scaffoldExperience({ name: 'layout', dir: parent });
+    const projectDir = project.dir as string;
+    const projectPath = join(projectDir, 'project.json');
+    const relativeDir = 'assets/places/c2/c23/landmark';
+    const first = await importAsset({
+      path: glbPath,
+      id: 'landmark.tower',
+      projectPath,
+      cwd: projectDir,
+      assetDir: relativeDir,
+      trimesh: true,
+    });
+    expect(first.ok, first.error).toBe(true);
+    expect(first.dir).toBe(join(projectDir, relativeDir));
+    const original = await readFile(first.sidecarPath as string);
+    const ordinary = await importAsset({ path: glbPath, id: 'landmark.tower', projectPath });
+    expect(ordinary.ok).toBe(false);
+    expect(ordinary.error).toContain('already exists');
+    const reimported = await importAsset({
+      path: glbPath,
+      id: 'landmark.tower',
+      projectPath,
+      force: true,
+      trimesh: true,
+    });
+    expect(reimported.ok, reimported.error).toBe(true);
+    expect(reimported.dir).toBe(first.dir);
+    expect(await readFile(reimported.sidecarPath as string)).toEqual(original);
+    const manifest = JSON.parse(await readFile(projectPath, 'utf8'));
+    expect(manifest.assets['landmark.tower']).toBe(relativeDir + '/asset.json');
+    await expect(stat(join(projectDir, 'assets/landmark/tower'))).rejects.toThrow();
+    expect((await inspectAsset({ ref: 'landmark.tower', projectPath, verify: true })).ok).toBe(
+      true,
+    );
+    const staged = await stageAssets({ projectPath, outDir: join(parent, 'served') });
+    expect(staged.ok, staged.error).toBe(true);
+    expect(staged.index?.['landmark.tower']).toBe(relativeDir + '/model.glb');
+    expect(await readFile(join(parent, 'served', relativeDir, 'collision.bin'))).toEqual(
+      await readFile(join(first.dir as string, 'collision.bin')),
+    );
+  });
+
+  it('keeps explicit outDir root-plus-ID behavior for an already registered asset', async () => {
+    const parent = await mkdtemp(join(tmpdir(), 'molen-asset-override-'));
+    const project = await scaffoldExperience({ name: 'override', dir: parent });
+    const projectPath = join(project.dir as string, 'project.json');
+    const original = await importAsset({
+      path: glbPath,
+      id: 'landmark.tower',
+      projectPath,
+      assetDir: join(project.dir as string, 'assets/places/c2/tower'),
+    });
+    expect(original.ok, original.error).toBe(true);
+    const root = join(project.dir as string, 'alternate-assets');
+    const override = await importAsset({
+      path: glbPath,
+      id: 'landmark.tower',
+      projectPath,
+      outDir: root,
+    });
+    expect(override.ok, override.error).toBe(true);
+    expect(override.dir).toBe(join(root, 'landmark/tower'));
+    expect(override.sidecar?.hash).toBe(original.sidecar?.hash);
+    const manifest = JSON.parse(await readFile(projectPath, 'utf8'));
+    expect(manifest.assets['landmark.tower']).toBe('alternate-assets/landmark/tower/asset.json');
+    expect((await inspectAsset({ ref: original.sidecarPath as string, verify: true })).ok).toBe(
+      true,
+    );
+  });
+
+  it('preserves a registered sidecar filename and protects its bundle from another ID', async () => {
+    const parent = await mkdtemp(join(tmpdir(), 'molen-asset-sidecar-name-'));
+    const project = await scaffoldExperience({ name: 'named-sidecar', dir: parent });
+    const projectDir = project.dir as string;
+    const projectPath = join(projectDir, 'project.json');
+    const assetDir = join(projectDir, 'assets/places/c2/c23/tower');
+    const first = await importAsset({ path: glbPath, id: 'landmark.tower', assetDir, projectPath });
+    expect(first.ok, first.error).toBe(true);
+    const sidecarPath = join(assetDir, 'tower.sidecar.json');
+    await rename(first.sidecarPath as string, sidecarPath);
+    const manifest = JSON.parse(await readFile(projectPath, 'utf8'));
+    manifest.assets['landmark.tower'] = 'assets/places/c2/c23/tower/tower.sidecar.json';
+    await writeFile(projectPath, JSON.stringify(manifest));
+
+    const reimported = await importAsset({
+      path: glbPath,
+      id: 'landmark.tower',
+      projectPath,
+      force: true,
+    });
+    expect(reimported.ok, reimported.error).toBe(true);
+    expect(reimported.sidecarPath).toBe(sidecarPath);
+    expect(reimported.dir).toBe(assetDir);
+    expect(reimported.sidecar?.hash).toBe(first.sidecar?.hash);
+    await expect(stat(join(assetDir, 'asset.json'))).rejects.toThrow();
+    expect((await inspectAsset({ ref: 'landmark.tower', projectPath, verify: true })).ok).toBe(
+      true,
+    );
+    const staged = await stageAssets({ projectPath, outDir: join(parent, 'served') });
+    expect(staged.ok, staged.error).toBe(true);
+    expect(staged.index?.['landmark.tower']).toBe('assets/places/c2/c23/tower/model.glb');
+
+    const manifestBefore = await readFile(projectPath);
+    const modelBefore = await readFile(join(assetDir, 'model.glb'));
+    const sidecarBefore = await readFile(sidecarPath);
+    const conflicting = await importAsset({
+      path: join(dir, 'absent.glb'),
+      id: 'another.tower',
+      assetDir,
+      projectPath,
+      force: true,
+    });
+    expect(conflicting.ok).toBe(false);
+    expect(conflicting.error).toContain('belongs to asset "landmark.tower"');
+    expect(await readFile(projectPath)).toEqual(manifestBefore);
+    expect(await readFile(join(assetDir, 'model.glb'))).toEqual(modelBefore);
+    expect(await readFile(sidecarPath)).toEqual(sidecarBefore);
+  });
+
+  it('rejects conflicting destination options before reading or writing asset files', async () => {
+    const result = await importAsset({
+      path: join(dir, 'absent.glb'),
+      assetDir: join(dir, 'exact-destination'),
+      outDir: join(dir, 'asset-root'),
+    });
+    expect(result.ok).toBe(false);
+    expect(result.error).toContain('mutually exclusive');
+    await expect(stat(join(dir, 'exact-destination'))).rejects.toThrow();
+    await expect(stat(join(dir, 'asset-root'))).rejects.toThrow();
+    const empty = await importAsset({ path: glbPath, assetDir: '  ' });
+    expect(empty.error).toContain('must not be empty');
+    const invalid = await importAsset({ path: glbPath, assetDir: 'invalid\0directory' });
+    expect(invalid.ok).toBe(false);
+    expect(invalid.error).toContain('must not contain a null byte');
+  });
+
+  it('rejects a file destination even with force and leaves that file untouched', async () => {
+    const assetDir = join(dir, 'not-a-directory');
+    const contents = 'do not replace this file';
+    await writeFile(assetDir, contents);
+    const result = await importAsset({
+      path: join(dir, 'absent.glb'),
+      assetDir,
+      force: true,
+    });
+    expect(result.ok).toBe(false);
+    expect(result.error).toContain('is not a directory');
+    expect(await readFile(assetDir, 'utf8')).toBe(contents);
+  });
+
+  it('does not overwrite another asset ID at an explicit destination, even with force', async () => {
+    const assetDir = join(dir, 'protected-bundle');
+    const first = await importAsset({ path: glbPath, id: 'one', assetDir });
+    expect(first.ok, first.error).toBe(true);
+    const sidecar = await readFile(first.sidecarPath as string);
+    const model = await readFile(join(assetDir, 'model.glb'));
+    const second = await importAsset({ path: glbPath, id: 'two', assetDir, force: true });
+    expect(second.ok).toBe(false);
+    expect(second.error).toContain('belongs to asset "one"');
+    expect(await readFile(first.sidecarPath as string)).toEqual(sidecar);
+    expect(await readFile(join(assetDir, 'model.glb'))).toEqual(model);
+  });
+
   it('imports a GLB: bounds, stats, hulls, animation summary — and the sidecar validates', async () => {
     const r = await importAsset({ path: glbPath, outDir: join(dir, 'assets'), trimesh: true });
     expect(r.ok, r.error).toBe(true);

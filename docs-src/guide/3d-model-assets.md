@@ -101,6 +101,15 @@ reference contract, metric UV scale, tinting and shared texture lifetime. Keep u
 murals and facade art as their own materials. Inspect the model in the Earth renderer as well
 as its portable asset preview when it uses these bindings.
 
+Choose a continuous surface for individually modeled stones: `stone_limestone_raw` has subtle
+pores and mineral mottling with a 1.2 × 1.2 m repeat. `stone_limestone_weathered` uses the same
+scale with stronger mineral variation, dark patina and open pores for exposed ancient stones.
+Both keep the stone joints in the geometry. The separate `stone_limestone` graph includes
+ashlar joints and belongs on a wall where the courses are supplied by the material.
+`stone_sandstone_raw` and `stone_basalt_raw` provide continuous sediment grain and volcanic
+grain at the same 1.2 m repeat for modeled stones. Their coursed counterparts supply block
+joints for simpler wall meshes. Keep sediment bands horizontal with metric, surface-aligned UVs.
+
 The importer decodes supported input, then deduplicates, prunes, welds, and quantizes by default.
 Use `--no-optimize` only to diagnose a transformation issue. Repeating UVs outside `[0,1]` are
 valid, but the optimizer currently leaves those UV accessors unquantized and reports that choice.
@@ -141,11 +150,18 @@ npx molen asset inspect barn.weathered --verify
 npx molen asset list
 ```
 
-The importer writes
+For a new asset, the importer writes
 `assets/<id with dots as path>/model.glb`, creates `asset.json`, extracts per-node convex hulls,
 and registers the sidecar in the surrounding `project.json`. Add `--trimesh` only when static,
 concave collision justifies its extra size. Use `--project <project.json>` when project discovery
 from the current directory would be ambiguous.
+
+To organize bundles independently of stable asset IDs, pass `--asset-dir <directory>`
+(MCP/API: `assetDir`) for the exact folder containing `asset.json`, `model.glb` and collision data.
+Relative paths resolve from the working directory. Reimporting an existing ID with `--force`
+and neither directory override preserves its registered path. `--out-dir` instead selects an
+assets root and appends the dotted ID as directories; it cannot be combined with `--asset-dir`.
+A destination belonging to a different asset ID is rejected even with `--force`.
 
 `asset inspect --verify` must pass before the asset is placed in a scene. Review its bounds,
 triangle/vertex counts, material slots, textures, animation clips, extensions, and collision hulls;
@@ -268,8 +284,8 @@ With `variant`, a convention-resolved id fetches `model.ktx2.glb` first and fall
 uses Draco; canonical imported assets never do.
 
 `molen asset stage` produces the runtime bundle in one step — every registered asset's runtime
-files copied under an output directory (same relative layout, so the convention still resolves)
-plus `assets.index.json` for the client's `index` option:
+files copied under an output directory with their registered relative layout
+plus `assets.index.json` for the client's `index` option. Use that index for custom bundle paths:
 
 ```sh
 molen asset stage --out-dir public --variant ktx2 --require-variant
@@ -281,6 +297,15 @@ in place of the design-time one, and rewrites the staged `asset.json` to describ
 release build; the app half is the normal Vite build.
 
 ## 9. Record evidence
+
+For a landmark collection whose buildings occupy separate sites, keep each building as an
+independent asset and geographic placement. The repository's next-1,000 catalog declares
+required members in `content/worldgen/source/next-1000/collections.json`; the authoring/import
+commands expand a collection ID to its authored members, while readiness requires every
+declared member's own current source, import and inspected render/placement evidence. A
+collection never supplies a composite GLB or centroid placement. Reuse an existing exact
+building identity when one is already registered. Runtime spatial selection still operates on
+individual placements and fetches only the nearby models.
 
 Keep a concise README or machine-readable build report next to the source. Record:
 

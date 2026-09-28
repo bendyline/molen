@@ -190,7 +190,9 @@ const output = execFileSync(
     resolve(root, '../../node_modules/@biomejs/biome/bin/biome'),
     'format',
     '--stdin-file-path',
-    path,
+    // Generated content is excluded from automatic formatting to preserve hashes.
+    // Format this input as ordinary JSON before comparison, without editing that content.
+    resolve(root, 'generated-atlas.json'),
   ],
   { input: `${formatJson(atlas)}\n`, encoding: 'utf8' },
 );

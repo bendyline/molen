@@ -269,7 +269,7 @@ export function createMcpServer(): McpServer {
     async (args) => {
       const r = await runReplayFile(args);
       if (r.error !== undefined) return text(r.error, true);
-      return text(r.report ?? (r.ok ? '✓ replay matches' : '✖ replay diverged'), !r.ok);
+      return text(r.report ?? (r.ok ? '✓ replay matches' : '× replay diverged'), !r.ok);
     },
   );
 
@@ -663,7 +663,7 @@ export function createMcpServer(): McpServer {
       if (r.error !== undefined) return text(r.error, true);
       const lines = (r.results ?? []).map(
         (t) =>
-          `${t.ok ? '✓' : '✖'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}${
+          `${t.ok ? '✓' : '×'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}${
             t.issues !== undefined ? ` — ${t.issues.map((i) => i.message).join('; ')}` : ''
           }`,
       );
@@ -681,6 +681,7 @@ export function createMcpServer(): McpServer {
         path: z.string(),
         id: z.string().optional(),
         outDir: z.string().optional(),
+        assetDir: z.string().optional(),
         trimesh: z.boolean().optional(),
         optimize: z.boolean().optional(),
         projectPath: z.string().optional(),

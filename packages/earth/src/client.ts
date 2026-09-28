@@ -39,6 +39,12 @@ export {
   mountEarthView,
 } from './client/earth-view';
 export {
+  type ModelArchiveOptions,
+  type ModelArchivesDoc,
+  type OpenModelArchive,
+  withModelArchives,
+} from './client/model-archives';
+export {
   type EarthPerformanceTier,
   earthPerformanceTier,
   earthPixelRatio,

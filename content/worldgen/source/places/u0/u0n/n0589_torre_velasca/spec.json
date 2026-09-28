@@ -1,0 +1,183 @@
+{
+  "id": "N0589",
+  "planId": "N0589",
+  "assetId": "molen.worldgen.structure.n0589_torre_velasca",
+  "title": "Torre Velasca",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1156274"
+  },
+  "wikidataId": "Q1156274",
+  "visualBrief": "The restored BBPR tower: warm rendered concrete ribs, twenty exterior supports turning into inclined struts, a recessed service belt, an overhanging six-storey apartment block with loggias, stepped copper duplex roofs and tall paired chimneys.",
+  "size": [
+    47,
+    106,
+    35
+  ],
+  "actualBounds": {
+    "min": [
+      -23.31671714782715,
+      0,
+      -20.399999618530273
+    ],
+    "max": [
+      23.31671714782715,
+      106,
+      14.312311172485352
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "−Z is the north-west long elevation with the low entrance pavilion; +X follows the mapped north-east long axis",
+    "origin": "Exact upper-block mapped center at plaza contact Y=0"
+  },
+  "scaleBasis": "CEAS publishes the 18th-floor structural plan at +60.15 m with a 36.90 × 19.52 m main grid and twenty exterior ribs. The restoration supplier’s archival booklet reproduces upper/lower plans, the complete upper elevation, duplex section and contemporary material descriptions. Exact OSM roof parts confirm the projecting upper envelope and 106 m chimney top. Photographs establish the restored warm render, contrasting aggregate panels and individual loggia/window rhythm.",
+  "geographicProposal": {
+    "anchor": [
+      9.19069705,
+      45.45988005
+    ],
+    "heading": 0.807825546326,
+    "source": "https://www.openstreetmap.org/relation/18238298",
+    "evidence": "The exact-identity mapped upper rectangle establishes center and long north-east/south-west axis; its 45.8 × 27.791 m envelope corresponds to the projecting block and structural ribs, not the narrower office shaft. The north-west entrance pavilion follows the source plans and site relation.",
+    "orientationConfidence": "exact-upper-envelope-and-published-structural-plan",
+    "limitations": "Mapped roof height metadata omits some chimney detail; the published 106 m architectural height controls the model. Rooftop antennas and temporary maintenance scaffolding are not part of the stable architectural envelope.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-identity mapped upper rectangle establishes center and long north-east/south-west axis; its 45.8 × 27.791 m envelope corresponds to the projecting block and structural ribs, not the narrower office shaft. The north-west entrance pavilion follows the source plans and site relation. Mapped roof height metadata omits some chimney detail; the published 106 m architectural height controls the model. Rooftop antennas and temporary maintenance scaffolding are not part of the stable architectural envelope."
+  },
+  "sourceFacts": {
+    "heightMeters": 106,
+    "officeLevels": 16,
+    "upperApartmentLevels": 6,
+    "duplexLevels": 2,
+    "transferFloor": 18,
+    "transferFloorDatumMeters": 60.15,
+    "mainStructuralGridMeters": [
+      36.9,
+      19.52
+    ],
+    "externalRibs": 20,
+    "upperMappedEnvelopeMeters": [
+      45.8,
+      27.791
+    ]
+  },
+  "referencePages": [
+    "https://www.ceas.it/project/torre-velasca/",
+    "https://www.ceas.it/wp-content/uploads/2024/01/Pianta-Strutturale-scaled.webp",
+    "https://www.ceas.it/wp-content/uploads/2024/01/Torre-Velasca1%C2%A9Albo-scaled-e1705405835525.webp",
+    "https://www.olivari.it/wp-content/uploads/2025/03/Velasca.pdf",
+    "https://torrevelasca.it/progetto/",
+    "https://www.openstreetmap.org/relation/18238298"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Irregular apartment window/loggia sequencing is reconstructed from the archived elevations and current photographs. Small operable shutter positions are represented consistently rather than as a changing occupancy state.",
+    "The restored exterior is represented; original distressed patches and temporary scaffolding visible in restoration-progress photographs are not reproduced.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "inclined-ribs",
+      "position": [
+        44,
+        61,
+        51
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ]
+    },
+    {
+      "name": "apartment-loggias",
+      "position": [
+        38,
+        80,
+        49
+      ],
+      "lookAt": [
+        0,
+        77,
+        0
+      ]
+    },
+    {
+      "name": "duplex-roof",
+      "position": [
+        52,
+        119,
+        -57
+      ],
+      "lookAt": [
+        0,
+        97,
+        0
+      ]
+    },
+    {
+      "name": "entrance-pavilion",
+      "position": [
+        30,
+        12,
+        -46
+      ],
+      "lookAt": [
+        0,
+        5,
+        -11
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        161,
+        86,
+        177
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    }
+  ]
+}

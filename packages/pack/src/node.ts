@@ -75,8 +75,12 @@ export interface PackSource {
   files: PackFile[];
 }
 
-/** Read a pack's source directory: its settings file and every file it includes. */
-export async function readPackSource(dir: string): Promise<PackSource> {
+/** List validated source settings and included paths without loading file contents. */
+export async function listPackSource(dir: string): Promise<{
+  dir: string;
+  config: PackSourceConfig;
+  paths: string[];
+}> {
   const root = resolve(dir);
   let raw: unknown;
   try {
@@ -96,13 +100,19 @@ export async function readPackSource(dir: string): Promise<PackSource> {
     .filter((path) => include.some((glob) => glob.test(path)))
     .filter((path) => !exclude.some((glob) => glob.test(path)))
     .sort();
+  return { dir: root, config, paths: selected };
+}
+
+/** Read a pack's source directory: its settings file and every file it includes. */
+export async function readPackSource(dir: string): Promise<PackSource> {
+  const source = await listPackSource(dir);
   const files = await Promise.all(
-    selected.map(async (path) => ({
+    source.paths.map(async (path) => ({
       path,
-      bytes: new Uint8Array(await readFile(join(root, ...path.split('/')))),
+      bytes: new Uint8Array(await readFile(join(source.dir, ...path.split('/')))),
     })),
   );
-  return { dir: root, config, files };
+  return { dir: source.dir, config: source.config, files };
 }
 
 function optionsOf(config: PackSourceConfig): PackOptions {

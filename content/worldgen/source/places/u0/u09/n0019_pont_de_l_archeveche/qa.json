@@ -1,0 +1,65 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0019_pont_de_l_archeveche",
+  "sourceHash": "sha256:ff5f96f1f62a1182328dbd15e49d4671f862ff1191886559c9184f6455906da7",
+  "runtimeHash": "sha256:911af8af2252cbafe22471a4cb4523f2aaa26d49f2b42bde1bcb37c5b3270e12",
+  "captureReportHash": "sha256:da09b9e2c6f2e7598d9629b283946b0292ffc949ad0c731c9825ec8b4876acb6",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/upstream-three-arches.png",
+      "shots/downstream-vaults.png",
+      "shots/rounded-cutwater.png",
+      "shots/ashlar-and-soffit.png",
+      "shots/glazed-parapet.png",
+      "shots/ornamental-lantern.png",
+      "shots/cobbled-deck.png",
+      "shots/flared-mainland.png"
+    ],
+    "notes": "All 13 current portable frames inspected: three shallow vaults, radial ashlar, coursed soffits, rounded piers and mooring rings, flared mainland abutment, fan-course cobbles, transparent X-frame rails and ornamental lanterns. Original 1864 engineering pages were inspected and used to correct the middle span to17.1m and pier thickness to2.3m."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ebebe69d54aa05595cbc26a0774460f1487e5950c1388d831460cb6d46c91efd",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/upstream-three-arches.png",
+      "shots/shared/downstream-vaults.png",
+      "shots/shared/rounded-cutwater.png",
+      "shots/shared/ashlar-and-soffit.png",
+      "shots/shared/glazed-parapet.png",
+      "shots/shared/ornamental-lantern.png",
+      "shots/shared/cobbled-deck.png",
+      "shots/shared/flared-mainland.png"
+    ],
+    "notes": "All 12 current shared-surface frames inspected at full resolution. Raw limestone courses, curved soffit joints, fan-course granite setts, painted iron and transparent glazing remain coherent with metric shared materials. Updated extent uses the asset review fixture; actual bank placement is independently rendered in the eight terrain frames bound below. Loading and resource unload pass."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c8b5f104478a85dc9e687e80e6519b71f70a0b0c05ce12626527931d01314c19",
+    "notes": "Directed exact bridge footprint, north-island end and southern approach flare reviewed in eight current production terrain frames, including independently mapped road plans through the procedural renderer. The 26.96 m NGF-IGN69 origin preserves the independent terrain water reference. Northern upper-bank road samples at native X 40–44 m are 34.58–34.60 m versus modeled endpoint approximately 34.60 m; the southern road meets the 34.1–34.4 m plateau with a roughly 0.4 m local residual. The old X 33.1 m ray hits a smoothed quay face at 31.97 m, so its 2.62 m clearance is retained rather than mistaken for an upper-road mismatch. Loaded-model polygon replacement removes covered bridge road fragments, connects both approaches and preserves the lower quay road. BD TOPO road widths remain narrower than the authored deck; independent source Z has stated 1.5 m accuracy and is not used to flatten the model or terrain. Hosts must supply compatible NGF-IGN69 heights or an explicit datum conversion. Submerged footing depth is a reconstruction, not bathymetry.",
+    "terrainReports": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0019-fit-report.json",
+        "hash": "sha256:1e511a53a1dd7ce7572b17ee9e6e8e912a4048d7742fdb10a3f9e8e9e5096c76"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0019-roads-fit-report.json",
+        "hash": "sha256:f423e7630c99f01d6305b4bd07040a5990adafa7f2a03a2f88e631f8530866a3"
+      }
+    ]
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "436,496-triangle exterior reconstructed from inspected current 2021/2019 photographs, AFGC engineering description, Paris2026 confirmation of transparent replacement railings, and visually inspected Annales des Ponts et Chaussees1864 pages174–175. Published spans, rises, width and pier thickness are encoded explicitly. Individual stone courses/soffit blocks, curved sett courses, glazing fasteners, rail cross-bracing, fluted ornamental lantern bases and navigation signs are modeled. Fine coursing/member sizes remain photo reconstruction; temporary furnishings omitted. Terrain fit is a separate pending review."
+  }
+}

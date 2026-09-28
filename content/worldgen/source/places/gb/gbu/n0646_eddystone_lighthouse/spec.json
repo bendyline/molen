@@ -1,0 +1,169 @@
+{
+  "id": "N0646",
+  "key": "eddystone_lighthouse",
+  "title": "Eddystone Lighthouse",
+  "wikidataId": "Q546122",
+  "size": [
+    14.6,
+    49,
+    14.6
+  ],
+  "visualBrief": "1882 curved granite sea tower with staggered recessed windows, dark photovoltaic gallery apron, red lantern support cage and modern above-lantern helideck with radial safety net.",
+  "sourceFacts": {
+    "heightMeters": 49,
+    "year": 1882,
+    "automation": "Above-lantern helipad added for the 1982 automation; operator current photograph shows solar apron.",
+    "basis": "Trinity House live lighthouse page and operator photograph."
+  },
+  "referencePages": [
+    "https://www.trinityhouse.co.uk/lighthouses-and-lightvessels/eddystone-lighthouse",
+    "https://www.trinityhouse.co.uk/asset/952/view/1200",
+    "https://trinityhouse.co.uk/asset/5623/download?1746607918="
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -4.2656,
+      50.180716666667
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://trinityhouse.co.uk/asset/5623/download?1746607918=",
+    "notes": "Trinity House2025-30 Aids to Navigation Review p73 gives WGS84 50deg10.843min N,004deg15.936min W, superseding coarse catalog reference. Round tower and circular helideck have no principal plan axis. Sparse opening azimuth remains photo-reconstructed; ground is local reef contact, not a claimed mean-sea-level datum."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Current granite tower exterior and modern service deck are included. Old Smeaton stump and surrounding rocks are separate site features and are not included in this asset. Intermediate radii, glazing, panel subdivisions and helideck members are photo-proportioned."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-helideck",
+      "position": [
+        14,
+        49,
+        17
+      ],
+      "lookAt": [
+        0,
+        45.5,
+        0
+      ]
+    },
+    {
+      "name": "near-deck-top",
+      "position": [
+        13,
+        59,
+        15
+      ],
+      "lookAt": [
+        0,
+        48.3,
+        0
+      ]
+    },
+    {
+      "name": "near-windows",
+      "position": [
+        12,
+        29,
+        17
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "near-foundation",
+      "position": [
+        18,
+        9,
+        24
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        55,
+        36,
+        74
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0646_eddystone_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -7.32496976852417,
+      0,
+      -7.32496976852417
+    ],
+    "max": [
+      7.32496976852417,
+      49.02165222167969,
+      7.32496976852417
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

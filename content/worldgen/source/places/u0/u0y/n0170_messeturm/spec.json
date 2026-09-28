@@ -1,0 +1,197 @@
+{
+  "planId": "N0170",
+  "id": "N0170",
+  "assetId": "molen.worldgen.structure.n0170_messeturm",
+  "title": "Messeturm",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q156198",
+  "referenceCoordinate": {
+    "latitude": 50.112222222,
+    "longitude": 8.652777777
+  },
+  "visualBrief": "Jahn’s red-granite skyscraper with four stepped steles around an exposed glass cylinder, pointed central window bays, reconstructed2022 curved-glass lobby and the distinctive three-stage diamond-oriented pyramid.",
+  "size": [
+    45.53761863708496,
+    256.5166931152344,
+    45.63641548156738
+  ],
+  "actualBounds": {
+    "min": [
+      -22.700000762939453,
+      0,
+      -22.93641471862793
+    ],
+    "max": [
+      22.837617874145508,
+      256.5166931152344,
+      22.700000762939453
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 256.5,
+    "architect": "Helmut Jahn",
+    "planWidthMeters": 41,
+    "lobbyFacadeHeightMeters": 17,
+    "facade": "Polished red granite and recessed glazing",
+    "roof": "Three stepped pyramid stages, corners centered on facade sides"
+  },
+  "reconstruction": {
+    "geometry": "Independently mapped square base, glass lobby, pointed cylinder, three cross-shaped granite steles, upper cylinder and diamond pyramid",
+    "heightDatum": "256.5 m CTBUH/HOCHTIEF datum; owner rounds257 m and current architect page lists251 m",
+    "crown": "Mapped220 m crown base with three photographed sloping tiers; individual tier heights reconstructed"
+  },
+  "referencePages": [
+    "https://jahn.studio/work/messeturm/",
+    "https://messeturm.com/en/",
+    "https://messeturm.com/fileadmin/user_upload/MESSETURM_Image_Book_25082022.pdf",
+    "https://www.hochtief.de/ueber-hochtief/geschichte/messeturm-in-frankfurt-am-main",
+    "https://www.skyscrapercenter.com/building/messeturm/796"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      8.652718315,
+      50.112377545
+    ],
+    "heading": 0.959433125809,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/23916129",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/23916129"
+    ],
+    "wikidataId": "Q156198",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed independent facade steles, curved lobby and diamond-shaped pyramid retain the exact mapped center and phase. Fourfold symmetry means180 degree ambiguity does not alter the exterior. BaseY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual granite panel joints, curtain-wall bay pitch and pyramid tier datums are reconstructed from the owner brochure and architect description. The separate Hammering Man sculpture and surrounding exhibition halls are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-steles",
+      "position": [
+        64,
+        174,
+        90
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "stepped-pyramid",
+      "position": [
+        62,
+        254,
+        86
+      ],
+      "lookAt": [
+        0,
+        226,
+        0
+      ]
+    },
+    {
+      "name": "cylinder-and-bays",
+      "position": [
+        60,
+        210,
+        75
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ]
+    },
+    {
+      "name": "glass-lobby",
+      "position": [
+        57,
+        14,
+        63
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -312,
+        220,
+        491
+      ],
+      "lookAt": [
+        0,
+        121,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 243716,
+    "vertices": 571814,
+    "materials": 4,
+    "bytes": 22940908,
+    "sha256": "sha256:9b4c07a30fe25a13673382b58e4ca7b7e016d490afd91bfb384f0486e541602a"
+  }
+}

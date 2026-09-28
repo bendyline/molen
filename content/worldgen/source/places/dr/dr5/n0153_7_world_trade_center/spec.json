@@ -1,0 +1,198 @@
+{
+  "planId": "N0153",
+  "id": "N0153",
+  "assetId": "molen.worldgen.structure.n0153_7_world_trade_center",
+  "title": "7 World Trade Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q270066",
+  "referenceCoordinate": {
+    "latitude": 40.7133,
+    "longitude": -74.012
+  },
+  "visualBrief": "The current2006 tower: a mapped oblique parallelogram of pale reflective glazing, concave stainless-steel spandrels, detailed triangular metal scrim above the ground lobby, and mapped rooftop service volumes.",
+  "size": [
+    81.71539306640625,
+    226.02999877929688,
+    49.66821098327637
+  ],
+  "actualBounds": {
+    "min": [
+      -40.85774230957031,
+      0,
+      -24.834115982055664
+    ],
+    "max": [
+      40.85765075683594,
+      226.02999877929688,
+      24.834095001220703
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "completion": 2006,
+    "floors": 52,
+    "heightFeet": 741,
+    "heightMeters": 225.8568,
+    "facade": "Low-iron glass, concave316 stainless steel spandrels, triangular metal scrim"
+  },
+  "reconstruction": {
+    "plan": "Exact current-building way277890516; roof parts1530740417/418; source map-parts.json",
+    "heightDatum": "SOM741 ft preferred to rounded228 m OSM roof value",
+    "podiumScrimHeightMeters": [
+      8,
+      24.3
+    ]
+  },
+  "referencePages": [
+    "https://www.som.com/projects/7-world-trade-center/",
+    "https://wtc.com/work-place/7wtc/",
+    "https://www.imoa.info/molybdenum-uses/molybdenum-grade-stainless-steels/architecture/world-trade-center.php",
+    "https://www.openstreetmap.org/way/277890516"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -74.01207728,
+      40.713396197
+    ],
+    "heading": 1.381492736976,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/277890516",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/277890516"
+    ],
+    "wikidataId": "Q270066",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed mapped oblique footprint is the completed2006 building, with exact-QID start_date2006 and independently mapped roof service part. Ground datumY0; no historical destroyed building substituted."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Static daylight facade. The scrim uses continuous modeled triangular strips with panel seams; the individual micro-prism orientation field and nighttime LED art are not reconstructed. Roof services are simplified within mapped extents."
+  ],
+  "qaCameras": [
+    {
+      "name": "steel-scrim",
+      "position": [
+        -68,
+        24,
+        97
+      ],
+      "lookAt": [
+        -8,
+        17,
+        24
+      ]
+    },
+    {
+      "name": "concave-spandrels",
+      "position": [
+        -34,
+        110,
+        69
+      ],
+      "lookAt": [
+        0,
+        105,
+        24
+      ]
+    },
+    {
+      "name": "roof-plant",
+      "position": [
+        78,
+        265,
+        118
+      ],
+      "lookAt": [
+        6,
+        223,
+        0
+      ]
+    },
+    {
+      "name": "ground-lobby",
+      "position": [
+        -45,
+        7,
+        86
+      ],
+      "lookAt": [
+        -8,
+        4,
+        24
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -354,
+        202,
+        529
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 84972,
+    "vertices": 254044,
+    "materials": 5,
+    "bytes": 9914364,
+    "sha256": "sha256:a3b447a62d2e1f3ae96fb73d85a422eadd8279c4157e52ca5c41248125895317"
+  }
+}

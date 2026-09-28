@@ -1,5 +1,7 @@
 import { getSchema, registerSchema } from '@bendyline/molen-schema';
 import { z } from 'zod';
+import { validGroundOutline } from './ground-cutout';
+import { isHistoricalStructureAppearance, isStructureViewingDate } from './structure-date';
 
 const finite = z.number().finite();
 const placement = z
@@ -12,6 +14,13 @@ const placement = z
     scale: z.tuple([finite.positive(), finite.positive(), finite.positive()]).optional(),
     datum: z.enum(['terrain', 'sea-level']).optional(),
     elevation: finite.optional(),
+    terrainReference: z
+      .strictObject({
+        anchor: z.tuple([finite.min(-180).max(180), finite.min(-90).max(90)]),
+        modelHeight: finite,
+        basis: z.string().trim().min(1),
+      })
+      .optional(),
     bounds: z
       .tuple([
         finite.min(-180).max(180),
@@ -25,10 +34,31 @@ const placement = z
       .strictObject({
         length: finite.positive(),
         width: finite.positive(),
+        outline: z
+          .array(z.tuple([finite, finite]))
+          .min(3)
+          .max(512)
+          .refine(validGroundOutline, 'road outline must be a simple polygon with positive area')
+          .optional(),
         deckHeight: finite.optional(),
+        deckHeights: z.tuple([finite, finite]).optional(),
       })
+      .refine(
+        (road) => road.deckHeight === undefined || road.deckHeights === undefined,
+        'choose a uniform deck height or separate endpoint heights',
+      )
       .optional(),
     replaceFootprint: z.boolean().optional(),
+    groundCutout: z
+      .strictObject({
+        outline: z
+          .array(z.tuple([finite, finite]))
+          .min(3)
+          .max(512)
+          .refine(validGroundOutline, 'ground cutout must be a simple polygon with positive area'),
+        basis: z.string().trim().min(1),
+      })
+      .optional(),
     mapIdentity: z
       .strictObject({
         wikidata: z
@@ -46,13 +76,33 @@ const placement = z
     orientation: z.enum(['fixed', 'mapped']).optional(),
     lengthAxis: z.enum(['x', 'z']).optional(),
     minLevel: z.int().min(0).max(26).optional(),
-    status: z.enum(['preview', 'draft']),
+    status: z.enum(['preview', 'draft', 'historical']),
+    appearance: z
+      .strictObject({
+        kind: z.literal('historical'),
+        currentWorldEligible: z.literal(false),
+        representedDate: z.string().trim().min(1).optional(),
+        validFrom: z.string().refine(isStructureViewingDate),
+        validUntil: z.string().refine(isStructureViewingDate),
+      })
+      .refine(isHistoricalStructureAppearance, 'historical appearance needs an ordered date range')
+      .optional(),
     source: z.string().url(),
     note: z.string().optional(),
   })
   .refine(
-    (entry) => !entry.bounds || entry.datum === 'sea-level',
-    'extended structures require an absolute sea-level datum',
+    (entry) => !entry.terrainReference || entry.datum !== 'sea-level',
+    'terrain reference cannot be combined with an absolute sea-level datum',
+  )
+  .refine(
+    (entry) => !entry.bounds || entry.datum === 'sea-level' || !!entry.terrainReference,
+    'extended structures require an absolute datum or an explicit terrain reference',
+  )
+  .refine(
+    (entry) =>
+      (entry.status !== 'historical' || !!entry.appearance) &&
+      (entry.status !== 'preview' || !entry.appearance),
+    'historical placements need dates and cannot be current-world previews',
   )
   .refine(
     (entry) => !entry.replaceRoads || !!entry.bounds,

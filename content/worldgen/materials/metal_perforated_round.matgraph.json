@@ -1,0 +1,25 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 133,
+  "alphaTest": 0.3,
+  "nodes": [
+    { "id": "distance", "type": "gradient", "params": { "kind": "radial", "angleDeg": 0 } },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "distance",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#fafafa00" },
+          { "t": 0.33, "color": "#fafafa00" },
+          { "t": 0.337, "color": "#fafafaff" },
+          { "t": 1, "color": "#fafafaff" }
+        ]
+      }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.5 } },
+    { "id": "metal", "type": "const", "params": { "value": 0 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

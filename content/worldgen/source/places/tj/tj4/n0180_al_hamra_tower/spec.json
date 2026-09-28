@@ -1,0 +1,272 @@
+{
+  "planId": "N0180",
+  "id": "N0180",
+  "assetId": "molen.worldgen.structure.n0180_al_hamra_tower",
+  "title": "Al Hamra Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q557933",
+  "referenceCoordinate": {
+    "latitude": 29.378611111,
+    "longitude": 47.992777777
+  },
+  "visualBrief": "Kuwait’s sculpted tower with a fixed rounded glass envelope, southwest-to-southeast moving courtyard cut, two continuous limestone flares, deep angled south-wall windows, sloping east blade and24m lamella-framed north entrance.",
+  "size": [
+    60.18770790100098,
+    412.5923156738281,
+    70.3919849395752
+  ],
+  "actualBounds": {
+    "min": [
+      -30.082151412963867,
+      0,
+      -41.011871337890625
+    ],
+    "max": [
+      30.10555648803711,
+      412.5923156738281,
+      29.38011360168457
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 412.6,
+    "occupiedHeightMeters": 351.2,
+    "completionYear": 2011,
+    "architect": "Skidmore, Owings & Merrill",
+    "designDirector": "Aybars Asci",
+    "engineer": "Skidmore, Owings & Merrill",
+    "designerStoreys": 74,
+    "ctbuhStoreys": 80,
+    "typicalFloorHeightMeters": 4.2,
+    "lobbyHeightMeters": 24,
+    "topHallHeightMeters": 40,
+    "cladding": "Jura limestone and trencadis",
+    "primaryDiagramCutLevelsMeters": [
+      0,
+      75,
+      150,
+      225,
+      300
+    ]
+  },
+  "reconstruction": {
+    "massing": "The architect’s published five sections establish a fixed filleted square with the removed quarter moving from southwest at ground level to southeast at the top. The model reconstructs that moving cut and its two ruled stone walls rather than rotating the entire tower.",
+    "facade": "Completed SOM exterior photographs establish blue north/east/west glazing, thin horizontal metal rails, a warm limestone south wall and small deeply splayed openings. The eighty-row aperture schedule and detailed reveal depths are photograph reconstructions.",
+    "crown": "The east-facing blade reaches412.6m while the western edge is lower. A closed inclined roof follows the same concave outline; the40m upper hall is represented by its exterior envelope.",
+    "entry": "Primary lobby plan and photographs establish the northern entrance,24m inclined lamella structure and curved metal canopy supports. The separate southern shopping mall and eastern parking block are excluded."
+  },
+  "referencePages": [
+    "https://www.som.com/projects/al-hamra-tower/",
+    "https://efficiencylab.org/media/EL-Portfolio-1.pdf",
+    "https://usmodernist.org/AR/AR-2012-05.pdf",
+    "https://www.skyscrapercenter.com/building/building/208",
+    "https://www.openstreetmap.org/way/188381326"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      47.9930928,
+      29.37934075
+    ],
+    "heading": -0.16301785935,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/188381326",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/188381326"
+    ],
+    "wikidataId": "Q557933",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:e1c4a7dd5e49f5cae32f07aa9b072ed0bf673ec30222a986af9a94ab70347009",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "The exact-QID OSM rectangle fixes the60.019×58.619m envelope and signed frame. The north arrows in the architect-credited lobby/site plans match this frame: native+Z is the southern stone/courtyard side, +X the east side with the high blade. The primary five-section sequence independently fixes the southwest-to-southeast cut phase. SourceY0 is tower entry; adjoining mall and parking structure remain separate assets."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "The coarse mapped rectangle is an envelope, not a curved occupied floor plate. Fillet radii, intermediate cut curves, roof slope, individual stone/glass panel schedule and canopy dimensions are reconstructed from primary plans and completed photographs. Fine trencadis mosaic tesserae use the shared limestone surface at physical scale; tenant lettering, interiors and the separate retail/parking complex are excluded. The architect counts74 floors while CTBUH counts80; exterior height follows their shared412.6m figure."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-courtyard",
+      "position": [
+        0,
+        205,
+        180
+      ],
+      "lookAt": [
+        0,
+        194,
+        6
+      ]
+    },
+    {
+      "name": "angled-stone-windows",
+      "position": [
+        21,
+        193,
+        68
+      ],
+      "lookAt": [
+        4,
+        188,
+        2
+      ]
+    },
+    {
+      "name": "western-flare",
+      "position": [
+        -86,
+        123,
+        92
+      ],
+      "lookAt": [
+        -17,
+        126,
+        9
+      ]
+    },
+    {
+      "name": "eastern-blade",
+      "position": [
+        90,
+        391,
+        106
+      ],
+      "lookAt": [
+        18,
+        380,
+        7
+      ]
+    },
+    {
+      "name": "sloping-crown",
+      "position": [
+        -93,
+        467,
+        121
+      ],
+      "lookAt": [
+        0,
+        384,
+        -3
+      ]
+    },
+    {
+      "name": "north-lamella",
+      "position": [
+        -32,
+        17,
+        -88
+      ],
+      "lookAt": [
+        -3,
+        12,
+        -28
+      ]
+    },
+    {
+      "name": "curved-canopy",
+      "position": [
+        29,
+        12,
+        -65
+      ],
+      "lookAt": [
+        0,
+        6,
+        -36
+      ]
+    },
+    {
+      "name": "glass-perimeter",
+      "position": [
+        -95,
+        213,
+        -116
+      ],
+      "lookAt": [
+        -13,
+        208,
+        -22
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -520,
+        300,
+        675
+      ],
+      "lookAt": [
+        0,
+        194,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 162957,
+    "vertices": 474457,
+    "materials": 7,
+    "bytes": 18565488,
+    "sha256": "sha256:97298fa2a37c687b1be534ad674957790aa8c1a2c1244fdda65cc7cef99c9398"
+  }
+}

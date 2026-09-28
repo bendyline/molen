@@ -1,0 +1,176 @@
+{
+  "id": "N0569",
+  "planId": "N0569",
+  "assetId": "molen.worldgen.structure.n0569_saint_jacques_tower",
+  "title": "Saint-Jacques Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1431547"
+  },
+  "wikidataId": "Q1431547",
+  "visualBrief": "Flamboyant Gothic Paris bell tower with long paired lancets, dense carved tracery, stepped corner buttresses, nineteen facade saints, open parapet, gargoyles, four evangelist symbols and the raised northwest pilgrim statue.",
+  "size": [
+    13.3,
+    60.8,
+    12.3
+  ],
+  "actualBounds": {
+    "min": [
+      -6.472701549530029,
+      0,
+      -7.260000228881836
+    ],
+    "max": [
+      6.369999885559082,
+      60.790000915527344,
+      7.260000228881836
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the south facade; the elevated Saint James occupies the northwest (−X,−Z) corner",
+    "origin": "Exact mapped tower centroid, pavement contact Y=0"
+  },
+  "scaleBasis": "City of Paris terrace elevation and facade statue dimensions establish vertical scale; the exact OSM footprint constrains plan. Primary exterior photographs determine the two long lancet stages, carved blind tracery and stepped corner buttresses. The raised statue and pedestal extend above the 54 m terrace.",
+  "geographicProposal": {
+    "anchor": [
+      2.348915931,
+      48.857997773
+    ],
+    "heading": -0.376231267483,
+    "source": "https://www.openstreetmap.org/way/20326709",
+    "evidence": "Mapped wall axes and published northwest location of the raised Saint James jointly resolve the native frame and the 180-degree ambiguity.",
+    "orientationConfidence": "mapped-walls-and-published-northwest-statue",
+    "limitations": "Small buttress offsets are fitted to the irregular map outline; the original surrounding church is absent from this present-day exterior.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Mapped wall axes and published northwest location of the raised Saint James jointly resolve the native frame and the 180-degree ambiguity. Small buttress offsets are fitted to the irregular map outline; the original surrounding church is absent from this present-day exterior."
+  },
+  "sourceFacts": {
+    "terraceHeightMeters": 54,
+    "facadeSaintCount": 19,
+    "facadeStatueHeightMeters": 2.5,
+    "evangelistSymbols": [
+      "lion",
+      "bull",
+      "eagle",
+      "angel"
+    ],
+    "saintJamesCorner": "northwest",
+    "completionYear": 1523
+  },
+  "referencePages": [
+    "https://www.paris.fr/pages/sept-choses-a-savoir-sur-la-tour-saint-jacques-23432",
+    "https://parisjetaime.com/culture/tour-saint-jacques-p993",
+    "https://www.openstreetmap.org/way/20326709"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Facade saints, animals and relief tracery are original polygonal sculptures preserving their architectural positions and silhouettes; they are not casts of individual artworks.",
+    "The 54 m terrace is published; minor crown pedestal elevations are scaled from city photographs. Temporary closure and scaffolding are omitted from the permanent exterior.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "lower-tracery",
+      "position": [
+        16,
+        16,
+        23
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "lancets",
+      "position": [
+        16,
+        38,
+        25
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "name": "northwest-pilgrim",
+      "position": [
+        -15,
+        62,
+        -17
+      ],
+      "lookAt": [
+        -3,
+        56,
+        -3
+      ]
+    },
+    {
+      "name": "gargoyles-crown",
+      "position": [
+        20,
+        56,
+        22
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        73,
+        39,
+        96
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    }
+  ]
+}

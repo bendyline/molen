@@ -7,7 +7,7 @@ import { collectScriptTypesTargets, type ScriptTypesTarget } from '../script-tar
 // Typecheck the scene-data scripts against their generated ambient declarations. The scripts stay
 // plain JavaScript (they are text inside scene.json); `checkJs` + the generated d.ts turn a
 // component typo, a bad command payload, or an unguarded `get` into an error before the first
-// tick — the same place an agent already looks, rather than a runtime throw 40 ticks in.
+// tick â€” the same place an agent already looks, rather than a runtime throw 40 ticks in.
 
 export interface CheckScriptsInput {
   projectPath?: string;
@@ -86,7 +86,7 @@ async function loadTypeScript(projectDir: string): Promise<TypeScriptModule | un
  */
 export function typescriptNotFoundError(projectDir: string): string {
   return [
-    "typescript not found — molen scripts check compiles with the project's own TypeScript",
+    "typescript not found â€” molen scripts check compiles with the project's own TypeScript",
     `  install it in ${projectDir}:`,
     '    npm install                 # the scaffold lists typescript as a devDependency',
     '  or add it directly:',
@@ -125,7 +125,7 @@ function diagnosticsFor(
     }
     const { line, character } = d.file.getLineAndCharacterOfPosition(d.start);
     out.push({
-      file: relative(projectDir, d.file.fileName),
+      file: relative(projectDir, d.file.fileName).replaceAll('\\', '/'),
       line: line + 1,
       column: character + 1,
       code: `TS${d.code}`,
@@ -170,7 +170,7 @@ export async function checkScripts(input: CheckScriptsInput): Promise<CheckScrip
         ok: false,
         stale,
         ungenerated,
-        error: `script declarations are ${stale.length > 0 ? 'stale' : 'missing'} — run: molen types gen`,
+        error: `script declarations are ${stale.length > 0 ? 'stale' : 'missing'} â€” run: molen types gen`,
       };
     }
 

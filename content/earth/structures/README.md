@@ -13,6 +13,15 @@ active set covers the Space Needle, downtown towers and library, Seattle Center 
 Pike Place Market, the waterfront wheel, both stadiums, Suzzallo Library, and SR-520.
 The Ballard Locks remains a draft.
 
+The next-1,000 batch adds eight ground-contact previews: Shanghai World Financial Center,
+The Shard, Oriental Pearl Tower, Maiden Tower, Gonbad-e Qabus, Ka'ba-ye Zartosht, Tower of
+Hercules and Kõpu Lighthouse. Their metadata records directed footprints or explicit facing
+approximations. Kiipsaare Lighthouse remains an offshore draft. Their authored geometry uses
+the shared architectural surfaces and streams through the same resident-tile index.
+The [batch review runner](../../../examples/world-explorer/test/visual/landmark-library.md)
+checks actual model/material loading, geographic transforms and eviction on flat test terrain.
+Its captures do not establish final ground fit against the host's elevation data.
+
 `preview` means the reference point is suitable for a visual placement study. A preview model
 is still stylized and its footprint, heading, and ground fit may need surveying. `draft` means
 the source point does not establish an unambiguous current structure location; draft records
@@ -66,7 +75,10 @@ The bundled Seattle–Bellevue–Sammamish terrain is built by
 `examples/world-explorer/scripts/build-sammamish-package.mjs`. The recorded landmarks can be
 inspected with `examples/world-explorer/test/visual/seattle-landmarks.play.json` after building
 the World Explorer. The original model previews and source bundles are in
-`content/worldgen/source/site-structures/`.
+`content/worldgen/source/places/<geohash2>/<geohash3>/<model-key>/`.
+The [source index](../../worldgen/source/structure-index.json) resolves stable source keys,
+and the [geographic gallery](../../worldgen/source/places/gallery.html) includes reusable
+models from semantic folders. Source-folder anchors do not approve runtime placements.
 
 Initial scene captures: [Seattle Center](../../../examples/world-explorer/captures/seattle-landmarks-verified/01-space-needle.png),
 [downtown](../../../examples/world-explorer/captures/seattle-landmarks-verified/02-downtown-towers.png),

@@ -1,35 +1,38 @@
-# Site-specific structure assets
+# Original 100 structure catalog
 
-All 100 assets in the [World Explorer structure plan](../../../../examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md)
-now have original deterministic source GLBs, imported Molen sidecars, lit previews, and IDs in
-`content/worldgen/project.json` and `stylepack.json`. The default worldgen pack contains 108
-assets (the 100 structures, five next-catalog studies, and three existing props). Its asset
-provider resolves every structure ID to a runtime GLB. These models are stylized studies with
-provisional dimensions; Earth coordinate matching, measured placement, LODs, and segmented
-bridge streaming remain future work.
+The 100 assets in the [World Explorer structure plan](../../../../examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md)
+have deterministic source GLBs, imported Molen sidecars, lit previews and stable IDs in
+`content/worldgen/project.json` and `stylepack.json`. Their fidelity and geographic review
+vary; an imported model is not automatically a surveyed replica.
 
-The [next 1,000 candidate catalog](../next-1000/README.md) adds five more imported structure
-studies. Its searchable [gallery](../next-1000/gallery.html) keeps the remaining 995 candidates
-separate from finished model assets.
+This directory retains the original catalog's [preview gallery](gallery.html) and
+[97-model asset index](asset-index.json). Canonical model bundles now live in geographic
+folders for named places and semantic folders for reusable buildings and infrastructure.
+The [combined gallery](../places/gallery.html), [layout guide](../places/README.md) and
+[source index](../structure-index.json) cover both this collection and authored models from
+the [next 1,000 candidate catalog](../next-1000/README.md).
 
-| Plan ID | Asset | Source | State |
-| --- | --- | --- | --- |
-| A01 | [Space Needle](space-needle/README.md) | `space-needle/spec.json` | Reference model imported |
-| C01 | [Golden Gate Bridge](golden-gate-bridge/README.md) | `golden-gate-bridge/spec.json` | Reference suspension section imported |
-| C02 | [SR 520 floating bridge](sr-520-floating-bridge/README.md) | `sr-520-floating-bridge/spec.json` | Reference floating section imported |
+| Plan ID | Reference model | Current source |
+| --- | --- | --- |
+| A01 | Space Needle | [c2/c22/space-needle](../places/c2/c22/space-needle/README.md) |
+| C01 | Golden Gate Bridge | [9q/9q8/golden-gate-bridge](../places/9q/9q8/golden-gate-bridge/README.md) |
+| C02 | SR 520 floating bridge | [c2/c23/sr-520-floating-bridge](../places/c2/c23/sr-520-floating-bridge/README.md) |
 
-Browse all 100 renders in the [preview gallery](gallery.html). The [asset index](asset-index.json)
-lists the other 97 IDs, source folders, triangle counts, and
-runtime bytes. Each folder contains `spec.json`, `models/source.glb`, `source.json`, `scene.json`,
-`preview.png`, and an asset-specific README. The generated models cover 19 additional Pacific
-landmarks, 20 global landmarks, 18 bridges, 20 urban building recipes, and 20 infrastructure
-recipes.
+Each model retains its `spec.json`, `models/source.glb`, `source.json`, `scene.json`, preview,
+shots and README together. The other 97 models cover 19 Pacific landmarks, 20 global
+landmarks, 18 bridges, 20 reusable urban recipes and 20 reusable infrastructure recipes.
+All named models now have sourced organizational coordinates. Imported runtime bundles mirror
+their source geography under `content/worldgen/assets/places/`; reusable bundles use
+`assets/reusable/`. Runtime asset IDs and placement records are independent of folder names.
 
-After `pnpm -r build`, regenerate the editable masters with
-`node packages/worldgen/scripts/generate-site-structures.mjs`. Re-import each changed GLB using
-the command in its README. `--check` verifies the deterministic source, and
-`node scripts/check-source-bundles.mjs` verifies source hashes against imported sidecars.
-For the 97 catalog models, use `node packages/worldgen/scripts/generate-structure-catalog.mjs`,
+After `pnpm -r build`, regenerate the three reference masters with
+`node packages/worldgen/scripts/generate-site-structures.mjs`. For the other 97 models, use
+`node packages/worldgen/scripts/generate-structure-catalog.mjs`,
 `node packages/worldgen/scripts/import-structure-catalog.mjs`, and
-`node packages/worldgen/scripts/capture-structure-catalog.mjs` (requires the installed Chromium
-capture runtime). Both generation and import scripts support `--check`.
+`node packages/worldgen/scripts/capture-structure-catalog.mjs` (requires Chromium).
+The authoring scripts resolve their outputs through the source registry; `--check` verifies
+the deterministic sources without writing them. `node scripts/check-source-bundles.mjs`
+verifies source hashes against imported sidecars.
+
+To refresh catalog links after reorganizing sources without reimporting GLBs, run
+`node packages/worldgen/scripts/import-structure-catalog.mjs --index-only`.

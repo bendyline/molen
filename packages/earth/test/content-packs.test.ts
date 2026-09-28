@@ -1,7 +1,76 @@
+import { randomBytes } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import type { Pack } from '@bendyline/molen-pack';
+import { createPack, type Pack } from '@bendyline/molen-pack';
 import { describe, expect, it, vi } from 'vitest';
-import { loadEarthContent } from '../src/client/content';
+import { loadEarthContent, openPacksFromIndex } from '../src/client/content';
+
+describe('Earth pack transport', () => {
+  it('routes index, archive and later model ranges through the host fetch', async () => {
+    const model = randomBytes(150_000);
+    const { bytes, manifest } = await createPack(
+      [
+        { path: 'models/nearby.glb', bytes: model },
+        { path: 'models/remote.glb', bytes: randomBytes(4 * 1024 * 1024) },
+      ],
+      { id: 'example.landmarks', version: '1.0.0' },
+    );
+    const indexUrl = 'https://host.example/packs/index.json';
+    const archiveUrl = 'https://host.example/packs/landmarks.zip';
+    const requests: { url: string; range: string | null }[] = [];
+    let transferred = 0;
+    const fetchImpl = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      const range = new Headers(init?.headers).get('range');
+      requests.push({ url, range });
+      if (url === indexUrl) {
+        return Response.json({
+          format: 'molen/pack-index@1',
+          packs: {
+            'example.landmarks': {
+              file: 'landmarks.zip',
+              size: bytes.length,
+              version: '1.0.0',
+              contentHash: manifest.contentHash,
+            },
+          },
+        });
+      }
+      expect(url).toBe(archiveUrl);
+      const match = /^bytes=(\d*)-(\d*)$/.exec(range ?? '');
+      if (match === null) throw new Error('Large archive must use HTTP Range');
+      const start = match[1] === '' ? bytes.length - Number(match[2]) : Number(match[1]);
+      const end = match[1] === '' ? bytes.length - 1 : Number(match[2]);
+      const body = bytes.slice(start, end + 1);
+      transferred += body.length;
+      return new Response(body, {
+        status: 206,
+        headers: { 'content-range': `bytes ${start}-${end}/${bytes.length}` },
+      });
+    });
+    const unexpectedFetch = vi
+      .spyOn(globalThis, 'fetch')
+      .mockRejectedValue(new Error('Bypassed host'));
+    let pack: Pack | undefined;
+    try {
+      [pack] = await openPacksFromIndex(indexUrl, ['example.landmarks'], fetchImpl);
+      if (pack === undefined) throw new Error('Expected landmark pack');
+      expect(requests).toEqual([
+        { url: indexUrl, range: null },
+        { url: archiveUrl, range: 'bytes=-65536' },
+      ]);
+      expect(new Uint8Array(await pack.readBytes('models/nearby.glb'))).toEqual(
+        new Uint8Array(model),
+      );
+      expect(requests).toHaveLength(3);
+      expect(requests[2]?.url).toBe(archiveUrl);
+      expect(transferred).toBeLessThan(bytes.length / 10);
+      expect(unexpectedFetch).not.toHaveBeenCalled();
+    } finally {
+      pack?.close();
+      unexpectedFetch.mockRestore();
+    }
+  });
+});
 
 describe('Earth structure catalogs', () => {
   it('merges geographic and category catalogs without fetching any model bytes', async () => {

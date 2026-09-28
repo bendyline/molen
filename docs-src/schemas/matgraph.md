@@ -62,6 +62,12 @@ A small node graph (noise, gradients, ramps, blends) CPU-rasterized to textures.
       "const": "molen/matgraph@1",
       "description": "Format envelope; always 'molen/matgraph@1'."
     },
+    "alphaTest": {
+      "description": "Optional alpha cutout threshold for baseColor RGBA. Omit for opaque materials; this does not enable blended transparency.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "size": {
       "default": [
         512,

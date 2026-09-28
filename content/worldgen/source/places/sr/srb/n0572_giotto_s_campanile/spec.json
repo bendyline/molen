@@ -1,0 +1,165 @@
+{
+  "id": "N0572",
+  "planId": "N0572",
+  "assetId": "molen.worldgen.structure.n0572_giotto_s_campanile",
+  "title": "Giotto’s Campanile",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1140023"
+  },
+  "wikidataId": "Q1140023",
+  "visualBrief": "Florentine polychrome marble campanile, with reinforced octagonal corners, hexagonal and diamond relief cycles, statue niches, paired biforas and a three-light belfry loggia, Gothic gables, projecting corbels and an open flat crown.",
+  "size": [
+    16.3,
+    84.7,
+    16.3
+  ],
+  "actualBounds": {
+    "min": [
+      -8.149999618530273,
+      0,
+      -8.149999618530273
+    ],
+    "max": [
+      8.149999618530273,
+      84.69999694824219,
+      8.149999618530273
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "−Z is the cathedral-facing north entrance elevation",
+    "origin": "Exact-QID mapped shaft center at exterior pavement"
+  },
+  "scaleBasis": "Opera del Duomo published 84.7 m height and roughly 15 m square base; mapped reinforced-corner plan determines shaft width and alignment. Photographer Roberto Di Ferdinando’s exterior image and Opera descriptions establish loggia/window and marble-panel hierarchy.",
+  "geographicProposal": {
+    "anchor": [
+      11.2556971,
+      43.772849685
+    ],
+    "heading": -0.01934505583489665,
+    "source": "https://www.openstreetmap.org/way/251650632",
+    "evidence": "Exact-QID reinforced-corner outline supplies the nearly north/south facade axis. The museum’s cathedral-side rear entrance determines the authored −Z face; the square plan otherwise permits quarter turns.",
+    "orientationConfidence": "footprint-plus-entrance-side",
+    "limitations": "Top crown projects beyond the mapped shaft, as visible in the reference. Exterior paving and temporary restoration scaffolding are excluded.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID reinforced-corner outline supplies the nearly north/south facade axis. The museum’s cathedral-side rear entrance determines the authored −Z face; the square plan otherwise permits quarter turns. Top crown projects beyond the mapped shaft, as visible in the reference. Exterior paving and temporary restoration scaffolding are excluded."
+  },
+  "sourceFacts": {
+    "heightMeters": 84.7,
+    "baseApproximateMeters": 15,
+    "hexagonalPanels": 26,
+    "diamondPanels": 28,
+    "statueNiches": 16,
+    "openLoggias": 3,
+    "highestLoggiaLights": 3
+  },
+  "referencePages": [
+    "https://duomo.firenze.it/en/discover/giotto-s-bell-tower",
+    "https://duomo.firenze.it/en/visit/plan-your-visit",
+    "https://curiositadifirenze.blogspot.com/2018/01/campanile-di-giotto.html",
+    "https://www.openstreetmap.org/way/251650632"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The narrative bas-reliefs and statues retain their counts, shapes and architectural niches but are original simplified sculptural reliefs, not reproductions of the individual named artworks.",
+    "Panel elevations, marble flower designs, moulding sections and window tracery are fitted to exterior photography. Exact conservation stone-cut patterns are not claimed.",
+    "Permanent exterior is modeled; temporary restoration scaffolding is excluded.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "lower-marble-cycles",
+      "position": [
+        17,
+        18,
+        26
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "bifora-loggias",
+      "position": [
+        22,
+        53,
+        27
+      ],
+      "lookAt": [
+        0,
+        49,
+        0
+      ]
+    },
+    {
+      "name": "crown-corbelwork",
+      "position": [
+        20,
+        88,
+        25
+      ],
+      "lookAt": [
+        0,
+        78,
+        0
+      ]
+    },
+    {
+      "name": "north-door",
+      "position": [
+        -12,
+        7,
+        -23
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        112,
+        55,
+        145
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ]
+    }
+  ]
+}

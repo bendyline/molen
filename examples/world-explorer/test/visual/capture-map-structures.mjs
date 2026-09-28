@@ -9,6 +9,7 @@ import { createServer } from 'vite';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '../../../..');
+const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'), 'utf8'));
 const require = createRequire(resolve(root, 'packages/tooling/package.json'));
 const { chromium } = require('playwright');
 const outputIndex = process.argv.indexOf('--out-dir');
@@ -125,6 +126,11 @@ try {
   const assets = {};
   for (const id of ['map_smock_windmill', 'map_wind_turbine']) {
     const ref = `molen.worldgen.structure.${id}`;
+    const sidecarPath = pack.assets[ref];
+    assert(sidecarPath, `${ref}: runtime asset is not registered`);
+    const sidecar = JSON.parse(
+      await readFile(resolve(root, 'content/worldgen', sidecarPath), 'utf8'),
+    );
     assets[ref] = {
       sourceHash: hash(
         await readFile(
@@ -132,13 +138,10 @@ try {
         ),
       ),
       runtimeHash: hash(
-        await readFile(
-          resolve(root, `content/worldgen/assets/${ref.replaceAll('.', '/')}/model.glb`),
-        ),
+        await readFile(resolve(root, 'content/worldgen', dirname(sidecarPath), sidecar.files.main)),
       ),
     };
   }
-  const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'), 'utf8'));
   const materialGraphs = {};
   for (const ref of Object.keys(frames[0].state.surfaceReads)) {
     const path = `content/worldgen/${pack.materials[ref]}`;

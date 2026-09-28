@@ -1,0 +1,191 @@
+{
+  "planId": "N0138",
+  "id": "N0138",
+  "assetId": "molen.worldgen.structure.n0138_mirante_do_vale",
+  "title": "Mirante do Vale",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q42258",
+  "referenceCoordinate": {
+    "latitude": -23.5422,
+    "longitude": -46.635422
+  },
+  "visualBrief": "The170 m narrow modernist slab follows the mapped clipped end, with dense metal window grid, projecting floor bands, exterior air-conditioning boxes with louvers and Sampa Sky glass observation boxes at150 m.",
+  "size": [
+    71.55000305175781,
+    170,
+    22.950000762939453
+  ],
+  "actualBounds": {
+    "min": [
+      -36.275001525878906,
+      0,
+      -11.475000381469727
+    ],
+    "max": [
+      35.275001525878906,
+      170,
+      11.475000381469727
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 170,
+    "observationDeckMeters": 150,
+    "observationFloor": 42
+  },
+  "reconstruction": {
+    "plan": "Exact-QID mapped thin slab perimeter",
+    "facade": "Individual grid cells, reconstructed dispersed AC equipment and four cardinal observation boxes",
+    "roof": "Reconstructed shallow recessed mechanical level"
+  },
+  "referencePages": [
+    "https://www.sampasky.com.br/sobre-nos",
+    "https://www.farolsantander.com.br/assets/sites/2/20241204172903/Manual-de-Eventos-Farol-Santander-2025.pdf?_rsc=1mcjp"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -46.635418088,
+      -23.542174092
+    ],
+    "heading": -0.422946671446,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/182007184",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/182007184"
+    ],
+    "wikidataId": "Q42258",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Native facade follows exact-QID mapped thin slab perimeter and clipped eastern end. The four box locations represent operator-described cardinal decks; precise bay offsets are approximated."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual AC positions and window tint/opening state are synthesized from the characteristic existing facade pattern. Observation box projections and roof fittings are reconstructed."
+  ],
+  "qaCameras": [
+    {
+      "name": "window-ac-grid",
+      "position": [
+        9,
+        103,
+        47
+      ],
+      "lookAt": [
+        0,
+        94,
+        9
+      ]
+    },
+    {
+      "name": "sky-boxes",
+      "position": [
+        59,
+        155,
+        36
+      ],
+      "lookAt": [
+        12,
+        151,
+        0
+      ]
+    },
+    {
+      "name": "thin-end",
+      "position": [
+        80,
+        103,
+        19
+      ],
+      "lookAt": [
+        30,
+        85,
+        0
+      ]
+    },
+    {
+      "name": "roof",
+      "position": [
+        78,
+        194,
+        62
+      ],
+      "lookAt": [
+        0,
+        168,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -246,
+        153,
+        356
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 86720,
+    "vertices": 229494,
+    "materials": 4,
+    "bytes": 9075740,
+    "sha256": "sha256:b1573f18714ec0e35b96836cb51583f84f42471116996ed088f9aab9bb90040a"
+  }
+}

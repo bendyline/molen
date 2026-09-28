@@ -15,14 +15,19 @@ import { getBounds, Node, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { dedup, listTextureInfoByMaterial, prune, quantize, weld } from '@gltf-transform/functions';
 import { findProjectFile, updateProjectFile } from '../project';
+import { parseJson } from './parse';
 
 export interface ImportAssetInput {
   /** Source model file (.glb / .gltf). */
   path: string;
   /** Asset id (default: slugged filename). Dotted ids fall under namespace reservations. */
   id?: string;
-  /** Output assets root (default: <project dir>/assets, else ./assets). */
+  /** Output assets root; explicit overrides retain the <root>/<dotted-id-as-path> layout. */
   outDir?: string;
+  /** Exact bundle directory, relative to cwd when not absolute. Mutually exclusive with outDir.
+   * Without either override, reimports preserve the project-registered asset directory; new
+   * assets use <project dir>/assets/<dotted-id-as-path> (or ./assets without a project). */
+  assetDir?: string;
   /** Also extract a whole-asset collision trimesh into collision.bin. */
   trimesh?: boolean;
   /** Skip the normalize pass (dedup/prune/weld/quantize). */
@@ -350,6 +355,18 @@ async function resolveImportProject(
 export async function importAsset(input: ImportAssetInput): Promise<ImportAssetOutput> {
   const warnings: string[] = [];
   try {
+    if (input.assetDir !== undefined && input.outDir !== undefined)
+      return {
+        ok: false,
+        error:
+          'assetDir and outDir are mutually exclusive; choose an exact bundle directory or an assets root',
+      };
+    if (input.assetDir !== undefined && input.assetDir.trim().length === 0)
+      return { ok: false, error: 'assetDir must not be empty' };
+    if (input.assetDir?.includes('\0'))
+      return { ok: false, error: 'assetDir must not contain a null byte' };
+    const id = slug(input.id ?? basename(input.path, extname(input.path)));
+    if (id.length === 0) return { ok: false, error: 'asset id is empty after slugging' };
     const sourcePath = resolve(input.path);
     // Decide where this import lands before doing any expensive work, so an ambiguous project
     // fails in milliseconds rather than after a full normalize pass.
@@ -357,6 +374,73 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     if (resolved.error !== undefined) return { ok: false, error: resolved.error };
     const projectPath = resolved.projectPath;
     if (resolved.warning !== undefined) warnings.push(resolved.warning);
+    let registeredAssets: Record<string, string> = {};
+    if (projectPath !== undefined) {
+      const project = validate('project', parseJson(await readFile(projectPath, 'utf8')));
+      if (!project.ok) return { ok: false, error: project.formatted };
+      registeredAssets = project.value.assets;
+    }
+    const registeredSidecar =
+      input.assetDir === undefined && input.outDir === undefined ? registeredAssets[id] : undefined;
+    const assetsRoot =
+      input.outDir ??
+      (projectPath !== undefined
+        ? join(dirname(projectPath), 'assets')
+        : resolve(input.cwd ?? process.cwd(), 'assets'));
+    const dir =
+      input.assetDir !== undefined
+        ? resolve(input.cwd ?? process.cwd(), input.assetDir)
+        : registeredSidecar !== undefined && projectPath !== undefined
+          ? dirname(resolve(dirname(projectPath), registeredSidecar))
+          : join(assetsRoot, id.replaceAll('.', '/'));
+    const sidecarPath =
+      registeredSidecar !== undefined && projectPath !== undefined
+        ? resolve(dirname(projectPath), registeredSidecar)
+        : join(dir, 'asset.json');
+    if (projectPath !== undefined) {
+      // Registered sidecars need not be named asset.json. Protect their model.glb too when
+      // an explicit destination (or a legacy ID-derived destination) targets the same bundle.
+      for (const [registeredId, path] of Object.entries(registeredAssets)) {
+        if (
+          registeredId !== id &&
+          relative(resolve(dir), dirname(resolve(dirname(projectPath), path))) === ''
+        )
+          return {
+            ok: false,
+            error: `${dir} belongs to asset "${registeredId}"; refusing to overwrite it with "${id}"`,
+          };
+      }
+    }
+    try {
+      if (!(await stat(dir)).isDirectory())
+        return { ok: false, error: `${dir} is not a directory` };
+      if (input.force !== true)
+        return {
+          ok: false,
+          error: `${dir} already exists; choose another id or pass force: true to replace it`,
+        };
+      // An explicit directory must not silently replace a different asset's bundle.
+      let existing: unknown;
+      try {
+        existing = parseJson(await readFile(sidecarPath, 'utf8'));
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== 'ENOENT' && !(error instanceof SyntaxError))
+          throw error;
+      }
+      if (
+        existing !== null &&
+        typeof existing === 'object' &&
+        'id' in existing &&
+        typeof existing.id === 'string' &&
+        existing.id !== id
+      )
+        return {
+          ok: false,
+          error: `${dir} belongs to asset "${existing.id}"; refusing to overwrite it with "${id}"`,
+        };
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
     const sourceBytes = new Uint8Array(await readFile(sourcePath));
     const io = await createAssetIO();
     let doc: Document;
@@ -491,26 +575,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
       };
     });
 
-    // Layout: assets/<id>/{model.glb, asset.json, collision.bin?}
-    const id = slug(input.id ?? basename(sourcePath, extname(sourcePath)));
-    if (id.length === 0) return { ok: false, error: 'asset id is empty after slugging' };
-    const assetsRoot =
-      input.outDir ??
-      (projectPath !== undefined
-        ? join(dirname(projectPath), 'assets')
-        : resolve(input.cwd ?? process.cwd(), 'assets'));
-    const dir = join(assetsRoot, id.replaceAll('.', '/'));
-    try {
-      await stat(dir);
-      if (input.force !== true) {
-        return {
-          ok: false,
-          error: `${dir} already exists; choose another id or pass force: true to replace it`,
-        };
-      }
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-    }
+    // Keep model-relative members together, independently of the stable asset ID.
     await mkdir(dir, { recursive: true });
 
     const glb = await io.writeBinary(doc);
@@ -573,7 +638,6 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     const checked = validate('asset', sidecar);
     if (!checked.ok)
       return { ok: false, error: `sidecar failed self-validation:\n${checked.formatted}` };
-    const sidecarPath = join(dir, 'asset.json');
     await writeFile(sidecarPath, `${JSON.stringify(checked.value, null, 2)}\n`);
     try {
       await stat(sidecarPath);

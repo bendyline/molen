@@ -200,7 +200,14 @@ if (check) {
   console.log(`docs-src/schemas is up to date (${pages.size} files)`);
 } else {
   await mkdir(outDir, { recursive: true });
-  for (const [name, content] of pages) await writeFile(join(outDir, name), content);
+  for (const [name, content] of pages) {
+    const path = join(outDir, name);
+    const current = await readFile(path, 'utf8').catch((error) => {
+      if (error.code !== 'ENOENT') throw error;
+      return undefined;
+    });
+    if (current !== content) await writeFile(path, content);
+  }
   console.log(
     `generated schema docs for ${kinds.length} kinds + ${listComponents().length} components -> docs-src/schemas/`,
   );

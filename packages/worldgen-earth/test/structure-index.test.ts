@@ -61,7 +61,13 @@ describe('geographic structures', () => {
       'seattle.sr-520-floating-bridge',
     );
     expect(index.query([-123, 37, -122, 38])).toEqual([]);
-    expect(index.entries.filter((item) => item.status === 'preview')).toHaveLength(13);
+    expect(
+      index.entries.filter((item) => item.status === 'preview' && item.id.startsWith('seattle.')),
+    ).toHaveLength(13);
+    expect(new Set(index.entries.map((item) => item.id)).size).toBe(index.entries.length);
+    expect(index.entries.every((item) => item.asset && item.anchor.every(Number.isFinite))).toBe(
+      true,
+    );
     // The west end is visible while the anchor is outside this query.
     expect(index.query([-122.275, 47.642, -122.272, 47.644]).map((item) => item.id)).toContain(
       'seattle.sr-520-floating-bridge',

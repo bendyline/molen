@@ -1,0 +1,48 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0562_maiden_tower",
+  "sourceHash": "sha256:2bf3ed22d147ea9b8bc4d0e465e8ce09bbfe719e3d06a65ba5539bfd4064e585",
+  "runtimeHash": "sha256:1b47b4056385a7de358803e456ac994ef1a4f7f69381195323fdd7f062fbb2d3",
+  "captureReportHash": "sha256:ae9744567d03b3edb93da9f517abf0e15115ed1e95ac0c34d03f6711b3bdeac5",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Static detailed exterior preview; maximum fidelity remains pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-bands.png",
+      "shots/near-west-door.png",
+      "shots/roof-parapet.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected every listed standard frame: asymmetric cylindrical tower and rounded seaside buttress, slit recesses, horizontal relief courses, western arched entrance, roof and parapet. The annular ledges are now closed and no longer expose sky. Small relief courses produce visible subpixel aliasing in the distant untextured views; this is recorded for future LOD refinement, not treated as maximum-fidelity approval."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:00470ae46a8af368dc82973fa5b7b2408388d4702c87bcac4940f2d7a0750116",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-bands.png",
+      "shots/shared/near-west-door.png",
+      "shots/shared/roof-parapet.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all four shared-material angles, four near/far details and north-up placement fixture. The new continuous cylindrical UVs remove bunched mortar joints from the curved wall; planar buttress and recess surfaces retain metric scale. Shared limestone and metal bind correctly. Course relief, recesses, roof and parapet remain legible. Generic regular stone texture and estimated buttress nose still need site-specific refinement. Placement fixture shows the mapped seaward arm direction; perspective prevents treating the ground-outline overlay as a metric fit survey."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "Exact-QID OSM outline supplies anchor and long axis. Source cylinder diameter follows the official 16.5 m figure. Lowest-base origin uses the documented 31 m side height, while the opposite ground side differs by about 3 m; real DEM contact and the estimated rounded buttress nose require a site fit review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending: exact rib and slit survey, asymmetric ground contact, individual weathered limestone blocks, inscriptions, roof access fittings, interiors and adjoining structures are omitted or simplified. Distant relief aliasing needs an appropriate LOD treatment. This QA approves the current detailed exterior preview only."
+  }
+}

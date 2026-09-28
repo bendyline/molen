@@ -11,7 +11,11 @@ describe('browser: vehicle and aircraft engines', () => {
     const scenario = JSON.parse(
       await readFile(join(root, 'test/visual/engines.play.json'), 'utf8'),
     );
-    scenario.path += `${scenario.path.includes('?') ? '&' : '?'}backend=webgl`;
+    const pin = (path: string): string => `${path}${path.includes('?') ? '&' : '?'}backend=webgl`;
+    scenario.path = pin(scenario.path);
+    for (const action of scenario.actions) {
+      if (action.type === 'navigate') action.path = pin(action.path);
+    }
     const result = await playExperience({
       appDir: join(root, 'dist'),
       scenario,

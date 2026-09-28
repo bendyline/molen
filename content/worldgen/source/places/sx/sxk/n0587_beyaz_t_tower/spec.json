@@ -1,0 +1,179 @@
+{
+  "id": "N0587",
+  "planId": "N0587",
+  "assetId": "molen.worldgen.structure.n0587_beyaz_t_tower",
+  "title": "Beyazıt Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q853029"
+  },
+  "wikidataId": "Q853029",
+  "visualBrief": "The surveyed Istanbul fire tower: tapered square limestone pedestal, twelve-fluted cylindrical shaft, double-curved capital, arched watch room, three octagonal signalling levels with round windows and stone balustrades, and slender flagpole.",
+  "size": [
+    13,
+    79,
+    13
+  ],
+  "actualBounds": {
+    "min": [
+      -6.429999828338623,
+      0,
+      -6.429999828338623
+    ],
+    "max": [
+      6.429999828338623,
+      79,
+      6.429999828338623
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the north-north-west entrance facade",
+    "origin": "Center of the exact mapped tower at the surveyed ground datum Y=0"
+  },
+  "scaleBasis": "Şekerci, Damcı and Öztorun (Buildings 2025, 15, 650; CC BY 4.0) report the restoration survey dimensions and reproduce the measured elevation and compass plans. The 67 m masonry body and approximately 12 m flagpole are used directly. Their surveyed 12 windows take precedence over the 13-window secondary summaries. University photographs establish the current stonework and aerials.",
+  "geographicProposal": {
+    "anchor": [
+      28.96489565,
+      41.012785761
+    ],
+    "heading": -2.994195268438,
+    "source": "https://www.openstreetmap.org/way/639302102",
+    "evidence": "The exact-identity square-base axes are combined with the north entrance identified in the published survey. The native +Z portal faces north-north-west; the surveyed base, rather than the larger projecting circular cornice, controls plan scale.",
+    "orientationConfidence": "exact-base-axis-and-surveyed-north-entrance",
+    "limitations": "The paper’s printed geographic coordinate differs from the exact mapped footprint; placement uses the map footprint center. The common 85 m tourist height is not reconciled with the published 67 m masonry plus 12 m pole survey and is not used to stretch the model.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-identity square-base axes are combined with the north entrance identified in the published survey. The native +Z portal faces north-north-west; the surveyed base, rather than the larger projecting circular cornice, controls plan scale. The paper’s printed geographic coordinate differs from the exact mapped footprint; placement uses the map footprint center. The common 85 m tourist height is not reconciled with the published 67 m masonry plus 12 m pole survey and is not used to stretch the model."
+  },
+  "sourceFacts": {
+    "masonryHeightMeters": 67,
+    "flagpoleHeightMeters": 12,
+    "overallModeledHeightMeters": 79,
+    "baseWidthMeters": 12,
+    "baseTopWidthMeters": 10.3,
+    "baseHeightMeters": 8.95,
+    "guardFloorDatum": 45.4,
+    "signFloorDatum": 55.5,
+    "guardRoomWindows": 12,
+    "upperOctagonalFloors": 3,
+    "entranceWidthMeters": 0.97,
+    "entranceHeightMeters": 2.05
+  },
+  "referencePages": [
+    "https://doi.org/10.3390/buildings15050650",
+    "https://mdpi-res.com/d_attachment/buildings/buildings-15-00650/article_deploy/buildings-15-00650.pdf",
+    "https://iletim.istanbul.edu.tr/index.php/2025/09/09/turk-tarih-mirascisi-istanbul-universitesi/",
+    "https://itfaiye.ibb.gov.tr/tr/yangin-kuleleri.html",
+    "https://www.openstreetmap.org/way/639302102"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Minor weathering, individual carved calligraphic strokes and changing weather-light colours are not transcribed; the inscription is a recessed relief panel with a nontextual line treatment.",
+    "The measured 79 m overall envelope differs from the widely repeated 85 m tourist summary; that discrepancy is preserved explicitly rather than hidden by arbitrary scaling.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "north-portal",
+      "position": [
+        14,
+        7,
+        20
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "fluted-shaft",
+      "position": [
+        16,
+        30,
+        23
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "watch-room",
+      "position": [
+        19,
+        48,
+        24
+      ],
+      "lookAt": [
+        0,
+        46,
+        0
+      ]
+    },
+    {
+      "name": "signal-floors",
+      "position": [
+        15,
+        64,
+        21
+      ],
+      "lookAt": [
+        0,
+        59,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        90,
+        49,
+        117
+      ],
+      "lookAt": [
+        0,
+        39,
+        0
+      ]
+    }
+  ]
+}

@@ -667,6 +667,7 @@ async function main(): Promise<void> {
   ).chunkSize;
   let deviceLost = false;
   const viewer = await createViewer({
+    reflections: true,
     admission: {
       onSample: (sample) => {
         graphics.record(sample.label, sample.workMs);

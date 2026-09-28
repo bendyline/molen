@@ -10,6 +10,12 @@ import {
   type GpuFrameTimer,
   type GpuFrameTimerOptions,
 } from './gpu-frame-timer';
+import {
+  createWebGlSkyReflectionFilter,
+  reflectionStateFromLights,
+  type SkyReflectionFilter,
+  SkyReflections,
+} from './sky-reflections';
 import { createWebGpuFrameTimer } from './webgpu-frame-timer';
 import type { WebGpuSceneOptimizer } from './webgpu-scene-optimizer';
 
@@ -21,9 +27,12 @@ interface InitializedRenderer {
   three: ThreeRenderer;
   backend: RendererBackend;
   optimizer?: WebGpuSceneOptimizer;
+  reflectionFilter?: SkyReflectionFilter;
 }
 
 export interface RendererOptions {
+  /** Shared procedural sky/ground reflections for PBR materials. Default false; Earth viewers enable it. */
+  reflections?: boolean;
   admission?: FrameAdmissionOptions;
   /**
    * Which graphics backend to use. Defaults to `'auto'`: probe WebGPU, fall back to WebGL.
@@ -50,7 +59,7 @@ export interface RendererOptions {
   /** WebGL only. WebGPU presentation does not preserve the drawing buffer between frames. */
   preserveDrawingBuffer?: boolean;
   powerPreference?: 'default' | 'high-performance' | 'low-power';
-  /** Better depth precision for large view ranges; WebGL requires EXT_clip_control. */
+  /** Better depth precision for large view ranges; WebGL uses logarithmic depth if EXT_clip_control is unavailable. */
   reverseDepthBuffer?: boolean;
   /** Compatibility fallback for large view ranges; costs early-fragment performance. */
   logarithmicDepthBuffer?: boolean;
@@ -227,12 +236,16 @@ export class Renderer {
   private deviceLossReason: string | undefined;
   private readonly optimizer: WebGpuSceneOptimizer | undefined;
   private activeSky: SkyVisual | undefined;
+  private readonly reflections: SkyReflections | undefined;
+  // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
+  private readonly reflectionClearColor = Object.assign(new THREE.Color(), { a: 1 });
   private starCatalog: readonly SkyStar[] | undefined;
   private activeWeather: WeatherVisual | undefined;
   private weatherTimeOverride: number | undefined;
   private readonly weatherLightIntensities = new WeakMap<THREE.Light, number>();
   private environmentSeconds = 0;
   private environmentTimeOverride: number | undefined;
+  private readonly lastRenderStats = { drawCalls: 0, triangles: 0 };
 
   /** Active clear-sky visual and sampled ephemeris, when environment.sky is configured. */
   get sky(): SkyVisual | undefined {
@@ -342,6 +355,13 @@ export class Renderer {
           three,
           backend: 'webgpu',
           ...(optimizer ? { optimizer } : {}),
+          ...(opts.reflections === true
+            ? {
+                reflectionFilter: (
+                  await import('./webgpu-sky-reflections')
+                ).createWebGpuSkyReflectionFilter(three),
+              }
+            : {}),
         });
       } catch (error) {
         three.dispose();
@@ -386,7 +406,7 @@ export class Renderer {
     this.optimizer = initialized?.optimizer;
     this.three =
       initialized?.three ??
-      new THREE.WebGLRenderer({
+      createWebGlRenderer({
         canvas: opts.canvas as HTMLCanvasElement | undefined,
         antialias: opts.antialias ?? false,
         preserveDrawingBuffer: opts.preserveDrawingBuffer ?? true,
@@ -409,6 +429,14 @@ export class Renderer {
     this.three.setClearColor(this.defaultClearColor, 1);
 
     this.scene = new THREE.Scene();
+    this.reflections =
+      opts.reflections === true
+        ? new SkyReflections(
+            this.scene,
+            initialized?.reflectionFilter ??
+              createWebGlSkyReflectionFilter(this.three as THREE.WebGLRenderer),
+          )
+        : undefined;
     this.worldRoot = new THREE.Group();
     this.worldRoot.name = 'molen:world-root';
     this.scene.add(this.worldRoot);
@@ -954,9 +982,34 @@ export class Renderer {
       this.worldOrigin,
       sky?.frame,
     );
+    let reflectedAmbient: THREE.HemisphereLight | undefined;
+    if (this.reflections) {
+      const rig = findEnvironmentRig(this.scene);
+      const ambient = rig?.children.find(
+        (light): light is THREE.HemisphereLight => light instanceof THREE.HemisphereLight,
+      );
+      const sun = rig?.children.find(
+        (light): light is THREE.DirectionalLight => light instanceof THREE.DirectionalLight,
+      );
+      this.reflections.update(
+        sky?.reflectionState ??
+          reflectionStateFromLights(
+            ambient,
+            sun,
+            this.three.getClearColor(this.reflectionClearColor),
+            weather?.cloudAttenuation ?? 0,
+          ),
+      );
+      if (this.reflections.active) reflectedAmbient = sky?.ambientLight ?? ambient;
+    }
+    const ambientIntensity = reflectedAmbient?.intensity;
     const baseFog = this.scene.fog;
     if (weather) this.scene.fog = weather.fogFor(baseFog, sky?.frame);
     try {
+      // The PMREM supplies both diffuse sky irradiance and specular reflection. Keeping the
+      // hemisphere during this draw would light diffuse surfaces twice. Restore the authored
+      // light afterward, so weather updates and host inspection see its original intensity.
+      if (reflectedAmbient) reflectedAmbient.intensity = 0;
       if (sky) {
         sky.update(this.environmentTimeOverride ?? this.environmentSeconds);
         sky.prepareCamera(this.camera);
@@ -972,10 +1025,17 @@ export class Renderer {
           this.three.autoClear = autoClear;
           this.three.info.autoReset = autoReset;
         }
-        return;
+      } else {
+        this.renderScene();
       }
-      this.renderScene();
+      // Upload warm-ups and reflection filtering also render offscreen. Only a completed
+      // visible frame may replace the stats exposed to hosts and adaptive quality policies.
+      const info = this.three.info.render;
+      this.lastRenderStats.drawCalls = 'drawCalls' in info ? info.drawCalls : info.calls;
+      this.lastRenderStats.triangles = info.triangles;
     } finally {
+      if (reflectedAmbient && ambientIntensity !== undefined)
+        reflectedAmbient.intensity = ambientIntensity;
       this.scene.fog = baseFog;
     }
   }
@@ -1001,13 +1061,9 @@ export class Renderer {
     return this.optimizer?.createGroup() ?? new THREE.Group();
   }
 
-  /** Render stats for the screenshot stats block. */
+  /** Last completed visible frame, excluding offscreen resource preparation. */
   stats(): { drawCalls: number; triangles: number } {
-    const info = this.three.info.render;
-    return {
-      drawCalls: 'drawCalls' in info ? info.drawCalls : info.calls,
-      triangles: info.triangles,
-    };
+    return { ...this.lastRenderStats };
   }
 
   /** Optional backend-specific GPU timing with the same nonblocking polling interface. */
@@ -1035,6 +1091,7 @@ export class Renderer {
     this.activeSky = undefined;
     this.activeWeather?.dispose();
     this.activeWeather = undefined;
+    this.reflections?.dispose();
     findEnvironmentRig(this.scene)?.traverse((object) => {
       if (object instanceof THREE.Light) object.dispose();
     });
@@ -1171,6 +1228,26 @@ function releaseOnDispose(mesh: THREE.Mesh, interest: WarmupInterest): void {
   void interest.settled().then(() => {
     for (const target of targets) target.removeEventListener('dispose', release);
   });
+}
+
+function createWebGlRenderer(options: THREE.WebGLRendererParameters): THREE.WebGLRenderer {
+  const renderer = new THREE.WebGLRenderer(options);
+  if (options.reversedDepthBuffer && renderer.capabilities.reversedDepthBuffer === false) {
+    // Three silently falls back to ordinary depth without EXT_clip_control. A world
+    // viewer's 5 cm–500 km clip range would then make even nearby surfaces fight.
+    // Reuse the context: replacing the renderer must not consume a second GL context.
+    const canvas = renderer.domElement;
+    const context = renderer.getContext();
+    renderer.dispose();
+    return new THREE.WebGLRenderer({
+      ...options,
+      canvas,
+      context,
+      reversedDepthBuffer: false,
+      logarithmicDepthBuffer: true,
+    });
+  }
+  return renderer;
 }
 
 function textureBytes(texture: THREE.Texture): number {

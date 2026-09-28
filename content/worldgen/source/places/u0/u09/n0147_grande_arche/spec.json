@@ -1,0 +1,199 @@
+{
+  "planId": "N0147",
+  "id": "N0147",
+  "assetId": "molen.worldgen.structure.n0147_grande_arche",
+  "title": "Grande Arche",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q216357",
+  "referenceCoordinate": {
+    "latitude": 48.8928,
+    "longitude": 2.235830555
+  },
+  "visualBrief": "A real open monumental granite cube with office glazing on both piers, jointed white stone end frames, raised terrace and broad stair, four external glass elevators and a suspended three-lobed fabric cloud.",
+  "size": [
+    107.13999938964844,
+    111.72750091552734,
+    112.05000305175781
+  ],
+  "actualBounds": {
+    "min": [
+      -53.56999969482422,
+      0,
+      -56.025001525878906
+    ],
+    "max": [
+      53.56999969482422,
+      111.72750091552734,
+      56.025001525878906
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z along the published 112 m depth",
+    "front": "+Z toward the southeast historic axis",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "lengthMeters": 112,
+    "widthMeters": 106.9,
+    "heightMeters": 110.9,
+    "officePanelMeters": [
+      2.8,
+      2.8
+    ],
+    "panoramicElevators": 4,
+    "completion": 1989
+  },
+  "reconstruction": {
+    "openingWidthMeters": 70,
+    "openingFloorY": 12.5,
+    "openingCeilingY": 98.5,
+    "cloud": "Three reconstructed tension lobes; edge and suspension cables modeled",
+    "stoneCladding": "Post-2017 white granite exterior"
+  },
+  "referencePages": [
+    "https://pop.culture.gouv.fr/notice/merimee/ACR0000683",
+    "https://www.parisladefense.com/en/district/towers-buildings/grande-arche"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      2.23587465,
+      48.8925645
+    ],
+    "heading": 1.0106030674398965,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/19441489",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/19441489"
+    ],
+    "wikidataId": "Q216357",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Native X is the 106.9 m frontage, Z the 112 m depth. Rotate the exact-QID rectangle by 90 degrees so +Z faces southeast along the historic axis. Ground stair and cloud are reconstruction within this frame."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Cloud membrane shape, opening dimensions, stair count and elevator car elevations are exterior approximations. The internal mural is not reproduced."
+  ],
+  "qaCameras": [
+    {
+      "name": "open-cube",
+      "position": [
+        0,
+        61,
+        175
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ]
+    },
+    {
+      "name": "cloud-lifts",
+      "position": [
+        38,
+        36,
+        75
+      ],
+      "lookAt": [
+        0,
+        32,
+        10
+      ]
+    },
+    {
+      "name": "office-facade",
+      "position": [
+        83,
+        58,
+        35
+      ],
+      "lookAt": [
+        53.5,
+        52,
+        8
+      ]
+    },
+    {
+      "name": "roof",
+      "position": [
+        125,
+        163,
+        131
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -260,
+        145,
+        345
+      ],
+      "lookAt": [
+        0,
+        55,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 371160,
+    "vertices": 811536,
+    "materials": 4,
+    "bytes": 32860496,
+    "sha256": "sha256:012f2c50532cb77006680045fad39ba9b4dd24804d595b376b738fefd82c84e9"
+  }
+}

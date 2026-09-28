@@ -1,7 +1,7 @@
 import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/client';
 import { createEmptyTerrainSemanticTile, Heightfield } from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   clipStructureGeometry,
   clipStructureObject,
@@ -179,5 +179,217 @@ describe('extended structure geometry', () => {
     expect(withoutStructureRoads(tile, context, [entry], 1).transportation[0]?.lines).toEqual(
       tile.transportation[0]?.lines,
     );
+  });
+  it('connects approaches to the resolved bank reference without resampling the riverbed', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+    });
+    const sample = vi.spyOn(context.heightfield, 'sampleHeight');
+    try {
+      const result = withoutStructureRoads(
+        tile,
+        context,
+        [
+          {
+            ...entry,
+            elevation: 1.5,
+            scale: [1, 2, 1],
+            replaceRoads: { length: 100, width: 20, deckHeight: 8 },
+          },
+        ],
+        1,
+        () => 38.5,
+      );
+      expect(result.transportation[0]?.bridgeConnections?.map((item) => item.elevation)).toEqual([
+        54.5, 54.5,
+      ]);
+      expect(sample).not.toHaveBeenCalled();
+    } finally {
+      sample.mockRestore();
+    }
+  });
+  it('does not alter elevation hints on unrelated perpendicular or exterior bridge roads', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        class: 'highway',
+        bridge: true,
+        lines: [
+          [
+            [0.5, 0],
+            [0.5, 1],
+          ],
+        ],
+      },
+      {
+        class: 'highway',
+        bridge: true,
+        lines: [
+          [
+            [0, 0.8],
+            [1, 0.8],
+          ],
+        ],
+      },
+    );
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [
+        {
+          ...entry,
+          replaceRoads: { length: 100, width: 20, deckHeights: [5, 8] },
+        },
+      ],
+      1,
+    );
+    expect(result.transportation[0]).toBe(tile.transportation[0]);
+    expect(result.transportation[1]).toBe(tile.transportation[1]);
+    expect(result.transportation.every((road) => road.bridgeConnections === undefined)).toBe(true);
+  });
+  it('keeps distinct scaled endpoint heights after the bridge turns north', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0.5, 0],
+          [0.5, 1],
+        ],
+      ],
+    });
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [
+        {
+          ...entry,
+          datum: 'sea-level',
+          elevation: 26.34,
+          heading: Math.PI / 2,
+          scale: [1, 2, 1],
+          replaceRoads: { length: 100, width: 20, deckHeights: [12.86, 16.41] },
+        },
+      ],
+      1,
+    );
+    const connections = result.transportation[0]?.bridgeConnections;
+    expect(connections?.[0]?.point).toEqual([0.5, 0.75]);
+    expect(connections?.[1]?.point).toEqual([0.5, 0.25]);
+    expect(connections?.[0]?.elevation).toBeCloseTo(52.06);
+    expect(connections?.[1]?.elevation).toBeCloseTo(59.16);
+  });
+  it('subtracts skewed ends without removing parallel roads outside the actual footprint', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+        [
+          [0.24, 0.55],
+          [0.28, 0.55],
+        ],
+      ],
+    });
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [
+        {
+          ...entry,
+          replaceRoads: {
+            length: 100,
+            width: 20,
+            outline: [
+              [-50, -10],
+              [40, -10],
+              [50, 10],
+              [-40, 10],
+            ],
+          },
+        },
+      ],
+      1,
+    );
+    expect(result.transportation[0]?.lines).toEqual([
+      [
+        [0, 0.5],
+        [expect.closeTo(0.275), 0.5],
+      ],
+      [
+        [expect.closeTo(0.725), 0.5],
+        [1, 0.5],
+      ],
+      [
+        [0.24, 0.55],
+        [0.28, 0.55],
+      ],
+    ]);
+  });
+  it('preserves the gap in a concave footprint and applies native scale and heading', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0.5, 0],
+          [0.5, 1],
+        ],
+      ],
+    });
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [
+        {
+          ...entry,
+          heading: Math.PI / 2,
+          scale: [2, 1, 3],
+          replaceRoads: {
+            length: 50,
+            width: 10,
+            outline: [
+              [-25, -5],
+              [25, -5],
+              [25, 5],
+              [5, 5],
+              [5, -1],
+              [-5, -1],
+              [-5, 5],
+              [-25, 5],
+            ],
+          },
+        },
+      ],
+      1,
+    );
+    expect(result.transportation[0]?.lines).toEqual([
+      [
+        [0.5, 0],
+        [0.5, 0.25],
+      ],
+      [
+        [0.5, 0.45],
+        [0.5, 0.55],
+      ],
+      [
+        [0.5, 0.75],
+        [0.5, 1],
+      ],
+    ]);
   });
 });

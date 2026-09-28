@@ -1,0 +1,285 @@
+{
+  "planId": "N0023",
+  "id": "N0023",
+  "assetId": "molen.worldgen.structure.n0023_jamuna_bridge",
+  "title": "Jamuna Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q10729282",
+  "referenceCoordinate": {
+    "latitude": 24.3991,
+    "longitude": 89.7853
+  },
+  "visualBrief": "Curved4800m segmental concrete crossing with47 equal main spans,2 end spans,128m approach viaducts, varying-depth single-cell box, paired seismic bearings, north-side230kV pylons and suspended south gas pipeline.",
+  "size": [
+    5025.040283203125,
+    52.74607849121094,
+    290.0117645263672
+  ],
+  "actualBounds": {
+    "min": [
+      -2512.52294921875,
+      0,
+      -147.71133422851562
+    ],
+    "max": [
+      2512.517333984375,
+      52.74607849121094,
+      142.30043029785156
+    ]
+  },
+  "nativeAxes": {
+    "x": "east along the chord toward Bhuapur",
+    "y": "up from published+11mPWD pile-cap base",
+    "z": "south; gas pipeline side"
+  },
+  "sourceFacts": {
+    "mainLengthMeters": 4800,
+    "spanCount": 49,
+    "mainSpanMeters": 99.375,
+    "endSpanMeters": 64.6875,
+    "approachEachMeters": 128,
+    "deckWidthMeters": 18.5,
+    "mainPierCount": 50,
+    "pierStemSectionMeters": [
+      2.5,
+      6.4
+    ],
+    "boxDepthRangeMeters": [
+      3.3,
+      6.2
+    ],
+    "boxSegmentMeters": 4,
+    "source": "IABSE2005 proceedings pp2–5 and2015 drawing. BBA owner independently confirms4800m,49spans,50piers,128m approaches,18.5m width. Later2015 box-depth drawing differs slightly from2005 section."
+  },
+  "reconstruction": {
+    "notes": "Smooth circle fitted to exact mapped road centerline (maximum2.83m map residual), with1.75m transverse road-to-deck offset. Published PWD pier-cap base+11m and central road level+33.55m establish local vertical dimensions; approach grade remains provisional. Pile-cap profiles, pole arms and service fixtures are photographic reconstructions. Former railway strip is bare pending documentation of2026 conversion completion."
+  },
+  "referencePages": [
+    "https://www.iabse-bd.org/old/proceedings2005RP1.pdf",
+    "https://www.iabse-bd.org/session/52.pdf",
+    "https://iabse-bd.org/2020/pdf/26.pdf",
+    "https://bba.gov.bd/pages/projects/6922d980dbfbab28ce04d529",
+    "https://bangla.bppa.gov.bd/upload/noa/2026-05-06-08-56-37-Signed-NOA_28.04.2026--Jamuna-Deck-Renovation.pdf",
+    "https://www.eprocure.gov.bd/resources/common/ViewTender.jsp?TenderCancel=false&id=1319559",
+    "https://www.openstreetmap.org/way/279534616"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q10729282",
+    "featureIds": [
+      "way/279534616"
+    ],
+    "source": "https://www.openstreetmap.org/way/279534616",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:35cb765d596daf599ecc12cdb2649af56d011fef6a448ab4616c9abd74864e7b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      89.776976677,
+      24.398611377
+    ],
+    "heading": -0.037944163141,
+    "elevationMode": "terrain-contact",
+    "notes": "ExactQ10729282/way279534616 curved road centerline, original evidence retained. Published5056m total structure excludes about6m road transition at either mapped end. Current terrain/river datum and approach connection remain pending; localzero is+11mPWD, not a verified ground altitude."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Actual river, sandbar and embankment fit needs terrain-aware bridge placement.",
+    "Pole profiles, pile-cap shape, exposed service supports and grade remain reconstructions requiring closer current-photo comparison.",
+    "2026 rail-lane widening is awarded; completion is unconfirmed, so the former north railway strip is modeled bare without inventing a completed widened carriageway.",
+    "Buried foundation piles and temporary construction equipment are omitted from exterior geometry."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-elevation",
+      "position": [
+        0,
+        210,
+        3900
+      ],
+      "lookAt": [
+        0,
+        18,
+        -90
+      ]
+    },
+    {
+      "name": "plan-curve",
+      "position": [
+        0,
+        4200,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "typical-span",
+      "position": [
+        -119.14240257747677,
+        32.31962956657587,
+        -42.936619920888916
+      ],
+      "lookAt": [
+        -100.0655916780251,
+        20.491617754566576,
+        -133.12018854045346
+      ]
+    },
+    {
+      "name": "box-soffit",
+      "position": [
+        -94.91062950938067,
+        10.103166273496335,
+        -114.16268889979438
+      ],
+      "lookAt": [
+        -72.06636786415305,
+        17.499266643967314,
+        -133.3278187881515
+      ]
+    },
+    {
+      "name": "pier-bearing",
+      "position": [
+        -49.68833315352611,
+        16.21357891555857,
+        -118.4466581030847
+      ],
+      "lookAt": [
+        -49.75418678624749,
+        14.50357891555857,
+        -133.44651354569032
+      ]
+    },
+    {
+      "name": "north-pylon",
+      "position": [
+        49.783848499387624,
+        40.453578915558566,
+        -175.47112028905212
+      ],
+      "lookAt": [
+        49.659412530194885,
+        37.25357891555857,
+        -143.4713622323161
+      ]
+    },
+    {
+      "name": "insulator-arms",
+      "position": [
+        38.000138201669174,
+        46.930206603759416,
+        -156.5110985073352
+      ],
+      "lookAt": [
+        49.660579117406066,
+        44.24607891555857,
+        -143.77135996409743
+      ]
+    },
+    {
+      "name": "road-deck",
+      "position": [
+        -80.03853231596561,
+        24.182335362922608,
+        -129.27525610128578
+      ],
+      "lookAt": [
+        -45.06272832939716,
+        24.229283845299733,
+        -132.46618554673478
+      ]
+    },
+    {
+      "name": "gas-suspension",
+      "position": [
+        -111.92137625199578,
+        20.197577311328313,
+        -118.0118990458941
+      ],
+      "lookAt": [
+        -100.0072363594193,
+        21.106617754566575,
+        -126.32043893794798
+      ]
+    },
+    {
+      "name": "west-approach",
+      "position": [
+        -2449.7674913432,
+        26.540032603198604,
+        172.82194630947924
+      ],
+      "lookAt": [
+        -2442.8194725122557,
+        8.896200353509053,
+        118.2479472443083
+      ]
+    },
+    {
+      "name": "east-approach",
+      "position": [
+        2449.7871600228577,
+        26.540032603198604,
+        171.59308298685755
+      ],
+      "lookAt": [
+        2442.811766524252,
+        8.896200353509053,
+        117.0225760698413
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 1463352,
+    "vertices": 2793256,
+    "materials": 6,
+    "bytes": 115327692,
+    "sha256": "sha256:66cc99988cb333191d4f129bacccf2dc7337900026d1e55ca8eb45b1c101e547"
+  }
+}

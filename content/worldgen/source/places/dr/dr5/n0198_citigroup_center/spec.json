@@ -1,0 +1,361 @@
+{
+  "planId": "N0198",
+  "id": "N0198",
+  "assetId": "molen.worldgen.structure.n0198_citigroup_center",
+  "title": "Citigroup Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q391243",
+  "referenceCoordinate": {
+    "latitude": 40.758611111,
+    "longitude": -73.970277777
+  },
+  "visualBrief": "Detailed original Citicorp/601 Lexington exterior with four face-centered supercolumns and octagonal core, silver ribbon shaft, south-facing45-degree roof, separately modeled Saint Peters Church, stepped market and current sunken plaza.",
+  "size": [
+    125.20082092285156,
+    284.6020107269287,
+    63.560001373291016
+  ],
+  "actualBounds": {
+    "min": [
+      -70.66000366210938,
+      -4.010000228881836,
+      -31.780000686645508
+    ],
+    "max": [
+      54.54081726074219,
+      280.5920104980469,
+      31.780000686645508
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X towardThird Avenue/east-southeast",
+    "shortAxis": "+Z toward53rd Street/south-southwest"
+  },
+  "sourceFacts": {
+    "architect": "Hugh Stubbins and Associates with Emery Roth and Sons",
+    "completed": 1977,
+    "heightFeet": 915,
+    "heightMeters": 278.892,
+    "supercolumns": 4,
+    "columnWidthMeters": 7.3152,
+    "roofSlopeDegrees": 45,
+    "renovation": "Gensler plaza and six-story market repositioning; completed2021"
+  },
+  "reconstruction": {
+    "tower": "Independent mapped upper envelope retained above35m open underside. Fifty photographed office ribbon rows above the deeper transfer fascia; module datums are original reconstruction, not a floor-number survey. Hidden structural V braces remain enclosed.",
+    "roof": "915ft architectural peak, south-facing45-degree plane and flat end strips; two east louver slots and north antenna details follow LPC descriptions.",
+    "base": "Independent mid-face columns, octagonal core, diagonally divided granite church, stepped market terraces and skylights.2019 LPC plan and2023 architect photograph guide the southwest sunken plaza."
+  },
+  "referencePages": [
+    "https://s-media.nyc.gov/agencies/lpc/lp/2582.pdf",
+    "https://www.nyc.gov/assets/lpc/downloads/pdf/presentation-materials/20190716/601-Lexington-Avenue.pdf",
+    "https://www.gensler.com/blog/office-to-everything-a-new-path-for-revitalizing-downtowns",
+    "https://www.bxp.com/properties/601-lexington-avenue",
+    "https://www.saintpeters.org/the-space",
+    "https://www.openstreetmap.org/way/164105516"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.969900246,
+      40.758316
+    ],
+    "heading": -0.515233220358,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/164105516",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/164105516"
+    ],
+    "wikidataId": "Q391243",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:75047db6e82c8d201c781f33beb9ac6054f87453f143fe0dabbed0962f3b42da",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y0 is the53rd-Street entry and supercolumn datum. The intended lower plaza at−3.81m follows the2019 LPC plan lower-plaza−12ft6in level; closed retaining walls and steps surround its terrain cutout.",
+    "groundCutout": {
+      "outline": [
+        [
+          -69.8,
+          -2.05
+        ],
+        [
+          -69.8,
+          30.5
+        ],
+        [
+          -34,
+          30.5
+        ],
+        [
+          -34,
+          -2.05
+        ]
+      ],
+      "basis": "Cut only the documented southwest sunken plaza, enclosed by the retaining walls and closed stair risers; surrounding streets and tower contact piers remain grounded."
+    },
+    "notes": "Exact-QID whole-complex anchor and separately mapped roof, columns, core, church and market parts retain their signed street frame. Native+Z points toward53rd Street, fixing the LPC south-facing roof; the church occupies the northwest corner and the plaza the southwest. The independent raised tower projection is never treated as a solid ground footprint."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Fine ribbon and aluminum panel spacing, mechanical-slot dimensions, church roof planes, entrance glazing and plaza furniture are reconstructed from primary drawings and completed photographs. The documented−12ft6in lower-plaza level is retained; detailed street gradient and second landing are approximated. Temporary tenant signage, hidden structural braces, interior fit-out and neighboring880ThirdAvenue are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "silver-ribbon-facade",
+      "position": [
+        -101,
+        166,
+        70
+      ],
+      "lookAt": [
+        -50,
+        155,
+        8
+      ]
+    },
+    {
+      "name": "flush-window-detail",
+      "position": [
+        -68,
+        126,
+        8
+      ],
+      "lookAt": [
+        -54,
+        123,
+        6
+      ]
+    },
+    {
+      "name": "south-sloping-roof",
+      "position": [
+        54,
+        296,
+        84
+      ],
+      "lookAt": [
+        -28,
+        259,
+        5
+      ]
+    },
+    {
+      "name": "east-roof-slots",
+      "position": [
+        35,
+        270,
+        2
+      ],
+      "lookAt": [
+        -6,
+        258,
+        0
+      ]
+    },
+    {
+      "name": "north-roof-strip",
+      "position": [
+        -84,
+        300,
+        -61
+      ],
+      "lookAt": [
+        -30,
+        276,
+        -15
+      ]
+    },
+    {
+      "name": "open-midface-supports",
+      "position": [
+        -107,
+        18,
+        78
+      ],
+      "lookAt": [
+        -30,
+        25,
+        3
+      ]
+    },
+    {
+      "name": "column-panel-close",
+      "position": [
+        -66,
+        12,
+        17
+      ],
+      "lookAt": [
+        -51,
+        16,
+        6
+      ]
+    },
+    {
+      "name": "cantilever-soffit",
+      "position": [
+        -60,
+        18,
+        26
+      ],
+      "lookAt": [
+        -35,
+        34,
+        8
+      ]
+    },
+    {
+      "name": "church-granite-wedges",
+      "position": [
+        -94,
+        19,
+        -47
+      ],
+      "lookAt": [
+        -60,
+        8,
+        -21
+      ]
+    },
+    {
+      "name": "church-skylight",
+      "position": [
+        -73,
+        24,
+        -18
+      ],
+      "lookAt": [
+        -59,
+        15,
+        -22
+      ]
+    },
+    {
+      "name": "stepped-market-gardens",
+      "position": [
+        -31,
+        43,
+        69
+      ],
+      "lookAt": [
+        0,
+        19,
+        3
+      ]
+    },
+    {
+      "name": "market-skylights",
+      "position": [
+        32,
+        46,
+        39
+      ],
+      "lookAt": [
+        3,
+        27,
+        5
+      ]
+    },
+    {
+      "name": "sunken-plaza-overview",
+      "position": [
+        -92,
+        20,
+        45
+      ],
+      "lookAt": [
+        -53,
+        -1,
+        12
+      ]
+    },
+    {
+      "name": "plaza-steps-and-benches",
+      "position": [
+        -48,
+        3,
+        28
+      ],
+      "lookAt": [
+        -61,
+        -2,
+        10
+      ]
+    },
+    {
+      "name": "far-midtown-profile",
+      "position": [
+        310,
+        112,
+        360
+      ],
+      "lookAt": [
+        -15,
+        137,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 462042,
+    "vertices": 1058036,
+    "materials": 7,
+    "bytes": 42579784,
+    "sha256": "sha256:961a92822765e2e7b07ffb1b087569bf30ed0784df74fcbc84d5e5952abdcd3c"
+  }
+}

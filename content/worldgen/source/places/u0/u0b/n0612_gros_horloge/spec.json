@@ -1,0 +1,244 @@
+{
+  "id": "N0612",
+  "planId": "N0612",
+  "assetId": "molen.worldgen.structure.n0612_gros_horloge",
+  "title": "Gros-Horloge",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q3116957"
+  },
+  "wikidataId": "Q3116957",
+  "visualBrief": "Rouen’s complete landmark ensemble: a true lowered street arch with carved pastoral soffit and arms of Rouen; two raised Renaissance dials with Roman numerals, 24 sun rays, single lamb-tipped hour hands, lunar globes and weekday reliefs; metal-panel pavilion roof with dormers and ornate crest; adjoining buttressed Gothic belfry, tracery windows, ribbed dome and open bell lantern; original loggia/workshop and Rococo fountain.",
+  "actualBounds": {
+    "min": [
+      -10.9399995803833,
+      0,
+      -8.196000099182129
+    ],
+    "max": [
+      3.7200000286102295,
+      43,
+      2.609999895095825
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Native +Z east-southeast along the street toward the cathedral; +X north-northeast across the pavilion",
+    "origin": "Center of the exact mapped clock-pavilion footprint, Y=0 at the public street"
+  },
+  "scaleBasis": "The state museum’s physical arch cast records 7.44 m width, 4.61 m depth and approximately 6.70 m height. The clock-conservation study records 2.50 m dials and 0.30 m lunar spheres. Rouen magazine 536 (March 2024) places the restored dome timber support at 31 m; the lantern/finial is proportionally reconstructed to approximately 43 m from primary exterior photographs and the municipal cutaway. The 76 m figure in the educational booklet is inconsistent with this primary restoration datum and is not used. OSM exact-identity footprints fix the pavilion and adjoining belfry in the street; the original BnF multi-level survey separates the arch, belfry, loggia, rear stair turret and fountain. Intermediate facade levels and ornament are reconstructed proportions, not a survey.",
+  "geographicProposal": {
+    "anchor": [
+      1.091260626819452,
+      49.44152658119305
+    ],
+    "heading": 1.1133012813694583,
+    "source": "https://www.openstreetmap.org/way/63205872",
+    "status": "preview-proposal",
+    "evidence": "Native +X runs north-northeast across the clock pavilion from the belfry toward the opposite north abutment; +Z runs east-southeast along Rue du Gros-Horloge toward the cathedral. Exact Q3116957 mapped pavilion way63205872 and Q22952095 belfry way63206189 form the documented ensemble, matching the municipal museum layout and historical measured plan BnF btv1b10050434r. Clock pavilion center is the signed footprint bounds center. Individual projected rooflines are not assumed to be street-level supports.",
+    "limitations": "The mapped pavilion is the open span; the wider measured cast includes its jamb/framing. The belfry has its own confirmed identity Q22952095. Adjacent apartment buildings remain outside the model; the small workshop and fountain are part of the landmark. Roof/finial height and ornaments are reconstructed from the cited primary views.",
+    "elevationMode": "terrain-contact",
+    "notes": "Native +X runs north-northeast across the clock pavilion from the belfry toward the opposite north abutment; +Z runs east-southeast along Rue du Gros-Horloge toward the cathedral. Exact Q3116957 mapped pavilion way63205872 and Q22952095 belfry way63206189 form the documented ensemble, matching the municipal museum layout and historical measured plan BnF btv1b10050434r. Clock pavilion center is the signed footprint bounds center. Individual projected rooflines are not assumed to be street-level supports. The mapped pavilion is the open span; the wider measured cast includes its jamb/framing. The belfry has its own confirmed identity Q22952095. Adjacent apartment buildings remain outside the model; the small workshop and fountain are part of the landmark. Roof/finial height and ornaments are reconstructed from the cited primary views."
+  },
+  "sourceFacts": {
+    "castArchWidthMeters": 7.44,
+    "castArchDepthMeters": 4.61,
+    "castArchHeightMetersApproximate": 6.7,
+    "dialDiameterMeters": 2.5,
+    "lunarGlobeDiameterMeters": 0.3,
+    "sunRayCount": 24,
+    "domeTimberSupportHeightMeters": 31,
+    "totalHeightReconstructedMeters": 43
+  },
+  "referencePages": [
+    "https://rouen.fr/gros-horloge",
+    "https://rouen.fr/sites/default/files/legacy/rm536_0.pdf",
+    "https://rouen.fr/sites/default/files/cm/2024-12-19/22-8ann.pdf",
+    "https://www.citedelarchitecture.fr/fr/oeuvre/arche-du-pavillon-dit-du-gros-horloge",
+    "https://gallica.bnf.fr/ark:/12148/btv1b10050434r",
+    "https://pop.culture.gouv.fr/notice/merimee/IA00021886",
+    "https://www.patrimoine-horloge.fr/as-rouen.html",
+    "https://www.openstreetmap.org/way/63205872",
+    "https://www.openstreetmap.org/way/63206189"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The architecture is a detailed original polygonal reconstruction. Carved angels, lambs, pastoral figures and the fountain group preserve placement and silhouette without claiming exact restoration-grade sculpture; no invented inscription text is added.",
+    "The two clock faces are static at ten o’clock. Lunar hemispheres and the weekday cart are illustrative exterior states, not a live astronomical clock simulation.",
+    "The 31 m dome-support datum is primary; approximately 43 m finial height and intermediate levels are proportional reconstruction. The adjacent historic town hall/apartment blocks are separate buildings and are intentionally excluded.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "cathedral-side-ensemble",
+      "position": [
+        40,
+        25,
+        65
+      ],
+      "lookAt": [
+        -4,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "market-side-ensemble",
+      "position": [
+        35,
+        25,
+        -70
+      ],
+      "lookAt": [
+        -4,
+        20,
+        -2
+      ]
+    },
+    {
+      "name": "renaissance-clock",
+      "position": [
+        6,
+        11,
+        14
+      ],
+      "lookAt": [
+        0,
+        9.9,
+        2
+      ]
+    },
+    {
+      "name": "reverse-clock",
+      "position": [
+        3,
+        10,
+        -14
+      ],
+      "lookAt": [
+        0,
+        9.8,
+        -2
+      ]
+    },
+    {
+      "name": "pastoral-arch",
+      "position": [
+        1.5,
+        1.6,
+        8
+      ],
+      "lookAt": [
+        0,
+        5.1,
+        0
+      ]
+    },
+    {
+      "name": "gothic-tracery",
+      "position": [
+        12,
+        23,
+        15
+      ],
+      "lookAt": [
+        -6,
+        22,
+        -3
+      ]
+    },
+    {
+      "name": "ribbed-dome-and-lantern",
+      "position": [
+        7,
+        40,
+        12
+      ],
+      "lookAt": [
+        -6.8,
+        36.4,
+        -2.9
+      ]
+    },
+    {
+      "name": "workshop-and-fountain",
+      "position": [
+        12,
+        7,
+        -15
+      ],
+      "lookAt": [
+        -2.6,
+        5,
+        -5
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        58,
+        35,
+        67
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ]
+    }
+  ]
+}

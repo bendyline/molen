@@ -1,0 +1,257 @@
+{
+  "planId": "N0179",
+  "id": "N0179",
+  "assetId": "molen.worldgen.structure.n0179_tuntex_sky_tower",
+  "title": "85 Sky Tower (Tuntex)",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q337631",
+  "referenceCoordinate": {
+    "latitude": 22.611666666,
+    "longitude": 120.3
+  },
+  "visualBrief": "Kaohsiung’s two-pronged tower with its real through-aperture, raised pink podium and ground passage, pale projecting glazed panels, main elevated shaft, curved Chinese crown lines, layered hip roof and ringed white antenna.",
+  "size": [
+    144.34799194335938,
+    378,
+    69.80000305175781
+  ],
+  "actualBounds": {
+    "min": [
+      -72.17399597167969,
+      0,
+      -34.900001525878906
+    ],
+    "max": [
+      72.17399597167969,
+      378,
+      34.900001525878906
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 347.5,
+    "tipHeightMeters": 378,
+    "occupiedHeightMeters": 341,
+    "storeys": 85,
+    "basementStoreys": 5,
+    "completionYear": 1997,
+    "architect": "C.Y.Lee & Partners with HOK",
+    "engineer": "Evergreen Consulting Engineering; T.Y.Lin International",
+    "mappedPodiumMeters": 50,
+    "mappedApertureSillMeters": 70,
+    "mappedApertureSoffitMeters": 145,
+    "mappedProngEnvelopeMeters": 190
+  },
+  "reconstruction": {
+    "massing": "Exact-QID rectangular podium and six independently mapped parts establish the two lower legs, central70m sill, elevated145m main shaft and separate hip roof and mast. The middle is genuinely open from the aperture sill to the transfer soffit, with no full-height central extrusion.",
+    "facade": "Six original architect photographs establish dark teal primary glazing, paler projecting lower rectangles, pink relief frames, horizontal service bands, repeated narrow panes and framed upper-shaft panels. The podium retains horizontal ribbon windows and a central ground passage.",
+    "crown": "Upturned/scalloped parapet edges, layered green hip roof and white ringed antenna are reconstructed from the architect’s harbor and elevated photographs.347.5m architectural roof and378m antenna tip remain separate measurements."
+  },
+  "referencePages": [
+    "https://www.cylee.com/project/T-C-Tower?lang=tw",
+    "https://www.skyscrapercenter.com/building/85/338",
+    "https://www.openstreetmap.org/way/34170948",
+    "https://www.openstreetmap.org/way/344740874",
+    "https://www.openstreetmap.org/way/345038767"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      120.30016011,
+      22.61161611
+    ],
+    "heading": -1.245554419864,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/34170948",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/34170948",
+      "way/344740871",
+      "way/344740872",
+      "way/344740873",
+      "way/344740874",
+      "way/345038766",
+      "way/345038767"
+    ],
+    "wikidataId": "Q337631",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed exact-QID podium and independently mapped two prongs, raised central shaft, sill, roof and antenna retain the harbor-facing wide aperture. Native+X is the long podium/prong-separation axis; opposite broad faces retain the architect-photographed matching facade composition. GroundY0 is street entry; mapped component heights are distinguished from CTBUH’s347.5m roof and378m tip."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Curved parapet profile, individual mullion spacing, projecting panel relief, canopy/door details and roof plant are reconstructed from six architect photographs. Mapped lower-part heights are approximate. Tenant lettering, the precise roof equipment inventory, illumination animation and interior atria are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "central-aperture",
+      "position": [
+        0,
+        121,
+        158
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ]
+    },
+    {
+      "name": "pagoda-crown",
+      "position": [
+        77,
+        360,
+        94
+      ],
+      "lookAt": [
+        0,
+        338,
+        0
+      ]
+    },
+    {
+      "name": "lower-prongs",
+      "position": [
+        98,
+        189,
+        148
+      ],
+      "lookAt": [
+        25,
+        165,
+        4
+      ]
+    },
+    {
+      "name": "projecting-glass",
+      "position": [
+        66,
+        116,
+        104
+      ],
+      "lookAt": [
+        35,
+        106,
+        34
+      ]
+    },
+    {
+      "name": "pink-podium",
+      "position": [
+        92,
+        38,
+        133
+      ],
+      "lookAt": [
+        24,
+        25,
+        24
+      ]
+    },
+    {
+      "name": "ground-passage",
+      "position": [
+        0,
+        9,
+        82
+      ],
+      "lookAt": [
+        0,
+        4,
+        12
+      ]
+    },
+    {
+      "name": "roof-service",
+      "position": [
+        -94,
+        238,
+        113
+      ],
+      "lookAt": [
+        -43,
+        186,
+        4
+      ]
+    },
+    {
+      "name": "far-harbor-face",
+      "position": [
+        0,
+        221,
+        750
+      ],
+      "lookAt": [
+        0,
+        174,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 458842,
+    "vertices": 1136974,
+    "materials": 5,
+    "bytes": 45303496,
+    "sha256": "sha256:7c3ecd5120607770b00ea83e68b101e55f780453c4be232672a2a00ab00fb163"
+  }
+}

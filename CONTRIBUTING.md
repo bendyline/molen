@@ -36,9 +36,17 @@ One invariant matters more than the rest: **build before you typecheck or
 test**, because packages consume each other's `dist`. The root scripts encode it.
 
 ```sh
+pnpm install
+pnpm assets:fetch  # restore the exact GLBs pinned in asset-lock.json
 pnpm all       # clean install, build, and every check CI runs, in order
 pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, production audit
 ```
+
+Model binaries are distributed as GitHub release asset packs, including editable GLB masters.
+Generators, source manifests, asset sidecars, materials and review evidence remain in Git.
+`pnpm all` restores assets automatically; `pnpm verify` verifies the local snapshot without
+downloading. See [asset-pack maintenance](content/ASSET-PACKS.md) for offline setup, selective
+downloads, publishing model changes and the one-time Git tracking migration.
 
 Generated files come from generators, not from hand edits: the schema reference
 (`pnpm docs:gen`), the documentation site (`pnpm docs:site:gen`), and the script

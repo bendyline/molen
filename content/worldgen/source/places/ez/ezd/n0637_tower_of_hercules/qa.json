@@ -1,0 +1,65 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0637_tower_of_hercules",
+  "sourceHash": "sha256:bc20fa063dd7f6c400fc31b08c6ab8a3210d4210f38fcf8bb745fa55d7e4cd40",
+  "runtimeHash": "sha256:ac54dc345f1bd3a89185227b26db8e4735382bbe0cb6d473ace23f67167284c7",
+  "captureReportHash": "sha256:1720ec0c6d7eb2344a00db14283fbc3249fde8c30ff22b4323e580e50fd4e68c",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Visible static exterior geometry in all inspected fallback and shared frames; not a survey or maximum-fidelity certification.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-facade.png",
+      "shots/near-lantern.png",
+      "shots/near-platform.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Reviewed all nine final fallback and all nine final shared frames in contact sheets, plus full-size facade, lantern, platform and north-up views across the final iterations. The platform stair has an open landing, octagonal upper arcade details sit on outward-facing surfaces, and all facade openings now clear the rising perimeter band. Square shaft, paired niches, two upper tiers, offset lightning spine, lantern and gallery are visibly connected. Thin guy wires and fine moldings alias at distance; individual finials and surface weathering remain simplified."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "fixtureHash": "sha256:6095a205450080bb99180525d2761937c86e4e7530267ffd3bcb9e8ba109a4b5",
+    "specHash": "sha256:833ca9e3d935fe5a4ec9267b6509093711c3167db6e5f58afa27beea6cec4d61",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_ashlar": {
+        "path": "materials/stone_ashlar.matgraph.json",
+        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-facade.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/near-platform.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Three canonical shared references supply ashlar masonry, joint-free granite trim and painted metal. Course directions and physical repeat scale remain coherent on the square shaft and polygonal stages; no missing maps or model-specific bitmap copies were observed. The regular light-colored masonry and uniform trim are a reusable material approximation. Surveyed granite block dimensions, patch repairs, staining and maritime weathering remain required for maximum fidelity.",
+    "captureReportHash": "sha256:84ea9554a38e289d006d8a2ca05fb405c81eb48789685f52978cdf4aa256b7f8"
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "The north-up capture shows the cached exact-QID OSM shaft outline centered on and parallel to the authored square shaft axes. The published 11.75 m core and mapped approximately 12.7 m envelope remain separate; no arbitrary fit scaling was applied. Square symmetry leaves a 90-degree ambiguity in facade/spine facing. The preview uses flat terrain contact and does not prove the actual hill, platform heights, museum access, facade azimuth or surrounding site fit."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates. No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation. Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates. Total55m includes the modeled platform and lightning spine; the allocation among upper tiers and the spine position is photo-estimated. Museum interior, adjacent service structures, terrain, historic excavations and exact lighting installations are omitted. Exact per-facade opening elevations, blind/open niche allocation, arched reliefs, finials, podium access arrangement and material weathering are reconstructed; visible integrity approval does not certify those dimensions."
+  }
+}

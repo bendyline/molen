@@ -1,0 +1,161 @@
+{
+  "id": "N0664",
+  "key": "lange_jan",
+  "title": "Långe Jan",
+  "wikidataId": "Q712299",
+  "size": [
+    12,
+    41.6,
+    12.5
+  ],
+  "smoothNormalSlots": [
+    "wall",
+    "trim"
+  ],
+  "visualBrief": "Broad flared limewashed base, deep segmental entrance portal, four ranks of small windows, low oculi, nearly cylindrical shaft with black central daymark, molded white gallery, raised watchroom and red-roofed lantern with exterior cleaning rail.",
+  "sourceFacts": {
+    "heightMeters": 41.6,
+    "baseDiameterApproxMeters": 12,
+    "basis": "Sjöfartsverket and the lighthouse-society brochure establish 41.6 m height and approximately 12 m base diameter. Original Göran Andersson and Esbjörn Hillberg photographs establish the flared lower stage, black band, recessed portal, gallery and red cap. Intermediate heights and fine detail are scaled to those photographs."
+  },
+  "referencePages": [
+    "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/olands-sodra-udde--lange-jan/",
+    "https://fyr.org/assets/pdf/broschyr/olands_sodra_udde.pdf",
+    "https://www.oland.se/fyren-lange-jan-olands-sodra-udde",
+    "https://www.openstreetmap.org/way/304266662",
+    "https://www.openstreetmap.org/node/5866598197"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      16.398528877,
+      56.196057454
+    ],
+    "heading": -2.2748968630941637,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/5866598197",
+    "notes": "Exact-QID mapped tower replaces the catalog coordinate about 214 m north. Mapped main entrance northwest of tower center fixes authored +Z portal. The approximately 9.7 m mapped circle is smaller than the operator’s approximately 12 m flared base; physical operator dimensions govern model size."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Small facade details and the auxiliary sector-light housing are reconstructed from original photographs. Adjacent detached station buildings and site cannons remain separate features; the portal tablet is represented in relief without a copied inscription texture."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        12,
+        41,
+        14
+      ],
+      "lookAt": [
+        0,
+        37.7,
+        0
+      ]
+    },
+    {
+      "name": "near-portal",
+      "position": [
+        9,
+        5,
+        12
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        4.9
+      ]
+    },
+    {
+      "name": "near-daymark",
+      "position": [
+        13,
+        27,
+        16
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        48,
+        27,
+        59
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0664_lange_jan",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -6,
+      0,
+      -6
+    ],
+    "max": [
+      6,
+      41.599998474121094,
+      6.239999771118164
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

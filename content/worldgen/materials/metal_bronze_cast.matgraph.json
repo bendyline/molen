@@ -1,0 +1,48 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 216,
+  "nodes": [
+    {
+      "id": "patina",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 3, "scale": 7, "seedOffset": 1 }
+    },
+    {
+      "id": "pits",
+      "type": "noise",
+      "params": { "kind": "value", "octaves": 2, "scale": 53, "seedOffset": 4 }
+    },
+    {
+      "id": "out",
+      "type": "ramp",
+      "input": "patina",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#c7cbc7" },
+          { "t": 0.45, "color": "#e6e8e3" },
+          { "t": 1, "color": "#f5f5ed" }
+        ]
+      }
+    },
+    {
+      "id": "rough",
+      "type": "levels",
+      "input": "patina",
+      "params": { "outMin": 0.59, "outMax": 0.72 }
+    },
+    {
+      "id": "metal",
+      "type": "levels",
+      "input": "patina",
+      "params": { "outMin": 0.55, "outMax": 0.75 }
+    },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "pits",
+      "params": { "strength": 0.00025 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "metalness": "metal", "normal": "normal" }
+}

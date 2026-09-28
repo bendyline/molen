@@ -1,0 +1,184 @@
+{
+  "planId": "N0149",
+  "id": "N0149",
+  "assetId": "molen.worldgen.structure.n0149_30_st_mary_axe",
+  "title": "30 St Mary Axe",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q191161",
+  "referenceCoordinate": {
+    "latitude": 51.514444444,
+    "longitude": -0.080277777
+  },
+  "visualBrief": "The curved Gherkin envelope with six dark helical light-well bands, triangular glass subdivisions, external diagonal lattice, narrowed ground colonnade, circular revolving entrance pavilions and rounded glazed crown.",
+  "size": [
+    56.83108901977539,
+    180.03189086914062,
+    56.823612213134766
+  ],
+  "actualBounds": {
+    "min": [
+      -28.415544509887695,
+      0,
+      -28.411806106567383
+    ],
+    "max": [
+      28.415544509887695,
+      180.03189086914062,
+      28.411806106567383
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z through one of six repeated entrances",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 180,
+    "floors": 41,
+    "spirallingLightWells": 6
+  },
+  "reconstruction": {
+    "maximumDiameterMeters": 56.6,
+    "groundDiameterMeters": 45,
+    "profile": "Measured map maximum envelope with reconstructed longitudinal profile",
+    "facade": "Six dark helical bands and independently modeled triangular glazing/structural diagonals"
+  },
+  "referencePages": [
+    "https://thegherkin.com/",
+    "https://thegherkin.com/availability/",
+    "https://www.arup.com/globalassets/downloads/insights/t/tall-buildings-rising-to-the-net-zero-challenge/tall-buildings-rising-to-the-net-zero-challenge_arupv2-1.pdf"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -0.080332487,
+      51.51447512
+    ],
+    "heading": 0.610458485976,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/4959489",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/4959489"
+    ],
+    "wikidataId": "Q191161",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "The exact-QID circular envelope defines the center and 56.6 m maximum diameter. Rotational facade phase is provisional within six-fold symmetry; mapped height180 and primary engineering source override the inconsistent250 m Wikidata fact."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Exact longitudinal curvature, facade twist phase and revolving entrance dimensions are reconstructed; the source 180 m envelope has precedence over erroneous aggregated height metadata."
+  ],
+  "qaCameras": [
+    {
+      "name": "diagrid",
+      "position": [
+        48,
+        96,
+        58
+      ],
+      "lookAt": [
+        8,
+        84,
+        18
+      ]
+    },
+    {
+      "name": "ground",
+      "position": [
+        60,
+        13,
+        64
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "crown",
+      "position": [
+        45,
+        177,
+        68
+      ],
+      "lookAt": [
+        0,
+        160,
+        0
+      ]
+    },
+    {
+      "name": "reverse",
+      "position": [
+        -139,
+        116,
+        -214
+      ],
+      "lookAt": [
+        0,
+        90,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        260,
+        175,
+        390
+      ],
+      "lookAt": [
+        0,
+        90,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 94364,
+    "vertices": 219816,
+    "materials": 3,
+    "bytes": 8828288,
+    "sha256": "sha256:6646b8847ee0ed126fbe1b5cc96173068b05284dde61c7a6a3a23a6c4a326f6c"
+  }
+}

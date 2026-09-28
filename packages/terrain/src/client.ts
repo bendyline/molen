@@ -1,3 +1,12 @@
+export {
+  markTerrainGroundSurface,
+  setTerrainGroundCutout,
+  subtractTerrainGroundGeometry,
+  TerrainGroundCutoutController,
+  type TerrainGroundOutline,
+  terrainGroundSourceGeometry,
+} from './ground-cutout';
+
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
 import type { Heightfield } from './heightfield';

@@ -1,0 +1,157 @@
+{
+  "id": "N0649",
+  "key": "stanislav_adziogol_lighthouse",
+  "title": "Stanislav-Adziogol Lighthouse",
+  "wikidataId": "Q380270",
+  "size": [
+    21,
+    64,
+    25
+  ],
+  "visualBrief": "Red open hyperboloid lattice with two families of straight inclined steel members, circular horizontal ties, central stair tube, lower service room and tiered red lantern cabin.",
+  "sourceFacts": {
+    "heightMeters": 64,
+    "basis": "Ukrainian hydrographic operator states64m abovebase and67m focalheight; this supersedes the conflicting76m OSM value.",
+    "referenceAppearance": "Operator archive photograph, original intact exterior; current condition is not established by this archive."
+  },
+  "referencePages": [
+    "https://hydro.gov.ua/?page_id=335",
+    "https://hydro.gov.ua/wp-content/uploads/2018/09/6-2.png",
+    "https://hydro.gov.ua/?p=1574",
+    "https://www.openstreetmap.org/way/702157400",
+    "https://www.openstreetmap.org/way/444105312"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      32.232577164,
+      46.492261894
+    ],
+    "heading": 2.804572585,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/702157400",
+    "notes": "Mapped near-circular19.6m latticefoot identifies center. Pier444105312 extends northeast from the island; its axis through approximately[7.2,-20.5]m east/south fixes the authored+Z landing toward north-northeast at heading2.804572585rad. Ground contact is the artificial island. This is the intact operator-archive appearance, with post2022 condition explicitly unverified."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "The intact exterior is reconstructed from the operator archive; post2022 exterior condition is not verified. Generator/member counts and section sizes, lantern details and service room are photo-proportioned. This asset does not pretend the conflicting76m map height is correct."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lattice",
+      "position": [
+        17,
+        24,
+        24
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "near-cabin",
+      "position": [
+        11,
+        59,
+        15
+      ],
+      "lookAt": [
+        0,
+        58,
+        0
+      ]
+    },
+    {
+      "name": "near-base",
+      "position": [
+        22,
+        11,
+        28
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        73,
+        44,
+        94
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0649_stanislav_adziogol_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -10.5,
+      0,
+      -10.5
+    ],
+    "max": [
+      10.5,
+      64,
+      14.399999618530273
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

@@ -1,0 +1,193 @@
+{
+  "planId": "N0169",
+  "id": "N0169",
+  "assetId": "molen.worldgen.structure.n0169_mercury_city_tower",
+  "title": "Mercury City Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q59483",
+  "referenceCoordinate": {
+    "latitude": 55.750555555,
+    "longitude": 37.539444444
+  },
+  "visualBrief": "Moscow’s copper-gold stepped tower with seven individually mapped sloped volumes, white folded edge bands, dense unitized glass, upper media screens and its pointed street entrance.",
+  "size": [
+    94.4077377319336,
+    338.8240051269531,
+    44.53647041320801
+  ],
+  "actualBounds": {
+    "min": [
+      -47.185916900634766,
+      0,
+      -22.263229370117188
+    ],
+    "max": [
+      47.22182083129883,
+      338.8240051269531,
+      22.27324104309082
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 338.824,
+    "floors": 75,
+    "facadeAreaSquareMeters": 75000,
+    "facadeFabricator": "Shenyang Yuanda",
+    "architect": "Frank Williams with Mikhail Posokhin",
+    "metalFinish": "RAL9016 PVDF aluminum",
+    "mediaFacadeFloors": [
+      67,
+      68
+    ],
+    "mediaFacadeAreaSquareMeters": 1350
+  },
+  "reconstruction": {
+    "plan": "Exact-QID tower outline and seven signed building parts determine each setback, angled roof and eastern nose",
+    "facade": "Individual copper glazing cells with dark joints and white aluminum perimeter bands, reconstructed from four owner photos",
+    "roof": "Mapped roof compass directions330/150 degrees retain each opposing slope"
+  },
+  "referencePages": [
+    "https://www.mercury-city.com/en/about/architecture/",
+    "https://www.mercury-city.com/en/mediafacade/",
+    "https://www.yuandacn.com/index.php/en/projects-cn-2/146-overseas/europe/russia/337-mercury-city-tower-2.html",
+    "https://www.skyscrapercenter.com/building/wd/265",
+    "https://www.openstreetmap.org/way/52929368"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      37.539420413,
+      55.750474394
+    ],
+    "heading": -1.029057019662,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/52929368",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/52929368"
+    ],
+    "wikidataId": "Q59483",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed exact-QID outline plus seven separately mapped heights, stepped plan boundaries and roof directions retain the west-to-east rise and pointed eastern end. SourceY0; architectural top338.824 m follows the facade fabricator."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual glazing pitch, white-band widths and LED screen vertical datum are reconstructed from owner photographs. Screens show an unlit neutral face; advertisements, interiors and temporary entrance decorations are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "copper-glazing",
+      "position": [
+        87,
+        142,
+        111
+      ],
+      "lookAt": [
+        6,
+        120,
+        0
+      ]
+    },
+    {
+      "name": "sloped-setbacks",
+      "position": [
+        -112,
+        227,
+        129
+      ],
+      "lookAt": [
+        -18,
+        176,
+        0
+      ]
+    },
+    {
+      "name": "crown-and-media",
+      "position": [
+        89,
+        344,
+        103
+      ],
+      "lookAt": [
+        15,
+        307,
+        0
+      ]
+    },
+    {
+      "name": "pointed-entrance",
+      "position": [
+        94,
+        18,
+        44
+      ],
+      "lookAt": [
+        40,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -351,
+        300,
+        601
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 176721,
+    "vertices": 530131,
+    "materials": 3,
+    "bytes": 20677608,
+    "sha256": "sha256:072724888b694de5266c059c1f7409e35c979c4203b4c68599b229d30880720d"
+  }
+}

@@ -535,7 +535,7 @@ export const OPS_CATALOG: OpDescriptor[] = [
     name: 'import_asset',
     summary:
       'Import a glTF/GLB: normalize, extract bounds + collision (hulls/trimesh), write the asset sidecar, register in project.json.',
-    cli: 'molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--project <project.json>] [--force]',
+    cli: 'molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--asset-dir <d>] [--project <project.json>] [--force]',
     mcpTool: 'import_asset',
     params: [
       p('path', 'string', true, 'Source .glb/.gltf file.'),
@@ -552,7 +552,18 @@ export const OPS_CATALOG: OpDescriptor[] = [
         'Also extract a whole-asset collision trimesh (collision.bin).',
       ),
       p('optimize', 'boolean', false, 'Normalize pass dedup/prune/weld/quantize (default true).'),
-      p('outDir', 'string', false, 'Assets root override (default: <project dir>/assets).'),
+      p(
+        'outDir',
+        'string',
+        false,
+        'Assets root override; retains root/id layout. Mutually exclusive with assetDir.',
+      ),
+      p(
+        'assetDir',
+        'string',
+        false,
+        'Exact bundle directory, relative to cwd. Mutually exclusive with outDir. Omit both to preserve an existing project asset directory.',
+      ),
       p(
         'projectPath',
         'string',

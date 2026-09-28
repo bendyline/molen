@@ -1,0 +1,58 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 135,
+  "alphaTest": 0.3,
+  "nodes": [
+    { "id": "u-distance-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    {
+      "id": "u-distance",
+      "type": "ramp",
+      "input": "u-distance-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.5, "color": "#000000" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    { "id": "v-distance-axis", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "v-distance",
+      "type": "ramp",
+      "input": "v-distance-axis",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.5, "color": "#000000" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "distance",
+      "type": "blend",
+      "inputs": { "a": "u-distance", "b": "v-distance" },
+      "params": { "mode": "mix", "factor": 0.5 }
+    },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "distance",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#fafafa00" },
+          { "t": 0.3732, "color": "#fafafa00" },
+          { "t": 0.3752, "color": "#fafafaff" },
+          { "t": 0.6248, "color": "#fafafaff" },
+          { "t": 0.6268, "color": "#fafafa00" },
+          { "t": 1, "color": "#fafafa00" }
+        ]
+      }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.5 } },
+    { "id": "metal", "type": "const", "params": { "value": 0 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

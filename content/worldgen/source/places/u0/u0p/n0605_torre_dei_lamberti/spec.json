@@ -1,0 +1,228 @@
+{
+  "id": "N0605",
+  "planId": "N0605",
+  "assetId": "molen.worldgen.structure.n0605_torre_dei_lamberti",
+  "title": "Torre dei Lamberti",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1819804"
+  },
+  "wikidataId": "Q1819804",
+  "visualBrief": "The 84 m Veronese tower with alternating tuff and cotto lower shaft, recessed putlog holes, southwest Roman-numeral clock, four true triple-arched galleries, corbelled terraces, octagonal brick drum, open white-marble belfry, four bells and a pitched copper roof with wind vane.",
+  "actualBounds": {
+    "min": [
+      -5.317999839782715,
+      0,
+      -5.433000087738037
+    ],
+    "max": [
+      5.317999839782715,
+      84,
+      5.433000087738037
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Native +Z faces the southwest clock elevation toward Piazza delle Erbe; +X is southeast",
+    "origin": "Center of the exact mapped tower footprint, Y=0 at exterior ground"
+  },
+  "scaleBasis": "The operator gives 84 m overall height and 37 m original lower tower, identifies tuff/cotto and the later marble/brick octagonal belfry. Exact mapped tower width/depth sets plan scale. Current operator photographs DSCF8933, R_UD0028 and R_UD0090 establish the clock face, triple arcades, two-light octagonal bays, stone corbels, iron rails, bell supports and shallow pitched roof. Intermediate floor ordinates, opening widths and small relief are proportional reconstructions; they are not represented as surveyed dimensions.",
+  "geographicProposal": {
+    "anchor": [
+      10.997722857,
+      45.442970539
+    ],
+    "heading": -1.1411119762658966,
+    "source": "https://www.openstreetmap.org/way/138829597",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8f118e3ac645c4faf18e819feacc8f31340c6f1cdb01cfcb01ec8b00ba841c0f",
+    "evidence": "Exact Q1819804 tower footprint way138829597. The operator photographs DSCF8933 and DSCF8939-1 are viewed southeastward from Palazzo Maffei at the northwest end of Piazza delle Erbe: the broad northwest face has the small arched window, and the adjoining southwest face has the clock. Native +Z is that southwest clock face (bearing about 245.38 degrees); +X points southeast. The adjacent Palazzo della Ragione wings and Arco della Costa are separate buildings and are not included in this tower mesh.",
+    "limitations": "Ordinary ground contact. Attached Palazzo della Ragione and Arco della Costa are separate structures, so their volumes are not duplicated in this tower asset.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact Q1819804 tower footprint way138829597. The operator photographs DSCF8933 and DSCF8939-1 are viewed southeastward from Palazzo Maffei at the northwest end of Piazza delle Erbe: the broad northwest face has the small arched window, and the adjoining southwest face has the clock. Native +Z is that southwest clock face (bearing about 245.38 degrees); +X points southeast. The adjacent Palazzo della Ragione wings and Arco della Costa are separate buildings and are not included in this tower mesh. Ordinary ground contact. Attached Palazzo della Ragione and Arco della Costa are separate structures, so their volumes are not duplicated in this tower asset."
+  },
+  "sourceFacts": {
+    "heightMeters": 84,
+    "originalTowerHeightMeters": 37,
+    "constructionStarted": 1172,
+    "octagonalBelfry": "1448–1464",
+    "clockAdded": 1795,
+    "bells": 4,
+    "rengoMeasuredMouthDiameterMeters": 1.831,
+    "planMeters": [
+      9.04,
+      9.27
+    ],
+    "planBasis": "Exact tower outline way138829597; excludes connected palace wings"
+  },
+  "referencePages": [
+    "https://www.torredeilamberti.it/storia/",
+    "https://www.torredeilamberti.it/",
+    "https://www.torredeilamberti.it/wp-content/uploads/DSCF8933.jpg",
+    "https://www.torredeilamberti.it/wp-content/uploads/R_UD0028.jpg",
+    "https://www.torredeilamberti.it/wp-content/uploads/R_UD0090.jpg",
+    "https://www.editorialepolis.it/img/notiziario_pdf/palazzoragione.pdf",
+    "https://campanologia.org/campanologia/misurazioni",
+    "https://www.openstreetmap.org/way/138829597"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Intermediate gallery elevations, individual repaired masonry and minor stone moulding profiles are proportionally reconstructed from current operator photographs. The small coats of arms retain shield relief rather than copied heraldic artwork.",
+    "Clock hands represent a fixed decorative display, not live time. Bell mounting positions are reconstructed from the visible open belfry; the four-bell identity and largest bell mouth diameter are sourced.",
+    "The tower is modeled independently of its attached palace wings; interiors, neighboring palace roofs and Arco della Costa are excluded.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "southwest-clock",
+      "position": [
+        48,
+        51,
+        130
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ]
+    },
+    {
+      "name": "northeast-rear",
+      "position": [
+        -75,
+        53,
+        -112
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "clock-and-trifora",
+      "position": [
+        10,
+        58,
+        42
+      ],
+      "lookAt": [
+        0,
+        54,
+        0
+      ]
+    },
+    {
+      "name": "open-marble-belfry",
+      "position": [
+        19,
+        78,
+        31
+      ],
+      "lookAt": [
+        0,
+        74,
+        0
+      ]
+    },
+    {
+      "name": "roof-plan",
+      "position": [
+        7,
+        135,
+        12
+      ],
+      "lookAt": [
+        0,
+        46,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        95,
+        59,
+        130
+      ],
+      "lookAt": [
+        0,
+        40,
+        0
+      ]
+    }
+  ]
+}

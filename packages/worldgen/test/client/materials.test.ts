@@ -31,6 +31,36 @@ const provider: AssetProvider = {
 };
 
 describe('resolved material set', () => {
+  it('keeps alpha-tested coverage maps linear without mipmaps while opaque maps use mipmaps', async () => {
+    const mask = new THREE.DataTexture(
+      new Uint8Array([255, 255, 255, 0, 255, 255, 255, 255]),
+      2,
+      1,
+    );
+    mask.magFilter = THREE.LinearFilter;
+    const opaque = mask.clone();
+    const cutout = new THREE.MeshStandardMaterial({ map: mask, alphaTest: 0.3 });
+    const solid = new THREE.MeshStandardMaterial({ map: opaque });
+    const resolver = {
+      acquire: vi.fn(async (ref: string) => (ref === 'matgraph:cutout' ? cutout : solid)),
+      release: vi.fn(),
+    };
+    const set = createResolvedMaterialSet(resolver as unknown as MaterialResolver);
+    await set.prepare(['matgraph:cutout', 'matgraph:opaque']);
+    const result = set.materialFor('wall', 'matgraph:cutout') as THREE.MeshStandardMaterial;
+    expect(result.alphaTest).toBe(0.3);
+    expect(result.map).toBe(mask);
+    expect(mask.generateMipmaps).toBe(false);
+    expect(mask.minFilter).toBe(THREE.LinearFilter);
+    expect(opaque.generateMipmaps).toBe(true);
+    expect(opaque.minFilter).toBe(THREE.LinearMipmapLinearFilter);
+    set.dispose();
+    mask.dispose();
+    opaque.dispose();
+    cutout.dispose();
+    solid.dispose();
+  });
+
   it('upgrades visible progressive materials in place without rebuilding geometry', async () => {
     let finish: ((material: THREE.MeshStandardMaterial) => void) | undefined;
     const resolver = {
@@ -110,7 +140,8 @@ describe('resolved material set', () => {
       'window',
       'matgraph:molen.worldgen.material.window_punched',
     ) as THREE.MeshStandardMaterial;
-    expect(window.roughnessMap).not.toBeNull();
+    expect(window.roughnessMap).toBeNull();
+    expect(window.roughness).toBe(77 / 255);
     const flat = set.materialFor('trim', 'palette:#ffffff') as THREE.MeshStandardMaterial;
     expect(flat.map).toBeNull();
     expect(flat.vertexColors).toBe(true);

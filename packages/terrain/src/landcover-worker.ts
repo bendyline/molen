@@ -1,5 +1,6 @@
 /** Off-thread terrain-grid draping and vertex welding. No WebGL context is created in workers. */
 import * as THREE from 'three';
+import { markTerrainGroundSurface } from './ground-cutout';
 import { Heightfield } from './heightfield';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { createLandcoverMesh, type TerrainSemanticMeshOptions } from './semantic-client';
@@ -137,6 +138,7 @@ export function createTerrainLandcoverWorkerBridge(
       geometry.setAttribute('color', new THREE.BufferAttribute(data.colors, 3));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);
+      markTerrainGroundSurface(mesh);
       mesh.name = 'semantic:landcover';
       mesh.receiveShadow = true;
       mesh.renderOrder = 1;

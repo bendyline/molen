@@ -1,0 +1,282 @@
+{
+  "planId": "N0185",
+  "id": "N0185",
+  "assetId": "molen.worldgen.structure.n0185_china_media_group_guanghua_road_office_area",
+  "title": "CCTV Headquarters",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q754321",
+  "referenceCoordinate": {
+    "latitude": 39.913842,
+    "longitude": 116.457981
+  },
+  "visualBrief": "Beijing’s continuous cranked loop: two independently leaning towers, opposite ground and suspended L connections, sloped crown, irregular physical diagonal bracing, dense curtain wall, viewing portholes, broadcast dishes and helipad.",
+  "size": [
+    168.23977661132812,
+    233.82000732421875,
+    162.11988830566406
+  ],
+  "actualBounds": {
+    "min": [
+      -84.11988830566406,
+      0,
+      -83
+    ],
+    "max": [
+      84.11988830566406,
+      233.82000732421875,
+      79.11988830566406
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 234,
+    "towerLeanDegreesEachAxis": 6,
+    "overhangUndersideMeters": 162,
+    "architectCantileverMeters": 75,
+    "engineer": "Arup",
+    "architect": "OMA",
+    "completionYear": 2012
+  },
+  "reconstruction": {
+    "massing": "Two 6-degree lean components in opposite directions are united with the northeastern ground L and southwestern upper L. The upper connection starts at the engineer’s162m underside. Exact-QID map projection establishes the signed axes and outer envelope, but its simplified projected tower rectangles are not treated as ground footprints.",
+    "roof": "Completed OMA photographs establish a continuous roof slope descending from northwest to southeast. A reconstructed plane retains the234m overall envelope including helipad; the short tower has approximately194–210m sloping roof elevations. The differing reported short-tower datums are retained as a limit rather than flattening the whole roof.",
+    "facade": "Physical blue-grey glass panes and fine vertical/horizontal joints are overlaid with continuous dark diamond braces. Selected cells at base and cantilever junctions are subdivided to reflect the denser structural grid shown in the original engineer elevation and completed photographs; this is a reconstructed pattern, not a structural member schedule.",
+    "equipment": "OMA photographs establish the circular helipad, podium satellite dishes and circular glass viewing windows underneath the overhang. Equipment dimensions and precise counts/offsets are photographed reconstructions; no interior rooms are included."
+  },
+  "referencePages": [
+    "https://www.oma.com/projects/cctv-headquarters",
+    "https://www.arup.com/en-us/projects/china-central-television-headquarters/",
+    "https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-2005-issue-2.pdf",
+    "https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-2008-issue-2.pdf",
+    "https://www.istructe.org/structural-awards/projects/2013/china-central-television-new-headquarters/",
+    "https://www.openstreetmap.org/relation/7820447"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      116.457967576,
+      39.913812719
+    ],
+    "heading": 1.569603432704,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/7820447",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/7820447"
+    ],
+    "wikidataId": "Q754321",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:e1c4a7dd5e49f5cae32f07aa9b072ed0bf673ec30222a986af9a94ab70347009",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID projected outer envelope supplies the signed frame: +X north, +Z east. Independent map parts place the tall tower northwest, the lower tower southeast, ground L northeast and elevated L southwest. Only reconstructed tower feet and northeastern podium touch Y0; the projected cantilever is kept at162m. The mapped60m-square tower rectangles are approximate projections, not surveyed contact footprints. Ground contacts are reconstructed within the mapped overall envelope using the primary lean and exterior drawings."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Footprint contact rectangles, common sloping roof plane, curtain-wall bay pitch, fine diagonal density schedule, entry canopy and equipment locations are reconstructed from primary completed photographs and engineer diagrams. The cached map parts are coarse projected envelopes. The separate TVCC, media park, landscape and below-grade studios are excluded. The underside glass windows are opaque exterior glazing without interior rooms."
+  ],
+  "qaCameras": [
+    {
+      "name": "suspended-loop",
+      "position": [
+        -250,
+        138,
+        -250
+      ],
+      "lookAt": [
+        -20,
+        156,
+        -20
+      ]
+    },
+    {
+      "name": "northwest-tower",
+      "position": [
+        195,
+        155,
+        -240
+      ],
+      "lookAt": [
+        30,
+        128,
+        -42
+      ]
+    },
+    {
+      "name": "southeast-tower",
+      "position": [
+        -220,
+        135,
+        235
+      ],
+      "lookAt": [
+        -44,
+        116,
+        43
+      ]
+    },
+    {
+      "name": "cantilever-soffit",
+      "position": [
+        -100,
+        110,
+        -115
+      ],
+      "lookAt": [
+        -40,
+        162,
+        -38
+      ]
+    },
+    {
+      "name": "viewing-portholes",
+      "position": [
+        -37,
+        147,
+        -68
+      ],
+      "lookAt": [
+        -36,
+        162,
+        -42
+      ]
+    },
+    {
+      "name": "dense-corner-braces",
+      "position": [
+        -83,
+        180,
+        -119
+      ],
+      "lookAt": [
+        -42,
+        179,
+        -60
+      ]
+    },
+    {
+      "name": "glass-panel-joints",
+      "position": [
+        112,
+        113,
+        -83
+      ],
+      "lookAt": [
+        68,
+        105,
+        -57
+      ]
+    },
+    {
+      "name": "podium-dishes",
+      "position": [
+        112,
+        88,
+        120
+      ],
+      "lookAt": [
+        25,
+        47,
+        46
+      ]
+    },
+    {
+      "name": "sloping-roof",
+      "position": [
+        -176,
+        335,
+        -160
+      ],
+      "lookAt": [
+        -1,
+        207,
+        -6
+      ]
+    },
+    {
+      "name": "helipad",
+      "position": [
+        89,
+        258,
+        -88
+      ],
+      "lookAt": [
+        48,
+        233,
+        -46
+      ]
+    },
+    {
+      "name": "ground-entry",
+      "position": [
+        64,
+        14,
+        -133
+      ],
+      "lookAt": [
+        52,
+        4,
+        -79
+      ]
+    },
+    {
+      "name": "far-loop",
+      "position": [
+        440,
+        285,
+        450
+      ],
+      "lookAt": [
+        0,
+        114,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 199468,
+    "vertices": 525824,
+    "materials": 3,
+    "bytes": 20799796,
+    "sha256": "sha256:6a37e0a2dabcee9b5ae61065c72da22c2d63d0d7faf3298e907cb4a1bf21a48c"
+  }
+}

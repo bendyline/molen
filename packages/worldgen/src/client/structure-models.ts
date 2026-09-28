@@ -6,6 +6,11 @@ export interface StructureModelLibraryOptions {
   /** Borrow a shared material owned by the caller. Undefined preserves the GLB's fallback.
    * The returned material must outlive acquired models and may upgrade progressively. */
   resolveSurface?: (surface: GlbSharedSurface) => THREE.Material | undefined;
+  /** The loader transfers its decoded ImageBitmaps too (default false). A predicate can opt in
+   * individual freshly parsed scenes after inspecting their image sources. Return false for URI
+   * images shared with a host cache; never infer ownership from a cache-enabled snapshot.
+   * Borrowed surface images stay external regardless of this option. */
+  ownsImageBitmaps?: boolean | ((scene: THREE.Object3D) => boolean);
 }
 
 export interface StructureModel {
@@ -15,7 +20,28 @@ export interface StructureModel {
   bounds: THREE.Box3;
 }
 
-function disposeMaterials(materials: Set<THREE.Material>, retained: Set<THREE.Material>): void {
+function imagesOf(materials: Set<THREE.Material>): Set<ImageBitmap> {
+  const images = new Set<ImageBitmap>();
+  if (typeof ImageBitmap === 'undefined') return images;
+  for (const material of materials)
+    for (const value of Object.values(material))
+      if (value instanceof THREE.Texture) {
+        const data = value.image;
+        for (const image of Array.isArray(data) ? data : [data])
+          if (image instanceof ImageBitmap) images.add(image);
+      }
+  return images;
+}
+
+function disposeMaterials(
+  materials: Set<THREE.Material>,
+  retained: Set<THREE.Material>,
+): Set<ImageBitmap> {
+  const retainedImages = imagesOf(retained);
+  const disposedImages = imagesOf(
+    new Set([...materials].filter((material) => !retained.has(material))),
+  );
+  for (const image of retainedImages) disposedImages.delete(image);
   const keptTextures = new Set<THREE.Texture>();
   for (const material of retained)
     for (const value of Object.values(material))
@@ -28,6 +54,7 @@ function disposeMaterials(materials: Set<THREE.Material>, retained: Set<THREE.Ma
     material.dispose();
   }
   for (const texture of textures) texture.dispose();
+  return disposedImages;
 }
 
 function disposeScene(scene: THREE.Object3D, borrowed = new Set<THREE.Material>()): void {
@@ -58,17 +85,60 @@ export class StructureModelLibrary {
   private readonly pending = new Map<string, Promise<StructureModel>>();
   private readonly references = new Map<string, number>();
   private readonly borrowed = new WeakMap<THREE.Object3D, Set<THREE.Material>>();
+  private readonly sceneImages = new WeakMap<THREE.Object3D, Set<ImageBitmap>>();
+  private readonly imageOwners = new Map<ImageBitmap, Set<THREE.Object3D>>();
+  private readonly externalImages = new WeakSet<ImageBitmap>();
+  private readonly closedImages = new WeakSet<ImageBitmap>();
 
   constructor(
     private readonly loadModel: ModelLoader,
     private readonly options: StructureModelLibraryOptions = {},
   ) {}
 
+  private trackImages(scene: THREE.Object3D): void {
+    const owns = this.options.ownsImageBitmaps;
+    if (!(typeof owns === 'function' ? owns(scene) : owns)) return;
+    const materials = new Set<THREE.Material>();
+    scene.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (mesh.isMesh)
+        for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+          materials.add(material);
+    });
+    const images = imagesOf(materials);
+    this.sceneImages.set(scene, images);
+    for (const image of images) {
+      const owners = this.imageOwners.get(image) ?? new Set<THREE.Object3D>();
+      owners.add(scene);
+      this.imageOwners.set(image, owners);
+    }
+  }
+
+  private releaseImages(scene: THREE.Object3D, images: Iterable<ImageBitmap>): void {
+    for (const image of images) {
+      this.sceneImages.get(scene)?.delete(image);
+      const owners = this.imageOwners.get(image);
+      if (!owners?.delete(scene) || owners.size > 0) continue;
+      this.imageOwners.delete(image);
+      if (!this.externalImages.has(image) && !this.closedImages.has(image)) {
+        this.closedImages.add(image);
+        image.close();
+      }
+    }
+  }
+
+  private disposeOwnedScene(scene: THREE.Object3D): void {
+    disposeScene(scene, this.borrowed.get(scene));
+    this.releaseImages(scene, this.sceneImages.get(scene) ?? []);
+  }
+
   private bindSurfaces(scene: THREE.Object3D): void {
     if (!this.options.resolveSurface) return;
     const original = new Set<THREE.Material>();
     const retained = new Set<THREE.Material>();
     const borrowed = new Set<THREE.Material>();
+    // Also preserve borrowed aliases if a later surface resolver fails before assignment.
+    this.borrowed.set(scene, borrowed);
     const resolved = new Map<THREE.Material, THREE.Material>();
     const assignments: Array<{ mesh: THREE.Mesh; material: THREE.Material | THREE.Material[] }> =
       [];
@@ -90,6 +160,7 @@ export class StructureModelLibrary {
           if (replacement) {
             resolved.set(material, replacement);
             borrowed.add(replacement);
+            for (const image of imagesOf(new Set([replacement]))) this.externalImages.add(image);
           }
         }
         const result = replacement ?? material;
@@ -117,8 +188,7 @@ export class StructureModelLibrary {
       }
       mesh.material = material;
     }
-    this.borrowed.set(scene, borrowed);
-    disposeMaterials(original, retained);
+    this.releaseImages(scene, disposeMaterials(original, retained));
   }
 
   async acquire(ref: string): Promise<StructureModel> {
@@ -131,8 +201,15 @@ export class StructureModelLibrary {
       if (!pending) {
         pending = this.loadModel(ref)
           .then((scene) => {
-            if (this.disposed) {
+            try {
+              this.trackImages(scene);
+            } catch (error) {
+              // An ownership callback failure does not transfer image ownership.
               disposeScene(scene);
+              throw error;
+            }
+            if (this.disposed) {
+              this.disposeOwnedScene(scene);
               throw new Error('Structure model library is disposed');
             }
             scene.updateMatrixWorld(true);
@@ -141,18 +218,18 @@ export class StructureModelLibrary {
               if ((object as THREE.SkinnedMesh).isSkinnedMesh) skinned = true;
             });
             if (skinned) {
-              disposeScene(scene);
+              this.disposeOwnedScene(scene);
               throw new Error(`Structure model "${ref}" must use static meshes`);
             }
             const bounds = new THREE.Box3().setFromObject(scene);
             if (bounds.isEmpty()) {
-              disposeScene(scene);
+              this.disposeOwnedScene(scene);
               throw new Error(`Structure model "${ref}" has no geometry`);
             }
             try {
               this.bindSurfaces(scene);
             } catch (error) {
-              disposeScene(scene);
+              this.disposeOwnedScene(scene);
               throw error;
             }
             const model = { ref, scene, bounds };
@@ -188,7 +265,7 @@ export class StructureModelLibrary {
     const evict = (): void => {
       if (this.references.has(ref)) return;
       const model = this.ready.get(ref);
-      if (model) disposeScene(model.scene, this.borrowed.get(model.scene));
+      if (model) this.disposeOwnedScene(model.scene);
       this.ready.delete(ref);
     };
     evict();
@@ -199,8 +276,7 @@ export class StructureModelLibrary {
     if (this.disposed) return;
     this.disposed = true;
     this.references.clear();
-    for (const model of this.ready.values())
-      disposeScene(model.scene, this.borrowed.get(model.scene));
+    for (const model of this.ready.values()) this.disposeOwnedScene(model.scene);
     this.ready.clear();
   }
 }

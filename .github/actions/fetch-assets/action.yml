@@ -1,0 +1,12 @@
+name: Restore repository asset packs
+description: Restore exact GLBs from the release snapshot pinned by asset-lock.json.
+runs:
+  using: composite
+  steps:
+    - uses: actions/cache@v4
+      with:
+        path: .artifacts/asset-packs/
+        key: molen-glbs-${{ hashFiles('asset-lock.json') }}
+    - name: Restore GLBs
+      shell: bash
+      run: pnpm assets:fetch

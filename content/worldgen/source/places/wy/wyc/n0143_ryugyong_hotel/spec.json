@@ -1,0 +1,205 @@
+{
+  "planId": "N0143",
+  "id": "N0143",
+  "assetId": "molen.worldgen.structure.n0143_ryugyong_hotel",
+  "title": "Ryugyong Hotel",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q29272",
+  "referenceCoordinate": {
+    "latitude": 39.036666666,
+    "longitude": 125.730833333
+  },
+  "visualBrief": "Three narrow radial wings with continuously sloping glazed sides and a small intermediate setback converge into a ringed conical crown. Individual glass panels, edge ribs and a concave mapped podium retain the recognizable Y-plan pyramid.",
+  "size": [
+    380.2619934082031,
+    330,
+    256.0660095214844
+  ],
+  "actualBounds": {
+    "min": [
+      -190.13099670410156,
+      0,
+      -128.0330047607422
+    ],
+    "max": [
+      190.13099670410156,
+      330,
+      128.0330047607422
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Mapped podium frame; tower center from separate mapped central shaft"
+  },
+  "sourceFacts": {
+    "heightMeters": 330,
+    "floors": 105,
+    "form": "Three inclined wings meeting a conical crown",
+    "exterior": "Completed blue-gray glass cladding represented in daylight"
+  },
+  "reconstruction": {
+    "towerCenterWgs84": [
+      125.7308679,
+      39.0365178
+    ],
+    "wingCompassDirections": [
+      77,
+      197,
+      317
+    ],
+    "wingUpperMeters": 311,
+    "wingOuterWallMeters": 72,
+    "crownBaseMeters": 250,
+    "plan": "Six mapped outer sloping wings and six mapped ridge parts around mapped central shaft; source map-parts.json"
+  },
+  "referencePages": [
+    "https://koryogroup.com/blog/ryugyong-hotel-special-report",
+    "https://www.skyscrapercenter.com/building/wd/377",
+    "https://doiserbia.nb.rs/img/doi/0350-3593/2021/0350-35932102117P.pdf",
+    "https://www.openstreetmap.org/way/407995272",
+    "https://www.openstreetmap.org/way/1279085957"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      125.730896399,
+      39.03651085
+    ],
+    "heading": 0.743545021457,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/407995274",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/407995274"
+    ],
+    "wikidataId": "Q29272",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Mapped central shaft way407995272 fixes the tower center at[125.7308679,39.0365178]. Separate wing parts supply actual footprints, heights and roof directions77,197,317 degrees. These are transformed into the exact-QID podium frame; none uses the whole podium centroid as its own center."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Mapped parts resolve wing positions and roof slopes; upper conical crown curvature and pane schedules are reconstructed. LED media facade is represented as static daylight glazing."
+  ],
+  "qaCameras": [
+    {
+      "name": "wing-grid",
+      "position": [
+        86,
+        155,
+        119
+      ],
+      "lookAt": [
+        24,
+        139,
+        38
+      ]
+    },
+    {
+      "name": "three-wings",
+      "position": [
+        -278,
+        207,
+        304
+      ],
+      "lookAt": [
+        0,
+        150,
+        -12
+      ]
+    },
+    {
+      "name": "conical-crown",
+      "position": [
+        51,
+        335,
+        73
+      ],
+      "lookAt": [
+        0,
+        307,
+        -12
+      ]
+    },
+    {
+      "name": "podium",
+      "position": [
+        228,
+        53,
+        265
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -524,
+        315,
+        694
+      ],
+      "lookAt": [
+        0,
+        151,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 812701,
+    "vertices": 2429989,
+    "materials": 4,
+    "bytes": 94804848,
+    "sha256": "sha256:03e88e8a7874e7caa3c402a1b86eb9b14ce3977c2eb83a957a0e4b77a9da2fc1"
+  }
+}

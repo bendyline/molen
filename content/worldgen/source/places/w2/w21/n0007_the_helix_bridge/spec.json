@@ -1,0 +1,244 @@
+{
+  "planId": "N0007",
+  "id": "N0007",
+  "assetId": "molen.worldgen.structure.n0007_the_helix_bridge",
+  "title": "The Helix Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q2681107",
+  "referenceCoordinate": {
+    "latitude": 1.28762,
+    "longitude": 103.861
+  },
+  "visualBrief": "Curved Singapore crossing with opposing six-strand and five-strand stainless helices, transparent rails, shaded walkway, four bay-side viewing pods and slender tripod piers.",
+  "size": [
+    274.5859680175781,
+    16.758573532104492,
+    43.41660499572754
+  ],
+  "actualBounds": {
+    "min": [
+      -137.26011657714844,
+      0,
+      -23.080747604370117
+    ],
+    "max": [
+      137.3258514404297,
+      16.758573532104492,
+      20.335857391357422
+    ]
+  },
+  "nativeAxes": {
+    "x": "from Marina Bay Sands end toward Marina Centre in the exact-QID outline frame",
+    "y": "up; Y0 is the reconstructed local reservoir surface/pier-cap base",
+    "z": "east toward Bayfront roadway; four viewing platforms face native−Z toward Marina Bay"
+  },
+  "sourceFacts": {
+    "overallDescriptionMeters": 280,
+    "spanSequenceMeters": [
+      45,
+      65,
+      65,
+      65,
+      45
+    ],
+    "spanSumMeters": 285,
+    "majorHelixDiameterMeters": 10.8,
+    "minorHelixDiameterMeters": 9.4,
+    "majorStrands": 6,
+    "minorStrands": 5,
+    "tubeDiameterMeters": 0.273,
+    "viewingPlatforms": 4,
+    "metal": "duplex stainless grade1.4462",
+    "evidence": "COX architect project and SCI2011 case study supplied by Arup, including all four diagram/photo pages visually inspected."
+  },
+  "reconstruction": {
+    "nativeDeckLengthMeters": 271.4,
+    "curvedDeckLengthMeters": 282.2019730545362,
+    "curveRadiusMeters": 292.72479475323627,
+    "walkWidthMeters": 6,
+    "deckAboveLocalWaterMeters": [
+      6,
+      8.8
+    ],
+    "majorPitchMeters": 73.6,
+    "minorPitchMeters": 51.4,
+    "majorPhaseRadians": 0.892,
+    "minorPhaseRadians": 0.516,
+    "podPlanRadiiMeters": [
+      6,
+      4.5
+    ],
+    "podCentersNativeX": [
+      -94.17,
+      -33.96,
+      28.47,
+      91.69
+    ],
+    "podBaySide": "-Z",
+    "endTransitionLengthMeters": 24.7,
+    "note": "Mapped pedestrian centerline determines curved plan. Four west-side viewpoint POIs and architect plan resolve the bay-facing pods, correcting the coarse area relation. Approximate four/five helical turns, clear platform connections, canopy leaves and hardware are photo/drawing reconstructions. The deck rises from shore to a reconstructed8.8m central height."
+  },
+  "referencePages": [
+    "https://www.coxarchitecture.com.au/project/the-helix-bridge/",
+    "https://teamstainless.org/wp-content/uploads/2025/04/Helix_Pedestrian_Bridge.pdf",
+    "https://www.imoa.info/download_files/molyreview/IMOA_MolyReview_2-2011.pdf",
+    "https://www.archdaily.com/185400/helix-bridge-cox-architecture-with-architects-61"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q2681107",
+    "featureIds": [
+      "relation/18007977"
+    ],
+    "source": "https://www.openstreetmap.org/relation/18007977",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      103.860485341,
+      1.287468009
+    ],
+    "heading": 1.497794301143,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "notes": "Mapped pedestrian ways164881537/687965211/687965212/687965213 and four viewpoint POIs fix curved plan and west bay-facing pods. The coarse area relation has erroneous east-side protrusions and is retained only as contextual overlay. Y0 is reservoir-level0m in the viewer datum; deck rises6–8.8m. Host reservoir offset can be supplied; do not terrain-drape the midpoint."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior reconstruction, not fabrication geometry. Spans total285m in the source although narrative length is280m; mapped curve is used for fit.",
+    "Helix phase and pitch, small rods, canopy panel boundaries and joint hardware are reconstructed from primary photographs.",
+    "Local reservoir water/pier-cap elevation is provisionally0m in the viewer. Geographic approval requires rendered fit; no survey datum is claimed.",
+    "Adjacent vehicular Bayfront bridge, city promenade, interior foundation piles and dynamic lighting control are outside this asset."
+  ],
+  "qaCameras": [
+    {
+      "name": "walkway",
+      "position": [
+        -49,
+        10.5,
+        10
+      ],
+      "lookAt": [
+        -23,
+        10.3,
+        14
+      ],
+      "fov": 55
+    },
+    {
+      "name": "helix-joints",
+      "position": [
+        12,
+        19,
+        -10
+      ],
+      "lookAt": [
+        0,
+        12,
+        15
+      ]
+    },
+    {
+      "name": "viewing-pod",
+      "position": [
+        39,
+        20,
+        -25
+      ],
+      "lookAt": [
+        28.47,
+        8.7,
+        2
+      ]
+    },
+    {
+      "name": "under-deck",
+      "position": [
+        -28,
+        2.5,
+        -15
+      ],
+      "lookAt": [
+        -33.96,
+        6,
+        10
+      ]
+    },
+    {
+      "name": "far-crossing",
+      "position": [
+        25,
+        95,
+        330
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "shore-entrance",
+      "position": [
+        143,
+        9,
+        -17
+      ],
+      "lookAt": [
+        115,
+        8,
+        -10
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 505124,
+    "vertices": 945064,
+    "materials": 5,
+    "bytes": 39141884,
+    "sha256": "sha256:2047dbd840c3ff169d8857f794c2842b0b05fe3e321e9bde8ad8be335d6d9a32"
+  }
+}

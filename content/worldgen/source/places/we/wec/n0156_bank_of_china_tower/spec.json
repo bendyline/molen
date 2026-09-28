@@ -1,0 +1,184 @@
+{
+  "planId": "N0156",
+  "id": "N0156",
+  "assetId": "molen.worldgen.structure.n0156_bank_of_china_tower",
+  "title": "Bank of China Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q214855",
+  "referenceCoordinate": {
+    "latitude": 22.279166666,
+    "longitude": 114.161388888
+  },
+  "visualBrief": "I.M.Pei’s four triangular glass shafts cut down successively into diagonal roof planes, a bold silver triangular mega-frame and paired slender masts at the precisely mapped highest quadrant.",
+  "size": [
+    54.69828414916992,
+    367.3999938964844,
+    54.534074783325195
+  ],
+  "actualBounds": {
+    "min": [
+      -27.349151611328125,
+      0,
+      -27.267057418823242
+    ],
+    "max": [
+      27.349132537841797,
+      367.3999938964844,
+      27.267017364501953
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightToRoofMeters": 315,
+    "heightToMastsMeters": 367.4,
+    "primarySquareMeters": 52,
+    "shafts": 4,
+    "architect": "I.M.Pei"
+  },
+  "reconstruction": {
+    "plans": "Four independently mapped triangular parts279949066–069; actual roof compass bearings retained, top datum shifted5 m to match operator315 m roof height",
+    "masts": "Mapped distinct centers from279949064/065, normalized367.4 m top"
+  },
+  "referencePages": [
+    "https://www.pcf-p.com/projects/bank-of-china-tower/",
+    "https://bocgroup.com/en/aboutus/corpprofile/boctower.html",
+    "https://www.openstreetmap.org/way/25604760"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      114.16156875,
+      22.2792677
+    ],
+    "heading": 1.293228519094,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/25604760",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/25604760"
+    ],
+    "wikidataId": "Q214855",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "All four signed triangular part footprints and compass roof directions are retained. Paired mast centers locate the high quadrant, resolving square-frame rotational ambiguity. GroundY0 and published367.4 m top."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Diagonal mega-frame geometry is explicit; exact connection plates and individual spandrel junctions are reconstructed. Mapped53 m envelope includes the facade around the architect52 m structural square. Surrounding sloped water gardens are outside the asset."
+  ],
+  "qaCameras": [
+    {
+      "name": "triangular-frames",
+      "position": [
+        70,
+        136,
+        116
+      ],
+      "lookAt": [
+        15,
+        120,
+        20
+      ]
+    },
+    {
+      "name": "diagonal-roofs",
+      "position": [
+        149,
+        279,
+        172
+      ],
+      "lookAt": [
+        0,
+        193,
+        0
+      ]
+    },
+    {
+      "name": "paired-masts",
+      "position": [
+        64,
+        360,
+        101
+      ],
+      "lookAt": [
+        -14,
+        333,
+        1
+      ]
+    },
+    {
+      "name": "banking-base",
+      "position": [
+        98,
+        17,
+        105
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -440,
+        325,
+        695
+      ],
+      "lookAt": [
+        -2,
+        170,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 156097,
+    "vertices": 462531,
+    "materials": 3,
+    "bytes": 18064120,
+    "sha256": "sha256:0a7a8871ea7c2fd9d556cb4d79e5e2b380a934bc72003c138eec1922eb622e8c"
+  }
+}

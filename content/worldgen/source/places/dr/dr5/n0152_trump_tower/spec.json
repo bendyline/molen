@@ -1,0 +1,201 @@
+{
+  "planId": "N0152",
+  "id": "N0152",
+  "assetId": "molen.worldgen.structure.n0152_trump_tower",
+  "title": "Trump Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q868772",
+  "referenceCoordinate": {
+    "latitude": 40.7625,
+    "longitude": -73.974166666
+  },
+  "visualBrief": "The Fifth Avenue bronze-glass tower with its exact distinctive sawtooth shaft, five sequential planted lower terraces, dark horizontal bronze spandrels, gold storefront transoms and bronze entrance canopy.",
+  "size": [
+    53.75207328796387,
+    202.39999389648438,
+    35.696380615234375
+  ],
+  "actualBounds": {
+    "min": [
+      -27.399999618530273,
+      0,
+      -17.848257064819336
+    ],
+    "max": [
+      26.352073669433594,
+      202.39999389648438,
+      17.84812355041504
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 202.4,
+    "occupiedFloors": 58,
+    "marketedFloors": 68,
+    "architect": "Der Scutt",
+    "lowerSetbackHeightsMeters": [
+      20,
+      25,
+      30,
+      35,
+      40,
+      45
+    ]
+  },
+  "reconstruction": {
+    "plan": "Separate202 m tower part159831418 and five successive mapped lower setback parts, anchored in exact-QID ground part265345374",
+    "facade": "Bronze tinted glass with three-dimensional concave spandrel courses and modeled terrace planting"
+  },
+  "referencePages": [
+    "https://www.trumptowerny.com/",
+    "https://www.skyscrapercenter.com/building/trump-tower/1611",
+    "https://www.openstreetmap.org/way/159831418",
+    "https://www.openstreetmap.org/way/265345374"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.973876466,
+      40.762319332
+    ],
+    "heading": -0.504303352022,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/265345374",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/265345374"
+    ],
+    "wikidataId": "Q868772",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact mapped sawtooth shaft and all five lower setback parts preserve their signed frame relative to Fifth Avenue. Main shaft is not inferred from the20 m exact-QID ground part. Ground datumY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Terrace planting and storefront bays are reconstructed. Building height202.4 m and58 physical stories follow CTBUH; the owner markets68 floors. Fine storefront signage and tenant interiors are omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "sawtooth-facade",
+      "position": [
+        -80,
+        113,
+        109
+      ],
+      "lookAt": [
+        -9,
+        104,
+        5
+      ]
+    },
+    {
+      "name": "planted-terraces",
+      "position": [
+        -74,
+        61,
+        78
+      ],
+      "lookAt": [
+        -11,
+        33,
+        10
+      ]
+    },
+    {
+      "name": "bronze-spandrels",
+      "position": [
+        -48,
+        127,
+        45
+      ],
+      "lookAt": [
+        -11,
+        125,
+        4
+      ]
+    },
+    {
+      "name": "fifth-avenue",
+      "position": [
+        -64,
+        8,
+        34
+      ],
+      "lookAt": [
+        -25,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -305,
+        175,
+        424
+      ],
+      "lookAt": [
+        -3,
+        102,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 93621,
+    "vertices": 277049,
+    "materials": 5,
+    "bytes": 10823332,
+    "sha256": "sha256:4c9ad31885b2c0da6ab198545fd259dc9259a801bdeca56aaa32e1cc8a5a5d48"
+  }
+}

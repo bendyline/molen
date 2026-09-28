@@ -1,0 +1,246 @@
+{
+  "planId": "N0177",
+  "id": "N0177",
+  "assetId": "molen.worldgen.structure.n0177_40_wall_street",
+  "title": "40 Wall Street",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q218305",
+  "referenceCoordinate": {
+    "latitude": 40.706944444,
+    "longitude": -74.009722222
+  },
+  "visualBrief": "The Manhattan Company tower with its mapped L-shaped base and asymmetric setbacks, great limestone street colonnades, buff-brick window piers, ornamental upper stories, four Gothic wall dormers, standing-seam green copper pyramid and octagonal spire.",
+  "size": [
+    71.82768249511719,
+    282.5495910644531,
+    70.2286376953125
+  ],
+  "actualBounds": {
+    "min": [
+      -35.91364288330078,
+      0,
+      -35.189537048339844
+    ],
+    "max": [
+      35.914039611816406,
+      282.5495910644531,
+      35.039100646972656
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightFeet": 927,
+    "heightMeters": 282.5496,
+    "landmarkStories": 71,
+    "completionYear": 1930,
+    "architect": "H.Craig Severance, Yasuo Matsui and Shreve & Lamb",
+    "wallStreetSetbackFloors": [
+      17,
+      19,
+      21,
+      26,
+      33,
+      35
+    ],
+    "pineStreetSetbackFloors": [
+      12,
+      19,
+      23,
+      26,
+      28,
+      29
+    ],
+    "roofStories": 7
+  },
+  "reconstruction": {
+    "massing": "Exact-QID L-shaped outline and twenty-four separately mapped building parts preserve the unequal pavilions, recessed light courts and stepped shaft. Mapped copper-roof geometry provides its signed rectangular orientation.",
+    "facade": "LPC measured drawings and close exterior photographs establish the giant limestone colonnades, fluted piers, seventh-floor roundels, darker brick spandrels and contrasting upper terracotta decoration.",
+    "roof": "Four standing-seam pyramid faces with small roof windows, two-story central Gothic wall dormers, parapet pinnacles and two-stage copper lantern are reconstructed from the LPC roof/spire photograph."
+  },
+  "referencePages": [
+    "https://s-media.nyc.gov/agencies/lpc/lp/1936.pdf",
+    "https://40wallstreet.com/",
+    "https://www.openstreetmap.org/way/278042253"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -74.00980175,
+      40.7070285
+    ],
+    "heading": -0.668872591958,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/278042253",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/278042253"
+    ],
+    "wikidataId": "Q218305",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID L-shaped footprint and separate building parts preserve the Wall Street south facade, longer asymmetric Pine Street pavilion and shaft east of the overall plot center. Roof part286057109 determines the signed square copper-pyramid frame. GroundY0 follows the street-level bank base."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "The exterior geometry follows mapped setback heights and LPC original elevations/photos. Fine terracotta relief, window replacement variation, roof seams and spire profiles are reconstructed; tenant lettering, individual mechanical fittings and flags are omitted. Published927ft height includes the final finial/pole envelope."
+  ],
+  "qaCameras": [
+    {
+      "name": "copper-pyramid",
+      "position": [
+        55,
+        259,
+        73
+      ],
+      "lookAt": [
+        11.65,
+        250,
+        -0.27
+      ]
+    },
+    {
+      "name": "gothic-dormers",
+      "position": [
+        48,
+        226,
+        63
+      ],
+      "lookAt": [
+        12,
+        224,
+        0
+      ]
+    },
+    {
+      "name": "brick-setbacks",
+      "position": [
+        -92,
+        130,
+        86
+      ],
+      "lookAt": [
+        -5,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "wall-street-colonnade",
+      "position": [
+        14,
+        21,
+        82
+      ],
+      "lookAt": [
+        12,
+        17,
+        28
+      ]
+    },
+    {
+      "name": "pine-street-colonnade",
+      "position": [
+        -18,
+        23,
+        -92
+      ],
+      "lookAt": [
+        -9,
+        17,
+        -28
+      ]
+    },
+    {
+      "name": "spire-lantern",
+      "position": [
+        28,
+        278,
+        33
+      ],
+      "lookAt": [
+        11.65,
+        269,
+        -0.27
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -370,
+        265,
+        530
+      ],
+      "lookAt": [
+        2,
+        133,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 435262,
+    "vertices": 958898,
+    "materials": 6,
+    "bytes": 38788208,
+    "sha256": "sha256:9dedcffdde7fb7f9ccc2448df5c48486de8fb7d7e5649d1e4c543baa0acc3ffe"
+  }
+}

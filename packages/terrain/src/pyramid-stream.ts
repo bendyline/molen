@@ -10,6 +10,11 @@
 import type { SceneAdmission } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
+import {
+  markTerrainGroundSurface,
+  TerrainGroundCutoutController,
+  terrainGroundSourceGeometry,
+} from './ground-cutout';
 import type { Heightfield } from './heightfield';
 import {
   buildChunkGeometry,
@@ -768,6 +773,7 @@ function createSurface(
   buffer.setIndex(new THREE.BufferAttribute(geometry.indices, 1));
   buffer.computeBoundingSphere();
   const mesh = new THREE.Mesh(buffer, material);
+  markTerrainGroundSurface(mesh);
   mesh.name = `surface:${terrainPyramidTileKey(address)}`;
   mesh.renderOrder = address.level;
   const bytes =
@@ -809,6 +815,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private layerPumpScheduled = false;
   private idleWaiters: Array<() => void> = [];
   private budget: TerrainPyramidBudget;
+  private readonly groundCutouts = new TerrainGroundCutoutController();
   private geometryBytes = 0;
   private decodedHeightBytes = 0;
   private displayedBytes = 0;
@@ -1021,7 +1028,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         continue;
       }
       const progress = (nowMs - start) / (this.options.morphMilliseconds ?? 180);
-      const position = tile.surface.geometry.getAttribute('position') as THREE.BufferAttribute;
+      const position = terrainGroundSourceGeometry(tile.surface).getAttribute(
+        'position',
+      ) as THREE.BufferAttribute;
       applySurfaceHeightMorph(position.array as Float32Array, morph, progress);
       position.needsUpdate = true;
       if (progress >= 1 || !tile.surface.visible) {
@@ -1048,6 +1057,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         for (const attribute of Object.values(mesh.geometry.attributes))
           buffers.add(attribute.array.buffer);
         if (mesh.geometry.index) buffers.add(mesh.geometry.index.array.buffer);
+        const original = terrainGroundSourceGeometry(mesh);
+        if (original !== mesh.geometry) {
+          for (const attribute of Object.values(original.attributes))
+            buffers.add(attribute.array.buffer);
+          if (original.index) buffers.add(original.index.array.buffer);
+        }
         const instanced = mesh as THREE.InstancedMesh;
         if (instanced.isInstancedMesh) {
           buffers.add(instanced.instanceMatrix.array.buffer);
@@ -1087,7 +1102,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     if (visible) {
       for (const tile of this.resident.values()) {
         if (!tile.morph) continue;
-        const position = tile.surface.geometry.getAttribute('position') as THREE.BufferAttribute;
+        const position = terrainGroundSourceGeometry(tile.surface).getAttribute(
+          'position',
+        ) as THREE.BufferAttribute;
         applySurfaceHeightMorph(position.array as Float32Array, tile.morph, 1);
         position.needsUpdate = true;
         this.morphing.delete(tile);
@@ -1208,6 +1225,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.layerRetries.dispose();
     this.morphing.clear();
     this.queue = [];
+    this.groundCutouts.dispose();
     for (const key of [...this.resident.keys()]) this.evict(key);
     this.object.removeFromParent();
     if (this.ownsMaterial) this.material.dispose();
@@ -1334,7 +1352,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             const surfaceVertices = surfaceResolution(this.descriptor, resolution) ** 2;
             // Skirts keep their full depth throughout the transition.
             morph = prepareSurfaceHeightMorph(full.subarray(0, surfaceVertices * 3), {
-              positions: parent.surface.geometry.getAttribute('position').array as Float32Array,
+              positions: terrainGroundSourceGeometry(parent.surface).getAttribute('position')
+                .array as Float32Array,
               resolution: parent.surfaceResolution,
               size: terrainPyramidTileSize(this.descriptor, level),
               offsetX: origin[0] - parentOrigin[0],
@@ -1442,7 +1461,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private refreshEdge(tile: ResidentTile, edge: ChunkEdge): void {
-    const attribute = tile.surface.geometry.getAttribute('normal');
+    const attribute = terrainGroundSourceGeometry(tile.surface).getAttribute('normal');
     const normals = attribute?.array;
     if (!(normals instanceof Float32Array)) return;
     const refreshed = refreshChunkEdgeNormals(
@@ -1669,6 +1688,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // A warm tile can contain hundreds of LOD groups. Hide its root too, so renderer
       // traversal and WebGPU command inspection stop before visiting that cached subtree.
       tile.object.visible = this.visiblyRetains(key);
+    }
+    if (this.groundCutouts.update(this.object)) {
+      for (const tile of this.resident.values()) this.trackAllocations(tile);
     }
     this.refreshDisplayedBytes();
   }
@@ -1930,6 +1952,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private evict(key: string): void {
     const tile = this.resident.get(key);
     if (tile === undefined) return;
+    this.groundCutouts.restore(tile.object);
     this.morphing.delete(tile);
     const wasDisplayed = this.visiblyRetains(key);
     for (const [pendingKey, request] of this.pendingLayers) {

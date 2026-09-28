@@ -1,9 +1,10 @@
 /** Original detailed exterior of Gamla bron, Umeå (Q3603782), based on cited evidence. */
-import { beam, cross, loft, normalize, sphere } from './authored-structure-mesh.mjs';
+import { beam, cross, loft, normalFor, normalize, sphere } from './authored-structure-mesh.mjs';
 import { box, colors, quad, tube } from './structure-mesh.mjs';
 
 export const gamlaBronStudy = {
   id: 'N0003',
+  wikidataId: 'Q3603782',
   key: 'gamla_bron',
   title: 'Gamla bron, Umeå',
   assetId: 'molen.worldgen.structure.n0003_gamla_bron',
@@ -60,16 +61,33 @@ export const gamlaBronStudy = {
   },
   nativeAxes: {
     up: '+Y',
-    longitudinal: '+X',
-    transverse: '+Z',
+    longitudinal: '+X north-northeast toward the city bank',
+    transverse: '+Z east-southeast downstream, carrying the large pipe and utility poles',
     origin:
-      'Center of the published 301 m superstructure horizontally; Y=0 is an arbitrary exposed-pier/water reference, not a known geodetic datum.',
+      'Center of the published 301 m superstructure horizontally; Y=0 is the reconstructed river surface, provisionally sea-level zero in the viewer rather than a surveyed river-stage datum.',
+  },
+  geographicProposal: {
+    status: 'preview-proposal',
+    ground: 'terrain',
+    groundModelY: 0,
+    elevationMode: 'sea-level',
+    elevationMeters: 0,
+    anchor: [20.24908069, 63.824875538],
+    heading: 1.266401710014,
+    wikidataId: 'Q3603782',
+    source: 'https://www.openstreetmap.org/way/454463632',
+    featureIds: ['way/454463632', 'way/26151087'],
+    groundContactReviewed: true,
+    groundContactBasis:
+      'NativeY0 is the exposed masonry foot at a provisional river surface. The12mm mortar bead extends just below that plane; foundations are not translated to the bead minimum.',
+    notes:
+      'Exact-QID bridge outline and timber cycleway establish the309.007m envelope and NNE axis. Published301m superstructure lies inside with reconstructed4m abutment ends. The downstream ESE pipe/pole side follows original2023 and municipal2022 photographs. River level0m is a provisional rendering datum; actual water stage and shore grade depend on host terrain and water data.',
   },
   limitations: [
     'The 301 m nominal structural length and 309.007 m mapped envelope are retained separately. Four-meter approach/abutment extensions at each end are a visual reconstruction, not proof of the exact endpoint relationship.',
     'Width, height, individual span/pier stationing, stone courses, steel member sections, rivet pattern, pipe fittings and pole spacing are proportioned from photographs and remain unverified.',
     'No historic timber reconstruction, proposed 2026 architectural intervention, colored temporary festival lighting, embedded reference photos, submerged foundations or engineering collision model is included.',
-    'Detailed original exterior geometry is a production study. Maximum-fidelity weathering/material review, image review, measured vertical placement and actual terrain fit remain pending.',
+    'The current model is a photographic exterior reconstruction using shared materials. River-surface elevation0m is provisional, and exact bank grading and changing water level remain host-dependent; hash-bound visual and geographic reviews are recorded separately in qa.json.',
   ],
 };
 
@@ -111,6 +129,8 @@ function capsule(y, width, length, cx = 0) {
 }
 
 function pier(out, x, index) {
+  // Recessed core closes the narrow joints without filling the modeled stone relief.
+  loft(out, 'foundation', [capsule(0, 3.46, 8.16, x), capsule(2.35, 3.46, 8.16, x)], mortar);
   // Course seams are real geometric strips; block colors remain muted, without baked shadows.
   for (let course = 0; course < 7; course++) {
     const y0 = course * 0.335,
@@ -123,32 +143,39 @@ function pier(out, x, index) {
       [capsule(y0, width, length, x), capsule(y1, width - 0.017, length - 0.02, x)],
       course % 3 === 0 ? [0.38, 0.38, 0.33] : masonry,
     );
+    // Individual grey/brown granite faces follow the capsule, including its rounded ends.
+    // Keep the backing continuous behind recessed joints rather than leaving open seams.
+    const lower = capsule(y0 + 0.014, width + 0.035, length + 0.035, x);
+    const upper = capsule(y1 - 0.014, width + 0.018, length + 0.015, x);
+    for (let i = 0; i < lower.length; i++) {
+      const j = (i + 1) % lower.length;
+      const distance = Math.hypot(...lower[j].map((v, k) => v - lower[i][k]));
+      const divisions = Math.max(1, Math.ceil(distance / 1.05));
+      const boundaries = [0];
+      for (let b = 1; b < divisions; b++)
+        boundaries.push((b + (course % 2 ? 0.3 : -0.15)) / divisions);
+      boundaries.push(1);
+      const lerp = (ring, t) => ring[i].map((v, k) => v + (ring[j][k] - v) * t);
+      for (let b = 0; b < divisions; b++) {
+        const a = boundaries[b] + 0.012 / distance;
+        const z = boundaries[b + 1] - 0.012 / distance;
+        const points = [lerp(lower, a), lerp(lower, z), lerp(upper, z), lerp(upper, a)];
+        const tint = 0.78 + ((index * 17 + course * 23 + i * 13 + b * 7) % 11) * 0.041;
+        quad(
+          out,
+          'foundation',
+          points,
+          normalFor(...points),
+          masonry.map((v) => v * tint),
+        );
+      }
+    }
     const ring = capsule(y0, width + 0.009, length + 0.009, x);
     // Bed joint and offset vertical joints, conforming to the rounded ends.
     for (let i = 0; i < ring.length; i++) {
       const j = (i + 1) % ring.length;
       tube(out, 'foundation', ring[i], ring[j], 0.012, mortar, 4);
     }
-    for (const z of [-2.25, -1.05, 0.15, 1.35, 2.55])
-      for (const face of [-1, 1]) {
-        const offset = (course % 2) * 0.55;
-        tube(
-          out,
-          'foundation',
-          [x + face * (width / 2 + 0.008), y0, z - offset],
-          [x + face * (width / 2 + 0.008), y1, z - offset],
-          0.013,
-          mortar,
-          4,
-        );
-      }
-    for (const sign of [-1, 1])
-      for (const fraction of [0.15, 0.4, 0.65, 0.9]) {
-        const angle = (sign === 1 ? 0 : Math.PI) + fraction * Math.PI;
-        const z = sign * (length / 2 - width / 2) + (Math.sin(angle) * width) / 2;
-        const xx = x + (Math.cos(angle) * width) / 2;
-        tube(out, 'foundation', [xx, y0, z], [xx, y1, z], 0.014, mortar, 4);
-      }
   }
   loft(out, 'foundation', [capsule(2.345, 3.8, 8.45, x), capsule(2.57, 3.8, 8.45, x)], masonry);
   // Four built-up trestle posts, gusseted X-bracing and top bearing plates.
@@ -180,9 +207,10 @@ function pier(out, x, index) {
     box(out, 'trim', [x - 0.18, 3.69, z - 0.08], [x + 0.18, 3.95, z + 0.08], flange);
   }
   // Utility pole line remains visible in the municipality 2022 and original 2023 photographs.
-  const px = x + 1.8,
+  const px = x + 0.55,
     pz = 3.61;
-  tube(out, 'trim', [px, 2.7, pz], [px, 14.2, pz], 0.09, [0.39, 0.34, 0.25], 12);
+  tube(out, 'pole', [px, 2.54, pz], [px, 14.2, pz], 0.09, [0.59, 0.54, 0.43], 16);
+  tube(out, 'trim', [px, 2.56, pz], [px, 2.92, pz], 0.105, darkSteel, 16);
   for (const y of [5.35, 13.6]) {
     tube(out, 'trim', [px, y, pz], [px, y, pz - 0.4], 0.028, darkSteel, 8);
     sphere(out, 'trim', [px, y, pz - 0.42], [0.065, 0.06, 0.065], [0.22, 0.25, 0.23], 10, 6);
@@ -218,7 +246,7 @@ export function buildGamlaBron(out) {
     const end = Math.min(half, x + 0.271);
     box(
       out,
-      'roof',
+      'timber',
       [x, deck - 0.14, -3.15],
       [end, deck, 3.15],
       Math.round((x + half) / 0.28) % 7 === 0 ? [0.37, 0.35, 0.3] : wood,

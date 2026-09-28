@@ -19,6 +19,12 @@ export interface GlbMaterialMeta {
   baseColorFactor?: [number, number, number, number];
   roughness?: number;
   metallic?: number;
+  /** Standard glTF alpha handling; defaults to OPAQUE for existing generated assets. */
+  alphaMode?: 'OPAQUE' | 'MASK' | 'BLEND';
+  /** Cutoff for MASK materials, default glTF value 0.5. */
+  alphaCutoff?: number;
+  /** Thin glass panels may need both sides; defaults to false. */
+  doubleSided?: boolean;
   sharedSurface?: GlbSharedSurface;
 }
 
@@ -117,8 +123,11 @@ export function encodeGlb(
         metallicFactor: meta?.metallic ?? 0,
         roughnessFactor: meta?.roughness ?? 0.9,
       },
-      doubleSided: false,
-      alphaMode: 'OPAQUE',
+      doubleSided: meta?.doubleSided ?? false,
+      alphaMode: meta?.alphaMode ?? 'OPAQUE',
+      ...(meta?.alphaMode === 'MASK' && meta.alphaCutoff !== undefined
+        ? { alphaCutoff: meta.alphaCutoff }
+        : {}),
       ...(meta?.sharedSurface ? { extras: { molenSurface: meta.sharedSurface } } : {}),
     };
   });

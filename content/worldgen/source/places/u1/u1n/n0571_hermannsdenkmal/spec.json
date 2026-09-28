@@ -1,0 +1,166 @@
+{
+  "id": "N0571",
+  "planId": "N0571",
+  "assetId": "molen.worldgen.structure.n0571_hermannsdenkmal",
+  "title": "Hermannsdenkmal",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q664245"
+  },
+  "wikidataId": "Q664245",
+  "visualBrief": "The ten-pier Osning sandstone monument with open round arcade, circular viewing gallery, masonry cupola and a fully modeled copper Arminius: winged helmet, folded cape, raised sword, bent leg, long shield and broken Roman standards.",
+  "size": [
+    20.5,
+    53.46,
+    20.5
+  ],
+  "actualBounds": {
+    "min": [
+      -10.25,
+      0,
+      -10.25
+    ],
+    "max": [
+      10.25,
+      53.459999084472656,
+      10.25
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z faces west, as the statue and raised sword do in the published regional account",
+    "origin": "Center of the mapped circular ground plinth, Y=0 at the lower sandstone foundation"
+  },
+  "scaleBasis": "The operator publishes the complete vertical dimension chain and a historical construction elevation/plan. Concentric mapped foundation, arcade and cupola outlines constrain their diameters. Current operator photographs determine statue pose, folded clothing, winged helmet, shield and sandstone/copper colors; the western facing is explicitly described by the regional cultural authority.",
+  "geographicProposal": {
+    "anchor": [
+      8.83948475,
+      51.9116545
+    ],
+    "heading": -1.5707963267948966,
+    "source": "https://www.openstreetmap.org/way/207366382",
+    "evidence": "The mapped concentric monument parts surround exact-QID identity node 241929305. The circular base gives the anchor, while the published west-facing statue resolves the rotation that a round footprint cannot.",
+    "orientationConfidence": "mapped-concentric-foundation-and-published-statue-facing",
+    "limitations": "The open circular viewing platform is registered from the surrounding ground plinth, not the narrow statue footprint. Neighboring paths and landscape stairs remain map scenery.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The mapped concentric monument parts surround exact-QID identity node 241929305. The circular base gives the anchor, while the published west-facing statue resolves the rotation that a round footprint cannot. The open circular viewing platform is registered from the surrounding ground plinth, not the narrow statue footprint. Neighboring paths and landscape stairs remain map scenery."
+  },
+  "sourceFacts": {
+    "heightMeters": 53.46,
+    "substructureHeightMeters": 19.86,
+    "cupolaHeightMeters": 7.03,
+    "statueWithSwordHeightMeters": 26.57,
+    "swordLengthMeters": 7,
+    "shieldLengthMeters": 10,
+    "arcadePierCount": 10,
+    "statueFacing": "west"
+  },
+  "referencePages": [
+    "https://www.hermannsdenkmal.de/wissenswertes/zahlen-und-fakten/",
+    "https://www.hermannsdenkmal.de/wp-content/uploads/sites/4/2023/04/Flyer-HD-Fremdsprachen-2023.pdf",
+    "https://www.hermannsdenkmal.de/wp-content/uploads/sites/4/2017/05/hermannsdenkmal_historie_skizze.jpg",
+    "https://www.westfalen-regional.de/de/hermann_externsteine/",
+    "https://www.openstreetmap.org/way/207366382"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The copper figure is an original detailed polygonal reconstruction of the published silhouette, pose, clothing and attributes rather than a scan of the sculpture. Shield text and sword inscription are represented by shallow relief fields without fabricated readable lettering.",
+    "Stone course rhythm and minor carved capitals are reconstructed from the operator photographs; the main ten-pier construction and all published vertical dimensions are retained.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "sandstone-arcade",
+      "position": [
+        20,
+        14,
+        25
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "statue-front",
+      "position": [
+        13,
+        40,
+        21
+      ],
+      "lookAt": [
+        0,
+        39,
+        0
+      ]
+    },
+    {
+      "name": "helmet-sword",
+      "position": [
+        12,
+        49,
+        20
+      ],
+      "lookAt": [
+        -1,
+        47,
+        0
+      ]
+    },
+    {
+      "name": "cape-shield",
+      "position": [
+        -16,
+        40,
+        -20
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        63,
+        32,
+        82
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    }
+  ]
+}

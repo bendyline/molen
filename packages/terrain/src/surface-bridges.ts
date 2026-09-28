@@ -62,6 +62,10 @@ export function appendBridgeStructure(
   heightAt: (x: number, z: number) => number,
   sampleSpacing = 6,
 ): void {
+  // A sub-metre map/model endpoint discrepancy leaves a connector strip, not an
+  // independent bridge. Its road surface still joins the authored deck, but a
+  // full-width inferred pier or tall parapet would protrude into the landmark.
+  if (road.path.length < 2 && road.feature.bridgeConnections?.length) return;
   const concrete = new THREE.Color('#9b9c94');
   const rail = new THREE.Color('#bfc1b8');
   const thickness = road.kind === 'path' ? 0.45 : 1.1;

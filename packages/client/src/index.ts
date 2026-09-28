@@ -103,5 +103,11 @@ export type {
   TopDownOrtho,
 } from './three/renderer';
 export { nextWorldOrigin, orthoFrustum, Renderer } from './three/renderer';
+export type { SkyReflectionFilter, SkyReflectionState } from './three/sky-reflections';
+export {
+  createWebGlSkyReflectionFilter,
+  reflectionStateFromLights,
+  SkyReflections,
+} from './three/sky-reflections';
 export type { StaticBatchOptions } from './three/static-batches';
 export { WeatherVisual } from './weather/visual';

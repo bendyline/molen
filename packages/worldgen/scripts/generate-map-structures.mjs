@@ -1,4 +1,5 @@
 /** Author genuine reusable map-feature models through the same GLB source contract. */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -13,6 +14,7 @@ import {
 import { biomeJson } from './format-json.mjs';
 import { mapStructures } from './map-structure-models.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
+import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const sourceRoot = resolve(root, 'content/worldgen/source/map-structures');
@@ -310,7 +312,14 @@ for (const asset of mapStructures) {
       throw error;
     })
   )
-    .filter((name) => ['import-report.json', 'capture-report.json', 'qa.json'].includes(name))
+    .filter((name) =>
+      [
+        'import-report.json',
+        'capture-report.json',
+        'shared-capture-report.json',
+        'qa.json',
+      ].includes(name),
+    )
     .sort();
   const source = {
     format: 'molen/source-bundle@1',
@@ -323,7 +332,7 @@ for (const asset of mapStructures) {
         {
           path: 'models/source.glb',
           assetId,
-          output: `assets/${assetId.replaceAll('.', '/')}/asset.json`,
+          output: structureAssetSidecarPath(assetId),
           pipeline: 'import',
           sha256: hash(glb),
         },

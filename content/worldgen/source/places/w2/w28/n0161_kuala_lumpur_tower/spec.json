@@ -1,0 +1,243 @@
+{
+  "planId": "N0161",
+  "id": "N0161",
+  "assetId": "molen.worldgen.structure.n0161_kuala_lumpur_tower",
+  "title": "Kuala Lumpur Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q745016",
+  "referenceCoordinate": {
+    "latitude": 3.15282771,
+    "longitude": 101.703748809
+  },
+  "visualBrief": "KL Tower’s parabolically tapered ribbed concrete shaft, rose muqarnas transition, widening bands of observation glazing, open sky deck, white stepped roof, transmitter galleries and red-white antenna above its mapped star-shaped lobby.",
+  "size": [
+    59.846519470214844,
+    421,
+    59.766841888427734
+  ],
+  "actualBounds": {
+    "min": [
+      -29.924480438232422,
+      0,
+      -29.88507843017578
+    ],
+    "max": [
+      29.922039031982422,
+      421,
+      29.881763458251953
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 421,
+    "observationDeckMeters": 276,
+    "shaftBaseDiameterMeters": 24.5,
+    "shaftUpperDiameterMeters": 13.6,
+    "shaftTaperEndMeters": 261.6,
+    "concreteShaftEndMeters": 317.16,
+    "antennaMeters": 86
+  },
+  "reconstruction": {
+    "datum": "CIDB construction account and photographs override coarse mapped head/shaft height tags; exact mapped circular core fixes axis",
+    "head": "Widening circular profile and roof/deck proportions reconstructed from CIDB exterior photograph; muqarnas cells modeled as original geometric approximation",
+    "skyBoxes": "First-hand 2026 visitor and on-site photographer images identify the violet-framed Suria box toward Petronas and the second toward Merdeka. Outward bearings64° and196° are photo-correlated approximations, not surveyed axes; actual landmark centerlines are about57.5° and195.4°. Raised access steps, upper I beams and tension rods are reconstructed from those images."
+  },
+  "referencePages": [
+    "https://www.cidb.gov.my/wp-content/uploads/2022/11/CIDB-full-layout-12.54pm-lowres_compressed.pdf",
+    "https://storage.ebrochures.malaysia.travel/storage/IDB_PDF_MTG_EN.pdf",
+    "https://www.menarakl.com.my/",
+    "https://girleatworld.net/kl-tower-review/",
+    "https://thetravelauthor.com/kl-tower-kuala-lumpur-your-complete-guide/",
+    "https://www.openstreetmap.org/way/589740576"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      101.703755211,
+      3.15285584
+    ],
+    "heading": -0.234247621882,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/589740576",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/589740576"
+    ],
+    "wikidataId": "Q745016",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact star-shaped ground lobby fixes the signed site orientation; independently mapped cylindrical shaft supplies its center. Published tower heights replace coarse OSM head datums. The Suria box faces ENE toward Petronas, corroborated by its front-window skyline in first-hand photos; the second faces SSW toward Merdeka. Outward bearings64°/196° remain photo reconstruction with several-degree uncertainty, not surveyed centerlines. BaseY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Muqarnas cells, steel antenna bracing, individual glass bands and suspended transparent sky boxes with stairs, I beams and ties are explicit. Exact antenna equipment, box bearings within their verified ENE/SSW sectors, support dimensions and ornament pattern remain reconstructed; nearby pedestrian mall and forest are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "muqarnas-and-glazing",
+      "position": [
+        76,
+        284,
+        102
+      ],
+      "lookAt": [
+        0,
+        285,
+        0
+      ]
+    },
+    {
+      "name": "sky-deck",
+      "position": [
+        69,
+        331,
+        78
+      ],
+      "lookAt": [
+        0,
+        303,
+        0
+      ]
+    },
+    {
+      "name": "suria-glass-box",
+      "position": [
+        32,
+        307,
+        -27
+      ],
+      "lookAt": [
+        21,
+        303.4,
+        -17
+      ]
+    },
+    {
+      "name": "merdeka-glass-box",
+      "position": [
+        -10,
+        307,
+        42
+      ],
+      "lookAt": [
+        -1,
+        303.4,
+        26
+      ]
+    },
+    {
+      "name": "antenna",
+      "position": [
+        70,
+        403,
+        92
+      ],
+      "lookAt": [
+        0,
+        366,
+        0
+      ]
+    },
+    {
+      "name": "star-lobby",
+      "position": [
+        86,
+        32,
+        99
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -424,
+        327,
+        698
+      ],
+      "lookAt": [
+        0,
+        202,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 96580,
+    "vertices": 178284,
+    "materials": 7,
+    "bytes": 7403012,
+    "sha256": "sha256:071369302ff8e1c81339e29723b174c009b8e58be910d709a11da7ac4f3df4fd"
+  }
+}

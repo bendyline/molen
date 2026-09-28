@@ -1,0 +1,172 @@
+{
+  "id": "N0577",
+  "planId": "N0577",
+  "assetId": "molen.worldgen.structure.n0577_vasco_da_gama_tower",
+  "title": "Vasco da Gama Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1756313"
+  },
+  "wikidataId": "Q1756313",
+  "visualBrief": "The current Lisbon caravel-shaped observation tower and attached MYRIAD hotel: tall concrete mast, bowed outer spar, seven curved rigging ribs, crossed bracing, open emergency stairs, panoramic lifts, circular viewing room and the modern hexagon-jointed glass dome.",
+  "size": [
+    100.3,
+    145,
+    29.7
+  ],
+  "actualBounds": {
+    "min": [
+      -51.93452835083008,
+      0,
+      -14.824767112731934
+    ],
+    "max": [
+      48.336669921875,
+      145,
+      14.824869155883789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "−X is the western bowed sail; +X is the attached eastern hotel",
+    "origin": "Exact-QID main footprint center; individual mast, ribs, hotel and projecting ground entrance canopies retain their real offsets"
+  },
+  "scaleBasis": "The operator and Portuguese national tourism authority identify the current 145 m tower and its enclosed dome. Exact building parts supply the C-shaped mast, seven different rib plans and elevations, circular gallery, glass dome and attached hotel wings. Current operator photography establishes crossed rigging, external stair flights, banded glazing and the hexagonal dome network. Marketing describes the attraction as 145 m; the mapped observation floor itself is lower, so the model retains distinct mapped levels rather than moving the gallery to the mast tip.",
+  "geographicProposal": {
+    "anchor": [
+      -9.091290235,
+      38.77474122
+    ],
+    "heading": -0.04046133484,
+    "source": "https://www.openstreetmap.org/way/1387098203",
+    "evidence": "Twenty mapped building parts are preserved in reference-metadata.json. Their asymmetric westward rigging and eastern hotel resolve both the actual tower offset within the whole outline and its facing.",
+    "orientationConfidence": "exact-mapped-mast-ribs-and-hotel-parts",
+    "limitations": "The main 77 m outline is an overhead union, not a solid ground podium; mapped entrance canopies extend its overall ground bounds to about 100 m. The sail, observation pod and hotel keep distinct ground contacts and overhangs. The western canopy is tagged 3 m; the eastern roof is reconstructed at the adjacent 10 m entrance volume.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Twenty mapped building parts are preserved in reference-metadata.json. Their asymmetric westward rigging and eastern hotel resolve both the actual tower offset within the whole outline and its facing. The main 77 m outline is an overhead union, not a solid ground podium; mapped entrance canopies extend its overall ground bounds to about 100 m. The sail, observation pod and hotel keep distinct ground contacts and overhangs. The western canopy is tagged 3 m; the eastern roof is reconstructed at the adjacent 10 m entrance volume."
+  },
+  "sourceFacts": {
+    "heightMeters": 145,
+    "mappedMastHeightMeters": 140,
+    "mappedObservationFloorsMeters": [
+      109,
+      111,
+      114,
+      117
+    ],
+    "mappedDomeTopMeters": 123,
+    "mappedHotelBodyHeightMeters": 90,
+    "mappedHotelRoofHeightMeters": 100,
+    "currentDome": "enclosed glass with hexagonal joint network",
+    "curvedSailRibs": 7
+  },
+  "referencePages": [
+    "https://www.vascodagamatower.com/",
+    "https://www.visitportugal.com/pt-pt/content/vasco-da-gama-tower",
+    "https://www.vascodagamatower.com/wp-content/uploads/2026/06/Miradouro-Vasco-da-Gama-Tower-2026.jpg",
+    "https://www.openstreetmap.org/way/1387098203",
+    "https://www.openstreetmap.org/way/1387099961",
+    "https://www.openstreetmap.org/way/709779008"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The current observation dome, hotel facade and structural rigging follow primary operator photography. Stair railing subdivisions and changing window reflections are original exterior reconstructions. Hotel brand signage is omitted rather than rendered as invented letterforms.",
+    "OSM observation-floor and roof-part elevations are recorded separately from the operator’s 145 m overall marketing height. Hexagonal dome joints are reconstructed on the measured dome envelope, not copied from fabrication drawings.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "caravel-rigging",
+      "position": [
+        -85,
+        75,
+        73
+      ],
+      "lookAt": [
+        -17,
+        70,
+        0
+      ]
+    },
+    {
+      "name": "viewing-dome",
+      "position": [
+        -40,
+        135,
+        36
+      ],
+      "lookAt": [
+        -5,
+        117,
+        0
+      ]
+    },
+    {
+      "name": "hotel-facade",
+      "position": [
+        72,
+        47,
+        72
+      ],
+      "lookAt": [
+        16,
+        45,
+        0
+      ]
+    },
+    {
+      "name": "mast-lifts",
+      "position": [
+        -31,
+        40,
+        38
+      ],
+      "lookAt": [
+        -5,
+        43,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        155,
+        105,
+        220
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ]
+    }
+  ]
+}

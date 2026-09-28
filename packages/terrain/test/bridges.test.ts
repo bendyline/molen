@@ -170,4 +170,39 @@ describe('automatic bridge structures', () => {
     expect(Math.min(...heights)).toBeGreaterThan(15);
     disposeTerrainSurfaceObject(object);
   });
+  it.each([
+    false,
+    true,
+  ])('keeps a tiny landmark connector surface without invented piers (connected: %s)', (connected) => {
+    const tile = fixture();
+    tile.transportation[0] = {
+      class: 'highway',
+      bridge: true,
+      width: 12,
+      lines: [
+        [
+          [63.5 / 200, 0.5],
+          [64.5 / 200, 0.5],
+        ],
+      ],
+      ...(connected
+        ? {
+            bridgeConnections: [
+              { point: [63.5 / 200, 0.5] as [number, number], elevation: 18, radius: 100 },
+            ],
+          }
+        : {}),
+    };
+    const object = createTerrainSurfaceObject(tile, context());
+    try {
+      const p = vertices(object, 'semantic:transportation');
+      expect(p.count).toBeGreaterThan(0);
+      if (connected) {
+        expect(object.getObjectByName('surfaces:bridges')).toBeUndefined();
+        for (let i = 0; i < p.count; i++) expect(p.getY(i)).toBeCloseTo(18);
+      } else expect(object.getObjectByName('surfaces:bridges')).toBeDefined();
+    } finally {
+      disposeTerrainSurfaceObject(object);
+    }
+  });
 });

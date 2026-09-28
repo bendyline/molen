@@ -1,0 +1,233 @@
+{
+  "planId": "N0165",
+  "id": "N0165",
+  "assetId": "molen.worldgen.structure.n0165_bank_of_america_tower",
+  "title": "Bank of America Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q328505",
+  "referenceCoordinate": {
+    "latitude": 40.755278,
+    "longitude": -73.984167
+  },
+  "visualBrief": "One Bryant Park’s asymmetric crystalline glass tower with individually mapped tapered corner planes and sloping crown screens, planted lower roof, long welded-pipe spire and retained neo-Georgian Stephen Sondheim Theatre frontage.",
+  "size": [
+    133.99713897705078,
+    365.79998779296875,
+    64.05685424804688
+  ],
+  "actualBounds": {
+    "min": [
+      -65.49713897705078,
+      0,
+      -33.20000076293945
+    ],
+    "max": [
+      68.5,
+      365.79998779296875,
+      30.856853485107422
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 365.8,
+    "floors": 55,
+    "architect": "COOKFOX",
+    "engineer": "Severud Associates",
+    "typicalFloorHeightMeters": 4.4196,
+    "spirePipeBaseDiameterMeters": 1.778,
+    "spirePipeTipDiameterMeters": 0.6604,
+    "retainedTheatreFrontageMeters": 26.18232
+  },
+  "reconstruction": {
+    "plan": "Exact-QID whole-building outline plus individually mapped glazed wedge facets, roof wells, podium wings and offset spire",
+    "facade": "Horizontal4.4196 m storey grid is clipped independently to each mapped sloping facade plane",
+    "heightDatum": "365.8 m CTBUH architectural height overrides rounded366 m map tag"
+  },
+  "referencePages": [
+    "https://www.durst.org/properties/one-bryant-park",
+    "https://www.durst.org/pdf/obp.pdf",
+    "https://www.skyscrapercenter.com/building/bank-of-america-tower/291",
+    "https://www.openstreetmap.org/way/86121621",
+    "https://s-media.nyc.gov/agencies/lpc/lp/1357.pdf",
+    "https://rerecord.library.columbia.edu/pdf_files/ldpd_7031148_058_57.pdf",
+    "https://www.roundabouttheatre.org/theatre/stephen-sondheim-theatre/",
+    "https://michaelminn.net/newyork/theatres/broadway-theatres/henry-millers-theatre/index.html"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.984715036,
+      40.75555738
+    ],
+    "heading": -0.50679077389,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/86121621",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/86121621"
+    ],
+    "wikidataId": "Q328505",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed whole-block outline and fourteen mapped parts define the tower at the eastern end, each tapered corner roof direction, independent crown screens and offset spire. The theatre frontage faces43rd Street at localX−35 m, corroborated by exact-QID venue node1752843998 and an independent on-site photographer coordinate. SourceY0; roof wells and terrace equipment remain inside their mapped volume."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Curtain-wall bay pitch, exposed service equipment and small entry canopy are reconstructed. The retained theatre models five central bays, side pavilions, arches, urns, brick pilasters and projecting cornices; figure reliefs and lettering are excluded, and the shared brick graph approximates the historic bond."
+  ],
+  "qaCameras": [
+    {
+      "name": "crystal-facets",
+      "position": [
+        143,
+        193,
+        125
+      ],
+      "lookAt": [
+        26,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "crown-screens",
+      "position": [
+        139,
+        309,
+        116
+      ],
+      "lookAt": [
+        26,
+        255,
+        0
+      ]
+    },
+    {
+      "name": "spire",
+      "position": [
+        90,
+        337,
+        99
+      ],
+      "lookAt": [
+        27,
+        308,
+        6
+      ]
+    },
+    {
+      "name": "terrace-and-lobby",
+      "position": [
+        146,
+        58,
+        134
+      ],
+      "lookAt": [
+        -2,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "retained-theatre",
+      "position": [
+        -29,
+        12,
+        -69
+      ],
+      "lookAt": [
+        -35,
+        8,
+        -31
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -373,
+        312,
+        661
+      ],
+      "lookAt": [
+        8,
+        168,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 436461,
+    "vertices": 1297389,
+    "materials": 7,
+    "bytes": 50650252,
+    "sha256": "sha256:eb1caaacf88915800acab9a6b1d6dd9baf3c329b5e330587173f0b024f0b9a48"
+  }
+}

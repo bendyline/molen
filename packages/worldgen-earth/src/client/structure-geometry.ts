@@ -4,7 +4,7 @@ import type {
   TerrainSemanticPoint,
   TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import { wgs84ToWorld } from '@bendyline/molen-terrain/kernel';
+import { pointInRing, wgs84ToWorld } from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
 import type { StructurePlacement } from '../kernel/structure-index';
 
@@ -150,13 +150,63 @@ export function clipStructureObject(source: THREE.Object3D, size: number): THREE
   }
 }
 
-/** Exact segment/rectangle subtraction: keep approach fragments, including lines whose
+/** Parametric crossings of a segment with a simple polygon, including collinear edges. */
+function polygonCuts(
+  p: TerrainSemanticPoint,
+  q: TerrainSemanticPoint,
+  ring: TerrainSemanticPoint[],
+) {
+  const dx = q[0] - p[0],
+    dz = q[1] - p[1],
+    length2 = dx * dx + dz * dz;
+  const cuts = [0, 1];
+  if (length2 < 1e-18) return cuts;
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i] as TerrainSemanticPoint,
+      b = ring[(i + 1) % ring.length] as TerrainSemanticPoint;
+    const ex = b[0] - a[0],
+      ez = b[1] - a[1],
+      ax = a[0] - p[0],
+      az = a[1] - p[1];
+    const cross = dx * ez - dz * ex;
+    if (Math.abs(cross) > 1e-12) {
+      const t = (ax * ez - az * ex) / cross,
+        u = (ax * dz - az * dx) / cross;
+      if (t > 0 && t < 1 && u >= -1e-10 && u <= 1 + 1e-10) cuts.push(t);
+    } else if (Math.abs(ax * dz - az * dx) < 1e-8) {
+      for (const point of [a, b]) {
+        const t = ((point[0] - p[0]) * dx + (point[1] - p[1]) * dz) / length2;
+        if (t > 0 && t < 1) cuts.push(t);
+      }
+    }
+  }
+  return cuts
+    .sort((a, b) => a - b)
+    .filter((t, i, all) => i === 0 || t - (all[i - 1] as number) > 1e-10);
+}
+
+function coveredPoint(p: TerrainSemanticPoint, ring: TerrainSemanticPoint[]): boolean {
+  if (pointInRing(p, ring)) return true;
+  // Treat a road exactly on the authored edge consistently for either polygon winding.
+  return ring.some((a, i) => {
+    const b = ring[(i + 1) % ring.length] as TerrainSemanticPoint;
+    const dx = b[0] - a[0],
+      dz = b[1] - a[1];
+    return (
+      Math.abs((p[0] - a[0]) * dz - (p[1] - a[1]) * dx) < 1e-8 &&
+      (p[0] - a[0]) * (p[0] - b[0]) + (p[1] - a[1]) * (p[1] - b[1]) <= 1e-8
+    );
+  });
+}
+
+/** Exact segment/footprint subtraction: keep approach fragments, including lines whose
  * endpoints are both outside a long bridge. Only bridge-tagged map features are replaced. */
 export function withoutStructureRoads(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
   structures: readonly StructurePlacement[],
   metersPerUnit: number,
+  resolvedElevation?: (entry: StructurePlacement) => number | undefined,
 ): TerrainSemanticTile {
   let transportation = tile.transportation;
   for (const entry of structures) {
@@ -166,24 +216,34 @@ export function withoutStructureRoads(
       s = Math.sin(entry.heading ?? 0);
     const hx = (entry.replaceRoads.length * (entry.scale?.[0] ?? 1)) / 2;
     const hz = (entry.replaceRoads.width * (entry.scale?.[2] ?? 1)) / 2;
-    const deckHeight = entry.replaceRoads.deckHeight;
+    const outline = entry.replaceRoads.outline?.map(
+      ([x, z]): TerrainSemanticPoint => [x * (entry.scale?.[0] ?? 1), z * (entry.scale?.[2] ?? 1)],
+    );
+    const deckHeights =
+      entry.replaceRoads.deckHeights ??
+      (entry.replaceRoads.deckHeight === undefined
+        ? undefined
+        : [entry.replaceRoads.deckHeight, entry.replaceRoads.deckHeight]);
+    const placedHeight = resolvedElevation?.(entry);
     const connections =
-      deckHeight === undefined
+      deckHeights === undefined
         ? []
-        : [-1, 1].map((sign) => ({
+        : [-1, 1].map((sign, index) => ({
             point: [
               (cx + c * sign * hx - context.origin[0]) / context.tileSize,
               (cz - s * sign * hx - context.origin[1]) / context.tileSize,
             ] as TerrainSemanticPoint,
             elevation:
-              (entry.datum === 'sea-level' ? 0 : context.heightfield.sampleHeight(cx, cz)) +
-              (entry.elevation ?? 0) +
-              deckHeight * (entry.scale?.[1] ?? 1),
+              (placedHeight ??
+                (entry.datum === 'sea-level' ? 0 : context.heightfield.sampleHeight(cx, cz)) +
+                  (entry.elevation ?? 0)) +
+              (deckHeights[index] as number) * (entry.scale?.[1] ?? 1),
             radius: 100,
           }));
     transportation = transportation.flatMap((feature) => {
       if (!feature.bridge || feature.tunnel) return [feature];
       const lines: TerrainSemanticLine[] = [];
+      let replaced = false;
       for (const line of feature.lines) {
         let current: TerrainSemanticLine = [];
         for (let i = 1; i < line.length; i++) {
@@ -200,6 +260,24 @@ export function withoutStructureRoads(
           if (Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0])) {
             if (!current.length) current.push(a);
             current.push(b);
+            continue;
+          }
+          if (outline) {
+            const cuts = polygonCuts(p, q, outline);
+            for (let j = 1; j < cuts.length; j++) {
+              const start = cuts[j - 1] as number,
+                end = cuts[j] as number,
+                mid = (start + end) / 2;
+              if (coveredPoint([p[0] + (q[0] - p[0]) * mid, p[1] + (q[1] - p[1]) * mid], outline)) {
+                replaced = true;
+                if (current.length > 1) lines.push(current);
+                current = [];
+              } else {
+                if (!current.length)
+                  current.push([a[0] + (b[0] - a[0]) * start, a[1] + (b[1] - a[1]) * start]);
+                current.push([a[0] + (b[0] - a[0]) * end, a[1] + (b[1] - a[1]) * end]);
+              }
+            }
             continue;
           }
           let enter = 0,
@@ -227,6 +305,7 @@ export function withoutStructureRoads(
             current.push(b);
             continue;
           }
+          replaced = true;
           if (enter > 0) {
             if (!current.length) current.push(a);
             current.push(at(enter));
@@ -236,6 +315,7 @@ export function withoutStructureRoads(
         }
         if (current.length > 1) lines.push(current);
       }
+      if (!replaced) return [feature];
       return lines.length
         ? [
             {

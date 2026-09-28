@@ -1,0 +1,83 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0699_johan_cruyff_arena",
+  "sourceHash": "sha256:80ce76988e90dcf8d88be93f9fb9b08d6b82bb4f2be5a2034ef9a8876bf933cd",
+  "runtimeHash": "sha256:3baae13eebdbdcdc1dfaffee79cf682a435e7ef01f0ea83caf7984e87c75d494",
+  "captureReportHash": "sha256:c09bd3f285a4a15ad6a50dfd1aa2eccfbc21c0c0482a396511853f881bf863b3",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Permanent detailed exterior and visible stadium bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-arch-hframe.png",
+      "shots/near-moving-roof.png",
+      "shots/near-roof-solar.png",
+      "shots/near-east-cushions.png",
+      "shots/near-east-eye.png",
+      "shots/near-dish-tower.png",
+      "shots/near-nine-hole-stair.png",
+      "shots/near-west-portal.png",
+      "shots/near-road-opening.png",
+      "shots/near-ajax-bowl.png",
+      "shots/near-interior-roof.png",
+      "shots/far-current-east.png"
+    ],
+    "notes": "All17 portable and17 shared current frames inspected, with full-resolution ETFE cushions, oval eye, dish towers, nine-hole stairs, arch, bowl and geographic overhead. Final revision preserves a continuous upper shell and moves paired dish cores outside that shell, eliminating seat/field bleed and pipe intersections. Original177m twin arches, open movable roof,4200PV modules, two red seating tiers and completed east-only ETFE extension are legible."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:db6f7e88bec6af104a15fde25a14ff4aff36fc2ff290498400d804cf0ba46406",
+    "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
+    "specHash": "sha256:025faa7c538ea3aed11bdd5cac3dbef30afb8fe2ea4bb93b7d3ecde3d3c9547c",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.etfe_film": {
+        "path": "materials/etfe_film.matgraph.json",
+        "hash": "sha256:888098f2b9fdd6eab3d80120aa02637ab617adc7816f332a67a5852c04e06377"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-arch-hframe.png",
+      "shots/shared/near-moving-roof.png",
+      "shots/shared/near-roof-solar.png",
+      "shots/shared/near-east-cushions.png",
+      "shots/shared/near-east-eye.png",
+      "shots/shared/near-dish-tower.png",
+      "shots/shared/near-nine-hole-stair.png",
+      "shots/shared/near-west-portal.png",
+      "shots/shared/near-road-opening.png",
+      "shots/shared/near-ajax-bowl.png",
+      "shots/shared/near-interior-roof.png",
+      "shots/shared/far-current-east.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared metric concrete/painted metal and identity-specific ETFE or round-perforation surfaces render correctly; local transparent roofing/glass preserve PBR alpha. Sky-PMREM geographic renders and unload assertions passed. Fine seams/rods can alias at distant overview resolution; close frames retain them."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c9c1585086e769408dd66d6ebe8d94a54104044cef7b875f7dfe7a9dfb8fabd7",
+    "notes": "Exact mapped roof/pitch establish anchor and northwest pitch axis. The raised playing deck is10.5m above street, as published, with open roadway below. Magenta footprint aligns the principal roof. Projecting entrance and dish cores are photograph reconstructions outside that roof footprint. Slightly embedded column corners are intentional."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Engineer dimensions and primary architect/operator references establish the original roof structure, existing east ETFE refurbishment, characteristic shoelace stair portals, paired dish cores and raised field. Exact member sections, seat inventory,PV arrangement and refurbishment fabrication are reconstructed. Exterior scope excludes event dressing and closed room interiors."
+  }
+}

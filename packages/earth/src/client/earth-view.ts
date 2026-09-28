@@ -57,6 +57,8 @@ import {
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
 import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
+import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { createEarthFog, createEarthSky, type EarthSkyStyle, updateEarthFog } from './atmosphere';
@@ -128,6 +130,12 @@ export interface EarthTerrainSource {
 }
 
 export interface EarthViewOptions {
+  /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
+  viewingDate?: string;
+  /** Fine/cross-tile landmark ground heights in the active terrain's vertical reference. */
+  sampleStructureTerrain?: StructureTerrainSampler;
+  /** Shared sky/ground reflections for metal and glass. Defaults to true. */
+  reflections?: boolean;
   canvas: HTMLCanvasElement;
   /** A fixed `molen/terrain-package@1` manifest. Omit when using `terrainSource`. */
   terrain?: TerrainPackageDescriptor;
@@ -274,6 +282,8 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 
 /** Mount an Earth view into a canvas. Dispose it (or abort `signal`) to release everything. */
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
+  if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
+    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   const { canvas, content, signal } = options;
   const sourceAbort = new AbortController();
   const forwardAbort = (): void => sourceAbort.abort();
@@ -312,6 +322,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     width,
     height,
     backend: options.backend ?? 'webgl',
+    reflections: options.reflections ?? true,
     antialias: true,
     preserveDrawingBuffer: false,
     pixelRatio: Math.min(window.devicePixelRatio || 1, maxPixelRatio),
@@ -442,6 +453,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const worldgen =
           content?.worldgen !== undefined
             ? createEarthWorldgen({
+                ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+                ...(options.sampleStructureTerrain
+                  ? { sampleStructureTerrain: options.sampleStructureTerrain }
+                  : {}),
                 content: content.worldgen,
                 assets: content.assets,
                 surfaceRenderer: surface,

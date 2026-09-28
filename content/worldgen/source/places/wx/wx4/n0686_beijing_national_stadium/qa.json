@@ -1,0 +1,73 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0686_beijing_national_stadium",
+  "sourceHash": "sha256:1ba5eb3df98b46f5efde3b8be75f4e0c8f7989686eeb708b1e7b04817a6eaae1",
+  "runtimeHash": "sha256:b959be9e29afa3eea529e1a26b505113ba4dc8ab75c556a5f315feeaa6bd4de1",
+  "captureReportHash": "sha256:5c4d6bd1c7d205022871e0ba0bb884356e274c0ac45f6784aedc30baf43d8e6d",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior and open bowl in Molen shared material style.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-open-steel-skin.png",
+      "shots/near-leaf-support.png",
+      "shots/near-public-stairs.png",
+      "shots/near-tangent-roof.png",
+      "shots/near-three-tier-bowl.png",
+      "shots/near-oval-track.png",
+      "shots/far-saddle.png"
+    ],
+    "notes": "All twelve portable and twelve shared frames inspected; full-resolution leaf support and public stair views confirm clean continuous promenade edges and unobstructed stair wells. No inverted membrane, unsupported slab-edge columns or repeated internal wedge faces remain. Distinct saddle, open steel lattice, red inner bowl, three seating tiers, track and oval aperture are present."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:ae851790772aa7eae99f41c4d9c2360af7cb7c323a38b293d211c12122b3f93e",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:b2cb6216ffa58f4e32401d89567762f4ccd6d7be90c438c15080a792af52546a",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-open-steel-skin.png",
+      "shots/shared/near-leaf-support.png",
+      "shots/shared/near-public-stairs.png",
+      "shots/shared/near-tangent-roof.png",
+      "shots/shared/near-three-tier-bowl.png",
+      "shots/shared/near-oval-track.png",
+      "shots/shared/far-saddle.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Physical UV concrete, pale painted steel and membrane surfaces are coherent in geographic sky-PMREM renders. Local roof transparency is preserved. Terrain cutout, restoration and unload assertions passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1822ccf1b29a0ddd614161bceafc3b909555b537e77ac3010af91a4a1c6a78ff",
+    "notes": "Exact mapped pitch polygon area centroid sets origin and its southward long axis sets heading. Published structural envelope matches the orthographic mapped outline within the documented mapping discrepancy. Native Y0 is the plaza; the below-grade athletics floor is protected by the terrain cutout."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Primary Arup engineering drawings and Beijing construction chronicle govern the saddle dimensions, 24 leaf supports, 1.2m continuous facade ribbons, primary trusses, fixed ETFE/PTFE roof and red bowl. Secondary member phases, stair flights, individual seats and ground-to-field offset are architectural reconstructions from the published diagrams; no claim of an exact fabrication-junction inventory is made. Temporary event content and enclosed service rooms are outside exterior scope."
+  }
+}

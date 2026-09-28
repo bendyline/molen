@@ -1,0 +1,187 @@
+{
+  "id": "N0578",
+  "planId": "N0578",
+  "assetId": "molen.worldgen.structure.n0578_victoria_tower",
+  "title": "Victoria Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1858077"
+  },
+  "wikidataId": "Q1858077",
+  "visualBrief": "The richly carved Westminster archive tower: Sovereign’s Entrance, paired lancets, Perpendicular blind tracery, Tudor rose and portcullis bands, four octagonal lantern pinnacles, slate mansard and dormers, open gilded crown and stayed iron flagstaff with Union flag.",
+  "size": [
+    24.3,
+    120.5,
+    24.3
+  ],
+  "actualBounds": {
+    "min": [
+      -11.979999542236328,
+      0,
+      -11.94070053100586
+    ],
+    "max": [
+      11.979999542236328,
+      120.5,
+      11.94070053100586
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "−Z is the western Sovereign’s Entrance toward Abingdon Street; +X is north toward the adjoining Palace",
+    "origin": "Exact-QID mapped tower centroid, pavement contact Y=0; separate Palace wings are not included"
+  },
+  "scaleBasis": "Parliament publishes the 98.5 m stone tower and additional 22 m flagstaff. The exact mapped outline determines the approximately 20.15 m main body and projecting octagonal corners. The restoration architect’s current exterior photograph establishes major lancet stages, smaller seven-light bands, tracery, mansard dormers, open corner lanterns and gilded iron crown. Parliament’s Abingdon Street visitor route and the credited southwest photograph establish the west and south open porch arches. The contemporary 1852 published account locates the inner royal doorway on the north side of that porch.",
+  "geographicProposal": {
+    "anchor": [
+      -0.125360296,
+      51.498325872
+    ],
+    "heading": 1.439543401306,
+    "source": "https://www.openstreetmap.org/way/367642689",
+    "evidence": "Mapped wall axes and four turret footprints determine the native square frame. The western street-facing coach entrance resolves the otherwise symmetric frame; +X follows the northward Palace connection.",
+    "orientationConfidence": "exact-turret-outline-and-street-facing-entrance",
+    "limitations": "This source contains the tower alone; the Palace wings attached on its north and east sides remain separate structures. The published 98.5 m height takes precedence over the older 96 m OSM tag.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Mapped wall axes and four turret footprints determine the native square frame. The western street-facing coach entrance resolves the otherwise symmetric frame; +X follows the northward Palace connection. This source contains the tower alone; the Palace wings attached on its north and east sides remain separate structures. The published 98.5 m height takes precedence over the older 96 m OSM tag."
+  },
+  "sourceFacts": {
+    "stoneTowerHeightMeters": 98.5,
+    "additionalFlagstaffHeightMeters": 22,
+    "overallHeightMeters": 120.5,
+    "archiveFloors": 12,
+    "cornerLanterns": 4,
+    "completedYear": 1860,
+    "principalEntrance": "Sovereign’s Entrance with west and south open porch arches and north inner doorway",
+    "modeledState": "permanent exterior without temporary restoration scaffolding"
+  },
+  "referencePages": [
+    "https://www.parliament.uk/about/living-heritage/building/palace/architecture/palacestructure/victoria-tower/",
+    "https://www.parliament.uk/about/living-heritage/building/palace/architecture/palacestructure/victoria-tower/victoria-tower-project/",
+    "https://www.parliament.uk/about/living-heritage/building/cultural-collections/archives/victoriatower/purposebuilthome/",
+    "https://alicecartledge.co.uk/projects/restoration-and-renewal-victoria-tower",
+    "https://www.parliament.uk/link/45992c23d00c4e61b1d5dfb0b5fea042.aspx",
+    "https://www.openstreetmap.org/way/367642689",
+    "https://upload.wikimedia.org/wikipedia/commons/9/91/The_houses_of_Parliament%3B_%28IA_housesofparliame00unse%29.pdf",
+    "https://commons.wikimedia.org/wiki/File:Westminster_Palace_Victoria_Tower.jpg"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Carved saints, heraldic roses and portcullises are original polygonal relief and figures, not casts of named artworks or transcribed royal inscriptions. The visible facade divisions, lanterns and crown follow the restoration architect’s photographs.",
+    "The permanent exterior is modeled without temporary 2025–2031 repair scaffolding. The Union flag represents an ordinary non-sovereign-present state; flag motion and archive interiors are outside this static exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "sovereign-entrance",
+      "position": [
+        -25,
+        12,
+        -32
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "lancet-tracery",
+      "position": [
+        28,
+        53,
+        40
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ]
+    },
+    {
+      "name": "lantern-crown",
+      "position": [
+        30,
+        101,
+        36
+      ],
+      "lookAt": [
+        0,
+        90,
+        0
+      ]
+    },
+    {
+      "name": "flagstaff",
+      "position": [
+        35,
+        122,
+        46
+      ],
+      "lookAt": [
+        0,
+        106,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        137,
+        76,
+        174
+      ],
+      "lookAt": [
+        0,
+        57,
+        0
+      ]
+    }
+  ]
+}

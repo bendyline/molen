@@ -157,7 +157,7 @@ To build the engine itself from a clone, start at [AGENTS.md](AGENTS.md) for the
 [CONVENTIONS.md](CONVENTIONS.md) for the house rules.
 
 ```sh
-pnpm install && pnpm -r build     # packages consume each other's dist
+pnpm install && pnpm assets:fetch && pnpm -r build  # restore GLBs, then build packages
 pnpm dev                          # the samples gallery, served from source
 pnpm dev:packages                 # rebuild every package's dist on change (for a linked host app)
 node packages/tooling/dist/cli.mjs --help
@@ -165,6 +165,10 @@ node packages/tooling/dist/cli.mjs --help
 
 One invariant matters more than the rest: **build before you typecheck or test**, because packages
 consume each other's `dist`. The root scripts encode it.
+
+GLB source masters and imported models come from hash-pinned GitHub release asset packs.
+They are restored to their usual local paths and ignored by Git; authored generators, catalogs,
+sidecars and shared materials stay in the repository. See [asset packs](content/ASSET-PACKS.md).
 
 ```sh
 pnpm verify        # lint, typecheck, docs:check, test:unit, production audit — also the release gate

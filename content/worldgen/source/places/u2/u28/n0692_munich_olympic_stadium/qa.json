@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0692_munich_olympic_stadium",
+  "sourceHash": "sha256:409effa27bbc2a34d3d403240a17e10e98d7d30456d11c307afc7e0cb49c69cc",
+  "runtimeHash": "sha256:e4df0cc92935a2a5acd103c0205cb3dc0bec7f7fc1910e4d3d0fad4ab407c1d7",
+  "captureReportHash": "sha256:286e8f9bb0995e1de2d96688d37ecd2aa81fb58df1fea68bd42113cc551936d6",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed intact stadium exterior and visible athletics bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-acrylic-net.png",
+      "shots/near-mast-neck.png",
+      "shots/near-edge-bundles.png",
+      "shots/near-green-seating.png",
+      "shots/near-press-gallery.png",
+      "shots/near-track.png",
+      "shots/near-outside-gallery.png",
+      "shots/near-floodlights.png",
+      "shots/near-south-anchor.png",
+      "shots/far-west-tent.png"
+    ],
+    "notes": "All fifteen portable and fifteen shared final frames inspected, with full-resolution south anchor, edge bundle and geographic placement views. The corrected anchor is outside the bowl; all short suspension stays end at the curved roof surface. Paired fine cable net, transparent acrylic sheets, mast heads, press box, green seats, track lanes, floodlights and concourse geometry remain coherent."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:3f2a975ea09a7722e5c6fe2d3180c3e351f8368abc0f95416878fe62c3116a47",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:7f9ac46c491d404034143bdcc8d017abfb2061993ddc07074851951f06dfc8dd",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.gravel": {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-acrylic-net.png",
+      "shots/shared/near-mast-neck.png",
+      "shots/shared/near-edge-bundles.png",
+      "shots/shared/near-green-seating.png",
+      "shots/shared/near-press-gallery.png",
+      "shots/shared/near-track.png",
+      "shots/shared/near-outside-gallery.png",
+      "shots/shared/near-floodlights.png",
+      "shots/shared/near-south-anchor.png",
+      "shots/shared/far-west-tent.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared concrete and painted metal retain metric texture scale. Acrylic keeps its local alpha while sharing no conflicting opaque surface. Geographic sky-PMREM, terrain opening and restoration/unload assertions passed. Subpixel wires alias at distant capture scale; the geometry is continuous in close views."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:ba4dfc3109abef8a0160c13336289931fe0e2083b3ab2aaa4ec027f1aba740ce",
+    "notes": "Exact mapped playing-field axis fixes north-northwest orientation. Native roof covers the western stand and follows the mapped scalloped outline and eight mapped mast bases. Y0 is the east upper pedestrian datum, with field18m below and a supported terrain cutout; final anchor footings remain on exterior ground."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style, representing the intact pre-restoration stadium.",
+    "notes": "Original1972 technical report, SBP engineering references, Munich city dimensions and completed primary photographs establish the individual roof system, dimensions, asymmetric bowl and structural details. Sag, precise member sections and chair inventory remain photographic reconstructions; surrounding Olympic hall, swimming hall, park and ongoing restoration works are outside this single stadium envelope. The full-detail model is large; a separately authored distance LOD would reduce runtime cost."
+  }
+}

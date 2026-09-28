@@ -1,0 +1,155 @@
+{
+  "id": "N0657",
+  "key": "les_eclaireurs_lighthouse",
+  "title": "Les Éclaireurs Lighthouse",
+  "wikidataId": "Q3378140",
+  "size": [
+    3.06,
+    11,
+    3.06
+  ],
+  "smoothNormalSlots": [
+    "trim",
+    "foundation",
+    "wall"
+  ],
+  "visualBrief": "Small isolated rough-masonry lighthouse with a red-white-red taper, low recessed wooden door, projecting red gallery lip, delicate black two-rail gallery, black lantern pedestal and domed roof, metal astragals and paired tilted solar panels.",
+  "sourceFacts": {
+    "heightMeters": 11,
+    "baseDiameterApproxMeters": 3,
+    "year": 1920,
+    "basis": "Provincial tourism publishes11m height. National Argentina tourism photograph supplies the three bands, door, gallery, lantern and small inclined panels. Base diameter and component dimensions are photograph-scaled; mapped exact-QID node8127284556 fixes position."
+  },
+  "referencePages": [
+    "https://tierradelfuego.tur.ar/es/actividades/s/7",
+    "https://turismoushuaia.com/actividad/faro-les-eclaireurs/",
+    "https://www.argentina.gob.ar/jefatura/turismo/viaja-por-argentina/navegar-por-el-canal-de-beagle",
+    "https://www.argentina.gob.ar/sites/default/files/ushuaia_108.jpg",
+    "https://www.openstreetmap.org/node/8127284556"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -68.0832452,
+      -54.8715452
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/8127284556",
+    "notes": "Mapped exact-QID node fixes the island tower position. Circular exterior has no footprint heading; small entry is reconstructed on southern face, gallery panels on northern face. Host terrain provides the rocky islet;23m light elevation is not used as structure height."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Painted masonry uses the shared lime-plaster surface to preserve the primary photograph's fine rough finish, rather than exposed stone joints. Door and solar-panel compass positions are photograph reconstructed; no measured azimuth is claimed. Natural rocky island and seabirds are host environment features."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        3.5,
+        11.7,
+        4.7
+      ],
+      "lookAt": [
+        0,
+        10.1,
+        0
+      ]
+    },
+    {
+      "name": "near-panels",
+      "position": [
+        3.5,
+        10.7,
+        -4.8
+      ],
+      "lookAt": [
+        0,
+        9.5,
+        -0.3
+      ]
+    },
+    {
+      "name": "near-door",
+      "position": [
+        4,
+        2.3,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.2,
+        0.7
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        14,
+        8,
+        19
+      ],
+      "lookAt": [
+        0,
+        5.2,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0657_les_eclaireurs_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -1.5299999713897705,
+      0,
+      -1.5299999713897705
+    ],
+    "max": [
+      1.5299999713897705,
+      11,
+      1.5229089260101318
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

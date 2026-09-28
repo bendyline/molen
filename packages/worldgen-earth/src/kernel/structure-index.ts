@@ -1,9 +1,15 @@
 /** Indexed, geographic placements for authored structure assets. Coordinates are WGS84. */
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import { type BuildingMetrics, matchesWhen } from '@bendyline/molen-worldgen/kernel';
+import { validGroundOutline } from './ground-cutout';
 import { projectWgs84 } from './projection';
 import { createRegionResolver, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
+import {
+  type HistoricalStructureAppearance,
+  isHistoricalStructureAppearance,
+  isStructureViewingDate,
+} from './structure-date';
 
 const alphabet = '0123456789bcdefghjkmnpqrstuvwxyz';
 
@@ -20,12 +26,24 @@ export interface StructurePlacement {
   datum?: 'terrain' | 'sea-level';
   /** Vertical offset from datum, in world meters (lake surfaces need not be sea level). */
   elevation?: number;
+  /** Ground at another known site point; modelHeight is that point's native model Y in metres. */
+  terrainReference?: { anchor: [number, number]; modelHeight: number; basis: string };
   /** WGS84 extent [west, south, east, north]. Extended models are clipped per resident tile. */
   bounds?: [number, number, number, number];
   /** Suppress mapped bridge centerlines inside this model-local rectangle (meters). */
-  replaceRoads?: { length: number; width: number; deckHeight?: number };
+  replaceRoads?: {
+    length: number;
+    width: number;
+    /** Optional exact native X/Z footprint; supersedes the rectangle for road suppression. */
+    outline?: [number, number][];
+    /** Uniform native deck Y, or separate native Y values at negative-X / positive-X ends. */
+    deckHeight?: number;
+    deckHeights?: [number, number];
+  };
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
+  /** Ground opening in native model X/Z metres; active only while this structure is visible. */
+  groundCutout?: { outline: [number, number][]; basis: string };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
   mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
   /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
@@ -34,8 +52,9 @@ export interface StructurePlacement {
   lengthAxis?: 'x' | 'z';
   /** The model enters adaptive terrain at this level. */
   minLevel?: number;
-  /** Draft records are discoverable but never drawn. */
-  status: 'preview' | 'draft';
+  /** Draft records are never drawn; historical records require an explicit viewing date. */
+  status: 'preview' | 'draft' | 'historical';
+  appearance?: HistoricalStructureAppearance;
   source: string;
   note?: string;
 }
@@ -73,8 +92,15 @@ export interface StructureIndex {
   /** Geographic rectangle [west, south, east, north]. */
   query(
     bounds: readonly [number, number, number, number],
-    includeDraft?: boolean,
+    options?: boolean | StructureQueryOptions,
   ): StructurePlacement[];
+}
+
+export interface StructureQueryOptions {
+  /** Inspection only: include every record regardless of status or date. */
+  includeDraft?: boolean;
+  /** Explicit ISO calendar date for historical models. Omitted means current-world previews. */
+  viewingDate?: string;
 }
 
 /** Standard geohash, kept here so the Earth pack does not depend on Qualla. */
@@ -204,11 +230,38 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
   for (const entry of doc.entries) {
     if (ids.has(entry.id)) throw new Error(`duplicate structure placement ${entry.id}`);
     ids.add(entry.id);
-    if (!entry.asset || !entry.source || !['preview', 'draft'].includes(entry.status))
+    if (
+      entry.groundCutout &&
+      (!entry.groundCutout.basis?.trim() ||
+        entry.groundCutout.outline.length < 3 ||
+        entry.groundCutout.outline.length > 512 ||
+        entry.groundCutout.outline.some(
+          (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
+        ) ||
+        !validGroundOutline(entry.groundCutout.outline))
+    )
+      throw new Error(`invalid ground cutout ${entry.id}`);
+    if (!entry.asset || !entry.source || !['preview', 'draft', 'historical'].includes(entry.status))
       throw new Error(`invalid structure placement ${entry.id}`);
+    if (
+      (entry.appearance !== undefined && !isHistoricalStructureAppearance(entry.appearance)) ||
+      (entry.status === 'historical' && !entry.appearance) ||
+      (entry.status === 'preview' && entry.appearance)
+    )
+      throw new Error(`invalid historical structure appearance ${entry.id}`);
     encodeStructureGeohash(...entry.anchor);
     if (entry.elevation !== undefined && !Number.isFinite(entry.elevation))
       throw new Error(`invalid structure elevation ${entry.id}`);
+    if (entry.terrainReference) {
+      const reference = entry.terrainReference;
+      if (
+        entry.datum === 'sea-level' ||
+        !Number.isFinite(reference.modelHeight) ||
+        !reference.basis?.trim()
+      )
+        throw new Error(`invalid structure terrain reference ${entry.id}`);
+      encodeStructureGeohash(...reference.anchor);
+    }
     if (
       entry.bounds &&
       (entry.bounds.some((v) => !Number.isFinite(v)) ||
@@ -218,11 +271,36 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         entry.bounds[3] > 90 ||
         entry.bounds[0] >= entry.bounds[2] ||
         entry.bounds[1] >= entry.bounds[3] ||
-        entry.datum !== 'sea-level')
+        (entry.datum !== 'sea-level' && !entry.terrainReference))
     )
-      throw new Error(`invalid absolute structure extent ${entry.id}`);
+      throw new Error(`invalid structure extent or vertical reference ${entry.id}`);
     if (entry.replaceRoads && !entry.bounds)
       throw new Error(`road replacement requires an extent ${entry.id}`);
+    if (entry.replaceRoads) {
+      const road = entry.replaceRoads;
+      if (
+        road.outline &&
+        (road.outline.length < 3 ||
+          road.outline.length > 512 ||
+          road.outline.some(
+            (point) => point.length !== 2 || point.some((v) => !Number.isFinite(v)),
+          ) ||
+          !validGroundOutline(road.outline))
+      )
+        throw new Error(`invalid structure road outline ${entry.id}`);
+      if (
+        !Number.isFinite(road.length) ||
+        road.length <= 0 ||
+        !Number.isFinite(road.width) ||
+        road.width <= 0 ||
+        (road.deckHeight !== undefined && !Number.isFinite(road.deckHeight)) ||
+        (road.deckHeights !== undefined &&
+          (road.deckHeight !== undefined ||
+            road.deckHeights.length !== 2 ||
+            road.deckHeights.some((height) => !Number.isFinite(height))))
+      )
+        throw new Error(`invalid structure road replacement ${entry.id}`);
+    }
     const extent = lookupBounds(entry);
     boxes.set(entry.id, extent);
     const keys = new Set<string>();
@@ -243,7 +321,11 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     entries: doc.entries,
     cells,
     rules: doc.rules ?? [],
-    query(bounds, includeDraft = false) {
+    query(bounds, options = false) {
+      const { includeDraft = false, viewingDate } =
+        typeof options === 'boolean' ? { includeDraft: options } : options;
+      if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
+        throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
       const spans: Array<readonly [number, number, number, number]> =
         bounds[0] <= bounds[2]
           ? [bounds]
@@ -260,7 +342,13 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
             : [...unbucketed, ...keys.flatMap((key) => cells.get(key) ?? [])];
         for (const entry of candidates) {
           if (
-            (includeDraft || entry.status === 'preview') &&
+            (includeDraft ||
+              entry.status === 'preview' ||
+              (entry.status === 'historical' &&
+                viewingDate !== undefined &&
+                entry.appearance !== undefined &&
+                viewingDate >= entry.appearance.validFrom &&
+                viewingDate < entry.appearance.validUntil)) &&
             boxes
               .get(entry.id)
               ?.some(

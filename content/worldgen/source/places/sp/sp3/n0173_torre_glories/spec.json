@@ -1,0 +1,200 @@
+{
+  "planId": "N0173",
+  "id": "N0173",
+  "assetId": "molen.worldgen.structure.n0173_torre_glories",
+  "title": "Torre Glòries",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q336246",
+  "referenceCoordinate": {
+    "latitude": 41.403489,
+    "longitude": 2.189519
+  },
+  "visualBrief": "Barcelona’s elliptical glazed tower with a curved crown, individually colored metal pixels,4,500 recessed window cells, separate tilted glass sunshades and a framed pale-glass dome.",
+  "size": [
+    40.185977935791016,
+    144.39999389648438,
+    37.152984619140625
+  ],
+  "actualBounds": {
+    "min": [
+      -20.092988967895508,
+      0,
+      -18.576492309570312
+    ],
+    "max": [
+      20.092988967895508,
+      144.39999389648438,
+      18.576492309570312
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 144.4,
+    "windowOpenings": 4500,
+    "claddingModuleApproxMeters": [
+      0.9,
+      0.9
+    ],
+    "claddingColors": 25,
+    "architect": "Ateliers Jean Nouvel with b720",
+    "facadeFinish": "Polyester-coated aluminum and stainless steel",
+    "upperStructure": "Steel meridians and parallels carrying a glazed dome"
+  },
+  "reconstruction": {
+    "plan": "Exact-QID elliptical footprint fixes center, major/minor diameter and signed plan heading",
+    "facade": "Twenty-five tint families progress irregularly from red to blue behind separate glass louvres; original deterministic layout reconstructs the composition rather than reproducing a facade photograph",
+    "profile": "Vertical lower cylinder transitions continuously into an elliptical crown; upper concrete shell ends at115 m"
+  },
+  "referencePages": [
+    "https://www.jeannouvel.com/en/projects/tour-agbar/",
+    "https://www.prepaintedmetal.eu/en/collection/torre-agbar",
+    "https://www.pedelta.com/structural-review-of-the-dome-of-agbar-tower-p-45-en",
+    "https://www.openstreetmap.org/way/44213122"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      2.189520919,
+      41.403515007
+    ],
+    "heading": -0.350589088703,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/44213122",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/44213122"
+    ],
+    "wikidataId": "Q336246",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed elliptical footprint controls center and the long axis, with source groundY0. Reconstructed pixel art and solar louvre angles preserve the facade character; these small-scale distributions do not claim an exact as-built panel schedule. External pavilion and below-grade auditorium are excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual color/window placement, intermediate dome curvature, glass angles and support schedules are reconstructed from architect and supplier references. The4,500 modeled window cells preserve the published quantity but are not a surveyed opening map. Night lighting, below-grade auditorium and external entrance pavilion are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "red-pixels-and-louvres",
+      "position": [
+        37,
+        26,
+        48
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "blue-facade",
+      "position": [
+        34,
+        87,
+        47
+      ],
+      "lookAt": [
+        0,
+        80,
+        0
+      ]
+    },
+    {
+      "name": "glazed-crown",
+      "position": [
+        44,
+        154,
+        63
+      ],
+      "lookAt": [
+        0,
+        126,
+        0
+      ]
+    },
+    {
+      "name": "ground-contact",
+      "position": [
+        61,
+        14,
+        65
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -181,
+        146,
+        322
+      ],
+      "lookAt": [
+        0,
+        67,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1555592,
+    "vertices": 3310906,
+    "materials": 5,
+    "bytes": 134552024,
+    "sha256": "sha256:2152435940bfe0262c8a6536d2cec00c2f934e79e253eb3ff4b2b92f05024dfe"
+  }
+}

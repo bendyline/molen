@@ -20,6 +20,28 @@ import type { AssetProvider } from '../assets';
 
 registerMaterialSchemas();
 
+function validateImage(image: RGBAImage): void {
+  if (
+    !Number.isSafeInteger(image.width) ||
+    image.width < 1 ||
+    !Number.isSafeInteger(image.height) ||
+    image.height < 1 ||
+    !Number.isSafeInteger(image.width * image.height * 4) ||
+    image.data.length !== image.width * image.height * 4
+  )
+    throw new Error(
+      'Invalid baked material image: expected positive dimensions and matching RGBA8 data',
+    );
+}
+
+/** StandardMaterial samples roughness from G and metalness from B, as linear UNORM8. */
+function uniformChannel(image: RGBAImage, channel: 1 | 2): number | undefined {
+  const value = image.data[channel] as number;
+  for (let i = channel + 4; i < image.data.length; i += 4)
+    if (image.data[i] !== value) return undefined;
+  return value / 255;
+}
+
 function textureFrom(
   image: RGBAImage,
   filter: 'nearest' | 'linear',
@@ -41,6 +63,8 @@ function textureFrom(
 
 /** Upload a BakedMaterial's slots onto a MeshStandardMaterial. */
 export function materialFromBaked(baked: BakedMaterial): THREE.MeshStandardMaterial {
+  // Reject malformed images before allocating any material or texture resources.
+  for (const image of Object.values(baked.slots)) if (image !== undefined) validateImage(image);
   const material = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 1 });
   const filter = baked.meta.filter;
   if (baked.slots.baseColor !== undefined) {
@@ -50,10 +74,16 @@ export function materialFromBaked(baked: BakedMaterial): THREE.MeshStandardMater
     material.metalness = 0;
   }
   if (baked.slots.roughness !== undefined) {
-    material.roughnessMap = textureFrom(baked.slots.roughness, filter, false);
+    const value = uniformChannel(baked.slots.roughness, 1);
+    if (value === undefined)
+      material.roughnessMap = textureFrom(baked.slots.roughness, filter, false);
+    else material.roughness *= value;
   }
   if (baked.slots.metalness !== undefined) {
-    material.metalnessMap = textureFrom(baked.slots.metalness, filter, false);
+    const value = uniformChannel(baked.slots.metalness, 2);
+    if (value === undefined)
+      material.metalnessMap = textureFrom(baked.slots.metalness, filter, false);
+    else material.metalness *= value;
   } else if (baked.slots.baseColor !== undefined) {
     material.metalness = 0;
   }

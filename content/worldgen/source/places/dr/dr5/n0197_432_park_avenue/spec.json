@@ -1,0 +1,299 @@
+{
+  "planId": "N0197",
+  "id": "N0197",
+  "assetId": "molen.worldgen.structure.n0197_432_park_avenue",
+  "title": "432 Park Avenue",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q233940",
+  "referenceCoordinate": {
+    "latitude": 40.761666666,
+    "longitude": -73.971944444
+  },
+  "visualBrief": "Detailed exposed-concrete Manhattan tower with physically punched10ft windows, recessed aluminum hopper units, five genuine open double-storey drum levels and the separately mapped lower L-shaped podium.",
+  "size": [
+    47.32203674316406,
+    425.5,
+    38.46813774108887
+  ],
+  "actualBounds": {
+    "min": [
+      -25.444719314575195,
+      0,
+      -19.185144424438477
+    ],
+    "max": [
+      21.877317428588867,
+      425.5,
+      19.28299331665039
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X toward57th Street/northeast",
+    "shortAxis": "+Z towardPark Avenue/southeast"
+  },
+  "sourceFacts": {
+    "architect": "Rafael Viñoly Architects",
+    "completed": 2015,
+    "heightMeters": 425.5,
+    "shaftSizeMeters": [
+      28.5,
+      28.5
+    ],
+    "windowGlassMeters": [
+      3.048,
+      3.048
+    ],
+    "glassRecessMeters": 0.1016,
+    "typicalFloorPitchMeters": 4.7244,
+    "windowsPerFacade": 6,
+    "openDrumLevels": 5,
+    "roof": "Flat completed roof; no mast"
+  },
+  "reconstruction": {
+    "frame": "White concrete exterior with90 geometrical grid rows; five open pairs at rows20/21,34/35,48/49,62/63 and76/77 are reconstructed from the architect elevation and completed facade photographs. Marketing floor numbers are not physical row indices.",
+    "windows": "Individual10ft panes recessed4in, physical concrete intrados, aluminum perimeter frames and reconstructed inset hopper sash. Exposed drum floors include continuous cylindrical mechanical enclosures and full-height open exterior grid.",
+    "base": "Independent offset tower way463593207 retained inside mapped30m podium463386820. Southwest arrival matches mapped main entrance and architect56th Street description. Separate distant retail cube excluded."
+  },
+  "referencePages": [
+    "https://www.rvapc.com/works/432-park-avenue/",
+    "https://www.rvapc.com/wp-content/uploads/2016/04/2016_0601_RVA_432_FINAL_UPDATED.pdf",
+    "https://enclos.com/project/432-park-avenue/",
+    "https://www.sbp.de/en/project/432-park-avenue/",
+    "https://mackloweproperties.com/news/pdfs/432-PA-Abitare-June-2013.pdf",
+    "https://www.432parkavenue.com/assets/data/brochures/432Park_DigitalBrochure.pdf",
+    "https://www.openstreetmap.org/way/261499924"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.971850755,
+      40.761695679
+    ],
+    "heading": 1.072509089709,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/261499924",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/261499924"
+    ],
+    "wikidataId": "Q233940",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:75047db6e82c8d201c781f33beb9ac6054f87453f143fe0dabbed0962f3b42da",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID main outline261499924 retains the ground podium; independent tower463593207 is offset toward56th Street, with28.5m engineer shaft dimensions rather than an enlarged whole-site box. Mapped main entrance5995346749 lies native-X/southwest and agrees with the architect56th Street arrival. Y0 is entry ground, while actual street slope remains host-dependent."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Five drum-pair elevations, thin pour joints, hopper dimensions, core drum radius, terrace furnishings and porte-cochere details are reconstructed from primary elevation and facade photographs. The90 facade rows are not a claim of90 occupied floors. Separate Park Avenue retail cube, changing tenant signs, repairs/scaffolding and interior fit-out are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "white-concrete-basket",
+      "position": [
+        48,
+        211,
+        47
+      ],
+      "lookAt": [
+        -7,
+        206,
+        5
+      ]
+    },
+    {
+      "name": "punched-window-reveals",
+      "position": [
+        25,
+        242,
+        9
+      ],
+      "lookAt": [
+        7,
+        240,
+        5
+      ]
+    },
+    {
+      "name": "hopper-sash-detail",
+      "position": [
+        14,
+        239,
+        2.4
+      ],
+      "lookAt": [
+        6.6,
+        238.7,
+        2.4
+      ]
+    },
+    {
+      "name": "open-upper-drum",
+      "position": [
+        39,
+        365,
+        25
+      ],
+      "lookAt": [
+        -7,
+        364,
+        5
+      ]
+    },
+    {
+      "name": "through-wind-openings",
+      "position": [
+        26,
+        230,
+        9
+      ],
+      "lookAt": [
+        -7,
+        231,
+        5
+      ]
+    },
+    {
+      "name": "cylindrical-core-close",
+      "position": [
+        13,
+        231,
+        12
+      ],
+      "lookAt": [
+        -1,
+        232,
+        5
+      ]
+    },
+    {
+      "name": "closed-roof-parapet",
+      "position": [
+        46,
+        451,
+        38
+      ],
+      "lookAt": [
+        -7,
+        414,
+        5
+      ]
+    },
+    {
+      "name": "offset-podium-terrace",
+      "position": [
+        64,
+        53,
+        48
+      ],
+      "lookAt": [
+        1,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "southwest-porte-cochere",
+      "position": [
+        -54,
+        12,
+        33
+      ],
+      "lookAt": [
+        -21,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "entry-revolving-doors",
+      "position": [
+        -36,
+        5,
+        13
+      ],
+      "lookAt": [
+        -22,
+        2,
+        5
+      ]
+    },
+    {
+      "name": "north-retail-wing",
+      "position": [
+        54,
+        14,
+        -30
+      ],
+      "lookAt": [
+        19,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "far-midtown-profile",
+      "position": [
+        355,
+        118,
+        215
+      ],
+      "lookAt": [
+        -7,
+        210,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 299488,
+    "vertices": 636844,
+    "materials": 6,
+    "bytes": 25886912,
+    "sha256": "sha256:3aa36f495f061ad406665b43e8e2bea6f8788936323ff62cbf907b051c5eb992"
+  }
+}

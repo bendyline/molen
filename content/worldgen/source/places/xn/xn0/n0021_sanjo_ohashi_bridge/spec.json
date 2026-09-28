@@ -1,0 +1,302 @@
+{
+  "planId": "N0021",
+  "id": "N0021",
+  "assetId": "molen.worldgen.structure.n0021_sanjo_ohashi_bridge",
+  "title": "Sanjō Ōhashi Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q3087620",
+  "referenceCoordinate": {
+    "latitude": 35.00907222,
+    "longitude": 135.77173611
+  },
+  "visualBrief": "Present steel nine-span bridge with the completed2024 hinoki railings, fourteen retained bronze giboshi, timber girder covers, circular stone shoes and multi-column frames, renewed silver-gray checker paving and modeled asanoha-pattern pedestrian barriers.",
+  "size": [
+    74.5999984741211,
+    7.149199962615967,
+    16.847999572753906
+  ],
+  "actualBounds": {
+    "min": [
+      -37.29999923706055,
+      0,
+      -8.423999786376953
+    ],
+    "max": [
+      37.29999923706055,
+      7.149199962615967,
+      8.423999786376953
+    ]
+  },
+  "nativeAxes": {
+    "x": "east-northeast toward Higashiyama",
+    "y": "up from visible river-pier footings",
+    "z": "south-southeast downstream"
+  },
+  "sourceFacts": {
+    "lengthMeters": 73.3,
+    "widthMeters": 16.7,
+    "spans": 9,
+    "structuralType": "Simply supported steel I-girder spans on multi-column rigid-frame piers and direct foundations",
+    "railingPosts": {
+      "total": 14,
+      "diameter480mm": 10,
+      "diameter420mm": 4
+    },
+    "railingWood": "Kyoto-grown hinoki",
+    "retainedFinials": "Bronze giboshi, largely dating to1590",
+    "renewalCompleted": "January2024",
+    "ownerSource": "Kyoto City Construction Bureau, October2024 Roads Administration Seminar report"
+  },
+  "reconstruction": {
+    "pierRows": 8,
+    "columnsPerRow": 7,
+    "deckCamberMeters": 0.52,
+    "notes": "Published structure dimensions and main-post counts govern this model. Span spacing, girder and pier sections, rail spacing, road layout, detailed bronze profile and foundation depth are reconstructed from owner photographs. Fine historical inscriptions are not yet sculpted."
+  },
+  "referencePages": [
+    "https://www.hido.or.jp/wp-content/uploads/2024/10/2410chiiki-kyoto_city.pdf",
+    "https://www.city.kyoto.lg.jp/kensetu/cmsfiles/contents/0000149/149842/hashishirube22.pdf",
+    "https://www.city.kyoto.lg.jp/kensetu/cmsfiles/contents/0000149/149842/hashishirube15.pdf",
+    "https://www.openstreetmap.org/way/571549175",
+    "https://maps.gsi.go.jp/development/hyokochi.html",
+    "https://maps.gsi.go.jp/development/demtile.html"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q3087620",
+    "featureIds": [
+      "way/571549175"
+    ],
+    "source": "https://www.openstreetmap.org/way/571549175",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:b6c552a7b2c3fe0fc8e997130ef2f0e4933a6e9c90e61f72437d0b8be4029729",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      135.771720333,
+      35.009046048
+    ],
+    "heading": 0.123568417936,
+    "elevationMode": "terrain-contact",
+    "bounds": [
+      135.7700818795466,
+      35.00792265467679,
+      135.77335878645337,
+      35.010169425895285
+    ],
+    "replaceRoads": {
+      "length": 73.3,
+      "width": 16.7,
+      "deckHeight": 4.58
+    },
+    "terrainReference": {
+      "anchor": [
+        135.77128497337176,
+        35.00900175953759
+      ],
+      "modelHeight": 4.55,
+      "basis": "West road plateau at native X=-40 m, 3.35 m beyond the 73.3 m bridge endpoint. Align the authored endpoint road height of 4.55 m to valid ground here. Current GSI DEM1A gives 41.714 m, producing an approximately 37.164 m model origin. Use a host terrain sampler that preserves river no-data and resolves this bank reference; coarse river-center terrain must not replace it."
+    },
+    "notes": "Exact mapped bridge polygon identifies the east-northeast axis. Official width 16.7 m and length 73.3 m supersede coarse mapped dimensions 15.94×74.429 m. Ground contact uses the independently measured west road bank; GSI DEM1A upper banks are approximately 41.6–41.8 m. Its water cells are explicitly unknown, not a surveyed riverbed. Fine-terrain approach review is recorded separately."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Fine historic finial inscriptions and individual sword scars require additional close photographic evidence.",
+    "Pier footings remain a photographic reconstruction. GSI DEM1A resolves the road banks but does not measure submerged riverbed or validate foundation embedment.",
+    "Adjacent statues, street signs, temporary furniture and vegetation are outside this bridge asset."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-elevation",
+      "position": [
+        4,
+        8,
+        73
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "north-elevation",
+      "position": [
+        -16,
+        11,
+        -57
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "timber-joinery",
+      "position": [
+        -22.4,
+        7.6,
+        13
+      ],
+      "lookAt": [
+        -23.5,
+        6.1,
+        8
+      ]
+    },
+    {
+      "name": "bronze-giboshi",
+      "position": [
+        -24.03,
+        7.5,
+        9.8
+      ],
+      "lookAt": [
+        -24.23,
+        7,
+        8.14
+      ]
+    },
+    {
+      "name": "asanoha-barrier",
+      "position": [
+        -8,
+        6.4,
+        7.5
+      ],
+      "lookAt": [
+        -6.5,
+        5.85,
+        4.46
+      ]
+    },
+    {
+      "name": "checker-paving",
+      "position": [
+        11,
+        10,
+        12
+      ],
+      "lookAt": [
+        8,
+        5.1,
+        6
+      ]
+    },
+    {
+      "name": "pier-frame",
+      "position": [
+        -20,
+        2.3,
+        17
+      ],
+      "lookAt": [
+        -20.36,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "steel-soffit",
+      "position": [
+        6,
+        1.2,
+        2
+      ],
+      "lookAt": [
+        8,
+        4.6,
+        0
+      ]
+    },
+    {
+      "name": "east-bank",
+      "position": [
+        46,
+        8,
+        24
+      ],
+      "lookAt": [
+        31,
+        4.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 716504,
+    "vertices": 1388016,
+    "materials": 8,
+    "bytes": 57183168,
+    "sha256": "sha256:5bec80d763ac335c3cd21310b7390ed49e6e2e161ced9b6116272aad52c8deba"
+  }
+}

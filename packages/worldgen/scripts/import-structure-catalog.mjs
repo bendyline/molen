@@ -1,10 +1,17 @@
 /** Import or verify every generated A02–E20 GLB in the worldgen content asset repository. */
 import { execFileSync } from 'node:child_process';
-import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { importAsset, inspectAsset } from '../../tooling/dist/index.mjs';
 import { biomeJson } from './format-json.mjs';
+import { structureAssetDirectory, structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { assertSourceRegistryCurrent, writeIndex } from './structure-model-files.mjs';
+import {
+  knownSourceEntries,
+  structureSourceDirectory,
+  structureSourcePath,
+} from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const content = resolve(root, 'content/worldgen');
@@ -13,25 +20,28 @@ const projectPath = resolve(content, 'project.json');
 const stylepackPath = resolve(content, 'stylepack.json');
 const biome = resolve(root, 'packages/worldgen/node_modules/@biomejs/biome/bin/biome');
 const check = process.argv.includes('--check');
-const dirs = (await readdir(source, { withFileTypes: true }))
-  .filter((entry) => entry.isDirectory() && /^[a-e]\d{2}_/.test(entry.name))
-  .map((entry) => entry.name)
+const indexOnly = process.argv.includes('--index-only');
+await assertSourceRegistryCurrent();
+const dirs = knownSourceEntries()
+  .filter((entry) => entry.collection === 'site-structures' && /^[a-e]\d{2}_/.test(entry.key))
+  .map((entry) => entry.key)
   .sort();
 if (dirs.length !== 97) throw new Error(`Expected 97 new source directories, found ${dirs.length}`);
 
 const pack = JSON.parse(await readFile(stylepackPath, 'utf8'));
 const catalog = [];
 for (const key of dirs) {
-  const spec = JSON.parse(await readFile(resolve(source, key, 'spec.json'), 'utf8'));
+  const dir = structureSourceDirectory(key);
+  const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
   if (!spec.id.endsWith(`.${key}`) || !key.startsWith(spec.planId.toLowerCase()))
     throw new Error(`${key}: source key does not match asset id`);
-  const sidecarRelative = `assets/${spec.id.replaceAll('.', '/')}/asset.json`;
-  const sourcePath = resolve(source, key, 'models/source.glb');
-  if (!check) {
+  const sidecarRelative = structureAssetSidecarPath(spec.id);
+  const sourcePath = resolve(dir, 'models/source.glb');
+  if (!check && !indexOnly) {
     const imported = await importAsset({
       path: sourcePath,
       id: spec.id,
-      outDir: resolve(content, 'assets'),
+      assetDir: structureAssetDirectory(spec.id),
       projectPath,
       force: true,
     });
@@ -40,7 +50,7 @@ for (const key of dirs) {
     // importAsset writes 2-space JSON; the content repository is linted by biome.
     const sidecarPath = resolve(content, sidecarRelative);
     const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
-    await writeFile(sidecarPath, biomeJson(sidecar, sidecarPath));
+    await writeIndex(sidecarPath, biomeJson(sidecar, sidecarPath));
   }
   const inspected = await inspectAsset({ ref: spec.id, projectPath, verify: true });
   if (!inspected.ok || inspected.sidecar === undefined)
@@ -54,8 +64,8 @@ for (const key of dirs) {
     title: spec.title,
     triangles: inspected.sidecar.stats.triangles,
     bytes: inspected.sidecar.stats.sizeBytes,
-    source: `source/site-structures/${key}`,
-    preview: `source/site-structures/${key}/preview.png`,
+    source: relative(content, dir).replaceAll('\\', '/'),
+    preview: relative(content, resolve(dir, 'preview.png')).replaceAll('\\', '/'),
   });
   console.log(
     `${spec.planId}: ${inspected.sidecar.stats.triangles} triangles, ${inspected.sidecar.stats.sizeBytes} runtime bytes`,
@@ -63,13 +73,34 @@ for (const key of dirs) {
 }
 
 const galleryEntries = [
-  { planId: 'A01', title: 'Space Needle', preview: 'space-needle/preview.png' },
-  { planId: 'C01', title: 'Golden Gate Bridge', preview: 'golden-gate-bridge/preview.png' },
-  { planId: 'C02', title: 'SR 520 floating bridge', preview: 'sr-520-floating-bridge/preview.png' },
+  {
+    planId: 'A01',
+    title: 'Space Needle',
+    preview: relative(source, structureSourcePath('space-needle', 'preview.png')).replaceAll(
+      '\\',
+      '/',
+    ),
+  },
+  {
+    planId: 'C01',
+    title: 'Golden Gate Bridge',
+    preview: relative(source, structureSourcePath('golden-gate-bridge', 'preview.png')).replaceAll(
+      '\\',
+      '/',
+    ),
+  },
+  {
+    planId: 'C02',
+    title: 'SR 520 floating bridge',
+    preview: relative(
+      source,
+      structureSourcePath('sr-520-floating-bridge', 'preview.png'),
+    ).replaceAll('\\', '/'),
+  },
   ...catalog.map((entry) => ({
     planId: entry.planId,
     title: entry.title,
-    preview: entry.preview.replace('source/site-structures/', ''),
+    preview: relative(source, resolve(content, entry.preview)).replaceAll('\\', '/'),
   })),
 ].sort((a, b) => a.planId.localeCompare(b.planId));
 const gallery = `<!doctype html>
@@ -115,7 +146,7 @@ render();
 if (check) {
   const current = JSON.parse(await readFile(stylepackPath, 'utf8'));
   for (const item of catalog) {
-    const expected = `assets/${item.id.replaceAll('.', '/')}/asset.json`;
+    const expected = structureAssetSidecarPath(item.id);
     if (current.assets[item.id] !== expected)
       throw new Error(`${item.planId}: missing style pack entry`);
   }
@@ -127,16 +158,15 @@ if (check) {
   )
     throw new Error('The 100-asset preview gallery is stale');
 } else {
-  const formatted = execFileSync(
-    process.execPath,
-    [biome, 'format', '--stdin-file-path', stylepackPath],
-    {
-      input: JSON.stringify(pack),
-      encoding: 'utf8',
-    },
-  );
-  await writeFile(stylepackPath, formatted);
-  await writeFile(resolve(source, 'asset-index.json'), `${JSON.stringify(catalog, null, 2)}\n`);
-  await writeFile(resolve(source, 'gallery.html'), gallery);
+  if (!indexOnly) {
+    const formatted = execFileSync(
+      process.execPath,
+      [biome, 'format', '--stdin-file-path', stylepackPath],
+      { input: JSON.stringify(pack), encoding: 'utf8' },
+    );
+    await writeIndex(stylepackPath, formatted);
+  }
+  await writeIndex(resolve(source, 'asset-index.json'), `${JSON.stringify(catalog, null, 2)}\n`);
+  await writeIndex(resolve(source, 'gallery.html'), gallery);
 }
 console.log(`Verified ${catalog.length} imported structure assets.`);

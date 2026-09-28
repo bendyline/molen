@@ -2,19 +2,20 @@
  * hand-tuned generator in generate-site-structures.mjs. This script reads the 100-item design
  * brief, emits one editable source bundle per remaining entry, and never imports runtime assets.
  */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { biomeJson } from './format-json.mjs';
+import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { buildBridge } from './structure-bridges.mjs';
 import { buildLandmark } from './structure-landmarks.mjs';
 import { buildInfrastructure, buildUrban } from './structure-recipes.mjs';
+import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const packageRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
-const contentRoot = resolve(packageRoot, 'content/worldgen');
-const sourceRoot = resolve(contentRoot, 'source/site-structures');
 const planPath = resolve(packageRoot, 'examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md');
 const check = process.argv.includes('--check');
 const referenceIds = new Set(['A01', 'C01', 'C02']);
@@ -227,7 +228,7 @@ for (const entry of pending) {
     ),
   );
   const hash = `sha256:${createHash('sha256').update(glb).digest('hex')}`;
-  const dir = resolve(sourceRoot, key);
+  const dir = structureSourceDirectory(key);
   const source = {
     format: 'molen/source-bundle@1',
     id,
@@ -239,7 +240,7 @@ for (const entry of pending) {
         {
           path: 'models/source.glb',
           assetId: id,
-          output: `assets/${id.replaceAll('.', '/')}/asset.json`,
+          output: structureAssetSidecarPath(id),
           pipeline: 'import',
           sha256: hash,
         },
@@ -250,7 +251,7 @@ for (const entry of pending) {
       documents: ['README.md', 'preview.png'],
     },
   };
-  const readme = `# ${entry.title} — ${entry.planId} structure asset\n\n![Lit Molen preview](preview.png)\n\nOriginal stylized geometry generated from the [100-structure plan](../../../../../examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md) by \`packages/worldgen/scripts/generate-structure-catalog.mjs\`. Visual brief: ${entry.brief}.\n\nProvisional dimensions: ${spec.size[0]} × ${spec.size[1]} × ${spec.size[2]} meters (X × Y × Z). These dimensions are artistic working values and require measured terrain/footprint alignment before geographic placement. +Y is up; the model is centered at ground or water datum. The runtime asset ID is \`${id}\`.\n\nSource: \`spec.json\`, \`models/source.glb\`; the imported runtime GLB and sidecar are under \`content/worldgen/assets/${id.replaceAll('.', '/')}\`. \`source.json\` pins the source hash. There are no third-party meshes, bitmap textures or texture-generation prompts. The preview is rendered by Molen from \`scene.json\`.\n\nRebuild and re-import from the repository root using \`node packages/worldgen/scripts/generate-structure-catalog.mjs\` and \`node packages/worldgen/scripts/import-structure-catalog.mjs\`. Verify with \`node packages/worldgen/scripts/generate-structure-catalog.mjs --check\`, \`node scripts/check-source-bundles.mjs\`, and \`molen asset inspect ${id} --project content/worldgen/project.json --verify\`.\n\n${entry.planId[0] === 'C' ? 'The full-span design master needs tile-sized sections, measured approach transitions and segmented driveable collision before Earth placement.' : 'Site anchor, exact facade detail, LOD and collision refinement remain to be completed before in-place Earth-viewer release.'}\n`;
+  const readme = `# ${entry.title} — ${entry.planId} structure asset\n\n![Lit Molen preview](preview.png)\n\nOriginal stylized geometry generated from the [100-structure plan](${relative(dir, planPath).replaceAll('\\', '/')}) by \`packages/worldgen/scripts/generate-structure-catalog.mjs\`. Visual brief: ${entry.brief}.\n\nProvisional dimensions: ${spec.size[0]} × ${spec.size[1]} × ${spec.size[2]} meters (X × Y × Z). These dimensions are artistic working values and require measured terrain/footprint alignment before geographic placement. +Y is up; the model is centered at ground or water datum. The runtime asset ID is \`${id}\`.\n\nSource: \`spec.json\`, \`models/source.glb\`; the imported runtime GLB and sidecar are under \`content/worldgen/${structureAssetSidecarPath(id).replace(/\/asset\.json$/, '')}\`. \`source.json\` pins the source hash. There are no third-party meshes, bitmap textures or texture-generation prompts. The preview is rendered by Molen from \`scene.json\`.\n\nRebuild and re-import from the repository root using \`node packages/worldgen/scripts/generate-structure-catalog.mjs\` and \`node packages/worldgen/scripts/import-structure-catalog.mjs\`. Verify with \`node packages/worldgen/scripts/generate-structure-catalog.mjs --check\`, \`node scripts/check-source-bundles.mjs\`, and \`molen asset inspect ${id} --project content/worldgen/project.json --verify\`.\n\n${entry.planId[0] === 'C' ? 'The full-span design master needs tile-sized sections, measured approach transitions and segmented driveable collision before Earth placement.' : 'Site anchor, exact facade detail, LOD and collision refinement remain to be completed before in-place Earth-viewer release.'}\n`;
   await emit(resolve(dir, 'models/source.glb'), glb);
   await emitJson(resolve(dir, 'spec.json'), spec);
   await emitJson(resolve(dir, 'scene.json'), previewScene(spec));

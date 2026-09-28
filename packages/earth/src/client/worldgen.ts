@@ -29,12 +29,17 @@ import {
   createWorldgenSemanticRenderers,
   createWorldgenTileCache,
   createWorldgenWorkerBridge,
+  type StructureTerrainSampler,
   type WorldgenSemanticRenderers,
 } from '@bendyline/molen-worldgen-earth/client';
-import type { WorldgenTileOutput } from '@bendyline/molen-worldgen-earth/kernel';
+import {
+  isStructureViewingDate,
+  type WorldgenTileOutput,
+} from '@bendyline/molen-worldgen-earth/kernel';
 import type * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import type { EarthWorldgenContent } from './content';
+import { hasOnlyEmbeddedImages } from './structure-image-ownership';
 
 /** Factories for module workers; each is optional and its work runs in-thread without it. */
 export interface EarthViewWorkers {
@@ -56,6 +61,10 @@ export interface EarthWorldgen extends WorldgenSemanticRenderers {
 }
 
 export interface CreateEarthWorldgenOptions {
+  /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
+  viewingDate?: string;
+  /** Ground heights in this terrain's vertical reference; may retrieve neighboring tiles. */
+  sampleStructureTerrain?: StructureTerrainSampler;
   content: EarthWorldgenContent;
   assets: AssetProvider;
   surfaceRenderer: TerrainSurfaceRenderer;
@@ -96,6 +105,8 @@ const inThreadBaker: MaterialBaker = {
 
 /** Worldgen renderers for an Earth view's classification and human-feature layers. */
 export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthWorldgen {
+  if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
+    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   const { pack, atlas, places, placesDocs, structures } = options.content;
   const workers = options.workers ?? {};
   const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
@@ -125,9 +136,17 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   });
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
+  const ownedImageScenes = new WeakSet<THREE.Object3D>();
   const structureObjects = new StructureModelLibrary(
-    async (ref) => (await structureLoader.parseAsync(await options.assets.load(ref), '')).scene,
+    async (ref) => {
+      const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
+      // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
+      // from Three's host-global cache, even when this GLTFParser is new.
+      if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+      return parsed.scene;
+    },
     {
+      ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
       resolveSurface: ({ ref, slot }) =>
         sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
     },
@@ -160,6 +179,10 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   const renderers = createWorldgenSemanticRenderers(pack, {
     places,
     structures,
+    ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+    ...(options.sampleStructureTerrain
+      ? { sampleStructureTerrain: options.sampleStructureTerrain }
+      : {}),
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     atlas,
     regions,

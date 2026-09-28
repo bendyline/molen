@@ -1,0 +1,207 @@
+{
+  "planId": "N0172",
+  "id": "N0172",
+  "assetId": "molen.worldgen.structure.n0172_aon_center",
+  "title": "Aon Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q271695",
+  "referenceCoordinate": {
+    "latitude": 41.885277777,
+    "longitude": -87.621388888
+  },
+  "visualBrief": "Chicago’s tall white granite shaft with individually modeled V-faced vertical piers, recessed charcoal window bands, signed notched corner geometry, glazed lobby and its separately mapped rooftop mechanical block.",
+  "size": [
+    61.009986877441406,
+    346.29998779296875,
+    60.10798263549805
+  ],
+  "actualBounds": {
+    "min": [
+      -30.504993438720703,
+      0,
+      -30.054000854492188
+    ],
+    "max": [
+      30.504993438720703,
+      346.29998779296875,
+      30.05398178100586
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 346.3,
+    "floors": 83,
+    "architects": [
+      "Edward Durell Stone & Associates",
+      "Perkins+Will"
+    ],
+    "currentCladding": "White granite replacing the original Carrara marble",
+    "structure": "Tube-in-tube with V-shaped perimeter columns"
+  },
+  "reconstruction": {
+    "plan": "Signed exact outline with separate32 m roof service block",
+    "facade": "Repeated V-shaped piers and individual window panes; small corner returns preserve mapped plan",
+    "heightDatum": "340 m main roof and346.3 m architectural mechanical top"
+  },
+  "referencePages": [
+    "https://www.skyscrapercenter.com/chicago/aon-center/339",
+    "https://www.architecture.org/online-resources/buildings-of-chicago/aon-center",
+    "https://www.aoncenter.info/toc.cfm",
+    "https://www.openstreetmap.org/way/64388609"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -87.621549995,
+      41.885281566
+    ],
+    "heading": -1.558093833718,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64388609",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64388609"
+    ],
+    "wikidataId": "Q271695",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed notched footprint and independent rooftop block retain map alignment and groundY0. The main tower is included; the two-level landscaped plaza remains terrain/map context."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual pier dimensions and glazing pitch are reconstructed. Granite joints and roof ventilation are modeled, while corporate lettering, plaza fountains and proposed observation-deck alterations are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-piers",
+      "position": [
+        77,
+        156,
+        85
+      ],
+      "lookAt": [
+        0,
+        135,
+        0
+      ]
+    },
+    {
+      "name": "notched-corners",
+      "position": [
+        73,
+        69,
+        73
+      ],
+      "lookAt": [
+        17,
+        59,
+        17
+      ]
+    },
+    {
+      "name": "roof-mechanical",
+      "position": [
+        80,
+        375,
+        93
+      ],
+      "lookAt": [
+        0,
+        337,
+        0
+      ]
+    },
+    {
+      "name": "ground-lobby",
+      "position": [
+        75,
+        14,
+        81
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -382,
+        288,
+        643
+      ],
+      "lookAt": [
+        0,
+        166,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 169774,
+    "vertices": 434320,
+    "materials": 5,
+    "bytes": 17241776,
+    "sha256": "sha256:bbb5836761f6715351d16455dc57071bf2617fd36b007ff1486817f8bda6d149"
+  }
+}

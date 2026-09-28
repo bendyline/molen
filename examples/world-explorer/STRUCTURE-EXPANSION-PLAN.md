@@ -1,45 +1,46 @@
 # World Explorer: 100 new buildings and structures
 
-Status: all 100 source/runtime GLBs are authored and registered in the worldgen content pack.
-The first three are hand-tuned reference models; the remaining 97 are deterministic stylized
-catalog models with provisional dimensions. Geographic placement is pending for all 100. Molen
-already ships 120 resizable procedural building styles in
-`content/worldgen/structures/catalog.json`; this plan adds recognizable site-specific structures,
-bridge systems, and higher-detail urban/infrastructure types. Do not count the existing 120 again.
+This is the original 100-target expansion plan. The target list and reference briefs below
+preserve its design intent; current production and placement status are maintained in the
+[source catalog](../../content/worldgen/source/site-structures/README.md), the
+[expansion progress report](../../content/worldgen/source/next-1000/PROGRESS.md), and the
+[round review](../../content/worldgen/source/next-1000/ROUND-REVIEW.md).
+Authoring is paused for review and cleanup. Imported geometry, visual acceptance and geographic
+readiness are separate milestones; a model's folder location does not establish placement approval.
 
-| Milestone | Current state |
+| Concern | Maintained record |
 | --- | --- |
-| A01, C01, C02 reference source GLBs | Built under `content/worldgen/source/site-structures/` |
-| A02–E20 catalog source GLBs | 97 generated, 97 imported, 97 lit previews and two-angle turntables |
-| Imported Molen assets | 100 sidecars and canonical GLBs under `content/worldgen/assets/molen/worldgen/structure/` |
+| Source bundles and previews | `content/worldgen/source/structure-index.json` and the [geographic gallery](../../content/worldgen/source/places/gallery.html) |
+| Imported Molen assets | Sidecars and canonical GLBs under `content/worldgen/assets/places/` and `content/worldgen/assets/reusable/` |
 | Asset/project registration | `content/worldgen/project.json` and `content/worldgen/stylepack.json` |
-| Visual review | 100 lit Molen previews; turntables captured for all 100 assets |
-| Pack validation | Source hashes, sidecars and 438-file worldgen pack verified |
-| Earth geographic placement | Pending structure catalog, fixtures, and bridge sectioning |
-| Remaining models | 0; measured fidelity, LOD and placement work remains |
+| Visual and geographic review | Each source bundle's capture reports and hash-bound `qa.json`, summarized in the generated readiness ledger |
+| Earth placement and category matching | `content/earth/structures/placements.json` and `content/earth/structures/map-rules.json` |
+| Procedural building styles | `content/worldgen/structures/catalog.json` |
 
-## What the current viewer can and cannot place
+## Viewer integration
 
 - The default worldgen pack supplies procedural building styles, shared materials, small props,
   and signs. Building outlines and measured heights from terrain semantics drive those styles.
-- The terrain decoder retains building names, shapes, heights and levels. The Earth adapter
-  currently sends shapes, heights and levels through generic worldgen; it does not use the name
-  to select a site-specific structure or static asset.
-- Transportation semantics expose `bridge: true`, but the surface renderer currently raises a
-  bridge road by a fixed four meters. It does not model suspension towers, cables, pontoons,
-  piers, abutments, or a bridge's true vertical profile. It also does not retain a road name for
-  bridge matching; available source names/refs should be decoded as optional fields.
-- The bundled real terrain package covers Sammamish. Seattle and San Francisco targets need
-  separate packages or small licensed fixtures before in-place visual acceptance is possible.
+- The Earth adapter queries geographically indexed landmark placements for resident tiles and
+  matches reusable models from map classifications such as windmills. Unique named landmarks
+  require their own placement records; names alone do not turn arbitrary buildings into them.
+- `StructureModelLibrary` preserves authored meshes, UVs and shared PBR materials. Models load
+  when needed and release when their last tile is evicted. A generic shell remains available
+  while its replacement model loads or if loading fails.
+- Authored bridge placements support tile clipping and road replacement. Generic bridge
+  geometry covers mapped crossings without an authored model; terrain and bank fit still
+  require geographic review for each detailed bridge.
+- Hosts supply PMTiles and terrain retrieval. The sample supports Seattle, Bellevue and
+  Sammamish; locations elsewhere require appropriate host data to verify their actual terrain fit.
 
-The asset batch is authored. The next release must build the **placement path and three reference
-fixtures** before these GLBs can appear at real coordinates. An imported GLB alone will not make
-a landmark appear at the right place.
+See the shipped [Earth viewer guide](../../docs-src/guide/earth-view.md) for the implemented APIs
+and limits.
 
 ## Placement contract
 
-Add a versioned Earth structure catalog in `content/earth/` and load it through
-`@bendyline/molen-earth`. Entries should carry:
+The original design contract below describes the intended information, rather than literal
+current schema field names. The implemented catalog lives in `content/earth/structures/` and
+loads through `@bendyline/molen-earth`; use the shipped guides for its validated schema.
 
 | Field | Purpose |
 | --- | --- |
@@ -56,13 +57,25 @@ suppresses only its corresponding generic shell, not neighbors or unrelated part
 are clipped or assembled per tile from stable section IDs so loading adjacent tiles cannot duplicate
 them. The source road remains navigable and aligned with any bridge deck overlay.
 
-Store editable generators and reference notes under `content/worldgen/source/`, imported GLBs and
-`molen/asset@1` sidecars under `content/worldgen/assets/`, and catalog records in the Earth pack.
-Every asset must also have a project registration during import, even if the packaged runtime copy
-is later referenced through `pack:molen.worldgen.default/...`. Register the sidecars in
-`content/worldgen/stylepack.json` so the existing `stylePackAssetIndex` maps stable asset IDs to
-pack paths. Use the existing `AssetCache`/`ModelLibrary` to lazy-load visible instances; do not
-eagerly unpack 100 GLBs.
+Named editable source bundles live at
+`content/worldgen/source/places/<gh2>/<gh3>/<source-key>/`. Imported bundles mirror that geography
+at `content/worldgen/assets/places/<gh2>/<gh3>/<source-key>/`, with `asset.json`, `model.glb` and
+optional collision data. The geographic folders are two- and three-character geohashes; legacy
+entries without reference coordinates use `places/unlocated/<source-key>/`. Coordinates used
+for folder organization do not activate a landmark in the viewer.
+
+Reusable urban and infrastructure bundles live under `source/reusable/urban/` and
+`source/reusable/infrastructure/`, mirrored under `assets/reusable/`. Generic mapped features
+use `source/map-structures/<source-key>/` and `assets/reusable/map-structures/<source-key>/`.
+Procedural styles remain in their semantic catalogs.
+
+`content/worldgen/source/structure-index.json` maps source keys to authoring folders. Runtime
+asset IDs remain unchanged: `content/worldgen/project.json` registers them to sidecars for
+tooling, and `content/worldgen/stylepack.json` lets `stylePackAssetIndex` resolve the same IDs
+to pack paths. Import with an exact `--asset-dir` when establishing a custom bundle location;
+ordinary `--force` reimports retain the registered sidecar path. Use these mappings rather than
+deriving folders from dotted asset IDs. Hosted worldgen content separates shared style metadata
+from regional model archives, with archive routes and model instances loaded on demand.
 
 ## First three reference assets
 

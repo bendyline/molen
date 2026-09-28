@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0682_santiago_bernabeu_stadium",
+  "sourceHash": "sha256:dd91ff1653cdb7c096edef65144c1ea67789fead174c77bf17ac14afe40645d4",
+  "runtimeHash": "sha256:2635598bba46cc1764129d68fe4074d4671aa9294fa4cf328f45f1ecdf6ce7a6",
+  "captureReportHash": "sha256:cc9b3350ca712358ed90caff11f4e4dffa149fd95e1f0a1d47ee05bb9c82a90d",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed current exterior and open-roof bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-steel-louvres.png",
+      "shots/near-west-entrance.png",
+      "shots/near-roof-skywalk.png",
+      "shots/near-four-tiers.png",
+      "shots/near-roof-truss.png",
+      "shots/far-open-roof.png"
+    ],
+    "notes": "All11portable and final11shared frames inspected, plus full-resolution louvres, four tiers and north-up placement. Portable preview intentionally has no ground; negative pitch grade is preserved. Roof aperture, asymmetric bowing, physically separated steel louvres, entry glazing, skywalk, trusses and blue chair tiers are coherent. Portable stainless is darker without the environment; actual shared sky-PMREM gives the expected silver finish."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:e7d7d77b67acab96ecda0fee9a87760e71ed0f0b6e7367c663f08af922bd45d4",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:5cf8bd53f52b5e47279bee35f9bae160a888d272cde989dda57582507dfaac84",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_stainless": {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-steel-louvres.png",
+      "shots/shared/near-west-entrance.png",
+      "shots/shared/near-roof-skywalk.png",
+      "shots/shared/near-four-tiers.png",
+      "shots/shared/near-roof-truss.png",
+      "shots/shared/far-open-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Actual shared stainless, concrete, painted steel and roof membrane preserve metric texture scale and geometry. Final geographic capture exercises the actual terrain cutter: pitch visible atY-9.2; cutout ray miss, hide/show and unload restoration pass. No duplicate local textures."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:dcaa2a364435f766316e8d62028c40b8e265bd80069d00e07c2aab1f783a9ca6",
+    "notes": "Exact mapped pitch controls origin/axis, current85-point exterior fixes eastern bulge. North-up frame aligns footprint and cutout with mapped envelope. Authored street ring covers the cut boundary atY0 while the field remains below. Correct west museum face and southern pitch axis retained; grade comes from the architect section rather than a geodetic survey."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Current architect photography, floor/terrace plans and scaled section plus engineer dimensions govern the distinctive stainless envelope, skywalk, aperture and structural roof. Louvre fabrication section, static folded textile stacks and seat distribution are reconstructed. Changing advertisements, exact ticket counts and enclosed maintenance machinery are outside this exterior asset; these are not required for the modeled architectural identity."
+  }
+}

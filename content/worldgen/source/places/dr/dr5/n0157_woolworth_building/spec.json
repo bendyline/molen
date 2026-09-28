@@ -1,0 +1,186 @@
+{
+  "planId": "N0157",
+  "id": "N0157",
+  "assetId": "molen.worldgen.structure.n0157_woolworth_building",
+  "title": "Woolworth Building",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q217652",
+  "referenceCoordinate": {
+    "latitude": 40.7124,
+    "longitude": -74.00822
+  },
+  "visualBrief": "Cass Gilbert’s neo-Gothic terra-cotta skyscraper: mapped U-shaped base, offset Broadway tower, recessed individual windows, projecting mullions and sill courses, pointed openings, nested entrance archivolts, corner tourelles, copper pyramid and numerous small pinnacles.",
+  "size": [
+    59.60599899291992,
+    241.40159606933594,
+    45.63999938964844
+  ],
+  "actualBounds": {
+    "min": [
+      -29.80299949645996,
+      0,
+      -22.81999969482422
+    ],
+    "max": [
+      29.80299949645996,
+      241.40159606933594,
+      22.81999969482422
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightFeet": 792,
+    "heightMeters": 241.4016,
+    "completion": 1913,
+    "architect": "Cass Gilbert",
+    "facade": "Limestone lower four stories, architectural terra cotta above"
+  },
+  "reconstruction": {
+    "plans": "Exact U-shaped base75363809 and eleven independent upper tower/tourelle parts274782323–344",
+    "pinnacle": "Mapped octagonal237.8 m copper roof with3.6016 m finial to published792 ft total"
+  },
+  "referencePages": [
+    "https://nylandmarks.org/explore-ny/the-woolworth-building/",
+    "https://www.nypl.org/blog/2013/04/22/woolworth-building-cathedral-commerce",
+    "https://s-media.nyc.gov/agencies/lpc/lp/1273.pdf",
+    "https://www.nicholsonandgalloway.com/news/nicholson-and-galloway-awarded-woolworth/",
+    "https://www.openstreetmap.org/way/75363809"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -74.008333597,
+      40.71245526
+    ],
+    "heading": -0.546670875127,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/75363809",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/75363809"
+    ],
+    "wikidataId": "Q217652",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact U-shaped base retains the west light court. All upper tower, corner tourelle and copper-roof footprints use their own mapped parts, placing the taller mass on Broadway at local+X. Main portal faces Broadway; groundY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Gothic windows, projecting trim, pointed openings and finials are modeled; individual sculptural faces, heraldic carving and polychrome tile motifs are simplified. Roof reflects the recognizable copper pyramid, not an unbuilt restoration proposal."
+  ],
+  "qaCameras": [
+    {
+      "name": "gothic-windows",
+      "position": [
+        63,
+        154,
+        81
+      ],
+      "lookAt": [
+        18,
+        142,
+        12
+      ]
+    },
+    {
+      "name": "copper-pinnacle",
+      "position": [
+        75,
+        256,
+        83
+      ],
+      "lookAt": [
+        14,
+        214,
+        0
+      ]
+    },
+    {
+      "name": "light-court",
+      "position": [
+        -96,
+        138,
+        17
+      ],
+      "lookAt": [
+        -10,
+        93,
+        0
+      ]
+    },
+    {
+      "name": "broadway-portal",
+      "position": [
+        78,
+        9,
+        22
+      ],
+      "lookAt": [
+        29,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -333,
+        218,
+        523
+      ],
+      "lookAt": [
+        8,
+        112,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 137916,
+    "vertices": 313066,
+    "materials": 4,
+    "bytes": 12615000,
+    "sha256": "sha256:f09bde22b847f862b5b54a196820d380f92ae21ac158d77f46f0163ce3f2ce50"
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "planId": "N0022",
+  "id": "N0022",
+  "assetId": "molen.worldgen.structure.n0022_dragon_river_bridge",
+  "title": "Dragon Bridge, Da Nang",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q5305270",
+  "referenceCoordinate": {
+    "latitude": 16.06111111,
+    "longitude": 108.22666667
+  },
+  "visualBrief": "Hybrid five-span bridge with three five-tube yellow arches, real horseshoe connectors, triple-bar splayed hangers, folded dorsal plates, layered dragon head and tail, concrete lower arches, twin sidewalks and three eastern approach spans.",
+  "size": [
+    668.4000244140625,
+    45.51670837402344,
+    37.5
+  ],
+  "actualBounds": {
+    "min": [
+      -334.20001220703125,
+      0,
+      -18.75
+    ],
+    "max": [
+      334.20001220703125,
+      45.51670837402344,
+      18.75
+    ]
+  },
+  "nativeAxes": {
+    "x": "east toward the dragon head and the coast",
+    "y": "up from pier waterline reference",
+    "z": "south"
+  },
+  "sourceFacts": {
+    "lengthMeters": 666,
+    "mainSpansMeters": [
+      64,
+      128,
+      200,
+      128,
+      72
+    ],
+    "eastApproachesMeters": [
+      26,
+      24,
+      24
+    ],
+    "mainBoxWidthMeters": 14,
+    "cantileverWingMeters": 10.5,
+    "widthRangeMeters": [
+      35,
+      37.5
+    ],
+    "vehicleLaneCount": 6,
+    "vehicleLaneWidthMeters": 3.75,
+    "sidewalkWidthMeters": 2.5,
+    "tubesPerArch": 5,
+    "tubeDiameterMeters": 1.2,
+    "connectorPitchMeters": 8,
+    "hangerBars": 3,
+    "hangerBarDiameterMeters": 0.065,
+    "mainArchRiseMeters": 25,
+    "mainPierWidthMeters": 7.5,
+    "source": "Chinh et al., E3S Web of Conferences10,00106(2016), sections2.1–2.4 and figures6–15; WSP/ASME designer account; Da Nang city report."
+  },
+  "reconstruction": {
+    "notes": "Structural dimensions follow published sections. Grade, under-deck arch curvature, canopy-free promenade undulation, plate outlines, light poles, fasteners, head cheeks and horns are photo reconstructions. Head is layered sheet steel rather than a solid sculpted mesh. Dragon details require close comparison in current captures."
+  },
+  "referencePages": [
+    "https://www.wsp.com/en-us/projects/fire-breathing-dragon-bridge-vietnam",
+    "https://www.asme.org/topics-resources/content/dragon-bridge-breathes-fire-into-economy",
+    "https://doi.org/10.1051/e3sconf/20161000106",
+    "https://www.e3s-conferences.org/articles/e3sconf/pdf/2016/05/e3sconf_seed2016_00106.pdf",
+    "https://cttdt.danangportal.gov.vn/vi/w/cau-rong-bieu-tuong-kien-truc-moi-trong-thoi-ky-hoi-nhap-i",
+    "https://www.openstreetmap.org/way/694831926"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q5305270",
+    "featureIds": [
+      "way/694831926"
+    ],
+    "source": "https://www.openstreetmap.org/way/694831926",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a512c84137629f19d886615cfb1e0d4d9356235def344d81d649386146a77f7b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      108.22754002787684,
+      16.061151685062523
+    ],
+    "heading": 0.034547704043,
+    "elevationMode": "terrain-contact",
+    "notes": "Exact mapped Q5305270/way694831926 gives axis, independently resolved east-facing dragon head. Published666m extent is shorter than coarse760.74m map polygon. Aerial support spacing gives provisional west-abutment offset9m from mapped start, shifting model origin38.3m west of polygon center. Vertical datum and approach fit remain pending."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Head sheet contours, pipe profiles and undulating sidewalks are photographic reconstruction; close comparison remains required.",
+    "Pier underwater foundations and exact deck vertical curve are not surveyed. Actual river/approach terrain fit remains pending.",
+    "Fire/water effects, temporary banners and vehicles are runtime effects or separate objects."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-elevation",
+      "position": [
+        0,
+        35,
+        535
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "north-elevation",
+      "position": [
+        -15,
+        68,
+        -510
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "main-arch",
+      "position": [
+        -80,
+        29,
+        72
+      ],
+      "lookAt": [
+        -41,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "horseshoe-and-hangers",
+      "position": [
+        -15,
+        16.627172281447724,
+        1
+      ],
+      "lookAt": [
+        -5,
+        37.06895441921459,
+        0
+      ]
+    },
+    {
+      "name": "dorsal-scales",
+      "position": [
+        -61,
+        60,
+        18
+      ],
+      "lookAt": [
+        -42,
+        43,
+        0
+      ]
+    },
+    {
+      "name": "head-south",
+      "position": [
+        242,
+        33,
+        25
+      ],
+      "lookAt": [
+        222,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "head-front",
+      "position": [
+        259,
+        36,
+        8
+      ],
+      "lookAt": [
+        224,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "head-rear",
+      "position": [
+        193,
+        32,
+        -19
+      ],
+      "lookAt": [
+        220,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "tail",
+      "position": [
+        -319,
+        22,
+        22
+      ],
+      "lookAt": [
+        -287,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "lower-arch",
+      "position": [
+        64,
+        5,
+        33
+      ],
+      "lookAt": [
+        59,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "box-and-wings",
+      "position": [
+        -56,
+        9,
+        24
+      ],
+      "lookAt": [
+        -40,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "sidewalk-and-lights",
+      "position": [
+        100,
+        20,
+        27
+      ],
+      "lookAt": [
+        125,
+        18,
+        18
+      ]
+    },
+    {
+      "name": "east-approaches",
+      "position": [
+        310,
+        32,
+        70
+      ],
+      "lookAt": [
+        285,
+        14,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 817800,
+    "vertices": 1519848,
+    "materials": 7,
+    "bytes": 63012224,
+    "sha256": "sha256:0ec907e5b043782bff9e9f6c5f677cb21d4513382bda72fa172482b5fe41d92d"
+  }
+}

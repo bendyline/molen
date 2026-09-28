@@ -273,6 +273,23 @@ const MATERIALS = {
     ],
     outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
   },
+  metal_bronze_cast: {
+    doc: 'Continuous cast bronze with fine irregular patination and casting pits; no sheet seams, mortar or directional joints. Neutral pale maps take the model vertex tint.',
+    seed: 216,
+    nodes: [
+      noise('patina', 7, 3, 1),
+      noise('pits', 53, 2, 4, 'value'),
+      ramp('out', 'patina', [
+        [0, '#c7cbc7'],
+        [0.45, '#e6e8e3'],
+        [1, '#f5f5ed'],
+      ]),
+      levels('rough', 'patina', 0.59, 0.72),
+      levels('metal', 'patina', 0.55, 0.75),
+      { id: 'normal', type: 'height-to-normal', input: 'pits', params: { strength: 0.00025 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal', normal: 'normal' },
+  },
   metal_painted: {
     doc: 'Continuous coated steel with subtle paint-film stipple; dielectric paint conceals the metal substrate. Rivets, panel edges, welds and damage remain asset geometry or unique art.',
     seed: 203,
@@ -288,6 +305,78 @@ const MATERIALS = {
         type: 'height-to-normal',
         input: 'fiber-noise',
         params: { strength: 0.0008 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  etfe_film: {
+    doc: 'Smooth neutral ETFE architectural film, with restrained dielectric sheen and very fine nondirectional surface variation. Inflated cushion curvature and weld seams belong to geometry. This graph is opaque; transparent roof film keeps a local alpha material because shared replacement does not preserve GLB transparency.',
+    seed: 214,
+    nodes: [
+      ...fibers(29, 29, 0.999),
+      ramp('out', 'fiber-noise', [
+        [0, '#fafafa'],
+        [1, '#fdfdfd'],
+      ]),
+      levels('rough', 'fiber-noise', 0.22, 0.28),
+      { id: 'metal', type: 'const', params: { value: 0 } },
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'fiber-noise',
+        params: { strength: 0.000025 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal', normal: 'normal' },
+  },
+  metal_stainless: {
+    doc: 'Continuous uncoated stainless steel with a fine directional brushed grain, high metallic response and no panel seams. Welds and joint hardware belong to the model geometry.',
+    seed: 208,
+    nodes: [
+      ...fibers(3, 72, 0.994),
+      ramp('out', 'fiber-noise', [
+        [0, '#e4e5e5'],
+        [1, '#efefef'],
+      ]),
+      levels('rough', 'fiber-noise', 0.25, 0.37),
+      { id: 'metal', type: 'const', params: { value: 1 } },
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'fiber-noise',
+        params: { strength: 0.00015 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal', normal: 'normal' },
+  },
+  stone_marble: {
+    doc: 'Continuous honed marble for modeled columns, sculpture and cladding: restrained mineral veins and fine grain without brick courses or mortar joints. Stone color comes from vertex tint.',
+    seed: 207,
+    nodes: [
+      ...fibers(3, 7, 0.994),
+      ramp('veins', 'fiber-noise', [
+        [0, '#f8f8f8'],
+        [0.28, '#f7f7f7'],
+        [0.32, '#f3f3f3'],
+        [0.345, '#e9e9e9'],
+        [0.37, '#f3f3f3'],
+        [0.45, '#f8f8f8'],
+        [1, '#f8f8f8'],
+      ]),
+      {
+        id: 'mineral-grain',
+        type: 'noise',
+        input: 'fiber-uv',
+        params: { kind: 'simplex', scale: 70, octaves: 2, seedOffset: 39 },
+      },
+      levels('grain', 'mineral-grain', 0.985, 1),
+      multiply('out', 'veins', 'grain'),
+      levels('rough', 'mineral-grain', 0.52, 0.64),
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'mineral-grain',
+        params: { strength: 0.00025 },
       },
     ],
     outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
@@ -312,6 +401,158 @@ const MATERIALS = {
       multiply('out', 'speckle', 'fiber'),
       levels('rough', 'fiber-noise', 0.82, 0.94),
       { id: 'normal', type: 'height-to-normal', input: 'minerals', params: { strength: 0.0012 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_travertine: {
+    doc: 'Continuous pale travertine with restrained bedding and scattered shallow pores. Neutral tint supports modeled blocks without adding a second set of masonry joints.',
+    seed: 209,
+    nodes: [
+      ...fibers(3, 26, 0.98),
+      {
+        id: 'pores',
+        type: 'worley',
+        input: 'fiber-uv',
+        params: { scale: 23, jitter: 0.94, output: 'f1' },
+      },
+      ramp('pore-color', 'pores', [
+        [0, '#c6c6c6'],
+        [0.09, '#e6e6e6'],
+        [0.19, '#f8f8f8'],
+        [1, '#fafafa'],
+      ]),
+      multiply('out', 'pore-color', 'fiber'),
+      levels('rough', 'fiber-noise', 0.82, 0.94),
+      { id: 'normal', type: 'height-to-normal', input: 'pores', params: { strength: 0.0004 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_basalt_raw: {
+    doc: 'Continuous fine volcanic stone for individually modeled basalt blocks and arches. Subtle isotropic crystalline grain and sparse small pores; no masonry courses or baked lighting. Dark gray or brown mineral color comes from vertex tint.',
+    seed: 215,
+    nodes: [
+      ...fibers(44, 44, 0.97),
+      {
+        id: 'pores',
+        type: 'worley',
+        input: 'fiber-uv',
+        params: { scale: 62, jitter: 0.97, output: 'f1' },
+      },
+      ramp('pore-color', 'pores', [
+        [0, '#bbbbbb'],
+        [0.045, '#e4e4e4'],
+        [0.14, '#f8f8f8'],
+        [1, '#fcfcfc'],
+      ]),
+      multiply('out', 'pore-color', 'fiber'),
+      levels('rough', 'fiber-noise', 0.86, 0.95),
+      { id: 'normal', type: 'height-to-normal', input: 'pores', params: { strength: 0.0004 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_sandstone_raw: {
+    doc: 'Continuous granular sandstone for separately modeled rubble and dressed stones. Restrained horizontal sediment variation and fine quartz grain; no mortar or false block seams. Use per-stone buff, red and gray tints.',
+    seed: 216,
+    nodes: [
+      ...fibers(2, 37, 0.91),
+      {
+        id: 'grains',
+        type: 'noise',
+        input: 'fiber-uv',
+        params: { kind: 'simplex', octaves: 2, scale: 66, seedOffset: 23 },
+      },
+      ramp('mineral', 'grains', [
+        [0, '#d7d7d7'],
+        [0.4, '#eeeeee'],
+        [1, '#ffffff'],
+      ]),
+      multiply('out', 'mineral', 'fiber'),
+      levels('rough', 'grains', 0.9, 0.98),
+      { id: 'normal', type: 'height-to-normal', input: 'grains', params: { strength: 0.0007 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_limestone_raw: {
+    doc: 'Continuous neutral porous limestone for individually modeled natural boulders and irregular blocks. Fine pitting and restrained mineral mottling contain no ashlar courses, mortar joints or directional lighting; stone color comes from vertex tint.',
+    seed: 211,
+    nodes: [
+      ...fibers(5, 5, 0.96),
+      {
+        id: 'pores',
+        type: 'worley',
+        input: 'fiber-uv',
+        params: { scale: 38, jitter: 0.97, output: 'f1' },
+      },
+      ramp('pore-color', 'pores', [
+        [0, '#cfcfcf'],
+        [0.055, '#e4e4e4'],
+        [0.14, '#f6f6f6'],
+        [1, '#fafafa'],
+      ]),
+      multiply('out', 'pore-color', 'fiber'),
+      levels('rough', 'fiber-noise', 0.86, 0.96),
+      ramp('pore-depth', 'pores', [
+        [0, '#000000'],
+        [0.16, '#f4f4f4'],
+        [1, '#ffffff'],
+      ]),
+      { id: 'normal', type: 'height-to-normal', input: 'pore-depth', params: { strength: 0.0007 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  stone_limestone_weathered: {
+    doc: 'Continuous weathered limestone with mineral mottling, dark biological patina and fine open pores. No mortar courses or painted directional shadows; use for individually modeled exposed ancient stones.',
+    seed: 212,
+    nodes: [
+      ...fibers(5, 5, 0.79),
+      {
+        id: 'mineral',
+        type: 'noise',
+        input: 'fiber-uv',
+        params: { kind: 'simplex', octaves: 4, scale: 13, seedOffset: 19 },
+      },
+      ramp('patina', 'mineral', [
+        [0, '#656860'],
+        [0.34, '#91968b'],
+        [0.49, '#d3d4ca'],
+        [0.65, '#eeeade'],
+        [1, '#faf7ed'],
+      ]),
+      {
+        id: 'pores',
+        type: 'worley',
+        input: 'fiber-uv',
+        params: { scale: 52, jitter: 0.98, output: 'f1' },
+      },
+      ramp('pore-color', 'pores', [
+        [0, '#90958b'],
+        [0.09, '#c4c8bb'],
+        [0.25, '#f9f8ef'],
+        [1, '#ffffff'],
+      ]),
+      multiply('stone', 'patina', 'fiber'),
+      multiply('out', 'stone', 'pore-color'),
+      levels('rough', 'fiber-noise', 0.9, 0.99),
+      { id: 'normal', type: 'height-to-normal', input: 'mineral', params: { strength: 0.003 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
+  },
+  clay_fired: {
+    doc: 'Continuous matte fired-clay grain without mortar courses, for individually modeled radial bricks, terracotta blocks and sculpted ceramic. Vertex tint supplies firing color.',
+    seed: 210,
+    nodes: [
+      ...fibers(43, 43, 0.97),
+      ramp('out', 'fiber-noise', [
+        [0, '#eeeeee'],
+        [1, '#fafafa'],
+      ]),
+      levels('rough', 'fiber-noise', 0.86, 0.96),
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'fiber-noise',
+        params: { strength: 0.0005 },
+      },
     ],
     outputs: { baseColor: 'out', roughness: 'rough', normal: 'normal' },
   },
@@ -888,6 +1129,86 @@ const MATERIALS = {
       0.93,
     ),
   },
+  metal_expanded_diamond: {
+    doc: 'Neutral painted expanded aluminium with staggered elongated diamond alpha apertures and56% open area, following the Warsaw stadium engineer manual. A0.12m by0.04m repeat reconstructs the observed3:1 aspect; the precise fabrication pitch remains unmeasured. Woven facade strips, thickness and supporting posts remain geometry.',
+    seed: 135,
+    alphaTest: 0.3,
+    nodes: [
+      ...profile('u-distance', 1, 0, [
+        [0, '#ffffff'],
+        [0.5, '#000000'],
+        [1, '#ffffff'],
+      ]),
+      ...profile('v-distance', 1, 90, [
+        [0, '#ffffff'],
+        [0.5, '#000000'],
+        [1, '#ffffff'],
+      ]),
+      blend('distance', 'u-distance', 'v-distance', 'mix', 0.5),
+      ramp('color', 'distance', [
+        [0, '#fafafa00'],
+        [0.3732, '#fafafa00'],
+        [0.3752, '#fafafaff'],
+        [0.6248, '#fafafaff'],
+        [0.6268, '#fafafa00'],
+        [1, '#fafafa00'],
+      ]),
+      { id: 'rough', type: 'const', params: { value: 0.5 } },
+      { id: 'metal', type: 'const', params: { value: 0 } },
+    ],
+    outputs: { baseColor: 'color', roughness: 'rough', metalness: 'metal' },
+  },
+  metal_perforated_round_open: {
+    doc: 'Neutral painted sheet metal with round9mm alpha apertures on12mm square centers, approximately44% open. Reusable high-open shading screen; hole dimensions are a reconstruction within a30–60% architectural open-area range, not a specific fabrication schedule. Panel folds and frames remain geometry.',
+    seed: 134,
+    alphaTest: 0.3,
+    nodes: [
+      { id: 'distance', type: 'gradient', params: { kind: 'radial', angleDeg: 0 } },
+      ramp('color', 'distance', [
+        [0, '#fafafa00'],
+        [0.747, '#fafafa00'],
+        [0.753, '#fafafaff'],
+        [1, '#fafafaff'],
+      ]),
+      { id: 'rough', type: 'const', params: { value: 0.5 } },
+      { id: 'metal', type: 'const', params: { value: 0 } },
+    ],
+    outputs: { baseColor: 'color', roughness: 'rough', metalness: 'metal' },
+  },
+  metal_perforated_round: {
+    doc: 'Painted sheet metal with round4mm alpha apertures on12mm square centers. Neutral tintable finish; panel folds and edge trims remain geometry. A reusable reconstruction, not a particular facade fabrication schedule.',
+    seed: 133,
+    alphaTest: 0.3,
+    nodes: [
+      { id: 'distance', type: 'gradient', params: { kind: 'radial', angleDeg: 0 } },
+      ramp('color', 'distance', [
+        [0, '#fafafa00'],
+        [0.33, '#fafafa00'],
+        [0.337, '#fafafaff'],
+        [1, '#fafafaff'],
+      ]),
+      { id: 'rough', type: 'const', params: { value: 0.5 } },
+      { id: 'metal', type: 'const', params: { value: 0 } },
+    ],
+    outputs: { baseColor: 'color', roughness: 'rough', metalness: 'metal' },
+  },
+  metal_perforated_square: {
+    doc: 'Painted metal with real square alpha cutouts:65.5mm apertures on85mm centers. Tint with vertex colors; use opaque geometry for cassette folds and supporting frames.',
+    seed: 131,
+    alphaTest: 0.3,
+    nodes: [
+      bricks('holes', 1, 1, (1 - 65.5 / 85) / 2, 0),
+      ramp('color', 'holes', [
+        [0, '#fafafaff'],
+        [0.5, '#fafafaff'],
+        [0.501, '#fafafa00'],
+        [1, '#fafafa00'],
+      ]),
+      { id: 'rough', type: 'const', params: { value: 0.48 } },
+      { id: 'metal', type: 'const', params: { value: 0 } },
+    ],
+    outputs: { baseColor: 'color', roughness: 'rough', metalness: 'metal' },
+  },
   terracotta_screen: {
     doc: 'Ventilated terracotta block screen: square recesses within thick ceramic webs.',
     seed: 130,
@@ -911,6 +1232,7 @@ function materialDocument(entry) {
     format: 'molen/matgraph@1',
     size: [256, 256],
     seed: entry.seed,
+    ...(entry.alphaTest === undefined ? {} : { alphaTest: entry.alphaTest }),
     nodes: roughness
       ? [...entry.nodes, { id: 'rough', type: 'const', params: { value: 0.88 } }]
       : entry.nodes,
@@ -1162,6 +1484,11 @@ async function emit(relativePath, bytes) {
       console.error(`stale: content/worldgen/${relativePath}`);
     }
     return;
+  }
+  try {
+    if ((await readFile(destination)).equals(bytes)) return;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
   }
   await mkdir(dirname(destination), { recursive: true });
   await writeFile(destination, bytes);

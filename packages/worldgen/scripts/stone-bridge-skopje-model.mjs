@@ -1,17 +1,18 @@
-/** Research contract for N0004. Geometry remains blocked on a dated measured elevation. */
+/** Primary evidence for N0004; the exterior model records photo-scaled dimensions separately. */
 export const skopjeResearch = {
   id: 'N0004',
   key: 'stone_bridge_in_skopje',
   wikidataId: 'Q1780883',
   title: 'Stone Bridge in Skopje',
   targetFidelity: 'maximum',
-  status: 'research-blocked',
-  modelProduced: false,
+  status: 'source-geometry',
+  modelProduced: true,
   nativeAxesProposal: {
     up: '+Y',
     longitudinal: '+X northeast',
     transverse: '+Z southeast (downstream)',
-    origin: 'Horizontal mapped-outline center; vertical origin is not yet established.',
+    origin:
+      'Horizontal mapped-outline center; Y0 follows the JICA2009 channel-bottom reference241.5m ASL. Bridge heights are photo-scaled.',
   },
   sources: [
     {
@@ -137,7 +138,7 @@ export const skopjeResearch = {
       ],
     },
   ],
-  blockers: [
+  researchGaps: [
     {
       id: 'current-opening-inventory',
       required: 'Dated complete elevation identifying every visible, buried and filled opening.',
@@ -205,7 +206,7 @@ export const skopjeResearch = {
     },
   ],
   reviewRequirements: [
-    'Do not export or import a model from this brief while structural blockers remain.',
+    'Separate published dimensions from photo-scaled reconstruction; record remaining survey gaps as limitations of the exterior asset.',
     'Any future generator must preserve an artist-edited master with a source.json SHA-256 guard before writing models/source.glb.',
     'A future mesh must pass winding/normal checks and all QA cameras before source/runtime hash-bound visual and maximum-fidelity reviews.',
     'Geographic activation additionally requires a reviewed placement hash, directed axis, vertical datum and shore fit.',

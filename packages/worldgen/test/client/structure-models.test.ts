@@ -19,6 +19,43 @@ function texturedModel() {
 }
 
 describe('full-fidelity structure streaming', () => {
+  it('preserves canonical cutout settings and texture ownership when replacing a GLB fallback', async () => {
+    const original = texturedModel();
+    original.material.userData.molenSurface = {
+      ref: 'matgraph:perforated-metal',
+      slot: 'wall',
+      uv: 'repeats',
+    };
+    const mask = new THREE.Texture();
+    const shared = new THREE.MeshStandardMaterial({
+      map: mask,
+      alphaTest: 0.5,
+      transparent: false,
+      depthWrite: true,
+      side: THREE.DoubleSide,
+      vertexColors: true,
+    });
+    const disposed = vi.spyOn(mask, 'dispose');
+    const library = new StructureModelLibrary(async () => original.scene, {
+      resolveSurface: () => shared,
+    });
+    const model = await library.acquire('perforated');
+    const material = (
+      (model.scene.children[0] as THREE.Mesh).material as THREE.Material[]
+    )[0] as THREE.MeshStandardMaterial;
+    expect(material).toBe(shared);
+    expect(material.alphaTest).toBe(0.5);
+    expect(material.transparent).toBe(false);
+    expect(material.depthWrite).toBe(true);
+    expect(material.side).toBe(THREE.DoubleSide);
+    expect(material.map).toBe(mask);
+    library.release('perforated');
+    expect(disposed).not.toHaveBeenCalled();
+    library.dispose();
+    shared.dispose();
+    mask.dispose();
+  });
+
   it('shares an opt-in surface across distinct models and keeps it alive after model eviction', async () => {
     const a = texturedModel(),
       b = texturedModel();

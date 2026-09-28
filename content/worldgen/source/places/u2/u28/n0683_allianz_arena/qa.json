@@ -1,0 +1,73 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0683_allianz_arena",
+  "sourceHash": "sha256:fae872a150c784f3c346f93275ddcd315bfc90948ddf4624f3806737eaf02395",
+  "runtimeHash": "sha256:aaa71e6476737a094086aae3a8dab6d003bbfa6064706d97b59fa1ee1d7cdf6d",
+  "captureReportHash": "sha256:6c566d52f011847f36dcd2075f137f6d918b86916fed1462a6537bb6574582d8",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed published exterior and open bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-inflated-film.png",
+      "shots/near-cascade-entrance.png",
+      "shots/near-south-name.png",
+      "shots/near-three-tiers.png",
+      "shots/near-transparent-roof.png",
+      "shots/near-goal-display.png",
+      "shots/far-open-roof.png"
+    ],
+    "notes": "All twelve portable and twelve shared frames inspected, with full-resolution inflated cushions, south name and cascade entrance. Corrected parking enclosure, separated podium fascias, transparent entrance courses and inflated film have coherent geometry. Three seating tiers, lattice roof, displays and circulation are visible without prior inter-tier gaps."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:f648acba976425b5773a0c2f672db19382c53850374158687592bf83b19333df",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:86841e03351e63798a09862b4f7e04ce5da15b007f9cd1180fbf7c732a59a3b5",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.etfe_film": {
+        "path": "materials/etfe_film.matgraph.json",
+        "hash": "sha256:888098f2b9fdd6eab3d80120aa02637ab617adc7816f332a67a5852c04e06377"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-inflated-film.png",
+      "shots/shared/near-cascade-entrance.png",
+      "shots/shared/near-south-name.png",
+      "shots/shared/near-three-tiers.png",
+      "shots/shared/near-transparent-roof.png",
+      "shots/shared/near-goal-display.png",
+      "shots/shared/far-open-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared ETFE film, painted steel and concrete retain physical UV scales. Clear film sections deliberately preserve local alpha while opaque ETFE uses the common graph. Actual sky-PMREM and geographic streaming/unload assertions pass."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:81dcda990e440bcf0a2b574e491107296017c6902a3183bfad5ca5c5c9c93ddb",
+    "notes": "Exact mapped pitch and current envelope establish south-southwest front and raised promenade. North-up frame matches the current footprint. Field and structural feet at native Y0 use terrain contact; the esplanade rises to the photographed entrance level."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Operator dimensions, current architect and engineer photography, mapped envelope and published facade system govern the detailed exterior. Inflated diamond surfaces, entrance cascades, inclined columns, roof structure and individually modeled chairs are reviewed. Static daylight facade, reconstructed logo geometry and seat distribution are appropriate to the published exterior; changing illumination, advertisements and inaccessible parking machinery are not represented."
+  }
+}

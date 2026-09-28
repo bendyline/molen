@@ -20,10 +20,24 @@ const biome = resolve(
  * by QA hashes already contain.
  */
 export function biomeJson(value, path) {
-  return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
-    input: JSON.stringify(value, null, 2),
-    encoding: 'utf8',
-  });
+  const input = `${JSON.stringify(value, null, 2)}\n`;
+  try {
+    return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
+      input,
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'pipe'],
+    });
+  } catch (error) {
+    // Hash-bound authoring documents deliberately disable formatting in biome.json.
+    // Biome returns their unchanged stdin with status 1; retain the generator's exact bytes.
+    if (
+      error.status === 1 &&
+      error.stdout === input &&
+      error.stderr?.includes('the formatter is currently disabled')
+    )
+      return input;
+    throw error;
+  }
 }
 
 export function formatJson(value, indent = 0, prefix = 0) {

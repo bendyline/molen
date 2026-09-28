@@ -1,0 +1,83 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0700_rostec_arena",
+  "sourceHash": "sha256:cdf1d3a1d0fdf441cced8975b6a8ef23959eaabf405471a31978b6c8e35bd288",
+  "runtimeHash": "sha256:5ce8ad5ec5f0bca6125372f9f27592e758a55247fa02f9e96b0af5b38fab2667",
+  "captureReportHash": "sha256:e097907f9c4ee88fa94c73bb50dd37a61fdf1dbf61bef8edfc2fcaa8dc22f6ef",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Permanent detailed exterior and visible stadium bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-blue-white-facade.png",
+      "shots/near-perforated-cladding.png",
+      "shots/near-angular-corner.png",
+      "shots/near-mast-stays.png",
+      "shots/near-roof-lattice.png",
+      "shots/near-clear-roof-strip.png",
+      "shots/near-blue-mosaic-bowl.png",
+      "shots/near-hospitality.png",
+      "shots/near-entrance-stairs.png",
+      "shots/near-ground-arcade.png",
+      "shots/near-dugouts.png",
+      "shots/far-northwest.png"
+    ],
+    "notes": "All17 portable and17 shared current frames inspected, followed by full-resolution perforated façade, entrance, dugout, lattice and placement views. Final revisions restore continuous concourse slabs, blue-white irregular seating mosaic, properly positioned dugouts and unobscured field surface. Closeup verifies genuine circular alpha-cutout holes with visible structure through them; canonical surface is embedded for portable rendering."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:37316ec2a2f79e45e3f5a37cca67e8a751e326507c6c43bf0d4fd57468f759d7",
+    "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
+    "specHash": "sha256:9de60c03cb01c7bbbaa05209b9fad2250d83ba45aae107d2da345e6186519b0d",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_perforated_round": {
+        "path": "materials/metal_perforated_round.matgraph.json",
+        "hash": "sha256:78f39ce5c28a38b74894db8d641965425041b418f4fb67a7c1cf53b7ed723c6b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-blue-white-facade.png",
+      "shots/shared/near-perforated-cladding.png",
+      "shots/shared/near-angular-corner.png",
+      "shots/shared/near-mast-stays.png",
+      "shots/shared/near-roof-lattice.png",
+      "shots/shared/near-clear-roof-strip.png",
+      "shots/shared/near-blue-mosaic-bowl.png",
+      "shots/shared/near-hospitality.png",
+      "shots/shared/near-entrance-stairs.png",
+      "shots/shared/near-ground-arcade.png",
+      "shots/shared/near-dugouts.png",
+      "shots/shared/far-northwest.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared metric concrete/painted metal and identity-specific ETFE or round-perforation surfaces render correctly; local transparent roofing/glass preserve PBR alpha. Sky-PMREM geographic renders and unload assertions passed. Fine seams/rods can alias at distant overview resolution; close frames retain them."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:9e5e1081131d3f2536899dab0bb2f871ae110773ad82e1fae133ab5fa177602d",
+    "notes": "Exact mapped executed building and pitch establish angle/anchor; published structural axes are distinguished from the larger façade perimeter. Ground columns/pitch sit at street datum;4.9m podium has physical stair access. The roof aligns the magenta mapped envelope. Slightly embedded angled parapet corners are intentional."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Executed2018 stadium follows constructor photographs and structural engineer published32stayedtrusses,126.9×89.4m opening and47m maximum.6blue/white stripes, polygonal rounded corners, transparent inner roof, hospitality ribbon, two seating tiers and needle masts distinguish it. Detailed member/panel/seat inventories and4mm/12mm perforation schedule are reconstructed. Abandoned2012retractable scheme is excluded."
+  }
+}

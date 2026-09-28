@@ -45,12 +45,15 @@ const loader = new GLTFLoader();
 const models = new StructureModelLibrary(
   async (ref) => {
     loads.push(ref);
-    const path = `worldgen/assets/${ref.replaceAll('.', '/')}/model.glb`;
-    const manifest = await json<{ stats: { triangles: number } }>(
-      path.replace('model.glb', 'asset.json'),
+    const sidecarPath = pack.assets[ref];
+    if (!sidecarPath) throw new Error(`Unknown model asset: ${ref}`);
+    const manifest = await json<{ files: { main: string }; stats: { triangles: number } }>(
+      `worldgen/${sidecarPath}`,
     );
     assetTriangles[ref] = manifest.stats.triangles;
-    const response = await fetch(`${content}${path}`);
+    const response = await fetch(
+      new URL(manifest.files.main, new URL(`${content}worldgen/${sidecarPath}`, location.href)),
+    );
     if (!response.ok) throw new Error(`${ref}: HTTP ${response.status}`);
     const scene = (await loader.parseAsync(await response.arrayBuffer(), '')).scene;
     const refs = new Set<string>();

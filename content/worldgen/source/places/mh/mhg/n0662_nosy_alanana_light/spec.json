@@ -1,0 +1,163 @@
+{
+  "id": "N0662",
+  "key": "nosy_alanana_light",
+  "title": "Nosy Alañaña Light",
+  "wikidataId": "Q3378451",
+  "size": [
+    10.2,
+    60,
+    11.9
+  ],
+  "smoothNormalSlots": [
+    "trim"
+  ],
+  "visualBrief": "Slender eight-sided concrete taper with staggered arched window rows, worn pale lower shaft and dark upper daymark, strong eight gallery consoles, octagonal concrete balustrade, round lantern and domed cap. Broad stepped entrance podium and flat projecting door canopy.",
+  "sourceFacts": {
+    "heightMeters": 60,
+    "baseAcrossFlatsApproxMeters": 7.1,
+    "year": 1932,
+    "basis": "APMF operator2020 ministerial visit explicitly gives60m height and photographs the doorway, concrete landing steps and lantern. Original2023 Riaan Wessels and2006 Maxsnet exterior photographs establish octagonal taper, staggered arches, upper dark band, concrete gallery and domed cap. Widths and intermediate elevations are photograph proportions."
+  },
+  "referencePages": [
+    "https://apmf.mg/index.php/mediatheque/images/fanilon-dranomasina-eny-aminny-nosy-alagnagna-phare-de-lile-aux-prunes",
+    "https://apmf.mg/sites/default/files/images/3_11.jpg",
+    "https://apmf.mg/sites/default/files/images/2_10.jpg",
+    "https://apmf.mg/sites/default/files/images/4_11.jpg",
+    "https://commons.wikimedia.org/wiki/File:Outside_of_lighthouse.jpg",
+    "https://commons.wikimedia.org/wiki/File:Phare_de_l%27Ile_aux_Prunes.jpg",
+    "https://www.openstreetmap.org/node/5316362054"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      49.4600634,
+      -18.0488027
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/5316362054",
+    "notes": "Exact-QID lighthouse node fixes island position, replacing the older point about7m north. Octagonal facade direction and entry toward the southern keeper compound are photograph/site-layout reconstructions; no surveyed entrance bearing is claimed. Terrain supplies island ground contact."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Paint degradation varies strongly between the2006,2020 and2023 photographs. The model preserves pale shaft/dark upper daymark with reusable plaster and metal surfaces rather than copied stains. Detached keeper houses and island vegetation remain map/environment features; static glazing does not operate a navigational light."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-gallery",
+      "position": [
+        10,
+        56,
+        12
+      ],
+      "lookAt": [
+        0,
+        54.2,
+        0
+      ]
+    },
+    {
+      "name": "near-arches",
+      "position": [
+        9,
+        23,
+        11
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        9,
+        5,
+        12
+      ],
+      "lookAt": [
+        0,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        64,
+        37,
+        78
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0662_nosy_alanana_light",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -4.711785793304443,
+      0,
+      -4.711785793304443
+    ],
+    "max": [
+      4.711785793304443,
+      60,
+      6.599999904632568
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

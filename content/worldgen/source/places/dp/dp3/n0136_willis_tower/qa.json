@@ -1,0 +1,53 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0136_willis_tower",
+  "sourceHash": "sha256:b822fc8cb4100588681ea4e8783ae9a3027aced464093914a5423fceea440ff1",
+  "runtimeHash": "sha256:bae8f3c1a4bc2d6463b043e381bf8f1ceb2e1ce1aac8241a26fa5a002bc39198",
+  "captureReportHash": "sha256:a9cdac360ae00c2894edeb1dad215b16f572bb6db73fb6eb348b7ac513666aec",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed exterior for Molen world-viewer use.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-podium.png",
+      "shots/near-facade.png",
+      "shots/near-mechanical.png",
+      "shots/near-skydeck.png",
+      "shots/near-antennas.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all eleven current portable frames, including four turntables and podium, facade, mechanical, Skydeck, antenna and distant views. The rebuilt nine-tube silhouette, continuous facade glazing, inset mechanical backing, complete hill skylight and five transparent glass balconies are present. Thin louvers and mast members alias in the CLI un-antialiased fixed-resolution view; the higher-resolution antialiased shared captures resolve the same geometry cleanly. No visible missing faces or clipping at the reviewed detail views."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e10ecde159f9b92242378c8450bc647498a84a4a3b67b008c8375d1f58cf8f70",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-podium.png",
+      "shots/shared/near-facade.png",
+      "shots/shared/near-mechanical.png",
+      "shots/shared/near-skydeck.png",
+      "shots/shared/near-antennas.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all eleven current shared-material frames, including north-up placement. Painted metal, concrete and timber each load once. Bronze curtain-wall glass retains its local material; Skydeck glass retains BLEND alpha and double-sided thin-wall rendering rather than receiving opaque shared paint. Metric material mapping, podium storefronts, roof rails and vegetation remain distinct. The library unload check releases model geometry while retaining shared surface objects."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:79db99878a255a5d0f2ac2075792921a084ef404f03d310ea161a7929bb3ebb2",
+    "notes": "Exact-QID way380868216 supplies the block/podium outline; detailed upper building parts establish the separate nine-tube tower center. Heading0.0176609603088965 aligns the published opposite corner setbacks and west/center highest tubes with those parts. Orthographic overlay matches the irregular Catalog podium and west entry recess at one metric scale. Native-X balconies face west. Published22.86m tubes are retained rather than stretching to the roughly2% larger mapped roof perimeter. GroundY0 follows the host terrain-contact contract."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "726110 retained triangles form the complete researched architectural exterior in Molen shared-material style: nine75-foot tubes with50/66/90/109-storey terminations,442.1m roof and527.3m tip; ten-bay facades with projecting piers, inset bronze panes and true louvers; roof plant, parapets, aerials and lattice mast bases; eleven mapped current podium components, storefronts, entry canopies, roof seating and Novum85x75-foot curved skylight. Updated the original four-box scheme to five balconies using the operator2024 factsheet and Clark2022 construction record. Individual floor elevations, balcony center spacing, mullion sections, roof fittings and planting arrangements are documented exterior reconstructions. Private interiors, current retail signs and exact pane reflections are outside this architectural exterior asset."
+  }
+}

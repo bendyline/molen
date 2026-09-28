@@ -1,0 +1,67 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0021_sanjo_ohashi_bridge",
+  "sourceHash": "sha256:5bec80d763ac335c3cd21310b7390ed49e6e2e161ced9b6116272aad52c8deba",
+  "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+  "captureReportHash": "sha256:5d00a5269593d8825cd95405443b5c1384efea8a2a99f31c03137b72b92c24f4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-elevation.png",
+      "shots/north-elevation.png",
+      "shots/timber-joinery.png",
+      "shots/bronze-giboshi.png",
+      "shots/asanoha-barrier.png",
+      "shots/checker-paving.png",
+      "shots/pier-frame.png",
+      "shots/steel-soffit.png",
+      "shots/east-bank.png"
+    ],
+    "notes": "All14 current portable frames inspected. Nine-span steel structure, circular stone shoes, hinoki railings, fourteen bronze giboshi, timber joinery, connected asanoha lattice, fine checker pattern within larger paving slabs and soffit members are visible. Revised after comparing owner2024 photographs: replaced radial pattern and oversized checker tiles; shortened finial profile."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:18fe035b89b4d5e72258aaa85c140a6b3a9d2c9cb88f7b70f2e487e81e0ccd71",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-elevation.png",
+      "shots/shared/north-elevation.png",
+      "shots/shared/timber-joinery.png",
+      "shots/shared/bronze-giboshi.png",
+      "shots/shared/asanoha-barrier.png",
+      "shots/shared/checker-paving.png",
+      "shots/shared/pier-frame.png",
+      "shots/shared/steel-soffit.png",
+      "shots/shared/east-bank.png"
+    ],
+    "notes": "All 13 current native-frame shared-surface images inspected: four overall views and nine close details/elevations. Bronze, wood, stone shoes, timber joinery, asanoha lattice, paving and steel soffits render intact. This standalone asset review does not infer a bank fit; the separate production GSI terrain reports exercise the actual placement. Model unload passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a6e7e051590b21b189dbe74f24928129bf838d3861739007e0925ceb325e80dd",
+    "terrainReports": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/gsi/N0021-fit-report.json",
+        "hash": "sha256:bad67d490527e2e1e7d2e837fbf3b08589a0735910ad8a285d156e1fdd04f339"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/gsi/N0021-roads-fit-report.json",
+        "hash": "sha256:b6c5b1b20e52c67c8f8c1f6cd95ad8160c1fad995deb074fe9073a767fc60416"
+      }
+    ],
+    "notes": "Exact mapped Q3087620 bridge axis and published 73.3 × 16.7 m exterior reviewed against independent current GSI DEM1A ground. West road reference at [135.7712849734,35.0090017595] is 41.714 m; native road endpoint 4.55 m gives model origin approximately 37.16 m. The independent east road plateau at native X 40 m is 41.733 m. All eight current production terrain images inspected, including OSM carriageway/sidewalk approach geometry: clipped connector surfaces meet both modeled road ends without duplicate bridge spans or tiny inferred connector piers. The endpoint rays +2.25/+0.73 m are over the steep abutment-bank faces, not the upper road plateau, and are retained. The 1 m laser DEM preserves 6,630 null river cells; unknown riverbed is omitted and never filled or treated as zero. Host must supply fine terrain and sampleStructureTerrain using the same bank reference consistently across all resident tiles; without this callback the extended model remains deferred and its procedural fallback stays visible. No underwater footing/bathymetry survey or universal compatibility with coarse global DEM is claimed."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "716,504-triangle exterior reflects owner2024 restoration report and photographs, including published14 posts and nine I-girder spans. Fine historical inscriptions and sword scars on the retained bronze finials are not sculpted; support sections/span spacing and foundation depths remain photo reconstruction requiring stronger dimensional evidence."
+  }
+}

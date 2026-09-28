@@ -45,11 +45,17 @@ export {
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';
+export {
+  type HistoricalStructureAppearance,
+  isHistoricalStructureAppearance,
+  isStructureViewingDate,
+} from './kernel/structure-date';
 export type {
   StructureCatalogDoc,
   StructureIndex,
   StructureMapRule,
   StructurePlacement,
+  StructureQueryOptions,
   StyleSuggestion,
 } from './kernel/structure-index';
 export {

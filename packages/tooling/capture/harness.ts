@@ -4,6 +4,7 @@ import { figureKind } from '@bendyline/molen-figures/client';
 import type { Keyframe, SceneCamera } from '@bendyline/molen-schema';
 import { createTerrainObject } from '@bendyline/molen-terrain/client';
 import { heightfieldFromPng, type TerrainDescriptor } from '@bendyline/molen-terrain/kernel';
+import { Box3, Sphere, Vector3 } from 'three';
 
 // Browser-side capture harness. Bundled (with three.js) by scripts/build-capture.mjs into
 // dist/capture/harness.js and loaded by capture.html. Playwright calls window.__molenCapture
@@ -102,6 +103,29 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
   // Async barrier: gltf instances swap in before the single deterministic frame; clip poses
   // derive from the keyframe tick inside renderFrame.
   await viewer.ready();
+  // A long bridge's auto-framed camera can sit beyond the normal 5 km clip plane.
+  // Fit clipping only after asynchronous models have supplied their actual bounds.
+  const worldBounds = new Box3().setFromObject(viewer.renderer.worldRoot);
+  if (!worldBounds.isEmpty()) {
+    const sphere = worldBounds.getBoundingSphere(new Sphere());
+    const camera = viewer.renderer.camera;
+    const far = camera.position.distanceTo(sphere.center) + sphere.radius + 1;
+    const forward = camera.getWorldDirection(new Vector3());
+    let nearestDepth = Infinity;
+    for (const x of [worldBounds.min.x, worldBounds.max.x])
+      for (const y of [worldBounds.min.y, worldBounds.max.y])
+        for (const z of [worldBounds.min.z, worldBounds.max.z])
+          nearestDepth = Math.min(
+            nearestDepth,
+            new Vector3(x, y, z).sub(camera.position).dot(forward),
+          );
+    // A 0.1m near plane loses centimetre masonry/ironwork separation hundreds of
+    // metres away. Move it only when the entire scene lies well ahead; retain a
+    // fifty-fold safety margin and preserve close/interior captures unchanged.
+    const near = nearestDepth > 100 ? Math.max(camera.near, nearestDepth / 50) : camera.near;
+    if (Number.isFinite(far) && Number.isFinite(near))
+      viewer.renderer.setCameraClip(near, Math.max(camera.far, far));
+  }
   viewer.renderFrame();
   const stats = viewer.renderer.stats();
   prevViewer = viewer;

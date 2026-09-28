@@ -1,0 +1,141 @@
+{
+  "id": "N0643",
+  "key": "kiipsaare_lighthouse",
+  "title": "Kiipsaare Lighthouse",
+  "wikidataId": "Q498583",
+  "size": [
+    4.5,
+    26.1,
+    3.5
+  ],
+  "visualBrief": "Slender slightly leaning weathered concrete lighthouse with narrow recessed openings, worn paint courses, exposed threshold, circular gallery, empty lantern frame and rust-colored shallow cupola.",
+  "sourceFacts": {
+    "heightMeters": 26,
+    "currentSetting": "In the sea on unstable ground; angle of inclination changes.",
+    "basis": "Estonian national tourism agency description and official project photographs. Cached Wikidata25m differs from the primary tourism26m; primary26m used."
+  },
+  "referencePages": [
+    "https://visitestonia.com/en/kiipsaare-lighthouse",
+    "https://transpordiamet.ee/tuletornid",
+    "https://visitestonia.com/images/665550/kiipsaare-tuletorn-011-visit-estonia.jpg",
+    "https://visitestonia.com/images/665551/kiipsaare-tuletorn-008-visit-estonia.jpg"
+  ],
+  "referenceRights": "VisitEstonia photographs consulted as primary location references; images are not embedded, copied as textures or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z doorway",
+    "origin": "Approximate visible base/waterline reference; photographic2-degree lean toward-X is baked into this static source."
+  },
+  "geographicProposal": {
+    "anchor": [
+      21.84111111,
+      58.49583333
+    ],
+    "heading": 0,
+    "elevationMode": "water-contact-review",
+    "source": "https://www.wikidata.org/wiki/Q498583",
+    "status": "draft-water-level",
+    "notes": "Reference coordinate only: no exact mapped footprint is cached. Cylindrical main silhouette is nearly rotationally symmetric; doorway azimuth and lean direction are unresolved. Do not ground this offshore structure to a land DEM or claim current tilt."
+  },
+  "limitations": [
+    "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
+    "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
+    "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
+    "The2-degree lean is a representative photo-proportioned pose, not a current survey; the authority says it varies. Diameter, gallery, lantern framing and irregular paint bands are photo estimates. Water level, seabed/submerged footing and door azimuth remain unresolved. No intact lens or active beacon is invented."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-gallery",
+      "position": [
+        7,
+        24,
+        9
+      ],
+      "lookAt": [
+        -0.8,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "near-shaft",
+      "position": [
+        5,
+        12,
+        9
+      ],
+      "lookAt": [
+        -0.4,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        4,
+        2.5,
+        6
+      ],
+      "lookAt": [
+        -0.1,
+        1.4,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        24,
+        15,
+        36
+      ],
+      "lookAt": [
+        -0.4,
+        13,
+        0
+      ]
+    }
+  ],
+  "assetId": "molen.worldgen.structure.n0643_kiipsaare_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -2.5226876735687256,
+      -0.048161305487155914,
+      -1.7200000286102295
+    ],
+    "max": [
+      1.3791593313217163,
+      25.985034942626953,
+      1.7200000286102295
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

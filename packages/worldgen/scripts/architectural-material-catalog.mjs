@@ -28,13 +28,26 @@ export const MATERIAL_PREVIEW_TINTS = {
   metal_corrugated: '#a9b2b2',
   metal_copper: '#8db2a0',
   metal_painted: '#899b96',
+  metal_bronze_cast: '#6c8675',
+  metal_perforated_square: '#ef5e20',
+  metal_perforated_round: '#e5e8e9',
+  metal_perforated_round_open: '#e5e8e9',
+  metal_expanded_diamond: '#e5e8e9',
+  metal_stainless: '#e4e7e8',
   stone: '#b4b09e',
   stone_ashlar: '#c7c1b0',
   stone_limestone: '#d2c8ae',
+  stone_limestone_raw: '#c8bfaa',
+  stone_limestone_weathered: '#c8bfaa',
   stone_sandstone: '#c6a981',
+  stone_sandstone_raw: '#b19886',
+  stone_basalt_raw: '#6e736d',
   stone_basalt: '#818b86',
   stone_drywall: '#aaa997',
   stone_granite: '#aaa9a1',
+  stone_travertine: '#d4ccb4',
+  clay_fired: '#b47554',
+  stone_marble: '#e5e2d8',
   earth_adobe: '#d0b38b',
   earth_rammed: '#c8b293',
   plaster_lime: '#e4dfce',
@@ -48,6 +61,7 @@ export const MATERIAL_PREVIEW_TINTS = {
   concrete_plain: '#b9bcb5',
   stucco: '#e4d8be',
   membrane: '#99a19e',
+  etfe_film: '#f5f5f3',
   gravel: '#c1b8a5',
 };
 
@@ -63,10 +77,17 @@ const families = [
       'stone',
       'stone_ashlar',
       'stone_limestone',
+      'stone_limestone_raw',
+      'stone_limestone_weathered',
       'stone_sandstone',
+      'stone_sandstone_raw',
+      'stone_basalt_raw',
       'stone_basalt',
       'stone_drywall',
       'stone_granite',
+      'stone_travertine',
+      'clay_fired',
+      'stone_marble',
       'terracotta_screen',
     ],
   ],
@@ -89,12 +110,27 @@ const families = [
   ],
   ['plant-fiber', ['bamboo', 'thatch']],
   ['fabric', ['fabric_canvas']],
+  ['polymer-film', ['etfe_film']],
   [
     'roofing',
     ['shingle_asphalt', 'slate', 'tile_ceramic', 'tile_flat', 'tile_glazed', 'membrane', 'gravel'],
   ],
   ['ceramic', ['tile_mosaic']],
-  ['metal', ['metal_standing_seam', 'metal_corrugated', 'metal_copper', 'metal_painted']],
+  [
+    'metal',
+    [
+      'metal_standing_seam',
+      'metal_corrugated',
+      'metal_copper',
+      'metal_painted',
+      'metal_stainless',
+      'metal_perforated_square',
+      'metal_perforated_round',
+      'metal_perforated_round_open',
+      'metal_expanded_diamond',
+      'metal_bronze_cast',
+    ],
+  ],
   ['render', ['stucco', 'plaster_lime', 'plaster_tadelakt']],
   ['concrete', ['concrete_plain', 'concrete_panel', 'concrete_boardformed']],
   ['glazing', ['window_punched', 'window_grid', 'window_sliding', 'storefront']],
@@ -124,6 +160,11 @@ const variants = {
   stone_granite: [
     { id: 'gray_granite', label: 'Gray dressed granite', tint: '#aaa9a1' },
     { id: 'pink_granite', label: 'Pink dressed granite', tint: '#b99e91' },
+  ],
+  stone_marble: [
+    { id: 'white_marble', label: 'Honed white marble', tint: '#e5e2d8' },
+    { id: 'green_marble', label: 'Green marble', tint: '#6c8579' },
+    { id: 'rose_marble', label: 'Rose marble', tint: '#c9a69c' },
   ],
   wood_plain: [
     { id: 'natural_timber', label: 'Natural timber', tint: '#b7a17b' },
@@ -185,6 +226,20 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       if (['wood_painted_shingle', 'siding_shingle'].includes(key)) use.push('roof');
       if (key === 'wood_plain') use.splice(0, use.length, 'timber', 'beam', 'deck', 'trim');
       if (key === 'fabric_canvas') use.splice(0, use.length, 'sail', 'awning', 'cloth');
+      if (key === 'etfe_film') use.splice(0, use.length, 'inflated-cushion', 'facade', 'roof');
+      if (key === 'stone_marble')
+        use.splice(0, use.length, 'column', 'sculpture', 'cladding', 'trim');
+      if (
+        [
+          'stone_limestone_raw',
+          'stone_limestone_weathered',
+          'stone_sandstone_raw',
+          'stone_basalt_raw',
+        ].includes(key)
+      )
+        use.splice(0, use.length, 'boulder', 'irregular-block', 'foundation', 'sculpture');
+      if (key === 'metal_stainless')
+        use.splice(0, use.length, 'bridge', 'structural-steel', 'rail', 'sculpture', 'trim');
       if (['stone', 'stone_ashlar', 'stone_basalt', 'concrete_plain'].includes(key))
         use.push('foundation', 'pier');
       let uvOrientation =
@@ -204,6 +259,42 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       if (key === 'wood_plain')
         uvOrientation =
           'U along the timber grain/long axis; V across it. No board seams in this surface.';
+      if (key === 'etfe_film')
+        uvOrientation =
+          'Surface-aligned metric UVs; nondirectional smooth polymer film. Panel seams and inflation remain geometry. Transparent parts retain local PBR alpha instead of binding this opaque shared graph.';
+      if (key === 'stone_marble')
+        uvOrientation =
+          'Surface-aligned metric UVs; continuous subtle mineral veins without masonry joints.';
+      if (
+        [
+          'stone_travertine',
+          'stone_limestone_raw',
+          'stone_limestone_weathered',
+          'stone_sandstone_raw',
+          'stone_basalt_raw',
+          'clay_fired',
+        ].includes(key)
+      )
+        uvOrientation =
+          'Surface-aligned metric UVs; fine continuous grain without mortar. Individual stone or brick joints are supplied by geometry.';
+      if (key === 'metal_perforated_square')
+        uvOrientation =
+          'Surface-aligned U/V in meters divided by0.085m per repeat. Square65.5mm holes use base-color alpha cutouts; opaque cassette folds and fasteners remain geometry.';
+      if (key === 'metal_perforated_round')
+        uvOrientation =
+          'Surface-aligned U/V meters divided by0.012m per repeat. Round4mm holes are actual alpha cutouts; surrounding plate, folded panel edges and fasteners use geometry.';
+      if (key === 'metal_perforated_round_open')
+        uvOrientation =
+          'Surface-aligned U/V meters divided by0.012m per repeat. Round9mm alpha apertures provide approximately44% open area. The metric hole pattern is a reusable reconstruction, not a measured fabrication schedule.';
+      if (key === 'metal_expanded_diamond')
+        uvOrientation =
+          'U follows the long diamond axis and repeats every0.12m; V repeats every0.04m. Staggered diamond alpha holes cover56% of the sheet. Aspect and pitch are photograph reconstructions;56% openness is supported by the Warsaw engineer facade manual. Physical strip weaving and edge thickness remain geometry.';
+      if (key === 'metal_bronze_cast')
+        uvOrientation =
+          'Surface-aligned metric UVs on cast metal; fine nondirectional patination and pits without sheet joints.';
+      if (key === 'metal_stainless')
+        uvOrientation =
+          'U follows the brushing direction; continuous fine grain without panel seams.';
       if (key === 'fabric_canvas')
         uvOrientation =
           'U and V follow the woven fabric yarn directions. Fold, seam and hem geometry keeps its own surface-aligned UVs.';
@@ -232,6 +323,7 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
         variants: variants[key] ?? [],
         resolution,
         channels,
+        ...(doc.alphaTest === undefined ? {} : { alphaTest: doc.alphaTest }),
         textureMemory: {
           uncompressedRgba8Bytes: resolution[0] * resolution[1] * 4 * channels.length,
           withMipmapsUpperBoundBytes: Math.ceil(
@@ -247,7 +339,7 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       uvConvention:
         'Meters per repeat. Worldgen: uv:"meters", uvScale:repeatMeters. Metric GLBs: divide local surface coordinates by repeatMeters exactly once.',
       colorConvention:
-        'Neutral graph maps × semantic vertex-color tint. Color variants reuse one shared material and texture set; they must not cause duplicate graph bakes or texture uploads.',
+        'Neutral graph maps Ã— semantic vertex-color tint. Color variants reuse one shared material and texture set; they must not cause duplicate graph bakes or texture uploads.',
       normalConvention:
         'Tangent-space height-derived microstructure; construction edges and silhouettes remain geometry.',
       uniqueArt:
@@ -258,7 +350,7 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       lifetime:
         'The current world viewer prepares registered style-pack surfaces after the first frame and retains shared material textures until viewer disposal. Model eviction releases model geometry and its private fallback materials; it does not dispose shared library textures. Per-surface demand loading and LRU eviction are future work.',
       quality:
-        '256² authored defaults with mipmapped sampling; maximum asset fidelity still requires correct geometry, UV orientation, metric scale and local material review.',
+        '256Â² authored defaults with mipmapped sampling; maximum asset fidelity still requires correct geometry, UV orientation, metric scale and local material review.',
     },
     entries,
   };

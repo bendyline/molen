@@ -1,9 +1,10 @@
-import { mkdtemp } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { cliFlagSpecs, cliVersion, parseArgs, runCli } from '../src/cli-commands';
 import { scaffoldExperience } from '../src/ops/index';
+import { buildCubeGlb } from './fixtures/build-glb';
 
 interface Captured {
   code: number;
@@ -80,6 +81,45 @@ describe('argument parsing', () => {
 });
 
 describe('molen CLI surface', () => {
+  it('rejects --asset-dir without a value before importing into a default directory', async () => {
+    const result = await cli('asset', 'import', 'absent.glb', '--asset-dir');
+    expect(result.code).toBe(2);
+    expect(result.err).toContain('--asset-dir requires a directory value');
+    expect(result.out).toBe('');
+  });
+
+  it('imports into an exact --asset-dir and reimports by ID without relocating it', async () => {
+    const source = join(projectDir, 'tower.glb');
+    const target = join(projectDir, 'assets/places/c2/tower');
+    await writeFile(source, await buildCubeGlb());
+    const first = await cli(
+      'asset',
+      'import',
+      source,
+      '--id',
+      'tower',
+      '--asset-dir',
+      target,
+      '--project',
+      join(projectDir, 'project.json'),
+    );
+    expect(first.code, first.err).toBe(0);
+    const again = await cli(
+      'asset',
+      'import',
+      source,
+      '--id',
+      'tower',
+      '--force',
+      '--project',
+      join(projectDir, 'project.json'),
+    );
+    expect(again.code, again.err).toBe(0);
+    expect(again.out).toContain(target);
+    const manifest = JSON.parse(await readFile(join(projectDir, 'project.json'), 'utf8'));
+    expect(manifest.assets.tower).toBe('assets/places/c2/tower/asset.json');
+  });
+
   it('rejects an unknown flag with a did-you-mean and exit code 2', async () => {
     const bogus = await cli('validate', 'nope.json', '--bogus', '1');
     expect(bogus.code).toBe(2);

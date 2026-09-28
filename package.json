@@ -14,6 +14,11 @@
     "pretypecheck": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
     "source:check": "node scripts/check-source-bundles.mjs",
+    "assets:pack": "node scripts/asset-packs.mjs pack",
+    "assets:fetch": "node scripts/asset-packs.mjs fetch",
+    "assets:check": "node scripts/asset-packs.mjs check",
+    "assets:publish": "node scripts/asset-packs.mjs publish",
+    "assets:test": "node --test scripts/test/asset-packs.test.mjs",
     "audit:prod": "pnpm audit --prod",
     "lint": "pnpm -r lint && biome check . && node scripts/check-release-gate.mjs && node scripts/check-package-contents.mjs && node scripts/check-shipped-docs.mjs",
     "pretest:unit": "pnpm -r build",
@@ -21,8 +26,8 @@
     "test": "pnpm test:unit",
     "pretest:golden": "pnpm -r build",
     "test:golden": "pnpm -r --workspace-concurrency=1 --no-bail test:golden",
-    "verify": "pnpm lint && pnpm typecheck && pnpm source:check && pnpm docs:check && pnpm test:unit && pnpm audit:prod",
-    "all": "pnpm install && pnpm build && pnpm verify && pnpm smoke:packed && pnpm docs:site:check && pnpm docs:site:build && pnpm exec playwright install chromium && pnpm test:golden",
+    "verify": "pnpm assets:check && pnpm assets:test && pnpm lint && pnpm typecheck && pnpm source:check && pnpm docs:check && pnpm test:unit && pnpm audit:prod",
+    "all": "pnpm install && pnpm assets:fetch && pnpm build && pnpm verify && pnpm smoke:packed && pnpm docs:site:check && pnpm docs:site:build && pnpm exec playwright install chromium && pnpm test:golden",
     "stamp:docs": "node scripts/stamp-docs-version.mjs",
     "docs:gen": "node packages/tooling/scripts/generate-schema-docs.mjs",
     "docs:check": "node packages/tooling/scripts/generate-schema-docs.mjs --check",
@@ -34,7 +39,7 @@
     "release": "semantic-release",
     "release:bootstrap": "node scripts/bootstrap-release.mjs",
     "smoke:packed": "node scripts/smoke-packed.mjs",
-    "predev": "pnpm --filter \"./packages/**\" -r build && node examples/world-explorer/scripts/build-content-packs.mjs",
+    "predev": "pnpm assets:fetch && pnpm --filter \"./packages/**\" -r build && node examples/world-explorer/scripts/build-content-packs.mjs",
     "dev": "pnpm --filter @bendyline/molen-examples-home dev",
     "dev:driving": "pnpm --filter @bendyline/molen-examples-city-courier dev",
     "dev:dungeon": "pnpm --filter @bendyline/molen-examples-lantern-dungeon dev",
@@ -52,7 +57,8 @@
     "@semantic-release/release-notes-generator": "14.1.0",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "playwright": "^1.63.0",
-    "semantic-release": "25.0.8"
+    "semantic-release": "25.0.8",
+    "tar": "7.5.22"
   },
   "license": "MIT"
 }

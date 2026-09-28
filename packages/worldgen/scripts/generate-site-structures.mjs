@@ -2,18 +2,19 @@
  * Run after building @bendyline/molen-worldgen:
  *   node packages/worldgen/scripts/generate-site-structures.mjs [--check]
  *
- * The source specs and GLBs live in content/worldgen/source/site-structures. Import the GLBs
+ * The source specs and GLBs live in content/worldgen/source/places. Import the GLBs
  * with `molen asset import`; this script never writes runtime sidecars.
  */
+
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { structureSourceDirectory } from './structure-source-paths.mjs';
 
-const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../../content/worldgen');
-const sourceRoot = resolve(root, 'source/site-structures');
 const check = process.argv.includes('--check');
 const biome = resolve(
   fileURLToPath(new URL('.', import.meta.url)),
@@ -452,7 +453,7 @@ function formattedJson(value, path) {
 }
 
 for (const name of names) {
-  const dir = resolve(sourceRoot, name);
+  const dir = structureSourceDirectory(name);
   const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
   if (spec.generator !== name || typeof spec.id !== 'string')
     throw new Error(`${name}: invalid spec`);
@@ -461,7 +462,6 @@ for (const name of names) {
   const buffers = out.finalize();
   const materials = buffers.groups.map((group) => material[group.slot] ?? { name: group.slot });
   const glb = Buffer.from(encodeGlb(buffers, materials, 'molen site structures'));
-  const idPath = spec.id.replaceAll('.', '/');
   const hash = `sha256:${createHash('sha256').update(glb).digest('hex')}`;
   const source = {
     format: 'molen/source-bundle@1',
@@ -474,7 +474,7 @@ for (const name of names) {
         {
           path: 'models/source.glb',
           assetId: spec.id,
-          output: `assets/${idPath}/asset.json`,
+          output: structureAssetSidecarPath(spec.id),
           pipeline: 'import',
           sha256: hash,
         },

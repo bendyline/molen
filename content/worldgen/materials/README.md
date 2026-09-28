@@ -1,7 +1,6 @@
 # Canonical architectural materials
 
-The default resource pack shares **51 procedural building materials**, including 30 construction
-patterns added for the global structure catalog. Their stable prefix is `molen.worldgen.material.`;
+The default resource pack shares **65 procedural architectural materials**. Their stable prefix is `molen.worldgen.material.`;
 use `matgraph:molen.worldgen.material.brick` in a style or scene. Reuse these documents across
 building families. Change palette tints to represent local clay, timber species, paint or stone;
 do not duplicate a graph just to recolor it.
@@ -15,7 +14,8 @@ static GLB binding, texture ownership, the extraction audit and reviewed swatche
 
 All maps bake at **256 × 256** and remain shared by material reference. Every material includes a
 roughness map; new jointed or profiled surfaces also have restrained height-derived normals, and
-the three metal finishes provide metalness. The base colors are intentionally light for
+uncoated metal finishes provide metalness. Stainless steel has continuous fine grain without
+roof-panel seams; marble also has a continuous surface for columns and sculpture. The base colors are intentionally light for
 `tint: "multiply"`; charcoal timber and basalt acquire their dark color from the style palette.
 Finer grain follows boards, reeds and sediment strata, while broad construction patterns survive
 mipmapping. Glazing keeps its own blue-gray color and should not receive an opaque wall tint.
@@ -36,6 +36,13 @@ mipmapping. Glazing keeps its own blue-gray color and should not receive an opaq
 | stone_basalt | Tightly coursed split volcanic stone; use a dark palette | 1.60 × 1.40 m | 0.97 |
 | stone_drywall | Dry-laid fieldstone with open joints | 2 × 2 m | 0.98 |
 | stone_granite | Dressed granite mineral flecks, without built-in block joints | 2 × 2 m | 0.82–0.94 |
+| stone_marble | Restrained mineral veins without joints, for columns and sculpture | 2 × 2 m | 0.52–0.64 |
+| stone_travertine | Continuous bedding and shallow pores for modeled blocks | 1.2 × 1.2 m | 0.82–0.94 |
+| stone_limestone_raw | Continuous neutral pores and mottling for modeled boulders | 1.2 × 1.2 m | 0.86–0.96 |
+| stone_limestone_weathered | Mineral mottling and biological patina on exposed ancient stone | 1.2 × 1.2 m | 0.90–0.99 |
+| stone_sandstone_raw | Continuous horizontal sediment grain without mortar joints | 1.2 × 1.2 m | 0.90–0.98 |
+| stone_basalt_raw | Continuous isotropic volcanic grain without masonry courses | 1.2 × 1.2 m | 0.86–0.95 |
+| clay_fired | Continuous fired-clay grain for individually modeled bricks | 0.8 × 0.8 m | 0.86–0.96 |
 | earth_adobe | Broad hand-formed earth blocks | 1.35 × 0.75 m | 0.99 |
 | earth_rammed | Six broad compacted lifts, subtle layered sediment | 2 × 1.20 m | 0.99 |
 | terracotta_screen | Thick ceramic webs and inset square openings | 1.20 × 1.20 m | 0.88 |
@@ -76,14 +83,27 @@ open lattice or a silhouette that needs visible holes.
 | metal_corrugated | Sixteen narrow rounded vertical flutes | 1.20 × 2 m | 0.56 |
 | metal_copper | Staggered soldered sheets, soft patination | 1.80 × 1.80 m | 0.63 |
 | metal_painted | Continuous intact paint film for modeled steel; no built-in joints | 2 × 2 m | 0.49–0.61 |
+| metal_stainless | Continuous brushed stainless grain; no panel seams | 1 × 1 m | 0.25–0.37 |
+| metal_bronze_cast | Joint-free cast bronze with fine patination and pits | 0.25 × 0.25 m | 0.59–0.72 |
+| metal_perforated_square | Actual 65.5 mm square alpha apertures on 85 mm centers | 0.085 × 0.085 m | 0.48 |
+| metal_perforated_round | Actual 4 mm round alpha apertures on 12 mm centers | 0.012 × 0.012 m | 0.50 |
+| metal_perforated_round_open | Actual 9 mm round alpha apertures on 12 mm centers | 0.012 × 0.012 m | 0.50 |
+| metal_expanded_diamond | Staggered elongated diamond alpha apertures, 56% open | 0.12 × 0.04 m | 0.50 |
 | membrane | Low-contrast flat roofing | 4 × 4 m | 0.88 |
+| etfe_film | Smooth neutral opaque ETFE film; cushion shape remains geometry | 2 × 2 m | 0.22–0.28 |
 | gravel | Roof ballast and surface aggregate | 2 × 2 m | 0.88 |
 
 For sloped roofs, U runs across the ribs and V along the drainage direction where the roof
 generator provides slope-aligned UVs. Metalness is 0.45 for coated standing seam, 0.62 for
 galvanized corrugation and 0.58 for patinated copper; these are stylized responses, not surveys.
-The new `metal_painted` surface is dielectric (metalness zero): its intact paint covers the
+The `metal_painted` surface is dielectric (metalness zero): its intact paint covers the
 substrate. Corrosion, exposed metal, rivets and welds need their own geometry or authored treatment.
+Cast bronze has continuous patination and pits; use `metal_copper` only when its sheet seams fit
+the construction. The four perforated metal surfaces use base-color alpha with `alphaTest: 0.3`.
+Frames, folded returns, panel thickness and larger openings remain geometry. Their cutout
+textures use linear minification without mip averaging to preserve small holes at distance.
+The shared `etfe_film` graph is opaque. Transparent film must retain a local GLB material;
+shared material replacement does not copy an asset's local alpha or transmission parameters.
 
 ## Render, concrete and glazing
 
@@ -108,4 +128,10 @@ The source is `packages/worldgen/scripts/generate-pack.mjs`. Regenerate with
 `node packages/worldgen/scripts/generate-pack.mjs`; `--check` verifies byte-stable output.
 Generate the labeled near/repeated swatch sheet with
 `node packages/worldgen/scripts/preview-materials.mjs --out <sheet.png>`.
-Review [3D art guidelines](../../../../../docs-src/guide/3d-art-guidelines.md) when adding materials.
+Portable GLBs may embed graph-baked base-color PNGs, including alpha holes, for standalone
+viewers. These are fallback copies of the same canonical surfaces. A GLB material's
+`extras.molenSurface` binding lets the world viewer replace its private fallback with the
+shared graph material. Keep unique artwork local. See the [texture audit](../source/material-library/texture-audit.json)
+for per-file image hashes and shared bindings.
+
+Review [3D art guidelines](../../../docs-src/guide/3d-art-guidelines.md) when adding materials.

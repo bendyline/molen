@@ -1,0 +1,175 @@
+{
+  "id": "N0564",
+  "planId": "N0564",
+  "assetId": "molen.worldgen.structure.n0564_gonbad_e_qabus",
+  "title": "Gonbad-e Qabus",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q606763"
+  },
+  "wikidataId": "Q606763",
+  "visualBrief": "Ten-flanged fired-brick tomb tower with a tapered star section, deep pointed entrance, two bordered inscription bands, corbelled neck and steep cone with a roof light.",
+  "size": [
+    17.64,
+    52.844,
+    17.72
+  ],
+  "actualBounds": {
+    "min": [
+      -8.819999694824219,
+      0,
+      -8.819999694824219
+    ],
+    "max": [
+      8.819999694824219,
+      52.84400177001953,
+      8.899999618530273
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the entrance and roof-light side",
+    "origin": "Tower center on the mound summit; Y=0 is the exterior tower base, excluding the 10 m mound"
+  },
+  "scaleBasis": "2010 laser scan tables in UNESCO nomination, printed pp. 67-72, take precedence over the rounded 53 m overview and erroneous 72 m OSM height.",
+  "geographicProposal": {
+    "anchor": [
+      55.169013207,
+      37.258093443
+    ],
+    "heading": 1.5707963267948966,
+    "source": "https://www.openstreetmap.org/way/328041889",
+    "orientationSource": "https://whc.unesco.org/uploads/nominations/1398.pdf",
+    "evidence": "Exact Q606763 OSM footprint supplies center; nomination pp. 66-67 explicitly identifies east entrance, mapped to local +Z. Circular OSM polygon cannot resolve finer door azimuth.",
+    "altitudeMode": "terrain",
+    "orientationConfidence": "published-cardinal-direction",
+    "limitations": "East-facing is a cardinal approximation; actual azimuth needs a georeferenced entrance survey. Sample terrain must include the mound summit, or the tower will be too low.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact Q606763 OSM footprint supplies center; nomination pp. 66-67 explicitly identifies east entrance, mapped to local +Z. Circular OSM polygon cannot resolve finer door azimuth. East-facing is a cardinal approximation; actual azimuth needs a georeferenced entrance survey. Sample terrain must include the mound summit, or the tower will be too low."
+  },
+  "sourceFacts": {
+    "exteriorShaftHeightMeters": 36.971,
+    "exteriorConeHeightMeters": 15.873,
+    "totalHeightMeters": 52.844,
+    "baseTipDiameterMeters": 17.296,
+    "tipDiameterAt36Meters": 15.458,
+    "flangeCount": 10,
+    "entranceWidthMeters": 1.57,
+    "entranceHeightMeters": 5.565,
+    "sourcePages": [
+      59,
+      63,
+      67,
+      68,
+      70,
+      71,
+      72,
+      75,
+      79,
+      80
+    ]
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1398",
+    "https://whc.unesco.org/uploads/nominations/1398.pdf",
+    "https://www.openstreetmap.org/way/328041889"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "limitations": [
+    "Ten right-angle flanges and taper are reconstructed from published plans, with curved bay radii interpolated between measured sections.",
+    "Inscription borders are modeled but actual Kufic glyphs are omitted; detailed muqarnas, irregular brick repairs and the internal shell are incomplete.",
+    "Cone light and entrance reveal use measured envelopes with simplified vault profiles. Modern site furniture and the surrounding mound are excluded.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "near-entrance",
+      "position": [
+        3,
+        6,
+        20
+      ],
+      "lookAt": [
+        0,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "near-cornice",
+      "position": [
+        14,
+        40,
+        22
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "name": "roof-light",
+      "position": [
+        7,
+        46,
+        22
+      ],
+      "lookAt": [
+        0,
+        41,
+        4
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        65,
+        37,
+        96
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ]
+    }
+  ]
+}

@@ -23,7 +23,7 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
 2. Build once, then drive everything through the CLI (or the MCP server, which mirrors it):
 
 ```sh
-pnpm install && pnpm -r build              # build before typecheck/test (see "Build invariant")
+pnpm install && pnpm assets:fetch && pnpm -r build  # restore GLBs, then build before checks
 node packages/tooling/dist/cli.mjs --help  # NOTE: dist/cli.mjs (.mjs, not .js)
 node packages/tooling/dist/cli.mjs new my-experience   # scaffold a runnable starter
 ```
@@ -132,5 +132,10 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).
+- **GLBs live in release asset packs, not Git.** `asset-lock.json` pins exact source and imported
+  model bytes. Use `pnpm assets:fetch` in a new checkout and `pnpm assets:check` to validate it.
+  After model changes, build and publish a new snapshot before committing its manifest; see
+  [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Preserve local GLBs and never silently restore
+  over authored changes. Runtime content packs and the viewer's geographic loading are separate.
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

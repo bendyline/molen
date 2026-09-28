@@ -296,7 +296,11 @@ for (const name of [
   'wood_painted_lap',
   'wood_painted_shingle',
   'metal_painted',
+  'metal_stainless',
+  'stone_travertine',
+  'clay_fired',
   'stone_granite',
+  'stone_marble',
   'wood_plain',
   'fabric_canvas',
 ])

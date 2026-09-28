@@ -83,6 +83,7 @@ evidence across environments rather than a proof across JS engines; see
 - Each node has an optional `input` (single upstream node) or `inputs` (named, e.g. blend's `b`).
 - `outputs` maps PBR slots (baseColor, roughness, metalness, normal, emissive, ao) to node ids.
 - Cycles are a validation error naming the path.
+- Optional `alphaTest: 0.5` renders base-color RGBA alpha as cutout holes; ramps accept `#rrggbbaa`. Omitted graphs remain opaque. Cutouts write depth normally and do not use blended transparency.
 
 Bake and inspect:
 
@@ -118,6 +119,12 @@ The client resolves materialRefs at load time:
   (through the same provider gltf assets use), CPU-bakes it, and uploads the slots onto a
   `MeshStandardMaterial`. Works in the live client and in `molen shot` (the capture server
   serves the doc). A bad ref falls back to grey with a warning — it never blanks the scene.
+
+The client stores a constant roughness or metalness channel as an exact numeric factor
+instead of allocating a map. It checks the sampled channel (roughness G, metalness B),
+preserves its quantized `byte / 255` value and multiplies the existing factor. Other channels
+keep their textures. A rendered material may therefore have a null `roughnessMap` or
+`metalnessMap` even when the baked document contains that channel.
 
 `molen material bake` (or `rasterize_material`) still bakes to PNG when you want a static
 texture asset or a golden comparison. SVG (rung 3) runs anywhere once `initSvg` has its WASM;

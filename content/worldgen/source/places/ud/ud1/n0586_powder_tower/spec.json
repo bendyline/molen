@@ -1,0 +1,184 @@
+{
+  "id": "N0586",
+  "planId": "N0586",
+  "assetId": "molen.worldgen.structure.n0586_powder_tower",
+  "title": "Powder Tower, Riga",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q186097"
+  },
+  "wikidataId": "Q186097",
+  "visualBrief": "Riga’s surviving round defensive tower, with a fieldstone plinth, deeply recessed arched gun openings, nine exposed northern cannonballs, dark iron tie and the present concave green copper roof with standing seams and finial.",
+  "size": [
+    15.1,
+    37,
+    15.1
+  ],
+  "actualBounds": {
+    "min": [
+      -7.577057838439941,
+      0,
+      -7.577057838439941
+    ],
+    "max": [
+      7.577057838439941,
+      37,
+      7.577057838439941
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "−Z north toward Bastejkalns and the visible siege cannonballs; +Z toward the city and adjoining museum",
+    "origin": "Exact mapped cylindrical tower center, pavement Y=0"
+  },
+  "scaleBasis": "Latvian official tourism publishes a 14.3 m diameter and 25.6 m tower wall height; current agency photographs show the masonry alone is roughly 1.8 diameters tall, with the roof above. The exact OSM feature explicitly gives total height 37 m and roof height 11.33 m, matching 25.67 m masonry plus roof. The photographed concave metal roof is reconstructed from those dimensions rather than treating 25.6 m as the whole silhouette.",
+  "geographicProposal": {
+    "anchor": [
+      24.10867779,
+      56.951220574
+    ],
+    "heading": 0,
+    "source": "https://www.openstreetmap.org/way/45018613",
+    "evidence": "The exact-identity cylindrical outline supplies the center. Published north-facing siege cannonballs and current agency views toward the park orient the authored northern window group; roof diameter covers the mapped eaves. Circular plan bounding axes are arbitrary and are not used to rotate the feature.",
+    "orientationConfidence": "mapped-round-center-and-photographic-cardinal-face",
+    "limitations": "The adjoining War Museum wing and nearby city-wall buildings are separate footprints. The tower keeps its complete circular exterior, with shared walls naturally hidden by surrounding map buildings.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-identity cylindrical outline supplies the center. Published north-facing siege cannonballs and current agency views toward the park orient the authored northern window group; roof diameter covers the mapped eaves. Circular plan bounding axes are arbitrary and are not used to rotate the feature. The adjoining War Museum wing and nearby city-wall buildings are separate footprints. The tower keeps its complete circular exterior, with shared walls naturally hidden by surrounding map buildings."
+  },
+  "sourceFacts": {
+    "wallHeightMeters": 25.6,
+    "wallDiameterMeters": 14.3,
+    "wallThicknessMeters": 3,
+    "roofAndFinialHeightMeters": 11.33,
+    "overallHeightMeters": 37,
+    "cannonballs": 9,
+    "currentTowerYear": 1650
+  },
+  "referencePages": [
+    "https://www.latvia.travel/en/sight/latvian-war-museum",
+    "https://www.liveriga.com/en/1594-the-powder-tower",
+    "https://www.liveriga.com/userfiles/images/apmekle/ko-redzet/apskates-vietas/arhitektura/pulvertornis/48803267036_661e06a076_k.jpg",
+    "https://www.liveriga.com/userfiles/images/apmekle/ko-redzet/apskates-vietas/arhitektura/pulvertornis/48803415137_f29c2f9ae1_k.jpg",
+    "https://www.karamuzejs.lv/node/270",
+    "https://www.openstreetmap.org/way/45018613"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The often-quoted 25.6 m dimension is treated as masonry height, supported by photographed height/diameter proportion and explicit OSM roof-height metadata; the full roof-and-finial silhouette is 37 m.",
+    "Seasonal ivy, individual weathered brick damage and hidden museum galleries are outside the fixed exterior reconstruction. Siege cannonballs and gun opening locations preserve the visible facade rhythm.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "north-gun-openings",
+      "position": [
+        -16,
+        17,
+        -24
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "cannonballs",
+      "position": [
+        -10,
+        13,
+        -15
+      ],
+      "lookAt": [
+        0,
+        12.8,
+        -3
+      ]
+    },
+    {
+      "name": "copper-roof",
+      "position": [
+        18,
+        35,
+        -24
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "masonry-base",
+      "position": [
+        18,
+        7,
+        19
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        42,
+        26,
+        -58
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ]
+}

@@ -30,6 +30,7 @@ jobs:
       # Trusted publishing needs npm >=11.5.1. Keep this pinned alongside the release toolchain.
       - run: npm install --global npm@11.19.1
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
       - run: pnpm build
       # All release checks are also reachable from `pnpm all` locally.
       - run: pnpm verify

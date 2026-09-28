@@ -1,0 +1,197 @@
+{
+  "planId": "N0158",
+  "id": "N0158",
+  "assetId": "molen.worldgen.structure.n0158_turning_torso",
+  "title": "Turning Torso",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q206435",
+  "referenceCoordinate": {
+    "latitude": 55.613333333,
+    "longitude": 12.976388888
+  },
+  "visualBrief": "Calatrava’s nine twisting five-storey units with discrete blue-gray windows in white aluminum cladding, recessed interstitial floors, circular concrete core and a separate spiraling steel spine with major diagonal and minor floor struts.",
+  "size": [
+    41.797725677490234,
+    190.0710906982422,
+    41.15776252746582
+  ],
+  "actualBounds": {
+    "min": [
+      -19.88188934326172,
+      0,
+      -16.26428985595703
+    ],
+    "max": [
+      21.915836334228516,
+      190.0710906982422,
+      24.89347267150879
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 190,
+    "floors": 54,
+    "units": 9,
+    "floorsPerUnit": 5,
+    "twistDegrees": 90,
+    "coreInnerDiameterMeters": 10.6,
+    "coreBaseWallMeters": 2.5,
+    "facade": "Curved aluminum panels with flat glass windows"
+  },
+  "reconstruction": {
+    "plan": "Exact asymmetric ground footprint and mapped circular core establish the center and signed 90-degree sweep; independent mapped units confirm rotation handedness",
+    "unitDatums": "Nine equal cycles from4 m to190 m; five occupied floors and a recessed2 m interstitial band per unit. Published190 m exterior datum replaces the coarse184 m mapped top unit."
+  },
+  "referencePages": [
+    "https://calatrava.com/projects/turning-torso-malmoe.html",
+    "https://www.hsb.se/turningtorso/",
+    "https://www.hsb.se/omhsb/goda-exempel/hsb-malmo---turning-torso-certifierad-med-miljobyggnad-idrift-silver/",
+    "https://www.openstreetmap.org/way/30926877"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      12.976355452,
+      55.613312252
+    ],
+    "heading": 1.098498019742,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/30926877",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/30926877"
+    ],
+    "wikidataId": "Q206435",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed asymmetric ground footprint, independent circular core and nine mapped upper units resolve rotation center and handedness. Upper floor overhang beyond the ground outline is intentional. BaseY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Window schedules and exact aluminum-panel curvature are reconstructed. The external truss is detailed but its connections are simplified. The separate gallery/parking building and reflecting pool are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "twisted-windows",
+      "position": [
+        68,
+        90,
+        73
+      ],
+      "lookAt": [
+        0,
+        76,
+        0
+      ]
+    },
+    {
+      "name": "external-spine",
+      "position": [
+        63,
+        137,
+        77
+      ],
+      "lookAt": [
+        7,
+        113,
+        13
+      ]
+    },
+    {
+      "name": "crown-core",
+      "position": [
+        48,
+        211,
+        77
+      ],
+      "lookAt": [
+        -3,
+        179,
+        1
+      ]
+    },
+    {
+      "name": "ground-lobby",
+      "position": [
+        69,
+        11,
+        51
+      ],
+      "lookAt": [
+        -2,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -249,
+        176,
+        385
+      ],
+      "lookAt": [
+        -3,
+        94,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 69986,
+    "vertices": 174602,
+    "materials": 4,
+    "bytes": 6953720,
+    "sha256": "sha256:ac1f133ba378121a997bd7b34c87e60688e49e4c21b846f678ce5ac18ed378fe"
+  }
+}

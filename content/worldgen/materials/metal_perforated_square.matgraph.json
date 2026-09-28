@@ -1,0 +1,29 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 131,
+  "alphaTest": 0.3,
+  "nodes": [
+    {
+      "id": "holes",
+      "type": "bricks",
+      "params": { "rows": 1, "cols": 1, "mortarWidth": 0.11470588235294116, "offset": 0 }
+    },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "holes",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#fafafaff" },
+          { "t": 0.5, "color": "#fafafaff" },
+          { "t": 0.501, "color": "#fafafa00" },
+          { "t": 1, "color": "#fafafa00" }
+        ]
+      }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.48 } },
+    { "id": "metal", "type": "const", "params": { "value": 0 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

@@ -1,0 +1,195 @@
+{
+  "planId": "N0167",
+  "id": "N0167",
+  "assetId": "molen.worldgen.structure.n0167_shun_hing_square",
+  "title": "Shun Hing Square",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q236201",
+  "referenceCoordinate": {
+    "latitude": 22.545277777,
+    "longitude": 114.105555555
+  },
+  "visualBrief": "The green-glazed Shenzhen tower with two full-height cylindrical side shafts, cream horizontal bands on a rectangular center, vertical inset upper panels, rounded stepped syringe crowns and twin slender384 m spires.",
+  "size": [
+    71.61243438720703,
+    384,
+    49.73806571960449
+  ],
+  "actualBounds": {
+    "min": [
+      -35.850101470947266,
+      0,
+      -19.58611297607422
+    ],
+    "max": [
+      35.762332916259766,
+      384,
+      30.151952743530273
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 384,
+    "occupiedHeightMeters": 298,
+    "floors": 69,
+    "structuralFacade": "Rectangular center with circular side cylinders and twin syringe-like crowns",
+    "primaryPhotographicReference": "Nippon Steel engineering brochure pages8–9"
+  },
+  "reconstruction": {
+    "plans": "Exact whole-tower and separately mapped curved central volume; two independent mast outlines establish cylinder centers and crown axis",
+    "crown": "Photographed rounded stepped crowns reconstructed to334 m mast start;50 m upper spires use mapped height datum",
+    "scope": "Main tower and attached short entrance podium; separate35-storey annex excluded"
+  },
+  "referencePages": [
+    "https://www.skyscrapercenter.com/building/shun-hing-square/258",
+    "https://www.eng.nipponsteel.com/files_publish/page/131/Special%20Steel%20Structure.pdf",
+    "https://www.rlb.com/wp-content/uploads/sites/5/2020/09/RLB-Tall-Buildings-Global1.pdf",
+    "https://www.openstreetmap.org/way/64601041"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      114.105523481,
+      22.545341191
+    ],
+    "heading": -1.229005358699,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64601041",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64601041"
+    ],
+    "wikidataId": "Q236201",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed rectangular/cylindrical footprint and separately mapped twin masts retain center, long axis and front/back phase. The low entrance footprint attaches on its mapped side. GroundY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Rounded crown layer heights, stripe widths and inset upper glazing schedule are reconstructed from the fabricator exterior photo. Corporate signs, nighttime lasers and the separate apartment annex are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "twin-crowns",
+      "position": [
+        90,
+        344,
+        102
+      ],
+      "lookAt": [
+        0,
+        321,
+        0
+      ]
+    },
+    {
+      "name": "horizontal-bands",
+      "position": [
+        71,
+        171,
+        87
+      ],
+      "lookAt": [
+        0,
+        152,
+        17
+      ]
+    },
+    {
+      "name": "cylinder-glazing",
+      "position": [
+        94,
+        87,
+        70
+      ],
+      "lookAt": [
+        23,
+        80,
+        0
+      ]
+    },
+    {
+      "name": "entrance-podium",
+      "position": [
+        96,
+        18,
+        99
+      ],
+      "lookAt": [
+        0,
+        13,
+        15
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -416,
+        314,
+        675
+      ],
+      "lookAt": [
+        0,
+        181,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 495525,
+    "vertices": 1241901,
+    "materials": 4,
+    "bytes": 49415660,
+    "sha256": "sha256:3e404cd444749d5b8c947788d895d442fd487d84f31bde26f3859c88c4c0eb03"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 216,
+  "nodes": [
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [0.05405405405405406, 1, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 37, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.91, "outMax": 1 }
+    },
+    {
+      "id": "grains",
+      "type": "noise",
+      "input": "fiber-uv",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 66, "seedOffset": 23 }
+    },
+    {
+      "id": "mineral",
+      "type": "ramp",
+      "input": "grains",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#d7d7d7" },
+          { "t": 0.4, "color": "#eeeeee" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "mineral", "b": "fiber" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "rough",
+      "type": "levels",
+      "input": "grains",
+      "params": { "outMin": 0.9, "outMax": 0.98 }
+    },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "grains",
+      "params": { "strength": 0.0007 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

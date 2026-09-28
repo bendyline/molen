@@ -10,6 +10,7 @@ import type { JsonValue } from '@bendyline/molen-schema';
 import {
   createTerrainSemanticObject,
   disposeTerrainSemanticObject,
+  setTerrainGroundCutout,
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
   type TerrainSemanticMeshOptions,
@@ -44,12 +45,14 @@ import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { TileGeometry } from '../kernel/semantic-adapter';
+import { isStructureViewingDate } from '../kernel/structure-date';
 import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
 import { matchMapStructures, orientMappedStructure } from '../kernel/structure-matching';
 import { type WorldgenQualityPreset, worldgenTileBudgetForQuality } from '../kernel/tile-budgets';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
+import { resolveStructureElevation, type StructureTerrainSampler } from './structure-elevation';
 import { clipStructureObject, withoutStructureRoads } from './structure-geometry';
 import type { WorldgenGenerator } from './worker-bridge';
 
@@ -64,6 +67,10 @@ export interface WorldgenRendererOptions {
   places?: PlacesContent;
   /** Authored geographic structures, indexed by geohash for tile lookup. */
   structures?: StructureIndex;
+  /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
+  viewingDate?: string;
+  /** Fine or cross-tile ground samples; undefined coverage leaves the procedural fallback. */
+  sampleStructureTerrain?: StructureTerrainSampler;
   materials?: WorldgenMaterialSet;
   /** Prepared prop models; without it the classification layer keeps the default tree cones. */
   models?: ModelLibrary;
@@ -162,6 +169,9 @@ export function createWorldgenSemanticRenderers(
   pack: ResolvedStylePack,
   options: WorldgenRendererOptions = {},
 ): WorldgenSemanticRenderers {
+  const viewingDate = options.viewingDate;
+  if (viewingDate !== undefined && !isStructureViewingDate(viewingDate))
+    throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   const materials = options.materials ?? createVertexColorMaterialSet();
   const ownsMaterials = options.materials === undefined;
   const metersPerUnit = options.metersPerUnit ?? 1;
@@ -426,7 +436,7 @@ export function createWorldgenSemanticRenderers(
     );
     const geometry = geometryFor(context, metersPerUnit);
     const geographic = options.structures
-      .query([west, south, east, north])
+      .query([west, south, east, north], viewingDate === undefined ? false : { viewingDate })
       .flatMap((entry) => {
         const resolved = orientMappedStructure(entry, tile, geometry);
         return resolved ? [resolved] : [];
@@ -483,6 +493,13 @@ export function createWorldgenSemanticRenderers(
       if (context.signal.aborted || disposed) return;
       let held = false;
       try {
+        const elevation = await resolveStructureElevation(
+          entry,
+          context,
+          metersPerUnit,
+          options.sampleStructureTerrain,
+        );
+        if (elevation === undefined || context.signal.aborted || disposed) continue;
         const mesh = new THREE.Group();
         if (structureObjects) {
           const prepared = await structureObjects.acquire(entry.asset);
@@ -499,12 +516,7 @@ export function createWorldgenSemanticRenderers(
         }
         const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
         mesh.name = `structure:${entry.id}`;
-        mesh.position.set(
-          x - context.origin[0],
-          (entry.datum === 'sea-level' ? 0 : context.heightfield.sampleHeight(x, z)) +
-            (entry.elevation ?? 0),
-          z - context.origin[1],
-        );
+        mesh.position.set(x - context.origin[0], elevation, z - context.origin[1]);
         mesh.rotation.y = entry.heading ?? 0;
         if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
         const object = entry.bounds ? clipStructureObject(mesh, context.tileSize) : mesh;
@@ -513,7 +525,20 @@ export function createWorldgenSemanticRenderers(
           held = false;
           continue;
         }
+        if (entry.groundCutout) {
+          if (entry.bounds) {
+            mesh.updateMatrix();
+            setTerrainGroundCutout(
+              object,
+              entry.groundCutout.outline.map(([px, pz]) => {
+                const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
+                return [p.x, p.z];
+              }),
+            );
+          } else setTerrainGroundCutout(object, entry.groundCutout.outline);
+        }
         object.name = mesh.name;
+        object.userData.structureElevation = elevation;
         object.traverse((part) => {
           part.castShadow = true;
           part.receiveShadow = true;
@@ -689,6 +714,9 @@ export function createWorldgenSemanticRenderers(
               context,
               structures.filter((entry) => structureGroup.getObjectByName(`structure:${entry.id}`)),
               metersPerUnit,
+              (entry) =>
+                structureGroup.getObjectByName(`structure:${entry.id}`)?.userData
+                  .structureElevation as number | undefined,
             );
           }
           if (options.roads?.surfaceRenderer && options.roads.renderTransportation !== false) {

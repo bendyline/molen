@@ -1,0 +1,87 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0697_mhparena",
+  "sourceHash": "sha256:15ee372ebce5536611a247b376b8a78b8bfb08b9e2ab38ed5e14a2144e13ebdc",
+  "runtimeHash": "sha256:3c1f1a11dbe0bd742be9a9950627f8cc4d26d0c78d3cfc39a7dc17a8fca468dd",
+  "captureReportHash": "sha256:debd37df418629bd6e2c94cf025e72729d59a72528dc334c83ab341e8d6371f5",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Completed current exterior and visible stadium bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-upper-ring.png",
+      "shots/near-membrane-fields.png",
+      "shots/near-floating-strut.png",
+      "shots/near-inner-extension.png",
+      "shots/near-catwalk.png",
+      "shots/near-main-stand.png",
+      "shots/near-stuttgart-seats.png",
+      "shots/near-standing-curve.png",
+      "shots/near-facade-stairs.png",
+      "shots/near-scharrena.png",
+      "shots/near-screen.png",
+      "shots/far-roof-envelope.png"
+    ],
+    "notes": "All17 current portable and17 shared views inspected, with full-resolution checks of upper roof, floating strut, facade stairs, hospitality joins and seat lettering. Detached stair cores and missing U/G seat glyphs were corrected. The hospitality glazing and colored front band now meet cleanly without coplanar flicker. Forty membrane bays, distinct inner extension, tall inclined supports, catwalk and published screen sizes are visible."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:a0404859984c0eb6d971e1245f9615ca7b662b404e7672a0d43f3c849f3d8744",
+    "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
+    "specHash": "sha256:a6b60efbc523ad32dbae25237565d00cf15a6c0c75fbb0964850a722be968226",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.gravel": {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-upper-ring.png",
+      "shots/shared/near-membrane-fields.png",
+      "shots/shared/near-floating-strut.png",
+      "shots/shared/near-inner-extension.png",
+      "shots/shared/near-catwalk.png",
+      "shots/shared/near-main-stand.png",
+      "shots/shared/near-stuttgart-seats.png",
+      "shots/shared/near-standing-curve.png",
+      "shots/shared/near-facade-stairs.png",
+      "shots/shared/near-scharrena.png",
+      "shots/shared/near-screen.png",
+      "shots/shared/far-roof-envelope.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared membrane, painted metal, concrete and paving use metric repeats. Local red seats, signs and glass retain intended colors; transparent hospitality guards expose their seating. Sky-PMREM geographic rendering, terrain opening and unload assertions passed. Membrane underside uses the current shared opaque material response."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f85a1a68acd2978b27751b3a2da5a3bdc81b50aa05cdd4268ef1664f7aa98242",
+    "notes": "North-up capture aligns the roof with the exact mapped pitch and outer stadium polygon. Northwest Cannstatter end and southwest main stand fix heading; integrated SCHARRena is southeast. Y0 is surrounding contact, fieldY-1.3 uses operator documented lowering and the mapped cutout preserves the bowl. The operator273m upper ring is shorter than the290m ground envelope, represented separately."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Primary structural engineer and operator references support the distinctive asymmetric roof, measured dimensions,2011 inner extension,2024 main-stand terraces and site axes. Section profiles, row count/distribution, local elevations and room glazing remain explicitly reconstructed from photographs. The operator mentions2026 screen renewal but still gives12x5.1m dimensions; these are retained. No enclosed rooms, temporary event art or independent neighboring sports halls."
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "id": "N0656",
+  "key": "shabla_lighthouse",
+  "title": "Shabla Lighthouse",
+  "wikidataId": "Q21014964",
+  "size": [
+    11,
+    32,
+    18.6
+  ],
+  "visualBrief": "Tall red and white tapering octagon with real recessed narrow openings, crisp corner ribs and a small dark lantern. Broad square striped masonry base with stacked southern windows and attached low hipped keeper house to the north.",
+  "sourceFacts": {
+    "heightMeters": 32,
+    "basis": "Municipality publishes32m and an exterior photograph showing the square base, six shaft bands and octagonal taper. Exact-QID OSM lighthouse node9031362149 identifies the tower19m south of the old catalog point; attached service building262498736 fixes northward extent and axis. Cross sections and storey elevations are photograph proportions."
+  },
+  "referencePages": [
+    "https://shabla.bg/directory/shablenski-far/",
+    "https://shabla.bg/wp-content/uploads/2024/02/shabla-lightghouse-slide-1.jpg",
+    "https://www.openstreetmap.org/node/9031362149",
+    "https://www.openstreetmap.org/way/262498736"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      28.6069834,
+      43.5401767
+    ],
+    "heading": -0.047379,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/9031362149",
+    "notes": "Exact-QID lighthouse node replaces older point19m north. Mapped attached service building262498736 extends north (-Z); its east-west wall axis sets heading. Tower footprint dimensions are primary-photo proportions, not a mapped tower polygon."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Paint wear and individual repairs are represented by shared masonry; the official image has no precise capture date. Tower plan is photograph-scaled against32m height; neighboring detached station houses remain separate map features."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        8,
+        31,
+        11
+      ],
+      "lookAt": [
+        0,
+        29.9,
+        0
+      ]
+    },
+    {
+      "name": "near-octagon",
+      "position": [
+        11,
+        22,
+        16
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "near-base",
+      "position": [
+        18,
+        11,
+        19
+      ],
+      "lookAt": [
+        0,
+        5,
+        -3
+      ]
+    },
+    {
+      "name": "far-ensemble",
+      "position": [
+        39,
+        22,
+        47
+      ],
+      "lookAt": [
+        0,
+        15,
+        -2
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0656_shabla_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -4.989999771118164,
+      0,
+      -14.479999542236328
+    ],
+    "max": [
+      5.949999809265137,
+      32,
+      4.389999866485596
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

@@ -1,0 +1,204 @@
+{
+  "planId": "N0155",
+  "id": "N0155",
+  "assetId": "molen.worldgen.structure.n0155_new_york_times_building",
+  "title": "New York Times Building",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q192680",
+  "referenceCoordinate": {
+    "latitude": 40.756111111,
+    "longitude": -73.99
+  },
+  "visualBrief": "The Renzo Piano tower with the mapped cruciform glazed shaft, a round ceramic-baguette second skin fading above the roof, exposed corner steel bracing, slender319 m mast and low courtyard-preserving eastern podium.",
+  "size": [
+    124.02997970581055,
+    319,
+    60.51434326171875
+  ],
+  "actualBounds": {
+    "min": [
+      -62.06745529174805,
+      0,
+      -30.13652801513672
+    ],
+    "max": [
+      61.9625244140625,
+      319,
+      30.37781524658203
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "floors": 52,
+    "roofMeters": 228,
+    "ceramicFacadeMeters": 260,
+    "antennaMeters": 319,
+    "ceramicRodDiameterMeters": 0.0762,
+    "publishedRodCount": 175000
+  },
+  "reconstruction": {
+    "geometry": "Mapped tower part138152327, four facade screens260282084/085/086/088, core260282082, podium260282083 and antenna260282087. Ceramic butt joints consolidated into continuous collinear cylindrical runs.",
+    "heightDatum": "Renzo Piano Foundation228/260/319 m published datums preferred to older OSM227/244 m estimates"
+  },
+  "referencePages": [
+    "https://www.fondazionerenzopiano.org/en/project/the-new-york-times-building/",
+    "https://www.thorntontomasetti.com/project/new-york-times-building",
+    "https://www.hmwhitesa.com/site/assets/files/1212/the_new_york_times_building.pdf",
+    "https://www.openstreetmap.org/relation/1860567"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.989728696,
+      40.755919869
+    ],
+    "heading": -0.500689021167,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1860567",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/1860567"
+    ],
+    "wikidataId": "Q192680",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Whole-complex frame retains the courtyard and podium; independent western tower and screen parts supply the actual shaft location and signed facade orientation. Mast center comes from mapped part260282087. GroundY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Rod rows, supports, round sections and fading roof screen are modeled. Tiny ceramic butt joints are consolidated; individual bracket engineering and tenant signage are simplified. The primary designer260 m facade datum differs from older mapped244 m screen tags."
+  ],
+  "qaCameras": [
+    {
+      "name": "ceramic-rods",
+      "position": [
+        -87,
+        110,
+        83
+      ],
+      "lookAt": [
+        -38,
+        105,
+        29
+      ]
+    },
+    {
+      "name": "exposed-bracing",
+      "position": [
+        -96,
+        64,
+        64
+      ],
+      "lookAt": [
+        -55,
+        62,
+        23
+      ]
+    },
+    {
+      "name": "fading-crown",
+      "position": [
+        -137,
+        286,
+        148
+      ],
+      "lookAt": [
+        -36,
+        248,
+        0
+      ]
+    },
+    {
+      "name": "courtyard-podium",
+      "position": [
+        79,
+        63,
+        115
+      ],
+      "lookAt": [
+        14,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -441,
+        261,
+        653
+      ],
+      "lookAt": [
+        -22,
+        156,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 212151,
+    "vertices": 494519,
+    "materials": 5,
+    "bytes": 19857264,
+    "sha256": "sha256:7d4cbbdb7bbdacae2358a947935b152f093572a8a333e7aa6b3e938d77a2755c"
+  }
+}

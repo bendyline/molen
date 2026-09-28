@@ -4,7 +4,7 @@ import type { WebGPURenderer } from 'three/webgpu';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Renderer, type RendererOptions } from '../src/three/renderer';
 
-const factories = vi.hoisted(() => ({ webgl: vi.fn(), webgpu: vi.fn() }));
+const factories = vi.hoisted(() => ({ webgl: vi.fn(), webgpu: vi.fn(), reflections: vi.fn() }));
 
 vi.mock('three', async (importOriginal) => ({
   ...(await importOriginal<typeof import('three')>()),
@@ -12,16 +12,24 @@ vi.mock('three', async (importOriginal) => ({
 }));
 
 vi.mock('../src/three/webgpu-driver', () => ({ createWebGpuDriver: factories.webgpu }));
+vi.mock('../src/three/sky-reflections', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../src/three/sky-reflections')>()),
+  createWebGlSkyReflectionFilter: factories.reflections,
+}));
+vi.mock('../src/three/webgpu-sky-reflections', () => ({
+  createWebGpuSkyReflectionFilter: factories.reflections,
+}));
 
 function fakeDriver() {
   return {
     setPixelRatio: vi.fn(),
     setSize: vi.fn(),
     setClearColor: vi.fn(),
+    getClearColor: vi.fn((color: THREE.Color) => color.set('#98bed5')),
     initTexture: vi.fn(),
     compileAsync: vi.fn(async (_object: THREE.Object3D) => {}),
     render: vi.fn(),
-    info: { reset: vi.fn(), autoReset: true },
+    info: { reset: vi.fn(), autoReset: true, render: { calls: 0, triangles: 0 } },
     autoClear: true,
     getRenderTarget: vi.fn(() => null),
     setRenderTarget: vi.fn(),
@@ -34,6 +42,7 @@ function fakeDriver() {
     forceContextLoss: vi.fn(),
     shadowMap: { enabled: false, type: 0 },
     onDeviceLost: undefined as ((info: { message: string }) => void) | undefined,
+    capabilities: { reversedDepthBuffer: true },
   };
 }
 
@@ -44,6 +53,7 @@ describe('renderer backend selection', () => {
   beforeEach(() => {
     factories.webgl.mockReset();
     factories.webgpu.mockReset();
+    factories.reflections.mockReset();
     webgl = fakeDriver();
     webgpu = fakeDriver();
     factories.webgl.mockImplementation(function MockWebGlRenderer() {
@@ -54,6 +64,61 @@ describe('renderer backend selection', () => {
   });
 
   afterEach(() => vi.unstubAllGlobals());
+
+  it.each([
+    'webgl',
+    'webgpu',
+  ] as const)('shares and disposes reflections through the %s viewer path', async (backend) => {
+    const texture = new THREE.Texture();
+    const filter = { update: vi.fn(() => texture), dispose: vi.fn() };
+    factories.reflections.mockReturnValue(filter);
+    const renderer = await Renderer.create({ backend, reflections: true, optimizeWebGpu: false });
+    const ambient = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (light): light is THREE.HemisphereLight => light instanceof THREE.HemisphereLight,
+      ) as THREE.HemisphereLight;
+    const originalIntensity = ambient.intensity;
+    (backend === 'webgl' ? webgl : webgpu).render.mockImplementation((scene: THREE.Scene) => {
+      if (scene === renderer.scene)
+        expect((renderer.sky?.ambientLight ?? ambient).intensity).toBe(0);
+    });
+    renderer.render();
+    expect(ambient.intensity).toBe(originalIntensity);
+    expect(renderer.scene.environment).toBe(texture);
+    expect(filter.update).toHaveBeenCalledTimes(1);
+    renderer.setCamera({ position: [10000, 200, -300], lookAt: [10000, 0, 0] });
+    renderer.setWorldOrigin([10000, 0, 0]);
+    renderer.render();
+    expect(filter.update).toHaveBeenCalledTimes(1);
+    renderer.setSky({ mode: 'custom', sunBody: { direction: [0, 1, 0] } });
+    renderer.render();
+    expect(filter.update).toHaveBeenCalledTimes(2);
+    renderer.setWeather({ clouds: { coverage: 1 } });
+    renderer.render();
+    expect(filter.update).toHaveBeenCalledTimes(3);
+    const host = new THREE.Texture();
+    renderer.scene.environment = host;
+    (backend === 'webgl' ? webgl : webgpu).render.mockImplementation((scene: THREE.Scene) => {
+      if (scene === renderer.scene) expect(renderer.sky?.ambientLight.intensity).toBeGreaterThan(0);
+    });
+    renderer.render();
+    expect(renderer.scene.environment).toBe(host);
+    renderer.scene.environment = texture;
+    renderer.dispose();
+    renderer.dispose();
+    expect(filter.dispose).toHaveBeenCalledTimes(1);
+    expect(renderer.scene.environment).toBeNull();
+    host.dispose();
+  });
+
+  it('keeps reflections opt-in for existing viewers', async () => {
+    const renderer = await Renderer.create({ backend: 'webgl' });
+    renderer.render();
+    expect(renderer.scene.environment).toBeNull();
+    expect(factories.reflections).not.toHaveBeenCalled();
+    renderer.dispose();
+  });
 
   it('keeps a sky preview independent of the simulation clock and resumes on release', async () => {
     const renderer = await Renderer.create({ backend: 'webgl' });
@@ -172,6 +237,35 @@ describe('renderer backend selection', () => {
     expect(webgl.setRenderTarget).toHaveBeenLastCalledWith(null);
     material.dispose();
     renderer.dispose();
+  });
+
+  it.each([
+    false,
+    true,
+  ])('keeps visible-frame stats during background uploads (sky: %s)', async (sky) => {
+    const renderer = await Renderer.create({ backend: 'webgl', admission: { schedule: () => {} } });
+    if (sky) renderer.setSky({ mode: 'custom', sunBody: { direction: [0, 1, 0] } });
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshStandardMaterial();
+    let triangles = 25_000;
+    webgl.render.mockImplementation((scene: THREE.Scene) => {
+      webgl.info.render.calls = scene === renderer.scene ? 3 : 1;
+      webgl.info.render.triangles = scene === renderer.scene ? triangles : 0;
+    });
+    expect(renderer.stats()).toEqual({ drawCalls: 0, triangles: 0 });
+    renderer.render();
+    expect(renderer.stats()).toEqual({ drawCalls: 3, triangles: 25_000 });
+    const ready = renderer.prepareObject(new THREE.Mesh(geometry, material));
+    while (renderer.admission.pending) renderer.admission.flush();
+    await ready;
+    expect(webgl.info.render.triangles).toBe(0);
+    expect(renderer.stats()).toEqual({ drawCalls: 3, triangles: 25_000 });
+    triangles = 30_000;
+    renderer.render();
+    expect(renderer.stats()).toEqual({ drawCalls: 3, triangles: 30_000 });
+    renderer.dispose();
+    geometry.dispose();
+    material.dispose();
   });
 
   it('prepares each instanced LOD builder even when its material and every buffer are shared', async () => {
@@ -389,6 +483,47 @@ describe('renderer backend selection', () => {
       cause,
     });
     expect(factories.webgl).not.toHaveBeenCalled();
+  });
+
+  it('uses logarithmic depth on the same context when reversed WebGL depth is unsupported', async () => {
+    const canvas = {} as HTMLCanvasElement;
+    const context = {} as WebGL2RenderingContext;
+    const unsupported = {
+      ...fakeDriver(),
+      domElement: canvas,
+      getContext: vi.fn(() => context),
+      capabilities: { reversedDepthBuffer: false },
+    };
+    factories.webgl.mockImplementationOnce(function UnsupportedWebGlRenderer() {
+      return unsupported as unknown as WebGLRenderer;
+    });
+    const renderer = await Renderer.create({
+      backend: 'webgl',
+      canvas,
+      reverseDepthBuffer: true,
+      cameraNear: 0.05,
+      cameraFar: 500000,
+    });
+    expect(unsupported.dispose).toHaveBeenCalledOnce();
+    expect(unsupported.forceContextLoss).not.toHaveBeenCalled();
+    expect(factories.webgl).toHaveBeenCalledTimes(2);
+    expect(factories.webgl).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        canvas,
+        context,
+        reversedDepthBuffer: false,
+        logarithmicDepthBuffer: true,
+      }),
+    );
+    renderer.dispose();
+    expect(webgl.dispose).toHaveBeenCalledOnce();
+  });
+
+  it('keeps reversed depth on supported WebGL without rebuilding the renderer', async () => {
+    const renderer = await Renderer.create({ backend: 'webgl', reverseDepthBuffer: true });
+    expect(factories.webgl).toHaveBeenCalledOnce();
+    expect(webgl.dispose).not.toHaveBeenCalled();
+    renderer.dispose();
   });
 
   it('falls back without loading the driver when the device reports no adapter', async () => {

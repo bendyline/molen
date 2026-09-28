@@ -19,8 +19,8 @@
 // fails the step instead of publishing a partial gallery.
 import { access, cp, readdir, readFile, rm, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
-import { buildPack } from '@bendyline/molen-pack/node';
 import { repoRoot, siteDir } from './packages.mjs';
+import { stageContentPacks } from './stage-content-packs.mjs';
 
 const outDir = join(siteDir, '.vitepress', 'dist');
 const playDir = join(outDir, 'play');
@@ -153,20 +153,19 @@ async function main() {
     process.exit(1);
   }
 
-  await rm(playDir, { recursive: true, force: true });
-  await rm(packsDir, { recursive: true, force: true });
+  for (const target of [playDir, packsDir]) {
+    if (relative(outDir, target).startsWith('..') || target === outDir)
+      throw new Error(`Refusing to clean a path outside the built site: ${target}`);
+    await rm(target, { recursive: true, force: true });
+  }
   await cp(join(examplesDir, GALLERY, 'dist'), playDir, { recursive: true });
   for (const id of ids) {
     await cp(join(examplesDir, id, 'dist'), join(playDir, id), { recursive: true });
   }
 
-  const packs = [];
-  for (const entry of await readdir(contentDir, { withFileTypes: true })) {
-    const source = join(contentDir, entry.name);
-    if (!entry.isDirectory() || !(await exists(join(source, 'molen-pack.source.json')))) continue;
-    const built = await buildPack(source, { outDir: packsDir });
-    packs.push(`${built.manifest.id}@${built.manifest.version}`);
-  }
+  const packs = await stageContentPacks(contentDir, packsDir, {
+    reuseFromDir: join(examplesDir, 'world-explorer/public/packs'),
+  });
   if (packs.length === 0) {
     console.error(`stage-hosted: no content packs found under ${rel(contentDir)}/.`);
     process.exit(1);

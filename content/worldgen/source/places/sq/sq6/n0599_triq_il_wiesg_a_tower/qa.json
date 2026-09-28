@@ -1,0 +1,61 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0599_triq_il_wiesg_a_tower",
+  "sourceHash": "sha256:85eb59df2af1acc026b7e89cae50a6e5dbb575f6498e5f516db6b3365bb784f3",
+  "runtimeHash": "sha256:3fc8b3dfc01fbb51386cb757365486ba03aedeb6c13590287b850fe7871ec11d",
+  "captureReportHash": "sha256:70809b3dcc531d68744acf74e7ea1a311d7f8fc46cc8bb2ab3286e64b119f033",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed world-viewer exterior reconstruction",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/inland-door-and-batter.png",
+      "shots/seaward-window.png",
+      "shots/repaired-stone-and-door.png",
+      "shots/roof-embrasures-and-turret.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": [
+      "Inspected all 10 current portable frames: the square battered base, two projecting stringcourses, elevated inland doorway, opposite sea window, flank loop, shallow parapet embrasures, western corner stair shelter, roof vent, drain and flagpole are intact.",
+      "The roof remains open behind the parapet; the shelter doorway opens onto it. Repair tints and individual stone courses distinguish the reconstructed upper and lower facade. No stray or floating geometry, visible holes in wall surfaces, or clipped apertures were found."
+    ]
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ac64d33cf0b8621acc3524e792cf236c2b040d5efcdddc50586de814e6a26dd0",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/inland-door-and-batter.png",
+      "shots/shared/seaward-window.png",
+      "shots/shared/repaired-stone-and-door.png",
+      "shots/shared/roof-embrasures-and-turret.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": [
+      "Inspected all 10 current shared sky-PMREM frames, including north-up placement. Raw limestone has subtle mineral variation without a second ashlar grid over the modeled joints. Pale repaired stone, recessed timber door and metal fittings retain their relative material character.",
+      "The geographic fixture loads this model through the real placement renderer and passes unloading assertions. All four facades, the raised door close-up, roof and distant silhouette were reviewed; the original frame report predates the optional terrain-cutout fixture addition, which does not apply to this model."
+    ]
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e8afe619edf8bb9544be96b4dd2e490ed66dfbae2dff31fefc29ac6d59e8a751",
+    "notes": [
+      "Source-local map-frame.json is bound by the spec hash and records the named tower footprint way 191444573. The way has no Wikidata tag: identity is manually corroborated against NICPMI 1384's map and photograph, the custodian's restored exterior, and the unique coastal location.",
+      "The footprint center [14.564199,35.877973175] and southeast-directed first edge fix heading -0.9087991986513986 radians. Native +Z is inland southwest, matching the elevated doorway; native -Z is the opposite seaward window. The 8.49 m authored square agrees with the mapped 8.496 by 8.432 m body within approximately 0.08 m per corner. The projecting inland base repair is intentionally additional to the main wall outline.",
+      "The north-up capture confirms the applied heading and ground contact. This initial capture does not include a magenta outline because the global evidence record is reference-only; the independently reviewed source-local frame provides the exact plan evidence. Vertical intervals are proportional reconstructions from photographs, not a measured elevation survey; surrounding shore rocks and slope remain terrain data."
+    ]
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Finished detailed original exterior of the restored 2009 appearance using the custodian, the national inventory and original Joseph Psaila photographs. Modeled the battered stone base and joints, projecting cornices, raised door and hardware, sea window, flank loop, roof parapet and embrasures, restored stair shelter, roof vent, drain and pole. No target-specific surveyed elevation was published in the consulted inventory. Heights, aperture sizes, block pattern and small fittings are photographic reconstructions tied to the mapped plan. The internal rooms and spiral stair, temporary ladders, surrounding shoreline and adjacent World War II pillboxes are separate from the requested exterior model."
+  }
+}

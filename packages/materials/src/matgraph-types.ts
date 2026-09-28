@@ -59,6 +59,8 @@ export type MatNode =
 
 export interface MatGraphDoc {
   format: 'molen/matgraph@1';
+  /** Optional cutout threshold for the baked base-color alpha; omitted graphs remain opaque. */
+  alphaTest?: number;
   size: [number, number];
   seed: number;
   nodes: MatNode[];

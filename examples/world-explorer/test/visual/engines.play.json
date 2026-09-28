@@ -33,13 +33,19 @@
     { "type": "wait", "durationMs": 1500 },
     { "type": "screenshot", "name": "03-car-throttle" },
     { "type": "key-up", "keys": ["w"] },
-    { "type": "keys", "keys": [" "], "durationMs": 2500 },
+    { "type": "key-down", "keys": [" "] },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-state=\"driving\"][data-speed=\"0.000\"]",
+      "timeoutMs": 240000
+    },
     { "type": "keys", "keys": ["e"], "durationMs": 100 },
     {
       "type": "wait-for",
       "selector": "#navigation-status[data-state=\"grounded\"]",
       "timeoutMs": 240000
     },
+    { "type": "key-up", "keys": [" "] },
     { "type": "wait", "durationMs": 3000 },
     { "type": "screenshot", "name": "04-car-exited" },
     { "type": "navigate", "path": "/?aircraft=oh6&quality=balanced&freeze=1" },

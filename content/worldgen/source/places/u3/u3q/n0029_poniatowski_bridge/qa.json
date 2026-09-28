@@ -1,0 +1,86 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0029_poniatowski_bridge",
+  "sourceHash": "sha256:e4b2c3677dcf39f9c9c34050921dca95f79ea4c9d6733edca1c2428bc1df2b8d",
+  "runtimeHash": "sha256:44054e72735784a71b008409f5afebeebdfd5a6b6299d8024bef67e42acb86be",
+  "captureReportHash": "sha256:3c5b06df50d2a75deea067c73340e10d016fb5190dc142e22d5e08a4b64e35b2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/eight-spans-upstream.png",
+      "shots/eight-spans-downstream.png",
+      "shots/outer-n-truss.png",
+      "shots/rebuilt-middle-arch.png",
+      "shots/seven-rib-soffit.png",
+      "shots/short-central-pier.png",
+      "shots/stone-pylon.png",
+      "shots/mermaid-crest.png",
+      "shots/suvalki-crest.png",
+      "shots/ornamental-railing.png",
+      "shots/west-bank-towers.png",
+      "shots/east-bank-towers.png",
+      "shots/tower-crown.png",
+      "shots/spiral-bank-stairs.png",
+      "shots/tram-and-current-road.png",
+      "shots/riveted-junction.png",
+      "shots/deck-plan.png"
+    ],
+    "notes": "All22 current portable views inspected, including the complete eight-span elevations, seven-rib soffit, two distinct steel span types, short central pier, stone pylons, two heraldic close-ups, ornate ironwork, four bank towers, scalloped crowns, curved stairs and raised tram road. Reversed deck faces, overly solid stair core and stale vertical cameras from earlier revisions are corrected. Current road grade follows the independently measured asymmetric profile. Thin members and mortar joints alias at distance."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:bb5e30812cd9767527b3354c11e86fc21a55ca21a901f614c9d2cdda80a7c01e",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/eight-spans-upstream.png",
+      "shots/shared/eight-spans-downstream.png",
+      "shots/shared/outer-n-truss.png",
+      "shots/shared/rebuilt-middle-arch.png",
+      "shots/shared/seven-rib-soffit.png",
+      "shots/shared/short-central-pier.png",
+      "shots/shared/stone-pylon.png",
+      "shots/shared/mermaid-crest.png",
+      "shots/shared/suvalki-crest.png",
+      "shots/shared/ornamental-railing.png",
+      "shots/shared/west-bank-towers.png",
+      "shots/shared/east-bank-towers.png",
+      "shots/shared/tower-crown.png",
+      "shots/shared/spiral-bank-stairs.png",
+      "shots/shared/tram-and-current-road.png",
+      "shots/shared/riveted-junction.png",
+      "shots/shared/deck-plan.png"
+    ],
+    "notes": "All21 current shared viewer views inspected, with full-resolution crest, railing, tower crown, central pier and road close-ups. Four shared graphs load once each. Six model meshes unload with zero live model geometries. Extended approach bounds use standalone asset review; independent GUGiK terrain and actual road placement are checked by the geographic reports. Shared stone grain, smooth curved stone and open ironwork remain legible."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "3,326,408-triangle individually authored current exterior. Seven mapped pier footprints and four mapped tower/stair ensembles, original1927 sections, current photographs and eight surviving heraldic subjects were reconciled. Model includes seven steel ribs, I sections, bracing, bearings, gussets/rivets, inspection catwalks, staggered stone courses, eight carved benches, distinct railing flowers/loops, arched tower windows and crowns, curved stairs, raised tram median and catenary. Native road heights are based on GUGiK surface data. The published506.13m length differs from the mapped503.74m deck; mapped pier stations are retained. Reliefs, tower heights, member thicknesses and hidden bearing sections are photographic reconstructions, not survey/scanned geometry. The separate701m western viaduct is outside this asset."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "All 12 current production GUGiK terrain frames inspected, including close views at both banks and the independent OSM road network. Directed footprint, asymmetric road grade (95.55 m west, approximately 96.86 m crest, 94.48 m east), and bank stair/tower bases agree with the preserved PL-EVRF2007-NH measurements. The 77.0 m origin is a declared reconstruction near the sampled 77.17 m modeled water surface, not bathymetry. The 8.16/8.03 m endpoint clearance above bare ground is physically expected; NMT excludes elevated roads. However, close approach views reveal that adjacent non-bridge road features remain draped on that lower ground instead of joining the bridge deck. Covered bridge-tagged segments are correctly removed, and lower crossing roads remain visible. Geographic review is pending a topology-aware elevation transition for the connected approach roads; broad proximity lifting would incorrectly raise the lower road crossings. The separate western 701 m viaduct is outside this asset. Narrow pier-cap and bearing elevations cannot be verified from the surface raster and remain photographic reconstruction. No terrain heights were altered to conceal these differences.",
+    "terrainReports": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/gugik/N0029-fit-report.json",
+        "hash": "sha256:8caaa8e62b3b6186e688b027ee17c54311c4fbb38de592973e1e31c60cfb1680"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/gugik/N0029-roads-fit-report.json",
+        "hash": "sha256:badd88324dea619955b891fecf45a299c2de5f05b53e5057e0dd34f89b9ce1c6"
+      }
+    ],
+    "blockers": [
+      "Connected non-bridge approach carriageways remain ground-draped below the elevated deck endpoints."
+    ],
+    "placementHash": "sha256:ba090227b2a4de41d2adb17456804efebda81763d61a56d3c1543f11778f4075"
+  }
+}

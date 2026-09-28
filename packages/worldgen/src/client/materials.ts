@@ -101,8 +101,11 @@ export function createResolvedMaterialSet(
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
         if (texture.magFilter !== THREE.NearestFilter) {
-          texture.generateMipmaps = true;
-          texture.minFilter = THREE.LinearMipmapLinearFilter;
+          // Coverage masks need their authored threshold at distance; ordinary mip averaging
+          // fills or erases fine perforations. Keep opaque surfaces' normal mipmapped path.
+          texture.generateMipmaps = !(material.alphaTest > 0);
+          texture.minFilter =
+            material.alphaTest > 0 ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;
           texture.anisotropy = 4;
         }
         texture.needsUpdate = true;

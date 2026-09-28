@@ -1,0 +1,196 @@
+{
+  "planId": "N0171",
+  "id": "N0171",
+  "assetId": "molen.worldgen.structure.n0171_875_north_michigan_avenue",
+  "title": "875 North Michigan Avenue",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q217727",
+  "referenceCoordinate": {
+    "latitude": 41.898889,
+    "longitude": -87.623056
+  },
+  "visualBrief": "Chicago’s tapering dark-bronze trussed tube with individually framed windows, projecting perimeter columns, continuous large diagonal diamonds, mapped roof plant and twin red-white broadcast masts.",
+  "size": [
+    84.3475456237793,
+    456.8999938964844,
+    54.69568061828613
+  ],
+  "actualBounds": {
+    "min": [
+      -42.17053985595703,
+      0,
+      -27.34840965270996
+    ],
+    "max": [
+      42.177005767822266,
+      456.8999938964844,
+      27.347270965576172
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 343.7,
+    "tipHeightMeters": 456.9,
+    "mainRoofMeters": 337.4136,
+    "structuralBaseMeters": [
+      80.772,
+      50.292
+    ],
+    "structuralRoofMeters": [
+      48.768,
+      30.48
+    ],
+    "floors": 100,
+    "architect": "Bruce Graham / SOM",
+    "engineer": "Fazlur Khan / SOM"
+  },
+  "reconstruction": {
+    "plan": "Exact signed ground and top outlines retain the gentle four-face taper; independent penthouse and antenna parts fix the roof arrangement",
+    "structure": "Separate deep diagonals, raised flange strips, corner columns and ties follow the built closed-diamond exterior",
+    "heightDatum": "Published1,107 ft main roof,343.7 m architectural top and456.9 m highest broadcast tip replace contradictory OSM roof-height tags"
+  },
+  "referencePages": [
+    "https://www.som.com/projects/875-north-michigan-avenue-formerly-john-hancock-center/",
+    "https://www.bscesjournal.org/wp-content/uploads/CEP-Vol-19-No-2-02.pdf",
+    "https://www.skyscrapercenter.com/building/john-hancock-center/345",
+    "https://360chicago.com/articles/news-and-press/360-chicago-announces-the-debut-of-tilt",
+    "https://www.openstreetmap.org/way/31064573"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -87.623094689,
+      41.898818168
+    ],
+    "heading": 0.017505085315,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/31064573",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/31064573"
+    ],
+    "wikidataId": "Q217727",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed ground and upper plans preserve the east-west long axis. Separate penthouse and antenna footprints locate both masts; the operator identifies TILT on the south facade. SourceY0. Structural dimensions are slightly inside the mapped outer cladding envelope."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Intermediate floor heights, bracing joint heights, member widths and broadcast-platform equipment are reconstructed from published diagrams/photos. TILT is static in its resting position; below-grade plaza and planned future observation alterations are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "exterior-diagonals",
+      "position": [
+        99,
+        160,
+        114
+      ],
+      "lookAt": [
+        0,
+        137,
+        0
+      ]
+    },
+    {
+      "name": "upper-diamond",
+      "position": [
+        103,
+        345,
+        107
+      ],
+      "lookAt": [
+        0,
+        307,
+        0
+      ]
+    },
+    {
+      "name": "broadcast-masts",
+      "position": [
+        87,
+        404,
+        97
+      ],
+      "lookAt": [
+        0,
+        392,
+        0
+      ]
+    },
+    {
+      "name": "ground-contact",
+      "position": [
+        117,
+        26,
+        130
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -422,
+        372,
+        755
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 148110,
+    "vertices": 431054,
+    "materials": 4,
+    "bytes": 16866924,
+    "sha256": "sha256:51d419e9db015e9149fed90db40e33737895026968cd537d4e5b94d2a471a531"
+  }
+}

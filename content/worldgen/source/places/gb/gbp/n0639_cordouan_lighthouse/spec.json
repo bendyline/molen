@@ -1,0 +1,158 @@
+{
+  "id": "N0639",
+  "key": "cordouan_lighthouse",
+  "title": "Cordouan Lighthouse",
+  "wikidataId": "Q199234",
+  "size": [
+    41.65,
+    67.5,
+    44.225
+  ],
+  "visualBrief": "Tidal limestone lighthouse with circular seawall terrace, articulated Renaissance lower stages, columns, pilasters and pedimented windows beneath the long tapered upper tower and lantern.",
+  "sourceFacts": {
+    "heightMeters": 67.5,
+    "platformDiameterMeters": 41.65,
+    "basis": "French lighthouse operator nomination to IALA and current official visitor page."
+  },
+  "referencePages": [
+    "https://heritage.iala.int/lighthouses/cordouan-lighthouse/",
+    "https://www.phare-de-cordouan.fr/decouvrir/visite-virtuelle/",
+    "https://heritage.iala.int/content/uploads/2021/05/Cordouan-south-facade-2.jpg",
+    "https://www.openstreetmap.org/way/100219438",
+    "https://www.openstreetmap.org/way/961700310",
+    "https://www.openstreetmap.org/way/759047106"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -1.173325364,
+      45.586319808
+    ],
+    "heading": 1.428030571,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/100219438",
+    "notes": "Exact mapped core identifies the center. Entry path961700310 meets the tower8.00m east and1.15m south of center, fixing authored+Z entrance at heading1.428030571rad. Outer entrance steps961700309 confirm the east quadrant. Terrain contact places the tidal fort base on its mapped reef; the host supplies tide and terrain behavior."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Main height and platform diameter are published; intermediate stage radii, sculpture relief, window locations and stair geometry are photo-proportioned. The crown keeper building surrounds a mapped12m-radius courtyard; its3.1m court and6.3m roof levels are photo-proportioned. The optical red/green sectors and tidal rocks/causeway beyond the immediate stairs are not modeled."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-renaissance",
+      "position": [
+        19,
+        16,
+        28
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "near-courtyard",
+      "position": [
+        20,
+        15,
+        24
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        10,
+        64,
+        15
+      ],
+      "lookAt": [
+        0,
+        62,
+        0
+      ]
+    },
+    {
+      "name": "far-platform",
+      "position": [
+        72,
+        43,
+        90
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0639_cordouan_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -20.825000762939453,
+      0,
+      -20.825000762939453
+    ],
+    "max": [
+      20.825000762939453,
+      67.5,
+      23.8799991607666
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

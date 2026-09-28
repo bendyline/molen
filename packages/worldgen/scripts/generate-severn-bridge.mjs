@@ -1,4 +1,5 @@
 /** Emit the researched original Severn Bridge source bundle, without editing any catalog. */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -7,12 +8,14 @@ import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { smoothMeshNormals, validateAuthoredMesh } from './authored-structure-mesh.mjs';
 import { biomeJson } from './format-json.mjs';
 import { buildSevern, severnStudy as study } from './severn-bridge-model.mjs';
+import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const check = process.argv.includes('--check');
 const key = `${study.id.toLowerCase()}_${study.key}`;
 const assetId = `molen.worldgen.structure.${key}`;
-const dir = resolve(root, 'content/worldgen/source/next-1000/models', key);
+const dir = structureSourceDirectory(key);
 const modelPath = resolve(dir, 'models/source.glb');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const materials = {
@@ -189,7 +192,7 @@ const source = {
       {
         path: 'models/source.glb',
         assetId,
-        output: `assets/${assetId.replaceAll('.', '/')}/asset.json`,
+        output: structureAssetSidecarPath(assetId),
         pipeline: 'import',
         sha256: hash(glb),
       },

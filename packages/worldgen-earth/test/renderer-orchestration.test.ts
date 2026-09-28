@@ -111,6 +111,66 @@ function fixture(prepareObject?: (object: THREE.Object3D, signal: AbortSignal) =
 }
 
 describe('worldgen human-feature tile orchestration', () => {
+  it.each([
+    undefined,
+    '1929-12-31',
+    '1930-01-01',
+    '1933-12-31',
+    '1934-01-01',
+  ])('loads and releases only in-region archival models for explicit date %s', async (viewingDate) => {
+    const source = new THREE.Group().add(
+      new THREE.Mesh(new THREE.BoxGeometry(5, 20, 5), new THREE.MeshStandardMaterial()),
+    );
+    const load = vi.fn(async () => source);
+    const disposeGeometry = vi.spyOn((source.children[0] as THREE.Mesh).geometry, 'dispose');
+    const objects = new StructureModelLibrary(load);
+    const historical = {
+      id: 'archive.local',
+      title: 'Historical local tower',
+      asset: 'archive.local',
+      anchor: worldToWgs84(1, 50, 60),
+      status: 'historical' as const,
+      minLevel: 0,
+      source: 'https://example.com/dated-plan',
+      appearance: {
+        kind: 'historical' as const,
+        currentWorldEligible: false as const,
+        validFrom: '1930-01-01',
+        validUntil: '1934-01-01',
+      },
+    };
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      ...(viewingDate !== undefined ? { viewingDate } : {}),
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Archive',
+        entries: [
+          historical,
+          { ...historical, id: 'archive.remote', asset: 'archive.remote', anchor: [50, 40] },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      createEmptyTerrainSemanticTile(),
+      context(new AbortController().signal),
+    );
+    const eligible =
+      viewingDate !== undefined && viewingDate >= '1930-01-01' && viewingDate < '1934-01-01';
+    expect(load.mock.calls.map(([ref]) => ref)).toEqual(eligible ? ['archive.local'] : []);
+    expect(!!root?.getObjectByName('structure:archive.local')).toBe(eligible);
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    expect(disposeGeometry).toHaveBeenCalledTimes(eligible ? 1 : 0);
+    renderers.dispose();
+    objects.dispose();
+    if (!eligible) {
+      (source.children[0] as THREE.Mesh).geometry.dispose();
+      ((source.children[0] as THREE.Mesh).material as THREE.Material).dispose();
+    }
+  });
+
   it('disposes resident clipped geometry on renderer shutdown and tolerates a later tile eviction', async () => {
     const geometry = new THREE.BoxGeometry(600, 8, 20);
     const material = new THREE.MeshStandardMaterial();

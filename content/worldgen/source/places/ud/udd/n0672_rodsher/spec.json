@@ -1,0 +1,182 @@
+{
+  "id": "N0672",
+  "key": "rodsher",
+  "title": "Rodsher Lighthouse",
+  "wikidataId": "Q3366505",
+  "size": [
+    7,
+    20.5,
+    8
+  ],
+  "metricTriangleUv": true,
+  "visualBrief": "Red octagonal tower with broad lower pedestal, reduced upper shaft, two opposed pairs of deep arched windows, flared masonry gallery, circular railed watch room, two pairs of south-facing solar panels, wire-mesh lantern balcony, clear framed lantern, riveted domed roof, red ventilator and cardinal vane.",
+  "sourceFacts": {
+    "publishedStructureHeightMeters": 18.8976,
+    "publishedFocalHeightMeters": 20,
+    "modeledVaneTopMeters": 20.45,
+    "surveyControlHeightsMeters": {
+      "baseLedge": 4.9,
+      "shaftTop": 12.05,
+      "gallery": 13.18,
+      "lanternBalcony": 15.48,
+      "lanternEave": 17.52,
+      "roofGlobe": 19.11
+    },
+    "surveyMeasurementBasis": "RGO/Fertoing published GLB rawY span20.75m includes rough ground and vane. Intersections of its triangle mesh supply the pedestal, shaft, flared gallery, watch-room and lantern heights; original point offsets and small survey tilt are removed. Its two pairs of arched windows and solar-bank opposition determine local facade arrangement. Dimensions are reconstructed survey-model controls, not geodetic survey coordinates.",
+    "sourceSurveyHash": "sha256:6f4e4ad71d894058cf3abe9cd068e4b7d7919139df2d800ae4d4e559ab25debc"
+  },
+  "referencePages": [
+    "https://rgo.ru/activity/project-list/mayak-rodsher/",
+    "https://rgo.ru/upload/content_block/files/246a6930c50362071bf4979ef4a9fd86/67b2fdb8eb2f0694a33c4f35f3af859b6.glb",
+    "https://rgo.ru/upload/content_block/images/2a4874030ffc83a09c95cfbd1b0facbc/679b960d61ef93e1dd48375b7b05fb951.jpg",
+    "https://creativecommons.org/licenses/by/3.0/"
+  ],
+  "reconstructionAttribution": "Survey model and site photographs: Russian Geographical Society maritime-heritage project with Fertoing and People of the Sea Foundation, published under CC BY3.0 unless otherwise marked. Model inspected as dimensional/reference evidence; source triangles and photographic texture atlases are not copied. This component reconstruction has new geometry, metric UVs and shared procedural materials.",
+  "geographicProposal": {
+    "anchor": [
+      26.67976,
+      59.968681
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://rgo.ru/activity/project-list/mayak-rodsher/",
+    "notes": "Official project supplies the lighthouse coordinate, correcting the catalog island reference. Native+Z solar banks face the southern sea side; opposite door is landward/north. This quadrant follows the project site photographs and solar array configuration, while the survey model resolves internal180-degree opposition. A survey-north axis is not supplied; exact azimuth is photo-reconstructed. Footing contacts the mapped island terrain rather than forcing the20m focal elevation onto the base."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Published survey/photographic exterior is modeled using clean shared red plaster/iron rather than retaining baked photographic shadows. Thin gallery wire, glass panes and roof hardware are reconstructed as real geometry; surrounding detached derelict houses and island rock terrain remain map features. Small optical hardware is represented only to the detail visible through the lantern. Current maintenance color may vary, but the red daymark and structural arrangement follow the maritime-heritage project."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-solar-windows",
+      "position": [
+        6.2,
+        7.2,
+        10
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        1.5
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        -7,
+        4,
+        -9
+      ],
+      "lookAt": [
+        0,
+        1.6,
+        -2.7
+      ]
+    },
+    {
+      "name": "near-gallery",
+      "position": [
+        6,
+        14.3,
+        7
+      ],
+      "lookAt": [
+        0,
+        14.3,
+        0
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        4.8,
+        18.4,
+        5.4
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        21,
+        13,
+        28
+      ],
+      "lookAt": [
+        0,
+        10.1,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0672_rodsher",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -2.9471757411956787,
+      0,
+      -3.950000047683716
+    ],
+    "max": [
+      2.9471757411956787,
+      20.450000762939453,
+      2.9600000381469727
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

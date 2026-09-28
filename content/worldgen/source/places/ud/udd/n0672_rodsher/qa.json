@@ -1,0 +1,73 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0672_rodsher",
+  "sourceHash": "sha256:167638cd7fd5f95993ac5bcd079adc6b5a9e75a67020274f1e0dd14db5f35637",
+  "runtimeHash": "sha256:6d899f7af0b0df29a0ea9a607a7854b13e97f20c67c9a01ff46ad99cb8876b2d",
+  "captureReportHash": "sha256:4c1d5542c56ea07f0f730acb31693a1563fa0fa3313acbb2fd29ea442e656994",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior and portable materials.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-solar-windows.png",
+      "shots/near-entry.png",
+      "shots/near-gallery.png",
+      "shots/near-lantern.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "All ten portable and ten shared frames inspected, plus full-resolution shared gallery. Octagonal stages, flared ledge, recessed opposed arched windows, northern doorway, stairs, two solar banks, gallery rails, lantern wire mesh, clear glazing, dome and cardinal vane are connected and correctly wound. No missing surfaces or detached details in inspected frames."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:193dee3b97b13eb2c900c1ab9c76d9c7a43d647ab967d194119924fc2d67552a",
+    "fixtureHash": "sha256:3dc3824114fb46029b6a424af8098d75a98b8b5bd306db741d028163415abde5",
+    "specHash": "sha256:747f6ccba9d12135c21ec826ac6c1a3632cb0437200279add922c88802138f10",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-solar-windows.png",
+      "shots/shared/near-entry.png",
+      "shots/shared/near-gallery.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared red plaster, painted iron and concrete materials retain authored metric scale. Window/solar panel fallback colors and transparent lantern remain distinct. Thin wire is actual geometry rather than an opaque texture."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:840b67e163bb290e35329a845f416cb9ba216e4ae0dd849c79821b073e6e566a",
+    "notes": "Anchor is the lighthouse coordinate from the Russian Geographical Society project, correcting the island-level catalog reference. Southern solar banks and opposite landward door use the photographed quadrant; exact survey azimuth is not supplied. North-up placement shows the northern entry and centered tower base. Terrain contact uses the island ground."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "RGO/Fertoing reference survey controls stage and gallery proportions; original triangles and photographic atlases are not redistributed. New component geometry reproduces the documented red octagonal tower, four arched shaft windows, two solar banks and fine gallery wire. Small optical hardware follows visible reference detail. Attribution and original reference hash are preserved in spec. Detached island houses and rocks remain map features; no scan-level weathering claim."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0007_the_helix_bridge",
+  "sourceHash": "sha256:2047dbd840c3ff169d8857f794c2842b0b05fe3e321e9bde8ad8be335d6d9a32",
+  "runtimeHash": "sha256:764c3fa486dbbf97919d20b4fa05fc123dbe2741a1f3d5a7e9c1498e81038895",
+  "captureReportHash": "sha256:bb02ae1d83a621eb5b3fe2d35cc0878b3bcff768242d407671225c1a31021b67",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/walkway.png",
+      "shots/helix-joints.png",
+      "shots/viewing-pod.png",
+      "shots/under-deck.png",
+      "shots/far-crossing.png",
+      "shots/shore-entrance.png"
+    ],
+    "scope": "Original detailed exterior of the curved pedestrian crossing and four viewing pods.",
+    "notes": "Inspected all11 current portable frames. The walkway and pod entries are open; shore helix members turn outside the walk and down to end bearings. Canopy, tube connections, pod rails, tapered supports and deck framing are retained. These legacy direct-light captures render bare stainless steel dark because they contain no reflection environment; the current shared viewer captures below verify its actual silver appearance."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0028a972d07e61b751099ffd75afbab99e3b41947d15972f4b2caed343e94fb7",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/walkway.png",
+      "shots/shared/helix-joints.png",
+      "shots/shared/viewing-pod.png",
+      "shots/shared/under-deck.png",
+      "shots/shared/far-crossing.png",
+      "shots/shared/shore-entrance.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 current sky-pmrem shared frames after radiance calibration and removal of duplicate hemisphere diffuse light. Silver steel highlights, stone paving, glass barriers, alternating canopy panels and concrete bearings read correctly. Fine lines become subpixel in distant full-crossing views; detail cameras resolve them. All material graphs load once, only this landmark is requested and geometry is released at unload."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a7af75c5324ecdec927352ca94439ae1e733296723193a6e361aa4841266a30d",
+    "notes": "Curved centerline fit uses four exact bridge ways164881537/687965211/212/213, anchor[103.860485341,1.287468009], heading1.497794301143. Four mapped viewpoint nodes6449716756/6761/6763/11482830572 and COX architect drawings establish WEST-facing pods. The older coarse magenta bridge area has incorrectly mirrored pod protrusions and is not used for those locations. Datum0 is provisional MarinaReservoir surface; deck rises from6m to8.8m. Centerline, bearings and direction agree with the map; current reservoir stage is not a surveyed datum."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "505,124-triangle exterior based on COX/Arup/SCI/IMOA dimensions and drawings: six10.8m major and five9.4m minor helices,273mm tubes,73.6m/51.4m pitches, curved6m walkway, four connected oval bays, double tripods, end transitions, joints, rails, glazed/mesh canopy and under-deck framing. Individual joint hardware, glass segmentation, bearing details and exact vertical profile are reconstructed. The nearby vehicular bridge, shore plazas, artwork inscriptions, night light programming and submerged piles are outside this asset."
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "planId": "N0201",
+  "id": "N0201",
+  "assetId": "molen.worldgen.structure.n0201_telekom_tower",
+  "title": "Telekom Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q118214",
+  "referenceCoordinate": {
+    "latitude": 3.115833,
+    "longitude": 101.666111
+  },
+  "visualBrief": "310m Menara Telekom with two separately curved and tapered office wings, central core,22 planted open sky gardens, bowed cyan transfer trusses, recessed ribbon glazing with three metal sunshade blades, clad antenna sail and the236m bowl-supported helipad.",
+  "size": [
+    85.51092147827148,
+    310.00082507083425,
+    79.68522262573242
+  ],
+  "actualBounds": {
+    "min": [
+      -51.05080032348633,
+      -0.0008250708342529833,
+      -39.68989562988281
+    ],
+    "max": [
+      34.460121154785156,
+      310,
+      39.99532699584961
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X southeast in mapped envelope frame",
+    "shortAxis": "+Z southwest; antenna north-northwest of helipad"
+  },
+  "sourceFacts": {
+    "architect": "HIJJAS",
+    "structuralEngineers": "Peter Gabor and Kribanandan Gurusamy",
+    "heightMeters": 310,
+    "highestOccupiedMeters": 243,
+    "helipadMeters": 236,
+    "officeClearSpanMeters": 16,
+    "nominalFloors": 55,
+    "antennaStoreys": 21,
+    "skyGardens": 22
+  },
+  "reconstruction": {
+    "plan": "Gabor/Gurusamy1997 Figure1 and Figure3 establish two opposing16m curved office strips and rectangular core; the map roof projection is retained as evidence, not extruded into an incorrect solid.",
+    "facade": "Primary HIJJAS elevation and completed photographs control the curved taper, repeated recessed glass ribbons, three projecting louver blades, ACP end walls, garden bowstrings and helipad bowl. Intermediate module dimensions are photo reconstruction."
+  },
+  "referencePages": [
+    "https://www.hijjas.com/menara-telekom/",
+    "https://www.hijjas.com/beginnings/",
+    "https://www.skyscrapercenter.com/building/menara-tm/453",
+    "https://jtkconsult.com.my/the-practice/publications-2/",
+    "https://www.scribd.com/document/1062607466/KGN-Joint-Paper-Oct-Telekom-HQ-1997",
+    "https://www.openstreetmap.org/way/154443873",
+    "https://www.openstreetmap.org/way/594858890"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      101.665831363,
+      3.116224206
+    ],
+    "heading": -0.826793628665,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/154443873",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/154443873"
+    ],
+    "wikidataId": "Q118214",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:75047db6e82c8d201c781f33beb9ac6054f87453f143fe0dabbed0962f3b42da",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Mapped anchor and signed roof frame retain real236m helipad at its mapped center. The engineer plan is rigidly registered to the mapped core/roof projection; antenna is NNW of helipad, corroborated by architect tm-img1 with KL Tower backdrop. Exact lower-wing outer feet are reconstructed because the OSM envelope follows roof boundaries. SourceY0 is the tower entrance apron."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Wing taper control points, facade ribbon counts, sky-garden elevations and planting, TM sign strokes, entry canopy and fine service details are exterior reconstructions from primary plans/photos. Adjacent conference pavilions, buried basements and interiors are excluded. Map roof outline does not survey the lower curved wing feet."
+  ],
+  "qaCameras": [
+    {
+      "name": "opposed-curved-wings",
+      "position": [
+        250,
+        177,
+        -292
+      ],
+      "lookAt": [
+        -7,
+        142,
+        0
+      ]
+    },
+    {
+      "name": "open-sky-gardens",
+      "position": [
+        -90,
+        128,
+        -20
+      ],
+      "lookAt": [
+        -23,
+        119,
+        15
+      ]
+    },
+    {
+      "name": "bowstring-garden-truss",
+      "position": [
+        -63,
+        98,
+        -8
+      ],
+      "lookAt": [
+        -27,
+        91,
+        19
+      ]
+    },
+    {
+      "name": "ribbon-sunshades",
+      "position": [
+        28,
+        85,
+        -95
+      ],
+      "lookAt": [
+        10,
+        80,
+        -31
+      ]
+    },
+    {
+      "name": "helipad-bowl",
+      "position": [
+        79,
+        237,
+        90
+      ],
+      "lookAt": [
+        -1.5,
+        232,
+        18
+      ]
+    },
+    {
+      "name": "helipad-open-grating",
+      "position": [
+        28,
+        257,
+        44
+      ],
+      "lookAt": [
+        -1.5,
+        236,
+        18
+      ]
+    },
+    {
+      "name": "antenna-sail",
+      "position": [
+        -109,
+        286,
+        39
+      ],
+      "lookAt": [
+        -35,
+        278,
+        -13
+      ]
+    },
+    {
+      "name": "tall-wing-taper",
+      "position": [
+        116,
+        252,
+        -141
+      ],
+      "lookAt": [
+        -21,
+        261,
+        -17
+      ]
+    },
+    {
+      "name": "planted-terrace",
+      "position": [
+        -60,
+        82,
+        -5
+      ],
+      "lookAt": [
+        -24,
+        73,
+        15
+      ]
+    },
+    {
+      "name": "ground-entrance",
+      "position": [
+        -79,
+        14,
+        28
+      ],
+      "lookAt": [
+        -24,
+        4,
+        10
+      ]
+    },
+    {
+      "name": "far-bamboo-silhouette",
+      "position": [
+        -599,
+        249,
+        608
+      ],
+      "lookAt": [
+        -7,
+        156,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1479966,
+    "vertices": 3111466,
+    "materials": 7,
+    "bytes": 126664912,
+    "sha256": "sha256:498d9423187321259dec398bbc2cf55619a365bad5f46737cb513c90bb040a10"
+  }
+}
