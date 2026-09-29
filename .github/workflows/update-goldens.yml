@@ -15,6 +15,11 @@ jobs:
   update:
     runs-on: ubuntu-24.04
     steps:
+      # Store-only content packs (below) take about 8 GB instead of 2 GB, next to the GLBs.
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          df -h /
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
@@ -24,13 +29,14 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - uses: ./.github/actions/fetch-assets
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm -r build
+      # `pretest:golden` builds what the goldens need.
       - name: Regenerate goldens
         run: pnpm test:golden
         env:
           UPDATE_GOLDENS: '1'
-          # Same WebGL-only lane as the CI golden job (see ci.yml).
+          # Same lane as the CI golden job (see ci.yml): WebGL only, store-only content packs.
           MOLEN_SKIP_WEBGPU: '1'
+          MOLEN_PACK_COMPRESSION: store
       - name: Commit regenerated goldens
         run: |
           git config user.name "github-actions[bot]"

@@ -212,12 +212,13 @@ export async function recordInPackIndex(
  */
 export async function buildPack(
   dir: string,
-  options: { outDir: string; solid?: boolean },
+  options: { outDir: string; solid?: boolean; compression?: PackOptions['compression'] },
 ): Promise<BuiltPackFile> {
   const source = await readPackSource(dir);
   const built = await createPack(source.files, {
     ...optionsOf(source.config),
     ...(options.solid !== undefined ? { solid: options.solid } : {}),
+    ...(options.compression !== undefined ? { compression: options.compression } : {}),
   });
   const fileSha256 = await sha256(built.bytes);
   const id = built.manifest.id;

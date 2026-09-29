@@ -32,6 +32,12 @@ export interface PackOptions {
   provides?: Record<string, string | readonly string[]>;
   /** Group small text files into compressed solid blocks (default true). */
   solid?: boolean;
+  /**
+   * `auto` (default) deflates a member when that saves at least 10%. `store` writes every member
+   * uncompressed: the manifest and contents are identical, only the archive is larger, so a pack
+   * built for local reading (a test run) skips the deflate that dominates build time.
+   */
+  compression?: 'auto' | 'store';
 }
 
 export interface BuiltPack {
@@ -235,6 +241,7 @@ export async function createPack(
     }
   }
   const described = await describePack(sorted, options);
+  const compression = options.compression ?? 'auto';
   const entries: Record<string, PackEntry> = structuredClone(described.entries);
   const members: ZipMemberInput[] = [];
   const blocks: PackManifest['blocks'] = {};
@@ -245,7 +252,7 @@ export async function createPack(
       const group = groupOf(file.path);
       pending.set(group, [...(pending.get(group) ?? []), file]);
     } else {
-      members.push({ name: file.path, data: file.bytes, compression: 'auto' });
+      members.push({ name: file.path, data: file.bytes, compression });
     }
   }
   for (const [group, groupFiles] of [...pending].sort(([a], [b]) => (a < b ? -1 : 1))) {
@@ -264,7 +271,7 @@ export async function createPack(
       }
       const entry = `${PACK_RESERVED_PREFIX}blocks/${name}.blk`;
       blocks[name] = { entry, size };
-      blockMembers.push({ name: entry, data, compression: 'auto' });
+      blockMembers.push({ name: entry, data, compression });
       part++;
       chunk = [];
       size = 0;
@@ -286,7 +293,7 @@ export async function createPack(
     {
       name: PACK_MANIFEST_ENTRY,
       data: new TextEncoder().encode(JSON.stringify(manifest)),
-      compression: 'auto',
+      compression,
     },
   ]);
   return { bytes, manifest };

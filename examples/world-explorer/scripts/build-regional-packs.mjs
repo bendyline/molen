@@ -90,6 +90,8 @@ export async function buildRegionalPacks(
     maxShardBytes = 256 * MiB,
     maxSingleModelBytes = 512 * MiB,
     reuseFromDir,
+    // 'store' skips deflate for a local test build; see PackOptions.compression.
+    compression,
     onBuilt = () => {},
   } = {},
 ) {
@@ -181,6 +183,7 @@ export async function buildRegionalPacks(
       title: `${config.title ?? config.id}: ${shard.region}`,
       ...(config.license ? { license: config.license } : {}),
       ...(config.notice ? { notice: config.notice } : {}),
+      ...(compression ? { compression } : {}),
     };
     const described = await describePack(files, packOptions);
     for (const [path, entry] of Object.entries(described.entries))
@@ -261,6 +264,7 @@ export async function buildRegionalPacks(
     ...config,
     ids: coreIds,
     provides: { ...config.provides, 'model-archives': ROUTES },
+    ...(compression ? { compression } : {}),
   });
   entries[config.id] = await writeArchive(target, built, 512 * MiB);
   onBuilt(config.id, entries[config.id]);

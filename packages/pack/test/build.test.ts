@@ -66,6 +66,20 @@ describe('createPack', () => {
     expect((await describePack(changed, OPTIONS)).contentHash).not.toBe(a.manifest.contentHash);
   });
 
+  it('can store every member uncompressed without changing what the pack holds', async () => {
+    const deflated = await createPack(sampleFiles(), OPTIONS);
+    const stored = await createPack(sampleFiles(), { ...OPTIONS, compression: 'store' });
+    expect(stored.manifest).toEqual(deflated.manifest);
+    expect(stored.bytes.length).toBeGreaterThan(deflated.bytes.length);
+    const end = findZipEnd(stored.bytes, 0);
+    const members = parseCentralDirectory(
+      stored.bytes.subarray(end.centralOffset, end.centralOffset + end.centralSize),
+      end.entries,
+    );
+    expect([...members.values()].every((member) => member.method === 0)).toBe(true);
+    expect(unzipSync(stored.bytes)).toEqual(unzipSync(deflated.bytes));
+  });
+
   it('keeps the manifest and small documents in the last bytes of the file', async () => {
     const files = [...sampleFiles(), { path: 'models/big.glb', bytes: noise(200_000, 3) }];
     const { bytes, manifest } = await createPack(files, OPTIONS);

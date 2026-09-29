@@ -9,7 +9,9 @@ const OUT = join(DIR, '__output__', 'store-library');
 const GOLDENS = join(DIR, '__goldens__');
 
 // The identity catalog, shared tenants and mapped furniture run through the real terrain worker.
-// Classification owns the mapped tree. Frozen water and a hidden HUD stabilize the review.
+// Classification owns the mapped tree. Frozen water and a hidden HUD stabilize the review. The
+// frames are 640x360, like the worldgen preview's: software rendering cost follows pixel count,
+// and at 1280x720 with a second Human-mode page this one test took 24 minutes in CI.
 
 describe('golden: world explorer identity library', () => {
   it('renders recognized storefronts and mapped props', async () => {
@@ -30,11 +32,7 @@ describe('golden: world explorer identity library', () => {
     expect(r.ok, r.error ?? JSON.stringify(r.diagnostics)).toBe(true);
     expect(r.diagnostics?.filter((d) => d.kind === 'page-error')).toEqual([]);
     const frames = r.frames ?? [];
-    expect(frames.map((frame) => frame.name)).toEqual([
-      '01-stores-human',
-      '02-stores-classes',
-      '03-retail-overview',
-    ]);
+    expect(frames.map((frame) => frame.name)).toEqual(['01-stores-human', '02-stores-classes']);
     const status = frames[0]?.probes?.status ?? '';
     expect(status).toMatch(/worldgen \d+ buildings/);
     expect(status).not.toMatch(/worldgen 0 buildings/);
