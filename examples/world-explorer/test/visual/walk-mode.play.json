@@ -38,7 +38,8 @@
     },
     {
       "type": "screenshot",
-      "name": "01-walk-human-scale"
+      "name": "01-walk-human-scale",
+      "timeoutMs": 120000
     },
     {
       "type": "click",
@@ -50,16 +51,30 @@
     },
     {
       "type": "screenshot",
-      "name": "02-bare-before-walk"
+      "name": "02-bare-before-walk",
+      "timeoutMs": 120000
     },
     {
       "type": "click",
       "selector": "button[data-navigation=\"walk\"]"
     },
     {
-      "type": "keys",
-      "keys": ["w"],
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait",
       "durationMs": 3000
+    },
+    {
+      "type": "wait-for",
+      "note": "Keep walking until the camera has moved: a CI software frame can outlast the 3 s hold. The start latitude comes from the path; #location stays visible while walking, unlike #status.",
+      "selector": "#location:not(:has-text(\"Lat 47.6214500°\"))",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
     },
     {
       "type": "wait",
@@ -67,7 +82,8 @@
     },
     {
       "type": "screenshot",
-      "name": "02-walk-forward"
+      "name": "02-walk-forward",
+      "timeoutMs": 120000
     },
     {
       "type": "keys",
@@ -76,7 +92,8 @@
     },
     {
       "type": "screenshot",
-      "name": "03-no-flight-on-foot"
+      "name": "03-no-flight-on-foot",
+      "timeoutMs": 120000
     },
     {
       "type": "key-down",
@@ -95,7 +112,8 @@
     {
       "type": "screenshot",
       "name": "04-jump",
-      "settleMs": 0
+      "settleMs": 0,
+      "timeoutMs": 120000
     },
     {
       "type": "wait-for-stable",
@@ -106,7 +124,8 @@
     },
     {
       "type": "screenshot",
-      "name": "05-landed"
+      "name": "05-landed",
+      "timeoutMs": 120000
     },
     {
       "type": "click",
@@ -120,7 +139,8 @@
     },
     {
       "type": "screenshot",
-      "name": "06-fly"
+      "name": "06-fly",
+      "timeoutMs": 120000
     }
   ]
 }

@@ -8,13 +8,15 @@ import { defineConfig } from 'vitest/config';
 // Human mode is the slowest step: the synthetic lineup's measured 124-133s on a developer machine
 // and about 240s on a 4-vCPU CI runner, and store-library's (40-45s locally) projects to over 200s
 // on the slowest runners seen, which run it 3-5x slower than a developer machine. So every wait
-// after a switch to Human mode allows 600s. Screenshots in those dense scenes allow 120s instead of
-// the default 30s: the lineup's takes about 7s locally (0.4s before the switch). These numbers are
-// "this is definitely wedged" thresholds, not expected durations: a healthy runner finishes far
-// inside them, so raising them costs nothing when things work. testTimeout must stay above the sum
+// after a switch to Human mode allows 600s, and the lineup's 1200s: its Human mode now streams
+// about 4.5M triangles, which took 250s locally and ran past 600s on a CI runner. Screenshots in
+// those dense scenes allow 120s instead of the default 30s: the lineup's takes about 7s locally
+// (0.4s before the switch). These numbers are "this is definitely wedged" thresholds, not expected
+// durations: a healthy runner finishes far inside them, so raising them costs nothing when things
+// work. testTimeout must stay above the sum
 // of every scenario's own action timeouts (test/visual/*.play.json), or vitest kills the run first
 // and the scenario's precise failure message — which action, which probe text — is lost; the
-// largest sum today is store-library's, about 2280s.
+// largest sum today is engines', about 2870s.
 //
 // Files run one at a time, for the reason `test:golden` pins --workspace-concurrency=1: each file
 // drives its own software-rasterized browser, and on a 4-vCPU CI runner three at once starved the
@@ -23,7 +25,7 @@ export default defineConfig({
   test: {
     include: ['test/golden/**/*.test.ts'],
     fileParallelism: false,
-    testTimeout: 2_400_000,
+    testTimeout: 3_000_000,
     hookTimeout: 60_000,
   },
 });

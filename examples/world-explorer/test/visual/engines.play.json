@@ -30,7 +30,12 @@
     },
     { "type": "screenshot", "name": "02-car-idle" },
     { "type": "key-down", "keys": ["w"] },
-    { "type": "wait", "durationMs": 1500 },
+    {
+      "type": "wait-for",
+      "note": "Hold the throttle until the SUV does 5 m/s, not for a fixed time: a CI software frame can outlast a short hold, and a car that never left its parking space had no room to exit.",
+      "selector": "#navigation-status[data-state=\"driving\"]:not([data-speed^=\"0.\"]):not([data-speed^=\"1.\"]):not([data-speed^=\"2.\"]):not([data-speed^=\"3.\"]):not([data-speed^=\"4.\"]):not([data-speed^=\"-\"])",
+      "timeoutMs": 240000
+    },
     { "type": "screenshot", "name": "03-car-throttle" },
     { "type": "key-up", "keys": ["w"] },
     { "type": "key-down", "keys": [" "] },

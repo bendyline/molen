@@ -26,7 +26,7 @@ describe('browser: explorer soundscape', () => {
     expect(walk?.get('ambience.birds')).toBeGreaterThan(0);
     expect([...(walk?.keys() ?? [])].some((s) => s.startsWith('music.'))).toBe(true);
     // Birdsong comes from the ground: a few dozen meters up it is quieter, and it keeps fading as
-    // you climb (it stops altogether about 200 m up; slow software frames may not climb that far).
+    // you climb (the scenario climbs until it stops altogether, about 200 m up).
     const onFoot = walk?.get('ambience.birds') as number;
     const flyingLow = low?.get('ambience.birds') as number;
     expect(flyingLow).toBeLessThan(onFoot);
