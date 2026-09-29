@@ -54,9 +54,11 @@ Generated files come from generators, not from hand edits: the schema reference
 type declarations beside each scene (`molen types gen`). Change the source — a
 Zod `.describe()`, an `OPS_CATALOG` entry, a scene — and regenerate.
 
-Golden images are recorded in CI, not locally, because a software rasterizer is
-deterministic per build rather than across machines. `UPDATE_GOLDENS=1` produces
-a candidate locally; the `update-goldens` workflow records the authoritative one.
+Render tests (`pnpm test:golden`) compare no committed reference images: a
+software rasterizer is deterministic per build rather than across machines. They
+check that a frame renders the same way twice, that it changes when its input
+does, and what it shows (`frameStats`), so they pass on any machine as they do in
+CI and a renderer change needs no re-recording.
 
 ## Releases
 
@@ -114,9 +116,7 @@ If publishing stops partway through, rerun `Release` on the same commit. The pub
 recognizes packages already published at the intended version by tarball contents: every file
 byte for byte, except that `package.json` dependency keys may be reordered, because pnpm writes
 resolved `workspace:` entries in a racy order. Any other difference is an error that needs
-inspection. If a rendering change requires new reference images,
-run `Update goldens` on the branch first and wait for CI to pass on its resulting commit before
-starting the release flow.
+inspection.
 
 ## Submission Terms
 

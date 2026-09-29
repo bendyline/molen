@@ -83,6 +83,11 @@ const GROUPS = [
     ops: ['worldgen_preview', 'worldgen_bake', 'worldgen_stats'],
   },
   {
+    title: 'Ambient life',
+    blurb: 'Bake real road, rail and path networks so NPC traffic can run in any scene.',
+    ops: ['network_bake'],
+  },
+  {
     title: 'Figures',
     blurb: 'Stylized humans, bipeds and quadrupeds: presets, descriptors, rigs and gaits.',
     ops: ['figure_preview', 'list_figure_presets'],

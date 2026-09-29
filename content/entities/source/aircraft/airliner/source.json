@@ -1,0 +1,33 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.aircraft.airliner",
+  "kind": "aircraft",
+  "title": "Narrow-body airliner",
+  "order": 2,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.aircraft.airliner",
+        "output": "assets/molen/entities/aircraft/airliner/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8fcc097ba6adcd24ae169cce0caeb3c7129949a1aedef5f004041c347fed7495"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md"
+    ]
+  }
+}

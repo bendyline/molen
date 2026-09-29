@@ -1,0 +1,59 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.transit.bus": {
+      "doc": "12 m low-floor city bus that drives with ambient traffic.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.transit.bus"
+        },
+        "ambientRole": {
+          "role": "bus",
+          "length": 12,
+          "width": 2.55,
+          "height": 3.2,
+          "cruise": 11,
+          "max": 20,
+          "weight": 0.12,
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "wheelRadius": 0.5,
+            "wheelbase": 5.9
+          },
+          "colors": [
+            "#1f6fa8",
+            "#d2372c",
+            "#2e7d4f",
+            "#f2b705"
+          ]
+        }
+      }
+    }
+  }
+}

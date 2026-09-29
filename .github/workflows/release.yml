@@ -40,7 +40,7 @@ jobs:
       # is the artifact that gets deployed.
       - uses: actions/configure-pages@v5
       - run: pnpm docs:site:build
-      # One semantic-release run decides one version for all 14 packages. Its Molen plugin
+      # One semantic-release run decides one version for all 16 packages. Its Molen plugin
       # stamps, rebuilds, verifies, packs and publishes before the tag is pushed. npm's CLI
       # exchanges this job's OIDC identity for a short-lived publish credential.
       - name: Semantic Release

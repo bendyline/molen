@@ -1,3 +1,4 @@
+import { ambientVehicleKind } from '@bendyline/molen-ambient/client';
 import type { CameraPose, TopDownOrtho } from '@bendyline/molen-client';
 import { createSnapshotViewer } from '@bendyline/molen-client';
 import { figureKind } from '@bendyline/molen-figures/client';
@@ -75,7 +76,7 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
     pixelRatio: 1,
     antialias: false,
     clearColor: req.clearColor ?? '#11131a',
-    kinds: [figureKind()],
+    kinds: [figureKind(), ambientVehicleKind()],
     ...(req.assetsBaseUrl != null
       ? {
           assets: {

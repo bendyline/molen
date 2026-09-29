@@ -357,6 +357,58 @@ const sceneTerrainRefSchema = z.strictObject({
     .optional(),
 });
 
+const ambientKind = z.enum(['car', 'pedestrian', 'train', 'aircraft']);
+
+const sceneAmbientSchema = z.strictObject({
+  network: z
+    .union([
+      relPath,
+      z.looseObject({
+        format: z
+          .literal('molen/transport-network@1')
+          .describe("Format envelope; always 'molen/transport-network@1'."),
+      }),
+    ])
+    .describe(
+      'The road, rail and path network NPCs move on: a scene-relative path to a molen/transport-network@1 document, or the document inline.',
+    )
+    .optional(),
+  observer: z
+    .string()
+    .min(1)
+    .describe(
+      'Entity whose position drives the spawn ring (default: the entity carrying ambientObserver, else the ambient.observer command).',
+    )
+    .optional(),
+  classes: z.array(ambientKind).describe("Which NPC classes run (default ['car']).").optional(),
+  density: z
+    .partialRecord(ambientKind, z.number().nonnegative())
+    .describe('Target agents per kilometre of lane near the observer, per class.')
+    .optional(),
+  drivingSide: z
+    .enum(['right', 'left'])
+    .describe("Which side of the road traffic keeps to (default 'right').")
+    .optional(),
+  radius: z
+    .number()
+    .positive()
+    .describe('Outer spawn radius in metres for cars (other classes scale from it).')
+    .optional(),
+  despawnRadius: z
+    .number()
+    .positive()
+    .describe('Distance in metres beyond which cars are removed (must exceed radius).')
+    .optional(),
+  templates: z
+    .partialRecord(ambientKind, z.string().min(1))
+    .describe('Prefab name per class whose components every spawned agent receives.')
+    .optional(),
+  seedSalt: z
+    .string()
+    .describe('Mixed into the scene seed for ambient draws, to vary traffic without reseeding.')
+    .optional(),
+});
+
 const scenePhysicsSchema = z.strictObject({
   /** kinematics and platformer are cross-platform deterministic; rapier is same-platform. */
   engine: z
@@ -441,6 +493,11 @@ const sceneSchema = z.strictObject({
     .describe('Streamed heightmap terrain attached to the scene.')
     .optional(),
   physics: scenePhysicsSchema.describe('Physics engine selection and settings.').optional(),
+  ambient: sceneAmbientSchema
+    .describe(
+      'Ambient life: NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (needs @bendyline/molen-ambient).',
+    )
+    .optional(),
 });
 
 const rngStateSchema = z.strictObject({
@@ -699,8 +756,35 @@ function validateScene(data: unknown): ValidationIssue[] {
     physics?: { engine: string; character?: boolean };
     camera?: { mode: string; offset?: number[]; lookOffset?: number[] };
     input?: SceneInput;
+    ambient?: { templates?: Record<string, string>; radius?: number; despawnRadius?: number };
   };
   const issues: ValidationIssue[] = [];
+  for (const [kind, prefab] of Object.entries(scene.ambient?.templates ?? {})) {
+    if (scene.prefabs[prefab] === undefined) {
+      const near = nearest(prefab, Object.keys(scene.prefabs));
+      issues.push({
+        path: `/ambient/templates/${escapePointer(kind)}`,
+        code: 'unknown_prefab',
+        message: `ambient ${kind} template references unknown prefab "${prefab}"`,
+        ...(near !== undefined ? { hint: `did you mean "${near}"?` } : {}),
+        docsRef: 'schemas/scene.md',
+      });
+    }
+  }
+  const ambientRadius = scene.ambient?.radius;
+  const ambientDespawn = scene.ambient?.despawnRadius;
+  if (
+    ambientRadius !== undefined &&
+    ambientDespawn !== undefined &&
+    ambientDespawn <= ambientRadius
+  ) {
+    issues.push({
+      path: '/ambient/despawnRadius',
+      code: 'invalid_ambient',
+      message: `ambient despawnRadius (${ambientDespawn}) must exceed radius (${ambientRadius})`,
+      docsRef: 'schemas/scene.md',
+    });
+  }
   if (
     scene.camera?.mode === 'follow' &&
     scene.camera.offset?.every((v, i) => v === scene.camera?.lookOffset?.[i])

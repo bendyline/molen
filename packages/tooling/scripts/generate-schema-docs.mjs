@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 // Importing these registers every schema kind into the shared registry.
 import { getComponent, getSchema, listComponents, schemaKinds } from '@bendyline/molen-schema';
 import { z } from 'zod';
+import '@bendyline/molen-ambient/kernel';
 import '@bendyline/molen-figures/kernel';
 import '@bendyline/molen-materials';
 import '@bendyline/molen-terrain/kernel';

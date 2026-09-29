@@ -83,6 +83,8 @@ const CAPABILITY_DOC: Readonly<Record<string, string>> = {
   terrain: 'Terrain sampling: heightAt / normalAt / slopeAt / raycast (see guide/terrain.md).',
   figures: 'Figure verbs: mount / dismount / socket / … (see guide/figures.md).',
   worldgen: 'Worldgen queries: buildingAt / …  (see guide/worldgen.md).',
+  ambient:
+    'Ambient life: stats / laneAt / agentsNear / setObserver / addRoad / … (see guide/ambient-life.md).',
 };
 
 function quote(value: string): string {

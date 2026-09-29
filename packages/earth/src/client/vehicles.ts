@@ -23,13 +23,15 @@ import {
   vehicleLocalPoint,
   vehicleRotation,
 } from '@bendyline/molen-kernel/vehicles';
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { componentHandle, Transform, World } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement, VehicleSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
 
 const PLAYER = 'world-player';
+/** Ambient NPCs share this world; they are never parked cars to cull. */
+const AmbientAgent = componentHandle('ambientAgent');
 
 export interface EarthVehiclesOptions {
   /** Streamed scene whose visible tiles carry parked-car placements (`userData.vehicles`). */
@@ -169,7 +171,7 @@ export class EarthVehicles {
         this.active.delete(id);
       }
     }
-    for (const [id] of this.world.query(Vehicle))
+    for (const [id] of this.world.query(Vehicle).without(AmbientAgent))
       if (!resident.has(id) && !this.retained.has(id) && !this.loading.has(id))
         this.world.destroy(id);
     // Parent/child LOD overlap and regenerated tiles must never resurrect the car at its bay.

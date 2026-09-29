@@ -27,7 +27,7 @@ W/S or Up/Down: accelerate and reverse. A/D or Left/Right: steer. Space: handbra
 - `commands.json` + `checks.json`: a short reproducible headless smoke scenario.
 - `test/playthrough.test.js`: a bounded agent that wins with **only player commands**, then restarts. It never teleports entities or grants inventory.
 
-The car is an arcade controller with a conservative circular collision footprint in XZ. It is not a suspension/tire simulation. Change handling and the delivery route in `scripts[0].config`, vehicle dimensions in the `vehicle` prefab, and traffic routes in `trafficCar` components.
+The car is an arcade controller with a conservative circular collision footprint in XZ. It is not a suspension/tire simulation. Change handling and the delivery route in `scripts[0].config`, vehicle dimensions in the `vehicle` prefab, and traffic in the scene's `ambient` block: the street grid is an inline `molen/transport-network@1` network, and NPC cars spawn around the player from the `npc-car` prefab, follow their lanes, give way at junctions and stop for the courier (see [ambient life](https://molen.dev/guide/ambient-life)).
 
 ## Sound
 

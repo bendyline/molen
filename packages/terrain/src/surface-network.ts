@@ -11,14 +11,22 @@ import type {
   TerrainSemanticTile,
   TerrainTransportationFeature,
 } from './semantic-types';
-import { roadWidth } from './semantic-widths';
 import type { TerrainSurfaceStyle } from './surface-styles';
+import {
+  groupTransportationFeatures,
+  isPaintedTransport,
+  isTransportLink,
+  type TransportKind,
+  transportKind,
+  transportSurfaceLift,
+  transportWidth,
+} from './transport-features';
 
 export interface SurfaceRoad {
   feature: TerrainTransportationFeature;
   path: TerrainLinePath;
   width: number;
-  kind: 'street' | 'service' | 'path' | 'rail' | 'motorway';
+  kind: TransportKind;
   unpaved: boolean;
   elevation: number;
 }
@@ -47,16 +55,7 @@ export interface SurfaceJunction {
 }
 
 export function isSurfaceLink(road: SurfaceRoad): boolean {
-  return road.feature.link === true || /(?:_link|ramp)$/.test(road.feature.subclass ?? '');
-}
-
-function roadKind(feature: TerrainTransportationFeature): SurfaceRoad['kind'] {
-  const tag = `${feature.class} ${feature.subclass ?? ''} ${feature.service ?? ''}`.toLowerCase();
-  if (/rail|tram|train/.test(tag)) return 'rail';
-  if (/path|foot|cycle|pedestrian|steps|trail|bridle/.test(tag)) return 'path';
-  if (/service|parking|driveway|alley/.test(tag)) return 'service';
-  if (/motorway|freeway|highway/.test(tag)) return 'motorway';
-  return 'street';
+  return isTransportLink(road.feature);
 }
 
 /** Subtract a convex footprint, retaining convex pieces for the terrain draper. */
@@ -103,45 +102,23 @@ export class SurfaceNetwork {
   private readonly footprints = new WeakMap<Segment, TerrainSemanticPoint[]>();
 
   constructor(tile: TerrainSemanticTile, tileSize: number, style: TerrainSurfaceStyle) {
-    const groups = new Map<string, TerrainTransportationFeature>();
-    for (const feature of tile.transportation) {
-      const { id: _id, lines, ...properties } = feature;
-      const key = JSON.stringify(properties);
-      const group = groups.get(key);
-      if (group) group.lines.push(...lines);
-      else groups.set(key, { ...feature, lines: [...lines] });
-    }
-    for (const feature of groups.values()) {
-      if (
-        feature.tunnel ||
-        (feature.subclass === 'sidewalk' && !style.sidewalks) ||
-        feature.subclass === 'crossing'
-      )
-        continue;
-      const kind = roadKind(feature);
+    for (const feature of groupTransportationFeatures(tile.transportation)) {
+      if (!isPaintedTransport(feature, style)) continue;
+      const kind = transportKind(feature);
       for (const line of joinTerrainLines(feature.lines)) {
         const path = terrainLinePath(line, tileSize);
         if (path.length <= 0) continue;
-        const width =
-          feature.width ??
-          (kind === 'path'
-            ? 2.4
-            : kind === 'service'
-              ? 4.5
-              : feature.lanes
-                ? Math.min(12, feature.lanes) * 3.2
-                : roadWidth(feature.subclass ?? feature.class)) * style.roadWidthScale;
         const road: SurfaceRoad = {
           feature,
           path,
-          width: Math.min(80, width),
+          width: transportWidth(feature, kind, style.roadWidthScale),
           kind,
           unpaved:
             style.unpavedRoads ||
             /dirt|ground|gravel|sand|unpaved|earth/.test(feature.surface ?? ''),
           // Parking sits at 0.30 and pedestrian polygons at 0.38–0.40. Keep mapped
           // paths (and their shoulders, 0.04 lower) clear of the parking sheet.
-          elevation: (kind === 'path' ? 0.43 : 0.32) + (feature.bridge ? 4 : 0),
+          elevation: transportSurfaceLift(kind, feature.bridge === true),
         };
         this.roads.push(road);
         for (let i = 1; i < path.points.length; i++) {

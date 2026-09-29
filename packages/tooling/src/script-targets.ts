@@ -69,6 +69,7 @@ function capabilitiesFor(manifest: SceneManifest): string[] {
   const caps = ['figures'];
   if (manifest.physics?.engine === 'rapier') caps.push('physics');
   if (manifest.terrain !== undefined) caps.push('terrain');
+  if (manifest.ambient !== undefined) caps.push('ambient');
   return caps;
 }
 

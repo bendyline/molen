@@ -129,6 +129,29 @@ export interface SceneTerrainRef {
   heightmap?: string;
 }
 
+/** An NPC class the ambient-life capability simulates. */
+export type SceneAmbientKind = 'car' | 'pedestrian' | 'train' | 'aircraft';
+
+/** Ambient life (NPC traffic) settings; consumed by `@bendyline/molen-ambient`. */
+export interface SceneAmbient {
+  /** Scene-relative path to a molen/transport-network@1 document, or the document inline. */
+  network?: string | JsonObject;
+  /** Entity whose position drives the spawn ring. */
+  observer?: EntityId;
+  /** Which NPC classes run (default ['car']). */
+  classes?: SceneAmbientKind[];
+  /** Target agents per kilometre of lane near the observer, per class. */
+  density?: Partial<Record<SceneAmbientKind, number>>;
+  drivingSide?: 'right' | 'left';
+  /** Outer spawn radius in metres for cars. */
+  radius?: number;
+  /** Distance in metres beyond which cars are removed. */
+  despawnRadius?: number;
+  /** Prefab name per class whose components every spawned agent receives. */
+  templates?: Partial<Record<SceneAmbientKind, string>>;
+  seedSalt?: string;
+}
+
 export interface ScenePhysics {
   /** kinematics and platformer are cross-platform deterministic; rapier is same-platform. */
   engine: 'none' | 'kinematics' | 'platformer' | 'rapier';
@@ -158,6 +181,7 @@ export interface SceneManifest {
   input?: SceneInput;
   terrain?: SceneTerrainRef;
   physics?: ScenePhysics;
+  ambient?: SceneAmbient;
 }
 
 // --- project + type registry (molen/project@1, molen/types@1) ---

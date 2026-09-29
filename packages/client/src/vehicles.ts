@@ -118,8 +118,30 @@ function coloredBox(
   return geometry;
 }
 
+/** The dimensions a vehicle proxy is built from (a `VehicleSpec` satisfies it). */
+export interface VehicleProxyDimensions {
+  width: number;
+  length: number;
+  height: number;
+  wheelbase: number;
+  wheelTrack: number;
+  wheelRadius: number;
+}
+
+/**
+ * The parked-car proxy shape with a white body, for instanced rendering: per-instance paint comes
+ * from `instanceColor` (three multiplies vertex colours by it, so glass and tyres stay dark).
+ * Cached by dimensions; never dispose the returned geometry.
+ */
+export function vehicleProxyGeometry(dimensions: VehicleProxyDimensions): THREE.BufferGeometry {
+  return parkedTemplate(dimensions, '#ffffff');
+}
+
+/** The shared vertex-coloured material of parked and proxy vehicles. */
+export const vehicleProxyMaterial: THREE.MeshStandardMaterial = parkedMaterial;
+
 /** Generic dimension-driven proxy used only for large dormant parking batches. */
-function parkedTemplate(spec: VehicleSpec, color: string): THREE.BufferGeometry {
+function parkedTemplate(spec: VehicleProxyDimensions, color: string): THREE.BufferGeometry {
   const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}:${color}`;
   const cached = parkedTemplates.get(key);
   if (cached !== undefined) return cached;

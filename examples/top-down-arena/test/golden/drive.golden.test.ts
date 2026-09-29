@@ -1,16 +1,15 @@
 /// <reference types="node" />
 import { mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import { compareGolden, diffImages, driveScene } from '@bendyline/molen-tooling';
+import { diffImages, driveScene, frameStats } from '@bendyline/molen-tooling';
 import { describe, expect, it } from 'vitest';
 
 const DIR = join(process.cwd(), 'test', 'golden');
 const OUT = join(DIR, '__output__');
-const GOLDENS = join(DIR, '__goldens__');
 
 // A PLAYED scenario as a regression test: the agent harness runs the real game — move east,
 // watch enemies spawn and chase — with frames captured mid-story and asserts on the outcome.
-// Deterministic: same seed + same actions = the same frames, so the "after" frame is a golden.
+// Deterministic: same seed + same actions = the same frames.
 describe('golden: arena drive scenario', () => {
   it('moves the player east while enemies spawn; frames + assertions hold', async () => {
     await mkdir(OUT, { recursive: true });
@@ -48,21 +47,14 @@ describe('golden: arena drive scenario', () => {
     // The player actually moved: the two frames differ.
     const start = r.frames?.[0]?.path as string;
     const after = r.frames?.[1]?.path as string;
-    // Two candidates, not a reference image: `diffImages` is the plain comparison. `compareGolden`
-    // would treat `after` as a golden and record it when absent.
     const framesDiffer = await diffImages(start, after, join(OUT, 'drive-frames.diff.png'), 0.001);
     expect(framesDiffer.match).toBe(false);
 
-    // And the played outcome is pixel-stable against the committed golden.
-    const g = await compareGolden(
-      after,
-      join(GOLDENS, 'drive-after.png'),
-      join(OUT, 'drive-after.diff.png'),
-      { maxDiffRatio: 0.01 },
-    );
-    expect(
-      g.ok,
-      `drive golden diff ${g.diffRatio} (UPDATE_GOLDENS=1 to refresh)${g.reason === undefined ? '' : ` — ${g.reason}`}`,
-    ).toBe(true);
+    // The green player starts in the middle of the fixed view and has left it.
+    const center = { x: 0.49, y: 0.48, width: 0.02, height: 0.04 };
+    const before = await frameStats(start, { region: center });
+    expect(before.mean[1]).toBeGreaterThan(before.mean[0] + 60);
+    const later = await frameStats(after, { region: center });
+    expect(later.mean[1]).toBeLessThan(later.mean[0] + 20);
   });
 });

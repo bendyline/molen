@@ -7,6 +7,7 @@ import { listFigurePresets } from './ops/figure-presets';
 import { type FigureLineup, previewFigure } from './ops/figure-preview';
 import {
   applyUvPaintOp,
+  bakeNetwork,
   bakeWorldgen,
   buildContentPack,
   checkScripts,
@@ -334,6 +335,15 @@ async function cmdSim(args: ParsedArgs): Promise<number> {
     }
   }
   out(`events: ${result.eventCount}`);
+  if (result.ambient !== undefined) {
+    const counts = Object.entries(result.ambient.agents)
+      .filter(([, n]) => n > 0)
+      .map(([kind, n]) => `${n} ${kind}`)
+      .join(', ');
+    out(
+      `ambient: ${counts || 'no agents'} on ${result.ambient.lanes} lanes (${result.ambient.spawned} spawned, ${result.ambient.despawned} removed)`,
+    );
+  }
   if (result.physics !== undefined && result.physics !== 'none') {
     out(
       result.physics === 'rapier'
@@ -1620,6 +1630,57 @@ export async function runCli(argv: string[]): Promise<number> {
  * server, and this table are cross-checked by test/catalog.test.ts — a new op must land on all
  * three surfaces or that test fails.
  */
+async function cmdNetwork(args: ParsedArgs): Promise<number> {
+  const sub = args.positionals[0];
+  const usage =
+    'usage: molen network bake <terrain-package.json> (--tile z/x/y [--radius n] | --bbox w,s,e,n) --out network.json [--classes road,rail,path] [--heights] [--json]';
+  if (sub !== 'bake') {
+    err(usage);
+    return 2;
+  }
+  const packagePath = args.positionals[1];
+  const outPath = str(args.flags.out);
+  if (packagePath === undefined || outPath === undefined) {
+    err(usage);
+    return 2;
+  }
+  const bboxText = str(args.flags.bbox);
+  const bbox = bboxText?.split(',').map(Number);
+  if (bbox !== undefined && (bbox.length !== 4 || bbox.some((v) => !Number.isFinite(v)))) {
+    err('--bbox must be west,south,east,north in degrees');
+    return 2;
+  }
+  const classes = str(args.flags.classes)?.split(',');
+  if (classes?.some((c) => !['road', 'rail', 'path'].includes(c))) {
+    err('--classes takes road, rail and/or path');
+    return 2;
+  }
+  const radius = str(args.flags.radius);
+  const r = await bakeNetwork({
+    packagePath,
+    outPath,
+    ...(str(args.flags.tile) !== undefined ? { tile: str(args.flags.tile) } : {}),
+    ...(radius !== undefined ? { radius: Number(radius) } : {}),
+    ...(bbox !== undefined ? { bbox: bbox as [number, number, number, number] } : {}),
+    ...(classes !== undefined ? { classes: classes as ('road' | 'rail' | 'path')[] } : {}),
+    heights: args.flags.heights === true,
+  });
+  if (!r.ok) {
+    err(r.error ?? 'network bake failed');
+    return 1;
+  }
+  if (args.flags.json === true) out(JSON.stringify(r, null, 2));
+  else {
+    const counts = Object.entries(r.classes ?? {})
+      .map(([cls, n]) => `${n} ${cls}`)
+      .join(', ');
+    out(`wrote ${r.path}: ${r.ways} ways (${counts}) from ${r.tiles} tiles`);
+    if (r.origin !== undefined) out(`origin ${r.origin.latitude}, ${r.origin.longitude}`);
+    for (const w of r.warnings ?? []) out(`  ! ${w}`);
+  }
+  return 0;
+}
+
 export const CLI_COMMANDS: Record<string, (args: ParsedArgs) => number | Promise<number>> = {
   validate: cmdValidate,
   sim: cmdSim,
@@ -1646,5 +1707,6 @@ export const CLI_COMMANDS: Record<string, (args: ParsedArgs) => number | Promise
   templates: cmdTemplates,
   figure: cmdFigure,
   worldgen: cmdWorldgen,
+  network: cmdNetwork,
   mcp: cmdMcp,
 };

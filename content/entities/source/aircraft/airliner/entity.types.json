@@ -1,0 +1,54 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.aircraft.airliner": {
+      "doc": "38 m narrow-body twin-jet for ambient air traffic (seen from the ground; not flyable).",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.airliner"
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 38,
+          "width": 35.8,
+          "height": 11.8,
+          "cruise": 120,
+          "weight": 3,
+          "visual": {
+            "rotors": [
+              "fan-left",
+              "fan-right"
+            ],
+            "gearNodes": [
+              "gear-nose",
+              "gear-left",
+              "gear-right"
+            ],
+            "paintMaterial": "airliner-livery"
+          },
+          "colors": [
+            "#1f4f8c",
+            "#b3261e",
+            "#1d6f5b"
+          ]
+        }
+      }
+    }
+  }
+}

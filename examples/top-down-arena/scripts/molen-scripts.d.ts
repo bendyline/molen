@@ -194,6 +194,78 @@ type MolenAircraftStateData = {
   crashed: boolean;
   waitingForTerrain: boolean;
 };
+/** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+type MolenAmbientAgentData = {
+  kind: 'car' | 'pedestrian' | 'train' | 'aircraft';
+  type: string;
+  color?: string;
+  lane: string;
+  s: number;
+  speed: number;
+  prev?: string;
+  next?: string;
+  seed: number;
+  length: number;
+  width: number;
+  state: 'move' | 'wait' | 'dwell' | 'idle';
+  since: number;
+  hops: number;
+  hidden?: boolean;
+  consist?: string;
+  carIndex?: number;
+  trail?: string[];
+  served?: string;
+  air?: {
+    x: number;
+    z: number;
+    dx: number;
+    dz: number;
+    y0: number;
+    y1: number;
+    length: number;
+  };
+  spawnedTick: number;
+};
+/** Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. */
+type MolenAmbientObserverData = {
+  radius?: number;
+  despawnRadius?: number;
+  density?: number;
+};
+/** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+type MolenAmbientRoleData = {
+  role: 'car' | 'bus' | 'rail' | 'aircraft';
+  length?: number;
+  width?: number;
+  height?: number;
+  cruise?: number;
+  max?: number;
+  weight?: number;
+  cars?: number;
+  colors?: string[];
+  visual?: {
+    wheelNodes?: string[];
+    frontWheelNodes?: string[];
+    paintMaterial?: string;
+    wheelRadius?: number;
+    wheelbase?: number;
+    rotors?: string[];
+    gearNodes?: string[];
+  };
+};
+/** Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. */
+type MolenAmbientStateData = {
+  observer?: {
+    pos?: [number, number, number];
+    forward?: [number, number];
+    entity?: string;
+    setAtTick: number;
+  };
+  nextSeq: number;
+  spawned: number;
+  despawned: number;
+  policy?: Record<string, unknown>;
+};
 /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
 type MolenAudioEnvironmentData = {
   buses?: Record<string, number>;
@@ -712,7 +784,7 @@ type MolenPlatformSolidData = {
 };
 /** Client render contract: a primitive, a gltf asset (by project asset id) with optional sub-node, material override, shadows, and clip playback, or a capability-registered kind. */
 type MolenRenderableData = {
-  kind: 'primitive' | 'gltf' | 'figure';
+  kind: 'primitive' | 'gltf' | 'ambient-vehicle' | 'figure';
   ref: string;
   materialRef?: string;
   primitive?: {
@@ -919,6 +991,14 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
+  /** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+  'ambientAgent': MolenAmbientAgentData;
+  /** Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. */
+  'ambientObserver': MolenAmbientObserverData;
+  /** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+  'ambientRole': MolenAmbientRoleData;
+  /** Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. */
+  'ambientState': MolenAmbientStateData;
   /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
   'audioEnvironment': MolenAudioEnvironmentData;
   /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */

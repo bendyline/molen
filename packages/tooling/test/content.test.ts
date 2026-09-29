@@ -60,7 +60,7 @@ describe('project content packs', () => {
     const ctx = await loadProject(join(projectDir, 'project.json'));
     expect(ctx.resolvedTypes.has('molen.entities.vehicle.sedan')).toBe(true);
     expect(ctx.typeIssues).toEqual([]);
-    expect(ctx.content.types?.packs).toEqual(['molen.entities@0.0.1']);
+    expect(ctx.content.types?.packs).toEqual(['molen.entities@0.0.2']);
 
     const run = await runSimulation({ scenePath: join(projectDir, 'main.scene.json'), ticks: 5 });
     expect(run.error).toBeUndefined();

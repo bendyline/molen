@@ -56,3 +56,11 @@ sidecar, types document, project, or gallery scene is stale.
 `molen.entities.aircraft.p51d` and `molen.entities.aircraft.oh6` add the Mustang and OH-6
 helicopter, including GLBs, flight components and pilot seats. The pack's asset provider
 serves them like any other model. See [Aircraft](aircraft.md) for world-view controls, physics and integration.
+
+## Transit and background traffic
+
+`molen.entities.transit.bus` is a 12 m city bus, `molen.entities.transit.lightrail` a 27 m
+two-section light-rail car, and `molen.entities.aircraft.airliner` a narrow-body airliner. They are
+models for background traffic, not mountable vehicles. [Ambient life](ambient-life.md) spawns them
+through their `ambientRole` component, as it does the pack's five cars and the two aircraft above.
+In the engine repository, `content/entities/scenes/transit.scene.json` shows them side by side.

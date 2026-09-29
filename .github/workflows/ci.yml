@@ -101,7 +101,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - uses: ./.github/actions/fetch-assets
-      # Golden images are recorded in this CI environment; SwiftShader is deterministic per build.
+      # The render tests carry no reference images, so this runner records nothing of its own.
       - run: pnpm exec playwright install --with-deps chromium
       # `pretest:golden` builds first. These CPU-only runners find a SwiftShader WebGPU adapter
       # but lose the device on the explorer's scenes (blank canvas, "Instance dropped"), so

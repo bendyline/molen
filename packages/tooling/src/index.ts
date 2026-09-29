@@ -1,3 +1,5 @@
+export type { FrameRegion, FrameStats, FrameStatsOptions } from './frame-stats';
+export { frameStats } from './frame-stats';
 export type { GoldenOptions, GoldenResult, ImageDiff } from './golden';
 export { compareGolden, diffImages } from './golden';
 export type {

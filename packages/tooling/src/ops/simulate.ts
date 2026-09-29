@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { ambientOf } from '@bendyline/molen-ambient/kernel';
 import type { ResolvedTypes, WorldSetup } from '@bendyline/molen-kernel';
 import {
   type AssertionResult,
@@ -60,6 +61,8 @@ export interface SimulateOutput {
   notices?: ValidationIssue[];
   /** The pack content the world was built from (project.json `packs`, MOLEN_PACKS). */
   content?: ContentIdentity;
+  /** Ambient life at the final tick, when the scene has an `ambient` block. */
+  ambient?: { agents: Record<string, number>; spawned: number; despawned: number; lanes: number };
   /** Set when something failed before running (bad scene, etc.). */
   error?: string;
 }
@@ -154,6 +157,7 @@ async function runSimulationImpl(input: SimulateInput): Promise<SimulateOutput> 
     ? runAssertions(headless.world, assertDoc, { events: headless.events })
     : [];
   const allPass = assertionResults.every((r) => r.pass);
+  const ambient = ambientOf(headless.world)?.stats();
 
   return {
     ok: allPass,
@@ -166,6 +170,16 @@ async function runSimulationImpl(input: SimulateInput): Promise<SimulateOutput> 
     assertionsFormatted:
       assertionResults.length > 0 ? formatAssertionResults(assertionResults) : undefined,
     ...(manifest.physics !== undefined ? { physics: manifest.physics.engine } : {}),
+    ...(ambient !== undefined
+      ? {
+          ambient: {
+            agents: ambient.agents,
+            spawned: ambient.spawned,
+            despawned: ambient.despawned,
+            lanes: ambient.network.lanes,
+          },
+        }
+      : {}),
     ...(notices.length > 0 ? { notices } : {}),
   };
 }

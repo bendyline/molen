@@ -7,8 +7,17 @@
       "doc": "Cargo van with a high center of mass and restrained road performance.",
       "components": {
         "transform": {
-          "pos": [0, 0, 0],
-          "rot": [0, 0, 0, 1]
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
         },
         "vehicle": {
           "kind": "molen.entities.vehicle.van",
@@ -18,7 +27,11 @@
             "width": 1.95,
             "length": 4.95,
             "height": 2.05,
-            "centerOfMass": [0, 0.78, 0],
+            "centerOfMass": [
+              0,
+              0.78,
+              0
+            ],
             "wheelbase": 3,
             "wheelTrack": 1.638,
             "wheelRadius": 0.34,
@@ -29,7 +42,11 @@
             "brakeDeceleration": 8,
             "maxSteer": 0.55,
             "grip": 6.5,
-            "driverEye": [0.43, 1.59, 1.1],
+            "driverEye": [
+              0.43,
+              1.59,
+              1.1
+            ],
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
@@ -46,10 +63,16 @@
               "wheel-front-right",
               "wheel-front-left"
             ],
-            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "frontWheelNodes": [
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
             "paintMaterial": "vehicle-paint-and-trim",
             "interior": {
-              "nodes": ["body", "steering-wheel"],
+              "nodes": [
+                "body",
+                "steering-wheel"
+              ],
               "bindings": [
                 {
                   "node": "steering-wheel",
@@ -83,10 +106,25 @@
             {
               "id": "driver",
               "role": "driver",
-              "position": [0.43, 1.59, 1.1]
+              "position": [
+                0.43,
+                1.59,
+                1.1
+              ]
             }
           ],
-          "exits": [[1.48, 0, 1.1], [-1.48, 0, 1.1]],
+          "exits": [
+            [
+              1.48,
+              0,
+              1.1
+            ],
+            [
+              -1.48,
+              0,
+              1.1
+            ]
+          ],
           "reach": 2.8
         },
         "renderable": {
@@ -107,15 +145,55 @@
           },
           "pitchFrom": {
             "signal": "vehicleState.speed",
-            "curve": [[-7, 1.15], [0, 0.85], [9.9, 1.15], [21.4, 1.45], [33, 1.75]]
+            "curve": [
+              [
+                -7,
+                1.15
+              ],
+              [
+                0,
+                0.85
+              ],
+              [
+                9.9,
+                1.15
+              ],
+              [
+                21.4,
+                1.45
+              ],
+              [
+                33,
+                1.75
+              ]
+            ]
           },
           "gainFrom": {
             "signal": "vehicleInput.throttle",
-            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+            "curve": [
+              [
+                -1,
+                0.9
+              ],
+              [
+                0,
+                0.65
+              ],
+              [
+                1,
+                1
+              ]
+            ]
           }
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
         }
       },
-      "assets": ["molen.entities.vehicle.van"],
+      "assets": [
+        "molen.entities.vehicle.van"
+      ],
       "scripts": [
         {
           "id": "interactions",

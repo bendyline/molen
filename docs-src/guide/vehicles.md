@@ -77,7 +77,9 @@ fixtures and buildings. Terrain gaps pause motion; abrupt steps and slopes above
 the car. Cockpit views use the full chassis quaternion; chase views shorten at obstructions.
 
 This is a grounded driving foundation. It does not implement rigid-body rollovers, crash deformation,
-traffic AI, passenger animation, multiplayer ownership, or disk persistence. Without collision hooks,
+passenger animation, multiplayer ownership, or disk persistence. Background traffic is a separate
+package: [ambient life](ambient-life.md) moves NPC cars along lanes without this solver, and they
+stop for a car someone is driving. Without collision hooks,
 the reusable kernel solver supplies terrain driving only. Do not attach a second physics body to the
 same vehicle; the vehicle solver owns its transform.
 

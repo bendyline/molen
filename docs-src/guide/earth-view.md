@@ -5,6 +5,7 @@ composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
 - worldgen buildings, street surfaces, trees and parked cars from content packs;
+- traffic, pedestrians, trains and aircraft that come and go around the viewer;
 - orbit, walk and drive navigation;
 - markers placed by latitude/longitude;
 - sky, haze and adaptive quality.
@@ -156,6 +157,24 @@ pack attribution visible through `view.credits`, which follows the active terrai
 for `terrainchange` to refresh an attribution panel when the package changes. Direct jumps and
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
+
+## Ambient life
+
+Cars drive the mapped roads, pedestrians walk the footways, trains run the railways and aircraft
+pass overhead. They appear out of sight around the viewer and leave once it moves on. The layer is
+on by default:
+
+```ts
+const view = await mountEarthView({ canvas, terrain, content, camera, ambient: { density: 0.4 } });
+view.setAmbientEnabled(false);
+```
+
+`density` runs from 0 to 1 (default 0.6). `cars`, `pedestrians`, `rail` and `aircraft` switch a
+class off, and `ambient: false` removes the layer. The quality tier caps how many agents run and
+how many cars get full models. With the entities pack in `content`, vehicles use its car, bus,
+light-rail and airliner models near the camera. The car you drive stops against ambient traffic,
+and traffic waits for it. See [Ambient life](ambient-life.md) for the tier table and how the
+simulation works.
 
 ## Geographic structures and regional styles
 
@@ -439,6 +458,6 @@ same soundscape for a host that composes its own view. See [Sound and music](aud
 rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,
-`EarthVehicles`, `createEarthSky`/`createEarthFog`, `createEarthAudio`, `earthPerformanceTier` and
-`earthCredits`.
+`EarthVehicles`, `EarthAmbient` with `observeSemanticTiles`, `createEarthSky`/`createEarthFog`,
+`createEarthAudio`, `earthPerformanceTier` and `earthCredits`.
 The [World Explorer](https://molen.dev/play/world-explorer/) sample is built from them.

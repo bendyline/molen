@@ -194,6 +194,78 @@ type MolenAircraftStateData = {
   crashed: boolean;
   waitingForTerrain: boolean;
 };
+/** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+type MolenAmbientAgentData = {
+  kind: 'car' | 'pedestrian' | 'train' | 'aircraft';
+  type: string;
+  color?: string;
+  lane: string;
+  s: number;
+  speed: number;
+  prev?: string;
+  next?: string;
+  seed: number;
+  length: number;
+  width: number;
+  state: 'move' | 'wait' | 'dwell' | 'idle';
+  since: number;
+  hops: number;
+  hidden?: boolean;
+  consist?: string;
+  carIndex?: number;
+  trail?: string[];
+  served?: string;
+  air?: {
+    x: number;
+    z: number;
+    dx: number;
+    dz: number;
+    y0: number;
+    y1: number;
+    length: number;
+  };
+  spawnedTick: number;
+};
+/** Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. */
+type MolenAmbientObserverData = {
+  radius?: number;
+  despawnRadius?: number;
+  density?: number;
+};
+/** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+type MolenAmbientRoleData = {
+  role: 'car' | 'bus' | 'rail' | 'aircraft';
+  length?: number;
+  width?: number;
+  height?: number;
+  cruise?: number;
+  max?: number;
+  weight?: number;
+  cars?: number;
+  colors?: string[];
+  visual?: {
+    wheelNodes?: string[];
+    frontWheelNodes?: string[];
+    paintMaterial?: string;
+    wheelRadius?: number;
+    wheelbase?: number;
+    rotors?: string[];
+    gearNodes?: string[];
+  };
+};
+/** Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. */
+type MolenAmbientStateData = {
+  observer?: {
+    pos?: [number, number, number];
+    forward?: [number, number];
+    entity?: string;
+    setAtTick: number;
+  };
+  nextSeq: number;
+  spawned: number;
+  despawned: number;
+  policy?: Record<string, unknown>;
+};
 /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
 type MolenAudioEnvironmentData = {
   buses?: Record<string, number>;
@@ -722,7 +794,7 @@ type MolenPlatformSolidData = {
 };
 /** Client render contract: a primitive, a gltf asset (by project asset id) with optional sub-node, material override, shadows, and clip playback, or a capability-registered kind. */
 type MolenRenderableData = {
-  kind: 'primitive' | 'gltf' | 'figure';
+  kind: 'primitive' | 'gltf' | 'ambient-vehicle' | 'figure';
   ref: string;
   materialRef?: string;
   primitive?: {
@@ -772,14 +844,6 @@ type MolenTimerData = {
     payload?: unknown;
     repeatEvery?: number;
   }[];
-};
-/** Traffic route along one north/south street. */
-type MolenTrafficCarData = {
-  lane: number;
-  from: number;
-  to: number;
-  speed: number;
-  start: number;
 };
 /** World position + orientation. pos is required; rot defaults to identity. */
 type MolenTransformData = {
@@ -937,6 +1001,14 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
+  /** Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. */
+  'ambientAgent': MolenAmbientAgentData;
+  /** Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. */
+  'ambientObserver': MolenAmbientObserverData;
+  /** On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. */
+  'ambientRole': MolenAmbientRoleData;
+  /** Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. */
+  'ambientState': MolenAmbientStateData;
   /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
   'audioEnvironment': MolenAudioEnvironmentData;
   /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
@@ -1005,8 +1077,6 @@ interface MolenComponentData {
   'tag': MolenTagData;
   /** Snapshot-safe countdown timers that emit events (one-shot or repeating). Replaces callbacks. */
   'timer': MolenTimerData;
-  /** Traffic route along one north/south street. */
-  'trafficCar': MolenTrafficCarData;
   /** World position + orientation. pos is required; rot defaults to identity. */
   'transform': MolenTransformData;
   /** Data-driven value animation over ticks: component + select-style path, lerp with easing. */
@@ -1029,9 +1099,9 @@ type MolenComponentName = keyof MolenComponentData;
 type MolenComponentPatch = { [K in MolenComponentName]?: MolenComponentData[K] };
 
 /** Entity ids declared in the scene. Ids of spawned entities are plain strings. */
-type MolenEntityId = 'audio' | 'beacon' | 'beacon-pillar' | 'block--16--16' | 'block--16--16-entry' | 'block--16--16-roof' | 'block--16--16-window1.5--1.5' | 'block--16--16-window1.5-1.5' | 'block--16--16-window3--1.5' | 'block--16--16-window3-1.5' | 'block--16--8' | 'block--16--8-entry' | 'block--16--8-roof' | 'block--16--8-window1.5--1.5' | 'block--16--8-window1.5-1.5' | 'block--16--8-window3--1.5' | 'block--16--8-window3-1.5' | 'block--16-16' | 'block--16-16-entry' | 'block--16-16-roof' | 'block--16-16-window1.5--1.5' | 'block--16-16-window1.5-1.5' | 'block--16-16-window3--1.5' | 'block--16-16-window3-1.5' | 'block--16-8' | 'block--16-8-entry' | 'block--16-8-roof' | 'block--16-8-window1.5--1.5' | 'block--16-8-window1.5-1.5' | 'block--16-8-window3--1.5' | 'block--16-8-window3-1.5' | 'block--8--16' | 'block--8--16-entry' | 'block--8--16-roof' | 'block--8--16-window1.5--1.5' | 'block--8--16-window1.5-1.5' | 'block--8--16-window3--1.5' | 'block--8--16-window3-1.5' | 'block--8--8' | 'block--8--8-entry' | 'block--8--8-roof' | 'block--8--8-window1.5--1.5' | 'block--8--8-window1.5-1.5' | 'block--8--8-window3--1.5' | 'block--8--8-window3-1.5' | 'block--8-16' | 'block--8-16-entry' | 'block--8-16-roof' | 'block--8-16-window1.5--1.5' | 'block--8-16-window1.5-1.5' | 'block--8-16-window3--1.5' | 'block--8-16-window3-1.5' | 'block--8-8' | 'block--8-8-entry' | 'block--8-8-roof' | 'block--8-8-window1.5--1.5' | 'block--8-8-window1.5-1.5' | 'block--8-8-window3--1.5' | 'block--8-8-window3-1.5' | 'block-16--16' | 'block-16--16-entry' | 'block-16--16-roof' | 'block-16--16-window1.5--1.5' | 'block-16--16-window1.5-1.5' | 'block-16--16-window3--1.5' | 'block-16--16-window3-1.5' | 'block-16--8' | 'block-16--8-entry' | 'block-16--8-roof' | 'block-16--8-window1.5--1.5' | 'block-16--8-window1.5-1.5' | 'block-16--8-window3--1.5' | 'block-16--8-window3-1.5' | 'block-16-16' | 'block-16-16-entry' | 'block-16-16-roof' | 'block-16-16-window1.5--1.5' | 'block-16-16-window1.5-1.5' | 'block-16-16-window3--1.5' | 'block-16-16-window3-1.5' | 'block-16-8' | 'block-16-8-entry' | 'block-16-8-roof' | 'block-16-8-window1.5--1.5' | 'block-16-8-window1.5-1.5' | 'block-16-8-window3--1.5' | 'block-16-8-window3-1.5' | 'block-8--16' | 'block-8--16-entry' | 'block-8--16-roof' | 'block-8--16-window1.5--1.5' | 'block-8--16-window1.5-1.5' | 'block-8--16-window3--1.5' | 'block-8--16-window3-1.5' | 'block-8--8' | 'block-8--8-entry' | 'block-8--8-roof' | 'block-8--8-window1.5--1.5' | 'block-8--8-window1.5-1.5' | 'block-8--8-window3--1.5' | 'block-8--8-window3-1.5' | 'block-8-16' | 'block-8-16-entry' | 'block-8-16-roof' | 'block-8-16-window1.5--1.5' | 'block-8-16-window1.5-1.5' | 'block-8-16-window3--1.5' | 'block-8-16-window3-1.5' | 'block-8-8' | 'block-8-8-entry' | 'block-8-8-roof' | 'block-8-8-window1.5--1.5' | 'block-8-8-window1.5-1.5' | 'block-8-8-window3--1.5' | 'block-8-8-window3-1.5' | 'boundary0' | 'boundary1' | 'boundary2' | 'boundary3' | 'car-cabin' | 'car-stripe' | 'dash-x-24--12' | 'dash-x-24--16' | 'dash-x-24--32' | 'dash-x-24--8' | 'dash-x-24-12' | 'dash-x-24-16' | 'dash-x-24-32' | 'dash-x-24-8' | 'dash-x0--12' | 'dash-x0--16' | 'dash-x0--32' | 'dash-x0--8' | 'dash-x0-12' | 'dash-x0-16' | 'dash-x0-32' | 'dash-x0-8' | 'dash-x24--12' | 'dash-x24--16' | 'dash-x24--32' | 'dash-x24--8' | 'dash-x24-12' | 'dash-x24-16' | 'dash-x24-32' | 'dash-x24-8' | 'dash-z-24--12' | 'dash-z-24--16' | 'dash-z-24--32' | 'dash-z-24--8' | 'dash-z-24-12' | 'dash-z-24-16' | 'dash-z-24-32' | 'dash-z-24-8' | 'dash-z0--12' | 'dash-z0--16' | 'dash-z0--32' | 'dash-z0--8' | 'dash-z0-12' | 'dash-z0-16' | 'dash-z0-32' | 'dash-z0-8' | 'dash-z24--12' | 'dash-z24--16' | 'dash-z24--32' | 'dash-z24--8' | 'dash-z24-12' | 'dash-z24-16' | 'dash-z24-32' | 'dash-z24-8' | 'environment' | 'game' | 'ground' | 'player' | 'road-x-24' | 'road-x0' | 'road-x24' | 'road-z-24' | 'road-z0' | 'road-z24' | 'traffic0' | 'traffic0-roof' | 'traffic1' | 'traffic1-roof' | 'traffic2' | 'traffic2-roof' | 'traffic3' | 'traffic3-roof' | 'wheel-0.8-0.85' | 'wheel-0.80.85' | 'wheel0.8-0.85' | 'wheel0.80.85' | (string & {});
+type MolenEntityId = 'audio' | 'beacon' | 'beacon-pillar' | 'block--16--16' | 'block--16--16-entry' | 'block--16--16-roof' | 'block--16--16-window1.5--1.5' | 'block--16--16-window1.5-1.5' | 'block--16--16-window3--1.5' | 'block--16--16-window3-1.5' | 'block--16--8' | 'block--16--8-entry' | 'block--16--8-roof' | 'block--16--8-window1.5--1.5' | 'block--16--8-window1.5-1.5' | 'block--16--8-window3--1.5' | 'block--16--8-window3-1.5' | 'block--16-16' | 'block--16-16-entry' | 'block--16-16-roof' | 'block--16-16-window1.5--1.5' | 'block--16-16-window1.5-1.5' | 'block--16-16-window3--1.5' | 'block--16-16-window3-1.5' | 'block--16-8' | 'block--16-8-entry' | 'block--16-8-roof' | 'block--16-8-window1.5--1.5' | 'block--16-8-window1.5-1.5' | 'block--16-8-window3--1.5' | 'block--16-8-window3-1.5' | 'block--8--16' | 'block--8--16-entry' | 'block--8--16-roof' | 'block--8--16-window1.5--1.5' | 'block--8--16-window1.5-1.5' | 'block--8--16-window3--1.5' | 'block--8--16-window3-1.5' | 'block--8--8' | 'block--8--8-entry' | 'block--8--8-roof' | 'block--8--8-window1.5--1.5' | 'block--8--8-window1.5-1.5' | 'block--8--8-window3--1.5' | 'block--8--8-window3-1.5' | 'block--8-16' | 'block--8-16-entry' | 'block--8-16-roof' | 'block--8-16-window1.5--1.5' | 'block--8-16-window1.5-1.5' | 'block--8-16-window3--1.5' | 'block--8-16-window3-1.5' | 'block--8-8' | 'block--8-8-entry' | 'block--8-8-roof' | 'block--8-8-window1.5--1.5' | 'block--8-8-window1.5-1.5' | 'block--8-8-window3--1.5' | 'block--8-8-window3-1.5' | 'block-16--16' | 'block-16--16-entry' | 'block-16--16-roof' | 'block-16--16-window1.5--1.5' | 'block-16--16-window1.5-1.5' | 'block-16--16-window3--1.5' | 'block-16--16-window3-1.5' | 'block-16--8' | 'block-16--8-entry' | 'block-16--8-roof' | 'block-16--8-window1.5--1.5' | 'block-16--8-window1.5-1.5' | 'block-16--8-window3--1.5' | 'block-16--8-window3-1.5' | 'block-16-16' | 'block-16-16-entry' | 'block-16-16-roof' | 'block-16-16-window1.5--1.5' | 'block-16-16-window1.5-1.5' | 'block-16-16-window3--1.5' | 'block-16-16-window3-1.5' | 'block-16-8' | 'block-16-8-entry' | 'block-16-8-roof' | 'block-16-8-window1.5--1.5' | 'block-16-8-window1.5-1.5' | 'block-16-8-window3--1.5' | 'block-16-8-window3-1.5' | 'block-8--16' | 'block-8--16-entry' | 'block-8--16-roof' | 'block-8--16-window1.5--1.5' | 'block-8--16-window1.5-1.5' | 'block-8--16-window3--1.5' | 'block-8--16-window3-1.5' | 'block-8--8' | 'block-8--8-entry' | 'block-8--8-roof' | 'block-8--8-window1.5--1.5' | 'block-8--8-window1.5-1.5' | 'block-8--8-window3--1.5' | 'block-8--8-window3-1.5' | 'block-8-16' | 'block-8-16-entry' | 'block-8-16-roof' | 'block-8-16-window1.5--1.5' | 'block-8-16-window1.5-1.5' | 'block-8-16-window3--1.5' | 'block-8-16-window3-1.5' | 'block-8-8' | 'block-8-8-entry' | 'block-8-8-roof' | 'block-8-8-window1.5--1.5' | 'block-8-8-window1.5-1.5' | 'block-8-8-window3--1.5' | 'block-8-8-window3-1.5' | 'boundary0' | 'boundary1' | 'boundary2' | 'boundary3' | 'car-cabin' | 'car-stripe' | 'dash-x-24--12' | 'dash-x-24--16' | 'dash-x-24--32' | 'dash-x-24--8' | 'dash-x-24-12' | 'dash-x-24-16' | 'dash-x-24-32' | 'dash-x-24-8' | 'dash-x0--12' | 'dash-x0--16' | 'dash-x0--32' | 'dash-x0--8' | 'dash-x0-12' | 'dash-x0-16' | 'dash-x0-32' | 'dash-x0-8' | 'dash-x24--12' | 'dash-x24--16' | 'dash-x24--32' | 'dash-x24--8' | 'dash-x24-12' | 'dash-x24-16' | 'dash-x24-32' | 'dash-x24-8' | 'dash-z-24--12' | 'dash-z-24--16' | 'dash-z-24--32' | 'dash-z-24--8' | 'dash-z-24-12' | 'dash-z-24-16' | 'dash-z-24-32' | 'dash-z-24-8' | 'dash-z0--12' | 'dash-z0--16' | 'dash-z0--32' | 'dash-z0--8' | 'dash-z0-12' | 'dash-z0-16' | 'dash-z0-32' | 'dash-z0-8' | 'dash-z24--12' | 'dash-z24--16' | 'dash-z24--32' | 'dash-z24--8' | 'dash-z24-12' | 'dash-z24-16' | 'dash-z24-32' | 'dash-z24-8' | 'environment' | 'game' | 'ground' | 'player' | 'road-x-24' | 'road-x0' | 'road-x24' | 'road-z-24' | 'road-z0' | 'road-z24' | 'wheel-0.8-0.85' | 'wheel-0.80.85' | 'wheel0.8-0.85' | 'wheel0.80.85' | (string & {});
 /** Prefab names declared in the scene. */
-type MolenPrefabName = 'box' | 'cylinder' | 'sphere' | 'vehicle' | (string & {});
+type MolenPrefabName = 'box' | 'cylinder' | 'npc-car' | 'sphere' | 'vehicle' | (string & {});
 /** Registry type ids this project declares (`molen.spawnType`). */
 type MolenTypeId = string;
 
@@ -1259,6 +1329,9 @@ interface MolenApi {
   readonly tick: number;
   readonly dt: number;
   readonly math: MolenMath;
+  /** Ambient life: stats / laneAt / agentsNear / setObserver / addRoad / … (see guide/ambient-life.md). Installed as a scripting extension, so its verbs are not checked here. */
+  // biome-ignore lint/suspicious/noExplicitAny: capability signatures are owned by their extensions
+  readonly ambient: Record<string, (...args: any[]) => any>;
   /** Figure verbs: mount / dismount / socket / … (see guide/figures.md). Installed as a scripting extension, so its verbs are not checked here. */
   // biome-ignore lint/suspicious/noExplicitAny: capability signatures are owned by their extensions
   readonly figures: Record<string, (...args: any[]) => any>;

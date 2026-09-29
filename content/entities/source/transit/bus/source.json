@@ -1,0 +1,33 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.transit.bus",
+  "kind": "transit",
+  "title": "City bus",
+  "order": 0,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.transit.bus",
+        "output": "assets/molen/entities/transit/bus/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b7113ab71ba7dec0d70f2b6729d5dd0d1578a994b85dce8de08d4da7985bf611"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md"
+    ]
+  }
+}

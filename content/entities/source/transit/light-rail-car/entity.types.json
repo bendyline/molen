@@ -1,0 +1,43 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.transit.lightrail": {
+      "doc": "27 m two-section light-rail vehicle; ambient trains run consists of it on rail and tram lines.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.transit.lightrail"
+        },
+        "ambientRole": {
+          "role": "rail",
+          "length": 27,
+          "width": 2.65,
+          "height": 3.6,
+          "cruise": 16,
+          "cars": 2,
+          "visual": {
+            "paintMaterial": "rail-livery-body"
+          },
+          "colors": [
+            "#f3f3ef"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,8 @@ import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
-  compareGolden,
+  diffImages,
+  frameStats,
   importAsset,
   scaffoldExperience,
   screenshotScene,
@@ -13,7 +14,6 @@ import { buildCubeGlb } from '../fixtures/build-glb';
 
 const DIR = join(process.cwd(), 'test', 'golden');
 const OUT = join(DIR, '__output__');
-const GOLDENS = join(DIR, '__goldens__');
 
 // The V2 content loop, end to end: import a GLB -> reference it from a scene by asset id ->
 // `shot` renders it headlessly with a deterministic clip pose derived from the tick.
@@ -135,26 +135,31 @@ describe('golden: gltf asset rendering', () => {
 
   it('renders an imported GLB by asset id with a tick-derived clip pose', async () => {
     await mkdir(OUT, { recursive: true });
-    const candidate = join(OUT, 'gltf.png');
-    const golden = join(GOLDENS, 'gltf.png');
-    const diff = join(OUT, 'gltf.diff.png');
-
-    // tick 15 at 30Hz = 0.5s into the 1s spin clip -> a quarter-turned crate.
-    const r = await screenshotScene({
-      scenePath,
-      ticks: 15,
-      size: [320, 240],
-      clearColor: '#182028',
-      outPath: candidate,
-    });
-    expect(r.ok, r.error).toBe(true);
-    expect(r.renderStats?.entitiesRendered).toBe(1);
-    expect(r.renderStats?.triangles ?? 0).toBeGreaterThanOrEqual(12);
-
-    const g = await compareGolden(candidate, golden, diff, { maxDiffRatio: 0.01 });
-    expect(
-      g.ok,
-      `gltf golden diff ${g.diffRatio} (UPDATE_GOLDENS=1 to refresh)${g.reason === undefined ? '' : ` — ${g.reason}`}`,
-    ).toBe(true);
+    const render = async (name: string, ticks: number): Promise<string> => {
+      const outPath = join(OUT, `${name}.png`);
+      const r = await screenshotScene({
+        scenePath,
+        ticks,
+        size: [320, 240],
+        clearColor: '#182028',
+        outPath,
+      });
+      expect(r.ok, r.error).toBe(true);
+      expect(r.renderStats?.entitiesRendered).toBe(1);
+      expect(r.renderStats?.triangles ?? 0).toBeGreaterThanOrEqual(12);
+      return outPath;
+    };
+    // The 1s spin clip turns the crate half a turn, so tick 15 at 30Hz is a quarter turn, which a
+    // cube shares with its start pose; tick 8 is part-way and shows a corner. The pose comes from
+    // the tick alone: the same tick renders the same frame, another tick another pose.
+    const quarter = await render('gltf', 15);
+    const again = await render('gltf-again', 15);
+    const corner = await render('gltf-corner', 8);
+    const same = await diffImages(quarter, again, join(OUT, 'gltf-again.diff.png'), 0);
+    expect(same.match, `renders differ by ${same.diffRatio}`).toBe(true);
+    const turned = await diffImages(quarter, corner, join(OUT, 'gltf-corner.diff.png'));
+    expect(turned.match, `poses differ by only ${turned.diffRatio}`).toBe(false);
+    // The crate fills about 7% of the frame.
+    expect((await frameStats(quarter)).coverage).toBeGreaterThan(0.03);
   });
 });

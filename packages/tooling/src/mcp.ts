@@ -9,6 +9,7 @@ import { listFigurePresets } from './ops/figure-presets';
 import { previewFigure } from './ops/figure-preview';
 import {
   applyUvPaintOp,
+  bakeNetwork,
   bakeWorldgen,
   buildContentPack,
   checkScripts,
@@ -617,6 +618,29 @@ export function createMcpServer(): McpServer {
     async (args) => {
       const r = await bakeWorldgen(args as never);
       if (!r.ok) return text(r.error ?? 'worldgen bake failed', true);
+      return text(JSON.stringify(r, null, 2));
+    },
+  );
+
+  server.registerTool(
+    'network_bake',
+    {
+      title: 'Bake a transport network',
+      description:
+        'Bake the roads, railways and paths of a local terrain package into a molen/transport-network@1 document (recentred on the area, origin recorded) for ambient traffic in scenes without map tiles.',
+      inputSchema: {
+        packagePath: z.string(),
+        tile: z.string().optional(),
+        radius: z.number().int().nonnegative().optional(),
+        bbox: z.array(z.number()).length(4).optional(),
+        classes: z.array(z.enum(['road', 'rail', 'path'])).optional(),
+        outPath: z.string(),
+        heights: z.boolean().optional(),
+      },
+    },
+    async (args) => {
+      const r = await bakeNetwork(args as never);
+      if (!r.ok) return text(r.error ?? 'network bake failed', true);
       return text(JSON.stringify(r, null, 2));
     },
   );

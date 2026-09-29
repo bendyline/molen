@@ -116,6 +116,9 @@ importers:
 
   examples/city-courier:
     dependencies:
+      '@bendyline/molen-ambient':
+        specifier: workspace:*
+        version: link:../../packages/ambient
       '@bendyline/molen-client':
         specifier: workspace:*
         version: link:../../packages/client
@@ -520,6 +523,49 @@ importers:
         specifier: 'catalog:'
         version: 5.0.1(@types/node@24.13.2)(vite@6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1))
 
+  packages/ambient:
+    dependencies:
+      '@bendyline/molen-figures':
+        specifier: workspace:*
+        version: link:../figures
+      '@bendyline/molen-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+      '@bendyline/molen-schema':
+        specifier: workspace:*
+        version: link:../schema
+      '@bendyline/molen-terrain':
+        specifier: workspace:*
+        version: link:../terrain
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
+    devDependencies:
+      '@bendyline/molen-client':
+        specifier: workspace:*
+        version: link:../client
+      '@biomejs/biome':
+        specifier: ^2.5.0
+        version: 2.5.0
+      '@types/three':
+        specifier: 0.184.0
+        version: 0.184.0
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      three:
+        specifier: 0.184.0
+        version: 0.184.0
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.2(typescript@6.0.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.1(@types/node@24.13.2)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(yaml@2.9.1))
+
   packages/client:
     dependencies:
       '@bendyline/molen-materials':
@@ -556,6 +602,9 @@ importers:
 
   packages/earth:
     dependencies:
+      '@bendyline/molen-ambient':
+        specifier: workspace:*
+        version: link:../ambient
       '@bendyline/molen-kernel':
         specifier: workspace:*
         version: link:../kernel
@@ -905,6 +954,9 @@ importers:
 
   packages/tooling:
     dependencies:
+      '@bendyline/molen-ambient':
+        specifier: workspace:*
+        version: link:../ambient
       '@bendyline/molen-client':
         specifier: workspace:*
         version: link:../client
@@ -1990,9 +2042,6 @@ packages:
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
-
-  '@jridgewell/sourcemap-codec@1.5.5':
-    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
   '@jridgewell/sourcemap-codec@1.6.0':
     resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
@@ -3937,10 +3986,6 @@ packages:
     resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
     engines: {node: '>= 0.4'}
 
-  obug@2.1.3:
-    resolution: {integrity: sha512-9miFgM2OFba7hB+pRgvtV84pYTBaoTHohvmIgiRt6dRIzbwEOIaNaP+dIlGs2fNFoB0SeISs0Jz5WFVRid6Xyg==}
-    engines: {node: '>=12.20.0'}
-
   obug@2.2.1:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
@@ -4553,10 +4598,6 @@ packages:
   tinybench@6.1.4:
     resolution: {integrity: sha512-9APumHG7r4yOk4X4WlkmE71aZcv1gvin1czO3OQ1U9iJcFA5Ja/ygyb0vPOVHTthFozUYs8CLoLUlM8grb2lTQ==}
     engines: {node: '>=20.0.0'}
-
-  tinyexec@1.2.4:
-    resolution: {integrity: sha512-SHf/r48b7vOrjve9PxJo3MN5v5yuyjHvdUcrQffT3WXMUfnGmHDVbC4k3sHJaJTgZCwpUplIaAo5ANtMyp3YHg==}
-    engines: {node: '>=18'}
 
   tinyexec@1.3.0:
     resolution: {integrity: sha512-QKAl9m8gWWGHV8jZcPeym6j+XULi6tOf1mT83WYJ4Lk2ytW/uwAWkrP0uFsdoYMdueVJ0qs26wZ+23xeB4ibNQ==}
@@ -5667,19 +5708,17 @@ snapshots:
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
       '@jridgewell/trace-mapping': 0.3.31
 
   '@jridgewell/resolve-uri@3.1.2': {}
-
-  '@jridgewell/sourcemap-codec@1.5.5': {}
 
   '@jridgewell/sourcemap-codec@1.6.0': {}
 
   '@jridgewell/trace-mapping@0.3.31':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   '@mapbox/point-geometry@1.1.0': {}
 
@@ -7330,7 +7369,7 @@ snapshots:
 
   magic-string@0.30.21:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   magic-string@1.4.2:
     dependencies:
@@ -7524,8 +7563,6 @@ snapshots:
   object-assign@4.1.1: {}
 
   object-inspect@1.13.4: {}
-
-  obug@2.1.3: {}
 
   obug@2.2.1: {}
 
@@ -7845,7 +7882,7 @@ snapshots:
       birpc: 4.0.0
       dts-resolver: 3.0.0
       get-tsconfig: 5.0.0-beta.5
-      obug: 2.1.3
+      obug: 2.2.1
       rolldown: 1.1.1
     optionalDependencies:
       typescript: 6.0.3
@@ -8255,8 +8292,6 @@ snapshots:
 
   tinybench@6.1.4: {}
 
-  tinyexec@1.2.4: {}
-
   tinyexec@1.3.0: {}
 
   tinyglobby@0.2.17:
@@ -8284,12 +8319,12 @@ snapshots:
       empathic: 2.0.1
       hookable: 6.1.1
       import-without-cache: 0.4.0
-      obug: 2.1.3
+      obug: 2.2.1
       picomatch: 4.0.7
       rolldown: 1.1.1
       rolldown-plugin-dts: 0.25.2(rolldown@1.1.1)(typescript@6.0.3)
       semver: 7.8.5
-      tinyexec: 1.2.4
+      tinyexec: 1.3.0
       tinyglobby: 0.2.17
       tree-kill: 1.2.2
       unconfig-core: 7.5.0

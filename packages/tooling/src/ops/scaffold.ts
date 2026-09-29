@@ -258,6 +258,7 @@ export function project() {
 `;
 
 const WORKER_TS = `/// <reference lib="webworker" />
+import { ambientCapability } from '@bendyline/molen-ambient/kernel';
 import { figuresScriptApi, installFigures } from '@bendyline/molen-figures/kernel';
 import { startKernelWorker } from '@bendyline/molen-kernel';
 // import { hardenScripts } from '@bendyline/molen-kernel';
@@ -278,11 +279,13 @@ startKernelWorker({
   ...project(),
   setup,
   // Figures (people and animals) are available to every scene: molen.figures.* in scripts.
-  capabilities: [(w) => ({ figures: figuresScriptApi(installFigures(w)) })],
+  // Ambient traffic runs when the scene has an \`ambient\` block (molen.ambient.* in scripts).
+  capabilities: [(w) => ({ figures: figuresScriptApi(installFigures(w)) }), ambientCapability()],
 });
 `;
 
-const MAIN_TS = `import { mountExperience } from '@bendyline/molen-client';
+const MAIN_TS = `import { ambientVehicleKind } from '@bendyline/molen-ambient/client';
+import { mountExperience } from '@bendyline/molen-client';
 import { figureKind } from '@bendyline/molen-figures/client';
 import { project } from './project';
 
@@ -296,7 +299,7 @@ const { client } = await mountExperience({
   scene: project().scene,
   canvas,
   clearColor: '#11131a',
-  kinds: [figureKind()],
+  kinds: [figureKind(), ambientVehicleKind()],
 });
 
 // A HUD from mirrored state: no wire-protocol parsing.
@@ -363,6 +366,7 @@ function packageJson(name: string): string {
       typecheck: 'tsc -p tsconfig.json && tsc -p scenes/scripts/tsconfig.json',
     },
     dependencies: {
+      '@bendyline/molen-ambient': engine,
       '@bendyline/molen-client': engine,
       '@bendyline/molen-figures': engine,
       '@bendyline/molen-kernel': engine,

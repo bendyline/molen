@@ -51,6 +51,11 @@ templates:
    Tooling wires the built-in capabilities in `prepareSceneBuilder`; your own host does the same
    with `buildWorld(manifest, setup, { scriptExtensions: { mine: myScriptApi(handle) } })`.
 
+   A capability that a scene opts into through its own manifest block is a `capabilities` hook,
+   `(world, manifest) => ({ mine: api })`, that returns `undefined` when the block is absent, so
+   scenes without it pay nothing. `ambientCapability()` from `@bendyline/molen-ambient/kernel`
+   is one: it reads the scene's `ambient` block (see [ambient life](ambient-life.md)).
+
 7. **Ground and reads.** A capability that owns a height source registers it with
    `installTerrain(world, field)` (any object with `sampleHeight` + `normalAt`) so the character
    controller and kinematics find it. Component reads are frozen stored objects: compare

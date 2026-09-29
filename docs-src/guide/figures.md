@@ -111,6 +111,9 @@ State is written only when something changes: speed is quantized to 0.05 m/s, th
 anchored to a tick, so a steadily walking figure sends no deltas. `figureIntent.mode` forces a
 mode; `lookAt` aims the head at a point or an entity.
 
+Pedestrians in [ambient life](ambient-life.md) are figures moved this way: the ambient kernel
+writes their transform along footways and `speedSource: 'transform'` animates the gait.
+
 ## Sockets and attachments
 
 Sockets are named points on the rig, evaluated under the current pose. An entity with

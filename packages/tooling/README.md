@@ -70,7 +70,7 @@ starter — carries an `AGENTS.md` that points a coding agent at the version-loc
 | `molen mcp` | every operation but the file watcher, as MCP tools over stdio; `drive_scene`, `play_experience`, `worldgen_preview` and `figure_preview` return frames as images |
 | `molen describe [op]` | the machine-readable contract for every operation, CLI flags and MCP tool name side by side — the surface to build an agent against |
 | discovery, no source reading | `molen schema list`/`get`, `molen components`/`component <name>`, `molen docs search <q>` over the engine docs bundle shipped inside this package |
-| `.` (the ops library) | every op as a plain async `(input) => output`: `validateAsset`, `runSimulation`, `screenshotScene`, `runReplayFile`, `driveScene`, `playExperience`, `rasterizeMaterial`, `checkScripts`, `generateTypes`, `importAsset`, `scaffoldExperience`, `listTemplates`, … plus `OPS_CATALOG`, and `compareGolden`/`diffImages` for your own image tests |
+| `.` (the ops library) | every op as a plain async `(input) => output`: `validateAsset`, `runSimulation`, `screenshotScene`, `runReplayFile`, `driveScene`, `playExperience`, `rasterizeMaterial`, `checkScripts`, `generateTypes`, `importAsset`, `scaffoldExperience`, `listTemplates`, … plus `OPS_CATALOG`, and `diffImages`/`frameStats`/`compareGolden` for your own image tests |
 
 Ops that need content (entity types, a style pack, a region atlas) read it from content packs,
 never from npm packages: the project's `project.json` `packs` list (paths or pinned URLs), then

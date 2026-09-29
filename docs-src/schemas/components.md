@@ -37,6 +37,10 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `aircraft` | kernel/aircraft | External airplane/helicopter instance. Y up, Z forward; landing-contact origin. |
 | `aircraftInput` | kernel/aircraft | Pilot flight controls. Power is retained when input keys are released. |
 | `aircraftState` | kernel/aircraft | Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. |
+| `ambientAgent` | ambient | Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. |
+| `ambientObserver` | ambient | Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. |
+| `ambientRole` | ambient | On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. |
+| `ambientState` | ambient | Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. |
 | `audioEnvironment` | audio | Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. |
 | `audioSource` | audio | Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. |
 | `audioZone` | audio | Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). |
@@ -78,6 +82,530 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `velocity` | physics-rapier | Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). |
 | `weather` |  | Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. |
 | `worldgenBuilding` | worldgen | A building generated at runtime from an outline in the entity frame, styled by a molen/archstyle@1 in the loaded pack; rendered by the worldgen client entity layer. |
+
+## Owner: ambient
+
+### `ambientAgent`
+
+Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it.
+
+Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `state`, `since`, `hops`, `spawnedTick`
+
+```json
+{
+  "kind": "car",
+  "type": "molen.entities.vehicle.sedan",
+  "color": "#4d76b8",
+  "lane": "15/5245/11443#k3j9x2>f0",
+  "s": 42.5,
+  "speed": 11.2,
+  "seed": 1964432,
+  "length": 4.65,
+  "width": 1.82,
+  "state": "move",
+  "since": 1200,
+  "hops": 3,
+  "spawnedTick": 1180
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "car",
+        "pedestrian",
+        "train",
+        "aircraft"
+      ],
+      "description": "Agent class."
+    },
+    "type": {
+      "type": "string",
+      "description": "Content type id (e.g. molen.entities.vehicle.sedan), figure preset, or \"proxy\"."
+    },
+    "color": {
+      "type": "string",
+      "description": "Body colour (#rrggbb)."
+    },
+    "lane": {
+      "type": "string",
+      "description": "Lane id the agent is on (\"\" for aircraft)."
+    },
+    "s": {
+      "type": "number",
+      "description": "Metres along the lane; negative while on the connector into it."
+    },
+    "speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Speed along the lane in m/s."
+    },
+    "prev": {
+      "type": "string",
+      "description": "Previous lane (its connector leads onto `lane`)."
+    },
+    "next": {
+      "type": "string",
+      "description": "Chosen next lane."
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Per-agent seed for every random choice it makes."
+    },
+    "length": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Body length in metres."
+    },
+    "width": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Body width in metres."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "move",
+        "wait",
+        "dwell",
+        "idle"
+      ],
+      "description": "Moving, waiting (queue, signal, crossing), dwelling at a stop, or idling."
+    },
+    "since": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Tick the current state began."
+    },
+    "hops": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Lane transitions so far (routing draw stream)."
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "Inside a tunnel: simulated but not drawn."
+    },
+    "consist": {
+      "type": "string",
+      "description": "Train cars: the lead agent of the consist."
+    },
+    "carIndex": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Train cars: position behind the lead (1 = first)."
+    },
+    "trail": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Train leads: the lanes behind the lead, most recent first."
+    },
+    "served": {
+      "type": "string",
+      "description": "The last stop served (not stopped at again)."
+    },
+    "air": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "Corridor start X."
+        },
+        "z": {
+          "type": "number",
+          "description": "Corridor start Z."
+        },
+        "dx": {
+          "type": "number",
+          "description": "Unit heading X."
+        },
+        "dz": {
+          "type": "number",
+          "description": "Unit heading Z."
+        },
+        "y0": {
+          "type": "number",
+          "description": "Altitude at the start."
+        },
+        "y1": {
+          "type": "number",
+          "description": "Altitude at the end."
+        },
+        "length": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Corridor length in metres."
+        }
+      },
+      "required": [
+        "x",
+        "z",
+        "dx",
+        "dz",
+        "y0",
+        "y1",
+        "length"
+      ],
+      "additionalProperties": false,
+      "description": "Aircraft: the straight corridor flown (s runs along it)."
+    },
+    "spawnedTick": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Tick the agent appeared (clients fade it in)."
+    }
+  },
+  "required": [
+    "kind",
+    "type",
+    "lane",
+    "s",
+    "speed",
+    "seed",
+    "length",
+    "width",
+    "state",
+    "since",
+    "hops",
+    "spawnedTick"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `ambientObserver`
+
+Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides.
+
+Required: none
+
+```json
+{}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "radius": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Override the car spawn radius in metres."
+    },
+    "despawnRadius": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Override the car despawn radius in metres."
+    },
+    "density": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Scale every class density (1 = default)."
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `ambientRole`
+
+On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight.
+
+Required: `role`
+
+```json
+{
+  "role": "car",
+  "cruise": 13,
+  "max": 25
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "car",
+        "bus",
+        "rail",
+        "aircraft"
+      ],
+      "description": "Which ambient pool the type joins (buses drive with cars)."
+    },
+    "length": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Body length in metres (default from vehicle.spec)."
+    },
+    "width": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Body width in metres (default from vehicle.spec)."
+    },
+    "height": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Body height in metres (default from vehicle.spec)."
+    },
+    "cruise": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Preferred cruise speed in m/s."
+    },
+    "max": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Top speed in m/s."
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Relative spawn weight within its pool (default 1)."
+    },
+    "cars": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Rail: cars per consist (default 2)."
+    },
+    "colors": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Paint colours spawned agents pick from (#rrggbb)."
+    },
+    "visual": {
+      "type": "object",
+      "properties": {
+        "wheelNodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Wheel nodes (their first child spins)."
+        },
+        "frontWheelNodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Wheel nodes that steer."
+        },
+        "paintMaterial": {
+          "type": "string",
+          "description": "Material name tinted with the agent colour."
+        },
+        "wheelRadius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Wheel radius in metres."
+        },
+        "wheelbase": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Axle spacing in metres."
+        },
+        "rotors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Aircraft: nodes spun about Z (fans, propellers)."
+        },
+        "gearNodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Aircraft: landing gear shown on approach."
+        }
+      },
+      "additionalProperties": false,
+      "description": "How the model animates when drawn in full near the camera (types without a vehicle component)."
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `ambientState`
+
+Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides.
+
+Required: `nextSeq`, `spawned`, `despawned`
+
+```json
+{
+  "nextSeq": 12,
+  "spawned": 12,
+  "despawned": 3,
+  "observer": {
+    "pos": [
+      0,
+      0,
+      0
+    ],
+    "setAtTick": 0
+  }
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "observer": {
+      "type": "object",
+      "properties": {
+        "pos": {
+          "minItems": 3,
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Observer position."
+        },
+        "forward": {
+          "minItems": 2,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Unit view direction [x, z]; spawns avoid the view cone near it."
+        },
+        "entity": {
+          "type": "string",
+          "description": "Entity whose transform is the observer."
+        },
+        "setAtTick": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991,
+          "description": "Tick the observer was last set."
+        }
+      },
+      "required": [
+        "setAtTick"
+      ],
+      "additionalProperties": false,
+      "description": "Where agents spawn around."
+    },
+    "nextSeq": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Sequence number of the next spawned agent."
+    },
+    "spawned": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Agents spawned so far."
+    },
+    "despawned": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Agents removed so far."
+    },
+    "policy": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/__schema0"
+      },
+      "description": "Policy overrides set by the ambient.policy command."
+    }
+  },
+  "required": [
+    "nextSeq",
+    "spawned",
+    "despawned"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
 
 ## Owner: audio
 
@@ -2015,9 +2543,10 @@ Required: `kind`, `ref`
       "enum": [
         "primitive",
         "gltf",
+        "ambient-vehicle",
         "figure"
       ],
-      "description": "Render source: 'primitive' (built-in geometry named by ref), 'gltf' (an imported project asset), 'figure' (a procedural skinned figure body from the entity `figure` component)."
+      "description": "Render source: 'primitive' (built-in geometry named by ref), 'gltf' (an imported project asset), 'ambient-vehicle' (an ambient NPC vehicle: an instanced proxy from its `ambientAgent` dimensions, or the content model named by `ref` near the camera), 'figure' (a procedural skinned figure body from the entity `figure` component)."
     },
     "ref": {
       "type": "string",

@@ -1,4 +1,5 @@
-// Arcade handling and mission rules. Collision, hierarchy and camera tracking are engine services.
+// Arcade handling and mission rules. Collision, hierarchy, camera tracking and the ambient
+// traffic (the scene's `ambient` block) are engine services.
 const game = () => molen.get('game', 'courierGame');
 const update = (data: Partial<MolenCourierGameData>) => molen.patch('game', 'courierGame', data);
 molen.patchState({
@@ -21,10 +22,6 @@ function reset() {
     message: 'Deliver the five beacons before time runs out.',
   });
   placeBeacon(0);
-  for (const [id, car] of molen.query('trafficCar')) {
-    molen.patch(id, 'transform', { pos: [car.lane, 0.55, car.start], teleport: true });
-    molen.patch(id, 'kinematicBody', { vel: [0, 0, car.speed] });
-  }
 }
 function placeBeacon(index: number) {
   const point = config.route[index];
@@ -118,14 +115,5 @@ molen.on('tick', () => {
     placeBeacon(delivered);
     molen.emit('delivery', { delivered });
     if (delivered === g.total) molen.audio.play('sting.win');
-  }
-  for (const [id, t, car] of molen.query('transform', 'trafficCar')) {
-    if (t.pos[2] > car.to || t.pos[2] < car.from)
-      molen.patch(id, 'transform', {
-        pos: [car.lane, 0.55, car.speed > 0 ? car.from : car.to],
-        teleport: true,
-      });
-    else molen.patch(id, 'transform', { teleport: false });
-    molen.patch(id, 'kinematicBody', { vel: [0, 0, car.speed] });
   }
 });

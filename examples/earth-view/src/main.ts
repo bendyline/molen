@@ -1,6 +1,7 @@
 // The whole Earth view in one call: mountEarthView over host-selected terrain packages and the
 // content packs, with worker offload, a photo-pin marker, mode buttons and the required credits.
-// `?mode=walk` starts on foot; `?lat=&lon=&range=` choose the first view.
+// `?mode=walk` starts on foot; `?lat=&lon=&range=` choose the first view; `?ambient=0` turns
+// off ambient life (traffic, people, trains and aircraft).
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
 import {
@@ -45,6 +46,7 @@ const view = await mountEarthView({
     return { key: region, terrain, baseUrl: manifestUrl };
   },
   content,
+  ambient: params.get('ambient') === '0' ? false : { density: 0.6 },
   camera: {
     latitude: Number(params.get('lat') ?? 47.6163),
     longitude: Number(params.get('lon') ?? -122.0356),
@@ -140,6 +142,18 @@ soundButton.addEventListener('click', () =>
 // The audio layer loads after the view mounts; apply the remembered choice once it exists.
 view.on('audioready', () => applySound(readMuted()));
 if (view.audio !== undefined) applySound(readMuted());
+
+// Ambient life: NPC traffic on the mapped streets, pedestrians, trains and aircraft.
+const ambientButton = document.getElementById('ambient') as HTMLButtonElement;
+ambientButton.setAttribute('aria-pressed', String(view.ambientEnabled));
+ambientButton.addEventListener('click', () => {
+  view.setAmbientEnabled(!view.ambientEnabled);
+  ambientButton.setAttribute('aria-pressed', String(view.ambientEnabled));
+  const counts = view.stats().ambient;
+  if (view.ambientEnabled && counts !== undefined)
+    show(`${counts.cars} cars · ${counts.pedestrians} people · ${counts.trains} rail cars nearby`);
+  canvas.focus();
+});
 
 document.getElementById('seattle')?.addEventListener('click', () => {
   view.flyTo({ latitude: 47.62051, longitude: -122.3493, range: 950, heading: 0.9, pitch: 0.48 });

@@ -3,6 +3,20 @@
 // cars, sky and haze, performance tiers, credits) are exported for hosts that compose their own.
 
 export {
+  ambientContentFromTypes,
+  EarthAmbient,
+  type EarthAmbientBudget,
+  type EarthAmbientContent,
+  type EarthAmbientOptions,
+  type EarthAmbientSettings,
+  type EarthAmbientStats,
+} from './client/ambient';
+export {
+  observeSemanticTiles,
+  SemanticTileBuffer,
+  type SemanticTileObserver,
+} from './client/ambient-tiles';
+export {
   createEarthFog,
   createEarthSky,
   type EarthSkyStyle,

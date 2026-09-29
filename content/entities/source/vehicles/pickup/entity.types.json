@@ -7,8 +7,17 @@
       "doc": "Pickup truck with a long wheelbase and torque-focused performance.",
       "components": {
         "transform": {
-          "pos": [0, 0, 0],
-          "rot": [0, 0, 0, 1]
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
         },
         "vehicle": {
           "kind": "molen.entities.vehicle.pickup",
@@ -18,7 +27,11 @@
             "width": 1.98,
             "length": 5.05,
             "height": 1.8,
-            "centerOfMass": [0, 0.7, -0.08],
+            "centerOfMass": [
+              0,
+              0.7,
+              -0.08
+            ],
             "wheelbase": 3.1,
             "wheelTrack": 1.6632,
             "wheelRadius": 0.37,
@@ -29,7 +42,11 @@
             "brakeDeceleration": 8,
             "maxSteer": 0.54,
             "grip": 6.5,
-            "driverEye": [0.44, 1.46, 0.65],
+            "driverEye": [
+              0.44,
+              1.46,
+              0.65
+            ],
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
@@ -46,10 +63,16 @@
               "wheel-front-right",
               "wheel-front-left"
             ],
-            "frontWheelNodes": ["wheel-front-right", "wheel-front-left"],
+            "frontWheelNodes": [
+              "wheel-front-right",
+              "wheel-front-left"
+            ],
             "paintMaterial": "vehicle-paint-and-trim",
             "interior": {
-              "nodes": ["body", "steering-wheel"],
+              "nodes": [
+                "body",
+                "steering-wheel"
+              ],
               "bindings": [
                 {
                   "node": "steering-wheel",
@@ -83,10 +106,25 @@
             {
               "id": "driver",
               "role": "driver",
-              "position": [0.44, 1.46, 0.65]
+              "position": [
+                0.44,
+                1.46,
+                0.65
+              ]
             }
           ],
-          "exits": [[1.49, 0, 0.65], [-1.49, 0, 0.65]],
+          "exits": [
+            [
+              1.49,
+              0,
+              0.65
+            ],
+            [
+              -1.49,
+              0,
+              0.65
+            ]
+          ],
           "reach": 2.8
         },
         "renderable": {
@@ -107,15 +145,55 @@
           },
           "pitchFrom": {
             "signal": "vehicleState.speed",
-            "curve": [[-7, 1.15], [0, 0.85], [11.1, 1.15], [24.1, 1.45], [37, 1.75]]
+            "curve": [
+              [
+                -7,
+                1.15
+              ],
+              [
+                0,
+                0.85
+              ],
+              [
+                11.1,
+                1.15
+              ],
+              [
+                24.1,
+                1.45
+              ],
+              [
+                37,
+                1.75
+              ]
+            ]
           },
           "gainFrom": {
             "signal": "vehicleInput.throttle",
-            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+            "curve": [
+              [
+                -1,
+                0.9
+              ],
+              [
+                0,
+                0.65
+              ],
+              [
+                1,
+                1
+              ]
+            ]
           }
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 1
         }
       },
-      "assets": ["molen.entities.vehicle.pickup"],
+      "assets": [
+        "molen.entities.vehicle.pickup"
+      ],
       "scripts": [
         {
           "id": "interactions",

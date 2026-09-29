@@ -33,7 +33,7 @@ molen/
     cubes/                 (private) Phase 0 demo + regression test
     terrain-flyover/       (private) Phase 1 demo + regression test
   docs-src/                markdown sources + doc generator
-  .github/workflows/       ci.yml  release.yml  nightly.yml  update-goldens.yml
+  .github/workflows/       ci.yml  release.yml  nightly.yml
 ```
 
 Examples are **private workspace packages**: they participate in the task graph (typecheck,
@@ -94,8 +94,6 @@ commands locally*: setup → `lint typecheck` → `test:unit` (Vitest incl. sche
 **`release.yml`** — changesets release PR + publish.
 **`nightly.yml`** — golden suite ×3 (flake canary) + full agent-loop smoke (CLI end-to-end
 on an example).
-**`update-goldens.yml`** — manually triggered; regenerates goldens in the CI container and
-commits to the PR branch (§5.3).
 
 ## 2. Schema & validation strategy
 
@@ -250,11 +248,11 @@ a divergence report an agent can act on, not "hash differs."
   sim during capture); fixed seed/DPR/tone mapping; 3 warmup frames.
 - **Diff:** **odiff**, per-pixel threshold 0.1, `maxDiffPixelRatio` 0.3% default
   (per-test overridable), AA tolerance on.
-- **Goldens are recorded only in the pinned CI container** (`update-goldens` workflow
-  commits to the PR branch) — SwiftShader is deterministic per build, not across Chromium
-  versions/OSes. Local `molen test golden --update` produces *candidates* only; the diff
-  tool clearly distinguishes "within local tolerance" vs "CI-authoritative." Failures upload
-  expected/actual/diff triptychs.
+- **The engine's render tests commit no reference images** — SwiftShader is deterministic per
+  build, not across Chromium versions/OSes, so a recorded PNG holds only where it was
+  recorded. They check that a frame renders identically twice, differs when its input
+  does, and shows what it must (`frameStats`: coverage, colors and mean color, for the frame
+  or a region). They pass on any machine, and a renderer change needs no re-recording.
 - **Flakiness:** nightly ×3 canary; any intermittent golden is quarantined (non-blocking
   job) within a day — a flaky golden suite is worse than none, because agents learn to
   ignore red.

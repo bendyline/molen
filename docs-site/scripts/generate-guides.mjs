@@ -94,6 +94,7 @@ const GUIDE_ORDER = [
   'vehicles',
   'aircraft',
   'vehicle-interiors',
+  'ambient-life',
   'materials',
   '3d-model-assets',
   'source-bundles',

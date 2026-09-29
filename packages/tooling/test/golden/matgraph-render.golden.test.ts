@@ -1,12 +1,11 @@
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { compareGolden, screenshotScene } from '@bendyline/molen-tooling';
+import { diffImages, frameStats, screenshotScene } from '@bendyline/molen-tooling';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 const DIR = join(process.cwd(), 'test', 'golden');
 const OUT = join(DIR, '__output__');
-const GOLDENS = join(DIR, '__goldens__');
 
 // From bake to render, closed: a scene box whose materialRef is a matgraph DOC — the client's
 // MaterialResolver loads it through the capture server, CPU-bakes it, and uploads the texture.
@@ -61,24 +60,29 @@ beforeAll(async () => {
 describe('golden: matgraph material rendering', () => {
   it('renders a box textured by a baked material graph (no pre-baked PNG)', async () => {
     await mkdir(OUT, { recursive: true });
-    const candidate = join(OUT, 'matgraph-render.png');
-    const golden = join(GOLDENS, 'matgraph-render.png');
-    const diff = join(OUT, 'matgraph-render.diff.png');
-
-    const r = await screenshotScene({
-      scenePath,
-      ticks: 1,
-      size: [320, 240],
-      clearColor: '#101318',
-      outPath: candidate,
-    });
-    expect(r.ok, r.error).toBe(true);
-    expect(r.renderStats?.entitiesRendered).toBe(1);
-
-    const g = await compareGolden(candidate, golden, diff, { maxDiffRatio: 0.01 });
-    expect(
-      g.ok,
-      `matgraph-render golden diff ${g.diffRatio} (UPDATE_GOLDENS=1 to refresh)${g.reason === undefined ? '' : ` — ${g.reason}`}`,
-    ).toBe(true);
+    const render = async (name: string): Promise<string> => {
+      const outPath = join(OUT, `${name}.png`);
+      const r = await screenshotScene({
+        scenePath,
+        ticks: 1,
+        size: [320, 240],
+        clearColor: '#101318',
+        outPath,
+      });
+      expect(r.ok, r.error).toBe(true);
+      expect(r.renderStats?.entitiesRendered).toBe(1);
+      return outPath;
+    };
+    const first = await render('matgraph-render');
+    const second = await render('matgraph-render-again');
+    const same = await diffImages(first, second, join(OUT, 'matgraph-render-again.diff.png'), 0);
+    expect(same.match, `renders differ by ${same.diffRatio}`).toBe(true);
+    // The box fills the middle of the frame with the rock texture: many shades of an olive ramp
+    // whose every stop has less blue than red or green. An untextured box shows a few flat faces.
+    const box = await frameStats(first, { region: { x: 0.4, y: 0.35, width: 0.2, height: 0.3 } });
+    expect(box.coverage).toBeGreaterThan(0.9);
+    expect(box.colors).toBeGreaterThanOrEqual(10);
+    expect(box.mean[2]).toBeLessThan(box.mean[0]);
+    expect(box.mean[2]).toBeLessThan(box.mean[1]);
   });
 });

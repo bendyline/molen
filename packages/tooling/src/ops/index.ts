@@ -1,6 +1,7 @@
 // Importing the capability packages registers their schemas (matgraph, terrain, worldgen,
 // region-atlas, cameratrack) into the shared registry so validate/rasterize/export see them.
 import '@bendyline/molen-materials';
+import '@bendyline/molen-ambient/kernel';
 import '@bendyline/molen-figures/kernel';
 import '@bendyline/molen-terrain/kernel';
 import '@bendyline/molen-worldgen/kernel';
@@ -93,6 +94,8 @@ export type {
 export { previewFigure } from './figure-preview';
 export type { GenerateTypesInput, GenerateTypesOutput } from './generate-types';
 export { generateTypes, renderTypesModule } from './generate-types';
+export type { NetworkBakeInput, NetworkBakeOutput } from './network-bake';
+export { bakeNetwork } from './network-bake';
 export type {
   BuildPackInput,
   BuildPackOutput,

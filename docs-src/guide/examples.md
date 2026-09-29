@@ -65,6 +65,9 @@ reference for streaming and for a glTF asset pipeline, so read them on GitHub.
   adapter and region atlas; `/client` terrain tile renderers.
 - **Figures** (`@bendyline/molen-figures`): `/kernel` descriptors, rigs, gaits, `figureState`,
   sockets and attachments; `/client` the `figure` renderable kind (procedural skinned bodies).
+- **Ambient life** (`@bendyline/molen-ambient`): `/kernel` transport networks, the spawn ring and
+  NPC cars, pedestrians, trains and aircraft; `/client` instanced vehicle proxies, pooled models
+  and pedestrian figures. See [ambient life](ambient-life.md).
 
 ## Start from scratch
 

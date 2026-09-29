@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { dirname, join, posix } from 'node:path';
+import { ambientCapability, type TransportNetworkDocument } from '@bendyline/molen-ambient/kernel';
 import { figuresScriptApi, installFigures } from '@bendyline/molen-figures/kernel';
 import {
   type BuildWorldOptions,
@@ -50,6 +51,22 @@ export async function loadSceneTerrain(
   return { descriptor, png, heightfield: heightfieldFromPng(descriptor, png) };
 }
 
+/**
+ * Load the transport network a scene's `ambient.network` path names (scene-file-relative),
+ * validated. Undefined when the scene has no ambient block or its network is inline.
+ */
+export async function loadSceneAmbient(
+  sceneDir: string,
+  manifest: SceneManifest,
+): Promise<Record<string, TransportNetworkDocument> | undefined> {
+  const network = manifest.ambient?.network;
+  if (typeof network !== 'string') return undefined;
+  const raw = parse(await readFile(join(sceneDir, network), 'utf8'));
+  const result = validateByKind('transport-network', raw);
+  if (!result.ok) throw new Error(result.formatted);
+  return { [network]: result.value as TransportNetworkDocument };
+}
+
 export interface SceneBuildOptions {
   registry?: ComponentRegistry;
   types?: ResolvedTypes;
@@ -59,6 +76,8 @@ export interface SceneBuildOptions {
   terrain?: SceneTerrain;
   /** Which pack content the world is built from, recorded in keyframes and replays. */
   content?: ContentIdentity;
+  /** Transport networks for `ambient.network` paths (see loadSceneAmbient). */
+  ambientNetworks?: Record<string, TransportNetworkDocument>;
 }
 
 /**
@@ -77,6 +96,8 @@ export async function sceneBuildOptionsFor(loaded: LoadedScene): Promise<SceneBu
   }
   const terrain = await loadSceneTerrain(dirname(loaded.scenePath), loaded.manifest);
   if (terrain !== undefined) opts.terrain = terrain;
+  const networks = await loadSceneAmbient(dirname(loaded.scenePath), loaded.manifest);
+  if (networks !== undefined) opts.ambientNetworks = networks;
   return opts;
 }
 
@@ -100,7 +121,16 @@ export async function prepareSceneBuilder(
     ...(opts?.types !== undefined ? { types: opts.types } : {}),
     ...(opts?.content !== undefined ? { content: opts.content } : {}),
     // Figures are always available (an empty query costs nothing): molen.figures.* in scripts.
-    capabilities: [(world) => ({ figures: figuresScriptApi(installFigures(world)) })],
+    // Ambient life installs only when the scene has an `ambient` block: molen.ambient.*.
+    capabilities: [
+      (world) => ({ figures: figuresScriptApi(installFigures(world)) }),
+      ambientCapability({
+        ...(opts?.ambientNetworks !== undefined ? { networks: opts.ambientNetworks } : {}),
+        ...(terrain !== undefined
+          ? { ground: (x: number, z: number) => terrain.heightfield.sampleHeight(x, z) }
+          : {}),
+      }),
+    ],
     ...(terrain !== undefined
       ? {
           terrain: (world) => ({

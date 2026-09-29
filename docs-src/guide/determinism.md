@@ -47,6 +47,7 @@ subsystem's contribution to the state hash reproduces.
 | Quaternion helpers that use angles — `quatSlerp`, `lookRotation`, `quatFromYaw`, `quatFromEuler`, `yawOf` | Same JS engine | `kernel/src/math3d.ts` routes these through `dmath.sin/cos/acos/atan2`, and `dmath` is currently a thin re-export of native `Math` |
 | Vehicles and aircraft | Same JS engine | `kernel/src/vehicles.ts` and `aircraft.ts` use `dmath.sin/cos/tan/atan2/exp` |
 | Figures (`@bendyline/molen-figures/kernel`) | Same JS engine | its locomotion system writes `figureState` and `transform.rot` into the world and registers a `figures` snapshot provider, so it **is** hashed; it reaches `dmath.atan2` and `quatFromYaw`, and `gait.ts` reaches `dmath.pow`/`sin`/`cos` |
+| Ambient life (`@bendyline/molen-ambient/kernel`) | Same JS engine | agent state (`ambientAgent`, the `$ambient` bookkeeping entity) and transforms are written into the world, so it **is** hashed; occupancy, junction grants and signal phases are rebuilt from components every tick, so a keyframe restores exactly into a world whose transport network was built from the same inputs. It reaches `dmath.acos/sin/cos` and `lookRotation`. The network itself is a `WeakMap` side channel like worldgen's |
 | `physics.engine: "rapier"` (3D rigid bodies) | Same build + platform | `@dimforge/rapier3d-compat` WASM; the plugin hashes an opaque `takeSnapshot()` blob plus its id→handle maps |
 | Worldgen geometry and prop placement | Not hashed | `installWorldgen` registers the index on a `WeakMap` side channel with no snapshot provider; a test asserts installing it leaves `stateHash` unchanged. Its own content hashes (`hashWorldgenOutput`) are **same JS engine**: its kernel half calls `Math.hypot` in ~33 places, which `dmath.hypot` deliberately avoids because `Math.hypot`'s intermediate scaling is engine-defined |
 | Terrain **streaming, projection, surface rendering** | Not hashed | outside `check-dmath`'s two guarded files on purpose; `geospatial.ts` reaches `Math.cos/log/tan/atan/exp` |
@@ -93,9 +94,11 @@ The script Compartment enforces the first three. The rest are yours to keep.
   and its hash.
 - **Kernel and capability code uses `dmath`, never transcendental `Math.*`.** `scripts/check-dmath.mjs`
   enforces it. It takes explicit roots, so coverage is per-package and deliberate: `kernel` guards
-  all of `src`; `figures`, `worldgen` and `worldgen-earth` guard `src/kernel`; `terrain` guards
-  exactly `src/heightfield.ts` and `src/gen.ts`, because a `Heightfield` is the kernel's structural
-  `GroundField` and the rest of that package is projection and streaming. The lint is lexical — it
+  all of `src`; `figures`, `ambient`, `worldgen` and `worldgen-earth` guard `src/kernel`; `terrain`
+  guards `src/heightfield.ts` and `src/gen.ts`, because a `Heightfield` is the kernel's structural
+  `GroundField`, plus the three-free line-path, transport-feature, bridge-profile and
+  rendered-ground modules the ambient transport graph builds on. The rest of that package is
+  projection and streaming. The lint is lexical — it
   cannot see a transcendental reached through an import, which is why
   `worldgen-earth` carries its own `dmath`-based `projection.ts` instead of importing terrain's.
 - **Systems never read a content library at tick time.** Entity types, landmark models and
@@ -248,14 +251,18 @@ two snapshots, including continuation differences under the reserved `$world` ps
 `molen sim watch scene.json --ticks N` reruns on every file change and reports hash flips, event
 deltas and assertion transitions.
 
-**Golden images** are a different mechanism with a different guarantee. `compareGolden` from
-`@bendyline/molen-tooling` compares a render (from `molen shot`, or `screenshotScene` in a test)
-against a committed PNG with a perceptual tolerance (per-pixel threshold 0.1, at most 0.3%
-differing pixels by default). A missing golden **fails** rather than adopting the candidate.
-Record with `UPDATE_GOLDENS=1`. The engine's own golden suites (`pnpm -r test:golden` in the
-engine repository) render in a pinned headless Chromium on a software rasterizer, and their
-authoritative refresh is the `update-goldens` workflow, which records on the same Ubuntu 24.04
-runner as the CI golden job. Record your own goldens on one pinned machine for the same reason.
+**Render tests** are a different mechanism with a different guarantee. A render (from
+`molen shot`, or `screenshotScene` in a test) is deterministic for one Chromium build on one
+machine, so the engine's own render suites (`pnpm -r test:golden` in the engine repository)
+compare no committed reference images. They check what holds on any machine: the same input
+renders the same frame twice (`diffImages` with a zero tolerance), a different input renders a
+different frame, and `frameStats` from `@bendyline/molen-tooling` measures a frame or a region of
+it — coverage against the backdrop, distinct colors, mean color — so a test can say the model
+covers the middle of the view or the sky is above the island. `compareGolden` remains for a test
+that needs a reference image: it compares against a committed PNG with a perceptual tolerance
+(per-pixel threshold 0.1, at most 0.3% differing pixels by default), fails when the reference is
+missing rather than adopting the candidate, and records with `UPDATE_GOLDENS=1`. Record and
+compare on the same pinned machine.
 
 ## What is not promised
 
@@ -263,8 +270,9 @@ Read this list before you build something that depends on a guarantee it does no
 
 - **Golden images are deterministic per build, not across machines.** The software rasterizer
   agrees with itself for a given Chromium build; it does not agree across Chromium versions or
-  operating systems. That is why goldens are recorded in one pinned container and compared with a
-  tolerance, and why DOM text overlays are kept out of captured frames.
+  operating systems. That is why the engine's render tests compare a frame with itself and
+  measure it rather than matching a committed reference, and why DOM text overlays are kept out
+  of captured frames.
 - **Rapier is not cross-platform.** Same build, same platform. Measured run-to-run in its own
   tests; not claimed beyond that.
 - **Transcendentals are not proven across JS engines.** `dmath` exists so that the swap to
@@ -272,7 +280,7 @@ Read this list before you build something that depends on a guarantee it does no
   native `Math`, so every "same JS engine" row above stays same-JS-engine until that swap happens.
   Routing through `dmath` buys you the swap point, not the result.
 - **There is no cross-JS-engine CI.** Every environment Molen tests in — Node, headless Chromium,
-  the browser goldens, the materials cross-environment test — runs V8. No claim in this repo has
+  the browser render tests, the materials cross-environment test — runs V8. No claim in this repo has
   been checked against JavaScriptCore or SpiderMonkey.
 - **Worldgen's content hashes are same-engine.** They are cache keys and regression signals, and
   its kernel half reaches `Math.hypot`, whose intermediate scaling is engine-defined.

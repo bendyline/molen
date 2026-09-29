@@ -37,9 +37,9 @@ npm test
 
 `test/headless.test.ts` proves the seed is deterministic (identical heightmap twice), walks a 9x9 grid of `raycastDown` samples that must all sit inside the declared height range with the island centre above its edge, and meshes all sixteen chunks through `buildChunkGeometry` to more than 10,000 triangles.
 
-In the engine repository, `test/golden/flyover.golden.test.ts` renders the island with `screenshotScene` and a `terrain: { descriptor, heightmapPng }` input — zero entities, 512x288, `FLYOVER_CAMERA`, more than 50,000 triangles after distance LOD — and compares it against the committed `test/golden/__goldens__/flyover.png`.
+In the engine repository, `test/golden/flyover.golden.test.ts` renders the island with `screenshotScene` and a `terrain: { descriptor, heightmapPng }` input — zero entities, 512x288, `FLYOVER_CAMERA`, more than 50,000 triangles after distance LOD — and checks the frame with `frameStats` rather than a reference image: open sky across the top, the island's lit green slopes filling the lower middle.
 
-There is no pinned state hash and no replay fixture: nothing in this sample is simulated. `molen shot` can render it too, but it needs both a scene to hang the terrain on and a heightmap already on disk (`--terrain terrain.json --heightmap <png>`), which is why the golden test generates the PNG in process instead.
+There is no pinned state hash and no replay fixture: nothing in this sample is simulated. `molen shot` can render it too, but it needs both a scene to hang the terrain on and a heightmap already on disk (`--terrain terrain.json --heightmap <png>`), which is why the render test generates the PNG in process instead.
 
 In the engine repository this sample lives in `examples/terrain-flyover/`. The same commands run from
 that directory, and `pnpm --filter @bendyline/molen-examples-terrain-flyover test:unit` (or `test:golden`) runs its tests from the

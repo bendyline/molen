@@ -87,7 +87,7 @@ export async function compareGolden(
     return {
       ok: false,
       created: false,
-      reason: `no committed golden at ${goldenPath}; the candidate is at ${candidatePath}. Record one with UPDATE_GOLDENS=1 (locally that produces a candidate only — the authoritative refresh is the "Update goldens" workflow, which records in the pinned CI container).`,
+      reason: `no committed golden at ${goldenPath}; the candidate is at ${candidatePath}. Record one with UPDATE_GOLDENS=1 on the kind of machine that compares: software rendering differs between machines.`,
     };
   }
   const result = await diffImages(goldenPath, candidatePath, diffPath, opts.maxDiffRatio);

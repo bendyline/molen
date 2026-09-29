@@ -37,6 +37,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
+  createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackagePyramidStream,
   createTerrainSurfaceRenderer,
@@ -62,6 +63,13 @@ import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/cl
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import {
+  ambientContentFromTypes,
+  EarthAmbient,
+  type EarthAmbientSettings,
+  type EarthAmbientStats,
+} from './ambient';
+import { observeSemanticTiles, SemanticTileBuffer } from './ambient-tiles';
 import { createEarthFog, createEarthSky, type EarthSkyStyle, updateEarthFog } from './atmosphere';
 import { type EarthCredit, earthCredits } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
@@ -161,6 +169,13 @@ export interface EarthViewOptions {
    * false turns it off; without a sound bank the view is silent.
    */
   audio?: EarthAudioOptions | false;
+  /**
+   * Ambient life: NPC cars on the mapped roads, pedestrians on footways, trains on railways and
+   * aircraft overhead, spawned around the viewer and removed behind it. On by default; false
+   * turns it off. Vehicle and aircraft models come from the entities pack (simple shapes without
+   * it).
+   */
+  ambient?: EarthAmbientSettings | false;
   /** The first view. */
   camera: EarthCameraTarget;
   /** `'auto'` adapts to measured frame times (default). */
@@ -214,6 +229,8 @@ export interface EarthViewStats {
   drawCalls: number;
   triangles: number;
   frameLatitude: number;
+  /** Ambient life counts, when it is on. */
+  ambient?: EarthAmbientStats;
 }
 
 export interface EarthView {
@@ -243,6 +260,9 @@ export interface EarthView {
   readonly audio: AudioLayer | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
   setPaused(paused: boolean): void;
+  /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
+  setAmbientEnabled(enabled: boolean): void;
+  readonly ambientEnabled: boolean;
   dispose(): void;
 }
 
@@ -266,6 +286,7 @@ interface EarthStack {
   surface: TerrainSurfaceRenderer;
   worldgen: EarthWorldgen | undefined;
   vehicles: EarthVehicles | undefined;
+  ambient: EarthAmbient | undefined;
   viewDistance: number;
   dispose(): void;
 }
@@ -414,6 +435,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let stack: EarthStack | undefined;
     const groundHeight = (x: number, z: number): number | undefined =>
       stack?.stream.sampleHeight(x, z);
+    const ambientSettings = options.ambient === false ? undefined : (options.ambient ?? {});
+    let ambientOn = ambientSettings !== undefined;
+    const ambientContent =
+      content?.types !== undefined
+        ? ambientContentFromTypes(content.types, async (id) => {
+            try {
+              return await loadModel(id);
+            } catch {
+              return undefined;
+            }
+          })
+        : undefined;
+    const ambientBudget = () =>
+      (automatic ? tier : earthPerformanceTier(earthQualityLevel(quality()))).ambient;
     const environment = { groundHeight };
 
     const createStack = async (
@@ -476,6 +511,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        // Ambient life reads the decoded road tiles as the features layer builds them.
+        const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
@@ -491,10 +528,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 worldgen !== undefined
                   ? { visible: true, renderer: worldgen.classification }
                   : { visible: true },
-              featuresLayer:
-                worldgen !== undefined
-                  ? { visible: true, renderer: worldgen.humanFeatures }
-                  : { visible: true, mesh: { surfaceRenderer: surface } },
+              featuresLayer: (() => {
+                const inner =
+                  worldgen !== undefined
+                    ? worldgen.humanFeatures
+                    : createDefaultTerrainSemanticRenderer({
+                        surfaceRenderer: surface,
+                        renderLandcover: false,
+                        renderWater: false,
+                      });
+                return {
+                  visible: true,
+                  renderer:
+                    ambientTiles !== undefined ? observeSemanticTiles(inner, ambientTiles) : inner,
+                };
+              })(),
             });
             layers = semantic.layers;
           } catch (error) {
@@ -535,6 +583,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        let ambient: EarthAmbient | undefined;
         const vehicles =
           content?.types !== undefined
             ? new EarthVehicles({
@@ -542,9 +591,28 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 sampleHeight: (x, z) => stream.sampleHeight(x, z),
                 loadModel,
                 types: content.types,
+                obstacles: (box, except) => ambient?.blocks(box, except) ?? false,
               })
             : undefined;
         if (vehicles !== undefined) parts.push(() => vehicles.dispose());
+        if (ambientSettings !== undefined && ambientTiles !== undefined) {
+          const created = new EarthAmbient({
+            ...(vehicles !== undefined ? { world: vehicles.world } : {}),
+            parent: stream.object,
+            settings: ambientSettings,
+            ...(ambientContent !== undefined ? { content: ambientContent } : {}),
+            prepare: (object) => renderer.prepareObject(object),
+            ground: (x, z) => stream.sampleHeight(x, z),
+          });
+          ambient = created;
+          created.setBudget(ambientBudget());
+          if (!ambientOn) created.setEnabled(false);
+          ambientTiles.attach(created);
+          parts.push(() => {
+            ambientTiles.detach();
+            created.dispose();
+          });
+        }
         return {
           frameLatitude,
           metersPerUnit,
@@ -552,6 +620,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           surface,
           worldgen,
           vehicles,
+          ambient,
           viewDistance: budget.viewDistance,
           dispose: cleanup,
         };
@@ -709,6 +778,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         current.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
         current.viewDistance = budget.viewDistance;
         current.worldgen?.setQuality(quality());
+        current.ambient?.setBudget(ambientBudget());
         current.worldgen?.setCacheBudget(automatic ? tier.cacheBytes : 192 * 1024 * 1024);
         void current.surface
           .setOptions({
@@ -1001,8 +1071,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           streamed = { position: pose.position, direction: pose.direction };
         }
         current.vehicles?.sync(now, pose.position);
+        current.ambient?.sync(
+          now,
+          pose,
+          mode === 'walk' ? [{ x: pose.position[0], z: pose.position[2], radius: 0.5 }] : [],
+        );
         if (mode !== 'drive')
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
+        current.ambient?.update(dt);
+        current.ambient?.render(pose.position, dt);
         updateEarthFog(fog, current.viewDistance, pose.position[1]);
       }
       for (const tap of frameInput.taps) {
@@ -1119,7 +1196,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           drawCalls: renderStats.drawCalls,
           triangles: renderStats.triangles,
           frameLatitude,
+          ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
         };
+      },
+      get ambientEnabled() {
+        return ambientOn;
+      },
+      setAmbientEnabled(enabled) {
+        if (ambientSettings === undefined) return;
+        ambientOn = enabled;
+        stack?.ambient?.setEnabled(enabled);
       },
       setPaused(next) {
         if (next === paused || disposed) return;

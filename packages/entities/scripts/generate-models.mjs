@@ -92,7 +92,7 @@ async function loadBundles() {
       });
     }
   }
-  const kindOrder = { nature: 0, aircraft: 1, vehicle: 2 };
+  const kindOrder = { nature: 0, aircraft: 1, vehicle: 2, transit: 3 };
   bundles.sort(
     (a, b) =>
       (kindOrder[a.manifest.kind] ?? Number.MAX_SAFE_INTEGER) -
@@ -148,9 +148,15 @@ function projectDocument(bundles) {
       gallery: 'scenes/gallery.scene.json',
       aircraft: 'scenes/aircraft.scene.json',
       vehicles: 'scenes/vehicles.scene.json',
+      transit: 'scenes/transit.scene.json',
     },
     defaultScene: 'gallery',
-    types: ['types/entities.types.json', 'types/aircraft.types.json', 'types/vehicle.types.json'],
+    types: [
+      'types/entities.types.json',
+      'types/aircraft.types.json',
+      'types/vehicle.types.json',
+      'types/transit.types.json',
+    ],
     assets,
     reservations: [
       {
@@ -279,6 +285,14 @@ await emit(
     bundles,
     'vehicle',
     'Reusable standalone wheeled vehicles with external tuning and models.',
+  ),
+);
+await emit(
+  'types/transit.types.json',
+  aggregateTypes(
+    bundles,
+    'transit',
+    'Buses and rail cars for ambient traffic; models animate from their ambientRole bindings.',
   ),
 );
 await emit('project.json', projectDocument(bundles));
