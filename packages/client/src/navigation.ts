@@ -59,6 +59,7 @@ export { WalkCollision, type WalkCollisionOptions } from './navigation/walk-coll
 export {
   RUN_SPEED,
   WALK_EYE_HEIGHT,
+  WALK_PLACEMENT_RADIUS,
   WALK_SPEED,
   WalkController,
   type WalkInput,

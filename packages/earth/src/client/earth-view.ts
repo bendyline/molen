@@ -31,6 +31,7 @@ import {
   type TouchJoystick,
   viewNeedsImmediateUpdate,
   WALK_EYE_HEIGHT,
+  WALK_PLACEMENT_RADIUS,
   WalkCollision,
   WalkController,
 } from '@bendyline/molen-client/navigation';
@@ -864,12 +865,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       );
       look.yaw = turned.yaw;
       look.pitch = turned.pitch;
-      // Placement must see everything that has streamed in, not a tree up to 200 ms old.
-      if (!walker.ready) collision.invalidate();
       collision.update(current.stream.object, walker.feet.x, walker.feet.z);
-      if (!walker.ready) {
-        const stats = current.stream.stats();
-        if (stats.loading === 0 && stats.loadingLayers === 0) walker.place(collision, groundHeight);
+      // Land once ground-level detail around the landing spot is on screen, not the whole view.
+      // Placement must see everything that has streamed in there, not a tree up to 200 ms old.
+      if (
+        !walker.ready &&
+        current.stream.isAreaReady(walker.feet.x, walker.feet.z, WALK_PLACEMENT_RADIUS)
+      ) {
+        collision.invalidate();
+        collision.update(current.stream.object, walker.feet.x, walker.feet.z);
+        walker.place(collision, groundHeight);
       }
       walker.update(
         dt,

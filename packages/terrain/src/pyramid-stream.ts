@@ -181,6 +181,13 @@ export interface TerrainPyramidStream {
   /** Refresh retained allocation estimates after an adapter mutates resident layer geometry. */
   refreshMemoryUsage(): void;
   sampleHeight(x: number, z: number): number | undefined;
+  /**
+   * True when the view's terrain and enabled layers within `radius` of (x, z) are on screen:
+   * every selected tile there is displayed with its layers published (a layer that failed for
+   * good does not hold it back). Loads elsewhere in the view do not count, so a host can act on
+   * the ground around a point, such as landing a walker, while the rest of the view streams in.
+   */
+  isAreaReady(x: number, z: number, radius: number): boolean;
   setLayerVisible(id: string, visible: boolean): void;
   isLayerVisible(id: string): boolean;
   residentTiles(): TerrainPyramidTileAddress[];
@@ -1088,6 +1095,23 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       return this.resident.get(key)?.heightfield.sampleHeight(x, z);
     }
     return undefined;
+  }
+
+  isAreaReady(x: number, z: number, radius: number): boolean {
+    const area: [number, number, number, number] = [x - radius, z - radius, x + radius, z + radius];
+    let covered = false;
+    for (const [key, address] of this.selected) {
+      if (!boxesIntersect(tileBounds(this.descriptor, address), area)) continue;
+      const tile = this.resident.get(key);
+      if (tile === undefined || !this.displayed.has(key) || !this.layersReady(tile, true))
+        return false;
+      for (const id of tile.layers.keys()) {
+        if (this.layerVisibility.get(id) === true && !this.displayedLayers.get(id)?.has(key))
+          return false;
+      }
+      covered = true;
+    }
+    return covered;
   }
 
   setLayerVisible(id: string, visible: boolean): void {

@@ -7,6 +7,14 @@ export const WALK_SPEED: number = 1.5;
 export const RUN_SPEED: number = 4;
 const BODY_HEIGHT = 1.8;
 const BODY_RADIUS = 0.3;
+/** `place` tries rings of landing spots this far apart, out to this many rings. */
+const PLACEMENT_RING_SPACING = 2;
+const PLACEMENT_RINGS = 8;
+/**
+ * How far from the requested spot `place` may land the body, including its radius: the ground a
+ * host should have loaded (terrain and anything built on it) before calling `place`.
+ */
+export const WALK_PLACEMENT_RADIUS: number = PLACEMENT_RINGS * PLACEMENT_RING_SPACING + BODY_RADIUS;
 const STEP = 1 / 120;
 const GRAVITY = 9.81;
 const FLOOR_NORMAL = Math.cos(Math.PI / 3.6); // 50 degrees.
@@ -52,11 +60,11 @@ export class WalkController {
   ): boolean {
     const centerX = this.feet.x;
     const centerZ = this.feet.z;
-    for (let ring = 0; ring <= 8; ring++) {
+    for (let ring = 0; ring <= PLACEMENT_RINGS; ring++) {
       const count = ring === 0 ? 1 : ring * 8;
       for (let i = 0; i < count; i++) {
-        const x = centerX + Math.cos((i / count) * Math.PI * 2) * ring * 2;
-        const z = centerZ + Math.sin((i / count) * Math.PI * 2) * ring * 2;
+        const x = centerX + Math.cos((i / count) * Math.PI * 2) * ring * PLACEMENT_RING_SPACING;
+        const z = centerZ + Math.sin((i / count) * Math.PI * 2) * ring * PLACEMENT_RING_SPACING;
         const ground = sampleHeight(x, z);
         if (ground === undefined) continue;
         const ray = new THREE.Ray(

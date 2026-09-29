@@ -46,7 +46,7 @@ describe('canonical construction material library', () => {
         expect(value(roughness, 0.5, 0.5), id).toBeLessThanOrEqual(253);
       }
     }
-  });
+  }, 30_000); // Bakes all 65 material graphs; 3-5s alone, past the 5s default under load.
 
   it('repeats every lap board and barrel rib instead of clamping a scaled coordinate', async () => {
     const lap = bakeMatGraph(await material('siding_lap', 256)).slots.baseColor;

@@ -123,7 +123,7 @@ it('returns the same bits on every CPU', () => {
   actual.atan2 = digest(x.map((v, i) => atan2(v, y[i])));
   actual.pow = digest(x.map((v, i) => pow(v, y[i] / 64)));
   expect(actual).toEqual(DIGESTS);
-});
+}, 30_000); // 4.2M calls to the ports.
 
 it.runIf(process.arch === 'x64')(
   'matches V8 on x64, whose fdlibm has no fused multiply-adds',
@@ -136,6 +136,7 @@ it.runIf(process.arch === 'x64')(
       digest(x.map((v, i) => Math.atan2(v, y[i]))),
     );
   },
+  30_000, // 8M calls, half of them native.
 );
 
 it('installs the ports in this process and in the Node processes it starts', () => {
@@ -149,7 +150,7 @@ it('installs the ports in this process and in the Node processes it starts', () 
     env: { ...process.env, NODE_OPTIONS: '' },
   });
   expect(output.trim()).toBe('true true');
-});
+}, 30_000); // Starts two Node processes.
 
 /** Asset generator sources: worldgen and entities scripts, aircraft models, structure scripts. */
 function generatorSources() {
@@ -189,4 +190,4 @@ it('keeps ** in generators to exponents V8 computes exactly (2 and 0.5)', () => 
     visit(source);
   }
   expect(found, 'write Math.pow(a, b): ** bypasses deterministic-math.mjs').toEqual([]);
-});
+}, 30_000); // Parses every generator script, about 220 files.

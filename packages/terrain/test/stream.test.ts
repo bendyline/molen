@@ -162,6 +162,44 @@ describe('fixed-grid terrain streaming', () => {
     expect(disposes).toBe(1);
   });
 
+  it('reports an area ready once its own chunks and layers are in, whatever loads elsewhere', async () => {
+    const d = descriptor();
+    const layerLoads = new Map<string, (object: THREE.Object3D) => void>();
+    const stream = createTerrainStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        cameraPos: [15, 10, 15],
+        layers: [
+          {
+            id: 'buildings',
+            category: 'classification',
+            visible: true,
+            createTile({ address }) {
+              return new Promise<THREE.Object3D>((resolve) =>
+                layerLoads.set(`${address.x}_${address.z}`, resolve),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      expect(stream.isAreaReady(15, 15, 2)).toBe(false);
+      await expect.poll(() => layerLoads.size).toBe(5);
+      // Chunks are 10 m squares; (15, 15) ± 2 lies inside chunk 1_1, whose layer is loading.
+      expect(stream.isAreaReady(15, 15, 2)).toBe(false);
+      layerLoads.get('1_1')?.(new THREE.Group());
+      await expect.poll(() => stream.isAreaReady(15, 15, 2)).toBe(true);
+      expect(stream.stats().loadingLayers).toBe(4);
+      // Reaching over the x = 20 border takes in chunk 2_1, whose layer is still loading.
+      expect(stream.isAreaReady(19, 15, 2)).toBe(false);
+      expect(stream.isAreaReady(500, 500, 1)).toBe(false);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('keeps missing tiles stable until explicitly retried', async () => {
     const d = descriptor({ gridSize: [1, 1] });
     let attempts = 0;

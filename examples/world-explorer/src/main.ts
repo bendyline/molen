@@ -13,6 +13,7 @@ import {
   cameraRight,
   viewNeedsImmediateUpdate,
   WALK_EYE_HEIGHT,
+  WALK_PLACEMENT_RADIUS,
   WalkCollision,
   WalkController,
 } from '@bendyline/molen-client/navigation';
@@ -1376,14 +1377,16 @@ async function main(): Promise<void> {
       viewDirection = direction.toArray();
       jumpRequested = false;
     } else if (navigation === 'walk') {
-      if (!walker.ready) walkCollision.invalidate();
       walkCollision.update(stream.object, camera.pos[0], camera.pos[2]);
       if (!walker.ready) {
         const ground = sampleHeight(camera.pos[0], camera.pos[2]);
         if (ground !== undefined) camera.pos[1] = ground + WALK_EYE_HEIGHT;
-        // Request ground-level detail before choosing a landing spot among the buildings.
-        const loading = stream.stats();
-        if (loading.loading === 0 && loading.loadingLayers === 0) {
+        // Land once ground-level detail around the landing spot is on screen, buildings included,
+        // not the whole view: that took minutes on slow devices. Rescan collision then, not in
+        // every frame of the wait.
+        if (stream.isAreaReady(walker.feet.x, walker.feet.z, WALK_PLACEMENT_RADIUS)) {
+          walkCollision.invalidate();
+          walkCollision.update(stream.object, camera.pos[0], camera.pos[2]);
           walker.place(walkCollision, sampleHeight);
         }
       }

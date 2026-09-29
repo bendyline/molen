@@ -166,6 +166,12 @@ export interface TerrainStream {
   readonly object: THREE.Group;
   update(cameraPos: [number, number, number]): void;
   sampleHeight(x: number, z: number): number | undefined;
+  /**
+   * True when every wanted chunk within `radius` of (x, z) is resident and none of its layers is
+   * still loading. Loads elsewhere do not count, so a host can act on the ground around a point,
+   * such as landing a walker, while the rest of the view streams in.
+   */
+  isAreaReady(x: number, z: number, radius: number): boolean;
   setLayerVisible(id: string, visible: boolean): void;
   isLayerVisible(id: string): boolean;
   residentTiles(): TerrainTileAddress[];
@@ -403,6 +409,27 @@ class FixedGridTerrainStream implements TerrainStream {
     const tx = Math.floor((x - this.descriptor.origin[0]) / this.descriptor.chunkSize);
     const tz = Math.floor((z - this.descriptor.origin[1]) / this.descriptor.chunkSize);
     return this.resident.get(terrainTileKey({ x: tx, z: tz }))?.heightfield.sampleHeight(x, z);
+  }
+
+  isAreaReady(x: number, z: number, radius: number): boolean {
+    const size = this.descriptor.chunkSize;
+    const near = (address: TerrainTileAddress): boolean => {
+      const [minX, minZ] = terrainTileOrigin(this.descriptor, address);
+      return (
+        minX < x + radius &&
+        minX + size > x - radius &&
+        minZ < z + radius &&
+        minZ + size > z - radius
+      );
+    };
+    let covered = false;
+    for (const [key, wanted] of this.desired) {
+      if (!near(wanted.address)) continue;
+      if (!this.resident.has(key)) return false;
+      covered = true;
+    }
+    for (const pending of this.pendingLayers.values()) if (near(pending.address)) return false;
+    return covered;
   }
 
   setLayerVisible(id: string, visible: boolean): void {

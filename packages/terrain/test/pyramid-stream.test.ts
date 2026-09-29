@@ -139,6 +139,51 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it('reports an area ready once its own tiles and layers are on screen, whatever loads elsewhere', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const pending = new Map<string, (object: THREE.Object3D) => void>();
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            minLevel: 1,
+            createTile({ address }) {
+              return new Promise<THREE.Object3D>((resolve) =>
+                pending.set(terrainPyramidTileKey(address), resolve),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await expect.poll(() => pending.size).toBe(4);
+      // Level-1 tiles are 8 m squares; (3, 3) ± 2 lies inside 1/0/0, whose buildings are loading.
+      expect(stream.isAreaReady(3, 3, 2)).toBe(false);
+      pending.get('1/0/0')?.(new THREE.Group());
+      await expect.poll(() => stream.isAreaReady(3, 3, 2)).toBe(true);
+      expect(stream.stats().loadingLayers).toBe(3);
+      // Reaching over the x = 8 border takes in 1/1/0, whose layer is still loading.
+      expect(stream.isAreaReady(7, 3, 2)).toBe(false);
+      expect(stream.isAreaReady(100, 100, 1)).toBe(false);
+      for (const resolve of pending.values()) resolve(new THREE.Group());
+      await expect.poll(() => stream.isAreaReady(7, 3, 2)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('keeps overlapping detail visible through the surface fallback during a 20 degree turn', async () => {
     const d = descriptor({ rootSize: 256, maxLevel: 4 });
     const view = {
