@@ -40,6 +40,21 @@
   },
   "overrides": [
     {
+      "includes": [
+        "packages/worldgen/scripts/**",
+        "packages/entities/scripts/**",
+        "content/entities/source/**/models/*.mjs",
+        "assets/structures/*/scripts/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useExponentiationOperator": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": ["**/*.vue"],
       "linter": {
         "rules": {

@@ -1,5 +1,6 @@
 /** Preserve the primary research and map evidence separately from the authored exterior. */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';

@@ -32,7 +32,7 @@ function rayHits(poly, a) {
 }
 const outer = (a) => Math.max(...rayHits(munichPlan.outline, a));
 const inner = (a) => Math.min(...munichPlan.stands.flatMap((s) => rayHits(s.outline, a)));
-const topY = (a) => 16 * Math.max(0, Math.sin(a)) ** 3;
+const topY = (a) => 16 * Math.pow(Math.max(0, Math.sin(a)), 3);
 function rowPoint(a, t) {
   return radial(a, inner(a) + (outer(a) - inner(a)) * t, fieldY + 1 + (17 + topY(a)) * t);
 }
@@ -70,8 +70,8 @@ const mastData = munichPlan.masts.map((m, i) => {
 });
 function roofPoint(u, v) {
   const p = mix(inside(u), outside(u), v),
-    end = Math.sin(Math.PI * u) ** 0.26;
-  let y = (28 - 20 * v ** 5) * end + 1.6;
+    end = Math.pow(Math.sin(Math.PI * u), 0.26);
+  let y = (28 - 20 * Math.pow(v, 5)) * end + 1.6;
   for (const m of mastData) {
     const d = Math.hypot((u - m.u) / 0.039, (v - 0.87) / 0.2);
     y += m.peak * Math.exp(-d * 1.45) * end;
@@ -467,7 +467,7 @@ function tent(out) {
     const rings = Array.from({ length: 25 }, (_, j) => {
       const t = j / 24,
         center = mix([x, 0.8, z], tip, t),
-        radius = 0.35 + 1.05 * Math.sin(Math.PI * t) ** 0.65;
+        radius = 0.35 + 1.05 * Math.pow(Math.sin(Math.PI * t), 0.65);
       return Array.from({ length: 40 }, (_, k) => [
         center[0] + radius * Math.cos((k * TAU) / 40),
         center[1],

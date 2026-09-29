@@ -72,14 +72,13 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   that includes them is a font test wearing a render test's clothes.
 - **GLBs are generated, never committed.** Every model comes from a generator listed in
   `asset-build.json` (or one of its few declared `masters`), and `asset-lock.json` pins the bytes.
-  A model change is a source change plus the lock the Update asset lock workflow commits; only
-  Linux x64 writes the lock, and other hosts only report differences from it. The Assets workflow
-  rebuilds from a clean checkout, fails on any byte difference and publishes the release that
-  `pnpm assets:fetch` downloads. Generators must be byte-deterministic on Linux x64, and should
-  match on other hosts: no clocks, unseeded randomness or locale formatting, no `**`/`Math.pow`
-  beyond squares (V8's pow differs by platform and version), no near-zero float noise left in
-  vertex data, and no hashes of checkout-dependent bytes. Asset builds run
-  on the Node major `asset-build.json` pins.
+  A model change is a source change plus `pnpm assets:build --update-lock` (or the Update asset
+  lock workflow); the Assets workflow rebuilds from a clean checkout, fails on any byte difference
+  and publishes the release that `pnpm assets:fetch` downloads. Generators must be
+  byte-deterministic on every OS and CPU: no clocks, unseeded randomness or locale formatting, no
+  `**` except with a literal 2 or 0.5 (asset builds replace `Math`'s transcendental functions with
+  CPU-independent ports; `**` bypasses them), and no hashes of checkout-dependent bytes. Asset
+  builds run on the Node major `asset-build.json` pins.
   Models share textures through material graphs (`extras.molenSurface`) rather than embedding
   copies. See [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - Generated script types: `molen-scripts.d.ts` + `tsconfig.json` beside a scripts directory come

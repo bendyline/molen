@@ -447,7 +447,7 @@ function roofOuter(a) {
 function roofPoint(a, t) {
   const p = rounded(a, 37.5, 55, 5.8),
     q = roofOuter(a),
-    rise = 1 - t ** 4,
+    rise = 1 - Math.pow(t, 4),
     y = 48.1 + 7.3 * rise + 1.25 * Math.sin(a - 0.3) * t;
   return [p[0] + (q[0] - p[0]) * t, y, p[1] + (q[1] - p[1]) * t];
 }

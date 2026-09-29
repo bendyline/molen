@@ -58,10 +58,10 @@ function front(y) {
         return left * right > 0 ? (2 * left * right) / (left + right) : 0;
       };
       return (
-        (2 * t ** 3 - 3 * t ** 2 + 1) * a[1] +
-        (t ** 3 - 2 * t ** 2 + t) * h * tangent(i - 1) +
-        (-2 * t ** 3 + 3 * t ** 2) * b[1] +
-        (t ** 3 - t ** 2) * h * tangent(i)
+        (2 * Math.pow(t, 3) - 3 * t ** 2 + 1) * a[1] +
+        (Math.pow(t, 3) - 2 * t ** 2 + t) * h * tangent(i - 1) +
+        (-2 * Math.pow(t, 3) + 3 * t ** 2) * b[1] +
+        (Math.pow(t, 3) - t ** 2) * h * tangent(i)
       );
     }
   return curve.at(-1)[1];

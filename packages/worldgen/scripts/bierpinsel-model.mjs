@@ -138,7 +138,7 @@ function capsule(out, index, a) {
         u1 = -w + (2 * w * (k + 1)) / slices,
         u = (u0 + u1) / 2;
       if (window && Math.abs(u) < window[2]) continue;
-      const edge = (u) => 0.1 * (Math.abs(u) / w) ** 8;
+      const edge = (u) => 0.1 * Math.pow(Math.abs(u) / w, 8);
       paintedPanel(
         f,
         index,

@@ -319,8 +319,8 @@ export function buildWindTurbine(out) {
       Array.from({ length: 24 }, (_, i) => {
         const a = (i * Math.PI) / 12;
         return [
-          Math.sign(Math.cos(a)) * Math.abs(Math.cos(a)) ** 0.55 * w,
-          y + Math.sign(Math.sin(a)) * Math.abs(Math.sin(a)) ** 0.55 * h,
+          Math.sign(Math.cos(a)) * Math.pow(Math.abs(Math.cos(a)), 0.55) * w,
+          y + Math.sign(Math.sin(a)) * Math.pow(Math.abs(Math.sin(a)), 0.55) * h,
           z,
         ];
       }),

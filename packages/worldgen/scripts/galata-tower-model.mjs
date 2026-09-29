@@ -57,7 +57,7 @@ function piercedCylinder(out, { radius, y0, y1, holes, slot = 'stone', color = s
       h.y +
       h.height -
       h.rise +
-      h.rise * (h.pointed ? 1 - Math.abs(x) ** 1.45 : Math.sqrt(Math.max(0, 1 - x * x)))
+      h.rise * (h.pointed ? 1 - Math.pow(Math.abs(x), 1.45) : Math.sqrt(Math.max(0, 1 - x * x)))
     );
   };
   for (let i = 1; i < cuts.length; i++) {

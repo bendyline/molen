@@ -2,6 +2,7 @@
  * Encode each entity source bundle's `models/model.json` (named materials and indexed triangle
  * primitives) as its `models/source.glb`. The JSON is the editable source; the GLB is rebuilt.
  */
+import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';

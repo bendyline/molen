@@ -8,6 +8,30 @@ import { promisify } from 'node:util';
 const run = promisify(execFile);
 const aligned = (n) => (n + 3) & ~3;
 
+/** Bake a material graph's base color to PNG bytes, as the embedded fallback holds them. */
+export async function bakeGraphPng(graphPath, name, root) {
+  // A private directory per bake: generators run in parallel and may share a graph.
+  const bakeDir = await mkdtemp(join(tmpdir(), 'molen-graph-bake-'));
+  const pngPath = join(bakeDir, `${name}.png`);
+  try {
+    await run(
+      process.execPath,
+      [
+        resolve(root, 'packages/tooling/dist/cli.mjs'),
+        'material',
+        'bake',
+        graphPath,
+        '-o',
+        pngPath,
+      ],
+      { cwd: root },
+    );
+    return await readFile(pngPath);
+  } finally {
+    await rm(bakeDir, { recursive: true, force: true });
+  }
+}
+
 export async function embedGraphFallbacks(input, refs, root) {
   if (!refs.length) return input;
   const jsonLength = input.readUInt32LE(12);
@@ -28,27 +52,7 @@ export async function embedGraphFallbacks(input, refs, root) {
   for (const { ref, graphPath } of refs) {
     const graph = JSON.parse(await readFile(graphPath, 'utf8'));
     const name = ref.split('.').at(-1);
-    // A private directory per bake: generators run in parallel and may share a graph.
-    const bakeDir = await mkdtemp(join(tmpdir(), 'molen-graph-bake-'));
-    const pngPath = join(bakeDir, `${name}.png`);
-    let png;
-    try {
-      await run(
-        process.execPath,
-        [
-          resolve(root, 'packages/tooling/dist/cli.mjs'),
-          'material',
-          'bake',
-          graphPath,
-          '-o',
-          pngPath,
-        ],
-        { cwd: root },
-      );
-      png = await readFile(pngPath);
-    } finally {
-      await rm(bakeDir, { recursive: true, force: true });
-    }
+    const png = await bakeGraphPng(graphPath, name, root);
     const pad = aligned(length) - length;
     if (pad) chunks.push(Buffer.alloc(pad));
     length += pad;

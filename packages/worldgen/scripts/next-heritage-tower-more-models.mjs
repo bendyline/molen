@@ -315,9 +315,9 @@ function buildEinstein(out) {
       const a = (-i / 96) * tau,
         taper = 1 - Math.max(0, y - 11) * 0.012;
       return [
-        2.8 * taper * Math.sign(Math.cos(a)) * Math.abs(Math.cos(a)) ** 0.32,
+        2.8 * taper * Math.sign(Math.cos(a)) * Math.pow(Math.abs(Math.cos(a)), 0.32),
         y,
-        towerZ + 3.0 * taper * Math.sign(Math.sin(a)) * Math.abs(Math.sin(a)) ** 0.32,
+        towerZ + 3.0 * taper * Math.sign(Math.sin(a)) * Math.pow(Math.abs(Math.sin(a)), 0.32),
       ];
     });
   // Three-dimensional window breasts, a continuous curved plaster shell and inset wraparound glazing.

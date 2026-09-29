@@ -8,6 +8,7 @@
  *   node scripts/generate-pack.mjs --check    fail when any generated file is missing or stale
  */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';

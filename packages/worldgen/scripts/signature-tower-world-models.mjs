@@ -1627,7 +1627,10 @@ function buildTuntex(out, m) {
     for (const { a, b, n, len } of edges(poly)) {
       const segments = Math.max(12, Math.ceil(len / 1.4));
       const rise = (t) =>
-        y + 1.3 + height * Math.abs(2 * t - 1) ** 5 + 1.4 * Math.exp(-(((t - 0.5) / 0.11) ** 2));
+        y +
+        1.3 +
+        height * Math.pow(Math.abs(2 * t - 1), 5) +
+        1.4 * Math.exp(-(((t - 0.5) / 0.11) ** 2));
       for (let i = 0; i < segments; i++) {
         const t0 = i / segments,
           t1 = (i + 1) / segments,

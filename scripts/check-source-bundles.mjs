@@ -1,9 +1,8 @@
 import { createHash } from 'node:crypto';
 import { access, readdir, readFile } from 'node:fs/promises';
-import { dirname, relative, resolve, sep } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '../packages/schema/dist/index.mjs';
-import { readBuilt, readLock } from './asset-packs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredDirectories = new Set([
@@ -32,11 +31,6 @@ for (const base of ['assets', 'content', 'examples', 'packages'])
   await discover(resolve(root, base));
 
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-// Pins are Linux x64 bytes. A model this machine built for the current lock may differ from its
-// pin on another host (content/ASSET-PACKS.md); the Assets workflow checks the pinned bytes.
-const built = await readBuilt(root);
-const builtHere = built.release === (await readLock(root)).release ? built.files : {};
-const builtHash = (path) => builtHere[relative(root, path).split(sep).join('/')];
 const listedPaths = (manifest) => [
   ...manifest.files.definitions,
   ...manifest.files.models.map((entry) => entry.path),
@@ -97,13 +91,8 @@ for (const manifestPath of sourceManifests.sort()) {
   }
   const outputRoot = await projectRoot(directory);
   for (const model of manifest.files.models) {
-    const modelPath = resolve(directory, model.path);
-    const actual = hash(await readFile(modelPath));
-    if (
-      model.sha256 !== undefined &&
-      actual !== model.sha256 &&
-      actual !== `sha256:${builtHash(modelPath)}`
-    ) {
+    const bytes = await readFile(resolve(directory, model.path));
+    if (model.sha256 !== undefined && hash(bytes) !== model.sha256) {
       throw new Error(`${manifestPath}: ${model.path} does not match ${model.sha256}`);
     }
     if (model.output === undefined || model.assetId === undefined) continue;

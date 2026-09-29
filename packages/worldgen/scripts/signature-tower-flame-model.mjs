@@ -123,10 +123,10 @@ function sampled(plan) {
         const m0 = (c[k] - a[k]) * 0.33,
           m1 = (d[k] - b[k]) * 0.33;
         return (
-          (2 * t ** 3 - 3 * t ** 2 + 1) * n +
-          (t ** 3 - 2 * t ** 2 + t) * m0 +
-          (-2 * t ** 3 + 3 * t ** 2) * c[k] +
-          (t ** 3 - t ** 2) * m1
+          (2 * Math.pow(t, 3) - 3 * t ** 2 + 1) * n +
+          (Math.pow(t, 3) - 2 * t ** 2 + t) * m0 +
+          (-2 * Math.pow(t, 3) + 3 * t ** 2) * c[k] +
+          (Math.pow(t, 3) - t ** 2) * m1
         );
       });
       result.push(p);
@@ -150,10 +150,10 @@ function tower(out, part, height, tip, inner, floorPitch, partialSide) {
     point = (i, y) => {
       const t = y / height,
         [long, cross] = coordinates[i],
-        low = length * (0.22 * t + 0.78 * t ** 3),
+        low = length * (0.22 * t + 0.78 * Math.pow(t, 3)),
         high = length * (1 - 0.18 * Math.sin(Math.PI * t)),
         u = low + ((high - low) * long) / length,
-        v = cross * (1 - 0.24 * t - 0.76 * t ** 5);
+        v = cross * (1 - 0.24 * t - 0.76 * Math.pow(t, 5));
       return [inner[0] + along[0] * u + across[0] * v, y, inner[1] + along[1] * u + across[1] * v];
     };
   const seams = [height * 0.724, height * 0.75],

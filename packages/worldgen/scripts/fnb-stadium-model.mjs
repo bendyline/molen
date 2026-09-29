@@ -172,7 +172,7 @@ function roofPoint(a, t) {
   const ri = radius(fnbPlan.opening, a),
     ro = radius(fnbPlan.roofOuter, a),
     phase = ((((a / TAU) * 60) % 1) + 1) % 1;
-  const y = 36.9 + 3.1 * Math.sin(Math.PI * t) * Math.sin(Math.PI * phase) ** 0.75;
+  const y = 36.9 + 3.1 * Math.sin(Math.PI * t) * Math.pow(Math.sin(Math.PI * phase), 0.75);
   return P(a, ri + (ro - ri) * t, y);
 }
 function canopy(out) {

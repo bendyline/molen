@@ -182,7 +182,7 @@ function site(out) {
   }
 }
 function skinPoint(a, y, row) {
-  const r = roofR(a) - 10 + (y - 18) * 0.2 + 1.0 * Math.sin(a * 36) * (-1) ** row;
+  const r = roofR(a) - 10 + (y - 18) * 0.2 + 1.0 * Math.sin(a * 36) * Math.pow(-1, row);
   return rad(a, r, y);
 }
 function wovenSkin(out) {

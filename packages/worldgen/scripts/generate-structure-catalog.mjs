@@ -3,6 +3,7 @@
  * brief, emits one editable source bundle per remaining entry, and never imports runtime assets.
  */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';

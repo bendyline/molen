@@ -292,7 +292,7 @@ function head(out, scale = 1, offset = [0, 0, 0]) {
         return [
           rx * Math.cos(a),
           y,
-          cz + rz * Math.sign(Math.sin(a)) * Math.abs(Math.sin(a)) ** (2 / 2.6),
+          cz + rz * Math.sign(Math.sin(a)) * Math.pow(Math.abs(Math.sin(a)), 2 / 2.6),
         ];
       }),
     );
@@ -301,7 +301,7 @@ function head(out, scale = 1, offset = [0, 0, 0]) {
   loft(ob, 'concrete', rings, sand);
   const frontZ = (x, y) => {
     const [rx, rz, cz] = skinProfile(y);
-    return cz + rz * Math.max(0, 1 - (x / rx) ** 2) ** (1 / 2.6);
+    return cz + rz * Math.pow(Math.max(0, 1 - (x / rx) ** 2), 1 / 2.6);
   };
   const frontPoint = (x, y, d = 0.09) => [x, y, frontZ(x, y) + d];
   // Nose: a continuous narrowing bridge, projecting rounded tip and separate alae/nostril recesses.
@@ -434,7 +434,7 @@ function head(out, scale = 1, offset = [0, 0, 0]) {
       return [
         rx * Math.cos(a),
         y,
-        cz + rz * Math.sign(Math.sin(a)) * Math.abs(Math.sin(a)) ** (2 / 2.6),
+        cz + rz * Math.sign(Math.sin(a)) * Math.pow(Math.abs(Math.sin(a)), 2 / 2.6),
       ];
     });
   };

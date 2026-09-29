@@ -45,8 +45,8 @@ pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, produc
 GLBs are build outputs: the generators, source manifests, specs, shared materials, sidecars and
 review evidence are in Git, and `asset-lock.json` pins the bytes they build to. `pnpm assets:build`
 builds them from source; `pnpm assets:fetch` downloads the release CI published for the same
-lock. To change a model, edit its generator, push it, and run the Update asset lock workflow; it
-commits the new lock and regenerated metadata to your branch. Only Linux x64 writes the lock. See
+lock. To change a model, edit its generator, run `pnpm assets:build --update-lock` and commit the
+result without any GLB. The Update asset lock workflow can do the build and commit for you. See
 [repository GLBs](content/ASSET-PACKS.md).
 
 Generated files come from generators, not from hand edits: the schema reference

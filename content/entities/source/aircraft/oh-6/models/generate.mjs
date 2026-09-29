@@ -578,8 +578,8 @@ function helicopter() {
 }
 /**
  * Components that should be exactly 0 (sin(PI), tube frames on an axis) come out as ~1e-16
- * noise whose last bits differ by platform. float32 keeps such tiny values whole, so that noise
- * reaches the GLB bytes; set it to 0. Real coordinates are orders of magnitude larger.
+ * noise that depends on the last bits of the math library. float32 keeps such tiny values whole,
+ * so that noise reaches the GLB bytes; set it to 0. Real coordinates are orders larger.
  */
 function settleZeros(object) {
   object.traverse(({ geometry }) => {

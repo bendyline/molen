@@ -1,9 +1,8 @@
 name: Update asset lock
 
-# Manually triggered. Builds every repository GLB on the same Ubuntu x64 runner as the Assets
-# workflow, rewrites asset-lock.json and the metadata the generators regenerate, and commits them
-# to the branch. This is the only lock writer: other hosts can build some models to different
-# bytes, so `pnpm assets:build --update-lock` refuses to run off Linux x64. See
+# Manually triggered. Runs `pnpm assets:build --update-lock` on the same Ubuntu runner as the
+# Assets workflow and commits asset-lock.json and the metadata the generators regenerate to the
+# branch: the same result as running it locally, without a local 18 GB build. See
 # content/ASSET-PACKS.md.
 on:
   workflow_dispatch:

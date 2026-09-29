@@ -136,7 +136,7 @@ function buildMole(out) {
   cornice(out, 'limestone', 33.6, 33.6, 48.45, 0.55, stone);
   // Cylindrical pavilion surfaces meet along diagonal hips. The granite ribs remain parallel,
   // as measured in the contemporary engineering account, rather than converging to the center.
-  const radiusAt = (y) => 16.65 - 11.915 * ((y - 49) / (82.32 - 49)) ** 1.43;
+  const radiusAt = (y) => 16.65 - 11.915 * Math.pow((y - 49) / (82.32 - 49), 1.43);
   const levels = Array.from({ length: 81 }, (_, i) => 49 + (i * (82.32 - 49)) / 80);
   loft(
     out,
@@ -707,10 +707,11 @@ function buildAzadi(out) {
     return a.map((v, i) =>
       i === 0
         ? y
-        : (2 * t ** 3 - 3 * t * t + 1) * v +
-          (((t ** 3 - 2 * t * t + t) * (b[i] - before[i])) / (b[0] - before[0])) * (b[0] - a[0]) +
-          (-2 * t ** 3 + 3 * t * t) * b[i] +
-          (((t ** 3 - t * t) * (after[i] - v)) / (after[0] - a[0])) * (b[0] - a[0]),
+        : (2 * Math.pow(t, 3) - 3 * t * t + 1) * v +
+          (((Math.pow(t, 3) - 2 * t * t + t) * (b[i] - before[i])) / (b[0] - before[0])) *
+            (b[0] - a[0]) +
+          (-2 * Math.pow(t, 3) + 3 * t * t) * b[i] +
+          (((Math.pow(t, 3) - t * t) * (after[i] - v)) / (after[0] - a[0])) * (b[0] - a[0]),
     );
   };
   const fine = Array.from({ length: 163 }, (_, i) => sample(i * 0.2));
@@ -769,7 +770,7 @@ function buildAzadi(out) {
     marble,
   );
   // Curved soffit and crossed blue tile lattice, visible through the great opening.
-  const vault = (x, z) => [x, 24.5 + 7.9 * (Math.abs(z) / 5.7) ** 1.5 - 0.15 * x * x, z];
+  const vault = (x, z) => [x, 24.5 + 7.9 * Math.pow(Math.abs(z) / 5.7, 1.5) - 0.15 * x * x, z];
   for (let i = 0; i < 32; i++)
     for (let j = 0; j < 24; j++) {
       const x = -7.5 + (i * 15) / 32,

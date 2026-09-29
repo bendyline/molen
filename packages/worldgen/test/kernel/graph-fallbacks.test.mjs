@@ -1,7 +1,6 @@
-import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { embedGraphFallbacks } from '../../scripts/embed-graph-fallbacks.mjs';
+import { bakeGraphPng, embedGraphFallbacks } from '../../scripts/embed-graph-fallbacks.mjs';
 import { encodeGlb } from '../../src/kernel/glb';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 
@@ -39,12 +38,12 @@ describe('portable canonical graph fallback', () => {
         })),
       ),
     );
+    const graphPaths = names.map(
+      (name) => `${root}/content/worldgen/materials/${name}.matgraph.json`,
+    );
     const output = await embedGraphFallbacks(
       input,
-      names.map((name, i) => ({
-        ref: refs[i],
-        graphPath: `${root}/content/worldgen/materials/${name}.matgraph.json`,
-      })),
+      names.map((_, i) => ({ ref: refs[i], graphPath: graphPaths[i] })),
       root,
     );
     const jsonLength = output.readUInt32LE(12);
@@ -56,7 +55,7 @@ describe('portable canonical graph fallback', () => {
     for (let i = 0; i < names.length; i++) {
       const view = doc.bufferViews[doc.images[i].bufferView];
       const start = 28 + jsonLength + view.byteOffset;
-      const png = await readFile(`${root}/.artifacts/canonical-material-bakes/${names[i]}.png`);
+      const png = await bakeGraphPng(graphPaths[i], names[i], root);
       expect(output.subarray(start, start + view.byteLength)).toEqual(png);
       expect(doc.materials[i].extras.molenSurface.ref).toBe(refs[i]);
     }

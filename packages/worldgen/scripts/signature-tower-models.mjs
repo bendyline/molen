@@ -72,7 +72,7 @@ function facade(out, a, b, c, d, color, { module = 1.5, band = 0.14, frame = 0.0
 // SWFC: a square prism clipped by two opposing curved planes parallel to a diagonal.
 const swfcDiagonal = 58 / Math.sqrt(2);
 function swfcRing(y) {
-  const z = Math.max(0.32, swfcDiagonal * (1 - (y / 492) ** 1.66));
+  const z = Math.max(0.32, swfcDiagonal * (1 - Math.pow(y / 492, 1.66)));
   const x = swfcDiagonal - z;
   return [
     [-x, y, -z],

@@ -1,5 +1,6 @@
 /** Build individually authored, original GLBs from the next-1000 candidate catalog. */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';

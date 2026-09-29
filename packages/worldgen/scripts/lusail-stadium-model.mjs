@@ -79,7 +79,11 @@ function rail(out, fn, n = 192) {
     beam(out, 'metal', p, [p[0], p[1] + 1.05, p[2]], 0.04, 0.04, steel);
 }
 function shellPoint(a, t) {
-  return radial(a, 137.5 + 18.5 * Math.sin((t * Math.PI) / 2) ** 0.58, 5 + (rimY(a) - 5) * t);
+  return radial(
+    a,
+    137.5 + 18.5 * Math.pow(Math.sin((t * Math.PI) / 2), 0.58),
+    5 + (rimY(a) - 5) * t,
+  );
 }
 function continuousTube(out, points, radius, color, sides = 20) {
   const rings = points.map((p, index) => {

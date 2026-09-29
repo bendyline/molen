@@ -6,6 +6,7 @@
  * with `molen asset import`; this script never writes runtime sidecars.
  */
 
+import './install-deterministic-math.mjs';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';

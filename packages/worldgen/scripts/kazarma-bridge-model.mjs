@@ -22,7 +22,10 @@ function rock(out, lo, hi, seed, slot = 'limestone', tint = stone, detail = 6) {
     half = lo.map((v, i) => (hi[i] - v) / 2),
     power = 2.5 + rnd(seed * 3) * 0.9;
   const vertex = (v) => {
-    const d = v.reduce((s, u) => s + Math.abs(u) ** power, 0) ** (1 / power);
+    const d = Math.pow(
+      v.reduce((s, u) => s + Math.pow(Math.abs(u), power), 0),
+      1 / power,
+    );
     const radial =
       0.94 +
       0.09 *

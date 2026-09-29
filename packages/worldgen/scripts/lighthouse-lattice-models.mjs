@@ -461,7 +461,7 @@ function buildYokohama(out) {
   }
   // Decagonal truss and enclosed lift spine: 21 individually connected braced panels per face.
   const ys = Array.from({ length: 22 }, (_, i) => 11.8 + i * (79.2 / 21)),
-    r = (y) => 3.3 + 6.45 * ((91 - y) / 79.2) ** 1.8;
+    r = (y) => 3.3 + 6.45 * Math.pow((91 - y) / 79.2, 1.8);
   const p = (k, y) => {
     const a = (k * Math.PI) / 5;
     return [Math.sin(a) * r(y), y, Math.cos(a) * r(y)];

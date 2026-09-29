@@ -1,5 +1,6 @@
 /** Reproducible source-only authoring for the researched Willis Tower exterior. */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';

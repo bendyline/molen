@@ -1,5 +1,6 @@
 /** Author genuine reusable map-feature models through the same GLB source contract. */
 
+import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';

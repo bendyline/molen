@@ -403,7 +403,7 @@ const tierPoint = (a, row, upperTier) =>
     (upperTier ? 16 : 1) + row * (upperTier ? 0.48 : 0.39),
   );
 const count = (a, up) =>
-  up ? Math.round(6 + (Math.sin(a) >= 0 ? 21 : 36) * Math.abs(Math.sin(a)) ** 1.4) : 27;
+  up ? Math.round(6 + (Math.sin(a) >= 0 ? 21 : 36) * Math.pow(Math.abs(Math.sin(a)), 1.4)) : 27;
 function seating(out) {
   athletics(out);
   for (const up of [false, true]) {

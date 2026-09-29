@@ -242,7 +242,7 @@ function rounded(a, hx, hz, r, y = 0) {
 function seat(a, tier, row) {
   const front = Math.hypot(...rounded(a, 43, 63, 7).filter((_, i) => i !== 1)),
     R = ground(a) - 12,
-    west = Math.max(0, Math.sin(a)) ** 6;
+    west = Math.pow(Math.max(0, Math.sin(a)), 6);
   if (tier === 0) return radial(a, front + ((R - front) * 0.48 * row) / 29, -0.55 + row * 0.43);
   const f = row / 29;
   return radial(

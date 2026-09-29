@@ -61,10 +61,10 @@ const road = (x) => {
     h = b[0] - a[0],
     t = (x - a[0]) / h;
   return (
-    (2 * t ** 3 - 3 * t * t + 1) * a[1] +
-    (t ** 3 - 2 * t * t + t) * h * roadSlopes[i] +
-    (-2 * t ** 3 + 3 * t * t) * b[1] +
-    (t ** 3 - t * t) * h * roadSlopes[i + 1] -
+    (2 * Math.pow(t, 3) - 3 * t * t + 1) * a[1] +
+    (Math.pow(t, 3) - 2 * t * t + t) * h * roadSlopes[i] +
+    (-2 * Math.pow(t, 3) + 3 * t * t) * b[1] +
+    (Math.pow(t, 3) - t * t) * h * roadSlopes[i + 1] -
     verticalOrigin
   );
 };

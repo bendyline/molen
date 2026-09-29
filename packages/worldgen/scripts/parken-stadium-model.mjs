@@ -442,7 +442,7 @@ function fixedRoof(out) {
 }
 function retractableRoof(out) {
   // Thirteen 94m-wide arched box girders park together above the north end.
-  const top = (x) => 35.7 + 4.7 * Math.max(0, 1 - (x / 47) ** 2) ** 0.68,
+  const top = (x) => 35.7 + 4.7 * Math.pow(Math.max(0, 1 - (x / 47) ** 2), 0.68),
     bottom = (x) => top(x) - 3.1;
   for (let g = 0; g < 13; g++) {
     const z = 72.5 + g * 1.96;

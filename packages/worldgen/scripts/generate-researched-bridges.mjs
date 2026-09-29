@@ -1,4 +1,5 @@
 /** Shared-material source bundles for individually researched bridges; runtime import is separate. */
+import './install-deterministic-math.mjs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';

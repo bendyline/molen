@@ -499,7 +499,9 @@ function buildGonbad(out) {
       x1 = xCuts[i + 1];
     if (x1 - x0 < 0.00001) continue;
     const arc = (x) =>
-      Math.abs(x) >= half ? doorBottom : doorTop - 1.11 + 1.11 * (1 - Math.abs(x) / half) ** 0.65;
+      Math.abs(x) >= half
+        ? doorBottom
+        : doorTop - 1.11 + 1.11 * Math.pow(1 - Math.abs(x) / half, 0.65);
     const y0 = arc(x0),
       y1 = arc(x1),
       roof = 5.97;

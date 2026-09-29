@@ -267,7 +267,7 @@ function lattice(
   out,
   { x, z, y0, height, radius, legs, bands, phase = 0, thin = 0.044, inner = false },
 ) {
-  const rr = (t) => radius * (1 - t) ** 1.03 + 0.018;
+  const rr = (t) => radius * Math.pow(1 - t, 1.03) + 0.018;
   for (let j = 0; j < legs; j++) {
     const a = (j * tau) / legs + phase;
     path(
@@ -395,7 +395,7 @@ function principal(out, name) {
     }
   // The north-face ladders are discrete bands rather than an opaque cone.
   for (let y = 2; y < h * 0.94; y += 0.53) {
-    const rr = r * (1 - y / h) ** 1.03,
+    const rr = r * Math.pow(1 - y / h, 1.03),
       w = rr * 0.7;
     path(out, (t) => [x - w + 2 * w * t, y, z - rr], 2, 0.031);
   }

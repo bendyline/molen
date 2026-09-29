@@ -424,7 +424,10 @@ const curve = (a, b, c, d) =>
   sample(40, (t) =>
     a.map(
       (v, k) =>
-        v * (1 - t) ** 3 + 3 * b[k] * t * (1 - t) ** 2 + 3 * c[k] * t * t * (1 - t) + d[k] * t ** 3,
+        v * Math.pow(1 - t, 3) +
+        3 * b[k] * t * (1 - t) ** 2 +
+        3 * c[k] * t * t * (1 - t) +
+        d[k] * Math.pow(t, 3),
     ),
   );
 // Directed along each bankward wing, fitted to the recorded cadastral outline.

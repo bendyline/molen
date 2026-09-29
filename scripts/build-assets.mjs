@@ -16,7 +16,6 @@ import {
   inventory,
   readLock,
   readMasters,
-  recordBuilt,
   recordInstalled,
   safePath,
   writeLock,
@@ -26,11 +25,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PLAN = 'asset-build.json';
 const PLAN_FORMAT = 'molen/asset-build@2';
 const OUT = '.artifacts/asset-build';
-// asset-lock.json is written on Linux x64, by the Update asset lock workflow. Other hosts round
-// some generator math differently (macOS arm64 builds dozens of models to other bytes), so their
-// builds are for iteration: they report lock differences instead of failing on them.
-export const LOCK_HOST = 'linux-x64';
-const HOST = `${process.platform}-${process.arch}`;
+const DETERMINISTIC_MATH = 'packages/worldgen/scripts/install-deterministic-math.mjs';
 // Generators read package builds, never the content packs under examples/*/public.
 const COMPILED = [
   'packages/schema/dist/index.mjs',
@@ -231,13 +226,19 @@ function run(command, { root, log, label }) {
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
     ? ''
     : ' --max-old-space-size=12288';
+  // Every Node process a build starts, and each one they start, computes with the same Math on
+  // any CPU (packages/worldgen/scripts/deterministic-math.mjs).
+  const math = ` --import=${pathToFileURL(join(root, DETERMINISTIC_MATH)).href}`;
   return new Promise((done, fail) => {
     const started = Date.now();
     const child = spawn(executable, args, {
       cwd: root,
       shell: false,
       windowsHide: true,
-      env: { ...process.env, NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}`.trim() },
+      env: {
+        ...process.env,
+        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${math}`.trim(),
+      },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     const output = [];
@@ -458,16 +459,10 @@ export async function buildAssetsFromSource({
   compile = false,
   concurrency = defaultConcurrency(),
   log = console.log,
-  host = HOST,
 } = {}) {
   root = resolve(root);
   const started = Date.now();
   const plan = validatePlan(await readJson(join(root, PLAN)));
-  const lockHost = host === LOCK_HOST;
-  if (updateLock && !lockHost)
-    throw new Error(
-      `asset-lock.json is written on ${LOCK_HOST}; this is ${host}, which can build different bytes. Push the branch and run the Update asset lock workflow.`,
-    );
   // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so a lock
   // only holds for one: build with any other and every byte comparison would be noise.
   if (process.versions.node.split('.')[0] !== plan.node)
@@ -597,15 +592,10 @@ export async function buildAssetsFromSource({
     await writeLock(root, result);
     report.lock.updated = result.release;
     await recordInstalled(root, built);
-    await recordBuilt(root, result.release, []);
   } else {
-    const matches = (file) => expected.get(file.path)?.sha256 === file.sha256;
-    await recordInstalled(root, built.filter(matches));
-    // Fetch keeps these while the lock is unchanged, rather than refusing them as local work.
-    await recordBuilt(
+    await recordInstalled(
       root,
-      lock?.release,
-      built.filter((file) => expected.has(file.path) && !matches(file)),
+      built.filter((file) => expected.get(file.path)?.sha256 === file.sha256),
     );
   }
   await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
@@ -627,26 +617,15 @@ export async function buildAssetsFromSource({
     ...unexpected.map((path) => `unexpected ${path}`),
   ];
   if (problems.length && !updateLock) {
-    const listing = `${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}`;
-    // Off the lock host, a difference may be this host's rounding rather than a source change.
-    if (!lockHost)
-      log(
-        `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}) on ${host}; only ${LOCK_HOST} builds are checked against it:\n${listing}\nIf a source change is intended, push the branch and run the Update asset lock workflow.`,
-      );
-    else {
-      if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
-      throw new Error(
-        `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${listing}\nIf the source change is intended, rerun with --update-lock (or run the Update asset lock workflow) and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
-      );
-    }
+    if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
+    throw new Error(
+      `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}\nIf the source change is intended, rerun with --update-lock (or run the Update asset lock workflow) and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
+    );
   }
-  const summary = `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s`;
   log(
     updateLock
-      ? `${summary}; asset-lock.json now names ${result.release}.`
-      : problems.length
-        ? `${summary}; ${problems.length} differ from ${lock?.release ?? 'no lock'} on ${host}.`
-        : `${summary}; every byte matches ${lock.release}.`,
+      ? `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; asset-lock.json now names ${result.release}.`
+      : `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; every byte matches ${lock.release}.`,
   );
   return report;
 }

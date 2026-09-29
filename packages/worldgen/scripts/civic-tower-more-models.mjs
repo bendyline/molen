@@ -110,7 +110,7 @@ function buildBeyazit(out) {
   const ring = (y, r) =>
     Array.from({ length: 192 }, (_, i) => {
       const a = (i * tau) / 192,
-        rr = r + (y < 43.3 ? 0.13 * Math.max(0, Math.cos(a * 12)) ** 6 : 0);
+        rr = r + (y < 43.3 ? 0.13 * Math.pow(Math.max(0, Math.cos(a * 12)), 6) : 0);
       return [Math.sin(a) * rr, y, Math.cos(a) * rr];
     });
   loft(

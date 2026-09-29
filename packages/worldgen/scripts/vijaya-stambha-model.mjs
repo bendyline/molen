@@ -598,7 +598,7 @@ function build(out) {
       const a = (-i * tau) / n,
         c = Math.cos(a),
         s = Math.sin(a),
-        q = r / (Math.abs(c) ** 4 + Math.abs(s) ** 4) ** 0.25,
+        q = r / Math.pow(Math.pow(Math.abs(c), 4) + Math.pow(Math.abs(s), 4), 0.25),
         rib = 1 + 0.014 * Math.cos(a * 24);
       return [c * q * rib, y, s * q * rib];
     }),
@@ -610,7 +610,7 @@ function build(out) {
       const p = ([y, r]) => {
         const c = Math.cos(a),
           s = Math.sin(a),
-          q = r / (Math.abs(c) ** 4 + Math.abs(s) ** 4) ** 0.25;
+          q = r / Math.pow(Math.pow(Math.abs(c), 4) + Math.pow(Math.abs(s), 4), 0.25);
         return [c * q, y + 0.018, s * q];
       };
       beam(out, slot, p(profile[j - 1]), p(profile[j]), 0.065, 0.045, light);
