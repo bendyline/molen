@@ -14,13 +14,14 @@
     "assets:check": "python tools/generate-assets.py --check",
     "assets:import": "node tools/import-assets.mjs && biome format --write project.json asset-gallery.json asset-src/import-report.json public/assets",
     "assets:shot": "node tools/capture-assets.mjs",
-    "predev": "pnpm --filter \"@bendyline/molen-examples-lantern-dungeon^...\" build",
+    "predev": "pnpm --filter \"@bendyline/molen-examples-lantern-dungeon^...\" build && molen pack build ../../content/sounds --out-dir public/packs",
     "preview": "vite preview",
     "assets:verify": "node tools/verify-assets.mjs"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",
     "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-pack": "workspace:*",
     "@bendyline/molen-schema": "workspace:*",
     "@bendyline/molen-tooling": "workspace:*",
     "three": "0.184.0"

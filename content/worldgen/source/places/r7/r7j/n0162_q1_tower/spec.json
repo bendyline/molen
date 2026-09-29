@@ -1,0 +1,214 @@
+{
+  "planId": "N0162",
+  "id": "N0162",
+  "assetId": "molen.worldgen.structure.n0162_q1_tower",
+  "title": "Q1 Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q125846",
+  "referenceCoordinate": {
+    "latitude": -28.006111111,
+    "longitude": 153.429444444
+  },
+  "visualBrief": "Q1’s curved asymmetric apartment shaft with closely spaced white floor bands, individual blue-glass panes and projecting rear balcony edges, topped by its open sloping glass-and-steel sail and322.5 m offset mast.",
+  "size": [
+    75.77797508239746,
+    322.5,
+    81.24470710754395
+  ],
+  "actualBounds": {
+    "min": [
+      -51.87797546386719,
+      0,
+      -30.237730026245117
+    ],
+    "max": [
+      23.899999618530273,
+      322.5,
+      51.00697708129883
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 322.5,
+    "roofDatumMeters": 245,
+    "crownAssemblyMeters": 90,
+    "climbLaunchMeters": 240,
+    "climbSummitMeters": 270,
+    "floors": 78,
+    "architects": [
+      "Sunland Design Group",
+      "Innovarchi"
+    ],
+    "steelFabricator": "Sun Engineering with Orrcon Steel hollow sections"
+  },
+  "reconstruction": {
+    "plan": "Actual asymmetric mapped tower floor plate plus independent low podium footprint",
+    "crown": "Open steel sail and exposed vertical ribs reconstructed from Orrcon Steel construction and completed-building photographs; mast toward the pointed coastal end"
+  },
+  "referencePages": [
+    "https://dxp1416ihlpln.cloudfront.net/s3fs-public/2019-07/2015-Project-Bulletin-Q1-Low-Res.pdf",
+    "https://www.skypoint.com.au/about-us",
+    "https://www.skypoint.com.au/climb",
+    "https://www.q1.com.au/",
+    "https://www.openstreetmap.org/way/188325694"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      153.429754765,
+      -28.006253434
+    ],
+    "heading": -0.518755024953,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/188325694",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/188325694"
+    ],
+    "wikidataId": "Q125846",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed asymmetric tower and separate two-storey podium preserve the mapped site layout. The mast resolves18.60 m east and9.58 m south of the anchor, on the pointed coastal end. Orrcon’s aerial and the operator’s climb photograph with northward coastline/ocean on the right corroborate this seaward phase. Exact mast offset and intermediate stair bends remain photo reconstruction. BaseY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Crown ribs, transparent sail, external climb treads and rails, local balconies and individual pane grids are explicit. Exact intermediate climb bends and detailed balcony variations remain photo reconstruction. Main shaft and podium footprints are mapped separately."
+  ],
+  "qaCameras": [
+    {
+      "name": "crown-sail",
+      "position": [
+        88,
+        298,
+        98
+      ],
+      "lookAt": [
+        6,
+        265,
+        0
+      ]
+    },
+    {
+      "name": "steel-mast",
+      "position": [
+        49,
+        333,
+        64
+      ],
+      "lookAt": [
+        17,
+        292,
+        0
+      ]
+    },
+    {
+      "name": "external-climb",
+      "position": [
+        10,
+        274,
+        -66
+      ],
+      "lookAt": [
+        0,
+        256,
+        -14
+      ]
+    },
+    {
+      "name": "apartment-balconies",
+      "position": [
+        -79,
+        94,
+        64
+      ],
+      "lookAt": [
+        -17,
+        86,
+        8
+      ]
+    },
+    {
+      "name": "podium",
+      "position": [
+        -110,
+        38,
+        115
+      ],
+      "lookAt": [
+        -11,
+        12,
+        17
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -359,
+        272,
+        552
+      ],
+      "lookAt": [
+        -3,
+        152,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 195163,
+    "vertices": 510515,
+    "materials": 5,
+    "bytes": 20213148,
+    "sha256": "sha256:b6fbf8c626493ca589dd03a844d3516c652df4693757387ff6824217696e1216"
+  }
+}

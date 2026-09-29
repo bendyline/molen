@@ -1,0 +1,166 @@
+{
+  "id": "N0563",
+  "planId": "N0563",
+  "assetId": "molen.worldgen.structure.n0563_azadi_tower",
+  "title": "Azadi Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1140026"
+  },
+  "wikidataId": "Q1140026",
+  "visualBrief": "Hossein Amanat’s four curved marble blades, flaring to diagonal feet beneath the pointed great arch, with a lower crossing arch, curved lattice soffit, long blue stone joints and a windcatcher-like perforated crown.",
+  "size": [
+    64,
+    45.25,
+    38
+  ],
+  "actualBounds": {
+    "min": [
+      -32.0250358581543,
+      0,
+      -19.05910873413086
+    ],
+    "max": [
+      32.0250358581543,
+      45.023895263671875,
+      19.05910873413086
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "±Z are the major east/west arch elevations; ±X are the narrower side arches",
+    "origin": "Exact-QID mapped monument center at the surrounding plaza"
+  },
+  "scaleBasis": "Iran official tourism dimensions and exterior photographs, architect interview, and exact-QID OSM diagonal-blade outline. The published 64 m width is preferred to the map’s 69 m outer outline; the detailed curves and tile lattice are photograph-fitted.",
+  "geographicProposal": {
+    "anchor": [
+      51.338060499,
+      35.699738365
+    ],
+    "heading": -1.537172291074,
+    "source": "https://www.openstreetmap.org/relation/7814369",
+    "evidence": "Mapped diagonal four-foot plan aligns the 64 m long dimension nearly north/south and the major arched ±Z facades east/west, as described by the official tourism source. The two-fold exterior symmetry makes a half-turn immaterial.",
+    "orientationConfidence": "footprint-plus-published-major-facades",
+    "limitations": "Model fits the published 64 m monument rather than all map outline extremities. The plaza, fountain, ramps and surrounding landscaping are separate scenery.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Mapped diagonal four-foot plan aligns the 64 m long dimension nearly north/south and the major arched ±Z facades east/west, as described by the official tourism source. The two-fold exterior symmetry makes a half-turn immaterial. Model fits the published 64 m monument rather than all map outline extremities. The plaza, fountain, ramps and surrounding landscaping are separate scenery."
+  },
+  "sourceFacts": {
+    "publishedHeightMeters": 45,
+    "publishedWidthMeters": 64,
+    "mappedMaximumOutlineMeters": [
+      69.008,
+      39.998
+    ],
+    "majorFacades": "east and west",
+    "architect": "Hossein Amanat",
+    "cladding": "white marble"
+  },
+  "referencePages": [
+    "https://visitiran.ir/attraction/azadi-tower",
+    "https://amanatarchitect.com/wp-content/uploads/2024/05/Bidoun-Interview-2013-1.pdf",
+    "https://www.openstreetmap.org/relation/7814369"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Blade curvature, arch intrados, soffit tile lattice and crown opening dimensions are fitted to official exterior photography rather than the original structural drawings.",
+    "Blue joints and crossed soffit ribs are geometric; their exact tile tessellation, marble panel seam layout and tiny crown motifs remain simplified.",
+    "The under-plaza museum, fountain and landscaped square are outside this exterior monument asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "great-arch",
+      "position": [
+        12,
+        16,
+        72
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "crossing-arch",
+      "position": [
+        64,
+        19,
+        16
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "vault-lattice",
+      "position": [
+        0,
+        7,
+        18
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "crown",
+      "position": [
+        22,
+        44,
+        32
+      ],
+      "lookAt": [
+        0,
+        39,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        95,
+        55,
+        130
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    }
+  ]
+}

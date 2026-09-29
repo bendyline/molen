@@ -1,13 +1,13 @@
 # Aircraft in the world explorer
 
-See [Vehicle interiors and instruments](vehicle-interiors.md) for cockpit source files,
-per-model instrument bindings and the shared exterior/seated GLB contract.
-
 The world explorer includes a P-51D Mustang and OH-6 interpretation, each with an editable
-GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera. Use the
-**P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to board.
-The aircraft buttons also work from the example hub's world view. A direct link can use
-`?aircraft=p51d` or `?aircraft=oh6`.
+GLB, reusable entity type, flight physics, an instrumented cockpit and a chase camera.
+
+Use the **P-51 Mustang** or **OH-6** buttons to visit the practice airfield, then press **E** to
+board. The aircraft buttons also work from the example hub's world view. A direct link can use
+`?aircraft=p51d` or `?aircraft=oh6`. See [Vehicle interiors and instruments](vehicle-interiors.md)
+for cockpit source files, per-model instrument bindings and the shared exterior/seated GLB
+contract.
 
 The practice airfield is a raised 900-meter runway and helipad near the initial camera position.
 Its foundation clears streamed buildings; it is a fictional practice location, not a mapped airport.
@@ -106,6 +106,15 @@ and `airplane.yawStability` sets sideslip restoring response (1/s at reference a
 `sin(alpha)^2`. The legacy `stallSpeed` tuning reference no longer triggers aerodynamic stall.
 The authored engine thrust axis is respected. Engine positions relative to the center of mass
 produce thrust-induced yaw; wing position remains metadata rather than a distributed lift model.
+
+## Engine sound
+
+The P-51D carries an `audioSource` that plays `aircraft.engine.piston`, a Rolls-Royce Merlin
+recording. The OH-6 plays `aircraft.engine.helicopter`. Both take pitch and gain from
+`aircraftState.rpm`: they are silent until `I` starts the engine, and spool up and down with it.
+The OH-6 also leans a little on `aircraftInput.power`, since its governed rotor holds rpm while the
+collective changes load. Any host that plays audio from the entity world hears them with no extra
+code; see [Sound and music](audio.md).
 
 ## Multiple engines and engine failures
 

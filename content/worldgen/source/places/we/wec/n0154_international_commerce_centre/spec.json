@@ -1,0 +1,192 @@
+{
+  "planId": "N0154",
+  "id": "N0154",
+  "assetId": "molen.worldgen.structure.n0154_international_commerce_centre",
+  "title": "International Commerce Centre",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q317034",
+  "referenceCoordinate": {
+    "latitude": 22.303391666,
+    "longitude": 114.160169444
+  },
+  "visualBrief": "KPF’s484 m glazed tower with re-entrant corners, a gently tapered silver facade, continuous fine projecting vertical fins, mechanical bands, and separately mapped splayed glass canopies and long northern entrance atrium.",
+  "size": [
+    151.26200485229492,
+    484,
+    69.67219924926758
+  ],
+  "actualBounds": {
+    "min": [
+      -50.9658317565918,
+      0,
+      -34.95002746582031
+    ],
+    "max": [
+      100.29617309570312,
+      484,
+      34.722171783447266
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 484,
+    "marketedStories": 118,
+    "form": "Re-entrant corners, three sheltered canopies and north-side atrium"
+  },
+  "reconstruction": {
+    "frame": "Exact-QID tower plus ten mapped glass-splay strips1047822855–1047822864; surveyed atrium extension fixes the otherwise ambiguous square phase",
+    "groundDatum": "Main podium base authored atY0; mapped splay roofs use20 m podium floor datum"
+  },
+  "referencePages": [
+    "https://www.kpf.com/project/international-commerce-centre",
+    "https://www.skyscrapercenter.com/building/international-commerce-centre/137",
+    "https://www.shkp.com/Content/Uploads/en-US/annual-reports/2009-2010/14_329_en.pdf",
+    "https://www.openstreetmap.org/way/25590249"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      114.160226147,
+      22.303378859
+    ],
+    "heading": 0.833918760745,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/25590249",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/25590249"
+    ],
+    "wikidataId": "Q317034",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed tower frame plus ten individually mapped entrance/canopy strips resolve facade orientation and the long north atrium. Canopies extend outside the main tower footprint, intentionally preserving source part geometry. Lower site podium connections remain reconstructed; groundY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Subtle facade taper and pane schedule are reconstructed. The tower-area podium has a local ground-contact base; the surrounding Elements complex is excluded. Static daylight facade omits programmable light-show content."
+  ],
+  "qaCameras": [
+    {
+      "name": "re-entrant-corners",
+      "position": [
+        82,
+        237,
+        98
+      ],
+      "lookAt": [
+        20,
+        222,
+        24
+      ]
+    },
+    {
+      "name": "glazed-splays",
+      "position": [
+        -110,
+        74,
+        125
+      ],
+      "lookAt": [
+        -15,
+        56,
+        0
+      ]
+    },
+    {
+      "name": "north-atrium",
+      "position": [
+        158,
+        67,
+        76
+      ],
+      "lookAt": [
+        55,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "crown-fins",
+      "position": [
+        103,
+        516,
+        118
+      ],
+      "lookAt": [
+        0,
+        472,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -570,
+        406,
+        875
+      ],
+      "lookAt": [
+        10,
+        240,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 455150,
+    "vertices": 1360838,
+    "materials": 4,
+    "bytes": 53093968,
+    "sha256": "sha256:d83ecc91b7aceb0a6c72e69f406feaf6a7c8cfb50db73de985fada33ff14d430"
+  }
+}

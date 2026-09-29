@@ -1,0 +1,182 @@
+{
+  "id": "N0655",
+  "key": "chipiona_lighthouse",
+  "title": "Chipiona Lighthouse",
+  "wikidataId": "Q1190267",
+  "size": [
+    26,
+    62.6,
+    21.4
+  ],
+  "smoothNormalSlots": [
+    "trim",
+    "foundation",
+    "wall"
+  ],
+  "visualBrief": "Ochre stone commemorative-column shaft with four tall arched windows; square rusticated plinth, deeply bracketed capital and circular iron gallery, glass aero-maritime dome with crossing white astragals, and the asymmetric cream keeper complex with central pyramidal roof light.",
+  "sourceFacts": {
+    "heightMeters": 62.6,
+    "seaElevationMeters": 69,
+    "lanternDiameterMeters": 3.5,
+    "year": 1867,
+    "basis": "IAPH primary heritage study explicitly distinguishes62.6m above ground from69m above mean sea level, and describes four shaft openings. Port of Seville2013 report gives3.5m lantern diameter. OSM tower part841109947 and mapped base153047246 establish shaft center and stepped plan; other elevations are municipal-photo proportions."
+  },
+  "referencePages": [
+    "https://www.iaph.es/revistaph/index.php/revistaph/article/download/1952/1952",
+    "https://www.turismodechipiona.com/destinations/faro",
+    "https://www.turismodechipiona.com/wp-content/uploads/2018/05/faro-2.jpg",
+    "https://www.turismodechipiona.com/wp-content/uploads/2018/04/aolfaro01.jpg",
+    "https://www.puertos.es/sites/default/files/2025-02/Memoria%20AP%20Sevilla%202013.pdf",
+    "https://www.openstreetmap.org/way/841109947",
+    "https://www.openstreetmap.org/way/153047246"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -6.442194584211,
+      36.737914042105
+    ],
+    "heading": -0.183905284578,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/841109947",
+    "notes": "Origin is the exact mapped round tower centroid. Mapped keeper complex extends authored+X east-southeast, fixing the quadrant. Shaft window azimuth is photo reconstructed on the keeper side. Host terrain supplies coastal ground;69m sea elevation is not applied as tower height."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Keeper block heights and window rhythm are reconstructed from municipal exterior photographs over the mapped plan; the simplified OSM12m whole-base tag is not imposed on the lower wings. Neighboring restaurant, palms and coastal embankment are separate features. Glazing is a static optical envelope."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        10,
+        61,
+        13
+      ],
+      "lookAt": [
+        0,
+        58,
+        0
+      ]
+    },
+    {
+      "name": "near-arched-windows",
+      "position": [
+        15,
+        42,
+        5
+      ],
+      "lookAt": [
+        3.6,
+        39.5,
+        0
+      ]
+    },
+    {
+      "name": "near-keeper-house",
+      "position": [
+        32,
+        16,
+        31
+      ],
+      "lookAt": [
+        9,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "far-ensemble",
+      "position": [
+        67,
+        37,
+        85
+      ],
+      "lookAt": [
+        5,
+        29,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0655_chipiona_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -5.699999809265137,
+      0,
+      -10.760000228881836
+    ],
+    "max": [
+      20.799999237060547,
+      62.599998474121094,
+      10.770000457763672
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

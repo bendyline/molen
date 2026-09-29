@@ -1,0 +1,171 @@
+{
+  "id": "N0665",
+  "key": "lange_erik",
+  "title": "Långe Erik",
+  "wikidataId": "Q1024406",
+  "size": [
+    7,
+    32.1,
+    7.3
+  ],
+  "smoothNormalSlots": [
+    "wall",
+    "trim"
+  ],
+  "visualBrief": "Slender white limestone shaft on six-meter exposed brown stone drum, arched entrance, heavy belt molding, pedimented first window, inset rectangular windows, 24 gallery corbels, two levels of iron railing, dark shallow cap and small ribbed modern beacon on the gallery.",
+  "sourceFacts": {
+    "heightMeters": 32.1,
+    "unplasteredBaseHeightMeters": 6,
+    "galleryHeightApproxMeters": 28,
+    "baseDiameterMappedMeters": 6.664,
+    "basis": "Sjöfartsverket specifies 32.1 m total height, exposed lower six meters and gallery near 28 m. Exact-QID OSM circle gives about 6.66 m diameter. Original Carin Bäckström 2019 photograph provides arched entry, brown belt and pedimented first opening; the lighthouse-society brochure photographs the gallery-mounted Sabik LED 350."
+  },
+  "referencePages": [
+    "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/olands-norra-udde--lange-erik/",
+    "https://fyr.org/assets/pdf/broschyr/olands_norra_udde.pdf",
+    "https://commons.wikimedia.org/wiki/File:L%C3%A5nge_Erik_20190718_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:L%C3%A5nge_Erik_fr%C3%A5n_luften.jpg",
+    "https://www.openstreetmap.org/way/128130333"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      17.09692995,
+      57.36703945
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/128130333",
+    "notes": "Exact-QID circle fixes origin and base width. Authored entrance faces south toward the island approach, reconstructed from the original entrance and aerial photographs; the circular footprint supplies no unique long axis. Natural shore and detached station buildings remain host features."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Gallery components, window spacing and dark cap use photograph proportions between the operator’s dimensional controls. The modern external light is modeled as static visible equipment, not a certified navigation signal. Detached machine house north of the tower is outside this individual tower asset."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-gallery",
+      "position": [
+        9,
+        32,
+        11
+      ],
+      "lookAt": [
+        0,
+        29.5,
+        0
+      ]
+    },
+    {
+      "name": "near-entrance",
+      "position": [
+        7,
+        5,
+        9
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        2.7
+      ]
+    },
+    {
+      "name": "near-beacon",
+      "position": [
+        -7,
+        31,
+        6
+      ],
+      "lookAt": [
+        -2.4,
+        29.9,
+        1.55
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        38,
+        23,
+        46
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0665_lange_erik",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -3.490000009536743,
+      0,
+      -3.490000009536743
+    ],
+    "max": [
+      3.490000009536743,
+      32.099998474121094,
+      3.6500000953674316
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

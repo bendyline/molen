@@ -1,0 +1,72 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.e05_hydroelectric_powerhouse",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:cec3c367862ac756e456212622a3bdeb4e9b20f5c27255a4808d20f718daf26a",
+  "sourceHash": "sha256:1bb69b7b38371a4a66726756dc23b058e1b78700ca98b9c0675383375881af0b",
+  "bounds": {
+    "aabb": {
+      "min": [-30, -0.0013, -22.4996],
+      "max": [30, 22.5013, 24.4996]
+    },
+    "sphere": {
+      "center": [0, 11.25, 1],
+      "radius": 39.7344
+    }
+  },
+  "stats": {
+    "triangles": 168,
+    "vertices": 336,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 10312
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 168
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "glazing-or-reflective-panel",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -30, -0.0013, -22.4996, -30, -0.0013, 24.4996, -30, 22.5013, -22.4996, -30, 22.5013,
+          24.4996, 30, -0.0013, -22.4996, 30, -0.0013, 24.4996, 30, 22.5013, -22.4996, 30, 22.5013,
+          24.4996
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

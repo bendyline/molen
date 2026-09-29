@@ -36,9 +36,18 @@ One invariant matters more than the rest: **build before you typecheck or
 test**, because packages consume each other's `dist`. The root scripts encode it.
 
 ```sh
+pnpm install
+pnpm assets:fetch  # download the GLBs pinned in asset-lock.json, or build them from source
 pnpm all       # clean install, build, and every check CI runs, in order
 pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, production audit
 ```
+
+GLBs are build outputs: the generators, source manifests, specs, shared materials, sidecars and
+review evidence are in Git, and `asset-lock.json` pins the bytes they build to. `pnpm assets:build`
+builds them from source; `pnpm assets:fetch` downloads the release CI published for the same
+lock. To change a model, edit its generator, run `pnpm assets:build --update-lock` and commit the
+result without any GLB. The Update asset lock workflow can do the build and commit for you. See
+[repository GLBs](content/ASSET-PACKS.md).
 
 Generated files come from generators, not from hand edits: the schema reference
 (`pnpm docs:gen`), the documentation site (`pnpm docs:site:gen`), and the script

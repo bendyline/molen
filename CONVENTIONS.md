@@ -30,6 +30,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   the same commands work in the repo and in a copy; link outside the sample with absolute URLs.
 - Content packs reach users from `molen.dev/packs/index.json` (`molen pack fetch`), staged by the
   site build from `content/`. Document that, not `content/` paths.
+- Every molen.dev page follows [docs-site/STYLE.md](docs-site/STYLE.md): the look (tokens in the
+  theme, never on a page), one `#` title, a lede, nested headings, a language on every code block,
+  GitHub alerts (`> [!TIP]`) rather than `:::` in `docs-src/`, and "in the engine repository" before
+  any `pnpm` or `node packages/…` command. `docs-site/scripts/check-style.mjs` (in
+  `pnpm docs:site:check`) enforces the mechanical rules.
 - Links out of `docs-src/` are absolute (`https://github.com/bendyline/molen/…` or
   `https://molen.dev/…`): a relative link that climbs out of the bundle is dead inside the npm
   tarball and dropped on the site. `scripts/check-shipped-docs.mjs` (in `pnpm lint`) enforces it.
@@ -65,6 +70,17 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   `update-goldens` workflow, which records on the same Ubuntu 24.04 runner as CI. Keep DOM overlays out of a
   captured frame (world-explorer's `hud=0`): text metrics differ between platforms, and a golden
   that includes them is a font test wearing a render test's clothes.
+- **GLBs are generated, never committed.** Every model comes from a generator listed in
+  `asset-build.json` (or one of its few declared `masters`), and `asset-lock.json` pins the bytes.
+  A model change is a source change plus `pnpm assets:build --update-lock` (or the Update asset
+  lock workflow); the Assets workflow rebuilds from a clean checkout, fails on any byte difference
+  and publishes the release that `pnpm assets:fetch` downloads. Generators must be
+  byte-deterministic on every OS and CPU: no clocks, unseeded randomness or locale formatting, no
+  `**` except with a literal 2 or 0.5 (asset builds replace `Math`'s transcendental functions with
+  CPU-independent ports; `**` bypasses them), and no hashes of checkout-dependent bytes. Asset
+  builds run on the Node major `asset-build.json` pins.
+  Models share textures through material graphs (`extras.molenSurface`) rather than embedding
+  copies. See [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - Generated script types: `molen-scripts.d.ts` + `tsconfig.json` beside a scripts directory come
   from `molen types gen` (scene + registry). Never edit them by hand — change the scene or the
   component schema and regenerate; `molen types gen --check` flags staleness and
@@ -90,17 +106,25 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   (register new components with `registerComponent`).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
-  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`.
+  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world` (the ECS
+  World without the SES scripting runtime, for main-thread hosts).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).
 - `@bendyline/molen-client` depends on schema + materials (+ three.js); never imports kernel
   internals. (materials is pure CPU — the client's MaterialResolver bakes doc-backed
-  materialRefs at load time.) Subpaths: `/camera-track`, `/vite`, `/vehicles`, `/aircraft`. The
-  main barrel is the rendering surface only: finished game content sits behind a subpath that
-  mirrors the kernel's, so `/vehicles` and `/aircraft` are the render halves of the kernel
-  subpaths of the same name. Put the next `createXVisual` there, not in `index.ts`.
+  materialRefs at load time.) Subpaths: `/camera-track`, `/vite`, `/vehicles`, `/aircraft`,
+  `/navigation`, `/markers`, `/audio`. The main barrel is the rendering surface only: finished game
+  content sits behind a subpath that mirrors the kernel's, so `/vehicles` and `/aircraft` are
+  the render halves of the kernel subpaths of the same name. Put the next `createXVisual`
+  there, not in `index.ts`. `/navigation` (camera controllers and input), `/markers` (world
+  billboards) and `/audio` (the sound director and Web Audio backend) are host-side aids with no
+  kernel twin; `/audio` is three-free at runtime so tooling runs its director in Node.
 - `@bendyline/molen-terrain` is a capability package split into `/kernel` and `/client` — it has
   **no `.` export**. New capability packages follow this kernel/client-halves pattern.
+- `@bendyline/molen-earth` is a composition, not a capability: `/client` (the `mountEarthView`
+  facade and the pieces it is built from) plus one-line `/workers/*` entries. It depends on the
+  capability packages and never the reverse, so keep Earth-host policy (modes, quality tiers,
+  re-anchoring) here and generic mechanisms in the packages it composes.
 - `@bendyline/molen-pack` depends only on schema (+ `fflate`). Its `.` entry runs in browsers,
   Workers and Node and imports no `node:` modules; file-system helpers live in `/node`. The
   client does not depend on it: a pack set hands the client an `AssetProvider`-shaped object.

@@ -1,0 +1,230 @@
+{
+  "planId": "N0175",
+  "id": "N0175",
+  "assetId": "molen.worldgen.structure.n0175_almas_tower",
+  "title": "Almas Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q838780",
+  "referenceCoordinate": {
+    "latitude": 25.06883,
+    "longitude": 55.14113
+  },
+  "visualBrief": "Dubai’s paired clipped-ellipse tower, with two different-height curved glazed shafts, broad silver end blades, sloping crowns, a measured81 m elliptical spire and eight individually framed projecting diamond-shaped podium wings.",
+  "size": [
+    149.21271514892578,
+    360,
+    170.8731689453125
+  ],
+  "actualBounds": {
+    "min": [
+      -75.32317352294922,
+      0,
+      -103.05536651611328
+    ],
+    "max": [
+      73.88954162597656,
+      360,
+      67.81780242919922
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X is image-right in Atkins figures2 and9",
+    "front": "+Z is image-down in those plans",
+    "origin": "Ground-level tower center derived by a signed eight-petal primary-plan/map registration"
+  },
+  "sourceFacts": {
+    "heightMeters": 360,
+    "typicalFloorplateMeters": [
+      64,
+      42
+    ],
+    "floorToFloorMeters": 4,
+    "plantFloorHeightsMeters": [
+      42,
+      121,
+      212,
+      279
+    ],
+    "spireHeightMeters": 81,
+    "spireLowerSectionMeters": 58,
+    "spireUpperSectionMeters": 23,
+    "spireLowerEllipseMeters": [
+      3.4,
+      7.4
+    ],
+    "spireUpperEllipseMeters": [
+      1.5,
+      4.3
+    ],
+    "spireConcreteUpstandMeters": 21,
+    "podiumPetals": 8,
+    "diamondExchangeRoofFeatureMeters": 20.85,
+    "diamondExchangeFourthFloorMeters": 18.6,
+    "architectAndEngineer": "Atkins",
+    "contractor": "Arabian Construction Company"
+  },
+  "reconstruction": {
+    "tower": "Published64×42 m plan reconstructed as two offset parallel clipped ellipses. The poorly traced map shaft does not override the engineer’s actual plan.",
+    "podium": "Eight primary figure9 tips fitted without reflection to the full mapped podium. Primary-plan orientation is retained; overall tip registration RMS is2.09 m per coordinate.",
+    "heights": "232 m lower occupied shaft with240 m sloping crown;279 m upper plant floor and21 m blade upstand. Measured81 m elliptical mast reaches360 m.",
+    "facade": "4 m floor bands, individual glass panes, mechanical levels, end blade slots and triangulated projecting podium glazing."
+  },
+  "referencePages": [
+    "https://www.atkinsrealisusn.com/~/media/Files/R/Renaissance/download-centre/en/technical-journals/technical-journal-06.pdf",
+    "https://accgroup.com/our_projects/almas-towers-dubai/",
+    "https://www.skyscrapercenter.com/building/almas-tower/298",
+    "https://www.openstreetmap.org/way/1137607706"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      55.14106480490985,
+      25.069033868310058
+    ],
+    "heading": -0.669655293352136,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/1137607706",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/1491743595",
+      "way/1137607706"
+    ],
+    "wikidataId": "Q838780",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3de187d9746b3617ccde7fb61c3fa7d536513f3303ef4d5236fa11424226923a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Source-local map frame binds the primary plan to eight mapped podium tips. The largest diamond-exchange petal points northeast, the lower ellipse lies north, and the tall southern ellipse carries the mast at its clipped right end. Published64×42 m shaft dimensions override the malformed map shaft outline. GroundY0 is the tower/podium entry datum; below-grade cascading landscape is outside this model."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Ellipse radii, individual glazing bay widths, sloping crown planes and secondary petal elevations are reconstructed from engineer drawings and exterior photographs. The signed podium fit has2.09 m per-coordinate RMS and approximately5% drawing/map scale disagreement. Below-entry landscape terraces, basement parking and fine signage are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "paired-ellipse-curtain-wall",
+      "position": [
+        93,
+        165,
+        139
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ]
+    },
+    {
+      "name": "sloping-crowns-and-mast",
+      "position": [
+        105,
+        332,
+        104
+      ],
+      "lookAt": [
+        7,
+        292,
+        0
+      ]
+    },
+    {
+      "name": "diamond-exchange",
+      "position": [
+        92,
+        36,
+        -158
+      ],
+      "lookAt": [
+        0,
+        11,
+        -55
+      ]
+    },
+    {
+      "name": "podium-petals",
+      "position": [
+        130,
+        62,
+        146
+      ],
+      "lookAt": [
+        0,
+        12,
+        5
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -418,
+        311,
+        665
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 469037,
+    "vertices": 1190619,
+    "materials": 6,
+    "bytes": 47303752,
+    "sha256": "sha256:94ac630b7c37d1ee5d96195f2ab33dedbe760c9ad2c02dba03011997abd347d3"
+  }
+}

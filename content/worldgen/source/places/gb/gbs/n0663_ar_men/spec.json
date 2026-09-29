@@ -1,0 +1,181 @@
+{
+  "id": "N0663",
+  "key": "ar_men",
+  "title": "Ar Men",
+  "wikidataId": "Q623540",
+  "size": [
+    13,
+    37,
+    12
+  ],
+  "smoothNormalSlots": [
+    "trim",
+    "foundation",
+    "wall"
+  ],
+  "visualBrief": "Isolated sea tower rising from a massive irregular strengthening belt, dark lower shaft and white upper masonry, repeated recessed windows and painted AR-MEN name band. Two asymmetric eastern shelters, landing steps and ladder, black gallery with current photovoltaic array, stone watchroom, fine lantern bars and ribbed metal dome.",
+  "sourceFacts": {
+    "heightMeters": 37,
+    "lanternDiameterMeters": 3,
+    "strengtheningBeltHeightMeters": 11.2,
+    "basis": "Iroise marine-park technical factsheet specifies37m total,3m lantern and11.2m strengthening envelope, and locates attached shelters northeast/east. Its33.5m above-sea figure supports bottom at-3.5m for the37m structure. DIRM2025 operator photograph governs present gallery solar array, name band and masonry silhouette. Exact-QID mapped7.1m circle represents original tower core, not the wider irregular belt."
+  },
+  "referencePages": [
+    "https://parc-marin-iroise.fr/editorial/le-phare-dar-men",
+    "https://parc-marin-iroise.fr/media/504/download",
+    "https://www.dirm.nord-atlantique-manche-ouest.developpement-durable.gouv.fr/IMG/pdf/livret_phares_2025_export_web_mini_cle527eb3.pdf",
+    "https://pop.culture.gouv.fr/notice/merimee/PA29000086",
+    "https://www.openstreetmap.org/way/628663159"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -4.997732568,
+      48.050120766
+    ],
+    "heading": 0,
+    "elevationMode": "sea-level",
+    "elevationMeters": -3.5,
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://parc-marin-iroise.fr/media/504/download",
+    "notes": "Exact-QID mapped core establishes center. Authored+X east and-Z north set the two shelters to the official northeast/east quadrants. Marine-park37m total versus33.5m above-sea envelope implies bottom-3.5m; this explicit absolute datum avoids sea terrain incorrectly raising the foundation. Tidal level varies, and the reef is supplied by the host."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Irregular belt plan and individual component elevations are photo-proportioned; the mapped circle is the narrow core. Historic gantry arrangements differ from the2025 operator photo, whose solar array is represented. Name-band lettering is geometric. Reusable stone surfaces represent coursing without copying individual weathering marks."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        8,
+        37,
+        10
+      ],
+      "lookAt": [
+        0,
+        33.6,
+        0
+      ]
+    },
+    {
+      "name": "near-name",
+      "position": [
+        8,
+        25,
+        10
+      ],
+      "lookAt": [
+        0,
+        23.3,
+        0
+      ]
+    },
+    {
+      "name": "near-landing",
+      "position": [
+        18,
+        17,
+        -16
+      ],
+      "lookAt": [
+        2,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        43,
+        25,
+        52
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0663_ar_men",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -6.099999904632568,
+      0,
+      -5.699999809265137
+    ],
+    "max": [
+      6.099999904632568,
+      37,
+      5.699999809265137
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

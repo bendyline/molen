@@ -1,0 +1,74 @@
+{
+  "format": "molen/scene@3",
+  "name": "Tokyo Skytree asset preview",
+  "seed": "molen.worldgen.structure.b16_tokyo_skytree",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.b16_tokyo_skytree",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [0, -0.14, 0],
+          "rot": [0, 0, 0, 1],
+          "scale": [140, 0.2, 138]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#777b72",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [-8, 14, 9],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [530.658, 507.20000000000005, 855.9000000000001],
+    "lookAt": [0, 291.64, 0],
+    "fov": 42
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

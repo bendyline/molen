@@ -8,6 +8,7 @@
 // Safe to rerun after a partial publish: a package already on npm with the same tarball contents
 // is skipped, and a v0.0.1 tag already on this commit is left as it is.
 import { execFileSync } from 'node:child_process';
+import { execCommand } from './exec-command.mjs';
 import {
   packRelease,
   publicationOrder,
@@ -57,7 +58,7 @@ if (local !== undefined && local !== head) {
   throw new Error(`A local ${tag} tag points at ${local}, not at this commit (${head}).`);
 }
 
-execFileSync('pnpm', ['verify'], { stdio: 'inherit' });
+execCommand('pnpm', ['verify'], { stdio: 'inherit' });
 publishRelease(packRelease(packages, version), version);
 
 if (tagged === undefined) {

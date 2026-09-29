@@ -81,7 +81,7 @@ describe('top-down arena (headless, data + scripts only)', () => {
     // Pinned after continuation hash v2 and the registry-spawn migration; the kinematics grid broad phase is required to
     // reproduce the brute-force resolution sequence bit for bit.
     expect(runHeadless(build, { ticks: 90 }).finalHash).toBe(
-      'sha256:471d0a560278ddde2286f11bb03b955c319f9b2ba0656dfb80a0d546aad69e4d',
+      'sha256:1466416cd2219ad1c8edcdc594d4cce3d121633bdc46788276f0002230c7c49a',
     );
   });
 });

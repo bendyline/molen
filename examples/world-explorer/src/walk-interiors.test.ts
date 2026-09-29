@@ -1,3 +1,4 @@
+import { WalkCollision, WalkController } from '@bendyline/molen-client/navigation';
 import { validateByKind } from '@bendyline/molen-schema';
 import {
   buffersToObject3D,
@@ -20,8 +21,6 @@ import { describe, expect, it } from 'vitest';
 import interiorsRaw from '../../../content/worldgen/interiors/catalog.json?raw';
 import commercialRaw from '../../../content/worldgen/styles/generic/commercial.archstyle.json?raw';
 import houseRaw from '../../../content/worldgen/styles/generic/house.archstyle.json?raw';
-import { WalkCollision } from './walk-collision';
-import { WalkController } from './walk-controller';
 
 function required<T>(value: T | undefined): T {
   if (value === undefined) throw new Error('Missing generated fixture');

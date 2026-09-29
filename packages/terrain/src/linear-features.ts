@@ -1,5 +1,6 @@
 /** Shared, metric line construction for roads, tracks, fences and utility corridors. */
 import * as THREE from 'three';
+import { markTerrainGroundSurface } from './ground-cutout';
 import { normalizeRing } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type {
@@ -189,6 +190,51 @@ export class TerrainSurfaceMeshBuilder {
   private readonly normals: number[] = [];
   constructor(readonly context: TerrainPyramidTileLayerContext) {}
 
+  /** Clip a convex 3D face to this tile, interpolating heights at its boundaries. */
+  face(points: readonly (readonly [number, number, number])[], color: THREE.Color): void {
+    let clipped = points.map((p) => [...p] as [number, number, number]);
+    for (const [axis, limit, sign] of [
+      [0, 0, 1],
+      [0, this.context.tileSize, -1],
+      [2, 0, 1],
+      [2, this.context.tileSize, -1],
+    ] as const) {
+      const input = clipped;
+      clipped = [];
+      for (let i = 0; i < input.length; i++) {
+        const a = input[i] as [number, number, number];
+        const b = input[(i + 1) % input.length] as [number, number, number];
+        const da = (a[axis] - limit) * sign;
+        const db = (b[axis] - limit) * sign;
+        if (da >= 0) clipped.push(a);
+        if (da >= 0 !== db >= 0) {
+          const t = da / (da - db);
+          const cut: [number, number, number] = [
+            a[0] + (b[0] - a[0]) * t,
+            a[1] + (b[1] - a[1]) * t,
+            a[2] + (b[2] - a[2]) * t,
+          ];
+          cut[axis] = limit;
+          clipped.push(cut);
+        }
+      }
+    }
+    for (let i = 1; i + 1 < clipped.length; i++) {
+      const a = clipped[0] as [number, number, number],
+        b = clipped[i] as [number, number, number],
+        c = clipped[i + 1] as [number, number, number];
+      const normal = new THREE.Vector3()
+        .subVectors(new THREE.Vector3(...b), new THREE.Vector3(...a))
+        .cross(new THREE.Vector3().subVectors(new THREE.Vector3(...c), new THREE.Vector3(...a)))
+        .normalize();
+      for (const p of [a, b, c]) {
+        this.positions.push(...p);
+        this.normals.push(normal.x, normal.y, normal.z);
+        this.colors.push(color.r, color.g, color.b);
+      }
+    }
+  }
+
   polygon(
     points: readonly TerrainSemanticPoint[],
     color: THREE.Color,
@@ -225,6 +271,7 @@ export class TerrainSurfaceMeshBuilder {
     mesh.name = name;
     mesh.receiveShadow = true;
     mesh.userData.terrainOwnedGeometry = true;
+    markTerrainGroundSurface(mesh);
     return mesh;
   }
 }
@@ -272,6 +319,8 @@ export function appendTerrainLineBand(
     clip?: (points: readonly TerrainSemanticPoint[]) => readonly TerrainSemanticPoint[][];
     start?: number;
     end?: number;
+    /** Absolute deck profile; evaluated before clipping so neighboring pieces meet. */
+    heightAt?: (x: number, z: number) => number;
   } = {},
 ): number {
   if (!Number.isFinite(band.width) || band.width <= 0 || path.length <= 0) return 0;
@@ -308,8 +357,16 @@ export function appendTerrainLineBand(
       edge(distance, -1),
     ];
     if (painted && (!options.filter || options.filter(points, (distance + next) / 2))) {
-      for (const piece of options.clip ? options.clip(points) : [points])
-        builder.polygon(piece, color, band.elevation ?? 0.25, band.elevationMode === 'absolute');
+      for (const piece of options.clip ? options.clip(points) : [points]) {
+        const heightAt = options.heightAt;
+        if (heightAt)
+          builder.face(
+            piece.map(([x, z]) => [x, heightAt(x, z) + (band.elevation ?? 0), z]),
+            color,
+          );
+        else
+          builder.polygon(piece, color, band.elevation ?? 0.25, band.elevationMode === 'absolute');
+      }
     }
     count++;
     distance = next;

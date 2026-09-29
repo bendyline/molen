@@ -5,7 +5,7 @@ import {
   type WeatherProfile,
   weatherProfile,
 } from '@bendyline/molen-client';
-import { Weather, type World } from '@bendyline/molen-kernel';
+import { Weather, type World } from '@bendyline/molen-kernel/world';
 
 const profiles = ['sunny', 'partly-cloudy', 'overcast', 'rain', 'snow', 'fog'] as const;
 

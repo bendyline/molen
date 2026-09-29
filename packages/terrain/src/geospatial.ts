@@ -122,3 +122,22 @@ export function webMercatorTileBounds(
   const minZ = -WEB_MERCATOR_HALF_WORLD_METERS + y * size;
   return [minX, minZ, minX + size, minZ + size];
 }
+
+/**
+ * WGS84 longitude/latitude → metric world X/Z in a frame whose scale is `metersPerUnit`
+ * (see `terrainPackageMetersPerUnit`). This is where a host places a camera, marker or entity.
+ */
+export function wgs84ToWorld(
+  metersPerUnit: number,
+  longitude: number,
+  latitude: number,
+): [number, number] {
+  const [x, z] = wgs84ToWebMercator(longitude, latitude);
+  return projectedToWorld(metersPerUnit, x, z);
+}
+
+/** Metric world X/Z in a frame of scale `metersPerUnit` → WGS84 longitude/latitude. */
+export function worldToWgs84(metersPerUnit: number, x: number, z: number): [number, number] {
+  const [projectedX, projectedZ] = worldToProjected(metersPerUnit, x, z);
+  return webMercatorToWgs84(projectedX, projectedZ);
+}

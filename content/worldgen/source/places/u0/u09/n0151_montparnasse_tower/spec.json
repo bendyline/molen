@@ -1,0 +1,183 @@
+{
+  "planId": "N0151",
+  "id": "N0151",
+  "assetId": "molen.worldgen.structure.n0151_montparnasse_tower",
+  "title": "Montparnasse Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q323767",
+  "referenceCoordinate": {
+    "latitude": 48.84211,
+    "longitude": 2.32198
+  },
+  "visualBrief": "The pre-renovation dark Montparnasse silhouette follows its mapped bowed long facades and recessed ends, with 59-storey facade bands, closely spaced dark mullions, observation glazing, rooftop parapets, railings and service enclosure.",
+  "size": [
+    61.90999984741211,
+    210.02749633789062,
+    39.15800094604492
+  ],
+  "actualBounds": {
+    "min": [
+      -30.954999923706055,
+      0,
+      -19.57900047302246
+    ],
+    "max": [
+      30.954999923706055,
+      210.02749633789062,
+      19.57900047302246
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 210,
+    "floors": 59,
+    "windowsPublished": 7200,
+    "observationLevelMeters": 196
+  },
+  "reconstruction": {
+    "plan": "Exact-QID cached perimeter; individual notches retained",
+    "state": "Established exterior before the renovation announced for2026; future facade not anticipated",
+    "facade": "Explicit windows and dark metal borders; published7200 is a reference, not an exact modeled pane count"
+  },
+  "referencePages": [
+    "https://www.tourmontparnasse56.com/fr/la-tour-montparnasse-en-chiffres/",
+    "https://www.paris.fr/pages/la-tour-montparnasse-fete-ses-50-ans-24034"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      2.321979072,
+      48.842112037
+    ],
+    "heading": 0.880967014812,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/16406633",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/16406633"
+    ],
+    "wikidataId": "Q323767",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "The authored facade follows the cached exact-QID perimeter including bowed sides and recessed ends, retaining its signed frame. This is the existing dark facade before planned renovation; actual construction staging is not modeled."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "The source intentionally records the established dark exterior, not the planned future renovation. Roof equipment and observation terrace fittings are simplified from their visible envelope."
+  ],
+  "qaCameras": [
+    {
+      "name": "bowed-facade",
+      "position": [
+        7,
+        117,
+        69
+      ],
+      "lookAt": [
+        0,
+        103,
+        18
+      ]
+    },
+    {
+      "name": "recessed-end",
+      "position": [
+        69,
+        92,
+        15
+      ],
+      "lookAt": [
+        29,
+        90,
+        0
+      ]
+    },
+    {
+      "name": "terrace",
+      "position": [
+        68,
+        233,
+        69
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ]
+    },
+    {
+      "name": "ground",
+      "position": [
+        67,
+        13,
+        66
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -285,
+        176,
+        370
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 89632,
+    "vertices": 265992,
+    "materials": 3,
+    "bytes": 10387664,
+    "sha256": "sha256:2eec7c91e8efc9b1bf5b31d4b9e6c7a2ebff4e5f4ba21cc34a8ad26e914888a0"
+  }
+}

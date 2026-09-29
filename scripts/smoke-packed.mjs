@@ -9,11 +9,11 @@
 // Needs the npm registry for third-party dependencies. Packing goes through packRelease, so the
 // release's manifest and content checks run too.
 
-import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execCommand } from './exec-command.mjs';
 import { packRelease, releasePackages } from './semantic-release-molen.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -21,7 +21,7 @@ const keep = process.argv.includes('--keep');
 
 function run(command, args, cwd, options = {}) {
   process.stdout.write(`$ ${command} ${args.join(' ')}\n`);
-  return execFileSync(command, args, { cwd, encoding: 'utf8', stdio: 'pipe', ...options });
+  return execCommand(command, args, { cwd, encoding: 'utf8', stdio: 'pipe', ...options });
 }
 
 const packages = releasePackages();

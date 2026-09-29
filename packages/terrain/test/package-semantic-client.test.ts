@@ -140,6 +140,7 @@ describe('terrain package semantic layer wiring', () => {
       decoder: { decode: () => createEmptyTerrainSemanticTile() },
       landcoverArchive: archive,
       featuresArchive: archive,
+      overzoom: false,
     });
     expect(opened.layers).toHaveLength(3);
     expect(opened.layers[0]).toMatchObject({
@@ -165,6 +166,58 @@ describe('terrain package semantic layer wiring', () => {
     });
     expect(opened.semantics.landcover?.archive).toBe(archive);
     expect(opened.semantics.features?.archive).toBe(archive);
+  });
+
+  it('overzooms the finest sidecar level onto finer terrain levels by default', async () => {
+    const requested: string[] = [];
+    let rendered: ReturnType<typeof createEmptyTerrainSemanticTile> | undefined;
+    const opened = await createTerrainPackageSemanticLayers(descriptor(), {
+      decoder: {
+        decode: () => {
+          const tile = createEmptyTerrainSemanticTile();
+          tile.transportation.push({
+            class: 'minor_road',
+            lines: [
+              [
+                [0, 0.1],
+                [1, 0.1],
+              ],
+            ],
+          });
+          return tile;
+        },
+      },
+      landcoverArchive: archive,
+      featuresArchive: {
+        ...archive,
+        async getZxy(z, x, y) {
+          requested.push(`${z}/${x}/${y}`);
+          return { data: new Uint8Array([1]).buffer };
+        },
+      },
+      featuresLayer: {
+        renderer: {
+          createTile(tile) {
+            rendered = tile;
+            return undefined;
+          },
+        },
+      },
+    });
+    const features = opened.layers.find((layer) => layer.category === 'human-feature');
+    // The sidecar ends at 8; the package, and so the layer, reaches 10.
+    expect(features).toMatchObject({ minLevel: 7, maxLevel: 10 });
+    await features?.createTile({
+      address: { level: 10, x: 1, z: 0 },
+      signal: new AbortController().signal,
+    } as TerrainPyramidTileLayerContext);
+    // Level 10 tile (1, 0) reads its level-8 ancestor (0, 0): the road at v=0.1 lands at v=0.4.
+    expect(requested).toContain('8/0/0');
+    expect(requested.some((address) => address.startsWith('10/'))).toBe(false);
+    const line = rendered?.transportation[0]?.lines[0];
+    expect(line?.[0]?.[1]).toBeCloseTo(0.4, 9);
+    expect(line?.[0]?.[0]).toBeLessThanOrEqual(0);
+    expect(line?.at(-1)?.[0]).toBeGreaterThanOrEqual(1);
   });
 
   it('supports renderer/bound overrides and an entirely bare package', async () => {

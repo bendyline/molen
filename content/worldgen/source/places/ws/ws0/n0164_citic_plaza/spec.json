@@ -1,0 +1,219 @@
+{
+  "planId": "N0164",
+  "id": "N0164",
+  "assetId": "molen.worldgen.structure.n0164_citic_plaza",
+  "title": "CITIC Plaza",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q245246",
+  "referenceCoordinate": {
+    "latitude": 23.144444444,
+    "longitude": 113.319444444
+  },
+  "visualBrief": "Guangzhou’s square pale-glass office tower with a teal central slot, independently mapped split crown, round inner roof drum, original geometric 中信 sign and paired390.2 m white masts.",
+  "size": [
+    47.83137512207031,
+    390.20001220703125,
+    50.91999816894531
+  ],
+  "actualBounds": {
+    "min": [
+      -23.915687561035156,
+      0,
+      -25.459999084472656
+    ],
+    "max": [
+      23.915687561035156,
+      390.20001220703125,
+      25.459999084472656
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 390.2,
+    "occupiedHeightMeters": 296.9,
+    "floors": 80,
+    "architect": "Dennis Lau & Ng Chun Man",
+    "structure": "Reinforced concrete",
+    "primaryPhoto": "Project quantity surveyor Davis Langdon & Seah, company profile page63"
+  },
+  "reconstruction": {
+    "plan": "Source-local signed47.65 m tower outline and fourteen independent mapped facade/crown components",
+    "roof": "Mapped297 m inner office roof,310.8 m round crown,321.9 m split facade tips,344 m sign and mast supports",
+    "scope": "Main office tower; separate apartment towers and retail arcade remain outside this asset"
+  },
+  "referencePages": [
+    "https://www.skyscrapercentre.com/building/citic-plaza/242",
+    "https://www.building.com.hk/comprofile/20090813dls.pdf",
+    "https://www.hkexnews.hk/listedco/listconews/sehk/2010/0826/ltn20100826271.pdf",
+    "https://www.openstreetmap.org/way/926228208"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      113.31938410000001,
+      23.14436345
+    ],
+    "heading": -0.0007008769705450331,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/926228208",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/926228208",
+      "way/1548063152",
+      "way/1548063153",
+      "way/1548063154",
+      "way/1548063155",
+      "way/1548063156",
+      "way/1548063157",
+      "way/1548063158",
+      "way/1548063159",
+      "way/1548063160",
+      "way/1548063161",
+      "way/1548063162",
+      "way/1548063163",
+      "way/1548063164",
+      "way/1548063165"
+    ],
+    "wikidataId": "Q245246",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5a59bb08af6d3b507db4c4fe06ea2a2ec124f804ab6e272fe8a82e0ac0abb131",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Source-local tower frame uses the office outline and independent split facade, sign and east/west masts. The south-facing Sports Centre photo corroborates the central teal opening between pale sides. OSM has no exact-QID tag; identity is reviewed by unique component geometry and the mapped 中信 inscription. BaseY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Curtain-wall subdivisions, small canopy dimensions and sign stroke outlines are reconstructed. One OSM mast says391.1 m; both follow the published390.2 m architectural top. Two apartment towers and retail podium are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "split-crown",
+      "position": [
+        71,
+        344,
+        99
+      ],
+      "lookAt": [
+        0,
+        318,
+        0
+      ]
+    },
+    {
+      "name": "mast-and-sign",
+      "position": [
+        44,
+        357,
+        96
+      ],
+      "lookAt": [
+        0,
+        351,
+        0
+      ]
+    },
+    {
+      "name": "pale-curtain-wall",
+      "position": [
+        65,
+        155,
+        76
+      ],
+      "lookAt": [
+        0,
+        137,
+        0
+      ]
+    },
+    {
+      "name": "dark-base",
+      "position": [
+        63,
+        21,
+        69
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -386,
+        310,
+        660
+      ],
+      "lookAt": [
+        0,
+        181,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1186200,
+    "vertices": 2658912,
+    "materials": 5,
+    "bytes": 107299644,
+    "sha256": "sha256:bde3f3185a0c864545ca352aa23a7d7ddc5d20401d6a024d10164e206f0e3d33"
+  }
+}

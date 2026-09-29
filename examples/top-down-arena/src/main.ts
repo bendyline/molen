@@ -1,4 +1,5 @@
 import { mountExperience } from '@bendyline/molen-client';
+import { startAudio } from './audio';
 import { arenaScene } from './scene';
 
 // Browser entry: kernel in a Worker, client mounted on it. The scene's `camera` (top-down
@@ -9,6 +10,8 @@ const canvas = document.getElementById('view') as HTMLCanvasElement;
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
 
 const { client } = await mountExperience({ link: worker, scene, canvas, clearColor: '#1a1d24' });
+// Sound: the rules are the scene's audioEnvironment entity; this only loads and plays them.
+void startAudio(client, scene.tickRate ?? 30);
 
 // A tiny HUD from mirrored state + events: hit points and kills, no wire-protocol parsing.
 const hud = document.createElement('div');

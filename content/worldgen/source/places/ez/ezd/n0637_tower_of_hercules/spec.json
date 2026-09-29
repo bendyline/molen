@@ -1,0 +1,151 @@
+{
+  "id": "N0637",
+  "key": "tower_of_hercules",
+  "title": "Tower of Hercules",
+  "wikidataId": "Q245151",
+  "size": [
+    32.4,
+    55,
+    35
+  ],
+  "visualBrief": "Granite Roman-core lighthouse with paired recessed facade niches, ascending perimeter band, heavy cornices, two octagonal upper stages, dark lantern and prominent offset stone lightning spine on a polygonal podium.",
+  "sourceFacts": {
+    "heightMeters": 55,
+    "squareCoreSideMeters": 11.75,
+    "visibleRomanBodyMeters": 34.38,
+    "platformWidthMeters": 32.4,
+    "basis": "A Coruña municipal Tower in Numbers page; 2024 original photo confirms current external geometry."
+  },
+  "referencePages": [
+    "https://www.coruna.gal/the-tower/en/discover-the-tower/curiosities-of-the-tower?argIdioma=en",
+    "https://whc.unesco.org/en/list/1312/",
+    "https://www.ingenieria-civil.org/GOING/obra.php?id=120",
+    "https://commons.wikimedia.org/wiki/File:Torre_de_Hercules,_A_Coruna,_Spain_06-2024.jpg"
+  ],
+  "referenceRights": "Municipal/UNESCO references retain their own rights. Original2024 photo by Wolfgang Fricke, CC BY3.0, consulted only; no reference image is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Ground contact beneath the polygonal platform. +X/+Z parallel the principal square shaft faces."
+  },
+  "geographicProposal": {
+    "anchor": [
+      -8.406524144,
+      43.385941653
+    ],
+    "heading": -1.028578798746,
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/255916025",
+    "status": "preview-proposal",
+    "notes": "Exact-QID footprint supplies position and undirected face axes. Square symmetry leaves90-degree ambiguity for the front and offset service spine; facade facing remains to be reviewed. Published11.75m shaft versus12.725m mapped envelope retained separately; no forced XY scaling."
+  },
+  "limitations": [
+    "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
+    "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
+    "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
+    "Total55m includes the modeled platform and lightning spine; the allocation among upper tiers and the spine position is photo-estimated. Museum interior, adjacent service structures, terrain, historic excavations and exact lighting installations are omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-facade",
+      "position": [
+        16,
+        18,
+        27
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        13,
+        48,
+        18
+      ],
+      "lookAt": [
+        0,
+        45.5,
+        0
+      ]
+    },
+    {
+      "name": "near-platform",
+      "position": [
+        23,
+        7,
+        24
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        63,
+        37,
+        87
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ]
+    }
+  ],
+  "assetId": "molen.worldgen.structure.n0637_tower_of_hercules",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -16.200000762939453,
+      0,
+      -16.200000762939453
+    ],
+    "max": [
+      16.200000762939453,
+      55,
+      18.799999237060547
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

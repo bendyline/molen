@@ -45,6 +45,26 @@ export {
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';
+export {
+  type HistoricalStructureAppearance,
+  isHistoricalStructureAppearance,
+  isStructureViewingDate,
+} from './kernel/structure-date';
+export type {
+  StructureCatalogDoc,
+  StructureIndex,
+  StructureMapRule,
+  StructurePlacement,
+  StructureQueryOptions,
+  StyleSuggestion,
+} from './kernel/structure-index';
+export {
+  createStructureIndex,
+  encodeStructureGeohash,
+  suggestStructureStyles,
+} from './kernel/structure-index';
+export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
+export { matchMapStructures, orientMappedStructure } from './kernel/structure-matching';
 export type { WorldgenQualityPreset } from './kernel/tile-budgets';
 export { worldgenTileBudgetForQuality } from './kernel/tile-budgets';
 export type { EdgeDecision } from './kernel/tile-edges';
@@ -68,7 +88,9 @@ export { createWorldgenWorkerHandler } from './kernel/worker-protocol';
 
 import { registerBusinessCatalogSchema } from './kernel/business-catalog-schema';
 import { registerRegionAtlasSchema } from './kernel/region-atlas-schema';
+import { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 
 // Register the atlas format on import so tooling can validate it.
 registerRegionAtlasSchema();
 registerBusinessCatalogSchema();
+registerStructurePlacementsSchema();

@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0688_arena_aufschalke",
+  "sourceHash": "sha256:4c8c2ea0b3d6b101fdde0bda0c4fbc5ff1f5036152c52f8ddbdcec306ed31151",
+  "runtimeHash": "sha256:cf6bd778a5b3642953cc3eb70a27fe6e27b76e74c1d2fe679c485df257a93aaa",
+  "captureReportHash": "sha256:54a3e9c63a3377f6768836d47d29b3b2718dace867ab1101760a9318c0e93cdf",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed static open-roof football configuration.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-curtain-facade.png",
+      "shots/near-external-stairs.png",
+      "shots/near-sliding-roof.png",
+      "shots/near-space-truss.png",
+      "shots/near-blue-bowl.png",
+      "shots/near-video-cube.png",
+      "shots/near-pitch-route.png",
+      "shots/far-open-roof.png"
+    ],
+    "notes": "All thirteen portable and thirteen shared frames inspected, plus full-resolution external stair, complete-roof and orthographic placement views. Visible stair wells and landings are open; fixed roof, parked halves, supported tracks, 24 radial truss units, central cube, two blue tiers, permanent roof letters and white seat letters form coherent geometry. The below-grade pitch route is open."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:2cbcde5f7aa88254ead0e504acd81963a64904fbbe521c6296d56a227f1407e0",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:277a78c8b2d795b5914f29ca1b63467941a0e4e79770d4a6c71080efafac3b2b",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-curtain-facade.png",
+      "shots/shared/near-external-stairs.png",
+      "shots/shared/near-sliding-roof.png",
+      "shots/shared/near-space-truss.png",
+      "shots/shared/near-blue-bowl.png",
+      "shots/shared/near-video-cube.png",
+      "shots/shared/near-pitch-route.png",
+      "shots/shared/far-open-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Common concrete, painted metal and roof membrane use physical UV scales; separate glazing remains portable PBR. Geographic sky-PMREM, terrain hole/hide restoration and unload assertions passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4770236289e0175c0907941493250be3fdc92b124a09acea25c30bbeba46016b",
+    "notes": "Exact mapped footprint, asymmetric western entry and southwest pitch parking rectangle establish directed orientation. Orthographic north-up frame fits the building wall footprint beneath the overhanging 226x186m roof. The explicit compound cutout follows the negative bowl and pitch route while Y0 remains the public forecourt."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Primary roof fabricator, stadium operator, architect project sheet and published architecture photographs establish the roof envelope, rectangular opening, twelve sliding membrane fields, steel space structure, external circulation, almost fully glazed facade, 118x79m pitch tray and 2016 video cube. Minor member diameters, exact seat inventory, slide-track trestles and local level profile are photograph-based reconstructions; transient advertising and enclosed service rooms are outside exterior scope."
+  }
+}

@@ -16,7 +16,7 @@ every entry and provides dimension, texture and detail controls.
 
 For enterable buildings and lazy ground-floor furnishings, see [Building interiors](building-interiors.md).
 
-```
+```text
 @bendyline/molen-worldgen           world-agnostic core
   /kernel   formats, footprint analysis, roofs and walls, batch generator, GLB encoder, seeds
   /client   buffers to three.js meshes, instanced boxes, style-pack loader
@@ -185,7 +185,7 @@ defaults, not recovered building measurements. Source heights and levels take pr
 
 ## 4. Seeds and identity
 
-```
+```text
 building seed:  wg1|b|<pack.name>@<pack.version>|<style.id>@<style.version>|<identity>
 aspect seed:    <building seed>|massing | roof | facade | palette:<name> | material:<part> | props:<id>
 prop salt:      wg1|p|<pack>@<version>|<scatter.id>@<version>|<rule.id>   then hashCoord(cellX, cellZ, salt)
@@ -244,7 +244,7 @@ A style pack's source directory looks like this (the default pack's is
 [`content/worldgen/`](https://github.com/bendyline/molen/tree/main/content/worldgen) in the engine
 repository); `molen pack build <dir>` turns one into a content pack.
 
-```
+```text
 my-stylepack/
   stylepack.json           name, version (seeds), namespace, id → path maps, defaults, imports
   styles/**/*.archstyle.json

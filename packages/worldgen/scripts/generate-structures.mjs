@@ -1,6 +1,7 @@
 /** Generate the 120-entry default structure resource index and runtime archstyles.
  * Run with --check in CI. Each source lives in source/structures/<thing>/.
  */
+import './install-deterministic-math.mjs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -293,6 +294,16 @@ for (const name of [
   'plaster_tadelakt',
   'concrete_boardformed',
   'terracotta_screen',
+  'wood_painted_lap',
+  'wood_painted_shingle',
+  'metal_painted',
+  'metal_stainless',
+  'stone_travertine',
+  'clay_fired',
+  'stone_granite',
+  'stone_marble',
+  'wood_plain',
+  'fabric_canvas',
 ])
   materialNames.add(name);
 for (const name of [...materialNames].sort())
@@ -319,8 +330,7 @@ root.defaults.rules = [
   ...directRules,
   ...root.defaults.rules.filter((rule) => !managedRules.has(JSON.stringify(rule.when))),
 ];
-root.doc =
-  '120 resizable real-world structure interpretations across 13 architectural taxonomies, with 45 reusable standard material graphs. Catalog metadata, dimensions and source references are in structures/catalog.json. Explicit structure labels and regional identity-based rules select the same shipped archstyles.';
+root.doc = `120 resizable real-world structure interpretations across 13 architectural taxonomies, with ${Object.keys(root.materials).length} reusable standard material graphs. Catalog metadata, dimensions and source references are in structures/catalog.json. Explicit structure labels and regional identity-based rules select the same shipped archstyles.`;
 entries.sort(
   (a, b) =>
     TAXONOMIES.findIndex((group) => group.id === a.taxonomy) -
@@ -345,7 +355,7 @@ for (const [path, value] of outputs) {
   const expected = `${formatJson(value)}\n`;
   const target = resolve(packDir, path);
   const current = await readFile(target, 'utf8').catch(() => undefined);
-  if (current === expected) continue;
+  if (current?.replaceAll('\r\n', '\n') === expected) continue;
   if (check) {
     console.error(`Stale generated structure resource: ${path}`);
     stale = true;

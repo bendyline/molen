@@ -1,0 +1,188 @@
+{
+  "id": "N0658",
+  "key": "flannan_isles_lighthouse",
+  "title": "Flannan Isles Lighthouse",
+  "wikidataId": "Q15217844",
+  "size": [
+    24,
+    23,
+    21
+  ],
+  "smoothNormalSlots": [
+    "trim",
+    "foundation",
+    "wall"
+  ],
+  "visualBrief": "White taper and ochre margins with an L-shaped keeper house, blocked lower tower openings, curved cornice and golden watchroom, small portholes, black diagonal lantern glazing and domed cap. Full open-braced southern solar gantry and compact walled tower court.",
+  "sourceFacts": {
+    "heightMeters": 23,
+    "year": 1899,
+    "towerBaseDiameterMeters": 5.77345,
+    "basis": "NLB and HES publish23m. HES specifies stage details, portholes, blocked lower openings and keeper-window counts. Actual arc of exact-QID OSM854321119 fits5.773m diameter; remaining L-plan comes from that outline. Dated2018 original photographer exterior views govern solar gantry and current margins."
+  },
+  "referencePages": [
+    "https://www.nlb.org.uk/lighthouses/flannan-islands/",
+    "https://portal.historicenvironment.scot/designation/LB48143",
+    "https://uklighthousetour.com/2018/06/03/the-flannans-finally/",
+    "https://uklighthousetour.com/wp-content/uploads/2018/06/lighthouse2.jpg",
+    "https://uklighthousetour.com/wp-content/uploads/2018/06/lighthouse3.jpg",
+    "https://www.openstreetmap.org/way/854321119"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -7.58816108988,
+      58.288165646211
+    ],
+    "heading": 0.200781670264,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/854321119",
+    "notes": "Origin fitted to mapped circular tower arc, not whole-house bbox. Mapped keeper block extends southwest; HES southern solar gantry resolves quadrant. Court wall extent is reconstructed compactly around building; remote landing/stair terrain is excluded."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Detailed exterior follows dated2018 primary photographic appearance and heritage description; individual whitewash repairs are shared material. Tower court boundary is proportioned from photographs rather than a cadastral survey. Detached chapel, island landing rails and cliff stairs remain separate site geometry."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        9,
+        23,
+        12
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "near-solar-gantry",
+      "position": [
+        -17,
+        8,
+        25
+      ],
+      "lookAt": [
+        -6.5,
+        3.7,
+        11.5
+      ]
+    },
+    {
+      "name": "near-court",
+      "position": [
+        -29,
+        13,
+        27
+      ],
+      "lookAt": [
+        -7,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "far-ensemble",
+      "position": [
+        35,
+        25,
+        43
+      ],
+      "lookAt": [
+        -5,
+        10,
+        4
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0658_flannan_isles_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -19.125,
+      0,
+      -4.724999904632568
+    ],
+    "max": [
+      4.574999809265137,
+      23,
+      14.960000038146973
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

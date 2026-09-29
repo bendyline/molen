@@ -1,7 +1,7 @@
 // Build runtime landmark manifests and their catalog from per-landmark source bundles.
 import { execFileSync } from 'node:child_process';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
 
@@ -14,14 +14,11 @@ const sourceCatalog = JSON.parse(
   await readFile(resolve(content, 'source/shared/landmark-library/catalog.json'), 'utf8'),
 );
 const check = process.argv.includes('--check');
-const biome = resolve(
-  root,
-  'node_modules/.bin',
-  process.platform === 'win32' ? 'biome.cmd' : 'biome',
-);
+const biome = resolve(root, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
-  return execFileSync(biome, ['format', '--stdin-file-path', path], {
+  // Generated content is excluded from repository formatting; this generator owns its layout.
+  return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', basename(path)], {
     input: JSON.stringify(value, null, 2),
     encoding: 'utf8',
   });

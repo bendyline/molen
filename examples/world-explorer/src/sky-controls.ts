@@ -1,6 +1,6 @@
 import { applyEnvironment, type EarthObserver, type Renderer } from '@bendyline/molen-client';
+import { createEarthFog } from '@bendyline/molen-earth/client';
 import { Color, Fog } from 'three';
-import { createExplorerFog } from './atmosphere.js';
 import { localSkyDate, localSkyTime } from './sky-time.js';
 
 // A fixed anchor allows date changes without reallocating any sky geometry or materials.
@@ -61,7 +61,7 @@ export function createSkyControls(
   controls.disabled = false;
 
   const nightFog = new Color('#080e1c');
-  const dayFog = createExplorerFog(renderer.backend).color;
+  const dayFog = createEarthFog(renderer.backend).color;
   const twilightFog = new Color('#755368');
   return {
     update(observer) {
@@ -84,7 +84,7 @@ export function createSkyControls(
           toneMapping: 'agx',
           exposure: 0.9,
         });
-        renderer.scene.fog = createExplorerFog(renderer.backend);
+        renderer.scene.fog = createEarthFog(renderer.backend);
         observerKey = key;
       } else if (key !== observerKey) {
         renderer.sky.setObserver(sampled);

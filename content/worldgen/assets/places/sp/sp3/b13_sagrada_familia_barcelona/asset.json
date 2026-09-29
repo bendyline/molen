@@ -1,0 +1,71 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.b13_sagrada_familia_barcelona",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:6334fa699d8066e9b6a2be698d6c6da7a2c0cf5e08d64f5ac597d5a35a151566",
+  "sourceHash": "sha256:03eec0775020e6b40c346f3ca5b501fbac2beb3449a9a1564ce6bab30f5b52a4",
+  "bounds": {
+    "aabb": {
+      "min": [-40.9987, 0, -19.002],
+      "max": [40.9987, 172, 19.002]
+    },
+    "sphere": {
+      "center": [0, 86, 0],
+      "radius": 96.5396
+    }
+  },
+  "stats": {
+    "triangles": 278,
+    "vertices": 518,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 14608
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 278
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "glazing-or-reflective-panel",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -40.9987, 0, -19.002, -40.9987, 0, 19.002, -40.9987, 172, -19.002, -40.9987, 172, 19.002,
+          40.9987, 0, -19.002, 40.9987, 0, 19.002, 40.9987, 172, -19.002, 40.9987, 172, 19.002
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

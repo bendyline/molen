@@ -12,6 +12,16 @@ export type TerrainPackageArchiveSource =
       kind: 'pmtiles';
       /** Absolute range-enabled archive URL intentionally external to the package. */
       url: string;
+    }
+  | {
+      kind: 'pmtiles-set';
+      /** Package-relative `molen/archive-set@1` document; its archives resolve against it. */
+      path: string;
+    }
+  | {
+      kind: 'pmtiles-set';
+      /** Absolute URL of a `molen/archive-set@1` document hosted outside the package. */
+      url: string;
     };
 
 export type TerrainPackageSemanticProfile = 'protomaps-basemap@1';
@@ -104,6 +114,18 @@ export interface TerrainArchiveHeader {
 }
 
 /** Small archive seam implemented by PMTiles and easy to fake in tests/native hosts. */
+/**
+ * The local metric frame a host renders a projected-Earth package in. World X/Z are Web Mercator
+ * meters multiplied by `cos(latitude)`, which is exact at `latitude` and drifts by roughly 1-1.5% per
+ * degree of latitude away from it at mid-latitudes. Omitted, the frame sits at the center latitude
+ * of the package bounds: right for a regional package, but a worldwide package centers on the
+ * equator, so a host viewing a place should pass that place's latitude and re-anchor (rebuild its
+ * streams on a new frame) after moving more than about a degree north or south.
+ */
+export interface TerrainPackageFrame {
+  latitude: number;
+}
+
 export interface TerrainTileArchive {
   getZxy(
     level: number,

@@ -1,0 +1,298 @@
+{
+  "planId": "N0192",
+  "id": "N0192",
+  "assetId": "molen.worldgen.structure.n0192_metlife_building",
+  "title": "MetLife Building",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q464482",
+  "referenceCoordinate": {
+    "latitude": 40.753333333,
+    "longitude": -73.976666666
+  },
+  "visualBrief": "The broad octagonal 200 Park Avenue tower, with projecting quartz-aggregate precast window fins, two deeply recessed mechanical floors, roof lettering, aluminum-clad eighth/ninth floors and the renewed travertine north arcade.",
+  "size": [
+    114.20492553710938,
+    246.3000030517578,
+    93.95085525512695
+  ],
+  "actualBounds": {
+    "min": [
+      -57.10249710083008,
+      0,
+      -46.97517395019531
+    ],
+    "max": [
+      57.1024284362793,
+      246.3000030517578,
+      46.97568130493164
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 246.3,
+    "floors": 59,
+    "completed": 1963,
+    "architects": "Emery Roth & Sons; Walter Gropius and Pietro Belluschi consulting",
+    "facade": "Eggshell precast concrete with exposed quartz aggregate; floor-to-floor tower units and separate base spandrels/mullions",
+    "facadePrimaryEvidence": "Architectural Forum, February 1962, printed page 10: Concrete Curtain; present facade restoration by Hoffmann Architects",
+    "lowerAluminumFloors": [
+      8,
+      9
+    ],
+    "firstPrecastTowerFloor": 10,
+    "renewedNorthEntry": "MdeAS 2022 renovation: travertine arcade columns, bronze frames and large glazing",
+    "terrace": "Current owner brochure describes an eighth-floor open-air Skyline Terrace and Lounge"
+  },
+  "reconstruction": {
+    "plan": "Independent mapped twelve-point tower ring is cleaned only at near-collinear vertices to retain its long octagonal shape. The much wider full ground podium, setback eighth/ninth-floor block and four separate support columns retain their own footprints.",
+    "facade": "Individual recessed blue-gray windows have projecting triangular cast fins, thick precast spandrels, dark transoms and fine construction seams. Mechanical levels have actual setback glass and outer columns, not painted stripes.",
+    "crown": "Physical vertical fins stand before a recessed louver screen; original white polygonal MetLife lettering faces the broad north/south walls. Flat roof and modest cornice retain the architectural height; no active helipad is depicted.",
+    "entry": "Current north-side colonnade is recessed behind travertine-clad piers, with bronze-framed tall glazing, three revolving doors and soffit lights. The separate podium terrace has glass guards and simple planter beds."
+  },
+  "referencePages": [
+    "https://www.hoffarch.com/project/metlife-building/",
+    "https://usmodernist.org/AF/AF-1962-02.pdf",
+    "https://www.irvinecompanyoffice.com/content/dam/office/3-readytopublish/portfolio/newyork/midtown/properties/200parkavenue/brochures/200ParkAvenue-Brochure.pdf",
+    "https://www.mdeas.com/200park",
+    "https://old.skyscraper.org/EXHIBITIONS/BIG_BUILDINGS/CONTENT/jumbos/j_02.htm",
+    "https://awards-api.skyscrapercenter.com/building/metlife-building/909",
+    "https://www.openstreetmap.org/way/137564641"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -73.976657641,
+      40.753506014
+    ],
+    "heading": 1.062997418385,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/137564642",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/137564642"
+    ],
+    "wikidataId": "Q464482",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:36ec3ea14814203ef6a7d37084035ded0ea1526dad92ca69e665a16c4ee4f5f1",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID map frame preserves the narrower tower across the larger podium. Native+X points toward the north 45th Street entrance, -X toward Grand Central Terminal, +Z toward east Depew Place and -Z toward Vanderbilt Avenue. The independently mapped entrance and four elevated support columns retain their signed positions. GroundY0 is the street entry datum; adjoining terminal and street grade are excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Facade module pitch, recess-floor heights, precast fin section, wordmark outlines, terrace furniture and entrance details are reconstructed from the current owner, restoration engineer and architect photographs; no original facade shop drawing is claimed. The mapped lower30/38m elevations are approximate. The wordmark is original polygonal geometry; exact font outlines, rooftop small plant, tenant displays and interiors are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "park-avenue-octagon",
+      "position": [
+        -170,
+        156,
+        130
+      ],
+      "lookAt": [
+        -10,
+        140,
+        0
+      ]
+    },
+    {
+      "name": "north-slab-and-podium",
+      "position": [
+        170,
+        102,
+        -100
+      ],
+      "lookAt": [
+        0,
+        110,
+        0
+      ]
+    },
+    {
+      "name": "precast-fins-and-returns",
+      "position": [
+        45,
+        130,
+        22
+      ],
+      "lookAt": [
+        9,
+        124,
+        8
+      ]
+    },
+    {
+      "name": "lower-recess-floor",
+      "position": [
+        57,
+        89,
+        -18
+      ],
+      "lookAt": [
+        9,
+        86,
+        -2
+      ]
+    },
+    {
+      "name": "upper-recess-floor",
+      "position": [
+        -75,
+        196,
+        40
+      ],
+      "lookAt": [
+        -32,
+        190,
+        7
+      ]
+    },
+    {
+      "name": "crown-fins-and-wordmark",
+      "position": [
+        80,
+        244,
+        18
+      ],
+      "lookAt": [
+        9,
+        237,
+        0
+      ]
+    },
+    {
+      "name": "south-crown-wordmark",
+      "position": [
+        -102,
+        251,
+        -15
+      ],
+      "lookAt": [
+        -32,
+        238,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-octagonal-plan",
+      "position": [
+        100,
+        317,
+        127
+      ],
+      "lookAt": [
+        -10,
+        237,
+        0
+      ]
+    },
+    {
+      "name": "north-travertine-arcade",
+      "position": [
+        87,
+        10,
+        0
+      ],
+      "lookAt": [
+        53,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "bronze-revolving-doors",
+      "position": [
+        67,
+        5,
+        -3
+      ],
+      "lookAt": [
+        52,
+        2.4,
+        0
+      ]
+    },
+    {
+      "name": "eighth-floor-terrace",
+      "position": [
+        53,
+        52,
+        80
+      ],
+      "lookAt": [
+        20,
+        33,
+        37
+      ]
+    },
+    {
+      "name": "far-park-avenue",
+      "position": [
+        -450,
+        138,
+        35
+      ],
+      "lookAt": [
+        -8,
+        122,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 444875,
+    "vertices": 1330965,
+    "materials": 6,
+    "bytes": 51925812,
+    "sha256": "sha256:a3fc7abda15f16bf365ea04f7065ec88bc99098f159cca1d22f7a168f6a1ee1e"
+  }
+}

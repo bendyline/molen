@@ -1,0 +1,226 @@
+{
+  "planId": "N0142",
+  "id": "N0142",
+  "assetId": "molen.worldgen.structure.n0142_abraj_al_bait",
+  "title": "Abraj Al Bait",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q189476",
+  "referenceCoordinate": {
+    "latitude": 21.418888888,
+    "longitude": 39.826388888
+  },
+  "visualBrief": "The seven-tower complex includes a mapped stepped podium, warm stone hotel facades, six lower towers with tensioned roof tents and glass lanterns, plus the cardinal clock tower with four differently proportioned dials, V supports, a faceted glass jewel, gold spire and closed solid crescent.",
+  "size": [
+    347.74354553222656,
+    601,
+    228.11795043945312
+  ],
+  "actualBounds": {
+    "min": [
+      -173.86827087402344,
+      0,
+      -114.01145935058594
+    ],
+    "max": [
+      173.87527465820312,
+      601,
+      114.10649108886719
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Mapped whole-complex frame; clock shaft offset to exact-QID building:part center, faces cardinal directions"
+  },
+  "sourceFacts": {
+    "heightMeters": 601,
+    "clockFacesMeters": {
+      "northSouth": [
+        43,
+        43
+      ],
+      "eastWest": [
+        37,
+        43
+      ]
+    },
+    "approximateNumeralHeightMeters": 7,
+    "crescentHeightMeters": 23,
+    "spireMeters": 45,
+    "towers": 7,
+    "mainShaftPart": "OSM way958867174, min_height80,height356"
+  },
+  "reconstruction": {
+    "heightDatum": "601 m complex height per SL Rasch Tower Tents; their separate steel-structure page reports607 m, so datum difference is recorded",
+    "mainTowerAnchor": [
+      39.82553895,
+      21.41812445
+    ],
+    "mainTowerHeading": 0,
+    "mainTowerBaseMeters": [
+      80,
+      48
+    ],
+    "clockCenterMeters": 435,
+    "crescentTopMeters": 601,
+    "lowerTowers": "Six named mapped building parts:457669754,457669755,457669758,457669759,457669762,457669764; individual plan/heights retained, tent roof form reconstructed"
+  },
+  "referencePages": [
+    "https://www.sl-rasch.com/en/projects/the-makkah-royal-clock-tower/",
+    "https://www.sl-rasch.com/en/projects/tower-tents/",
+    "https://www.perrot-turmuhren.de/turmuhren-laeuteanlagen-sonderuhren-turmzieren-glockenspiele/besondere-uhren-spezialuhren/groesste-turmuhr-makkah-clock.html",
+    "https://www.openstreetmap.org/way/958867174",
+    "https://www.openstreetmap.org/relation/12896421"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      39.825709399,
+      21.41875799
+    ],
+    "heading": -0.348694692272,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/12896421",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/12896421"
+    ],
+    "wikidataId": "Q189476",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Whole-complex mapped frame retained. Main clock shaft is separately located at[39.82553895,21.41812445] from exact-QID way958867174 and rotated internally so the wider43 m faces point north/south. Six named surrounding tower parts retain their actual mapped plans, signed orientation and heights; source map-parts.json preserves that evidence."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Clock numerals use original geometric strokes at the manufacturer-described approximate7 m height; exact typographic outlines remain reconstructed. Arabic calligraphy and fine Islamic mosaic motifs are omitted. Roof tents are reconstructed within mapped tower plans. OSM records279 m for the two taller side towers while an older architect roof description says up to250 m; mapped heights are retained. Conflicting601/607 m main-tower datums are documented;601 m is used."
+  ],
+  "qaCameras": [
+    {
+      "name": "four-clock-faces",
+      "position": [
+        141,
+        455,
+        191
+      ],
+      "lookAt": [
+        8,
+        438,
+        72
+      ]
+    },
+    {
+      "name": "jewel-crescent",
+      "position": [
+        128,
+        602,
+        186
+      ],
+      "lookAt": [
+        8,
+        551,
+        72
+      ]
+    },
+    {
+      "name": "tent-roofs",
+      "position": [
+        -241,
+        282,
+        288
+      ],
+      "lookAt": [
+        -77,
+        229,
+        35
+      ]
+    },
+    {
+      "name": "hotel-podium",
+      "position": [
+        223,
+        99,
+        312
+      ],
+      "lookAt": [
+        0,
+        77,
+        33
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -639,
+        444,
+        1034
+      ],
+      "lookAt": [
+        0,
+        287,
+        30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 817086,
+    "vertices": 2289412,
+    "materials": 6,
+    "bytes": 89938096,
+    "sha256": "sha256:33e13e87b40aea364b703acddbda0682d8e7af348fd2ddac6c49121eb563cebf"
+  }
+}

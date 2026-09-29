@@ -123,7 +123,7 @@ function renderComponents() {
   const lines = [
     '# Components',
     '',
-    'Components are pure-JSON data attached to entities. molen ships a known component vocabulary;',
+    'Components are pure-JSON data attached to entities. Molen ships a known component vocabulary;',
     "`molen validate` checks component data against it, so a typo'd name (`helth` → `health`) or a",
     'wrong field (`transform.position` → `pos`) is caught in the cheap pre-sim loop. **Inventing your',
     "own components is fine** — a name that doesn't resemble a known one is accepted as-is (declare it",
@@ -200,7 +200,14 @@ if (check) {
   console.log(`docs-src/schemas is up to date (${pages.size} files)`);
 } else {
   await mkdir(outDir, { recursive: true });
-  for (const [name, content] of pages) await writeFile(join(outDir, name), content);
+  for (const [name, content] of pages) {
+    const path = join(outDir, name);
+    const current = await readFile(path, 'utf8').catch((error) => {
+      if (error.code !== 'ENOENT') throw error;
+      return undefined;
+    });
+    if (current !== content) await writeFile(path, content);
+  }
   console.log(
     `generated schema docs for ${kinds.length} kinds + ${listComponents().length} components -> docs-src/schemas/`,
   );

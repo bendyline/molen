@@ -208,6 +208,43 @@ describe('normalized semantic mesh adapter', () => {
     expect(sharedSpies.every((spy) => spy.mock.calls.length === 0)).toBe(true);
   });
 
+  it('estimates lake level from its interior instead of raising water onto shoreline banks', () => {
+    const ctx = context();
+    const samples = new Float32Array(81).fill(0.25);
+    for (let y = 0; y < 9; y++)
+      for (let x = 0; x < 9; x++)
+        if (x === 0 || x === 8 || y === 0 || y === 8) samples[y * 9 + x] = 0.9;
+    ctx.heightfield = new Heightfield(samples, 9, 9, {
+      origin: ctx.origin,
+      worldSize: [ctx.tileSize, ctx.tileSize],
+      height: { min: 0, max: 20 },
+    });
+    const tile = semanticTile();
+    tile.water = [
+      {
+        polygons: [
+          {
+            outer: [
+              [0, 0],
+              [1, 0],
+              [1, 1],
+              [0, 1],
+            ],
+          },
+        ],
+      },
+    ];
+    const object = createTerrainSemanticObject(tile, ctx, {
+      renderLandcover: false,
+      renderTransportation: false,
+      renderBuildings: false,
+    });
+    const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+    const p = water.geometry.getAttribute('position');
+    for (let i = 0; i < p.count; i++) expect(p.getY(i)).toBeCloseTo(5.65);
+    disposeTerrainSemanticObject(object);
+  });
+
   it('connects source and renderer lifecycles through a generic adaptive layer', async () => {
     const ctx = context();
     const source = { load: vi.fn(async () => semanticTile()) };

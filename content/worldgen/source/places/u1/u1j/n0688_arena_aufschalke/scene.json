@@ -1,0 +1,77 @@
+{
+  "format": "molen/scene@3",
+  "name": "Arena AufSchalke asset preview",
+  "seed": "n0688_arena_aufschalke",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.n0688_arena_aufschalke",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      210,
+      144,
+      235
+    ],
+    "lookAt": [
+      0,
+      8,
+      15
+    ],
+    "fov": 38
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

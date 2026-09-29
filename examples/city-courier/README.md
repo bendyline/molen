@@ -29,6 +29,19 @@ W/S or Up/Down: accelerate and reverse. A/D or Left/Right: steer. Space: handbra
 
 The car is an arcade controller with a conservative circular collision footprint in XZ. It is not a suspension/tire simulation. Change handling and the delivery route in `scripts[0].config`, vehicle dimensions in the `vehicle` prefab, and traffic routes in `trafficCar` components.
 
+## Sound
+
+The `audio` entity's `audioEnvironment` plays city traffic ambience and racing music and maps the `crash` and `delivery` events to sounds. The player's `audioSource` engine follows its measured speed (`self.speed`), and each traffic car carries a quieter positional engine. `scripts/game.ts` calls `molen.audio.play` for the win and loss stings. `src/audio.ts` loads the CC0 `molen.sounds` content pack and plays the rules; without it the
+game is silent. In your own copy, fetch the pack once:
+
+```sh
+npx molen pack fetch https://molen.dev/packs/index.json molen.sounds --out-dir public/packs
+npx molen audio plan scene.json --ticks 300
+```
+
+`molen audio plan` lists the loops and one-shots the scene would play, without a browser. See
+[Sound and music](https://molen.dev/guide/audio).
+
 ## Verify
 
 From this directory:

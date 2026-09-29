@@ -1,0 +1,63 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0648_sorve_lighthouse",
+  "sourceHash": "sha256:969078e1dfe6ad1c1c515991583ac67092528410f01bc09db8988726c12eaaa0",
+  "runtimeHash": "sha256:d0d738a3a36d2374f577fc62669bba8f38e59b8fc2150cbaaeb7110f58d06c38",
+  "captureReportHash": "sha256:cc9046c4867f3ffdcec7016c604e1d9f5cc8322c8583544223785c7eaa834cf8",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed exterior geometry and portable material rendering; all report frames inspected.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-lantern.png",
+      "shots/near-paint-boundary.png",
+      "shots/near-base.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "All18 frames inspected. Concrete taper, paint boundary, sparse recessed openings, casting joints, gallery and double lantern cage render cleanly; far framing now includes the complete silhouette."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:e514eba631c309e3d2e46deb2e39d8db371df0ea356b7f89fec1a05356005f72",
+    "fixtureHash": "sha256:5e50bd0a6aed4485b81606c836567c2c09c8642a6d466d548d2f2f24516ad17b",
+    "specHash": "sha256:f4d63509e219a68e3a83a887dbd1f9d6941a423a468e7263099a805a66d06d51",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/near-paint-boundary.png",
+      "shots/shared/near-base.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All nine refreshed shared frames reviewed after entrance heading correction. Metric concrete repeats, actual recessed openings and double lantern/gallery railings remain coherent. Portable geometry is unchanged from the previous full review."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4a539f96d5dd369b134e5813ab09369a2f67820af5190e2e317e31a9a7b44f1f",
+    "notes": "Authority tower center and mapped access path1199536561 resolve the northwest entrance at heading0.505986351887rad. North-up and turntable views confirm that direction; terrain contact follows host terrain."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Exterior appearance in Molen shared material style, subject to source appearance epoch.",
+    "notes": "Detailed53m exterior accepted in Molen shared style against authority photograph/current dimensions. Concrete surface and casting joints, black/white split, flared gallery, rails and cage reproduce the characteristic tower without requiring photograph-specific stains."
+  }
+}

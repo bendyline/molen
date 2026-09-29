@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Långe Jan asset preview",
+  "seed": "n0664_lange_jan",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.n0664_lange_jan",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.14,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            66.55999755859375,
+            0.2,
+            66.55999755859375
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#858878",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      28.287998962402344,
+      26.623999023437502,
+      49.91999816894531
+    ],
+    "lookAt": [
+      0,
+      19.551999282836913,
+      0
+    ],
+    "fov": 38
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

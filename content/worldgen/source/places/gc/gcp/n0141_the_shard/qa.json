@@ -1,0 +1,51 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0141_the_shard",
+  "sourceHash": "sha256:c546fa41ecf700319fb5fd6b3c509311a6024529ff729ac8fae8759e71506275",
+  "runtimeHash": "sha256:71cc5d9efbc30dd48fe7a167d41186763d8d051e709be2d359c5df36b219b11c",
+  "captureReportHash": "sha256:a15ba81a25fb6002713c33709ca87cf3a357c0fc227152f713666ebfbdb7f640",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/spire.png",
+      "shots/spire-reverse.png",
+      "shots/near-facade.png",
+      "shots/podium.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all ten current portable frames: preview, four turntable sides, facade, podium, two spire details and far silhouette. Individually clipped facade panels and recessed weather enclosure have continuous coverage, with no former unpanelled strips. Transparent upper panes expose the steel cross-bracing and separate spire ends. Fine mullions alias at distance in the portable capture; the antialiased shared renderer resolves these.",
+    "scope": "Detailed architectural exterior."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:70be5262ef18099ab22e7cad537fbe9bd546d9812bb71f7fb52ef1c6ee6b18fd",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/spire.png",
+      "shots/shared/spire-reverse.png",
+      "shots/shared/near-facade.png",
+      "shots/shared/podium.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all ten current shared frames, including four sides and the map overlay. Shared metal and local glass retain consistent color, complete pane coverage and separate spires. The reverse spire close-up intentionally crops tips; the other spire view and overview frames show the full height. Placement and unload fixtures pass."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a5daa2dfe8d6376be1dcc3e819ad0fcb62924c1fa586b50eef8d14483472a673",
+    "notes": "The north-up placement overlay matches the mapped eight facade planes and two eastern podium wings. Detailed OSM building parts 666124825 through 666124832 supply the independent signed roof directions, which remove the former symmetric-pyramid approximation. The anchor is [-0.086344388,51.504402487], heading -0.651140293604, with ground Y0 on host terrain. Podium parts 665171689/665171690 are 70m/74m high."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Detailed 269299-triangle exterior with the eight distinct mapped planes, separate 235m to 309.6m tips, 1.5m by 3.45m nominal pane grid, physical mullions and transoms, recessed occupied-level enclosure, transparent spire glazing and internal bracing, and the two mapped podium wings. The spire and facade composition were checked against the building operator and facade contractor photographs. The mesh is a reconstruction, with panel spacing, internal spire brace pattern and enclosure setbacks inferred; interior rooms, underground station and surrounding city block are outside the asset scope."
+  }
+}

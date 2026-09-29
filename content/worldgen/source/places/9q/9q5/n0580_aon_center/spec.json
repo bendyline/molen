@@ -1,0 +1,164 @@
+{
+  "id": "N0580",
+  "planId": "N0580",
+  "assetId": "molen.worldgen.structure.n0580_aon_center",
+  "title": "Aon Center (Los Angeles)",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q607743"
+  },
+  "wikidataId": "Q607743",
+  "visualBrief": "Charles Luckman’s bronze Los Angeles tower with a deeply modeled curtain-wall grid, stepped pale corners, double-height glazed lobby and entrance canopy, white roof screen with red Aon signs, and the private rooftop helicopter pad.",
+  "size": [
+    54,
+    265,
+    38
+  ],
+  "actualBounds": {
+    "min": [
+      -27.040000915527344,
+      0,
+      -17.756927490234375
+    ],
+    "max": [
+      27.040000915527344,
+      264.92840576171875,
+      19.850000381469727
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the south-east Wilshire entrance facade; +X follows the north-east long axis",
+    "origin": "Exact-QID mapped shaft center, ground contact Y=0"
+  },
+  "scaleBasis": "The City of Los Angeles environmental study identifies this exact address as 858 feet high; the owner’s 2025 brochure confirms 62 stories, correcting the conflicting 67-floor map tag. Exact mapped stepped perimeter sets plan dimensions. Current owner aerials establish the bronze windows, pale corner cladding, crown sign position and southwest roof helipad.",
+  "geographicProposal": {
+    "anchor": [
+      -118.256990902,
+      34.049232293
+    ],
+    "heading": 0.904196755804,
+    "source": "https://www.openstreetmap.org/way/428021714",
+    "evidence": "Exact-QID stepped footprint supplies the long axis; the owner’s aerial context places the entrance on the south-east Wilshire facade and helicopter pad on the southwest half of the roof.",
+    "orientationConfidence": "exact-mapped-perimeter-and-owner-aerial-context",
+    "limitations": "The separate adjoining parking structure is not duplicated. Small roof-service dimensions are reconstructed from aerial photographs; the 261.5184 m published roof datum excludes rooftop aerials.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID stepped footprint supplies the long axis; the owner’s aerial context places the entrance on the south-east Wilshire facade and helicopter pad on the southwest half of the roof. The separate adjoining parking structure is not duplicated. Small roof-service dimensions are reconstructed from aerial photographs; the 261.5184 m published roof datum excludes rooftop aerials."
+  },
+  "sourceFacts": {
+    "roofHeightFeet": 858,
+    "roofHeightMeters": 261.5184,
+    "ownerPublishedStories": 62,
+    "typicalFloorSquareFeet": 19500,
+    "architect": "Charles Luckman",
+    "privateRooftopHelipad": true
+  },
+  "referencePages": [
+    "https://707wilshire.com/",
+    "https://images1.showcase.com/d2/M41o8nFrIRkn3FD0-djaLKnSrVQz4ZocUGsM2JRHuW4/document.pdf",
+    "https://planning.lacity.gov/eir/WilshireGrandRedevProj/DEIR/DEIR%20Sections/IV.A.2.%20Land%20Use%20Physical.pdf",
+    "https://www.laconservancy.org/learn/historic-places/aon-center/",
+    "https://www.openstreetmap.org/way/428021714"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Individual office blind states and reflections are dynamic and not baked into the asset. Rooftop service equipment and aerials use visible owner photographs rather than an as-built mechanical schedule.",
+    "The 62-story owner description takes precedence over the conflicting 67-floor map tag. The adjacent garage and other independently mapped buildings are outside this tower asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "wilshire-entrance",
+      "position": [
+        35,
+        14,
+        43
+      ],
+      "lookAt": [
+        0,
+        7,
+        16
+      ]
+    },
+    {
+      "name": "curtain-wall",
+      "position": [
+        48,
+        140,
+        54
+      ],
+      "lookAt": [
+        0,
+        133,
+        0
+      ]
+    },
+    {
+      "name": "crown-signs",
+      "position": [
+        57,
+        258,
+        62
+      ],
+      "lookAt": [
+        0,
+        250,
+        0
+      ]
+    },
+    {
+      "name": "helipad-and-services",
+      "position": [
+        -61,
+        305,
+        62
+      ],
+      "lookAt": [
+        0,
+        259,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        305,
+        154,
+        397
+      ],
+      "lookAt": [
+        0,
+        132,
+        0
+      ]
+    }
+  ]
+}

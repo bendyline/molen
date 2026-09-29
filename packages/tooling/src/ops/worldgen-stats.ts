@@ -84,6 +84,12 @@ type TerrainClientModule = typeof import('@bendyline/molen-terrain/client');
 
 /** Local archive path of a package source; remote archives are not read by this Node op. */
 function archivePath(source: TerrainPackageArchiveSource): string {
+  if (source.kind === 'pmtiles-set') {
+    const location = 'path' in source ? source.path : source.url;
+    throw new Error(
+      `archive set ${location} is not supported; worldgen stats reads single local PMTiles archives`,
+    );
+  }
   if ('path' in source) return source.path;
   throw new Error(`archive ${source.url} is remote; worldgen stats reads local packages only`);
 }

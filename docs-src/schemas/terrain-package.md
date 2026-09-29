@@ -305,6 +305,46 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
                 "url"
               ],
               "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Package-relative path of the archive-set document."
+                }
+              },
+              "required": [
+                "kind",
+                "path"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Absolute URL of the archive-set document."
+                }
+              },
+              "required": [
+                "kind",
+                "url"
+              ],
+              "additionalProperties": false
             }
           ],
           "description": "Archive holding the elevation tiles."
@@ -460,6 +500,46 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
                 "url"
               ],
               "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Package-relative path of the archive-set document."
+                }
+              },
+              "required": [
+                "kind",
+                "path"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Absolute URL of the archive-set document."
+                }
+              },
+              "required": [
+                "kind",
+                "url"
+              ],
+              "additionalProperties": false
             }
           ],
           "description": "Archive holding the landcover tiles."
@@ -528,6 +608,46 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
                   "type": "string",
                   "format": "uri",
                   "description": "Absolute URL of the PMTiles archive."
+                }
+              },
+              "required": [
+                "kind",
+                "url"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Package-relative path of the archive-set document."
+                }
+              },
+              "required": [
+                "kind",
+                "path"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "pmtiles-set",
+                  "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "Absolute URL of the archive-set document."
                 }
               },
               "required": [

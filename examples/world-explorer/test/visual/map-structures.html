@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mapped structure rendering check</title>
+    <style>
+      html, body { margin: 0; overflow: hidden; font-family: system-ui, sans-serif; background: #bed1df; }
+      canvas { display: block; }
+      #caption { position: fixed; left: 24px; top: 22px; max-width: 650px; color: #152b31; }
+      h1 { font-size: 25px; margin: 0 0 8px; }
+      p { font-size: 15px; line-height: 1.5; margin: 0; }
+      #status { position: fixed; left: 24px; bottom: 22px; padding: 10px 15px; border-radius: 7px;
+        background: #17333bdd; color: #f2f8fa; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <section id="caption"><h1 id="title">Mapped structures</h1><p id="description">Loading the authored models…</p></section>
+    <div id="status">Loading</div>
+    <script type="module" src="./map-structures.ts"></script>
+  </body>
+</html>

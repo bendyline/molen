@@ -1,0 +1,51 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0583_lotus_tower",
+  "sourceHash": "sha256:5b35082ce20ec2c0792aa5f70992fcf2ad054ef066f7f4c9ef275c6781c1089f",
+  "runtimeHash": "sha256:5659ea826498709d1935fadeef035d0a576efc63ce5c1a2b0704bd867d4aace6",
+  "captureReportHash": "sha256:fe4de45320b1e62ab264789b9e7cceca465b4db0a5f53cbbf306528e0f2870c9",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed world-viewer exterior reconstruction",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/podium-and-entrance.png",
+      "shots/green-stem-collars.png",
+      "shots/lotus-petals.png",
+      "shots/antenna-platforms.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all ten current portable frames, including the original-resolution petal close-up. The revised head has 32 separately modeled pointed, overlapping glazed petals and an open crown around the antenna base. The green calyx has no stray metal loops; two maintenance collars, tapered shaft, mast platforms, four entrances, rounded white fascia ornaments and roof pavilion are present. Thin glazing bars become subpixel dashed lines in the more distant portable capture, while the close shared capture resolves continuous members; there is no intersecting duplicate petal grid or missing exterior mass."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e8ad3a4e501a43564093214432d208f55e42c34fcee0228e439d4c66388ad00e",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/podium-and-entrance.png",
+      "shots/shared/green-stem-collars.png",
+      "shots/shared/lotus-petals.png",
+      "shots/shared/antenna-platforms.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all ten current sky-PMREM shared frames, including the full-resolution head and north-up placement view. Shared concrete and painted-metal surfaces retain metric texture scale and source tints. Glass uses its portable PBR fallback with the actual sky environment; all pointed leaf courses and crown gaps remain readable. Podium fascia now has rounded volume, and the roof pavilion has its glazed ring and shallow roof. The capture report verifies material reuse, geographic loading and unloading."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:7260f0a14886a38b50f530bfc34a992db427366b1215c885f8cad6759e7f0852",
+    "notes": "The 83.1 m circular podium agrees with the exact-QID OSM footprint in the north-up placement frame. The signed native +Z entrance is registered to mapped WNW entrance node 13680101733, with the other three mapped doors corroborating quarter-turn repetition. Source-local map-evidence.json retains the independently mapped roof pods and part envelopes. Ground contact is Y=0. The separate published architectural/tip heights and the operator floor elevations are retained explicitly rather than scaling the complete tower to an ambiguous rounded 350 m value."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Passed for the requested detailed world-viewer exterior: distinctive lotus head, all 32 petal outlines and modeled glazing divisions, green supporting calyx/stem, paired maintenance collars, open observation crown, white antenna plinths, stepped mast, service platforms, roof pavilion, lotus fascia and four entry axes have been compared with the operator photography and regulator construction sections. Fine rail spacing and glazing subdivisions remain photographic reconstructions; dynamic LED programming, movable roof furniture and the independent lakefront landscape are intentionally outside this fixed exterior asset. No unobserved interior or historical alternative is claimed."
+  }
+}

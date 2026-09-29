@@ -1,0 +1,184 @@
+{
+  "id": "N0590",
+  "planId": "N0590",
+  "assetId": "molen.worldgen.structure.n0590_town_hall_tower",
+  "title": "Town Hall Tower (Kraków)",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1786361"
+  },
+  "wikidataId": "Q1786361",
+  "visualBrief": "Kraków’s surviving Gothic town-hall tower with three richly dressed facades, projecting stone oriels, blind tracery and crocketed window gables, a plain north wall and lion stairway, four green Roman clocks, dark copper Baroque helmet and gilded crown with White Eagle.",
+  "size": [
+    15,
+    75,
+    15
+  ],
+  "actualBounds": {
+    "min": [
+      -7.769999980926514,
+      0,
+      -6.829999923706055
+    ],
+    "max": [
+      7.769999980926514,
+      75,
+      9.0600004196167
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the plain north-north-east entrance facade",
+    "origin": "Center of the surviving tower at ground level Y=0; entrance stair projects to native +Z"
+  },
+  "scaleBasis": "The museum’s published 75 m height sets the vertical envelope. The exact-identity mapped tower controls plan and orientation. Registry exterior photographs and the museum leaflet elevation establish storey proportions, asymmetric stone cladding, three reconstructed oriels, clock tier and compound octagonal copper roof.",
+  "geographicProposal": {
+    "anchor": [
+      19.936407342,
+      50.061475549
+    ],
+    "heading": 2.714243093257,
+    "source": "https://www.openstreetmap.org/way/25122842",
+    "evidence": "The exact mapped principal wall axis is directed so the plain entrance and lion stairway face north-north-east, matching the registry description and site photographs. The base shaft is slightly inset from projecting stonework in the mapped outline.",
+    "orientationConfidence": "exact-map-axis-and-primary-described-entrance",
+    "limitations": "The documented 55 cm lean has no defensible compass vector in the cited evidence and is not arbitrarily assigned. The source does not treat the demolished adjoining town hall as a present building.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact mapped principal wall axis is directed so the plain entrance and lion stairway face north-north-east, matching the registry description and site photographs. The base shaft is slightly inset from projecting stonework in the mapped outline. The documented 55 cm lean has no defensible compass vector in the cited evidence and is not arbitrarily assigned. The source does not treat the demolished adjoining town hall as a present building."
+  },
+  "sourceFacts": {
+    "museumPublishedHeightMeters": 75,
+    "decoratedFacades": 3,
+    "plainFormerlyAttachedFacades": 1,
+    "orielWindows": 3,
+    "clockFaces": 4,
+    "baroqueHelmetDate": 1783,
+    "knownLeanCentimeters": 55
+  },
+  "referencePages": [
+    "https://muzeumkrakowa.pl/oddzialy/wieza-ratuszowa",
+    "https://muzeumkrakowa.pl/oddzialy/historia-6",
+    "https://muzeumkrakowa.pl/plik-do-pobrania/811",
+    "https://sklep.muzeumkrakowa.pl/produkt/wieza-ratuszowa-przewodnik",
+    "https://zabytek.pl/pl/obiekty/krakow-wieza-ratuszowa",
+    "https://www.openstreetmap.org/way/25122842"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Stone tracery, corbels and lions are original polygonal reconstructions from current published views; tiny tool marks, individual damage patches and inscriptions are not transcribed.",
+    "The historical lean magnitude is documented, but its direction is unresolved and not guessed. Clock hands are fixed, and the tower interior and demolished adjoining town hall are outside the exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "north-lion-stair",
+      "position": [
+        14,
+        8,
+        23
+      ],
+      "lookAt": [
+        0,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "gothic-oriel",
+      "position": [
+        -21,
+        23,
+        -25
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "clock-and-frieze",
+      "position": [
+        21,
+        46,
+        -25
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "copper-helmet",
+      "position": [
+        17,
+        68,
+        24
+      ],
+      "lookAt": [
+        0,
+        62,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        88,
+        49,
+        116
+      ],
+      "lookAt": [
+        0,
+        37.5,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "id": "N0679",
+  "key": "kullen_lighthouse",
+  "title": "Kullen Lighthouse",
+  "wikidataId": "Q1518751",
+  "metricTriangleUv": true,
+  "size": [
+    19,
+    15,
+    16
+  ],
+  "visualBrief": "Short rough-granite cylindrical tower with five broad seaward watchroom windows, masonry parapet/scuppers, white ventilated drum, tall clear lantern and visible three-panel first-order optic, black domed roof and weather mast; attached low stone service house and carved granite-column entrance porch.",
+  "sourceFacts": {
+    "heightMeters": 15,
+    "focalElevationMeters": 78.5,
+    "mappedTowerDiameterMeters": 6.5,
+    "attachedHousePlanMeters": [
+      15,
+      8.66
+    ],
+    "basis": "Sjöfartsverket identifies the1900 granite/gneiss tower and its78.5m focal elevation. The authority-linked Swedish Lighthouse Society gives15m structural height and credited close photographs of the watchroom, first-order lens and carved entrance. The exact-QID tower and current mapped building parts fix the attached house footprint; component heights and small relief are photo-proportioned."
+  },
+  "referencePages": [
+    "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/kullen--sveriges-kap-horn/",
+    "https://wiki.fyr.org/index.php/Kullen",
+    "https://wiki.fyr.org/images/9/9a/KullenFyr143EsbjHillberg.jpg",
+    "https://wiki.fyr.org/images/5/55/KullenLins142EsbjHillberg.jpg",
+    "https://wiki.fyr.org/images/f/f0/714600DT01.jpg",
+    "https://wiki.fyr.org/images/1/15/714600DT02.jpg",
+    "https://www.openstreetmap.org/way/1197717521",
+    "https://www.openstreetmap.org/way/1483946313",
+    "https://www.openstreetmap.org/way/1483946315"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      12.451522111,
+      56.301025985
+    ],
+    "heading": -0.123,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/1483946313",
+    "notes": "Mapped house long axis resolves native+X east/slightly south; native+Z runs into the attached house south of the tower. The seaward watchroom faces native-Z, and mapped small roof identifies the northeast columned porch. Origin is the tower center at local site grade, not focal elevation."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "The granite and gneiss use shared metric mineral surfaces; individual historic stones are not surveyed. The broad watchroom, porch carving and lens silhouette follow credited photographs; fine casting and optical prisms are original geometric reconstructions. The detached downhill fog-signal building, keeper homes and hill terrain remain map context. The15m extent includes weather instrumentation."
+  ],
+  "previewCamera": {
+    "position": [
+      -22,
+      17,
+      -29
+    ],
+    "lookAt": [
+      4,
+      6,
+      3
+    ],
+    "fov": 46
+  },
+  "qaCameras": [
+    {
+      "name": "near-watchroom",
+      "position": [
+        -7,
+        7,
+        -9
+      ],
+      "lookAt": [
+        0,
+        6.6,
+        0
+      ]
+    },
+    {
+      "name": "near-optic",
+      "position": [
+        5,
+        12,
+        -7
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ]
+    },
+    {
+      "name": "near-carved-porch",
+      "position": [
+        9,
+        3.4,
+        -6
+      ],
+      "lookAt": [
+        4.9,
+        1.8,
+        0.3
+      ]
+    },
+    {
+      "name": "near-service-house",
+      "position": [
+        20,
+        8,
+        18
+      ],
+      "lookAt": [
+        8,
+        2.5,
+        5
+      ]
+    },
+    {
+      "name": "far-ensemble",
+      "position": [
+        -25,
+        23,
+        -35
+      ],
+      "lookAt": [
+        4,
+        6,
+        3
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0679_kullen_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -3.630000114440918,
+      0,
+      -3.630000114440918
+    ],
+    "max": [
+      15.680000305175781,
+      15,
+      10.5600004196167
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

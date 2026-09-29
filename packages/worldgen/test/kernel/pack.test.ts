@@ -45,13 +45,16 @@ function meanLuminance(doc: MatGraphDoc): number {
 }
 
 describe('default pack', () => {
-  it('references generated materials and prop models that resolve', () => {
+  it('references generated materials, prop models, and site structures that resolve', async () => {
     expect(Object.keys(pack.materials).length).toBeGreaterThanOrEqual(15);
     expect(Object.keys(pack.assets)).toEqual(
       expect.arrayContaining([
         'molen.worldgen.prop.chimney.brick',
         'molen.worldgen.prop.rooftop.hvac',
         'molen.worldgen.prop.canale',
+        'molen.worldgen.structure.space_needle',
+        'molen.worldgen.structure.golden_gate_bridge',
+        'molen.worldgen.structure.sr_520_floating_bridge',
       ]),
     );
     const refs = stylePackMaterialRefs(pack);
@@ -65,6 +68,50 @@ describe('default pack', () => {
     expect(index['molen.worldgen.prop.canale']).toBe(
       'https://example.test/pack/assets/prop/canale/model.glb',
     );
+    for (const id of [
+      'molen.worldgen.structure.space_needle',
+      'molen.worldgen.structure.golden_gate_bridge',
+      'molen.worldgen.structure.sr_520_floating_bridge',
+    ]) {
+      expect(index[id]).toBe(
+        new URL('model.glb', `https://example.test/pack/${pack.assets[id]}`).href,
+      );
+    }
+    const catalog = (await readJson('source/site-structures/asset-index.json')) as {
+      id: string;
+    }[];
+    expect(catalog).toHaveLength(97);
+    const project = (await readJson('project.json')) as { assets: Record<string, string> };
+    // Every imported landmark must ship, and no stale structure sidecar may remain in the pack.
+    expect(
+      Object.fromEntries(
+        Object.entries(pack.assets).filter(([id]) => id.startsWith('molen.worldgen.structure.')),
+      ),
+    ).toEqual(project.assets);
+    expect(
+      Object.keys(pack.assets).filter((id) => !id.startsWith('molen.worldgen.structure.')),
+    ).toEqual([
+      'molen.worldgen.prop.chimney.brick',
+      'molen.worldgen.prop.rooftop.hvac',
+      'molen.worldgen.prop.canale',
+    ]);
+    const materialCatalog = (await readJson('source/material-library/catalog.json')) as {
+      entries: { id: string; path: string; materialRef: string }[];
+    };
+    expect(new Set(materialCatalog.entries.map(({ id }) => id)).size).toBe(
+      materialCatalog.entries.length,
+    );
+    expect(Object.fromEntries(materialCatalog.entries.map(({ id, path }) => [id, path]))).toEqual(
+      pack.root.materials,
+    );
+    for (const { id, materialRef } of materialCatalog.entries) {
+      expect(parseMaterialRef(materialRef), id).toEqual({ kind: pack.materials[id], ref: id });
+    }
+    for (const { id } of catalog) {
+      expect(index[id], id).toBe(
+        new URL('model.glb', `https://example.test/pack/${pack.assets[id]}`).href,
+      );
+    }
     expect(index['molen.worldgen.material.stucco']).toBe(
       'https://example.test/pack/materials/stucco.matgraph.json',
     );
@@ -88,7 +135,7 @@ describe('default pack', () => {
       if (!parsed.ok) throw new Error(parsed.formatted);
       expect(meanLuminance(parsed.value as MatGraphDoc), id).toBeGreaterThanOrEqual(0.55);
     }
-  }, 60_000); // Full-resolution validation covers all 45 materials and their PBR channels.
+  }, 60_000); // Bake every multiply-tinted material at its authored resolution.
 
   it('generates textured buildings with props from every house style', () => {
     const outline = SHAPES.L as Vec2[];

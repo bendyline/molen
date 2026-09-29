@@ -1,0 +1,148 @@
+{
+  "id": "N0654",
+  "key": "vieille_lighthouse",
+  "title": "La Vieille Lighthouse",
+  "wikidataId": "Q2085015",
+  "size": [
+    8.4,
+    26.9,
+    12
+  ],
+  "visualBrief": "Weathered square granite tower with a full-height rounded northern stair projection, small white-framed openings, alternating corner stones, deep paired corbels and a castellated square gallery. Restored dark lantern, sector panes, southern solar panels and aerials follow the operator’s2022 photograph.",
+  "sourceFacts": {
+    "heightMeters": 26.9,
+    "seaElevationMeters": 36,
+    "year": 1887,
+    "basis": "Finistère departmental archives and DIRM2025 operator portfolio both publish26.90m structure height. Archive description specifies semicircular northern projection. DIRM photograph documents restored2022 lantern and notes the Temperley mast fell in2008; it is omitted."
+  },
+  "referencePages": [
+    "https://archives.finistere.fr/histoires-animees/expositions-numeriques/phares-et-balises/la-vieille",
+    "https://www.dirm.nord-atlantique-manche-ouest.developpement-durable.gouv.fr/IMG/pdf/livret_phares_2025_export_web_mini_cle527eb3.pdf",
+    "https://www.openstreetmap.org/way/737263555"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -4.75644475,
+      48.0406734
+    ],
+    "heading": 0.161623460236,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/737263555",
+    "notes": "Exact-QID mapped square footprint sets the axis; the primary archive specifies its round projection on the north, resolving the quadrant. Authored-X eastish, -Z north-northwest rounded projection. Host terrain supplies contact with Gorle Bella rock."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Square shaft dimensions follow the mapped6.43m plan; setbacks, corbels and projections are photo-proportioned. The rock is host terrain; external lost loading mast is deliberately absent from this post2022 exterior. Static lantern glazing does not simulate its navigation sectors."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-gallery",
+      "position": [
+        12,
+        25,
+        15
+      ],
+      "lookAt": [
+        0,
+        22.9,
+        0
+      ]
+    },
+    {
+      "name": "near-north-turret",
+      "position": [
+        -12,
+        14,
+        -19
+      ],
+      "lookAt": [
+        0,
+        12,
+        -2
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        10,
+        8,
+        -15
+      ],
+      "lookAt": [
+        0,
+        4,
+        -3
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        35,
+        22,
+        45
+      ],
+      "lookAt": [
+        0,
+        12.8,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0654_vieille_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -4.099999904632568,
+      0,
+      -7.917557716369629
+    ],
+    "max": [
+      4.099999904632568,
+      26.899999618530273,
+      4.099999904632568
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

@@ -4,6 +4,7 @@ import { mkdir, open, readdir, readFile, rm, stat, writeFile } from 'node:fs/pro
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import {
   type PackIndex,
+  type PackIndexEntry,
   type PackManifest,
   type PackSourceConfig,
   validate,
@@ -74,8 +75,12 @@ export interface PackSource {
   files: PackFile[];
 }
 
-/** Read a pack's source directory: its settings file and every file it includes. */
-export async function readPackSource(dir: string): Promise<PackSource> {
+/** List validated source settings and included paths without loading file contents. */
+export async function listPackSource(dir: string): Promise<{
+  dir: string;
+  config: PackSourceConfig;
+  paths: string[];
+}> {
   const root = resolve(dir);
   let raw: unknown;
   try {
@@ -95,13 +100,19 @@ export async function readPackSource(dir: string): Promise<PackSource> {
     .filter((path) => include.some((glob) => glob.test(path)))
     .filter((path) => !exclude.some((glob) => glob.test(path)))
     .sort();
+  return { dir: root, config, paths: selected };
+}
+
+/** Read a pack's source directory: its settings file and every file it includes. */
+export async function readPackSource(dir: string): Promise<PackSource> {
+  const source = await listPackSource(dir);
   const files = await Promise.all(
-    selected.map(async (path) => ({
+    source.paths.map(async (path) => ({
       path,
-      bytes: new Uint8Array(await readFile(join(root, ...path.split('/')))),
+      bytes: new Uint8Array(await readFile(join(source.dir, ...path.split('/')))),
     })),
   );
-  return { dir: root, config, files };
+  return { dir: source.dir, config: source.config, files };
 }
 
 function optionsOf(config: PackSourceConfig): PackOptions {
@@ -169,6 +180,32 @@ async function readIndex(path: string): Promise<PackIndex> {
 }
 
 /**
+ * List a pack file in `outDir/index.json` (a molen/pack-index@1 document), replacing the entry for
+ * the same pack id and deleting that entry's previous file when nothing else lists it. Returns the
+ * index path. A browser opens packs from that index (`openPacksFromIndex` in molen-earth).
+ */
+export async function recordInPackIndex(
+  outDir: string,
+  id: string,
+  entry: PackIndexEntry,
+): Promise<string> {
+  const indexPath = join(outDir, PACK_INDEX_FILE);
+  const index = await readIndex(indexPath);
+  const previous = index.packs[id]?.file;
+  index.packs[id] = entry;
+  const sorted: PackIndex = {
+    format: 'molen/pack-index@1',
+    packs: Object.fromEntries(Object.entries(index.packs).sort(([a], [b]) => (a < b ? -1 : 1))),
+  };
+  await writeFile(indexPath, `${JSON.stringify(sorted, null, 2)}\n`);
+  const stillListed = Object.values(sorted.packs).some((e) => e.file === previous);
+  if (previous !== undefined && previous !== entry.file && !stillListed) {
+    await rm(join(outDir, previous), { force: true });
+  }
+  return indexPath;
+}
+
+/**
  * Build a pack source directory into `outDir`. The file name carries a hash of its bytes, so a
  * host can cache it forever; `index.json` in `outDir` maps the pack id to its current file, and
  * the previous build of the same pack is removed.
@@ -189,24 +226,12 @@ export async function buildPack(
   await mkdir(outDir, { recursive: true });
   const path = join(outDir, file);
   await writeFile(path, built.bytes);
-  const indexPath = join(outDir, PACK_INDEX_FILE);
-  const index = await readIndex(indexPath);
-  const previous = index.packs[id]?.file;
-  index.packs[id] = {
+  const indexPath = await recordInPackIndex(outDir, id, {
     version: built.manifest.version,
     file,
     contentHash: built.manifest.contentHash,
     size: built.bytes.length,
-  };
-  const sorted: PackIndex = {
-    format: 'molen/pack-index@1',
-    packs: Object.fromEntries(Object.entries(index.packs).sort(([a], [b]) => (a < b ? -1 : 1))),
-  };
-  await writeFile(indexPath, `${JSON.stringify(sorted, null, 2)}\n`);
-  const stillListed = Object.values(sorted.packs).some((entry) => entry.file === previous);
-  if (previous !== undefined && previous !== file && !stillListed) {
-    await rm(join(outDir, previous), { force: true });
-  }
+  });
   return {
     manifest: built.manifest,
     file,

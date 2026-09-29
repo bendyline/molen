@@ -1,0 +1,66 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.b11_tower_of_london",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:35acc2e1ddb86e9cbb4c0f0fbdba6215d08fbc8f1f3a5e78b2874c35b2f3dc49",
+  "sourceHash": "sha256:a347483d41726390624590fa19f63901e5861222e90af7281d70610a7118e28c",
+  "bounds": {
+    "aabb": {
+      "min": [-53, 0.0011, -46.0017],
+      "max": [53, 29.9989, 19.0017]
+    },
+    "sphere": {
+      "center": [0, 15, -13.5],
+      "radius": 61.1264
+    }
+  },
+  "stats": {
+    "triangles": 240,
+    "vertices": 480,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 12924
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 240
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -53, 0.0011, -46.0017, -53, 0.0011, 19.0017, -53, 29.9989, -46.0017, -53, 29.9989,
+          19.0017, 53, 0.0011, -46.0017, 53, 0.0011, 19.0017, 53, 29.9989, -46.0017, 53, 29.9989,
+          19.0017
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

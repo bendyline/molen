@@ -1,6 +1,6 @@
 # Components
 
-Components are pure-JSON data attached to entities. molen ships a known component vocabulary;
+Components are pure-JSON data attached to entities. Molen ships a known component vocabulary;
 `molen validate` checks component data against it, so a typo'd name (`helth` → `health`) or a
 wrong field (`transform.position` → `pos`) is caught in the cheap pre-sim loop. **Inventing your
 own components is fine** — a name that doesn't resemble a known one is accepted as-is (declare it
@@ -37,6 +37,9 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `aircraft` | kernel/aircraft | External airplane/helicopter instance. Y up, Z forward; landing-contact origin. |
 | `aircraftInput` | kernel/aircraft | Pilot flight controls. Power is retained when input keys are released. |
 | `aircraftState` | kernel/aircraft | Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. |
+| `audioEnvironment` | audio | Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. |
+| `audioSource` | audio | Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. |
+| `audioZone` | audio | Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). |
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
@@ -75,6 +78,1106 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `velocity` | physics-rapier | Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). |
 | `weather` |  | Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. |
 | `worldgenBuilding` | worldgen | A building generated at runtime from an outline in the entity frame, styled by a molen/archstyle@1 in the loaded pack; rendered by the worldgen client entity layer. |
+
+## Owner: audio
+
+### `audioEnvironment`
+
+Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps.
+
+Required: none
+
+```json
+{
+  "buses": {
+    "music": 0.5
+  },
+  "ambience": [
+    {
+      "sound": "ambience.rain.medium",
+      "when": {
+        "weather.precipitation.kind": "rain"
+      },
+      "gainFrom": {
+        "signal": "weather.precipitation.intensity",
+        "curve": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "sound": "ambience.birds.day",
+      "when": {
+        "sky.daylight": {
+          "min": 0.3
+        }
+      },
+      "fadeS": 4
+    }
+  ],
+  "music": {
+    "playlist": [
+      "music.ambient.dawn"
+    ],
+    "mode": "sequence"
+  },
+  "events": {
+    "crash": {
+      "sound": "impact.metal.heavy"
+    }
+  },
+  "footsteps": {
+    "sound": "footstep.grass",
+    "strideM": 0.75
+  }
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "buses": {
+      "description": "Bus gains (music, ambience, sfx, ui, voice, custom), default 1 each.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2
+      }
+    },
+    "ambience": {
+      "description": "Looping ambience layers, each active while its `when` holds.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sound": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+            "description": "Sound id from a molen/soundbank@1 document, e.g. \"ambience.rain.medium\"."
+          },
+          "when": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1
+            },
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                },
+                {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  }
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "description": "Inclusive lower bound.",
+                      "type": "number"
+                    },
+                    "max": {
+                      "description": "Inclusive upper bound.",
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "exists": {
+                      "type": "boolean",
+                      "description": "true = the signal resolves to a value."
+                    }
+                  },
+                  "required": [
+                    "exists"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "description": "Conditions that must ALL hold, keyed by signal: a value (equality), a list (any of), {min,max} (inclusive range), or {exists}."
+          },
+          "gain": {
+            "description": "Gain multiplier; default 1.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "gainFrom": {
+            "description": "Drive gain from a signal, or from several whose curves multiply.",
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "signal": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+                  },
+                  "curve": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "description": "Piecewise-linear [input, output] points, clamped at the ends."
+                  },
+                  "smoothS": {
+                    "description": "Smoothing time constant in seconds; default 0.15.",
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "signal",
+                  "curve"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "signal": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+                    },
+                    "curve": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "description": "Piecewise-linear [input, output] points, clamped at the ends."
+                    },
+                    "smoothS": {
+                      "description": "Smoothing time constant in seconds; default 0.15.",
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "signal",
+                    "curve"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            ]
+          },
+          "pitchFrom": {
+            "description": "Drive pitch from a signal, or from several whose curves multiply.",
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "signal": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+                  },
+                  "curve": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "description": "Piecewise-linear [input, output] points, clamped at the ends."
+                  },
+                  "smoothS": {
+                    "description": "Smoothing time constant in seconds; default 0.15.",
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "signal",
+                  "curve"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "signal": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+                    },
+                    "curve": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "description": "Piecewise-linear [input, output] points, clamped at the ends."
+                    },
+                    "smoothS": {
+                      "description": "Smoothing time constant in seconds; default 0.15.",
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "signal",
+                    "curve"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            ]
+          },
+          "fadeS": {
+            "description": "Fade in/out time in seconds; default 1.5.",
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "sound"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "music": {
+      "description": "Background music; scripts switch it with molen.audio.music().",
+      "type": "object",
+      "properties": {
+        "playlist": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+            "description": "Sound id from a molen/soundbank@1 document, e.g. \"ambience.rain.medium\"."
+          },
+          "description": "Tracks, played on the music bus."
+        },
+        "mode": {
+          "description": "Default sequence.",
+          "type": "string",
+          "enum": [
+            "sequence",
+            "shuffle"
+          ]
+        },
+        "crossfadeS": {
+          "description": "Crossfade between tracks; default 4.",
+          "type": "number",
+          "minimum": 0
+        },
+        "gain": {
+          "description": "Music gain multiplier; default 1.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "when": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "description": "Inclusive lower bound.",
+                    "type": "number"
+                  },
+                  "max": {
+                    "description": "Inclusive upper bound.",
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "exists": {
+                    "type": "boolean",
+                    "description": "true = the signal resolves to a value."
+                  }
+                },
+                "required": [
+                  "exists"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "description": "Conditions that must ALL hold, keyed by signal: a value (equality), a list (any of), {min,max} (inclusive range), or {exists}."
+        }
+      },
+      "required": [
+        "playlist"
+      ],
+      "additionalProperties": false
+    },
+    "events": {
+      "description": "Engine/script event type → one-shot sound (e.g. \"crash\", \"delivery\").",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "sound": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+            "description": "Sound id from a molen/soundbank@1 document, e.g. \"ambience.rain.medium\"."
+          },
+          "at": {
+            "description": "Where it plays: \"listener\" (2D) or \"payload.<field>\" naming an entity id or [x,y,z]. Default: payload.entity, payload.position, payload.a, else listener.",
+            "type": "string"
+          },
+          "gain": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "pitch": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "bus": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Mixer bus: music, ambience, sfx, ui, voice, or a custom lowercase name."
+          }
+        },
+        "required": [
+          "sound"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "footsteps": {
+      "description": "Listener footsteps from distance travelled (walk modes, first-person games).",
+      "type": "object",
+      "properties": {
+        "sound": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+          "description": "Default footstep sound."
+        },
+        "surfaces": {
+          "description": "listener.surface value → footstep sound (grass, concrete, wood…).",
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+            "description": "Sound id from a molen/soundbank@1 document, e.g. \"ambience.rain.medium\"."
+          }
+        },
+        "strideM": {
+          "description": "Meters per step; default 0.75.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gain": {
+          "description": "Footstep gain multiplier; default 1.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "when": {
+          "description": "Default { \"listener.grounded\": true }.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "description": "Inclusive lower bound.",
+                    "type": "number"
+                  },
+                  "max": {
+                    "description": "Inclusive upper bound.",
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "exists": {
+                    "type": "boolean",
+                    "description": "true = the signal resolves to a value."
+                  }
+                },
+                "required": [
+                  "exists"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "sound"
+      ],
+      "additionalProperties": false
+    },
+    "listenerEntity": {
+      "description": "Entity treated as the listener's body; <component>.<field> signals in ambience/music/footsteps resolve on it.",
+      "type": "string"
+    },
+    "maxVoices": {
+      "description": "Voice budget; default 32.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `audioSource`
+
+Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md.
+
+Required: `sound`
+
+```json
+{
+  "sound": "vehicle.engine.car",
+  "loop": true,
+  "spatial": {
+    "refDistance": 3,
+    "maxDistance": 120
+  },
+  "pitchFrom": {
+    "signal": "vehicleState.speed",
+    "curve": [
+      [
+        0,
+        0.8
+      ],
+      [
+        30,
+        1.7
+      ]
+    ]
+  },
+  "gainFrom": {
+    "signal": "vehicleInput.throttle",
+    "curve": [
+      [
+        0,
+        0.45
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  }
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "sound": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+      "description": "Sound id from a molen/soundbank@1 document, e.g. \"ambience.rain.medium\"."
+    },
+    "loop": {
+      "description": "Loop while active; default the sound's own loop flag.",
+      "type": "boolean"
+    },
+    "autoplay": {
+      "description": "Play when the entity exists and `when` holds; default true. false = only triggerFrom/startTick fire it.",
+      "type": "boolean"
+    },
+    "gain": {
+      "description": "Gain multiplier; default 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "pitch": {
+      "description": "Playback-rate multiplier; default 1.",
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "bus": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Mixer bus: music, ambience, sfx, ui, voice, or a custom lowercase name."
+    },
+    "spatial": {
+      "description": "Override the sound's spatial settings. Positional sources follow the entity's transform.",
+      "anyOf": [
+        {
+          "type": "boolean",
+          "const": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "refDistance": {
+              "description": "Distance in meters at which the sound plays at full gain; default 1.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "maxDistance": {
+              "description": "Distance in meters beyond which the sound is culled; default 60.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "rolloff": {
+              "description": "How fast gain falls off past refDistance; default 1.",
+              "type": "number",
+              "minimum": 0
+            },
+            "model": {
+              "description": "Distance attenuation model (Web Audio PannerNode.distanceModel); default inverse.",
+              "type": "string",
+              "enum": [
+                "linear",
+                "inverse",
+                "exponential"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "when": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          },
+          {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "min": {
+                "description": "Inclusive lower bound.",
+                "type": "number"
+              },
+              "max": {
+                "description": "Inclusive upper bound.",
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "exists": {
+                "type": "boolean",
+                "description": "true = the signal resolves to a value."
+              }
+            },
+            "required": [
+              "exists"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Conditions that must ALL hold, keyed by signal: a value (equality), a list (any of), {min,max} (inclusive range), or {exists}."
+    },
+    "gainFrom": {
+      "description": "Drive gain from a signal, or from several whose curves multiply.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "signal": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+            },
+            "curve": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "description": "Piecewise-linear [input, output] points, clamped at the ends."
+            },
+            "smoothS": {
+              "description": "Smoothing time constant in seconds; default 0.15.",
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "signal",
+            "curve"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "signal": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+              },
+              "curve": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "description": "Piecewise-linear [input, output] points, clamped at the ends."
+              },
+              "smoothS": {
+                "description": "Smoothing time constant in seconds; default 0.15.",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "signal",
+              "curve"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ]
+    },
+    "pitchFrom": {
+      "description": "Drive pitch from a signal, or from several whose curves multiply.",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "signal": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+            },
+            "curve": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "minItems": 2,
+                "maxItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "description": "Piecewise-linear [input, output] points, clamped at the ends."
+            },
+            "smoothS": {
+              "description": "Smoothing time constant in seconds; default 0.15.",
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "signal",
+            "curve"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "signal": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Signal path: <component>.<field> on the entity (vehicleState.speed), or self.*, listener.*, weather.*, sky.*, time.*, host.*."
+              },
+              "curve": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "description": "Piecewise-linear [input, output] points, clamped at the ends."
+              },
+              "smoothS": {
+                "description": "Smoothing time constant in seconds; default 0.15.",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "signal",
+              "curve"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ]
+    },
+    "triggerFrom": {
+      "description": "Fire one-shots from a signal (footsteps from distance, clicks on change).",
+      "type": "object",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Signal to watch (see signal paths)."
+        },
+        "every": {
+          "description": "Fire each time the signal advances by this much (odometer-style, e.g. meters).",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "onChange": {
+          "description": "Fire whenever the signal value changes.",
+          "type": "boolean"
+        },
+        "sound": {
+          "description": "Sound to fire; default the source's own sound.",
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$"
+        }
+      },
+      "required": [
+        "signal"
+      ],
+      "additionalProperties": false
+    },
+    "startTick": {
+      "description": "Play once at this tick; changing it retriggers (like renderable.animation).",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "sound"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `audioZone`
+
+Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market).
+
+Required: `sound`, `shape`
+
+```json
+{
+  "sound": "ambience.water.stream",
+  "shape": {
+    "kind": "sphere",
+    "radius": 12
+  },
+  "fade": 8
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "sound": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+      "description": "Looping ambience played while the listener is inside the zone."
+    },
+    "shape": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "sphere",
+              "description": "Sphere around the entity."
+            },
+            "radius": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Radius in meters."
+            }
+          },
+          "required": [
+            "kind",
+            "radius"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "box",
+              "description": "Axis-aligned box around the entity."
+            },
+            "halfExtents": {
+              "minItems": 3,
+              "maxItems": 3,
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Half sizes [x, y, z] in meters, axis-aligned."
+            }
+          },
+          "required": [
+            "kind",
+            "halfExtents"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "description": "Zone volume, centered on the entity's transform."
+    },
+    "fade": {
+      "description": "Meters outside the shape over which gain fades to zero; default 5.",
+      "type": "number",
+      "minimum": 0
+    },
+    "gain": {
+      "description": "Gain multiplier; default 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "bus": {
+      "description": "Default ambience.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "when": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          },
+          {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "min": {
+                "description": "Inclusive lower bound.",
+                "type": "number"
+              },
+              "max": {
+                "description": "Inclusive upper bound.",
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "exists": {
+                "type": "boolean",
+                "description": "true = the signal resolves to a value."
+              }
+            },
+            "required": [
+              "exists"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Conditions that must ALL hold, keyed by signal: a value (equality), a list (any of), {min,max} (inclusive range), or {exists}."
+    }
+  },
+  "required": [
+    "sound",
+    "shape"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
 
 ## Owner: client
 

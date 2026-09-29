@@ -25,8 +25,9 @@ Two things need your attention in particular:
 | §4 | Trademarks |
 | §5 | Generated art assets |
 | §6 | Webfonts |
-| §7 | Everything else |
-| §8 | How the claims in this file were verified |
+| §7 | Ported math code |
+| §8 | Everything else |
+| §9 | How the claims in this file were verified |
 
 ---
 
@@ -231,7 +232,81 @@ permit selling the fonts by themselves, and a modified version may not use a Res
 
 ---
 
-## §7 Everything else
+## §7 Ported math code
+
+Asset builds replace Node's `Math` transcendental functions with JavaScript translations of C
+math libraries, so every CPU computes the same bits (content/ASSET-PACKS.md, "Determinism"). The
+two files are derivative works of that C code and carry its notices, not only LICENSE:
+
+- `packages/worldgen/scripts/deterministic-math.mjs` translates V8's `src/base/ieee754.cc` as
+  shipped in Node.js 24.18.0 (`deps/v8`). V8 adapted that file from fdlibm. Sun's fdlibm notice is
+  reproduced in the file, as fdlibm requires, and V8's BSD 3-Clause license follows.
+- `packages/worldgen/scripts/deterministic-pow.mjs` translates `math/pow.c`,
+  `math/pow_log_data.c` and `math/exp_data.c` from Arm's optimized-routines, release v20.02
+  (`Copyright (c) 2018, Arm Limited`, SPDX `MIT`; license below). glibc distributes the same
+  algorithm and tables in `e_pow.c`, and the port is bit-exact with glibc 2.39's non-FMA build,
+  but no glibc source text is used.
+
+V8 (`deps/v8/LICENSE` in Node.js 24.18.0):
+
+```text
+Copyright 2014, the V8 project authors. All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of Google Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+Arm optimized-routines v20.02 (`LICENSE`):
+
+```text
+MIT License
+
+Copyright (c) 1999-2019, Arm Limited.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+## §8 Everything else
 
 Every other model, texture, palette, style pack and fixture in this repository is Molen's own
 authored or procedurally generated work, covered by LICENSE. Notably:
@@ -252,7 +327,7 @@ restated here.
 
 ---
 
-## §8 How the claims in this file were verified
+## §9 How the claims in this file were verified
 
 Every license statement above was checked against a primary source rather than from memory:
 
@@ -276,7 +351,7 @@ Every license statement above was checked against a primary source rather than f
   checksums are verified by `molen validate <manifest> --verify-files`.
 - Aircraft model provenance: both `models/generate.mjs` scripts import only Node built-ins,
   three.js and their own `interior.mjs`, and read only their committed `interior.json` and
-  `baseline.json`.
+  `source.json`.
 - Webfont licenses: the OFL texts beside the font files, including their copyright lines.
 
 Where a fact could not be established, this file says so rather than guessing, as with the ESA

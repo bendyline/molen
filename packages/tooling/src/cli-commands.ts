@@ -10,6 +10,7 @@ import {
   bakeWorldgen,
   buildContentPack,
   checkScripts,
+  checkSoundbank,
   checkTypesOp,
   describeOps,
   diffSnapshots,
@@ -25,6 +26,7 @@ import {
   getComponentOp,
   getSchemaOp,
   importAsset,
+  importSound,
   inspectAsset,
   inspectContentPack,
   listAssets,
@@ -35,6 +37,7 @@ import {
   OPS_CATALOG,
   type OpDescriptor,
   packAsset,
+  planAudio,
   playExperience,
   previewWorldgen,
   projectInfo,
@@ -290,8 +293,8 @@ async function cmdSim(args: ParsedArgs): Promise<number> {
       projectPath: str(args.flags.project),
       onRun: (result, diff) => {
         const stamp = `— tick ${result.tick}, ${result.eventCount} events`;
-        if (result.error !== undefined) err(`✖ ${result.error}`);
-        else out(`${result.ok ? '✓' : '✖'} ${stamp}  [${diff}]`);
+        if (result.error !== undefined) err(`× ${result.error}`);
+        else out(`${result.ok ? '✓' : '×'} ${stamp}  [${diff}]`);
         if (result.assertionsFormatted !== undefined) out(result.assertionsFormatted);
       },
     });
@@ -534,7 +537,7 @@ async function cmdReplay(args: ParsedArgs): Promise<number> {
     err(result.error);
     return 1;
   }
-  out(result.report ?? (result.ok ? '✓ replay matches' : '✖ replay diverged'));
+  out(result.report ?? (result.ok ? '✓ replay matches' : '× replay diverged'));
   return result.ok ? 0 : 1;
 }
 
@@ -699,14 +702,19 @@ async function cmdAsset(args: ParsedArgs): Promise<number> {
     const path = args.positionals[1];
     if (path === undefined) {
       err(
-        'usage: molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--project <project.json>] [--force]',
+        'usage: molen asset import <file.glb> [--id <asset-id>] [--trimesh] [--no-optimize] [--out-dir <d>] [--asset-dir <d>] [--project <project.json>] [--force]',
       );
+      return 2;
+    }
+    if (args.flags['asset-dir'] !== undefined && typeof args.flags['asset-dir'] !== 'string') {
+      err('--asset-dir requires a directory value');
       return 2;
     }
     const r = await importAsset({
       path,
       id: str(args.flags.id),
       outDir: str(args.flags['out-dir']),
+      assetDir: str(args.flags['asset-dir']),
       trimesh: args.flags.trimesh === true,
       ...(args.flags['no-optimize'] === true ? { optimize: false } : {}),
       projectPath: str(args.flags.project),
@@ -856,6 +864,111 @@ async function cmdAsset(args: ParsedArgs): Promise<number> {
   err(
     'usage: molen asset import <file> | inspect <ref> [--verify] | list | shot <ref> --out-dir <d> | pack <ref>|--all | stage --out-dir <d>',
   );
+  return 2;
+}
+
+const AUDIO_USAGE =
+  'usage: molen audio plan <scene|name> --ticks <N> [--bank b.json,…] [--listener id] [--mode m] [--weather w] [--daylight d] [--json] | import <file> --id <id> --bank <bank.json> --license <spdx> [options] | check <bank.json>';
+
+function numFlag(v: string | boolean | undefined): number | undefined {
+  if (typeof v !== 'string') return undefined;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : undefined;
+}
+
+async function cmdAudio(args: ParsedArgs): Promise<number> {
+  const [sub, target] = args.positionals;
+  if (sub === 'plan' && target !== undefined) {
+    const ticks = typeof args.flags.ticks === 'string' ? Number(args.flags.ticks) : 0;
+    if (!Number.isInteger(ticks) || ticks <= 0) {
+      err('--ticks <N> is required and must be a positive integer');
+      return 2;
+    }
+    const bank = str(args.flags.bank);
+    const r = await planAudio({
+      scenePath: target,
+      ticks,
+      ...(bank !== undefined ? { bankPaths: bank.split(',').filter((b) => b.length > 0) } : {}),
+      ...(str(args.flags.commands) !== undefined ? { commandsPath: str(args.flags.commands) } : {}),
+      ...(str(args.flags.setup) !== undefined ? { setupModule: str(args.flags.setup) } : {}),
+      ...(str(args.flags.listener) !== undefined ? { listener: str(args.flags.listener) } : {}),
+      ...(str(args.flags.mode) !== undefined ? { mode: str(args.flags.mode) } : {}),
+      ...(str(args.flags.weather) !== undefined ? { weather: str(args.flags.weather) } : {}),
+      ...(numFlag(args.flags.daylight) !== undefined
+        ? { daylight: numFlag(args.flags.daylight) }
+        : {}),
+      ...(str(args.flags.project) !== undefined ? { projectPath: str(args.flags.project) } : {}),
+    });
+    if (r.error !== undefined) {
+      err(r.error);
+      return 1;
+    }
+    if (args.flags.json === true) out(JSON.stringify(r, null, 2));
+    else out(r.timeline);
+    return r.ok ? 0 : 1;
+  }
+  if (sub === 'import' && target !== undefined) {
+    const id = str(args.flags.id);
+    const bankPath = str(args.flags.bank);
+    const license = str(args.flags.license);
+    if (id === undefined || bankPath === undefined || license === undefined) {
+      err(AUDIO_USAGE);
+      return 2;
+    }
+    const optional: Record<string, unknown> = {
+      source: str(args.flags.source),
+      site: str(args.flags.site),
+      author: str(args.flags.author),
+      prompt: str(args.flags.prompt),
+      generator: str(args.flags.generator),
+      description: str(args.flags.description),
+      bus: str(args.flags.bus),
+      copyTo: str(args.flags['copy-to']),
+      loopStart: numFlag(args.flags['loop-start']),
+      loopEnd: numFlag(args.flags['loop-end']),
+      gain: numFlag(args.flags.gain),
+      durationS: numFlag(args.flags.duration),
+      loop: args.flags.loop === true ? true : undefined,
+      append: args.flags.append === true ? true : undefined,
+    };
+    const r = await importSound({
+      file: target,
+      id,
+      bankPath,
+      license,
+      ...Object.fromEntries(Object.entries(optional).filter(([, v]) => v !== undefined)),
+    });
+    for (const w of r.warnings) err(`! ${w}`);
+    if (!r.ok) {
+      err(r.error ?? 'audio import failed');
+      return 1;
+    }
+    const d = r.entry?.durationS;
+    out(`${r.id}: ${r.clip}${d !== undefined ? ` (${d}s)` : ''} -> ${r.bankPath}`);
+    return 0;
+  }
+  if (sub === 'check' && target !== undefined) {
+    const r = await checkSoundbank({ bankPath: target });
+    if (r.error !== undefined) {
+      err(r.error);
+      return 1;
+    }
+    for (const issue of r.issues)
+      (issue.severity === 'error' ? err : out)(
+        `${issue.severity === 'error' ? '✗' : '·'} ${issue.path}: ${issue.message}`,
+      );
+    const licenses = Object.entries(r.licenses)
+      .map(([l, n]) => `${l} ×${n}`)
+      .join(', ');
+    const summary = `${r.sounds} sounds, ${r.clips} clips, ${formatBytes(r.bytes)}; ${licenses || 'no sounds'}`;
+    if (!r.ok) {
+      err(`${r.id}: problems found (${summary})`);
+      return 1;
+    }
+    out(`✓ ${r.id}: ${summary}`);
+    return 0;
+  }
+  err(AUDIO_USAGE);
   return 2;
 }
 
@@ -1072,7 +1185,7 @@ async function cmdScripts(args: ParsedArgs): Promise<number> {
   out(
     r.ok
       ? `✓ ${r.checked ?? 0} script${r.checked === 1 ? '' : 's'} type-check clean`
-      : `✖ ${(r.diagnostics ?? []).length} problem(s) in ${r.checked ?? 0} script(s)`,
+      : `× ${(r.diagnostics ?? []).length} problem(s) in ${r.checked ?? 0} script(s)`,
   );
   return r.ok ? 0 : 1;
 }
@@ -1101,7 +1214,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
     }
     if ((r.issues ?? []).length > 0) err(formatIssues('project types', r.issues ?? []));
     if (r.codegenStale === true) err('codegen is stale — run: molen types gen');
-    out(r.ok ? '✓ types check passed' : '✖ types check failed');
+    out(r.ok ? '✓ types check passed' : '× types check failed');
     return r.ok ? 0 : 1;
   }
   if (sub === 'reserve') {
@@ -1141,7 +1254,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
     if (args.flags.check === true) {
       out(
         r.stale === true
-          ? `✖ ${r.outPath} is stale — run: molen types gen`
+          ? `× ${r.outPath} is stale — run: molen types gen`
           : '✓ codegen up to date',
       );
       return r.ok ? 0 : 1;
@@ -1161,7 +1274,7 @@ async function cmdTypes(args: ParsedArgs): Promise<number> {
       return 1;
     }
     for (const t of r.results ?? []) {
-      out(`${t.ok ? '✓' : '✖'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}`);
+      out(`${t.ok ? '✓' : '×'} ${t.id}${t.error !== undefined ? ` — ${t.error}` : ''}`);
       for (const issue of t.issues ?? []) out(`    ${issue.path}: ${issue.message}`);
     }
     return r.ok ? 0 : 1;
@@ -1523,6 +1636,7 @@ export const CLI_COMMANDS: Record<string, (args: ParsedArgs) => number | Promise
   describe: cmdDescribe,
   asset: cmdAsset,
   pack: cmdPack,
+  audio: cmdAudio,
   drive: cmdDrive,
   play: cmdPlay,
   project: cmdProject,

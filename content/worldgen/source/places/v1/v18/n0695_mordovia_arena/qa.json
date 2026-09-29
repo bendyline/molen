@@ -1,0 +1,85 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0695_mordovia_arena",
+  "sourceHash": "sha256:b9e0c1c89e513cbbffed5effe7e7592c1efa37e5ee2bf9f15852e822b68b0570",
+  "runtimeHash": "sha256:54f57fab4ba351cf3968f86b06c16727bd6b9c92faf7830a8dc2bd9ccddf5557",
+  "captureReportHash": "sha256:a39bb6482061d5357adf988c609540749ea6e4720f6a3d4ece9a0a1463d4cf1d",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Completed exterior and visible football bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-perforated-shell.png",
+      "shots/near-cassette-folds.png",
+      "shots/near-console-lattice.png",
+      "shots/near-roof-cantilevers.png",
+      "shots/near-podium.png",
+      "shots/near-entry-stairs.png",
+      "shots/near-seating.png",
+      "shots/near-vomitory.png",
+      "shots/near-north-screen.png",
+      "shots/near-roof-panels.png",
+      "shots/far-roof-envelope.png"
+    ],
+    "notes": "All sixteen current portable and sixteen shared frames inspected, with full-resolution cassette, stair and distant-envelope views. Revised tread/stringer intersections are closed. Individual lattice consoles, square-perforated folded cassettes, shell color progression, two concourses, six mapped stair approaches, orange/white seating, Cyrillic city lettering, screens and roof lights are coherent."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:834b58b37a435a58f70f4c6bac651349361237881d0aefc2218d31685d76ec67",
+    "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
+    "specHash": "sha256:82de00bec285c9270ca67c8419da78f62e270c3b52666a21cae002c176b147c4",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_perforated_square": {
+        "path": "materials/metal_perforated_square.matgraph.json",
+        "hash": "sha256:f12058417eb51d202ef3740309bd308914c4e8e17d8d163a3aec6c97cb3cc362"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-perforated-shell.png",
+      "shots/shared/near-cassette-folds.png",
+      "shots/shared/near-console-lattice.png",
+      "shots/shared/near-roof-cantilevers.png",
+      "shots/shared/near-podium.png",
+      "shots/shared/near-entry-stairs.png",
+      "shots/shared/near-seating.png",
+      "shots/shared/near-vomitory.png",
+      "shots/shared/near-north-screen.png",
+      "shots/shared/near-roof-panels.png",
+      "shots/shared/far-roof-envelope.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Canonical square-hole material shows actual openings and supporting steel in close views. The 0.3 alpha cutoff retains the subpixel shell at distance; fine perforations alias and eventually average opaque rather than disappearing. Portable fallback embeds the identical canonical graph bake, and world-viewer replacement uses the shared texture. Sky-PMREM lighting and geographic unload assertions passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a034fad841beaf62b04f4aa434ec84a3199934860367d7f8bb1e0d159eac5125",
+    "notes": "Exact stadium roof relation7718715 and enclosed pitch590956380 set the centered north/south field axis. The north-up rendered envelope matches the mapped roof outline, six mapped approach routes join the podium, and east stand city lettering agrees with the operator seating plan. NativeY0 is ground/pitch contact; small stringer feet extend below it."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Executed steel engineer, cassette fabricator, stadium operator and rod supplier support the actual individual structure. Eighty-eight consoles follow the structural engineer where the cassette supplier prose differs. Cassette distribution, local section details, seating inventory and roof camber are reconstructed from published photographs, not fabrication drawings. No event graphics or enclosed service rooms are modeled."
+  }
+}

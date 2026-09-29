@@ -140,6 +140,10 @@ describe('content pack ops', () => {
       await fetchContentPack({ url: `${base}index.json`, cwd: project });
       const again = JSON.parse(await readFile(join(project, 'project.json'), 'utf8'));
       expect(again.packs).toHaveLength(1);
+      // The download directory carries an index a browser page can open packs from.
+      const index = JSON.parse(await readFile(join(project, 'packs', 'index.json'), 'utf8'));
+      expect(index.format).toBe('molen/pack-index@1');
+      expect(index.packs['test.vehicles']).toMatchObject({ file: pack?.file });
     });
 
     it('reports a missing pack id or an unreachable URL', async () => {

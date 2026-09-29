@@ -92,6 +92,22 @@ scene geometry that casts/receives shadows; their local frustum follows the came
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.
 
+## Reflections
+
+For metal and glass, pass `reflections: true` to `createViewer` or `mountExperience`.
+The renderer shares one small procedural sky/ground environment across PBR materials on WebGL
+and WebGPU. It follows the sky palette, solar direction and cloud cover, and refreshes only when
+lighting changes visibly; moving the camera does not rebuild it. It is enabled by default in
+`mountEarthView` and the world explorer. General viewers keep the legacy default (`false`).
+The approximation provides sky reflections, not reflections of nearby buildings or trees.
+Without `environment.sky`, it uses the ambient/sun rig and background color. Its filtered map
+replaces the hemisphere's diffuse contribution during rendering to avoid lighting surfaces twice.
+A host-supplied `renderer.scene.environment` takes precedence; the host retains ownership of that
+texture and control of its light balance.
+Custom host meshes should use `MeshStandardMaterial` or `MeshPhysicalMaterial` for this mode;
+legacy Lambert/Phong materials do not receive the filtered sky's diffuse lighting. Unlit
+materials remain unlit. Molen's built-in world surfaces and interiors use the PBR path.
+
 ## Other worlds
 
 The shared sky dome, twilight gradient, star sphere and celestial-body rendering can use authored

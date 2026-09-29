@@ -1,0 +1,123 @@
+{
+  "planId": "N0005",
+  "id": "N0005",
+  "assetId": "molen.worldgen.structure.n0005_severn_bridge",
+  "title": "Severn Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q1850537",
+  "referenceCoordinate": {
+    "latitude": 51.6099,
+    "longitude": -2.64026
+  },
+  "visualBrief": "The original M48 Severn suspension bridge: two white steel portal towers, paired inclined hangers, continuous main cables, shallow aerofoil box deck, cantilever footways, cutwater piers and concrete cable anchorages. Includes close-view cable sockets, parapets, tower saddles, access doors and four traffic lanes.",
+  "size": [1637.5, 136, 40],
+  "actualBounds": {
+    "min": [-818.75, 0, -20],
+    "max": [818.75, 135.38446044921875, 20]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X toward Aust (east/southeast), -X toward Beachley",
+    "transverse": "+Z",
+    "origin": "Main-span midpoint horizontally; Y=0 is an unresolved local water reference, not a surveyed terrain or sea-level datum"
+  },
+  "sourceFacts": {
+    "identity": "Original 1966 M48 suspension crossing, Wikidata Q1850537; not the 1996 second crossing",
+    "mainSpanMeters": 987.5,
+    "sideSpanMeters": 305,
+    "suspendedDeckLengthMeters": 1597.5,
+    "towerLegCenterSpacingMeters": 23.5,
+    "towerPortalLevels": 3,
+    "pierPlanMeters": [11.5, 40],
+    "deckBoxDepthMeters": 3.048,
+    "deckBoxCornerWidthMeters": 22.86,
+    "mainCableNominalDiameterMeters": 0.5,
+    "hangerOriginalNominalDiameterMeters": 0.05,
+    "hangerClampHorizontalPitchMeters": 18.288,
+    "standardHangerLongitudinalOffsetMeters": 9.144,
+    "hangerCountDetailedTrustAccount": 344,
+    "hangerCountGeneralTrustAccount": 340,
+    "towerTopStannahMetersAboveMeanHighWater": 136,
+    "deckCenterTrustMetersAboveMeanSeaLevel": 37,
+    "towerAccessDoorMeters": [0.6, 1.8]
+  },
+  "reconstruction": {
+    "towerTopLocalY": 136,
+    "steelTowerBaseLocalY": 12,
+    "deckCenterLocalY": 37,
+    "deckTowerLocalY": 35.0894,
+    "deckEndLocalY": 32,
+    "roadwayWidthMeters": 19.4,
+    "overallDeckWidthMeters": 32,
+    "towerBoxBaseMeters": [4.7, 3.8],
+    "towerBoxTopMeters": [3.25, 2.9],
+    "cableMidpointLocalY": 43.5,
+    "modeledHangers": 344,
+    "shortHangerHalfAngleDegrees": 35,
+    "note": "These are reconstruction choices, not surveyed values. The Trust gives 105 ft as approximately 35 m for deck width; 105 ft converts to 32.004 m. Short hanger angle is not published: 35 degrees is a visual reconstruction, not the explanatory 60-degree example in the source."
+  },
+  "referencePages": [
+    "https://historicengland.org.uk/listing/the-list/list-entry/1119760",
+    "https://severnbridges.org/2012/05/17/design-of-the-severn-bridge/",
+    "https://severnbridges.org/2012/05/17/building-the-severn-bridge/",
+    "https://severnbridges.org/2016/02/29/more-design-issues/",
+    "https://severnbridges.org/2016/02/23/more-severn-bridge-towers/",
+    "https://severnbridges.org/2016/02/23/more-suspending-the-severn-bridge-deck/",
+    "https://severnbridges.org/2016/02/23/more-severn-bridge-foundations-and-anchorages/",
+    "https://www.stannahlifts.co.uk/news/severn-bridge-project-stannah-150-story",
+    "https://www.stannahlifts.co.uk/case-studies/renovating-136m-high-severn-bridge-maintenance-lift",
+    "https://nationalhighways.co.uk/roads-and-travel/live-travel-updates/the-severn-bridges/"
+  ],
+  "scaleBasis": "Historic England span dimensions; Severn Bridges Trust technical accounts for steel box, piers, tower spacing and suspension system. Reconstructed dimensions and unresolved datums are listed separately.",
+  "geometrySource": "Original deterministic Molen geometry authored from documented dimensions and construction descriptions. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Reference publications and photographs retain their own rights and are not redistributed.",
+  "materialMethod": "Five restrained vertex-color PBR materials with metallic/roughness values, including distinct painted steel, cables, fittings, concrete and asphalt. No baked shadows or bitmap textures.",
+  "reviewStatus": "source-geometry; near/far visual and geographic verification required",
+  "placementStatus": "Reference coordinate only. Original-crossing identity is confirmed; axis, anchorages, road alignment and vertical datum require site-fit review. Do not activate through generic terrain draping.",
+  "limitations": [
+    "This asset covers the suspension bridge and simplified anchorage exteriors. Aust Viaduct, Beachley Viaduct and Wye Bridge are separate structures and are not included.",
+    "Primary accounts use incompatible or incompletely specified vertical datums: 136 m above mean high water for the tower, 37 m above mean sea level for the road, and a rounded 125 m steel tower height. These numbers are not a verified common vertical frame. Local elevations require engineering drawing/site survey reconciliation before geographic activation.",
+    "The detailed Trust account describes 172 hangers per cable (344 total); its general account says 340. This reconstruction uses 344 at the documented nominal pitch, with reconstructed end offsets, short-hanger transition and socket clearance at tower legs. It does not claim an as-built hanger schedule.",
+    "Tower section sizes/taper, portal depths, cable sag, pier elevations, vertical road curve, anchorage extents, footway brackets and roadside fittings are reconstructed. Source photos inform visual forms, not photogrammetry or exact material colors.",
+    "Current white steel paint is represented with original vertex-color PBR materials. Weathering textures, maintenance interiors, submerged foundations, traffic, animated cables and collision refinement are not included. Near/far visual acceptance and geographic fit remain separate gates."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-tower",
+      "position": [532, 87, 108],
+      "lookAt": [493.75, 79, 0]
+    },
+    {
+      "name": "near-deck",
+      "position": [400, 42, 26],
+      "lookAt": [438, 35.5, 11.75]
+    },
+    {
+      "name": "near-hangers",
+      "position": [36, 44, 27],
+      "lookAt": [0, 40, 11.75]
+    },
+    {
+      "name": "under-deck",
+      "position": [475, 22, 37],
+      "lookAt": [493.75, 31, 0]
+    },
+    {
+      "name": "far-crossing",
+      "position": [50, 440, 1800],
+      "lookAt": [0, 70, 0]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "A 1,637.5 m envelope with 0.044 m parapet pickets, 0.05 m hangers and narrow markings loses those details under whole-object position quantization. Preserve float positions until measured segmented LOD assets are authored.",
+  "mesh": {
+    "triangles": 308648,
+    "vertices": 563792,
+    "materials": 5,
+    "bytes": 23439340,
+    "sha256": "sha256:85ab2f4c6bf7785f80e924ed62b3a292fc0f06bb80862ef70c1c80a263b6f05d"
+  }
+}

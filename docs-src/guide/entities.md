@@ -1,6 +1,6 @@
 # Reusable entities
 
-The `molen.entities` content pack is molen's curated entity collection. It builds on the existing
+The `molen.entities` content pack is Molen's curated entity collection. It builds on the existing
 `renderable.kind: "gltf"`, `molen/asset@1`, `molen/types@1`, and `molen/project@1` contracts;
 there is no second entity or asset runtime.
 

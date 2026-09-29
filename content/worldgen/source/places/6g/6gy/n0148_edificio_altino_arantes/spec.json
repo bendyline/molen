@@ -1,0 +1,204 @@
+{
+  "planId": "N0148",
+  "id": "N0148",
+  "assetId": "molen.worldgen.structure.n0148_edificio_altino_arantes",
+  "title": "Edifício Altino Arantes",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q169420",
+  "referenceCoordinate": {
+    "latitude": -23.545675,
+    "longitude": -46.6341
+  },
+  "visualBrief": "A white Art Deco stepped tower with individual recessed windows, projecting vertical pilasters, setback cornices and balustrades, cylindrical lighthouse crown, nine-meter flag mast and static São Paulo state flag.",
+  "size": [
+    46.68600082397461,
+    161.22000122070312,
+    17.17300033569336
+  ],
+  "actualBounds": {
+    "min": [
+      -23.343000411987305,
+      0,
+      -8.293000221252441
+    ],
+    "max": [
+      23.343000411987305,
+      161.22000122070312,
+      8.880000114440918
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 161.22,
+    "floors": 35,
+    "beaconHeightMeters": 11.7,
+    "flagMastMeters": 9,
+    "completion": 1947
+  },
+  "reconstruction": {
+    "setbackLevelsMeters": [
+      91,
+      107,
+      122,
+      135,
+      140.52
+    ],
+    "beaconBaseMeters": 140.52,
+    "beaconTopMeters": 152.22,
+    "upperCenterLocalXZ": [
+      1.7,
+      0
+    ],
+    "plan": "Mapped ground envelope; upper tier dimensions reconstructed"
+  },
+  "referencePages": [
+    "https://www.farolsantander.com.br/sp/sobre-o-farol",
+    "https://www.farolsantander.com.br/assets/sites/2/20241204172903/Manual-de-Eventos-Farol-Santander-2025.pdf?_rsc=1mcjp"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -46.634121402,
+      -23.545808943
+    ],
+    "heading": 0.826847524337,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/191607149",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/191607149"
+    ],
+    "wikidataId": "Q169420",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID mapped long-axis frame retained, with ground envelope as mapped. Tier depths, center offset and entrance frontage are exterior reconstructions within the frame; the model includes the operator-published beacon and flag mast in its total height."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Upper setbacks, facade bay spacing and entrance dimensions are reconstructed; the state-flag canton is simplified geometric cloth. The operator161.22 m total includes the mast."
+  ],
+  "qaCameras": [
+    {
+      "name": "art-deco-facade",
+      "position": [
+        27,
+        78,
+        44
+      ],
+      "lookAt": [
+        1,
+        70,
+        6
+      ]
+    },
+    {
+      "name": "setbacks",
+      "position": [
+        50,
+        138,
+        62
+      ],
+      "lookAt": [
+        1,
+        119,
+        0
+      ]
+    },
+    {
+      "name": "beacon-flag",
+      "position": [
+        30,
+        157,
+        35
+      ],
+      "lookAt": [
+        2,
+        148,
+        0
+      ]
+    },
+    {
+      "name": "entrance",
+      "position": [
+        29,
+        10,
+        42
+      ],
+      "lookAt": [
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -221,
+        145,
+        327
+      ],
+      "lookAt": [
+        1,
+        80,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 32360,
+    "vertices": 76250,
+    "materials": 5,
+    "bytes": 3060224,
+    "sha256": "sha256:855cfb6b7bd5bfb1dacacdf6cadc170ef2ca199920c26d594d9669bac1bc70a7"
+  }
+}

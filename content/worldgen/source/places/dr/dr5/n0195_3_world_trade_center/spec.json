@@ -1,0 +1,313 @@
+{
+  "planId": "N0195",
+  "id": "N0195",
+  "assetId": "molen.worldgen.structure.n0195_3_world_trade_center",
+  "title": "3 World Trade Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q941908",
+  "referenceCoordinate": {
+    "latitude": 40.710923,
+    "longitude": -74.011608
+  },
+  "visualBrief": "Completed RSHP tower with three unequal glazed planes, external stainless-steel K braces, eight corner offices, three landscaped terraces and the skew Greenwich Street cable-net lobby.",
+  "size": [
+    98.01651382446289,
+    328.87921142578125,
+    61.41400146484375
+  ],
+  "actualBounds": {
+    "min": [
+      -48.81651306152344,
+      0,
+      -30.707000732421875
+    ],
+    "max": [
+      49.20000076293945,
+      328.87921142578125,
+      30.707000732421875
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "-X toward Greenwich Street and the memorial",
+    "north": "-Z toward Dey Street"
+  },
+  "sourceFacts": {
+    "architect": "Rogers Stirk Harbour + Partners",
+    "completed": 2018,
+    "architecturalHeightFeet": 1079,
+    "architecturalHeightMeters": 328.8792,
+    "terracesFeet": {
+      "level17": 205,
+      "level60": 718,
+      "level76": 935
+    },
+    "terracesMeters": {
+      "podium": 62.484,
+      "south": 218.8464,
+      "north": 284.988,
+      "top": 328.8792
+    },
+    "typicalOfficeFloorMeters": 4.1148,
+    "tradingFloorMeters": 6.096,
+    "facadeModuleMeters": {
+      "tower": 1.524,
+      "podium": 3.048
+    },
+    "lobbyHeightMeters": 18.288,
+    "cladding": "Glass curtain wall and stainless-steel-clad external corner K bracing"
+  },
+  "reconstruction": {
+    "plan": "The exact ground foot and four independently mapped component outlines retain the tower location and separate western podium. The architect published typical floor plan resolves the incomplete/overlapping raw shoulder traces into three connected rectangular planes with four reentrant corner zones. Northern shoulder is higher than southern.",
+    "facade": "Physical mullions, transoms and dark glass spandrels follow published five-foot and ten-foot unit pitches. Stainless corner columns, repeated K frames and cover plates project outside the glazing; the high mechanical crown has individually modeled louvers.",
+    "terraces": "Three primary published terrace elevations have separate decks, glass guards, planters and simple benches. The sixty-foot skew western lobby has modeled cable-net nodes and revolving-door enclosures."
+  },
+  "referencePages": [
+    "https://rshp.com/projects/office/3-world-trade-center/",
+    "https://rshp.com/assets/uploads/5270_3WorldTradeCenter_JS_en.pdf",
+    "https://rshp.com/news/archive/rshp-celebrates-the-completion-of-3-world-trade-center-in-new-york/",
+    "https://wtc.com/work-place/3wtc/",
+    "https://www.openstreetmap.org/way/166839381"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -74.011692524,
+      40.710984661
+    ],
+    "heading": -0.472632939657,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/166839381",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/166839381"
+    ],
+    "wikidataId": "Q941908",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:75047db6e82c8d201c781f33beb9ac6054f87453f143fe0dabbed0962f3b42da",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID ground way166839381 and separately mapped podium/northern/southern/central parts retain the signed site frame. Native-X is Greenwich Street, +X Church Street, -Z Dey Street and +Z Cortlandt Street. RSHP corroborates the higher northern shoulder and western lobby. Primary completed1079ft height supersedes obsolete352m part tags; primary terrace datums supersede coarse map heights. GroundY0 is street entry."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "The mapped shoulder outlines contain small overlaps and an incomplete corner; the architect typical-floor diagram governs the regularized cruciform plan within the measured envelope. Exact facade phase, K-brace cadence and section, mechanical crown depth, entry hardware and planted terrace layout are reconstructed from completed architect photographs. Separate Oculus, memorial, surrounding landscaping and subterranean/interior fit-out are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-stepped-planes",
+      "position": [
+        -176,
+        205,
+        -145
+      ],
+      "lookAt": [
+        10,
+        174,
+        0
+      ]
+    },
+    {
+      "name": "church-street-east",
+      "position": [
+        177,
+        188,
+        123
+      ],
+      "lookAt": [
+        20,
+        171,
+        0
+      ]
+    },
+    {
+      "name": "stainless-k-braces",
+      "position": [
+        -47,
+        156,
+        -51
+      ],
+      "lookAt": [
+        -9,
+        147,
+        -22
+      ]
+    },
+    {
+      "name": "unitized-curtain-wall",
+      "position": [
+        -37,
+        125,
+        7
+      ],
+      "lookAt": [
+        -8.9,
+        118,
+        1
+      ]
+    },
+    {
+      "name": "higher-northern-terrace",
+      "position": [
+        -41,
+        302,
+        -69
+      ],
+      "lookAt": [
+        11,
+        284,
+        -24
+      ]
+    },
+    {
+      "name": "lower-southern-terrace",
+      "position": [
+        -38,
+        241,
+        70
+      ],
+      "lookAt": [
+        14,
+        219,
+        25
+      ]
+    },
+    {
+      "name": "level17-western-garden",
+      "position": [
+        -92,
+        88,
+        -78
+      ],
+      "lookAt": [
+        -26,
+        63,
+        0
+      ]
+    },
+    {
+      "name": "mechanical-crown",
+      "position": [
+        -56,
+        355,
+        75
+      ],
+      "lookAt": [
+        17,
+        319,
+        0
+      ]
+    },
+    {
+      "name": "lobby-cable-net",
+      "position": [
+        -77,
+        19,
+        -34
+      ],
+      "lookAt": [
+        -43,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "greenwich-entry-doors",
+      "position": [
+        -67,
+        8,
+        -13
+      ],
+      "lookAt": [
+        -42,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "podium-trading-floors",
+      "position": [
+        -107,
+        46,
+        69
+      ],
+      "lookAt": [
+        -27,
+        44,
+        0
+      ]
+    },
+    {
+      "name": "far-memorial-profile",
+      "position": [
+        -370,
+        101,
+        200
+      ],
+      "lookAt": [
+        0,
+        164,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 295672,
+    "vertices": 713596,
+    "materials": 7,
+    "bytes": 28527944,
+    "sha256": "sha256:76187357265373755323533574a0f49b807f44d235b52887b05be64ef79342f6"
+  }
+}

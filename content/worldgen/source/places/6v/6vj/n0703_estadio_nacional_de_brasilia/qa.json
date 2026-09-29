@@ -1,0 +1,83 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0703_estadio_nacional_de_brasilia",
+  "sourceHash": "sha256:5fe6590f3f9372f556a568a9e4fe9d47951bfd12945dcea3da5b15e37f351987",
+  "runtimeHash": "sha256:3ebb574358a749c19a03e0772af0db94be3f65001d6b4541896eda1ea1167e2e",
+  "captureReportHash": "sha256:9ed90145de0cfc0a7fc9a3cdccbec6b0db7c93fc74852953ed7a9e9f7315bf0d",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Permanent detailed exterior and visible stadium bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-three-colonnades.png",
+      "shots/near-concrete-lifts.png",
+      "shots/near-ramp-bank.png",
+      "shots/near-compression-ring.png",
+      "shots/near-scalloped-membrane.png",
+      "shots/near-radial-truss.png",
+      "shots/near-clear-oculus.png",
+      "shots/near-catwalk-lights.png",
+      "shots/near-three-red-tiers.png",
+      "shots/near-hospitality.png",
+      "shots/near-screen.png",
+      "shots/far-roof-and-bowl.png"
+    ],
+    "notes": "All17 portable and17 shared final frames inspected after two geometry revisions. Full-resolution membrane, roof/column contact and hospitality views confirm continuous fabric, sealed upper/lower tier transitions and no protruding column caps. Three colonnades, eight ramp banks, forty-eight radial cable/truss units, clear inner roof, light catwalk, two goal-end screens and three red seating tiers are legible."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:6585f50a1b05caccb213af82a304174489c8c54680f72be4da8b28c62d9eb6bc",
+    "fixtureHash": "sha256:be058e28bfed8e1aca0503d33060226a079b1d252f0b99ea231ce2d93d7f044b",
+    "specHash": "sha256:30c70338eb979f9f3bb07c8474819689677b93cb2649b891b3c2a58311c1286a",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-three-colonnades.png",
+      "shots/shared/near-concrete-lifts.png",
+      "shots/shared/near-ramp-bank.png",
+      "shots/shared/near-compression-ring.png",
+      "shots/shared/near-scalloped-membrane.png",
+      "shots/shared/near-radial-truss.png",
+      "shots/shared/near-clear-oculus.png",
+      "shots/shared/near-catwalk-lights.png",
+      "shots/shared/near-three-red-tiers.png",
+      "shots/shared/near-hospitality.png",
+      "shots/shared/near-screen.png",
+      "shots/shared/far-roof-and-bowl.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared metric concrete, painted metal and membrane are visually consistent. Continuous roofXZ fabric UVs avoid independent tangent-projection seams between curved quads; construction bands and tie marks remain geometry. Transparent inner polycarbonate retains portable local alpha. Geographic terrain-cutout ray and restoration checks plus shared resource unload passed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:b374e179bf4b8545836507439a680b9950cb052585856f6ca9ce723239cd6646",
+    "notes": "Orthographic north-up placement fits the measured308.886m circular OSM envelope. Field points11degrees east of north from independent GMP whole-bowl north glyph and site masterplan comparison, not the erroneous circular mapped pitch. NativeY0is the pedestrian floor between columns; depressed field−11.8m and visible roof49.6m follow the scaled architect section. The132m-radius cutout preserves the bowl and overlaps the authored pavement annulus. Ground datum and heading are architectural estimates, not survey claims."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Primary architect photographs/section/plan and ArcelorMittal/SBP structural evidence constrain the actual309m colonnade with288columns, three diameter classes,22m tapered ring,48radial trusses and102m oculus. Membrane shape, internal row inventory, member thicknesses and ramp-bank details are reconstructed against those sources. Sponsor art, private service interiors and unbuilt optional retractable closure are excluded. This is an authored exterior interpretation, not an as-built fabrication or photogrammetric model."
+  }
+}

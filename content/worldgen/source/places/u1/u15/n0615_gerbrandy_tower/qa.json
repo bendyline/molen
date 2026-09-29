@@ -1,0 +1,70 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0615_gerbrandy_tower",
+  "sourceHash": "sha256:6d4ce5d933f35ca8c0bf7112b99680ecf110fb2fc9d5fcc7f36b62a1f2e7c898",
+  "runtimeHash": "sha256:1360e3136cddc3b0377f603a7e3b612e624e8878a86cee01ba0a1f13113fd6a6",
+  "captureReportHash": "sha256:75dc705d31f1e1dece4113d3d612e05c6e475566d799ed970d1deebc6410670f",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Complete detailed world-viewer exterior",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/complete-guyed-tower.png",
+      "shots/concrete-shaft-and-galleries.png",
+      "shots/glazed-balconies-equipment.png",
+      "shots/shaft-windows-and-entrance.png",
+      "shots/reportage-cabin.png",
+      "shots/upper-dipole-array.png",
+      "shots/digital-tip.png",
+      "shots/southwest-anchor.png",
+      "shots/mapped-three-anchor-plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": [
+      "Inspected all 15 current portable frames: complete silhouette, four turntables, concrete galleries, shaft entrance, octagonal reportage cabin, individually modeled upper dipoles, current digital tip, southwest guy foundation and complete three-anchor layout.",
+      "Corrected the octagonal cabin frames to its actual flat faces, opened the upper shaft windows, separated the four guy fittings along each mapped concrete block and reframed the digital tip and entrance. Rechecked all current renders; no detached frames, obstructed window recesses or missing major surfaces remain."
+    ]
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:297173be09048f9f7530210d43474e3f925f979099838bd7f7b5c51e53982ac1",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/complete-guyed-tower.png",
+      "shots/shared/concrete-shaft-and-galleries.png",
+      "shots/shared/glazed-balconies-equipment.png",
+      "shots/shared/shaft-windows-and-entrance.png",
+      "shots/shared/reportage-cabin.png",
+      "shots/shared/upper-dipole-array.png",
+      "shots/shared/digital-tip.png",
+      "shots/shared/southwest-anchor.png",
+      "shots/shared/mapped-three-anchor-plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": [
+      "Inspected all 15 current shared frames with sky reflections, including the north-up map overlay. The 100 m concrete base, two glazed gallery rings and 2 m metal pipe retain metric shared surfaces. Smooth glazing stays independent of the shared concrete and metal graphs.",
+      "All three nonuniform anchor vectors remain part of the same geographic model. Actual geographic loading and unloading succeeded; extremely thin distant 75 mm cables become subpixel at city-scale camera distance, as expected from their real scale."
+    ]
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:867818758a8fa7c9a20f6be354740963880d78176fe20c87fe54a3c98a653d3b",
+    "notes": [
+      "Native +X is east and +Z south with heading zero deliberately selected for a circular shaft; this is not an unresolved default direction. Exact-QID shaft way54688034 and three surveyed guy blocks178703435/178704223/178709104, connected by mapped support ways, fix the asymmetric full site. Anchor[5.053550924,52.010046448] is the mapped shaft center.",
+      "The concrete shaft is terrain-contact at nativeY0 and the broad polder site is treated with one local foundation datum. Independent below-ground anchor depths and fine site grading are outside this exterior reconstruction. The source-local geometry and capture overlay are hash bound; current region loading/unloading is verified."
+    ]
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Passed as a complete detailed world-viewer exterior. Current Cellnex/Saval dimensions, the government RCE heritage inspection and current firsthand contractor photographs support the100m concrete shaft, two glazed balcony rings, equipment galleries,2m pipe,220m reportage cabin, four guy levels with twelve cables, fourteen repeated dipole tiers, upper digital rod and three mapped anchor blocks. The current372m owner/installer height governs the envelope; conflicting374m contractor and367m old map figures remain explicit. Intermediate guy bands, exact balcony elevations, minor antenna phase and small service-window placement are proportional photographic reconstruction. The published226m guy band and surveyed anchor layout constrain them. Permanent exterior is complete; underground footings, interiors, detached generator buildings and seasonal Christmas strings are excluded."
+  }
+}

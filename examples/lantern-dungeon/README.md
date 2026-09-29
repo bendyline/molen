@@ -29,6 +29,19 @@ WASD: walk/strafe. Left/Right: turn. Click the view for mouse look; Esc releases
 
 Movement and sight queries use the lightweight XZ collision layer. Eye height is a local-space `follow` camera offset; pointer movement only emits validated `look` commands. Combat, inventory, enemy AI, and the gate tween stay in the sandboxed script. Change objectives in script config and enemy geometry/collision in the `sentinel` prefab.
 
+## Sound
+
+The `audio` entity's `audioEnvironment` plays dungeon ambience and music and stone footsteps, and maps `strike`, `hurt`, `heal`, `key-found`, `gate-opened` and `victory` to sounds. An `audioZone` on `fill-vault` adds a cold draft as you approach the vault. `scripts/game.ts` calls `molen.audio.play('weapon.slash')` on every swing. `src/audio.ts` loads the CC0 `molen.sounds` content pack and plays the rules; without it the
+game is silent. In your own copy, fetch the pack once:
+
+```sh
+npx molen pack fetch https://molen.dev/packs/index.json molen.sounds --out-dir public/packs
+npx molen audio plan scene.json --ticks 300
+```
+
+`molen audio plan` lists the loops and one-shots the scene would play, without a browser. See
+[Sound and music](https://molen.dev/guide/audio).
+
 ## Verify
 
 From the repository root:

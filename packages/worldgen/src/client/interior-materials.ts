@@ -5,7 +5,7 @@ import type { WorldgenMaterialSet } from './upload';
  * in vertex data, so different homes reuse the same small texture/material set. No downloads,
  * per-building canvases, lights, or material allocations. */
 export function createInteriorMaterialSet(): WorldgenMaterialSet {
-  const materials = new Map<string, THREE.MeshLambertMaterial>();
+  const materials = new Map<string, THREE.MeshStandardMaterial>();
   const maps: THREE.DataTexture[] = [];
   return {
     materialFor: (_slot, ref) => {
@@ -48,8 +48,12 @@ export function createInteriorMaterialSet(): WorldgenMaterialSet {
         map.repeat.set(kind === 'fabric' ? 4 : 0.5, kind === 'fabric' ? 4 : 0.5);
         maps.push(map);
       }
-      material = new THREE.MeshLambertMaterial({
+      // The shared sky PMREM supplies diffuse irradiance in world viewers. Lambert materials
+      // cannot consume it, so interior surfaces use the same PBR lighting path as the exterior.
+      material = new THREE.MeshStandardMaterial({
         vertexColors: true,
+        roughness: 0.9,
+        metalness: 0,
         map: map ?? null,
         emissive: kind === 'lamp' ? 0xffe5ac : 0xaaa79b,
         emissiveIntensity: kind === 'lamp' ? 0.8 : 0.2,

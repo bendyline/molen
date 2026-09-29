@@ -409,11 +409,25 @@ function bakeSlots(
  * silently wrong (usually flat) texture.
  */
 export function bakeMatGraph(doc: MatGraphDoc): BakedMaterial {
+  if (
+    doc.alphaTest !== undefined &&
+    (!Number.isFinite(doc.alphaTest) || doc.alphaTest < 0 || doc.alphaTest > 1)
+  ) {
+    throw new Error(
+      `material graph alphaTest must be finite and between 0 and 1 — ${VALIDATE_HINT}`,
+    );
+  }
   if (!Array.isArray(doc.size) || doc.size.length !== 2) {
     throw new Error(`material graph has no size [width, height] — ${VALIDATE_HINT}`);
   }
   const [width, height] = doc.size;
   const evaluator = new GraphEvaluator(doc);
   const slots = bakeSlots(evaluator, doc.outputs, width, height);
-  return { slots, meta: { filter: 'linear' } };
+  return {
+    slots,
+    meta: {
+      filter: 'linear',
+      ...(doc.alphaTest === undefined ? {} : { alphaTest: doc.alphaTest }),
+    },
+  };
 }

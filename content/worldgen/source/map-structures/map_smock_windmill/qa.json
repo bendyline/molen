@@ -1,0 +1,109 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.map_smock_windmill",
+  "sourceHash": "sha256:9b52828fb1242078bb9ee85a230617672186e7a61a0df1dc9aa2d4536f15357a",
+  "runtimeHash": "sha256:1f69e036c6faefac62794e753fdf30b21050acbe21f5a3c02966b2670efa3277",
+  "captureReportHash": "sha256:4d690bca4f5a3df9ddee62ac0c819954881c2ddc010510d89db0abe68235d3a8",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Static exterior geometry at all eight source captures, plus actual GLB placement and shared-surface rendering in the map integration fixture.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-sails.png",
+      "shots/near-gallery.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all four sides, sail lattice, gallery/stair connection, masonry base and timber frames. The standalone source views use portable PBR fallback materials; shared brick, lapboards, grain and fabric were inspected in the additional runtime map views."
+  },
+  "geographicReview": {
+    "status": "not-applicable",
+    "notes": "Reusable category model with +Z front and Y=0 base. The synthetic semantic tile confirms mapped position, supplied heading and terrain contact. Real-site identity, height and orientation still depend on map evidence; this model has no unique geographic anchor."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Exterior only; no milling machinery, working yaw/sail animation, collision refinement or site-specific mill identity. Repeated architectural materials are intentionally generic; fine lattice and board edges alias at distance. A named mill requires its own model when available. This review does not certify maximum fidelity."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "examples/world-explorer/captures/map-structures/capture.json",
+    "captureHash": "sha256:3b98766aaf3cca05eea8ebb19fb98b8626581caf1d0ebee4a6a47960960da259",
+    "materialGraphs": {
+      "molen.worldgen.material.brick": {
+        "path": "content/worldgen/materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "molen.worldgen.material.wood_painted_lap": {
+        "path": "content/worldgen/materials/wood_painted_lap.matgraph.json",
+        "hash": "sha256:14d7ec9f93f2bf1f80f8ab440a1142de68b5b1cd033433e38695d7a08a19562b"
+      },
+      "molen.worldgen.material.fabric_canvas": {
+        "path": "content/worldgen/materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "molen.worldgen.material.wood_painted_shingle": {
+        "path": "content/worldgen/materials/wood_painted_shingle.matgraph.json",
+        "hash": "sha256:0ffb83c326df4eee1d049736f0ad34642a3afdabb9a152785da5356c433864aa"
+      },
+      "molen.worldgen.material.metal_painted": {
+        "path": "content/worldgen/materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "molen.worldgen.material.wood_plain": {
+        "path": "content/worldgen/materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "molen.worldgen.material.stone_granite": {
+        "path": "content/worldgen/materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    },
+    "inspectedFrames": [
+      {
+        "name": "overview",
+        "path": "examples/world-explorer/captures/map-structures/overview.png",
+        "hash": "sha256:9cd993d53d20ed0ea052247d5a1cabb28065a823982a15c66f71f9bcccbde99c"
+      },
+      {
+        "name": "windmill",
+        "path": "examples/world-explorer/captures/map-structures/windmill.png",
+        "hash": "sha256:4c8e8f1813218278cacc8903baabfb45364ad9e6800891db59c2c35e0260c956"
+      },
+      {
+        "name": "mill-materials",
+        "path": "examples/world-explorer/captures/map-structures/mill-materials.png",
+        "hash": "sha256:9219d112cb0878db59cb3c7fbd3ba152e5cda01c4d5619e907e4acb5514f24cf"
+      },
+      {
+        "name": "mill-gallery",
+        "path": "examples/world-explorer/captures/map-structures/mill-gallery.png",
+        "hash": "sha256:47374dff9777affe32a7a66237424628cb59bb5c4ba548dad35b73301b99d736"
+      },
+      {
+        "name": "turbine",
+        "path": "examples/world-explorer/captures/map-structures/turbine.png",
+        "hash": "sha256:ad18b11f72121da79546d487bbf6f6b0f5d88cbd22f9dd048ccc9b3bc48a6002"
+      },
+      {
+        "name": "turbine-base",
+        "path": "examples/world-explorer/captures/map-structures/turbine-base.png",
+        "hash": "sha256:8ec78ea1f49d9362c08d9ca50b96db4104418d7c7600615844dd2de31f847589"
+      },
+      {
+        "name": "turbine-nacelle",
+        "path": "examples/world-explorer/captures/map-structures/turbine-nacelle.png",
+        "hash": "sha256:b2621da9220409928e051302cd0c5d0817bf2e44579fcf41d038eba6876b026a"
+      },
+      {
+        "name": "missing-tags",
+        "path": "examples/world-explorer/captures/map-structures/missing-tags.png",
+        "hash": "sha256:be9e028830382e57e901e9158fe2cbd5a3752dfafc224e44a32ff66fab3d22cc"
+      }
+    ],
+    "notes": "Reviewed brick at 75 mm courses, 200 mm lapboard exposure, timber grain aligned with plank/beam axes, canvas sails, shingle cap and metal fittings. GLB metric-repeat UVs resolve canonical graphs with vertex-color tint; no per-model image copies. The fixture proves one graph read per surface and the same painted-metal texture object across both GLBs. Missing classification tags preserve the ordinary building fallback."
+  }
+}

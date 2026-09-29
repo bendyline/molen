@@ -137,7 +137,7 @@ type MolenAircraftData = {
         nodes: string[];
         sources?: Record<string, {
             component: string;
-            path: string | number[];
+            path: (string | number)[];
           }>;
         bindings: {
           node: string;
@@ -193,6 +193,138 @@ type MolenAircraftStateData = {
   grounded: boolean;
   crashed: boolean;
   waitingForTerrain: boolean;
+};
+/** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+type MolenAudioEnvironmentData = {
+  buses?: Record<string, number>;
+  ambience?: {
+    sound: string;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+    gain?: number;
+    gainFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    pitchFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    fadeS?: number;
+  }[];
+  music?: {
+    playlist: string[];
+    mode?: 'sequence' | 'shuffle';
+    crossfadeS?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  events?: Record<string, {
+      sound: string;
+      at?: string;
+      gain?: number;
+      pitch?: number;
+      bus?: string;
+    }>;
+  footsteps?: {
+    sound: string;
+    surfaces?: Record<string, string>;
+    strideM?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  listenerEntity?: string;
+  maxVoices?: number;
+};
+/** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+type MolenAudioSourceData = {
+  sound: string;
+  loop?: boolean;
+  autoplay?: boolean;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  spatial?: false | {
+    refDistance?: number;
+    maxDistance?: number;
+    rolloff?: number;
+    model?: 'linear' | 'inverse' | 'exponential';
+  };
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
+  gainFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  pitchFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  triggerFrom?: {
+    signal: string;
+    every?: number;
+    onChange?: boolean;
+    sound?: string;
+  };
+  startTick?: number;
+};
+/** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+type MolenAudioZoneData = {
+  sound: string;
+  shape: {
+    kind: 'sphere';
+    radius: number;
+  } | {
+    kind: 'box';
+    halfExtents: [number, number, number];
+  };
+  fade?: number;
+  gain?: number;
+  bus?: string;
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
 };
 /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
 type MolenCharacterData = {
@@ -515,7 +647,7 @@ type MolenLocalTransformData = {
 type MolenModel_signalsData = {
   sources: Record<string, {
       component: string;
-      path: string | number[];
+      path: (string | number)[];
     }>;
   bindings: {
     node: string;
@@ -712,7 +844,7 @@ type MolenVehicleData = {
       nodes: string[];
       sources?: Record<string, {
           component: string;
-          path: string | number[];
+          path: (string | number)[];
         }>;
       bindings: {
         node: string;
@@ -807,6 +939,12 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
+  /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+  'audioEnvironment': MolenAudioEnvironmentData;
+  /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+  'audioSource': MolenAudioSourceData;
+  /** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+  'audioZone': MolenAudioZoneData;
   /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
   'character': MolenCharacterData;
   /** 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. */
@@ -895,7 +1033,7 @@ type MolenComponentName = keyof MolenComponentData;
 type MolenComponentPatch = { [K in MolenComponentName]?: MolenComponentData[K] };
 
 /** Entity ids declared in the scene. Ids of spawned entities are plain strings. */
-type MolenEntityId = 'camera-target' | 'checkpoint' | 'checkpoint-flag' | 'cloud0' | 'cloud1' | 'cloud10' | 'cloud2' | 'cloud3' | 'cloud4' | 'cloud5' | 'cloud6' | 'cloud7' | 'cloud8' | 'cloud9' | 'critter0' | 'critter1' | 'environment' | 'game' | 'grass0' | 'grass1' | 'grass2' | 'grass3' | 'grass4' | 'hazard0' | 'hazard3' | 'hero-eye' | 'hero-hat' | 'hero-head' | 'hero-pack' | 'hill0' | 'hill1' | 'hill10' | 'hill2' | 'hill3' | 'hill4' | 'hill5' | 'hill6' | 'hill7' | 'hill8' | 'hill9' | 'island0' | 'island1' | 'island2' | 'island3' | 'island4' | 'lamp' | 'ledge0' | 'ledge1' | 'ledge2' | 'ledge3' | 'ledge4' | 'ledge5' | 'lighthouse' | 'lighthouse-top' | 'player' | 'root0--3' | 'root0--6' | 'root0-0' | 'root0-3' | 'root0-6' | 'root1-12' | 'root1-15' | 'root1-18' | 'root1-21' | 'root2-26' | 'root2-29' | 'root2-32' | 'root2-35' | 'root2-38' | 'root3-44' | 'root3-47' | 'root3-50' | 'root3-53' | 'root3-56' | 'root4-61' | 'root4-64' | 'root4-67' | 'root4-70' | 'root4-73' | 'root4-76' | 'root4-79' | 'seed0' | 'seed1' | 'seed10' | 'seed11' | 'seed12' | 'seed13' | 'seed14' | 'seed2' | 'seed3' | 'seed4' | 'seed5' | 'seed6' | 'seed7' | 'seed8' | 'seed9' | (string & {});
+type MolenEntityId = 'audio' | 'camera-target' | 'checkpoint' | 'checkpoint-flag' | 'cloud0' | 'cloud1' | 'cloud10' | 'cloud2' | 'cloud3' | 'cloud4' | 'cloud5' | 'cloud6' | 'cloud7' | 'cloud8' | 'cloud9' | 'critter0' | 'critter1' | 'environment' | 'game' | 'grass0' | 'grass1' | 'grass2' | 'grass3' | 'grass4' | 'hazard0' | 'hazard3' | 'hero-eye' | 'hero-hat' | 'hero-head' | 'hero-pack' | 'hill0' | 'hill1' | 'hill10' | 'hill2' | 'hill3' | 'hill4' | 'hill5' | 'hill6' | 'hill7' | 'hill8' | 'hill9' | 'island0' | 'island1' | 'island2' | 'island3' | 'island4' | 'lamp' | 'ledge0' | 'ledge1' | 'ledge2' | 'ledge3' | 'ledge4' | 'ledge5' | 'lighthouse' | 'lighthouse-top' | 'player' | 'root0--3' | 'root0--6' | 'root0-0' | 'root0-3' | 'root0-6' | 'root1-12' | 'root1-15' | 'root1-18' | 'root1-21' | 'root2-26' | 'root2-29' | 'root2-32' | 'root2-35' | 'root2-38' | 'root3-44' | 'root3-47' | 'root3-50' | 'root3-53' | 'root3-56' | 'root4-61' | 'root4-64' | 'root4-67' | 'root4-70' | 'root4-73' | 'root4-76' | 'root4-79' | 'seed0' | 'seed1' | 'seed10' | 'seed11' | 'seed12' | 'seed13' | 'seed14' | 'seed2' | 'seed3' | 'seed4' | 'seed5' | 'seed6' | 'seed7' | 'seed8' | 'seed9' | (string & {});
 /** Prefab names declared in the scene. */
 type MolenPrefabName = 'box' | 'cylinder' | 'seed' | 'sphere' | (string & {});
 /** Registry type ids this project declares (`molen.spawnType`). */
@@ -1028,6 +1166,29 @@ interface MolenMath {
   cbrt(...args: number[]): number;
 }
 
+/** Options for `molen.audio.play`. Omit entity and position for a non-positional sound. */
+interface MolenAudioPlayOptions {
+  /** Play at (and follow) this entity's transform. */
+  entity?: MolenEntityId;
+  /** Play at a fixed world position. */
+  position?: MolenVec3;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  /** Loop until stopped; default the sound's own loop flag. */
+  loop?: boolean;
+}
+
+/** `molen.audio`: each call emits an `audio.*` event the client plays (guide/audio.md). */
+interface MolenAudioApi {
+  /** Play a sound-bank id; returns a handle for `stop`. */
+  play(sound: string, opts?: MolenAudioPlayOptions): string;
+  /** Stop by handle, or every voice matching an entity and/or sound. */
+  stop(target: string | { entity?: MolenEntityId; sound?: string }, fadeS?: number): void;
+  /** Switch background music to a track or playlist; null stops it. */
+  music(playlist: string | string[] | null, opts?: { crossfadeS?: number }): void;
+}
+
 /** The verb set injected into every scene-data script as `molen`. */
 interface MolenApi {
   /** Spawn from a component map. */
@@ -1084,6 +1245,8 @@ interface MolenApi {
     handler: (payload: MolenCommands[T], ctx: MolenTickContext, command: MolenCommand) => void,
   ): MolenUnsubscribe;
   emit(type: string, payload?: MolenJsonValue): void;
+  /** Sound: play/stop one-shots and loops, switch music. Never affects the simulation. */
+  readonly audio: MolenAudioApi;
   raycast(origin: MolenVec3, dir: MolenVec3, maxDist: number, mask?: number): MolenRayHit | null;
   overlapCircle(center: MolenVec3, radius: number, mask?: number): string[];
   /** Emit `event` after `ticks` ticks (snapshot-safe world timer). Returns the timer id. */

@@ -190,12 +190,14 @@ const output = execFileSync(
     resolve(root, '../../node_modules/@biomejs/biome/bin/biome'),
     'format',
     '--stdin-file-path',
-    path,
+    // Generated content is excluded from automatic formatting to preserve hashes.
+    // Format this input as ordinary JSON before comparison, without editing that content.
+    resolve(root, 'generated-atlas.json'),
   ],
   { input: `${formatJson(atlas)}\n`, encoding: 'utf8' },
 );
 if (process.argv.includes('--check')) {
-  if ((await readFile(path, 'utf8')) !== output)
+  if ((await readFile(path, 'utf8')).replaceAll('\r\n', '\n') !== output.replaceAll('\r\n', '\n'))
     throw new Error(
       'Structure atlas is stale: run node packages/worldgen-earth/scripts/generate-structure-atlas.mjs',
     );

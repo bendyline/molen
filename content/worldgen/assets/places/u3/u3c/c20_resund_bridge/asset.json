@@ -1,0 +1,78 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.c20_resund_bridge",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:81a6aba3ff65130ab8dbd23f238c2d923acfbc3b8c3c32e4969327da923b9a80",
+  "sourceHash": "sha256:1ae688ad98bcfa7e8c3ebeb0cfd8501dc93baea9a019294da326c98ee213bb6a",
+  "bounds": {
+    "aabb": {
+      "min": [-775, -0.052, -14.8534],
+      "max": [775, 170.052, 14.8534]
+    },
+    "sphere": {
+      "center": [0, 85, 0],
+      "radius": 776.4422
+    }
+  },
+  "stats": {
+    "triangles": 1424,
+    "vertices": 2640,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 64176
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 1424
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-foundation",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -775, -0.052, -14.8534, -775, -0.052, 14.8534, -775, 170.052, -14.8534, -775, 170.052,
+          14.8534, 775, -0.052, -14.8534, 775, -0.052, 14.8534, 775, 170.052, -14.8534, 775,
+          170.052, 14.8534
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

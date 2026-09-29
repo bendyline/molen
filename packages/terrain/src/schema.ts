@@ -4,6 +4,7 @@ import {
   type ValidationIssue,
 } from '@bendyline/molen-schema';
 import { z } from 'zod';
+import { registerTerrainArchiveSetSchema } from './archive-set-schema';
 import { registerTerrainPackageSchema } from './package-schema';
 
 // Every field carries a `.describe()` so the emitted JSON Schema documents units and axes:
@@ -310,4 +311,5 @@ export function registerTerrainSchemas(): void {
     ],
   });
   registerTerrainPackageSchema();
+  registerTerrainArchiveSetSchema();
 }

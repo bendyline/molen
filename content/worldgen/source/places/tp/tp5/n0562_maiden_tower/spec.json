@@ -1,0 +1,160 @@
+{
+  "id": "N0562",
+  "planId": "N0562",
+  "assetId": "molen.worldgen.structure.n0562_maiden_tower",
+  "title": "Maiden Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q842822"
+  },
+  "wikidataId": "Q842822",
+  "visualBrief": "Baku limestone tower with its asymmetric seaside buttress, rounded nose, relief masonry bands, recessed slit openings and open roof parapet.",
+  "size": [
+    28.2,
+    31,
+    16.7
+  ],
+  "actualBounds": {
+    "min": [
+      -13.251052856445312,
+      0,
+      -8.333999633789062
+    ],
+    "max": [
+      14.311613082885742,
+      31,
+      8.46928882598877
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "OSM-local +X points approximately east; western doorway toward -X",
+    "origin": "Minimum-area OSM footprint center in X/Z; nominal lowest exterior base at Y=0"
+  },
+  "scaleBasis": "Reserve administration cylinder diameter and height envelope; Presidential Library entrance and panel dimensions; OSM asymmetric buttress footprint. Nominal 31 m base-to-parapet includes the reported 3 m site-level difference.",
+  "geographicProposal": {
+    "anchor": [
+      49.837270733,
+      40.366150763
+    ],
+    "heading": 0.081716996579,
+    "source": "https://www.openstreetmap.org/way/299418016",
+    "evidence": "Exact Q842822 asymmetric outline establishes the directed east/southeast buttress, overcoming the rectangle axis ambiguity; model preserves the mapped cylinder offset.",
+    "altitudeMode": "terrain",
+    "orientationConfidence": "footprint-directed",
+    "limitations": "Ground varies by 3 m. Terrain contact is provisional; slope, foundation rock and adjoining low structures need site review.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact Q842822 asymmetric outline establishes the directed east/southeast buttress, overcoming the rectangle axis ambiguity; model preserves the mapped cylinder offset. Ground varies by 3 m. Terrain contact is provisional; slope, foundation rock and adjoining low structures need site review."
+  },
+  "sourceFacts": {
+    "cylinderDiameterMeters": 16.5,
+    "terrainDependentHeightMeters": [
+      28,
+      31
+    ],
+    "upperRibsStartMeters": 12,
+    "entranceMeters": [
+      1.1,
+      2
+    ],
+    "inscriptionMeters": [
+      0.6,
+      0.4
+    ],
+    "inscriptionBottomMeters": 14
+  },
+  "referencePages": [
+    "https://icherisheher.gov.az/en/monuments/show/qiz-qalasi",
+    "https://bakucity.preslib.az/en/page/7eSskpB6tX",
+    "https://www.openstreetmap.org/way/299418016"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Rib count, slit positions and buttress nose curvature are estimates from the library exterior photograph and OSM, not measured conservation geometry.",
+    "Interior museum floors, the well, adjoining lower defensive buildings, inscriptions and individual damaged blocks are not reconstructed.",
+    "A uniform Y=0 base requires terrain fitting to the sloping rock. Exterior dimensions do not establish a surveyed vertical datum.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "near-bands",
+      "position": [
+        17,
+        22,
+        27
+      ],
+      "lookAt": [
+        1,
+        20,
+        4
+      ]
+    },
+    {
+      "name": "near-west-door",
+      "position": [
+        -24,
+        7,
+        10
+      ],
+      "lookAt": [
+        -9,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "roof-parapet",
+      "position": [
+        27,
+        46,
+        36
+      ],
+      "lookAt": [
+        -1,
+        25,
+        1
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        58,
+        30,
+        76
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "id": "N0573",
+  "planId": "N0573",
+  "assetId": "molen.worldgen.structure.n0573_c_ur_defense",
+  "title": "Cœur Défense",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q2349903"
+  },
+  "wikidataId": "Q2349903",
+  "visualBrief": "The staggered pair of rounded 161 m office blades, shared lift link, three lower round-ended blocks, glazed public atrium, white floor bands, varied sun blinds, roof screens and entrance canopy.",
+  "size": [
+    136,
+    161,
+    127
+  ],
+  "actualBounds": {
+    "min": [
+      -79.27342224121094,
+      0,
+      -73.42790985107422
+    ],
+    "max": [
+      55.78200149536133,
+      161.06500244140625,
+      53.25699996948242
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the three rounded low-building ends on the esplanade; twin towers occupy the northwest side",
+    "origin": "Exact-QID ground-platform center; the two individually mapped tower outlines keep their measured offsets"
+  },
+  "scaleBasis": "Structural engineer Terrell gives two 41-storey 161 m towers and three nine-storey blocks. The district planning authority supplies current exterior photos and the 40 m low-block height. The architectural study describes 23×80 m parallel staggered blades and a 44 m atrium. Exact tower-part polygons provide the two actual rounded plans and positions.",
+  "geographicProposal": {
+    "anchor": [
+      2.244187773,
+      48.890901121
+    ],
+    "heading": -0.448931709142,
+    "source": "https://www.openstreetmap.org/relation/3071676",
+    "evidence": "The native frame retains the platform relation and both exact tower-part QIDs Q117352210/Q117352218. All three esplanade fingers and the northwest tower offset are explicit; the tower centers are not replaced by the whole-platform center.",
+    "orientationConfidence": "exact-tower-parts-and-asymmetric-platform",
+    "limitations": "The relation is tagged height=1 m and describes the low ground platform, not the union of all upper tower projections. The tall blades extend outside it on the northwest side, as the independent tower-part polygons show.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The native frame retains the platform relation and both exact tower-part QIDs Q117352210/Q117352218. All three esplanade fingers and the northwest tower offset are explicit; the tower centers are not replaced by the whole-platform center. The relation is tagged height=1 m and describes the low ground platform, not the union of all upper tower projections. The tall blades extend outside it on the northwest side, as the independent tower-part polygons show."
+  },
+  "sourceFacts": {
+    "towerCount": 2,
+    "towerHeightMeters": 161,
+    "towerFloors": 41,
+    "lowBuildings": 3,
+    "lowBuildingHeightMeters": 40,
+    "lowBuildingFloors": 9,
+    "publishedTowerPlanMeters": [
+      23,
+      80
+    ],
+    "atriumHeightMeters": 44
+  },
+  "referencePages": [
+    "https://www.terrellgroup.net/en/immeuble-coeur-defense/",
+    "https://www.parisladefense.com/fr/territoire/tours-batiments/coeur-defense",
+    "https://resp.editionsparentheses.com/IMG/pdf/P263_DEFENSE_VOL1_EXTRAITS.pdf",
+    "https://www.openstreetmap.org/relation/3071676",
+    "https://www.openstreetmap.org/way/1158726203",
+    "https://www.openstreetmap.org/way/1158726204"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Facade blinds use a deterministic distribution informed by current photographs; their moment-to-moment open/closed positions are not fixed architectural facts. Small roof equipment and the atrium roof trusses are reconstructed at exterior viewing scale.",
+    "Glazing is original tinted PBR geometry; reusable painted-metal and concrete surfaces supply structural texture without per-model images. Interior offices are not part of this exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "esplanade-entrances",
+      "position": [
+        85,
+        35,
+        125
+      ],
+      "lookAt": [
+        0,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "twin-blades",
+      "position": [
+        -145,
+        107,
+        120
+      ],
+      "lookAt": [
+        -42,
+        99,
+        -19
+      ]
+    },
+    {
+      "name": "atrium",
+      "position": [
+        -8,
+        25,
+        64
+      ],
+      "lookAt": [
+        -8,
+        21,
+        21
+      ]
+    },
+    {
+      "name": "rounded-roof",
+      "position": [
+        -108,
+        189,
+        40
+      ],
+      "lookAt": [
+        -45,
+        147,
+        -17
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        245,
+        124,
+        312
+      ],
+      "lookAt": [
+        -12,
+        77,
+        -8
+      ]
+    }
+  ]
+}

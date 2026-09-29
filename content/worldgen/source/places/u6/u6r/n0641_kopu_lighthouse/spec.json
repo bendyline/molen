@@ -1,0 +1,161 @@
+{
+  "id": "N0641",
+  "key": "kopu_lighthouse",
+  "title": "Kõpu Lighthouse",
+  "wikidataId": "Q1795607",
+  "size": [
+    22.2,
+    37.7,
+    25.05
+  ],
+  "visualBrief": "Massive white square stone lighthouse with four broad sloping buttresses, tall square upper block, red anchor plates, roof balcony, red lantern cupola and south entrance porch.",
+  "sourceFacts": {
+    "heightMeters": 37.7,
+    "operatorCoordinate": [
+      22.1996445,
+      58.9159645
+    ],
+    "form": "White four-sided buttressed stone tower, balcony and red lantern room.",
+    "basis": "Estonian Transport Administration current navigation-aid668 record. Operator-submitted IALA2020 photographs and current record photograph inspected."
+  },
+  "referencePages": [
+    "https://nma.transpordiamet.ee/aton/2684/",
+    "https://heritage.iala.int/lighthouses/kopu-lighthouse/",
+    "https://www.openstreetmap.org/way/249448393"
+  ],
+  "referenceRights": "Operator and IALA-submitted photographs are visual research only, not redistributed. OSM footprint dimensions/axes ©OpenStreetMap contributors, ODbL1.0.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z (south entrance)",
+    "origin": "Central shaft at local terrain contact. Buttress arms follow +X/-X and +Z/-Z."
+  },
+  "geographicProposal": {
+    "anchor": [
+      22.1996445,
+      58.9159645
+    ],
+    "heading": -0.087025590763,
+    "elevationMode": "terrain-contact",
+    "source": "https://nma.transpordiamet.ee/aton/2684/",
+    "axisSource": "https://www.openstreetmap.org/way/249448393",
+    "status": "preview-proposal",
+    "notes": "Official coordinate preferred to OSM envelope center. Cached footprint rectangle heading0.69837257rad is diagonal to buttress edges; subtractπ/4 to align authored arms with those edges. Operator identifies southern entrance; residual asymmetry and exact porch fit need review."
+  },
+  "limitations": [
+    "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
+    "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
+    "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
+    "Height37.7m is authoritative; core width, buttress profile stations, terrace details and porch sizes are photo/map reconstructions. The restored irregular shell and exposed boulders are simplified; annex buildings are omitted."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-buttresses",
+      "position": [
+        27,
+        12,
+        29
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        12,
+        36,
+        16
+      ],
+      "lookAt": [
+        0,
+        33.5,
+        0
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        8,
+        5,
+        21
+      ],
+      "lookAt": [
+        0,
+        2,
+        10
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        49,
+        29,
+        62
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    }
+  ],
+  "assetId": "molen.worldgen.structure.n0641_kopu_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -10.600000381469727,
+      0,
+      -11.5
+    ],
+    "max": [
+      11.600000381469727,
+      37.70000076293945,
+      13.550000190734863
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

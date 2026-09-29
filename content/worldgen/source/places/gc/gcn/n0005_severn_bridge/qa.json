@@ -1,0 +1,33 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0005_severn_bridge",
+  "sourceHash": "sha256:85ab2f4c6bf7785f80e924ed62b3a292fc0f06bb80862ef70c1c80a263b6f05d",
+  "runtimeHash": "sha256:65458556dd2a41fefd0a467608c35e7b1e53e5c0e9180d961811640bd2241294",
+  "captureReportHash": "sha256:746818c701499ddc6a1ce20e749db83c1aa5f9256c4698c5391d1583e424ff85",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Static exterior rendering and geometry integrity at the ten captured views.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-tower.png",
+      "shots/near-deck.png",
+      "shots/near-hangers.png",
+      "shots/under-deck.png",
+      "shots/far-crossing.png"
+    ],
+    "notes": "Inspected fresh preview, four turntables, near tower/deck/hangers, under-deck and full crossing. Resolved coplanar pier-band stippling and four lower hanger sockets intersecting tower legs. Parapets, cable clamps and socket hardware remain visible in close views; distant 50 mm hangers are subpixel and alias. Whole-crossing and end-on turntables establish completeness only, not fine detail acceptance."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "Original M48 identity is confirmed. Horizontal endpoint/axis and road fit need site review. Published tower and roadway heights use incompatible or incompletely specified datums; Y=0 is an unresolved local water reference and must not be treated as checked terrain or sea-level elevation."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Detailed original exterior reconstruction, not survey-grade maximum fidelity. Resolve primary hanger-count discrepancy, final section dimensions and vertical profile, common vertical datum, modern replacement hanger dimensions, texture/weathering treatment, adaptive cable visibility and collision/LOD work before full acceptance."
+  }
+}

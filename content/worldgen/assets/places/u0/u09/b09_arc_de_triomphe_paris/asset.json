@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.b09_arc_de_triomphe_paris",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:772306036494ae3102110291e1d949ab9b408ab7a600b5a9e244e8cb7ddb7dcf",
+  "sourceHash": "sha256:9479abd4b060400dd76ac3ffc7635eb7795d39392d8fc9d5c51a5a2e8e0b5676",
+  "bounds": {
+    "aabb": {
+      "min": [-33, 0.0005, -8.0003],
+      "max": [33, 49.9995, 8.8003]
+    },
+    "sphere": {
+      "center": [0, 25, 0.4],
+      "radius": 42.2438
+    }
+  },
+  "stats": {
+    "triangles": 196,
+    "vertices": 372,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 10512
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 196
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -33, 0.0005, -8.0003, -33, 0.0005, 8.8003, -33, 49.9995, -8.0003, -33, 49.9995, 8.8003,
+          33, 0.0005, -8.0003, 33, 0.0005, 8.8003, 33, 49.9995, -8.0003, 33, 49.9995, 8.8003
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

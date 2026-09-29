@@ -1,6 +1,2 @@
-import { installTerrainElevationWorker } from '@bendyline/molen-terrain/client';
-
-// This Vite entry executes only in a Worker; the app's DOM lib types self as Window.
-installTerrainElevationWorker(
-  self as unknown as Parameters<typeof installTerrainElevationWorker>[0],
-);
+// Vite worker entry (`new Worker(new URL('./elevation-worker.ts', import.meta.url), { type: 'module' })`).
+import '@bendyline/molen-earth/workers/elevation';

@@ -23,7 +23,7 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
 2. Build once, then drive everything through the CLI (or the MCP server, which mirrors it):
 
 ```sh
-pnpm install && pnpm -r build              # build before typecheck/test (see "Build invariant")
+pnpm install && pnpm assets:fetch && pnpm -r build  # restore GLBs, then build before checks
 node packages/tooling/dist/cli.mjs --help  # NOTE: dist/cli.mjs (.mjs, not .js)
 node packages/tooling/dist/cli.mjs new my-experience   # scaffold a runnable starter
 ```
@@ -121,14 +121,25 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   fail on a check you could have run yourself. `pnpm docs:gen` regenerates `docs-src/schemas/*.md` (including
   components.md) from the registry; `pnpm docs:site:gen` regenerates the public site in
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
-  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`.
+  from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
+  follow [docs-site/STYLE.md](docs-site/STYLE.md), which `pnpm docs:site:check` enforces.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
-  `/determinism`, `/content`, `/vehicles`, `/aircraft`; `@bendyline/molen-client` also exposes
-  `/camera-track`, `/vite`, `/vehicles`, `/aircraft`; `@bendyline/molen-terrain`
-  and `@bendyline/molen-figures` expose only `/kernel` and `/client` (no `.`).
+  `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
+  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`;
+  `@bendyline/molen-terrain` and `@bendyline/molen-figures` expose only `/kernel` and `/client`
+  (no `.`).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).
+- **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
+  write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
+  downloads the matching release (or builds from source when it is not published yet);
+  `pnpm assets:build` builds from source with no download. After a model change, run
+  `pnpm assets:build --update-lock` (or the Update asset lock workflow) and commit the source,
+  regenerated metadata and lock together; never commit a GLB or upload anything. The Assets
+  workflow proves the build and publishes the release. Generators must be byte-deterministic on
+  every OS and CPU; in generator code write `Math.pow` for any exponent but 2 or 0.5. See
+  [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Runtime content packs are separate.
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

@@ -1,0 +1,298 @@
+{
+  "planId": "N0202",
+  "id": "N0202",
+  "assetId": "molen.worldgen.structure.n0202_cayan_tower",
+  "title": "Cayan Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q391648",
+  "referenceCoordinate": {
+    "latitude": 25.086889,
+    "longitude": 55.145222
+  },
+  "visualBrief": "SOM helical residential tower with a shallow chevron floorplate,90-degree clockwise twist,73 nominal residential levels and two upper mechanical courses, deeply recessed balconies,30–60% open round-metal shading screens, open steel crown, glazed six-level podium and rooftop pools.",
+  "size": [
+    58.31284141540527,
+    306.3999938964844,
+    60.897891998291016
+  ],
+  "actualBounds": {
+    "min": [
+      -24.287839889526367,
+      0,
+      -25.87289047241211
+    ],
+    "max": [
+      34.025001525878906,
+      306.3999938964844,
+      35.025001525878906
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X northeast toward attached parking podium",
+    "shortAxis": "+Z southeast; clockwise shaft twist viewed from above"
+  },
+  "sourceFacts": {
+    "architect": "Skidmore, Owings & Merrill",
+    "heightMeters": 306.4,
+    "totalTwistDegrees": 90,
+    "ownerFloorCount": 73,
+    "architectFloorCount": 75,
+    "curtainPanelInches": [
+      82,
+      124
+    ],
+    "screenOffsetMeters": 0.1016,
+    "screenOpenAreaRange": [
+      0.3,
+      0.6
+    ],
+    "completionYear": 2013
+  },
+  "reconstruction": {
+    "plan": "SOM typical hexagonal chevron and cylindrical-core drawing reproduced in Architect November2013 p185, with the exact mapped tower rectangle used as registration envelope. The primary site plan places an independent attached parking/retail podium on the northeast side; its metric outline is reconstructed from the printed scale.",
+    "facade": "SOM completed Tim Griffith photos and engineer interviews establish deep sills, staggered screens, recessed balcony bays and stepped floor slabs. Fine repeated bay schedules, intermediate datums, panel modules and roof equipment are exterior reconstruction."
+  },
+  "referencePages": [
+    "https://www.som.com/projects/cayan-tower/",
+    "https://www.som.com/news/soms-cayan-tower-opens/",
+    "https://www.cayan.net/projects/cayantower/",
+    "https://www.cayan.net/live/wp-content/uploads/2022/03/cayantower-floor-plans.pdf",
+    "https://www.cayan.net/live/wp-content/uploads/2022/03/cayantower-brochure.pdf",
+    "https://www.architectmagazine.com/design/buildings/cayan-tower-designed-by-skidmore-owings-merrill_o/",
+    "https://www.usmodernist.org/AJ/A-2013-11.pdf",
+    "https://www.skyscrapercenter.com/building/cayan-tower/464",
+    "https://www.openstreetmap.org/way/195527255"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      55.1451708,
+      25.08684565
+    ],
+    "heading": 0.882804659892,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/195527255",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/195527255"
+    ],
+    "wikidataId": "Q391648",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:c060d3d00c1ff64efd389d4f184d2096e35092e3042004783d7daf8dff56d728",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact mapped tower center and signed rectangle are retained. The primary site north arrow points upper-right: page-right/northeast is the attached podium. GroundY0 is the public entrance apron; the rectangle is a registration envelope and the detailed chevron and podium are primary-plan reconstruction."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared graphs use metric UVs and vertex tint through molenSurface extras. Opted-in alpha screens embed a portable fallback baked from the same canonical graph; the world viewer replaces this copy with the shared texture. Transparent guards retain local PBR alpha.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_perforated_round_open",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.012,
+        0.012
+      ]
+    }
+  ],
+  "portableCanonicalFallbacks": [
+    "metal_perforated_round_open"
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Intermediate floor elevations and bay schedules, chevron kink depth, crown equipment, ground door offsets and landscaped podium pool dimensions are exterior reconstruction. Source73/75-storey counts differ and are retained. Round9mm holes/12mm pitch are a reusable44% open pattern within the architect30–60% range, not a measured screen fabrication schedule. Neighboring towers, bridge, promenades beyond the own-site arcade and interiors are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "clockwise-helix",
+      "position": [
+        360,
+        240,
+        -415
+      ],
+      "lookAt": [
+        0,
+        147,
+        0
+      ]
+    },
+    {
+      "name": "chevron-facade",
+      "position": [
+        -83,
+        129,
+        47
+      ],
+      "lookAt": [
+        -17,
+        122,
+        0
+      ]
+    },
+    {
+      "name": "recessed-balconies",
+      "position": [
+        -58,
+        69,
+        41
+      ],
+      "lookAt": [
+        -18,
+        61,
+        6
+      ]
+    },
+    {
+      "name": "perforated-sunshades",
+      "position": [
+        -23.6,
+        39,
+        6.9
+      ],
+      "lookAt": [
+        -20.55,
+        39,
+        6.2
+      ]
+    },
+    {
+      "name": "deep-sill-step",
+      "position": [
+        25,
+        151,
+        48
+      ],
+      "lookAt": [
+        11,
+        150,
+        23
+      ]
+    },
+    {
+      "name": "open-crown",
+      "position": [
+        58,
+        310,
+        48
+      ],
+      "lookAt": [
+        0,
+        299,
+        0
+      ]
+    },
+    {
+      "name": "roof-gantry",
+      "position": [
+        34,
+        326,
+        -40
+      ],
+      "lookAt": [
+        0,
+        291,
+        0
+      ]
+    },
+    {
+      "name": "podium-pools",
+      "position": [
+        72,
+        52,
+        20
+      ],
+      "lookAt": [
+        25,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "retail-arcade",
+      "position": [
+        -3,
+        12,
+        78
+      ],
+      "lookAt": [
+        4,
+        4,
+        30
+      ]
+    },
+    {
+      "name": "ground-entry",
+      "position": [
+        -59,
+        11,
+        4
+      ],
+      "lookAt": [
+        -21,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "far-twisted-silhouette",
+      "position": [
+        -630,
+        245,
+        610
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 498522,
+    "vertices": 1159420,
+    "materials": 7,
+    "bytes": 46568936,
+    "sha256": "sha256:feb178932b5a3c9911e1b00c2b595b9b93d2a4fafafb5af938dfe5157714603a"
+  }
+}

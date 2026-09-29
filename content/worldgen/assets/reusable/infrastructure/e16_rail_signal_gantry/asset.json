@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.e16_rail_signal_gantry",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:3d60a3d2f57d41c412be7103cf2dad259baafed45ec8f68965442131f678fd05",
+  "sourceHash": "sha256:608c425a1c037346139870256a87a46bec1dcf15c9c6acb2ed56a236b70a0e4b",
+  "bounds": {
+    "aabb": {
+      "min": [-27, -0.0002, -0.7998],
+      "max": [27, 16.0002, 0.9998]
+    },
+    "sphere": {
+      "center": [0, 8, 0.1],
+      "radius": 27.6786
+    }
+  },
+  "stats": {
+    "triangles": 108,
+    "vertices": 204,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 6616
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 108
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -27, -0.0002, -0.7998, -27, -0.0002, 0.9998, -27, 16.0002, -0.7998, -27, 16.0002, 0.9998,
+          27, -0.0002, -0.7998, 27, -0.0002, 0.9998, 27, 16.0002, -0.7998, 27, 16.0002, 0.9998
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

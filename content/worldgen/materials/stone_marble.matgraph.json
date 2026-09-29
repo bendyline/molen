@@ -1,0 +1,105 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 207,
+  "nodes": [
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "u-fold",
+      "type": "ramp",
+      "input": "u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#ff0000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "v-fold",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.5, "color": "#00ff00" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "fold",
+      "type": "blend",
+      "inputs": { "a": "u-fold", "b": "v-fold" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    { "id": "stretch", "type": "const", "params": { "value": [0.42857142857142855, 1, 0, 1] } },
+    {
+      "id": "fiber-uv",
+      "type": "blend",
+      "inputs": { "a": "fold", "b": "stretch" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "fiber-noise",
+      "type": "noise",
+      "params": { "kind": "simplex", "octaves": 2, "scale": 7, "seedOffset": 31 },
+      "input": "fiber-uv"
+    },
+    {
+      "id": "fiber",
+      "type": "levels",
+      "input": "fiber-noise",
+      "params": { "outMin": 0.994, "outMax": 1 }
+    },
+    {
+      "id": "veins",
+      "type": "ramp",
+      "input": "fiber-noise",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#f8f8f8" },
+          { "t": 0.28, "color": "#f7f7f7" },
+          { "t": 0.32, "color": "#f3f3f3" },
+          { "t": 0.345, "color": "#e9e9e9" },
+          { "t": 0.37, "color": "#f3f3f3" },
+          { "t": 0.45, "color": "#f8f8f8" },
+          { "t": 1, "color": "#f8f8f8" }
+        ]
+      }
+    },
+    {
+      "id": "mineral-grain",
+      "type": "noise",
+      "input": "fiber-uv",
+      "params": { "kind": "simplex", "scale": 70, "octaves": 2, "seedOffset": 39 }
+    },
+    {
+      "id": "grain",
+      "type": "levels",
+      "input": "mineral-grain",
+      "params": { "outMin": 0.985, "outMax": 1 }
+    },
+    {
+      "id": "out",
+      "type": "blend",
+      "inputs": { "a": "veins", "b": "grain" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "rough",
+      "type": "levels",
+      "input": "mineral-grain",
+      "params": { "outMin": 0.52, "outMax": 0.64 }
+    },
+    {
+      "id": "normal",
+      "type": "height-to-normal",
+      "input": "mineral-grain",
+      "params": { "strength": 0.00025 }
+    }
+  ],
+  "outputs": { "baseColor": "out", "roughness": "rough", "normal": "normal" }
+}

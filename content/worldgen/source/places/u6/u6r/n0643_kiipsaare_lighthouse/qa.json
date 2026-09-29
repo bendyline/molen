@@ -1,0 +1,60 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0643_kiipsaare_lighthouse",
+  "sourceHash": "sha256:53230b0862cc43a241503f8fbd5d27f0a038df369809df987a118d6eeef59f3a",
+  "runtimeHash": "sha256:041977f61fd994f201578ee325d48b2055fa83da37197b93eeca32312e199fb3",
+  "captureReportHash": "sha256:7b88c531ee922387cec6ab7974becd5000ac9be4715db2dc7f2ff98c27a97b59",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Visible static exterior geometry in the inspected frames; not a maximum-fidelity or survey certification.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-gallery.png",
+      "shots/near-shaft.png",
+      "shots/near-entry.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Reviewed all nine fallback frames and all eight shared frames in contact sheets, then full-size shared entry, gallery and shaft views. The repaired outward-facing cylindrical shell is continuous in all four directions; narrow openings, door reveal, base collar, threshold slabs, leaning shaft, gallery and empty lantern frame render coherently. There is no intact optical assembly, consistent with the inspected derelict reference. Distance aliasing affects thin rails; regular paint-band boundaries and fine vertical tint subdivisions are visible in close views."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "fixtureHash": "sha256:6095a205450080bb99180525d2761937c86e4e7530267ffd3bcb9e8ba109a4b5",
+    "specHash": "sha256:2e5b91ff6d31b70f03e85a3e7ae08187674a15e15e4e526081514f3aeb57e6ae",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-gallery.png",
+      "shots/shared/near-shaft.png",
+      "shots/shared/near-entry.png",
+      "shots/shared/far-silhouette.png"
+    ],
+    "notes": "The shaft uses the shared plain-concrete graph and the gallery/lantern metal uses shared painted metal, with two canonical references and no embedded images. The base and shaft retain metric repeats. The current weathering reconstruction is too regular to certify maximum fidelity: eroded paint, chipped concrete, corrosion and local discoloration require additional work. This pass verifies material resolution and coherent rendered surfaces.",
+    "captureReportHash": "sha256:d8bae4ca13c927acf78565144abeb567ab96919713c98b9a5f35bdcb25dc1cfe"
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "The source retains an explicit static two-degree photographic lean and catalog coordinate. The structure is now in the sea and its inclination changes over time. No current exact-QID OSM footprint, water datum, foundation exposure or compass-facing survey is available; the runtime placement remains an inactive draft. No geographic pass is claimed."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates. No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation. Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates. The2-degree lean is a representative photo-proportioned pose, not a current survey; the authority says it varies. Diameter, gallery, lantern framing and irregular paint bands are photo estimates. Water level, seabed/submerged footing and door azimuth remain unresolved. No intact lens or active beacon is invented."
+  }
+}

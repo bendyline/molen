@@ -10,11 +10,14 @@ molen.onCommand('move', (p) => {
   if (game()?.status === 'playing') molen.patch('player', 'platformIntent', { move: p.dir[0] });
 });
 molen.onCommand('jump', (p) => {
-  if (game()?.status === 'playing')
-    molen.patch('player', 'platformIntent', {
-      ...(p.held ? { jump: true } : {}),
-      jumpHeld: p.held,
-    });
+  if (game()?.status !== 'playing') return;
+  molen.patch('player', 'platformIntent', {
+    ...(p.held ? { jump: true } : {}),
+    jumpHeld: p.held,
+  });
+  // Only a jump that can happen (on the ground, or within coyote time) makes a sound.
+  const body = molen.get('player', 'platformBody');
+  if (p.held && (body?.grounded || (body?.grace ?? 0) > 0)) molen.audio.play('game.jump');
 });
 molen.onCommand('restart', () => {
   placePlayer(config.spawn);

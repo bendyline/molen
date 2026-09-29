@@ -1,0 +1,76 @@
+{
+  "id": "map_wind_turbine",
+  "assetId": "molen.worldgen.structure.map_wind_turbine",
+  "title": "Three-blade utility wind turbine",
+  "category": "wind_turbine",
+  "quality": "detailed",
+  "visualBrief": "Tapered steel tower, rounded nacelle with cooling louvers and service fittings, spinner, shaft, bolted roots and three twisted lofted airfoil blades.",
+  "size": [126, 153, 24],
+  "actualBounds": {
+    "min": [-54.57067108154297, 0, -7.699999809265137],
+    "max": [54.534671783447266, 152.4619598388672, 7.4980974197387695]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Tower base at ground level; rotor axis points toward +Z"
+  },
+  "scaleBasis": "Macro dimensions follow the public NREL 5 MW reference turbine: 126 m rotor, 90 m hub, 3 m hub diameter, 61.5 m blades, 6 m tower base, 3.87 m tower top, 5 degree shaft tilt and 2.5 degree precone. Nacelle shell and minor fittings are original visual design.",
+  "referencePages": [
+    "https://www.nrel.gov/docs/fy09osti/38060.pdf",
+    "https://www.nrel.gov/docs/fy10osti/45891.pdf"
+  ],
+  "geometrySource": "Original deterministic Molen mesh; reference publications inform construction systems and dimensions only. No third-party mesh or image is embedded.",
+  "sourceLicense": "Original geometry under repository license; reference links retain their own rights.",
+  "materialMethod": "Shared material-graph references in GLB material extras with metric repeat UVs; original vertex colors supply tints. Standalone GLB keeps portable PBR fallback materials. Textures are resolved from the shared library and are not duplicated per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [2, 2],
+      "projection": "face-tangent"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [2, 2],
+      "projection": "face-tangent"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [2, 2],
+      "projection": "face-tangent"
+    }
+  ],
+  "animation": "Static rotor pose; no animation clips.",
+  "limitations": [
+    "The blade exterior uses an approximate symmetric airfoil section and reference planform, not the full aerodynamic airfoil data. Static rotor pose; no operating animation, drivetrain internals or structural/collision certification. Declared size is swept envelope; the source AABB is smaller for this three-blade pose.",
+    "Visual QA and site-specific orientation/height checking are required. This source has not been certified as a maximum-fidelity finished replica."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve small sail lattice, bolts and service fittings until a measured LOD chain is authored.",
+  "qaCameras": [
+    {
+      "name": "near-nacelle",
+      "position": [18, 98, 28],
+      "lookAt": [0, 90, 0]
+    },
+    {
+      "name": "near-tower",
+      "position": [10, 5, 15],
+      "lookAt": [0, 3, 0]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [130, 95, 240],
+      "lookAt": [0, 76, 0]
+    }
+  ]
+}

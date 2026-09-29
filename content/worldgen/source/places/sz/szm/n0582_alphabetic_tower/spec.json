@@ -1,0 +1,169 @@
+{
+  "id": "N0582",
+  "planId": "N0582",
+  "assetId": "molen.worldgen.structure.n0582_alphabetic_tower",
+  "title": "Alphabetic Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q18822753"
+  },
+  "wikidataId": "Q18822753",
+  "visualBrief": "Batumi’s 130 m language monument: twelve exposed steel columns and cross braces, a central glazed lift core, two open helical mesh ribbons bearing all thirty-three distinct Georgian letters, an observation balcony and a triangulated blue glass globe.",
+  "size": [
+    31,
+    130,
+    31
+  ],
+  "actualBounds": {
+    "min": [
+      -15.380000114440918,
+      0,
+      -15.380000114440918
+    ],
+    "max": [
+      15.275080680847168,
+      130.03985595703125,
+      15.376410484313965
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Mapped twelve-column axis; the circular plan has no single principal facade",
+    "origin": "Exact mapped tower center at ground Y=0"
+  },
+  "scaleBasis": "Georgian national and regional tourism sources publish 130 m height and thirty-three letters; steel fabricator ANRO publishes a 30 m base. Their current whole-tower photograph and glazing-contractor construction/roof photographs establish the open twelve-column frame, wire ribbons and triangular glass globe. Every letter is static extruded geometry derived from licensed Noto Sans Georgian outlines; font provenance and OFL text are preserved in reference-metadata.json.",
+  "geographicProposal": {
+    "anchor": [
+      41.639350155,
+      41.655962931
+    ],
+    "heading": -0.271883819375,
+    "source": "https://www.openstreetmap.org/way/405852444",
+    "evidence": "The exact-identity twelve-sided outline sets center, diameter and column axes. The cylindrical tower is rotationally symmetric at the structural-grid interval; the asymmetric helical letter phase follows the primary overview photograph, with no ground-facing facade claim.",
+    "orientationConfidence": "exact-twelve-sided-structural-grid",
+    "limitations": "The primary sources establish the helix rhythm and full alphabet but do not publish fabrication station coordinates for every letter. The letter sequence is reconstructed along the two ribbons; the small ground threshold is a local reconstruction.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-identity twelve-sided outline sets center, diameter and column axes. The cylindrical tower is rotationally symmetric at the structural-grid interval; the asymmetric helical letter phase follows the primary overview photograph, with no ground-facing facade claim. The primary sources establish the helix rhythm and full alphabet but do not publish fabrication station coordinates for every letter. The letter sequence is reconstructed along the two ribbons; the small ground threshold is a local reconstruction."
+  },
+  "sourceFacts": {
+    "heightMeters": 130,
+    "baseDiameterMeters": 30,
+    "alphabetLetters": 33,
+    "primaryColumns": 12,
+    "helicalRibbons": 2,
+    "architect": "Alberto Domingo Cabo",
+    "completed": 2011
+  },
+  "referencePages": [
+    "https://georgia.travel/alphabetic-tower",
+    "https://visitbatumi.com/en/monuments-951/alphabet-tower",
+    "https://storage.georgia.travel/images/alphabetic-tower-gnta.webp",
+    "https://anro.es/nuestros-proyectos-en-georgia/",
+    "https://miarpe2008.com/torre-alphabetic-tower",
+    "https://miarpe2008.com/wp-content/uploads/2018/07/alphabetic-tower-galeria2-1024x576.jpg",
+    "https://miarpe2008.com/wp-content/uploads/2018/07/alphabetic-tower-galeria1-1024x576.jpg",
+    "https://github.com/google/fonts/tree/main/ofl/notosansgeorgian",
+    "https://www.openstreetmap.org/way/405852444"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Thirty-three separate readable Georgian glyphs are represented using the openly licensed Noto Sans Georgian design. They are a typographic reconstruction, not copied fabrication CAD for the original sculptures.",
+    "The observed open steel structure and outer globe are complete. Rotating restaurant motion, interior furniture and seasonal light shows are not part of this static exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "alphabet-ribbons",
+      "position": [
+        37,
+        49,
+        43
+      ],
+      "lookAt": [
+        0,
+        46,
+        0
+      ]
+    },
+    {
+      "name": "globe-diagrid",
+      "position": [
+        42,
+        127,
+        44
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ]
+    },
+    {
+      "name": "open-steel-base",
+      "position": [
+        31,
+        19,
+        37
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "upper-balcony",
+      "position": [
+        36,
+        108,
+        -45
+      ],
+      "lookAt": [
+        0,
+        103,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        165,
+        83,
+        210
+      ],
+      "lookAt": [
+        0,
+        64,
+        0
+      ]
+    }
+  ]
+}

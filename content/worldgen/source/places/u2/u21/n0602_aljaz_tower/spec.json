@@ -1,0 +1,156 @@
+{
+  "id": "N0602",
+  "planId": "N0602",
+  "assetId": "molen.worldgen.structure.n0602_aljaz_tower",
+  "title": "Aljaž Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q650987"
+  },
+  "wikidataId": "Q650987",
+  "visualBrief": "The restored Triglav summit shelter: riveted pale-gray cylindrical shell, eight small viewing windows, closed raised door with hinges and latch, dark conical cap, readable Slovenian plaque, stencil-cut 1895 flag, Y anchors and guy ropes.",
+  "size": [
+    4.5,
+    2.9,
+    4.5
+  ],
+  "actualBounds": {
+    "min": [
+      -1.935292363166809,
+      0,
+      -2.2326624393463135
+    ],
+    "max": [
+      1.935292363166809,
+      2.9000000953674316,
+      1.119362235069275
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the door and ALJAŽEV STOLP plaque; final compass registration remains unresolved",
+    "origin": "Cylinder axis at the rock-anchor contact plane"
+  },
+  "scaleBasis": "The heritage authority publishes the 1.25 m cylinder diameter, 2 m body and 2.90 m total including the flag support. Its 2025 conservation photographs establish the restored palette, raised door, eight windows, rivet seams, label, stencil flag and anchors. The 2018 intervention preserved all three original Y anchors, original site elevation and rotation. Small fittings and the visible shell/roof proportions are photographic reconstructions.",
+  "geographicProposal": {
+    "status": "orientation-review",
+    "anchor": [
+      13.836673765,
+      46.37830418
+    ],
+    "source": "https://www.openstreetmap.org/way/388344086",
+    "evidence": "Exact-QID mapped circle supplies the cylinder location, but its polygon axis is not an entrance bearing. The 2018 conservation report confirms the original rotation was preserved; it does not publish that angle. A directed doorway bearing must be independently resolved before automatic geographic activation.",
+    "orientationConfidence": "anchor-only; entrance-bearing-unresolved",
+    "limitations": "Do not use the arbitrary minimum-area axis of a near-circular OSM footprint. The model is available for asset review and explicit host placement while the doorway compass registration is pending.",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID mapped circle supplies the cylinder location, but its polygon axis is not an entrance bearing. The 2018 conservation report confirms the original rotation was preserved; it does not publish that angle. A directed doorway bearing must be independently resolved before automatic geographic activation. Do not use the arbitrary minimum-area axis of a near-circular OSM footprint. The model is available for asset review and explicit host placement while the doorway compass registration is pending."
+  },
+  "sourceFacts": {
+    "cylinderDiameterMeters": 1.25,
+    "cylinderHeightMeters": 2,
+    "overallHeightIncludingFlagSupportMeters": 2.9,
+    "viewingWindowCount": 8,
+    "originalYAnchorCount": 3,
+    "restorationYear": 2018,
+    "referenceAppearanceDate": "2025-09-04"
+  },
+  "referencePages": [
+    "https://www.zvkds.si/wp-content/uploads/2024/04/sto_let_net.pdf",
+    "https://www.zvkds.si/wp-content/uploads/2024/03/vs_porocila_54_web-1.pdf",
+    "https://www.zvkds.si/montaza-triglavske-panorame/",
+    "https://planinskivestnik.pzs.si/arhiv/pdf/pv_1895_08.pdf",
+    "https://www.openstreetmap.org/way/388344086"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Door is shown closed. The external inscription uses original polygonal letter strokes and the 1895 flag uses a simplified cut stencil; no historical lettering bitmap or the newly painted interior panorama is copied.",
+    "Rock anchor positions, turnbuckles, rivet pitch and cable endpoints are reconstructed from conservation photographs. The natural summit rock and interior fixtures belong outside this static exterior asset.",
+    "Exact entrance compass phase remains unresolved and is recorded independently of the verified model dimensions and mapped anchor.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "door-label-and-rivets",
+      "position": [
+        1.8,
+        1.6,
+        3.1
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0.3
+      ]
+    },
+    {
+      "name": "roof-and-stencil-flag",
+      "position": [
+        1.8,
+        3.35,
+        2.7
+      ],
+      "lookAt": [
+        0,
+        2.18,
+        0
+      ]
+    },
+    {
+      "name": "anchors-and-turnbuckles",
+      "position": [
+        2.8,
+        1.05,
+        2.6
+      ],
+      "lookAt": [
+        0,
+        0.8,
+        0
+      ]
+    },
+    {
+      "name": "rear-window-seams",
+      "position": [
+        -2.8,
+        1.8,
+        -3.4
+      ],
+      "lookAt": [
+        0,
+        1.2,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        5.4,
+        3.3,
+        6.4
+      ],
+      "lookAt": [
+        0,
+        1.25,
+        0
+      ]
+    }
+  ]
+}

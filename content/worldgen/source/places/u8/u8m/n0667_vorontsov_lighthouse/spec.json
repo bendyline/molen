@@ -1,0 +1,180 @@
+{
+  "id": "N0667",
+  "key": "vorontsov_lighthouse",
+  "title": "Vorontsov Lighthouse",
+  "wikidataId": "Q1976702",
+  "size": [
+    20,
+    31.2,
+    35
+  ],
+  "smoothNormalSlots": [
+    "trim"
+  ],
+  "previewCamera": {
+    "position": [
+      -46,
+      24,
+      45
+    ],
+    "lookAt": [
+      -1,
+      13,
+      3
+    ],
+    "fov": 45
+  },
+  "visualBrief": "White jointed cylindrical cast-iron tower with sparse portholes, projecting circular gallery and eight light arms, red caged lantern and shallow roof, paired blue cowled pipes, harbor-side service doors, tiered white platform, deck railings, chain barrier and breakwater access stair.",
+  "sourceFacts": {
+    "towerHeightMeters": 26,
+    "focalHeightMeters": 27,
+    "appearanceEra": "Operator photographs published2018–2019",
+    "towerBaseAboveModelDatumPhotoApproxMeters": 4,
+    "bodyDiameterPhotoApproxMeters": 4.32,
+    "basis": "Ukraine State Hydrography publishes26m tower height from base and27m focal elevation. Its two station photographs control the cylindrical section joints, red lantern, radial brackets, blue service fittings and asymmetric white compound. Tower cap is at30m over model sea datum and main tower base at4m, with lantern focal center27m. Thin aerial tip extends above the documented tower envelope. Compound plan is derived from exact tower-QID node and adjoining coastline ways; small exterior dimensions remain photo-proportioned."
+  },
+  "referencePages": [
+    "https://hydro.gov.ua/?page_id=381",
+    "https://hydro.gov.ua/?p=1262",
+    "https://hydro.gov.ua/wp-content/uploads/2018/09/1-19.png",
+    "https://hydro.gov.ua/wp-content/uploads/2019/06/64799486_646013762541915_8439423072338968576_n.jpg",
+    "https://www.openstreetmap.org/node/703128124",
+    "https://www.openstreetmap.org/way/555774482",
+    "https://www.openstreetmap.org/way/1035205249"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      30.7600343,
+      46.4965348
+    ],
+    "heading": 0.5,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/703128124",
+    "notes": "Exact-QID tower node anchors the cylinder. +Z follows the south-southeast pier axis (0.5rad from south toward east); compound shoreline points are inverse-rotated from world coordinates. The model waterline isY0, quay body rises above it and lighthouse service deck isY4. Absolute sea-level placement retains the operator’s27m light elevation; local tides/waves are host water effects. Published compound photographs resolve harbor-facing service facade on the southwest side."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Exterior represents the operator-published2018–2019 configuration. Hidden power-room equipment and unlocated later solar equipment are not invented; external service fittings visible in those references are represented. Published26m structural and27m light heights govern the silhouette; service-deck height, pipe details and cast-iron seam pitch are reconstructed from photographs. The remaining long breakwater is a separate map structure."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-service",
+      "position": [
+        -17,
+        7,
+        16
+      ],
+      "lookAt": [
+        -4,
+        3.2,
+        4
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        -10,
+        28.9,
+        12
+      ],
+      "lookAt": [
+        0,
+        26.8,
+        0
+      ]
+    },
+    {
+      "name": "near-deck",
+      "position": [
+        7,
+        8.3,
+        17
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        5
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -46,
+        22,
+        45
+      ],
+      "lookAt": [
+        -1,
+        14,
+        3
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0667_vorontsov_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -10.041000366210938,
+      0,
+      -10.291999816894531
+    ],
+    "max": [
+      6.156000137329102,
+      31.180768966674805,
+      24
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

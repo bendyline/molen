@@ -1,0 +1,99 @@
+{
+  "format": "molen/structure-placements@1",
+  "title": "Explicit reusable map structure categories",
+  "entries": [],
+  "rules": [
+    {
+      "id": "map.windmill.class",
+      "title": "Smock windmill",
+      "asset": "molen.worldgen.structure.map_smock_windmill",
+      "match": {
+        "classes": ["windmill"]
+      },
+      "dimensions": [23.3, 30.6, 16.5],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 14,
+      "maxPerTile": 16,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:man_made%3Dwindmill",
+      "replaceFootprint": true
+    },
+    {
+      "id": "map.windmill.detail",
+      "title": "Smock windmill",
+      "asset": "molen.worldgen.structure.map_smock_windmill",
+      "match": {
+        "subclasses": ["windmill"]
+      },
+      "dimensions": [23.3, 30.6, 16.5],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 14,
+      "maxPerTile": 16,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:man_made%3Dwindmill",
+      "replaceFootprint": true
+    },
+    {
+      "id": "map.windmill.tags",
+      "title": "Smock windmill",
+      "asset": "molen.worldgen.structure.map_smock_windmill",
+      "match": {
+        "tags": {
+          "man_made": ["windmill"]
+        }
+      },
+      "dimensions": [23.3, 30.6, 16.5],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 14,
+      "maxPerTile": 16,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:man_made%3Dwindmill",
+      "replaceFootprint": true
+    },
+    {
+      "id": "map.wind-turbine.class",
+      "title": "Wind turbine",
+      "asset": "molen.worldgen.structure.map_wind_turbine",
+      "match": {
+        "classes": ["wind_turbine"]
+      },
+      "dimensions": [126, 153, 24],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 13,
+      "maxPerTile": 12,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:generator:source%3Dwind"
+    },
+    {
+      "id": "map.wind-turbine.detail",
+      "title": "Wind turbine",
+      "asset": "molen.worldgen.structure.map_wind_turbine",
+      "match": {
+        "subclasses": ["wind_turbine"]
+      },
+      "dimensions": [126, 153, 24],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 13,
+      "maxPerTile": 12,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:generator:source%3Dwind"
+    },
+    {
+      "id": "map.wind-turbine.tags",
+      "title": "Wind turbine",
+      "asset": "molen.worldgen.structure.map_wind_turbine",
+      "match": {
+        "tags": {
+          "power": ["generator"],
+          "generator:source": ["wind"]
+        }
+      },
+      "dimensions": [126, 153, 24],
+      "orientation": "direction",
+      "fit": "native",
+      "minLevel": 13,
+      "maxPerTile": 12,
+      "source": "https://wiki.openstreetmap.org/wiki/Tag:generator:source%3Dwind"
+    }
+  ]
+}

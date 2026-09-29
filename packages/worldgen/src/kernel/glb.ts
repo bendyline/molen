@@ -4,7 +4,14 @@
  * plain PBR materials. Uses DataView only, so it runs anywhere the core runs.
  */
 
-import type { MeshBuffers } from './types';
+import type { MaterialSlot, MeshBuffers } from './types';
+
+/** Opt-in shared surface. UVs must already be in texture repeats; fallback PBR stays portable. */
+export interface GlbSharedSurface {
+  ref: string;
+  slot: MaterialSlot;
+  uv: 'repeats';
+}
 
 export interface GlbMaterialMeta {
   name: string;
@@ -12,6 +19,13 @@ export interface GlbMaterialMeta {
   baseColorFactor?: [number, number, number, number];
   roughness?: number;
   metallic?: number;
+  /** Standard glTF alpha handling; defaults to OPAQUE for existing generated assets. */
+  alphaMode?: 'OPAQUE' | 'MASK' | 'BLEND';
+  /** Cutoff for MASK materials, default glTF value 0.5. */
+  alphaCutoff?: number;
+  /** Thin glass panels may need both sides; defaults to false. */
+  doubleSided?: boolean;
+  sharedSurface?: GlbSharedSurface;
 }
 
 const GLB_MAGIC = 0x46546c67;
@@ -109,8 +123,12 @@ export function encodeGlb(
         metallicFactor: meta?.metallic ?? 0,
         roughnessFactor: meta?.roughness ?? 0.9,
       },
-      doubleSided: false,
-      alphaMode: 'OPAQUE',
+      doubleSided: meta?.doubleSided ?? false,
+      alphaMode: meta?.alphaMode ?? 'OPAQUE',
+      ...(meta?.alphaMode === 'MASK' && meta.alphaCutoff !== undefined
+        ? { alphaCutoff: meta.alphaCutoff }
+        : {}),
+      ...(meta?.sharedSurface ? { extras: { molenSurface: meta.sharedSurface } } : {}),
     };
   });
   const json = {

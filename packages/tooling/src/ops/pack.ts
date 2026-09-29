@@ -1,7 +1,7 @@
 import { mkdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, posix, relative, resolve, sep } from 'node:path';
 import { openPack, type Pack, sha256 } from '@bendyline/molen-pack';
-import { buildPack, extractPack, openPackAt } from '@bendyline/molen-pack/node';
+import { buildPack, extractPack, openPackAt, recordInPackIndex } from '@bendyline/molen-pack/node';
 import {
   type AssetSidecar,
   detectKind,
@@ -332,6 +332,11 @@ export async function fetchContentPack(input: FetchPackInput): Promise<FetchPack
           contentHash: pack.manifest.contentHash,
           size: bytes.length,
         });
+      }
+      // List the packs in outDir/index.json too, so a browser page can open them from there.
+      for (const pack of fetched) {
+        const { file, version, contentHash, size } = pack;
+        await recordInPackIndex(outDir, pack.id, { file, version, contentHash, size });
       }
       if (projectPath !== undefined) {
         await updateProjectFile(projectPath, (manifest) => {

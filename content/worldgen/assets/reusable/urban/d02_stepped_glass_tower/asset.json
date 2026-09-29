@@ -1,0 +1,65 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.d02_stepped_glass_tower",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:d80efe75984467e6674024a13aebe1eda1535c3cdb2ed78ce00c201eb1c35876",
+  "sourceHash": "sha256:fa9a9ccf6647968f306518f4f1331e2f9d455b6b495d7fb9cae718675d9c4e9b",
+  "bounds": {
+    "aabb": {
+      "min": [-35.6014, 0, -24.602],
+      "max": [35.6014, 110, 24.602]
+    },
+    "sphere": {
+      "center": [0, 55, 0],
+      "radius": 69.4672
+    }
+  },
+  "stats": {
+    "triangles": 96,
+    "vertices": 192,
+    "meshes": 1,
+    "primitives": 2,
+    "materials": 2,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 5068
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 96
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "glazing-or-reflective-panel",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -35.6014, 0, -24.602, -35.6014, 0, 24.602, -35.6014, 110, -24.602, -35.6014, 110, 24.602,
+          35.6014, 0, -24.602, 35.6014, 0, 24.602, 35.6014, 110, -24.602, 35.6014, 110, 24.602
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

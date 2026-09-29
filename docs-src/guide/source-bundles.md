@@ -13,7 +13,6 @@ source/<category>/<thing>/
   models/
     source.glb
     generate.mjs
-    baseline.json
   scripts/
     interactions.ts
   textures/

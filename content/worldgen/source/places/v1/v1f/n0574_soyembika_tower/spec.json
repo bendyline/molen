@@ -1,0 +1,165 @@
+{
+  "id": "N0574",
+  "planId": "N0574",
+  "assetId": "molen.worldgen.structure.n0574_soyembika_tower",
+  "title": "Söyembikä Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q2166466"
+  },
+  "wikidataId": "Q2166466",
+  "visualBrief": "Seven-tier leaning brick gate tower of the Kazan Kremlin: open vaulted gate, pylon columns, recessed shirinka parapets, square gallery stages, octagonal upper chambers, tall faceted brick tent and green spire with gilded crescent.",
+  "size": [
+    13,
+    58,
+    13
+  ],
+  "actualBounds": {
+    "min": [
+      -6.4004058837890625,
+      0,
+      -6.712619304656982
+    ],
+    "max": [
+      5.973620414733887,
+      58.01992416381836,
+      6.410572052001953
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the approximately west-facing gate facade",
+    "origin": "Mapped tower outline center at nominal exterior ground"
+  },
+  "scaleBasis": "Kazan Kremlin museum-reserve dimensions and architectural description; official exterior photograph constrains the stepped stage envelopes. The separate OSM parts 228963086–228963092 supply stage elevations and a 9 m green roof; opening dimensions are photo-fitted.",
+  "geographicProposal": {
+    "anchor": [
+      49.105181097,
+      55.800475854
+    ],
+    "heading": -1.335984319155,
+    "source": "https://www.openstreetmap.org/way/228963085",
+    "evidence": "Exact-QID mapped wall axes orient the long lower passage facade approximately west/east. The documented 1.98 m NE lean is transformed from geographic east/north into this local frame; the nearly symmetric gate elevations do not require a half-turn distinction.",
+    "orientationConfidence": "footprint-axis-with-published-lean",
+    "limitations": "The OSM polygon is wider than the published 140 square metre tower footprint, apparently including lower projections. The authored square shaft is not stretched to that polygon; its center and ground contact need the placement view review. The decorative gate winter-solstice statement is not used as a measured shaft azimuth.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID mapped wall axes orient the long lower passage facade approximately west/east. The documented 1.98 m NE lean is transformed from geographic east/north into this local frame; the nearly symmetric gate elevations do not require a half-turn distinction. The OSM polygon is wider than the published 140 square metre tower footprint, apparently including lower projections. The authored square shaft is not stretched to that polygon; its center and ground contact need the placement view review. The decorative gate winter-solstice statement is not used as a measured shaft azimuth."
+  },
+  "sourceFacts": {
+    "heightMeters": 58,
+    "baseAreaSquareMeters": 140,
+    "tiers": 7,
+    "lowerSquareTiers": 3,
+    "upperOctagonalTiers": [
+      4,
+      5,
+      7
+    ],
+    "leanMeters": 1.98,
+    "leanDirection": "north-east",
+    "baseOrnamentalColumns": 8,
+    "mappedStageElevationsMeters": [
+      12,
+      18,
+      24,
+      30,
+      36,
+      45,
+      49
+    ],
+    "mappedGreenRoofHeightMeters": 9
+  },
+  "referencePages": [
+    "https://kazan-kremlin.ru/en/architectural-objects/bashnya-syuyumbike",
+    "https://www.openstreetmap.org/way/228963085"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Individual tier heights and brick profiles are fitted to the official exterior photograph. The 140 square metre square base is used instead of the larger OSM lower outline; small attached wall projections are excluded.",
+    "Gate ornament is represented by bars and a sun medallion; figurative metalwork, brick repair patterns, inscriptions and highly detailed console capitals remain simplified.",
+    "The reported lean is represented as a linear shear of the exterior. A measured deformation survey could refine the relative lean of individual tiers.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "gate-vault",
+      "position": [
+        12,
+        9,
+        20
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "terrace-panels",
+      "position": [
+        16,
+        24,
+        22
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "octagonal-crown",
+      "position": [
+        15,
+        45,
+        22
+      ],
+      "lookAt": [
+        0,
+        41,
+        0
+      ]
+    },
+    {
+      "name": "far-lean",
+      "position": [
+        65,
+        37,
+        85
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    }
+  ]
+}

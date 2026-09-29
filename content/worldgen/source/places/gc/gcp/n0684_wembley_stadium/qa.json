@@ -1,0 +1,71 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0684_wembley_stadium",
+  "sourceHash": "sha256:58361aa9d0fd08ef829c7e458b90fa7c7199c2cdf27bc49c72ed9521720a13aa",
+  "runtimeHash": "sha256:6cb9ad54b6254e551ce7c2929fac728f05d668fd4720976b330440c1bdb74698",
+  "captureReportHash": "sha256:c8a52ea54d217e084f0f31a16821b555fca6f6e2690f19f72f0801f22aef11ac",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed published exterior and open bowl.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-north-entrance.png",
+      "shots/near-arch-lattice.png",
+      "shots/near-pencil-bearing.png",
+      "shots/near-roof-cables.png",
+      "shots/near-bowl-royal-box.png",
+      "shots/far-open-roof.png"
+    ],
+    "notes": "All eleven portable and eleven shared frames inspected, including full-resolution arch lattice and roof cables. The tapered twelve-chord arch, stays, catenaries, north entrance and three red tiers are coherent. Roof hardware is clipped at the actual roof bounds; the corrected north strip is milky translucent rather than clear glazing."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:a80386b654c14b869708385070796e7c43c244e7ed368ed62fde56c13bfc3893",
+    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
+    "specHash": "sha256:bba753016f95e4c6fa483cf344f3dbc4293950bbb5cff6a1e11841f9906a65bd",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-north-entrance.png",
+      "shots/shared/near-arch-lattice.png",
+      "shots/shared/near-pencil-bearing.png",
+      "shots/shared/near-roof-cables.png",
+      "shots/shared/near-bowl-royal-box.png",
+      "shots/shared/far-open-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Shared painted metal, concrete and standing-seam cladding retain metric surface scale. The translucent north strip uses a local alpha material so the common graph does not override transparency. Actual geographic placement, sky-PMREM and unload assertions pass."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:955d484369af1115554dbf4df138d7e8a9289d4d31953d4d1a03a411ee741c5b",
+    "notes": "Mapped roof and aperture loops, pitch axis and arch feet anchor the exterior. North-up placement aligns the long east-west field and north-facing arch/entrance. The designer-established 22-degree north arch inclination is retained; artistic OSM arch heights were not used."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "The operator facts and structural designer paper govern the 315m arch span, 133m height, 7.4m exterior diameter, twelve 457mm chords, diaphragm rings and main roof support system. Published photographs establish precast/glazing, red bowl and Olympic Way entrance. Connection plates, seat layout and roof bay subdivisions are photo reconstructions; changing advertising and enclosed service rooms are outside the modeled exterior."
+  }
+}

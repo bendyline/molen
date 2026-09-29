@@ -12,7 +12,11 @@ import { describe, expect, it } from 'vitest';
 // The rule: WebGPU value imports live in leaf modules, and nothing reaches those leaves except
 // through `await import(...)`. Type-only imports are free — they erase.
 
-const WEBGPU_LEAVES = ['webgpu-driver.ts', 'webgpu-scene-optimizer.ts'];
+const WEBGPU_LEAVES = [
+  'webgpu-driver.ts',
+  'webgpu-scene-optimizer.ts',
+  'webgpu-sky-reflections.ts',
+];
 
 function walk(dir: string, out: string[] = []): string[] {
   for (const name of readdirSync(dir)) {

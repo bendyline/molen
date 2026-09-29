@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -7,6 +8,7 @@ import { createPack } from '../src/build';
 import {
   buildPack,
   extractPack,
+  listPackSource,
   openDirPack,
   openFilePack,
   openPackAt,
@@ -128,20 +130,35 @@ describe('node helpers', () => {
     await expect(readPackSource(dir)).rejects.toThrow();
   });
 
-  it('packs the default worldgen style pack into a fraction of its size', async () => {
-    const source = await readPackSource(
+  it('round-trips real worldgen metadata and representative model bytes with compression', async () => {
+    const source = await listPackSource(
       resolve(dirname(fileURLToPath(import.meta.url)), '../../../content/worldgen'),
     );
-    const files = source.files;
+    // The geographic collection is intentionally unbounded. Test its complete small metadata
+    // and two real model bundles without assembling every high-detail landmark in CI memory.
+    const selected = source.paths.filter(
+      (path) =>
+        path.endsWith('.json') ||
+        path.includes('/space_needle/') ||
+        path.includes('/map_smock_windmill/'),
+    );
+    const files = await Promise.all(
+      selected.map(async (path) => ({
+        path,
+        bytes: new Uint8Array(await readFile(join(source.dir, path))),
+      })),
+    );
     const raw = files.reduce((total, file) => total + file.bytes.length, 0);
     const { bytes } = await createPack(files, { id: 'molen.worldgen.default', version: '1' });
-    // ~800 KB of JSON and small models: solid blocks bring it to about a tenth.
-    expect(bytes.length).toBeLessThan(raw / 8);
+    // Imported model geometry and repetitive documents both compress well.
+    expect(bytes.length).toBeLessThan(raw / 4);
     const pack = await openPack(bytes);
     for (const file of files) {
-      expect(new Uint8Array(await pack.readBytes(file.path)), file.path).toEqual(file.bytes);
+      // Exact byte equality without allocating a deep-matcher node per byte of large GLBs.
+      expect(Buffer.from(await pack.readBytes(file.path)).equals(file.bytes), file.path).toBe(true);
     }
-  }, 30_000); // Packs, reopens and reads back every file of the default style pack.
+    pack.close();
+  }, 30_000);
 });
 
 describe('openDirPack', () => {

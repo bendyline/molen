@@ -1,0 +1,143 @@
+{
+  "format": "molen/terrain-package@1",
+  "name": "Seattle, Bellevue, and Sammamish, Washington",
+  "version": "2026-09-25",
+  "coordinateSpace": {
+    "kind": "geospatial",
+    "crs": "EPSG:3857",
+    "ellipsoid": "WGS84",
+    "bounds": [-123.15, 46.95, -120.9, 48.3]
+  },
+  "tileMatrix": {
+    "scheme": "xyz",
+    "minLevel": 8,
+    "maxLevel": 15,
+    "rootTiles": [1, 1],
+    "tileResolution": 257
+  },
+  "elevation": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "elevation.pmtiles"
+    },
+    "encoding": "png16",
+    "height": {
+      "min": 0,
+      "max": 5000
+    }
+  },
+  "surface": {
+    "seaLevel": 0,
+    "layers": [
+      {
+        "name": "soil",
+        "color": "#655b49",
+        "tiling": 10
+      },
+      {
+        "name": "lowland",
+        "color": "#668354",
+        "tiling": 14,
+        "auto": {
+          "heightMin": 0,
+          "heightMax": 900
+        }
+      },
+      {
+        "name": "alpine",
+        "color": "#7c786d",
+        "tiling": 18,
+        "auto": {
+          "heightMin": 900,
+          "heightMax": 2300
+        }
+      },
+      {
+        "name": "snow",
+        "color": "#dce5e4",
+        "tiling": 22,
+        "auto": {
+          "heightMin": 1900
+        }
+      }
+    ]
+  },
+  "landcover": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layer": "landcover",
+    "profile": "protomaps-basemap@1"
+  },
+  "features": {
+    "source": {
+      "kind": "pmtiles",
+      "path": "world.pmtiles"
+    },
+    "encoding": "mvt",
+    "layers": ["water", "transportation", "building", "poi"],
+    "profile": "protomaps-basemap@1"
+  },
+  "attribution": [
+    {
+      "text": "Mapzen/USGS terrain tiles; Mapzen Terrain Tiles, with United States 3DEP, GMTED2010, and SRTM terrain data courtesy of the U.S. Geological Survey",
+      "license": "US public domain and source-specific open-data terms",
+      "licenseUrl": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "text": "© OpenStreetMap contributors; Protomaps Basemap",
+      "license": "ODbL-1.0",
+      "sourceUrl": "https://www.openstreetmap.org/copyright",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/"
+    },
+    {
+      "text": "Daylight Landcover; © ESA WorldCover project, modified Copernicus Sentinel data",
+      "license": "CC-BY-4.0",
+      "sourceUrl": "https://esa-worldcover.org/en",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "Natural Earth; public domain",
+      "license": "Public domain (Natural Earth terms of use)",
+      "sourceUrl": "https://www.naturalearthdata.com/about/terms-of-use/"
+    }
+  ],
+  "provenance": {
+    "compiler": "world-explorer-seattle-region-fixture",
+    "compilerVersion": "1",
+    "sources": [
+      {
+        "id": "mapzen-terrain-tiles",
+        "release": "AWS open-data snapshot accessed 2026-08-30"
+      },
+      {
+        "id": "protomaps-basemap",
+        "release": "2026-09-25 daily archive"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "elevation.pmtiles",
+      "bytes": 28640981,
+      "sha256": "752e893d1d6d07baab80739247df9519590e156efcb110cc63ebe127684d95c8"
+    },
+    {
+      "path": "world.pmtiles",
+      "bytes": 29084967,
+      "sha256": "fc1d66ceb599aa3be8138421995195b00f3e3291469d99d2a47506f88e9d9166"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 2618,
+      "sha256": "587c6f5ab9f4da114cb547046552cb8c9e141fe2161b37dbd61ad8d752e938a1"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 1989,
+      "sha256": "e3b672661e704db5dd5fc71317ec2870348f4c67951db6fb34a7dc6e3d98592e"
+    }
+  ]
+}

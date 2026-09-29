@@ -1,0 +1,72 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.a06_pike_place_market_seattle",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:08397d131bd766307a29a50c63224a6940366502920a8d423e946b32ac06dbfc",
+  "sourceHash": "sha256:d3716142e5f3944d9642495a9f507f970ff823220cc17c5a3e5d49d138e37d2d",
+  "bounds": {
+    "aabb": {
+      "min": [-52.5, 0.0026, -12.9972],
+      "max": [52.5, 23.9974, 12.9972]
+    },
+    "sphere": {
+      "center": [0, 12, 0],
+      "radius": 54.2326
+    }
+  },
+  "stats": {
+    "triangles": 234,
+    "vertices": 474,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 13460
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 234
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "glazing-or-reflective-panel",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -52.5, 0.0026, -12.9972, -52.5, 0.0026, 12.9972, -52.5, 23.9974, -12.9972, -52.5, 23.9974,
+          12.9972, 52.5, 0.0026, -12.9972, 52.5, 0.0026, 12.9972, 52.5, 23.9974, -12.9972, 52.5,
+          23.9974, 12.9972
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

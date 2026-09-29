@@ -1,0 +1,311 @@
+{
+  "planId": "N0191",
+  "id": "N0191",
+  "assetId": "molen.worldgen.structure.n0191_flame_towers",
+  "title": "Flame Towers",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q80499",
+  "referenceCoordinate": {
+    "latitude": 40.359722222,
+    "longitude": 49.826111111
+  },
+  "visualBrief": "Three independent curved triangular glazed flames, with unequal heights, pointed swept crowns, unitized facade panels, dark maintenance slots, pale stepped retail pavilions and a glazed central atrium.",
+  "size": [
+    161.98119735717773,
+    182,
+    248.32393646240234
+  ],
+  "actualBounds": {
+    "min": [
+      -103.12989807128906,
+      0,
+      -145.72213745117188
+    ],
+    "max": [
+      58.85129928588867,
+      182,
+      102.60179901123047
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "east": "+X",
+    "south": "+Z",
+    "front": "+X toward the eastern city frontage"
+  },
+  "sourceFacts": {
+    "architecturalHeightsMeters": {
+      "southResidential": 182,
+      "northHotel": 165,
+      "westOffice": 161
+    },
+    "heightPrecision": "Rounded whole meters published by the Council on Tall Buildings and Urban Habitat; independent engineer above-ground approximations differ with local entry datum.",
+    "architect": "HOK",
+    "facadeAndSpecialStructures": "Werner Sobek",
+    "facadeDetailConsultant": "Priedemann",
+    "facadeAreaSquareMeters": 64000,
+    "facadeSystem": "Four-corner story-height unitized glazing, curved surfaces optimized from the original NURBS geometry",
+    "podiumFloors": 3,
+    "primaryIdentityOverride": "HOK identifies south residential, north hotel and west office; inconsistent OSM hotel/commercial tags are retained in evidence, not used to swap these roles.",
+    "facadePose": "Daytime; behind-glass LED media is inactive"
+  },
+  "reconstruction": {
+    "plan": "Each curved triangular tower has its own attributed mapped ring and outward crown axis. Three unequal heights and native cardinal frame retain the ensemble arrangement, without replacing the complex with a single bounding-box tower.",
+    "facade": "Dense quadrilateral panes with physical narrow metal mullions follow the curved shell. Paired dark upper maintenance slots and partial lower slots are reconstructed from completed engineer photographs. No visible diagonal triangulation or animated flame texture is baked into the geometry.",
+    "crown": "Curved pointed flicks follow a smooth vertical contraction of the mapped wing plan, with an outward apex. Their exact NURBS definition is not published in the available primary references, so sectional curvature and pane pitch remain explicit reconstructions.",
+    "podium": "The mapped common retail base has individually glazed fronts; eastern stepped stone pavilions, central barrel-glazed atrium, small curved terrace pool, west-central red cinema and north hotel canopy follow the engineer aerial photograph. Fine dimensions and elevations are photograph-derived."
+  },
+  "referencePages": [
+    "https://www.hok.com/projects/view/baku-flame-towers/",
+    "https://www.wernersobek.com/de/projekte/baku-flame-towers-hochhauskomplex/",
+    "https://www.skyscrapercenter.com/complex/618",
+    "https://global.ctbuh.org/resources/papers/download/985-innovative-and-sustainable-high-rise-facade-systems-in-asia.pdf",
+    "https://priedemann.net/en/cases/stormy-windows.html",
+    "https://www.dlubal.com/en/downloads-and-information/references/customer-projects/000682",
+    "https://www.openstreetmap.org/way/687226634"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      49.82657160078091,
+      40.359642187881434
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/687226634",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/253081850",
+      "way/253081914",
+      "way/253082095",
+      "way/687226634"
+    ],
+    "wikidataId": "Q80499",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d22b92a4d304269ef72b0a7832836f0bdc76a70a33a1024f96b85c4dee94c1cf",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Source-local separately mapped south residential, north hotel and west office rings retain their own centers and flame axes. The shared podium centroid is the ensemble anchor; its outline alone is not mistaken for all three tower feet. Cardinal+X east/+Z south retains HOK identities over contradictory raw map function tags. GroundY0 is a common entry reference; real hillside entry offsets and plaza grading are outside this exterior model."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "The primary engineer describes the three shells as related NURBS/developable surfaces, but the exact control points are not available; sectional curves, unitized pane pitch, maintenance-slot levels, podium pavilion details and roof furnishings are original reconstructions from completed HOK and Werner Sobek photographs. Heights are rounded published values. The media facade is a static daytime exterior; changing LED programs, signs, interior fit-out and sloping off-site landscaping are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-distinct-flames",
+      "position": [
+        225,
+        150,
+        185
+      ],
+      "lookAt": [
+        -15,
+        85,
+        -23
+      ]
+    },
+    {
+      "name": "west-office-profile",
+      "position": [
+        -238,
+        98,
+        88
+      ],
+      "lookAt": [
+        -66,
+        83,
+        -31
+      ]
+    },
+    {
+      "name": "north-hotel-profile",
+      "position": [
+        112,
+        111,
+        -224
+      ],
+      "lookAt": [
+        0,
+        84,
+        -112
+      ]
+    },
+    {
+      "name": "south-residential-flick",
+      "position": [
+        85,
+        171,
+        141
+      ],
+      "lookAt": [
+        30,
+        149,
+        66
+      ]
+    },
+    {
+      "name": "four-corner-glazing",
+      "position": [
+        93,
+        83,
+        72
+      ],
+      "lookAt": [
+        30,
+        81,
+        53
+      ]
+    },
+    {
+      "name": "paired-maintenance-slots",
+      "position": [
+        79,
+        139,
+        98
+      ],
+      "lookAt": [
+        31,
+        135,
+        65
+      ]
+    },
+    {
+      "name": "shared-retail-podium",
+      "position": [
+        125,
+        53,
+        -20
+      ],
+      "lookAt": [
+        11,
+        15,
+        -23
+      ]
+    },
+    {
+      "name": "barrel-atrium-and-pool",
+      "position": [
+        34,
+        59,
+        14
+      ],
+      "lookAt": [
+        -9,
+        13,
+        -25
+      ]
+    },
+    {
+      "name": "red-cinema-pavilion",
+      "position": [
+        2,
+        38,
+        -65
+      ],
+      "lookAt": [
+        -40,
+        19,
+        -66
+      ]
+    },
+    {
+      "name": "hotel-arrival-canopy",
+      "position": [
+        67,
+        14,
+        -93
+      ],
+      "lookAt": [
+        24,
+        6,
+        -103
+      ]
+    },
+    {
+      "name": "crown-from-above",
+      "position": [
+        114,
+        233,
+        66
+      ],
+      "lookAt": [
+        24,
+        169,
+        76
+      ]
+    },
+    {
+      "name": "far-caspian-skyline",
+      "position": [
+        485,
+        160,
+        340
+      ],
+      "lookAt": [
+        -20,
+        84,
+        -26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 493615,
+    "vertices": 1230301,
+    "materials": 6,
+    "bytes": 48987556,
+    "sha256": "sha256:381a7b08755ff350e43b1b3c58b227d15be5af6dc6f6a903d9989a80e47898fd"
+  }
+}

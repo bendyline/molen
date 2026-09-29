@@ -103,7 +103,8 @@ and a render-only `/client` half: [terrain](packages/terrain),
 [figures](packages/figures), plus [physics-rapier](packages/physics-rapier),
 [pathfinding](packages/pathfinding) and the [entities](packages/entities) asset library.
 [pack](packages/pack) builds and reads content packs: zip files of models and documents that an
-app hosts wherever it likes.
+app hosts wherever it likes. [earth](packages/earth) composes terrain, worldgen, navigation,
+vehicles and markers into an embeddable real-world view behind one `mountEarthView` call.
 
 ## Status
 
@@ -156,13 +157,18 @@ To build the engine itself from a clone, start at [AGENTS.md](AGENTS.md) for the
 [CONVENTIONS.md](CONVENTIONS.md) for the house rules.
 
 ```sh
-pnpm install && pnpm -r build     # packages consume each other's dist
+pnpm install && pnpm assets:fetch && pnpm -r build  # restore GLBs, then build packages
 pnpm dev                          # the samples gallery, served from source
+pnpm dev:packages                 # rebuild every package's dist on change (for a linked host app)
 node packages/tooling/dist/cli.mjs --help
 ```
 
 One invariant matters more than the rest: **build before you typecheck or test**, because packages
 consume each other's `dist`. The root scripts encode it.
+
+GLBs are build outputs of the generators in this repository, pinned byte for byte by
+`asset-lock.json`. `pnpm assets:fetch` downloads the snapshot CI built and published;
+`pnpm assets:build` builds the same bytes from source. See [repository GLBs](content/ASSET-PACKS.md).
 
 ```sh
 pnpm verify        # lint, typecheck, docs:check, test:unit, production audit — also the release gate

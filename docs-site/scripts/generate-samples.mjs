@@ -107,6 +107,23 @@ const SAMPLES = [
     guides: [['Figures', '/guide/figures']],
   },
   {
+    dir: 'earth-view',
+    title: 'Earth view',
+    kind: 'capability',
+    tagline: 'The whole real-world view in one mountEarthView call.',
+    body:
+      'The `@bendyline/molen-earth` facade on a page: streamed Sammamish terrain in a metric ' +
+      'frame, styled buildings and street surfaces from the content packs, orbit, walk and drive ' +
+      'navigation with parked cars, a photo-pin marker placed by latitude/longitude, and the ' +
+      'required data credits. Workers are one-line imports of the package entries.',
+    concepts: ['Earth view facade', 'Orbit / walk / drive', 'World markers', 'Worker entries'],
+    guides: [
+      ['Earth view', '/guide/earth-view'],
+      ['Camera navigation', '/guide/navigation'],
+      ['World markers', '/guide/markers'],
+    ],
+  },
+  {
     dir: 'world-explorer',
     title: 'World explorer',
     kind: 'capability',
@@ -121,11 +138,13 @@ const SAMPLES = [
       'Earth projection',
       'Worldgen style packs',
       'Adaptive performance',
+      'Weather-driven soundscape',
     ],
     guides: [
       ['Terrain', '/guide/terrain'],
       ['Worldgen', '/guide/worldgen'],
       ['Adaptive performance', '/guide/adaptive-performance'],
+      ['Sound and music', '/guide/audio'],
     ],
   },
   {
@@ -142,10 +161,12 @@ const SAMPLES = [
       'Follow cameras',
       'Win/loss/restart loop',
       'Victory regression',
+      'Sound from scene data',
     ],
     guides: [
       ['Game samples', '/guide/game-samples'],
       ['Vehicles', '/guide/vehicles'],
+      ['Sound and music', '/guide/audio'],
     ],
   },
   {
@@ -339,7 +360,7 @@ title: ${yamlString(sample.title)}
 
 # ${sample.title}
 
-<p class="sample-tagline">${sample.tagline}</p>
+${sample.tagline}
 
 ${facts.preview ? `[![${sample.title}](/samples/${sample.dir}.png)](${play})\n` : ''}
 ${sample.body}

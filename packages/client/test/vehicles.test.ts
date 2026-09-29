@@ -1,7 +1,12 @@
 import type { VehicleData, VehiclePlacement, VehicleSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import { createParkedVehicleBatch, createVehicleVisual } from '../src/vehicles';
+import {
+  createParkedVehicleBatch,
+  createVehicleVisual,
+  isParkedVehicleHidden,
+  setParkedVehicleHidden,
+} from '../src/vehicles';
 
 const SPEC: VehicleSpec = {
   label: 'Test car',
@@ -76,22 +81,49 @@ describe('vehicle visuals', () => {
     visual.dispose();
   });
 
-  it('batches by entity/paint and retains stable IDs in tile-local coordinates', () => {
+  it('merges a tile into one mesh with stable IDs, tile-local coordinates and per-car hiding', () => {
     const placements: VehiclePlacement[] = [0, 1, 2].map((i) => ({
       id: `car${i}`,
       kind: DATA.kind,
-      color: DATA.color,
+      color: i === 1 ? '#aa2222' : DATA.color,
       spec: SPEC,
       position: [1000 + i * 3, 10, 2000],
       yaw: 0,
     }));
     const batch = createParkedVehicleBatch(placements, [1000, 2000]);
     expect(batch.children).toHaveLength(1);
-    const mesh = batch.children[0] as THREE.InstancedMesh;
-    expect(mesh.count).toBe(3);
+    const mesh = batch.children[0] as THREE.Mesh;
+    expect((mesh as THREE.InstancedMesh).isInstancedMesh).toBeUndefined();
     expect(mesh.userData.vehicleIds).toEqual(['car0', 'car1', 'car2']);
-    const matrix = new THREE.Matrix4();
-    mesh.getMatrixAt(2, matrix);
-    expect(new THREE.Vector3().setFromMatrixPosition(matrix).toArray()).toEqual([6, 10, 0]);
+    const ranges = mesh.userData.vehicleRanges as Uint32Array;
+    const position = mesh.geometry.getAttribute('position');
+    const center = (index: number): number[] => {
+      const box = new THREE.Box3();
+      const start = ranges[index * 2] as number;
+      for (let i = start; i < start + (ranges[index * 2 + 1] as number); i++)
+        box.expandByPoint(new THREE.Vector3().fromBufferAttribute(position, i));
+      const c = box.getCenter(new THREE.Vector3());
+      return [c.x, c.z].map((value) => Math.round(value * 1000) / 1000);
+    };
+    expect(center(2)).toEqual([6, 0]);
+    const color = mesh.geometry.getAttribute('color');
+    expect(new THREE.Color().fromBufferAttribute(color, ranges[2] as number).getHexString()).toBe(
+      'aa2222',
+    );
+
+    const version = position.version;
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(false);
+    expect(isParkedVehicleHidden(mesh, 1)).toBe(true);
+    expect(position.version).toBeGreaterThan(version);
+    expect(
+      new THREE.Vector3().fromBufferAttribute(position, ranges[2] as number).toArray(),
+    ).toEqual([0, 0, 0]);
+    expect(center(2)).toEqual([6, 0]);
+    expect(setParkedVehicleHidden(mesh, 1, false)).toBe(true);
+    expect(isParkedVehicleHidden(mesh, 1)).toBe(false);
+    expect(center(1)).toEqual([3, 0]);
+    expect(setParkedVehicleHidden(mesh, 9, true)).toBe(false);
+    mesh.geometry.dispose();
   });
 });

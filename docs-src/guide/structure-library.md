@@ -1,7 +1,7 @@
 # Default structure library
 
 Molen ships **120 procedural structures**: the original 16 styles and 104 additional interpretations
-of real-world buildings. They share 45 material graphs and the existing footprint-driven worldgen
+of real-world buildings. They share 51 material graphs and the existing footprint-driven worldgen
 pipeline. Each entry has a stable style ID, taxonomy, country references, use, characteristic
 details, and a representative footprint and floor count. These are original stylized studies,
 not surveyed replicas or static meshes stretched to fit a parcel.
@@ -96,7 +96,7 @@ precedence. Dormers use `roof.features.dormers` on eligible pitched wings. Simpl
 representations omit ornament while retaining their footprint, primary roof and measured envelope.
 
 The [standard material catalog](https://github.com/bendyline/molen/blob/main/content/worldgen/materials/README.md)
-groups all 45 shared graphs by construction. It includes several brick bonds, cut/rubble stone,
+groups all 51 shared graphs by construction. It includes several brick bonds, cut/rubble stone,
 clapboard and board-and-batten, shingles, clay tiles, slate, thatch, rammed earth and metal roofs.
 Physical repeat sizes live in `scripts/standard-materials.mjs`. Common textures are 256² and
 prepared once per shared material set. Window graphs use cell UVs; solid surfaces use meter UVs.

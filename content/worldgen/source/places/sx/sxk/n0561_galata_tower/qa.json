@@ -1,0 +1,51 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0561_galata_tower",
+  "sourceHash": "sha256:128a0b54fcf07ca1d836e63c1b6f35ed5431df46371a889ecbc8f9a2e46de289",
+  "runtimeHash": "sha256:88a4b540acd2e6ea927b4ed14374aa346509da58f6930ae8beb3a8d762a86e75",
+  "captureReportHash": "sha256:f007a7ffd63d3cd54154caa698c83b6eec9383872bab24b1a1833099dbce2bbe",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Detailed complete architectural exterior for the world viewer.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-entrance.png",
+      "shots/near-gallery.png",
+      "shots/near-roof.png",
+      "shots/near-masonry.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all ten current portable frames: lit scene, four turntable angles and entrance/gallery/roof/masonry/far detail views. Rebuilt the former coarse study. Aperture jambs, sills and soffits face into the recess; the model has no visible through-wall sky gaps. South stairs, two arcaded levels, corbels, iron rails, four roof dormers, panel seams and finial remain distinct at close and distant views."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:59b5ba17e4f8e33c99c99a06f6e41940a923de96020df35f8c4d218d4db86a08",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-entrance.png",
+      "shots/shared/near-gallery.png",
+      "shots/shared/near-roof.png",
+      "shots/shared/near-masonry.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all ten current shared frames. Seven shared surface graphs resolve once; wall/roof courses unwrap continuously around radial surfaces. Reveals use planar metric UVs to avoid the collapsed cylindrical coordinates found in the first review. Palette fallback and shared renders agree on silhouette and component boundaries. Geometry releases fully after tile eviction."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e7bf65be5ef0efc4bc0e7614839da981ca56125c9a972beecc1e3f5607faf1da",
+    "notes": "Exact-QID OSM way/23236783 supplies the circular footprint center. The operator museum brochure explicitly states a south-axis entrance, matching native +Z with heading0. Orthographic north-up overlay verifies the footprint envelope and south stair direction at correct local metric scale. Published 16.45m base diameter is retained instead of stretching the tower to the less precise mapped17.2m roof/footprint envelope. Model baseY0 follows host terrain contact, consistent with this viewer landmark contract; host DEM precision is independent of the verified anchor and orientation."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "passed",
+    "notes": "Reviewed as the maximum-detail architectural exterior in Molen’s shared material style: 121046 retained triangles, true recessed arched windows, fourteen-bay upper arcade, geometry for corbel and chain courses, double entrance stair/portal, gallery rails and posts, separate dormers, lead seams, and finial. Published base diameter, roof/ornament heights, observation level and repair-band elevations are represented. Compared with the operator’s exterior photograph and museum/municipal dimensional evidence. Individual repaired stones and fine historical calligraphy are represented by shared masonry and framed inscription fields, not a photogrammetric facsimile. Reconstructed window-row, seam and railing dimensions are documented. These do not remove the distinctive exterior components or require an unrelated interior model."
+  }
+}

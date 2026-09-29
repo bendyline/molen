@@ -1,0 +1,182 @@
+{
+  "id": "N0675",
+  "key": "pilsum_lighthouse",
+  "title": "Pilsum Lighthouse",
+  "wikidataId": "Q539709",
+  "metricTriangleUv": true,
+  "size": [
+    5.25,
+    12.45,
+    5.5
+  ],
+  "visualBrief": "Seven horizontal red/yellow steel bands on a cylindrical sector lighthouse; riveted plate joints, north-northeast entrance, small barred rear windows, two broad black-framed sector windows, projecting ventilation hoods, outward leaning roof-edge railing, dark copper cone roof with mushroom vents, red ventilator ball and lightning rod.",
+  "sourceFacts": {
+    "heritageApproxStructureHeightMeters": 12,
+    "modelRoofBallTopMeters": 11.92,
+    "modelLightningTopMeters": 12.45,
+    "photoApproxShaftDiameterMeters": 4.4,
+    "bandCount": 7,
+    "rejectedMapHeightMeters": 65.3,
+    "basis": "Lower Saxony heritage authority states approximately12m and three storeys, and supplies a clear current exterior photograph. Local tourism quotes approximately11m; the heritage-specific architectural description controls this model. Photo proportions and commonly documented4.4m shaft width govern component scale, while OSM5.2m footprint includes the foundation. The65.3m OSMheight belongs to a different tower and is rejected."
+  },
+  "referencePages": [
+    "https://denkmalatlas.niedersachsen.de/viewer/metadata/34661935/1/-/",
+    "https://denkmalatlas.niedersachsen.de/viewer/rest/image/5e90d7a0-32d9-4dde-b4b6-ad7746d07939/52319607.jpeg/full/!1800,1800/0/default.jpg",
+    "https://www.greetsiel.de/ferienregion-krummhoern/pilsumer-leuchtturm",
+    "https://www.greetsiel.de/fileadmin/_processed_/6/d/csm_Foto_13.05.20__19_26_51_3cb923bae1.jpg",
+    "https://www.openstreetmap.org/way/243297523",
+    "https://www.openstreetmap.org/node/8949335764"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      7.045705623,
+      53.497985478
+    ],
+    "heading": 2.7044851587053764,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/8949335764",
+    "notes": "Exact-QIDcircleway243297523 fixes the tower center; surveyed main-entrance node8949335764 and two-stepway967353310 fix the native+Z entrance bearing north-northeast. Ground plane is the top of the dyke, with only the immediate circular plinth/door steps included. Optical window sectors are photograph-reconstructed on the seaward face; no claim of preserving historic navigational bearings."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "The heritage height is approximate and the lightning rod extends above the modeled roof/ventilator; minor window, hood, rivet and roof-vent dimensions are photo-derived. Shaft diameter and foundation are not survey measurements. Current red/yellow daymark and dark metal roof follow heritage/tourism photographs; transient scaffolding and graffiti are excluded. The separate love-lock structure and dyke terrain belong to map context."
+  ],
+  "previewCamera": {
+    "position": [
+      15,
+      8,
+      -16
+    ],
+    "lookAt": [
+      0,
+      5.8,
+      0
+    ],
+    "fov": 44
+  },
+  "qaCameras": [
+    {
+      "name": "near-entry",
+      "position": [
+        4.8,
+        3.2,
+        6.2
+      ],
+      "lookAt": [
+        0,
+        1.6,
+        2.05
+      ]
+    },
+    {
+      "name": "near-sector-windows",
+      "position": [
+        5.9,
+        9.2,
+        -7.1
+      ],
+      "lookAt": [
+        0,
+        8.8,
+        0
+      ]
+    },
+    {
+      "name": "near-roof-railing",
+      "position": [
+        5.7,
+        12.2,
+        5.9
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ]
+    },
+    {
+      "name": "near-banded-plates",
+      "position": [
+        -5.8,
+        5.6,
+        -6.5
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        17,
+        8,
+        -21
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0675_pilsum_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -2.6300601959228516,
+      0,
+      -2.6300601959228516
+    ],
+    "max": [
+      2.6300601959228516,
+      12.449999809265137,
+      2.9600000381469727
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

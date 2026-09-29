@@ -205,4 +205,30 @@ describe('batch generation', () => {
     expect(json.accessors[0]?.count).toBe(output.buildings.vertexCount);
     expect(worldgenTransferables(output).length).toBeGreaterThanOrEqual(5);
   });
+
+  it('preserves transparent and cutout surface metadata without changing opaque defaults', () => {
+    const output = generateWorldgenBatch({ buildings: requests().slice(0, 2), pack });
+    expect(output.buildings).toBeDefined();
+    if (output.buildings === undefined) return;
+    expect(output.buildings.groups.length).toBeGreaterThanOrEqual(3);
+    const glb = encodeGlb(output.buildings, [
+      {
+        name: 'clear-glass',
+        baseColorFactor: [1, 1, 1, 0.26],
+        alphaMode: 'BLEND',
+        doubleSided: true,
+      },
+      { name: 'cutout', alphaMode: 'MASK', alphaCutoff: 0.35 },
+    ]);
+    const jsonLength = new DataView(glb.buffer).getUint32(12, true);
+    const json = JSON.parse(new TextDecoder().decode(glb.subarray(20, 20 + jsonLength)));
+    expect(json.materials[0]).toMatchObject({
+      alphaMode: 'BLEND',
+      doubleSided: true,
+      pbrMetallicRoughness: { baseColorFactor: [1, 1, 1, 0.26] },
+    });
+    expect(json.materials[0]).not.toHaveProperty('alphaCutoff');
+    expect(json.materials[1]).toMatchObject({ alphaMode: 'MASK', alphaCutoff: 0.35 });
+    expect(json.materials[2]).toMatchObject({ alphaMode: 'OPAQUE', doubleSided: false });
+  });
 });

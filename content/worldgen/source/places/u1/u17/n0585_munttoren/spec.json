@@ -1,0 +1,186 @@
+{
+  "id": "N0585",
+  "planId": "N0585",
+  "assetId": "molen.worldgen.structure.n0585_munttoren",
+  "title": "Munttoren",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1429748"
+  },
+  "wikidataId": "Q1429748",
+  "visualBrief": "Amsterdam’s surviving round gate tower with pale stone courses, upper octagonal brick stage, lead-clad Renaissance arches, four gilt clocks, an open carillon lantern, slender roof, open orb and gilded weathercock. Two mapped narrow lower projections retain the real asymmetric plan.",
+  "size": [
+    9,
+    41,
+    6.2
+  ],
+  "actualBounds": {
+    "min": [
+      -4.687065601348877,
+      0,
+      -3.027869701385498
+    ],
+    "max": [
+      4.1532487869262695,
+      41.055419921875,
+      3.027869701385498
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Clock frame follows the mapped octagonal parts; +X follows the southeast projection and −X the northwest stair projection",
+    "origin": "Concentric mapped octagonal tower center, pavement Y=0; the separate nineteenth-century guard house is outside this tower asset"
+  },
+  "scaleBasis": "The Amsterdam Bureau of Monuments and Archaeology report reproduces Dik de Roon’s measured sections/elevation with a 10 m scale on page 126. Its proportions are combined with the 41 m finial height recorded by the monument researcher, original current photographs and concentric mapped octagonal parts. Legacy OSM part heights omit the upper finial and do not set the overall elevation.",
+  "geographicProposal": {
+    "anchor": [
+      4.8932134,
+      52.3670565
+    ],
+    "heading": -0.982021760349,
+    "source": "https://www.openstreetmap.org/way/57862728",
+    "evidence": "Center is refined from the concentric tower parts instead of the bounding box containing asymmetric projections. Both southeast and northwest projections are reproduced from their exact map polygons; the octagonal clock stages retain their mapped directed axes.",
+    "orientationConfidence": "exact-part-centroids-and-asymmetric-projections",
+    "limitations": "The adjoining former guard house is a separately mapped building; it is not included or used to scale the tower. Small stone ornament and restored openings follow current photographs.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Center is refined from the concentric tower parts instead of the bounding box containing asymmetric projections. Both southeast and northwest projections are reproduced from their exact map polygons; the octagonal clock stages retain their mapped directed axes. The adjoining former guard house is a separately mapped building; it is not included or used to scale the tower. Small stone ornament and restored openings follow current photographs."
+  },
+  "sourceFacts": {
+    "overallHeightMeters": 41,
+    "clockFaces": 4,
+    "upperPlanSides": 8,
+    "existingCarillonBells": 38,
+    "spireDesigner": "Hendrick de Keyser",
+    "spireCompletionYear": 1620,
+    "mainBrickStageHeightMeters": 14.2
+  },
+  "referencePages": [
+    "https://pure.uva.nl/ws/files/2809631/178913_Historisch_hout_in_Amsterdamse_monumenten.pdf",
+    "https://amsterdam-monumentenstad.nl/database/grachtenboek_objecten.php?id=3085",
+    "https://amsterdam-monumentenstad.nl/database/pics/3/20200902-8.jpg",
+    "https://amsterdam-monumentenstad.nl/database/uploads/3/20200902-11.jpg",
+    "https://amsterdam-monumentenstad.nl/database/uploads/3/20200902-12.jpg",
+    "https://amsterdam-monumentenstad.nl/database/uploads/3/munttoren-tek.jpg",
+    "https://www.amsterdam.nl/stadsarchief/stukken/grachten-torens/munttoren/",
+    "https://www.openstreetmap.org/way/57862728"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The measured municipal drawing establishes main proportions; individually weathered masonry, tiny clock lettering and lead seams are represented by original geometric detail and shared metric materials.",
+    "Open visible carillon bells are modeled; hidden clockwork and occupied internal rooms are outside this exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "medieval-base",
+      "position": [
+        11,
+        7,
+        13
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "renaissance-stage",
+      "position": [
+        12,
+        19,
+        15
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "clock-carillon",
+      "position": [
+        9,
+        28,
+        12
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "orb-weathercock",
+      "position": [
+        10,
+        40,
+        13
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        47,
+        25,
+        60
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ]
+}

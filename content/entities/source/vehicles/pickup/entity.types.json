@@ -96,6 +96,23 @@
             "cast": true,
             "receive": true
           }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 1.0,
+          "gain": 1.0,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[-7, 1.15], [0, 0.85], [11.1, 1.15], [24.1, 1.45], [37, 1.75]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.9], [0, 0.65], [1, 1]]
+          }
         }
       },
       "assets": ["molen.entities.vehicle.pickup"],

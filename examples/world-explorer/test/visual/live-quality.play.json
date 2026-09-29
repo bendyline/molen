@@ -30,9 +30,18 @@
       "name": "01-before-navigation"
     },
     {
-      "type": "keys",
-      "keys": ["w"],
-      "durationMs": 500
+      "type": "key-down",
+      "keys": ["w"]
+    },
+    {
+      "type": "wait-for",
+      "note": "Hold W until the camera has moved, not for a fixed time: CI software frames have outlasted both 500 ms and longer holds. The start position comes from the path's defaults.",
+      "selector": "#status:not(:has-text(\"lat 47.61630  lon -122.03560\"))",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "key-up",
+      "keys": ["w"]
     },
     {
       "type": "wait",

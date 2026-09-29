@@ -91,6 +91,26 @@
       "type": "arena.player"
     },
     {
+      "id": "audio",
+      "components": {
+        "audioEnvironment": {
+          "buses": {
+            "music": 0.5
+          },
+          "music": {
+            "playlist": ["music.arena"],
+            "gain": 0.8
+          },
+          "events": {
+            "player-hit": {
+              "sound": "impact.punch",
+              "at": "listener"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "wall-n",
       "type": "arena.wall",
       "components": {

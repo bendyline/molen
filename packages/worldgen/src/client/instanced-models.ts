@@ -38,6 +38,49 @@ function bakeColor(geometry: THREE.BufferGeometry, color: THREE.Color): THREE.Bu
   return geometry;
 }
 
+function expandForTransform(geometry: THREE.BufferGeometry, name: 'position' | 'normal'): void {
+  const source = geometry.getAttribute(name);
+  if (source === undefined || (source.array instanceof Float32Array && !source.normalized)) return;
+  const values = new Float32Array(source.count * 3);
+  for (let index = 0; index < source.count; index++) {
+    values[index * 3] = source.getX(index);
+    values[index * 3 + 1] = source.getY(index);
+    values[index * 3 + 2] = source.getZ(index);
+  }
+  geometry.setAttribute(name, new THREE.BufferAttribute(values, 3));
+}
+
+/** Match each triangle's winding to its authored normals before front-face culling. */
+function orientTriangles(geometry: THREE.BufferGeometry): void {
+  const positions = geometry.getAttribute('position');
+  const normals = geometry.getAttribute('normal');
+  const attributes = Object.values(geometry.attributes) as THREE.BufferAttribute[];
+  for (let i = 0; i < positions.count; i += 3) {
+    const ax = positions.getX(i + 1) - positions.getX(i);
+    const ay = positions.getY(i + 1) - positions.getY(i);
+    const az = positions.getZ(i + 1) - positions.getZ(i);
+    const bx = positions.getX(i + 2) - positions.getX(i);
+    const by = positions.getY(i + 2) - positions.getY(i);
+    const bz = positions.getZ(i + 2) - positions.getZ(i);
+    const nx = normals.getX(i) + normals.getX(i + 1) + normals.getX(i + 2);
+    const ny = normals.getY(i) + normals.getY(i + 1) + normals.getY(i + 2);
+    const nz = normals.getZ(i) + normals.getZ(i + 1) + normals.getZ(i + 2);
+    if ((ay * bz - az * by) * nx + (az * bx - ax * bz) * ny + (ax * by - ay * bx) * nz >= 0)
+      continue;
+    for (const attribute of attributes) {
+      const data = attribute.array as Float32Array;
+      for (let component = 0; component < attribute.itemSize; component++) {
+        const a = (i + 1) * attribute.itemSize + component;
+        const b = (i + 2) * attribute.itemSize + component;
+        const value = data[a] as number;
+        data[a] = data[b] as number;
+        data[b] = value;
+      }
+      attribute.needsUpdate = true;
+    }
+  }
+}
+
 /** Flatten every mesh of a scene into one geometry with baked material colors. */
 export function mergeSceneGeometry(root: THREE.Object3D): THREE.BufferGeometry | undefined {
   root.updateMatrixWorld(true);
@@ -50,6 +93,10 @@ export function mergeSceneGeometry(root: THREE.Object3D): THREE.BufferGeometry |
     const first = materials[0] as THREE.Material & { color?: THREE.Color };
     if (first?.color !== undefined) tint.copy(first.color);
     const geometry = mesh.geometry.clone();
+    // Quantized glTF positions are normalized integers. BufferGeometry.applyMatrix4 writes
+    // transformed values back into that range, silently clamping a 184 m model to ~2 m.
+    expandForTransform(geometry, 'position');
+    expandForTransform(geometry, 'normal');
     geometry.applyMatrix4(mesh.matrixWorld);
     for (const name of Object.keys(geometry.attributes)) {
       if (name !== 'position' && name !== 'normal' && name !== 'color')
@@ -67,6 +114,7 @@ export function mergeSceneGeometry(root: THREE.Object3D): THREE.BufferGeometry |
   const merged = parts.length === 1 ? parts[0] : mergeGeometries(parts, false);
   if (parts.length > 1) for (const part of parts) part.dispose();
   if (merged === null || merged === undefined) return undefined;
+  orientTriangles(merged);
   merged.computeBoundingBox();
   merged.computeBoundingSphere();
   return merged;
@@ -125,12 +173,15 @@ export class ModelLibrary {
   private disposed = false;
   private readonly prepared = new Map<string, PreparedModel>();
   private readonly pending = new Map<string, Promise<PreparedModel>>();
+  private readonly references = new Map<string, number>();
   private readonly material: THREE.MeshStandardMaterial;
 
   constructor(
     private readonly loadModel: ModelLoader | undefined = undefined,
     /** Landmark models served as `builtin:<id>`; none unless the host loads a landmark library. */
     private readonly landmarks: LandmarkDefinitions = {},
+    /** Release source glTF geometry after merging it (for uncached models). */
+    private readonly disposeLoadedScene = false,
   ) {
     this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
     this.material.name = 'worldgen:models';
@@ -169,6 +220,37 @@ export class ModelLibrary {
     return pending;
   }
 
+  /** Hold a prepared model while a consumer uses its geometry. */
+  async acquire(ref: string, coarse: boolean | 'distant' = false): Promise<PreparedModel> {
+    const key = this.key(ref, coarse);
+    this.references.set(key, (this.references.get(key) ?? 0) + 1);
+    try {
+      return await this.prepare(ref, coarse);
+    } catch (error) {
+      this.release(ref, coarse);
+      throw error;
+    }
+  }
+
+  /** Release prepared geometry when the last consumer drops its reference. */
+  release(ref: string, coarse: boolean | 'distant' = false): void {
+    const key = this.key(ref, coarse);
+    const count = this.references.get(key);
+    if (count === undefined) return;
+    if (count > 1) {
+      this.references.set(key, count - 1);
+      return;
+    }
+    this.references.delete(key);
+    const evict = (): void => {
+      if (this.references.has(key)) return;
+      this.prepared.get(key)?.geometry.dispose();
+      this.prepared.delete(key);
+    };
+    evict();
+    void this.pending.get(key)?.then(evict, () => {});
+  }
+
   private async load(ref: string, coarse: boolean | 'distant'): Promise<PreparedModel> {
     if (ref.startsWith('builtin:')) {
       const geometry = builtinGeometry(ref.slice('builtin:'.length), coarse, this.landmarks);
@@ -186,7 +268,28 @@ export class ModelLibrary {
       throw new Error(`model "${ref}" needs a model loader (ModelLibrary constructor)`);
     }
     const scene = await this.loadModel(ref);
-    const geometry = mergeSceneGeometry(scene);
+    let geometry: THREE.BufferGeometry | undefined;
+    try {
+      geometry = mergeSceneGeometry(scene);
+    } finally {
+      if (this.disposeLoadedScene) {
+        const geometries = new Set<THREE.BufferGeometry>();
+        const materials = new Set<THREE.Material>();
+        scene.traverse((object) => {
+          const mesh = object as THREE.Mesh;
+          if (!mesh.isMesh) return;
+          geometries.add(mesh.geometry);
+          for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+            materials.add(material);
+        });
+        for (const part of geometries) part.dispose();
+        for (const material of materials) {
+          for (const value of Object.values(material))
+            if (value instanceof THREE.Texture) value.dispose();
+          material.dispose();
+        }
+      }
+    }
     if (geometry === undefined) throw new Error(`model "${ref}" has no mesh geometry`);
     return {
       ref,
@@ -199,6 +302,7 @@ export class ModelLibrary {
 
   dispose(): void {
     this.disposed = true;
+    this.references.clear();
     for (const model of this.prepared.values()) model.geometry.dispose();
     this.prepared.clear();
     this.material.dispose();

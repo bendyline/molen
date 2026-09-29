@@ -1,8 +1,22 @@
+export {
+  markTerrainGroundSurface,
+  setTerrainGroundCutout,
+  subtractTerrainGroundGeometry,
+  TerrainGroundCutoutController,
+  type TerrainGroundOutline,
+  terrainGroundSourceGeometry,
+} from './ground-cutout';
+
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
 import type { Heightfield } from './heightfield';
 import { buildChunkGeometry, type ChunkMeshOptions, lodStepForDistance } from './mesh';
 
+export {
+  createTerrainArchiveSetArchive,
+  type TerrainArchiveSetArchive,
+  type TerrainArchiveSetArchiveOptions,
+} from './archive-set-client';
 export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
@@ -46,6 +60,7 @@ export {
   type OpenTerrainPackageSemanticSidecar,
   type OpenTerrainPackageSemantics,
   type OpenTerrainPackageSemanticsOptions,
+  openTerrainPackageArchive,
   openTerrainPackageElevation,
   openTerrainPackagePyramid,
   openTerrainPackageSemantics,
@@ -125,6 +140,7 @@ export {
   type TerrainSemanticPolygon,
   type TerrainSemanticRing,
   type TerrainSemanticTile,
+  type TerrainStructureIdentity,
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
 } from './semantic-types';

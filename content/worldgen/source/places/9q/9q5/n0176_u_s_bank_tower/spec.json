@@ -1,0 +1,215 @@
+{
+  "planId": "N0176",
+  "id": "N0176",
+  "assetId": "molen.worldgen.structure.n0176_u_s_bank_tower",
+  "title": "U.S. Bank Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q57900",
+  "referenceCoordinate": {
+    "latitude": 34.050961,
+    "longitude": -118.254353
+  },
+  "visualBrief": "The Los Angeles granite-and-glass tower with mapped concentric and orthogonal setbacks, individually modeled projecting triangular window bays, broad terrace belts, a sixteen-fold stone/glass crown, circular helipad and renewed glazed lobby.",
+  "size": [
+    60.45592498779297,
+    310.29998779296875,
+    49.29814338684082
+  ],
+  "actualBounds": {
+    "min": [
+      -30.497241973876953,
+      0,
+      -24.66628074645996
+    ],
+    "max": [
+      29.958683013916016,
+      310.29998779296875,
+      24.63186264038086
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 310.3,
+    "ownerStories": 72,
+    "architectStories": 73,
+    "lobbyHeightMeters": 9.144,
+    "architect": "Pei Cobb Freed & Partners; Henry N. Cobb",
+    "structuralSetbackLevels": [
+      47,
+      56,
+      60,
+      68,
+      72
+    ]
+  },
+  "reconstruction": {
+    "massing": "Exact-QID whole outline and eleven independent mapped tower parts determine the signed overlapping circular/orthogonal volumes. Architect structural isometric corroborates setback sequence.",
+    "facade": "Original granite window surrounds with paired projecting glass panes and physical joints; fine bay spacing reconstructed from architect close photograph.",
+    "crown": "Sixteen folded bays and circular landing roof reconstructed from architect axonometric and close photographs; current owner establishes rooftop use and new entrance."
+  },
+  "referencePages": [
+    "https://www.pcf-p.com/projects/us-bank-tower-formerly-library-tower/",
+    "https://www.silversteinproperties.com/portfolio-properties/us-bank-tower",
+    "https://www.skyscrapercenter.com/building/id/445",
+    "https://www.openstreetmap.org/way/23973401"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -118.254420677,
+      34.051065544
+    ],
+    "heading": 1.086317737338,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/23973401",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/23973401"
+    ],
+    "wikidataId": "Q57900",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Signed mapped whole outline and all eleven adjoining tower parts retain the different setback directions, including the long eastern/western curves. Fifth Street entrance is on the southwest side toward the library. GroundY0 is the lower Fifth Street entry; surrounding Bunker Hill Steps and uphill terrain remain separate site context."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual granite panel pitch, triangular window projection and entrance canopy are reconstructed from primary photographs. Tenant lettering, current rooftop branding and rooftop service furniture are omitted. Separate Bunker Hill stairs/landscape are outside the tower footprint; interior spaces are not modeled."
+  ],
+  "qaCameras": [
+    {
+      "name": "folded-crown",
+      "position": [
+        51,
+        324,
+        63
+      ],
+      "lookAt": [
+        0,
+        298,
+        0
+      ]
+    },
+    {
+      "name": "triangular-bays",
+      "position": [
+        54,
+        118,
+        51
+      ],
+      "lookAt": [
+        18,
+        110,
+        11
+      ]
+    },
+    {
+      "name": "stepped-volumes",
+      "position": [
+        -90,
+        257,
+        114
+      ],
+      "lookAt": [
+        0,
+        238,
+        0
+      ]
+    },
+    {
+      "name": "fifth-street-lobby",
+      "position": [
+        -72,
+        16,
+        -6
+      ],
+      "lookAt": [
+        -24,
+        6,
+        -1.5
+      ]
+    },
+    {
+      "name": "helipad",
+      "position": [
+        36,
+        354,
+        46
+      ],
+      "lookAt": [
+        0,
+        309,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -365,
+        280,
+        610
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 701784,
+    "vertices": 1529178,
+    "materials": 5,
+    "bytes": 61945832,
+    "sha256": "sha256:817508773dc38fe7248dbff6cfba5e9103651c82ed0867d970d06136d8346990"
+  }
+}

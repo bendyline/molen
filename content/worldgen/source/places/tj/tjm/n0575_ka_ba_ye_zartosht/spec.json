@@ -1,0 +1,178 @@
+{
+  "id": "N0575",
+  "planId": "N0575",
+  "assetId": "molen.worldgen.structure.n0575_ka_ba_ye_zartosht",
+  "title": "Ka'ba-ye Zartosht",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q2363092"
+  },
+  "wikidataId": "Q2363092",
+  "visualBrief": "Surviving limestone tower at Naqsh-e Rustam with engaged corners, shallow staggered recesses, dark false windows, 17-dentil cornices, broken access flight and low pyramidal stone roof.",
+  "size": [
+    14.62,
+    14.12,
+    15.83
+  ],
+  "actualBounds": {
+    "min": [
+      -7.309999942779541,
+      0,
+      -7.309999942779541
+    ],
+    "max": [
+      7.309999942779541,
+      14.119999885559082,
+      8.520000457763672
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z points toward the entrance / geographic north-northwest",
+    "origin": "Tower center at original ground level; base pavement included"
+  },
+  "scaleBasis": "Schmidt / Oriental Institute field measurements and elevations, Persepolis III (1970), figures 5-15 and pp. 35-37. Surviving eight-step remnant is retained; the hypothetical complete thirty-step stair is excluded.",
+  "geographicProposal": {
+    "anchor": [
+      52.8740303,
+      29.9884865
+    ],
+    "heading": -2.8468974463228967,
+    "source": "https://www.openstreetmap.org/way/235636110",
+    "orientationSource": "https://isac-assets.s3.amazonaws.com/isac-publications/oip70.pdf",
+    "evidence": "Exact Q2363092 footprint gives wall axes; north-facing doorway in excavation plan resolves which of four sides is the authored +Z facade.",
+    "altitudeMode": "terrain",
+    "orientationConfidence": "footprint-plus-published-facing",
+    "limitations": "Excavated ground lies below surrounding modern grade; a flat terrain sample may cover lower pavement. OSM outline includes platform and is not used to stretch the measured tower.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact Q2363092 footprint gives wall axes; north-facing doorway in excavation plan resolves which of four sides is the authored +Z facade. Excavated ground lies below surrounding modern grade; a flat terrain sample may cover lower pavement. OSM outline includes platform and is not used to stretch the measured tower."
+  },
+  "sourceFacts": {
+    "totalHeightMeters": 14.12,
+    "towerSideMeters": 7.3,
+    "cornerPierMeters": [
+      1.06,
+      0.19
+    ],
+    "dentilsPerFace": 17,
+    "roofRiseMeters": 0.25,
+    "recessMeters": [
+      0.15,
+      0.39,
+      0.04
+    ],
+    "survivingSteps": 8,
+    "exteriorDoorMeters": [
+      1.71,
+      1.91
+    ],
+    "sourcePages": [
+      18,
+      20,
+      21,
+      24,
+      25,
+      26,
+      27,
+      28,
+      35,
+      36,
+      37
+    ]
+  },
+  "referencePages": [
+    "https://isac.uchicago.edu/publications/persepolis-iii-royal-tombs-and-other-monuments",
+    "https://isac-assets.s3.amazonaws.com/isac-publications/oip70.pdf",
+    "https://www.iranicaonline.org/articles/kaba-ye-zardost/",
+    "https://www.openstreetmap.org/way/235636110"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Individual cracks, scattered original blocks, engraved inscriptions, cramp holes and displaced northern roof slab are not reproduced.",
+    "Shallow recess layout follows measured spacings but omits local masonry damage; false-window elevations are fitted from measured facade drawings.",
+    "The excavated perimeter, modern railings and terrain cut are excluded. Lower-flight chips and irregular settled pavement remain simplified.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "near-north-door",
+      "position": [
+        6,
+        9,
+        17
+      ],
+      "lookAt": [
+        0,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "near-false-windows",
+      "position": [
+        -10,
+        10,
+        -13
+      ],
+      "lookAt": [
+        -2,
+        9,
+        -2
+      ]
+    },
+    {
+      "name": "cornice-and-roof",
+      "position": [
+        12,
+        20,
+        -12
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        30,
+        20,
+        40
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "planId": "N0166",
+  "id": "N0166",
+  "assetId": "molen.worldgen.structure.n0166_kingdom_centre",
+  "title": "Kingdom Centre",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q656743",
+  "referenceCoordinate": {
+    "latitude": 24.711389,
+    "longitude": 46.674444
+  },
+  "visualBrief": "Riyadh’s elliptical mirrored tower with a true through-opening bounded by a curved catenary roof, glass skybridge, clipped end piers and the independently mapped spreading shopping and event podium.",
+  "size": [
+    280.3134765625,
+    302.388916015625,
+    275.09083557128906
+  ],
+  "actualBounds": {
+    "min": [
+      -140.15701293945312,
+      0,
+      -137.54629516601562
+    ],
+    "max": [
+      140.15646362304688,
+      302.388916015625,
+      137.54454040527344
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architects": [
+      "Ellerbe Becket",
+      "Omrania"
+    ],
+    "structuralEngineer": "Arup",
+    "heightMeters": 302.3,
+    "concreteStructureHeightMeters": 180,
+    "podiumLevels": 3,
+    "skybridgePublishedLengthFeet": 200
+  },
+  "reconstruction": {
+    "tower": "Exact signed elliptical shaft and independent crown end/skybridge map parts; continuous catenary reconstructed from the205 m opening datum",
+    "podium": "Exact mapped ground plan with three-storey facade; fine roof equipment and landscaping simplified",
+    "heightDatum": "Published302 m Arup height and302.3 m catalog architectural height override the inconsistent OSM bridge min_height302 plus height4"
+  },
+  "referencePages": [
+    "https://www.arup.com/en-us/projects/kingdom-centre/",
+    "https://omrania.com/project/kingdom-center/",
+    "https://www.architectmagazine.com/project-gallery/kingdom-centre/",
+    "https://www.openstreetmap.org/way/264745922"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      46.674409633,
+      24.711366899
+    ],
+    "heading": 0.439272294515,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/264745917",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/264745917"
+    ],
+    "wikidataId": "Q656743",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact whole-site datum with separately mapped elliptical tower, two narrow end piers and skybridge preserves the long crown axis. Source baseY0. The large podium is included at its actual mapped extent."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Catenary parameters and curtain-wall panel schedule are reconstructed. The unobstructed void, inner curved roof and skybridge are modeled; interior uses, signs and individual rooftop equipment are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "catenary-opening",
+      "position": [
+        88,
+        260,
+        173
+      ],
+      "lookAt": [
+        0,
+        251,
+        0
+      ]
+    },
+    {
+      "name": "skybridge",
+      "position": [
+        80,
+        320,
+        99
+      ],
+      "lookAt": [
+        0,
+        294,
+        2
+      ]
+    },
+    {
+      "name": "curved-glazing",
+      "position": [
+        60,
+        113,
+        94
+      ],
+      "lookAt": [
+        0,
+        94,
+        3
+      ]
+    },
+    {
+      "name": "podium-wings",
+      "position": [
+        242,
+        69,
+        271
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -497,
+        342,
+        799
+      ],
+      "lookAt": [
+        0,
+        139,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 313550,
+    "vertices": 723782,
+    "materials": 5,
+    "bytes": 29098148,
+    "sha256": "sha256:f5d59393c127632d240a113fcdeed5179375d55cef857a40e36f07c719983bd4"
+  }
+}

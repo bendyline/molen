@@ -38,13 +38,25 @@ export interface HeadlessResult {
  */
 export function runHeadless(
   build: WorldBuilder,
-  opts: { commands?: Command[]; ticks: number },
+  opts: {
+    commands?: Command[];
+    ticks: number;
+    /** Called once before the first tick and after every tick (audio planning, probes). */
+    onTick?: (world: World) => void;
+  },
 ): HeadlessResult {
   const world = build();
   const events: RecordedEvent[] = [];
   world.on('*', (event) => events.push({ tick: world.tick, event }));
   submitRecorded(world, opts.commands ?? []);
-  world.stepN(opts.ticks);
+  if (opts.onTick === undefined) world.stepN(opts.ticks);
+  else {
+    opts.onTick(world);
+    for (let i = 0; i < opts.ticks; i++) {
+      world.step();
+      opts.onTick(world);
+    }
+  }
   return { world, events, finalHash: stateHash(world), ticks: opts.ticks };
 }
 

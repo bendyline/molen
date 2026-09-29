@@ -5,13 +5,25 @@ dist-types/
 coverage/
 .tmp/
 shots/
+# Authored structure reviews and gallery images are part of their source bundles.
+!content/worldgen/source/places/**/shots/
+!content/worldgen/source/places/**/shots/**
+!content/worldgen/source/reusable/**/shots/
+!content/worldgen/source/reusable/**/shots/**
+!content/worldgen/source/map-structures/*/shots/
+!content/worldgen/source/map-structures/*/shots/**
 test-results/
 .turbo/
 .artifacts/
 .pnpm-store/
 debug.log
 .DS_Store
-examples/world-explorer/public/packs/
+# GLBs are build outputs of checked-in generators (pnpm assets:build), pinned by asset-lock.json
+# and published as release snapshots (pnpm assets:fetch). See content/ASSET-PACKS.md.
+*.glb
+# Authored masters with no generator are source; asset-build.json lists them as "masters".
+!content/entities/source/vehicles/*/models/source.glb
+examples/*/public/packs/
 
 # docs-site: pages generated from packages/, docs-src/ and examples/ (pnpm docs:site:gen).
 # .vitepress/generated-nav.json IS committed — `pnpm docs:site:check` verifies it in CI.

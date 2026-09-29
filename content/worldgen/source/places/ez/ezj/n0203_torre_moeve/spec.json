@@ -1,0 +1,306 @@
+{
+  "planId": "N0203",
+  "id": "N0203",
+  "assetId": "molen.worldgen.structure.n0203_torre_moeve",
+  "title": "Torre Moeve",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q519568",
+  "referenceCoordinate": {
+    "latitude": 40.475555555,
+    "longitude": -3.687777777
+  },
+  "visualBrief": "Foster twin stainless-clad cores bracket three suspended black-framed glass office blocks, with recessed louver belts, panoramic end lifts, a13.85m glazed lobby and an open20m crown below a curved metal bridge bearing current blue Moeve lettering.",
+  "size": [
+    53.130001068115234,
+    248.31500244140625,
+    42.70000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -26.565000534057617,
+      0,
+      -21.350000381469727
+    ],
+    "max": [
+      26.565000534057617,
+      248.31500244140625,
+      21.350000381469727
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X east-southeast between cores",
+    "shortAxis": "+Z south-southwest glass office frontage"
+  },
+  "sourceFacts": {
+    "heightMeters": 248.3,
+    "architect": "Foster + Partners",
+    "structuralEngineer": "Halvorson and Partners with Gilsanz Murray Steficek",
+    "officePlanMeters": [
+      32,
+      42.5
+    ],
+    "corePlanMeters": [
+      10.5,
+      23.5
+    ],
+    "typicalFloorPitchMeters": 4.7,
+    "officeBlockFloorCounts": [
+      11,
+      12,
+      11
+    ],
+    "lobbyClearMeters": 13.85,
+    "constructionTransferDatums": [
+      39,
+      102,
+      168
+    ],
+    "primaryRoundedHeightMeters": 250
+  },
+  "reconstruction": {
+    "geometry": "Burgos and original structural/construction engineers in Hormigon y Acero59/249 establish floor plan, three11/12/11-floor groups,4.70m pitch and construction transfer datums. Completed GMS/Foster photos constrain the cladding and genuinely open crown. The as-built248.3m architectural height replaces the early250m figure; the early215m cornice differs from construction/modelled219.7m roof.",
+    "facade": "Individual steel sheets, black Vierendeel spandrels, fine curtain-wall mullions, dense recessed ventilation, panoramic glass strips and curved crown panel seams are explicit exterior geometry. Current blue lowercase roof lettering is an original polygonal reconstruction from the owner2025 report."
+  },
+  "referencePages": [
+    "http://e-ache.com/modules/ache/ficheros/Realizaciones/Obra125.pdf",
+    "https://www.gmsllp.com/portfolio/torre-caja-madrid/",
+    "https://www.moeveglobal.com/stfls/corporativo/FICHEROS/informe-gestion-consolidado2025.pdf",
+    "https://www.multivu.com/players/uk/7703451-cepsa-new-headquarters-new-company/docs/cepsa-headquarters-cepsa-tower-1046753785.pdf",
+    "https://www.esmadrid.com/en/tourist-information/torre-moeve",
+    "https://www.skyscrapercenter.com/building/wd/878",
+    "https://www.openstreetmap.org/way/188396764"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -3.687751047,
+      40.475715996
+    ],
+    "heading": -0.20327044179,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/188396764",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/188396764"
+    ],
+    "wikidataId": "Q519568",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:31a6be890c4a7832e3a08905548ffdd423cd56092fa4e0694b09359a8e179949",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID cross-shaped envelope and independent east/west cores retain their signed axis. The original engineer plan puts full-height cores east/west and broad office fronts north/south, confirming the mapped phase. GroundY0 is the lobby entrance datum. Published53x42.5m plan supersedes submeter map tracing variation; the mapped upper office datums are not accepted over primary construction elevations."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Exact stainless sheet schedule, louver pitch, fine glazing divisions, curved crown section and original lowercase letter strokes are exterior photographic reconstruction. Early250m/215m roof figures differ from current248.3m and the later construction elevations, explicitly retained in sourceFacts. Office floors, core circulation and the underground garage are excluded; surrounding plaza, neighboring towers and active lifts are not modeled."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-suspended-blocks",
+      "position": [
+        -260,
+        170,
+        -310
+      ],
+      "lookAt": [
+        0,
+        125,
+        0
+      ]
+    },
+    {
+      "name": "panoramic-core-strip",
+      "position": [
+        83,
+        143,
+        15
+      ],
+      "lookAt": [
+        26,
+        140,
+        0
+      ]
+    },
+    {
+      "name": "stainless-core-panels",
+      "position": [
+        43,
+        68,
+        35
+      ],
+      "lookAt": [
+        22,
+        63,
+        11.75
+      ]
+    },
+    {
+      "name": "black-curtain-wall",
+      "position": [
+        8,
+        124,
+        44
+      ],
+      "lookAt": [
+        2,
+        122,
+        21.25
+      ]
+    },
+    {
+      "name": "recessed-mechanical",
+      "position": [
+        43,
+        100,
+        51
+      ],
+      "lookAt": [
+        5,
+        97,
+        19
+      ]
+    },
+    {
+      "name": "open-crown",
+      "position": [
+        46,
+        240,
+        66
+      ],
+      "lookAt": [
+        0,
+        233,
+        0
+      ]
+    },
+    {
+      "name": "curved-crown-skin",
+      "position": [
+        4,
+        231,
+        35
+      ],
+      "lookAt": [
+        1,
+        242,
+        8
+      ]
+    },
+    {
+      "name": "moeve-lettering",
+      "position": [
+        26,
+        248,
+        42
+      ],
+      "lookAt": [
+        0,
+        245,
+        11
+      ]
+    },
+    {
+      "name": "roof-below-void",
+      "position": [
+        35,
+        252,
+        -42
+      ],
+      "lookAt": [
+        0,
+        220,
+        0
+      ]
+    },
+    {
+      "name": "glazed-lobby",
+      "position": [
+        36,
+        12,
+        54
+      ],
+      "lookAt": [
+        0,
+        8,
+        18
+      ]
+    },
+    {
+      "name": "revolving-entrance",
+      "position": [
+        11,
+        5.5,
+        29
+      ],
+      "lookAt": [
+        8,
+        2,
+        19
+      ]
+    },
+    {
+      "name": "far-open-frame",
+      "position": [
+        -590,
+        208,
+        560
+      ],
+      "lookAt": [
+        0,
+        122,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 421986,
+    "vertices": 1192922,
+    "materials": 6,
+    "bytes": 46819644,
+    "sha256": "sha256:2569c2fac4bd9d1bbfaee547a11f93cabef7f8edeb3a05dbbf85236b3a140edb"
+  }
+}

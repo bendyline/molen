@@ -1,0 +1,78 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.b06_washington_monument",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:1bbfa4929d8056932134e562c6595abb403cf29539a2eb615565f25befaedfdd",
+  "sourceHash": "sha256:1c9078b8076192975b6ce78d9054566abec84680e406a3d7e17cead231828d62",
+  "bounds": {
+    "aabb": {
+      "min": [-13.9978, 0, -13.9978],
+      "max": [13.9978, 169, 13.9978]
+    },
+    "sphere": {
+      "center": [0, 84.5, 0],
+      "radius": 86.7878
+    }
+  },
+  "stats": {
+    "triangles": 80,
+    "vertices": 160,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 6752
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 80
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-foundation",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -13.9978, 0, -13.9978, -13.9978, 0, 13.9978, -13.9978, 169, -13.9978, -13.9978, 169,
+          13.9978, 13.9978, 0, -13.9978, 13.9978, 0, 13.9978, 13.9978, 169, -13.9978, 13.9978, 169,
+          13.9978
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

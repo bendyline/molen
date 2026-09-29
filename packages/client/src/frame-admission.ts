@@ -3,6 +3,8 @@ export interface AdmissionOptions {
   bytes?: number;
   signal?: AbortSignal;
   label?: string;
+  /** Background jobs run only in frame budget that no normal job is waiting for. */
+  priority?: 'normal' | 'background';
 }
 export interface AdmissionSample {
   label: string;
@@ -10,6 +12,8 @@ export interface AdmissionSample {
   workMs: number;
   bytes: number;
   overBudget: boolean;
+  /** Ran from the background lane, so its queue time was deliberately deferred. */
+  background: boolean;
 }
 export interface SceneAdmission {
   run<T>(task: () => T, options?: AdmissionOptions): Promise<T>;
@@ -29,9 +33,13 @@ interface Job {
   options: AdmissionOptions;
   queued: number;
   abort?: () => void;
+  /** A queued background job's promise, the key `promote` finds it by. */
+  promise?: Promise<unknown>;
 }
 export class FrameAdmissionQueue implements SceneAdmission {
   private jobs: Job[] = [];
+  private background: Job[] = [];
+  private readonly queuedBackground = new WeakMap<Promise<unknown>, Job>();
   private scheduled = false;
   private disposed = false;
   private readonly clock: () => number;
@@ -58,8 +66,9 @@ export class FrameAdmissionQueue implements SceneAdmission {
       return Promise.reject(new DOMException('Admission cancelled', 'AbortError'));
     if (!Number.isFinite(options.bytes ?? 0) || (options.bytes ?? 0) < 0)
       return Promise.reject(new RangeError('Admission bytes must be finite and nonnegative'));
-    return new Promise<T>((resolve, reject) => {
-      const job: Job = {
+    let job!: Job;
+    const promise = new Promise<T>((resolve, reject) => {
+      job = {
         run: task,
         resolve: (value) => resolve(value as T),
         reject,
@@ -67,22 +76,49 @@ export class FrameAdmissionQueue implements SceneAdmission {
         queued: this.clock(),
       };
       job.abort = () => {
-        const index = this.jobs.indexOf(job);
+        const lane = this.jobs.includes(job) ? this.jobs : this.background;
+        const index = lane.indexOf(job);
         if (index >= 0) {
-          this.jobs.splice(index, 1);
+          lane.splice(index, 1);
+          this.forget(job);
           reject(new DOMException('Admission cancelled', 'AbortError'));
         }
       };
       options.signal?.addEventListener('abort', job.abort, { once: true });
-      this.jobs.push(job);
+      (options.priority === 'background' ? this.background : this.jobs).push(job);
       this.request();
     });
+    if (options.priority === 'background') {
+      job.promise = promise;
+      this.queuedBackground.set(promise, job);
+    }
+    return promise;
+  }
+  /**
+   * Callers keep the promise (preparation caches do, keyed by long-lived resources); the job holds
+   * the task and everything it captured. Only a queued job may stay reachable from its promise.
+   */
+  private forget(job: Job): void {
+    if (job.promise === undefined) return;
+    this.queuedBackground.delete(job.promise);
+    job.promise = undefined;
+  }
+  /** Move a still-queued background job to the normal lane, behind the jobs already there. */
+  promote(promise: Promise<unknown>): void {
+    const job = this.queuedBackground.get(promise);
+    const index = job === undefined ? -1 : this.background.indexOf(job);
+    if (job === undefined || index < 0) return;
+    this.forget(job);
+    this.background.splice(index, 1);
+    job.options = { ...job.options, priority: 'normal' };
+    this.jobs.push(job);
+    this.request();
   }
   get pending(): number {
-    return this.jobs.length;
+    return this.jobs.length + this.background.length;
   }
   private request(): void {
-    if (this.scheduled || this.disposed || this.jobs.length === 0) return;
+    if (this.scheduled || this.disposed || this.pending === 0) return;
     this.scheduled = true;
     this.schedule(() => {
       this.scheduled = false;
@@ -95,8 +131,10 @@ export class FrameAdmissionQueue implements SceneAdmission {
     const start = this.clock();
     let bytes = 0,
       count = 0;
-    while (this.jobs.length > 0) {
-      const next = this.jobs[0] as Job;
+    for (;;) {
+      const lane = this.jobs.length > 0 ? this.jobs : this.background;
+      const next = lane[0];
+      if (next === undefined) break;
       const cost = next.options.bytes ?? 0;
       if (
         count > 0 &&
@@ -105,7 +143,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
           bytes + cost > this.maxBytes)
       )
         break;
-      this.jobs.shift();
+      lane.shift();
+      this.forget(next);
       if (next.abort) next.options.signal?.removeEventListener('abort', next.abort);
       if (next.options.signal?.aborted) {
         next.reject(new DOMException('Admission cancelled', 'AbortError'));
@@ -126,16 +165,18 @@ export class FrameAdmissionQueue implements SceneAdmission {
         workMs,
         bytes: cost,
         overBudget: workMs > this.maxMs || cost > this.maxBytes,
+        background: next.options.priority === 'background',
       });
     }
     this.request();
   }
   dispose(): void {
     this.disposed = true;
-    for (const job of this.jobs) {
+    for (const job of [...this.jobs, ...this.background]) {
       if (job.abort) job.options.signal?.removeEventListener('abort', job.abort);
       job.reject(new DOMException('Admission queue disposed', 'AbortError'));
     }
     this.jobs = [];
+    this.background = [];
   }
 }

@@ -6,10 +6,12 @@ import {
   type Vec3,
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import type { SkyReflectionState } from '../three/sky-reflections';
 import { type EarthSkyState, evaluateEarthSky, skyDirection, skyTimeMs } from './astronomy';
 
 const RAD = Math.PI / 180;
 const clamp = (x: number): number => Math.max(0, Math.min(1, x));
+const rgb = (color: THREE.Color): [number, number, number] => [color.r, color.g, color.b];
 function smooth(a: number, b: number, x: number): number {
   const t = clamp((x - a) / (b - a));
   return t * t * (3 - 2 * t);
@@ -131,6 +133,7 @@ export class SkyVisual {
   private lastTime: number | undefined;
   private cloudAttenuation = 0;
   private currentFrame!: SkyFrame;
+  private currentReflections!: SkyReflectionState;
   private disposed = false;
 
   constructor(data: SkyData, options: SkyVisualOptions = {}) {
@@ -184,6 +187,11 @@ export class SkyVisual {
 
   get frame(): SkyFrame {
     return this.currentFrame;
+  }
+
+  /** Sky radiance for the viewer's shared PBR environment, sampled with the celestial frame. */
+  get reflectionState(): SkyReflectionState {
+    return this.currentReflections;
   }
 
   /** Diffuse cloud lighting; actual celestial occlusion comes from the cloud layer geometry. */
@@ -300,6 +308,17 @@ export class SkyVisual {
       new THREE.Color('#b9c2cb'),
       this.cloudAttenuation * daylight * 0.6,
     );
+    this.currentReflections = {
+      zenith: rgb(this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight)),
+      horizon: rgb(this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight)),
+      ground: rgb(this.palette.ground.clone().multiplyScalar(0.08 + daylight * 0.92)),
+      twilight: rgb(this.palette.twilight),
+      twilightStrength: smooth(-18, -4, altitude) * (1 - smooth(0, 16, altitude)),
+      sunDirection,
+      sunColor: rgb(this.palette.sun),
+      sunGlow: smooth(-2, 5, altitude) * 0.22,
+      clouds: this.cloudAttenuation,
+    };
     return this.currentFrame;
   }
 

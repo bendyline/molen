@@ -7,7 +7,7 @@ Molen supplies the generic `airplane` or `helicopter` solver.
 - Editable model: `models/source.glb`
 - Model-owned cockpit layout and builder: `models/interior.json`, `models/interior.mjs`
 - Instrument/control node names and calibration: `aircraft.spec.visual.interior` in the entity definition
-- Model generator and reviewed edit-protection baseline: `models/generate.mjs`, `models/baseline.json`
+- Model generator: `models/generate.mjs`. It keeps `source.json`'s pin current and will not overwrite a hand-edited `models/source.glb`
 - Entity definition: `entity.types.json`
 - Behavior: `scripts/interactions.ts`
 - Imported output: `assets/molen/entities/aircraft/oh6/asset.json`

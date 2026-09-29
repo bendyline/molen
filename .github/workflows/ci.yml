@@ -19,6 +19,9 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
+      - run: pnpm assets:check
+      - run: pnpm assets:test
       # `pretypecheck` builds every package first (replaces turbo's `dependsOn: ^build`).
       - run: pnpm typecheck
       # docs-src/schemas/*.md is generated from the built registries; fail if it is stale.
@@ -42,6 +45,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
       # Fails if .vitepress/generated-nav.json is stale (a new export, op, guide or sample).
       - run: pnpm docs:site:check
       - run: pnpm docs:site:build
@@ -57,6 +61,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
       # Kernel unit tests include the deterministic replay-hash suite. `pretest:unit` builds first.
       - run: pnpm test:unit
 
@@ -75,6 +80,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
       - run: pnpm -r build
       - run: pnpm smoke:packed
 
@@ -89,6 +95,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/fetch-assets
       # Golden images are recorded in this CI environment; SwiftShader is deterministic per build.
       - run: pnpm exec playwright install --with-deps chromium
       # `pretest:golden` builds first. These CPU-only runners find a SwiftShader WebGPU adapter

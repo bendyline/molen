@@ -1,0 +1,183 @@
+{
+  "planId": "N0137",
+  "id": "N0137",
+  "assetId": "molen.worldgen.structure.n0137_mode_gakuen_cocoon_tower",
+  "title": "Mode Gakuen Cocoon Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1030463",
+  "referenceCoordinate": {
+    "latitude": 35.691666666,
+    "longitude": 139.696944444
+  },
+  "visualBrief": "A bulging, tapered three-faced glass cocoon, modeled with individual floor panels, three atrium seams, broad curving white meridians, and the finer crossing aluminum web wrapping its full height.",
+  "size": [
+    52.783376693725586,
+    203.64999389648438,
+    50.17304229736328
+  ],
+  "actualBounds": {
+    "min": [
+      -27.497570037841797,
+      0,
+      -25.08652114868164
+    ],
+    "max": [
+      25.28580665588379,
+      203.64999389648438,
+      25.08652114868164
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 203.65,
+    "floorsAboveGround": 50,
+    "completion": 2008,
+    "facade": "Three linked towers enclosed by a rounded cocoon; three-story school groups"
+  },
+  "reconstruction": {
+    "envelope": "Height-profiled rounded threefold plan, mapped maximum width; facade strands individually modeled",
+    "annex": "The separately mapped egg-shaped hall is outside this tower asset"
+  },
+  "referencePages": [
+    "https://www.tangeweb.com/works/works_no-188/",
+    "https://www.tangeweb.com/project/modegakuen/",
+    "https://www.arup.com/projects/the-arup-journal-2000s/the-arup-journal-2009-issue-2/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      139.696938523,
+      35.69160067
+    ],
+    "heading": -0.468068213704,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/145495557",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/145495557"
+    ],
+    "wikidataId": "Q1030463",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID tower footprint center and signed long axis retained. Threefold facade phase and the reconstructed curved height profile require exterior alignment review; adjacent egg-shaped hall excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Curved cross-section, exact diagonal strand layout and entrance dimensions are reconstructed from the architect exterior. No false exact strand count or structural fabrication claim."
+  ],
+  "qaCameras": [
+    {
+      "name": "web-detail",
+      "position": [
+        33,
+        115,
+        49
+      ],
+      "lookAt": [
+        12,
+        110,
+        15
+      ]
+    },
+    {
+      "name": "atrium-seam",
+      "position": [
+        -42,
+        98,
+        22
+      ],
+      "lookAt": [
+        -17,
+        89,
+        9
+      ]
+    },
+    {
+      "name": "rounded-crown",
+      "position": [
+        47,
+        210,
+        59
+      ],
+      "lookAt": [
+        0,
+        183,
+        0
+      ]
+    },
+    {
+      "name": "entrance",
+      "position": [
+        45,
+        13,
+        41
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -265,
+        165,
+        396
+      ],
+      "lookAt": [
+        0,
+        102,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 173844,
+    "vertices": 397896,
+    "materials": 3,
+    "bytes": 16014860,
+    "sha256": "sha256:f4450c800d16d692200db75265f1e0abc56f3aeab20dc7b41b56d8dd95640a01"
+  }
+}

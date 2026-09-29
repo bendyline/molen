@@ -1,0 +1,144 @@
+{
+  "id": "N0651",
+  "key": "yokohama_marine_tower",
+  "title": "Yokohama Marine Tower",
+  "wikidataId": "Q1207989",
+  "size": [
+    51.86,
+    106,
+    51.29
+  ],
+  "visualBrief": "Current silver-gray decagonal lattice tower with an enclosed lift spine, dense X-braced panels, two-level observation capsule, top lantern and renewed curved striped podium with glazed wing.",
+  "sourceFacts": {
+    "heightMeters": 106,
+    "basis": "Yokohama municipal facility record and2022renewal report explicitly106m anddecagonal construction; cached101m is superseded.",
+    "currentAppearance": "Municipal2022renovation photographs show silver-gray structure and renewed striped podium. Surveyed OSMway47574838 gives the38.5m diameter,12m height podium; attached northwest annex plan follows OSMway172116649.",
+    "mappedPod": "ExactQID OSM polygon carriesminHeight80,height88; it is a raisedpod record and must not scale the full106mstructure."
+  },
+  "referencePages": [
+    "https://www.city.yokohama.lg.jp/kanko-bunka/kanko-event/kankojoho/marinetower/marine_koubo.html",
+    "https://www.city.yokohama.lg.jp/city-info/koho-kocho/koho/insatsubutsu/koyoko/shiban/kohoyokohamaplus/2022/202211.html",
+    "https://www.city.yokohama.lg.jp/business/bunyabetsu/kenchiku/kokyokenchiku/picture/picture/r03/yokohamamarinetower.html",
+    "https://www.city.yokohama.lg.jp/business/bunyabetsu/kenchiku/kokyokenchiku/picture/picture/r03/yokohamamarinetower.images/0046_20220719.jpg",
+    "https://www.openstreetmap.org/way/319050351",
+    "https://www.openstreetmap.org/way/47574838",
+    "https://www.openstreetmap.org/way/172116649"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      139.650902072,
+      35.443934377
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/47574838",
+    "notes": "Tower axis uses mapped upper-pod center. Authored +X east/+Z south and heading0 retain the mapped circular podium and concave northwest glazed annex in their real positions. Whole asset must not be fit to the raised-pod polygon."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Published overallheight and decagon are respected. Podium plan and12m height are mapped. Observation-level elevation, truss sections, glazing subdivisions and9m annex roof height are photo-proportioned; mapped80-88m raisedpod tags conflict with the106m current envelope and are not treated as measured stage elevations. Podium planting, interiors and changing display signage are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-truss",
+      "position": [
+        16,
+        47,
+        23
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ]
+    },
+    {
+      "name": "near-observation",
+      "position": [
+        18,
+        101,
+        26
+      ],
+      "lookAt": [
+        0,
+        98,
+        0
+      ]
+    },
+    {
+      "name": "near-podium",
+      "position": [
+        -48,
+        19,
+        -50
+      ],
+      "lookAt": [
+        -12,
+        7,
+        -9
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        128,
+        72,
+        163
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0651_yokohama_marine_tower",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -32.505001068115234,
+      0,
+      -31.5
+    ],
+    "max": [
+      19.190000534057617,
+      106,
+      19.829999923706055
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

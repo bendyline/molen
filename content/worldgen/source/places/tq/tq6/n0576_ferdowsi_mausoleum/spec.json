@@ -1,0 +1,172 @@
+{
+  "id": "N0576",
+  "planId": "N0576",
+  "assetId": "molen.worldgen.structure.n0576_ferdowsi_mausoleum",
+  "title": "Ferdowsi Mausoleum",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q5959602"
+  },
+  "wikidataId": "Q5959602",
+  "visualBrief": "Tus marble memorial with individually mapped entrance steps and layered podium, fluted Achaemenid columns, opposed bull capitals, pseudo-doorways, relief inscription fields, a winged royal figure and the three-step flat crown.",
+  "size": [
+    36.2,
+    18,
+    35.7
+  ],
+  "actualBounds": {
+    "min": [
+      -18.061717987060547,
+      0,
+      -17.818283081054688
+    ],
+    "max": [
+      18.06173324584961,
+      18,
+      17.818265914916992
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the southern entrance-axis face with winged relief",
+    "origin": "Exact-QID mapped platform center at the lowest surrounding stair foot"
+  },
+  "scaleBasis": "Official Iranian cultural institute gives 18 m present exterior height. Exact OSM building parts supply present platform, stair, shaft and column locations; the measured part geometry is preserved as reference-metadata.json. The Iranica author describes the 1934 chamber as 16 m square; the current mapped upper chamber is about 10 m, consistent with current exterior photography, so the historical chamber dimension is not used to stretch the present crown.",
+  "geographicProposal": {
+    "anchor": [
+      59.517545747,
+      36.486104897
+    ],
+    "heading": 0.806954117337,
+    "source": "https://www.openstreetmap.org/way/966196557",
+    "evidence": "The complete mapped platform and four asymmetric stair flights are authored in the exact footprint frame. The southern (+Z) face receives the winged figure described by the national cultural source; native dimensions are preserved.",
+    "orientationConfidence": "mapped-stair-asymmetry-and-published-relief-side",
+    "limitations": "The wider western stair and the three narrower flights retain their mapped widths and offsets. Garden pools, separate statues and museum buildings are separate map scenery.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The complete mapped platform and four asymmetric stair flights are authored in the exact footprint frame. The southern (+Z) face receives the winged figure described by the national cultural source; native dimensions are preserved. The wider western stair and the three narrower flights retain their mapped widths and offsets. Garden pools, separate statues and museum buildings are separate map scenery."
+  },
+  "sourceFacts": {
+    "heightMeters": 18,
+    "platformElevationMeters": 1.4,
+    "mappedChamberElevationMeters": [
+      5.1,
+      15.1
+    ],
+    "mappedUpperCrownMeters": [
+      16.9,
+      17.9
+    ],
+    "mainCornerColumns": 4,
+    "engagedColumns": 8,
+    "stairFlights": 4,
+    "mainRelief": "winged royal figure on southern wall"
+  },
+  "referencePages": [
+    "https://visitiran.ir/attraction/mausoleum-ferdowsi",
+    "https://en.irancultura.it/tourism/attractions/attractions-mashhad/mashhad-the-tomb-of-Ferdowsi/",
+    "https://www.iranicaonline.org/articles/ferdowsi-iii/",
+    "https://www.openstreetmap.org/way/966196557",
+    "https://www.openstreetmap.org/way/966196607"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Bull capitals, wing feathers and fluting are original geometric reconstructions fitted to reference photographs. Narrative scenes and calligraphic inscription fields are shallow sculptural marks, not readable transcriptions or casts of individual artworks.",
+    "The current upper chamber proportions use OSM part geometry and current official photography; the published 16 m chamber dimension remains recorded as conflicting evidence rather than an established measurement of the current upper chamber.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "southern-relief",
+      "position": [
+        9,
+        13,
+        23
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "bull-capitals",
+      "position": [
+        10,
+        15,
+        11
+      ],
+      "lookAt": [
+        2.5,
+        13,
+        2.5
+      ]
+    },
+    {
+      "name": "podium-stairs",
+      "position": [
+        -25,
+        8,
+        23
+      ],
+      "lookAt": [
+        -3,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "crown",
+      "position": [
+        15,
+        24,
+        18
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        46,
+        25,
+        55
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ]
+}

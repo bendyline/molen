@@ -1,0 +1,288 @@
+{
+  "planId": "N0189",
+  "id": "N0189",
+  "assetId": "molen.worldgen.structure.n0189_yokohama_landmark_tower",
+  "title": "Yokohama Landmark Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q587108",
+  "referenceCoordinate": {
+    "latitude": 35.454722222,
+    "longitude": 139.631666666
+  },
+  "visualBrief": "The 1993 four-corner granite tower: gently narrowing square shaft with deep recessed ribbons, creased triangular transition panels, glazed upper hotel, projecting crown piers and a recessed mechanical roof.",
+  "size": [
+    74.4000015258789,
+    296.29998779296875,
+    74.4000015258789
+  ],
+  "actualBounds": {
+    "min": [
+      -37.20000076293945,
+      0,
+      -37.20000076293945
+    ],
+    "max": [
+      37.20000076293945,
+      296.29998779296875,
+      37.20000076293945
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 296.3,
+    "ownerRoundedHeightMeters": 296,
+    "occupiedFloors": 70,
+    "penthouseFloors": 3,
+    "completed": 1993,
+    "twentiethFloorPlanWidthMeters": 66.32,
+    "twentiethFloorStructuralGridMeters": [
+      19.66,
+      27,
+      19.66
+    ],
+    "architect": "The Stubbins Associates and Mitsubishi Estate (now Mitsubishi Jisho Design)"
+  },
+  "reconstruction": {
+    "massing": "The separately mapped exact-QID tower way64891750 establishes the approximately74.9m ground envelope, excluding the adjacent mall. Mitsubishi Estate measured20F plan gives66.32m width. Original Stubbins section and architect photographs constrain the gentle taper, three transition zones and four extended corner piers.",
+    "facade": "Individual inset horizontal glazing ribbons turn through chamfered recessed sides. Heavy granite corner piers contain small slit windows; upper hotel panes and thin white bands contrast with projecting lower office spandrels. Creased triangular folded panels stand in front of modeled horizontal louvers.",
+    "crown": "Four L-shaped granite piers extend above the recessed central mechanical roof. Three thick horizontal bars bridge each recessed face below the tip. Small visible roof plant and antenna rods stay below the architectural crown height.",
+    "entry": "Tower-only glazed entries and supported shallow glass canopies sit inside the mapped tower frame; the adjacent low-rise mall and separate castle-like pavilion building are not incorporated into this asset."
+  },
+  "referencePages": [
+    "https://www.mjd.co.jp/en/projects/29294/?lang=en",
+    "https://office.mec.co.jp/en/search/detail/011701",
+    "https://office.mec.co.jp/storage/buildings/011701/figure/011701_std_plan_01_org_a.jpg",
+    "https://www.usmodernist.org/WORLD/WA-1997-61.pdf",
+    "https://www.skyscrapercenter.com/yokohama/landmark-tower/547/",
+    "https://www.openstreetmap.org/way/64891750"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      139.6314769440695,
+      35.45459663781969
+    ],
+    "heading": -0.9963155525273629,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64891750",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64891750"
+    ],
+    "wikidataId": "Q587108",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bef6dd1361b6dcd00934fd70f3ff417866111fda83216a6132a331e6089bb80c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Source-local exact-QID tower way64891750 replaces the incorrectly selected adjacent mall. Native+X points southeast and+Z southwest, matching the owner20F north arrow toward upper-left. Symmetric tower ground envelope is fitted to the four measured facade directions; narrow recess details and entries are photo reconstruction. GroundY0 is tower entry."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Intermediate vertical levels, smooth taper, granite panel joints, tiny slit windows, fold projection and roof plant are reconstructed from the original architect section/model and completed photographs; the measured20F plan is preserved as a separate shaft constraint. No whole-mall, adjacent pavilion, interior fit-out or survey-grade facade claim is made. Changing tenant signs and lights are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "tapered-ribbon-facade",
+      "position": [
+        65,
+        118,
+        105
+      ],
+      "lookAt": [
+        0,
+        116,
+        0
+      ]
+    },
+    {
+      "name": "granite-pier-slits",
+      "position": [
+        64,
+        103,
+        70
+      ],
+      "lookAt": [
+        29,
+        99,
+        29
+      ]
+    },
+    {
+      "name": "lower-folded-panels",
+      "position": [
+        0,
+        29,
+        67
+      ],
+      "lookAt": [
+        0,
+        28,
+        29
+      ]
+    },
+    {
+      "name": "middle-folded-transition",
+      "position": [
+        0,
+        128,
+        67
+      ],
+      "lookAt": [
+        0,
+        125,
+        25
+      ]
+    },
+    {
+      "name": "hotel-lantern",
+      "position": [
+        68,
+        245,
+        80
+      ],
+      "lookAt": [
+        0,
+        242,
+        0
+      ]
+    },
+    {
+      "name": "upper-three-folds",
+      "position": [
+        0,
+        205,
+        59
+      ],
+      "lookAt": [
+        0,
+        205,
+        21
+      ]
+    },
+    {
+      "name": "four-crown-piers",
+      "position": [
+        87,
+        319,
+        90
+      ],
+      "lookAt": [
+        0,
+        286,
+        0
+      ]
+    },
+    {
+      "name": "recessed-roof-plant",
+      "position": [
+        43,
+        319,
+        39
+      ],
+      "lookAt": [
+        0,
+        287,
+        0
+      ]
+    },
+    {
+      "name": "ground-entry",
+      "position": [
+        0,
+        12,
+        65
+      ],
+      "lookAt": [
+        0,
+        7,
+        31
+      ]
+    },
+    {
+      "name": "harbor-silhouette",
+      "position": [
+        520,
+        154,
+        430
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 151118,
+    "vertices": 442222,
+    "materials": 7,
+    "bytes": 17295308,
+    "sha256": "sha256:e7082b94736a5a7beea0f22b5bbdd057c1ee1d7a0f4df9659b7863beba474c6b"
+  }
+}

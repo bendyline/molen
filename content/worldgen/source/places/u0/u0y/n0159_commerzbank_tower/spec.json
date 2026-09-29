@@ -1,0 +1,195 @@
+{
+  "planId": "N0159",
+  "id": "N0159",
+  "assetId": "molen.worldgen.structure.n0159_commerzbank_tower",
+  "title": "Commerzbank Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q151765",
+  "referenceCoordinate": {
+    "latitude": 50.11116,
+    "longitude": 8.67437
+  },
+  "visualBrief": "Foster’s rounded triangular tower with three corner service cores, a central atrium, nine staggered four-storey sky gardens, dense silver-green curtain wall and asymmetrical sloping mechanical crown with a300 m antenna.",
+  "size": [
+    60.97030448913574,
+    300,
+    56.01536178588867
+  ],
+  "actualBounds": {
+    "min": [
+      -30.485124588012695,
+      0,
+      -28.079811096191406
+    ],
+    "max": [
+      30.485179901123047,
+      300,
+      27.935550689697266
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 259,
+    "tipHeightMeters": 300,
+    "occupiedHeightMeters": 190,
+    "skyGardens": 9,
+    "gardenStories": 4,
+    "architect": "Foster + Partners"
+  },
+  "reconstruction": {
+    "plans": "Signed exact footprint with independent mapped office wings, core heights and highest crown/mast parts",
+    "gardens": "Mapped coarse garden levels retained; depth14.5 m reconstructed for four actual storeys rather than literal10 m coarse gaps"
+  },
+  "referencePages": [
+    "https://find-an-architect.architecture.com/foster-partners/london/commerzbank-headquarters",
+    "https://www.commerzbank.de/konzern/newsroom/pressemitteilungen/buerogebaeude.html",
+    "https://www.skyscrapercenter.com/frankfurt-am-main/commerzbank-tower/780/",
+    "https://www.openstreetmap.org/way/183060777"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      8.674354875,
+      50.111231462
+    ],
+    "heading": 0.03415534455,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/183060777",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/183060777"
+    ],
+    "wikidataId": "Q151765",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Three signed rounded corner cores, staggered mapped garden-wing plans and northwest crown/mast retain their surveyed positions. Ground baseY0; the surrounding historic block is excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Garden frames and representative planting are explicit; outer garden glass is represented by open framed bays to retain visibility with opaque daylight materials. Exact tree species, louvre construction and top mechanical-wall slope are reconstructed."
+  ],
+  "qaCameras": [
+    {
+      "name": "sky-gardens",
+      "position": [
+        74,
+        117,
+        92
+      ],
+      "lookAt": [
+        0,
+        105,
+        20
+      ]
+    },
+    {
+      "name": "atrium-and-cores",
+      "position": [
+        96,
+        246,
+        81
+      ],
+      "lookAt": [
+        0,
+        157,
+        4
+      ]
+    },
+    {
+      "name": "sloped-crown",
+      "position": [
+        -75,
+        280,
+        101
+      ],
+      "lookAt": [
+        -18,
+        245,
+        18
+      ]
+    },
+    {
+      "name": "ground-frontage",
+      "position": [
+        86,
+        17,
+        77
+      ],
+      "lookAt": [
+        0,
+        10,
+        12
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -326,
+        253,
+        491
+      ],
+      "lookAt": [
+        0,
+        139,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 214907,
+    "vertices": 632523,
+    "materials": 5,
+    "bytes": 24720356,
+    "sha256": "sha256:f667faa1bbcef987ca007548993c36bba0a0bf9b961b695f3e9104e43a2152af"
+  }
+}

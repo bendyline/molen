@@ -1,0 +1,173 @@
+{
+  "id": "N0668",
+  "key": "california_lighthouse",
+  "title": "California Lighthouse",
+  "wikidataId": "Q2279321",
+  "size": [
+    6,
+    30.83,
+    7.3
+  ],
+  "smoothNormalSlots": [
+    "wall",
+    "trim"
+  ],
+  "visualBrief": "Restored pale-rose taper over an octagonal cream-trimmed pedestal, fourteen staggered pedimented windows and four upper vents, projecting gallery cup, narrow service drum, two metal gallery decks, green domed lantern, vane and southwest entrance steps.",
+  "sourceFacts": {
+    "structureHeightMeters": 30,
+    "focalHeightMeters": 55,
+    "structureHeightExcludesVane": true,
+    "baseDiameterPhotoApproxMeters": 5.3,
+    "basis": "Royal Netherlands Navy2026 HP2B light4000/J6330 lists30m stone structure and55m focal elevation. Owner Monuments Fund Aruba publishes restoration history and opposed daylight/night/aerial facade photographs. Those photographs govern the14 staggered stair windows, octagonal pedestal, light-pink plaster, gallery stack and green cap; small dimensions are photograph-proportioned."
+  },
+  "referencePages": [
+    "https://www.defensie.nl/site/binaries/site-content/collections/documents/2026/04/30/hp2b/hp2b-lichtenlijst-2026-01.pdf",
+    "https://monumentenfondsaruba.org/california-lighthouse-1915/",
+    "https://monumentenfondsaruba.org/the-restoration-of-the-california-lighthouse-has-been-finished/",
+    "https://monumentenfondsaruba.org/wp-content/uploads/2024/10/Ligthhouse-1.jpg",
+    "https://monumentenfondsaruba.org/wp-content/uploads/2024/10/Lighthouse-shot-scaled-1.jpg",
+    "https://www.openstreetmap.org/node/540121391"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      -70.0513486,
+      12.6137665
+    ],
+    "heading": -1.2,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/540121391",
+    "notes": "Exact-QID OSM node540121391 locates the actual tower, approximately124m northeast of the catalog coordinate near the restaurant. Local+Z entrance faces southwest toward the former keeper house/restaurant and road approach, as reconstructed from the owner aerial and entrance photographs. The octagonal base and four window ranks constrain rotation; facade bearing is photograph-derived rather than surveyed."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "The owner’s restored2016 exterior is modeled, including pale rose rather than the earlier strongly yellow paint. Diameter, moldings and trim are photo-proportioned; no secondary claim of a7.5m lantern diameter is accepted because it conflicts with the owner photographs. The30m navigation-list height excludes the thin weather-vane extension. Detached restaurant and site landscaping remain map features."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-pediments",
+      "position": [
+        6.2,
+        12.5,
+        8.1
+      ],
+      "lookAt": [
+        0,
+        12.6,
+        0
+      ]
+    },
+    {
+      "name": "near-entry",
+      "position": [
+        6.3,
+        4.8,
+        8.4
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ]
+    },
+    {
+      "name": "near-lantern",
+      "position": [
+        5.6,
+        28.2,
+        7.2
+      ],
+      "lookAt": [
+        0,
+        27.3,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        24,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        15.4,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0668_california_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -2.6607730388641357,
+      0,
+      -2.6607730388641357
+    ],
+    "max": [
+      2.6607730388641357,
+      30.829999923706055,
+      3.6982808113098145
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

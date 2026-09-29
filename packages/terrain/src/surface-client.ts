@@ -18,6 +18,7 @@ import type {
   TerrainSemanticPolygon,
   TerrainSemanticTile,
 } from './semantic-types';
+import { appendBridgeStructure, bridgeDeckProfile } from './surface-bridges';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
 import {
@@ -104,6 +105,24 @@ export function createTerrainSurfaceObject(
   const roads = new TerrainSurfaceMeshBuilder(context);
   const edges = new TerrainSurfaceMeshBuilder(context);
   const marks = new TerrainSurfaceMeshBuilder(context);
+  const bridges = new TerrainSurfaceMeshBuilder(context);
+  const bridgeProfiles = new Map<SurfaceRoad, (x: number, z: number) => number>();
+  const groundEnds = new Set<string>();
+  for (const road of network.roads)
+    if (!road.feature.bridge)
+      for (const [x, z] of [road.path.points[0], road.path.points.at(-1)] as TerrainSemanticPoint[])
+        groundEnds.add(`${Math.round(x * 10)}/${Math.round(z * 10)}`);
+  for (const road of network.roads) {
+    if (!road.feature.bridge) continue;
+    const profile = bridgeDeckProfile(road, bridges, groundEnds);
+    bridgeProfiles.set(road, profile);
+    appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
+  }
+  const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
+  if (bridgeMesh) {
+    bridgeMesh.castShadow = true;
+    group.add(bridgeMesh);
+  }
   const fixtures: TerrainBoxPlacement[] = [];
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
@@ -154,13 +173,14 @@ export function createTerrainSurfaceObject(
       maxElements: Math.max(0, remaining - parkingReserve),
       spacing: 3,
       filter,
+      ...(bridgeProfiles.has(road) ? { heightAt: bridgeProfiles.get(road) } : {}),
     });
   };
   for (const road of network.roads) {
     stats.roads++;
-    const elevation = road.elevation;
+    const elevation = road.feature.bridge ? 0 : road.elevation;
     const clipPath =
-      road.kind === 'path'
+      road.kind === 'path' && !road.feature.bridge
         ? {
             clip: (points: readonly TerrainSemanticPoint[]): TerrainSemanticPoint[][] =>
               network.clipPath(points, road),
@@ -178,7 +198,7 @@ export function createTerrainSurfaceObject(
       roads,
       road.path,
       { width: road.width, color, elevation },
-      { spacing: detailed ? 6 : 16, ...clipPath },
+      { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
     );
     // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt.
     const shoulderWidth = road.unpaved ? 0.7 : 0.3;
@@ -192,7 +212,7 @@ export function createTerrainSurfaceObject(
           color: style.shoulder,
           elevation: elevation - 0.04,
         },
-        { spacing: detailed ? 6 : 16, ...clipPath },
+        { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
       );
     if (!detailed) continue;
     if (road.kind === 'rail') {

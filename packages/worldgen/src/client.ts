@@ -19,9 +19,14 @@ export {
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
 } from './client/interior-streamer';
-export type { ResolvedMaterialSet } from './client/materials';
+export type { ResolvedMaterialSet, ResolvedMaterialSetOptions } from './client/materials';
 export { createResolvedMaterialSet, createVertexColorMaterialSet } from './client/materials';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
+export {
+  type StructureModel,
+  StructureModelLibrary,
+  type StructureModelLibraryOptions,
+} from './client/structure-models';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';
 export { loadStylePack, withStylePackDocuments } from './client/stylepack-loader';
 export type { WorldgenMaterialSet } from './client/upload';

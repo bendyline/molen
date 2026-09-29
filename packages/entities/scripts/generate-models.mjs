@@ -13,14 +13,10 @@ const root = resolve(packageRoot, '../../content/entities');
 const sourceRoot = resolve(root, 'source');
 const check = process.argv.includes('--check');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-const biome = resolve(
-  packageRoot,
-  'node_modules/.bin',
-  process.platform === 'win32' ? 'biome.cmd' : 'biome',
-);
+const biome = resolve(packageRoot, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
-  return execFileSync(biome, ['format', '--stdin-file-path', path], {
+  return execFileSync(process.execPath, [biome, 'format', '--stdin-file-path', path], {
     input: JSON.stringify(value, null, 2),
     encoding: 'utf8',
   });
@@ -243,7 +239,13 @@ async function emit(path, value) {
 async function emitBytes(path, bytes) {
   const destination = resolve(root, path);
   const current = await readFile(destination).catch(() => undefined);
-  if (current?.equals(bytes)) return;
+  if (
+    current?.equals(bytes) ||
+    (path.endsWith('.json') &&
+      current?.toString('utf8').replaceAll('\r\n', '\n') ===
+        bytes.toString('utf8').replaceAll('\r\n', '\n'))
+  )
+    return;
   if (check)
     throw new Error(`${path} is stale; run pnpm --filter @bendyline/molen-entities generate`);
   await mkdir(dirname(destination), { recursive: true });

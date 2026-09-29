@@ -59,6 +59,7 @@ export type { InputBindings, InputGamepad, InputMapOptions } from './input';
 export { InputMap, normalizeInputAxis, resolveAction } from './input';
 export type { InterpTransform } from './interpolation';
 export { InterpolationBuffer } from './interpolation';
+export { createIndexedDbMaterialStore } from './material-store';
 export { lerp3, nlerp4 } from './math';
 export type { ModelSignals, ModelSignalVisual } from './model-signals';
 export { createModelSignalVisual, readModelSignals } from './model-signals';
@@ -102,5 +103,11 @@ export type {
   TopDownOrtho,
 } from './three/renderer';
 export { nextWorldOrigin, orthoFrustum, Renderer } from './three/renderer';
+export type { SkyReflectionFilter, SkyReflectionState } from './three/sky-reflections';
+export {
+  createWebGlSkyReflectionFilter,
+  reflectionStateFromLights,
+  SkyReflections,
+} from './three/sky-reflections';
 export type { StaticBatchOptions } from './three/static-batches';
 export { WeatherVisual } from './weather/visual';

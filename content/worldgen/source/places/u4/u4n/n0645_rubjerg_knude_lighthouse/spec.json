@@ -1,0 +1,149 @@
+{
+  "id": "N0645",
+  "key": "rubjerg_knude_lighthouse",
+  "title": "Rubjerg Knude lighthouse",
+  "wikidataId": "Q2206180",
+  "size": [
+    6.96,
+    23,
+    6.96
+  ],
+  "visualBrief": "Isolated pale tapering square tower with sparse narrow windows, recessed arch frieze, paneled stone gallery, open rust-colored lantern cage, faceted reflector and vented cap.",
+  "sourceFacts": {
+    "heightMeters": 23,
+    "relocation": "Moved approximately 70 m inland on 22 October 2019; only the tower survives.",
+    "currentExterior": "2025 Danish Nature Agency photograph; proposed stair/lantern installation renewal is not presumed completed."
+  },
+  "referencePages": [
+    "https://naturstyrelsen.dk/nyheder/2019/november/nu-bliver-rubjerg-knude-fyr-genaabnet",
+    "https://naturstyrelsen.dk/nyheder/2025/marts/danmarksberoemt-fyr-renoveres-med-stoette-fra-realdania",
+    "https://naturstyrelsen.dk/media/y5bd2clw/design-uden-navn-14.png",
+    "https://www.openstreetmap.org/way/110889245",
+    "https://www.openstreetmap.org/node/9353718244"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      9.775489023,
+      57.449045721
+    ],
+    "heading": 1.819090002472,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/9353718244",
+    "notes": "Current relocated exact-QID footprint sets the shaft axes. Entrance node9353718244 on the east face resolves square symmetry: authored +Z door faces east with a slight north component."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Window elevations, frieze relief and reflector folds are photo-proportioned. Eroding dune surface and former keeper buildings are excluded. The 2025 restoration announcement is a future project, so no unverified replacement installation is invented."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        6,
+        22,
+        8
+      ],
+      "lookAt": [
+        0,
+        20.4,
+        0
+      ]
+    },
+    {
+      "name": "near-frieze",
+      "position": [
+        7,
+        18,
+        10
+      ],
+      "lookAt": [
+        0,
+        17.6,
+        0
+      ]
+    },
+    {
+      "name": "near-base",
+      "position": [
+        9,
+        6,
+        12
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        24,
+        16,
+        33
+      ],
+      "lookAt": [
+        0,
+        11.5,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0645_rubjerg_knude_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -3.4800000190734863,
+      0,
+      -3.4800000190734863
+    ],
+    "max": [
+      3.4800000190734863,
+      23,
+      3.4800000190734863
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

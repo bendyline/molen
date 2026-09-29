@@ -1,0 +1,194 @@
+{
+  "planId": "N0150",
+  "id": "N0150",
+  "assetId": "molen.worldgen.structure.n0150_edificio_italia",
+  "title": "Edifício Itália",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q170610",
+  "referenceCoordinate": {
+    "latitude": -23.545417,
+    "longitude": -46.643611
+  },
+  "visualBrief": "The asymmetric curved São Paulo tower follows its mapped perimeter with projecting concrete sunshade cells, inset glazing and selected louvered shutters, a glazed upper restaurant, observation parapet and roof service enclosure.",
+  "size": [
+    54.57670593261719,
+    165,
+    27.535770416259766
+  ],
+  "actualBounds": {
+    "min": [
+      -27.287921905517578,
+      0,
+      -13.767770767211914
+    ],
+    "max": [
+      27.28878402709961,
+      165,
+      13.767999649047852
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 165,
+    "floors": 46,
+    "observationDeckMeters": 151,
+    "windowsPublished": 4000,
+    "completion": 1965
+  },
+  "reconstruction": {
+    "plan": "Exact-QID mapped curved asymmetric tower outline",
+    "facade": "Projecting concrete cells and aluminum louvers reconstructed from exterior pattern",
+    "heightEvidence": "Owner home page165 m above street,151 m observation deck; its history subpage reverses these descriptions, so the explicit home-page statement is used"
+  },
+  "referencePages": [
+    "https://www.edificioitalia.com.br/",
+    "https://www.edificioitalia.com.br/imprensa",
+    "https://www.edificioitalia.com.br/post/roz%C5%A1i%C5%99ujte-svoji-komunitu-na-blogu"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -46.643574738,
+      -23.54552655
+    ],
+    "heading": -1.542740107735,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/251211619",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/251211619"
+    ],
+    "wikidataId": "Q170610",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Native curved facade follows the exact-QID tower-part outline and signed frame.165 m follows operator rather than168 m map tag. Adjacent theatre/club buildings are outside this tower source."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Shutter distribution, individual window state and rooftop service details are reconstructed. The source covers the mapped tower part; neighboring lower blocks are not falsely included in its footprint."
+  ],
+  "qaCameras": [
+    {
+      "name": "sunshade-cells",
+      "position": [
+        38,
+        93,
+        35
+      ],
+      "lookAt": [
+        13,
+        87,
+        9
+      ]
+    },
+    {
+      "name": "curved-end",
+      "position": [
+        60,
+        110,
+        -13
+      ],
+      "lookAt": [
+        21,
+        88,
+        4
+      ]
+    },
+    {
+      "name": "restaurant-terrace",
+      "position": [
+        59,
+        179,
+        48
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ]
+    },
+    {
+      "name": "ground",
+      "position": [
+        48,
+        13,
+        43
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -220,
+        140,
+        323
+      ],
+      "lookAt": [
+        0,
+        83,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 488628,
+    "vertices": 1037860,
+    "materials": 4,
+    "bytes": 42191468,
+    "sha256": "sha256:9b6d552c75bb989c4a0a34d180b9c4fab01c1cf502920636f7903c1ef080ba78"
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "id": "N0567",
+  "planId": "N0567",
+  "assetId": "molen.worldgen.structure.n0567_einstein_tower",
+  "title": "Einstein Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q321789"
+  },
+  "wikidataId": "Q321789",
+  "visualBrief": "Mendelsohn’s current ochre observatory after the 2023 restoration: sculpted window breasts, wraparound white-framed windows, asymmetric rounded workroom and entrance, flared terrace parapets, stairs, basement hoods and zinc dome with shutter rails.",
+  "size": [
+    10,
+    18,
+    24
+  ],
+  "actualBounds": {
+    "min": [
+      -5.300000190734863,
+      0,
+      -12.100000381469727
+    ],
+    "max": [
+      5.300000190734863,
+      17.72496795654297,
+      13.140000343322754
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the northern entrance terrace; −Z is the rounded southern workroom",
+    "origin": "Mapped main-body center in plan, entrance-stair foot at Y=0; architect’s underground laboratory datum is about 1.7 m below this point"
+  },
+  "scaleBasis": "Wüstenrot Foundation’s reproductions of Mendelsohn’s 1930 completed-building plans and sections determine stage proportions and asymmetry. The current 2023 exterior photographs determine restored color, windows, terrace and roof details. The modeled exterior begins at the front stair foot and is approximately 18 m tall. The roughly 20 m published height is consistent with including the lower laboratory datum in the drawing; this datum reconciliation is an inference, not an explicit statement in the source.",
+  "geographicProposal": {
+    "anchor": [
+      13.06386459,
+      52.378845217
+    ],
+    "heading": 3.1140673288758967,
+    "source": "https://www.openstreetmap.org/way/27139591",
+    "evidence": "The exact-QID mapped long axis is nearly north/south; its rounded end is south. The authored rounded workroom lies at −Z while the main entrance and projecting terrace lie at +Z north, resolving the half-turn ambiguity.",
+    "orientationConfidence": "asymmetric-outline-and-architect-plan",
+    "limitations": "The main map polygon excludes part of the entrance terrace and basement window hoods. The photographed basement earth bank is included; surrounding garden remains map scenery. The modeled lowest stair provides the terrain-contact reference.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The exact-QID mapped long axis is nearly north/south; its rounded end is south. The authored rounded workroom lies at −Z while the main entrance and projecting terrace lie at +Z north, resolving the half-turn ambiguity. The main map polygon excludes part of the entrance terrace and basement window hoods. The photographed basement earth bank is included; surrounding garden remains map scenery. The modeled lowest stair provides the terrain-contact reference."
+  },
+  "sourceFacts": {
+    "publishedOverallApproximateHeightMeters": 20,
+    "architectPlanLevelsMeters": [
+      0,
+      3.39,
+      6.8,
+      10.44,
+      14.45,
+      16.55
+    ],
+    "drawingPublicationYear": 1930,
+    "currentRestorationYear": 2023,
+    "currentRoofFinish": "ochre-painted zinc, matching the restored ochre plaster",
+    "domeState": "shutter closed"
+  },
+  "referencePages": [
+    "https://www.einsteinturm.com/en/construction-start",
+    "https://www.einsteinturm.com/en/renewed-restoration",
+    "https://wuestenrot-stiftung.de/wp-content/uploads/2023/10/02_Pressemappe_Einsteinturm_Potsdam.pdf",
+    "https://www.aip.de/en/institute/locations/einstein-tower/",
+    "https://www.openstreetmap.org/way/27139591"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The source follows the 2023 ochre roof/dome appearance, replacing the outdated white-wall/green-dome color combination. Small handmade plaster variations are reconstructed geometrically from photographs.",
+    "The observing shutter is represented in its closed weather state. The photographed earth bank and its sloping daylight windows are included because they define the exterior silhouette; underground telescope/laboratory apparatus is outside this asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-terrace",
+      "position": [
+        12,
+        8,
+        24
+      ],
+      "lookAt": [
+        0,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "window-breasts",
+      "position": [
+        12,
+        11,
+        16
+      ],
+      "lookAt": [
+        0,
+        9,
+        2
+      ]
+    },
+    {
+      "name": "southern-workroom",
+      "position": [
+        11,
+        8,
+        -19
+      ],
+      "lookAt": [
+        0,
+        5,
+        -4
+      ]
+    },
+    {
+      "name": "dome-shutter",
+      "position": [
+        8,
+        21,
+        10
+      ],
+      "lookAt": [
+        0,
+        16,
+        1.6
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        33,
+        19,
+        42
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ]
+}

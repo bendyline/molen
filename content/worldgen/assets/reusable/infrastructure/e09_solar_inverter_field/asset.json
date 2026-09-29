@@ -1,0 +1,71 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.e09_solar_inverter_field",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:3b12718231a154ecf5a9ef196e243ee60455e3be0b740b37e32319cd8935b94d",
+  "sourceHash": "sha256:1092a5ecb1c1f778c9c3410a48bf55792018495feb88e1f38d914eae2d2750c0",
+  "bounds": {
+    "aabb": {
+      "min": [-55, 0.0024, -22.5018],
+      "max": [55, 4.9976, 37.5018]
+    },
+    "sphere": {
+      "center": [0, 2.5, 7.5],
+      "radius": 62.7005
+    }
+  },
+  "stats": {
+    "triangles": 636,
+    "vertices": 1272,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 31832
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 636
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-foundation",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -55, 0.0024, -22.5018, -55, 0.0024, 37.5018, -55, 4.9976, -22.5018, -55, 4.9976, 37.5018,
+          55, 0.0024, -22.5018, 55, 0.0024, 37.5018, 55, 4.9976, -22.5018, 55, 4.9976, 37.5018
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

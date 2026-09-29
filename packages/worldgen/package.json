@@ -40,7 +40,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "node scripts/generate-landmark-index.mjs && tsdown && node scripts/generate-pack.mjs --check && node scripts/generate-structures.mjs --check && node scripts/validate-pack.mjs && node scripts/validate-landmarks.mjs",
+    "build": "node scripts/index-structure-sources.mjs --check && node scripts/validate-structure-asset-paths.mjs && node scripts/generate-landmark-index.mjs && tsdown && node scripts/generate-pack.mjs --check && node scripts/generate-structures.mjs --check && node scripts/generate-site-structures.mjs --check && node scripts/generate-structure-catalog.mjs --check && node scripts/validate-pack.mjs && node scripts/validate-structure-materials.mjs && node scripts/validate-landmarks.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src test scripts && node ../../scripts/check-dmath.mjs src/kernel",
     "test:unit": "vitest run --passWithNoTests"

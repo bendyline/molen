@@ -1,0 +1,59 @@
+{
+  "format": "molen/bridge-terrain-image-review@1",
+  "reviews": [
+    {
+      "candidateId": "N0021",
+      "status": "passed-with-host-terrain-contract",
+      "reportPath": "N0021-fit-report.json",
+      "reportHash": "sha256:bad67d490527e2e1e7d2e837fbf3b08589a0735910ad8a285d156e1fdd04f339",
+      "sourceHash": "sha256:5bec80d763ac335c3cd21310b7390ed49e6e2e161ced9b6116272aad52c8deba",
+      "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+      "inspectedFrames": [
+        {
+          "path": "shots/N0021/bank-oblique.png",
+          "hash": "sha256:11bb2cc88ac506b5e806515ccbc7c2ffae646c9d90bdfff4bcd9f3219a8c4fff"
+        },
+        {
+          "path": "shots/N0021/side-elevation.png",
+          "hash": "sha256:35186bbf3008b13a3baa91e31866a7b42194d6aa20b4e4d0d82dc88f486a381f"
+        },
+        {
+          "path": "shots/N0021/reverse-bank.png",
+          "hash": "sha256:7db9cfd48680507f1b79a3d52c455f2fba332d6905c31d01a0f2c884f599e884"
+        },
+        {
+          "path": "shots/N0021/plan.png",
+          "hash": "sha256:0247e048d329d560494b68bff316498b0cd00bb2f836079baba3a35f645b089a"
+        }
+      ],
+      "notes": "Exact mapped Q3087620 bridge axis and published 73.3 × 16.7 m exterior reviewed against independent current GSI DEM1A ground. West road reference at [135.7712849734,35.0090017595] is 41.714 m; native road endpoint 4.55 m gives model origin approximately 37.16 m. The independent east road plateau at native X 40 m is 41.733 m. All eight current production terrain images inspected, including OSM carriageway/sidewalk approach geometry: clipped connector surfaces meet both modeled road ends without duplicate bridge spans or tiny inferred connector piers. The endpoint rays +2.25/+0.73 m are over the steep abutment-bank faces, not the upper road plateau, and are retained. The 1 m laser DEM preserves 6,630 null river cells; unknown riverbed is omitted and never filled or treated as zero. Host must supply fine terrain and sampleStructureTerrain using the same bank reference consistently across all resident tiles; without this callback the extended model remains deferred and its procedural fallback stays visible. No underwater footing/bathymetry survey or universal compatibility with coarse global DEM is claimed."
+    },
+    {
+      "candidateId": "N0021",
+      "status": "passed-with-host-terrain-contract",
+      "reportPath": "N0021-roads-fit-report.json",
+      "reportHash": "sha256:b6c5b1b20e52c67c8f8c1f6cd95ad8160c1fad995deb074fe9073a767fc60416",
+      "sourceHash": "sha256:5bec80d763ac335c3cd21310b7390ed49e6e2e161ced9b6116272aad52c8deba",
+      "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+      "inspectedFrames": [
+        {
+          "path": "shots/N0021-roads/bank-oblique.png",
+          "hash": "sha256:f475fcbe1bf2670b825a399579674de937ad852ea87c72202d603e5ea9ff36b8"
+        },
+        {
+          "path": "shots/N0021-roads/side-elevation.png",
+          "hash": "sha256:76cb1f78f69d0479bec1311194ac3d890649a311984933603af302d5ae1d0cd3"
+        },
+        {
+          "path": "shots/N0021-roads/reverse-bank.png",
+          "hash": "sha256:351dcb69173fca0f4dbae1381dfc923d015a0a42dd4286a1e1325a91c6e38c5f"
+        },
+        {
+          "path": "shots/N0021-roads/plan.png",
+          "hash": "sha256:0e48316ff99656dcaef9040519d7175164e1da43c885388d423d2b39e22c3a4b"
+        }
+      ],
+      "notes": "Exact mapped Q3087620 bridge axis and published 73.3 × 16.7 m exterior reviewed against independent current GSI DEM1A ground. West road reference at [135.7712849734,35.0090017595] is 41.714 m; native road endpoint 4.55 m gives model origin approximately 37.16 m. The independent east road plateau at native X 40 m is 41.733 m. All eight current production terrain images inspected, including OSM carriageway/sidewalk approach geometry: clipped connector surfaces meet both modeled road ends without duplicate bridge spans or tiny inferred connector piers. The endpoint rays +2.25/+0.73 m are over the steep abutment-bank faces, not the upper road plateau, and are retained. The 1 m laser DEM preserves 6,630 null river cells; unknown riverbed is omitted and never filled or treated as zero. Host must supply fine terrain and sampleStructureTerrain using the same bank reference consistently across all resident tiles; without this callback the extended model remains deferred and its procedural fallback stays visible. No underwater footing/bathymetry survey or universal compatibility with coarse global DEM is claimed."
+    }
+  ]
+}

@@ -33,6 +33,7 @@ interface Request {
 
 interface MeshData {
   name: string;
+  castShadow: boolean;
   positions?: Float32Array;
   normals?: Float32Array;
   colors?: Float32Array;
@@ -77,7 +78,11 @@ export function installTerrainSurfaceWorker(
         const mesh = child as THREE.Mesh;
         const instances = mesh as THREE.InstancedMesh;
         let sphere: THREE.Sphere;
-        const data: MeshData = { name: mesh.name, sphere: [0, 0, 0, 0] };
+        const data: MeshData = {
+          name: mesh.name,
+          castShadow: mesh.castShadow,
+          sphere: [0, 0, 0, 0],
+        };
         if (instances.isInstancedMesh) {
           instances.computeBoundingSphere();
           sphere = instances.boundingSphere as THREE.Sphere;
@@ -227,6 +232,7 @@ export function createTerrainSurfaceWorkerBridge(
           mesh.userData.terrainOwnedGeometry = true;
         }
         mesh.name = data.name;
+        mesh.castShadow = data.castShadow;
         mesh.receiveShadow = true;
         group.add(mesh);
       }

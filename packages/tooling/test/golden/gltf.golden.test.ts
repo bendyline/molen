@@ -7,6 +7,7 @@ import {
   scaffoldExperience,
   screenshotScene,
 } from '@bendyline/molen-tooling';
+import { PNG } from 'pngjs';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildCubeGlb } from '../fixtures/build-glb';
 
@@ -59,6 +60,66 @@ beforeAll(async () => {
 });
 
 describe('golden: gltf asset rendering', () => {
+  it('preserves centimetre surface separation in a distant architectural capture', async () => {
+    const scene = JSON.parse(await readFile(scenePath, 'utf8'));
+    scene.entities = [
+      {
+        id: 'front',
+        components: {
+          transform: { pos: [0, 0, 0.01], scale: [500, 500, 0.05] },
+          renderable: { kind: 'primitive', ref: 'box', materialRef: 'palette:#00ff00' },
+        },
+      },
+      {
+        id: 'behind',
+        components: {
+          transform: { pos: [0, 0, 0], scale: [500, 500, 0.05] },
+          renderable: { kind: 'primitive', ref: 'box', materialRef: 'palette:#ff0000' },
+        },
+      },
+    ];
+    const path = join(OUT, 'distant-surface-depth.png');
+    const result = await screenshotScene({
+      scene,
+      ticks: 0,
+      camera: { position: [80, 40, 600], lookAt: [0, 0, 0] },
+      size: [320, 240],
+      outPath: path,
+    });
+    expect(result.ok, result.error).toBe(true);
+    const png = PNG.sync.read(await readFile(path));
+    let green = 0;
+    for (let y = 70; y < 170; y++)
+      for (let x = 110; x < 210; x++) {
+        const i = (y * png.width + x) * 4;
+        if (png.data[i + 1] > png.data[i] * 2 && png.data[i + 1] > 30) green++;
+      }
+    expect(green).toBeGreaterThan(9990);
+  });
+
+  it('keeps a large imported model visible beyond the normal camera clip distance', async () => {
+    const scene = JSON.parse(await readFile(scenePath, 'utf8'));
+    scene.entities[0].components.transform.scale = [6000, 1000, 1000];
+    const path = join(OUT, 'gltf-large-crossing.png');
+    const result = await screenshotScene({
+      scene,
+      projectPath: join(projectDir, 'project.json'),
+      ticks: 0,
+      camera: { position: [0, 2500, 8000], lookAt: [0, 500, 0] },
+      clearColor: '#000000',
+      size: [320, 240],
+      outPath: path,
+    });
+    expect(result.ok, result.error).toBe(true);
+    const image = PNG.sync.read(await readFile(path));
+    let visible = 0;
+    for (let i = 0; i < image.data.length; i += 4) {
+      if (image.data[i] + image.data[i + 1] + image.data[i + 2] > 45) visible++;
+    }
+    // Triangle telemetry can count clipped draws; require actual illuminated pixels.
+    expect(visible).toBeGreaterThan(1000);
+  });
+
   it('renders project assets when the scene is supplied inline', async () => {
     const scene = JSON.parse(await readFile(scenePath, 'utf8'));
     const result = await screenshotScene({

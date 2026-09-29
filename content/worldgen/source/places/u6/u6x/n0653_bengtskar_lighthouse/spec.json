@@ -1,0 +1,165 @@
+{
+  "id": "N0653",
+  "key": "bengtskar_lighthouse",
+  "title": "Bengtskär Lighthouse",
+  "wikidataId": "Q3737012",
+  "size": [
+    30,
+    46,
+    15.5
+  ],
+  "visualBrief": "Granholm’s gray granite National Romantic keeper block with three storeys, divided red-brown windows, projecting quoins, copper gable roof and round-window curving pediment; long stone taper rises from its east end to a red gallery, white astragals and green copper lantern dome.",
+  "sourceFacts": {
+    "heightMeters": 46,
+    "focalOrSeaElevationMeters": 52,
+    "year": 1906,
+    "architect": "Florentin Granholm",
+    "mainPlanMeters": [
+      29.124,
+      13.564
+    ],
+    "basis": "NGA Pub195 identifies46m structure; operator52m is sea-relative elevation, not tower height. Main stepped plan from OSM1119816491 and tower center from1119816492. Storeys, detailed proportions and fittings reconstructed from current operator exterior photographs."
+  },
+  "referencePages": [
+    "https://www.bengtskar.fi/en/home/",
+    "https://www.bengtskar.fi/en/see-and-experience/worth-seeing-and-experiencing/",
+    "https://www.bengtskar.fi/en/see-and-experience/the-dramatic-history-of-the-lighthouse/",
+    "https://www.bengtskar.fi/wp-content/uploads/2024/11/taustakuva-vaalea-1-utvidgad.jpg",
+    "https://msi.nga.mil/api/publications/download?key=16694491%2FSFH00000%2FPub195bk.pdf",
+    "https://www.openstreetmap.org/way/1119816491",
+    "https://www.openstreetmap.org/way/1119816492"
+  ],
+  "geographicProposal": {
+    "anchor": [
+      22.499259431579,
+      59.723439410526
+    ],
+    "heading": 0.068090906725,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/1119816492",
+    "notes": "Mapped circular tower-part centroid is the model origin. Main building long axis fixes heading0.068090906725rad; residential block extends west and round-window pediment faces south. Host terrain supplies the rock-island contact;52m sea elevation is not applied as building height."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Asset is the main connected lighthouse/keeper building. Detached island outbuildings, trenches and natural rock are separate map features. Individual battle marks and stone blocks are represented by shared granite surface rather than invented documentary damage."
+  ],
+  "qaCameras": [
+    {
+      "name": "near-lantern",
+      "position": [
+        11,
+        44,
+        15
+      ],
+      "lookAt": [
+        0,
+        42.3,
+        0
+      ]
+    },
+    {
+      "name": "near-house",
+      "position": [
+        -28,
+        16,
+        34
+      ],
+      "lookAt": [
+        -11,
+        9,
+        2
+      ]
+    },
+    {
+      "name": "near-pediment",
+      "position": [
+        -12,
+        19,
+        24
+      ],
+      "lookAt": [
+        -11.5,
+        15.5,
+        7
+      ]
+    },
+    {
+      "name": "far-ensemble",
+      "position": [
+        -57,
+        30,
+        69
+      ],
+      "lookAt": [
+        -7,
+        21,
+        0
+      ]
+    }
+  ],
+  "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+  },
+  "assetId": "molen.worldgen.structure.n0653_bengtskar_lighthouse",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -23.531999588012695,
+      0,
+      -5.8206000328063965
+    ],
+    "max": [
+      6.567699909210205,
+      46,
+      8.723400115966797
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

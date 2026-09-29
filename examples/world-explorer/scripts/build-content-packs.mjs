@@ -1,18 +1,31 @@
 // Build the content packs the explorer loads (entities, the default style pack, the earth atlas
-// and business catalog, the star catalog) from the repository's content/ sources into
+// and business catalog, the star catalog, the sound bank) from the repository's content/ sources into
 // public/packs, with an index.json. public/packs is gitignored; content/ is the source of truth.
 
-import { rm } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildPack } from '@bendyline/molen-pack/node';
+import { buildRegionalPacks } from './build-regional-packs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, '../../content');
 const outDir = resolve(root, 'public/packs');
 
-await rm(outDir, { recursive: true, force: true });
-for (const name of ['entities', 'worldgen', 'earth', 'sky']) {
+for (const name of ['entities', 'earth', 'sky', 'sounds']) {
   const built = await buildPack(resolve(content, name), { outDir });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);
 }
+const earthSource = JSON.parse(
+  await readFile(resolve(content, 'earth/molen-pack.source.json'), 'utf8'),
+);
+const placements = [];
+for (const path of earthSource.provides.structures) {
+  const doc = JSON.parse(await readFile(resolve(content, 'earth', path), 'utf8'));
+  placements.push(...doc.entries);
+}
+await buildRegionalPacks(resolve(content, 'worldgen'), {
+  outDir,
+  placements,
+  onBuilt: (id, entry) => console.log(`${id}: ${entry.file} (${Math.round(entry.size / 1024)} KB)`),
+});

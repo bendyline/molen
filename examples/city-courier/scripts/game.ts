@@ -63,6 +63,7 @@ molen.on('collision', (p) => {
         : 'Collision! Ease off and use the handbrake.',
   });
   molen.emit('crash', { health });
+  if (health === 0) molen.audio.play('ui.error');
 });
 molen.on('tick', () => {
   const g = game();
@@ -76,8 +77,10 @@ molen.on('tick', () => {
   );
   if (g.status !== 'playing' || seconds === 0) {
     molen.patch('player', 'kinematicBody', { vel: [0, 0, 0] });
-    if (seconds === 0 && g.status === 'playing')
+    if (seconds === 0 && g.status === 'playing') {
       update({ status: 'lost', seconds: 0, message: 'Time is up. Press R to retry the route.' });
+      molen.audio.play('ui.error');
+    }
     return;
   }
   const v = body.vel;
@@ -114,6 +117,7 @@ molen.on('tick', () => {
     });
     placeBeacon(delivered);
     molen.emit('delivery', { delivered });
+    if (delivered === g.total) molen.audio.play('sting.win');
   }
   for (const [id, t, car] of molen.query('transform', 'trafficCar')) {
     if (t.pos[2] > car.to || t.pos[2] < car.from)

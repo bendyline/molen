@@ -73,6 +73,7 @@ molen.onCommand('attack', () => {
   const g = game();
   if (g === undefined || g.status !== 'playing' || molen.tick - g.attackTick < 12) return;
   update({ attackTick: molen.tick });
+  molen.audio.play('weapon.slash');
   molen.patch('held-sword', 'renderable', {
     animation: { clip: 'attack', loop: 'once', startTick: molen.tick },
   });
@@ -114,7 +115,7 @@ molen.onCommand('interact', () => {
     molen.remove('gate', 'collider');
     molen.tween('gate', { component: 'transform', path: 'pos[1]', to: 4.6, ticks: 24 });
     update({ doorOpen: true, message: 'The gate opens. Claim the lantern beyond.' });
-    molen.emit('gate-opened', {});
+    molen.emit('gate-opened', { entity: 'gate' });
   } else if (g.doorOpen && distance(p, config.exit) < 2.5) {
     update({
       status: 'won',

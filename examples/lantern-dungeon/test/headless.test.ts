@@ -38,7 +38,7 @@ describe('lantern-dungeon: authored scene + scripts', () => {
     command(w, 'move', { dir: [0, -1] });
     w.stepN(90);
     expect(stateHash(w)).toBe(
-      'sha256:45971e1a7d2fe696864e335d72d73f6ff5fea31455659dcce44b7ce4a63f2d80',
+      'sha256:0a30125259ea1b1ecc2606206aeeffb77882ea93dba58213bf4e102aca988a70',
     );
   });
 

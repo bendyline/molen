@@ -325,3 +325,41 @@ describe('bakePalette (rung 1)', () => {
     expect(bakePalette('models/foo.glb')).toBeUndefined();
   });
 });
+
+describe('matgraph alpha cutouts', () => {
+  const graph = {
+    format: 'molen/matgraph@1',
+    size: [8, 8],
+    alphaTest: 0.5,
+    nodes: [
+      { id: 'cells', type: 'bricks', params: { rows: 1, cols: 1, mortarWidth: 0.125, offset: 0 } },
+      {
+        id: 'paint',
+        type: 'ramp',
+        input: 'cells',
+        params: {
+          stops: [
+            { t: 0, color: '#ffffff' },
+            { t: 1, color: '#ffffff00' },
+          ],
+        },
+      },
+    ],
+    outputs: { baseColor: 'paint' },
+  };
+  it('preserves actual hole alpha and opt-in cutoff while leaving old graphs opaque', () => {
+    const baked = bakeMatGraph(validatedGraph(graph));
+    expect(baked.meta).toEqual({ filter: 'linear', alphaTest: 0.5 });
+    expect(baked.slots.baseColor?.data[3]).toBe(255);
+    expect(baked.slots.baseColor?.data[(4 * 8 + 4) * 4 + 3]).toBe(0);
+    const { alphaTest, ...opaque } = graph;
+    void alphaTest;
+    expect(bakeMatGraph(validatedGraph(opaque)).meta).toEqual({ filter: 'linear' });
+  });
+  it('rejects invalid cutoffs both through validation and direct baking', () => {
+    for (const alphaTest of [-0.1, 1.1, Number.NaN, Number.POSITIVE_INFINITY]) {
+      expect(validate('matgraph' as never, { ...graph, alphaTest }).ok).toBe(false);
+      expect(() => bakeMatGraph({ ...validatedGraph(graph), alphaTest })).toThrow('alphaTest');
+    }
+  });
+});

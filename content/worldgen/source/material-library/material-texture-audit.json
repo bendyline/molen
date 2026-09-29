@@ -1,0 +1,2769 @@
+{
+  "format": "molen/material-texture-audit@1",
+  "policy": {
+    "identity": "Material IDs remain distinct. Duplicate channels require matching RGBA8 bytes, dimensions, color space and baked filter.",
+    "scalarFolding": "Only exactly constant sampled roughness G or metalness B is replaced by its byte / 255 scalar; other maps remain textures.",
+    "memory": "Base-level and full-mip-chain RGBA8 texel estimates exclude driver overhead, compression and copies. Full mip chains are a separate estimate, not measured GPU memory or an assertion that every client enables mipmaps.",
+    "cutouts": "Alpha-test base-color maps remain textures. Audit records alphaTest but does not infer a no-mipmap policy from it."
+  },
+  "summary": {
+    "materials": 65,
+    "baked": {
+      "textures": 183,
+      "baseLevelRgba8Bytes": 47972352,
+      "fullMipChainRgba8Bytes": 63962892
+    },
+    "constantResponseChannels": 58,
+    "constantResponseChannelsBySlot": { "roughness": 49, "metalness": 9 },
+    "afterConstantResponseFolding": {
+      "textures": 125,
+      "baseLevelRgba8Bytes": 32768000,
+      "fullMipChainRgba8Bytes": 43690500
+    },
+    "allChannelsAfterTheoreticalExactDeduplication": {
+      "textures": 151,
+      "baseLevelRgba8Bytes": 39583744,
+      "fullMipChainRgba8Bytes": 52778124
+    },
+    "duplicateChannelGroups": 12
+  },
+  "duplicateChannels": [
+    {
+      "sha256": "sha256:5674d2c1500b6d1beb8d098f08d3cbe5719625c6297288ee79f29f7c42348ae6",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.bamboo#roughness",
+        "molen.worldgen.material.tile_flat#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.brick#roughness",
+        "molen.worldgen.material.brick_longformat#roughness",
+        "molen.worldgen.material.brick_stack#roughness",
+        "molen.worldgen.material.concrete_panel#roughness",
+        "molen.worldgen.material.concrete_plain#roughness",
+        "molen.worldgen.material.gravel#roughness",
+        "molen.worldgen.material.membrane#roughness",
+        "molen.worldgen.material.shingle_asphalt#roughness",
+        "molen.worldgen.material.siding_lap#roughness",
+        "molen.worldgen.material.siding_shingle#roughness",
+        "molen.worldgen.material.stone#roughness",
+        "molen.worldgen.material.stucco#roughness",
+        "molen.worldgen.material.terracotta_screen#roughness",
+        "molen.worldgen.material.tile_ceramic#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:6ed9398ed73864345d644d5f4c90c1ec41ba54035f06fc966aa623c3e468a119",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.brick_flemish#roughness",
+        "molen.worldgen.material.stone_ashlar#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:8193e10ca60f15d822ffe36515c2ce761c1b26174d7551571344bb0a0fd06483",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.concrete_boardformed#roughness",
+        "molen.worldgen.material.plaster_lime#roughness",
+        "molen.worldgen.material.wood_weatherboard#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:58451335f520887b25c551445b3bdfdb812bf4ce076de9270c502a0ef73c545a",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.earth_adobe#roughness",
+        "molen.worldgen.material.earth_rammed#roughness",
+        "molen.worldgen.material.thatch#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.etfe_film#metalness",
+        "molen.worldgen.material.metal_expanded_diamond#metalness",
+        "molen.worldgen.material.metal_perforated_round#metalness",
+        "molen.worldgen.material.metal_perforated_round_open#metalness",
+        "molen.worldgen.material.metal_perforated_square#metalness"
+      ]
+    },
+    {
+      "sha256": "sha256:c96b1376b73708d62410c2ddbd20ddedafd4f222ef5e07ad97526fd933a0e9c3",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.metal_expanded_diamond#roughness",
+        "molen.worldgen.material.metal_perforated_round#roughness",
+        "molen.worldgen.material.metal_perforated_round_open#roughness",
+        "molen.worldgen.material.metal_standing_seam#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:5f12287b61062375f8ebc072c08146670c7379cfb057103696aa371a23030820",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.metal_perforated_square#roughness",
+        "molen.worldgen.material.plaster_tadelakt#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:c96912cbf941f0c74b185741d1cbdf953e763aec2268eba9eb82b8c314ee120a",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.shingle_cedar#roughness",
+        "molen.worldgen.material.stone_sandstone#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:5c5c9ca3d51e2198082c907bb3c779dfa0ca8b9630578dc0def017d9a3a55346",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.stone_basalt#roughness",
+        "molen.worldgen.material.wood_shou_sugi_ban#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:60e7ac415040e1758451f5ab48434e16c1aeb9d7a76aec1e7174e2cf00c4890a",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.window_grid#roughness",
+        "molen.worldgen.material.window_punched#roughness",
+        "molen.worldgen.material.window_sliding#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:56dd024a671996fd8ea4222dec1f49cbd83813fc5bbe0d43fc7784ce1fec2739",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.wood_board_batten#roughness",
+        "molen.worldgen.material.wood_vertical#roughness"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "id": "molen.worldgen.material.bamboo",
+      "graphHash": "sha256:e8321eca73c0f16198ffe455903c9cd0f638a60d2a77fcb2bf21c895117c82c1",
+      "repeatMeters": [0.96, 1.8],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.bamboo",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:01cde22eb5eec1d5076bb59b12e997f9ea0595c6d0ca1c084516cacac76db32a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.bamboo",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5674d2c1500b6d1beb8d098f08d3cbe5719625c6297288ee79f29f7c42348ae6",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 199, "scalar": 0.7803921568627451 }
+        },
+        {
+          "material": "molen.worldgen.material.bamboo",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:62bc3a934cddfd33312704bd746d8dab409210799f6facefe1e9f4daad2f0cdd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.brick",
+      "graphHash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f",
+      "repeatMeters": [1.92, 0.9],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.brick",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:7eaf8fadb1b6e118a1a53b8535b60882427a62e520fe01aa3c3570b54203e58f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.brick",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.brick_flemish",
+      "graphHash": "sha256:f31107062ebd1a0d46f0ff6e5b9861b0be582d08a8c05f46e424dd12cb0c047c",
+      "repeatMeters": [1.44, 0.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.brick_flemish",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:5176b31e462132024fe92dd027171c894872cd9a6d11a1575099775a844ccb83",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.brick_flemish",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6ed9398ed73864345d644d5f4c90c1ec41ba54035f06fc966aa623c3e468a119",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 230, "scalar": 0.9019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.brick_flemish",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:65314bee7c1f5cc8ad3862ce2e0a523ea74f6ac509a0848ef7e75f3cf691b5fd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.brick_glazed",
+      "graphHash": "sha256:858822c7d8ac957f1046a4b5ccb9f8f7356a6faf292cedeb63d8c389265d07df",
+      "repeatMeters": [1.44, 0.75],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.brick_glazed",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:7357e3caf18bfab6e0fa1277a8ddb9e96b56893739af4a18d41b7b8392ddec25",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.brick_glazed",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:be27c51c72d4fbc13e5328e727a8eb0bc8a52f6cc487b45731556c754fa988fa",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 71, "scalar": 0.2784313725490196 }
+        },
+        {
+          "material": "molen.worldgen.material.brick_glazed",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c0bd90fda587895c2a4aaa60ae211b4cc2a1e5e9f3df6a8a55edf4768acab092",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.brick_longformat",
+      "graphHash": "sha256:4fdf393d228a5d543b82290a8f382b2cbfd7a67279bc504e4e526d59ed2335a8",
+      "repeatMeters": [1.8, 0.8],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.brick_longformat",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:412ebb97976a30be228f8ac083a86775cb8e34c455c98576a1a6f534f38a1038",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.brick_longformat",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        },
+        {
+          "material": "molen.worldgen.material.brick_longformat",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:af1ccb17884a7217513d1f50747db8e0fc9dc330de62f1bd7809783106b9f95b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.brick_stack",
+      "graphHash": "sha256:2f75fadcc3a32f7548362a3e7983e6da7361238ae1c55d1ddcb928c56c074df5",
+      "repeatMeters": [1.44, 0.75],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.brick_stack",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:d59a396503ff0278c301b06c7b85dc0b58efcb9b379e127a044436476417d04f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.brick_stack",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        },
+        {
+          "material": "molen.worldgen.material.brick_stack",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:e8347eb8b5b91e12df33281d1a98ec0d57ec85011d78ad1ed6c54008af5d340f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.clay_fired",
+      "graphHash": "sha256:4192e3e339b114e542fc7c37a103ef8d0954ad6b14dc527300edd0fd3b78aa34",
+      "repeatMeters": [0.8, 0.8],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.clay_fired",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:2e052fe7935b7599865081fd0e220e8f908b9a29d5b31d17405e364f7624a5e4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.clay_fired",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:4736500ec51039d0f02cf321ac84f112032c81b51a21e035d7d9a7ae56540a43",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.clay_fired",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5b0afd3db80194d5557413d32f4d06ab3731fefae90e3144bd87b3561acb4480",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.concrete_boardformed",
+      "graphHash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d",
+      "repeatMeters": [2, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.concrete_boardformed",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:eadc426668b74f7a9e8e7350a5452b196e690e73d4529c435fe3a5224cdb1c7f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.concrete_boardformed",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8193e10ca60f15d822ffe36515c2ce761c1b26174d7551571344bb0a0fd06483",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 240, "scalar": 0.9411764705882353 }
+        },
+        {
+          "material": "molen.worldgen.material.concrete_boardformed",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:3f016c35dabed86300f6c3e6d2d9336efc6140422b2722dab9399aac6535d49d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.concrete_panel",
+      "graphHash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4",
+      "repeatMeters": [3, 3],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.concrete_panel",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:c2cfc249f8e408e9256c97900adecb5b4048dc48fb3865dddd53d528c29829b6",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.concrete_panel",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.concrete_plain",
+      "graphHash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.concrete_plain",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:083cfe30019d53e78888d6b75b3384ee599c76ad94a12f941c76532d68c9c61b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.concrete_plain",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.earth_adobe",
+      "graphHash": "sha256:0c18fa77ba69f37b57b3365c7531cd0168090708d277cf6c8dc80f05017fe316",
+      "repeatMeters": [1.35, 0.75],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.earth_adobe",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:b98db8d79f7b5923ce30e26e9cd7253e5db150c5545e4cd0d379f90aa79af2bf",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.earth_adobe",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:58451335f520887b25c551445b3bdfdb812bf4ce076de9270c502a0ef73c545a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 252, "scalar": 0.9882352941176471 }
+        },
+        {
+          "material": "molen.worldgen.material.earth_adobe",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5100f8764ac0a6a1dbba99494272c8342c0fe99068f9d4d407be050d8fb2bb98",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.earth_rammed",
+      "graphHash": "sha256:50d08191738cc33191b08f2c393121852dce456454ac98f67653cbcbe8ba3c46",
+      "repeatMeters": [2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.earth_rammed",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:c836e8318cd0966e76c7b5cbd001ba8c50c47e835dfa22d50975cb2b7cab6ef1",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.earth_rammed",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:58451335f520887b25c551445b3bdfdb812bf4ce076de9270c502a0ef73c545a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 252, "scalar": 0.9882352941176471 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.etfe_film",
+      "graphHash": "sha256:888098f2b9fdd6eab3d80120aa02637ab617adc7816f332a67a5852c04e06377",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.etfe_film",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:7595da50feb034a4a121b0400a480809cb4b59c0cc78ce752d39959eaf780664",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.etfe_film",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:408ee18a50e203351c0f8d5b5c7a7f576c50f191eced15311ce319b900440873",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.etfe_film",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        },
+        {
+          "material": "molen.worldgen.material.etfe_film",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:a4830515f6fd977a9c33a6348c194c6b077855ff27ea13666d95378405b8082f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.fabric_canvas",
+      "graphHash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a",
+      "repeatMeters": [0.25, 0.25],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.fabric_canvas",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:ab950ebd43af7759a7092ccfca632cd74b6eb2729b6204b96df596118d508016",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.fabric_canvas",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:ecf4df0a724d8edb26a2b2d466ffeee54d51aa6d3e6f26d69102e5c354c32b67",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.fabric_canvas",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6262b3a399df64d8229a3d688e0659434a81beb2000f1df6c69658baf62a5706",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.gravel",
+      "graphHash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.gravel",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:b29d3a0f287bbf1069c3414ed2bcd846451e57b35795a7bd701d5151e368d542",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.gravel",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.membrane",
+      "graphHash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5",
+      "repeatMeters": [4, 4],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.membrane",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:15306f4928ade51bcc90573c4ca16a3c2d3f48c4188e10061b202d34aa34381b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.membrane",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_bronze_cast",
+      "graphHash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58",
+      "repeatMeters": [0.25, 0.25],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_bronze_cast",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:c89e254706dbf802ea88c12710f858471b1a5b4793ea5da160195b4706377b95",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_bronze_cast",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:45f4dcecbc20beebf1412d52c0250737a6bcf198cbfedab55a8d27f661db69ba",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_bronze_cast",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:faa1648401710647204df8df6c2fd2d90233eaea2aa57a8b7d61283b0d775940",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_bronze_cast",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b044d2c769249fef1e892be2f8cba67f01d99a075692328b34c6e52d7eba3f0e",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_copper",
+      "graphHash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935",
+      "repeatMeters": [1.8, 1.8],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_copper",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:4bd92c05e8914c7da814ae324da8a936f1a9495e0a158c3462ad29d94b2183fb",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_copper",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8f5fc76d3ff35adc78542dd8c685c32839a029df5e2ffac2d1f06e0ab1bec154",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 161, "scalar": 0.6313725490196078 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_copper",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c566390ed648a3115071653cf982e28601df6a6be5ffa26f116578c3c97969c7",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 148, "scalar": 0.5803921568627451 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_copper",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:75d934fdc02d5e1ae77f2b854be48f50c5b8a51d3d4e9c427b440742e6afe795",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_corrugated",
+      "graphHash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f",
+      "repeatMeters": [1.2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_corrugated",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:ceef78298b6ab1f7504b5ebc558d0da140bc7c4aade17e577790e26d9669e3d4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_corrugated",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8de9722d99dca1ecdb01d980551da932f2116bf1eaade4bfab40b602a5bd4c2d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 143, "scalar": 0.5607843137254902 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_corrugated",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:e63efd7012d1b4e52dc1c1031f51c0f383dd65b8cc11db6fc54ea49c17189406",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 158, "scalar": 0.6196078431372549 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_corrugated",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6093d3ae77319d4413bac37ca0aaed98bb49ae0b9ff645aaaec726a91f2a2032",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_expanded_diamond",
+      "graphHash": "sha256:a3b768484f8dceec1839ac211f4e80da5cfb0b2cd9abd3ae05b1952e411bee03",
+      "repeatMeters": [0.12, 0.04],
+      "uvMode": "meters",
+      "alphaTest": 0.3,
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_expanded_diamond",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:c448eaa933fbd0dfc2860cb06161d790bb9fafea883c94bb6064bb223cc2a405",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_expanded_diamond",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96b1376b73708d62410c2ddbd20ddedafd4f222ef5e07ad97526fd933a0e9c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 128, "scalar": 0.5019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_expanded_diamond",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_painted",
+      "graphHash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_painted",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:d816cf1418d25f93a9b7307eeb7e1c609a924ff78043e29e1e7c078eb45b9235",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_painted",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:d80b1660bf861563467fd44a29aa84220b2a3f8b7dada525910cf29f2a57c881",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_painted",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:cb6ec10b4fc00d359ed5dd887e6a6d170e523c740ad033e64e21bc0bd7490136",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_perforated_round",
+      "graphHash": "sha256:78f39ce5c28a38b74894db8d641965425041b418f4fb67a7c1cf53b7ed723c6b",
+      "repeatMeters": [0.012, 0.012],
+      "uvMode": "meters",
+      "alphaTest": 0.3,
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_perforated_round",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:4c59aaa125385643152388f9d66b1f7aff41445bc22618b83c1637f96cec3fab",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_round",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96b1376b73708d62410c2ddbd20ddedafd4f222ef5e07ad97526fd933a0e9c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 128, "scalar": 0.5019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_round",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_perforated_round_open",
+      "graphHash": "sha256:c068913a8ff9f3144bf27f2cf9a4e3c8012eb1a00a22ab968ecc2d3f7ff99f1c",
+      "repeatMeters": [0.012, 0.012],
+      "uvMode": "meters",
+      "alphaTest": 0.3,
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_perforated_round_open",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:ed50e4dfce52a21c10212f7cb2137f18c99d123041ff6288db3d6ee6897c7aee",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_round_open",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96b1376b73708d62410c2ddbd20ddedafd4f222ef5e07ad97526fd933a0e9c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 128, "scalar": 0.5019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_round_open",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_perforated_square",
+      "graphHash": "sha256:f12058417eb51d202ef3740309bd308914c4e8e17d8d163a3aec6c97cb3cc362",
+      "repeatMeters": [0.085, 0.085],
+      "uvMode": "meters",
+      "alphaTest": 0.3,
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_perforated_square",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:401e83d04c6d28a15c9c7edbe6bdd59cdbb10e0605ce6ee3c3b796693f994ef1",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_square",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5f12287b61062375f8ebc072c08146670c7379cfb057103696aa371a23030820",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 122, "scalar": 0.47843137254901963 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_perforated_square",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_stainless",
+      "graphHash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3",
+      "repeatMeters": [1, 1],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_stainless",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:083d3255d18b2e617e8f74b522a18b9c6f1288a338f1683658cdc126061d38c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:3f4c49a104bce848c59e2f689f85753e94572334219b5b2e611bddfefd523cda",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:3b874d3ba46c638fc3094f8e92fb744ca974893873f8885f54e23760f9b6311b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 255, "scalar": 1 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:40462f48e3385d2ece1b1a88a3c108f37252980befc05ba09b1c9b54d1c95023",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_standing_seam",
+      "graphHash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d",
+      "repeatMeters": [2.5, 3],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_standing_seam",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:f4c08a9597d87f2b1ce02ef76878b0aa40aa0a8827d442a5435337ea1a9e9627",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_standing_seam",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96b1376b73708d62410c2ddbd20ddedafd4f222ef5e07ad97526fd933a0e9c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 128, "scalar": 0.5019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_standing_seam",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:4049b5e185e71c8d5ccc8b264d805528dd52312000ceadae3b3b2e495b94dc82",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 115, "scalar": 0.45098039215686275 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_standing_seam",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:fce2edf0c4a3f3c85d4701986856bcf3d6ec3b618a1706aca8c11d50286b0dfd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.plaster_lime",
+      "graphHash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.plaster_lime",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:4e2fe94ad013c74ffa7d3f97d7fe3b26a1f657f9ae4cf866c63495517bf79295",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.plaster_lime",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8193e10ca60f15d822ffe36515c2ce761c1b26174d7551571344bb0a0fd06483",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 240, "scalar": 0.9411764705882353 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.plaster_tadelakt",
+      "graphHash": "sha256:88336fbd1c6a79e323f32c5dc014e481f241ba37355daf18e7bb88c095847a20",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.plaster_tadelakt",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:72a5380851a7d427990cea02734352b9ddfd51734aea1e8e85d12c8b62686e54",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.plaster_tadelakt",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5f12287b61062375f8ebc072c08146670c7379cfb057103696aa371a23030820",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 122, "scalar": 0.47843137254901963 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.shingle_asphalt",
+      "graphHash": "sha256:73a3f02b121e44d9bb73178f844557d930d14778d9f668dbd5c6eb1078a3d45e",
+      "repeatMeters": [1.8, 2.1],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.shingle_asphalt",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:48bbcdfe7f02968ece9d3602042396f0676098a8e73d339ffbdb82515838c86f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.shingle_asphalt",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.shingle_cedar",
+      "graphHash": "sha256:da2d5afad62132e4108afa85f07ead25b88396297f3f3bdafc3693eaac2b878e",
+      "repeatMeters": [1.8, 1.75],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.shingle_cedar",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:527c6c1007a7d0772348b096605991b2b4ece9b361812a9c29f83f44594a36a9",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.shingle_cedar",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96912cbf941f0c74b185741d1cbdf953e763aec2268eba9eb82b8c314ee120a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 245, "scalar": 0.9607843137254902 }
+        },
+        {
+          "material": "molen.worldgen.material.shingle_cedar",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5053bc6f072a3fb29787122dc31694fedb7519f600e8df818b7430f91401c670",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.siding_lap",
+      "graphHash": "sha256:218b4aab3ec96607f5753689efb1f47f39dabc80a71e6c0171a7d46f54a56c90",
+      "repeatMeters": [2, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.siding_lap",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:6aa3837a4ecf67eeeb91901a891c3f8adc4dc3a579529eec3fef54b442eb0e0e",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.siding_lap",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.siding_shingle",
+      "graphHash": "sha256:c8cca4155ebfa1b8bf79f3fd4315222e99274181fc752335f78dd8d44082dcf6",
+      "repeatMeters": [1.5, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.siding_shingle",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:fdc6c86f841e7ca88ad095365d598b388e6a781a17a82de8751f0e2e73df2b47",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.siding_shingle",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.slate",
+      "graphHash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1",
+      "repeatMeters": [1.5, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.slate",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:a365df7c9bfe1447b5648e0ba1e2c901e85f4a258ba807b5788c58eb2d91fa77",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.slate",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:50b3cc75c9a6895aa707ca2a9ba67c9eb456fd3883477c6f62f859906af1d573",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 209, "scalar": 0.8196078431372549 }
+        },
+        {
+          "material": "molen.worldgen.material.slate",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:598b298335561e4c4b251e903a72dea1bf0e8db90d3862dbcaa1a6919f053a3d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone",
+      "graphHash": "sha256:12f7f585fa19aba3337114e043f93d51f88e27728ef1f0743733fcb75df5340c",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:9944584379a0062c1c01a756b59b99129f162a24d0f525b8ca1f4dba7fa253e3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_ashlar",
+      "graphHash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093",
+      "repeatMeters": [2.4, 1.5],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_ashlar",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:16b3ee17d9fbce3cdfdaf39fa31dd6c37b11c1526ea9c9671ade97eb78f8f1ee",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_ashlar",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6ed9398ed73864345d644d5f4c90c1ec41ba54035f06fc966aa623c3e468a119",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 230, "scalar": 0.9019607843137255 }
+        },
+        {
+          "material": "molen.worldgen.material.stone_ashlar",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8eaeef694df620f68c645c6d72b70c6a4415412647323caf565359e0f494f18a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_basalt",
+      "graphHash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c",
+      "repeatMeters": [1.6, 1.4],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_basalt",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:f4c61860ea8bb604f9c1a142c3c84b2426d8f55af2f616ad44213ba0882d4bef",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_basalt",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5c5c9ca3d51e2198082c907bb3c779dfa0ca8b9630578dc0def017d9a3a55346",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 247, "scalar": 0.9686274509803922 }
+        },
+        {
+          "material": "molen.worldgen.material.stone_basalt",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:0417840d1f7c3f1fcdafcde7cebbd2c52d2ba09ff439a8e060731d4bc404d6ed",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_basalt_raw",
+      "graphHash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_basalt_raw",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:fb7816be0770afa164baf8d89762641c883441f2b8a5617296e3346f713d03a6",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_basalt_raw",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:afa5e43037e6460bdb6614f2c3d8192b61877f99bd4ee5761f2dce5e4306f293",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_basalt_raw",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8d1708c05d0eee66482740c708bc30f1bfc8bd53d390baedefd994e187245d7c",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_drywall",
+      "graphHash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_drywall",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:de920847b054ee5604f72b3b731b04bae11915ef9693bc47c873ccc0067b9d5f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_drywall",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:e0d2a7607f463f6057a34cdbe6a20cb5e39aa8fbb8a8778a43799770ac857d5d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 250, "scalar": 0.9803921568627451 }
+        },
+        {
+          "material": "molen.worldgen.material.stone_drywall",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:624bdc9c25cfabbd9f0a3582ddc5760ab8392d4f2d5f2770dc95ffd10c94364d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_granite",
+      "graphHash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_granite",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:88683a201718ebea62daabfabe07ba4e7130579cfdd40bf9730391b1cfb833b5",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_granite",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:2626b0d9f9556bc2593595686599a0c5e5e506ee7af97e9bc613233d0cc3971f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_granite",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:44c117168b0c06ffa0443f4dfa4774ed4e2ad7852d78c66e824218a4691b9f95",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_limestone",
+      "graphHash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7",
+      "repeatMeters": [2.4, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_limestone",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:19555a3d6da87745964515a0c2c9bde4dcd53ff2db17bc6676aa9a9c3db9a53d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:cf53c173a602bfd5e4509251fa7927aa36127bdedd6a2c7b0217c61ee273fbd1",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 232, "scalar": 0.9098039215686274 }
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:9df27ff62696a5b15ea9892ad52e06f0ea4df624dfb031949ad73e88d5c5377a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_limestone_raw",
+      "graphHash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_limestone_raw",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:186eaf42135b7a8f960105791d0b57d2656934547d3ede19e29c3bfa312c276e",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone_raw",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:167daad55ef0081aed7850333931a0e864f1f8552501a01c3e613a4749724508",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone_raw",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:fa5b31ce8a864e64e220a2406c7a34d935249d1b0b76b54107c10a95ff1941c7",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_limestone_weathered",
+      "graphHash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_limestone_weathered",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:107bb9640f27b9035a581eeb34bdee48248ee7dd2d0655f131893012691ac9d0",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone_weathered",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:621d06ca888f6f4478060cfcc72bf9459671517d5528229ecff9b02bd3e43acd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_limestone_weathered",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:f14e93af82bde2b66a65b4155b93d46a315702cbccf8d83eabc7f35ae681131e",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_marble",
+      "graphHash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_marble",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:1ad50d0d45037410a1346e7444ff828e7efc612054bb4d6222a6017aa17109ff",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_marble",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:0e38244c37f858aa7c1ac3f28f972c9310099d6dd65fc62cdf2ea9ad5931b8bd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_marble",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:7848f67bbe358ab54e8948d728c76d98df46029c9c4e38874eea5f109d3605ea",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_sandstone",
+      "graphHash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364",
+      "repeatMeters": [1.8, 1.5],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_sandstone",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:f1c1ac9d6166cec8c10bd303b6019469bddbfd706a90bcc30a5c49bc14def6c6",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_sandstone",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c96912cbf941f0c74b185741d1cbdf953e763aec2268eba9eb82b8c314ee120a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 245, "scalar": 0.9607843137254902 }
+        },
+        {
+          "material": "molen.worldgen.material.stone_sandstone",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:bc743926ca5c342026f063a441d22a45059c7c8c1a0bbef3df39604338662650",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_sandstone_raw",
+      "graphHash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_sandstone_raw",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:55c2e74d64017299ce406d5a26381c231370bfb3e4487a826cfa5007f425a5f8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_sandstone_raw",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6cbfd83b095d749c03eeb8945ffb227425b099daeaabdcfcbe060df6078fdb57",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_sandstone_raw",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:a9ebaef6752c3e5e84a530c506d360ddd762349ea828c7c098ca542ea30c6713",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stone_travertine",
+      "graphHash": "sha256:9dbdc06581500e8a384c4ae72c6bee0a6653dcc7860b85b52fd96a830b420b58",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stone_travertine",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:2861df02fc5f1fde10039c0f9e5835cf53793a4c2cdba96a395fec60a9f73059",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_travertine",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:82c9c8a4609c79e688217e239ce13ebea1f0bc5604663dfe730a76d28faa8c42",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stone_travertine",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:75d34ecdba474b04218a217871b76ea62fef586a5e5db634e522400f49323e7c",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.storefront",
+      "graphHash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0",
+      "repeatMeters": [1, 1],
+      "uvMode": "cell",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.storefront",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:b9a5c16511e8ce5b1d6ed0a0c9223944abf7b1e0486eba61df7b0c6b50ab40ad",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.storefront",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:d7552c455327b2d63212dd884eb7eb6180d73e3238fa2b54d98e627020fe8da1",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 56, "scalar": 0.2196078431372549 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.stucco",
+      "graphHash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119",
+      "repeatMeters": [2, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.stucco",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:919a2c1037d73f849acd7cf24ebf4c343fd47f9a0dc55ef71c077b9cd436c3b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.stucco",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.terracotta_screen",
+      "graphHash": "sha256:cb2091c477b409f572dd986084bcf200ec81b2143b107a17a2ea181bc37bacbb",
+      "repeatMeters": [1.2, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.terracotta_screen",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:d327df5806fa313c368d48fb5b3b7f33e406973f99d0825635272b75a22e31c3",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.terracotta_screen",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        },
+        {
+          "material": "molen.worldgen.material.terracotta_screen",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8ebf6c99914ffc42cb54c501a5b06c7c8f7c58f2249f5bf835bb1533c18fcbdc",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.thatch",
+      "graphHash": "sha256:6bd516e30ebdc4741046b312a83c112f05c71df35a21a125f2a52dcef97f7120",
+      "repeatMeters": [1.6, 1.2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.thatch",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:20a978ff8049db0fd665a891cf13fa9be8b77abad1e5235a3da80df8d5d61c86",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.thatch",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:58451335f520887b25c551445b3bdfdb812bf4ce076de9270c502a0ef73c545a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 252, "scalar": 0.9882352941176471 }
+        },
+        {
+          "material": "molen.worldgen.material.thatch",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:4eb3d1c4ba33fb2166cd1f122f0639330251694492e890eac8252f1b5b6e7f7a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.tile_ceramic",
+      "graphHash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e",
+      "repeatMeters": [2.4, 2.4],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.tile_ceramic",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:9433f9b90e07cc611c278df3632d90f9c083291649a8080b21ee7f0792605457",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.tile_ceramic",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:57109858f72fe8d2326704cded289244d6887128b2bb1ab55eb5fb82e47fc2b4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 224, "scalar": 0.8784313725490196 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.tile_flat",
+      "graphHash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448",
+      "repeatMeters": [1.6, 1.8],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.tile_flat",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:e8a071cea92fd7e027b846c5bf8e47b7972127acd25f56c7c2190d702a7bbc7a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.tile_flat",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5674d2c1500b6d1beb8d098f08d3cbe5719625c6297288ee79f29f7c42348ae6",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 199, "scalar": 0.7803921568627451 }
+        },
+        {
+          "material": "molen.worldgen.material.tile_flat",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:ef49f1dbb0a11a25065947761d804d69962d31d59fad73aa6c51687f7b665f3f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.tile_glazed",
+      "graphHash": "sha256:9ee4eb92b327c632c1d7d95213bc78d1b874083e29feb51438a6f99a50d85f21",
+      "repeatMeters": [2.25, 2.1],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.tile_glazed",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:6b57f61eb0704574229d38d9e052f57c117e593bb8c9d969289ad17b8394e7b7",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.tile_glazed",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:bf9a367971fa891f108a3f805f66b711016a87f516283a618157d49ef5616bb4",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 64, "scalar": 0.25098039215686274 }
+        },
+        {
+          "material": "molen.worldgen.material.tile_glazed",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:1a69ba95855b795b87273a5b08b12d01811df9925113ca8aaf7f6bfbf39b3b2a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.tile_mosaic",
+      "graphHash": "sha256:4588b0d86337ef684fcff456751cf630a16907d5bcacb798aea7b516e3fd7ad0",
+      "repeatMeters": [0.6, 0.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.tile_mosaic",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:50af67e15b76b7ec9bb815e47137cbf29fce7aad26828092028ee3e709950681",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.tile_mosaic",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:a90f50ee9d786cb7795b3a4d9d057690d2ee371589b5d238f326f48408ab3755",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 82, "scalar": 0.3215686274509804 }
+        },
+        {
+          "material": "molen.worldgen.material.tile_mosaic",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:956e3579cf51fd6492ba3cf887d048f2a9445ce2ae9ef5373da70e639353f2ad",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.window_grid",
+      "graphHash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85",
+      "repeatMeters": [1, 1],
+      "uvMode": "cell",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.window_grid",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:55e941ee51e90650d0c3d7a10843fdb1061b6ba5525cb49ab89192ece3f5f563",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.window_grid",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:60e7ac415040e1758451f5ab48434e16c1aeb9d7a76aec1e7174e2cf00c4890a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 77, "scalar": 0.30196078431372547 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.window_punched",
+      "graphHash": "sha256:da57893236a1bc93b1066dc41e3b3cf62a5c5def6b27f0517a6ef90c48acc393",
+      "repeatMeters": [1, 1],
+      "uvMode": "cell",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.window_punched",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:1c8d7864a6fd5b93e68e292e02b7bbaf6053dd1fef568f606a3f94573b8c3414",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.window_punched",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:60e7ac415040e1758451f5ab48434e16c1aeb9d7a76aec1e7174e2cf00c4890a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 77, "scalar": 0.30196078431372547 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.window_sliding",
+      "graphHash": "sha256:89f66d3b9f48bf4b32082e7656571bcae598b798856bb8b2b2b9070117f3338c",
+      "repeatMeters": [1, 1],
+      "uvMode": "cell",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.window_sliding",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:00dce02fcaede520b7a9e48e77b0ddac6ee78efa08420c6639e80794ae719438",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.window_sliding",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:60e7ac415040e1758451f5ab48434e16c1aeb9d7a76aec1e7174e2cf00c4890a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 77, "scalar": 0.30196078431372547 }
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_board_batten",
+      "graphHash": "sha256:367bd9ba9819f3ff59818ae4b3b4739f9c5b8cf4567c9154855cfeedd4904d3c",
+      "repeatMeters": [1.8, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_board_batten",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:349dec32c2aea274d5a61212f386c8fa5326995a63305e52898604122f4703fb",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_board_batten",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:56dd024a671996fd8ea4222dec1f49cbd83813fc5bbe0d43fc7784ce1fec2739",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 219, "scalar": 0.8588235294117647 }
+        },
+        {
+          "material": "molen.worldgen.material.wood_board_batten",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:0849ecfc5525a4d92fbfe098ed411df6c586da7c00d9438ab460c0031b5edb49",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_log",
+      "graphHash": "sha256:64fb8f21ed1fa53b4f85c396ca31e013cf474098c7584e3dba868891a3cb74fc",
+      "repeatMeters": [2, 1.75],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_log",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:2ef17c454d6741c5d14084fc3432cf2a4c1a03cc12a9068fb03589eaf5e7db05",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_log",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:a9d6e45161b2983583a63d6ad2c8304e410675368a2ccbd3ddd8aea322447347",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 235, "scalar": 0.9215686274509803 }
+        },
+        {
+          "material": "molen.worldgen.material.wood_log",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:870aeb1158f0ef8fa276f59c1d4b33981b69531aebf3e78b33f8fe39069a7239",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_painted_lap",
+      "graphHash": "sha256:14d7ec9f93f2bf1f80f8ab440a1142de68b5b1cd033433e38695d7a08a19562b",
+      "repeatMeters": [2, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_painted_lap",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:af4b866cb2028c9637ebbf65977989289761312e0a019813203897e46669e22a",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_painted_lap",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:6416c6597b0b65c405406d1dffcdd5bc104bb89898a49049a7e264a99c1ce6f9",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_painted_lap",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:a5e4dce212b91d540bbcc1cf20fb691498648f57aa9659c2182a159954824993",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_painted_shingle",
+      "graphHash": "sha256:0ffb83c326df4eee1d049736f0ad34642a3afdabb9a152785da5356c433864aa",
+      "repeatMeters": [1.6, 1.6],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_painted_shingle",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:8b37eef685780e6952bcc04db9f8be8faa650b25f000cc34b8058ef1836ae09f",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_painted_shingle",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:46ccdf2e1dcfe49220e4b38360388b7bceaac30ab47e543366aba7ed8a2916cd",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_painted_shingle",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5029e9d85dd4c42d02f93939bbb2f702e0963feb13a9404c23773b6adfc8f729",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_plain",
+      "graphHash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2",
+      "repeatMeters": [2, 0.25],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_plain",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:ee9b32cd3759603f46df895802cdfc2b2e7683e8d46dfed1884458f373a2e85e",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_plain",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:73772e196c00424cbf9a9fa5f809b24d7d273154f2cd7d0ba6e415f8d10abb86",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_plain",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:9604ca2fa700fa2036ea8b9287b5ea9d0d79f8f96f3c5ac91ae47f8db5ec2419",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_shou_sugi_ban",
+      "graphHash": "sha256:0822fbbcee11bda3aabc740b54502bd648cb8448626f7cfb75e2f921519219b6",
+      "repeatMeters": [1.6, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_shou_sugi_ban",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:d0c1afbd2f1a38ecb94da4f3ba1f5fa346e67449524c54922ef360f350c90475",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_shou_sugi_ban",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:5c5c9ca3d51e2198082c907bb3c779dfa0ca8b9630578dc0def017d9a3a55346",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 247, "scalar": 0.9686274509803922 }
+        },
+        {
+          "material": "molen.worldgen.material.wood_shou_sugi_ban",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:f50dc42a0e0cac06fdf25a62a777de2b720c0f175eef6bf2116a27acb77e3233",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_vertical",
+      "graphHash": "sha256:032b10ff6bed9e1af8e5f3fce2a7c51d02dbb169c203c94353a0bdcbdbadfb19",
+      "repeatMeters": [1.5, 2],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_vertical",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:a8a4cbc7129f480749b949b8091b0ee66ab9d3420b0de78cf14787cea99b9c3d",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_vertical",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:56dd024a671996fd8ea4222dec1f49cbd83813fc5bbe0d43fc7784ce1fec2739",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 219, "scalar": 0.8588235294117647 }
+        },
+        {
+          "material": "molen.worldgen.material.wood_vertical",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:9376e5d4dd78156dfe77452cbf8ed6e91d0a4c56ea8a0bfe6e44a9c5f7e850ca",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.wood_weatherboard",
+      "graphHash": "sha256:9875c4073e6f0b665589b38c84502136d60896b581944bb85a3263e3b1c96430",
+      "repeatMeters": [2, 1.25],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.wood_weatherboard",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:f2a8fbcb4bcc2867cfc97202e3ea32658f007b587c72ebcff025f42cb2524ca9",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.wood_weatherboard",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:8193e10ca60f15d822ffe36515c2ce761c1b26174d7551571344bb0a0fd06483",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 240, "scalar": 0.9411764705882353 }
+        },
+        {
+          "material": "molen.worldgen.material.wood_weatherboard",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:c141aa003f5b5d92ddea4a35969d2393424eff9ff5dd9b8af0978dbe195922d8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    }
+  ]
+}

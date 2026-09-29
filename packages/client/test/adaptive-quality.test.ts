@@ -82,6 +82,13 @@ describe('AdaptiveQualityController', () => {
     expect(changes.map((change) => change.level)).toEqual([1, 0]);
   });
 
+  it('does not lower detail for loading-bound frames when measured frame work fits', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    expect(run(controller, 9000, 50, { loading: true, cpuFrameMs: 4, gpuFrameMs: 2 })).toEqual([]);
+    const changes = run(controller, 1500, 50, { loading: true, cpuFrameMs: 20 });
+    expect(changes).toEqual([{ previousLevel: 3, level: 2, reason: 'frame-time' }]);
+  });
+
   it('requires spare measured CPU/GPU time before increasing detail', () => {
     const controller = new AdaptiveQualityController({ initialLevel: 1, maxLevel: 2 });
     expect(run(controller, 15000, 1000 / 60, { cpuFrameMs: 16 })).toEqual([]);
@@ -111,6 +118,18 @@ describe('AdaptiveQualityController', () => {
     expect(changes.every((change) => change.reason === 'memory-pressure')).toBe(true);
     expect(run(controller, 20000, 1000 / 60, { memoryPressure: 0.9 })).toEqual([]);
     expect(run(controller, 12000, 1000 / 60, { memoryPressure: 0.5 })).toHaveLength(1);
+  });
+
+  it('lets a memory step load its replacements before stepping again', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    const pressured = { memoryPressure: 1.2, loading: true };
+    expect(run(controller, 9000, 1000 / 60, pressured).map((change) => change.level)).toEqual([2]);
+    // Still over budget after the recovery delay: the next step is taken.
+    expect(run(controller, 4000, 1000 / 60, pressured).map((change) => change.level)).toEqual([1]);
+    // Settled but still over budget: step immediately.
+    expect(run(controller, 2500, 1000 / 60, { memoryPressure: 1.2 })).toEqual([
+      { previousLevel: 1, level: 0, reason: 'memory-pressure' },
+    ]);
   });
 
   it('backs off failed upgrades instead of repeatedly bouncing between neighboring levels', () => {

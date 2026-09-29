@@ -1,0 +1,246 @@
+{
+  "id": "N0615",
+  "planId": "N0615",
+  "assetId": "molen.worldgen.structure.n0615_gerbrandy_tower",
+  "title": "Gerbrandy Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q778390"
+  },
+  "wikidataId": "Q778390",
+  "visualBrief": "Current hybrid broadcast tower: 100 m concrete shaft, two glazed balcony rings, six open equipment galleries, 2 m steel pipe mast, reportage cabin, individual antenna arrays and twelve guys to the three mapped anchor blocks.",
+  "size": [
+    365,
+    372,
+    390
+  ],
+  "actualBounds": {
+    "min": [
+      -139.03504943847656,
+      0,
+      -209.17510986328125
+    ],
+    "max": [
+      221.94064331054688,
+      372,
+      178.4504852294922
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+X east, +Z south; the three unequal mapped guy-anchor vectors determine site orientation",
+    "origin": "Center of the exact-QID concrete shaft footprint, Y=0 at local terrain contact"
+  },
+  "scaleBasis": "Current owner Cellnex and fire-system installer Saval give 372 m total, approximately 100 m concrete and a 2 m diameter steel tube. RCE confirms the concrete shaft and two glazed balconies. Contemporary contractor photographs determine balcony rhythm, cabin, arrays and intermediate guy bands. Exact-QID OSM shaft and surveyed connected anchor-block footprints supply independent horizontal geometry.",
+  "geographicProposal": {
+    "anchor": [
+      5.053550924,
+      52.010046448
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/54688034",
+    "evidence": "Native +X east, +Z south. Round shaft has no principal horizontal axis; mapped asymmetric guy-anchor positions provide actual orientation.",
+    "limitations": "Anchor is the exact-QID circular shaft center. The three guy blocks use their actual surveyed footprint positions, not a symmetric invented triangle. Guy attachment heights other than the published 226 m level are reconstructed from current contractor photographs; all local geometry shares the concrete shaft terrain-contact datum. Surrounding polder is nearly flat; detailed foundation grading remains approximate.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:40a6bc4e6fec13c95078aaf77dc35b01b38cec0d903d2b9e898e9d3ef3a28734",
+    "notes": "Native +X east, +Z south. Round shaft has no principal horizontal axis; mapped asymmetric guy-anchor positions provide actual orientation. Anchor is the exact-QID circular shaft center. The three guy blocks use their actual surveyed footprint positions, not a symmetric invented triangle. Guy attachment heights other than the published 226 m level are reconstructed from current contractor photographs; all local geometry shares the concrete shaft terrain-contact datum. Surrounding polder is nearly flat; detailed foundation grading remains approximate."
+  },
+  "sourceFacts": {
+    "architect": "Anton Auer",
+    "completed": 1961,
+    "currentOperatorHeightMeters": 372,
+    "concreteTowerHeightMeters": 100,
+    "steelPipeDiameterMeters": 2,
+    "publishedSteelLengthMeters": 260,
+    "guyCount": 12,
+    "anchorCount": 3,
+    "documentedGuyAttachmentHeightMeters": 226,
+    "reportageCabinHeightMeters": 220,
+    "reconstructedGuyAttachmentHeightsMeters": [
+      122,
+      226,
+      302,
+      350
+    ],
+    "concreteShaftDiameterMeters": 10.7,
+    "contractorHeightConflictMeters": 374
+  },
+  "referencePages": [
+    "https://www.cellnex.com/nl-nl/sections/locaties/",
+    "https://www.saval.nl/cases/gerbrandytoren/",
+    "https://www.volkerwessels.com/nl/projecten/gerbrandytoren",
+    "https://zoek.officielebekendmakingen.nl/blg-216282.pdf",
+    "https://monumentenregister.cultureelerfgoed.nl/monumenten/532229",
+    "https://radiowereld.nl/medianieuws/2002/12/tuidraden-televisietoren-ijsselstein-vervangen/",
+    "https://www.openstreetmap.org/way/54688034"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Uses the current operator/installer height of 372 m. The maintenance contractor says 374 m and older map tags say 367 m; these conflicting figures are recorded rather than silently combined.",
+    "Balcony elevations, small antenna count and phase, shaft-window compass phase and guy bands at 122/302/350 m are photographic reconstructions. The 226 m guy band, approximately 220 m cabin, 2 m mast diameter and twelve-guy topology are separately published.",
+    "The 2002 operator statement describes one 309 m cable, 225 m anchor distance and 226 m attachment height. These rounded figures do not form an exact right triangle; model follows the actual mapped anchor positions and photographic attachment bands, with modest illustrative cable sag.",
+    "Three guy foundations share the tower local ground datum across the nearly flat polder. Below-ground concrete, independent generator buildings and seasonal Christmas light strings are excluded from the permanent tower asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "complete-guyed-tower",
+      "position": [
+        510,
+        250,
+        600
+      ],
+      "lookAt": [
+        0,
+        178,
+        0
+      ]
+    },
+    {
+      "name": "concrete-shaft-and-galleries",
+      "position": [
+        105,
+        72,
+        122
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ]
+    },
+    {
+      "name": "glazed-balconies-equipment",
+      "position": [
+        30,
+        82,
+        38
+      ],
+      "lookAt": [
+        0,
+        79,
+        0
+      ]
+    },
+    {
+      "name": "shaft-windows-and-entrance",
+      "position": [
+        21,
+        8,
+        -26
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "reportage-cabin",
+      "position": [
+        17,
+        224,
+        20
+      ],
+      "lookAt": [
+        0,
+        220,
+        0
+      ]
+    },
+    {
+      "name": "upper-dipole-array",
+      "position": [
+        26,
+        339,
+        30
+      ],
+      "lookAt": [
+        0,
+        338,
+        0
+      ]
+    },
+    {
+      "name": "digital-tip",
+      "position": [
+        22,
+        367,
+        28
+      ],
+      "lookAt": [
+        0,
+        362,
+        0
+      ]
+    },
+    {
+      "name": "southwest-anchor",
+      "position": [
+        -148,
+        8,
+        189
+      ],
+      "lookAt": [
+        -136.5,
+        1.5,
+        175.5
+      ]
+    },
+    {
+      "name": "mapped-three-anchor-plan",
+      "position": [
+        390,
+        700,
+        400
+      ],
+      "lookAt": [
+        15,
+        100,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -650,
+        250,
+        750
+      ],
+      "lookAt": [
+        0,
+        175,
+        0
+      ]
+    }
+  ]
+}

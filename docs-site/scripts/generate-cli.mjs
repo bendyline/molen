@@ -68,6 +68,11 @@ const GROUPS = [
     ops: ['import_asset', 'inspect_asset', 'list_assets', 'pack_asset', 'stage_assets'],
   },
   {
+    title: 'Audio',
+    blurb: 'Hear what a scene would play without a browser, and build sound banks with provenance.',
+    ops: ['plan_audio', 'import_sound', 'check_soundbank'],
+  },
+  {
     title: 'Materials and textures',
     blurb: 'Bake procedural material graphs and round-trip hand-painted UV templates.',
     ops: ['rasterize_material', 'apply_uv_paint'],
@@ -153,15 +158,16 @@ outline: [2, 3]
 drift from the shipped commands.
 
 ::: tip Running the CLI
-After \`pnpm install && pnpm -r build\`, invoke it as \`node packages/tooling/dist/cli.mjs <cmd>\`
-(note \`.mjs\`). If the package \`bin\` is on your \`PATH\`, just \`molen <cmd>\`.
+Inside a project that installs \`@bendyline/molen-tooling\` (every \`molen new\` project does), run
+\`npx molen <cmd>\`; the usage lines below drop the \`npx\`. To create that project, name the
+scoped package — the unscoped \`molen\` on npm is unrelated.
 :::
 
 \`\`\`sh
-molen new my-experience            # scaffold a runnable project
-molen validate scene.json          # cheap — do it constantly
-molen sim run scene.json --ticks 30 --assert checks.json --hash
-molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
+npx @bendyline/molen-tooling new my-experience   # scaffold a runnable project
+npx molen validate scene.json                    # cheap — do it constantly
+npx molen sim run scene.json --ticks 30 --assert checks.json --hash
+npx molen shot scene.json --ticks 30 --camera 0,6,16 --look 0,0,0 --out shot.png
 \`\`\`
 
 ${OPS_CATALOG.filter((o) => o.cli).length} commands, in the order you tend to meet them. Each entry

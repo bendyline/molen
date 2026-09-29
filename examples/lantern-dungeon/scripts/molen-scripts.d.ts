@@ -137,7 +137,7 @@ type MolenAircraftData = {
         nodes: string[];
         sources?: Record<string, {
             component: string;
-            path: string | number[];
+            path: (string | number)[];
           }>;
         bindings: {
           node: string;
@@ -193,6 +193,138 @@ type MolenAircraftStateData = {
   grounded: boolean;
   crashed: boolean;
   waitingForTerrain: boolean;
+};
+/** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+type MolenAudioEnvironmentData = {
+  buses?: Record<string, number>;
+  ambience?: {
+    sound: string;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+    gain?: number;
+    gainFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    pitchFrom?: {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    } | {
+      signal: string;
+      curve: [number, number][];
+      smoothS?: number;
+    }[];
+    fadeS?: number;
+  }[];
+  music?: {
+    playlist: string[];
+    mode?: 'sequence' | 'shuffle';
+    crossfadeS?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  events?: Record<string, {
+      sound: string;
+      at?: string;
+      gain?: number;
+      pitch?: number;
+      bus?: string;
+    }>;
+  footsteps?: {
+    sound: string;
+    surfaces?: Record<string, string>;
+    strideM?: number;
+    gain?: number;
+    when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+        min?: number;
+        max?: number;
+      } | {
+        exists: boolean;
+      }>;
+  };
+  listenerEntity?: string;
+  maxVoices?: number;
+};
+/** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+type MolenAudioSourceData = {
+  sound: string;
+  loop?: boolean;
+  autoplay?: boolean;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  spatial?: false | {
+    refDistance?: number;
+    maxDistance?: number;
+    rolloff?: number;
+    model?: 'linear' | 'inverse' | 'exponential';
+  };
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
+  gainFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  pitchFrom?: {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  } | {
+    signal: string;
+    curve: [number, number][];
+    smoothS?: number;
+  }[];
+  triggerFrom?: {
+    signal: string;
+    every?: number;
+    onChange?: boolean;
+    sound?: string;
+  };
+  startTick?: number;
+};
+/** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+type MolenAudioZoneData = {
+  sound: string;
+  shape: {
+    kind: 'sphere';
+    radius: number;
+  } | {
+    kind: 'box';
+    halfExtents: [number, number, number];
+  };
+  fade?: number;
+  gain?: number;
+  bus?: string;
+  when?: Record<string, string | number | boolean | (string | number | boolean)[] | {
+      min?: number;
+      max?: number;
+    } | {
+      exists: boolean;
+    }>;
 };
 /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
 type MolenCharacterData = {
@@ -527,7 +659,7 @@ type MolenLocalTransformData = {
 type MolenModel_signalsData = {
   sources: Record<string, {
       component: string;
-      path: string | number[];
+      path: (string | number)[];
     }>;
   bindings: {
     node: string;
@@ -711,7 +843,7 @@ type MolenVehicleData = {
       nodes: string[];
       sources?: Record<string, {
           component: string;
-          path: string | number[];
+          path: (string | number)[];
         }>;
       bindings: {
         node: string;
@@ -806,6 +938,12 @@ interface MolenComponentData {
   'aircraftInput': MolenAircraftInputData;
   /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
   'aircraftState': MolenAircraftStateData;
+  /** Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. */
+  'audioEnvironment': MolenAudioEnvironmentData;
+  /** Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. */
+  'audioSource': MolenAudioSourceData;
+  /** Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). */
+  'audioZone': MolenAudioZoneData;
   /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
   'character': MolenCharacterData;
   /** 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. */
@@ -892,7 +1030,7 @@ type MolenComponentName = keyof MolenComponentData;
 type MolenComponentPatch = { [K in MolenComponentName]?: MolenComponentData[K] };
 
 /** Entity ids declared in the scene. Ids of spawned entities are plain strings. */
-type MolenEntityId = 'barrel-left' | 'barrel-right' | 'bat-roost' | 'bones-north' | 'bones-west' | 'brazier-entry' | 'brazier-gate' | 'brazier-vault' | 'column-0' | 'column-1' | 'column-2' | 'column-3' | 'column-4' | 'column-5' | 'crate-entrance' | 'crate-west' | 'crystals-east' | 'crystals-vault' | 'environment' | 'fill-crystal' | 'fill-entry' | 'fill-gate' | 'fill-relic' | 'fill-vault' | 'floor' | 'game' | 'gargoyle-effigy' | 'gate' | 'held-lantern' | 'held-sword' | 'imp-scout' | 'key' | 'key-chest' | 'lantern-light' | 'north-arch' | 'pedestal' | 'player' | 'potion-cache' | 'relic' | 'roof-tile-1-1' | 'roof-tile-1-2' | 'roof-tile-1-3' | 'roof-tile-1-5' | 'roof-tile-1-6' | 'roof-tile-1-7' | 'roof-tile-1-8' | 'roof-tile-1-9' | 'roof-tile-2-1' | 'roof-tile-2-2' | 'roof-tile-2-3' | 'roof-tile-2-5' | 'roof-tile-2-7' | 'roof-tile-2-8' | 'roof-tile-2-9' | 'roof-tile-3-1' | 'roof-tile-3-3' | 'roof-tile-3-5' | 'roof-tile-3-7' | 'roof-tile-3-9' | 'roof-tile-4-1' | 'roof-tile-4-2' | 'roof-tile-4-3' | 'roof-tile-4-5' | 'roof-tile-4-6' | 'roof-tile-4-7' | 'roof-tile-4-8' | 'roof-tile-4-9' | 'roof-tile-5-1' | 'roof-tile-5-2' | 'roof-tile-5-3' | 'roof-tile-5-5' | 'roof-tile-5-6' | 'roof-tile-5-7' | 'roof-tile-5-8' | 'roof-tile-5-9' | 'roof-tile-6-1' | 'roof-tile-6-2' | 'roof-tile-6-3' | 'roof-tile-6-5' | 'roof-tile-6-6' | 'roof-tile-6-7' | 'roof-tile-6-8' | 'roof-tile-6-9' | 'roof-tile-7-1' | 'roof-tile-7-3' | 'roof-tile-7-5' | 'roof-tile-7-7' | 'roof-tile-7-9' | 'roof-tile-8-1' | 'roof-tile-8-2' | 'roof-tile-8-3' | 'roof-tile-8-5' | 'roof-tile-8-7' | 'roof-tile-8-8' | 'roof-tile-8-9' | 'roof-tile-9-1' | 'roof-tile-9-2' | 'roof-tile-9-3' | 'roof-tile-9-5' | 'roof-tile-9-6' | 'roof-tile-9-7' | 'roof-tile-9-8' | 'roof-tile-9-9' | 'sentinel0' | 'sentinel1' | 'sentinel2' | 'shield-cache' | 'tile-1-1' | 'tile-1-2' | 'tile-1-3' | 'tile-1-5' | 'tile-1-6' | 'tile-1-7' | 'tile-1-8' | 'tile-1-9' | 'tile-2-1' | 'tile-2-2' | 'tile-2-3' | 'tile-2-5' | 'tile-2-7' | 'tile-2-8' | 'tile-2-9' | 'tile-3-1' | 'tile-3-3' | 'tile-3-5' | 'tile-3-7' | 'tile-3-9' | 'tile-4-1' | 'tile-4-2' | 'tile-4-3' | 'tile-4-5' | 'tile-4-6' | 'tile-4-7' | 'tile-4-8' | 'tile-4-9' | 'tile-5-1' | 'tile-5-2' | 'tile-5-3' | 'tile-5-5' | 'tile-5-6' | 'tile-5-7' | 'tile-5-8' | 'tile-5-9' | 'tile-6-1' | 'tile-6-2' | 'tile-6-3' | 'tile-6-5' | 'tile-6-6' | 'tile-6-7' | 'tile-6-8' | 'tile-6-9' | 'tile-7-1' | 'tile-7-3' | 'tile-7-5' | 'tile-7-7' | 'tile-7-9' | 'tile-8-1' | 'tile-8-2' | 'tile-8-3' | 'tile-8-5' | 'tile-8-7' | 'tile-8-8' | 'tile-8-9' | 'tile-9-1' | 'tile-9-2' | 'tile-9-3' | 'tile-9-5' | 'tile-9-6' | 'tile-9-7' | 'tile-9-8' | 'tile-9-9' | 'torch0' | 'torch0-light' | 'torch1' | 'torch1-light' | 'torch2' | 'torch2-light' | 'torch3' | 'torch3-light' | 'torch4' | 'torch4-light' | 'torch5' | 'torch5-light' | 'torch6' | 'torch6-light' | 'urn-east' | 'urn-west' | 'wall-0-0' | 'wall-0-1' | 'wall-0-10' | 'wall-0-2' | 'wall-0-3' | 'wall-0-4' | 'wall-0-5' | 'wall-0-6' | 'wall-0-7' | 'wall-0-8' | 'wall-0-9' | 'wall-1-0' | 'wall-1-10' | 'wall-1-4' | 'wall-10-0' | 'wall-10-1' | 'wall-10-10' | 'wall-10-2' | 'wall-10-3' | 'wall-10-4' | 'wall-10-5' | 'wall-10-6' | 'wall-10-7' | 'wall-10-8' | 'wall-10-9' | 'wall-2-0' | 'wall-2-10' | 'wall-2-4' | 'wall-2-6' | 'wall-3-0' | 'wall-3-10' | 'wall-3-2' | 'wall-3-4' | 'wall-3-6' | 'wall-3-8' | 'wall-4-0' | 'wall-4-10' | 'wall-4-4' | 'wall-5-0' | 'wall-5-10' | 'wall-6-0' | 'wall-6-10' | 'wall-6-4' | 'wall-7-0' | 'wall-7-10' | 'wall-7-2' | 'wall-7-4' | 'wall-7-6' | 'wall-7-8' | 'wall-8-0' | 'wall-8-10' | 'wall-8-4' | 'wall-8-6' | 'wall-9-0' | 'wall-9-10' | 'wall-9-4' | (string & {});
+type MolenEntityId = 'audio' | 'barrel-left' | 'barrel-right' | 'bat-roost' | 'bones-north' | 'bones-west' | 'brazier-entry' | 'brazier-gate' | 'brazier-vault' | 'column-0' | 'column-1' | 'column-2' | 'column-3' | 'column-4' | 'column-5' | 'crate-entrance' | 'crate-west' | 'crystals-east' | 'crystals-vault' | 'environment' | 'fill-crystal' | 'fill-entry' | 'fill-gate' | 'fill-relic' | 'fill-vault' | 'floor' | 'game' | 'gargoyle-effigy' | 'gate' | 'held-lantern' | 'held-sword' | 'imp-scout' | 'key' | 'key-chest' | 'lantern-light' | 'north-arch' | 'pedestal' | 'player' | 'potion-cache' | 'relic' | 'roof-tile-1-1' | 'roof-tile-1-2' | 'roof-tile-1-3' | 'roof-tile-1-5' | 'roof-tile-1-6' | 'roof-tile-1-7' | 'roof-tile-1-8' | 'roof-tile-1-9' | 'roof-tile-2-1' | 'roof-tile-2-2' | 'roof-tile-2-3' | 'roof-tile-2-5' | 'roof-tile-2-7' | 'roof-tile-2-8' | 'roof-tile-2-9' | 'roof-tile-3-1' | 'roof-tile-3-3' | 'roof-tile-3-5' | 'roof-tile-3-7' | 'roof-tile-3-9' | 'roof-tile-4-1' | 'roof-tile-4-2' | 'roof-tile-4-3' | 'roof-tile-4-5' | 'roof-tile-4-6' | 'roof-tile-4-7' | 'roof-tile-4-8' | 'roof-tile-4-9' | 'roof-tile-5-1' | 'roof-tile-5-2' | 'roof-tile-5-3' | 'roof-tile-5-5' | 'roof-tile-5-6' | 'roof-tile-5-7' | 'roof-tile-5-8' | 'roof-tile-5-9' | 'roof-tile-6-1' | 'roof-tile-6-2' | 'roof-tile-6-3' | 'roof-tile-6-5' | 'roof-tile-6-6' | 'roof-tile-6-7' | 'roof-tile-6-8' | 'roof-tile-6-9' | 'roof-tile-7-1' | 'roof-tile-7-3' | 'roof-tile-7-5' | 'roof-tile-7-7' | 'roof-tile-7-9' | 'roof-tile-8-1' | 'roof-tile-8-2' | 'roof-tile-8-3' | 'roof-tile-8-5' | 'roof-tile-8-7' | 'roof-tile-8-8' | 'roof-tile-8-9' | 'roof-tile-9-1' | 'roof-tile-9-2' | 'roof-tile-9-3' | 'roof-tile-9-5' | 'roof-tile-9-6' | 'roof-tile-9-7' | 'roof-tile-9-8' | 'roof-tile-9-9' | 'sentinel0' | 'sentinel1' | 'sentinel2' | 'shield-cache' | 'tile-1-1' | 'tile-1-2' | 'tile-1-3' | 'tile-1-5' | 'tile-1-6' | 'tile-1-7' | 'tile-1-8' | 'tile-1-9' | 'tile-2-1' | 'tile-2-2' | 'tile-2-3' | 'tile-2-5' | 'tile-2-7' | 'tile-2-8' | 'tile-2-9' | 'tile-3-1' | 'tile-3-3' | 'tile-3-5' | 'tile-3-7' | 'tile-3-9' | 'tile-4-1' | 'tile-4-2' | 'tile-4-3' | 'tile-4-5' | 'tile-4-6' | 'tile-4-7' | 'tile-4-8' | 'tile-4-9' | 'tile-5-1' | 'tile-5-2' | 'tile-5-3' | 'tile-5-5' | 'tile-5-6' | 'tile-5-7' | 'tile-5-8' | 'tile-5-9' | 'tile-6-1' | 'tile-6-2' | 'tile-6-3' | 'tile-6-5' | 'tile-6-6' | 'tile-6-7' | 'tile-6-8' | 'tile-6-9' | 'tile-7-1' | 'tile-7-3' | 'tile-7-5' | 'tile-7-7' | 'tile-7-9' | 'tile-8-1' | 'tile-8-2' | 'tile-8-3' | 'tile-8-5' | 'tile-8-7' | 'tile-8-8' | 'tile-8-9' | 'tile-9-1' | 'tile-9-2' | 'tile-9-3' | 'tile-9-5' | 'tile-9-6' | 'tile-9-7' | 'tile-9-8' | 'tile-9-9' | 'torch0' | 'torch0-light' | 'torch1' | 'torch1-light' | 'torch2' | 'torch2-light' | 'torch3' | 'torch3-light' | 'torch4' | 'torch4-light' | 'torch5' | 'torch5-light' | 'torch6' | 'torch6-light' | 'urn-east' | 'urn-west' | 'wall-0-0' | 'wall-0-1' | 'wall-0-10' | 'wall-0-2' | 'wall-0-3' | 'wall-0-4' | 'wall-0-5' | 'wall-0-6' | 'wall-0-7' | 'wall-0-8' | 'wall-0-9' | 'wall-1-0' | 'wall-1-10' | 'wall-1-4' | 'wall-10-0' | 'wall-10-1' | 'wall-10-10' | 'wall-10-2' | 'wall-10-3' | 'wall-10-4' | 'wall-10-5' | 'wall-10-6' | 'wall-10-7' | 'wall-10-8' | 'wall-10-9' | 'wall-2-0' | 'wall-2-10' | 'wall-2-4' | 'wall-2-6' | 'wall-3-0' | 'wall-3-10' | 'wall-3-2' | 'wall-3-4' | 'wall-3-6' | 'wall-3-8' | 'wall-4-0' | 'wall-4-10' | 'wall-4-4' | 'wall-5-0' | 'wall-5-10' | 'wall-6-0' | 'wall-6-10' | 'wall-6-4' | 'wall-7-0' | 'wall-7-10' | 'wall-7-2' | 'wall-7-4' | 'wall-7-6' | 'wall-7-8' | 'wall-8-0' | 'wall-8-10' | 'wall-8-4' | 'wall-8-6' | 'wall-9-0' | 'wall-9-10' | 'wall-9-4' | (string & {});
 /** Prefab names declared in the scene. */
 type MolenPrefabName = 'box' | 'cylinder' | 'model' | 'sentinel' | 'sphere' | (string & {});
 /** Registry type ids this project declares (`molen.spawnType`). */
@@ -1035,6 +1173,29 @@ interface MolenMath {
   cbrt(...args: number[]): number;
 }
 
+/** Options for `molen.audio.play`. Omit entity and position for a non-positional sound. */
+interface MolenAudioPlayOptions {
+  /** Play at (and follow) this entity's transform. */
+  entity?: MolenEntityId;
+  /** Play at a fixed world position. */
+  position?: MolenVec3;
+  gain?: number;
+  pitch?: number;
+  bus?: string;
+  /** Loop until stopped; default the sound's own loop flag. */
+  loop?: boolean;
+}
+
+/** `molen.audio`: each call emits an `audio.*` event the client plays (guide/audio.md). */
+interface MolenAudioApi {
+  /** Play a sound-bank id; returns a handle for `stop`. */
+  play(sound: string, opts?: MolenAudioPlayOptions): string;
+  /** Stop by handle, or every voice matching an entity and/or sound. */
+  stop(target: string | { entity?: MolenEntityId; sound?: string }, fadeS?: number): void;
+  /** Switch background music to a track or playlist; null stops it. */
+  music(playlist: string | string[] | null, opts?: { crossfadeS?: number }): void;
+}
+
 /** The verb set injected into every scene-data script as `molen`. */
 interface MolenApi {
   /** Spawn from a component map. */
@@ -1091,6 +1252,8 @@ interface MolenApi {
     handler: (payload: MolenCommands[T], ctx: MolenTickContext, command: MolenCommand) => void,
   ): MolenUnsubscribe;
   emit(type: string, payload?: MolenJsonValue): void;
+  /** Sound: play/stop one-shots and loops, switch music. Never affects the simulation. */
+  readonly audio: MolenAudioApi;
   raycast(origin: MolenVec3, dir: MolenVec3, maxDist: number, mask?: number): MolenRayHit | null;
   overlapCircle(center: MolenVec3, radius: number, mask?: number): string[];
   /** Emit `event` after `ticks` ticks (snapshot-safe world timer). Returns the timer id. */

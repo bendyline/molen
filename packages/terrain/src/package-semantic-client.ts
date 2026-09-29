@@ -17,6 +17,7 @@ import {
   type TerrainSemanticMeshOptions,
   type TerrainSemanticTileRenderer,
 } from './semantic-client';
+import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
 
 export interface TerrainPackageSemanticLayerStyle {
   id?: string;
@@ -32,6 +33,12 @@ export interface CreateTerrainPackageSemanticLayersOptions
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
   waterLayer?: TerrainPackageSemanticLayerStyle;
   featuresLayer?: TerrainPackageSemanticLayerStyle;
+  /**
+   * Serve terrain levels finer than a sidecar's last level from that level's tiles, rescaled and
+   * clipped (default true). Without it the finest terrain tiles near the camera have no water,
+   * roads or buildings whenever the vector archive stops short of the terrain.
+   */
+  overzoom?: boolean;
 }
 
 export interface TerrainPackageSemanticLayers {
@@ -60,7 +67,7 @@ export async function createTerrainPackageSemanticLayers(
   pkg: TerrainPackageDescriptor,
   options: CreateTerrainPackageSemanticLayersOptions,
 ): Promise<TerrainPackageSemanticLayers> {
-  const { landcoverLayer, waterLayer, featuresLayer, ...openOptions } = options;
+  const { landcoverLayer, waterLayer, featuresLayer, overzoom = true, ...openOptions } = options;
   const semantics = await openTerrainPackageSemantics(pkg, openOptions);
   const layers: TerrainPyramidTileLayer[] = [];
   let landcoverSource = semantics.landcover?.source;
@@ -93,6 +100,21 @@ export async function createTerrainPackageSemanticLayers(
       featuresSource = route(semantics.features.source);
     }
   }
+  // Layers may reach past a sidecar's last level; those tiles overzoom its finest tiles.
+  const packageMaxLevel = pkg.tileMatrix.maxLevel;
+  const reach = (sidecarMax: number): number => (overzoom ? packageMaxLevel : sidecarMax);
+  if (overzoom && landcoverSource !== undefined && semantics.landcover !== undefined) {
+    landcoverSource = createOverzoomTerrainSemanticSource(
+      landcoverSource,
+      semantics.landcover.maxLevel,
+    );
+  }
+  if (overzoom && featuresSource !== undefined && semantics.features !== undefined) {
+    featuresSource = createOverzoomTerrainSemanticSource(
+      featuresSource,
+      semantics.features.maxLevel,
+    );
+  }
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;
@@ -107,7 +129,7 @@ export async function createTerrainPackageSemanticLayers(
           !semantics.features ||
           !pkg.features?.layers.includes('poi') ||
           address.level < semantics.features.minLevel ||
-          address.level > semantics.features.maxLevel
+          address.level > reach(semantics.features.maxLevel)
         )
           return tile;
         const features = await pointsSource.load(address, signal);
@@ -131,7 +153,7 @@ export async function createTerrainPackageSemanticLayers(
         minLevel:
           style.minLevel ??
           defaultMinimumLevel(semantics.landcover.minLevel, semantics.landcover.maxLevel, 3),
-        maxLevel: style.maxLevel ?? semantics.landcover.maxLevel,
+        maxLevel: style.maxLevel ?? reach(semantics.landcover.maxLevel),
       }),
     );
   }
@@ -153,7 +175,7 @@ export async function createTerrainPackageSemanticLayers(
             }),
           visible: style.visible ?? false,
           minLevel: style.minLevel ?? semantics.features.minLevel,
-          maxLevel: style.maxLevel ?? semantics.features.maxLevel,
+          maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
         }),
       );
     }
@@ -178,7 +200,7 @@ export async function createTerrainPackageSemanticLayers(
           !landSource ||
           !semantics.landcover ||
           address.level < semantics.landcover.minLevel ||
-          address.level > semantics.landcover.maxLevel
+          address.level > reach(semantics.landcover.maxLevel)
         )
           return tile;
         const land = await landSource.load(address, signal);
@@ -201,7 +223,7 @@ export async function createTerrainPackageSemanticLayers(
         minLevel:
           style.minLevel ??
           defaultMinimumLevel(semantics.features.minLevel, semantics.features.maxLevel, 2),
-        maxLevel: style.maxLevel ?? semantics.features.maxLevel,
+        maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
       }),
     );
   }

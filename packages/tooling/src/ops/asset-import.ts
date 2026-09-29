@@ -3,19 +3,31 @@ import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import type { AssetHull, AssetSidecar } from '@bendyline/molen-schema';
 import { encodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
-import type { Document, ILogger, Mesh } from '@gltf-transform/core';
+import type {
+  Document,
+  ILogger,
+  Material,
+  Mesh,
+  Primitive,
+  PrimitiveTarget,
+} from '@gltf-transform/core';
 import { getBounds, Node, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { dedup, prune, quantize, weld } from '@gltf-transform/functions';
+import { dedup, listTextureInfoByMaterial, prune, quantize, weld } from '@gltf-transform/functions';
 import { findProjectFile, updateProjectFile } from '../project';
+import { parseJson } from './parse';
 
 export interface ImportAssetInput {
   /** Source model file (.glb / .gltf). */
   path: string;
   /** Asset id (default: slugged filename). Dotted ids fall under namespace reservations. */
   id?: string;
-  /** Output assets root (default: <project dir>/assets, else ./assets). */
+  /** Output assets root; explicit overrides retain the <root>/<dotted-id-as-path> layout. */
   outDir?: string;
+  /** Exact bundle directory, relative to cwd when not absolute. Mutually exclusive with outDir.
+   * Without either override, reimports preserve the project-registered asset directory; new
+   * assets use <project dir>/assets/<dotted-id-as-path> (or ./assets without a project). */
+  assetDir?: string;
   /** Also extract a whole-asset collision trimesh into collision.bin. */
   trimesh?: boolean;
   /** Skip the normalize pass (dedup/prune/weld/quantize). */
@@ -217,6 +229,84 @@ function buildStats(doc: Document, sizeBytes: number): AssetSidecar['stats'] {
 
 const NODE_CAP = 128;
 
+/** Only the explicit, supported extras contract makes unused UV0 meaningful at runtime. */
+function sharedSurfaceRef(material: Material | null): string | undefined {
+  const value = material?.getExtras().molenSurface;
+  if (value === null || typeof value !== 'object') return undefined;
+  const surface = value as Record<string, unknown>;
+  return surface.uv === 'repeats' &&
+    typeof surface.ref === 'string' &&
+    surface.ref.trim().length > 0 &&
+    typeof surface.slot === 'string' &&
+    ['wall', 'roof', 'trim', 'foundation', 'window', 'door'].includes(surface.slot)
+    ? surface.ref
+    : undefined;
+}
+
+/** Keep opted-in UV0 across pruning without retaining unused attributes on other primitives. */
+async function prunePreservingSharedSurfaceUvs(doc: Document): Promise<void> {
+  const saved = new Map<Primitive, string>();
+  for (const mesh of doc.getRoot().listMeshes()) {
+    for (const primitive of mesh.listPrimitives()) {
+      const uv = primitive.getAttribute('TEXCOORD_0');
+      if (sharedSurfaceRef(primitive.getMaterial()) === undefined || uv === null) continue;
+      // A temporary custom semantic keeps the accessor referenced even when prune removes UV0.
+      let semantic = '_MOLEN_SHARED_UV0';
+      while (primitive.getAttribute(semantic) !== null) semantic += '_';
+      primitive.setAttribute(semantic, uv);
+      saved.set(primitive, semantic);
+    }
+  }
+  await doc.transform(prune());
+  const groups = new Map<Material, Primitive[]>();
+  for (const mesh of doc.getRoot().listMeshes()) {
+    for (const primitive of mesh.listPrimitives()) {
+      const material = primitive.getMaterial();
+      if (material === null || sharedSurfaceRef(material) === undefined) continue;
+      const group = groups.get(material) ?? [];
+      group.push(primitive);
+      groups.set(material, group);
+    }
+  }
+  for (const [material, primitives] of groups) {
+    // prune can compact a fallback texture's UV1 into UV0. Move that surviving coordinate
+    // set aside before restoring repeat UVs; update every primitive using this material.
+    const shift = primitives.some((primitive) => {
+      const semantic = saved.get(primitive);
+      const uv = primitive.getAttribute('TEXCOORD_0');
+      return uv !== null && (semantic === undefined || uv !== primitive.getAttribute(semantic));
+    });
+    if (shift) {
+      const shiftUvs = (primitive: Primitive | PrimitiveTarget): void => {
+        const coordinates = primitive
+          .listSemantics()
+          .filter((semantic) => /^TEXCOORD_\d+$/.test(semantic))
+          .map((semantic) => Number(semantic.slice(9)))
+          .sort((a, b) => b - a);
+        for (const index of coordinates) {
+          primitive.setAttribute(
+            `TEXCOORD_${index + 1}`,
+            primitive.getAttribute(`TEXCOORD_${index}`),
+          );
+          primitive.setAttribute(`TEXCOORD_${index}`, null);
+        }
+      };
+      for (const primitive of primitives) {
+        shiftUvs(primitive);
+        for (const target of primitive.listTargets()) shiftUvs(target);
+      }
+      for (const info of listTextureInfoByMaterial(material))
+        info.setTexCoord(info.getTexCoord() + 1);
+    }
+    for (const primitive of primitives) {
+      const semantic = saved.get(primitive);
+      if (semantic === undefined) continue;
+      primitive.setAttribute('TEXCOORD_0', primitive.getAttribute(semantic));
+      primitive.setAttribute(semantic, null);
+    }
+  }
+}
+
 interface ResolvedImportProject {
   projectPath?: string;
   warning?: string;
@@ -265,6 +355,18 @@ async function resolveImportProject(
 export async function importAsset(input: ImportAssetInput): Promise<ImportAssetOutput> {
   const warnings: string[] = [];
   try {
+    if (input.assetDir !== undefined && input.outDir !== undefined)
+      return {
+        ok: false,
+        error:
+          'assetDir and outDir are mutually exclusive; choose an exact bundle directory or an assets root',
+      };
+    if (input.assetDir !== undefined && input.assetDir.trim().length === 0)
+      return { ok: false, error: 'assetDir must not be empty' };
+    if (input.assetDir?.includes('\0'))
+      return { ok: false, error: 'assetDir must not contain a null byte' };
+    const id = slug(input.id ?? basename(input.path, extname(input.path)));
+    if (id.length === 0) return { ok: false, error: 'asset id is empty after slugging' };
     const sourcePath = resolve(input.path);
     // Decide where this import lands before doing any expensive work, so an ambiguous project
     // fails in milliseconds rather than after a full normalize pass.
@@ -272,6 +374,73 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     if (resolved.error !== undefined) return { ok: false, error: resolved.error };
     const projectPath = resolved.projectPath;
     if (resolved.warning !== undefined) warnings.push(resolved.warning);
+    let registeredAssets: Record<string, string> = {};
+    if (projectPath !== undefined) {
+      const project = validate('project', parseJson(await readFile(projectPath, 'utf8')));
+      if (!project.ok) return { ok: false, error: project.formatted };
+      registeredAssets = project.value.assets;
+    }
+    const registeredSidecar =
+      input.assetDir === undefined && input.outDir === undefined ? registeredAssets[id] : undefined;
+    const assetsRoot =
+      input.outDir ??
+      (projectPath !== undefined
+        ? join(dirname(projectPath), 'assets')
+        : resolve(input.cwd ?? process.cwd(), 'assets'));
+    const dir =
+      input.assetDir !== undefined
+        ? resolve(input.cwd ?? process.cwd(), input.assetDir)
+        : registeredSidecar !== undefined && projectPath !== undefined
+          ? dirname(resolve(dirname(projectPath), registeredSidecar))
+          : join(assetsRoot, id.replaceAll('.', '/'));
+    const sidecarPath =
+      registeredSidecar !== undefined && projectPath !== undefined
+        ? resolve(dirname(projectPath), registeredSidecar)
+        : join(dir, 'asset.json');
+    if (projectPath !== undefined) {
+      // Registered sidecars need not be named asset.json. Protect their model.glb too when
+      // an explicit destination (or a legacy ID-derived destination) targets the same bundle.
+      for (const [registeredId, path] of Object.entries(registeredAssets)) {
+        if (
+          registeredId !== id &&
+          relative(resolve(dir), dirname(resolve(dirname(projectPath), path))) === ''
+        )
+          return {
+            ok: false,
+            error: `${dir} belongs to asset "${registeredId}"; refusing to overwrite it with "${id}"`,
+          };
+      }
+    }
+    try {
+      if (!(await stat(dir)).isDirectory())
+        return { ok: false, error: `${dir} is not a directory` };
+      if (input.force !== true)
+        return {
+          ok: false,
+          error: `${dir} already exists; choose another id or pass force: true to replace it`,
+        };
+      // An explicit directory must not silently replace a different asset's bundle.
+      let existing: unknown;
+      try {
+        existing = parseJson(await readFile(sidecarPath, 'utf8'));
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== 'ENOENT' && !(error instanceof SyntaxError))
+          throw error;
+      }
+      if (
+        existing !== null &&
+        typeof existing === 'object' &&
+        'id' in existing &&
+        typeof existing.id === 'string' &&
+        existing.id !== id
+      )
+        return {
+          ok: false,
+          error: `${dir} belongs to asset "${existing.id}"; refusing to overwrite it with "${id}"`,
+        };
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
     const sourceBytes = new Uint8Array(await readFile(sourcePath));
     const io = await createAssetIO();
     let doc: Document;
@@ -291,8 +460,25 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     // The reader copies the IO's logger onto the Document; set it again so a transform pass can
     // never fall back to the console.log-backed default (see gltfLogger).
     doc.setLogger(gltfLogger);
+    const sharedSurfaces = [
+      ...new Set(
+        doc
+          .getRoot()
+          .listMaterials()
+          .map(sharedSurfaceRef)
+          .filter((ref): ref is string => ref !== undefined),
+      ),
+    ].sort();
+    if (sharedSurfaces.length > 0) {
+      warnings.push(
+        `shared surfaces are external runtime dependencies: ${sharedSurfaces.join(', ')}; ` +
+          'hosts without these surfaces render the embedded PBR fallback',
+      );
+    }
     if (input.optimize !== false) {
-      await doc.transform(dedup(), prune(), weld(), quantize());
+      await doc.transform(dedup());
+      await prunePreservingSharedSurfaceUvs(doc);
+      await doc.transform(weld(), quantize());
     }
 
     const root = doc.getRoot();
@@ -389,26 +575,7 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
       };
     });
 
-    // Layout: assets/<id>/{model.glb, asset.json, collision.bin?}
-    const id = slug(input.id ?? basename(sourcePath, extname(sourcePath)));
-    if (id.length === 0) return { ok: false, error: 'asset id is empty after slugging' };
-    const assetsRoot =
-      input.outDir ??
-      (projectPath !== undefined
-        ? join(dirname(projectPath), 'assets')
-        : resolve(input.cwd ?? process.cwd(), 'assets'));
-    const dir = join(assetsRoot, id.replaceAll('.', '/'));
-    try {
-      await stat(dir);
-      if (input.force !== true) {
-        return {
-          ok: false,
-          error: `${dir} already exists; choose another id or pass force: true to replace it`,
-        };
-      }
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-    }
+    // Keep model-relative members together, independently of the stable asset ID.
     await mkdir(dir, { recursive: true });
 
     const glb = await io.writeBinary(doc);
@@ -471,7 +638,6 @@ export async function importAsset(input: ImportAssetInput): Promise<ImportAssetO
     const checked = validate('asset', sidecar);
     if (!checked.ok)
       return { ok: false, error: `sidecar failed self-validation:\n${checked.formatted}` };
-    const sidecarPath = join(dir, 'asset.json');
     await writeFile(sidecarPath, `${JSON.stringify(checked.value, null, 2)}\n`);
     try {
       await stat(sidecarPath);

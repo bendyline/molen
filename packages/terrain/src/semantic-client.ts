@@ -96,9 +96,8 @@ function terrainWaterParameters(
     transparent: opacity < 1,
     opacity,
     depthWrite: true,
-    polygonOffset: true,
-    polygonOffsetFactor: -3,
-    polygonOffsetUnits: -3,
+    // Geometry already includes the water height offset. A slope-based depth bias can
+    // pull distant water in front of bridge decks several meters above its surface.
   };
 }
 
@@ -629,19 +628,27 @@ function waterSurfaceHeight(
   context: TerrainPyramidTileLayerContext,
   offset: number,
 ): number {
-  const samples = polygon.outer.map((point) =>
+  // Shoreline vertices often sample the bank, especially on coarse DEM tiles. Taking
+  // their median can lift a whole lake above its bridges. Prefer interior water samples;
+  // a lower quartile rejects bridge/shore contamination without trusting one low outlier.
+  const height = (u: number, v: number): number =>
     context.heightfield.sampleHeight(
-      context.origin[0] + point[0] * context.tileSize,
-      context.origin[1] + point[1] * context.tileSize,
-    ),
-  );
+      context.origin[0] + u * context.tileSize,
+      context.origin[1] + v * context.tileSize,
+    );
+  const bounds = clampBounds(polygonBounds(polygon), 0, 1);
+  const samples: number[] = [];
+  for (let y = 0; y < 9; y++)
+    for (let x = 0; x < 9; x++) {
+      const p: TerrainSemanticPoint = [
+        bounds[0] + ((bounds[2] - bounds[0]) * (x + 0.5)) / 9,
+        bounds[1] + ((bounds[3] - bounds[1]) * (y + 0.5)) / 9,
+      ];
+      if (pointInPolygon(p, polygon)) samples.push(height(...p));
+    }
+  if (!samples.length) for (const p of polygon.outer) samples.push(height(...p));
   samples.sort((left, right) => left - right);
-  const middle = Math.floor(samples.length / 2);
-  const median =
-    samples.length % 2 === 0
-      ? ((samples[middle - 1] ?? 0) + (samples[middle] ?? 0)) / 2
-      : (samples[middle] ?? 0);
-  return median + offset;
+  return (samples[Math.floor((samples.length - 1) * 0.25)] ?? 0) + offset;
 }
 
 function createBuildingMesh(

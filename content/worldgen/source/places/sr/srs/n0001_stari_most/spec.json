@@ -1,0 +1,209 @@
+{
+  "planId": "N0001",
+  "id": "N0001",
+  "assetId": "molen.worldgen.structure.n0001_stari_most",
+  "title": "Stari Most",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q188528",
+  "referenceCoordinate": {
+    "latitude": 43.337277777,
+    "longitude": 17.815027777
+  },
+  "visualBrief": "Narrow humpbacked Tenelija-stone arch with 111 individually jointed radial courses, ashlar spandrels, shaped cornices, stone parapets, iron guards and transverse walkway traction strips.",
+  "size": [
+    36.20000076293945,
+    21.68000030517578,
+    5.125
+  ],
+  "actualBounds": {
+    "min": [
+      -18.100000381469727,
+      0,
+      -2.575000047683716
+    ],
+    "max": [
+      18.100000381469727,
+      21.68000030517578,
+      2.549999952316284
+    ]
+  },
+  "nativeAxes": {
+    "x": "west to east along the main straight bridge centerline",
+    "y": "up; Y0 is historical low-water datum40.05m ASL",
+    "z": "south"
+  },
+  "sourceFacts": {
+    "northSpanMeters": 28.71,
+    "southSpanMeters": 28.62,
+    "northRiseMeters": 12.06,
+    "widthMeters": 3.95,
+    "archRingMeters": 0.77,
+    "voussoirRows": 111,
+    "stonesAcrossRowRange": [
+      2,
+      5
+    ],
+    "deckCrownMetersASL": 60.39,
+    "historicalSummerRiverMetersASL": 40.05,
+    "parapetHeightMeters": 0.945,
+    "parapetThicknessRangeMeters": [
+      0.2,
+      0.26
+    ]
+  },
+  "reconstruction": {
+    "archShoulderRadiusMeters": 14.89,
+    "archSpringingRadiusMeters": 5.956,
+    "walkLengthMeters": 32.4,
+    "note": "Smooth reconstruction from the restoration report’s multi-center profile, span, rise and course count. Stone positions and widths vary deterministically within the documented ranges; these are not a transcription of individual survey ordinates."
+  },
+  "referencePages": [
+    "https://www.mostarbridge.org/starimost/01_intro/orig_des/orig_des.htm",
+    "https://www.mostarbridge.org/starimost/02_techdata/stone_cut04/st_cut04.htm",
+    "https://www.mostarbridge.org/starimost/01_intro/hist_most/hist02.htm",
+    "https://whc.unesco.org/en/activities/349"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q188528",
+    "featureIds": [
+      "way/33924615"
+    ],
+    "source": "https://www.openstreetmap.org/way/33924615",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      17.8150293,
+      43.3372672
+    ],
+    "heading": -0.004339929494839471,
+    "elevationMode": "sea-level",
+    "elevationMeters": 40.05,
+    "notes": "Exact-QID pedestrian centerline fixes west→east main axis; bent approaches are excluded from axis fit. LocalY0 at historical low-water40.05m ASL gives crown60.39m. Host terrain and current river stage may differ."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Detailed exterior reconstruction of the rebuilt bridge; historical survey dimensions guide its silhouette, without claiming exact current stone-by-stone survey coordinates.",
+    "Tara and Halebija towers, adjacent town buildings, rocky riverbanks and the bent public streets beyond bridge bearings are separate scene features.",
+    "The absolute vertical placement uses the published historical low-water datum; terrain datasets and seasonal river surfaces can vary."
+  ],
+  "qaCameras": [
+    {
+      "name": "arch-stones",
+      "position": [
+        6,
+        12,
+        23
+      ],
+      "lookAt": [
+        1,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "walkway",
+      "position": [
+        -13,
+        20.8,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        21,
+        0.1
+      ],
+      "fov": 58
+    },
+    {
+      "name": "cornices",
+      "position": [
+        -10,
+        21,
+        10
+      ],
+      "lookAt": [
+        -4,
+        19,
+        1.8
+      ]
+    },
+    {
+      "name": "intrados",
+      "position": [
+        0,
+        8,
+        11
+      ],
+      "lookAt": [
+        0,
+        18.4,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "far-crossing",
+      "position": [
+        -4,
+        18,
+        62
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 56312,
+    "vertices": 111420,
+    "materials": 3,
+    "bytes": 4577884,
+    "sha256": "sha256:4c283a10656db7f3417c434d3021c12f0f834f923182d5aa515bf5da8714916e"
+  }
+}

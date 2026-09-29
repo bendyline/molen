@@ -1,0 +1,60 @@
+{
+  "format": "molen/structure-alignment-study@1",
+  "candidateId": "N0002",
+  "wikidataId": "Q504710",
+  "title": "Pont de Normandie",
+  "asset": "molen.worldgen.structure.n0002_pont_de_normandie",
+  "anchor": [0.274018125, 49.4322587],
+  "heading": -1.4813650122546953,
+  "authoredAxis": "+X south, +Y up; horizontal origin halfway between main-span pylon stations",
+  "measuredPlan": {
+    "mainSpanBetweenRoadTransitions": 860.4093029334947,
+    "southEndpoint": [0.27454885, 49.42840955],
+    "northEndpoint": [0.2734874, 49.43610785],
+    "fullExtentX": [-1166.6274891411804, 979.8548132772278],
+    "fullOutlineLocalXZ": [
+      [979.3760000776405, -11.249064163441318],
+      [979.8548132772278, 11.704730026810992],
+      [429.8103389051717, 10.442434598102597],
+      [-430.90377779019246, 12.22136715162685],
+      [-1166.6274891411804, 12.727939812134991],
+      [-1166.6057351042884, -11.445717445875474],
+      [-429.4944376808727, -12.220372933303693],
+      [430.3569140589086, -13.102667809241254],
+      [979.3760000776405, -11.249064163441318]
+    ]
+  },
+  "modelPlan": {
+    "mainSpan": 856,
+    "northEndX": -1165.625,
+    "southEndX": 975.625,
+    "width": 23.6,
+    "totalLength": 2141.25
+  },
+  "verticalDatum": {
+    "source": "CMH (Cote Marine du Havre)",
+    "documentedTargetDatum": "NGF/IGN69",
+    "documentedConversionMeters": -4.378,
+    "documentedConversionSources": [
+      "https://www.seine-aval.fr/glossaire/cote-marine-du-havre/",
+      "https://www.normandie.developpement-durable.gouv.fr/IMG/pdf/TRI_Le_Havre_Rapport_V5_cle0b1356.pdf"
+    ],
+    "modernChartZeroIgn69Meters": -4.371,
+    "modernChartZeroSource": "https://refmar.shom.fr/dataArchaeology/realisations/port-du-havre",
+    "runtimeDatum": null,
+    "conversionMeters": null,
+    "status": "runtime-datum-unresolved",
+    "note": "The operator drawing uses the legacy CMH marine datum. DREAL and Seine-Aval document CMH = IGN69 + 4.378 m. SHOM reports chart zero at -4.371 m IGN69 since 2006, a 7 mm version difference. The viewer has no declared IGN69/EGM96 transform; do not silently equate IGN69 to its global sea-level or terrain elevation."
+  },
+  "horizontalStatus": "mapped-axis",
+  "visualPlacementVerified": false,
+  "sources": [
+    "https://www.openstreetmap.org/way/175399633",
+    "https://www.openstreetmap.org/way/175405231",
+    "https://www.openstreetmap.org/way/440837974"
+  ],
+  "geometryLicense": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "sourceCapturedAt": "2026-09-27T16:21:24.079Z",
+  "note": "Mapped roadway transition spacing differs from the published 856 m main span by about 4 m. This supplies a measured map frame and a sourced CMH-to-IGN69 conversion; runtime terrain-datum conversion and in-terrain visual fitting remain open."
+}

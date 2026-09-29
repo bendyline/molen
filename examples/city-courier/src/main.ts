@@ -1,4 +1,5 @@
 import { mountExperience } from '@bendyline/molen-client';
+import { startAudio } from './audio';
 import { scene } from './scene';
 import '../../game-shell.css';
 
@@ -10,6 +11,7 @@ const canvas = document.getElementById('view') as HTMLCanvasElement;
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
 const mounted = await mountExperience({ link: worker, scene: scene(), canvas, antialias: true });
 const { client } = mounted;
+const stopAudio = startAudio(client, scene().tickRate ?? 30);
 function element(id: string): HTMLElement {
   const node = document.getElementById(id);
   if (node === null) throw new Error(`Missing UI element: ${id}`);
@@ -74,6 +76,7 @@ const timer = setInterval(() => {
 }, 80);
 function dispose(): void {
   clearInterval(timer);
+  void stopAudio.then((stop) => stop());
   mounted.dispose();
   worker.terminate();
 }

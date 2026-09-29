@@ -1,0 +1,287 @@
+{
+  "planId": "N0199",
+  "id": "N0199",
+  "assetId": "molen.worldgen.structure.n0199_jumeirah_emirates_towers_hotel",
+  "title": "Jumeirah Emirates Towers Hotel",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1049027",
+  "referenceCoordinate": {
+    "latitude": 25.2175,
+    "longitude": 55.281944444
+  },
+  "visualBrief": "A separately registered triangular Emirates tower with three open base piers, eight-storey glass drum, bowed outer curtain wall, horizontal ribbon facades, copper-glass beacon, slit-window upper floors and sloping glazed roof with a rectangular pinnacle.",
+  "size": [
+    69.37417984008789,
+    309,
+    56.14636993408203
+  ],
+  "actualBounds": {
+    "min": [
+      -37.02146911621094,
+      0,
+      -28.073184967041016
+    ],
+    "max": [
+      32.35271072387695,
+      309,
+      28.073184967041016
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+X toward inward apex and mast",
+    "outerLobby": "-X opposite the mast"
+  },
+  "sourceFacts": {
+    "architect": "Hazel Wong, NORR",
+    "completed": 2000,
+    "equilateralPlanSideMeters": 55.5,
+    "typicalFloorHeightMeters": 3.6,
+    "publishedFloors": 56,
+    "architecturalHeightMeters": 309,
+    "materials": "Silver aluminium panels with silver/copper reflective glass; granite base",
+    "dimensionalSource": "Architect-contributed plans, sections and commentary in The Architecture of the United Arab Emirates, printed64–78; contractor Multiplex whole-metre height309 for hotel and354 for office; book355 office."
+  },
+  "reconstruction": {
+    "base": "Three full-depth triangular piers flank an independently enclosed eight-floor circular drum. Tower-specific canopy, revolving-door volumes and a small arrival apron are modeled; the shared shopping/parking podium is excluded to avoid overlapping assets.",
+    "facade": "Two horizontal ribbon facades have separate recessed glazing, silver spandrels and outward projecting sills. The broad outer facade bows as a physical cylinder segment, rather than a flat texture. Upper narrow windows and copper-glass cylindrical beacon are separate geometry.",
+    "roof": "Two metal-clad gables enclose a diagonal-framed triangular glass roof. Rectangular two-stage mast and small maintenance arms retain a distinctive silhouette."
+  },
+  "referencePages": [
+    "https://norrgroup.com/jumeirah-emirates-towers-office/",
+    "https://www.multiplex.global/projects/emirates-towers/",
+    "https://www.turnerconstruction.com/projects/emirates-towers",
+    "https://modularsa.com/wp-content/uploads/2021/01/The_Architecture_of_the_United_Arab_Emirates.pdf",
+    "https://www.investindubai.gov.ae/fr/dubai-for-events/venues/-/media/venues/files/jumeirah-emirates-towers/floorplan.pdf",
+    "https://www.jumeirah.com/en/stay/dubai/jumeirah-emirates-towers",
+    "https://www.servcorp.ae/en/serviced-offices/locations/dubai/emirates-tower/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      55.2823759,
+      25.217581566666667
+    ],
+    "heading": -0.5679485566001423,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/393391114",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/393391114"
+    ],
+    "wikidataId": "Q1049027",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:959068705eb2c0d1012504db96fcc315c094b7a16c3d692212028e797f71a63c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Operator coordinates and labeled primary plan override swapped OSM QIDs: this western hotel way393391114 is anchored at its independent triangle centroid. Native+X follows the inward apex, corroborated by primary plan and roof photographs. The55.5m published triangle governs model size; raw map tags are preserved. GroundY0 is the tower entrance datum; shared podium and changing landscape are excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Roof-stage and upper mechanical datums, fine curtain-wall pitch, facade panel joints, cylindrical bow, mast section and small entry hardware are reconstructed from primary sections and completed photographs. Contractor and architect sources round heights differently; selected overall heights are355m office and309m hotel. Interior fit-out, full common retail/parking complex, changing signs and neighboring Museum of the Future are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "triangular-ribbon-shaft",
+      "position": [
+        100,
+        129,
+        105
+      ],
+      "lookAt": [
+        0,
+        117,
+        0
+      ]
+    },
+    {
+      "name": "outer-curved-curtain-wall",
+      "position": [
+        -145,
+        134,
+        35
+      ],
+      "lookAt": [
+        -17,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "recessed-ribbon-detail",
+      "position": [
+        57,
+        95,
+        48
+      ],
+      "lookAt": [
+        8,
+        85,
+        14
+      ]
+    },
+    {
+      "name": "open-three-legged-base",
+      "position": [
+        75,
+        24,
+        69
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "eight-storey-glass-drum",
+      "position": [
+        -63,
+        25,
+        34
+      ],
+      "lookAt": [
+        -5,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "copper-beacon-and-slits",
+      "position": [
+        92,
+        205,
+        52
+      ],
+      "lookAt": [
+        13,
+        194,
+        0
+      ]
+    },
+    {
+      "name": "sloping-glazed-roof",
+      "position": [
+        -91,
+        290,
+        71
+      ],
+      "lookAt": [
+        0,
+        238,
+        0
+      ]
+    },
+    {
+      "name": "gable-panel-and-louvers",
+      "position": [
+        68,
+        250,
+        45
+      ],
+      "lookAt": [
+        20,
+        247,
+        0
+      ]
+    },
+    {
+      "name": "rectangular-pinnacle",
+      "position": [
+        70,
+        301,
+        36
+      ],
+      "lookAt": [
+        32,
+        286,
+        0
+      ]
+    },
+    {
+      "name": "outer-arrival-canopy",
+      "position": [
+        -69,
+        16,
+        34
+      ],
+      "lookAt": [
+        -25,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "far-triangular-profile",
+      "position": [
+        440,
+        144,
+        -310
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 340488,
+    "vertices": 761392,
+    "materials": 5,
+    "bytes": 30737888,
+    "sha256": "sha256:93e183933ba98b764594370da72c5ffae24f7b2fc11379c66ff24c38843223ed"
+  }
+}

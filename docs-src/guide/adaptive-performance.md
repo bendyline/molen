@@ -13,6 +13,10 @@ and slow-frame/p90 statistics, and waits for warmup and sustained overload befor
 Memory pressure can also lower detail. Recovery requires stable headroom, no pending streaming,
 and memory margin in displayed content; failed upward probes increase the recovery delay. Hidden intervals and
 isolated long pauses reset or bypass measurements instead of being mistaken for normal rendering.
+While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
+heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
+step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
+before stepping again, since retained content keeps displayed bytes high until they arrive.
 
 The explorer applies each tier to drawing-buffer resolution, terrain screen-space error and
 range, selected/resident tile limits, terrain and semantic request concurrency, worldgen cache

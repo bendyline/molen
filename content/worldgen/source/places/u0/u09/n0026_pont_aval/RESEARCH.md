@@ -1,0 +1,9 @@
+# Pont Aval — exterior and placement evidence
+
+The AFGC engineering association describes two structurally independent carriageways,312.50m length,34.60m useful width,14m road per direction and four unequal spans. The French Ministry of Transport's1982 bridge history provides a longitudinal section and typical cross section on printed page81 (PDF page92). The downloaded page and enlarged crops were inspected. The drawing's right-bank to left-bank dimensions are67.47,92,81.48 and71.55m; rounded association dimensions are67.5,92,81.5 and71.5m.
+
+The section has four separate box girders at8,9,8m transverse spacing, nominal3.5m bottom width,3.40m midspan depth and5.50m at supports. Each side has a14m road, outer cornice and narrow maintenance strip. Current photos show solid outer panels topped by fine vertical steel railing, independent ribbed tapering piers and twin-arm median lamps. The2012 close photographs by Mbzt were inspected as visual reference; they are not embedded in the model. Fine precast spacing, fluting pitch, lamps and drainage hardware are reconstructed.
+
+The original bridge polygon, exact identity and aerial establish directed placement. Its334m axis-aligned bounding extent includes skewed abutments; the model retains the312.5m structural span sequence. The east carriageways bend and flare, visible in the aerial and map polygon; model plan retains this instead of stretching a straight rectangle. PositiveX is east toward the left-bank interchange. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+
+Normal water26.34 and road approximately39.2–42.75 are archival leveling values. They must be reconciled with the terrain provider before geographic approval. Ground contacts and adjoining motorway ramps need a terrain review. The current model includes exposed structure above normal water; underground piles and adjoining interchange ramps are excluded.

@@ -1,0 +1,181 @@
+{
+  "id": "N0583",
+  "planId": "N0583",
+  "assetId": "molen.worldgen.structure.n0583_lotus_tower",
+  "title": "Lotus Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q3449463"
+  },
+  "wikidataId": "Q3449463",
+  "visualBrief": "Colombo’s green stem and thirty-two overlapping pink glazed lotus petals, individually modeled mullion grids, white lotus podium fascia, roof terrace, four entrances and antenna mast with service platforms.",
+  "size": [
+    87,
+    356.3,
+    87
+  ],
+  "actualBounds": {
+    "min": [
+      -43.029998779296875,
+      0,
+      -43.029998779296875
+    ],
+    "max": [
+      43.029998779296875,
+      356.29998779296875,
+      43.029998779296875
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the west-northwest mapped podium entrance; four entrances repeat at quarter turns",
+    "origin": "Exact-QID circular podium center, ground contact Y=0"
+  },
+  "scaleBasis": "Operator floor elevations and regulator construction sections set vertical massing; exact-QID mapped podium and nearby tower parts set circular diameters. CVU distinguishes 351.5 m architectural height from 356.3 m tip; the operator’s commonly rounded 350 m is retained as a conflicting rounded description. Regulator and operator photos establish the overlapping lotus petals, two maintenance rings, white leaf fascia and mast platforms.",
+  "geographicProposal": {
+    "anchor": [
+      79.85831454,
+      6.927025933
+    ],
+    "heading": -2.071738355594,
+    "source": "https://www.openstreetmap.org/way/728831229",
+    "evidence": "Circular exact-QID podium center plus mapped west-northwest entrance node 13680101733 set the signed native +Z axis. The other three entrance nodes confirm quarter-turn repetition, matching the regulator ground-floor plan. Nearby mapped service pods are transformed into this same native frame.",
+    "orientationConfidence": "exact-mapped-center-and-entrance-node",
+    "limitations": "The full-radius podium is a roof overhang; upper petals are reconstructed within the independently mapped 44.4 m head envelope. Petal seam phase follows fourfold entrance symmetry, with small individual panel widths reconstructed from the operator photographs.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Circular exact-QID podium center plus mapped west-northwest entrance node 13680101733 set the signed native +Z axis. The other three entrance nodes confirm quarter-turn repetition, matching the regulator ground-floor plan. Nearby mapped service pods are transformed into this same native frame. The full-radius podium is a roof overhang; upper petals are reconstructed within the independently mapped 44.4 m head envelope. Petal seam phase follows fourfold entrance symmetry, with small individual panel widths reconstructed from the operator photographs."
+  },
+  "sourceFacts": {
+    "operatorRoundedHeight": 350,
+    "architecturalHeightMeters": 351.5,
+    "tipHeightMeters": 356.3,
+    "podiumDiameterMeters": 83.1,
+    "petalCount": 32,
+    "upperOccupiedFloorElevationsMeters": [
+      229.4,
+      234.2,
+      239,
+      243.8,
+      248.2
+    ],
+    "podiumFloorElevationsMeters": [
+      0,
+      5,
+      10,
+      16
+    ],
+    "mappedHeadDiameterMeters": 44.4
+  },
+  "referencePages": [
+    "https://colombolotustower.lk/",
+    "https://colombolotustower.lk/tower",
+    "https://www.trc.gov.lk/content/files/reports/AnnualReport2019-E.pdf",
+    "https://www.trc.gov.lk/content/files/reports/AR2020_E.pdf",
+    "https://kingsview.lk/img/pdf/Profile.pdf",
+    "https://www.skyscrapercenter.com/building/id/13823",
+    "https://www.openstreetmap.org/way/728831229",
+    "https://www.openstreetmap.org/node/13680101733"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Architectural 351.5 m and highest-tip 356.3 m are distinct CVU values; the operator commonly rounds height to 350 m. The model retains explicit floor elevations from the operator rather than uniformly stretching the body.",
+    "Petal curvature, individual glazing modules and service-rail spacing are photographic reconstructions. Nighttime programmable LED animations and changing terrace furniture are not baked into the daytime exterior.",
+    "The surrounding lakefront promenade, parking and separate service buildings are outside the tower asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "podium-and-entrance",
+      "position": [
+        65,
+        25,
+        72
+      ],
+      "lookAt": [
+        0,
+        11,
+        10
+      ]
+    },
+    {
+      "name": "green-stem-collars",
+      "position": [
+        35,
+        202,
+        43
+      ],
+      "lookAt": [
+        0,
+        198,
+        0
+      ]
+    },
+    {
+      "name": "lotus-petals",
+      "position": [
+        65,
+        234,
+        78
+      ],
+      "lookAt": [
+        0,
+        231,
+        0
+      ]
+    },
+    {
+      "name": "antenna-platforms",
+      "position": [
+        55,
+        299,
+        60
+      ],
+      "lookAt": [
+        0,
+        299,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        410,
+        196,
+        520
+      ],
+      "lookAt": [
+        0,
+        174,
+        0
+      ]
+    }
+  ]
+}

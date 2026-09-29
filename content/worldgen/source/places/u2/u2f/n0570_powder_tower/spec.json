@@ -1,0 +1,175 @@
+{
+  "id": "N0570",
+  "planId": "N0570",
+  "assetId": "molen.worldgen.structure.n0570_powder_tower",
+  "title": "Powder Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1488700"
+  },
+  "wikidataId": "Q1488700",
+  "visualBrief": "Prague’s current Gothic city gate: open pointed portal and ribbed passage, royal statues and canopies, heraldic gallery, corner spires, high chisel slate roof, paired dormers, golden ridgework and mapped stair turret.",
+  "size": [
+    16.7,
+    65,
+    15.5
+  ],
+  "actualBounds": {
+    "min": [
+      -8.170000076293945,
+      0,
+      -7.91379976272583
+    ],
+    "max": [
+      8.34000015258789,
+      65,
+      7.91379976272583
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the east portal facing Náměstí Republiky; −Z is the Celetná Street portal",
+    "origin": "Exact-QID mapped centroid with the actual pavement at Y=0; the historical buried moat foundation is excluded"
+  },
+  "scaleBasis": "The municipal operator gives the total height, gallery elevation and corner spire dimensions. Exact mapped outline supplies the rectangular body, corner turrets and eccentric stair turret; current official photographs determine roof pitch, dormers, carved facade stages and weathered sandstone colors.",
+  "geographicProposal": {
+    "anchor": [
+      14.427757226,
+      50.087248534
+    ],
+    "heading": 1.267457055494,
+    "source": "https://www.openstreetmap.org/way/27124370",
+    "evidence": "The two open portals occupy the east and west facades. Their transverse ridge and the eccentric mapped stair turret preserve the exact local frame rather than defaulting the gateway to north.",
+    "orientationConfidence": "exact-outline-turret-and-east-west-gate",
+    "limitations": "The adjoining Municipal House connection is separate architecture; the gate itself retains a walkable passage and native ground-contact piers.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "The two open portals occupy the east and west facades. Their transverse ridge and the eccentric mapped stair turret preserve the exact local frame rather than defaulting the gateway to north. The adjoining Municipal House connection is separate architecture; the gate itself retains a walkable passage and native ground-contact piers."
+  },
+  "sourceFacts": {
+    "heightMeters": 65,
+    "galleryHeightMeters": 44,
+    "cornerRoofSpireHeightMeters": 6,
+    "cornerRoofSpireCount": 4,
+    "restorationYears": [
+      1875,
+      1886
+    ],
+    "roofShape": "chisel",
+    "passage": "pointed gate with net vault"
+  },
+  "referencePages": [
+    "https://prague.eu/en/objevujte/powder-gate-tower-prasna-brana/",
+    "https://prague.eu/en/550-copy/",
+    "https://www.openstreetmap.org/way/27124370"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Royal figures and heraldic relief are original polygonal reconstructions based on the photographed facade rhythm, not reproductions of individual inscriptions or coats of arms.",
+    "The present permanent exterior is modeled, including the nineteenth-century roof; temporary maintenance scaffolding is omitted.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "portal-vault",
+      "position": [
+        12,
+        7,
+        25
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "royal-statues",
+      "position": [
+        15,
+        25,
+        29
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "gallery",
+      "position": [
+        20,
+        48,
+        25
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "chisel-roof",
+      "position": [
+        25,
+        68,
+        31
+      ],
+      "lookAt": [
+        0,
+        52,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        82,
+        44,
+        108
+      ],
+      "lookAt": [
+        0,
+        31,
+        0
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@
     "build": "vite build",
     "play:visual": "pnpm run build && node ../../packages/tooling/dist/cli.mjs play dist --scenario test/visual/navigation.play.json --out-dir .artifacts/world-explorer",
     "data:sammamish": "node scripts/build-sammamish-package.mjs",
+    "data:seattle": "node scripts/build-sammamish-package.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src scripts",
     "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-earth": "workspace:*",
     "@bendyline/molen-kernel": "workspace:*",
     "@bendyline/molen-materials": "workspace:*",
     "@bendyline/molen-pack": "workspace:*",

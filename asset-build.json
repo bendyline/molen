@@ -1,0 +1,95 @@
+{
+  "format": "molen/asset-build@2",
+  "node": "24",
+  "generators": [
+    {
+      "id": "worldgen-stadiums",
+      "command": ["node", "packages/worldgen/scripts/generate-stadium-models.mjs"]
+    },
+    {
+      "id": "worldgen-signature-towers",
+      "command": ["node", "packages/worldgen/scripts/generate-signature-towers.mjs"]
+    },
+    {
+      "id": "worldgen-researched-bridges",
+      "command": ["node", "packages/worldgen/scripts/generate-researched-bridges.mjs"]
+    },
+    {
+      "id": "worldgen-heritage-towers",
+      "command": ["node", "packages/worldgen/scripts/generate-heritage-towers.mjs"]
+    },
+    {
+      "id": "worldgen-structure-catalog",
+      "command": ["node", "packages/worldgen/scripts/generate-structure-catalog.mjs"]
+    },
+    {
+      "id": "worldgen-lighthouses",
+      "command": ["node", "packages/worldgen/scripts/generate-lighthouse-models.mjs"]
+    },
+    {
+      "id": "worldgen-willis-tower",
+      "command": ["node", "packages/worldgen/scripts/generate-willis-tower.mjs"]
+    },
+    {
+      "id": "worldgen-next-1000",
+      "command": ["node", "packages/worldgen/scripts/generate-next-1000-models.mjs"]
+    },
+    {
+      "id": "worldgen-galata-tower",
+      "command": ["node", "packages/worldgen/scripts/generate-galata-tower.mjs"]
+    },
+    {
+      "id": "worldgen-gamla-bron",
+      "command": ["node", "packages/worldgen/scripts/generate-gamla-bron.mjs"]
+    },
+    {
+      "id": "worldgen-severn-bridge",
+      "command": ["node", "packages/worldgen/scripts/generate-severn-bridge.mjs"]
+    },
+    {
+      "id": "worldgen-site-structures",
+      "command": ["node", "packages/worldgen/scripts/generate-site-structures.mjs"]
+    },
+    {
+      "id": "worldgen-map-structures",
+      "command": ["node", "packages/worldgen/scripts/generate-map-structures.mjs"]
+    },
+    {
+      "id": "worldgen-props",
+      "command": ["node", "packages/worldgen/scripts/generate-pack.mjs"]
+    },
+    {
+      "id": "entities-aircraft-oh6",
+      "command": ["node", "content/entities/source/aircraft/oh-6/models/generate.mjs"]
+    },
+    {
+      "id": "entities-aircraft-p51",
+      "command": ["node", "content/entities/source/aircraft/p-51/models/generate.mjs"]
+    },
+    {
+      "id": "entities-json-models",
+      "command": ["node", "packages/entities/scripts/generate-json-models.mjs"]
+    },
+    {
+      "id": "red-barn",
+      "command": ["node", "assets/structures/red-barn/scripts/generate-barn.mjs"]
+    },
+    {
+      "id": "lantern-dungeon",
+      "command": ["python", "examples/lantern-dungeon/tools/generate-assets.py"]
+    }
+  ],
+  "afterImport": [
+    {
+      "id": "lantern-dungeon-import-report",
+      "command": ["node", "examples/lantern-dungeon/tools/import-assets.mjs"]
+    }
+  ],
+  "masters": [
+    "content/entities/source/vehicles/compact/models/source.glb",
+    "content/entities/source/vehicles/pickup/models/source.glb",
+    "content/entities/source/vehicles/sedan/models/source.glb",
+    "content/entities/source/vehicles/suv/models/source.glb",
+    "content/entities/source/vehicles/van/models/source.glb"
+  ]
+}

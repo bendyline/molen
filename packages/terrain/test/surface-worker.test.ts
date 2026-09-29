@@ -106,6 +106,18 @@ function fixture() {
     ],
   });
   tile.landcover.push({ class: 'plaza', polygons: tile.landcover[0]?.polygons ?? [] });
+  tile.transportation.push({
+    class: 'highway',
+    bridge: true,
+    deckElevation: 25,
+    width: 12,
+    lines: [
+      [
+        [0, 0.9],
+        [1, 0.9],
+      ],
+    ],
+  });
   return tile;
 }
 

@@ -232,6 +232,36 @@
       }
     },
     {
+      "id": "audio",
+      "components": {
+        "audioEnvironment": {
+          "buses": {
+            "music": 0.55,
+            "ambience": 0.7
+          },
+          "ambience": [
+            {
+              "sound": "ambience.city.traffic",
+              "gain": 0.4
+            }
+          ],
+          "music": {
+            "playlist": ["music.racing"],
+            "gain": 0.8
+          },
+          "events": {
+            "crash": {
+              "sound": "impact.metal.heavy"
+            },
+            "delivery": {
+              "sound": "game.pickup",
+              "bus": "ui"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ground",
       "components": {
         "transform": {
@@ -2941,6 +2971,19 @@
       "components": {
         "transform": {
           "pos": [0, 0.55, 12]
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "spatial": false,
+          "gain": 0.7,
+          "pitchFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.75], [16, 1.6]]
+          },
+          "gainFrom": {
+            "signal": "self.speed",
+            "curve": [[0, 0.55], [16, 1]]
+          }
         }
       },
       "prefab": "vehicle"
@@ -3104,6 +3147,15 @@
           "to": 32,
           "speed": 5,
           "start": -26
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "gain": 0.6,
+          "pitch": 0.85,
+          "spatial": {
+            "refDistance": 14,
+            "maxDistance": 70
+          }
         }
       },
       "prefab": "vehicle"
@@ -3157,6 +3209,15 @@
           "to": 32,
           "speed": -6,
           "start": 23
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "gain": 0.6,
+          "pitch": 0.85,
+          "spatial": {
+            "refDistance": 14,
+            "maxDistance": 70
+          }
         }
       },
       "prefab": "vehicle"
@@ -3210,6 +3271,15 @@
           "to": 32,
           "speed": 5,
           "start": 9
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "gain": 0.6,
+          "pitch": 0.85,
+          "spatial": {
+            "refDistance": 14,
+            "maxDistance": 70
+          }
         }
       },
       "prefab": "vehicle"
@@ -3263,6 +3333,15 @@
           "to": 32,
           "speed": 6,
           "start": -5
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "gain": 0.6,
+          "pitch": 0.85,
+          "spatial": {
+            "refDistance": 14,
+            "maxDistance": 70
+          }
         }
       },
       "prefab": "vehicle"

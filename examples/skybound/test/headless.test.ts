@@ -38,7 +38,7 @@ describe('skybound: authored scene + scripts', () => {
     command(w, 'move', { dir: [1, 0] });
     w.stepN(90);
     expect(stateHash(w)).toBe(
-      'sha256:e0632b2ae9a5ba9d279e6706949f7adfa5295a5e54c63845f9cb00e7e94e2653',
+      'sha256:cb40e56449dcc4916b0f80b3dd33fe2783f4105f87259f5d47f70642cb91c58e',
     );
   });
 

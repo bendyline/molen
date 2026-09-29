@@ -1,0 +1,72 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.d19_airport_terminal_concourse",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {}
+  },
+  "hash": "sha256:a6698601a90a61be187e27a3609a300c2ad17c508ad0f33165807bb904167fe6",
+  "sourceHash": "sha256:cde952553acb17d970ee3efe0b173d845a82b3bc909b7cb9a9adbc5938180ec2",
+  "bounds": {
+    "aabb": {
+      "min": [-70, 0.0023, -30.0047],
+      "max": [70, 17.2977, 46.0047]
+    },
+    "sphere": {
+      "center": [0, 8.65, 8],
+      "radius": 80.1195
+    }
+  },
+  "stats": {
+    "triangles": 748,
+    "vertices": 1368,
+    "meshes": 1,
+    "primitives": 3,
+    "materials": 3,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 34432
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 748
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "structure-cladding",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "roof-or-deck",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "structural-trim",
+      "slots": ["baseColor"],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -70, 0.0023, -30.0047, -70, 0.0023, 46.0047, -70, 17.2977, -30.0047, -70, 17.2977,
+          46.0047, 70, 0.0023, -30.0047, 70, 0.0023, 46.0047, 70, 17.2977, -30.0047, 70, 17.2977,
+          46.0047
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": ["KHR_mesh_quantization"]
+}

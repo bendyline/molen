@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './audio';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
 import { modelSignalsSchema } from './model-signals';
@@ -583,6 +584,71 @@ registerComponent('weather', weatherSchema, {
       clouds: { coverage: 0.95 },
       precipitation: { kind: 'rain', intensity: 0.7 },
       visibility: 4500,
+    },
+  ],
+});
+
+registerComponent('audioSource', audioSourceSchema, {
+  description:
+    'Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md.',
+  owner: 'audio',
+  docsRef: 'guide/audio.md',
+  examples: [
+    {
+      sound: 'vehicle.engine.car',
+      loop: true,
+      spatial: { refDistance: 3, maxDistance: 120 },
+      pitchFrom: {
+        signal: 'vehicleState.speed',
+        curve: [
+          [0, 0.8],
+          [30, 1.7],
+        ],
+      },
+      gainFrom: {
+        signal: 'vehicleInput.throttle',
+        curve: [
+          [0, 0.45],
+          [1, 1],
+        ],
+      },
+    },
+  ],
+});
+
+registerComponent('audioZone', audioZoneSchema, {
+  description:
+    'Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market).',
+  owner: 'audio',
+  docsRef: 'guide/audio.md',
+  examples: [{ sound: 'ambience.water.stream', shape: { kind: 'sphere', radius: 12 }, fade: 8 }],
+});
+
+registerComponent('audioEnvironment', audioEnvironmentSchema, {
+  description:
+    'Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps.',
+  owner: 'audio',
+  docsRef: 'guide/audio.md',
+  examples: [
+    {
+      buses: { music: 0.5 },
+      ambience: [
+        {
+          sound: 'ambience.rain.medium',
+          when: { 'weather.precipitation.kind': 'rain' },
+          gainFrom: {
+            signal: 'weather.precipitation.intensity',
+            curve: [
+              [0, 0],
+              [1, 1],
+            ],
+          },
+        },
+        { sound: 'ambience.birds.day', when: { 'sky.daylight': { min: 0.3 } }, fadeS: 4 },
+      ],
+      music: { playlist: ['music.ambient.dawn'], mode: 'sequence' },
+      events: { crash: { sound: 'impact.metal.heavy' } },
+      footsteps: { sound: 'footstep.grass', strideM: 0.75 },
     },
   ],
 });

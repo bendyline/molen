@@ -1,0 +1,192 @@
+{
+  "planId": "N0146",
+  "id": "N0146",
+  "assetId": "molen.worldgen.structure.n0146_palace_of_culture_and_science",
+  "title": "Palace of Culture and Science",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q167566",
+  "referenceCoordinate": {
+    "latitude": 52.231666666,
+    "longitude": 21.006388888
+  },
+  "visualBrief": "A mapped, courtyard-preserving palace complex with low ceremonial wings, four corner blocks, Renaissance-style crenellated crowns, a stepped central shaft,114 m terrace, four clock faces, green metal spire and the semicircular Congress Hall.",
+  "size": [
+    267.3491516113281,
+    237,
+    216.12699127197266
+  ],
+  "actualBounds": {
+    "min": [
+      -133.6704559326172,
+      0,
+      -108.0964584350586
+    ],
+    "max": [
+      133.67869567871094,
+      237,
+      108.03053283691406
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "Native-Z ceremonial entrance; Congress Hall at native+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightWithAntennaMeters": 237,
+    "heightWithoutSpireMeters": 187.68,
+    "terraceMeters": 114,
+    "floorsIncludingBasements": 46,
+    "clockDiameterMeters": 6.3,
+    "completion": 1955,
+    "antennaExtension": 1994
+  },
+  "reconstruction": {
+    "towerCenterLocalXZ": [
+      0,
+      -18
+    ],
+    "primaryTerraceMeters": 114,
+    "congressHall": "Mapped rounded lobe at native+Z",
+    "mainEntrance": "Native-Z faces the east side of the geographic footprint",
+    "facade": "Individual recessed windows, sills, pilasters, merlon crowns and portico columns"
+  },
+  "referencePages": [
+    "https://pkin.pl/informacje-o-pkin/",
+    "https://pkin.pl/galeria-zdjec/",
+    "https://www.openstreetmap.org/relation/1319250"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      21.00593904,
+      52.231710713
+    ],
+    "heading": -1.219594858242,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1319250",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/1319250"
+    ],
+    "wikidataId": "Q167566",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID concave complex outline and two courtyard holes retained. Congress Hall is on the mapped rounded native+Z lobe, fixing the signed facade axis and east-facing main entrance. Central shaft is reconstructed at native[0,-18] inside that aligned complex."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Main tier dimensions and window schedules are reconstructed. Sculpture figures in the niches, precise ceramic ornament and clock mermaid emblems are not fabricated; these small facade ornaments remain a fidelity gap. Native ground follows the operator zero datum, while published street-level height datums differ."
+  ],
+  "qaCameras": [
+    {
+      "name": "terrace-crowns",
+      "position": [
+        92,
+        132,
+        82
+      ],
+      "lookAt": [
+        0,
+        119,
+        -18
+      ]
+    },
+    {
+      "name": "clock-spire",
+      "position": [
+        46,
+        221,
+        55
+      ],
+      "lookAt": [
+        0,
+        183,
+        -18
+      ]
+    },
+    {
+      "name": "portico",
+      "position": [
+        55,
+        17,
+        -107
+      ],
+      "lookAt": [
+        0,
+        11,
+        -64
+      ]
+    },
+    {
+      "name": "congress-courts",
+      "position": [
+        161,
+        129,
+        205
+      ],
+      "lookAt": [
+        0,
+        27,
+        39
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -448,
+        278,
+        -561
+      ],
+      "lookAt": [
+        0,
+        105,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 183246,
+    "vertices": 439312,
+    "materials": 4,
+    "bytes": 17577568,
+    "sha256": "sha256:63de8e830ba2539438201739c4abeb640a2b3a5f5dff22d88897f089f5c971f0"
+  }
+}

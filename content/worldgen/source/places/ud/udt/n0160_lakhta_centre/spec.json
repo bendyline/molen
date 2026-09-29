@@ -1,0 +1,186 @@
+{
+  "planId": "N0160",
+  "id": "N0160",
+  "assetId": "molen.worldgen.structure.n0160_lakhta_centre",
+  "title": "Lakhta Centre",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q4255374",
+  "referenceCoordinate": {
+    "latitude": 59.98703,
+    "longitude": 30.17814
+  },
+  "visualBrief": "The462 m five-petal glass flame with a continuous90-degree helical sweep, widening lower profile, tapering upper observation/spire section, individually framed parallelogram glazing and ten fine spiral arrises.",
+  "size": [
+    73.11174392700195,
+    462,
+    74.269287109375
+  ],
+  "actualBounds": {
+    "min": [
+      -38.7255744934082,
+      0,
+      -34.033355712890625
+    ],
+    "max": [
+      34.38616943359375,
+      462,
+      40.235931396484375
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 462,
+    "abovegroundFloors": 87,
+    "petals": 5,
+    "rotationDegrees": 90,
+    "facadeModules": 16505,
+    "finalSteelTipMeters": 13
+  },
+  "reconstruction": {
+    "plan": "Signed exact-QID five-pointed mapped footprint; independent upper star parts establish core location and twist handedness",
+    "profile": "Shape-preserving cubic taper and lower bulge reconstructed through published geometry and mapped upper envelopes; continuous tangents replace artificial linear-section knuckles"
+  },
+  "referencePages": [
+    "https://gorproject.ru/en/projects/lakhta-center/",
+    "https://www.mignat.com/en/unternehmenskommunikation-en/tallest-european-skyscraper-in-saint-petersburg-reached-its-final-height-of-462-meters/",
+    "https://europe.arcelormittal.com/newsandmedia/europenews/news-2019/Lakhta",
+    "https://www.openstreetmap.org/relation/18102137"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      30.178088208,
+      59.987062606
+    ],
+    "heading": 0.25594628082,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/18102137",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/18102137"
+    ],
+    "wikidataId": "Q4255374",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed five-petal ground outline and independently mapped upper stars determine core and clockwise-to-counterclockwise convention; rotation proceeds counterclockwise in geographic east/north space. Tower baseY0. Adjacent wings are excluded."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Individual glazing panels and helical arrises are explicit. Exact curved pane sag and floor-specific petal bulge are reconstructed. Only the main tower is included; adjacent long low complex and entrance arch are excluded."
+  ],
+  "qaCameras": [
+    {
+      "name": "helical-facade",
+      "position": [
+        82,
+        173,
+        102
+      ],
+      "lookAt": [
+        0,
+        152,
+        5
+      ]
+    },
+    {
+      "name": "five-petal-crown",
+      "position": [
+        89,
+        432,
+        115
+      ],
+      "lookAt": [
+        0,
+        393,
+        4
+      ]
+    },
+    {
+      "name": "spire",
+      "position": [
+        40,
+        470,
+        61
+      ],
+      "lookAt": [
+        0,
+        442,
+        4
+      ]
+    },
+    {
+      "name": "ground-petals",
+      "position": [
+        111,
+        29,
+        121
+      ],
+      "lookAt": [
+        0,
+        12,
+        2
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -521,
+        389,
+        811
+      ],
+      "lookAt": [
+        0,
+        221,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 197762,
+    "vertices": 549898,
+    "materials": 3,
+    "bytes": 21621920,
+    "sha256": "sha256:415881db1aba9ad9507bdfc7d40db9fb58067c302132e8cfdd3389a699580023"
+  }
+}

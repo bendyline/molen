@@ -506,6 +506,14 @@ const outputs = z
 // (matgraph-types.ts) plus registerMaterialSchemas().
 const matGraphSchema = z.strictObject({
   format: z.literal('molen/matgraph@1').describe("Format envelope; always 'molen/matgraph@1'."),
+  alphaTest: z
+    .number()
+    .min(0)
+    .max(1)
+    .optional()
+    .describe(
+      'Optional alpha cutout threshold for baseColor RGBA. Omit for opaque materials; this does not enable blended transparency.',
+    ),
   size: z
     .array(z.int().min(1).max(2048))
     .length(2)

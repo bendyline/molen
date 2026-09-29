@@ -1,0 +1,240 @@
+{
+  "planId": "N0144",
+  "id": "N0144",
+  "assetId": "molen.worldgen.structure.n0144_oriental_pearl_tower",
+  "title": "Oriental Pearl Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q223207",
+  "referenceCoordinate": {
+    "latitude": 31.241669444,
+    "longitude": 121.494716666
+  },
+  "visualBrief": "Three concrete shafts and inclined buttresses support eleven red/pink triangulated pearl shells, inserted observation glazing bands, a central glazed lift, five smaller hotel pearls and a segmented communications mast with maintenance platforms.",
+  "size": [
+    117.52689361572266,
+    468,
+    104.30000305175781
+  ],
+  "actualBounds": {
+    "min": [
+      -58.76344680786133,
+      0,
+      -66.4000015258789
+    ],
+    "max": [
+      58.76344680786133,
+      468,
+      37.900001525878906
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X between the two southern buttress feet",
+    "front": "-Z toward the single opposite radial buttress",
+    "origin": "Ground level below the circular middle of the mapped tower, not the outer-envelope rectangle center"
+  },
+  "sourceFacts": {
+    "totalHeightMeters": 468,
+    "spheres": 11,
+    "supportingColumns": 3,
+    "inclinedButtresses": 3,
+    "smallHotelSpheres": 5,
+    "publicLowObservationMeters": 90,
+    "publicUpperObservationMeters": [
+      259,
+      263
+    ],
+    "principalSphereSupportLevelsReportedByDesigner": [
+      112,
+      295,
+      350
+    ]
+  },
+  "reconstruction": {
+    "principalSphereCentersY": [
+      93,
+      272.5,
+      342
+    ],
+    "principalSphereDiameters": [
+      50,
+      45,
+      14
+    ],
+    "hotelSphereCentersY": [
+      128,
+      150,
+      172,
+      194,
+      216
+    ],
+    "verticalColumnDiameter": 9,
+    "buttressDiameter": 7,
+    "buttressRadialFeetMeters": 57,
+    "note": "Detailed radii, small-sphere locations, support connections, shell panel grids and mast equipment are reconstructed rather than certified as-built values. Published upper-sphere descriptions differ between 14 and 16 m and between observation/sphere-top elevations; the modeled 14 m sphere ends at 349 m under the 350 m mast."
+  },
+  "referencePages": [
+    "https://www.otis.com/en/us/our-company/global-projects/project-showcase/oriental-pearl-tower",
+    "https://www.cnssce.org/52/201102/1152.html",
+    "https://www.cnssce.org/50/201308/1220.html",
+    "https://english.shanghai.gov.cn/en-ScenicSpots/20231205/19a5f5184eca45728fd57a4d4c8efc61.html",
+    "https://www.shda.gov.cn/dawh/csjy/202509/t20250919_75918.html",
+    "https://www.icppcc.cn/newsDetail_1000332"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "mapped-alternating-shafts-and-braces; visual site fit review",
+    "anchor": [
+      121.49526040874795,
+      31.241892490134386
+    ],
+    "heading": -0.3839563789705781,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/40778038",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/40778038"
+    ],
+    "wikidataId": "Q223207",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "mapFrameTowerCenterXZ": [
+      0.031188044279445118,
+      14.585075203327284
+    ],
+    "notes": "The exact-QID circular plan provides the tower center and the single opposite brace supplies native -Z. Three vertical columns (ways520990194–520990196) alternate between the inclined brace rays (ways524195833–524195878); this resolves the former 180-degree vertical-column rotation. The explicit ground-contact base follows host terrain.",
+    "mapPartsDocument": "map-evidence.json"
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "The archive article describes 9 m inclined columns, while technical descriptions distinguish 9 m vertical shafts and 7 m inclined buttresses. The latter is the reconstruction choice and needs as-built drawing confirmation.",
+    "Hotel pearl positions/diameters, shell seams, mast taper, entrance spheres, foundations and local equipment are reconstructed. No observation interiors, multimedia displays, lifts in motion or engineering/collision certification.",
+    "The circular center of the mapped tower projection differs from the outline bounding-box center. Geographic proposal accounts for that offset; the detailed map parts resolve the alternating vertical-column and inclined-brace orientations."
+  ],
+  "qaCameras": [
+    {
+      "name": "lower-pearl",
+      "position": [
+        68,
+        108,
+        98
+      ],
+      "lookAt": [
+        0,
+        93,
+        0
+      ]
+    },
+    {
+      "name": "upper-pearl",
+      "position": [
+        63,
+        282,
+        86
+      ],
+      "lookAt": [
+        0,
+        272,
+        0
+      ]
+    },
+    {
+      "name": "tripod-base",
+      "position": [
+        106,
+        38,
+        104
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "spire-capsule",
+      "position": [
+        35,
+        364,
+        62
+      ],
+      "lookAt": [
+        0,
+        346,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -420,
+        310,
+        840
+      ],
+      "lookAt": [
+        0,
+        234,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 288124,
+    "vertices": 596664,
+    "materials": 5,
+    "bytes": 24344020,
+    "sha256": "sha256:2c2e31d9b6689da1388607ff07d59a4336458eb0ff2468f4182e73350b296564"
+  }
+}

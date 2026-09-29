@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0026_pont_aval",
+  "sourceHash": "sha256:3da4f5a93971a2d32898f6a3fc877163b9ea273f2369b630e42b364a6926f022",
+  "runtimeHash": "sha256:131356609e72b6307a7b19d34ecfc9bb98e32fdccbb1a752ee0671da1d613f9e",
+  "captureReportHash": "sha256:9563020d558deaabf8a0467df43cad6ee20f1191ca0383e2afdc2994764936c2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-elevation.png",
+      "shots/north-elevation.png",
+      "shots/box-soffits.png",
+      "shots/river-piers.png",
+      "shots/haunched-girders.png",
+      "shots/east-bank-piers.png",
+      "shots/skew-west-abutment.png",
+      "shots/skew-east-abutment.png",
+      "shots/precast-cornice.png",
+      "shots/road-and-median.png",
+      "shots/lamp-arm.png",
+      "shots/drain-and-barrier.png",
+      "shots/mapped-deck-plan.png"
+    ],
+    "notes": "All18 current portable frames inspected. Four unequal spans, separate tapered box girders, ribbed piers, skewed abutments, cornices, railings, drainage, service conduits, median lamps and eight lanes render. Preview framing includes the full bridge. Fine fluting aliases in non-antialiased portable overview frames; the shared close view resolves it."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:3584efdf4ab3d9e03609ae00bf5aea7b34f3d682d752c5abba92ffe8bb5089aa",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-elevation.png",
+      "shots/shared/north-elevation.png",
+      "shots/shared/box-soffits.png",
+      "shots/shared/river-piers.png",
+      "shots/shared/haunched-girders.png",
+      "shots/shared/east-bank-piers.png",
+      "shots/shared/skew-west-abutment.png",
+      "shots/shared/skew-east-abutment.png",
+      "shots/shared/precast-cornice.png",
+      "shots/shared/road-and-median.png",
+      "shots/shared/lamp-arm.png",
+      "shots/shared/drain-and-barrier.png",
+      "shots/shared/mapped-deck-plan.png"
+    ],
+    "notes": "All 17 current shared-material views inspected: complete asymmetric span/plan, box soffits, fluted piers, skewed abutments, haunches, lamps, drains, barriers, cornices and road. Shared concrete/stone/metal bindings and resource unload pass. This standard fixture uses standalone asset review for extended bounds; separate IGN terrain reports exercise actual geographic model clipping, both procedural motorway approaches and resource unloading."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:36b28abc76cd0045f77f5ebeb9bb9709efa8ec583cb8b151405095dbb021546c",
+    "terrainReports": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0026-fit-report.json",
+        "hash": "sha256:b5b94418593237bb7f6fb252dd48073ffcd80ba7461dc35b427454bc1cd1e090"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0026-roads-fit-report.json",
+        "hash": "sha256:0698312b571a40e8b5a6d3915d0b7825115003e6fcbd65bbdd4e1918a1d85ee7"
+      }
+    ],
+    "notes": "Directed skewed/curved footprint and unequal spans are reviewed. The 26.34 m native origin agrees with the independent IGN RGE ALTI water surface. Authored road endpoints 39.20/42.75 m follow the primary longitudinal section; independent BD TOPO 3D motorway elevations corroborate the elevated approaches within their stated 2.5 m vertical accuracy. Eight current production terrain frames inspected, including both mapped carriageways rendered procedurally. The exact loaded-model polygon removes their covered fragments and distinct endpoint heights join the retained elevated approaches. Bare-ground endpoint clearances 7.84/10.63 m are expected for this motorway viaduct. Host terrain and road elevations must use NGF-IGN69 or an explicit vertical conversion; this review does not certify every global DEM or submerged foundation bathymetry."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "248,848-triangle exterior follows ministry longitudinal and cross sections and close photographs. Current site details, protective web mesh visible in2012 photos and updated traffic markings still need a final exterior revision before maximum-fidelity approval."
+  }
+}

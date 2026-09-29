@@ -30,6 +30,7 @@ const ORDER = [
   '@bendyline/molen-terrain',
   '@bendyline/molen-worldgen',
   '@bendyline/molen-worldgen-earth',
+  '@bendyline/molen-earth',
   '@bendyline/molen-figures',
   '@bendyline/molen-materials',
   '@bendyline/molen-pack',
@@ -110,13 +111,16 @@ export function mdText(value) {
 export function escapeProse(markdown) {
   let inFence = false;
   return markdown
-    .split('\n')
+    .split(/\r?\n/)
     .map((line) => {
       if (/^\s*(```|~~~)/.test(line)) {
         inFence = !inFence;
         return line;
       }
-      return inFence ? line : mdText(line);
+      if (inFence) return line;
+      // A leading `>` is blockquote (and `> [!TIP]` alert) syntax, not prose: keep it.
+      const [, quote, rest] = line.match(/^(\s*(?:>\s?)*)(.*)$/);
+      return quote + mdText(rest);
     })
     .join('\n');
 }

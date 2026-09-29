@@ -1,0 +1,199 @@
+{
+  "planId": "N0140",
+  "id": "N0140",
+  "assetId": "molen.worldgen.structure.n0140_shanghai_world_financial_center",
+  "title": "Shanghai World Financial Center",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q80852",
+  "referenceCoordinate": {
+    "latitude": 31.236666666,
+    "longitude": 121.502777777
+  },
+  "visualBrief": "The 492 m SWFC with its six-sided curved cutbacks, real trapezoidal crown opening, glazed observation bridge, split side piers, curtain-wall panels, transoms, edge ribs and lobby canopies.",
+  "size": [
+    82.26438903808594,
+    492,
+    82.08753967285156
+  ],
+  "actualBounds": {
+    "min": [
+      -41.13219451904297,
+      0,
+      -41.04376983642578
+    ],
+    "max": [
+      41.13219451904297,
+      492,
+      41.04376983642578
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the crown edge/58 m square diagonal",
+    "front": "+Z through the aperture",
+    "origin": "Ground-level center of the tower square; excludes wider retail podium"
+  },
+  "sourceFacts": {
+    "heightMeters": 492,
+    "floorsAboveGround": 101,
+    "standardSquareSideMeters": 58,
+    "observationLevels": [
+      94,
+      97,
+      100
+    ],
+    "highestObservationFloorMeters": 474
+  },
+  "reconstruction": {
+    "diagonalMeters": 82.02438661763952,
+    "apertureFloorY": 439,
+    "apertureUpperFloorY": 474,
+    "apertureWidthsMeters": [
+      40,
+      50
+    ],
+    "curvedClipExponent": 1.66,
+    "facadeModuleMeters": 1.5,
+    "note": "Opening clear dimensions, exact cutback radius, floor/module schedule and local lobby details are reconstructed. Observation-floor elevations do not establish beam underside elevations."
+  },
+  "referencePages": [
+    "https://www.kpf.com/project/shanghai-world-financial-center",
+    "https://www.swfc-shanghai.com/about_intro.php?l=en",
+    "https://www.mori.co.jp/en/img/article/090828e.pdf",
+    "https://old.skyscraper.org/EXHIBITIONS/SUPERTALL/wfc.php"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "mapped-roof-axis; visual site fit review",
+    "anchor": [
+      121.503040546,
+      31.23657684
+    ],
+    "heading": 0.8736943961984482,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/10691100",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/10691100"
+    ],
+    "wikidataId": "Q80852",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID tower outline supplies the ground center. Detailed upper part way279942892 and side piers way279942900/279942901 establish the crown ridge along native X, resolving the former square-footprint diagonal ambiguity. The 58 m published structural side is retained within the roughly 60 m mapped envelope.",
+    "mapPartsDocument": "map-evidence.json"
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior only. No as-built curtain-wall schedule, survey-calibrated arc radii, interiors, retail block, underground works or animated observation roof.",
+    "The 58 m structural square differs from the roughly 60 m mapped envelope. Detailed upper map parts resolve the crown ridge orientation; no 90-degree ambiguity remains.",
+    "Glass uses opaque metallic-roughness glazing with local vertex tints; it does not transmit interior rooms or a copied photographic environment."
+  ],
+  "qaCameras": [
+    {
+      "name": "crown-front",
+      "position": [
+        0,
+        463,
+        115
+      ],
+      "lookAt": [
+        0,
+        463,
+        0
+      ]
+    },
+    {
+      "name": "crown-side",
+      "position": [
+        92,
+        473,
+        74
+      ],
+      "lookAt": [
+        0,
+        459,
+        0
+      ]
+    },
+    {
+      "name": "near-facade",
+      "position": [
+        29,
+        190,
+        65
+      ],
+      "lookAt": [
+        5,
+        177,
+        30
+      ]
+    },
+    {
+      "name": "lobby",
+      "position": [
+        55,
+        14,
+        73
+      ],
+      "lookAt": [
+        13,
+        5,
+        28
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        430,
+        340,
+        820
+      ],
+      "lookAt": [
+        0,
+        247,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 227144,
+    "vertices": 454280,
+    "materials": 3,
+    "bytes": 18627888,
+    "sha256": "sha256:211748216e94193e5dd49dc9adf0dd552b4baffb5d769ea1e9a0268594ff9d4c"
+  }
+}

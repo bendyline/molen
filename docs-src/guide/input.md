@@ -35,6 +35,15 @@ A custom `getGamepads` callback can supply the same structural snapshots, so a h
 another facility, such as a device-specific WebHID integration, without changing profiles or UI.
 Molen does not itself request WebHID permission or implement device-specific HID reports.
 
+## Software controls
+
+On-screen controls feed the same actions as physical devices. `input.setVirtual(source, action,
+value)` sets a named control's contribution, for example a touch stick pushing `move-forward` to
+0.6, and `input.clearVirtual(source)` releases everything it drives. As with other devices, the
+strongest contribution to an action wins. Software values persist until changed, and a reset
+(focus loss, suspension, profile switch) releases them. `createTouchJoystick` in
+[`@bendyline/molen-client/navigation`](navigation.md) is a ready-made stick built on this.
+
 ## Define and switch profiles
 
 ```ts

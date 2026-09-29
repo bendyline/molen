@@ -19,7 +19,10 @@ export interface AdaptiveQualityOptions {
 export interface AdaptiveQualitySample {
   /** False while hidden, suspended, or deliberately not rendering. Resets measurement history. */
   active?: boolean;
-  /** Loading may lower detail under sustained overload, but never authorizes an upgrade. */
+  /**
+   * Loading never authorizes an upgrade. With CPU/GPU work measurements it lowers detail only
+   * when that work itself is heavy; otherwise sustained overload while loading still lowers it.
+   */
   loading?: boolean;
   /** Optional measured work, excluding waiting for the next animation frame. */
   cpuFrameMs?: number;
@@ -221,6 +224,7 @@ export class AdaptiveQualityController {
       this.cpuSamples > 0 ? this.cpuTotalMs / this.cpuSamples : 0,
       this.gpuSamples > 0 ? this.gpuTotalMs / this.gpuSamples : 0,
     );
+    const measured = this.cpuSamples > 0 || this.gpuSamples > 0;
     const loading = this.loading;
     this.resetWindow();
     const overloaded =
@@ -234,11 +238,22 @@ export class AdaptiveQualityController {
       mean <= this.targetFrameMs * 1.05 &&
       this.p90FrameMs <= this.targetFrameMs * 1.15 &&
       work < this.targetFrameMs * 0.9;
-    this.overloadMs = overloaded ? this.overloadMs + elapsed : 0;
+    // Streaming work (uploads, shader builds, worker results) runs outside the measured frame.
+    // When the host measures its frame work and that work fits, slow frames during loading are
+    // the loading itself; lower detail would only restart streaming and prolong them.
+    const renderBound = !loading || !measured || work > this.targetFrameMs * 0.75;
+    this.overloadMs = overloaded && renderBound ? this.overloadMs + elapsed : 0;
     this.headroomMs = headroom ? this.headroomMs + elapsed : 0;
     if (this.warmupElapsedMs < this.warmupMs) return;
     // Memory is a hard resource budget, so it may step down during the normal timing cooldown.
-    if (memory > 1 && this.level > this.minLevel) {
+    // A step frees memory only once its replacements load, and until then the smaller budget
+    // reports more pressure. Let that load finish (up to the recovery delay) before another
+    // step, rather than cascading to the minimum level on retained content.
+    const memorySettling =
+      loading &&
+      this.reason === 'memory-pressure' &&
+      this.clockMs - this.lastChangeMs < this.increaseDelayMs;
+    if (memory > 1 && this.level > this.minLevel && !memorySettling) {
       return this.change(this.level - 1, 'memory-pressure');
     }
     if (this.clockMs - this.lastChangeMs < this.cooldownMs) return;

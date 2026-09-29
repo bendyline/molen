@@ -31,8 +31,9 @@ are under 6,500 triangles each and under 6 MiB for the entire imported collectio
 `tools/generate-assets.py` authors actual beveled meshes, tapered solids, lathed profiles,
 curved bones, thick wing membranes, named material groups, UVs and normals. It writes GLBs
 without Blender, a private package import, an API key, or an external modeling service.
-Python and the declared Pillow version are needed only to regenerate source models/textures;
-the checked-in GLBs run directly in the game. No third-party model packs were used.
+The GLBs are build outputs rather than Git content: in the engine repository, `pnpm assets:build`
+runs this script (Python 3.10+ with the declared Pillow version) with every other generator, and
+`pnpm assets:fetch` downloads the identical published bytes. No third-party model packs were used.
 
 Creature motion uses small rigid-node clips (breathing, hovering and wing flaps), rather than
 skinned locomotion or attack rigs. The sword has an `attack` clip that returns to its rest pose.
@@ -70,9 +71,10 @@ maps derived from it and the GLBs that embed them. Recorded in the root [NOTICE]
 
 Everything downstream of the source image is recorded and reproducible. The runtime maps
 (`shared/textures/limestone-basecolor.png`, `shared/textures/limestone-normal.png`,
-`shared/textures/limestone-metallic-roughness.png`) are derived
-deterministically by `tools/generate-assets.py` and their hashes are pinned in
-[catalog.json](catalog.json); they are not separate generator results. The geometry is authored by
+`shared/textures/limestone-metallic-roughness.png`) are derived from it by
+`tools/generate-assets.py --derive-textures` and committed, with their hashes pinned in
+[catalog.json](catalog.json). Ordinary builds embed the committed maps instead of re-encoding
+them, because PNG compression differs between platforms' zlib. The geometry is authored by
 that script — no third-party model packs, no scanned or photographic textures.
 
 ### Prompt

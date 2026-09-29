@@ -1,0 +1,197 @@
+{
+  "planId": "N0163",
+  "id": "N0163",
+  "assetId": "molen.worldgen.structure.n0163_landmark_81",
+  "title": "Landmark 81",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q18640924",
+  "referenceCoordinate": {
+    "latitude": 10.795,
+    "longitude": 106.721944444
+  },
+  "visualBrief": "The bamboo-cluster skyscraper with a six-by-six nine-metre grid of individually stepped glazed tubes, vertical silver edges, planted rooftop terraces, four high observation volumes and the mapped offset rectangular spire above its retail podium.",
+  "size": [
+    123.40431213378906,
+    461.20001220703125,
+    119.33310317993164
+  ],
+  "actualBounds": {
+    "min": [
+      -61.70052719116211,
+      0,
+      -59.66276550292969
+    ],
+    "max": [
+      61.70378494262695,
+      461.20001220703125,
+      59.67033767700195
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped building long axis",
+    "front": "+Z",
+    "origin": "Ground-level center of exact-QID mapped footprint frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 461.2,
+    "observationLevel81Meters": 389.2,
+    "planningGridMeters": 9,
+    "planningBays": [
+      6,
+      6
+    ],
+    "architect": "Atkins",
+    "concept": "Bundle of bamboo stems"
+  },
+  "reconstruction": {
+    "grid": "Six-by-six9 m layout follows architect case study; individual setback heights reconstructed from published elevations and residential plans",
+    "mapping": "Independent mapped lower tower, upper hotel and mast footprints resolve center and grid direction within the separate retail footprint"
+  },
+  "referencePages": [
+    "https://www.atkinsrealis.com/~/media/Files/A/atkinsrealis/download-centre/en/case-study/landmark-case-study.pdf",
+    "https://group.schindler.com/en/media/stories/landmark-81.html",
+    "https://www.openstreetmap.org/way/622296615"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      106.721711837,
+      10.79486039
+    ],
+    "heading": -0.193504070833,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/622296615",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/622296615"
+    ],
+    "wikidataId": "Q18640924",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact signed retail podium remains at ground. Separately mapped lower shaft fixes tower center; highest mapped rectangular part fixes the actual grid orientation and spire offset. Reconstructed9 m grid fits within the coarse lower envelope; groundY0."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Primary case study records the design-development scheme; detailed exterior construction is reconstructed with that published9 m grid. Individual as-built setback heights, terrace planting and spire skin need additional close reference refinement."
+  ],
+  "qaCameras": [
+    {
+      "name": "stepped-tubes",
+      "position": [
+        122,
+        218,
+        124
+      ],
+      "lookAt": [
+        7,
+        192,
+        -12
+      ]
+    },
+    {
+      "name": "roof-terraces",
+      "position": [
+        -82,
+        149,
+        103
+      ],
+      "lookAt": [
+        2,
+        109,
+        -8
+      ]
+    },
+    {
+      "name": "sky-gallery-spire",
+      "position": [
+        85,
+        469,
+        114
+      ],
+      "lookAt": [
+        0,
+        415,
+        -20
+      ]
+    },
+    {
+      "name": "retail-podium",
+      "position": [
+        179,
+        58,
+        183
+      ],
+      "lookAt": [
+        4,
+        18,
+        8
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -521,
+        394,
+        809
+      ],
+      "lookAt": [
+        4,
+        222,
+        -8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 512049,
+    "vertices": 1517677,
+    "materials": 5,
+    "bytes": 59266460,
+    "sha256": "sha256:a2705c01599d89dbd8b4841d9be9649afc5f61e2146a7fb04992924c4e16a883"
+  }
+}

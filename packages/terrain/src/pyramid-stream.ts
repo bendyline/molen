@@ -3,13 +3,18 @@
  *
  * This module has no geographic or archive assumptions. It selects square planar tiles by
  * projected sample spacing, requests ancestors before descendants, and keeps an ancestor visible
- * until its replacement surfaces and enabled layers are prepared. That whole-tile transition
- * avoids holes, exposed layer construction and partial-refinement z-fighting while moving.
+ * until replacements for its visible layers are prepared. Detailed tiles refine in small
+ * families; bare surfaces need not wait for newly requested detail across an entire region.
  */
 
 import type { SceneAdmission } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
+import {
+  markTerrainGroundSurface,
+  TerrainGroundCutoutController,
+  terrainGroundSourceGeometry,
+} from './ground-cutout';
 import type { Heightfield } from './heightfield';
 import {
   buildChunkGeometry,
@@ -123,7 +128,15 @@ export interface TerrainPyramidStreamOptions
   morphMilliseconds?: number;
   /** Shared frame budget for construction/publication, also passed to semantic adapters. */
   admission?: SceneAdmission;
-  prepareObject?: (object: THREE.Object3D, signal: AbortSignal) => Promise<void>;
+  /**
+   * Prepare GPU resources before publication. `parent` is the tile group a layer object will
+   * join, so a renderer can prepare the LOD levels the camera will see first.
+   */
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
   /** Optional renderer-owned tile group, e.g. a managed WebGPU render-command cache. */
   createTileGroup?: () => THREE.Group;
   material?: THREE.Material;
@@ -168,6 +181,13 @@ export interface TerrainPyramidStream {
   /** Refresh retained allocation estimates after an adapter mutates resident layer geometry. */
   refreshMemoryUsage(): void;
   sampleHeight(x: number, z: number): number | undefined;
+  /**
+   * True when the view's terrain and enabled layers within `radius` of (x, z) are on screen:
+   * every selected tile there is displayed with its layers published (a layer that failed for
+   * good does not hold it back). Loads elsewhere in the view do not count, so a host can act on
+   * the ground around a point, such as landing a walker, while the rest of the view streams in.
+   */
+  isAreaReady(x: number, z: number, radius: number): boolean;
   setLayerVisible(id: string, visible: boolean): void;
   isLayerVisible(id: string): boolean;
   residentTiles(): TerrainPyramidTileAddress[];
@@ -760,6 +780,7 @@ function createSurface(
   buffer.setIndex(new THREE.BufferAttribute(geometry.indices, 1));
   buffer.computeBoundingSphere();
   const mesh = new THREE.Mesh(buffer, material);
+  markTerrainGroundSurface(mesh);
   mesh.name = `surface:${terrainPyramidTileKey(address)}`;
   mesh.renderOrder = address.level;
   const bytes =
@@ -801,6 +822,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private layerPumpScheduled = false;
   private idleWaiters: Array<() => void> = [];
   private budget: TerrainPyramidBudget;
+  private readonly groundCutouts = new TerrainGroundCutoutController();
   private geometryBytes = 0;
   private decodedHeightBytes = 0;
   private displayedBytes = 0;
@@ -1013,7 +1035,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         continue;
       }
       const progress = (nowMs - start) / (this.options.morphMilliseconds ?? 180);
-      const position = tile.surface.geometry.getAttribute('position') as THREE.BufferAttribute;
+      const position = terrainGroundSourceGeometry(tile.surface).getAttribute(
+        'position',
+      ) as THREE.BufferAttribute;
       applySurfaceHeightMorph(position.array as Float32Array, morph, progress);
       position.needsUpdate = true;
       if (progress >= 1 || !tile.surface.visible) {
@@ -1040,6 +1064,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         for (const attribute of Object.values(mesh.geometry.attributes))
           buffers.add(attribute.array.buffer);
         if (mesh.geometry.index) buffers.add(mesh.geometry.index.array.buffer);
+        const original = terrainGroundSourceGeometry(mesh);
+        if (original !== mesh.geometry) {
+          for (const attribute of Object.values(original.attributes))
+            buffers.add(attribute.array.buffer);
+          if (original.index) buffers.add(original.index.array.buffer);
+        }
         const instanced = mesh as THREE.InstancedMesh;
         if (instanced.isInstancedMesh) {
           buffers.add(instanced.instanceMatrix.array.buffer);
@@ -1067,6 +1097,23 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return undefined;
   }
 
+  isAreaReady(x: number, z: number, radius: number): boolean {
+    const area: [number, number, number, number] = [x - radius, z - radius, x + radius, z + radius];
+    let covered = false;
+    for (const [key, address] of this.selected) {
+      if (!boxesIntersect(tileBounds(this.descriptor, address), area)) continue;
+      const tile = this.resident.get(key);
+      if (tile === undefined || !this.displayed.has(key) || !this.layersReady(tile, true))
+        return false;
+      for (const id of tile.layers.keys()) {
+        if (this.layerVisibility.get(id) === true && !this.displayedLayers.get(id)?.has(key))
+          return false;
+      }
+      covered = true;
+    }
+    return covered;
+  }
+
   setLayerVisible(id: string, visible: boolean): void {
     const layer = this.layerById.get(id);
     if (layer === undefined) throw new Error(`unknown terrain pyramid tile layer "${id}"`);
@@ -1079,7 +1126,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     if (visible) {
       for (const tile of this.resident.values()) {
         if (!tile.morph) continue;
-        const position = tile.surface.geometry.getAttribute('position') as THREE.BufferAttribute;
+        const position = terrainGroundSourceGeometry(tile.surface).getAttribute(
+          'position',
+        ) as THREE.BufferAttribute;
         applySurfaceHeightMorph(position.array as Float32Array, tile.morph, 1);
         position.needsUpdate = true;
         this.morphing.delete(tile);
@@ -1200,6 +1249,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.layerRetries.dispose();
     this.morphing.clear();
     this.queue = [];
+    this.groundCutouts.dispose();
     for (const key of [...this.resident.keys()]) this.evict(key);
     this.object.removeFromParent();
     if (this.ownsMaterial) this.material.dispose();
@@ -1326,7 +1376,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             const surfaceVertices = surfaceResolution(this.descriptor, resolution) ** 2;
             // Skirts keep their full depth throughout the transition.
             morph = prepareSurfaceHeightMorph(full.subarray(0, surfaceVertices * 3), {
-              positions: parent.surface.geometry.getAttribute('position').array as Float32Array,
+              positions: terrainGroundSourceGeometry(parent.surface).getAttribute('position')
+                .array as Float32Array,
               resolution: parent.surfaceResolution,
               size: terrainPyramidTileSize(this.descriptor, level),
               offsetX: origin[0] - parentOrigin[0],
@@ -1434,7 +1485,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private refreshEdge(tile: ResidentTile, edge: ChunkEdge): void {
-    const attribute = tile.surface.geometry.getAttribute('normal');
+    const attribute = terrainGroundSourceGeometry(tile.surface).getAttribute('normal');
     const normals = attribute?.array;
     if (!(normals instanceof Float32Array)) return;
     const refreshed = refreshChunkEdgeNormals(
@@ -1462,8 +1513,26 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const previousDisplayed = this.displayed;
     const candidates = new Set<string>();
     for (const leaf of this.selected.values()) {
+      // Refine an already detailed tile one generation at a time. Jumping straight from a
+      // large parent to dozens of leaves hides every finished leaf behind the slowest one.
+      // Intermediate families keep the handoff atomic while allowing nearby families to
+      // finish independently. Missing/evicted intermediates do not block resident leaves.
+      let replacementLevel = leaf.level;
+      for (const previousKey of previousDisplayed) {
+        const previous = this.resident.get(previousKey);
+        if (
+          previous &&
+          previous.address.level < leaf.level &&
+          pyramidAddressesOverlap(previous.address, leaf) &&
+          [...this.displayedLayers.values()].some((keys) => keys.has(previousKey)) &&
+          this.resident.has(
+            terrainPyramidTileKey(terrainPyramidAncestor(leaf, previous.address.level + 1)),
+          )
+        )
+          replacementLevel = Math.min(replacementLevel, previous.address.level + 1);
+      }
       let covered = false;
-      for (let level = leaf.level; level >= this.descriptor.minLevel; level--) {
+      for (let level = replacementLevel; level >= this.descriptor.minLevel; level--) {
         const address = terrainPyramidAncestor(leaf, level);
         const key = terrainPyramidTileKey(address);
         if (this.resident.has(key)) {
@@ -1502,18 +1571,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       for (const previousKey of previousDisplayed) {
         const previousTile = this.resident.get(previousKey);
         if (previousTile && pyramidAddressesOverlap(tile.address, previousTile.address)) {
-          // After bounded retries, a bare ancestor has no missing detail to preserve.
-          // Publish the usable replacement layers instead of pinning an entire region to it.
-          // A complete old tile still wins when it can supply a layer the replacement lost.
-          if (
-            this.layersReady(tile, true) &&
-            ![...previousTile.layers.keys()].some(
-              (id) =>
-                this.layerVisibility.get(id) === true &&
-                this.layerRetries.state(`${key}:${id}`) === 'failed',
-            )
-          )
-            continue;
+          // A bare ancestor has no detail to preserve. Do not pin an entire region to it
+          // while new building layers finish; only wait for layers it actually displays.
+          if (!this.losesVisibleLayers(previousKey, tile)) continue;
           prepared.add(previousKey);
           retained = true;
         }
@@ -1582,6 +1642,25 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return true;
   }
 
+  /** Only existing, visible detail needs an atomic replacement. New layers can arrive later. */
+  private losesVisibleLayers(previousKey: string, replacement: ResidentTile): boolean {
+    for (const [id, displayed] of this.displayedLayers) {
+      if (
+        displayed.has(previousKey) &&
+        this.layerVisibility.get(id) === true &&
+        this.resident.get(previousKey)?.layers.has(id) &&
+        this.layerEligible(
+          this.layerById.get(id) as TerrainPyramidTileLayer,
+          replacement.address.level,
+        ) &&
+        !replacement.layers.has(id) &&
+        !replacement.emptyLayers.has(id)
+      )
+        return true;
+    }
+    return false;
+  }
+
   /** Publish enabled layers together, retaining detail during explicit layer toggles. */
   private updateLayerVisibility(): void {
     for (const layer of this.layerById.values()) {
@@ -1590,7 +1669,20 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (this.layerVisibility.get(layer.id) === true) {
         for (const key of this.displayed) {
           const tile = this.resident.get(key);
-          if (tile === undefined || !this.layerEligible(layer, tile.address.level)) continue;
+          if (tile === undefined) continue;
+          // A camera turn may temporarily use a surface-only ancestor. Keep already visible
+          // detail beneath it until the selected replacement is ready; explicit coarsening
+          // and layer toggles still retire that detail.
+          if (!this.layerEligible(layer, tile.address.level)) {
+            if (!this.selected.has(key)) {
+              for (const previousKey of previous) {
+                const old = this.resident.get(previousKey);
+                if (old && pyramidAddressesOverlap(tile.address, old.address))
+                  candidates.add(previousKey);
+              }
+            }
+            continue;
+          }
           if (
             this.layersReady(tile, true) &&
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
@@ -1620,6 +1712,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // A warm tile can contain hundreds of LOD groups. Hide its root too, so renderer
       // traversal and WebGPU command inspection stop before visiting that cached subtree.
       tile.object.visible = this.visiblyRetains(key);
+    }
+    if (this.groundCutouts.update(this.object)) {
+      for (const tile of this.resident.values()) this.trackAllocations(tile);
     }
     this.refreshDisplayedBytes();
   }
@@ -1702,7 +1797,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         });
         if (object !== undefined) {
           try {
-            if (!signal.aborted) await this.options.prepareObject?.(object, signal);
+            if (!signal.aborted) await this.options.prepareObject?.(object, signal, tile.object);
             if (signal.aborted) throw signal.reason;
           } catch (error) {
             layer.disposeTile?.(object);
@@ -1800,6 +1895,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           tile,
           inView: view === undefined || intersectsHorizontalView(view, bounds, 0),
           selected: this.selected.has(terrainPyramidTileKey(tile.address)),
+          replacement: this.replacementTiles.has(terrainPyramidTileKey(tile.address)),
           distance:
             view === undefined
               ? 0
@@ -1809,6 +1905,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       .sort(
         (a, b) =>
           Number(b.inView) - Number(a.inView) ||
+          Number(b.replacement) - Number(a.replacement) ||
           Number(b.selected) - Number(a.selected) ||
           a.distance - b.distance ||
           b.tile.address.level - a.tile.address.level ||
@@ -1879,6 +1976,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private evict(key: string): void {
     const tile = this.resident.get(key);
     if (tile === undefined) return;
+    this.groundCutouts.restore(tile.object);
     this.morphing.delete(tile);
     const wasDisplayed = this.visiblyRetains(key);
     for (const [pendingKey, request] of this.pendingLayers) {

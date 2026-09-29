@@ -77,6 +77,7 @@ page mount `@bendyline/molen-client` on it.
 | `./terrain` | the ground-field hook: `installTerrain`, `groundFieldOf`, `terrainScriptApi` |
 | `./vehicles` | mountable vehicles, seats, and `stepVehicle` driving |
 | `./aircraft` | `installAircraft` / `stepAircraft` — fixed-wing and helicopter flight |
+| `./world` | `World`, `Transform`, `defineComponent` and the RNG without the scripting runtime — for main-thread hosts that must not load SES (it hardens the whole page) |
 
 ## Status
 

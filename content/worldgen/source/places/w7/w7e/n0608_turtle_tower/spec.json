@@ -1,0 +1,200 @@
+{
+  "id": "N0608",
+  "planId": "N0608",
+  "assetId": "molen.worldgen.structure.n0608_turtle_tower",
+  "title": "Turtle Tower",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1134533"
+  },
+  "wikidataId": "Q1134533",
+  "visualBrief": "Hanoi’s small lake monument with a raised base and entrance steps, two diminishing open Gothic arcades, recessed pilasters, brick terrace infill, narrow stone balustrades, east-facing circular aperture, relief medallions and a curled Vietnamese roof. Continuous deterministic vertex tints reproduce weathered plaster without copied image textures.",
+  "actualBounds": {
+    "min": [
+      -3.4820334911346436,
+      0,
+      -2.6120333671569824
+    ],
+    "max": [
+      3.4820334911346436,
+      8.797402381896973,
+      4.099999904632568
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Native +Z faces east toward the third-floor circular opening and inscription; +X points north",
+    "origin": "Center of the exact mapped monument footprint, Y=0 at the grass island ground"
+  },
+  "scaleBasis": "Municipal tourism documentation gives the height, base rise, three shrinking floor plans, square top and east round aperture. The exact map outline agrees within centimetres. Its four close on-island photographs establish unequal pointed openings, recessed surrounds, stairs, weathering, brick infill and balustrades. The national tourism brochure page 7 establishes the complete roof and scroll silhouette. Intermediate elevations and fine plaster relief are proportionally reconstructed.",
+  "geographicProposal": {
+    "anchor": [
+      105.8522929,
+      21.027873034
+    ],
+    "heading": 1.5724454523087932,
+    "source": "https://www.openstreetmap.org/way/178995269",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cfcf411a1aacfea4293c6ba2401a3cedf776bfc8a3527a553f84b35380652429",
+    "evidence": "Exact Q1134533 way178995269 agrees with the published 6.28 by 4.54 m footprint. Hanoi tourism describes the third-floor circular 0.68 m opening and inscription on the east facade. Native +Z is this east-facing long elevation and +X points north. The documented island ground is the base datum; the surrounding lake and grass island remain mapped terrain.",
+    "limitations": "The small island and lake are host terrain/water, not part of this monument mesh. Island ground contact requires terrain data to retain the island instead of generalizing it into water.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact Q1134533 way178995269 agrees with the published 6.28 by 4.54 m footprint. Hanoi tourism describes the third-floor circular 0.68 m opening and inscription on the east facade. Native +Z is this east-facing long elevation and +X points north. The documented island ground is the base datum; the surrounding lake and grass island remain mapped terrain. The small island and lake are host terrain/water, not part of this monument mesh. Island ground contact requires terrain data to retain the island instead of generalizing it into water."
+  },
+  "sourceFacts": {
+    "heightMeters": 8.8,
+    "foundationHeightMeters": 0.8,
+    "lowerPlanMeters": [
+      6.28,
+      4.54
+    ],
+    "middlePlanMeters": [
+      4.8,
+      3.64
+    ],
+    "upperPlanMeters": [
+      2.97,
+      1.9
+    ],
+    "topPlanMeters": [
+      2,
+      2
+    ],
+    "eastRoundApertureDiameterMeters": 0.68,
+    "firstTwoLevelsExteriorArchesEach": 10,
+    "construction": "1884–1886"
+  },
+  "referencePages": [
+    "https://myhanoi.vn/vi/thaprua",
+    "https://vietnam.travel/sites/default/files/2018-06/Brochure%201000.pdf",
+    "https://dltm-cdn.vnptit3.vn/resources/portal//Images/HNI/Import/636500764509830931_thap_rua_1.png",
+    "https://dltm-cdn.vnptit3.vn/resources/portal//Images/HNI/Import/636500764512019063_thap_rua_2.png",
+    "https://dltm-cdn.vnptit3.vn/resources/portal//Images/HNI/Import/636500764514674769_thap_rua_3.png",
+    "https://dltm-cdn.vnptit3.vn/resources/portal//Images/HNI/Import/636500764517487222_thap_rua_4.png",
+    "https://www.openstreetmap.org/way/178995269"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Intermediate floor heights and small roof scrolls are reconstructed from photographs. Weathering is an original deterministic pattern, not the exact current stain distribution. Inscription plaque relief fields preserve the location; individual historic calligraphy is not copied.",
+    "Gallery openings are genuinely open with wall reveals and inner faces. Interior rooms, altar contents, transient vegetation and maintenance equipment are outside the exterior model scope.",
+    "The island perimeter and lake level belong to map/terrain providers. A coarse map that omits the island will need host terrain refinement before real-water clearance can be approved.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "east-round-window",
+      "position": [
+        10,
+        7,
+        17
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "west-gallery",
+      "position": [
+        -11,
+        6,
+        -16
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "pointed-arcades",
+      "position": [
+        5,
+        3.2,
+        9
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        0
+      ]
+    },
+    {
+      "name": "upper-terrace-roof",
+      "position": [
+        5,
+        8.9,
+        8
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        0
+      ]
+    },
+    {
+      "name": "roof-plan",
+      "position": [
+        2,
+        18,
+        3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        16,
+        10,
+        22
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ]
+}

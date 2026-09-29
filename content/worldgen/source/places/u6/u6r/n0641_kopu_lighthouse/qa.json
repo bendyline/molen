@@ -1,0 +1,69 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0641_kopu_lighthouse",
+  "sourceHash": "sha256:5abcda320f09ac1c0dd28f71580a57a9de3a597da4db93b8c8c28cb3eafad21b",
+  "runtimeHash": "sha256:1a31a54f770ca6349caf9488ca4f0b44f3a780ad3e0fb552da309224554c011c",
+  "captureReportHash": "sha256:1ffa527db385b8b884d34efe30ed978acd678235537be5262d13d4e2fc8cbeea",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Visible static exterior geometry in the inspected frames; not a maximum-fidelity or survey certification.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/near-buttresses.png",
+      "shots/near-lantern.png",
+      "shots/near-entry.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Reviewed all nine fallback frames and all nine shared frames in contact sheets, then full-size shared entry, lantern and north-up placement views. Four separate sloping buttresses connect to the square core; the corrected lower vents remain visible on their front planes. Upper recessed openings, anchor plates and bolts, porch, stairs, roof balcony and lantern frame render without observed missing primary surfaces. Thin railing edges alias at distance. The restored irregular shell and exposed rocks remain simplified."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "capturePath": "shared-capture-report.json",
+    "fixtureHash": "sha256:6095a205450080bb99180525d2761937c86e4e7530267ffd3bcb9e8ba109a4b5",
+    "specHash": "sha256:0d90eb5c9aa6e897302235d9cc23bbf3d8c6f0f85f27b4cd634f3e1cebbd774a",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-buttresses.png",
+      "shots/shared/near-lantern.png",
+      "shots/shared/near-entry.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "White lime plaster, red painted metal, plain timber door and stone trim resolve through four shared graph references. Close views show sensible physical repeats and no missing textures or inappropriate stretched courses. The regular shell and uniform paint omit the reference structure's worn limewash, dirt runoff and irregular boulders; passing this gate means correct shared-library integration, not historical or photographic material fidelity.",
+    "captureReportHash": "sha256:927fbe1753d96a1c93bbf993661a24a3ba421a2c58d3f60569c3355d125a988c"
+  },
+  "geographicReview": {
+    "status": "pending",
+    "notes": "The north-up frame applies the proposed heading and anchor with an exact-QID cached OSM magenta outline. Buttress arms broadly align with the mapped cross-shaped footprint; small arm-length/porch differences remain visible. Flat fixture ground proves contact behavior only. Actual hill slope, foundation fit, asymmetric masonry and facade azimuth still need site review; geographic approval remains pending."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates. No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation. Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates. Height37.7m is authoritative; core width, buttress profile stations, terrace details and porch sizes are photo/map reconstructions. The restored irregular shell and exposed boulders are simplified; annex buildings are omitted."
+  }
+}

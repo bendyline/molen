@@ -1,0 +1,56 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0018_skopje_aqueduct",
+  "sourceHash": "sha256:9d47a97d4637d37776ff499e9ddb4708ad56a26e29e9ba6d1488d1acf3ba6078",
+  "runtimeHash": "sha256:5c98fd4bfc90b1d5b45a724ebe6413e805ceff7651565ab8a944c22362610f0c",
+  "captureReportHash": "sha256:f465961258be97b9a9f9b39ae3f2f8d281fe0aacd0bd767237cd5ea026754f4f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-bent-arcade.png",
+      "shots/southern-arches.png",
+      "shots/middle-bend.png",
+      "shots/rubble-and-brick.png",
+      "shots/relief-openings.png",
+      "shots/brick-soffit.png",
+      "shots/water-conduit.png",
+      "shots/north-ramp.png"
+    ],
+    "notes": "All13 current portable frames inspected. Full arcade and four turns, piers and brick vaults, middle bend, varied rubble/courses, real relief openings and open channel. Corrected overlaps between rubble and radial brick rings, stone/brick returns and camera framing. The directed bend now uses intersecting offset segments rather than a folding tangent approximation; Float32 mesh validation passes."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5beaa509011582821ca3fa34b01d756592402bfdcdde5a21bc2552e76a32b910",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-bent-arcade.png",
+      "shots/shared/southern-arches.png",
+      "shots/shared/middle-bend.png",
+      "shots/shared/rubble-and-brick.png",
+      "shots/shared/relief-openings.png",
+      "shots/shared/brick-soffit.png",
+      "shots/shared/water-conduit.png",
+      "shots/shared/north-ramp.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All13 current shared-surface frames inspected, including full-resolution bend and water-conduit. Two canonical raw limestone/fired clay graphs retain original vertex tints. Exact identity and signed bent centerline registered as a preview; load/unload passes."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:a2c220ab841881d76b043d9c6036ee04bbdc5e59a6a7e1c6cdcc88d638b8d8c3",
+    "notes": "Horizontal bent aqueduct matches exact way180360206; thin map boundary describes water conduit, not full piers. Actual terrain grade and two inferred end ramps still need ground-contact review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "2,224,784-triangle researched first detailed model;54 main arches,53 piers,42 relief openings, wrapped stone/brick masonry and open conduit. Published385.8m overall length exceeds350.77m mapped centerline: two17.5m ramp lengths are an explicit interpretation. Current relief-station/repair pattern and ramp evidence need further review. March2026 conservation-center program continues restoration; current completion is not inferred from a budget allocation."
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "id": "N0607",
+  "planId": "N0607",
+  "assetId": "molen.worldgen.structure.n0607_sukharev_tower",
+  "title": "Sukharev Tower — museum exterior, 1930",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q913949"
+  },
+  "wikidataId": "Q913949",
+  "visualBrief": "Historical museum-era gate tower: asymmetric arcaded galleries, carved window surrounds, octagonal clock shaft, open nine-bell belfry, tiled tent roof and uncovered two-flight eastern stair. The removed imperial eagle is absent.",
+  "size": [
+    65.5,
+    64,
+    25.3
+  ],
+  "actualBounds": {
+    "min": [
+      -21.06999969482422,
+      0,
+      -12.520000457763672
+    ],
+    "max": [
+      44.66862869262695,
+      64,
+      12.630000114440918
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the Sretenska/southern facade; +X is the eastern staircase direction",
+    "origin": "Center of the main 41.6 × 24.5 m rectangular tower base; Y=0 at the historic pavement"
+  },
+  "scaleBasis": "Museum director P. V. Sytin’s 1926 firsthand account gives approximately 19.5 × 11.5 sazhen and 30 sazhen height. The 41.6 × 24.5 m base and 64 m envelope use those dimensions; archival plans, the reproduced measured elevation/sections (plate 106), and the Museum of Moscow photograph determine tier proportions, the asymmetric galleries, eastern staircase and carved details. Small details and vertical tier levels are a proportional reconstruction, not a claim of surviving surveyed fabric.",
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "validFrom": "1926-01-06",
+    "validUntil": "1934-04-01",
+    "representedDate": "1930-01-01",
+    "notes": "Documented post-1925 restoration appearance. Deliberately conservative end date before the April–May 1934 demolition. Explicit viewingDate is required; this is never a current-world building."
+  },
+  "geographicProposal": {
+    "orientationConfidence": "archival-map-registered-to-surviving-hospital-wings",
+    "status": "historical-proposal",
+    "source": "https://www.mos.ru/upload/documents/files/5479/AKTGIKEBolshayaSyharevskayaploshad3.pdf",
+    "anchor": [
+      37.632231057424384,
+      55.772828023511344
+    ],
+    "heading": -0.18091862073567572,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:da1a8f4ee77450922902e06787e8ca8abfe3c622eb8872dd50dcd2b69bf79fb1",
+    "evidence": "The published 1904 Moscow City Council cadastral plan (heritage report PDF page 231, illustration 13) shows the original tower base and eastern staircase. Four surviving Sheremetev Hospital wing corners register this plan to mapped WGS84 coordinates; a least-squares affine registration gives the anchor and directed long axis. Native +X follows the eastern stairs and +Z faces Sretenska to the south-southwest. This is an archival reconstruction frame, not a present-day building footprint.",
+    "limitations": "Historical-map registration accuracy is recorded in map-frame.json. Present-day roads and surrounding buildings do not constitute a reconstructed 1930 streetscape.",
+    "elevationMode": "terrain-contact",
+    "notes": "The published 1904 Moscow City Council cadastral plan (heritage report PDF page 231, illustration 13) shows the original tower base and eastern staircase. Four surviving Sheremetev Hospital wing corners register this plan to mapped WGS84 coordinates; a least-squares affine registration gives the anchor and directed long axis. Native +X follows the eastern stairs and +Z faces Sretenska to the south-southwest. This is an archival reconstruction frame, not a present-day building footprint. Historical-map registration accuracy is recorded in map-frame.json. Present-day roads and surrounding buildings do not constitute a reconstructed 1930 streetscape."
+  },
+  "sourceFacts": {
+    "director1926DimensionsSazhen": [
+      19.5,
+      30,
+      11.5
+    ],
+    "sazhenMeters": 2.1336,
+    "mainFootprintMeters": [
+      41.6,
+      24.5
+    ],
+    "reconstructedHeightMeters": 64,
+    "stairExtensionMeters": 23.6,
+    "southernArcadeOpenings": 6,
+    "northernArcadeOpenings": 5,
+    "clockInstallationYear": 1899,
+    "bellCount": 9,
+    "eagleRemovedYear": 1919,
+    "exteriorRestorationYears": [
+      1923,
+      1925
+    ],
+    "sourceDrawingPage": 106
+  },
+  "referencePages": [
+    "https://history.wikireading.ru/321090",
+    "https://upload.wikimedia.org/wikipedia/commons/b/b0/Sukhareva_bashnya_v_Moskve.pdf",
+    "https://api.ziyonet.uz/uploads/books/10000014/jMb0bL5knCcfTJ5.pdf",
+    "https://online.mosmuseum.ru/moskva-404-1",
+    "https://mosmuseum.ru/exhibitions/p/suhareva_tower/",
+    "https://www.mos.ru/upload/documents/files/5479/AKTGIKEBolshayaSyharevskayaploshad3.pdf"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Dated 1930 exterior only. The building was demolished in 1934; the model requires explicit historical-date opt-in.",
+    "Archive descriptions give approximate total dimensions. Tier elevations, individual relief profiles, glazed tile colors and stair subdivisions are reconstructed from drawings and monochrome photographs; they are not an archaeological survey.",
+    "The imperial eagle, obsolete staircase canopy, removed northern chapel and pre-1701 high chamber roofs are intentionally absent. Interiors, museum displays and surrounding tram infrastructure are outside this exterior asset.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "southern-gate-and-windows",
+      "position": [
+        34,
+        22,
+        60
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "north-five-arches",
+      "position": [
+        -34,
+        25,
+        -62
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "eastern-staircase",
+      "position": [
+        63,
+        19,
+        38
+      ],
+      "lookAt": [
+        24,
+        10,
+        5
+      ]
+    },
+    {
+      "name": "western-loggia",
+      "position": [
+        -49,
+        19,
+        -12
+      ],
+      "lookAt": [
+        -8,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "clock-and-belfry",
+      "position": [
+        18,
+        47,
+        30
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ]
+    },
+    {
+      "name": "carved-window-surrounds",
+      "position": [
+        9,
+        22,
+        27
+      ],
+      "lookAt": [
+        6,
+        20,
+        9
+      ]
+    },
+    {
+      "name": "arch-through-passage",
+      "position": [
+        -2,
+        3,
+        26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-tilework",
+      "position": [
+        24,
+        68,
+        -26
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        102,
+        72,
+        126
+      ],
+      "lookAt": [
+        4,
+        29,
+        0
+      ]
+    }
+  ]
+}

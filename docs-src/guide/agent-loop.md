@@ -36,7 +36,7 @@ project scene names too: `molen sim run main --ticks 30`.
 
 ## 2. Validate (the inner loop — cheap, do it constantly)
 
-```
+```sh
 molen validate scene.json
 ```
 
@@ -45,7 +45,7 @@ did-you-mean. Fix and repeat until clean.
 
 ## 3. Simulate N ticks headlessly
 
-```
+```sh
 molen sim run scene.json --ticks 300 --setup ./setup.mjs --hash
 ```
 
@@ -65,7 +65,7 @@ Author an assertion document (`checks.json`) and pass `--assert`:
 ] }
 ```
 
-```
+```sh
 molen sim run scene.json --ticks 300 --setup ./setup.mjs --assert checks.json
 ```
 
@@ -74,7 +74,7 @@ like `.health.hp` or `.transform.pos[1]`. The command exits non-zero if any asse
 
 ## 5. Screenshot (then look at it)
 
-```
+```sh
 molen shot scene.json --ticks 300 --setup ./setup.mjs --camera 0,6,24 --look 0,0,0 --size 1280x720 --out shot.png
 ```
 
@@ -84,7 +84,7 @@ right; read the PNG when you need to judge appearance.
 
 ## 6. PLAY it (drive: commands in, frames out)
 
-```
+```sh
 molen drive scene.json --actions actions.json --out-dir shots/ --assert checks.json
 ```
 
@@ -116,7 +116,7 @@ itself — what reproduces at which level, what breaks it, and what is not promi
 [determinism.md](determinism.md). To debug a specific run, record a `*.replay.json` fixture
 (scene + command log), then:
 
-```
+```sh
 molen replay demo.replay.json --setup ./setup.mjs            # ✓ matches, or localizes divergence
 molen replay demo.replay.json --setup ./setup.mjs --record   # (re)record expected hashes
 ```

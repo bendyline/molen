@@ -27,9 +27,13 @@ downloads them into a project and pins them in project.json.
 - [Determinism](guide/determinism.md): the contract — what reproduces and at what level per subsystem, what breaks it, what `STATE_FORMAT` means for save files and recorded replays, and what is explicitly not promised.
 - [Browser mount](guide/browser-mount.md): `buildWorld` in a Worker + `await mountExperience` on the page; events and state for HUDs.
 - [Input profiles and joysticks](guide/input.md): keyboard/controller remapping, raw axes, walking/driving/flying profiles, analog commands, and optional React controls.
+- [Camera navigation](guide/navigation.md): orbit, fly, walk (capsule collision against streamed geometry) and follow cameras for `createViewer` hosts; one input model across keys, gamepad, pointer gestures and an on-screen touch stick.
+- [World markers](guide/markers.md): screen-sized photo pins and labels pinned to world positions, ground-snapped, occluded, faded, budgeted and pickable.
+- [Earth view](guide/earth-view.md): `mountEarthView` from `@bendyline/molen-earth` — real-world terrain, buildings, orbit/walk/drive, drivable cars, lat/lon markers, credits and adaptive quality in one call.
 - [WebGPU and WebGL](guide/rendering-backends.md): the `backend` option ('auto' | 'webgl' | 'webgpu') on the asynchronous client factories, legacy WebGL fallback, compatible materials, and world-explorer comparisons.
 - [Earth and authored skies](guide/sky.md): day/night cycles, geographic Sun/Moon positions and lunar phases, catalog stars, simulation clocks, custom-world palettes, and the sky observatory.
 - [Weather and physical atmosphere](guide/weather.md): independent clouds, precipitation and visibility; profiles, temperature/pressure/wind for simulation and aircraft physics; cloud/rain/snow rendering.
+- [Sound and music](guide/audio.md): sound banks, `audioEnvironment`/`audioSource`/`audioZone` rules driven by weather, sky, listener and entity signals, `molen.audio.*` in scripts, `molen audio plan` to hear a scene headlessly, and the CC0 `molen.sounds` pack.
 - [Graphics performance](guide/graphics-performance.md): sparse transforms, static instancing, worker preparation, staged uploads, animation/light policy and terrain transitions.
 - [Terrain and world explorer](guide/terrain.md): fixed-grid and screen-space pyramid streaming,
   projected Earth coordinates, optional semantic tile layers, the installable tiled-world package
@@ -38,7 +42,7 @@ downloads them into a project and pins them in project.json.
 - [Worldgen: styled buildings and scatter](guide/worldgen.md): any outline → a styled building; `worldgenBuilding` component, `molen.worldgen.*` script queries, worker + cache for map tiles
   (footprint analysis, roofs, walls), labeled polygons → deterministic props, style packs, and the
   Earth binding (region atlas, terrain-semantics adapter, tile renderers).
-- [Default structure library](guide/structure-library.md): 120 resizable buildings in 13 taxonomies, 45 shared construction materials, regional placement and the interactive model sheet.
+- [Default structure library](guide/structure-library.md): 120 resizable buildings in 13 taxonomies, 51 shared construction materials, regional placement and the interactive model sheet.
 - [Recognizable places](guide/recognizable-places.md): store identity matching, reusable signs, tenant facades and mapped outdoor props.
 - [Building interiors](guide/building-interiors.md): deterministic layouts by use, real entrances and frontage windows, lazy rendering and walk collision.
 - [3D art guidelines](guide/3d-art-guidelines.md): shared polygonal fidelity, scale, material library, LOD and visual review for static and procedural models.
@@ -87,6 +91,7 @@ Schema + example, generated from the registry) live in [schemas/](schemas/README
 - [Command envelope](schemas/command.md) · [Assertions](schemas/assert.md)
 - [Keyframe](schemas/keyframe.md) · [Delta](schemas/delta.md) · [Replay](schemas/replay.md)
 - [Components](schemas/components.md) — every component with units and axis conventions
+- [Sound bank](schemas/soundbank.md) (`molen/soundbank@1`: sound ids → clips, loops, gain, pitch, bus, provenance)
 
 ## The API surface
 
@@ -102,7 +107,8 @@ Schema + example, generated from the registry) live in [schemas/](schemas/README
 - `molen validate <file> [--kind k] [--project p]` — validate an asset (pinpoint, fixable errors; scene `type` refs resolve through the project)
 - `molen sim run <scene|name> --ticks N [--setup m] [--commands f] [--assert f] [--hash]`
 - `molen asset import <file.glb> [--id <id>] [--trimesh]` · `asset inspect <ref> [--verify]` · `asset list` · `asset shot <ref> --out-dir d [--variant ktx2]`
-- `molen pack build <dir> --out-dir d` · `pack inspect|verify <pack>` · `pack extract <pack> --out-dir d` · `pack fetch <url> [--project p]` — content packs (deterministic zips with a manifest); CLI ops find them via project.json `packs` and `MOLEN_PACKS`
+- `molen pack build <dir> --out-dir d` · `pack inspect|verify <pack>` · `pack extract <pack> --out-dir d` · `pack fetch <url> [ids…] [--out-dir d] [--project p]` — content packs (deterministic zips with a manifest); CLI ops find them via project.json `packs` and `MOLEN_PACKS`
+- `molen audio plan <scene> --ticks N [--bank b.json] [--commands f] [--weather w] [--mode m]` — list the loops and one-shots a scene would play, headlessly · `audio import <file> --id <id> --bank <bank.json> --license <spdx>` · `audio check <bank.json>`
 - `molen asset pack <ref>|--all` — runtime GLB variant (KTX2 textures + mips, 4-8x less GPU memory) · `asset stage --out-dir d [--variant ktx2]` — browser bundle + assets.index.json
 - `molen drive <scene> --actions f --out-dir d [--assert f]` — PLAY a scene: commands in, frames out (deterministic)
 - `molen play <built-app-dir> --scenario f --out-dir d` — PLAY a browser experience: UI inputs in, screenshots/probes/diagnostics out
@@ -128,7 +134,7 @@ Schema + example, generated from the registry) live in [schemas/](schemas/README
 `check_types`, `reserve_type`, `generate_types`, `import_asset`, `inspect_asset`, `pack_asset`, `stage_assets`,
 `list_assets`, `drive_scene` (returns frames as IMAGES), `play_experience` (plays a built browser app and returns frames as IMAGES), `screenshot_asset` (turntable images),
 `test_types`, `worldgen_preview` (generated buildings as IMAGES), `worldgen_bake`, `worldgen_stats`,
-`figure_preview` (figures as IMAGES), `list_figure_presets`. Call `describe_op` for I/O contracts.
+`figure_preview` (figures as IMAGES), `list_figure_presets`, `plan_audio`, `import_sound`, `check_soundbank`. Call `describe_op` for I/O contracts.
 
 
 ## Design reference (for deeper questions; the historical design plan, on GitHub)
