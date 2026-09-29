@@ -1,7 +1,7 @@
 {
   "format": "molen/experience-play@1",
   "name": "world-explorer-engines",
-  "path": "/?synthetic=1&parking=1&quality=balanced&freeze=1&navigation=walk&lat=47.62174226673374&lon=-122.0143923423401&alt=415&yaw=3.14159265359&pitch=0",
+  "path": "/?synthetic=1&parking=1&quality=economy&freeze=1&navigation=walk&lat=47.62174226673374&lon=-122.0143923423401&alt=415&yaw=3.14159265359&pitch=0",
   "viewport": [1280, 720],
   "probes": [
     { "name": "sound", "selector": "#sound-status" },
@@ -10,6 +10,7 @@
   "actions": [
     {
       "type": "wait-for",
+      "note": "Economy quality: this scenario reads the HUD, not pixels, and software rendering draws a balanced frame about 8 times slower (1.5-2.8 s against 0.2 s), which starved everything that advances per frame: driving, walking, climbing.",
       "selector": "#navigation-status[data-state=\"grounded\"]",
       "timeoutMs": 240000
     },
@@ -53,7 +54,7 @@
     { "type": "key-up", "keys": [" "] },
     { "type": "wait", "durationMs": 3000 },
     { "type": "screenshot", "name": "04-car-exited" },
-    { "type": "navigate", "path": "/?aircraft=oh6&quality=balanced&freeze=1" },
+    { "type": "navigate", "path": "/?aircraft=oh6&quality=economy&freeze=1" },
     {
       "type": "wait-for",
       "selector": "#navigation-status[data-state=grounded]",
@@ -76,7 +77,7 @@
     },
     { "type": "wait", "durationMs": 6000 },
     { "type": "screenshot", "name": "06-helicopter-running" },
-    { "type": "navigate", "path": "/?aircraft=p51d&quality=balanced&freeze=1" },
+    { "type": "navigate", "path": "/?aircraft=p51d&quality=economy&freeze=1" },
     {
       "type": "wait-for",
       "selector": "#navigation-status[data-state=grounded]",

@@ -1,7 +1,7 @@
 {
   "format": "molen/experience-play@1",
   "name": "world-explorer-walk-mode",
-  "path": "/?synthetic=1&lineup=1&quality=balanced&freeze=1&lat=47.62145000&lon=-122.01290236&alt=415&yaw=-1.5708&style=none",
+  "path": "/?synthetic=1&lineup=1&quality=economy&freeze=1&lat=47.62145000&lon=-122.01290236&alt=415&yaw=-1.5708&style=none",
   "viewport": [1280, 720],
   "probes": [
     {
@@ -20,6 +20,7 @@
   "actions": [
     {
       "type": "wait-for-stable",
+      "note": "Economy quality: this scenario reads the HUD, not pixels, and software rendering draws a balanced frame about 8 times slower (1.5-2.8 s against 0.2 s), which starved everything that advances per frame: driving, walking, climbing.",
       "selector": "#status",
       "text": "0 loading layers",
       "stableMs": 800,
@@ -68,8 +69,8 @@
     },
     {
       "type": "wait-for",
-      "note": "Keep walking until the camera has moved: a CI software frame can outlast the 3 s hold. The start latitude comes from the path; #location stays visible while walking, unlike #status.",
-      "selector": "#location:not(:has-text(\"Lat 47.6214500°\"))",
+      "note": "Keep walking until the camera has moved: a CI software frame can outlast the 3 s hold. Wait on the start latitude to the 5 decimals the test compares (#location shows 7 and stays visible while walking, unlike #status); it comes from the path.",
+      "selector": "#location:not(:has-text(\"Lat 47.62145\"))",
       "timeoutMs": 240000
     },
     {
