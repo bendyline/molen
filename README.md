@@ -166,9 +166,9 @@ node packages/tooling/dist/cli.mjs --help
 One invariant matters more than the rest: **build before you typecheck or test**, because packages
 consume each other's `dist`. The root scripts encode it.
 
-GLB source masters and imported models come from hash-pinned GitHub release asset packs.
-They are restored to their usual local paths and ignored by Git; authored generators, catalogs,
-sidecars and shared materials stay in the repository. See [asset packs](content/ASSET-PACKS.md).
+GLBs are build outputs of the generators in this repository, pinned byte for byte by
+`asset-lock.json`. `pnpm assets:fetch` downloads the snapshot CI built and published;
+`pnpm assets:build` builds the same bytes from source. See [repository GLBs](content/ASSET-PACKS.md).
 
 ```sh
 pnpm verify        # lint, typecheck, docs:check, test:unit, production audit — also the release gate

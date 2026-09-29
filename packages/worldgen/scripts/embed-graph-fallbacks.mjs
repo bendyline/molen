@@ -1,7 +1,8 @@
 /** Embed portable copies of canonical material-graph base colors. Runtime sharing still owns residency. */
 import { execFile } from 'node:child_process';
-import { mkdir, readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
 import { promisify } from 'node:util';
 
 const run = promisify(execFile);
@@ -27,21 +28,27 @@ export async function embedGraphFallbacks(input, refs, root) {
   for (const { ref, graphPath } of refs) {
     const graph = JSON.parse(await readFile(graphPath, 'utf8'));
     const name = ref.split('.').at(-1);
-    const pngPath = resolve(root, '.artifacts/canonical-material-bakes', `${name}.png`);
-    await mkdir(dirname(pngPath), { recursive: true });
-    await run(
-      process.execPath,
-      [
-        resolve(root, 'packages/tooling/dist/cli.mjs'),
-        'material',
-        'bake',
-        graphPath,
-        '-o',
-        pngPath,
-      ],
-      { cwd: root },
-    );
-    const png = await readFile(pngPath);
+    // A private directory per bake: generators run in parallel and may share a graph.
+    const bakeDir = await mkdtemp(join(tmpdir(), 'molen-graph-bake-'));
+    const pngPath = join(bakeDir, `${name}.png`);
+    let png;
+    try {
+      await run(
+        process.execPath,
+        [
+          resolve(root, 'packages/tooling/dist/cli.mjs'),
+          'material',
+          'bake',
+          graphPath,
+          '-o',
+          pngPath,
+        ],
+        { cwd: root },
+      );
+      png = await readFile(pngPath);
+    } finally {
+      await rm(bakeDir, { recursive: true, force: true });
+    }
     const pad = aligned(length) - length;
     if (pad) chunks.push(Buffer.alloc(pad));
     length += pad;

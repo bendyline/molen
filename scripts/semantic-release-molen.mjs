@@ -1,12 +1,13 @@
 // One semantic-release version and Git tag for the fixed @bendyline/molen-* line.
 // Publish in prepare, before semantic-release pushes the tag: an interrupted publish can then
 // be retried at the same version. Existing tarballs are skipped only if their contents match.
-import { execFileSync, spawnSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkTarballEntries, tarballEntries, tarballFiles } from './check-package-contents.mjs';
+import { checkTarballEntries, tarballFiles } from './check-package-contents.mjs';
+import { execCommand, spawnCommand } from './exec-command.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = 'https://registry.npmjs.org';
@@ -139,19 +140,18 @@ export function packRelease(packages, version, root = ROOT) {
   return packages.map((item) => {
     const archive = join(directory, `${item.data.name.slice(1).replace('/', '-')}-${version}.tgz`);
     try {
-      execFileSync('pnpm', ['pack', '--out', archive], { cwd: dirname(item.path) });
+      execCommand('pnpm', ['pack', '--out', archive], { cwd: dirname(item.path) });
     } catch (error) {
       if (error.stdout) process.stderr.write(error.stdout);
       if (error.stderr) process.stderr.write(error.stderr);
       throw error;
     }
+    const files = tarballFiles(archive);
     const packed = JSON.parse(
-      execFileSync('tar', ['-xOf', archive, 'package/package.json'], {
-        encoding: 'utf8',
-      }),
+      files.find(({ path }) => path === 'package/package.json').data.toString('utf8'),
     );
     checkPackedManifest(packed, version, names);
-    const content = checkTarballEntries(packed.name, tarballEntries(archive), dirname(item.path));
+    const content = checkTarballEntries(packed.name, files, dirname(item.path));
     if (content.length > 0) {
       throw new Error(`${packed.name} would publish content:\n  ${content.join('\n  ')}`);
     }
@@ -161,7 +161,7 @@ export function packRelease(packages, version, root = ROOT) {
 }
 
 function publishedIntegrity(name, version) {
-  const result = spawnSync(
+  const result = spawnCommand(
     'npm',
     ['view', `${name}@${version}`, 'dist.integrity', '--json', `--registry=${REGISTRY}`],
     { encoding: 'utf8' },
@@ -211,7 +211,7 @@ function publishedArchive(name, version, archive) {
   const directory = join(dirname(archive), 'published');
   mkdirSync(directory, { recursive: true });
   const [packed] = JSON.parse(
-    execFileSync(
+    execCommand(
       'npm',
       [
         'pack',
@@ -248,7 +248,7 @@ export function publishRelease(packages, version) {
       process.stdout.write(`Already published ${item.data.name}@${version}; contents match.\n`);
       continue;
     }
-    execFileSync('npm', ['publish', item.archive, '--access', 'public', `--registry=${REGISTRY}`], {
+    execCommand('npm', ['publish', item.archive, '--access', 'public', `--registry=${REGISTRY}`], {
       stdio: 'inherit',
     });
   }
@@ -283,8 +283,8 @@ export function prepare(_pluginConfig, { nextRelease }) {
   const version = nextRelease.version;
   process.stdout.write(`Preparing the fixed Molen release ${version}.\n`);
   const packages = stampVersion(version);
-  execFileSync('pnpm', ['verify'], { cwd: ROOT, stdio: 'inherit' });
-  execFileSync('pnpm', ['docs:site:build'], { cwd: ROOT, stdio: 'inherit' });
+  execCommand('pnpm', ['verify'], { cwd: ROOT, stdio: 'inherit' });
+  execCommand('pnpm', ['docs:site:build'], { cwd: ROOT, stdio: 'inherit' });
   const artifacts = packRelease(packages, version);
   publishRelease(artifacts, version);
 }

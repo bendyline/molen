@@ -107,6 +107,23 @@ async function pump(frames: number): Promise<void> {
   }
 }
 
+// Tiles are admitted to the scene only on animation frames, a few milliseconds' worth per frame,
+// so a slow machine needs more frames. Keep pumping until the view is idle, as a browser would.
+async function settle(view: { whenIdle(): Promise<void> }): Promise<void> {
+  const idle = view.whenIdle();
+  let settled = false;
+  idle.then(
+    () => {
+      settled = true;
+    },
+    () => {
+      settled = true;
+    },
+  );
+  while (!settled) await pump(1);
+  return idle;
+}
+
 function fakeCanvas() {
   const listeners = new Map<string, Set<(event: unknown) => void>>();
   return {
@@ -180,7 +197,7 @@ describe('mountEarthView', () => {
   it('streams terrain around the requested place and reports it in geographic terms', async () => {
     const { view, canvas, errors } = await mount();
     await pump(20);
-    await view.whenIdle();
+    await settle(view);
     await pump(5);
     const stats = view.stats();
     expect(stats.displayedTiles).toBeGreaterThan(0);
@@ -248,7 +265,7 @@ describe('mountEarthView', () => {
     await pump(5);
     view.flyTo({ latitude: 40.7, longitude: -74.0, range: 3_000 }, { durationMs: 300 });
     await pump(40);
-    await view.whenIdle();
+    await settle(view);
     await pump(5);
     const stats = view.stats();
     expect(stats.frameLatitude).toBeCloseTo(40.7, 6);
@@ -284,7 +301,7 @@ describe('mountEarthView', () => {
     expect(view.credits[0]?.label).toBe('© OpenStreetMap contributors');
     view.jumpTo({ latitude: 47.6, longitude: -87.6, range: 2_000 });
     await pump(40);
-    await view.whenIdle();
+    await settle(view);
     await pump(5);
     expect(requests).toEqual([-122.33, -87.6]);
     expect(regions).toEqual(['faraway']);
@@ -322,7 +339,7 @@ describe('mountEarthView', () => {
     view.jumpTo({ latitude: 47.6, longitude: -87.6, range: 2_000 });
     resolveMiddle(selected('middle'));
     await pump(40);
-    await view.whenIdle();
+    await settle(view);
     expect(requests).toEqual([-122.33, -100, -87.6]);
     expect(view.getCamera().longitude).toBeCloseTo(-87.6, 5);
     expect(view.stats().displayedTiles).toBeGreaterThan(0);

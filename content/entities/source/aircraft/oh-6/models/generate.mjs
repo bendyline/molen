@@ -611,7 +611,8 @@ if (current && hash(current) !== baseline.sha256 && !current.equals(bytes)) {
   throw new Error(`Preserving artist edits in ${path}; move the master before regenerating.`);
 }
 await mkdir(root, { recursive: true });
-await writeFile(path, bytes);
-baseline = { sha256: generatedHash };
-await writeFile(baselinePath, `${JSON.stringify(baseline, null, 2)}\n`);
-console.log(`oh6: ${bytes.length} bytes, sha256:${baseline.sha256}`);
+if (!current?.equals(bytes)) await writeFile(path, bytes);
+// A reviewed baseline can only equal this hash here; write it only the first time.
+if (baseline.sha256 === undefined)
+  await writeFile(baselinePath, `${JSON.stringify({ sha256: generatedHash }, null, 2)}\n`);
+console.log(`oh6: ${bytes.length} bytes, sha256:${generatedHash}`);

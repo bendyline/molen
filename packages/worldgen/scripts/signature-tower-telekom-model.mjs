@@ -1,5 +1,7 @@
 /** Menara Telekom: primary engineer's curved-strip plan and HIJJAS exterior drawings. */
 import { beam, loft, normalFor, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
+// `**` rounds differently on Windows and Linux builds of Node, which changed this tower's bytes.
+import { pow } from './deterministic-math.mjs';
 import {
   clockwise,
   commonLimit,
@@ -71,8 +73,8 @@ function bez(c, t) {
 }
 function limits(w, y) {
   return w.tall
-    ? [0, Math.max(0.025, Math.sqrt(Math.max(0, 1 - (y / 310) ** 1.25)))]
-    : [0.49 * (y / 222) ** 1.65, 1];
+    ? [0, Math.max(0.025, Math.sqrt(Math.max(0, 1 - pow(y / 310, 1.25))))]
+    : [0.49 * pow(y / 222, 1.65), 1];
 }
 function wp(w, side, u, y, offset = 0) {
   const [a, b] = limits(w, y),

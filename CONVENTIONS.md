@@ -70,6 +70,16 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   `update-goldens` workflow, which records on the same Ubuntu 24.04 runner as CI. Keep DOM overlays out of a
   captured frame (world-explorer's `hud=0`): text metrics differ between platforms, and a golden
   that includes them is a font test wearing a render test's clothes.
+- **GLBs are generated, never committed.** Every model comes from a generator listed in
+  `asset-build.json` (or one of its few declared `masters`), and `asset-lock.json` pins the bytes.
+  A model change is a source change plus `pnpm assets:build --update-lock`; the Assets workflow
+  rebuilds from a clean checkout, fails on any byte difference and publishes the release that
+  `pnpm assets:fetch` downloads. Generators must be byte-deterministic on Windows and Linux: no
+  clocks, unseeded randomness or locale formatting, no `**`/`Math.pow` beyond squares (V8's pow
+  differs by platform and version), and no hashes of checkout-dependent bytes. Asset builds run
+  on the Node major `asset-build.json` pins.
+  Models share textures through material graphs (`extras.molenSurface`) rather than embedding
+  copies. See [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - Generated script types: `molen-scripts.d.ts` + `tsconfig.json` beside a scripts directory come
   from `molen types gen` (scene + registry). Never edit them by hand — change the scene or the
   component schema and regenerate; `molen types gen --check` flags staleness and

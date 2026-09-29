@@ -1,127 +1,156 @@
-# Repository asset packs
+# Repository GLBs
 
-Full-detail GLB models are distributed as GitHub release attachments. Git stores their
-generators, source descriptions, sidecars, shared materials, licenses, placement catalogs and
-review evidence, plus the root `asset-lock.json`. Restoring a snapshot recreates each GLB at its
-original path with its original bytes. Asset IDs, source hashes and visual review bindings stay
-valid; there is no mesh simplification, texture recompression or Git LFS dependency.
+Every GLB in this repository is a build output of checked-in source, except five small authored
+masters. Git holds the generators, their specs, shared materials and textures, sidecars and
+review evidence. `asset-lock.json` pins the exact bytes the source builds to. The Assets workflow
+builds them from a clean checkout, requires those bytes, and publishes them as a GitHub release
+that `pnpm assets:fetch` downloads as a cache. Building and fetching produce identical files.
 
-## Restore a checkout
+## How the pieces fit
 
-From the engine repository, with Node 22.13 or newer:
+| Stage | Input in Git | Output (ignored by Git) |
+| --- | --- | --- |
+| Generate | The programs in [`asset-build.json`](../asset-build.json), plus the specs, material graphs and textures they read | `models/source.glb` in each source bundle, and a few direct runtime models |
+| Import | Each bundle's `source.json` model entry (`pipeline`, sidecar `output`) and optional `spec.json` `importOptions`, then the `afterImport` scripts in `asset-build.json` that derive reports from the imported models | The runtime `model.glb` beside each `asset.json` sidecar |
+| Verify | `asset-lock.json` | Nothing; any byte difference fails the build |
+
+The generators are the source of truth. Most live in `packages/worldgen/scripts/` (landmarks,
+bridges, stadiums, towers, lighthouses, props). The others are the aircraft recipes in
+`content/entities/source/aircraft/*/models/generate.mjs`,
+`packages/entities/scripts/generate-json-models.mjs` (trees and the boulder, from each bundle's
+`models/model.json`), the red barn's `scripts/generate-barn.mjs`, and Lantern Dungeon's
+`tools/generate-assets.py`. Each source bundle's README names the command that regenerates it.
+
+The five vehicle `source.glb` files are listed as `masters` in `asset-build.json`. No generator
+for them survives, so the committed binary is their source (about 125 KB each). Their runtime
+models are still imported by the build. Prefer a generator for anything new.
+
+`asset-lock.json` (`molen/asset-lock@2`) lists the path, size and SHA-256 of every built GLB.
+Its release name, `assets-<16 hex>`, is derived from those entries alone, so a lock can be
+committed before its release exists.
+
+## Get the GLBs
+
+In the engine repository, with Node 22.13 or newer:
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm assets:fetch
-pnpm assets:check
+pnpm assets:fetch     # download the release the lock names, or build from source if it is not published
 pnpm build
 ```
 
-The checked-in manifest pins an immutable `assets-<snapshot>` release, archive hashes, individual
-file hashes, sizes and destinations. Public downloads require no GitHub login. Fetching skips
-files that already match, validates downloads and archive members before installation, and
-refuses to overwrite modified local GLBs. `--force` explicitly restores the pinned versions.
-Missing archives are downloaded into the ignored `.artifacts/asset-packs/` cache. Cached
-archives are checked again before use. Download or integrity failures leave local models intact
-and can be retried with the same command.
+`pnpm assets:fetch` checks every archive and every restored file against the committed lock. It
+skips files that already match. It replaces a GLB it installed earlier, but refuses to overwrite
+one you built yourself unless you pass `--force`. `--offline` uses only the local cache in
+`.artifacts/asset-packs/`, and `--prefix content/worldgen/assets/places/c2/` restores part of the
+tree. `pnpm all` and `pnpm dev` fetch automatically.
+
+To build everything from source instead, with no network access for models (Node 24, the major
+`asset-build.json` pins):
 
 ```sh
-pnpm assets:fetch --offline
-pnpm assets:fetch --prefix content/worldgen/assets/places/c2/
-pnpm assets:fetch --archive-dir /path/to/downloaded-release-archives --offline
+pnpm assets:build
 ```
 
-Selective fetching is useful for model work; the complete repository checks and site builds
-need the full snapshot. `pnpm all` and the root `pnpm dev` restore it automatically. CI, release
-and golden-image workflows restore it before building and cache the compressed archives.
-`pnpm verify` checks hashes and newly added GLBs without making network requests for assets.
-Allow disk space for the expanded models, compressed archives and one temporary archive's
-selected files during restoration. The manifest's file sizes give the exact expanded total.
+This compiles the packages if needed, moves the previous generated GLBs aside, runs every
+generator, imports every model, and compares all of it with the lock. The Lantern Dungeon
+generator needs Python 3.10+ with `pip install -r examples/lantern-dungeon/tools/requirements.txt`.
+A full build takes a few minutes on a workstation and writes about 18 GB. The report and one log
+per generator are in `.artifacts/asset-build/`.
 
-## Publish changed models
+## Change a model
 
-1. Author/import models through the normal model workflow and update their source manifests,
-   sidecars, placement records and visual evidence. Keep the GLBs locally.
-2. Run `pnpm assets:pack`. It discovers GLBs under `content/`, `assets/` and `examples/`, excluding
-   dependency, build, cache and generated pack directories. It groups models by content role
-   and geohash2, with a 256 MiB source-byte target per archive; a larger individual model gets
-   its own archive, up to 1 GiB. Source masters and imported models are both included.
-3. Review the changed `asset-lock.json` and run `pnpm verify`. Packing writes standard `.tar.gz`
-   files, license notices and a copy of the manifest under `.artifacts/asset-packs/`. Every
-   archive is read back and every member hash checked. Existing matching archives are reused.
-4. The owner publishes the snapshot using GitHub CLI credentials with release write access:
+1. Edit the generator, spec, material graph or texture. Iterate with the bundle's own command,
+   for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=N0692`.
+2. Run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
+   `asset-lock.json` for whatever the source now produces.
+3. Review the diff: generator code, regenerated metadata (`source.json`, `spec.json`, sidecars,
+   README), and the lock entries that changed. Commit them together. Never commit a built GLB,
+   and there is nothing to upload.
+4. On the pull request, the Assets workflow rebuilds from source and fails unless every byte
+   matches the committed lock. The other workflows build from source too, because the new
+   snapshot is not published yet. After the merge, Assets on `main` publishes it.
 
-   ```sh
-   pnpm assets:publish --target <existing-GitHub-commit-SHA>
-   ```
+To add a generator, append it to `generators` in `asset-build.json`. Every GLB the build produces
+must be in the lock, and every locked GLB must be produced. A GLB that is neither locked nor a
+listed master fails `pnpm assets:check`.
 
-   This creates a separate draft asset release, uploads and verifies every attachment using
-   GitHub's reported SHA-256 digest, then publishes it without making it the latest code release.
-   Interrupted uploads can be rerun; identical attachments are skipped, and differing or
-   unverifiable attachments are rejected. Published snapshots are never overwritten.
-   The target must be the full SHA of an existing public repository commit. The release notes
-   explain that the attached manifest identifies the asset snapshot, including model work that
-   may await the owner's next source commit; the tag is not a new engine version.
-5. Confirm a clean destination restores the published snapshot, then commit the updated
-   manifest and authored text/image changes. Publish before the source commit so fresh clones
-   and CI can fetch the newly pinned URLs. Do not commit the archives or GLBs.
+Generators also rewrite their JSON and Markdown metadata. A plain `pnpm assets:build` keeps
+every committed file as it was and lists the ones the generators would change; CI annotates
+them. `--update-lock` accepts real changes. Either way, a file whose content is unchanged keeps
+its committed bytes even if a generator lays it out differently, because review evidence pins
+some of these files byte for byte.
 
-Packing refuses to silently omit a file from the prior manifest when it is missing locally.
-Restore it first, or pass `pnpm assets:pack --allow-removed` after intentionally deleting a model
-and removing its registrations. A model change produces a new snapshot/release; retain older
-releases so historical source commits remain reproducible. Asset releases are independent of
-the existing npm/semantic-release workflow.
+## Determinism
 
-## Archive filenames
+The lock only works if a Windows workstation and the Ubuntu runner build the same bytes, so
+generators must be deterministic:
 
-New releases use readable attachment names:
+- No clocks, unseeded randomness or locale-dependent formatting.
+- Iterate in a stable order.
+- Don't hash files whose bytes vary by checkout. A Windows `core.autocrlf` working tree reads
+  text files with CRLF.
+- Hash only what a model depends on. Hashing an entire shared evidence file makes every model
+  that cites it stale whenever any entry changes.
+- Node's `**` and `Math.pow` round differently on Windows and Linux builds, even for integer
+  exponents, and between Node majors; its other `Math` functions agree. In generators, multiply
+  for squares and use `pow` from `packages/worldgen/scripts/deterministic-math.mjs` for anything
+  else. three.js's color management uses `Math.pow` internally, so asset builds are pinned to
+  the Node major in `asset-build.json` (`"node": "24"`) and refuse to run on another one.
+- Python's `math` is the C library's, whose results can differ in the last bit. Derive stored
+  data (normals, UVs) from the float32 values the GLB will hold, as Lantern Dungeon's generator
+  does.
+- Don't re-encode images during a build: PNG compression depends on the platform's zlib. Commit
+  derived textures and embed or reference their bytes. Lantern Dungeon re-derives its maps only
+  with `--derive-textures`.
 
-| Example | Contents |
+The Assets workflow pins Node 24.18.0 and Python 3.12. When another workflow has to build from
+source, it switches to Node 24 for the build only. Pillow is pinned by
+`examples/lantern-dungeon/tools/requirements.txt`. If a runner-image update ever changes a byte,
+the weekly scheduled run reports it before a model change is blamed for it.
+
+## Shared materials and textures
+
+Structures reference shared, procedural material graphs
+(`content/worldgen/materials/*.matgraph.json`) through `extras.molenSurface` on their glTF
+materials. The client bakes each graph once and shares it across every model that uses it, so
+the landmark GLBs embed no textures beyond a few kilobyte-sized portable fallbacks. Model size
+is geometry. The largest runtime models are single flattened meshes of millions of triangles,
+and they would benefit from instancing repeated parts, meshopt compression and LODs.
+
+Two sets still embed image textures. Each textured Lantern Dungeon model carries its own copy of
+the shared limestone set from `asset-src/shared/textures/`. The red barn embeds its three
+weathered-wood maps.
+
+## Releases
+
+The Assets workflow runs on every pull request, on `main`, weekly and on demand. On `main` it
+runs `pnpm assets:publish --target <commit>`. That packs the built GLBs into `.tar.gz` archives
+grouped by content role and geohash2 cell, about 256 MiB each. It uploads them with
+`asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every attachment's
+digest, then publishes the release without marking it latest. A release that is already
+published is left untouched, and older releases stay for older commits. The owner can run the
+same command with GitHub CLI credentials that have release write access.
+
+| Archive example | Contents |
 | --- | --- |
-| `worldgen-models-c2-part-001.tar.gz` | Imported landmarks in geohash2 cell `c2`, first part |
-| `worldgen-sources-c2-part-001.tar.gz` | Source masters in the same cell |
-| `worldgen-reusable-models-part-001.tar.gz` | Reusable structures without a fixed geographic location |
+| `worldgen-models-c2-part-001.tar.gz` | Imported landmarks in geohash2 cell `c2` |
+| `worldgen-sources-c2-part-001.tar.gz` | Their generated source GLBs |
+| `worldgen-reusable-models-part-001.tar.gz` | Reusable structures without a location |
 | `entities-models-part-001.tar.gz` | Imported entity models |
-| `lantern-dungeon-sources-part-001.tar.gz` | The example's source masters |
+| `lantern-dungeon-sources-part-001.tar.gz` | The example's generated source GLBs |
 
-The two-character code is a geohash2 cell, which can span multiple cities or countries.
-Part numbers start at `001` and split a group to meet the archive size budget. They may change
-when the group's contents change; use the manifest to locate a particular model.
+These archives restore repository build inputs. Applications use the `molen/pack@1` content
+packs and geographic model archives published with the site; a browser never downloads a
+repository snapshot.
 
-Full SHA-256 checksums remain in `asset-lock.json`. The pinned release identifies the snapshot,
-so the public filename does not need a checksum suffix. The local cache uses
-`.artifacts/asset-packs/<sha256>/<filename>` to keep different releases with identical names
-separate. The publisher uploads just the readable filename.
+## Git tracking
 
-Previously published hash-suffixed filenames and flat caches still work. A directory of manually
-downloaded attachments also works with `--archive-dir`; every archive must match the selected
-manifest's checksum. Packing an unchanged older snapshot reuses matching archive bytes under
-the new naming scheme. Existing published releases are not renamed.
-
-## One-time Git tracking migration
-
-`.gitignore` prevents new GLBs being added, but cannot untrack existing entries. After the first
-release and restoration have been verified, the repository owner removes GLBs from the index
-while preserving the local files:
+`.gitignore` ignores `*.glb` except the listed masters. GLBs committed before this layout stay in
+the index until the owner removes them once, keeping the local files:
 
 ```sh
-git rm --cached --ignore-unmatch -- '*.glb'
+git ls-files -- '*.glb' | grep -v '^content/entities/source/vehicles/' | xargs git rm --cached --
 ```
 
-Review that staged change together with `asset-lock.json`, scripts, documentation and CI changes,
-then commit through the usual owner workflow. Agents do not modify the Git index under this
-repository's `AGENTS.md` policy. If an oversized GLB was already committed in unpublished history,
-the owner must also remove that blob from those unpublished commits; a later deletion or an
-ignore rule does not bypass GitHub's per-file history limit.
-
-## Runtime delivery
-
-These tarballs restore repository build inputs. Applications continue to use the existing
-`molen/pack@1` content packs and geographic model archives published with the site. Runtime
-model references, regional loading and GPU unloading are unchanged. A browser does not fetch
-the entire repository snapshot. Source GLBs remain excluded from runtime content packs.
-
-The repository publisher uses streaming tar/gzip and the downloader rejects unexpected files,
-links, unsafe destinations, mismatched lengths and hashes. Archive paths are never taken from
-unverified downloads. `pnpm assets:test` exercises roundtrips, selective downloads, caching,
-modified-file protection and malformed inputs.
+Removing them from the index does not remove old blobs from history.

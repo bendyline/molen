@@ -30,11 +30,11 @@ Candidate metadata is excluded from the runtime pack.
 Authoring sources (`worldgen/source/`, `entities/source/`), fixtures and the entities authoring
 project sit beside the files they generate but are excluded from the packs.
 
-GLB binaries are restored into these folders from the GitHub release snapshot pinned by the
-repository's `asset-lock.json`; they are ignored by Git. Run `pnpm assets:fetch` after installing
-dependencies in a fresh checkout. Source generators, sidecars, shared materials and review
-evidence stay in Git. These repository archives also preserve source GLBs and are separate from
-the application-facing runtime packs described above. See [asset packs](ASSET-PACKS.md).
+GLB binaries in these folders are build outputs, ignored by Git. `pnpm assets:build` generates
+and imports them from the checked-in generators, and `pnpm assets:fetch` downloads the identical
+snapshot CI published for the repository's `asset-lock.json`. Generators, sidecars, shared
+materials and review evidence stay in Git. That repository snapshot is separate from the
+application-facing runtime packs described above. See [repository GLBs](ASSET-PACKS.md).
 
 ## Structure file organization
 

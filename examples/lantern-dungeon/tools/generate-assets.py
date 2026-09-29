@@ -17,6 +17,11 @@ parser.add_argument(
 parser.add_argument(
     "--out-dir", help="Write a review export beneath the example, preserving the editing masters."
 )
+parser.add_argument(
+    "--derive-textures",
+    action="store_true",
+    help="Re-derive the committed limestone maps from limestone-source.png (commit the result).",
+)
 args = parser.parse_args()
 OUTPUT = (ROOT / args.out_dir).resolve() if args.out_dir else SRC
 PENDING = {}
@@ -41,7 +46,8 @@ def finish_outputs():
         if args.check:
             if current != data:
                 errors.append(f"Stale generated output: {path}")
-        elif current is not None and current != data and path != catalog_path:
+        # Only models and maps can be hand-edited masters; the JSON is derived from them.
+        elif current is not None and current != data and path.suffix != ".json":
             if hashlib.sha256(current).hexdigest() != hashes.get(path):
                 errors.append(f"Preserving hand-edited or untracked master: {path}")
     if errors:
@@ -97,38 +103,46 @@ def unit(a):
     return mul(a, 1 / (math.sqrt(sum(x * x for x in a)) or 1))
 
 
+def f32(value):
+    return struct.unpack("<f", struct.pack("<f", value))[0]
+
+
 def png(im):
     out = io.BytesIO()
     im.save(out, format="PNG", optimize=True)
     return out.getvalue()
 
 
-# Keep the original generation untouched. Runtime mip budget: 256-square maps.
-# Derive data maps from periodic luminance differences; G=roughness, B=nonmetal.
-base = (
-    Image.open(SRC / "shared/textures/limestone-source.png")
-    .convert("RGB")
-    .resize((256, 256), Image.Resampling.LANCZOS)
-)
-height = base.convert("L").filter(ImageFilter.GaussianBlur(0.6))
-px = height.load()
-normal = Image.new("RGB", base.size)
-rough = Image.new("RGB", base.size)
-for y in range(256):
-    for x in range(256):
-        n = unit(
-            (
-                (px[(x - 1) % 256, y] - px[(x + 1) % 256, y]) * 0.018,
-                (px[x, (y + 1) % 256] - px[x, (y - 1) % 256]) * 0.018,
-                1,
+TEXTURE_NAMES = ["limestone-basecolor", "limestone-normal", "limestone-metallic-roughness"]
+if args.derive_textures:
+    # Runtime mip budget: 256-square maps. Derive data maps from periodic luminance
+    # differences; G=roughness, B=nonmetal.
+    base = (
+        Image.open(SRC / "shared/textures/limestone-source.png")
+        .convert("RGB")
+        .resize((256, 256), Image.Resampling.LANCZOS)
+    )
+    height = base.convert("L").filter(ImageFilter.GaussianBlur(0.6))
+    px = height.load()
+    normal = Image.new("RGB", base.size)
+    rough = Image.new("RGB", base.size)
+    for y in range(256):
+        for x in range(256):
+            n = unit(
+                (
+                    (px[(x - 1) % 256, y] - px[(x + 1) % 256, y]) * 0.018,
+                    (px[x, (y + 1) % 256] - px[x, (y - 1) % 256]) * 0.018,
+                    1,
+                )
             )
-        )
-        normal.putpixel((x, y), tuple(round((v * 0.5 + 0.5) * 255) for v in n))
-        rough.putpixel((x, y), (255, min(250, 210 + px[x, y] // 8), 0))
-TEXTURES = [png(base), png(normal), png(rough)]
-for name, data in zip(
-    ["limestone-basecolor", "limestone-normal", "limestone-metallic-roughness"], TEXTURES
-):
+            normal.putpixel((x, y), tuple(round((v * 0.5 + 0.5) * 255) for v in n))
+            rough.putpixel((x, y), (255, min(250, 210 + px[x, y] // 8), 0))
+    TEXTURES = [png(base), png(normal), png(rough)]
+else:
+    # The derived maps are committed source. PNG compression depends on the platform's zlib,
+    # so builds embed the committed bytes instead of re-encoding them.
+    TEXTURES = [(SRC / "shared/textures" / f"{name}.png").read_bytes() for name in TEXTURE_NAMES]
+for name, data in zip(TEXTURE_NAMES, TEXTURES):
     write_output(SRC / "shared/textures" / f"{name}.png", data)
 
 
@@ -178,6 +192,10 @@ class Model:
 
     def face(self, pts, mat):
         # Convex polygons are triangulated as a fan. Degenerates are discarded.
+        # Work from the float32 positions the GLB stores: trig results differ in their last bit
+        # between C math libraries, and after this rounding only exact IEEE arithmetic follows,
+        # so normals and UVs are the same bytes on every platform.
+        pts = [tuple(f32(c) for c in pt) for pt in pts]
         for i in range(1, len(pts) - 1):
             p = [pts[0], pts[i], pts[i + 1]]
             n = cross(sub(p[1], p[0]), sub(p[2], p[0]))

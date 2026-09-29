@@ -132,10 +132,13 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).
-- **GLBs live in release asset packs, not Git.** `asset-lock.json` pins exact source and imported
-  model bytes. Use `pnpm assets:fetch` in a new checkout and `pnpm assets:check` to validate it.
-  After model changes, build and publish a new snapshot before committing its manifest; see
-  [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Preserve local GLBs and never silently restore
-  over authored changes. Runtime content packs and the viewer's geographic loading are separate.
+- **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
+  write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
+  downloads the matching release (or builds from source when it is not published yet);
+  `pnpm assets:build` builds from source with no download. After a model change, run
+  `pnpm assets:build --update-lock` and commit the source, regenerated metadata and lock together;
+  never commit a GLB or upload anything. The Assets workflow proves the build and publishes the
+  release. Generators must be byte-deterministic across Windows and Linux. See
+  [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Runtime content packs are separate.
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

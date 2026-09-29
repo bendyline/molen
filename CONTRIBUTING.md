@@ -37,16 +37,16 @@ test**, because packages consume each other's `dist`. The root scripts encode it
 
 ```sh
 pnpm install
-pnpm assets:fetch  # restore the exact GLBs pinned in asset-lock.json
+pnpm assets:fetch  # download the GLBs pinned in asset-lock.json, or build them from source
 pnpm all       # clean install, build, and every check CI runs, in order
 pnpm verify    # the fast subset: lint, typecheck, docs:check, test:unit, production audit
 ```
 
-Model binaries are distributed as GitHub release asset packs, including editable GLB masters.
-Generators, source manifests, asset sidecars, materials and review evidence remain in Git.
-`pnpm all` restores assets automatically; `pnpm verify` verifies the local snapshot without
-downloading. See [asset-pack maintenance](content/ASSET-PACKS.md) for offline setup, selective
-downloads, publishing model changes and the one-time Git tracking migration.
+GLBs are build outputs: the generators, source manifests, specs, shared materials, sidecars and
+review evidence are in Git, and `asset-lock.json` pins the bytes they build to. `pnpm assets:build`
+builds them from source; `pnpm assets:fetch` downloads the release CI published for the same
+lock. To change a model, edit its generator, run `pnpm assets:build --update-lock` and commit the
+result without any GLB. See [repository GLBs](content/ASSET-PACKS.md).
 
 Generated files come from generators, not from hand edits: the schema reference
 (`pnpm docs:gen`), the documentation site (`pnpm docs:site:gen`), and the script

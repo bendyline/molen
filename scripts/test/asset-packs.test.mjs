@@ -1,36 +1,38 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import {
-  copyFile,
-  mkdir,
-  mkdtemp,
-  readFile,
-  rename,
-  rm,
-  symlink,
-  writeFile,
-} from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
 import * as tar from 'tar';
 import {
   archivePath,
-  buildAssets,
   checkAssets,
+  createLock,
   fetchAssets,
   fileInfo,
+  packAssets,
   publishAssets,
-  validateManifest,
+  ReleaseMissingError,
+  readLock,
+  validateLock,
+  validateReleaseManifest,
   verifyArchive,
+  writeLock,
 } from '../asset-packs.mjs';
+import { importPlan, validatePlan } from '../build-assets.mjs';
 
 const roots = [];
 const quiet = () => {};
-async function fixture() {
+async function fixture({ masters = [] } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'molen-assets-'));
   roots.push(root);
   await writeFile(join(root, 'LICENSE'), 'Fixture license\n');
+  await writeFile(
+    join(root, 'asset-build.json'),
+    JSON.stringify({ format: 'molen/asset-build@2', generators: [], masters }),
+  );
   return root;
 }
 afterEach(async () => {
@@ -43,79 +45,127 @@ async function asset(root, path, bytes = Buffer.from('test geometry')) {
   await mkdir(join(root, path, '..'), { recursive: true });
   await writeFile(join(root, path), bytes);
 }
-function resign(manifest) {
-  manifest.snapshot = createHash('sha256')
-    .update(JSON.stringify({ archives: manifest.archives, notices: manifest.notices }))
-    .digest('hex');
-  manifest.release = `assets-${manifest.snapshot.slice(0, 16)}`;
-  return manifest;
+/** Lock whatever GLBs a fixture holds, as `pnpm assets:build --update-lock` would. */
+async function lockFixture(root, paths) {
+  const files = [];
+  for (const path of paths) files.push({ path, ...(await fileInfo(join(root, path))) });
+  const lock = createLock(files);
+  await writeLock(root, lock);
+  return lock;
+}
+/** Serve a packed release from `source` the way GitHub's download URLs would. */
+function releaseServer(source, requested = []) {
+  return async (url) => {
+    const file = url.split('/').at(-1);
+    requested.push(file);
+    const lock = await readLock(source);
+    const dir = join(source, '.artifacts/asset-packs');
+    if (file === 'asset-manifest.json') {
+      try {
+        return new Response(await readFile(join(dir, lock.release, file)));
+      } catch {
+        return new Response('Not Found', { status: 404 });
+      }
+    }
+    const manifest = JSON.parse(await readFile(join(dir, lock.release, 'asset-manifest.json')));
+    return new Response(
+      await readFile(
+        archivePath(
+          dir,
+          manifest.archives.find((a) => a.file === file),
+        ),
+      ),
+    );
+  };
+}
+async function publishedFixture(paths) {
+  const source = await fixture();
+  for (const [path, bytes] of paths) await asset(source, path, bytes);
+  const lock = await lockFixture(
+    source,
+    paths.map(([path]) => path),
+  );
+  const manifest = await packAssets({ root: source, log: quiet });
+  return { source, lock, manifest };
 }
 
-async function legacyManifest(root, manifest) {
-  const legacy = structuredClone(manifest);
-  const directory = join(root, '.artifacts/asset-packs');
-  for (const archive of legacy.archives) {
-    const path = archivePath(directory, archive);
-    archive.file = `molen-glbs-worldgen-assets-c2-000-${archive.sha256}.tar.gz`;
-    await rename(path, join(directory, archive.file));
-  }
-  resign(legacy);
-  const text = `${JSON.stringify(legacy, null, 2)}\n`;
-  await writeFile(join(root, 'asset-lock.json'), text);
-  await writeFile(join(directory, 'asset-lock.json'), text);
-  return legacy;
-}
-
-test('packs exact source/runtime bytes and restores a checkout offline with no model rewrites', async () => {
+test('the lock pins file bytes only, so its release name is known before anything is packed', async () => {
   const root = await fixture();
+  await asset(root, 'content/entities/assets/tree/model.glb', Buffer.from('b'));
+  await asset(root, 'assets/test/model.glb', Buffer.from('a'));
+  const lock = await lockFixture(root, [
+    'content/entities/assets/tree/model.glb',
+    'assets/test/model.glb',
+  ]);
+  assert.deepEqual(
+    lock.files.map((f) => f.path),
+    ['assets/test/model.glb', 'content/entities/assets/tree/model.glb'],
+  );
+  assert.match(lock.release, /^assets-[a-f0-9]{16}$/);
+  assert.deepEqual(createLock([...lock.files].reverse()), lock);
+  assert.equal(await checkAssets({ root, log: quiet }), 2);
+});
+
+test('packs, then restores exact bytes into a fresh checkout and reuses the archives offline', async () => {
+  const bytes = Buffer.from(Array.from({ length: 8192 }, (_, n) => n % 251));
   const source = 'content/worldgen/source/places/c2/c23/test/models/source.glb';
   const runtime = 'content/worldgen/assets/places/c2/c23/test/model.glb';
-  const bytes = Buffer.from(Array.from({ length: 8192 }, (_, n) => n % 251));
-  await asset(root, source, bytes);
-  await asset(root, runtime, Buffer.concat([bytes, bytes]));
-  const first = await buildAssets({ root, log: quiet });
+  const published = await publishedFixture([
+    [source, bytes],
+    [runtime, Buffer.concat([bytes, bytes])],
+  ]);
   assert.deepEqual(
-    first.archives.map((a) => a.file),
+    published.manifest.archives.map((a) => a.file),
     ['worldgen-models-c2-part-001.tar.gz', 'worldgen-sources-c2-part-001.tar.gz'],
   );
-  const second = await buildAssets({ root, log: quiet });
-  assert.deepEqual(first, second);
   const fresh = await fixture();
-  const archiveDir = join(root, '.artifacts/asset-packs');
-  assert.equal(
-    await fetchAssets({ root: fresh, manifest: first, archiveDir, offline: true, log: quiet }),
-    2,
-  );
-  assert.deepEqual(await readFile(join(fresh, source)), bytes);
-  assert.deepEqual(await readFile(join(fresh, runtime)), Buffer.concat([bytes, bytes]));
-  assert.equal(await checkAssets({ root: fresh, manifest: first, log: quiet }), 2);
+  await writeLock(fresh, published.lock);
+  const requested = [];
   await fetchAssets({
     root: fresh,
-    manifest: first,
-    offline: true,
-    fetchImpl: () => {
-      throw Error('Must not fetch resident assets');
-    },
+    fetchImpl: releaseServer(published.source, requested),
     log: quiet,
   });
+  assert.deepEqual(requested.sort(), [
+    'asset-manifest.json',
+    'worldgen-models-c2-part-001.tar.gz',
+    'worldgen-sources-c2-part-001.tar.gz',
+  ]);
+  assert.deepEqual(await readFile(join(fresh, source)), bytes);
+  assert.equal(await checkAssets({ root: fresh, log: quiet }), 2);
+  await rm(join(fresh, runtime));
+  const fail = () => {
+    throw Error('Must not download cached archives');
+  };
+  await fetchAssets({ root: fresh, offline: true, fetchImpl: fail, log: quiet });
+  await fetchAssets({ root: fresh, fetchImpl: fail, log: quiet });
+  assert.equal(await checkAssets({ root: fresh, log: quiet }), 2);
+});
+
+test('reports an unpublished snapshot distinctly so callers can build from source', async () => {
+  const root = await fixture();
+  await asset(root, 'assets/test/model.glb');
+  const lock = await lockFixture(root, ['assets/test/model.glb']);
+  const fresh = await fixture();
+  await writeLock(fresh, lock);
+  await assert.rejects(
+    fetchAssets({ root: fresh, fetchImpl: releaseServer(root), log: quiet }),
+    (error) => error instanceof ReleaseMissingError && /not published yet/.test(error.message),
+  );
+  await assert.rejects(
+    fetchAssets({ root: fresh, offline: true, log: quiet }),
+    ReleaseMissingError,
+  );
 });
 
 test('separates geographic groups and honors a bounded source-byte budget', async () => {
   const root = await fixture();
-  for (const [cell, name] of [
-    ['c2', 'one'],
-    ['c2', 'two'],
-    ['dp', 'three'],
-  ]) {
-    await asset(
-      root,
-      `content/worldgen/assets/places/${cell}/${cell}3/${name}/model.glb`,
-      Buffer.alloc(80, 19),
-    );
-  }
-  const manifest = await buildAssets({ root, budget: 100, log: quiet });
-  assert.equal(manifest.archives.length, 3);
-  assert.ok(manifest.archives.every((a) => a.files.length === 1));
+  const paths = ['c2/c23/one', 'c2/c23/two', 'dp/dp3/three'].map(
+    (p) => `content/worldgen/assets/places/${p}/model.glb`,
+  );
+  for (const path of paths) await asset(root, path, Buffer.alloc(80, 19));
+  await lockFixture(root, paths);
+  const manifest = await packAssets({ root, budget: 100, log: quiet });
   assert.deepEqual(
     manifest.archives.map((a) => a.file),
     [
@@ -128,16 +178,17 @@ test('separates geographic groups and honors a bounded source-byte budget', asyn
 
 test('names reusable models, content roles and example sources without geographic labels', async () => {
   const root = await fixture();
-  for (const path of [
+  const paths = [
     'content/entities/assets/tree/model.glb',
     'content/entities/source/tree/source.glb',
     'content/worldgen/assets/reusable/windmill/model.glb',
     'content/worldgen/source/reusable/windmill/source.glb',
     'examples/lantern-dungeon/asset-src/item/model.glb',
     'examples/lantern-dungeon/public/assets/item/model.glb',
-  ])
-    await asset(root, path);
-  const manifest = await buildAssets({ root, log: quiet });
+  ];
+  for (const path of paths) await asset(root, path);
+  await lockFixture(root, paths);
+  const manifest = await packAssets({ root, log: quiet });
   assert.deepEqual(
     manifest.archives.map((a) => a.file),
     [
@@ -151,310 +202,309 @@ test('names reusable models, content roles and example sources without geographi
   );
 });
 
-test('restores old flat archives and reuses their exact bytes under future readable names', async () => {
-  const root = await fixture();
-  const path = 'content/worldgen/assets/places/c2/c23/test/model.glb';
-  await asset(root, path);
-  const legacy = await legacyManifest(root, await buildAssets({ root, log: quiet }));
-  const archiveDir = join(root, '.artifacts/asset-packs');
-  const fresh = await fixture();
-  await fetchAssets({ root: fresh, manifest: legacy, archiveDir, offline: true, log: quiet });
-  assert.equal(await checkAssets({ root: fresh, manifest: legacy, log: quiet }), 1);
-  const messages = [];
-  const next = await buildAssets({ root, log: (message) => messages.push(message) });
-  assert.equal(next.archives[0].file, 'worldgen-models-c2-part-001.tar.gz');
-  assert.equal(next.archives[0].sha256, legacy.archives[0].sha256);
-  assert.notEqual(next.release, legacy.release);
-  assert.ok(messages.includes(`Reused ${next.archives[0].file}`));
-  assert.deepEqual(
-    await readFile(archivePath(archiveDir, next.archives[0])),
-    await readFile(join(archiveDir, legacy.archives[0].file)),
-  );
-});
-
-test('caches different releases with identical filenames and restores either version offline', async () => {
-  const source = await fixture();
-  const path = 'assets/test/model.glb';
-  await asset(source, path, Buffer.from('version one'));
-  const first = await buildAssets({ root: source, log: quiet });
-  await asset(source, path, Buffer.from('version two'));
-  const second = await buildAssets({ root: source, log: quiet });
-  assert.equal(first.archives[0].file, second.archives[0].file);
-  assert.notEqual(first.archives[0].sha256, second.archives[0].sha256);
-  const root = await fixture();
-  const requested = [];
-  const fetchImpl = async (url) => {
-    requested.push(url);
-    const manifest = url.includes(first.release) ? first : second;
-    return new Response(
-      await readFile(archivePath(join(source, '.artifacts/asset-packs'), manifest.archives[0])),
-    );
-  };
-  for (const manifest of [first, second]) {
-    await fetchAssets({ root, manifest, fetchImpl, force: true, log: quiet });
-  }
-  assert.equal(requested.length, 2);
-  for (const [manifest, expected] of [
-    [first, 'version one'],
-    [second, 'version two'],
-  ]) {
-    await fetchAssets({ root, manifest, offline: true, force: true, log: quiet });
-    assert.equal(await readFile(join(root, path), 'utf8'), expected);
-    assert.equal(await checkAssets({ root, manifest, log: quiet }), 1);
-  }
-});
-
-test('accepts manual flat downloads only when they match the selected release', async () => {
-  const source = await fixture();
-  const path = 'assets/test/model.glb';
-  await asset(source, path, Buffer.from('version one'));
-  const first = await buildAssets({ root: source, log: quiet });
-  await asset(source, path, Buffer.from('version two'));
-  const second = await buildAssets({ root: source, log: quiet });
-  const root = await fixture();
-  const archiveDir = join(root, 'downloads');
-  await mkdir(archiveDir);
-  await copyFile(
-    archivePath(join(source, '.artifacts/asset-packs'), first.archives[0]),
-    join(archiveDir, first.archives[0].file),
-  );
-  await assert.rejects(
-    fetchAssets({ root, manifest: second, archiveDir, offline: true, log: quiet }),
-    /Offline archive missing or corrupt/,
-  );
-  await assert.rejects(readFile(join(root, path)), /ENOENT/);
-  await fetchAssets({ root, manifest: first, archiveDir, offline: true, log: quiet });
-  assert.equal(await readFile(join(root, path), 'utf8'), 'version one');
-});
-
-test('fetches pinned release URLs, validates bytes and reuses archives offline', async () => {
-  const source = await fixture();
-  await asset(source, 'assets/test/model.glb');
-  const manifest = await buildAssets({ root: source, log: quiet });
-  const root = await fixture();
-  const urls = [];
-  const fetchImpl = async (url) => {
-    urls.push(url);
-    return new Response(
-      await readFile(archivePath(join(source, '.artifacts/asset-packs'), manifest.archives[0])),
-    );
-  };
-  await fetchAssets({ root, manifest, fetchImpl, log: quiet });
-  assert.deepEqual(urls, [
-    `https://github.com/bendyline/molen/releases/download/${manifest.release}/${manifest.archives[0].file}`,
+test('restores only the requested prefix and downloads nothing for unrelated places', async () => {
+  const seattle = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
+  const chicago = 'content/worldgen/assets/places/dp/dp3/chicago/model.glb';
+  const published = await publishedFixture([
+    [seattle, Buffer.from('seattle')],
+    [chicago, Buffer.from('chicago')],
   ]);
-  await rm(join(root, 'assets/test/model.glb'));
-  await fetchAssets({ root, manifest, offline: true, log: quiet });
-  assert.equal(await checkAssets({ root, manifest, log: quiet }), 1);
+  const root = await fixture();
+  await writeLock(root, published.lock);
+  const requested = [];
+  await fetchAssets({
+    root,
+    prefix: 'content/worldgen/assets/places/c2/',
+    fetchImpl: releaseServer(published.source, requested),
+    log: quiet,
+  });
+  assert.deepEqual(requested, ['asset-manifest.json', 'worldgen-models-c2-part-001.tar.gz']);
+  await assert.rejects(readFile(join(root, chicago)), /ENOENT/);
 });
 
-test('refuses to overwrite local edits and requires explicit force to restore', async () => {
-  const root = await fixture();
+test('replaces its own stale outputs but refuses to overwrite a locally built GLB', async () => {
   const path = 'assets/test/model.glb';
-  await asset(root, path);
-  const manifest = await buildAssets({ root, log: quiet });
-  await asset(root, path, Buffer.from('authored edit'));
+  const first = await publishedFixture([[path, Buffer.from('version one')]]);
+  const second = await publishedFixture([[path, Buffer.from('version two')]]);
+  const root = await fixture();
+  await writeLock(root, first.lock);
+  await fetchAssets({ root, fetchImpl: releaseServer(first.source), log: quiet });
+  // A newer lock: the installed file is a stale download and is replaced without --force.
+  await writeLock(root, second.lock);
+  await fetchAssets({ root, fetchImpl: releaseServer(second.source), log: quiet });
+  assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
+  // A GLB this tooling did not install is local work.
+  await asset(root, path, Buffer.from('local build'));
   await assert.rejects(
-    fetchAssets({ root, manifest, offline: true, log: quiet }),
-    /Refusing to overwrite/,
+    fetchAssets({ root, fetchImpl: releaseServer(second.source), log: quiet }),
+    /Refusing to overwrite locally built GLBs/,
   );
-  assert.equal(await readFile(join(root, path), 'utf8'), 'authored edit');
-  await fetchAssets({ root, manifest, offline: true, force: true, log: quiet });
-  assert.equal(await readFile(join(root, path), 'utf8'), 'test geometry');
+  assert.equal(await readFile(join(root, path), 'utf8'), 'local build');
+  await fetchAssets({ root, force: true, fetchImpl: releaseServer(second.source), log: quiet });
+  assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
 });
 
 test('rejects corrupt downloads without installing any GLB', async () => {
-  const source = await fixture();
-  await asset(source, 'assets/test/model.glb');
-  const manifest = await buildAssets({ root: source, log: quiet });
+  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('ok')]]);
   const root = await fixture();
+  await writeLock(root, published.lock);
+  const serve = releaseServer(published.source);
   await assert.rejects(
-    fetchAssets({ root, manifest, fetchImpl: async () => new Response('bad archive'), log: quiet }),
+    fetchAssets({
+      root,
+      fetchImpl: async (url) =>
+        url.endsWith('asset-manifest.json') ? serve(url) : new Response('bad archive'),
+      log: quiet,
+    }),
     /checksum mismatch/,
   );
   await assert.rejects(readFile(join(root, 'assets/test/model.glb')), /ENOENT/);
-  await assert.rejects(
-    fetchAssets({ root, manifest, offline: true, log: quiet }),
-    /Offline archive missing/,
-  );
 });
 
-test('rejects traversal, case-colliding destinations and tampered manifests', async () => {
-  const root = await fixture();
-  await asset(root, 'assets/test/model.glb');
-  const original = await buildAssets({ root, log: quiet });
+test('rejects a release manifest that does not cover exactly the locked files', async () => {
+  const published = await publishedFixture([
+    ['assets/test/a.glb', Buffer.from('a')],
+    ['assets/test/b.glb', Buffer.from('b')],
+  ]);
+  const { lock, manifest } = published;
+  const missing = structuredClone(manifest);
+  missing.archives[0].files.pop();
+  assert.throws(() => validateReleaseManifest(missing, lock), /missing 1 assets/);
+  const extra = structuredClone(manifest);
+  extra.archives[0].files.push('assets/test/c.glb');
+  assert.throws(() => validateReleaseManifest(extra, lock), /unexpected asset/);
+  const other = structuredClone(manifest);
+  other.release = 'assets-0000000000000000';
+  assert.throws(() => validateReleaseManifest(other, lock), /does not describe/);
+  for (const name of ['../x-part-001.tar.gz', 'x/part-001.tar.gz', 'C:\\x-part-001.tar.gz']) {
+    const renamed = structuredClone(manifest);
+    renamed.archives[0].file = name;
+    assert.throws(() => validateReleaseManifest(renamed, lock), /Invalid archive/);
+  }
+});
+
+test('rejects traversal, case-colliding destinations and tampered locks', async () => {
+  const lock = createLock([{ path: 'assets/test/model.glb', size: 4, sha256: 'a'.repeat(64) }]);
   for (const path of [
     '../outside.glb',
     'assets/../../outside.glb',
     'assets/C:/outside.glb',
     'assets/a\\b.glb',
     'assets/CON.glb',
-  ]) {
-    const m = structuredClone(original);
-    m.archives[0].files[0].path = path;
-    assert.throws(() => validateManifest(resign(m)), /Unsafe asset path/);
-  }
-  const duplicate = structuredClone(original);
-  duplicate.archives[0].files.push({
-    ...duplicate.archives[0].files[0],
-    path: 'assets/test/MODEL.glb',
-  });
-  assert.throws(() => validateManifest(resign(duplicate)), /duplicate asset/);
-  const changed = structuredClone(original);
-  changed.archives[0].files[0].sha256 = '0'.repeat(64);
-  assert.throws(() => validateManifest(changed), /snapshot does not match/);
-  for (const name of [
-    '../test-part-001.tar.gz',
-    'test/part-001.tar.gz',
-    'C:\\test-part-001.tar.gz',
-  ]) {
-    const m = structuredClone(original);
-    m.archives[0].file = name;
-    assert.throws(() => validateManifest(resign(m)), /Invalid archive/);
-  }
+  ])
+    assert.throws(() => createLock([{ ...lock.files[0], path }]), /Unsafe asset path/);
+  assert.throws(
+    () => createLock([lock.files[0], { ...lock.files[0], path: 'assets/test/MODEL.glb' }]),
+    /duplicate asset/,
+  );
+  const changed = structuredClone(lock);
+  changed.files[0].sha256 = '0'.repeat(64);
+  assert.throws(() => validateLock(changed), /snapshot does not match/);
 });
 
 test('rejects unexpected archive members even when the archive hash is correct', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
   await asset(root, 'assets/test/unlisted.glb');
-  const path = join(root, 'unexpected.tar.gz');
+  const path = join(root, 'unexpected-part-001.tar.gz');
   await tar.c({ file: path, cwd: root, gzip: true }, [
     'assets/test/model.glb',
     'assets/test/unlisted.glb',
   ]);
-  const archive = {
-    file: 'unexpected.tar.gz',
-    ...(await fileInfo(path)),
-    files: [
-      { path: 'assets/test/model.glb', ...(await fileInfo(join(root, 'assets/test/model.glb'))) },
-    ],
+  const model = {
+    path: 'assets/test/model.glb',
+    ...(await fileInfo(join(root, 'assets/test/model.glb'))),
   };
-  await assert.rejects(verifyArchive(path, archive), /Unexpected archive entry/);
-});
-
-test('refuses to hydrate through a symlinked parent', async () => {
-  const source = await fixture();
-  await asset(source, 'assets/test/model.glb');
-  const manifest = await buildAssets({ root: source, log: quiet });
-  const root = await fixture();
-  const outside = await fixture();
-  await symlink(outside, join(root, 'assets'), 'junction');
-  await assert.rejects(fetchAssets({ root, manifest, offline: true, log: quiet }), /symlink/);
-  await assert.rejects(readFile(join(outside, 'test/model.glb')), /ENOENT/);
-});
-
-test('detects unpublished assets and missing old assets before replacing a snapshot', async () => {
-  const root = await fixture();
-  await asset(root, 'assets/test/model.glb');
-  const manifest = await buildAssets({ root, log: quiet });
-  await asset(root, 'assets/test/new.glb');
-  await assert.rejects(checkAssets({ root, manifest, log: quiet }), /Unpublished GLB/);
-  await rm(join(root, 'assets/test/model.glb'));
-  await assert.rejects(buildAssets({ root, log: quiet }), /Restore 1 missing assets/);
-  const pruned = await buildAssets({ root, allowRemoved: true, log: quiet });
-  assert.equal(pruned.archives.flatMap((a) => a.files).length, 1);
-});
-
-test('restores only the requested prefix and makes zero requests for unrelated places', async () => {
-  const source = await fixture();
-  await asset(source, 'content/worldgen/assets/places/c2/c23/seattle/model.glb');
-  await asset(source, 'content/worldgen/assets/places/dp/dp3/chicago/model.glb');
-  const manifest = await buildAssets({ root: source, log: quiet });
-  const root = await fixture();
-  const requested = [];
-  await fetchAssets({
-    root,
-    manifest,
-    prefix: 'content/worldgen/assets/places/c2/',
-    log: quiet,
-    fetchImpl: async (url) => {
-      const file = url.split('/').at(-1);
-      requested.push(file);
-      const archive = manifest.archives.find((a) => a.file === file);
-      return new Response(
-        await readFile(archivePath(join(source, '.artifacts/asset-packs'), archive)),
-      );
-    },
-  });
-  assert.equal(requested.length, 1);
-  assert.match(requested[0], /-c2-/);
+  const archive = {
+    file: 'unexpected-part-001.tar.gz',
+    ...(await fileInfo(path)),
+    files: [model.path],
+  };
   await assert.rejects(
-    readFile(join(root, 'content/worldgen/assets/places/dp/dp3/chicago/model.glb')),
-    /ENOENT/,
+    verifyArchive(path, archive, new Map([[model.path, model]])),
+    /Unexpected archive entry/,
   );
 });
 
-for (const legacy of [false, true])
-  test(`publishes ${legacy ? 'legacy' : 'readable'} attachments only after every digest is verified`, async () => {
-    const root = await fixture();
-    await asset(root, 'assets/test/model.glb');
-    let manifest = await buildAssets({ root, log: quiet });
-    if (legacy) manifest = await legacyManifest(root, manifest);
-    const archiveDir = join(root, '.artifacts/asset-packs');
-    const expected = [
-      ...manifest.archives,
-      manifest.notices,
-      { file: 'asset-lock.json', ...(await fileInfo(join(archiveDir, 'asset-lock.json'))) },
-    ];
-    const uploaded = [];
-    const commands = [];
-    const runGh = (args) => {
-      commands.push(args);
-      if (args.includes('--method'))
-        return JSON.stringify({ id: 123, draft: true, tag_name: manifest.release });
-      if (args.some((a) => a.endsWith('/releases?per_page=100'))) return '[[]]';
-      if (args.some((a) => a.endsWith('/assets?per_page=100'))) return JSON.stringify([uploaded]);
-      if (args[1] === 'upload') {
-        const file = expected.find((f) => f.file === basename(args[3]));
-        uploaded.push({ name: file.file, size: file.size, digest: `sha256:${file.sha256}` });
-        return '';
-      }
-      if (args[1] === 'edit') {
-        assert.equal(uploaded.length, expected.length);
-        return '';
-      }
-      throw new Error(`Unexpected command: ${args}`);
-    };
-    assert.equal(
-      await publishAssets({ root, target: 'a'.repeat(40), runGh, log: quiet }),
-      manifest.release,
-    );
-    assert.equal(
-      commands.filter((a) => a.some((v) => v.endsWith('/releases?per_page=100'))).length,
-      1,
-    );
-    assert.ok(commands.at(-1).includes('--latest=false'));
-    const upload = commands.find((args) => args[1] === 'upload');
-    assert.equal(
-      upload[3],
-      legacy
-        ? join(archiveDir, manifest.archives[0].file)
-        : archivePath(archiveDir, manifest.archives[0]),
-    );
-  });
+test('refuses to hydrate through a symlinked parent', async () => {
+  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('ok')]]);
+  const root = await fixture();
+  await writeLock(root, published.lock);
+  const outside = await fixture();
+  await symlink(outside, join(root, 'assets'), 'junction');
+  await assert.rejects(
+    fetchAssets({ root, fetchImpl: releaseServer(published.source), log: quiet }),
+    /symlink/,
+  );
+  await assert.rejects(readFile(join(outside, 'test/model.glb')), /ENOENT/);
+});
 
-test('does not overwrite or publish a release attachment with a conflicting digest', async () => {
+test('flags GLBs that are neither locked nor declared masters', async () => {
+  const master = 'content/entities/source/vehicles/van/models/source.glb';
+  const root = await fixture({ masters: [master] });
+  await asset(root, 'assets/test/model.glb');
+  await asset(root, master);
+  await lockFixture(root, ['assets/test/model.glb']);
+  assert.equal(await checkAssets({ root, log: quiet }), 1);
+  await asset(root, 'assets/test/new.glb');
+  await assert.rejects(checkAssets({ root, log: quiet }), /Unlocked GLB: assets\/test\/new.glb/);
+  await rm(join(root, 'assets/test/model.glb'));
+  await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
+});
+
+function fakeGitHub(release, { existing } = {}) {
+  const uploaded = [];
+  const commands = [];
+  const runGh = (args) => {
+    commands.push(args);
+    if (args.some((a) => a.endsWith('/releases?per_page=100')))
+      return JSON.stringify([existing ? [existing] : []]);
+    if (args.includes('POST')) return JSON.stringify({ id: 123, draft: true, tag_name: release });
+    if (args.some((a) => a.endsWith('/assets?per_page=100'))) return JSON.stringify([uploaded]);
+    if (args.includes('DELETE')) {
+      const id = Number(args.at(-1).split('/').at(-1));
+      uploaded.splice(
+        uploaded.findIndex((a) => a.id === id),
+        1,
+      );
+      return '';
+    }
+    if (args[1] === 'upload') {
+      // GitHub reports each attachment's size and SHA-256 digest.
+      const bytes = readFileSync(args[3]);
+      uploaded.push({
+        id: uploaded.length + 100,
+        name: basename(args[3]),
+        size: bytes.length,
+        digest: `sha256:${createHash('sha256').update(bytes).digest('hex')}`,
+      });
+      return '';
+    }
+    if (args[1] === 'edit') return '';
+    throw new Error(`Unexpected command: ${args}`);
+  };
+  return { runGh, commands, uploaded };
+}
+
+test('packs and publishes a snapshot only after every attachment digest is verified', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
-  const manifest = await buildAssets({ root, log: quiet });
-  const runGh = (args) => {
-    if (args.some((a) => a.endsWith('/releases?per_page=100')))
-      return JSON.stringify([[{ id: 123, draft: true, tag_name: manifest.release }]]);
-    if (args.some((a) => a.endsWith('/assets?per_page=100')))
-      return JSON.stringify([
-        [
-          {
-            name: manifest.archives[0].file,
-            size: manifest.archives[0].size,
-            digest: `sha256:${'0'.repeat(64)}`,
-          },
-        ],
-      ]);
-    throw new Error('Must not upload or publish when an attachment conflicts');
-  };
+  const lock = await lockFixture(root, ['assets/test/model.glb']);
+  const github = fakeGitHub(lock.release);
+  assert.equal(
+    await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet }),
+    lock.release,
+  );
+  assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
+    'ASSET-NOTICES.txt',
+    'asset-manifest.json',
+    'assets-test-part-001.tar.gz',
+  ]);
+  assert.ok(github.commands.at(-1).includes('--draft=false'));
+  assert.ok(github.commands.at(-1).includes('--latest=false'));
+});
+
+test('replaces a draft attachment from an interrupted run and rejects stray attachments', async () => {
+  const root = await fixture();
+  await asset(root, 'assets/test/model.glb');
+  const lock = await lockFixture(root, ['assets/test/model.glb']);
+  const github = fakeGitHub(lock.release, {
+    existing: { id: 123, draft: true, tag_name: lock.release },
+  });
+  github.uploaded.push({ id: 1, name: 'assets-test-part-001.tar.gz', size: 1, digest: 'sha256:0' });
+  await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet });
+  assert.ok(github.commands.some((args) => args.includes('DELETE')));
+  assert.equal(github.uploaded.length, 3);
+  const stray = fakeGitHub(lock.release, {
+    existing: { id: 123, draft: true, tag_name: lock.release },
+  });
+  stray.uploaded.push({ id: 2, name: 'other.tar.gz', size: 1, digest: 'sha256:0' });
   await assert.rejects(
-    publishAssets({ root, target: 'a'.repeat(40), runGh, log: quiet }),
-    /different or unverifiable bytes/,
+    publishAssets({ root, target: 'a'.repeat(40), runGh: stray.runGh, log: quiet }),
+    /unexpected attachments/,
+  );
+});
+
+test('leaves an already published snapshot untouched', async () => {
+  const root = await fixture();
+  await asset(root, 'assets/test/model.glb');
+  const lock = await lockFixture(root, ['assets/test/model.glb']);
+  const github = fakeGitHub(lock.release, {
+    existing: { id: 9, draft: false, tag_name: lock.release },
+  });
+  assert.equal(
+    await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet }),
+    lock.release,
+  );
+  assert.equal(github.commands.length, 1);
+});
+
+test('derives imports from source bundles and validates generator commands', async () => {
+  const root = await fixture();
+  const bundle = join(root, 'content/entities/source/nature/oak');
+  await mkdir(join(bundle, 'models'), { recursive: true });
+  await writeFile(join(root, 'content/entities/project.json'), '{}');
+  await writeFile(
+    join(bundle, 'source.json'),
+    JSON.stringify({
+      format: 'molen/source-bundle@1',
+      id: 'oak',
+      kind: 'nature',
+      title: 'Oak',
+      files: {
+        models: [
+          {
+            path: 'models/source.glb',
+            assetId: 'oak',
+            output: 'assets/oak/asset.json',
+            pipeline: 'copy',
+          },
+          { path: 'models/model.json' },
+        ],
+      },
+    }),
+  );
+  await writeFile(
+    join(bundle, 'spec.json'),
+    JSON.stringify({ importOptions: { optimize: false } }),
+  );
+  await mkdir(join(root, 'content/entities/assets/oak'), { recursive: true });
+  await writeFile(
+    join(root, 'content/entities/assets/oak/asset.json'),
+    JSON.stringify({ id: 'oak', files: { main: 'model.glb' } }),
+  );
+  assert.deepEqual(await importPlan(root), [
+    {
+      id: 'oak',
+      pipeline: 'copy',
+      optimize: false,
+      source: 'content/entities/source/nature/oak/models/source.glb',
+      sidecar: 'content/entities/assets/oak/asset.json',
+      output: 'content/entities/assets/oak/model.glb',
+      project: 'content/entities/project.json',
+    },
+  ]);
+  const plan = { format: 'molen/asset-build@2', node: '24', generators: [], masters: [] };
+  assert.equal(validatePlan(plan), plan);
+  for (const command of [
+    ['bash', 'scripts/x.sh'],
+    ['node', '../outside.mjs'],
+    ['node', 'packages/../../x.mjs'],
+    ['node', '/abs/x.mjs'],
+  ])
+    assert.throws(
+      () => validatePlan({ ...plan, generators: [{ id: 'x', command }] }),
+      /repository script/,
+    );
+  assert.throws(
+    () =>
+      validatePlan({
+        ...plan,
+        generators: [
+          { id: 'x', command: ['node', 'scripts/a.mjs'] },
+          { id: 'x', command: ['node', 'scripts/b.mjs'] },
+        ],
+      }),
+    /duplicate generator/,
   );
 });
