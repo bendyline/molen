@@ -3,7 +3,7 @@
 // that write source GLBs; every source bundle (source.json) says how its models become runtime
 // GLBs; asset-lock.json pins the exact bytes the result must have. Nothing is downloaded, so a
 // fresh checkout proves the lock. The Assets workflow runs exactly this before it publishes.
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { copyFile, lstat, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
@@ -16,6 +16,7 @@ import {
   inventory,
   readLock,
   readMasters,
+  recordBuilt,
   recordInstalled,
   safePath,
   writeLock,
@@ -25,6 +26,11 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PLAN = 'asset-build.json';
 const PLAN_FORMAT = 'molen/asset-build@2';
 const OUT = '.artifacts/asset-build';
+// asset-lock.json is written on Linux x64, by the Update asset lock workflow. Other hosts round
+// some generator math differently (macOS arm64 builds dozens of models to other bytes), so their
+// builds are for iteration: they report lock differences instead of failing on them.
+export const LOCK_HOST = 'linux-x64';
+const HOST = `${process.platform}-${process.arch}`;
 // Generators read package builds, never the content packs under examples/*/public.
 const COMPILED = [
   'packages/schema/dist/index.mjs',
@@ -157,12 +163,71 @@ async function pool(items, concurrency, work) {
   if (failures.length) throw new Error(failures.map((error) => error.message).join('\n\n'));
 }
 
+const pythonExecutable = () =>
+  process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
+
+// Python jobs need 3.10+ and the exact versions pinned in the requirements.txt beside their
+// script (Lantern Dungeon's Pillow). Checked up front, a wrong interpreter is one clear message
+// rather than a traceback after every other generator has run.
+const PYTHON_MIN = [3, 10];
+const SET_PYTHON = `Set PYTHON to a Python ${PYTHON_MIN.join('.')}+ interpreter.`;
+const PYTHON_PROBE = `import importlib.metadata as m, json, sys
+def version(name):
+    try: return m.version(name)
+    except m.PackageNotFoundError: return None
+print(json.dumps({"python": list(sys.version_info[:3]), "packages": {n: version(n) for n in sys.argv[1:]}}))`;
+
+/** `name==version` pins from the requirements.txt beside each Python job's script. */
+async function pythonPins(root, scripts) {
+  const pins = new Map();
+  for (const script of scripts) {
+    const file = join(root, dirname(script), 'requirements.txt');
+    if (!(await exists(file))) continue;
+    for (const line of (await readFile(file, 'utf8')).split('\n')) {
+      const pin = /^\s*([A-Za-z0-9][\w.-]*)\s*==\s*([^\s;#]+)/.exec(line);
+      if (pin) pins.set(pin[1], { version: pin[2], file: posix(root, file) });
+    }
+  }
+  return pins;
+}
+
+/** Why the probed interpreter (`found`) cannot run the Python jobs; empty when it can. */
+export function pythonProblems(executable, found, pins) {
+  const [major, minor] = found.python;
+  const problems = [];
+  if (major < PYTHON_MIN[0] || (major === PYTHON_MIN[0] && minor < PYTHON_MIN[1]))
+    problems.push(
+      `${executable} is Python ${found.python.join('.')}; the Python generators need ${PYTHON_MIN.join('.')}+. ${SET_PYTHON}`,
+    );
+  for (const [name, { version, file }] of pins)
+    if (found.packages[name] !== version)
+      problems.push(
+        `${file} pins ${name}==${version}; ${executable} has ${found.packages[name] ?? 'none'}. Run: ${executable} -m pip install -r ${file}`,
+      );
+  return problems;
+}
+
+/** Fail before any generator runs when the Python jobs among `jobs` would. */
+export async function checkPython(root, jobs, executable = pythonExecutable()) {
+  const scripts = jobs.filter((job) => job.command[0] === 'python').map((job) => job.command[1]);
+  if (!scripts.length) return;
+  const pins = await pythonPins(root, scripts);
+  const probe = spawnSync(executable, ['-c', PYTHON_PROBE, ...pins.keys()], {
+    cwd: root,
+    encoding: 'utf8',
+    windowsHide: true,
+  });
+  if (probe.error || probe.status !== 0)
+    throw new Error(
+      `Python generators run ${executable}, which failed (${probe.error?.code ?? probe.stderr.trim().split('\n').at(-1)}). ${SET_PYTHON}`,
+    );
+  const problems = pythonProblems(executable, JSON.parse(probe.stdout), pins);
+  if (problems.length) throw new Error(problems.join('\n'));
+}
+
 function run(command, { root, log, label }) {
   const [program, ...args] = command;
-  const executable =
-    program === 'node'
-      ? process.execPath
-      : (process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'));
+  const executable = program === 'node' ? process.execPath : pythonExecutable();
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
     ? ''
     : ' --max-old-space-size=12288';
@@ -393,16 +458,23 @@ export async function buildAssetsFromSource({
   compile = false,
   concurrency = defaultConcurrency(),
   log = console.log,
+  host = HOST,
 } = {}) {
   root = resolve(root);
   const started = Date.now();
   const plan = validatePlan(await readJson(join(root, PLAN)));
+  const lockHost = host === LOCK_HOST;
+  if (updateLock && !lockHost)
+    throw new Error(
+      `asset-lock.json is written on ${LOCK_HOST}; this is ${host}, which can build different bytes. Push the branch and run the Update asset lock workflow.`,
+    );
   // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so a lock
   // only holds for one: build with any other and every byte comparison would be noise.
   if (process.versions.node.split('.')[0] !== plan.node)
     throw new Error(
       `Asset builds use Node ${plan.node} (${PLAN} "node"); this is Node ${process.versions.node}. Switch Node major, or use pnpm assets:fetch.`,
     );
+  await checkPython(root, [...(generate ? plan.generators : []), ...(plan.afterImport ?? [])]);
   const masters = await readMasters(root);
   const lock = (await exists(join(root, 'asset-lock.json'))) ? await readLock(root) : undefined;
   const out = join(root, OUT);
@@ -525,10 +597,15 @@ export async function buildAssetsFromSource({
     await writeLock(root, result);
     report.lock.updated = result.release;
     await recordInstalled(root, built);
+    await recordBuilt(root, result.release, []);
   } else {
-    await recordInstalled(
+    const matches = (file) => expected.get(file.path)?.sha256 === file.sha256;
+    await recordInstalled(root, built.filter(matches));
+    // Fetch keeps these while the lock is unchanged, rather than refusing them as local work.
+    await recordBuilt(
       root,
-      built.filter((file) => expected.get(file.path)?.sha256 === file.sha256),
+      lock?.release,
+      built.filter((file) => expected.has(file.path) && !matches(file)),
     );
   }
   await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
@@ -550,15 +627,26 @@ export async function buildAssetsFromSource({
     ...unexpected.map((path) => `unexpected ${path}`),
   ];
   if (problems.length && !updateLock) {
-    if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
-    throw new Error(
-      `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}\nIf the source change is intended, rerun with --update-lock and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
-    );
+    const listing = `${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}`;
+    // Off the lock host, a difference may be this host's rounding rather than a source change.
+    if (!lockHost)
+      log(
+        `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}) on ${host}; only ${LOCK_HOST} builds are checked against it:\n${listing}\nIf a source change is intended, push the branch and run the Update asset lock workflow.`,
+      );
+    else {
+      if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
+      throw new Error(
+        `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${listing}\nIf the source change is intended, rerun with --update-lock (or run the Update asset lock workflow) and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
+      );
+    }
   }
+  const summary = `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s`;
   log(
     updateLock
-      ? `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; asset-lock.json now names ${result.release}.`
-      : `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; every byte matches ${lock.release}.`,
+      ? `${summary}; asset-lock.json now names ${result.release}.`
+      : problems.length
+        ? `${summary}; ${problems.length} differ from ${lock?.release ?? 'no lock'} on ${host}.`
+        : `${summary}; every byte matches ${lock.release}.`,
   );
   return report;
 }

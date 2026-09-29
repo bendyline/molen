@@ -576,17 +576,37 @@ function helicopter() {
   rod(collective, 'collective-lever', [0, 0, 0], [0, 0.16, 0.4], 0.022, dark);
   return g;
 }
-const baselinePath = resolve(root, 'baseline.json');
-let baseline = {};
-try {
-  baseline = JSON.parse(await readFile(baselinePath, 'utf8'));
-} catch {}
+/**
+ * Components that should be exactly 0 (sin(PI), tube frames on an axis) come out as ~1e-16
+ * noise whose last bits differ by platform. float32 keeps such tiny values whole, so that noise
+ * reaches the GLB bytes; set it to 0. Real coordinates are orders of magnitude larger.
+ */
+function settleZeros(object) {
+  object.traverse(({ geometry }) => {
+    for (const { array } of Object.values(geometry?.attributes ?? {})) {
+      if (!(array instanceof Float32Array)) continue;
+      for (let i = 0; i < array.length; i++) if (Math.abs(array[i]) < 1e-9) array[i] = 0;
+    }
+  });
+  return object;
+}
+// source.json pins the master this generator last wrote. A master that matches neither the pin
+// nor this run's output was edited by hand, and regenerating would discard that work.
+const sourcePath = resolve(root, '../source.json');
+const sourceText = await readFile(sourcePath, 'utf8');
+const pinned = JSON.parse(sourceText).files.models.find(
+  (model) => model.path === 'models/source.glb',
+)?.sha256;
+if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
 const bytes = Buffer.from(
-  await new GLTFExporter().parseAsync(helicopter(), { binary: true, onlyVisible: false }),
+  await new GLTFExporter().parseAsync(settleZeros(helicopter()), {
+    binary: true,
+    onlyVisible: false,
+  }),
 );
 const path = resolve(root, 'source.glb');
 const current = await readFile(path).catch(() => undefined);
-const hash = (buffer) => createHash('sha256').update(buffer).digest('hex');
+const hash = (buffer) => `sha256:${createHash('sha256').update(buffer).digest('hex')}`;
 const generatedHash = hash(bytes);
 const outIndex = process.argv.indexOf('--out');
 if (outIndex !== -1) {
@@ -594,25 +614,19 @@ if (outIndex !== -1) {
   if (!argument || argument.startsWith('--'))
     throw new Error('--out requires a candidate GLB path');
   const candidate = resolve(argument);
-  if (candidate === path || candidate === baselinePath) {
-    throw new Error('--out must be separate from the source master and reviewed baseline');
+  if (candidate === path || candidate === sourcePath) {
+    throw new Error('--out must be separate from the source master and its source.json');
   }
   await mkdir(dirname(candidate), { recursive: true });
   await writeFile(candidate, bytes);
-  console.log(`Candidate: ${candidate} sha256:${generatedHash}`);
+  console.log(`Candidate: ${candidate} ${generatedHash}`);
   process.exit(0);
 }
-if (baseline.sha256 !== undefined && generatedHash !== baseline.sha256) {
-  throw new Error(
-    `Generated model changed from the reviewed baseline (${baseline.sha256} -> ${generatedHash}); inspect it before updating baseline.json.`,
-  );
-}
-if (current && hash(current) !== baseline.sha256 && !current.equals(bytes)) {
+if (current && hash(current) !== pinned && !current.equals(bytes)) {
   throw new Error(`Preserving artist edits in ${path}; move the master before regenerating.`);
 }
 await mkdir(root, { recursive: true });
 if (!current?.equals(bytes)) await writeFile(path, bytes);
-// A reviewed baseline can only equal this hash here; write it only the first time.
-if (baseline.sha256 === undefined)
-  await writeFile(baselinePath, `${JSON.stringify({ sha256: generatedHash }, null, 2)}\n`);
-console.log(`oh6: ${bytes.length} bytes, sha256:${generatedHash}`);
+if (pinned !== generatedHash)
+  await writeFile(sourcePath, sourceText.replace(pinned, generatedHash));
+console.log(`oh6: ${bytes.length} bytes, ${generatedHash}`);

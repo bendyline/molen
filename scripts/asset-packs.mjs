@@ -35,6 +35,9 @@ const NOTICES = 'ASSET-NOTICES.txt';
 const OUTPUT = '.artifacts/asset-packs';
 // Content hashes of GLBs this tool installed; a local GLB matching its entry is safe to replace.
 const INSTALLED = 'installed.json';
+// Locked GLBs the last source build wrote with other bytes than the lock, and the release it
+// named. Off the lock host that is expected (see build-assets.mjs LOCK_HOST).
+const BUILT = 'built.json';
 export const ASSET_ROOTS = ['content', 'assets', 'examples'];
 const SKIP = new Set([
   'node_modules',
@@ -167,7 +170,7 @@ export function validateLock(lock) {
     !Array.isArray(lock.files) ||
     !lock.files.length
   )
-    throw new Error(`Invalid ${LOCK}; rebuild it with pnpm assets:build --update-lock.`);
+    throw new Error(`Invalid ${LOCK}; rewrite it with the Update asset lock workflow.`);
   const seen = new Set();
   let previous;
   for (const file of lock.files) {
@@ -365,6 +368,23 @@ export async function recordInstalled(root, files) {
   await writeFile(join(root, OUTPUT, INSTALLED), json(installed));
 }
 
+/** The last source build's record: the lock release it built against and the GLBs that differ. */
+export async function readBuilt(root) {
+  try {
+    return JSON.parse(await readFile(join(root, OUTPUT, BUILT), 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return { files: {} };
+    throw error;
+  }
+}
+
+/** Replace the build record with the locked `files` a build of `release` wrote differently. */
+export async function recordBuilt(root, release, files) {
+  const record = { release, files: Object.fromEntries(files.map((f) => [f.path, f.sha256])) };
+  await mkdir(join(root, OUTPUT), { recursive: true });
+  await writeFile(join(root, OUTPUT, BUILT), json(record));
+}
+
 /** Archive the locked GLBs, exactly as they are on disk, as a publishable release. */
 export async function packAssets({
   root = ROOT,
@@ -453,7 +473,7 @@ export async function checkAssets({ root = ROOT, lock, prefix = '', log = consol
       errors.push(`Missing ${file.path}; run pnpm assets:fetch (or pnpm assets:build).`);
     else if (!same(await fileInfo(path), file))
       errors.push(
-        `Changed ${file.path}; rebuild with pnpm assets:build, and --update-lock to accept it.`,
+        `Changed ${file.path}; rebuild with pnpm assets:build, or accept it with the Update asset lock workflow.`,
       );
   }
   const registered = new Set(lock.files.map((f) => f.path));
@@ -543,9 +563,12 @@ export async function fetchAssets({
   validateLock(lock);
   const lockFiles = new Map(lock.files.map((f) => [f.path, f]));
   const installed = await readInstalled(root);
+  const built = await readBuilt(root);
+  const builtHere = built.release === lock.release ? built.files : {};
   const wanted = [];
   const conflicts = [];
   let selected = 0;
+  let kept = 0;
   for (const file of lock.files.filter((f) => f.path.startsWith(prefix))) {
     selected++;
     const path = await localPath(root, file.path);
@@ -555,14 +578,24 @@ export async function fetchAssets({
     }
     const info = await fileInfo(path);
     if (same(info, file)) continue;
-    // A GLB this tooling installed is a stale build output; anything else is local work.
-    if (force || installed[file.path] === info.sha256) wanted.push(file);
+    // This machine's build of this lock: another host's rounding, or a change awaiting the lock.
+    if (!force && builtHere[file.path] === info.sha256) {
+      kept++;
+      continue;
+    }
+    // A GLB this tooling installed or built is a stale build output; anything else is local work.
+    if (force || installed[file.path] === info.sha256 || built.files[file.path] === info.sha256)
+      wanted.push(file);
     else conflicts.push(file.path);
   }
   if (!selected) throw new Error(`No assets match prefix: ${prefix}`);
   if (conflicts.length)
     throw new Error(
       `Refusing to overwrite locally built GLBs that differ from ${LOCK}:\n${conflicts.join('\n')}\nRebuild them with pnpm assets:build, or pass --force to restore the pinned versions.`,
+    );
+  if (kept)
+    log(
+      `Keeping ${kept} GLBs this machine built for ${lock.release} with other bytes than the lock; --force restores the pinned versions.`,
     );
   if (!wanted.length) {
     log(`Ready: ${selected} pinned GLBs (nothing to restore).`);

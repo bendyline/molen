@@ -276,7 +276,7 @@ Every license statement above was checked against a primary source rather than f
   checksums are verified by `molen validate <manifest> --verify-files`.
 - Aircraft model provenance: both `models/generate.mjs` scripts import only Node built-ins,
   three.js and their own `interior.mjs`, and read only their committed `interior.json` and
-  `baseline.json`.
+  `source.json`.
 - Webfont licenses: the OFL texts beside the font files, including their copyright lines.
 
 Where a fact could not be established, this file says so rather than guessing, as with the ESA

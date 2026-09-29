@@ -16,12 +16,20 @@ import {
   publishAssets,
   ReleaseMissingError,
   readLock,
+  recordBuilt,
   validateLock,
   validateReleaseManifest,
   verifyArchive,
   writeLock,
 } from '../asset-packs.mjs';
-import { importPlan, validatePlan } from '../build-assets.mjs';
+import {
+  buildAssetsFromSource,
+  checkPython,
+  importPlan,
+  LOCK_HOST,
+  pythonProblems,
+  validatePlan,
+} from '../build-assets.mjs';
 
 const roots = [];
 const quiet = () => {};
@@ -45,7 +53,7 @@ async function asset(root, path, bytes = Buffer.from('test geometry')) {
   await mkdir(join(root, path, '..'), { recursive: true });
   await writeFile(join(root, path), bytes);
 }
-/** Lock whatever GLBs a fixture holds, as `pnpm assets:build --update-lock` would. */
+/** Lock whatever GLBs a fixture holds, as the Update asset lock workflow would. */
 async function lockFixture(root, paths) {
   const files = [];
   for (const path of paths) files.push({ path, ...(await fileInfo(join(root, path))) });
@@ -241,6 +249,32 @@ test('replaces its own stale outputs but refuses to overwrite a locally built GL
   );
   assert.equal(await readFile(join(root, path), 'utf8'), 'local build');
   await fetchAssets({ root, force: true, fetchImpl: releaseServer(second.source), log: quiet });
+  assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
+});
+
+test("keeps this machine's build of the current lock and replaces it once the lock moves on", async () => {
+  const path = 'assets/test/model.glb';
+  const first = await publishedFixture([[path, Buffer.from('version one')]]);
+  const second = await publishedFixture([[path, Buffer.from('version two')]]);
+  const root = await fixture();
+  await writeLock(root, first.lock);
+  // A source build on a host that rounds differently wrote other bytes for this lock.
+  await asset(root, path, Buffer.from('host build'));
+  await recordBuilt(root, first.lock.release, [{ path, ...(await fileInfo(join(root, path))) }]);
+  const requested = [];
+  await fetchAssets({ root, fetchImpl: releaseServer(first.source, requested), log: quiet });
+  assert.equal(await readFile(join(root, path), 'utf8'), 'host build');
+  assert.deepEqual(requested, []);
+  // Edited after the build, it is local work again.
+  await asset(root, path, Buffer.from('hand edit'));
+  await assert.rejects(
+    fetchAssets({ root, fetchImpl: releaseServer(first.source), log: quiet }),
+    /Refusing to overwrite locally built GLBs/,
+  );
+  // Under a newer lock the build is a stale output, replaced without --force.
+  await asset(root, path, Buffer.from('host build'));
+  await writeLock(root, second.lock);
+  await fetchAssets({ root, fetchImpl: releaseServer(second.source), log: quiet });
   assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
 });
 
@@ -506,5 +540,36 @@ test('derives imports from source bundles and validates generator commands', asy
         ],
       }),
     /duplicate generator/,
+  );
+});
+
+test('checks the Python interpreter and its pinned packages before any generator runs', async () => {
+  const root = await fixture();
+  const pins = new Map([
+    ['Pillow', { version: '12.2.0', file: 'examples/game/tools/requirements.txt' }],
+  ]);
+  assert.deepEqual(
+    pythonProblems('py', { python: [3, 12, 1], packages: { Pillow: '12.2.0' } }, pins),
+    [],
+  );
+  assert.deepEqual(pythonProblems('py', { python: [3, 9, 6], packages: { Pillow: null } }, pins), [
+    'py is Python 3.9.6; the Python generators need 3.10+. Set PYTHON to a Python 3.10+ interpreter.',
+    'examples/game/tools/requirements.txt pins Pillow==12.2.0; py has none. Run: py -m pip install -r examples/game/tools/requirements.txt',
+  ]);
+  const missing = join(root, 'no-python');
+  const python = [{ id: 'game', command: ['python', 'examples/game/tools/generate.py'] }];
+  await assert.rejects(checkPython(root, python, missing), /Set PYTHON/);
+  // A build with no Python jobs never looks for an interpreter.
+  await checkPython(root, [{ id: 'oak', command: ['node', 'scripts/oak.mjs'] }], missing);
+});
+
+test('writes the lock only on the lock host', async () => {
+  const root = await fixture();
+  const plan = { format: 'molen/asset-build@2', node: '24', generators: [], masters: [] };
+  await writeFile(join(root, 'asset-build.json'), JSON.stringify(plan));
+  assert.equal(LOCK_HOST, 'linux-x64');
+  await assert.rejects(
+    buildAssetsFromSource({ root, updateLock: true, host: 'darwin-arm64', log: quiet }),
+    /written on linux-x64; this is darwin-arm64.*Update asset lock workflow/,
   );
 });

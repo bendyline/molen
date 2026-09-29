@@ -135,10 +135,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
   write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
   downloads the matching release (or builds from source when it is not published yet);
-  `pnpm assets:build` builds from source with no download. After a model change, run
-  `pnpm assets:build --update-lock` and commit the source, regenerated metadata and lock together;
-  never commit a GLB or upload anything. The Assets workflow proves the build and publishes the
-  release. Generators must be byte-deterministic across Windows and Linux. See
+  `pnpm assets:build` builds from source with no download. After a model change, commit and push
+  the source, then run the Update asset lock workflow, which commits the lock and regenerated
+  metadata from a Linux x64 build (`--update-lock` refuses to run on other hosts); never commit a
+  GLB or upload anything. The Assets workflow proves the build and publishes the release.
+  Generators must be byte-deterministic on Linux x64. See
   [content/ASSET-PACKS.md](content/ASSET-PACKS.md). Runtime content packs are separate.
 
 See [CONVENTIONS.md](CONVENTIONS.md) for the full convention list.

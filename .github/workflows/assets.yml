@@ -3,7 +3,7 @@ name: Assets
 # Builds every repository GLB from checked-in source on a clean checkout (nothing is downloaded)
 # and requires the bytes to match asset-lock.json. On main it then publishes that snapshot as the
 # release the lock names, which `pnpm assets:fetch` and the other workflows download. A pull
-# request that changes models commits the lock from `pnpm assets:build --update-lock`; this job
+# request that changes models carries the lock the Update asset lock workflow committed; this job
 # proves the source still builds to it. See content/ASSET-PACKS.md.
 
 on:
