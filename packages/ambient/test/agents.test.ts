@@ -72,7 +72,7 @@ describe('cars', () => {
     }
     expect(agents(world).length).toBeGreaterThan(20);
     expect(passed).toBeGreaterThan(0);
-  }, 30_000); // Steps 1800 ticks, checking every pair of cars each tick; ~4s on a loaded CI runner.
+  });
 });
 
 describe('spawning around the observer', () => {

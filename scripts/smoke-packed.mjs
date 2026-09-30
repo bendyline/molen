@@ -24,7 +24,8 @@ function run(command, args, cwd, options = {}) {
   return execCommand(command, args, { cwd, encoding: 'utf8', stdio: 'pipe', ...options });
 }
 
-const archives = packRelease(releasePackages()).map((item) => item.archive);
+const packages = releasePackages();
+const archives = packRelease(packages).map((item) => item.archive);
 const peer = (name, dep) =>
   JSON.parse(readFileSync(join(ROOT, 'packages', name, 'package.json'), 'utf8')).peerDependencies[
     dep
