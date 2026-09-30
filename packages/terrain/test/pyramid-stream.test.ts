@@ -248,6 +248,66 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it('keeps on-screen detail when a new leaf has only a distant ancestor left in the cache', async () => {
+    // A small resident cap evicts the intermediate levels. Panning then selects leaves whose only
+    // resident ancestor is near the root; standing that ancestor in for one new leaf must not hide
+    // every detailed tile beneath it for the whole view.
+    const d = descriptor({ rootSize: 256, maxLevel: 4 });
+    const view = {
+      ...VIEW,
+      position: [120, 10, 120] as [number, number, number],
+      direction: [0, -0.3, -1] as [number, number, number],
+      aspect: 1.4,
+    };
+    let hold = false;
+    const pending: Array<() => void> = [];
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        async load(address) {
+          if (hold) await new Promise<void>((resolve) => pending.push(resolve));
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: view,
+        maxScreenSpaceError: 1,
+        viewDistance: 300,
+        maxSelectedTiles: 128,
+        maxResidentTiles: 256,
+        maxConcurrentLoads: 8,
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const before = stream.displayedTiles().map(terrainPyramidTileKey);
+      expect(Math.max(...stream.displayedTiles().map((tile) => tile.level))).toBe(4);
+      // Evict everything that is not on screen: the intermediate levels go with the warm cache.
+      stream.setBudget({ maxResidentBytes: 1 });
+      const shown = new Set(before);
+      expect(
+        stream
+          .residentTiles()
+          .filter((tile) => tile.level === 3 && !shown.has(terrainPyramidTileKey(tile))).length,
+      ).toBe(0);
+      stream.setBudget({ maxResidentBytes: 1 << 30 });
+      hold = true;
+      stream.update({ ...view, position: [150, 10, 120] });
+      const after = new Set(stream.displayedTiles().map(terrainPyramidTileKey));
+      const kept = before.filter((key) => after.has(key));
+      expect(kept.length).toBeGreaterThan(before.length / 2);
+      expect(Math.min(...stream.displayedTiles().map((tile) => tile.level))).toBeGreaterThan(0);
+      hold = false;
+      for (const finish of pending.splice(0)) finish();
+      await stream.whenIdle();
+      expect(Math.max(...stream.displayedTiles().map((tile) => tile.level))).toBe(4);
+    } finally {
+      hold = false;
+      for (const finish of pending) finish();
+      stream.dispose();
+    }
+  });
+
   it('does not pin usable descendants behind a bare ancestor after a layer exhausts retries', async () => {
     const d = descriptor({ maxLevel: 1 });
     let available = false;

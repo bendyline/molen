@@ -47,6 +47,21 @@ describe('orbit navigation', () => {
     expect(orbit.state.pitch).toBeLessThan(Math.PI / 2);
   });
 
+  it('eases back inside tightened range limits, including a running fly-to', () => {
+    const orbit = new OrbitController({ ...start, range: 20_000 });
+    orbit.setRangeLimits({ maxRange: 5_000 });
+    expect(orbit.rangeLimits).toEqual({ minRange: 20, maxRange: 5_000 });
+    run(orbit, 2);
+    expect(orbit.state.range).toBeCloseTo(5_000, 0);
+    orbit.flyTo({ range: 50_000 });
+    orbit.setRangeLimits({ maxRange: 3_000 });
+    run(orbit, 4);
+    expect(orbit.state.range).toBeCloseTo(3_000, 0);
+    orbit.set({ range: 1 });
+    expect(orbit.state.range).toBe(20);
+    expect(() => orbit.setRangeLimits({ minRange: 10, maxRange: 5 })).toThrow(RangeError);
+  });
+
   it('pans the ground under the pointer and moves along the heading with keys', () => {
     const dragged = new OrbitController(start, { smoothing: 0 });
     dragged.update(1 / 60, input({ pan: [100, 0] }), flat);

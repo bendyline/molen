@@ -50,10 +50,14 @@ export interface MarkerLayerOptions {
   hideUntilGrounded?: boolean;
   /**
    * Hide markers whose on-screen footprints overlap a more important one: higher `priority`
-   * first, then markers already shown (so pins do not flicker as the camera moves), then the
-   * nearest. `padding` adds CSS pixels around each footprint (default 4). Off by default.
+   * first, then markers already shown, then the nearest. A shown marker keeps its place until
+   * the inner part of its footprint is covered, so pins do not flicker as the camera moves; a
+   * newcomer needs its whole footprint clear. `padding` adds CSS pixels around each footprint
+   * (default 4). Off by default.
    */
   declutter?: boolean | { padding?: number };
+  /** Milliseconds a marker takes to fade in or out as it is shown or hidden (default 180; 0 pops). */
+  fadeMs?: number;
   renderOrder?: number;
 }
 
@@ -79,7 +83,12 @@ interface MarkerEntry {
   distance: number;
   /** Drawn at the last update; decluttering keeps these ahead of newcomers. */
   shown: boolean;
+  /** Fade-in progress, 0 (hidden) to 1 (fully drawn). */
+  presence: number;
 }
+
+/** Share of a shown marker's footprint, per side, that others may cover before it yields. */
+const DECLUTTER_KEEP_INSET = 0.2;
 
 const scratch = new THREE.Vector3();
 const viewSpace = new THREE.Vector3();
@@ -127,6 +136,7 @@ export class MarkerLayer {
   private readonly loader = new THREE.TextureLoader();
   private visible = true;
   private disposed = false;
+  private lastUpdateMs: number | undefined;
 
   constructor(
     private readonly host: MarkerHost,
@@ -177,6 +187,12 @@ export class MarkerLayer {
     if (this.disposed) return;
     const [, viewportHeight] = this.host.getViewportSize();
     const perPixel = this.worldPerPixel(viewportHeight);
+    const nowMs = performance.now();
+    const elapsedMs =
+      this.lastUpdateMs === undefined ? Number.POSITIVE_INFINITY : nowMs - this.lastUpdateMs;
+    this.lastUpdateMs = nowMs;
+    const fadeMs = this.options.fadeMs ?? 180;
+    const fadeStep = fadeMs > 0 ? elapsedMs / fadeMs : Number.POSITIVE_INFINITY;
     const hideUntilGrounded = this.options.hideUntilGrounded ?? true;
     const candidates: MarkerEntry[] = [];
     for (const entry of this.entries.values()) {
@@ -193,7 +209,11 @@ export class MarkerLayer {
             : entry.groundY + (spec.elevation ?? 0);
       }
       entry.sprite.visible = false;
-      if (y === undefined || !this.visible) continue;
+      if (y === undefined || !this.visible) {
+        entry.presence = 0;
+        entry.shown = false;
+        continue;
+      }
       entry.sprite.position.set(spec.x, y, spec.z);
       entry.distance = Math.hypot(
         spec.x - cameraPosition[0],
@@ -218,15 +238,15 @@ export class MarkerLayer {
     const taken: Array<[number, number, number, number]> = [];
     let drawn = 0;
     for (const entry of candidates) {
+      const wasShown = entry.shown;
       entry.shown = false;
-      if (drawn >= budget) continue;
       const opacity =
         fade === undefined
           ? 1
           : Math.max(0, Math.min(1, (fade.far - entry.distance) / (fade.far - fade.near)));
-      if (opacity <= 0) continue;
       const size = entry.spec.size ?? 56;
-      if (project !== undefined) {
+      let chosen = drawn < budget && opacity > 0;
+      if (chosen && project !== undefined) {
         const screen = project(entry.sprite.position);
         if (screen !== undefined) {
           const width = size * entry.aspect;
@@ -238,22 +258,39 @@ export class MarkerLayer {
             screen[0] + width / 2 + padding,
             top + size + padding,
           ];
+          // A shown marker yields only when its core is covered; a newcomer needs it all clear.
+          const inset = wasShown ? padding + Math.min(width, size) * DECLUTTER_KEEP_INSET : 0;
+          const test: [number, number, number, number] = [
+            box[0] + inset,
+            box[1] + inset,
+            box[2] - inset,
+            box[3] - inset,
+          ];
           if (
             taken.some(
               (other) =>
-                box[0] < other[2] && box[2] > other[0] && box[1] < other[3] && box[3] > other[1],
+                test[0] < other[2] &&
+                test[2] > other[0] &&
+                test[1] < other[3] &&
+                test[3] > other[1],
             )
           )
-            continue;
-          taken.push(box);
+            chosen = false;
+          else taken.push(box);
         }
       }
-      drawn++;
-      entry.material.opacity = opacity;
+      entry.presence = chosen
+        ? Math.min(1, entry.presence + fadeStep)
+        : Math.max(0, entry.presence - fadeStep);
+      if (entry.presence <= 0) continue;
+      if (chosen) {
+        drawn++;
+        entry.shown = true;
+      }
+      entry.material.opacity = opacity * entry.presence;
       entry.sprite.scale.set(size * entry.aspect * perPixel, size * perPixel, 1);
       entry.sprite.center.set(0.5, (entry.spec.anchor ?? 'bottom') === 'bottom' ? 0 : 0.5);
       entry.sprite.visible = true;
-      entry.shown = true;
     }
   }
 
@@ -276,7 +313,8 @@ export class MarkerLayer {
   pick(x: number, y: number): string | undefined {
     let best: { id: string; distance: number } | undefined;
     for (const [id, entry] of this.entries) {
-      if (!entry.sprite.visible) continue;
+      // A marker fading out has yielded its place and no longer takes taps.
+      if (!entry.sprite.visible || !entry.shown) continue;
       const p = entry.sprite.position;
       const screen = projectWorldToScreen(this.host, [p.x, p.y, p.z]);
       if (screen.distance <= 0) continue;
@@ -305,7 +343,12 @@ export class MarkerLayer {
 
   setVisible(visible: boolean): void {
     this.visible = visible;
-    if (!visible) for (const entry of this.entries.values()) entry.sprite.visible = false;
+    if (!visible)
+      for (const entry of this.entries.values()) {
+        entry.sprite.visible = false;
+        entry.presence = 0;
+        entry.shown = false;
+      }
   }
 
   dispose(): void {
@@ -347,6 +390,7 @@ export class MarkerLayer {
       groundY: undefined,
       distance: 0,
       shown: false,
+      presence: 0,
     };
     entry.texture = this.acquire(spec.image, entry);
     material.map = entry.texture;

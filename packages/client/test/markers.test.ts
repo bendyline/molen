@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { composeMarkerImage } from '../src/markers/marker-image';
 import {
   createMarkerLayer,
@@ -134,6 +134,58 @@ describe('marker layer', () => {
     layer.update([0.9, 0, 100]);
     expect(shown()).toEqual(before);
     layer.dispose();
+  });
+
+  it('lets a shown pin keep its place through a slight overlap and fades pins out and in', () => {
+    let now = 1_000;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => now);
+    try {
+      const view = host();
+      const layer = createMarkerLayer(view, { declutter: true, fadeMs: 200 });
+      const at = (distance: number): void => {
+        view.look([0, 0, distance], [0, 0, 0]);
+        layer.update([0, 0, distance]);
+      };
+      const sprite = (id: string) =>
+        layer.object.children.find((child) => child.userData.markerId === id) as THREE.Sprite;
+      // 14 m apart at 100 m is ~73 px between 60 px pins: both fit.
+      layer.set([marker('a', 0, 0, { y: 0, size: 60 }), marker('b', 14, 0, { y: 0, size: 60 })]);
+      at(100);
+      expect(sprite('a').visible && sprite('b').visible).toBe(true);
+      // Backing off to ~60 px apart overlaps the padded footprints a little: b stays.
+      now += 16;
+      at(121);
+      expect(sprite('b').visible).toBe(true);
+      expect(sprite('b').material.opacity).toBe(1);
+      // A newcomer just as close on the other side needs its whole footprint clear.
+      layer.set([
+        marker('a', 0, 0, { y: 0, size: 60 }),
+        marker('b', 14, 0, { y: 0, size: 60 }),
+        marker('c', -14, 0, { y: 0, size: 60 }),
+      ]);
+      now += 16;
+      at(121);
+      expect(sprite('c').visible).toBe(false);
+      // Deep overlap: b yields, fading out rather than vanishing, and stops taking taps.
+      now += 100;
+      at(363);
+      expect(sprite('b').visible).toBe(true);
+      expect(sprite('b').material.opacity).toBeCloseTo(0.5, 5);
+      const b = layer.screenPosition('b');
+      expect(layer.pick(b?.x ?? 0, (b?.y ?? 0) - 10)).not.toBe('b');
+      now += 120;
+      at(363);
+      expect(sprite('b').visible).toBe(false);
+      // Room again: it fades back in.
+      now += 16;
+      at(100);
+      now += 50;
+      at(100);
+      expect(sprite('b').material.opacity).toBeCloseTo(0.33, 5);
+      layer.dispose();
+    } finally {
+      clock.mockRestore();
+    }
   });
 
   it('picks the front-most marker under a point using its pin footprint', () => {

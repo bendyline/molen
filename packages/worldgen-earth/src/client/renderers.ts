@@ -14,10 +14,16 @@ import {
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
   type TerrainSemanticMeshOptions,
+  type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   type TerrainSemanticTileRenderer,
 } from '@bendyline/molen-terrain/client';
-import { pointInPolygon, wgs84ToWorld, worldToWgs84 } from '@bendyline/molen-terrain/kernel';
+import {
+  pointInPolygon,
+  polygonBounds,
+  wgs84ToWorld,
+  worldToWgs84,
+} from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
   createBuildingCellLod,
@@ -55,6 +61,14 @@ import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './genera
 import { resolveStructureElevation, type StructureTerrainSampler } from './structure-elevation';
 import { clipStructureObject, withoutStructureRoads } from './structure-geometry';
 import type { WorldgenGenerator } from './worker-bridge';
+
+/**
+ * A generalized footprint under a landmark's anchor is the landmark's own when neither side
+ * exceeds the landmark's placed extent by more than this ratio plus slack (world units): room
+ * for a source outline a little wider than the model, never a merged city block.
+ */
+const FOOTPRINT_SIZE_RATIO = 1.6;
+const FOOTPRINT_SLACK = 12;
 
 export interface WorldgenRendererOptions {
   atlas?: RegionAtlasDoc;
@@ -458,28 +472,52 @@ export function createWorldgenSemanticRenderers(
     ];
   }
 
+  /** The structures `group` holds a loaded model for, with each model's world X/Z extent. */
+  function placedStructures(
+    group: THREE.Object3D,
+    structures: readonly StructurePlacement[],
+  ): Array<{ entry: StructurePlacement; size: readonly [number, number] }> {
+    return structures.flatMap((entry) => {
+      const object = group.getObjectByName(`structure:${entry.id}`);
+      if (object === undefined) return [];
+      const extent = new THREE.Box3().setFromObject(object).getSize(new THREE.Vector3());
+      return [{ entry, size: [extent.x, extent.z] as const }];
+    });
+  }
+
+  /**
+   * Drop the building footprints that loaded landmarks stand in for: those containing a
+   * `replaceFootprint` anchor. Generalized sources merge neighboring footprints at low zoom, so
+   * there a footprint goes only when it is about the landmark's own size (`size`, its placed
+   * world-space X/Z extent); a larger one is a merged block of other buildings and stays.
+   */
   function withoutReplacedFootprints(
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
-    structures: readonly StructurePlacement[],
+    placed: ReadonlyArray<{ entry: StructurePlacement; size: readonly [number, number] }>,
   ): TerrainSemanticTile {
-    if (tile.buildingsGeneralized || !structures.some((entry) => entry.replaceFootprint))
-      return tile;
-    const anchors = structures
-      .filter((entry) => entry.replaceFootprint)
-      .map((entry) => {
+    const anchors = placed
+      .filter(({ entry }) => entry.replaceFootprint)
+      .map(({ entry, size }) => {
         const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
-        return [
+        const point: [number, number] = [
           (x - context.origin[0]) / context.tileSize,
           (z - context.origin[1]) / context.tileSize,
-        ] as [number, number];
+        ];
+        return { point, size };
       });
-    const buildings = tile.buildings.filter(
-      (feature) =>
-        !feature.polygons.some((polygon) =>
-          anchors.some((anchor) => pointInPolygon(anchor, polygon)),
-        ),
-    );
+    if (anchors.length === 0) return tile;
+    const replaces = (polygon: TerrainSemanticPolygon): boolean =>
+      anchors.some(({ point, size }) => {
+        if (!pointInPolygon(point, polygon)) return false;
+        if (!tile.buildingsGeneralized) return true;
+        const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+        return (
+          (maxU - minU) * context.tileSize <= size[0] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK &&
+          (maxV - minV) * context.tileSize <= size[1] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK
+        );
+      });
+    const buildings = tile.buildings.filter((feature) => !feature.polygons.some(replaces));
     return buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
   }
 
@@ -620,7 +658,7 @@ export function createWorldgenSemanticRenderers(
           const mappedTile = withoutReplacedFootprints(
             resident.tile,
             context,
-            structures.filter((entry) => replacement?.getObjectByName(`structure:${entry.id}`)),
+            placedStructures(replacement, structures),
           );
           const generated = await generate(
             mappedTile,
@@ -700,7 +738,7 @@ export function createWorldgenSemanticRenderers(
             mappedTile = withoutReplacedFootprints(
               tile,
               context,
-              structures.filter((entry) => structureGroup.getObjectByName(`structure:${entry.id}`)),
+              placedStructures(structureGroup, structures),
             );
           }
           return generate(mappedTile, context, { buildings: true, scatter: false }, preset);

@@ -176,7 +176,9 @@ movement trigger coherent grid-snapped rebases for every engine-owned object aut
 
 `terrainStreamBudgetForQuality('economy' | 'balanced' | 'high')` returns portable residency and
 concurrency budgets. `stream.stats()` reports decoded samples, geometry bytes, triangles, draw
-calls, instances, loading/failure counts, and evictions for live quality diagnostics.
+calls, instances, loading/failure counts, and evictions for live quality diagnostics. It walks
+every resident tile's objects to count them, so call it for diagnostics, not every frame:
+`stream.loading()` (tiles and layers loading now) and `stream.pressure()` are constant-time.
 
 ## 4. Screenshot it headlessly
 
@@ -295,7 +297,12 @@ function frame(position: [number, number, number]) {
 
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected
-descendant coverage is resident. `stream.stats()` adds selected/displayed counts, effective
+descendant coverage is resident. A selected tile that is not resident yet shows through its
+nearest cached ancestor, except where finer ground is already on screen over it, which stays until
+the tile arrives. When the warm cache has lost the intermediate levels, that ancestor can be far
+coarser than the view; it stands in only if it would not hide detail on screen elsewhere, and
+otherwise the new tile's patch waits briefly empty rather than the whole area dropping to the
+coarse tile. `stream.stats()` adds selected/displayed counts, effective
 screen-space error, displayed-level range, and leaf fallback count. Quality presets set explicit
 error, view-distance, concurrency, selection, and residency budgets. Include `direction` and
 `aspect` in each view update to reject tiles safely outside a guarded horizontal camera cone while

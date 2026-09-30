@@ -491,6 +491,75 @@ describe('worldgen human-feature tile orchestration', () => {
     structureModels.dispose();
   });
 
+  it.each([
+    { source: 'exact', side: 36, generalized: false, replaced: true },
+    { source: 'exact merged block', side: 150, generalized: false, replaced: true },
+    { source: 'generalized own footprint', side: 36, generalized: true, replaced: true },
+    { source: 'generalized merged block', side: 150, generalized: true, replaced: false },
+  ])('replaces the $source under a loaded landmark: $replaced', async (fixture) => {
+    // A 40 m wide landmark anchored at world (50, 60) on a 200 m tile at the origin.
+    const source = new THREE.Group().add(
+      new THREE.Mesh(new THREE.BoxGeometry(40, 180, 40), new THREE.MeshStandardMaterial()),
+    );
+    const objects = new StructureModelLibrary(async () => source);
+    const half = fixture.side / 2 / 200;
+    const [u, v] = [50 / 200, 60 / 200];
+    const footprint = {
+      polygons: [
+        {
+          outer: [
+            [u - half, v - half],
+            [u + half, v - half],
+            [u + half, v + half],
+            [u - half, v + half],
+          ] as Array<[number, number]>,
+        },
+      ],
+      height: 150,
+    };
+    const buildingCounts: number[] = [];
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmark',
+        entries: [
+          {
+            id: 'tower',
+            title: 'Tower',
+            asset: 'tower-model',
+            anchor: worldToWgs84(1, 50, 60),
+            replaceFootprint: true,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings) buildingCounts.push(request.tile.buildings.length);
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: [footprint],
+        ...(fixture.generalized ? { buildingsGeneralized: true } : {}),
+      },
+      context(new AbortController().signal),
+    );
+    expect(root?.getObjectByName('structure:tower')).toBeDefined();
+    expect(buildingCounts).toEqual([fixture.replaced ? 0 : 1]);
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+  });
+
   it('assigns an exact tile-edge anchor to one tile', async () => {
     const structureModels = new ModelLibrary();
     const renderers = createWorldgenSemanticRenderers(pack, {

@@ -63,7 +63,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
   };
 });
 
-const { mountEarthView } = await import('../src/client/earth-view');
+const { earthOrbitMaxRange, mountEarthView } = await import('../src/client/earth-view');
 
 // A frame queue standing in for requestAnimationFrame.
 let callbacks = new Map<number, (time: number) => void>();
@@ -216,6 +216,18 @@ describe('mountEarthView', () => {
     expect(canvas.tabIndex).toBe(0);
     expect(canvas.style.touchAction).toBe('none');
     expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('keeps the orbit camera within the distance the terrain draws', async () => {
+    expect(earthOrbitMaxRange(60_000)).toBe(27_000);
+    expect(earthOrbitMaxRange(1_000)).toBe(2_000);
+    const { view } = await mount();
+    view.jumpTo({ latitude: 47.6, longitude: -122.33, range: 1_900_000 });
+    await pump(10);
+    // The widest performance tier draws 110 km of terrain.
+    expect(view.getCamera().range).toBeLessThanOrEqual(earthOrbitMaxRange(110_000));
+    expect(view.getCamera().range).toBeGreaterThan(2_000);
     view.dispose();
   });
 

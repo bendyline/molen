@@ -69,7 +69,10 @@ appears only on touch devices; pass `touchJoystick: 'always'` to show it everywh
 - **orbit** (default): the map camera from [camera navigation](navigation.md). `flyTo(target)`
   animates and `jumpTo(target)` moves at once. The target takes `latitude`, `longitude`, and
   optionally `range` in meters, `heading` (a compass bearing in radians) and `pitch` (radians of
-  tilt below the horizon).
+  tilt below the horizon). The camera stays within `earthOrbitMaxRange(viewDistance)` of its target
+  (45% of the current performance tier's terrain view distance, at least 2 km), so it cannot pull
+  back past where the scene still draws; a farther `range` is clamped, and the limit follows
+  adaptive quality.
 - **walk**: `setMode('walk')` drops a walker at the view center. It has capsule collision against
   terrain, buildings and props, WASD or the touch stick to move, mouse-look with pointer lock, and
   Space to jump.
@@ -278,9 +281,13 @@ model eviction. `build-copernicus-bridge-evidence.py` and the capture runner's
 neither capture set substitutes altered heights to make a bridge fit. These reports are research
 evidence and are excluded from the Earth runtime pack.
 
-If `replaceFootprint` is set, a nongeneralized mapped building is suppressed only when the
-anchor falls inside its polygon and the replacement model has loaded. Failed models keep the
-procedural building. An Earth pack without a placement document still loads.
+If `replaceFootprint` is set, a mapped building is suppressed only when the anchor falls inside
+its polygon and the replacement model has loaded. Failed models keep the procedural building.
+Generalized sources (Protomaps below zoom 15, and tiles overzoomed from them) merge neighboring
+footprints, so there the polygon is suppressed only when neither side exceeds the loaded model's
+horizontal extent by more than 1.6 times plus 12 meters; a larger polygon is a merged block of
+other buildings and keeps its procedural shell. An Earth pack without a placement document still
+loads.
 
 For unsurveyed orientation, `orientation: 'mapped'` requires an explicit
 `mapIdentity: { wikidata: 'Q…', maxDistance: 150 }`. The viewer admits that model only after a
@@ -320,8 +327,8 @@ uniformly scale native models, bounded from 0.2 to 5 times native dimensions; fo
 adjusts the three dimensions independently. Explicit source `direction`
 or compass bearings take priority; otherwise footprints use their longest axis and points
 default north. This default is an estimate, especially for rotatable turbine nacelles.
-Rules with `replaceFootprint: true` can also replace a nongeneralized footprint containing a
-matching POI, after the asset loads. This is useful when a windmill is a POI plus an unclassified
+Rules with `replaceFootprint: true` can also replace a footprint containing a matching POI,
+after the asset loads, under the same size rule for generalized footprints. This is useful when a windmill is a POI plus an unclassified
 building outline; the default leaves point features independent of building shells.
 
 The renderer admits at most 64 category models per tile and obeys each rule's smaller budget.
@@ -462,7 +469,17 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 - `view.credits` holds the package's required attributions, OpenStreetMap first with its link.
   Keep them visible whenever the view is.
 - `quality: 'auto'` adapts terrain budgets, building detail and pixel ratio to measured frame
-  times (`stats().qualityLevel`, 0-5). A preset pins the quality.
+  times (`stats().qualityLevel`, 0-5, with `stats().qualityReason`). A preset pins the quality.
+  The view reports its own work per frame, so slow frames while tiles stream in do not lower the
+  level unless that work is heavy itself. A level change waits until the camera has been still
+  for 0.6 s (at most 4 s), since applying one rebuilds detail across the view; memory pressure
+  above 1.25 applies it at once.
+- Memory pressure (`stats().memoryPressure`) is the geometry on screen over `memoryBudget`, a
+  fixed per-device budget: `earthMemoryBudget()` gives 96 MiB per GiB the browser reports within
+  192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the
+  level steps down, and since stepping down selects fewer, coarser tiles, pressure falls rather
+  than cascading to the minimum. The terrain cache keeps at least the budget, so ground just left
+  is still warm when the view pans back.
 - `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 

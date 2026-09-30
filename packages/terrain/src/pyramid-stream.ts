@@ -197,7 +197,13 @@ export interface TerrainPyramidStream {
   /** Per-tile missing/retrying/abandoned detail, so a host can say which state a hole is in. */
   tileFailures(): Array<TerrainTileFailure<TerrainPyramidTileAddress>>;
   retryFailed(): void;
+  /**
+   * Full counters, including triangle and byte totals gathered by walking every resident tile's
+   * objects: for diagnostics, not every frame. Per-frame callers use `loading()`.
+   */
   stats(): TerrainPyramidStreamStats;
+  /** Tiles and layers loading now, in constant time. */
+  loading(): { tiles: number; layers: number };
   whenIdle(): Promise<void>;
   dispose(): void;
 }
@@ -1233,6 +1239,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     };
   }
 
+  loading(): { tiles: number; layers: number } {
+    return { tiles: this.pending.size, layers: this.pendingLayers.size };
+  }
+
   whenIdle(): Promise<void> {
     if (this.isIdle()) return Promise.resolve();
     return new Promise((resolve) => this.idleWaiters.push(resolve));
@@ -1531,31 +1541,49 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         )
           replacementLevel = Math.min(replacementLevel, previous.address.level + 1);
       }
-      let covered = false;
+      // The nearest resident stand-in: the leaf itself or its closest cached ancestor.
+      let standIn: TerrainPyramidTileAddress | undefined;
       for (let level = replacementLevel; level >= this.descriptor.minLevel; level--) {
         const address = terrainPyramidAncestor(leaf, level);
-        const key = terrainPyramidTileKey(address);
-        if (this.resident.has(key)) {
-          candidates.add(key);
-          covered = true;
+        if (this.resident.has(terrainPyramidTileKey(address))) {
+          standIn = address;
           break;
         }
       }
-      if (!covered) {
-        // A coarser selected parent may have left the warm cache. Keep its former visible
-        // descendants until it arrives instead of hiding an already covered patch.
-        for (const key of previousDisplayed) {
-          const address = this.resident.get(key)?.address;
-          if (
-            address !== undefined &&
-            address.level > leaf.level &&
-            terrainPyramidTileKey(terrainPyramidAncestor(address, leaf.level)) ===
-              terrainPyramidTileKey(leaf)
-          ) {
-            candidates.add(key);
-          }
+      if (standIn !== undefined && standIn.level === leaf.level) {
+        candidates.add(terrainPyramidTileKey(standIn));
+        continue;
+      }
+      // Until the leaf arrives, finer ground already on screen over it stays. Stepping back to a
+      // coarser stand-in would drop visible detail, after zooming out or when the warm cache
+      // has lost the intermediate levels.
+      const floor = standIn?.level ?? Number.NEGATIVE_INFINITY;
+      let retained = false;
+      for (const key of previousDisplayed) {
+        const address = this.resident.get(key)?.address;
+        if (
+          address !== undefined &&
+          address.level > floor &&
+          pyramidAddressesOverlap(address, leaf)
+        ) {
+          candidates.add(key);
+          retained = true;
         }
       }
+      if (retained || standIn === undefined) continue;
+      // A distant stand-in covers far more than this leaf. When it would hide detail on screen
+      // elsewhere, leave this leaf's patch briefly empty rather than blank that whole area.
+      const coarse = standIn;
+      const hidesDetail = [...previousDisplayed].some((key) => {
+        const address = this.resident.get(key)?.address;
+        return (
+          address !== undefined &&
+          address.level > coarse.level &&
+          pyramidAddressesOverlap(address, coarse) &&
+          !pyramidAddressesOverlap(address, leaf)
+        );
+      });
+      if (!hidesDetail) candidates.add(terrainPyramidTileKey(coarse));
     }
     // First find the surface-only cut. Its hidden tiles must prepare layers too, including
     // intermediate fallbacks when a selected leaf is missing or still loading.
