@@ -1165,7 +1165,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     };
 
     // Adaptive quality.
-    const controller = new AdaptiveQualityController({ initialLevel: level });
+    // Every level change swaps resolution and detail across the whole view, so an Earth view
+    // changes level rarely: only after sustained overload (not one burst of streaming while the
+    // camera turns) and after a long spell of headroom.
+    const controller = new AdaptiveQualityController({
+      initialLevel: level,
+      decreaseDelayMs: 2_500,
+      increaseDelayMs: 20_000,
+      cooldownMs: 6_000,
+    });
     const applyTier = (): void => {
       tier = earthPerformanceTier(level);
       lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;

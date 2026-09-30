@@ -103,6 +103,11 @@ export interface TerrainPyramidTileLayerContext {
   signal: AbortSignal;
 }
 
+/**
+ * Per-tile content drawn over the terrain. A published object's transforms are frozen
+ * (`matrixAutoUpdate = false`) because tile content is static; mark a part that moves with
+ * `userData.dynamicTransform = true`, or call `updateMatrix()` after moving it.
+ */
 export interface TerrainPyramidTileLayer {
   id: string;
   category: TerrainTileLayerCategory;
@@ -171,6 +176,10 @@ export interface TerrainPyramidStreamStats extends TerrainStreamStats {
 
 export interface TerrainPyramidStream {
   updateTransitions(nowMs?: number): void;
+  /**
+   * The root of every tile. Its transform does not update itself each frame (that would dirty
+   * every tile's world matrix); after moving it, call `object.updateMatrix()`.
+   */
   readonly object: THREE.Group;
   update(view: TerrainPyramidView): void;
   /** Replan in place. Surface resolution affects newly loaded tiles, preserving resident draping. */
@@ -666,6 +675,20 @@ interface ObjectGeometryStats {
   drawCalls: number;
 }
 
+/**
+ * Stop per-frame transform recomposition for tile content. An object that recomposes each frame
+ * marks every descendant's world matrix dirty, so a city of static buildings would pay for a full
+ * matrix pass every frame. Subtrees marked `userData.dynamicTransform = true` keep updating.
+ */
+function freezeStaticTransforms(root: THREE.Object3D): void {
+  if (root.userData.dynamicTransform === true) return;
+  if (root.matrixAutoUpdate) {
+    root.updateMatrix();
+    root.matrixAutoUpdate = false;
+  }
+  for (const child of root.children) freezeStaticTransforms(child);
+}
+
 function objectGeometryStats(root: THREE.Object3D, visibleOnly: boolean): ObjectGeometryStats {
   const seen = new Set<THREE.BufferGeometry>();
   const allocations = new Set<ArrayBufferLike>();
@@ -860,6 +883,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.retryPolicy,
     );
     this.object.name = `terrain-pyramid:${descriptor.name}`;
+    // A static root: recomposing it every frame would dirty every resident tile's world matrix.
+    // Hosts that move the stream call `object.updateMatrix()` afterwards.
+    this.object.matrixAutoUpdate = false;
     this.material =
       options.material ??
       new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, metalness: 0 });
@@ -1415,8 +1441,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           if (this.disposed || signal.aborted)
             throw new DOMException('Tile cancelled', 'AbortError');
           surface.mesh.visible = false;
-          object.updateMatrix();
-          object.matrixAutoUpdate = false;
+          freezeStaticTransforms(object);
           this.resident.set(key, {
             address,
             heightfield,
@@ -1855,6 +1880,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             object.name ||= `layer:${layer.id}:${tileKey}`;
             this.layerRetries.clear(key);
             object.visible = false;
+            freezeStaticTransforms(object);
             current.layers.set(layer.id, object);
             current.object.add(object);
             this.trackAllocations(current);

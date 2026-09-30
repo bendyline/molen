@@ -606,6 +606,27 @@ describe('renderer backend selection', () => {
     expect(factories.webgl).not.toHaveBeenCalled();
   });
 
+  it('keeps the static scene graph from recomposing every frame, updating the root on a rebase', () => {
+    const renderer = new Renderer();
+    const building = new THREE.Mesh();
+    building.position.set(5, 0, 0);
+    building.updateMatrix();
+    building.matrixAutoUpdate = false;
+    renderer.worldRoot.add(building);
+    expect(renderer.scene.matrixAutoUpdate).toBe(false);
+    expect(renderer.worldRoot.matrixAutoUpdate).toBe(false);
+    renderer.scene.updateMatrixWorld();
+    const write = vi.spyOn(building.matrixWorld, 'multiplyMatrices');
+    renderer.scene.updateMatrixWorld();
+    expect(write).not.toHaveBeenCalled();
+    // A rebase moves the root once, and the static world follows it.
+    renderer.setWorldOrigin([100, 0, 0]);
+    renderer.scene.updateMatrixWorld();
+    expect(write).toHaveBeenCalledTimes(1);
+    expect(new THREE.Vector3().setFromMatrixPosition(building.matrixWorld).x).toBe(-95);
+    renderer.dispose();
+  });
+
   it('keeps synchronous construction on WebGL and directs async preferences to the factory', () => {
     for (const backend of ['auto', 'webgpu'] as const) {
       expect(() => new Renderer({ backend })).toThrow('Use await Renderer.create()');

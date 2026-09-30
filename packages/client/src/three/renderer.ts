@@ -429,6 +429,9 @@ export class Renderer {
     this.three.setClearColor(this.defaultClearColor, 1);
 
     this.scene = new THREE.Scene();
+    // The scene never moves. Left to recompose each frame, it would mark itself dirty and force
+    // every descendant's world matrix to recompute, static world included.
+    this.scene.matrixAutoUpdate = false;
     this.reflections =
       opts.reflections === true
         ? new SkyReflections(
@@ -439,6 +442,9 @@ export class Renderer {
         : undefined;
     this.worldRoot = new THREE.Group();
     this.worldRoot.name = 'molen:world-root';
+    // Recomposing the root every frame marks every descendant's world matrix dirty, so a large
+    // static world pays for a full matrix pass per frame. It moves only when the origin rebases.
+    this.worldRoot.matrixAutoUpdate = false;
     this.scene.add(this.worldRoot);
     this.aspect = width / height;
     this.camera = new THREE.PerspectiveCamera(60, this.aspect, cameraNear, cameraFar);
@@ -528,6 +534,7 @@ export class Renderer {
   private applyWorldOrigin(origin: Vec3): void {
     this.worldOrigin = [...origin];
     this.worldRoot.position.set(-origin[0], -origin[1], -origin[2]);
+    this.worldRoot.updateMatrix();
   }
 
   /** Switch to a top-down orthographic camera looking straight down at a world point. */

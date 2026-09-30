@@ -248,6 +248,59 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it('freezes static tile transforms and leaves marked moving parts alone', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            minLevel: 1,
+            createTile() {
+              const building = new THREE.Mesh(
+                new THREE.BoxGeometry(),
+                new THREE.MeshBasicMaterial(),
+              );
+              building.position.set(2, 0, 3);
+              const flag = new THREE.Group();
+              flag.name = 'flag';
+              flag.userData.dynamicTransform = true;
+              return new THREE.Group().add(building, flag);
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      expect(stream.object.matrixAutoUpdate).toBe(false);
+      const layer = stream.object.getObjectByName('layer:human:1/0/0') as THREE.Group;
+      const [building, flag] = layer.children as [THREE.Mesh, THREE.Group];
+      expect(layer.matrixAutoUpdate).toBe(false);
+      expect(building.matrixAutoUpdate).toBe(false);
+      // Frozen with its placement already composed.
+      expect(new THREE.Vector3().setFromMatrixPosition(building.matrix).toArray()).toEqual([
+        2, 0, 3,
+      ]);
+      expect(flag.matrixAutoUpdate).toBe(true);
+      const tile = stream.object.getObjectByName('tile:1/0/0') as THREE.Group;
+      expect(tile.matrixAutoUpdate).toBe(false);
+      expect(tile.children.every((child) => !child.matrixAutoUpdate)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('keeps on-screen detail when a new leaf has only a distant ancestor left in the cache', async () => {
     // A small resident cap evicts the intermediate levels. Panning then selects leaves whose only
     // resident ancestor is near the root; standing that ancestor in for one new leaf must not hide

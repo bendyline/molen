@@ -686,6 +686,13 @@ export function createWorldgenSemanticRenderers(
             releaseStructureModels(resident.architecture);
             disposeWorldgenObject(resident.architecture);
             resident.architecture.removeFromParent();
+            // Buildings are static: like the tile's first publication, stop per-frame transform
+            // recomposition, which would dirty every building's world matrix each frame.
+            replacement.traverse((object) => {
+              if (!object.matrixAutoUpdate) return;
+              object.updateMatrix();
+              object.matrixAutoUpdate = false;
+            });
             root.add(replacement);
             resident.architecture = replacement;
             resident.quality = preset;
