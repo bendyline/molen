@@ -60,9 +60,13 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   and checkouts with a workflows directory still require `release.yml`.
   The recursive test scripts pass `--no-bail` on purpose: without it one failing package stops the
   run and every package after it reports nothing, so a red CI has to be fixed one round-trip at a
-  time. `test:golden` additionally pins `--workspace-concurrency=1`: these suites drive real
-  browsers on a software rasterizer, and run in parallel they starve each other until a page misses
-  a timing-sensitive wait that passes when the suite runs alone. Serial is slower and honest.
+  time. Both also pin `--workspace-concurrency=1`. The golden suites drive real browsers on a
+  software rasterizer, and run in parallel they starve each other until a page misses a
+  timing-sensitive wait that passes when the suite runs alone. Each unit suite already spreads its
+  files across every core, so running packages side by side only oversubscribes a CI runner: the
+  simulation- and bake-heavy tests (ambient, worldgen materials, client navigation) crossed their
+  timeouts at random, failing a second run of a commit whose first run passed. Serial is slower
+  and honest.
 - **Render tests need no reference image.** A software rasterizer is deterministic per build, not
   across machines, so a committed PNG only holds on the machine that recorded it, and every
   renderer change means re-recording it there. The `test:golden` suites instead check what a frame

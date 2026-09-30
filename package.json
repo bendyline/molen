@@ -23,7 +23,7 @@
     "audit:prod": "pnpm audit --prod",
     "lint": "pnpm -r lint && biome check . && node scripts/check-release-gate.mjs && node scripts/check-package-contents.mjs && node scripts/check-shipped-docs.mjs",
     "pretest:unit": "pnpm -r build",
-    "test:unit": "pnpm -r --no-bail test:unit",
+    "test:unit": "pnpm -r --workspace-concurrency=1 --no-bail test:unit",
     "test": "pnpm test:unit",
     "pretest:golden": "pnpm -r --filter '!@bendyline/molen-docs-site' build",
     "test:golden": "pnpm -r --workspace-concurrency=1 --no-bail test:golden",
