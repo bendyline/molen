@@ -1318,6 +1318,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let frameHandle = 0;
     // A level change is held while the camera moves, since applying one rebuilds detail across
     // the view.
+    // Frame work, where the browser can time the GPU: with both GPU and CPU work known, slow
+    // frames while tiles stream in lower quality only when rendering itself is the cost. Without
+    // GPU timing, CPU work alone would hide a GPU-bound device's overload, so neither is sent.
+    const gpuTimer = automatic ? renderer.createGpuTimer?.() : undefined;
+    disposers.push(() => gpuTimer?.dispose());
+    let workMs = 0;
     let heldLevel: number | undefined;
     let heldReason: AdaptiveQualityReason | undefined;
     let heldSince = 0;
@@ -1496,6 +1502,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       last = now;
       const current = stack;
       const frameInput = input.read(dt);
+      const workStart = performance.now();
+      const gpuMs = gpuTimer?.poll();
       if (automatic && current !== undefined) {
         // stream.stats() walks every tile's objects; per frame, only the constant-time reads.
         const loading = current.stream.loading();
@@ -1504,6 +1512,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           active: !document.hidden,
           loading: loading.tiles > 0 || loading.layers > 0,
           memoryPressure,
+          ...(gpuTimer !== undefined && workMs > 0 ? { cpuFrameMs: workMs } : {}),
+          ...(gpuMs !== undefined ? { gpuFrameMs: gpuMs } : {}),
         });
         if (change !== undefined) {
           if (heldLevel === undefined) heldSince = now;
@@ -1599,8 +1609,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       const origin = renderer.getWorldOrigin();
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
+      const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
+      if (timing) gpuTimer?.end();
       frames++;
+      workMs = performance.now() - workStart;
       if (
         Math.hypot(
           pose.position[0] - lastPose.position[0],
