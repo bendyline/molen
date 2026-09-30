@@ -95,7 +95,7 @@ engine capabilities rather than copied into each content bundle.
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. Formats are
+0.x, versioned independently of the other `@bendyline/molen-*` packages. Formats are
 versioned and beta, and a pack or style version bump is the only way to re-roll a world (both
 participate in every seed). Known limits: windows are surface quads rather than openings, dormers
 and setbacks are declared but not built, and pieces clipped at a tile edge get flat roofs.

@@ -82,7 +82,7 @@ provides, and a `contentHash` over paths and contents that does not depend on th
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. The format is
+0.x, versioned independently of the other `@bendyline/molen-*` packages. The format is
 beta. Packs are written without zip64, so a pack must stay under 4 GiB and 65,535 members.
 Building the same files always produces the same bytes; that depends on the exact `fflate`
 version this package pins.

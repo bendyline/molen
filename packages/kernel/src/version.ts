@@ -1,7 +1,7 @@
 /**
- * The published package version. Informational metadata only: it rides along in a keyframe so a
- * save file says which build wrote it, and it is NOT compared on load and NOT hashed. Keep it in
- * step with packages/kernel/package.json (a unit test pins the two together).
+ * The kernel package's published version. Informational metadata only: it rides along in a
+ * keyframe so a save file says which build wrote it, and it is NOT compared on load and NOT
+ * hashed. Keep it in step with packages/kernel/package.json (a unit test pins the two together).
  */
 export const ENGINE_VERSION = '0.0.2';
 

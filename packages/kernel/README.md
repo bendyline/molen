@@ -83,9 +83,9 @@ page mount `@bendyline/molen-client` on it.
 
 0.x. Keyframe compatibility and hash comparability are gated on the exported `STATE_FORMAT`
 constant, not on the package version, so a release that changes nothing about simulation
-semantics leaves your save files and recorded `*.replay.json` fixtures valid. `ENGINE_VERSION`
-rides along in a keyframe as metadata only. The API still moves with the engine's single version
-line; capability subpaths are the newest and least settled part of it.
+semantics leaves your save files and recorded `*.replay.json` fixtures valid. `ENGINE_VERSION` is
+this package's version and rides along in a keyframe as metadata only. Capability subpaths are the
+newest and least settled part of the API.
 
 ## Docs
 

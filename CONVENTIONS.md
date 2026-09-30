@@ -177,6 +177,8 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Releases
 
-- One fixed version line across all `@bendyline/molen-*` packages. Semantic-release reads
-  Conventional Commits on `main`: `fix:` for a patch, `feat:` for a minor, and a breaking change
-  for a minor while the project is on 0.x. Release metadata is committed once after publication.
+- Each `@bendyline/molen-*` package has its own version line. multi-semantic-release reads the
+  Conventional Commits on `main` that touch a package: `fix:` for a patch, `feat:` for a minor,
+  and a breaking change for a minor while the project is on 0.x. A package whose Molen
+  dependencies release gets a patch release too. Release metadata is committed once after
+  publication; see CONTRIBUTING.md.

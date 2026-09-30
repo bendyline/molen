@@ -88,7 +88,7 @@ traffic replays and restores like the rest of the world.
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. The
+0.x, versioned independently of the other `@bendyline/molen-*` packages. The
 `molen/transport-network@1` format is versioned and beta. Known limits: map data carries no turn
 restrictions or speed limits, aircraft fly straight corridors, and pedestrians follow their lane
 without stepping around each other.

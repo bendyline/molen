@@ -70,7 +70,7 @@ hash, and speed is quantized so a steadily walking figure sends no deltas.
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. The `molen/figure@1`
+0.x, versioned independently of the other `@bendyline/molen-*` packages. The `molen/figure@1`
 format is versioned and beta. Known limits: hands are mittens (a thumb on the near tier), there
 are no faces beyond eyes and brows, foot planting on uneven ground and quadruped IK are not
 evaluated yet, and imported skinned glTF figures plus skinned-GLB export are later phases.

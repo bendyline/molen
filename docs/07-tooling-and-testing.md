@@ -74,16 +74,17 @@ Rule of thumb agents follow: *runtime* WASM must be `-compat`-style self-contain
 *toolchain* WASM stays Node-only inside tooling. Each WASM dep lands with a dedicated smoke
 test in both target environments before any feature uses it.
 
-### 1.4 Versioning & publishing: Changesets, fixed version group
+### 1.4 Versioning & publishing: one version line per package
 
-All `@bendyline/molen-*` packages share **one version line** — docs, schemas, and packages all say
-"engine 0.4.0"; agents never reason about a compatibility matrix. Cost (bumps for unchanged
-packages) is trivial at this count; split the fixed group only if e.g. the Rapier wrapper
-needs to track Rapier releases independently ([09](09-questions-and-risks.md) Q11).
-`changeset publish` runs from the release workflow; `@bendyline/molen-docs` builds and publishes in
-the same release — docs↔code version lock by construction. Pre-1.0: breaking changes per
-minor; wire-format versioning is independent (integer `v` envelopes,
-[03](03-data-formats.md)).
+Each `@bendyline/molen-*` package has its own version line, as in Bendyline's other monorepos:
+multi-semantic-release versions a package from the Conventional Commits that touch it, and gives
+a package whose Molen dependencies release a patch release too. Published packages pin their
+Molen dependencies exactly, so the newest version of every package is a set that was released
+together and agents still never reason about a compatibility matrix. `ENGINE_VERSION` is the
+kernel's version; a scaffolded project records the versions released with the CLI that wrote it.
+(The packages first shared one fixed version line, which made every release and every new package
+a repo-wide event; [09](09-questions-and-risks.md) Q11.) Pre-1.0: breaking changes per minor;
+wire-format versioning is independent (integer `v` envelopes, [03](03-data-formats.md)).
 
 ### 1.5 CI (GitHub Actions)
 
@@ -91,7 +92,7 @@ minor; wire-format versioning is independent (integer `v` envelopes,
 commands locally*: setup → `lint typecheck` → `test:unit` (Vitest incl. schema round-trips) →
 `test:replay` (Node) → `test:golden` (pinned Playwright + SwiftShader container by
 **digest**, diff artifacts on failure) → docs-lint (§6.4).
-**`release.yml`** — changesets release PR + publish.
+**`release.yml`** — manual: version the packages that changed, then publish them (CONTRIBUTING.md).
 **`nightly.yml`** — golden suite ×3 (flake canary) + full agent-loop smoke (CLI end-to-end
 on an example).
 

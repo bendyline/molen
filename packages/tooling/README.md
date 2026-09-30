@@ -93,9 +93,9 @@ step.
 
 ## Status
 
-0.x. Nothing imports this package — it sits on top of the engine, so its version line moves with
-everything else. All logic lives in the ops library and the CLI and MCP server are thin mappings
-over it, which means new operations appear on both at once and `OPS_CATALOG` / `molen describe`
+0.x. Nothing imports this package — it sits on top of the engine and releases whenever an engine
+package it depends on does, so new projects scaffold the newest versions. All logic lives in the
+ops library and the CLI and MCP server are thin mappings over it, which means new operations appear on both at once and `OPS_CATALOG` / `molen describe`
 stay the one description of them. Expect operations and flags to be added; existing output shapes
 are exercised by the repo's own tests but are not yet frozen.
 

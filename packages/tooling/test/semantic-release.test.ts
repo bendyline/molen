@@ -56,37 +56,62 @@ afterEach(() => {
   for (const root of fixtures.splice(0)) rmSync(root, { recursive: true, force: true });
 });
 
-describe('fixed-line semantic release', () => {
-  it('stamps every package and shipped version before ordering dependencies', () => {
+const read = (root: string, path: string) => readFileSync(join(root, path), 'utf8');
+const names = (packages: { data: { name: string } }[]) => packages.map((item) => item.data.name);
+
+describe('per-package semantic release', () => {
+  it('stamps the kernel and the engine version it ships, restoring workspace dependencies', () => {
     const root = fixture();
-    const order = release.stampVersion('0.1.0', root);
-    expect(order.map((item: { data: { name: string } }) => item.data.name)).toEqual([
+    const kernelPath = join(root, 'packages/kernel/package.json');
+    const committed = JSON.parse(read(root, 'packages/kernel/package.json'));
+    // multi-semantic-release pins workspace dependencies before the plugin's prepare step.
+    writeFileSync(
+      kernelPath,
+      JSON.stringify({ ...committed, dependencies: { '@bendyline/molen-schema': '0.0.1' } }),
+    );
+    release.stampPackage(kernelPath, '0.1.0', committed, root);
+    const kernel = JSON.parse(read(root, 'packages/kernel/package.json'));
+    expect(kernel.version).toBe('0.1.0');
+    expect(kernel.dependencies).toEqual({ '@bendyline/molen-schema': 'workspace:*' });
+    expect(read(root, 'packages/kernel/src/version.ts')).toContain("'0.1.0'");
+    expect(read(root, 'docs-src/llms.txt')).toContain('Engine version: 0.1.0');
+    expect(read(root, 'docs-src/guide/determinism.md')).toContain('| `ENGINE_VERSION` | `0.1.0` |');
+  });
+
+  it('stamps another package without touching the engine version', () => {
+    const root = fixture();
+    const clientPath = join(root, 'packages/client/package.json');
+    release.stampPackage(
+      clientPath,
+      '0.0.2',
+      JSON.parse(read(root, 'packages/client/package.json')),
+      root,
+    );
+    expect(JSON.parse(read(root, 'packages/client/package.json')).version).toBe('0.0.2');
+    expect(JSON.parse(read(root, 'packages/schema/package.json')).version).toBe('0.0.1');
+    expect(read(root, 'packages/kernel/src/version.ts')).toContain("'0.0.1'");
+  });
+
+  it('orders packages on different versions dependencies first', () => {
+    const root = fixture();
+    const clientPath = join(root, 'packages/client/package.json');
+    release.stampPackage(
+      clientPath,
+      '0.3.0',
+      JSON.parse(read(root, 'packages/client/package.json')),
+      root,
+    );
+    const packages = release.releasePackages(root);
+    expect(Object.fromEntries(release.packageVersions(packages))).toEqual({
+      '@bendyline/molen-client': '0.3.0',
+      '@bendyline/molen-kernel': '0.0.1',
+      '@bendyline/molen-schema': '0.0.1',
+    });
+    expect(names(release.publicationOrder(packages))).toEqual([
       '@bendyline/molen-schema',
       '@bendyline/molen-kernel',
       '@bendyline/molen-client',
     ]);
-    for (const directory of ['schema', 'kernel', 'client']) {
-      const manifest = JSON.parse(
-        readFileSync(join(root, 'packages', directory, 'package.json'), 'utf8'),
-      );
-      expect(manifest.version).toBe('0.1.0');
-    }
-    expect(readFileSync(join(root, 'packages/kernel/src/version.ts'), 'utf8')).toContain("'0.1.0'");
-    expect(readFileSync(join(root, 'docs-src/llms.txt'), 'utf8')).toContain(
-      'Engine version: 0.1.0',
-    );
-    expect(readFileSync(join(root, 'docs-src/guide/determinism.md'), 'utf8')).toContain(
-      '| `ENGINE_VERSION` | `0.1.0` |',
-    );
-  });
-
-  it('rejects versions that break the shared package line', () => {
-    const root = fixture();
-    const clientPath = join(root, 'packages/client/package.json');
-    const client = JSON.parse(readFileSync(clientPath, 'utf8'));
-    client.version = '0.0.2';
-    writeFileSync(clientPath, JSON.stringify(client));
-    expect(() => release.releasePackages(root)).toThrow('must share one version');
   });
 
   it('rejects tarballs with unresolved workspace references', () => {
@@ -98,10 +123,49 @@ describe('fixed-line semantic release', () => {
           publishConfig: { access: 'public' },
           dependencies: { '@bendyline/molen-schema': 'workspace:*' },
         },
-        '0.1.0',
-        new Set(['@bendyline/molen-schema', '@bendyline/molen-kernel']),
+        new Map([
+          ['@bendyline/molen-schema', '0.0.4'],
+          ['@bendyline/molen-kernel', '0.1.0'],
+        ]),
       ),
     ).toThrow('unresolved dependencies');
+  });
+
+  it('rejects tarballs pinning a sibling other than the version it carries', () => {
+    const versions = new Map([
+      ['@bendyline/molen-schema', '0.0.4'],
+      ['@bendyline/molen-kernel', '0.1.0'],
+    ]);
+    const kernel = (schema: string) => ({
+      name: '@bendyline/molen-kernel',
+      version: '0.1.0',
+      publishConfig: { access: 'public' },
+      dependencies: { '@bendyline/molen-schema': schema },
+    });
+    expect(() => release.checkPackedManifest(kernel('0.0.4'), versions)).not.toThrow();
+    expect(() => release.checkPackedManifest(kernel('0.1.0'), versions)).toThrow(
+      'packs @bendyline/molen-schema@0.1.0, expected 0.0.4',
+    );
+  });
+
+  it('rejects tooling whose templates would scaffold stale versions', () => {
+    const versions = new Map([
+      ['@bendyline/molen-kernel', '0.1.0'],
+      ['@bendyline/molen-tooling', '0.0.7'],
+    ]);
+    const index = (scaffolded: Record<string, string>) => [
+      {
+        path: 'package/dist/templates/index.json',
+        data: Buffer.from(JSON.stringify({ templates: [], versions: scaffolded })),
+      },
+    ];
+    expect(() =>
+      release.checkTemplateVersions(index(Object.fromEntries(versions)), versions),
+    ).not.toThrow();
+    const stale = { '@bendyline/molen-kernel': '0.0.9', '@bendyline/molen-tooling': '0.0.7' };
+    expect(() => release.checkTemplateVersions(index(stale), versions)).toThrow(
+      'would scaffold @bendyline/molen-kernel@0.0.9, expected 0.1.0',
+    );
   });
 
   it('matches a repack whose workspace dependencies settled in another order', () => {

@@ -421,7 +421,7 @@ change it. None of this needs a clone of the engine repository.
 
 - **Play** every sample in the browser at [molen.dev/play](${PLAY_BASE}/), with nothing to install.
 - **Copy** one into your own npm project. The smaller samples ship inside
-  \`@bendyline/molen-tooling\` as templates, locked to the engine version you install:
+  \`@bendyline/molen-tooling\` as templates, locked to the package versions released with that CLI:
 
 \`\`\`sh
 npx @bendyline/molen-tooling templates                    # list them

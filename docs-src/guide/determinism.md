@@ -135,10 +135,10 @@ Two constants live in `packages/kernel/src/version.ts` and they do different job
 
 | Constant | Today | Role |
 |---|---|---|
-| `ENGINE_VERSION` | `0.0.2` | metadata. Written into a keyframe's `engine` field so a save says which build wrote it. **Never compared on load, never hashed.** |
+| `ENGINE_VERSION` | `0.0.2` | metadata: the kernel package's version. Written into a keyframe's `engine` field so a save says which build wrote it. **Never compared on load, never hashed.** |
 | `STATE_FORMAT` | `1` | the gate. Written into a keyframe under the reserved `plugins.$format` key, compared by `applyKeyframeTo`, and folded into `stateHash` as `stateFormat`. |
 
-So a release — even one that moves every package on the fixed version line — keeps your keyframes
+So a release — even one that moves every package — keeps your keyframes
 loadable and your recorded `*.replay.json` fixtures valid, as long as it did not change simulation
 semantics or the snapshot layout. `STATE_FORMAT` is bumped only when it did. A keyframe written
 before the key existed is read as format 1, the layout in use when it was introduced.

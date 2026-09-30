@@ -5,7 +5,7 @@ meant to be copied. Three ways in, none of which needs a clone of the engine rep
 
 - **Play** any sample in the browser at [molen.dev/play](https://molen.dev/play/).
 - **Copy** a sample into your own npm project with `--template`. The templates ship inside
-  `@bendyline/molen-tooling`, locked to the engine version you install, so they work offline:
+  `@bendyline/molen-tooling`, locked to the package versions released with that CLI, so they work offline:
 
   ```sh
   npx @bendyline/molen-tooling new my-game --template skybound
