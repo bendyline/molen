@@ -339,6 +339,12 @@ export interface EarthView {
 }
 
 const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
+/** Degrees past the view where ground stays built at reduced detail, covering a quick turn. */
+const PERIPHERAL_DEGREES = 20;
+/** Error weight of that band: roughly a level coarser than the view beside it. */
+const PERIPHERAL_DETAIL = 0.4;
+/** Extra terrain tiles selected to pay for the band, as a share of the level's budget. */
+const PERIPHERAL_TILE_SHARE = 1.35;
 /** How long a level must hold before adaptive quality turns sticky, ms. */
 const QUALITY_CALIBRATION_MS = 12_000;
 /** After calibration: down after sustained overload, up after long headroom, changes far apart. */
@@ -448,13 +454,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     throw new RangeError('memoryBudget must be a positive number of bytes');
   // Ground just left must stay warm up to the device budget, whatever the level: a smaller cache
   // re-streams it on every pan, and loses the intermediate levels that bridge a refinement.
+  // Ground a little past the view stays built (coarser), so turning the camera reveals terrain
+  // and buildings that are already there; the selection budget grows to pay for the band.
   const terrainBudget = (): TerrainPyramidBudget => {
     const base = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
+    const maxSelectedTiles = Math.round(base.maxSelectedTiles * PERIPHERAL_TILE_SHARE);
     return {
       ...base,
+      peripheralDegrees: PERIPHERAL_DEGREES,
+      peripheralDetail: PERIPHERAL_DETAIL,
+      maxSelectedTiles,
       maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
       maxResidentTiles: Math.max(
         base.maxResidentTiles,
+        2 * maxSelectedTiles,
         Math.min(512, Math.round(memoryBudget / (2 * 1024 * 1024))),
       ),
     };

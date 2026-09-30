@@ -70,6 +70,17 @@ export interface TerrainPyramidSelectionOptions {
   viewDistance: number;
   /** Selection ceiling; the selector raises error and then shortens range if needed. */
   maxSelectedTiles: number;
+  /**
+   * Degrees beyond the camera's horizontal view (and its small guard band) where ground stays
+   * selected at reduced detail, so turning the camera reveals terrain and layers that are already
+   * built rather than empty ground (default 0).
+   */
+  peripheralDegrees?: number;
+  /**
+   * Error weight of peripheral tiles, in (0, 1] (default 0.4): they refine only while their
+   * weighted error exceeds the budget, so they stay a level or two coarser than the view.
+   */
+  peripheralDetail?: number;
 }
 
 export interface TerrainPyramidSelection {
@@ -339,6 +350,22 @@ function requireSelectionOptions(options: TerrainPyramidSelectionOptions): void 
   if (!Number.isSafeInteger(options.maxSelectedTiles) || options.maxSelectedTiles < 1) {
     throw new Error('terrain pyramid maxSelectedTiles must be a positive safe integer');
   }
+  if (
+    options.peripheralDegrees !== undefined &&
+    (!Number.isFinite(options.peripheralDegrees) ||
+      options.peripheralDegrees < 0 ||
+      options.peripheralDegrees > 180)
+  ) {
+    throw new Error('terrain pyramid peripheralDegrees must be between 0 and 180');
+  }
+  if (
+    options.peripheralDetail !== undefined &&
+    (!Number.isFinite(options.peripheralDetail) ||
+      options.peripheralDetail <= 0 ||
+      options.peripheralDetail > 1)
+  ) {
+    throw new Error('terrain pyramid peripheralDetail must be in (0, 1]');
+  }
 }
 
 function requireBudget(budget: TerrainPyramidBudget): void {
@@ -401,10 +428,12 @@ function distanceToBounds(
   return Math.hypot(dx, dy, dz);
 }
 
+const VIEW_GUARD_RADIANS = THREE.MathUtils.degToRad(12);
+
 function intersectsHorizontalView(
   view: TerrainPyramidView,
   bounds: [number, number, number, number],
-  guardRadians = THREE.MathUtils.degToRad(12),
+  guardRadians = VIEW_GUARD_RADIANS,
 ): boolean {
   if (view.direction === undefined || view.aspect === undefined) return true;
   if (
@@ -465,13 +494,14 @@ function selectAt(
   view: TerrainPyramidView,
   maxScreenSpaceError: number,
   viewDistance: number,
+  guardRadians = VIEW_GUARD_RADIANS,
 ): TerrainPyramidTileAddress[] {
   const selected: TerrainPyramidTileAddress[] = [];
   const pixelsPerRadian = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
   const visit = (address: TerrainPyramidTileAddress): void => {
     const bounds = tileBounds(descriptor, address);
     if (descriptor.coverage !== undefined && !boxesIntersect(bounds, descriptor.coverage)) return;
-    if (!intersectsHorizontalView(view, bounds)) return;
+    if (!intersectsHorizontalView(view, bounds, guardRadians)) return;
     const distance = distanceToBounds(view.position, bounds, descriptor.height);
     if (distance > viewDistance) return;
     const size = descriptor.rootSize / 2 ** address.level;
@@ -551,21 +581,38 @@ export function selectTerrainPyramidTiles(
     for (let level = descriptor.minLevel; level < tile.level; level++)
       previousRefined.add(terrainPyramidTileKey(terrainPyramidAncestor(tile, level)));
   const hysteresis = options.hysteresis ?? 0.15;
+  const peripheralGuard =
+    VIEW_GUARD_RADIANS + THREE.MathUtils.degToRad(options.peripheralDegrees ?? 0);
+  const peripheralDetail = options.peripheralDetail ?? 0.4;
   const focal = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
-  const projected = (tile: TerrainPyramidTileAddress): number =>
-    ((terrainPyramidTileSize(descriptor, tile.level) / (descriptor.tileResolution - 1)) * focal) /
-    Math.max(1, distanceToBounds(view.position, tileBounds(descriptor, tile), descriptor.height));
-  const visible = (tile: TerrainPyramidTileAddress): boolean => {
+  // 1 inside the view (with its guard band), `peripheralDetail` in the peripheral band, else 0.
+  const weight = (tile: TerrainPyramidTileAddress): number => {
     const bounds = tileBounds(descriptor, tile);
-    return (
-      (descriptor.coverage === undefined || boxesIntersect(bounds, descriptor.coverage)) &&
-      intersectsHorizontalView(view, bounds) &&
-      distanceToBounds(view.position, bounds, descriptor.height) <= options.viewDistance
-    );
+    if (descriptor.coverage !== undefined && !boxesIntersect(bounds, descriptor.coverage)) return 0;
+    if (distanceToBounds(view.position, bounds, descriptor.height) > options.viewDistance) return 0;
+    if (intersectsHorizontalView(view, bounds)) return 1;
+    return peripheralGuard > VIEW_GUARD_RADIANS &&
+      intersectsHorizontalView(view, bounds, peripheralGuard)
+      ? peripheralDetail
+      : 0;
   };
+  const projected = (tile: TerrainPyramidTileAddress): number =>
+    (((terrainPyramidTileSize(descriptor, tile.level) / (descriptor.tileResolution - 1)) * focal) /
+      Math.max(
+        1,
+        distanceToBounds(view.position, tileBounds(descriptor, tile), descriptor.height),
+      )) *
+    weight(tile);
+  const visible = (tile: TerrainPyramidTileAddress): boolean => weight(tile) > 0;
   // Start with mandatory coarse coverage, then spend the remaining tile budget on the most
   // visible error. Every node is visited once; no whole-tree threshold retry traversals.
-  const roots = selectAt(descriptor, view, Number.MAX_VALUE, options.viewDistance).sort(
+  const roots = selectAt(
+    descriptor,
+    view,
+    Number.MAX_VALUE,
+    options.viewDistance,
+    peripheralGuard,
+  ).sort(
     (a, b) =>
       distanceToBounds(view.position, tileBounds(descriptor, a), descriptor.height) -
         distanceToBounds(view.position, tileBounds(descriptor, b), descriptor.height) ||

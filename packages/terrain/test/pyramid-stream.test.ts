@@ -1997,6 +1997,61 @@ describe('terrain selection stability', () => {
       ).tiles,
     ).toHaveLength(1);
   });
+  it('keeps ground just outside the view at reduced detail, so a turn reveals selected terrain', () => {
+    const d = descriptor({ rootSize: 4_096, maxLevel: 6, tileResolution: 33 });
+    const turn = (degrees: number) => {
+      const r = (degrees * Math.PI) / 180;
+      return {
+        position: [2_048, 120, 2_048] as [number, number, number],
+        verticalFov: 0.8,
+        viewportHeight: 900,
+        direction: [Math.sin(r), -0.2, -Math.cos(r)] as [number, number, number],
+        aspect: 1.6,
+      };
+    };
+    const base = { maxScreenSpaceError: 2, viewDistance: 3_000, maxSelectedTiles: 600 };
+    const rect = (tile: TerrainPyramidTileAddress): [number, number, number, number] => {
+      const [x, z] = terrainPyramidTileOrigin(d, tile);
+      const size = terrainPyramidTileSize(d, tile.level);
+      return [x, z, x + size, z + size];
+    };
+    // Share of a selection's area that another selection already had ground for.
+    const covered = (
+      tiles: readonly TerrainPyramidTileAddress[],
+      by: readonly TerrainPyramidTileAddress[],
+    ): number => {
+      let area = 0;
+      let inside = 0;
+      for (const tile of tiles) {
+        const [x0, z0, x1, z1] = rect(tile);
+        area += (x1 - x0) * (z1 - z0);
+        for (const other of by) {
+          const [a0, b0, a1, b1] = rect(other);
+          inside +=
+            Math.max(0, Math.min(x1, a1) - Math.max(x0, a0)) *
+            Math.max(0, Math.min(z1, b1) - Math.max(z0, b0));
+        }
+      }
+      return inside / area;
+    };
+    const plain = selectTerrainPyramidTiles(d, turn(0), base).tiles;
+    const wide = selectTerrainPyramidTiles(d, turn(0), { ...base, peripheralDegrees: 30 }).tiles;
+    const turned = selectTerrainPyramidTiles(d, turn(20), base).tiles;
+    expect(covered(turned, plain)).toBeLessThan(0.97);
+    expect(covered(turned, wide)).toBeGreaterThan(0.999);
+    // The band is coarser than the view it flanks: fewer, larger tiles than at full detail.
+    const bandOf = (tiles: readonly TerrainPyramidTileAddress[]) =>
+      tiles.filter((tile) => covered([tile], plain) === 0);
+    const full = selectTerrainPyramidTiles(d, turn(0), {
+      ...base,
+      peripheralDegrees: 30,
+      peripheralDetail: 1,
+    }).tiles;
+    expect(bandOf(wide).length).toBeGreaterThan(0);
+    expect(bandOf(wide).length).toBeLessThan(bandOf(full).length * 0.7);
+    expect(() => selectTerrainPyramidTiles(d, turn(0), { ...base, peripheralDetail: 0 })).toThrow();
+  });
+
   it('does not cut away terrain behind the azimuth when a pitched camera sees the ground beneath it', () => {
     const d = descriptor();
     const options = { maxScreenSpaceError: 1, viewDistance: 100, maxSelectedTiles: 64 };
