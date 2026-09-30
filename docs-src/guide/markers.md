@@ -3,7 +3,10 @@
 `@bendyline/molen-client/markers` draws screen-sized billboards pinned to world positions: photo
 pins, labels you render to images, waypoints. A marker keeps a constant on-screen size. It sits on
 the ground, re-snapping as finer terrain streams in, hides behind hills and buildings through the
-depth test, and can fade with distance. Markers are budgeted so the nearest or most important ones
+depth test, and can fade with distance. With `declutter: true` a pin whose on-screen footprint
+overlaps a more important one is hidden: higher `priority` first, then pins already on screen (so
+they do not flicker as the camera moves), then the nearest. The Earth view declutters its markers. They ignore the scene's fog, so distance haze never washes a
+pin into a blank card; the layer's own `fade` handles distance. Markers are budgeted so the nearest or most important ones
 draw, and `pick(x, y)` resolves a click or tap to a marker id.
 
 ```ts

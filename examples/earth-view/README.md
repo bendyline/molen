@@ -29,8 +29,8 @@ order instead of regenerating the shared packs concurrently.
 - **Traffic:** show or hide ambient life: NPC cars on the mapped streets, pedestrians on the
   sidewalks, trains on rail lines and aircraft overhead.
 
-`?mode=walk` starts on foot, `?lat=&lon=&range=` choose the first view, and `?ambient=0` turns
-ambient life off. For a Seattle
+`?mode=walk`, `?mode=drive` and `?mode=fly` start on foot, in a car or in the air,
+`?lat=&lon=&range=` choose the first view, and `?ambient=0` turns ambient life off. For a Seattle
 start, use `?lat=47.62051&lon=-122.3493&range=950`.
 The [Seattle capture](captures/seattle-space-needle.png) records that view through the shipped
 `mountEarthView` API, including the authored Space Needle model.

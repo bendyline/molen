@@ -29,7 +29,8 @@ export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData)
   const frontWheels = new Set(vehicle.visual.frontWheelNodes);
   const wheels: { node: THREE.Object3D; front: boolean; baseY: number }[] = [];
   let steeringWheel: THREE.Object3D | undefined;
-  const color = new THREE.Color(vehicle.color);
+  // Types without a paint color keep the model's authored paint.
+  const color = vehicle.color !== undefined ? new THREE.Color(vehicle.color) : undefined;
 
   model.traverse((object) => {
     object.userData.vehicleGeometry = true;
@@ -40,13 +41,20 @@ export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData)
       object.castShadow = true;
       object.receiveShadow = true;
       const materials = Array.isArray(object.material) ? object.material : [object.material];
-      object.material = materials.map((source) => {
+      const cloned = materials.map((source) => {
         const material = source.clone();
-        if (source.name === vehicle.visual.paintMaterial && 'color' in material) {
+        if (
+          color !== undefined &&
+          source.name === vehicle.visual.paintMaterial &&
+          'color' in material
+        ) {
           (material as THREE.MeshStandardMaterial).color.copy(color);
         }
         return material;
       });
+      // A material array only draws through geometry groups: keep a single material single, or
+      // a mesh without groups renders nothing at all.
+      object.material = Array.isArray(object.material) ? cloned : (cloned[0] as THREE.Material);
     }
   });
   for (const name of vehicle.visual.wheelNodes) {

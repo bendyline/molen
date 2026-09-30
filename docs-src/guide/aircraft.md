@@ -107,6 +107,18 @@ and `airplane.yawStability` sets sideslip restoring response (1/s at reference a
 The authored engine thrust axis is respected. Engine positions relative to the center of mass
 produce thrust-induced yaw; wing position remains metadata rather than a distributed lift model.
 
+## In an Earth view
+
+`mountEarthView` flies the same aircraft without a practice airfield: `view.setMode('fly')` puts the
+viewer in a P-51D already airborne over the current view, and `{ aircraft:
+'molen.entities.aircraft.oh6' }` picks the helicopter. `view.vehicleStatus()` reports airspeed,
+altitude, vertical speed, attitude, power and engine/gear/flap state for a HUD, and
+`view.recover()` restarts the flight above an impact. See [Earth view](earth-view.md#modes).
+Hosts composing their own view use `EarthAircraft` from `@bendyline/molen-earth/client`: it
+spawns any aircraft type into the vehicles' ECS world, on the ground or with
+`airborne: { speed, power }`, boards and releases the pilot, applies `EarthPilotControls` and
+draws the models.
+
 ## Engine sound
 
 The P-51D carries an `audioSource` that plays `aircraft.engine.piston`, a Rolls-Royce Merlin

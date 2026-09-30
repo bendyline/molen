@@ -116,8 +116,8 @@ export interface TerrainArchiveHeader {
 /** Small archive seam implemented by PMTiles and easy to fake in tests/native hosts. */
 /**
  * The local metric frame a host renders a projected-Earth package in. World X/Z are Web Mercator
- * meters multiplied by `cos(latitude)`, which is exact at `latitude` and drifts by roughly 1-1.5% per
- * degree of latitude away from it at mid-latitudes. Omitted, the frame sits at the center latitude
+ * meters multiplied by `cos(latitude)`, which is exact at `latitude` and drifts by about 1.75% × tan(latitude)
+ * per degree of latitude away from it (1% at 30°, 2% at 48°, 3% at 60°). Omitted, the frame sits at the center latitude
  * of the package bounds: right for a regional package, but a worldwide package centers on the
  * equator, so a host viewing a place should pass that place's latitude and re-anchor (rebuild its
  * streams on a new frame) after moving more than about a degree north or south.

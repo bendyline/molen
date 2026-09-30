@@ -102,7 +102,38 @@ describe('marker layer', () => {
     layer.update([0, 0, 0]);
     const [half, gone] = layer.object.children as THREE.Sprite[];
     expect((half?.material as THREE.SpriteMaterial).opacity).toBeCloseTo(0.5, 9);
+    // Scene haze never applies to markers; the fade above does.
+    expect((half?.material as THREE.SpriteMaterial).fog).toBe(false);
     expect(gone?.visible).toBe(false);
+  });
+
+  it('declutters overlapping pins by priority, then keeps the ones already shown', () => {
+    const view = host();
+    view.look([0, 0, 100], [0, 0, 0]);
+    const layer = createMarkerLayer(view, { declutter: true });
+    // Two pins a meter apart at 100 m overlap on screen; a third far to the side does not.
+    layer.set([
+      marker('near', 0.5, 0, { y: 0, size: 60 }),
+      marker('vip', -0.5, 0, { y: 0, size: 60, priority: 2 }),
+      marker('aside', 60, 0, { y: 0, size: 60 }),
+    ]);
+    layer.update([0, 0, 100]);
+    const shown = () =>
+      layer.object.children
+        .filter((child) => child.visible)
+        .map((child) => child.userData.markerId);
+    expect(shown().sort()).toEqual(['aside', 'vip']);
+    // Equal priority: the pin already on screen stays even when the other comes nearer.
+    layer.set([
+      marker('first', 0, 0, { y: 0, size: 60 }),
+      marker('second', 1, 0, { y: 0, size: 60 }),
+    ]);
+    layer.update([0, 0, 100]);
+    const before = shown();
+    expect(before).toHaveLength(1);
+    layer.update([0.9, 0, 100]);
+    expect(shown()).toEqual(before);
+    layer.dispose();
   });
 
   it('picks the front-most marker under a point using its pin footprint', () => {

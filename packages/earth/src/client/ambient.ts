@@ -350,6 +350,27 @@ export class EarthAmbient implements SemanticTileObserver {
     return this.handle.blocks(ambientBox, except);
   }
 
+  /**
+   * The nearest mapped road lane to world X/Z within `radius` meters: a point on its surface and
+   * the kernel vehicle yaw of travel there (0 faces +Z). Undefined when no road tile around the
+   * point has been built yet.
+   */
+  nearestRoad(
+    x: number,
+    z: number,
+    radius = 200,
+  ): { position: [number, number, number]; yaw: number } | undefined {
+    const network = this.handle.network;
+    const hit = network.laneAt(x, z, { class: 'road', radius });
+    if (hit === undefined) return undefined;
+    const lane = network.lane(hit.lane);
+    // Start a few meters in from the lane's end so the car does not sit inside a junction.
+    const s = lane === undefined ? hit.s : Math.max(4, Math.min(lane.length - 4, hit.s));
+    const sample = network.sampleLane(hit.lane, s);
+    if (sample === undefined) return undefined;
+    return { position: [sample.x, sample.y, sample.z], yaw: Math.atan2(sample.dx, sample.dz) };
+  }
+
   stats(): EarthAmbientStats {
     const s = this.renderer.stats();
     const network = this.handle.network.stats();

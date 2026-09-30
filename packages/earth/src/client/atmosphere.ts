@@ -39,15 +39,35 @@ export function updateEarthFog(fog: Fog, viewDistance: number, altitude: number)
   fog.near = Math.min(fog.far * 0.25, Math.max(2_000, altitude * 1.5));
 }
 
+/** Default sun height above the horizon, degrees. */
+export const EARTH_SUN_ELEVATION = 26;
+/** Default sun compass bearing, degrees (0 north, clockwise): the south-east. */
+export const EARTH_SUN_AZIMUTH = 138;
+
+/**
+ * Unit vector toward the sun in the Earth frame (+X east, +Y up, +Z south) for a compass
+ * bearing and an elevation, both in degrees.
+ */
+export function earthSunDirection(elevation: number, azimuth: number): [number, number, number] {
+  // three's spherical azimuth runs from +Z toward +X; +Z is south here, so bearing b is 180° - b.
+  const sun = new Vector3().setFromSphericalCoords(
+    1,
+    MathUtils.degToRad(90 - elevation),
+    MathUtils.degToRad(180 - azimuth),
+  );
+  return [sun.x, sun.y, sun.z];
+}
+
 /** A clear physical sky dome for either backend. Add it to `renderer.scene`, not the world root. */
 export async function createEarthSky(
   backend: 'webgl' | 'webgpu',
   style: EarthSkyStyle = {},
 ): Promise<Sky | SkyMesh> {
-  const sun = new Vector3().setFromSphericalCoords(
-    1,
-    MathUtils.degToRad(90 - (style.sunElevation ?? 26)),
-    MathUtils.degToRad(style.sunAzimuth ?? 138),
+  const sun = new Vector3(
+    ...earthSunDirection(
+      style.sunElevation ?? EARTH_SUN_ELEVATION,
+      style.sunAzimuth ?? EARTH_SUN_AZIMUTH,
+    ),
   );
   const turbidity = style.turbidity ?? 4.2;
   const rayleigh = style.rayleigh ?? 2.15;

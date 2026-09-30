@@ -1,7 +1,7 @@
 // The whole Earth view in one call: mountEarthView over host-selected terrain packages and the
 // content packs, with worker offload, a photo-pin marker, mode buttons and the required credits.
-// `?mode=walk` starts on foot; `?lat=&lon=&range=` choose the first view; `?ambient=0` turns
-// off ambient life (traffic, people, trains and aircraft).
+// `?mode=walk|drive|fly` starts on foot, in a car or in the air; `?lat=&lon=&range=` choose the
+// first view; `?ambient=0` turns off ambient life (traffic, people, trains and aircraft).
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
 import {
@@ -176,10 +176,15 @@ const syncButtons = (mode: EarthViewMode): void => {
     button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
 };
 view.on('modechange', ({ mode }) => syncButtons(mode));
+// Buttons are host controls: they always switch (`force`), and Drive adds a car on the nearest
+// road when none is parked within reach.
+const enter = (mode: EarthViewMode): boolean =>
+  view.setMode(mode, mode === 'drive' ? { vehicle: true, force: true } : { force: true });
 for (const button of buttons) {
   button.addEventListener('click', () => {
-    view.setMode(button.dataset.mode as EarthViewMode);
+    enter(button.dataset.mode as EarthViewMode);
     canvas.focus();
   });
 }
-if (params.get('mode') === 'walk') view.setMode('walk');
+const startMode = params.get('mode');
+if (startMode === 'walk' || startMode === 'drive' || startMode === 'fly') enter(startMode);

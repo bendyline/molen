@@ -87,6 +87,17 @@ All durable simulation state and mount relationships live in ECS components and 
 and replay. Install the same systems/environment when restoring. Host streaming and render resources
 are separate from those checkpoints.
 
+## In an Earth view
+
+`mountEarthView` drives the parked cars its street surfaces place, and can add one:
+`view.setMode('drive', { vehicle: true })` puts the viewer in a car in the nearest mapped road
+lane. `EarthVehicles` exposes the pieces for hosts that compose their own view: `spawn(kind,
+position, yaw)` at an exact spot, `spawnNear(kind, x, z, yaw, { avoid })` on the nearest open
+ground (under open sky, never a roof or deck), `board(id)` without walking to the door, and
+`release()` to step out at once. A standing spawned car settles onto finer terrain as it streams
+in. The entity's `vehicle.color`, when set, paints the model's `paintMaterial`; without one the
+authored paint stays.
+
 ## Engine sound
 
 Every `molen.entities` vehicle type carries an `audioSource`: the compact, sedan and SUV run
