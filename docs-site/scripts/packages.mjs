@@ -32,6 +32,7 @@ const ORDER = [
   '@bendyline/molen-worldgen-earth',
   '@bendyline/molen-earth',
   '@bendyline/molen-figures',
+  '@bendyline/molen-ambient',
   '@bendyline/molen-materials',
   '@bendyline/molen-pack',
   '@bendyline/molen-pathfinding',

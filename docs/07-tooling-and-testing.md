@@ -33,7 +33,7 @@ molen/
     cubes/                 (private) Phase 0 demo + regression test
     terrain-flyover/       (private) Phase 1 demo + regression test
   docs-src/                markdown sources + doc generator
-  .github/workflows/       ci.yml  release.yml  nightly.yml  update-goldens.yml
+  .github/workflows/       ci.yml  release.yml  nightly.yml
 ```
 
 Examples are **private workspace packages**: they participate in the task graph (typecheck,
@@ -74,16 +74,17 @@ Rule of thumb agents follow: *runtime* WASM must be `-compat`-style self-contain
 *toolchain* WASM stays Node-only inside tooling. Each WASM dep lands with a dedicated smoke
 test in both target environments before any feature uses it.
 
-### 1.4 Versioning & publishing: Changesets, fixed version group
+### 1.4 Versioning & publishing: one version line per package
 
-All `@bendyline/molen-*` packages share **one version line** — docs, schemas, and packages all say
-"engine 0.4.0"; agents never reason about a compatibility matrix. Cost (bumps for unchanged
-packages) is trivial at this count; split the fixed group only if e.g. the Rapier wrapper
-needs to track Rapier releases independently ([09](09-questions-and-risks.md) Q11).
-`changeset publish` runs from the release workflow; `@bendyline/molen-docs` builds and publishes in
-the same release — docs↔code version lock by construction. Pre-1.0: breaking changes per
-minor; wire-format versioning is independent (integer `v` envelopes,
-[03](03-data-formats.md)).
+Each `@bendyline/molen-*` package has its own version line, as in Bendyline's other monorepos:
+multi-semantic-release versions a package from the Conventional Commits that touch it, and gives
+a package whose Molen dependencies release a patch release too. Published packages pin their
+Molen dependencies exactly, so the newest version of every package is a set that was released
+together and agents still never reason about a compatibility matrix. `ENGINE_VERSION` is the
+kernel's version; a scaffolded project records the versions released with the CLI that wrote it.
+(The packages first shared one fixed version line, which made every release and every new package
+a repo-wide event; [09](09-questions-and-risks.md) Q11.) Pre-1.0: breaking changes per minor;
+wire-format versioning is independent (integer `v` envelopes, [03](03-data-formats.md)).
 
 ### 1.5 CI (GitHub Actions)
 
@@ -91,11 +92,9 @@ minor; wire-format versioning is independent (integer `v` envelopes,
 commands locally*: setup → `lint typecheck` → `test:unit` (Vitest incl. schema round-trips) →
 `test:replay` (Node) → `test:golden` (pinned Playwright + SwiftShader container by
 **digest**, diff artifacts on failure) → docs-lint (§6.4).
-**`release.yml`** — changesets release PR + publish.
+**`release.yml`** — manual: version the packages that changed, then publish them (CONTRIBUTING.md).
 **`nightly.yml`** — golden suite ×3 (flake canary) + full agent-loop smoke (CLI end-to-end
 on an example).
-**`update-goldens.yml`** — manually triggered; regenerates goldens in the CI container and
-commits to the PR branch (§5.3).
 
 ## 2. Schema & validation strategy
 
@@ -250,11 +249,11 @@ a divergence report an agent can act on, not "hash differs."
   sim during capture); fixed seed/DPR/tone mapping; 3 warmup frames.
 - **Diff:** **odiff**, per-pixel threshold 0.1, `maxDiffPixelRatio` 0.3% default
   (per-test overridable), AA tolerance on.
-- **Goldens are recorded only in the pinned CI container** (`update-goldens` workflow
-  commits to the PR branch) — SwiftShader is deterministic per build, not across Chromium
-  versions/OSes. Local `molen test golden --update` produces *candidates* only; the diff
-  tool clearly distinguishes "within local tolerance" vs "CI-authoritative." Failures upload
-  expected/actual/diff triptychs.
+- **The engine's render tests commit no reference images** — SwiftShader is deterministic per
+  build, not across Chromium versions/OSes, so a recorded PNG holds only where it was
+  recorded. They check that a frame renders identically twice, differs when its input
+  does, and shows what it must (`frameStats`: coverage, colors and mean color, for the frame
+  or a region). They pass on any machine, and a renderer change needs no re-recording.
 - **Flakiness:** nightly ×3 canary; any intermittent golden is quarantined (non-blocking
   job) within a day — a flaky golden suite is worse than none, because agents learn to
   ignore red.

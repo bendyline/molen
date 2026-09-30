@@ -167,7 +167,37 @@ describe('navigation input source', () => {
     const walking = source.read(0);
     expect(walking.move.up).toBe(0);
     expect(walking.interact).toBe(1);
-    expect(Object.keys(navigationInputProfiles())).toEqual(['orbit', 'fly', 'walk', 'drive']);
+    expect(Object.keys(navigationInputProfiles())).toEqual([
+      'orbit',
+      'fly',
+      'walk',
+      'drive',
+      'pilot',
+    ]);
+  });
+
+  it('reads flight controls only in the pilot profile, with edge-triggered switches', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'drive' });
+    surface.emit('keydown', { code: 'KeyG' });
+    expect(source.read(0).pilot).toBeUndefined();
+    surface.emit('keyup', { code: 'KeyG' });
+    source.setProfile('pilot');
+    for (const code of ['KeyS', 'KeyD', 'KeyQ', 'ShiftLeft']) surface.emit('keydown', { code });
+    surface.emit('keydown', { code: 'KeyG' });
+    surface.emit('keyup', { code: 'KeyG' });
+    surface.emit('keydown', { code: 'KeyI' });
+    const frame = source.read(0);
+    // S pulls the nose up (pitch = -forward), D banks right, Q is left rudder.
+    expect(frame.move.forward).toBe(-1);
+    expect(frame.move.right).toBe(1);
+    expect(frame.pilot).toEqual({ throttle: 1, yaw: -1, engine: 1, gear: 1, flaps: 0, recover: 0 });
+    // Switches are presses, not holds; held axes persist.
+    const next = source.read(0);
+    expect(next.pilot?.gear).toBe(0);
+    expect(next.pilot?.engine).toBe(0);
+    expect(next.pilot?.throttle).toBe(1);
+    source.dispose();
   });
 });
 

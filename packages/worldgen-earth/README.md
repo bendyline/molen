@@ -82,7 +82,7 @@ const { layers } = await createProfiledTerrainPackageSemanticLayers(pkg, {
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package; formats are
+0.x, versioned independently of the other `@bendyline/molen-*` packages; formats are
 versioned and beta. Heights, floor counts and uses recovered from a basemap are estimates, not
 records: stock Protomaps merges footprints below zoom 15 and publishes no roof shape or
 parent-part relations, so containment is a spatial inference.

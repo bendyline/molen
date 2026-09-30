@@ -251,6 +251,14 @@
             "signal": "aircraftState.rpm",
             "curve": [[0, 0], [0.05, 0.25], [0.22, 0.6], [1, 1]]
           }
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
         }
       },
       "assets": ["molen.entities.aircraft.p51d"],
@@ -503,6 +511,14 @@
               "curve": [[0, 0.8], [1, 1.1]]
             }
           ]
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
         }
       },
       "assets": ["molen.entities.aircraft.oh6"],
@@ -513,6 +529,33 @@
           "config": {}
         }
       ]
+    },
+    "molen.entities.aircraft.airliner": {
+      "doc": "38 m narrow-body twin-jet for ambient air traffic (seen from the ground; not flyable).",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.airliner"
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 38,
+          "width": 35.8,
+          "height": 11.8,
+          "cruise": 120,
+          "weight": 3,
+          "visual": {
+            "rotors": ["fan-left", "fan-right"],
+            "gearNodes": ["gear-nose", "gear-left", "gear-right"],
+            "paintMaterial": "airliner-livery"
+          },
+          "colors": ["#1f4f8c", "#b3261e", "#1d6f5b"]
+        }
+      }
     }
   }
 }

@@ -770,6 +770,22 @@ export const OPS_CATALOG: OpDescriptor[] = [
     ],
   },
   {
+    name: 'network_bake',
+    summary:
+      'Bake the roads, railways and paths of a local terrain package into a molen/transport-network@1 document for ambient traffic in scenes without map tiles.',
+    cli: 'molen network bake <terrain-package.json> (--tile z/x/y [--radius n] | --bbox w,s,e,n) --out network.json [--classes road,rail,path] [--heights] [--json]',
+    mcpTool: 'network_bake',
+    params: [
+      p('packagePath', 'string', true, 'terrain-package.json path (local PMTiles archives).'),
+      p('tile', 'string', false, 'Centre tile "z/x/y" at the finest features level.'),
+      p('radius', 'number', false, 'Tiles around the centre tile to include (default 0).'),
+      p('bbox', 'number[4]', false, 'Area [west, south, east, north] in degrees, instead of tile.'),
+      p('classes', 'string[]', false, "Classes to keep: 'road', 'rail', 'path' (default all)."),
+      p('outPath', 'string', true, 'Write the transport-network document here.'),
+      p('heights', 'boolean', false, 'Include surface heights from the elevation (default flat).'),
+    ],
+  },
+  {
     name: 'mcp_server',
     summary: 'Start the MCP server over stdio (exposes every mcpTool in this catalog).',
     cli: 'molen mcp',

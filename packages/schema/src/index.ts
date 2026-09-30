@@ -172,6 +172,8 @@ export type {
   Quat,
   ReplayFixture,
   RngState,
+  SceneAmbient,
+  SceneAmbientKind,
   SceneCamera,
   SceneCommandDef,
   SceneEntity,

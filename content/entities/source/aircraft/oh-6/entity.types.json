@@ -7,8 +7,17 @@
       "doc": "External OH-6 entity using the generic helicopter solver.",
       "components": {
         "transform": {
-          "pos": [0, 0, 0],
-          "rot": [0, 0, 0, 1]
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
         },
         "renderable": {
           "kind": "gltf",
@@ -27,18 +36,38 @@
             "span": 8.05,
             "length": 7.01,
             "height": 2.65,
-            "centerOfMass": [0, 1.25, -0.45],
-            "pilotEye": [-0.38, 1.7, 0.6],
+            "centerOfMass": [
+              0,
+              1.25,
+              -0.45
+            ],
+            "pilotEye": [
+              -0.38,
+              1.7,
+              0.6
+            ],
             "engine": {
-              "position": [0, 2.05, -1.25],
-              "thrustAxis": [0, 1, 0],
+              "position": [
+                0,
+                2.05,
+                -1.25
+              ],
+              "thrustAxis": [
+                0,
+                1,
+                0
+              ],
               "power": 235000,
               "idleRpm": 1,
               "spoolRate": 0.16,
               "rotorAngularSpeed": 50
             },
             "helicopter": {
-              "rotorPosition": [0, 2.64, -0.25],
+              "rotorPosition": [
+                0,
+                2.64,
+                -0.25
+              ],
               "rotorRadius": 4.025,
               "cyclicTilt": 0.5,
               "cyclicResponse": 4,
@@ -60,11 +89,31 @@
             "hardLandingPitch": 0.35,
             "maxSupportStep": 0.65,
             "collisionProbes": [
-              [0, 1.4, 0],
-              [0, 1.4, 2.6638],
-              [0, 1.5, -2.804],
-              [-3.4615, 2.6, 0],
-              [3.4615, 2.6, 0]
+              [
+                0,
+                1.4,
+                0
+              ],
+              [
+                0,
+                1.4,
+                2.6638
+              ],
+              [
+                0,
+                1.5,
+                -2.804
+              ],
+              [
+                -3.4615,
+                2.6,
+                0
+              ],
+              [
+                3.4615,
+                2.6,
+                0
+              ]
             ],
             "visual": {
               "rotors": [
@@ -83,7 +132,10 @@
               "flaps": [],
               "ailerons": [],
               "interior": {
-                "nodes": ["cockpit", "collective"],
+                "nodes": [
+                  "cockpit",
+                  "collective"
+                ],
                 "bindings": [
                   {
                     "node": "needle-airspeed",
@@ -193,7 +245,11 @@
           "flaps": false
         },
         "aircraftState": {
-          "velocity": [0, 0, 0],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
           "yaw": 0,
           "pitch": 0,
           "roll": 0,
@@ -215,10 +271,25 @@
             {
               "id": "driver",
               "role": "driver",
-              "position": [-0.38, 1.7, 0.6]
+              "position": [
+                -0.38,
+                1.7,
+                0.6
+              ]
             }
           ],
-          "exits": [[-1.6, 0, 0.8], [1.6, 0, 0.8]],
+          "exits": [
+            [
+              -1.6,
+              0,
+              0.8
+            ],
+            [
+              1.6,
+              0,
+              0.8
+            ]
+          ],
           "reach": 3
         },
         "audioSource": {
@@ -227,26 +298,76 @@
           "pitchFrom": [
             {
               "signal": "aircraftState.rpm",
-              "curve": [[0, 0.4], [1, 1]]
+              "curve": [
+                [
+                  0,
+                  0.4
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
             },
             {
               "signal": "aircraftInput.power",
-              "curve": [[0, 0.97], [1, 1.04]]
+              "curve": [
+                [
+                  0,
+                  0.97
+                ],
+                [
+                  1,
+                  1.04
+                ]
+              ]
             }
           ],
           "gainFrom": [
             {
               "signal": "aircraftState.rpm",
-              "curve": [[0, 0], [0.15, 0.3], [1, 1]]
+              "curve": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.15,
+                  0.3
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
             },
             {
               "signal": "aircraftInput.power",
-              "curve": [[0, 0.8], [1, 1.1]]
+              "curve": [
+                [
+                  0,
+                  0.8
+                ],
+                [
+                  1,
+                  1.1
+                ]
+              ]
             }
           ]
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.2,
+          "width": 8.03,
+          "height": 2.5,
+          "cruise": 45,
+          "weight": 0.35
         }
       },
-      "assets": ["molen.entities.aircraft.oh6"],
+      "assets": [
+        "molen.entities.aircraft.oh6"
+      ],
       "scripts": [
         {
           "id": "interactions",

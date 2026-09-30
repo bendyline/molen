@@ -345,6 +345,13 @@ they share one `features` PMTiles sidecar. When both sections reference one MVT 
 renderer layers share one in-flight range read and full decode; decoded semantic documents are not
 retained as a second long-lived cache.
 
+Polygonal water is flat: a lake's level is the lower quartile of the elevation inside it, so shore
+samples cannot lift it onto its banks. For projected Earth, pass `seaLevel` in the mesh options
+(the Earth view does): water whose floor reaches within 2 m of it is the sea, a harbor or a tidal
+river, and draws at one level 1.5 m above sea level in every tile. Coastal elevation is noisy
+around zero and bathymetry differs from tile to tile, so a sampled level would let the ground poke
+through and step at tile seams.
+
 The opposite split works too: when the terrain refines past a sidecar's last level (a zoom-13 vector
 archive under zoom-14 elevation), the finer tiles overzoom the sidecar's finest tiles by default.
 `overzoomTerrainSemanticTile` rescales an ancestor's normalized geometry onto the descendant, clips

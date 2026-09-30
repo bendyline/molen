@@ -21,6 +21,11 @@ import { loadTemplateBundle } from '../src/ops/templates';
 
 const gate = await import(resolve(__dirname, '../../../scripts/check-package-contents.mjs'));
 const PACKAGES = resolve(__dirname, '../..');
+const toolingPackage = JSON.parse(
+  await readFile(resolve(__dirname, '../package.json'), 'utf8'),
+) as {
+  version: string;
+};
 
 const TEMPLATE_IDS = [
   'cubes',
@@ -129,12 +134,12 @@ describe.each(TEMPLATE_IDS)('template %s', (id) => {
     expect(s.files).toContain('package.json');
     expect(s.files).not.toContain('preview.png');
 
-    // A standalone npm project on this CLI's version line.
+    // A standalone npm project on the package versions released with this CLI.
     const manifest = JSON.parse(await readFile(join(dir, 'package.json'), 'utf8')) as Manifest;
     expect(manifest.name).toBe('my-app');
     const deps = { ...manifest.dependencies, ...manifest.devDependencies };
     expect(deps['@bendyline/molen-kernel']).toBe(`^${ENGINE_VERSION}`);
-    expect(manifest.devDependencies['@bendyline/molen-tooling']).toBe(`^${ENGINE_VERSION}`);
+    expect(manifest.devDependencies['@bendyline/molen-tooling']).toBe(`^${toolingPackage.version}`);
     expect(Object.values(deps).filter((spec) => /^(workspace|catalog):/.test(spec))).toEqual([]);
     expect(Object.keys(manifest.scripts)).toEqual(
       expect.arrayContaining(['dev', 'build', 'preview', 'typecheck', 'test']),

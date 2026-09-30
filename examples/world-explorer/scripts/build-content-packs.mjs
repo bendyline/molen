@@ -11,9 +11,12 @@ import { buildRegionalPacks } from './build-regional-packs.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, '../../content');
 const outDir = resolve(root, 'public/packs');
+// MOLEN_PACK_COMPRESSION=store writes the packs uncompressed. Deflating about 2 GB of models in
+// JavaScript is 90% of this build (13 minutes on a CI runner); a test run only reads them locally.
+const compression = process.env.MOLEN_PACK_COMPRESSION === 'store' ? 'store' : undefined;
 
 for (const name of ['entities', 'earth', 'sky', 'sounds']) {
-  const built = await buildPack(resolve(content, name), { outDir });
+  const built = await buildPack(resolve(content, name), { outDir, compression });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);
 }
 const earthSource = JSON.parse(
@@ -27,5 +30,6 @@ for (const path of earthSource.provides.structures) {
 await buildRegionalPacks(resolve(content, 'worldgen'), {
   outDir,
   placements,
+  compression,
   onBuilt: (id, entry) => console.log(`${id}: ${entry.file} (${Math.round(entry.size / 1024)} KB)`),
 });

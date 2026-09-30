@@ -23,13 +23,15 @@ import {
   vehicleLocalPoint,
   vehicleRotation,
 } from '@bendyline/molen-kernel/vehicles';
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { componentHandle, Transform, World } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement, VehicleSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
 
 const PLAYER = 'world-player';
+/** Ambient NPCs share this world; they are never parked cars to cull. */
+const AmbientAgent = componentHandle('ambientAgent');
 
 export interface EarthVehiclesOptions {
   /** Streamed scene whose visible tiles carry parked-car placements (`userData.vehicles`). */
@@ -78,6 +80,8 @@ export class EarthVehicles {
     rescanIntervalMs: 200,
   });
   private lastSync = -Infinity;
+  private sequence = 0;
+  private readonly spawned = new Set<string>();
 
   private readonly root: THREE.Object3D;
   private readonly sampleHeight: (x: number, z: number) => number | undefined;
@@ -169,7 +173,7 @@ export class EarthVehicles {
         this.active.delete(id);
       }
     }
-    for (const [id] of this.world.query(Vehicle))
+    for (const [id] of this.world.query(Vehicle).without(AmbientAgent))
       if (!resident.has(id) && !this.retained.has(id) && !this.loading.has(id))
         this.world.destroy(id);
     // Parent/child LOD overlap and regenerated tiles must never resurrect the car at its bay.
@@ -184,6 +188,15 @@ export class EarthVehicles {
         if (!hide) visible.add(id);
       }
     }
+  }
+  /** Nothing but terrain within 40 m above the ground at X/Z (no roof, deck or landmark). */
+  private openSky(x: number, z: number, ground: number): boolean {
+    const ray = new THREE.Ray(
+      new THREE.Vector3(x - this.collision.origin.x, ground + 40, z - this.collision.origin.z),
+      new THREE.Vector3(0, -1, 0),
+    );
+    const hit = this.collision.octree.rayIntersect(ray);
+    return hit === false || hit === undefined || hit.position.y <= ground + 0.4;
   }
   private support(x: number, z: number): number | undefined {
     const ground = this.sampleHeight(x, z);
@@ -297,6 +310,122 @@ export class EarthVehicles {
     }
     return best;
   }
+  /** Drivable car types in the entity library (types with a vehicle and a seat). */
+  static typeIds(types: TypeLibrary): string[] {
+    return types.idsWith('vehicle').filter((id) => types.components(id).mountable !== undefined);
+  }
+  /**
+   * Add a drivable car of `kind` at a world position, nose along `yaw` (the kernel's vehicle yaw:
+   * 0 faces +Z). It stays for the session until {@link remove}d. Returns its entity id, or
+   * undefined when the spot is blocked.
+   */
+  spawn(kind: string, position: [number, number, number], yaw: number): string | undefined {
+    const components = this.types.components(kind);
+    const vehicle = components.vehicle as unknown as VehicleData | undefined;
+    if (vehicle === undefined) return undefined;
+    const id = `earth-car-${++this.sequence}`;
+    this.collision.update(this.root, position[0], position[2], position[1]);
+    if (!this.canOccupy(position, yaw, vehicle.spec, id)) {
+      this.message = 'No room for a car here';
+      return undefined;
+    }
+    components.transform = { pos: [...position], rot: vehicleRotation(yaw, 0, 0) };
+    components.vehicleState = initialVehicleState(yaw);
+    this.world.spawnRaw(components, id);
+    this.spawned.add(id);
+    this.retained.add(id);
+    void this.activate(id, vehicle);
+    return id;
+  }
+  /**
+   * Add a car on open ground near world X/Z: the nearest spot within `radius` meters (default 80,
+   * searched outward in 4 m rings) where the car fits under open sky on the terrain itself, not
+   * on a roof, plaza deck or landmark, and that `avoid` (e.g. landmarks still streaming in) does
+   * not reject. Returns its entity id, or undefined when nowhere nearby is open.
+   */
+  spawnNear(
+    kind: string,
+    x: number,
+    z: number,
+    yaw: number,
+    options: { radius?: number; avoid?: (x: number, z: number) => boolean } = {},
+  ): string | undefined {
+    const radius = options.radius ?? 80;
+    const vehicle = this.types.components(kind).vehicle as unknown as VehicleData | undefined;
+    if (vehicle === undefined) return undefined;
+    this.collision.update(this.root, x, z);
+    for (let ring = 0; ring <= radius; ring += 4) {
+      const steps = ring === 0 ? 1 : Math.ceil((2 * Math.PI * ring) / 4);
+      for (let step = 0; step < steps; step++) {
+        const angle = (step / steps) * 2 * Math.PI;
+        const cx = x + Math.cos(angle) * ring;
+        const cz = z + Math.sin(angle) * ring;
+        if (options.avoid?.(cx, cz) === true) continue;
+        const ground = this.sampleHeight(cx, cz);
+        if (ground === undefined) continue;
+        if (Math.hypot(cx - this.collision.origin.x, cz - this.collision.origin.z) > 28)
+          this.collision.update(this.root, cx, cz, ground);
+        if (!this.openSky(cx, cz, ground)) continue;
+        if (!this.canOccupy([cx, ground, cz], yaw, vehicle.spec, '')) continue;
+        return this.spawn(kind, [cx, ground, cz], yaw);
+      }
+    }
+    this.message = 'No open ground for a car here';
+    return undefined;
+  }
+  /** Seat the driver in `id` wherever the driver is (no reach or wall checks). */
+  board(id: string): boolean {
+    this.message = '';
+    const t = this.world.get(id, Transform);
+    const v = this.world.get(id, Vehicle);
+    if (!t || !v) return false;
+    this.world.patch(PLAYER, Transform, { pos: vehicleLocalPoint(t, v.spec.driverEye) });
+    if (!mountEntity(this.world, PLAYER, id)) return false;
+    this.retained.add(id);
+    if (!this.active.has(id)) void this.activate(id, v);
+    this.view = 'chase';
+    this.lookYaw = 0;
+    this.lookPitch = 0;
+    this.render();
+    return true;
+  }
+  /**
+   * Leave at once, however fast the car is going, removing it when it was spawned here. Returns
+   * the car's position.
+   */
+  release(): [number, number, number] | undefined {
+    const id = this.mountedId;
+    if (id === undefined) return undefined;
+    const pos = this.world.get(id, Transform)?.pos;
+    this.world.remove(PLAYER, Mounted);
+    this.world.emit('vehicle-unmounted', { actor: PLAYER, vehicle: id });
+    if (this.spawned.has(id)) this.remove(id);
+    else this.world.set(id, VehicleInput, { throttle: 0, steering: 0, brake: true });
+    return pos === undefined ? undefined : [...pos];
+  }
+  /** Remove a car added with {@link spawn}. */
+  remove(id: string): void {
+    if (this.world.get(PLAYER, Mounted)?.vehicle === id) this.world.remove(PLAYER, Mounted);
+    this.active.get(id)?.dispose();
+    this.active.delete(id);
+    this.retained.delete(id);
+    this.spawned.delete(id);
+    if (this.world.exists(id)) this.world.destroy(id);
+  }
+  /** World position of the mounted car. */
+  get position(): [number, number, number] | undefined {
+    const id = this.mountedId;
+    const pos = id !== undefined ? this.world.get(id, Transform)?.pos : undefined;
+    return pos === undefined ? undefined : [...pos];
+  }
+  /** Compass heading of the mounted car (0 north, PI/2 east). */
+  get heading(): number | undefined {
+    const id = this.mountedId;
+    const yaw = id !== undefined ? this.world.get(id, VehicleState)?.yaw : undefined;
+    return yaw === undefined
+      ? undefined
+      : (((Math.PI - yaw) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  }
   enter(position: [number, number, number]): boolean {
     this.message = '';
     const id = this.nearest(position);
@@ -353,6 +482,7 @@ export class EarthVehicles {
     return this.world.get(PLAYER, Transform)?.pos;
   }
   update(dt: number, input: VehicleInputData): void {
+    this.settleSpawned();
     const id = this.mountedId;
     if (id && this.world.has(id, Vehicle)) {
       const t = this.world.get(id, Transform);
@@ -365,6 +495,21 @@ export class EarthVehicles {
       this.accumulator -= this.world.dt;
     }
     this.render();
+  }
+  /**
+   * Keep standing spawned cars on the ground: a car added while only coarse terrain had streamed
+   * would otherwise sit under (or float over) the finer surface that replaces it, since the
+   * vehicle step only follows the ground while moving.
+   */
+  private settleSpawned(): void {
+    for (const id of this.spawned) {
+      const t = this.world.get(id, Transform);
+      const state = this.world.get(id, VehicleState);
+      if (!t || !state || Math.abs(state.speed) > 0.2) continue;
+      const support = this.support(t.pos[0], t.pos[2]);
+      if (support !== undefined && Math.abs(support - t.pos[1]) > 0.05)
+        this.world.patch(id, Transform, { pos: [t.pos[0], support, t.pos[2]] });
+    }
   }
   private render(): void {
     for (const [id, visual] of this.active) {

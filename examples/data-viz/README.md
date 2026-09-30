@@ -38,7 +38,7 @@ npm test
 
 `test/headless.test.ts` checks one bar per datum, growth over time toward `value * heightScale`, height ordering (taller means bigger), the camera track validating and actually moving, and a **pinned state hash** at 60 ticks alongside run-to-run equality.
 
-In the engine repository, `test/golden/viz.golden.test.ts` is the render half (golden tests stay there; a template copy does not include them): `screenshotScene` at tick 40 from the track's own pose at tick 40, 512x320, asserting seven rendered entities and comparing against the committed `test/golden/__goldens__/viz.png`. It then runs `exportFrames` from tick 0 to 60 in steps of 30 along the same track and asserts three PNGs — the machinima sequence in miniature. There is no replay fixture: nothing here takes commands.
+In the engine repository, `test/golden/viz.golden.test.ts` is the render half (golden tests stay there; a template copy does not include them): `screenshotScene` at tick 40 from the track's own pose at tick 40, 512x320, asserting seven rendered entities and, with `frameStats` rather than a reference image, that the bars cover part of the dark frame in several shades. It then runs `exportFrames` from tick 0 to 60 in steps of 30 along the same track and asserts three PNGs whose first and last frames differ — the machinima sequence in miniature. There is no replay fixture: nothing here takes commands.
 
 One wrinkle worth knowing: `src/viz.ts` imports `data.json` without an import attribute, which Vite and Vitest supply and plain Node does not. Passing `--setup src/viz.ts` to `molen sim run` or `molen shot` therefore fails to load the module, which is why the headless render and the frame export run inside Vitest rather than from the CLI.
 

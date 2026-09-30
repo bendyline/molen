@@ -1,0 +1,63 @@
+/** Three-free bridge deck height profile shared by the surface painter and transport graphs. */
+import type { TerrainLinePath } from './line-path';
+import type { TerrainSemanticPoint } from './semantic-types';
+
+export interface BridgeDeckOptions {
+  /** Surveyed absolute deck height; when present the deck is flat at this Y. */
+  deckElevation?: number;
+  /** Clearance above terrain at an unconnected (clipped or free) end, in metres (6 roads, 3 paths). */
+  clearance: number;
+  /** Lift above terrain at an end that meets a grade road (the road's surface lift). */
+  approachLift: number;
+  /** Whether each end meets a grade road: `[start, end]`. */
+  connects: readonly [boolean, boolean];
+  /** Authored deck endpoints in the path's frame, blended in over `radius`. */
+  connections?: readonly { point: TerrainSemanticPoint; elevation: number; radius: number }[];
+}
+
+/**
+ * A tile fragment cannot establish the elevation of an entire bridge. Use a bank-to-bank
+ * profile for complete spans and deterministic terrain clearance at clipped ends. `groundAt`
+ * samples terrain in the same frame as `path`.
+ */
+export function bridgeDeckHeightFn(
+  path: TerrainLinePath,
+  groundAt: (x: number, z: number) => number,
+  options: BridgeDeckOptions,
+): (x: number, z: number) => number {
+  const surveyed = options.deckElevation;
+  if (surveyed !== undefined) return () => surveyed;
+  const a = path.points[0] as TerrainSemanticPoint,
+    b = path.points.at(-1) as TerrainSemanticPoint;
+  const clearance = options.clearance;
+  const startClearance = options.connects[0] ? options.approachLift : clearance;
+  const endClearance = options.connects[1] ? options.approachLift : clearance;
+  const start = groundAt(...a) + startClearance,
+    end = groundAt(...b) + endClearance;
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1],
+    length2 = dx * dx + dz * dz || 1;
+  const connections = options.connections ?? [];
+  return (x, z) => {
+    const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2));
+    // Keeps the slab above terrain at crests without sagging into the river/valley.
+    const lift = Math.min(
+      clearance,
+      startClearance + t * path.length * 0.12,
+      endClearance + (1 - t) * path.length * 0.12,
+    );
+    let height = Math.max(start + (end - start) * t, groundAt(a[0] + dx * t, a[1] + dz * t) + lift);
+    for (const connection of connections) {
+      // A deck endpoint covers its entire width, then fades into the inferred approach.
+      const distance = Math.hypot(x - connection.point[0], z - connection.point[1]);
+      const flatRadius = Math.min(32, connection.radius * 0.5);
+      const blend = Math.max(
+        0,
+        Math.min(1, (distance - flatRadius) / (connection.radius - flatRadius)),
+      );
+      const weight = 1 - blend * blend * (3 - 2 * blend);
+      height += (connection.elevation - height) * weight;
+    }
+    return height;
+  };
+}

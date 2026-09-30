@@ -1,7 +1,29 @@
 // @bendyline/molen-earth/client — an embeddable real-world 3D view. `mountEarthView` is the whole
 // thing behind one call; the pieces it is built from (content loading, worldgen setup, drivable
-// cars, sky and haze, performance tiers, credits) are exported for hosts that compose their own.
+// cars, flyable aircraft, sky and haze, performance tiers, credits) are exported for hosts that
+// compose their own.
 
+export {
+  EarthAircraft,
+  type EarthAircraftOptions,
+  type EarthAircraftPlacement,
+  type EarthFlightStatus,
+  type EarthPilotControls,
+} from './client/aircraft';
+export {
+  ambientContentFromTypes,
+  EarthAmbient,
+  type EarthAmbientBudget,
+  type EarthAmbientContent,
+  type EarthAmbientOptions,
+  type EarthAmbientSettings,
+  type EarthAmbientStats,
+} from './client/ambient';
+export {
+  observeSemanticTiles,
+  SemanticTileBuffer,
+  type SemanticTileObserver,
+} from './client/ambient-tiles';
 export {
   createEarthFog,
   createEarthSky,
@@ -29,7 +51,9 @@ export {
   type EarthCameraState,
   type EarthCameraTarget,
   type EarthMarker,
+  type EarthModeOptions,
   type EarthTerrainSource,
+  type EarthVehicleStatus,
   type EarthView,
   type EarthViewEvents,
   type EarthViewMode,

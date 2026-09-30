@@ -1,0 +1,33 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.entities.transit.lightrail",
+  "kind": "transit",
+  "title": "Light-rail car",
+  "order": 1,
+  "files": {
+    "definitions": [
+      "entity.types.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.entities.transit.lightrail",
+        "output": "assets/molen/entities/transit/lightrail/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f5870869c91762e39932e9c7a89a0613866a982ff4602d8fb7b5cbe05e078ce2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "model",
+        "path": "models/generate.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md"
+    ]
+  }
+}

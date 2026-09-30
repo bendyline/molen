@@ -1,7 +1,8 @@
 # @bendyline/molen-earth
 
 An embeddable real-world 3D view for [Molen](https://molen.dev): streamed terrain, worldgen
-buildings and street surfaces, orbit/walk/drive navigation with drivable parked cars, map markers,
+buildings, landmarks and street surfaces, orbit/walk/drive/fly navigation (drivable parked cars, a
+car on the nearest road, or an aircraft already in the air), ambient traffic and sound, map markers,
 sky and haze, and adaptive quality — behind one `mountEarthView` call.
 
 ```sh
@@ -18,11 +19,12 @@ const view = await mountEarthView({
   camera: { latitude: 47.6205, longitude: -122.3493, range: 1500 },
 });
 view.flyTo({ latitude: 37.8199, longitude: -122.4783, range: 2500 });
+view.setMode('fly'); // a P-51D over the view; vehicleStatus() feeds a HUD
 ```
 
 | Entry point | For |
 |---|---|
-| `./client` | `mountEarthView`, `loadEarthContent`, `openPacksFromIndex`, `createEarthWorldgen`, `EarthVehicles`, `createEarthSky`, `createEarthFog`, `earthPerformanceTier`, `earthCredits` |
+| `./client` | `mountEarthView`, `loadEarthContent`, `openPacksFromIndex`, `createEarthWorldgen`, `EarthVehicles`, `EarthAircraft`, `createEarthSky`, `createEarthFog`, `earthPerformanceTier`, `earthCredits` |
 | `./workers/elevation`, `./workers/landcover`, `./workers/surface`, `./workers/worldgen`, `./workers/material` | One-line worker entries: `import '@bendyline/molen-earth/workers/elevation';` in a module worker, passed to `mountEarthView({ workers })` |
 
 Real-world data carries attribution obligations (ODbL for OpenStreetMap). `view.credits` lists

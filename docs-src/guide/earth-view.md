@@ -5,7 +5,8 @@ composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
 - worldgen buildings, street surfaces, trees and parked cars from content packs;
-- orbit, walk and drive navigation;
+- traffic, pedestrians, trains and aircraft that come and go around the viewer;
+- orbit, walk, drive and fly navigation, with cars and aircraft the host can put the viewer in;
 - markers placed by latitude/longitude;
 - sky, haze and adaptive quality.
 
@@ -55,7 +56,12 @@ reuses its filtered texture until lighting changes; camera movement does not reg
 Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 `view.viewer.renderer.scene.environment` takes precedence if you supply your own HDR environment.
 
-`touchJoystickContainer` adds an on-screen movement stick while walking or driving. By default it
+`style` sets the look: `sky.sunElevation` and `sky.sunAzimuth` (degrees; the azimuth is a
+compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
+given the sunlight comes from the same point, so lit faces agree with the glow in the sky. `fog`,
+`water`, `background` and the rest of `environment` (ambient light, tone mapping, exposure) follow.
+
+`touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
 
 ## Modes
@@ -68,20 +74,44 @@ appears only on touch devices; pass `touchJoystick: 'always'` to show it everywh
   terrain, buildings and props, WASD or the touch stick to move, mouse-look with pointer lock, and
   Space to jump.
 - **drive**: while walking, press E (or `setMode('drive')`) next to a parked car to get in. W/S
-  drive, A/D steer, Space brakes, V switches between cockpit and chase views, and E gets out. Cars
-  come from the entities content pack. `message` events explain when entering or leaving is
-  blocked, for example "Move closer to the door".
+  drive, A/D steer, Space brakes, V switches between cockpit and chase views, and E gets out. A car
+  at rest with no throttle holds itself, even on a slope. Cars come from the entities content
+  pack. `message` events explain when entering or leaving is blocked, for example "Move closer to
+  the door". From any mode, `setMode('drive', { vehicle: true })` puts the viewer in a car in the
+  nearest mapped road lane (or `vehicle: '<entity type id>'` for a particular car).
+- **fly**: `setMode('fly')` starts an aircraft from the entities pack (the P-51D, or
+  `{ aircraft: 'molen.entities.aircraft.oh6' }` for the helicopter) already flying: engine
+  running, gear up, heading the way the view faced. From orbit it starts a little behind the view,
+  flying toward it, at a height matched to the orbit camera; `airborne: { altitude, speed }`
+  chooses meters above the ground and m/s, and `airborne: false` parks it on the ground with the
+  engine off. The `pilot` input profile flies it (see [navigation](navigation.md)); V switches
+  cockpit and chase views, R recovers after an impact (`view.recover()`), and E leaves once it
+  has landed, stopped and shut down. See [aircraft](aircraft.md) for the flight model.
+
+Drive and fly need the ground under their start, and drive a road lane, so `setMode` switches at
+once and boards when that has streamed in, keeping the orbit camera on the spot meanwhile. With no
+lane after a few seconds the car takes the nearest open ground, never a roof, deck or catalogued
+landmark. Leaving follows the vehicle's rules (stop, land, shut down); a host control such as a
+mode menu passes `{ force: true }` to step out at once, which also removes a vehicle `setMode`
+added.
+
+`view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
+heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, power,
+engine, gear, flaps and stall/impact flags for an aircraft (SI units, compass radians).
+`view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
 
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode
 automatically.
 
 ## Frames and long trips
 
-Heights stay in meters. Horizontal distances are exact at the frame latitude and drift by about
-1–1.5% per degree away from it (see [terrain](terrain.md)). The view anchors its frame at the
-starting latitude. After a `flyTo` of more than about a degree north or south, or after panning
-that far, it re-anchors: it rebuilds the terrain stack in a new frame at the destination while
-keeping the viewer, input and markers. With `terrainSource`, a longitude-only trip also checks
+Heights stay in meters. Horizontal distances are exact at the frame latitude and drift away from it
+by about 1.75% × tan(latitude) per degree: 1% at 30°, 1.5% at 40°, 2% at Seattle's 47.6°, 3% at 60°
+(see [terrain](terrain.md)). The view anchors its frame at the starting latitude. After a `flyTo`
+of more than about a degree north or south, or after panning that far, it re-anchors: it rebuilds
+the terrain stack in a new frame at the destination while keeping the viewer, input and markers.
+Walking, driving and flying keep their frame, so a long flight north or south slowly stretches
+distances by the same rule; return to orbit to re-anchor. With `terrainSource`, a longitude-only trip also checks
 the destination's terrain region. `stats().frameLatitude` reports the current anchor.
 
 ## Content and packages
@@ -156,6 +186,24 @@ pack attribution visible through `view.credits`, which follows the active terrai
 for `terrainchange` to refresh an attribution panel when the package changes. Direct jumps and
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
+
+## Ambient life
+
+Cars drive the mapped roads, pedestrians walk the footways, trains run the railways and aircraft
+pass overhead. They appear out of sight around the viewer and leave once it moves on. The layer is
+on by default:
+
+```ts
+const view = await mountEarthView({ canvas, terrain, content, camera, ambient: { density: 0.4 } });
+view.setAmbientEnabled(false);
+```
+
+`density` runs from 0 to 1 (default 0.6). `cars`, `pedestrians`, `rail` and `aircraft` switch a
+class off, and `ambient: false` removes the layer. The quality tier caps how many agents run and
+how many cars get full models. With the entities pack in `content`, vehicles use its car, bus,
+light-rail and airliner models near the camera. The car you drive stops against ambient traffic,
+and traffic waits for it. See [Ambient life](ambient-life.md) for the tier table and how the
+simulation works.
 
 ## Geographic structures and regional styles
 
@@ -439,6 +487,6 @@ same soundscape for a host that composes its own view. See [Sound and music](aud
 rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,
-`EarthVehicles`, `createEarthSky`/`createEarthFog`, `createEarthAudio`, `earthPerformanceTier` and
-`earthCredits`.
+`EarthVehicles`, `EarthAmbient` with `observeSemanticTiles`, `createEarthSky`/`createEarthFog`,
+`createEarthAudio`, `earthPerformanceTier` and `earthCredits`.
 The [World Explorer](https://molen.dev/play/world-explorer/) sample is built from them.

@@ -9,6 +9,7 @@ export {
   type TerrainArchiveSetRouter,
   type TerrainArchiveSetTileType,
 } from './archive-set';
+export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
 export type {
   TerrainDescriptor,
   TerrainLayer,
@@ -31,6 +32,15 @@ export {
   worldToWgs84,
 } from './geospatial';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
+export {
+  joinTerrainLines,
+  lineSegmentIndex,
+  pathBounds,
+  sampleTerrainLine,
+  type TerrainLinePath,
+  type TerrainLineSample,
+  terrainLinePath,
+} from './line-path';
 export {
   createProtomapsTerrainMvtDecoder,
   createTerrainMvtSemanticDecoder,
@@ -98,6 +108,7 @@ export {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from './pyramid-types';
+export { type RenderedGroundSource, renderedGroundSampler } from './rendered-ground';
 export { registerTerrainSchemas } from './schema';
 export {
   createOverzoomTerrainSemanticSource,
@@ -128,6 +139,19 @@ export {
   terrainTileKey,
   terrainTileOrigin,
 } from './tile';
+export {
+  BRIDGE_SURFACE_LIFT,
+  groupTransportationFeatures,
+  inferLaneCount,
+  isPaintedTransport,
+  isTransportLink,
+  PATH_SURFACE_LIFT,
+  ROAD_SURFACE_LIFT,
+  type TransportKind,
+  transportKind,
+  transportSurfaceLift,
+  transportWidth,
+} from './transport-features';
 
 import type { TerrainDescriptor } from './descriptor-types';
 import { Heightfield } from './heightfield';

@@ -27,6 +27,14 @@ export const NAVIGATION_ACTIONS: {
   readonly jump: 'nav-jump';
   readonly interact: 'nav-interact';
   readonly view: 'nav-view';
+  readonly throttleUp: 'nav-throttle-up';
+  readonly throttleDown: 'nav-throttle-down';
+  readonly yawLeft: 'nav-yaw-left';
+  readonly yawRight: 'nav-yaw-right';
+  readonly engine: 'nav-engine';
+  readonly gear: 'nav-gear';
+  readonly flaps: 'nav-flaps';
+  readonly recover: 'nav-recover';
 } = {
   forward: 'nav-forward',
   back: 'nav-back',
@@ -42,10 +50,18 @@ export const NAVIGATION_ACTIONS: {
   jump: 'nav-jump',
   interact: 'nav-interact',
   view: 'nav-view',
+  throttleUp: 'nav-throttle-up',
+  throttleDown: 'nav-throttle-down',
+  yawLeft: 'nav-yaw-left',
+  yawRight: 'nav-yaw-right',
+  engine: 'nav-engine',
+  gear: 'nav-gear',
+  flaps: 'nav-flaps',
+  recover: 'nav-recover',
 };
 
 /** The navigation modes with a default input profile. */
-export type NavigationProfileName = 'orbit' | 'fly' | 'walk' | 'drive';
+export type NavigationProfileName = 'orbit' | 'fly' | 'walk' | 'drive' | 'pilot';
 
 const A = NAVIGATION_ACTIONS;
 const MOVE_KEYS: Record<string, string> = {
@@ -75,7 +91,11 @@ const STICKS: NonNullable<InputProfile['axes']> = [
 /**
  * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up; walk and
  * drive use E to interact (board or leave a vehicle), Space to jump or brake, and V to switch
- * the vehicle view. Hosts may replace any profile through `InputMap.defineProfile`.
+ * the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
+ * bank, Q/Z work the rudder or pedals, Shift/Ctrl (or +/−, Page Up/Down) set throttle or
+ * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
+ * brakes, V switches the view and E leaves. Hosts may replace any profile through
+ * `InputMap.defineProfile`.
  */
 export function navigationInputProfiles(): Record<NavigationProfileName, InputProfile> {
   const aerial: InputProfile = {
@@ -97,7 +117,62 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       { button: 10, action: A.sprint },
     ],
   };
-  return { orbit: aerial, fly: aerial, walk: ground, drive: ground };
+  const pilot: InputProfile = {
+    bindings: {
+      KeyW: A.forward,
+      ArrowUp: A.forward,
+      KeyS: A.back,
+      ArrowDown: A.back,
+      KeyA: A.left,
+      ArrowLeft: A.left,
+      KeyD: A.right,
+      ArrowRight: A.right,
+      KeyQ: A.yawLeft,
+      KeyZ: A.yawRight,
+      ShiftLeft: A.throttleUp,
+      ShiftRight: A.throttleUp,
+      Equal: A.throttleUp,
+      NumpadAdd: A.throttleUp,
+      PageUp: A.throttleUp,
+      ControlLeft: A.throttleDown,
+      ControlRight: A.throttleDown,
+      Minus: A.throttleDown,
+      NumpadSubtract: A.throttleDown,
+      PageDown: A.throttleDown,
+      Space: A.jump,
+      KeyE: A.interact,
+      KeyV: A.view,
+      KeyI: A.engine,
+      KeyG: A.gear,
+      KeyF: A.flaps,
+      KeyR: A.recover,
+    },
+    axes: STICKS,
+    buttons: [
+      { button: 7, action: A.throttleUp },
+      { button: 6, action: A.throttleDown },
+      { button: 4, action: A.yawLeft },
+      { button: 5, action: A.yawRight },
+      { button: 0, action: A.jump },
+      { button: 2, action: A.interact },
+      { button: 3, action: A.view },
+      { button: 1, action: A.engine },
+    ],
+  };
+  return { orbit: aerial, fly: aerial, walk: ground, drive: ground, pilot };
+}
+
+/** Flight controls beyond pitch (`-move.forward`) and roll (`move.right`), in the pilot profile. */
+export interface PilotInput {
+  /** Held throttle or collective change, -1..1 (more power positive). */
+  throttle: number;
+  /** Held rudder or pedals, -1..1 (right positive). */
+  yaw: number;
+  /** Presses since the previous frame (edge-triggered). */
+  engine: number;
+  gear: number;
+  flaps: number;
+  recover: number;
 }
 
 /** Everything a navigation controller reads in one frame. */
@@ -121,6 +196,8 @@ export interface NavigationInput {
   view: number;
   /** Clicks/taps in element-relative CSS pixels. */
   taps: Array<{ x: number; y: number }>;
+  /** Flight controls, present while the `pilot` profile is active. */
+  pilot?: PilotInput;
 }
 
 /** An input with no intent; controllers treat it as "hold still". */
@@ -170,6 +247,8 @@ export class NavigationInputSource {
   readonly pointer: NavigationPointer;
   private interactPresses = 0;
   private viewPresses = 0;
+  private profile: NavigationProfileName;
+  private readonly pilotPresses = { engine: 0, gear: 0, flaps: 0, recover: 0 };
   private readonly lookSpeed: number;
   private readonly unsubscribe: Array<() => void>;
 
@@ -184,7 +263,13 @@ export class NavigationInputSource {
     });
     this.pointer = new NavigationPointer(options.element, options);
     this.lookSpeed = options.gamepadLookSpeed ?? 900;
+    this.profile = options.profile ?? 'orbit';
     this.unsubscribe = [
+      ...(['engine', 'gear', 'flaps', 'recover'] as const).map((name) =>
+        this.map.onPress(A[name], () => {
+          this.pilotPresses[name]++;
+        }),
+      ),
       this.map.onPress(A.interact, () => {
         this.interactPresses++;
       }),
@@ -196,6 +281,7 @@ export class NavigationInputSource {
   }
 
   setProfile(profile: NavigationProfileName): void {
+    this.profile = profile;
     this.map.setProfile(profile);
     this.pointer.setPointerLock(profile === 'walk');
   }
@@ -225,9 +311,22 @@ export class NavigationInputSource {
       interact: this.interactPresses,
       view: this.viewPresses,
       taps: gestures.taps,
+      ...(this.profile === 'pilot'
+        ? {
+            pilot: {
+              throttle: v(A.throttleUp) - v(A.throttleDown),
+              yaw: v(A.yawRight) - v(A.yawLeft),
+              ...this.pilotPresses,
+            },
+          }
+        : {}),
     };
     this.interactPresses = 0;
     this.viewPresses = 0;
+    this.pilotPresses.engine = 0;
+    this.pilotPresses.gear = 0;
+    this.pilotPresses.flaps = 0;
+    this.pilotPresses.recover = 0;
     return input;
   }
 

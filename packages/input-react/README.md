@@ -63,7 +63,7 @@ completely custom editor, use the `InputMap` profile methods directly; no React 
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. The markup is
+0.x, versioned independently of the other `@bendyline/molen-*` packages. The markup is
 semantic HTML with no CSS framework.
 
 ## Docs

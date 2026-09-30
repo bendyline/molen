@@ -36,31 +36,41 @@ jobs:
       - run: pnpm verify
       - run: pnpm docs:site:check
       # Verify that Pages is enabled before publishing packages, then build the entire site.
-      # The plugin rebuilds it after stamping a new version; on a docs-only run this build
-      # is the artifact that gets deployed.
+      # Publishing rebuilds it after stamping new versions; on a run that publishes nothing,
+      # this build is the artifact that gets deployed.
       - uses: actions/configure-pages@v5
       - run: pnpm docs:site:build
-      # One semantic-release run decides one version for all 14 packages. Its Molen plugin
-      # stamps, rebuilds, verifies, packs and publishes before the tag is pushed. npm's CLI
-      # exchanges this job's OIDC identity for a short-lived publish credential.
-      - name: Semantic Release
+      # Each package has its own version line. multi-semantic-release stamps, changelogs and
+      # tags every package with releasable commits, and every package whose Molen dependencies
+      # release (see .releaserc.cjs and scripts/semantic-release-molen.mjs). Nothing publishes
+      # in this step.
+      - name: Version packages
+        id: version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm exec semantic-release
-      # Record the stamped versions once, after all packages publish. This avoids one push per
-      # package and keeps a failed or partial publish retryable at the same version. The commit
-      # is authored as GitHub's own Actions bot, the identity GITHUB_TOKEN pushes as.
+        run: pnpm exec multi-semantic-release --ignore-private-packages
+      # Rebuild and verify with the stamped versions, then publish every version npm does not
+      # have yet, dependencies first. npm's CLI exchanges this job's OIDC identity for a
+      # short-lived publish credential.
+      - name: Publish packages
+        run: node scripts/publish-release.mjs
+      # Record the stamped versions in one commit, after publishing and even when publishing
+      # failed: the tags are already pushed, and rerunning the workflow publishes what is still
+      # missing at these versions. The commit is authored as GitHub's own Actions bot, the
+      # identity GITHUB_TOKEN pushes as.
       - name: Commit release metadata
+        if: ${{ !cancelled() && steps.version.outcome != 'skipped' }}
         run: |
+          shopt -s nullglob
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- packages/*/package.json packages/kernel/src/version.ts docs-src/llms.txt docs-src/guide/determinism.md
-          if [ -f CHANGELOG.md ]; then git add -- CHANGELOG.md; fi
+          git add -- packages/*/package.json packages/*/CHANGELOG.md packages/kernel/src/version.ts docs-src/llms.txt docs-src/guide/determinism.md
           if git diff --cached --quiet; then
             echo "No release metadata changed."
             exit 0
           fi
-          git commit -m 'chore(release): update package versions [skip ci]'
+          released=$(git tag --points-at HEAD | sed 's/^/- /')
+          git commit -m 'chore(release): update package versions [skip ci]' ${released:+-m "$released"}
           git push origin HEAD:main
       - name: Upload documentation site
         uses: actions/upload-pages-artifact@v5

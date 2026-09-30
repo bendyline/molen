@@ -59,7 +59,7 @@ meter-scaled, rooted at ground level.
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. The pack's version
+0.x, versioned independently of the other `@bendyline/molen-*` packages. The pack's version
 moves separately; entity ids are stable.
 
 The aircraft depict real types by their public designations (P-51D Mustang, OH-6) as original

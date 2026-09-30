@@ -1,38 +1,38 @@
-// One-time first publish of 0.0.1 from the owner's machine, which the Release workflow continues
-// from. Run it after `npm login`, on a clean checkout of main that matches origin/main.
+// Get every Molen package ready for the Release workflow, from the owner's machine. Run it after
+// `npm login`, on a clean checkout of main that matches origin/main.
 //
-// It verifies, packs and publishes every package, then tags the published commit v0.0.1 and pushes
-// that tag. semantic-release reads the previous version from the tag, so later releases continue
-// the 0.x line; after this, the Release workflow creates every tag itself.
+// The workflow needs each package on npm (trusted publishing cannot create a package) and tagged
+// `<name>@<version>` (semantic-release counts the next version from that tag; without one a
+// package would start over at 1.0.0). For each package whose tag is not on origin yet, this:
 //
-// Safe to rerun after a partial publish: a package already on npm with the same tarball contents
-// is skipped, and a v0.0.1 tag already on this commit is left as it is.
+//   - tags a version npm already has at the commit that released it: the `v<version>` tag from
+//     when every package shared one version line;
+//   - verifies, packs and publishes a version npm does not have (a new package), and tags this
+//     commit.
+//
+// It then pushes the tags. Safe to rerun: a tag already on origin is left alone, and a version npm
+// already has with the same tarball contents is not published again.
 import { execFileSync } from 'node:child_process';
 import { execCommand } from './exec-command.mjs';
 import {
   packRelease,
   publicationOrder,
+  publishedIntegrity,
   publishRelease,
   releasePackages,
+  releaseTag,
 } from './semantic-release-molen.mjs';
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
 
-const packages = publicationOrder(releasePackages());
-const version = packages[0].data.version;
-if (version !== '0.0.1') {
-  throw new Error(`Bootstrap publishing is only for the initial 0.0.1 release, found ${version}.`);
-}
-const tag = `v${version}`;
-
-// The tag must name exactly the source that is published, and that source must be on origin.
+// A tag must name exactly the source that is published, and that source must be on origin.
 if (git('status', '--porcelain') !== '') {
   throw new Error('Commit or stash local changes first: the published source must be a commit.');
 }
 if (git('rev-parse', '--abbrev-ref', 'HEAD') !== 'main') {
-  throw new Error('Check out main first: the first release is published from main.');
+  throw new Error('Check out main first: packages are published from main.');
 }
-git('fetch', '--quiet', 'origin', 'main');
+git('fetch', '--quiet', '--tags', 'origin', 'main');
 const head = git('rev-parse', 'HEAD');
 if (head !== git('rev-parse', 'origin/main')) {
   throw new Error(
@@ -40,34 +40,59 @@ if (head !== git('rev-parse', 'origin/main')) {
   );
 }
 
-/** The commit a tag names on origin (peeled, for an annotated tag), or undefined. */
-function remoteTag(name) {
-  const lines = git('ls-remote', '--tags', 'origin', `refs/tags/${name}`, `refs/tags/${name}^{}`)
+const onOrigin = new Set(
+  git('ls-remote', '--tags', '--refs', 'origin')
     .split('\n')
     .filter(Boolean)
-    .map((line) => line.split('\t'));
-  const peeled = lines.find(([, ref]) => ref.endsWith('^{}')) ?? lines[0];
-  return peeled?.[0];
-}
-const tagged = remoteTag(tag);
-if (tagged !== undefined && tagged !== head) {
-  throw new Error(`${tag} already exists on origin at ${tagged}, not at this commit (${head}).`);
-}
-const local = git('tag', '--list', tag) === '' ? undefined : git('rev-parse', `${tag}^{commit}`);
-if (local !== undefined && local !== head) {
-  throw new Error(`A local ${tag} tag points at ${local}, not at this commit (${head}).`);
-}
-
-execCommand('pnpm', ['verify'], { stdio: 'inherit' });
-publishRelease(packRelease(packages, version), version);
-
-if (tagged === undefined) {
-  if (local === undefined) git('tag', tag, head);
-  git('push', 'origin', `refs/tags/${tag}`);
-  process.stdout.write(`Tagged ${head} as ${tag} and pushed the tag.\n`);
-} else {
-  process.stdout.write(`${tag} is already on origin at this commit.\n`);
-}
-process.stdout.write(
-  'Next: add the GitHub Actions trusted publisher to each package on npmjs.com (see CONTRIBUTING.md).\n',
+    .map((line) => line.split('\t')[1].slice('refs/tags/'.length)),
 );
+
+const tags = [];
+const fresh = [];
+for (const item of publicationOrder(releasePackages())) {
+  const { name, version } = item.data;
+  const tag = releaseTag(name, version);
+  if (onOrigin.has(tag)) continue;
+  if (publishedIntegrity(name, version) === null) {
+    fresh.push(item);
+    tags.push({ tag, commit: head });
+    continue;
+  }
+  const legacy = `v${version}`;
+  if (git('tag', '--list', legacy) === '') {
+    throw new Error(
+      `${name}@${version} is on npm, but neither ${tag} nor ${legacy} is tagged. ` +
+        `Tag the commit that published it as ${tag}, then rerun.`,
+    );
+  }
+  tags.push({ tag, commit: git('rev-parse', `${legacy}^{commit}`) });
+}
+
+for (const { tag, commit } of tags) {
+  const local = git('tag', '--list', tag) === '' ? undefined : git('rev-parse', `${tag}^{commit}`);
+  if (local !== undefined && local !== commit) {
+    throw new Error(`A local ${tag} tag points at ${local}, not at ${commit}.`);
+  }
+}
+
+if (tags.length === 0) {
+  process.stdout.write('Every Molen package is tagged at its version on origin.\n');
+} else {
+  if (fresh.length > 0) {
+    execCommand('pnpm', ['verify'], { stdio: 'inherit' });
+    publishRelease(packRelease(fresh));
+  }
+  for (const { tag, commit } of tags) {
+    if (git('tag', '--list', tag) === '') git('tag', tag, commit);
+  }
+  git('push', 'origin', ...tags.map(({ tag }) => `refs/tags/${tag}`));
+  for (const { tag, commit } of tags) {
+    process.stdout.write(`Tagged ${commit.slice(0, 12)} as ${tag} and pushed the tag.\n`);
+  }
+  if (fresh.length > 0) {
+    const names = fresh.map(({ data }) => data.name).join(', ');
+    process.stdout.write(
+      `Next: add the GitHub Actions trusted publisher to ${names} on npmjs.com (see CONTRIBUTING.md).\n`,
+    );
+  }
+}

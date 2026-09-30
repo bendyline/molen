@@ -81,6 +81,11 @@ top-down-ortho / follow), wires the `input` block (bindings + `emit` rules: `pre
 to `client.command`, and keeps the renderer sized to the canvas (ortho framing refits on resize).
 It returns `{ client, input, dispose }`.
 
+Capability packages that draw their own entities add renderable kinds on the page and their
+kernel half in the worker's `capabilities`. People are `kinds: [figureKind()]` from
+[figures](figures.md), and background traffic is `ambientVehicleKind()` from
+[ambient life](ambient-life.md).
+
 The call is asynchronous because it picks a graphics backend: `backend` defaults to `'auto'`,
 which probes WebGPU and falls back to the existing Three.js WebGL renderer, so this page gets
 WebGPU wherever the browser has it. Pass `backend: 'webgl'` to skip the probe — pinning a

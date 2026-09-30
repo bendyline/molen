@@ -198,7 +198,7 @@ describe('formatted output (golden text)', () => {
           '',
           '2. /lateCommand',
           '   unknown key: "lateCommand"',
-          '   expected: known keys: format, name, seed, tickRate, lateCommands, keyframeInterval, prefabs, entities, scripts, commands, components, camera, input, terrain, physics',
+          '   expected: known keys: format, name, seed, tickRate, lateCommands, keyframeInterval, prefabs, entities, scripts, commands, components, camera, input, terrain, physics, ambient',
           '   hint:     did you mean "lateCommands"?',
           '   docs:     schemas/scene.md',
         ].join('\n'),

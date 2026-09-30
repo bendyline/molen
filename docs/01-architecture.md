@@ -158,5 +158,5 @@ Built in from day one per the brief, with the transport layer absent:
 | 8. Tick rate | 30 Hz default, per-world configurable, immutable per world | [04 §2](04-kernel-design.md) |
 | 9. Rapier WASM lifecycle | `rapier3d-compat` (inlined WASM), async plugin init before first tick | [04 §7](04-kernel-design.md) |
 | 10. Headless screenshots | snapshot-render via pinned Playwright Chromium + SwiftShader | [05 §6](05-client-design.md) |
-| 11. Repo structure | pnpm workspaces (no task runner), ESM-only, fixed version group, examples as private packages | [07 §1](07-tooling-and-testing.md) |
+| 11. Repo structure | pnpm workspaces (no task runner), ESM-only, per-package versions, examples as private packages | [07 §1](07-tooling-and-testing.md) |
 | 12. Testing strategy | unit + replay-hash + golden-image + schema round-trip; agents run CI's exact commands | [07 §5](07-tooling-and-testing.md) |

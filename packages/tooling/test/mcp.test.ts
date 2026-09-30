@@ -52,6 +52,7 @@ describe('MCP server v0', () => {
         'list_schemas',
         'list_templates',
         'list_types',
+        'network_bake',
         'new_experience',
         'pack_asset',
         'plan_audio',

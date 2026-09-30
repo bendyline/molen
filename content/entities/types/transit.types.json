@@ -1,0 +1,68 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "doc": "Buses and rail cars for ambient traffic; models animate from their ambientRole bindings.",
+  "types": {
+    "molen.entities.transit.bus": {
+      "doc": "12 m low-floor city bus that drives with ambient traffic.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.transit.bus"
+        },
+        "ambientRole": {
+          "role": "bus",
+          "length": 12,
+          "width": 2.55,
+          "height": 3.2,
+          "cruise": 11,
+          "max": 20,
+          "weight": 0.12,
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "wheelRadius": 0.5,
+            "wheelbase": 5.9
+          },
+          "colors": ["#1f6fa8", "#d2372c", "#2e7d4f", "#f2b705"]
+        }
+      }
+    },
+    "molen.entities.transit.lightrail": {
+      "doc": "27 m two-section light-rail vehicle; ambient trains run consists of it on rail and tram lines.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.transit.lightrail"
+        },
+        "ambientRole": {
+          "role": "rail",
+          "length": 27,
+          "width": 2.65,
+          "height": 3.6,
+          "cruise": 16,
+          "cars": 2,
+          "visual": {
+            "paintMaterial": "rail-livery-body"
+          },
+          "colors": ["#f3f3ef"]
+        }
+      }
+    }
+  }
+}

@@ -63,13 +63,15 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   time. `test:golden` additionally pins `--workspace-concurrency=1`: these suites drive real
   browsers on a software rasterizer, and run in parallel they starve each other until a page misses
   a timing-sensitive wait that passes when the suite runs alone. Serial is slower and honest.
-- **A golden image must be committed.** `compareGolden` fails when the reference is missing rather
-  than adopting the candidate — otherwise "this test has no reference" and "this test passed" look
-  identical, and a fresh CI checkout takes that branch for every uncommitted golden. Record with
-  `UPDATE_GOLDENS=1`; locally that produces a candidate only, and the authoritative refresh is the
-  `update-goldens` workflow, which records on the same Ubuntu 24.04 runner as CI. Keep DOM overlays out of a
-  captured frame (world-explorer's `hud=0`): text metrics differ between platforms, and a golden
-  that includes them is a font test wearing a render test's clothes.
+- **Render tests need no reference image.** A software rasterizer is deterministic per build, not
+  across machines, so a committed PNG only holds on the machine that recorded it, and every
+  renderer change means re-recording it there. The `test:golden` suites instead check what a frame
+  must show on any machine: the same input renders the same frame twice (`diffImages` at 0), a
+  change of input renders a different one, and `frameStats` measures coverage, variety and mean
+  color, for the frame or a region (the player is in the middle, the sky is above the island).
+  Set thresholds well inside the observed values, and say in a comment what those values were.
+  Keep DOM overlays out of a captured frame (world-explorer's `hud=0`): text metrics differ between
+  platforms, and a frame that includes them is a font test wearing a render test's clothes.
 - **GLBs are generated, never committed.** Every model comes from a generator listed in
   `asset-build.json` (or one of its few declared `masters`), and `asset-lock.json` pins the bytes.
   A model change is a source change plus `pnpm assets:build --update-lock` (or the Update asset
@@ -121,6 +123,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   kernel twin; `/audio` is three-free at runtime so tooling runs its director in Node.
 - `@bendyline/molen-terrain` is a capability package split into `/kernel` and `/client` — it has
   **no `.` export**. New capability packages follow this kernel/client-halves pattern.
+- `@bendyline/molen-ambient` (ambient life: transport networks and NPC traffic, walkers, trains
+  and aircraft) follows it too. Its kernel half depends on kernel **subpaths only** (`/world`,
+  `/determinism`, `/terrain`, never the SES-loading root), schema and terrain `/kernel`, because the
+  Earth view steps it on the main thread; a boundary test enforces that. Its client half uses the
+  figures client for walkers. The Earth package depends on it, never the reverse.
 - `@bendyline/molen-earth` is a composition, not a capability: `/client` (the `mountEarthView`
   facade and the pieces it is built from) plus one-line `/workers/*` entries. It depends on the
   capability packages and never the reverse, so keep Earth-host policy (modes, quality tiers,
@@ -170,6 +177,8 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Releases
 
-- One fixed version line across all `@bendyline/molen-*` packages. Semantic-release reads
-  Conventional Commits on `main`: `fix:` for a patch, `feat:` for a minor, and a breaking change
-  for a minor while the project is on 0.x. Release metadata is committed once after publication.
+- Each `@bendyline/molen-*` package has its own version line. multi-semantic-release reads the
+  Conventional Commits on `main` that touch a package: `fix:` for a patch, `feat:` for a minor,
+  and a breaking change for a minor while the project is on 0.x. A package whose Molen
+  dependencies release gets a patch release too. Release metadata is committed once after
+  publication; see CONTRIBUTING.md.

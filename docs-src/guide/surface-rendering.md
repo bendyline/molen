@@ -144,7 +144,8 @@ and explicit `width`. Properties absent from the source use class-based defaults
 omitted; bridges and differing layers do not form surface junctions. Bridge ribbons retain the
 existing approximate terrain-relative elevation; this renderer does not build engineered bridge
 decks. Crossing paint, inferred sidewalks, signal placement and parking occupancy are decorative,
-not traffic-control or navigation data.
+not traffic-control or navigation data. [Ambient life](ambient-life.md) builds its own lane graph
+from the same features for NPC traffic.
 
 Ground surfaces render at all available semantic levels. Fine markings and fixtures default to
 the finest pyramid level; `detailLevelsBelowMax` extends them to coarser levels. Fixture/car and
@@ -199,5 +200,5 @@ For a utility corridor, use narrow elevated bands and widely spaced pole repeate
 width across the route, height, and length along it. Band `dash: [length, gap]` and `phase` use
 world units along the path; callers can carry phase across tile fragments when their source
 provides route chainage. `terrainLinePath` and `sampleTerrainLine` are exported for custom
-attachment/model placement. Railway switches, wire sag, traffic simulation, and route-level
-cross-tile topology are separate consumers of this foundation.
+attachment/model placement. Railway switches, wire sag and route-level cross-tile topology are
+separate consumers of this foundation, and traffic simulation is [ambient life](ambient-life.md).

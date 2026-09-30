@@ -1,3 +1,4 @@
+import { ambientCapability } from '@bendyline/molen-ambient/kernel';
 import {
   applyKeyframeTo,
   buildWorld,
@@ -10,7 +11,7 @@ import type { JsonObject } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import { scene } from '../src/scene';
 
-const build = (): World => buildWorld(scene());
+const build = (): World => buildWorld(scene(), undefined, { capabilities: [ambientCapability()] });
 function command(w: World, type: string, payload: JsonObject = {}): void {
   const result = w.submitCommand({
     kind: 'command',
@@ -37,7 +38,7 @@ describe('city-courier: authored scene + scripts', () => {
     command(w, 'drive', { dir: [0, -1] });
     w.stepN(90);
     expect(stateHash(w)).toBe(
-      'sha256:d82352ff8a1969ea1f702d38a963b09efe7b9c6d00a2f067fed247b239451fdb',
+      'sha256:88442f1752f6ba13ea11913128b5ce351dff6f998a98658c7624cafd258effc1',
     );
   });
 

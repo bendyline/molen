@@ -7,6 +7,10 @@ import { buildContentPack, runSimulation } from '../src/ops/index';
 import { loadProject } from '../src/project';
 
 const ENTITIES = resolve(__dirname, '../../../content/entities');
+// Read, not pinned: a pack version bump is not a reason to edit this test.
+const ENTITIES_VERSION: string = JSON.parse(
+  await readFile(join(ENTITIES, 'molen-pack.source.json'), 'utf8'),
+).version;
 
 let dir: string;
 beforeAll(async () => {
@@ -60,7 +64,7 @@ describe('project content packs', () => {
     const ctx = await loadProject(join(projectDir, 'project.json'));
     expect(ctx.resolvedTypes.has('molen.entities.vehicle.sedan')).toBe(true);
     expect(ctx.typeIssues).toEqual([]);
-    expect(ctx.content.types?.packs).toEqual(['molen.entities@0.0.1']);
+    expect(ctx.content.types?.packs).toEqual([`molen.entities@${ENTITIES_VERSION}`]);
 
     const run = await runSimulation({ scenePath: join(projectDir, 'main.scene.json'), ticks: 5 });
     expect(run.error).toBeUndefined();

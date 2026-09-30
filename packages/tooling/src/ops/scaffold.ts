@@ -258,6 +258,7 @@ export function project() {
 `;
 
 const WORKER_TS = `/// <reference lib="webworker" />
+import { ambientCapability } from '@bendyline/molen-ambient/kernel';
 import { figuresScriptApi, installFigures } from '@bendyline/molen-figures/kernel';
 import { startKernelWorker } from '@bendyline/molen-kernel';
 // import { hardenScripts } from '@bendyline/molen-kernel';
@@ -278,11 +279,13 @@ startKernelWorker({
   ...project(),
   setup,
   // Figures (people and animals) are available to every scene: molen.figures.* in scripts.
-  capabilities: [(w) => ({ figures: figuresScriptApi(installFigures(w)) })],
+  // Ambient traffic runs when the scene has an \`ambient\` block (molen.ambient.* in scripts).
+  capabilities: [(w) => ({ figures: figuresScriptApi(installFigures(w)) }), ambientCapability()],
 });
 `;
 
-const MAIN_TS = `import { mountExperience } from '@bendyline/molen-client';
+const MAIN_TS = `import { ambientVehicleKind } from '@bendyline/molen-ambient/client';
+import { mountExperience } from '@bendyline/molen-client';
 import { figureKind } from '@bendyline/molen-figures/client';
 import { project } from './project';
 
@@ -296,7 +299,7 @@ const { client } = await mountExperience({
   scene: project().scene,
   canvas,
   clearColor: '#11131a',
-  kinds: [figureKind()],
+  kinds: [figureKind(), ambientVehicleKind()],
 });
 
 // A HUD from mirrored state: no wire-protocol parsing.
@@ -348,10 +351,21 @@ const TSCONFIG = `{
 }
 `;
 
-function packageJson(name: string): string {
-  // The engine packages move on one version line, and on 0.x a minor bump may break: pin the
-  // scaffold to the line it was generated from, as the caret does for 0.x versions.
-  const engine = `^${ENGINE_VERSION}`;
+/**
+ * The range a new project declares for a Molen package: the version released with this CLI. Each
+ * package has its own version line, and on 0.x a minor bump may break, so the caret pins the
+ * project to the release it was generated from.
+ */
+function molenRange(versions: Record<string, string>, name: string): string {
+  const version = versions[name];
+  if (version === undefined) {
+    throw new Error(`the template bundle records no version for ${name}; rebuild the tooling`);
+  }
+  return `^${version}`;
+}
+
+function packageJson(name: string, versions: Record<string, string>): string {
+  const molen = (pkg: string) => molenRange(versions, `@bendyline/molen-${pkg}`);
   const pkg = {
     name,
     private: true,
@@ -363,17 +377,18 @@ function packageJson(name: string): string {
       typecheck: 'tsc -p tsconfig.json && tsc -p scenes/scripts/tsconfig.json',
     },
     dependencies: {
-      '@bendyline/molen-client': engine,
-      '@bendyline/molen-figures': engine,
-      '@bendyline/molen-kernel': engine,
-      '@bendyline/molen-schema': engine,
+      '@bendyline/molen-ambient': molen('ambient'),
+      '@bendyline/molen-client': molen('client'),
+      '@bendyline/molen-figures': molen('figures'),
+      '@bendyline/molen-kernel': molen('kernel'),
+      '@bendyline/molen-schema': molen('schema'),
       // three.js is a peer of the client; the app owns the one copy both share.
       three: '^0.184.0',
     },
     // The CLI is a dev dependency so `npx molen` runs this line's CLI (the unscoped `molen` on
     // npm is an unrelated package), and TypeScript is the one `molen scripts check` uses.
     devDependencies: {
-      '@bendyline/molen-tooling': engine,
+      '@bendyline/molen-tooling': molen('tooling'),
       '@types/three': '^0.184.0',
       typescript: '^6.0.3',
       vite: '^6.0.7',
@@ -605,23 +620,27 @@ function templateLoop(template: TemplateManifest, scriptsCheck: boolean): string
   ];
 }
 
-/** The template's manifest as the new project's: its name, engine deps on this CLI's version line. */
-function templatePackageJson(source: string, name: string): string {
+/** The template's manifest as the new project's: its name, Molen deps released with this CLI. */
+function templatePackageJson(
+  source: string,
+  name: string,
+  versions: Record<string, string>,
+): string {
   const { name: _name, ...manifest } = JSON.parse(source) as Record<string, unknown>;
-  const onEngineLine = (deps: unknown): Record<string, string> | undefined =>
+  const released = (deps: unknown): Record<string, string> | undefined =>
     deps === undefined
       ? undefined
       : Object.fromEntries(
           Object.entries(deps as Record<string, string>).map(([dep, spec]) => [
             dep,
-            spec.startsWith('workspace:') ? `^${ENGINE_VERSION}` : spec,
+            spec.startsWith('workspace:') ? molenRange(versions, dep) : spec,
           ]),
         );
   const pkg = {
     name,
     ...manifest,
-    dependencies: onEngineLine(manifest.dependencies),
-    devDependencies: onEngineLine(manifest.devDependencies),
+    dependencies: released(manifest.dependencies),
+    devDependencies: released(manifest.devDependencies),
   };
   return `${JSON.stringify(pkg, null, 2)}\n`;
 }
@@ -646,7 +665,9 @@ async function scaffoldTemplate(
     const source = await readFile(join(bundle.root, template.id, rel));
     files.push([
       rel,
-      rel === 'package.json' ? templatePackageJson(source.toString('utf8'), input.name) : source,
+      rel === 'package.json'
+        ? templatePackageJson(source.toString('utf8'), input.name, bundle.versions)
+        : source,
     ]);
   }
   if (!force) {
@@ -702,6 +723,7 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
     if (input.template !== undefined) {
       return await scaffoldTemplate({ ...input, template: input.template }, dir);
     }
+    const { versions } = await loadTemplateBundle();
     const files: ScaffoldFile[] = [
       ['project.json', projectJson(input.name)],
       ['scenes/main.scene.json', sceneJson(input.name)],
@@ -719,7 +741,7 @@ export async function scaffoldExperience(input: ScaffoldInput): Promise<Scaffold
       ['src/vite-env.d.ts', VITE_ENV_DTS],
       ['vite.config.ts', VITE_CONFIG],
       ['tsconfig.json', TSCONFIG],
-      ['package.json', packageJson(input.name)],
+      ['package.json', packageJson(input.name, versions)],
       ['README.md', readme(input.name)],
     ];
     const force = input.force === true;

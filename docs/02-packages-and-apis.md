@@ -26,7 +26,7 @@ Boundary rationale (the calls that could have gone the other way):
   it has zero external deps, and Phase 2 needs it. It is opt-in via `world.use(kinematics())`
   so a flyover world pays nothing. If kernel line count creeps, extracting it later is mechanical.
 - **One tooling package, not `@bendyline/molen-cli` + `@bendyline/molen-mcp`.** They share >90% of code (the ops
-  library); agents face one package to learn; fixed versioning makes a split buy nothing.
+  library); agents face one package to learn.
 - **`@bendyline/molen-materials` exists** because its evaluators must produce byte-identical pixels in
   browser (live preview), Node (tooling bakes), and CI (golden tests) — which forbids a
   three.js dependency.

@@ -55,7 +55,7 @@ diagonal moves never cut a blocked corner. The same grid and goal give the same 
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package.
+0.x, versioned independently of the other `@bendyline/molen-*` packages.
 
 Mind the cost, because it scales with the whole grid rather than the distance walked: every
 `computeFlowField` call allocates three `Float32Array`s over every cell plus heap entries —

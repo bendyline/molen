@@ -31,6 +31,7 @@ export {
   type NavigationKeyTarget,
   type NavigationProfileName,
   navigationInputProfiles,
+  type PilotInput,
 } from './navigation/input-source';
 export {
   type NavigationEnvironment,

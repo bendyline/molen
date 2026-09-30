@@ -7,7 +7,7 @@ restart, and a tested win condition.
 
 | Sample | Play | Loop | Engine services |
 |---|---|---|---|
-| City Courier | [molen.dev/play/city-courier](https://molen.dev/play/city-courier/) | Five deliveries, traffic, damage and a time limit | XZ kinematics, hierarchy, follow camera |
+| City Courier | [molen.dev/play/city-courier](https://molen.dev/play/city-courier/) | Five deliveries, traffic, damage and a time limit | XZ kinematics, hierarchy, follow camera, ambient traffic |
 | The Lantern Vault | [molen.dev/play/lantern-dungeon](https://molen.dev/play/lantern-dungeon/) | Key, melee combat, healing, gate and relic | XZ kinematics/raycast, seeded RNG, hierarchy, tween, local follow camera |
 | Skybound | [molen.dev/play/skybound](https://molen.dev/play/skybound/) | Islands, seeds, stomps, hazards, checkpoint and finish | XY platform controller, hierarchy, world follow camera |
 

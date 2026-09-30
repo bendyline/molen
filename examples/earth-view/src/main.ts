@@ -1,6 +1,7 @@
 // The whole Earth view in one call: mountEarthView over host-selected terrain packages and the
 // content packs, with worker offload, a photo-pin marker, mode buttons and the required credits.
-// `?mode=walk` starts on foot; `?lat=&lon=&range=` choose the first view.
+// `?mode=walk|drive|fly` starts on foot, in a car or in the air; `?lat=&lon=&range=` choose the
+// first view; `?ambient=0` turns off ambient life (traffic, people, trains and aircraft).
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
 import {
@@ -45,6 +46,7 @@ const view = await mountEarthView({
     return { key: region, terrain, baseUrl: manifestUrl };
   },
   content,
+  ambient: params.get('ambient') === '0' ? false : { density: 0.6 },
   camera: {
     latitude: Number(params.get('lat') ?? 47.6163),
     longitude: Number(params.get('lon') ?? -122.0356),
@@ -141,6 +143,18 @@ soundButton.addEventListener('click', () =>
 view.on('audioready', () => applySound(readMuted()));
 if (view.audio !== undefined) applySound(readMuted());
 
+// Ambient life: NPC traffic on the mapped streets, pedestrians, trains and aircraft.
+const ambientButton = document.getElementById('ambient') as HTMLButtonElement;
+ambientButton.setAttribute('aria-pressed', String(view.ambientEnabled));
+ambientButton.addEventListener('click', () => {
+  view.setAmbientEnabled(!view.ambientEnabled);
+  ambientButton.setAttribute('aria-pressed', String(view.ambientEnabled));
+  const counts = view.stats().ambient;
+  if (view.ambientEnabled && counts !== undefined)
+    show(`${counts.cars} cars · ${counts.pedestrians} people · ${counts.trains} rail cars nearby`);
+  canvas.focus();
+});
+
 document.getElementById('seattle')?.addEventListener('click', () => {
   view.flyTo({ latitude: 47.62051, longitude: -122.3493, range: 950, heading: 0.9, pitch: 0.48 });
 });
@@ -162,10 +176,15 @@ const syncButtons = (mode: EarthViewMode): void => {
     button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
 };
 view.on('modechange', ({ mode }) => syncButtons(mode));
+// Buttons are host controls: they always switch (`force`), and Drive adds a car on the nearest
+// road when none is parked within reach.
+const enter = (mode: EarthViewMode): boolean =>
+  view.setMode(mode, mode === 'drive' ? { vehicle: true, force: true } : { force: true });
 for (const button of buttons) {
   button.addEventListener('click', () => {
-    view.setMode(button.dataset.mode as EarthViewMode);
+    enter(button.dataset.mode as EarthViewMode);
     canvas.focus();
   });
 }
-if (params.get('mode') === 'walk') view.setMode('walk');
+const startMode = params.get('mode');
+if (startMode === 'walk' || startMode === 'drive' || startMode === 'fly') enter(startMode);

@@ -65,7 +65,7 @@ The projection, decode and streaming code is not simulation math.
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package. Formats are
+0.x, versioned independently of the other `@bendyline/molen-*` packages. Formats are
 versioned and beta (`molen/terrain@2`, `molen/terrain-package@1`): a breaking change bumps the
 envelope instead of shipping migrations. The projected-Earth runtime is explicitly constrained to
 EPSG:3857 with a square root tile matrix, and its three.js peer follows the client's supported

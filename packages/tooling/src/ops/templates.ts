@@ -40,6 +40,8 @@ export interface TemplateBundle {
   /** The directory holding `<id>/` folders and index.json. */
   root: string;
   templates: TemplateManifest[];
+  /** Every Molen package's version as of this build (each package has its own version line). */
+  versions: Record<string, string>;
 }
 
 async function exists(path: string): Promise<boolean> {
@@ -77,8 +79,9 @@ export async function loadTemplateBundle(): Promise<TemplateBundle> {
   }
   const index = JSON.parse(await readFile(join(root, 'index.json'), 'utf8')) as {
     templates: TemplateManifest[];
+    versions: Record<string, string>;
   };
-  return { root, templates: index.templates };
+  return { root, templates: index.templates, versions: index.versions };
 }
 
 /** The sample templates `molen new --template <id>` can scaffold. */

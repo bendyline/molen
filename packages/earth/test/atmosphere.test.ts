@@ -1,7 +1,13 @@
 import { MathUtils, Vector3 } from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import { describe, expect, it } from 'vitest';
-import { createEarthFog, createEarthSky, updateEarthFog } from '../src/client/atmosphere';
+import {
+  createEarthFog,
+  createEarthSky,
+  earthSunDirection,
+  updateEarthFog,
+} from '../src/client/atmosphere';
+import { earthEnvironment } from '../src/client/earth-view';
 import { earthPerformanceTier } from '../src/client/performance';
 
 describe('earth horizon visibility', () => {
@@ -70,5 +76,30 @@ describe('explorer atmosphere backends', () => {
         sky.material.dispose();
       }
     }
+  });
+});
+
+describe('sun placement', () => {
+  it('reads azimuth as a compass bearing in the east/up/south Earth frame', () => {
+    const east = earthSunDirection(0, 90);
+    expect(east[0]).toBeCloseTo(1, 9);
+    expect(east[2]).toBeCloseTo(0, 9);
+    const south = earthSunDirection(0, 180);
+    expect(south[2]).toBeCloseTo(1, 9);
+    const north = earthSunDirection(0, 0);
+    expect(north[2]).toBeCloseTo(-1, 9);
+    expect(earthSunDirection(90, 45)[1]).toBeCloseTo(1, 9);
+  });
+
+  it("lights the scene from the sky's sun unless the host aims the light itself", () => {
+    const placed = earthEnvironment({ sky: { sunElevation: 20, sunAzimuth: 250 } });
+    expect(placed.sun?.direction).toEqual(earthSunDirection(20, 250));
+    const aimed = earthEnvironment({
+      sky: { sunElevation: 20, sunAzimuth: 250 },
+      environment: { sun: { direction: [1, 2, 3] } },
+    });
+    expect(aimed.sun?.direction).toEqual([1, 2, 3]);
+    // Unplaced skies keep the stock rig.
+    expect(earthEnvironment(undefined).sun?.direction).toEqual([-6, 10, 4]);
   });
 });

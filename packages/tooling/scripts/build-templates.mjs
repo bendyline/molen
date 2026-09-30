@@ -7,8 +7,9 @@
 // Standalone means: no `catalog:` (resolved from pnpm-workspace.yaml here), no pnpm-only or
 // repo-only scripts, no tsconfig extending ../../tsconfig.base.json, and no import reaching out of
 // the sample (the shared game-shell.css is copied in). Engine dependencies stay `workspace:*` in
-// the bundle and become `^ENGINE_VERSION` when a project is scaffolded, so a template always
-// installs the version line of the CLI that wrote it. Content never ships: preview images, golden
+// the bundle; index.json records every Molen package's version as of this build, and a scaffolded
+// project gets `^<version>` for each, so a template installs the packages released with the CLI
+// that wrote it. Content never ships: preview images, golden
 // references and every other content-extension file are left behind, and each written file goes
 // through the same check the release tarballs do.
 
@@ -25,6 +26,7 @@ import {
 import { basename, dirname, extname, join, posix, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CONTENT_EXTENSIONS, checkPackedFile } from '../../../scripts/check-package-contents.mjs';
+import { packageVersions, releasePackages } from '../../../scripts/semantic-release-molen.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const EXAMPLES = join(ROOT, 'examples');
@@ -336,7 +338,9 @@ export function buildTemplates() {
       tests: hasTests,
     });
   }
-  write(join(OUT, 'index.json'), json({ templates: index }));
+  // Each package has its own version line; the release checks these match what it publishes.
+  const versions = Object.fromEntries(packageVersions(releasePackages(ROOT)));
+  write(join(OUT, 'index.json'), json({ templates: index, versions }));
   return index;
 }
 

@@ -1,0 +1,78 @@
+{
+  "name": "@bendyline/molen-ambient",
+  "version": "0.0.3",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "description": "Molen ambient-life capability: transport networks built from roads, rail and paths, with lane-following NPC cars, trains, aircraft and pedestrians spawned around an observer (kernel) and instanced rendering (client)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendyline/molen.git",
+    "directory": "packages/ambient"
+  },
+  "homepage": "https://github.com/bendyline/molen/tree/main/packages/ambient",
+  "bugs": {
+    "url": "https://github.com/bendyline/molen/issues"
+  },
+  "keywords": [
+    "molen",
+    "3d",
+    "traffic",
+    "npc",
+    "ambient-life"
+  ],
+  "exports": {
+    "./kernel": {
+      "types": "./dist/kernel.d.mts",
+      "default": "./dist/kernel.mjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test && node ../../scripts/check-dmath.mjs src/kernel",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-figures": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-terrain": "workspace:*",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "three": ">=0.184.0 <0.187.0"
+  },
+  "peerDependenciesMeta": {
+    "@bendyline/molen-client": {
+      "optional": true
+    },
+    "three": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "fast-check": "^3.23.2",
+    "three": "0.184.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "format": "molen/scene@3",
+  "name": "Molen transit and airliner gallery",
+  "seed": "transit-v1",
+  "tickRate": 30,
+  "lateCommands": "rewrite",
+  "keyframeInterval": 60,
+  "prefabs": {},
+  "entities": [
+    {
+      "id": "bus",
+      "type": "molen.entities.transit.bus",
+      "components": {
+        "transform": {
+          "pos": [
+            -16,
+            0,
+            6
+          ],
+          "rot": [
+            0,
+            0.7071068,
+            0,
+            0.7071068
+          ]
+        }
+      }
+    },
+    {
+      "id": "lightrail",
+      "type": "molen.entities.transit.lightrail",
+      "components": {
+        "transform": {
+          "pos": [
+            4,
+            0,
+            6
+          ],
+          "rot": [
+            0,
+            0.7071068,
+            0,
+            0.7071068
+          ]
+        }
+      }
+    },
+    {
+      "id": "airliner",
+      "type": "molen.entities.aircraft.airliner",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            3.8,
+            -22
+          ],
+          "rot": [
+            0,
+            0.7071068,
+            0,
+            0.7071068
+          ]
+        }
+      }
+    },
+    {
+      "id": "gallery-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.1,
+            -6
+          ],
+          "scale": [
+            70,
+            0.2,
+            50
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#66715d",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "gallery-environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dbe6e8",
+            "ground": "#5d6257",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              7,
+              12,
+              6
+            ],
+            "color": "#fff1d1",
+            "intensity": 2.1,
+            "castShadow": true
+          },
+          "background": "#b7ced4",
+          "toneMapping": "agx",
+          "exposure": 1.1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "scripts": [],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      6,
+      14,
+      52
+    ],
+    "lookAt": [
+      -2,
+      3,
+      -4
+    ],
+    "fov": 50
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

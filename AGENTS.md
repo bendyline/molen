@@ -127,8 +127,8 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
   also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`;
-  `@bendyline/molen-terrain` and `@bendyline/molen-figures` expose only `/kernel` and `/client`
-  (no `.`).
+  `@bendyline/molen-terrain`, `@bendyline/molen-figures` and `@bendyline/molen-ambient` expose
+  only `/kernel` and `/client` (no `.`).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).

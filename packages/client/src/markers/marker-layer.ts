@@ -48,6 +48,12 @@ export interface MarkerLayerOptions {
   occlude?: boolean;
   /** Hide ground-snapped markers until their ground height is known (default true). */
   hideUntilGrounded?: boolean;
+  /**
+   * Hide markers whose on-screen footprints overlap a more important one: higher `priority`
+   * first, then markers already shown (so pins do not flicker as the camera moves), then the
+   * nearest. `padding` adds CSS pixels around each footprint (default 4). Off by default.
+   */
+  declutter?: boolean | { padding?: number };
   renderOrder?: number;
 }
 
@@ -71,6 +77,8 @@ interface MarkerEntry {
   aspect: number;
   groundY: number | undefined;
   distance: number;
+  /** Drawn at the last update; decluttering keeps these ahead of newcomers. */
+  shown: boolean;
 }
 
 const scratch = new THREE.Vector3();
@@ -194,27 +202,74 @@ export class MarkerLayer {
       );
       candidates.push(entry);
     }
+    const declutter = this.options.declutter;
+    const padding =
+      typeof declutter === 'object' ? (declutter.padding ?? 4) : declutter === true ? 4 : 0;
     candidates.sort(
       (a, b) =>
         (b.spec.priority ?? 0) - (a.spec.priority ?? 0) ||
+        (declutter ? Number(b.shown) - Number(a.shown) : 0) ||
         a.distance - b.distance ||
         a.spec.id.localeCompare(b.spec.id),
     );
     const budget = this.options.maxVisible ?? 256;
     const fade = this.options.fade;
-    for (const [index, entry] of candidates.entries()) {
-      if (index >= budget) break;
+    const project = declutter ? this.screenProjector() : undefined;
+    const taken: Array<[number, number, number, number]> = [];
+    let drawn = 0;
+    for (const entry of candidates) {
+      entry.shown = false;
+      if (drawn >= budget) continue;
       const opacity =
         fade === undefined
           ? 1
           : Math.max(0, Math.min(1, (fade.far - entry.distance) / (fade.far - fade.near)));
       if (opacity <= 0) continue;
       const size = entry.spec.size ?? 56;
+      if (project !== undefined) {
+        const screen = project(entry.sprite.position);
+        if (screen !== undefined) {
+          const width = size * entry.aspect;
+          const top =
+            (entry.spec.anchor ?? 'bottom') === 'bottom' ? screen[1] - size : screen[1] - size / 2;
+          const box: [number, number, number, number] = [
+            screen[0] - width / 2 - padding,
+            top - padding,
+            screen[0] + width / 2 + padding,
+            top + size + padding,
+          ];
+          if (
+            taken.some(
+              (other) =>
+                box[0] < other[2] && box[2] > other[0] && box[1] < other[3] && box[3] > other[1],
+            )
+          )
+            continue;
+          taken.push(box);
+        }
+      }
+      drawn++;
       entry.material.opacity = opacity;
       entry.sprite.scale.set(size * entry.aspect * perPixel, size * perPixel, 1);
       entry.sprite.center.set(0.5, (entry.spec.anchor ?? 'bottom') === 'bottom' ? 0 : 0.5);
       entry.sprite.visible = true;
+      entry.shown = true;
     }
+  }
+
+  /** CSS-pixel projection of rebased sprite positions, set up once per update. */
+  private screenProjector(): (position: THREE.Vector3) => [number, number] | undefined {
+    const [width, height] = this.host.getViewportSize();
+    this.host.worldRoot.updateWorldMatrix(true, false);
+    this.host.camera.updateMatrixWorld();
+    const camera = this.host.camera;
+    return (position) => {
+      const world = this.host.worldRoot.localToWorld(scratch.copy(position));
+      viewSpace.copy(world).applyMatrix4(camera.matrixWorldInverse);
+      if (viewSpace.z >= 0) return undefined; // behind the camera: never drawn, never blocks
+      world.project(camera);
+      return [((world.x + 1) / 2) * width, ((1 - world.y) / 2) * height];
+    };
   }
 
   /** The front-most drawn marker under a CSS-pixel point, if any. */
@@ -278,6 +333,9 @@ export class MarkerLayer {
       depthWrite: false,
       depthTest: this.options.occlude ?? true,
       sizeAttenuation: false,
+      // Markers are interface, not scenery: distance haze would wash distant pins to blank
+      // cards. The layer's own `fade` handles distance.
+      fog: false,
     });
     const entry: MarkerEntry = {
       spec: { ...spec },
@@ -288,6 +346,7 @@ export class MarkerLayer {
       aspect: imageAspect(spec.image) ?? 1,
       groundY: undefined,
       distance: 0,
+      shown: false,
     };
     entry.texture = this.acquire(spec.image, entry);
     material.map = entry.texture;

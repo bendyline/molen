@@ -18,15 +18,19 @@ import {
   WalkController,
 } from '@bendyline/molen-client/navigation';
 import {
+  ambientContentFromTypes,
   createEarthFog,
   createEarthSky,
   createEarthWorldgen,
+  EarthAmbient,
   type EarthAudio,
   EarthVehicles,
   type EarthWorldgen,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  observeSemanticTiles,
+  SemanticTileBuffer,
   updateEarthFog,
 } from '@bendyline/molen-earth/client';
 import { type AircraftData, validateByKind } from '@bendyline/molen-schema';
@@ -760,6 +764,18 @@ async function main(): Promise<void> {
   );
   let realSemanticLayers: TerrainPyramidTileLayer[] = [];
   let semanticUnavailableReason: string | undefined;
+  // Ambient life (NPC traffic, walkers, trains, aircraft) reads road tiles as they are built.
+  // ?ambient=0 turns it off; frozen captures (?freeze, every golden) leave it off unless
+  // ?ambient=1, because moving traffic would make their frames time-dependent.
+  const ambientWanted = params.has('ambient')
+    ? params.get('ambient') !== '0'
+    : !params.has('freeze');
+  const ambientTiles = ambientWanted ? new SemanticTileBuffer() : undefined;
+  let ambient: EarthAmbient | undefined;
+  const observeRoads = (
+    renderer: WorldgenSemanticRenderers['humanFeatures'],
+  ): WorldgenSemanticRenderers['humanFeatures'] =>
+    ambientTiles !== undefined ? observeSemanticTiles(renderer, ambientTiles) : renderer;
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
@@ -774,9 +790,19 @@ async function main(): Promise<void> {
         ...(worldgen !== undefined
           ? {
               landcoverLayer: { renderer: worldgen.classification },
-              featuresLayer: { renderer: worldgen.humanFeatures },
+              featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
-          : { featuresLayer: { mesh: { surfaceRenderer } } }),
+          : {
+              featuresLayer: {
+                renderer: observeRoads(
+                  createDefaultTerrainSemanticRenderer({
+                    surfaceRenderer,
+                    renderLandcover: false,
+                    renderWater: false,
+                  }),
+                ),
+              },
+            }),
       });
       realSemanticLayers = opened.layers;
     } catch (error) {
@@ -820,8 +846,8 @@ async function main(): Promise<void> {
     // `#credit` is deliberately absent from this list. ODbL and the OSM Foundation attribution
     // guidelines require the map credit to be visible without a user interaction, and `hud=0` is
     // exactly the embed/capture path where a hidden credit would be a licence breach. It stays out
-    // of the committed goldens because those all run `?synthetic=1`, and the branch below only
-    // shows the credit for real packages.
+    // of the render tests' captures because those all run `?synthetic=1`, and the branch below
+    // only shows the credit for real packages.
     for (const id of ['hud', 'location', 'help']) {
       // Null-safe: losing an overlay to a refactor should not take the whole page down with it.
       const overlay = document.getElementById(id);
@@ -982,6 +1008,10 @@ async function main(): Promise<void> {
       .setPerformanceScale(automaticQuality ? tier.surfaceScale : 1, quality)
       .catch((error: unknown) => console.warn('Surface detail update failed:', error));
     fogViewDistance = budget.viewDistance;
+    ambient?.setBudget(
+      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
+        .ambient,
+    );
     resizeRenderer();
     performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
     performanceStatus.dataset.level = String(performanceLevel);
@@ -1078,7 +1108,8 @@ async function main(): Promise<void> {
     sampleHeight,
     loadModel: loadEntityModel,
     types: content.types,
-    obstacles: (box, except) => aircraftBlocks(vehicles.world, box, except),
+    obstacles: (box, except) =>
+      aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
   });
   const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
   aircraft = new WorldAircraft(
@@ -1090,6 +1121,27 @@ async function main(): Promise<void> {
     content.types,
   );
   const flight = aircraft;
+  if (ambientTiles !== undefined) {
+    ambient = new EarthAmbient({
+      world: vehicles.world,
+      parent: stream.object,
+      settings: {},
+      content: ambientContentFromTypes(content.types, async (id) => {
+        try {
+          return await loadEntityModel(id);
+        } catch {
+          return undefined;
+        }
+      }),
+      prepare: (object) => viewer.renderer.prepareObject(object),
+      ground: (x, z) => stream.sampleHeight(x, z),
+    });
+    ambient.setBudget(
+      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
+        .ambient,
+    );
+    ambientTiles.attach(ambient);
+  }
   let visitingAircraft: AircraftKind | undefined;
   // Sound loads beside everything else; the explorer runs silent until (or unless) it arrives.
   let audio: EarthAudio | undefined;
@@ -1121,6 +1173,7 @@ async function main(): Promise<void> {
   window.addEventListener('pagehide', (event) => {
     if (!event.persisted) {
       audio?.dispose();
+      ambient?.dispose();
       flight.dispose();
       vehicles.dispose();
     }
@@ -1191,6 +1244,7 @@ async function main(): Promise<void> {
         'ShiftRight',
         'KeyR',
         'KeyV',
+        'KeyL',
         'KeyI',
         'KeyG',
         'KeyF',
@@ -1214,6 +1268,9 @@ async function main(): Promise<void> {
             ? AIRCRAFT_HELP
             : 'W/S accelerate / brake / reverse · A/D steer · Space brake · E exit · V change view · drag to look';
         }
+      }
+      if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
+        ambient.setEnabled(!ambient.isEnabled);
       }
       if (event.code === 'KeyV' && !event.repeat && vehicles.mountedId) {
         vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
@@ -1357,6 +1414,13 @@ async function main(): Promise<void> {
       visitingAircraft = undefined;
     }
     vehicles.sync(now, camera.pos);
+    ambient?.sync(
+      now,
+      { position: camera.pos, direction: viewDirection },
+      navigation === 'walk' && vehicles.mountedId === undefined && flight.mountedKind === undefined
+        ? [{ x: camera.pos[0], z: camera.pos[2], radius: 0.5 }]
+        : [],
+    );
     flight.input(dt, keys, !document.hidden && document.hasFocus());
     vehicles.update(dt, {
       throttle: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
@@ -1364,6 +1428,11 @@ async function main(): Promise<void> {
       brake: keys.has('Space') || document.hidden || !document.hasFocus(),
     });
     flight.render();
+    if (ambient !== undefined) {
+      const ambientStarted = performance.now();
+      ambient.render(camera.pos, dt);
+      graphics.record('ambient-render', performance.now() - ambientStarted);
+    }
     const flightCamera = flight.cameraPose(vehicles.view, vehicles.lookYaw, vehicles.lookPitch);
     const vehicleCamera = flightCamera ?? vehicles.cameraPose();
     if (vehicleCamera) {
@@ -1572,6 +1641,11 @@ async function main(): Promise<void> {
               : 'grounded';
       navigationStatus.dataset.view = vehicles.view;
       navigationStatus.dataset.entities = String(vehicles.world.query({ name: 'vehicle' }).count());
+      const ambientStats = ambient?.stats();
+      navigationStatus.dataset.ambientCars = String(ambientStats?.cars ?? 0);
+      navigationStatus.dataset.ambientPedestrians = String(ambientStats?.pedestrians ?? 0);
+      navigationStatus.dataset.ambientTrains = String(ambientStats?.trains ?? 0);
+      navigationStatus.dataset.ambientAircraft = String(ambientStats?.aircraft ?? 0);
       navigationStatus.dataset.state = flight.mountedKind
         ? 'piloting'
         : vehicles.mountedId
@@ -1637,6 +1711,16 @@ async function main(): Promise<void> {
           const s = surfaceStats;
           return `surfaces ${s.style} · ${s.parkingAreas} lots · ${s.parkingBays} bays · ${s.junctions} junctions · ${s.streetlights} lights · ${s.parkedCars} cars`;
         })(),
+        ...(ambient === undefined
+          ? []
+          : [
+              (() => {
+                const a = ambient.stats();
+                return ambient.isEnabled
+                  ? `ambient ${a.cars} cars · ${a.pedestrians} people · ${a.trains} rail cars · ${a.aircraft} aircraft · ${a.detailedCars} detailed · ${a.tiles} road tiles (L hides)`
+                  : 'ambient off (L shows)';
+              })(),
+            ]),
       ].join('\n');
       const control = qualityController.getStats();
       const pressure = pyramidEarth?.stream.pressure();

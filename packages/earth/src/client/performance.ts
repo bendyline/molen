@@ -1,4 +1,5 @@
 import type { TerrainPyramidBudget, TerrainQualityPreset } from '@bendyline/molen-terrain/client';
+import type { EarthAmbientBudget } from './ambient';
 
 // Adaptive performance tiers for Earth views: explicit work and working-set budgets per level,
 // driven by measured frame times (AdaptiveQualityController) rather than device names.
@@ -12,6 +13,8 @@ export interface EarthPerformanceTier {
   surfaceScale: number;
   cacheBytes: number;
   terrain: TerrainPyramidBudget;
+  /** Ambient life caps: agents, full models, animated figures and activity radius. */
+  ambient: EarthAmbientBudget;
 }
 const MIB = 1024 * 1024;
 const SPECS = [
@@ -23,10 +26,23 @@ const SPECS = [
   ['Ultra', 'high', 1.25, 4_000_000, 1.5, 1, 128, 1.75, 110_000, 128, 129, 8, 6, 384, 544],
 ] as const;
 
+// cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
+// activity radius (m), pose evaluations per frame.
+const AMBIENT = [
+  [24, 8, 0, 0, 2, 6, 60, 250, 4],
+  [48, 16, 0, 1, 4, 12, 80, 350, 8],
+  [96, 32, 1, 1, 6, 20, 100, 450, 12],
+  [160, 48, 1, 2, 8, 32, 120, 600, 20],
+  [240, 80, 2, 3, 12, 48, 150, 800, 32],
+  [320, 120, 2, 4, 16, 64, 180, 1000, 48],
+] as const;
+
 /** Explicit work/working-set budgets, driven by measurements instead of device names. */
 export function earthPerformanceTier(level: number): EarthPerformanceTier {
   if (!Number.isFinite(level)) throw new RangeError('Performance level must be finite');
-  const spec = SPECS[Math.max(0, Math.min(5, Math.floor(level)))] as (typeof SPECS)[number];
+  const index = Math.max(0, Math.min(5, Math.floor(level)));
+  const spec = SPECS[index] as (typeof SPECS)[number];
+  const ambient = AMBIENT[index] as (typeof AMBIENT)[number];
   return {
     name: spec[0],
     quality: spec[1],
@@ -44,6 +60,17 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       maxConcurrentLayerLoads: spec[12],
       maxResidentTiles: spec[13],
       maxResidentBytes: spec[14] * MIB,
+    },
+    ambient: {
+      cars: ambient[0],
+      pedestrians: ambient[1],
+      trains: ambient[2],
+      aircraft: ambient[3],
+      detailedCars: ambient[4],
+      skinnedFigures: ambient[5],
+      figureRadius: ambient[6],
+      activityRadius: ambient[7],
+      posesPerFrame: ambient[8],
     },
   };
 }

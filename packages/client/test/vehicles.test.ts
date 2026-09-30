@@ -81,6 +81,46 @@ describe('vehicle visuals', () => {
     visual.dispose();
   });
 
+  it('keeps single materials single so meshes without groups still draw, and paints only when colored', () => {
+    const source = model();
+    const singles = new Map<string, THREE.Material>();
+    source.traverse((object) => {
+      if (object instanceof THREE.Mesh && !Array.isArray(object.material))
+        singles.set(object.uuid, object.material);
+    });
+    expect(singles.size).toBeGreaterThan(0);
+    const visual = createVehicleVisual(source, DATA);
+    visual.object.traverse((object) => {
+      if (!(object instanceof THREE.Mesh) || !singles.has(object.uuid)) return;
+      expect(Array.isArray(object.material)).toBe(false);
+      // A clone, never the shared original.
+      expect(object.material).not.toBe(singles.get(object.uuid));
+    });
+    visual.dispose();
+
+    const paintOf = (root: THREE.Object3D): THREE.MeshStandardMaterial => {
+      let found: THREE.MeshStandardMaterial | undefined;
+      root.traverse((object) => {
+        if (
+          object instanceof THREE.Mesh &&
+          (object.material as THREE.Material).name === 'body-paint'
+        )
+          found = object.material as THREE.MeshStandardMaterial;
+      });
+      return found as THREE.MeshStandardMaterial;
+    };
+    const painted = createVehicleVisual(model(), DATA);
+    expect(`#${paintOf(painted.object).color.getHexString()}`).toBe(
+      new THREE.Color(DATA.color).getHexString().replace(/^/, '#'),
+    );
+    painted.dispose();
+    // Without a color the authored paint (white here) stays.
+    const { color: _color, ...uncolored } = DATA;
+    const plain = createVehicleVisual(model(), uncolored as VehicleData);
+    expect(paintOf(plain.object).color.getHexString()).toBe('ffffff');
+    plain.dispose();
+  });
+
   it('merges a tile into one mesh with stable IDs, tile-local coordinates and per-car hiding', () => {
     const placements: VehiclePlacement[] = [0, 1, 2].map((i) => ({
       id: `car${i}`,

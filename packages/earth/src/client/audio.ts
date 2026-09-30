@@ -16,7 +16,7 @@ import {
 } from '@bendyline/molen-client/audio';
 import { Aircraft } from '@bendyline/molen-kernel/aircraft';
 import { Vehicle } from '@bendyline/molen-kernel/vehicles';
-import { Transform, type World } from '@bendyline/molen-kernel/world';
+import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
 import type {
   AudioEnvironmentData,
   AudioSignalBinding,
@@ -193,6 +193,7 @@ export interface EarthAudio {
 const STREET_CHECK_MS = 250;
 /** Closer than this to a street, footsteps sound on pavement. */
 const PAVEMENT_M = 25;
+const AmbientAgent = componentHandle('ambientAgent');
 
 /**
  * Horizontal meters to the nearest street, measured to the nearest car: parked cars only spawn
@@ -206,6 +207,11 @@ function streetDistance(world: World | undefined, at: readonly number[]): number
     const pos = world.get(id, Transform)?.pos;
     if (!pos) continue;
     best = Math.min(best, Math.hypot(pos[0] - (at[0] ?? 0), pos[2] - (at[2] ?? 0)));
+  }
+  // Moving ambient traffic marks streets too (cars only: walkers, trains and aircraft do not).
+  for (const [, agent, t] of world.query(AmbientAgent, Transform)) {
+    if (agent.kind !== 'car') continue;
+    best = Math.min(best, Math.hypot(t.pos[0] - (at[0] ?? 0), t.pos[2] - (at[2] ?? 0)));
   }
   return best;
 }

@@ -245,6 +245,49 @@ describe('normalized semantic mesh adapter', () => {
     disposeTerrainSemanticObject(object);
   });
 
+  it('draws the sea as one flat level in every tile, above noisy coastal bathymetry', () => {
+    const levels = [0.02, 0.4].map((floor) => {
+      const ctx = context();
+      // Heights normalized over -20..20 m: a floor of -19 m or -4 m, with +1.2 m shoreline noise.
+      const samples = new Float32Array(81).fill(floor);
+      samples[40] = (1.2 + 20) / 40;
+      ctx.heightfield = new Heightfield(samples, 9, 9, {
+        origin: ctx.origin,
+        worldSize: [ctx.tileSize, ctx.tileSize],
+        height: { min: -20, max: 20 },
+      });
+      const tile = semanticTile();
+      tile.water = [
+        {
+          class: 'ocean',
+          polygons: [
+            {
+              outer: [
+                [0, 0],
+                [1, 0],
+                [1, 1],
+                [0, 1],
+              ],
+            },
+          ],
+        },
+      ];
+      const object = createTerrainSemanticObject(tile, ctx, {
+        renderLandcover: false,
+        renderTransportation: false,
+        renderBuildings: false,
+        seaLevel: 0,
+      });
+      const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+      const y = water.geometry.getAttribute('position').getY(0);
+      disposeTerrainSemanticObject(object);
+      return y;
+    });
+    // 1.5 m over sea level plus the 0.65 m water offset, whatever the depth, covering the +1.2 m.
+    expect(levels[0]).toBeCloseTo(2.15, 6);
+    expect(levels[1]).toBeCloseTo(2.15, 6);
+  });
+
   it('connects source and renderer lifecycles through a generic adaptive layer', async () => {
     const ctx = context();
     const source = { load: vi.fn(async () => semanticTile()) };

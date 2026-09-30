@@ -25,6 +25,12 @@ those variables and change temperature, pressure or wind. These conditions also 
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
 
+Ambient life fills the mapped streets around you: NPC cars that stop at signals and junctions,
+pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhead. They spawn out of
+view ahead and disappear behind you as you move. Press L to hide or show them; `?ambient=0` turns
+them off, and frozen captures (`?freeze=1`) leave them off unless `?ambient=1`. See
+[ambient life](https://molen.dev/guide/ambient-life).
+
 The first camera frame does not wait for building textures. They bake in background workers;
 buildings appear in flat colours and gain their textures in place as each material finishes, and a
 loading message indicates the baking. Baked materials are kept in IndexedDB, so later visits read
@@ -150,7 +156,7 @@ When a real package is loaded the app renders a small always-visible credit in t
 and the OSM Foundation attribution guidelines require the credit to be readable without any user
 interaction. It shows the head of each `attribution[]` entry, up to the first `;`, and the HUD's
 "Data attribution" list keeps the full strings. The synthetic fixture has no third-party data to
-credit, so the corner stays empty there — which is also why the committed goldens (all
+credit, so the corner stays empty there — which is also why the render tests' captures (all
 `?synthetic=1`) carry no overlay text.
 
 ## Surface rendering styles

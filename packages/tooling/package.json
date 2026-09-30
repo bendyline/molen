@@ -41,7 +41,7 @@
     "NOTICE.md"
   ],
   "scripts": {
-    "build": "tsdown && node scripts/build-capture.mjs && node scripts/build-docs.mjs && node scripts/build-templates.mjs",
+    "build": "tsdown",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src",
     "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\" --exclude \"dist/**\"",
@@ -56,6 +56,7 @@
     }
   },
   "dependencies": {
+    "@bendyline/molen-ambient": "workspace:*",
     "@bendyline/molen-client": "workspace:*",
     "@bendyline/molen-figures": "workspace:*",
     "@bendyline/molen-kernel": "workspace:*",

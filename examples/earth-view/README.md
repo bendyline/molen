@@ -26,8 +26,11 @@ order instead of regenerating the shared packs concurrently.
 - **Walk:** WASD to move, mouse-look, Space to jump, E next to a parked car to drive.
 - **Drive:** W/S to drive, A/D to steer, V to switch views, E to get out.
 - **Space Needle:** fly to Seattle, switch terrain packages and draw the indexed landmark.
+- **Traffic:** show or hide ambient life: NPC cars on the mapped streets, pedestrians on the
+  sidewalks, trains on rail lines and aircraft overhead.
 
-`?mode=walk` starts on foot, and `?lat=&lon=&range=` choose the first view. For a Seattle
+`?mode=walk`, `?mode=drive` and `?mode=fly` start on foot, in a car or in the air,
+`?lat=&lon=&range=` choose the first view, and `?ambient=0` turns ambient life off. For a Seattle
 start, use `?lat=47.62051&lon=-122.3493&range=950`.
 The [Seattle capture](captures/seattle-space-needle.png) records that view through the shipped
 `mountEarthView` API, including the authored Space Needle model.
@@ -40,4 +43,4 @@ The [Seattle capture](captures/seattle-space-needle.png) records that view throu
 - `src/*.worker.ts`: one line each, `import '@bendyline/molen-earth/workers/<name>';`.
 - `test/golden/earth-view.golden.test.ts`: a real-browser run (software WebGL). It asserts that
   tiles stream at detail level 13 or finer with no failures, that the marker and credits exist,
-  and that walking lands on the ground. It also records screenshots for review.
+  that walking lands on the ground, and that ambient traffic appears on the streets around it. It also records screenshots for review.

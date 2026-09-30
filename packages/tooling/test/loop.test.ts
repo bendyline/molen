@@ -41,7 +41,7 @@ describe('canonical headless loop (scaffold -> validate -> simulate -> assert)',
       dependencies: Record<string, string>;
     };
     expect(packageJson.scripts.dev).toBe('vite --port 5225');
-    // Engine packages are pinned to the scaffold's own version line, never '*'.
+    // Molen packages are pinned to the versions released with this CLI, never '*'.
     expect(packageJson.dependencies['@bendyline/molen-kernel']).toBe(`^${ENGINE_VERSION}`);
 
     // 1. validate: project + scene + checks; the type registry cross-checks pass.

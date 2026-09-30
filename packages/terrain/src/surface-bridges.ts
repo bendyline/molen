@@ -1,5 +1,6 @@
 /** Lightweight inferred bridge decks. Source bridge flags, never water overlap, select spans. */
 import * as THREE from 'three';
+import { bridgeDeckHeightFn } from './bridge-profile';
 import { sampleTerrainLine, type TerrainSurfaceMeshBuilder } from './linear-features';
 import type { TerrainSemanticPoint } from './semantic-types';
 import type { SurfaceRoad } from './surface-network';
@@ -13,47 +14,30 @@ export function bridgeDeckProfile(
   groundEnds: ReadonlySet<string> = new Set(),
 ): (x: number, z: number) => number {
   const { context } = builder;
-  const surveyed = road.feature.deckElevation;
-  if (surveyed !== undefined) return () => surveyed;
-  const ground = (x: number, z: number): number =>
-    context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z);
-  const a = road.path.points[0] as TerrainSemanticPoint,
-    b = road.path.points.at(-1) as TerrainSemanticPoint;
-  const clearance = road.kind === 'path' ? 3 : 6;
   const connects = ([x, z]: TerrainSemanticPoint): boolean =>
     groundEnds.has(`${Math.round(x * 10)}/${Math.round(z * 10)}`);
-  const startClearance = connects(a) ? road.elevation - 4 : clearance;
-  const endClearance = connects(b) ? road.elevation - 4 : clearance;
-  const start = ground(...a) + startClearance,
-    end = ground(...b) + endClearance;
-  const dx = b[0] - a[0],
-    dz = b[1] - a[1],
-    length2 = dx * dx + dz * dz || 1;
-  return (x, z) => {
-    const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2));
-    // Keeps the slab above terrain at crests without sagging into the river/valley.
-    const lift = Math.min(
-      clearance,
-      startClearance + t * road.path.length * 0.12,
-      endClearance + (1 - t) * road.path.length * 0.12,
-    );
-    let height = Math.max(start + (end - start) * t, ground(a[0] + dx * t, a[1] + dz * t) + lift);
-    for (const connection of road.feature.bridgeConnections ?? []) {
-      // A deck endpoint covers its entire width, then fades into the inferred approach.
-      const distance = Math.hypot(
-        x - connection.point[0] * context.tileSize,
-        z - connection.point[1] * context.tileSize,
-      );
-      const flatRadius = Math.min(32, connection.radius * 0.5);
-      const blend = Math.max(
-        0,
-        Math.min(1, (distance - flatRadius) / (connection.radius - flatRadius)),
-      );
-      const weight = 1 - blend * blend * (3 - 2 * blend);
-      height += (connection.elevation - height) * weight;
-    }
-    return height;
-  };
+  const a = road.path.points[0] as TerrainSemanticPoint,
+    b = road.path.points.at(-1) as TerrainSemanticPoint;
+  return bridgeDeckHeightFn(
+    road.path,
+    (x, z) => context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+    {
+      ...(road.feature.deckElevation !== undefined
+        ? { deckElevation: road.feature.deckElevation }
+        : {}),
+      clearance: road.kind === 'path' ? 3 : 6,
+      approachLift: road.elevation - 4,
+      connects: [connects(a), connects(b)],
+      connections: (road.feature.bridgeConnections ?? []).map((connection) => ({
+        point: [
+          connection.point[0] * context.tileSize,
+          connection.point[1] * context.tileSize,
+        ] as TerrainSemanticPoint,
+        elevation: connection.elevation,
+        radius: connection.radius,
+      })),
+    },
+  );
 }
 
 export function appendBridgeStructure(

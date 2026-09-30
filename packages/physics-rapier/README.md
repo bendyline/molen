@@ -64,7 +64,7 @@ convention `molen.physics.*`).
 
 ## Status
 
-0.x, on one fixed version line with every other `@bendyline/molen-*` package.
+0.x, versioned independently of the other `@bendyline/molen-*` packages.
 
 **Determinism is narrower here than elsewhere in Molen.** Rapier is deterministic on the same
 build and platform only, *not* across platforms — unlike the built-in `kinematics` engine, which

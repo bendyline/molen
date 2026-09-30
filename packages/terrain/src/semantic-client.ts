@@ -321,6 +321,14 @@ export interface TerrainSemanticMeshOptions {
   defaultBuildingHeight?: number;
   defaultLevelHeight?: number;
   waterOffset?: number;
+  /**
+   * Height of the sea, for projected-Earth terrain. Water whose floor reaches within 2 m of it is
+   * the sea (or a tidal river or harbor): it draws as one flat surface 1.5 m above sea level in
+   * every tile, over shoreline and shallow-water noise in the elevation, instead of a level
+   * sampled from the bathymetry (which differs tile to tile and lets noisy ground poke through).
+   * Omit for invented worlds without a sea.
+   */
+  seaLevel?: number;
   renderLandcover?: boolean;
   renderLandcoverSurface?: boolean;
   renderWater?: boolean;
@@ -627,6 +635,7 @@ function waterSurfaceHeight(
   polygon: TerrainSemanticPolygon,
   context: TerrainPyramidTileLayerContext,
   offset: number,
+  seaLevel?: number,
 ): number {
   // Shoreline vertices often sample the bank, especially on coarse DEM tiles. Taking
   // their median can lift a whole lake above its bridges. Prefer interior water samples;
@@ -648,8 +657,17 @@ function waterSurfaceHeight(
     }
   if (!samples.length) for (const p of polygon.outer) samples.push(height(...p));
   samples.sort((left, right) => left - right);
-  return (samples[Math.floor((samples.length - 1) * 0.25)] ?? 0) + offset;
+  const low = samples[Math.floor((samples.length - 1) * 0.25)] ?? 0;
+  // At or below sea level it is the sea: one flat surface in every tile, clear of shoreline and
+  // shallow-water noise, rather than a level sampled from bathymetry that differs tile to tile.
+  if (seaLevel !== undefined && low < seaLevel + SEA_BAND) return seaLevel + SEA_MARGIN + offset;
+  return low + offset;
 }
+
+/** Water whose lower quartile is within this of sea level is the sea. */
+const SEA_BAND = 2;
+/** The sea's surface above the datum, clearing coastal elevation noise. */
+const SEA_MARGIN = 1.5;
 
 function createBuildingMesh(
   tile: TerrainSemanticTile,
@@ -701,7 +719,12 @@ function createWaterMesh(
       const geometry = new THREE.ShapeGeometry(shape);
       geometry.rotateX(-Math.PI / 2);
       const positions = geometry.getAttribute('position');
-      const height = waterSurfaceHeight(polygon, context, options.waterOffset ?? 0.65);
+      const height = waterSurfaceHeight(
+        polygon,
+        context,
+        options.waterOffset ?? 0.65,
+        options.seaLevel,
+      );
       for (let index = 0; index < positions.count; index++) {
         positions.setY(index, height);
       }

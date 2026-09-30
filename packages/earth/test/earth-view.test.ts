@@ -4,6 +4,8 @@
 
 import { encodePng16, type TerrainPackageDescriptor } from '@bendyline/molen-terrain/kernel';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { EarthContent } from '../src/client/content';
+import { ENTITY_TYPES } from './entity-types';
 
 const viewerState = vi.hoisted(() => ({ disposed: 0, frames: 0 }));
 
@@ -257,6 +259,66 @@ describe('mountEarthView', () => {
     expect(messages.length).toBe(1);
     expect(view.setMode('orbit')).toBe(true);
     expect(modes).toEqual(['walk', 'orbit']);
+    view.dispose();
+  });
+
+  it('flies an aircraft out of the view, and adds a car on request', async () => {
+    const canvas = fakeCanvas();
+    const failedModels: unknown[] = [];
+    const content = {
+      packs: {
+        readBytes: async () => {
+          throw new Error('no models in unit tests');
+        },
+      },
+      types: ENTITY_TYPES,
+      parkedVehicles: [],
+      assets: { load: async () => new Uint8Array(), loadText: async () => '' },
+      stars: async () => [],
+    } as unknown as EarthContent;
+    const view = await mountEarthView({
+      canvas: canvas as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      content,
+      audio: false,
+      ambient: false,
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, heading: Math.PI / 2 },
+      style: { sky: false },
+      onError: (error) => failedModels.push(error),
+    });
+    await pump(10);
+    const messages: string[] = [];
+    view.on('message', ({ text }) => messages.push(text));
+    expect(view.vehicleStatus()).toBeUndefined();
+    expect(view.setMode('fly')).toBe(true);
+    expect(view.input.map.activeProfile).toBe('pilot');
+    await pump(60);
+    const flight = view.vehicleStatus();
+    expect(flight?.kind).toBe('aircraft');
+    if (flight?.kind !== 'aircraft') throw new Error('not flying');
+    expect(flight.grounded).toBe(false);
+    expect(flight.altitudeAGL).toBeGreaterThan(100);
+    expect(flight.heading).toBeCloseTo(Math.PI / 2, 1);
+    expect(view.getCamera().mode).toBe('fly');
+    // The throttle lever is settable from host controls.
+    view.setThrottle(1);
+    expect((view.vehicleStatus() as { power: number }).power).toBe(1);
+    // Leaving in the air follows the aircraft's rules unless the host forces it.
+    expect(view.setMode('orbit')).toBe(false);
+    expect(messages.at(-1)).toMatch(/Land/);
+    expect(view.setMode('orbit', { force: true })).toBe(true);
+    expect(view.vehicleStatus()).toBeUndefined();
+    // Drive with no road network around: the car starts at the view center once its ground has
+    // streamed in; until then the mode is set but nobody is aboard.
+    expect(view.setMode('drive', { vehicle: true, force: true })).toBe(true);
+    expect(view.mode).toBe('drive');
+    await pump(60);
+    const car = view.vehicleStatus();
+    expect(car?.kind).toBe('car');
+    expect(view.getCamera().mode).toBe('drive');
+    expect(view.getCamera().latitude).toBeCloseTo(47.6, 2);
+    expect(view.setMode('walk', { force: true })).toBe(true);
     view.dispose();
   });
 

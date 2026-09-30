@@ -1108,6 +1108,111 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
       ],
       "additionalProperties": false,
       "description": "Physics engine selection and settings."
+    },
+    "ambient": {
+      "type": "object",
+      "properties": {
+        "network": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.(?:\\/|$)).+$"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "format": {
+                  "type": "string",
+                  "const": "molen/transport-network@1",
+                  "description": "Format envelope; always 'molen/transport-network@1'."
+                }
+              },
+              "required": [
+                "format"
+              ],
+              "additionalProperties": {}
+            }
+          ],
+          "description": "The road, rail and path network NPCs move on: a scene-relative path to a molen/transport-network@1 document, or the document inline."
+        },
+        "observer": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Entity whose position drives the spawn ring (default: the entity carrying ambientObserver, else the ambient.observer command)."
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "car",
+              "pedestrian",
+              "train",
+              "aircraft"
+            ]
+          },
+          "description": "Which NPC classes run (default ['car'])."
+        },
+        "density": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "car",
+              "pedestrian",
+              "train",
+              "aircraft"
+            ]
+          },
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          },
+          "description": "Target agents per kilometre of lane near the observer, per class."
+        },
+        "drivingSide": {
+          "type": "string",
+          "enum": [
+            "right",
+            "left"
+          ],
+          "description": "Which side of the road traffic keeps to (default 'right')."
+        },
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Outer spawn radius in metres for cars (other classes scale from it)."
+        },
+        "despawnRadius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Distance in metres beyond which cars are removed (must exceed radius)."
+        },
+        "templates": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": [
+              "car",
+              "pedestrian",
+              "train",
+              "aircraft"
+            ]
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Prefab name per class whose components every spawned agent receives."
+        },
+        "seedSalt": {
+          "type": "string",
+          "description": "Mixed into the scene seed for ambient draws, to vary traffic without reseeding."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Ambient life: NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (needs @bendyline/molen-ambient)."
     }
   },
   "required": [

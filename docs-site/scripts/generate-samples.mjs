@@ -53,12 +53,12 @@ const SAMPLES = [
     dir: 'data-viz',
     title: 'Data visualization',
     kind: 'starter',
-    tagline: 'One entity per data row, plus a scripted camera track and a golden image.',
+    tagline: 'One entity per data row, plus a scripted camera track and a render test.',
     body:
       'Shows the engine used for something other than a game: a JSON dataset becomes entities, ' +
       'and a `molen/cameratrack@1` document flies the camera along a keyframed path. The golden ' +
       'test renders a frame headlessly and compares it to a committed PNG.',
-    concepts: ['Data-driven entities', 'Camera tracks', 'Golden image tests'],
+    concepts: ['Data-driven entities', 'Camera tracks', 'Render tests'],
     guides: [['Examples gallery', '/guide/examples']],
   },
   {
@@ -154,10 +154,12 @@ const SAMPLES = [
     tagline: 'Arcade driving: traffic, five deliveries, damage, a time limit and restart.',
     body:
       'A complete game with a real win/loss loop. Demonstrates mountable vehicles, a chase ' +
-      'camera, deterministic traffic, and a full restart path — plus a command-only victory ' +
-      'regression that proves the game is winnable without a browser.',
+      'camera, deterministic ambient traffic on an inline street network, and a full restart ' +
+      'path — plus a command-only victory regression that proves the game is winnable without ' +
+      'a browser.',
     concepts: [
       'Vehicles & driving',
+      'Ambient traffic',
       'Follow cameras',
       'Win/loss/restart loop',
       'Victory regression',
@@ -166,6 +168,7 @@ const SAMPLES = [
     guides: [
       ['Game samples', '/guide/game-samples'],
       ['Vehicles', '/guide/vehicles'],
+      ['Ambient life', '/guide/ambient-life'],
       ['Sound and music', '/guide/audio'],
     ],
   },
@@ -418,7 +421,7 @@ change it. None of this needs a clone of the engine repository.
 
 - **Play** every sample in the browser at [molen.dev/play](${PLAY_BASE}/), with nothing to install.
 - **Copy** one into your own npm project. The smaller samples ship inside
-  \`@bendyline/molen-tooling\` as templates, locked to the engine version you install:
+  \`@bendyline/molen-tooling\` as templates, locked to the package versions released with that CLI:
 
 \`\`\`sh
 npx @bendyline/molen-tooling templates                    # list them

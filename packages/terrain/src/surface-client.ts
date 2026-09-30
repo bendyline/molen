@@ -26,6 +26,7 @@ import {
   type TerrainParkedVehicle,
   type TerrainSurfaceOptions,
 } from './surface-styles';
+import { inferLaneCount } from './transport-features';
 
 export interface TerrainSurfaceStats {
   roads: number;
@@ -295,7 +296,7 @@ export function createTerrainSurfaceObject(
           clearJunction,
         );
     }
-    const lanes = road.feature.lanes ?? Math.max(2, Math.round(road.width / 3.3));
+    const lanes = inferLaneCount(road.feature, road.width);
     for (let lane = 1; lane < Math.min(12, lanes); lane++) {
       const offset = -road.width / 2 + (road.width * lane) / lanes;
       if (!road.feature.oneway && Math.abs(offset) < 0.3) continue;

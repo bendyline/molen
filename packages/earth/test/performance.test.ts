@@ -40,6 +40,18 @@ describe('earth device detail policy', () => {
         expect(tier.terrain[field], field).toBeGreaterThanOrEqual(
           previous.terrain[field] as number,
         );
+      for (const field of [
+        'cars',
+        'pedestrians',
+        'trains',
+        'aircraft',
+        'detailedCars',
+        'skinnedFigures',
+        'figureRadius',
+        'activityRadius',
+        'posesPerFrame',
+      ] as const)
+        expect(tier.ambient[field], field).toBeGreaterThanOrEqual(previous.ambient[field]);
       expect(tier.objectPixelError).toBeLessThan(previous.objectPixelError);
       expect(tier.terrain.maxScreenSpaceError).toBeLessThan(
         previous.terrain.maxScreenSpaceError as number,

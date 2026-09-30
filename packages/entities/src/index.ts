@@ -10,6 +10,15 @@ export const MOLEN_AIRCRAFT_ENTITY_IDS = [
   'molen.entities.aircraft.oh6',
 ] as const;
 
+/** Ambient-traffic aircraft: seen from the ground, not flyable (no `aircraft` component). */
+export const MOLEN_AMBIENT_AIRCRAFT_ENTITY_IDS = ['molen.entities.aircraft.airliner'] as const;
+
+/** Buses and rail cars for ambient traffic (`ambientRole`, no `vehicle` component). */
+export const MOLEN_TRANSIT_ENTITY_IDS = [
+  'molen.entities.transit.bus',
+  'molen.entities.transit.lightrail',
+] as const;
+
 export const MOLEN_VEHICLE_ENTITY_IDS = [
   'molen.entities.vehicle.compact',
   'molen.entities.vehicle.sedan',
@@ -20,6 +29,7 @@ export const MOLEN_VEHICLE_ENTITY_IDS = [
 
 export type MolenAircraftEntityId = (typeof MOLEN_AIRCRAFT_ENTITY_IDS)[number];
 export type MolenVehicleEntityId = (typeof MOLEN_VEHICLE_ENTITY_IDS)[number];
+export type MolenTransitEntityId = (typeof MOLEN_TRANSIT_ENTITY_IDS)[number];
 
 /** Stable asset/type ids of the `molen.entities` content pack. */
 export const MOLEN_ENTITY_IDS = [
@@ -31,11 +41,14 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.nature.boulder',
   'molen.entities.aircraft.p51d',
   'molen.entities.aircraft.oh6',
+  'molen.entities.aircraft.airliner',
   'molen.entities.vehicle.compact',
   'molen.entities.vehicle.sedan',
   'molen.entities.vehicle.suv',
   'molen.entities.vehicle.pickup',
   'molen.entities.vehicle.van',
+  'molen.entities.transit.bus',
+  'molen.entities.transit.lightrail',
 ] as const;
 
 export type MolenEntityId = (typeof MOLEN_ENTITY_IDS)[number];
@@ -49,11 +62,14 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.nature.boulder': 'assets/nature/boulder/model.glb',
   'molen.entities.aircraft.p51d': 'assets/molen/entities/aircraft/p51d/model.glb',
   'molen.entities.aircraft.oh6': 'assets/molen/entities/aircraft/oh6/model.glb',
+  'molen.entities.aircraft.airliner': 'assets/molen/entities/aircraft/airliner/model.glb',
   'molen.entities.vehicle.compact': 'assets/molen/entities/vehicle/compact/model.glb',
   'molen.entities.vehicle.sedan': 'assets/molen/entities/vehicle/sedan/model.glb',
   'molen.entities.vehicle.suv': 'assets/molen/entities/vehicle/suv/model.glb',
   'molen.entities.vehicle.pickup': 'assets/molen/entities/vehicle/pickup/model.glb',
   'molen.entities.vehicle.van': 'assets/molen/entities/vehicle/van/model.glb',
+  'molen.entities.transit.bus': 'assets/molen/entities/transit/bus/model.glb',
+  'molen.entities.transit.lightrail': 'assets/molen/entities/transit/lightrail/model.glb',
 };
 
 /** Resolved aircraft data for one of the pack's aircraft, from a type library holding it. */

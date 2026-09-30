@@ -29,7 +29,7 @@ downloads them into a project and pins them in project.json.
 - [Input profiles and joysticks](guide/input.md): keyboard/controller remapping, raw axes, walking/driving/flying profiles, analog commands, and optional React controls.
 - [Camera navigation](guide/navigation.md): orbit, fly, walk (capsule collision against streamed geometry) and follow cameras for `createViewer` hosts; one input model across keys, gamepad, pointer gestures and an on-screen touch stick.
 - [World markers](guide/markers.md): screen-sized photo pins and labels pinned to world positions, ground-snapped, occluded, faded, budgeted and pickable.
-- [Earth view](guide/earth-view.md): `mountEarthView` from `@bendyline/molen-earth` — real-world terrain, buildings, orbit/walk/drive, drivable cars, lat/lon markers, credits and adaptive quality in one call.
+- [Earth view](guide/earth-view.md): `mountEarthView` from `@bendyline/molen-earth` — real-world terrain, buildings, landmarks, orbit/walk/drive/fly (cars on the nearest road, airborne P-51 or OH-6), a `vehicleStatus()` HUD feed, decluttered lat/lon markers, credits and adaptive quality in one call.
 - [WebGPU and WebGL](guide/rendering-backends.md): the `backend` option ('auto' | 'webgl' | 'webgpu') on the asynchronous client factories, legacy WebGL fallback, compatible materials, and world-explorer comparisons.
 - [Earth and authored skies](guide/sky.md): day/night cycles, geographic Sun/Moon positions and lunar phases, catalog stars, simulation clocks, custom-world palettes, and the sky observatory.
 - [Weather and physical atmosphere](guide/weather.md): independent clouds, precipitation and visibility; profiles, temperature/pressure/wind for simulation and aircraft physics; cloud/rain/snow rendering.
@@ -54,6 +54,7 @@ downloads them into a project and pins them in project.json.
 - [Aircraft](guide/aircraft.md): P-51D and OH-6 assets, flight physics, cockpit instruments, practice airfield and controls.
 - [Vehicle interiors and model signals](guide/vehicle-interiors.md): model-owned cabins, declarative simulation-to-GLB bindings, script-owned telemetry, and nearby detail loading.
 - [Figures](guide/figures.md): stylized humans, bipeds and quadrupeds: presets and descriptors, canonical rigs and sockets, deterministic gaits, `figureAttachment` accessories, riders, and `molen figure preview`.
+- [Ambient life](guide/ambient-life.md): NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (the scene `ambient` block, `molen/transport-network@1`, `molen.ambient.*`, the Earth view's `ambient` option, `ambientRole` content).
 - [Complete game samples](guide/game-samples.md): city driving, first-person dungeon, and platformer; shared follow cameras and XY platform physics.
 - [Samples gallery](guide/examples.md): every sample with its molen.dev/play link and `--template` id, plus the capability layers (kinematics,
   character, pathfinding, physics-rapier, terrain) — copy-and-modify starting points.
@@ -87,7 +88,8 @@ All formats carry a `"format": "molen/<kind>@<n>"` (or `"kind"`) envelope and ar
 with `molen validate <file>`, which prints precise, fixable errors. The shipped specs (JSON
 Schema + example, generated from the registry) live in [schemas/](schemas/README.md):
 
-- [Scene manifest](schemas/scene.md) (`molen/scene@3`: entities, prefabs, `commands`, `components`, camera, input, physics, terrain)
+- [Scene manifest](schemas/scene.md) (`molen/scene@3`: entities, prefabs, `commands`, `components`, camera, input, physics, terrain, ambient)
+- [Transport network](schemas/transport-network.md) (`molen/transport-network@1`: roads, railways and paths for ambient traffic)
 - [Command envelope](schemas/command.md) · [Assertions](schemas/assert.md)
 - [Keyframe](schemas/keyframe.md) · [Delta](schemas/delta.md) · [Replay](schemas/replay.md)
 - [Components](schemas/components.md) — every component with units and axis conventions
@@ -124,6 +126,7 @@ Schema + example, generated from the registry) live in [schemas/](schemas/README
 - `molen docs search <query> [-k N] [--design]` · `molen describe [op]`
 - `molen worldgen preview [style.json] [--pack p] [--style id] [--batch f] [--angles N] --out p.png` — generate buildings and render them headlessly · `worldgen bake [batch.json] [--outline "x,z;…" --style id] --out <assets-dir> [--id id]` — bake to a glTF asset + sidecar · `worldgen stats <terrain-package.json> [--tile z/x/y | --auto] [--dump batch.json]` — generate one real tile and report
 - `molen figure preview [descriptor.figure.json] [--preset id[,id]] [--lineup humans|bodies|species|all] [--mode idle|walk|run|sit|jump|fall] [--angles N|review] --out p.png` — render figures headlessly · `figure presets [--json]` — list the shipped presets
+- `molen network bake <terrain-package.json> (--tile z/x/y [--radius N] | --bbox w,s,e,n) --out network.json [--classes road,rail,path] [--heights]` — bake mapped roads, railways and paths into a transport network for ambient traffic
 - `molen mcp` — start the MCP server (stdio)
 
 ## MCP tools (the server mirrors the CLI 1:1; `molen describe` cross-references both)
@@ -134,7 +137,7 @@ Schema + example, generated from the registry) live in [schemas/](schemas/README
 `check_types`, `reserve_type`, `generate_types`, `import_asset`, `inspect_asset`, `pack_asset`, `stage_assets`,
 `list_assets`, `drive_scene` (returns frames as IMAGES), `play_experience` (plays a built browser app and returns frames as IMAGES), `screenshot_asset` (turntable images),
 `test_types`, `worldgen_preview` (generated buildings as IMAGES), `worldgen_bake`, `worldgen_stats`,
-`figure_preview` (figures as IMAGES), `list_figure_presets`, `plan_audio`, `import_sound`, `check_soundbank`. Call `describe_op` for I/O contracts.
+`figure_preview` (figures as IMAGES), `list_figure_presets`, `network_bake`, `plan_audio`, `import_sound`, `check_soundbank`. Call `describe_op` for I/O contracts.
 
 
 ## Design reference (for deeper questions; the historical design plan, on GitHub)

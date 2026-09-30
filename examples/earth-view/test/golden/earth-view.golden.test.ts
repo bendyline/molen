@@ -136,6 +136,16 @@ describe('browser: earth view', () => {
     expect(camera?.altitude).toBeGreaterThan(20);
     expect(camera?.altitude).toBeLessThan(400);
     await page.screenshot({ path: join(out, '02-walk.png') });
+    // Ambient life registers the road tiles around the walker and fills them with traffic.
+    await page.waitForFunction(
+      () => {
+        const ambient = window.__earthView?.stats().ambient;
+        return ambient !== undefined && ambient.tiles > 0 && ambient.cars > 0;
+      },
+      null,
+      { timeout: 60_000 },
+    );
+    await page.screenshot({ path: join(out, '04-walk-ambient.png') });
     expect(errors).toEqual([]);
     await page.close();
   });

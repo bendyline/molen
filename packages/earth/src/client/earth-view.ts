@@ -1,8 +1,8 @@
 // mountEarthView: one call that turns a canvas into an explorable real-world 3D view. It composes
 // the viewer, the streamed terrain pyramid (in a metric frame at the viewed latitude), semantic
-// layers with worldgen buildings, street surfaces and parked cars, orbit/walk/drive navigation,
-// world markers, sky and haze, and adaptive quality — and owns its frame loop, events and full
-// teardown. Hosts speak latitude/longitude; world meters stay inside.
+// layers with worldgen buildings, street surfaces and parked cars, orbit/walk/drive/fly
+// navigation, world markers, sky and haze, and adaptive quality — and owns its frame loop, events
+// and full teardown. Hosts speak latitude/longitude; world meters stay inside.
 
 import {
   AdaptiveQualityController,
@@ -37,6 +37,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
+  createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackagePyramidStream,
   createTerrainSurfaceRenderer,
@@ -62,7 +63,23 @@ import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/cl
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { createEarthFog, createEarthSky, type EarthSkyStyle, updateEarthFog } from './atmosphere';
+import { EarthAircraft, type EarthFlightStatus } from './aircraft';
+import {
+  ambientContentFromTypes,
+  EarthAmbient,
+  type EarthAmbientSettings,
+  type EarthAmbientStats,
+} from './ambient';
+import { observeSemanticTiles, SemanticTileBuffer } from './ambient-tiles';
+import {
+  createEarthFog,
+  createEarthSky,
+  EARTH_SUN_AZIMUTH,
+  EARTH_SUN_ELEVATION,
+  type EarthSkyStyle,
+  earthSunDirection,
+  updateEarthFog,
+} from './atmosphere';
 import { type EarthCredit, earthCredits } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
@@ -70,7 +87,42 @@ import { earthPerformanceTier, earthPixelRatio, earthQualityLevel } from './perf
 import { EarthVehicles } from './vehicles';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
-export type EarthViewMode = 'orbit' | 'walk' | 'drive';
+export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
+
+/** How {@link EarthView.setMode} enters or leaves a vehicle. */
+export interface EarthModeOptions {
+  /**
+   * Drive: without a parked car in reach, add a car on the nearest mapped road around the view
+   * (`true` picks a sedan-like type from the entities pack; a string names the entity type).
+   */
+  vehicle?: string | true;
+  /** Fly: the aircraft entity type (default the first flyable type, the P-51D in the stock pack). */
+  aircraft?: string;
+  /**
+   * Fly: start in the air (default) or parked on the ground with the engine off. `altitude` is
+   * meters above the ground (default from the orbit camera, 150-1500 m), `speed` m/s.
+   */
+  airborne?: boolean | { altitude?: number; speed?: number };
+  /**
+   * Switch even when the vehicle rules would refuse (moving, airborne, engine running): the
+   * viewer steps out at once and a vehicle added by `setMode` is removed. For host controls such
+   * as a mode menu; in-scene keys (E) keep the rules.
+   */
+  force?: boolean;
+}
+
+/** The vehicle the viewer is in, for a HUD. SI units; headings are compass radians. */
+export type EarthVehicleStatus =
+  | {
+      kind: 'car';
+      label: string;
+      /** m/s, reversing negative. */
+      speed: number;
+      heading: number;
+      view: 'cockpit' | 'chase';
+      waitingForTerrain: boolean;
+    }
+  | ({ kind: 'aircraft' } & EarthFlightStatus);
 
 /** Where to look, in geographic terms. Angles are radians. */
 export interface EarthCameraTarget {
@@ -161,6 +213,13 @@ export interface EarthViewOptions {
    * false turns it off; without a sound bank the view is silent.
    */
   audio?: EarthAudioOptions | false;
+  /**
+   * Ambient life: NPC cars on the mapped roads, pedestrians on footways, trains on railways and
+   * aircraft overhead, spawned around the viewer and removed behind it. On by default; false
+   * turns it off. Vehicle and aircraft models come from the entities pack (simple shapes without
+   * it).
+   */
+  ambient?: EarthAmbientSettings | false;
   /** The first view. */
   camera: EarthCameraTarget;
   /** `'auto'` adapts to measured frame times (default). */
@@ -214,6 +273,8 @@ export interface EarthViewStats {
   drawCalls: number;
   triangles: number;
   frameLatitude: number;
+  /** Ambient life counts, when it is on. */
+  ambient?: EarthAmbientStats;
 }
 
 export interface EarthView {
@@ -222,8 +283,18 @@ export interface EarthView {
   /** Required data credits; keep them visible whenever the view is. */
   readonly credits: EarthCredit[];
   readonly mode: EarthViewMode;
-  /** Switch navigation. Drive needs a parked car within reach; returns false when unavailable. */
-  setMode(mode: EarthViewMode): boolean;
+  /**
+   * Switch navigation. Drive takes a parked car within reach, or adds one on the nearest road
+   * with `{ vehicle: true }`; fly adds an aircraft (airborne by default) over the view. Returns
+   * false when unavailable, with a `message` event explaining why.
+   */
+  setMode(mode: EarthViewMode, options?: EarthModeOptions): boolean;
+  /** The car or aircraft the viewer is in, or undefined on foot and in orbit. */
+  vehicleStatus(): EarthVehicleStatus | undefined;
+  /** Set the mounted aircraft's throttle or collective directly, 0..1 (e.g. an on-screen lever). */
+  setThrottle(power: number): void;
+  /** After an impact, put the aircraft back in the air above the crash site (the R key). */
+  recover(): boolean;
   /** Animate to a view (orbit mode). Long hops re-anchor the metric frame on arrival. */
   flyTo(target: EarthCameraTarget, options?: { durationMs?: number }): void;
   /** Move immediately (orbit mode). */
@@ -243,6 +314,9 @@ export interface EarthView {
   readonly audio: AudioLayer | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
   setPaused(paused: boolean): void;
+  /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
+  setAmbientEnabled(enabled: boolean): void;
+  readonly ambientEnabled: boolean;
   dispose(): void;
 }
 
@@ -259,6 +333,26 @@ const DEFAULT_ENVIRONMENT: EnvironmentData = {
   exposure: 0.9,
 };
 
+/**
+ * The light rig for a style. When the host places the sky's sun (`sky.sunElevation` or
+ * `sky.sunAzimuth`) and leaves `environment.sun.direction` unset, the sunlight comes from that
+ * same point in the sky, so lit faces and shadows agree with the visible sun.
+ */
+export function earthEnvironment(style: EarthViewStyle | undefined): EnvironmentData {
+  const sky = style?.sky || undefined;
+  const custom = style?.environment;
+  const placedSun =
+    sky !== undefined && (sky.sunElevation !== undefined || sky.sunAzimuth !== undefined);
+  const sun = { ...DEFAULT_ENVIRONMENT.sun, ...custom?.sun };
+  if (placedSun && custom?.sun?.direction === undefined) {
+    sun.direction = earthSunDirection(
+      sky.sunElevation ?? EARTH_SUN_ELEVATION,
+      sky.sunAzimuth ?? EARTH_SUN_AZIMUTH,
+    );
+  }
+  return { ...DEFAULT_ENVIRONMENT, ...custom, sun };
+}
+
 interface EarthStack {
   frameLatitude: number;
   metersPerUnit: number;
@@ -266,6 +360,8 @@ interface EarthStack {
   surface: TerrainSurfaceRenderer;
   worldgen: EarthWorldgen | undefined;
   vehicles: EarthVehicles | undefined;
+  aircraft: EarthAircraft | undefined;
+  ambient: EarthAmbient | undefined;
   viewDistance: number;
   dispose(): void;
 }
@@ -355,7 +451,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   };
 
   try {
-    applyEnvironment(renderer, { ...DEFAULT_ENVIRONMENT, ...options.style?.environment });
+    applyEnvironment(renderer, earthEnvironment(options.style));
     const fog = createEarthFog(renderer.backend, options.style?.fog);
     renderer.scene.fog = fog;
     if (options.style?.sky !== false) {
@@ -414,6 +510,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let stack: EarthStack | undefined;
     const groundHeight = (x: number, z: number): number | undefined =>
       stack?.stream.sampleHeight(x, z);
+    const ambientSettings = options.ambient === false ? undefined : (options.ambient ?? {});
+    let ambientOn = ambientSettings !== undefined;
+    const ambientContent =
+      content?.types !== undefined
+        ? ambientContentFromTypes(content.types, async (id) => {
+            try {
+              return await loadModel(id);
+            } catch {
+              return undefined;
+            }
+          })
+        : undefined;
+    const ambientBudget = () =>
+      (automatic ? tier : earthPerformanceTier(earthQualityLevel(quality()))).ambient;
     const environment = { groundHeight };
 
     const createStack = async (
@@ -476,6 +586,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        // Ambient life reads the decoded road tiles as the features layer builds them.
+        const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
@@ -486,15 +598,37 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               ...(selected.archives?.features !== undefined
                 ? { featuresArchive: selected.archives.features }
                 : {}),
-              waterLayer: { visible: true, mesh: { materials: { water }, waterOffset: 0.65 } },
+              waterLayer: {
+                visible: true,
+                mesh: {
+                  materials: { water },
+                  waterOffset: 0.65,
+                  // Earth packages have a sea: harbors and coasts draw at one flat level.
+                  ...(pkg.coordinateSpace.kind === 'geospatial' ||
+                  pkg.surface?.seaLevel !== undefined
+                    ? { seaLevel: pkg.surface?.seaLevel ?? 0 }
+                    : {}),
+                },
+              },
               landcoverLayer:
                 worldgen !== undefined
                   ? { visible: true, renderer: worldgen.classification }
                   : { visible: true },
-              featuresLayer:
-                worldgen !== undefined
-                  ? { visible: true, renderer: worldgen.humanFeatures }
-                  : { visible: true, mesh: { surfaceRenderer: surface } },
+              featuresLayer: (() => {
+                const inner =
+                  worldgen !== undefined
+                    ? worldgen.humanFeatures
+                    : createDefaultTerrainSemanticRenderer({
+                        surfaceRenderer: surface,
+                        renderLandcover: false,
+                        renderWater: false,
+                      });
+                return {
+                  visible: true,
+                  renderer:
+                    ambientTiles !== undefined ? observeSemanticTiles(inner, ambientTiles) : inner,
+                };
+              })(),
             });
             layers = semantic.layers;
           } catch (error) {
@@ -535,6 +669,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        let ambient: EarthAmbient | undefined;
+        let aircraft: EarthAircraft | undefined;
         const vehicles =
           content?.types !== undefined
             ? new EarthVehicles({
@@ -542,9 +678,42 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 sampleHeight: (x, z) => stream.sampleHeight(x, z),
                 loadModel,
                 types: content.types,
+                obstacles: (box, except) =>
+                  (ambient?.blocks(box, except) ?? false) ||
+                  (aircraft?.blocks(box, except) ?? false),
               })
             : undefined;
         if (vehicles !== undefined) parts.push(() => vehicles.dispose());
+        if (vehicles !== undefined && content?.types !== undefined) {
+          const flyable = new EarthAircraft({
+            world: vehicles.world,
+            root: stream.object,
+            sampleHeight: (x, z) => stream.sampleHeight(x, z),
+            loadModel,
+            types: content.types,
+            vehicleEnvironment: vehicles.environment,
+          });
+          aircraft = flyable;
+          parts.push(() => flyable.dispose());
+        }
+        if (ambientSettings !== undefined && ambientTiles !== undefined) {
+          const created = new EarthAmbient({
+            ...(vehicles !== undefined ? { world: vehicles.world } : {}),
+            parent: stream.object,
+            settings: ambientSettings,
+            ...(ambientContent !== undefined ? { content: ambientContent } : {}),
+            prepare: (object) => renderer.prepareObject(object),
+            ground: (x, z) => stream.sampleHeight(x, z),
+          });
+          ambient = created;
+          created.setBudget(ambientBudget());
+          if (!ambientOn) created.setEnabled(false);
+          ambientTiles.attach(created);
+          parts.push(() => {
+            ambientTiles.detach();
+            created.dispose();
+          });
+        }
         return {
           frameLatitude,
           metersPerUnit,
@@ -552,6 +721,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           surface,
           worldgen,
           vehicles,
+          aircraft,
+          ambient,
           viewDistance: budget.viewDistance,
           dispose: cleanup,
         };
@@ -596,6 +767,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       groundHeight,
       fade: { near: 25_000, far: 60_000 },
       maxVisible: 256,
+      // A city of photo pins would otherwise stack into an unreadable wall toward the horizon.
+      declutter: true,
     });
     disposers.push(() => markers.dispose());
     let markerSpecs: EarthMarker[] = [];
@@ -635,7 +808,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const look = { yaw: 0, pitch: 0 };
 
     const applyProfile = (): void => {
-      input.setProfile(mode);
+      input.setProfile(mode === 'fly' ? 'pilot' : mode);
       joystick?.setVisible(mode !== 'orbit');
       renderer.setCameraClip(mode === 'orbit' ? 1 : 0.05, 500_000);
     };
@@ -645,57 +818,294 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       look.yaw = yaw;
       look.pitch = 0;
     };
+    const aircraftTypes = content?.types !== undefined ? EarthAircraft.typeIds(content.types) : [];
+    /** A car or aircraft `setMode` is waiting to board until its starting ground streams in. */
+    let pending:
+      | {
+          mode: 'drive' | 'fly';
+          x: number;
+          z: number;
+          heading: number;
+          height: number;
+          options: EarthModeOptions;
+          since: number;
+        }
+      | undefined;
+    const carTypes = content?.types !== undefined ? EarthVehicles.typeIds(content.types) : [];
+    const defaultCar = carTypes.find((id) => /sedan/.test(id)) ?? carTypes[0];
+    const compass = (heading: number): number =>
+      ((heading % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-    const setMode = (next: EarthViewMode): boolean => {
-      if (next === mode) return true;
-      const current = stack;
-      if (current === undefined) return false;
-      if (next === 'drive') {
-        if (mode !== 'walk' || current.vehicles === undefined) {
-          emit('message', { text: 'Walk up to a parked car to drive it' });
-          return false;
-        }
-        const eye: [number, number, number] = [
-          walker.feet.x,
-          walker.feet.y + WALK_EYE_HEIGHT,
-          walker.feet.z,
-        ];
-        if (!current.vehicles.enter(eye)) {
-          emit('message', { text: current.vehicles.message || 'No car within reach' });
-          return false;
-        }
-        current.vehicles.view = 'chase';
-      } else if (mode === 'drive') {
-        const feet = current.vehicles?.exit();
-        if (feet === undefined) {
+    /** Where the viewer is: the ground point it stands on or looks at, and its heading. */
+    const whereabouts = (
+      current: EarthStack,
+    ): { point: [number, number, number]; heading: number; height: number } => {
+      if (mode === 'walk')
+        return {
+          point: [walker.feet.x, walker.feet.y, walker.feet.z],
+          heading: compass(look.yaw + Math.PI / 2),
+          height: WALK_EYE_HEIGHT,
+        };
+      if (mode === 'drive') {
+        const position = current.vehicles?.position;
+        if (position !== undefined)
+          return { point: position, heading: current.vehicles?.heading ?? 0, height: 2 };
+      }
+      if (mode === 'fly') {
+        const flight = current.aircraft?.status();
+        const position = current.aircraft?.position;
+        if (flight !== undefined && position !== undefined)
+          return {
+            point: [position[0], position[1] - flight.altitudeAGL, position[2]],
+            heading: flight.heading,
+            height: flight.altitudeAGL,
+          };
+      }
+      const { target, heading } = orbit.state;
+      return {
+        point: [...target],
+        heading,
+        height: Math.max(0, pose.position[1] - target[1]),
+      };
+    };
+
+    /**
+     * Step out of the car or aircraft by its rules, or at once with `force`. Returns where the
+     * viewer's feet are (undefined when not in a vehicle), or false when leaving was refused.
+     */
+    const leaveVehicle = (
+      current: EarthStack,
+      force: boolean,
+    ): [number, number, number] | undefined | false => {
+      if (mode === 'drive' && current.vehicles?.mountedId !== undefined) {
+        const feet = current.vehicles.exit();
+        if (feet !== undefined) return feet;
+        if (!force) {
           emit('message', { text: current.vehicles?.message || 'Cannot leave the car here' });
           return false;
         }
-        walker.feet.fromArray(feet);
-        walker.velocity.set(0, 0, 0);
-        walker.ready = true;
-        walker.grounded = true;
-        walker.waitingForTerrain = false;
-        if (next === 'orbit') {
-          orbit.set({ target: [...feet], range: 400, heading: look.yaw + Math.PI / 2, pitch: 0.5 });
+        const at = current.vehicles?.release();
+        return at === undefined ? undefined : [at[0], groundHeight(at[0], at[2]) ?? at[1], at[2]];
+      }
+      if (mode === 'fly' && current.aircraft?.mountedId !== undefined) {
+        const feet = current.aircraft.exit();
+        if (feet !== undefined) return feet;
+        if (!force) {
+          emit('message', { text: current.aircraft?.message || 'Cannot leave the aircraft here' });
+          return false;
         }
-      } else if (next === 'walk') {
-        const { target, heading } = orbit.state;
-        enterWalk(target[0], target[2], heading - Math.PI / 2);
-      } else {
-        const feet = walker.feet;
+        return current.aircraft?.release();
+      }
+      return undefined;
+    };
+
+    const setMode = (next: EarthViewMode, modeOptions: EarthModeOptions = {}): boolean => {
+      if (next === mode) return true;
+      const current = stack;
+      if (current === undefined) return false;
+      pending = undefined;
+      const vehicles = current.vehicles;
+      if ((next === 'drive' || next === 'fly') && vehicles === undefined) {
+        emit('message', { text: 'Driving and flying need the entities content pack' });
+        return false;
+      }
+      if (next === 'fly' && (current.aircraft === undefined || aircraftTypes.length === 0)) {
+        emit('message', { text: 'No aircraft in the content packs' });
+        return false;
+      }
+      const here = whereabouts(current);
+      if (next === 'drive' && vehicles !== undefined) {
+        // A parked car within reach of the walker comes first.
+        if (mode === 'walk') {
+          const eye: [number, number, number] = [
+            walker.feet.x,
+            walker.feet.y + WALK_EYE_HEIGHT,
+            walker.feet.z,
+          ];
+          if (vehicles.enter(eye)) {
+            vehicles.view = 'chase';
+            return finishMode(next);
+          }
+        }
+        if (modeOptions.vehicle === undefined) {
+          emit('message', {
+            text:
+              vehicles.message ||
+              (mode === 'walk' ? 'No car within reach' : 'Walk up to a parked car to drive it'),
+          });
+          return false;
+        }
+      }
+      const left = leaveVehicle(current, modeOptions.force === true);
+      if (left === false) return false;
+      const feet: [number, number, number] = left ?? here.point;
+      if (next === 'orbit') {
         orbit.set({
-          target: [feet.x, feet.y, feet.z],
-          range: 400,
-          heading: look.yaw + Math.PI / 2,
+          target: [...feet],
+          range: mode === 'fly' ? Math.max(600, Math.min(4_000, here.height * 2.5)) : 400,
+          heading: here.heading,
           pitch: 0.5,
         });
         collision.clear();
+      } else if (next === 'walk') {
+        const yaw = here.heading - Math.PI / 2;
+        if (left !== undefined && mode === 'drive') {
+          walker.feet.fromArray(feet);
+          walker.velocity.set(0, 0, 0);
+          walker.ready = true;
+          walker.grounded = true;
+          walker.waitingForTerrain = false;
+          look.yaw = yaw;
+          look.pitch = 0;
+        } else {
+          enterWalk(feet[0], feet[2], yaw);
+        }
+      } else if (next === 'drive' || next === 'fly') {
+        // A car needs the ground and the roads where it starts, an aircraft the ground below it.
+        // Switch now, keep the orbit camera on the spot, and board once that has streamed in.
+        let [x, z] = [feet[0], feet[2]];
+        if (next === 'fly' && mode === 'orbit') {
+          // Start a little way back along the heading, flying toward what the viewer looked at.
+          const back = Math.min(900, here.height * 0.8);
+          x -= Math.sin(here.heading) * back;
+          z += Math.cos(here.heading) * back;
+        }
+        pending = {
+          mode: next,
+          x,
+          z,
+          heading: here.heading,
+          height: here.height,
+          options: modeOptions,
+          // The frame clock, which completeEntry compares against.
+          since: last,
+        };
+        if (mode !== 'orbit')
+          orbit.set({
+            target: [x, groundHeight(x, z) ?? feet[1], z],
+            range: next === 'drive' ? 220 : 600,
+            heading: here.heading,
+            pitch: 0.5,
+          });
       }
+      return finishMode(next);
+    };
+    function finishMode(next: EarthViewMode): boolean {
       mode = next;
       applyProfile();
       emit('modechange', { mode });
       return true;
+    }
+
+    /**
+     * Whether world X/Z lies on or beside a catalogued landmark: its model may still be streaming,
+     * so the ground there is no place to leave a car.
+     */
+    const nearLandmark = (x: number, z: number): boolean => {
+      const structures = content?.worldgen?.structures;
+      if (structures === undefined) return false;
+      const { latitude, longitude } = toLatLon(x, z);
+      const dLat = 0.0015;
+      const dLon = dLat / Math.max(0.1, Math.cos((latitude * Math.PI) / 180));
+      for (const entry of structures.query([
+        longitude - dLon,
+        latitude - dLat,
+        longitude + dLon,
+        latitude + dLat,
+      ])) {
+        const box = entry.bounds;
+        if (
+          box !== undefined &&
+          longitude >= box[0] &&
+          longitude <= box[2] &&
+          latitude >= box[1] &&
+          latitude <= box[3]
+        )
+          return true;
+        const [ax, az] = toWorld(entry.anchor[1], entry.anchor[0]);
+        if (Math.hypot(ax - x, az - z) < 70) return true;
+      }
+      return false;
+    };
+
+    /** Board the car or aircraft a `setMode` asked for, once its starting ground has streamed. */
+    const completeEntry = (current: EarthStack, now: number): void => {
+      const entry = pending;
+      if (entry === undefined) return;
+      const waited = now - entry.since;
+      const ground = groundHeight(entry.x, entry.z);
+      const giveUp = (text: string): void => {
+        pending = undefined;
+        emit('message', { text });
+        finishMode('orbit');
+      };
+      if (entry.mode === 'drive') {
+        const vehicles = current.vehicles;
+        if (vehicles === undefined) {
+          giveUp('Driving needs the entities content pack');
+          return;
+        }
+        // A mapped lane with known ground is enough; full detail can stream in while driving.
+        // Lanes come from the ambient network: without one, or after a few seconds of waiting,
+        // the car starts on open ground at the spot instead.
+        const road =
+          ground !== undefined ? current.ambient?.nearestRoad(entry.x, entry.z, 250) : undefined;
+        const patience = current.ambient !== undefined ? 12_000 : 0;
+        if (road === undefined && !(ground !== undefined && waited >= patience)) {
+          if (waited > 30_000) giveUp('The streets here have not loaded yet');
+          return;
+        }
+        pending = undefined;
+        const kind = typeof entry.options.vehicle === 'string' ? entry.options.vehicle : defaultCar;
+        const yaw = road?.yaw ?? Math.PI - entry.heading;
+        const avoid = { avoid: nearLandmark };
+        const id =
+          kind === undefined
+            ? undefined
+            : road !== undefined
+              ? (vehicles.spawn(kind, road.position, yaw) ??
+                vehicles.spawnNear(kind, road.position[0], road.position[2], yaw, avoid))
+              : vehicles.spawnNear(kind, entry.x, entry.z, yaw, avoid);
+        if (id === undefined || !vehicles.board(id)) {
+          giveUp(vehicles.message || 'No room for a car here');
+          return;
+        }
+        vehicles.view = 'chase';
+        return;
+      }
+      const aircraft = current.aircraft;
+      if (aircraft === undefined) {
+        giveUp('No aircraft in the content packs');
+        return;
+      }
+      if (ground === undefined) {
+        if (waited > 20_000) giveUp('The ground here has not loaded yet');
+        return;
+      }
+      pending = undefined;
+      const typeId =
+        entry.options.aircraft !== undefined && aircraftTypes.includes(entry.options.aircraft)
+          ? entry.options.aircraft
+          : (aircraftTypes[0] as string);
+      const airborne = entry.options.airborne ?? true;
+      const choice = typeof airborne === 'object' ? airborne : {};
+      const altitude =
+        airborne === false
+          ? 0
+          : Math.max(60, choice.altitude ?? Math.max(150, Math.min(1_500, entry.height)));
+      const id = aircraft.spawn(typeId, {
+        position: [entry.x, ground + altitude, entry.z],
+        heading: entry.heading,
+        ...(airborne !== false
+          ? { airborne: choice.speed !== undefined ? { speed: choice.speed } : {} }
+          : {}),
+      });
+      if (!aircraft.board(id)) {
+        aircraft.remove(id);
+        giveUp(aircraft.message || 'Could not board the aircraft');
+        return;
+      }
+      aircraft.view = 'chase';
     };
 
     // Adaptive quality.
@@ -709,6 +1119,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         current.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
         current.viewDistance = budget.viewDistance;
         current.worldgen?.setQuality(quality());
+        current.ambient?.setBudget(ambientBudget());
         current.worldgen?.setCacheBudget(automatic ? tier.cacheBytes : 192 * 1024 * 1024);
         void current.surface
           .setOptions({
@@ -804,7 +1215,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const target =
         mode === 'orbit'
           ? orbit.state.target
-          : ([walker.feet.x, walker.feet.y, walker.feet.z] as [number, number, number]);
+          : mode === 'walk' || stack === undefined
+            ? ([walker.feet.x, walker.feet.y, walker.feet.z] as [number, number, number])
+            : whereabouts(stack).point;
       const ground = toLatLon(target[0], target[2]);
       const orbitState = orbit.state;
       const dx = pose.position[0] - target[0];
@@ -921,10 +1334,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         -0.8,
         Math.min(0.8, vehicles.lookPitch - frameInput.look[1] * 0.003),
       );
+      // Auto hold: a car at rest with no throttle stays put, even parked on a slope.
+      const holding = frameInput.move.forward === 0 && Math.abs(vehicles.speed) < 0.6;
       vehicles.update(dt, {
         throttle: frameInput.move.forward,
         steering: frameInput.move.right,
-        brake: frameInput.jump,
+        brake: frameInput.jump || holding,
       });
       if (frameInput.interact > 0 && setMode('walk')) return walkFrame(0, frameInput, current);
       const view = vehicles.cameraPose();
@@ -935,6 +1350,49 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         .normalize()
         .toArray() as [number, number, number];
       look.yaw = Math.atan2(direction[2], direction[0]);
+      return { position: view.position, lookAt: view.lookAt, direction };
+    };
+
+    const flyFrame = (
+      dt: number,
+      frameInput: NavigationInput,
+      current: EarthStack,
+    ): NavigationPose => {
+      const aircraft = current.aircraft as EarthAircraft;
+      const pilot = frameInput.pilot;
+      if (frameInput.view > 0) aircraft.view = aircraft.view === 'cockpit' ? 'chase' : 'cockpit';
+      const reach = aircraft.view === 'chase' ? Math.PI : 1.45;
+      aircraft.lookYaw = Math.max(
+        -reach,
+        Math.min(reach, aircraft.lookYaw + frameInput.look[0] * 0.003),
+      );
+      aircraft.lookPitch = Math.max(
+        -0.8,
+        Math.min(0.8, aircraft.lookPitch - frameInput.look[1] * 0.003),
+      );
+      if ((pilot?.recover ?? 0) > 0 && !aircraft.recover())
+        emit('message', { text: 'Recover (R) works after an impact' });
+      aircraft.input(dt, {
+        pitch: -frameInput.move.forward,
+        roll: frameInput.move.right,
+        yaw: pilot?.yaw ?? 0,
+        throttle: pilot?.throttle ?? 0,
+        brake: frameInput.jump,
+        ...(pilot !== undefined
+          ? { engine: pilot.engine, gear: pilot.gear, flaps: pilot.flaps }
+          : {}),
+      });
+      // The aircraft shares the vehicles' world: this steps its flight model.
+      current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
+      aircraft.render();
+      if (frameInput.interact > 0 && setMode('walk')) return walkFrame(0, frameInput, current);
+      const view = aircraft.cameraPose();
+      if (view === undefined) return pose;
+      const direction = new THREE.Vector3()
+        .fromArray(view.lookAt)
+        .sub(new THREE.Vector3().fromArray(view.position))
+        .normalize()
+        .toArray() as [number, number, number];
       return { position: view.position, lookAt: view.lookAt, direction };
     };
 
@@ -972,8 +1430,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           applyTier();
         }
       }
-      if (mode === 'orbit' || current === undefined) pose = orbitFrame(dt, frameInput);
+      if (pending !== undefined && current !== undefined) completeEntry(current, now);
+      if (mode === 'orbit' || current === undefined || pending !== undefined)
+        pose = orbitFrame(dt, frameInput);
       else if (mode === 'walk') pose = walkFrame(dt, frameInput, current);
+      else if (mode === 'fly') pose = flyFrame(dt, frameInput, current);
       else pose = driveFrame(dt, frameInput, current);
 
       if (current !== undefined) {
@@ -1001,8 +1462,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           streamed = { position: pose.position, direction: pose.direction };
         }
         current.vehicles?.sync(now, pose.position);
-        if (mode !== 'drive')
+        current.ambient?.sync(
+          now,
+          pose,
+          mode === 'walk' ? [{ x: pose.position[0], z: pose.position[2], radius: 0.5 }] : [],
+        );
+        if (pending !== undefined || (mode !== 'drive' && mode !== 'fly')) {
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
+          current.aircraft?.render();
+        }
+        current.ambient?.update(dt);
+        current.ambient?.render(pose.position, dt);
         updateEarthFog(fog, current.viewDistance, pose.position[1]);
       }
       for (const tap of frameInput.taps) {
@@ -1021,7 +1491,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           nowMs: now,
           position: pose.position,
           forward: pose.direction,
-          mode,
+          // The sound rules call flying an aircraft 'pilot'.
+          mode: mode === 'fly' ? 'pilot' : mode,
           ...(ground !== undefined ? { heightAboveGround: pose.position[1] - ground } : {}),
           ...(mode === 'walk' ? { grounded: walker.grounded } : {}),
         });
@@ -1072,14 +1543,40 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         return audio?.layer;
       },
       setMode,
+      vehicleStatus() {
+        const current = stack;
+        if (current === undefined) return undefined;
+        if (mode === 'fly') {
+          const flight = current.aircraft?.status();
+          return flight !== undefined ? { kind: 'aircraft', ...flight } : undefined;
+        }
+        if (mode === 'drive' && current.vehicles?.mountedId !== undefined) {
+          const vehicles = current.vehicles;
+          return {
+            kind: 'car',
+            label: vehicles.label(vehicles.mountedId as string),
+            speed: vehicles.speed,
+            heading: vehicles.heading ?? 0,
+            view: vehicles.view,
+            waitingForTerrain: vehicles.waiting,
+          };
+        }
+        return undefined;
+      },
+      setThrottle(power) {
+        stack?.aircraft?.setPower(power);
+      },
+      recover() {
+        return mode === 'fly' && (stack?.aircraft?.recover() ?? false);
+      },
       flyTo(target, flyOptions = {}) {
-        if (mode !== 'orbit') setMode('orbit');
+        if (mode !== 'orbit') setMode('orbit', { force: true });
         const far = Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES;
         pendingAnchor = far || options.terrainSource !== undefined ? target : undefined;
         orbit.flyTo(orbitTarget(target), flyOptions);
       },
       jumpTo(target) {
-        if (mode !== 'orbit') setMode('orbit');
+        if (mode !== 'orbit') setMode('orbit', { force: true });
         orbit.set(orbitTarget(target));
         if (
           Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES ||
@@ -1119,7 +1616,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           drawCalls: renderStats.drawCalls,
           triangles: renderStats.triangles,
           frameLatitude,
+          ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
         };
+      },
+      get ambientEnabled() {
+        return ambientOn;
+      },
+      setAmbientEnabled(enabled) {
+        if (ambientSettings === undefined) return;
+        ambientOn = enabled;
+        stack?.ambient?.setEnabled(enabled);
       },
       setPaused(next) {
         if (next === paused || disposed) return;
