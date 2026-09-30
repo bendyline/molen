@@ -470,11 +470,12 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   Keep them visible whenever the view is.
 - `quality: 'auto'` adapts terrain budgets, building detail and pixel ratio to measured frame
   times (`stats().qualityLevel`, 0-5, with `stats().qualityReason`). A preset pins the quality.
-  The view reports its own work per frame, so slow frames while tiles stream in do not lower the
-  level unless that work is heavy itself. Because a level change swaps resolution and detail
-  across the view, levels change rarely: down after 2.5 s of sustained overload, up after 20 s of
-  headroom, at least 6 s apart, and only once the camera has been still for 0.6 s (at most 4 s);
-  memory pressure above 1.25 applies a change at once.
+  It starts at `earthInitialQualityLevel()`: level 1 on touch devices and at 2 GiB or less, 2 at
+  4 GiB, otherwise 3. The view first calibrates quickly, so a slow device
+  settles within seconds. Once a level has held for 12 s it turns sticky, because a level change
+  swaps resolution and detail across the view: down after 2.5 s of sustained overload, up after
+  20 s of headroom, at least 6 s apart. Any change waits until the camera has been still for
+  0.6 s (at most 4 s); memory pressure above 1.25 applies it at once.
 - Memory pressure (`stats().memoryPressure`) is the geometry on screen over `memoryBudget`, a
   fixed per-device budget: `earthMemoryBudget()` gives 96 MiB per GiB the browser reports within
   192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the

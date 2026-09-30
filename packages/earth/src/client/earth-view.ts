@@ -86,6 +86,7 @@ import { type EarthCredit, earthCredits } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
 import {
+  earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
@@ -338,6 +339,10 @@ export interface EarthView {
 }
 
 const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
+/** How long a level must hold before adaptive quality turns sticky, ms. */
+const QUALITY_CALIBRATION_MS = 12_000;
+/** After calibration: down after sustained overload, up after long headroom, changes far apart. */
+const STICKY_QUALITY = { decreaseDelayMs: 2_500, increaseDelayMs: 20_000, cooldownMs: 6_000 };
 /** A quality level change waits until the camera has been still this long, ms... */
 const QUALITY_SETTLE_MS = 600;
 /** ...or has waited this long, ms. */
@@ -431,7 +436,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   const report =
     options.onError ?? ((error, context) => console.warn(`[molen-earth] ${context}`, error));
   const automatic = (options.quality ?? 'auto') === 'auto';
-  let level = automatic ? 3 : earthQualityLevel(options.quality as TerrainQualityPreset);
+  let level = automatic
+    ? earthInitialQualityLevel()
+    : earthQualityLevel(options.quality as TerrainQualityPreset);
   let tier = earthPerformanceTier(level);
   const quality = (): TerrainQualityPreset =>
     automatic ? tier.quality : (options.quality as TerrainQualityPreset);
@@ -1164,16 +1171,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       aircraft.view = 'chase';
     };
 
-    // Adaptive quality.
-    // Every level change swaps resolution and detail across the whole view, so an Earth view
-    // changes level rarely: only after sustained overload (not one burst of streaming while the
-    // camera turns) and after a long spell of headroom.
-    const controller = new AdaptiveQualityController({
-      initialLevel: level,
-      decreaseDelayMs: 2_500,
-      increaseDelayMs: 20_000,
-      cooldownMs: 6_000,
-    });
+    // Adaptive quality. The view first calibrates with the controller's quick defaults, so a slow
+    // device settles on a level it can hold within seconds. Once a level has held for
+    // QUALITY_CALIBRATION_MS it turns sticky: every change swaps resolution and detail across the
+    // whole view, so later ones need sustained overload (not one burst of streaming while the
+    // camera turns) or a long spell of headroom.
+    let controller = new AdaptiveQualityController({ initialLevel: level });
+    let calibrated = false;
+    let levelSince = performance.now();
+    let qualityReason: AdaptiveQualityReason | undefined;
     const applyTier = (): void => {
       tier = earthPerformanceTier(level);
       lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;
@@ -1310,10 +1316,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let lastEmitted = '';
     let bakingFor: EarthWorldgen | undefined;
     let frameHandle = 0;
-    // Adaptive quality: this view's own work per frame (loading happens outside it), and a level
-    // change held while the camera moves, since applying one rebuilds detail across the view.
-    let workMs = 0;
+    // A level change is held while the camera moves, since applying one rebuilds detail across
+    // the view.
     let heldLevel: number | undefined;
+    let heldReason: AdaptiveQualityReason | undefined;
     let heldSince = 0;
     let movedAt = Number.NEGATIVE_INFINITY;
     let lastPose = pose;
@@ -1490,7 +1496,6 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       last = now;
       const current = stack;
       const frameInput = input.read(dt);
-      const workStart = performance.now();
       if (automatic && current !== undefined) {
         // stream.stats() walks every tile's objects; per frame, only the constant-time reads.
         const loading = current.stream.loading();
@@ -1499,11 +1504,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           active: !document.hidden,
           loading: loading.tiles > 0 || loading.layers > 0,
           memoryPressure,
-          ...(workMs > 0 ? { cpuFrameMs: workMs } : {}),
         });
         if (change !== undefined) {
           if (heldLevel === undefined) heldSince = now;
           heldLevel = change.level;
+          heldReason = change.reason;
         }
         if (
           heldLevel !== undefined &&
@@ -1512,8 +1517,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             memoryPressure > URGENT_MEMORY_PRESSURE)
         ) {
           level = heldLevel;
+          qualityReason = heldReason;
           heldLevel = undefined;
+          levelSince = now;
           applyTier();
+        } else if (
+          !calibrated &&
+          heldLevel === undefined &&
+          now - levelSince >= QUALITY_CALIBRATION_MS
+        ) {
+          controller = new AdaptiveQualityController({ initialLevel: level, ...STICKY_QUALITY });
+          calibrated = true;
         }
       }
       if (pending !== undefined && current !== undefined) completeEntry(current, now);
@@ -1587,7 +1601,6 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
       viewer.renderFrame();
       frames++;
-      workMs = performance.now() - workStart;
       if (
         Math.hypot(
           pose.position[0] - lastPose.position[0],
@@ -1708,9 +1721,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           mode,
           frames,
           qualityLevel: level,
-          ...(controller.getStats().reason !== undefined
-            ? { qualityReason: controller.getStats().reason }
-            : {}),
+          ...(qualityReason !== undefined ? { qualityReason } : {}),
           memoryPressure: (stack?.stream.pressure().displayedBytes ?? 0) / memoryBudget,
           displayedTiles: streamStats?.displayed ?? 0,
           loadingTiles: (streamStats?.loading ?? 0) + (streamStats?.loadingLayers ?? 0),

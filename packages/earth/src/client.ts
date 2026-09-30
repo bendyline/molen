@@ -72,6 +72,7 @@ export {
 export {
   type EarthDeviceMemory,
   type EarthPerformanceTier,
+  earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,

@@ -24,7 +24,7 @@ view.setMode('fly'); // a P-51D over the view; vehicleStatus() feeds a HUD
 
 | Entry point | For |
 |---|---|
-| `./client` | `mountEarthView`, `loadEarthContent`, `openPacksFromIndex`, `createEarthWorldgen`, `EarthVehicles`, `EarthAircraft`, `createEarthSky`, `createEarthFog`, `earthPerformanceTier`, `earthMemoryBudget`, `earthOrbitMaxRange`, `earthCredits` |
+| `./client` | `mountEarthView`, `loadEarthContent`, `openPacksFromIndex`, `createEarthWorldgen`, `EarthVehicles`, `EarthAircraft`, `createEarthSky`, `createEarthFog`, `earthPerformanceTier`, `earthMemoryBudget`, `earthInitialQualityLevel`, `earthOrbitMaxRange`, `earthCredits` |
 | `./workers/elevation`, `./workers/landcover`, `./workers/surface`, `./workers/worldgen`, `./workers/material` | One-line worker entries: `import '@bendyline/molen-earth/workers/elevation';` in a module worker, passed to `mountEarthView({ workers })` |
 
 Real-world data carries attribution obligations (ODbL for OpenStreetMap). `view.credits` lists

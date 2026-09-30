@@ -111,6 +111,20 @@ export function earthMemoryBudget(device: EarthDeviceMemory = browserDeviceMemor
   return mib * MIB;
 }
 
+/**
+ * The adaptive level a view starts at before measuring frames: 1 (Low) on touch devices and at
+ * 2 GiB or less, 2 (Medium) at 4 GiB, otherwise 3 (Balanced). Calibration then moves it, so a
+ * phone does not first stream a desktop's detail.
+ */
+export function earthInitialQualityLevel(
+  device: EarthDeviceMemory = browserDeviceMemory(),
+): number {
+  const { deviceMemory, touch } = device;
+  if (touch === true || (deviceMemory !== undefined && deviceMemory <= 2)) return 1;
+  if (deviceMemory !== undefined && deviceMemory <= 4) return 2;
+  return 3;
+}
+
 /** Cap total pixels as well as pixel ratio, including ultrawide and high-DPI screens. */
 export function earthPixelRatio(
   level: number,
