@@ -57,7 +57,7 @@ describe('ambient determinism', () => {
     const a = perTickHashes(build, commands, 600);
     const b = perTickHashes(build, commands, 600);
     expect(a).toEqual(b);
-  });
+  }, 30_000); // Runs 600 ticks twice, hashing the whole world each tick; ~8s on a loaded CI runner.
 
   it('restores from a keyframe mid-run and continues identically', () => {
     const a = build();
