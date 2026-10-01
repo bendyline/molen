@@ -40,7 +40,6 @@ const signText = mat('destination-text', '#ffb347', 0, 0.4, {
 
 const L = 27.0;
 const W = 2.65;
-const H = 3.6;
 const FLOOR = 0.95;
 
 function box(parent, name, size, pos, material) {

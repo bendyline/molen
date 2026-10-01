@@ -52,6 +52,12 @@ export interface FacadeInput {
   /** Budget fallback: sample existing bays/floors without changing their positions or seeds. */
   maxWindowColumns?: number;
   maxWindowRows?: number;
+  /**
+   * Budget facades: a wall with more bays than `maxWindowColumns` draws each floor's punched or
+   * grid windows as one strip, the window texture repeating once per bay, instead of sampling a
+   * few. Every floor keeps its row of windows for four vertices per floor and wall.
+   */
+  windowStrips?: boolean;
   bands?: FacadeBands;
   /** Raised window surrounds and mullions, admitted with the full facade detail tier. */
   relief?: boolean;
@@ -335,7 +341,9 @@ function buildWindows(
   const usable = edge.length - 2 * input.cornerMargin;
   const bays = Math.floor(usable / input.bayWidth);
   const floors = floorsUnder(edge, input);
-  [...gridMembers(floors.length, input.maxWindowRows)].forEach((floor) => {
+  // Strips cost four vertices a floor, so a strip facade keeps every floor.
+  const rows = input.windowStrips === true ? undefined : input.maxWindowRows;
+  [...gridMembers(floors.length, rows)].forEach((floor) => {
     const [floorBase, floorHeight] = floors[floor] as [number, number];
     if (floor === 0 && input.openGroundEdges?.has(edge.key)) return;
     if (
@@ -418,6 +426,31 @@ function buildWindows(
       ? floorHeight - 0.55
       : Math.min(windows.height, floorHeight - windows.sill - 0.25);
     if (width < 0.4 || height < 0.4) return;
+    if (input.windowStrips === true && bays > (input.maxWindowColumns ?? bays)) {
+      const y0 = floorBase + sill;
+      if (y0 + height > edge.top - 0.05) return;
+      // One pane per bay, edge to edge: from a distance a floor of windows reads as a row.
+      const s0 = start + (input.bayWidth - width) / 2;
+      const s1 = start + bays * input.bayWidth - (input.bayWidth - width) / 2;
+      wallQuad(
+        edge,
+        WINDOW_PROUD,
+        s0,
+        s1,
+        y0,
+        y0 + height,
+        [
+          [0, 0],
+          [bays, 0],
+          [bays, 1],
+          [0, 1],
+        ],
+        input.window,
+        out,
+      );
+      stats.windows += bays;
+      return;
+    }
     for (const bay of gridMembers(bays, input.maxWindowColumns)) {
       const hash = hashCoord(edge.key, floor * 1024 + bay, input.salt);
       if (unit01(hash, 0) >= windows.probabilityPerBay) continue;

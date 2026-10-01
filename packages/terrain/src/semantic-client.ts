@@ -556,6 +556,8 @@ function createWaterwayMesh(
   geometry.computeVertexNormals();
   const mesh = new THREE.Mesh(geometry, options.materials?.water ?? DEFAULT_WATER_MATERIAL);
   mesh.name = 'semantic:waterways';
+  mesh.userData.shadowCaster = false;
+  mesh.userData.shadowReceiver = false;
   mesh.renderOrder = 1;
   mesh.userData.terrainOwnedGeometry = true;
   return mesh;
@@ -608,6 +610,7 @@ export function createLandcoverMesh(
     options.materials?.landcover ?? DEFAULT_LANDCOVER_MATERIAL,
   );
   if (mesh) {
+    mesh.userData.shadowCaster = false;
     // Grid interiors share vertices; retain indexed buffers for broad land-cover footprints.
     const geometry = mesh.geometry;
     mesh.geometry = mergeVertices(geometry, 0.00001);
@@ -739,6 +742,8 @@ function createWaterMesh(
   if (geometry === null) return undefined;
   const mesh = new THREE.Mesh(geometry, options.materials?.water ?? DEFAULT_WATER_MATERIAL);
   mesh.name = 'semantic:water';
+  mesh.userData.shadowCaster = false;
+  mesh.userData.shadowReceiver = false;
   mesh.renderOrder = 2;
   mesh.userData.terrainOwnedGeometry = true;
   mesh.userData.terrainWaterSurface = true;

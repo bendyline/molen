@@ -117,6 +117,9 @@ export interface BuildingRecipe {
   props: RecipeProp[];
 }
 
+/** Linear tone of untinted window glass on flat (texture-less) levels. */
+export const WINDOW_GLASS: readonly [number, number, number] = [0.16, 0.19, 0.23];
+
 function clamp(value: number, lo: number, hi: number): number {
   return value < lo ? lo : value > hi ? hi : value;
 }
@@ -225,7 +228,17 @@ function resolvePart(
   } else if (collapse) {
     finalRef = WHITE_REF;
     // Untinted glass gets its color from the texture; white would look like filled-in windows.
-    if (part === 'window') finalColor = [0.16 * color[0], 0.19 * color[1], 0.23 * color[2]];
+    if (part === 'window')
+      finalColor = [
+        WINDOW_GLASS[0] * color[0],
+        WINDOW_GLASS[1] * color[1],
+        WINDOW_GLASS[2] * color[2],
+      ];
+  } else if (part === 'window' && spec.tint !== 'multiply') {
+    // Textured glass ignores vertex color (the window material draws its texture as is), so the
+    // vertex color is free to carry the glass tone for distant flat levels and the moment before
+    // the texture bakes, where white would read as filled-in windows.
+    finalColor = [...WINDOW_GLASS];
   }
   return {
     ref: finalRef,

@@ -141,6 +141,7 @@ export function createTerrainLandcoverWorkerBridge(
       markTerrainGroundSurface(mesh);
       mesh.name = 'semantic:landcover';
       mesh.receiveShadow = true;
+      mesh.userData.shadowCaster = false;
       mesh.renderOrder = 1;
       mesh.userData.terrainOwnedGeometry = true;
       job.resolve(mesh);

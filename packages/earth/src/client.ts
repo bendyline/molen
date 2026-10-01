@@ -60,6 +60,7 @@ export {
   type EarthViewOptions,
   type EarthViewStats,
   type EarthViewStyle,
+  earthOrbitMaxRange,
   mountEarthView,
 } from './client/earth-view';
 export {
@@ -69,7 +70,10 @@ export {
   withModelArchives,
 } from './client/model-archives';
 export {
+  type EarthDeviceMemory,
   type EarthPerformanceTier,
+  earthInitialQualityLevel,
+  earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,

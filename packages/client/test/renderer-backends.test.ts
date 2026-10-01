@@ -2,6 +2,7 @@ import type { WebGLRenderer } from 'three';
 import * as THREE from 'three';
 import type { WebGPURenderer } from 'three/webgpu';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { applyEnvironment } from '../src/three/environment';
 import { Renderer, type RendererOptions } from '../src/three/renderer';
 
 const factories = vi.hoisted(() => ({ webgl: vi.fn(), webgpu: vi.fn(), reflections: vi.fn() }));
@@ -604,6 +605,53 @@ describe('renderer backend selection', () => {
     await expect(Renderer.create(options)).rejects.toThrow();
     expect(factories.webgpu).not.toHaveBeenCalled();
     expect(factories.webgl).not.toHaveBeenCalled();
+  });
+
+  it('turns sun shadows on and aims them at a focus in absolute world coordinates', () => {
+    const renderer = new Renderer();
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    expect(light.castShadow).toBe(false);
+    renderer.setShadowQuality('medium');
+    expect(light.castShadow).toBe(true);
+    expect(light.shadow.mapSize.x).toBe(2048);
+    expect(renderer.three.shadowMap.enabled).toBe(true);
+    renderer.setWorldOrigin([10_000, 0, 0]);
+    renderer.setShadowFocus({ center: [10_100, 0, 0], radius: 300 });
+    renderer.render();
+    // Rebased: the focus 100 m east of the origin is 100 m east of the scene origin.
+    expect(light.target.position.x).toBeCloseTo(100, 0);
+    expect(light.shadow.camera.right).toBe(300);
+    expect(() => renderer.setShadowFocus({ center: [0, 0, 0], radius: 0 })).toThrow(RangeError);
+    renderer.setShadowQuality('off');
+    expect(light.castShadow).toBe(false);
+    expect(renderer.three.shadowMap.enabled).toBe(false);
+    renderer.dispose();
+  });
+
+  it('keeps the static scene graph from recomposing every frame, updating the root on a rebase', () => {
+    const renderer = new Renderer();
+    const building = new THREE.Mesh();
+    building.position.set(5, 0, 0);
+    building.updateMatrix();
+    building.matrixAutoUpdate = false;
+    renderer.worldRoot.add(building);
+    expect(renderer.scene.matrixAutoUpdate).toBe(false);
+    expect(renderer.worldRoot.matrixAutoUpdate).toBe(false);
+    renderer.scene.updateMatrixWorld();
+    const write = vi.spyOn(building.matrixWorld, 'multiplyMatrices');
+    renderer.scene.updateMatrixWorld();
+    expect(write).not.toHaveBeenCalled();
+    // A rebase moves the root once, and the static world follows it.
+    renderer.setWorldOrigin([100, 0, 0]);
+    renderer.scene.updateMatrixWorld();
+    expect(write).toHaveBeenCalledTimes(1);
+    expect(new THREE.Vector3().setFromMatrixPosition(building.matrixWorld).x).toBe(-95);
+    renderer.dispose();
   });
 
   it('keeps synchronous construction on WebGL and directs async preferences to the factory', () => {

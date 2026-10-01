@@ -11,7 +11,7 @@ import {
   type HeightSampler,
   PLACEMENT_STRIDE,
 } from '../kernel/types';
-import { createInstancedPlacements, unitBoxGeometry } from './instanced-box';
+import { buildingBoxGeometry, createInstancedPlacements, unitBoxGeometry } from './instanced-box';
 import { buffersToObject3D, type WorldgenMaterialSet } from './upload';
 
 export interface BuildingObjectOptions {
@@ -45,9 +45,10 @@ export function createBuildingObject(
       result.box.sz,
       ...result.box.color,
     ]);
+    const modelRef = result.box.roof === 'gable' ? 'builtin:box.gable' : 'builtin:box';
     return createInstancedPlacements(
-      { setId: 'building', modelRef: 'builtin:box', count: 1, data },
-      unitBoxGeometry(),
+      { setId: 'building', modelRef, count: 1, data },
+      buildingBoxGeometry(modelRef) ?? unitBoxGeometry(),
       options.materials.materialFor('wall', 'palette:#ffffff'),
       `worldgen:${request.identity}`,
     );

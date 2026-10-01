@@ -148,7 +148,9 @@ export function worldgenPreviewBounds(
       ? generateLandmarkModel(set.modelRef.slice(8), landmarks)
       : undefined;
     const points =
-      set.modelRef === 'builtin:box' || set.modelRef.startsWith('builtin:tree.mapped.')
+      set.modelRef === 'builtin:box' ||
+      set.modelRef === 'builtin:box.gable' ||
+      set.modelRef.startsWith('builtin:tree.mapped.')
         ? [-0.5, 0, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 0, -0.5]
         : model?.positions;
     for (let index = 0; index < set.count; index++) {

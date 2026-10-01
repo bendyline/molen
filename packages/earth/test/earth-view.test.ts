@@ -7,7 +7,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
 import { ENTITY_TYPES } from './entity-types';
 
-const viewerState = vi.hoisted(() => ({ disposed: 0, frames: 0 }));
+const viewerState = vi.hoisted(() => ({
+  disposed: 0,
+  frames: 0,
+  shadowQuality: undefined as string | undefined,
+  shadowRadius: undefined as number | undefined,
+}));
 
 vi.mock('@bendyline/molen-client', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@bendyline/molen-client')>();
@@ -41,6 +46,12 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         getViewportSize: () => size,
         stats: () => ({ drawCalls: 0, triangles: 0 }),
         setStarCatalog: () => {},
+        setShadowQuality: (quality: string) => {
+          viewerState.shadowQuality = quality;
+        },
+        setShadowFocus: (focus: { radius: number } | undefined) => {
+          viewerState.shadowRadius = focus?.radius;
+        },
       };
       renderer.scene.add(renderer.worldRoot);
       return {
@@ -63,7 +74,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
   };
 });
 
-const { mountEarthView } = await import('../src/client/earth-view');
+const { earthOrbitMaxRange, mountEarthView } = await import('../src/client/earth-view');
 
 // A frame queue standing in for requestAnimationFrame.
 let callbacks = new Map<number, (time: number) => void>();
@@ -205,6 +216,8 @@ describe('mountEarthView', () => {
     expect(stats.displayedTiles).toBeGreaterThan(0);
     expect(stats.failedTiles).toBe(0);
     expect(stats.frameLatitude).toBe(47.6);
+    // Without content packs there are no styled buildings to count.
+    expect(stats.worldgen).toBeUndefined();
     const camera = view.getCamera();
     expect(camera.mode).toBe('orbit');
     expect(camera.latitude).toBeCloseTo(47.6, 6);
@@ -213,9 +226,24 @@ describe('mountEarthView', () => {
     // The target settled onto the 100 m plateau, so the camera sits above it.
     expect(camera.altitude).toBeGreaterThan(100 + 2_000 * Math.sin(0.6) * 0.9);
     expect(view.credits[0]?.label).toBe('© OpenStreetMap contributors');
+    // Sun shadows cover the orbit target, sized to the 2 km view.
+    expect(viewerState.shadowQuality).toBe('high');
+    expect(viewerState.shadowRadius).toBeCloseTo(2_400, -1);
     expect(canvas.tabIndex).toBe(0);
     expect(canvas.style.touchAction).toBe('none');
     expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('keeps the orbit camera within the distance the terrain draws', async () => {
+    expect(earthOrbitMaxRange(60_000)).toBe(27_000);
+    expect(earthOrbitMaxRange(1_000)).toBe(2_000);
+    const { view } = await mount();
+    view.jumpTo({ latitude: 47.6, longitude: -122.33, range: 1_900_000 });
+    await pump(10);
+    // The widest performance tier draws 110 km of terrain.
+    expect(view.getCamera().range).toBeLessThanOrEqual(earthOrbitMaxRange(110_000));
+    expect(view.getCamera().range).toBeGreaterThan(2_000);
     view.dispose();
   });
 

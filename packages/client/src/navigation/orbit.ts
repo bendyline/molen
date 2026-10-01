@@ -78,8 +78,8 @@ export class OrbitController {
   private current: OrbitState;
   private flight: Flight | undefined;
   private clock = 0;
-  private readonly minRange: number;
-  private readonly maxRange: number;
+  private minRange: number;
+  private maxRange: number;
   private readonly minPitch: number;
   private readonly maxPitch: number;
   private readonly rotateSensitivity: number;
@@ -106,6 +106,26 @@ export class OrbitController {
   /** Whether a fly-to animation is running. */
   get flying(): boolean {
     return this.flight !== undefined;
+  }
+
+  /** The current camera distance limits, meters. */
+  get rangeLimits(): { minRange: number; maxRange: number } {
+    return { minRange: this.minRange, maxRange: this.maxRange };
+  }
+
+  /**
+   * Change the camera distance limits (omitted fields keep their values), for example when the
+   * distance a scene can draw changes. A camera beyond the new limits eases back inside them.
+   */
+  setRangeLimits(limits: { minRange?: number; maxRange?: number }): void {
+    const minRange = limits.minRange ?? this.minRange;
+    const maxRange = limits.maxRange ?? this.maxRange;
+    if (!(minRange > 0) || !Number.isFinite(minRange) || !(maxRange >= minRange))
+      throw new RangeError('Orbit range limits need 0 < minRange <= maxRange');
+    this.minRange = minRange;
+    this.maxRange = maxRange;
+    this.goal = this.clamp(this.goal);
+    if (this.flight !== undefined) this.flight.to = this.clamp(this.flight.to);
   }
 
   /** Jump to a framing immediately (fields omitted keep their values). */

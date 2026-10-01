@@ -176,7 +176,9 @@ movement trigger coherent grid-snapped rebases for every engine-owned object aut
 
 `terrainStreamBudgetForQuality('economy' | 'balanced' | 'high')` returns portable residency and
 concurrency budgets. `stream.stats()` reports decoded samples, geometry bytes, triangles, draw
-calls, instances, loading/failure counts, and evictions for live quality diagnostics.
+calls, instances, loading/failure counts, and evictions for live quality diagnostics. It walks
+every resident tile's objects to count them, so call it for diagnostics, not every frame:
+`stream.loading()` (tiles and layers loading now) and `stream.pressure()` are constant-time.
 
 ## 4. Screenshot it headlessly
 
@@ -295,14 +297,27 @@ function frame(position: [number, number, number]) {
 
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected
-descendant coverage is resident. `stream.stats()` adds selected/displayed counts, effective
+descendant coverage is resident. A selected tile that is not resident yet shows through its
+nearest cached ancestor, except where finer ground is already on screen over it, which stays until
+the tile arrives. When the warm cache has lost the intermediate levels, that ancestor can be far
+coarser than the view; it stands in only if it would not hide detail on screen elsewhere, and
+otherwise the new tile's patch waits briefly empty rather than the whole area dropping to the
+coarse tile. `stream.stats()` adds selected/displayed counts, effective
 screen-space error, displayed-level range, and leaf fallback count. Quality presets set explicit
 error, view-distance, concurrency, selection, and residency budgets. Include `direction` and
 `aspect` in each view update to reject tiles safely outside a guarded horizontal camera cone while
-retaining direction-independent coarse coverage to the configured distance. In-flight surface
+retaining direction-independent coarse coverage to the configured distance. `peripheralDegrees`
+widens that cone for ground only: tiles up to that many degrees past it stay selected at reduced
+detail (`peripheralDetail`, default 0.4, weighs their error) as bare terrain, without layers, so
+turning the camera reveals ground that is already there; layers build once the tile is in view. In-flight surface
 requests finish into a bounded warm cache instead of being restarted on every small camera turn;
 hidden cached tiles are evicted only when capacity is needed. Sparse descendants also share a
 bounded decoded-ancestor cache, avoiding repeated PNG decode/resample work while panning.
+
+With `shadows: true` every tile surface and layer mesh receives sun shadows, and layer meshes
+taller than `shadowCasterHeight` (default 1.5 m: buildings, trees, landmarks) cast them. A layer
+marks draped parts with `userData.shadowCaster = false` (inherited by their children; landcover,
+water and road surfaces are marked) and water with `userData.shadowReceiver = false`.
 
 `TerrainPyramidTileLayer` provides the same classification/hydrology/human-feature lifecycle over
 adaptive tiles. Its optional inclusive `minLevel`/`maxLevel` bounds keep expensive decoration off
@@ -361,6 +376,39 @@ and point in exactly the one descendant that holds its center, so nothing is cut
 ancestors, since one ancestor serves up to four children at a time. Layers created by
 `createTerrainPackageSemanticLayers` then reach the package's `maxLevel`; pass `overzoom: false`
 to stop them at the sidecar's levels.
+
+Basemaps also generalize buildings below their last zoom: Protomaps keeps almost no footprints
+below zoom 15, so a zoom-13 or zoom-14 feature tile shows streets and trees but no houses. A
+package can carry that last zoom separately, often only near where people look, as a building
+detail sidecar:
+
+```json
+"features": {
+  "source": { "kind": "pmtiles-set", "url": "https://tiles.example/archive-set.json" },
+  "encoding": "mvt",
+  "layers": ["water", "transportation", "building", "poi"],
+  "profile": "protomaps-basemap@1",
+  "buildingDetail": {
+    "source": { "kind": "pmtiles-set", "url": "https://tiles.example/hd/archive-set.json" },
+    "level": 15
+  }
+}
+```
+
+The human-feature layer then takes its buildings and places from the detail level for tiles up to
+two levels coarser (`buildingDetail: { maxDepth }` on `createTerrainPackageSemanticLayers`, or
+`false` to keep the generalized footprints); roads, water and land use stay as the feature tiles
+have them. `composeTerrainBuildingDetail` assembles a coarser tile from its detail descendants
+(4 or 16 tiles): a footprint seen by several descendants is matched by its source id and its
+clipped copies are unioned, so each building appears once, whole, cut exactly where a real tile
+at the coarser level with a proportionally narrower buffer would cut it. `buildingSourceLevel` on
+the composed tile tells renderers that narrower buffer, so tile-edge ownership still agrees between
+neighbours. Descendants the archive lacks keep the coarse tile's buildings in their part of the
+tile. `createBuildingDetailTerrainSemanticSource` wraps any feature source this way and keeps
+recently loaded detail tiles, since a tile and its children share them. Only the `building` and
+`poi` layers of detail tiles are decoded. The detail archive is optional: if it cannot be opened,
+`openTerrainPackageSemantics` reports `buildingDetailError` and the feature tiles carry on alone.
+Hosts with their own transport pass `buildingDetailArchive`.
 
 The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightSource` walks to the
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into

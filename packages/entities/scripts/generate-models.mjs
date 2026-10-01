@@ -165,6 +165,8 @@ function projectDocument(bundles) {
         note: 'Published molen entity asset and type vocabulary.',
       },
     ],
+    // Schema default, spelled out so this matches what updateProjectFile (asset import) writes.
+    packs: [],
     components: {},
     codegen: { out: 'gen/molen-types.ts' },
   };

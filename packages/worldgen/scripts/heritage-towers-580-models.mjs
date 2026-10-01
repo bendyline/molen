@@ -8,7 +8,6 @@ import {
   column,
   facade,
   face,
-  frame,
   tau,
   transform,
   triangle,

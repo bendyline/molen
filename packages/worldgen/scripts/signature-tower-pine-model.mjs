@@ -436,7 +436,7 @@ export function build70Pine(out, m) {
     const plan = clean(partPlan(m, p)),
       lo = 252 + (Number(p.tags.min_height) - 252) * scale,
       hi = 252 + (Number(p.tags.height) - 252) * scale;
-    for (const { a, b, len, n } of edges(plan)) {
+    for (const { a, b, n } of edges(plan)) {
       grid(
         out,
         [
@@ -467,7 +467,7 @@ export function build70Pine(out, m) {
       mast.reduce((s, p) => s + p[0], 0) / mast.length,
       mast.reduce((s, p) => s + p[1], 0) / mast.length,
     ];
-  const rings = [0, 3.3, 5.2, 9, 18, 26.5, 29.5656].map((h, i) =>
+  const rings = [0, 3.3, 5.2, 9, 18, 26.5, 29.5656].map((h) =>
     radialRing(
       spireBase + h,
       Math.max(0.032, 0.83 * (1 - h / 29.7)),

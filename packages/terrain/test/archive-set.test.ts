@@ -34,6 +34,12 @@ class MemorySource implements Source {
 
 const text = (value: string): Uint8Array => new TextEncoder().encode(value);
 
+/** Narrows a fixture lookup, failing with a named cause instead of a TypeError downstream. */
+function defined<T>(value: T | undefined, what: string): T {
+  if (value === undefined) throw new Error(`missing ${what}`);
+  return value;
+}
+
 /** A 2-level world split at level 1: base holds level 0, two archives hold level 1-2 quadrants. */
 function worldSet(): TerrainArchiveSetDescriptor {
   return {
@@ -95,12 +101,11 @@ describe('archive-set partitions and routing', () => {
   });
 
   it('leaves unowned cells uncovered and rejects double-claimed cells', () => {
-    const sparse = { ...worldSet(), archives: [{ ...worldSet().archives[0]!, partitions: '0' }] };
+    const west = defined(worldSet().archives[0], 'west archive');
+    const east = defined(worldSet().archives[1], 'east archive');
+    const sparse = { ...worldSet(), archives: [{ ...west, partitions: '0' }] };
     expect(createTerrainArchiveSetRouter(sparse).resolve(1, 0, 1)).toBeUndefined();
-    const overlapping = {
-      ...worldSet(),
-      archives: [worldSet().archives[0]!, { ...worldSet().archives[1]!, partitions: '1-2' }],
-    };
+    const overlapping = { ...worldSet(), archives: [west, { ...east, partitions: '1-2' }] };
     expect(() => createTerrainArchiveSetRouter(overlapping)).toThrow(/claimed by both/);
   });
 
@@ -129,7 +134,7 @@ describe('archive-set archive', () => {
       baseUrl: 'https://tiles.example/world/set.json',
       openArchive: (url, id) => {
         opened.push(url);
-        return new PMTiles(new MemorySource(id, memberBytes[id]!));
+        return new PMTiles(new MemorySource(id, defined(memberBytes[id], `${id} bytes`)));
       },
     });
 
@@ -151,7 +156,8 @@ describe('archive-set archive', () => {
     const archive = createTerrainArchiveSetArchive(worldSet(), {
       baseUrl: 'https://tiles.example/set.json',
       maxOpenArchives: 2,
-      openArchive: (_url, id) => new PMTiles(new MemorySource(id, memberBytes[id]!)),
+      openArchive: (_url, id) =>
+        new PMTiles(new MemorySource(id, defined(memberBytes[id], `${id} bytes`))),
     });
     await archive.getZxy(1, 0, 0);
     await archive.getZxy(1, 1, 0);
@@ -262,11 +268,13 @@ describe('archive-set archive', () => {
       const detail = await opened.source.load({ level: 1, x: 0, z: 1 }, signal);
       // The eastern level-1 cell has no archive: parent fallback crops the base tile.
       const fallback = await opened.source.load({ level: 1, x: 1, z: 0 }, signal);
-      const center = (tile: typeof coarse) =>
-        tile!.sampleHeight(
-          tile!.origin[0] + tile!.worldSize[0] / 2,
-          tile!.origin[1] + tile!.worldSize[1] / 2,
+      const center = (loaded: typeof coarse) => {
+        const tile = defined(loaded, 'loaded tile');
+        return tile.sampleHeight(
+          tile.origin[0] + tile.worldSize[0] / 2,
+          tile.origin[1] + tile.worldSize[1] / 2,
         );
+      };
       expect(center(coarse)).toBeCloseTo(150, 0);
       expect(center(detail)).toBeCloseTo(650, 0);
       expect(center(fallback)).toBeCloseTo(150, 0);

@@ -7,7 +7,6 @@ import {
   lerp,
   localOutline,
   mappedCap,
-  mappedSolid,
   partPlan,
   partsEvidence,
 } from './signature-tower-expansion-models.mjs';

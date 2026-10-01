@@ -60,6 +60,15 @@ Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
 given the sunlight comes from the same point, so lit faces agree with the glow in the sky. `fog`,
 `water`, `background` and the rest of `environment` (ambient light, tone mapping, exposure) follow.
+`ground` recolors the terrain package's bare-ground surface layers by name (for example
+`{ lowland: '#8b9e70' }`), and `landcover` sets landcover class colors (forest, grass, park,
+residential, commercial…) over the style pack's palette; an unlisted class falls back to a
+neutral olive.
+
+Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
+the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
+shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
+turns shadows off at its two lowest levels; `shadows: false` turns them off entirely.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -69,7 +78,10 @@ appears only on touch devices; pass `touchJoystick: 'always'` to show it everywh
 - **orbit** (default): the map camera from [camera navigation](navigation.md). `flyTo(target)`
   animates and `jumpTo(target)` moves at once. The target takes `latitude`, `longitude`, and
   optionally `range` in meters, `heading` (a compass bearing in radians) and `pitch` (radians of
-  tilt below the horizon).
+  tilt below the horizon). The camera stays within `earthOrbitMaxRange(viewDistance)` of its target
+  (45% of the current performance tier's terrain view distance, at least 2 km), so it cannot pull
+  back past where the scene still draws; a farther `range` is clamped, and the limit follows
+  adaptive quality.
 - **walk**: `setMode('walk')` drops a walker at the view center. It has capsule collision against
   terrain, buildings and props, WASD or the touch stick to move, mouse-look with pointer lock, and
   Space to jump.
@@ -181,7 +193,10 @@ const view = await mountEarthView({
 });
 ```
 
-The host can return `archives` in the result to fetch tiles from its own PMTiles service. Keep
+The host can return `archives` in the result to fetch tiles from its own PMTiles service
+(`elevation`, `landcover`, `features`, and `buildingDetail` for a package's finer building tier;
+see [terrain](terrain.md)). A building-detail archive that fails to open is reported as an error
+and the view carries on with the feature tiles' own footprints. Keep
 pack attribution visible through `view.credits`, which follows the active terrain source. Listen
 for `terrainchange` to refresh an attribution panel when the package changes. Direct jumps and
 completed flights resolve the destination immediately; manual panning rechecks the host source
@@ -278,9 +293,13 @@ model eviction. `build-copernicus-bridge-evidence.py` and the capture runner's
 neither capture set substitutes altered heights to make a bridge fit. These reports are research
 evidence and are excluded from the Earth runtime pack.
 
-If `replaceFootprint` is set, a nongeneralized mapped building is suppressed only when the
-anchor falls inside its polygon and the replacement model has loaded. Failed models keep the
-procedural building. An Earth pack without a placement document still loads.
+If `replaceFootprint` is set, a mapped building is suppressed only when the anchor falls inside
+its polygon and the replacement model has loaded. Failed models keep the procedural building.
+Generalized sources (Protomaps below zoom 15, and tiles overzoomed from them) merge neighboring
+footprints, so there the polygon is suppressed only when neither side exceeds the loaded model's
+horizontal extent by more than 1.6 times plus 12 meters; a larger polygon is a merged block of
+other buildings and keeps its procedural shell. An Earth pack without a placement document still
+loads.
 
 For unsurveyed orientation, `orientation: 'mapped'` requires an explicit
 `mapIdentity: { wikidata: 'Q…', maxDistance: 150 }`. The viewer admits that model only after a
@@ -320,8 +339,8 @@ uniformly scale native models, bounded from 0.2 to 5 times native dimensions; fo
 adjusts the three dimensions independently. Explicit source `direction`
 or compass bearings take priority; otherwise footprints use their longest axis and points
 default north. This default is an estimate, especially for rotatable turbine nacelles.
-Rules with `replaceFootprint: true` can also replace a nongeneralized footprint containing a
-matching POI, after the asset loads. This is useful when a windmill is a POI plus an unclassified
+Rules with `replaceFootprint: true` can also replace a footprint containing a matching POI,
+after the asset loads, under the same size rule for generalized footprints. This is useful when a windmill is a POI plus an unclassified
 building outline; the default leaves point features independent of building shells.
 
 The renderer admits at most 64 category models per tile and obeys each rule's smaller budget.
@@ -462,7 +481,28 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 - `view.credits` holds the package's required attributions, OpenStreetMap first with its link.
   Keep them visible whenever the view is.
 - `quality: 'auto'` adapts terrain budgets, building detail and pixel ratio to measured frame
-  times (`stats().qualityLevel`, 0-5). A preset pins the quality.
+  times (`stats().qualityLevel`, 0-5, with `stats().qualityReason`). A preset pins the quality.
+  It starts at `earthInitialQualityLevel()`: level 1 on touch devices and at 2 GiB or less, 2 at
+  4 GiB, otherwise 3, and climbs no higher than `maxQualityLevel` (default 3; above it buildings
+  switch to the high preset, which rebuilds them across the view). Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
+  reports GPU and CPU work per frame, so slow frames while tiles stream in lower the level only
+  when rendering itself is the cost; without GPU timing it goes by frame times alone. The view
+  first calibrates quickly, so a slow device settles within seconds. Once a level has held for
+  12 s it turns sticky, because a level change swaps resolution and detail across the view: down
+  after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
+  waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25
+  applies it at once.
+- Ground 20° past each side of the view stays loaded as bare terrain (the stream's
+  `peripheralDegrees`), so turning the camera reveals ground at once and its buildings and trees
+  follow.
+- Memory pressure (`stats().memoryPressure`) is the geometry on screen over `memoryBudget`, a
+  fixed per-device budget: `earthMemoryBudget()` gives 96 MiB per GiB the browser reports within
+  192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the
+  level steps down, and since stepping down selects fewer, coarser tiles, pressure falls rather
+  than cascading to the minimum. The terrain cache keeps at least the budget, so ground just left
+  is still warm when the view pans back.
+- `stats().worldgen` counts styled building generation since the current terrain stream started
+  (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
 - `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 

@@ -1,11 +1,9 @@
 /** Researched exterior reconstructions. Dimensioned sources take precedence over tourist summaries. */
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
-  archBay,
   column,
   deform,
   facade,
-  face,
   frame,
   tau,
   transform,
@@ -711,7 +709,7 @@ function buildKrakow(out) {
   const chx = 5.41,
     chz = 4.6;
   box(out, 'brick', [-chx, 43.04, -chz], [chx, 51.05, chz], brick);
-  for (const [a, half, z] of [
+  for (const [a, _half, z] of [
     [0, chx, chz],
     [Math.PI, chx, chz],
     [Math.PI / 2, chz, chx],

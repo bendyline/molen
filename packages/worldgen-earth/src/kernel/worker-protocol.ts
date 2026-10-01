@@ -20,6 +20,7 @@ import { createPlacesContent, type PlacesContent, type PlacesContentDocs } from 
 import { createRegionResolver, type RegionResolver } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
 import type { TileGeometry } from './semantic-adapter';
+import { worldgenBuildingCellSize } from './tile-budgets';
 import { generateWorldgenTileSteps, type WorldgenTileOutput } from './tile-generate';
 
 export interface WorldgenWorkerConfigure {
@@ -120,7 +121,10 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           output.generationMs = performance.now() - generationStart;
           const preparationStart = performance.now();
           if (output.buildings !== undefined)
-            output.buildingCells = prepareBuildingCells(output.buildings);
+            output.buildingCells = prepareBuildingCells(
+              output.buildings,
+              worldgenBuildingCellSize(request.geom.levelBelowMax),
+            );
           if (request.renderCellsOnly) delete output.buildings;
           output.preparationMs = performance.now() - preparationStart;
           const result: WorldgenWorkerResult = {

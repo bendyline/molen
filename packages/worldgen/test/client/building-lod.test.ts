@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import { createBuildingDetailLod } from '../../src/client/building-lod';
+import { createBuildingCellLod, createBuildingDetailLod } from '../../src/client/building-lod';
 import { ScreenSpaceLod } from '../../src/client/screen-space-lod';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { generateBuilding } from '../../src/kernel/building';
+import { prepareBuildingCells } from '../../src/kernel/building-cells';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 import { FLAT_GROUND, type MeshBuffers, type Vec2 } from '../../src/kernel/types';
 import { createTestPack } from '../helpers/pack';
@@ -39,23 +40,41 @@ function meshesAt(root: THREE.Group, detail: number): THREE.Mesh[] {
   return root.children.map((cell) => (cell as ScreenSpaceLod).levels[detail]?.object as THREE.Mesh);
 }
 
+/** Cell vertices decoded to the batch's coordinates (quantized cells carry a scale). */
 function verticesAt(root: THREE.Group, detail: number): number[] {
+  root.updateMatrixWorld(true);
+  const point = new THREE.Vector3();
   return meshesAt(root, detail).flatMap((mesh) =>
-    Array.from(mesh.geometry.index?.array ?? []).flatMap((index) =>
-      Array.from(mesh.geometry.getAttribute('position').array.slice(index * 3, index * 3 + 3)),
-    ),
+    Array.from(mesh.geometry.index?.array ?? []).flatMap((index) => {
+      point.fromBufferAttribute(mesh.geometry.getAttribute('position'), index);
+      point.applyMatrix4(mesh.matrixWorld);
+      return [point.x, point.y, point.z];
+    }),
   );
 }
 function sourceVertices(buffers: MeshBuffers, indices: readonly number[]): number[] {
   return indices.flatMap((index) => Array.from(buffers.positions.slice(index * 3, index * 3 + 3)));
 }
 
-// Compare whole oriented triangles, allowing only cell/group reordering.
-const sorted = (values: number[]): string[] => {
-  const triangles: string[] = [];
-  for (let i = 0; i < values.length; i += 9) triangles.push(values.slice(i, i + 9).join(','));
-  return triangles.sort();
+// Compare whole oriented triangles, allowing only cell/group reordering and quantization.
+const sorted = (values: number[]): number[][] => {
+  const triangles: number[][] = [];
+  for (let i = 0; i < values.length; i += 9) triangles.push(values.slice(i, i + 9));
+  const key = (t: number[]) => t.map((v) => Math.round(v * 10)).join(',');
+  return triangles.sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
 };
+function expectSameTriangles(actual: number[], expected: number[]): void {
+  const a = sorted(actual);
+  const b = sorted(expected);
+  expect(a.length).toBe(b.length);
+  // Cells store 16-bit positions: well under a millimeter for buildings this size.
+  const worst = a.reduce(
+    (max, triangle, i) =>
+      Math.max(max, ...triangle.map((v, k) => Math.abs(v - (b[i]?.[k] ?? Number.NaN)))),
+    0,
+  );
+  expect(worst).toBeLessThan(1e-3);
+}
 
 describe('building detail cells', () => {
   it('retains every structural face and material in compact cells with shared LOD attributes', () => {
@@ -82,20 +101,17 @@ describe('building detail cells', () => {
     );
     expect(root.children).toHaveLength(2);
     expect(root.children.every((cell) => cell instanceof ScreenSpaceLod)).toBe(true);
-    expect(sorted(verticesAt(root, 0))).toEqual(
-      sorted(sourceVertices(buffers, Array.from(inputIndices))),
-    );
-    expect(sorted(verticesAt(root, 1))).toEqual(
-      sorted(sourceVertices(buffers, Array.from(inputIndices))),
-    );
+    expectSameTriangles(verticesAt(root, 0), sourceVertices(buffers, Array.from(inputIndices)));
+    expectSameTriangles(verticesAt(root, 1), sourceVertices(buffers, Array.from(inputIndices)));
+    // The far level keeps walls, roofs, foundations and windows; trim and detail drop out.
     const structure = buffers.groups
-      .filter((group) => ['wall', 'roof', 'foundation'].includes(group.slot))
+      .filter((group) => ['wall', 'roof', 'foundation', 'window'].includes(group.slot))
       .flatMap((group) =>
         Array.from(buffers.indices.subarray(group.start, group.start + group.count)),
       );
     expect(structure.length).toBeGreaterThan(0);
     expect(structure.length).toBeLessThan(buffers.indices.length);
-    expect(sorted(verticesAt(root, 2))).toEqual(sorted(sourceVertices(buffers, structure)));
+    expectSameTriangles(verticesAt(root, 2), sourceVertices(buffers, structure));
 
     const allMeshes = [0, 1, 2].flatMap((detail) => meshesAt(root, detail));
     for (let cell = 0; cell < root.children.length; cell++) {
@@ -115,6 +131,14 @@ describe('building detail cells', () => {
         expect(
           (mesh.geometry.getAttribute('color') as THREE.InterleavedBufferAttribute).data.stride,
         ).toBe(4);
+        // WebGPU rejects vertex strides that are not a multiple of four bytes, and three.js
+        // widens unnormalized 16-bit attributes to 32 bits there; normalized data stays compact.
+        for (const name of ['position', 'normal', 'color']) {
+          const attribute = mesh.geometry.getAttribute(name) as THREE.InterleavedBufferAttribute;
+          expect(attribute.normalized, name).toBe(true);
+          expect((attribute.data.stride * attribute.array.BYTES_PER_ELEMENT) % 4, name).toBe(0);
+        }
+        expect(mesh.geometry.getAttribute('position').array).toBeInstanceOf(Int16Array);
       }
     }
     expect(new Set(allMeshes.map((mesh) => mesh.geometry.index?.array.buffer)).size).toBe(
@@ -156,12 +180,18 @@ describe('building detail cells', () => {
       for (const mesh of meshesAt(root, detail)) {
         const sphere = mesh.geometry.boundingSphere as THREE.Sphere;
         const box = mesh.geometry.boundingBox as THREE.Box3;
-        expect(sphere.radius).toBeLessThan(100);
+        expect(sphere.radius * mesh.scale.x).toBeLessThan(100);
+        const lod = mesh.parent as THREE.Object3D;
         for (const index of mesh.geometry.index?.array ?? []) {
           position.fromBufferAttribute(mesh.geometry.getAttribute('position'), index);
           expect(box.containsPoint(position)).toBe(true);
           expect(position.distanceTo(sphere.center)).toBeLessThanOrEqual(sphere.radius + 1e-6);
-          const expected = position.clone().add(root.position);
+          // World = root + cell center + quantized offset × the cell's uniform scale.
+          const expected = position
+            .clone()
+            .multiplyScalar(mesh.scale.x)
+            .add(lod.position)
+            .add(root.position);
           position.applyMatrix4(mesh.matrixWorld);
           expect(position.distanceTo(expected)).toBeLessThan(1e-6);
         }
@@ -197,6 +227,24 @@ describe('building detail cells', () => {
     disposeWorldgenObject(root);
     expect(disposals).toBe(6);
     expect(materialDisposals).toBe(0);
+    material.dispose();
+  });
+
+  it('wraps transferred cell buffers without copying, so a cache and the geometry share one copy', () => {
+    const material = new THREE.MeshStandardMaterial();
+    const [cell] = prepareBuildingCells(fixture(), 512);
+    if (cell === undefined) throw new Error('fixture produced no cells');
+    const lod = createBuildingCellLod(cell, { materialFor: () => material }, material, {
+      viewportHeight: 1_000,
+      maxPixelError: 1,
+    });
+    for (const level of lod.levels) {
+      const geometry = (level.object as THREE.Mesh).geometry;
+      expect(geometry.getAttribute('position').array).toBe(cell.positions);
+      expect(geometry.getAttribute('normal').array).toBe(cell.normals);
+      expect(geometry.getAttribute('color').array).toBe(cell.colors);
+      expect(geometry.getAttribute('uv').array).toBe(cell.uvs);
+    }
     material.dispose();
   });
 

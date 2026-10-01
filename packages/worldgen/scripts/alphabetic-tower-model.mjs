@@ -2,7 +2,7 @@
 
 import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
 import { annulus, face, tau, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';

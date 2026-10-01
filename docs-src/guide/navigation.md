@@ -48,7 +48,10 @@ zoom). Motion eases toward a goal, so every change feels smooth.
 `flyTo({ target, range, heading, pitch }, { durationMs })` animates to a framing. It rises
 mid-flight on long hops so the camera clears the scenery, and any direct input cancels it.
 `set(state)` jumps immediately, and `state` reads the current framing. The target settles onto the
-ground as finer terrain arrives, and the camera never dips below `minClearance`.
+ground as finer terrain arrives, and the camera never dips below `minClearance`. `minRange` and
+`maxRange` (default 20 m and 400 km) bound the distance; `setRangeLimits({ minRange, maxRange })`
+changes them later, for example when the distance a scene draws changes, and a camera outside the
+new limits eases back inside them. `rangeLimits` reads them.
 
 ## Fly
 

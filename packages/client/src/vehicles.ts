@@ -1,4 +1,4 @@
-import type { VehicleData, VehiclePlacement, VehicleSpec } from '@bendyline/molen-schema';
+import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import {

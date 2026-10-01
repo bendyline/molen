@@ -6,6 +6,7 @@
 
 import {
   AdaptiveQualityController,
+  type AdaptiveQualityReason,
   applyEnvironment,
   createViewer,
   type EnvironmentData,
@@ -44,6 +45,7 @@ import {
   createTerrainSurfaceWorkerBridge,
   createTerrainWaterMaterialAsync,
   setTerrainWaterTime,
+  type TerrainPyramidBudget,
   type TerrainPyramidStream,
   type TerrainPyramidTileLayer,
   type TerrainQualityPreset,
@@ -83,7 +85,13 @@ import {
 import { type EarthCredit, earthCredits } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
-import { earthPerformanceTier, earthPixelRatio, earthQualityLevel } from './performance';
+import {
+  earthInitialQualityLevel,
+  earthMemoryBudget,
+  earthPerformanceTier,
+  earthPixelRatio,
+  earthQualityLevel,
+} from './performance';
 import { EarthVehicles } from './vehicles';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
@@ -167,6 +175,13 @@ export interface EarthViewStyle {
   environment?: Partial<EnvironmentData>;
   /** Water color (default a muted teal). */
   water?: string;
+  /**
+   * Bare-ground colors by the terrain package's surface layer name (for example `soil`,
+   * `lowland`, `alpine`, `snow`), replacing the package's own.
+   */
+  ground?: Readonly<Record<string, string>>;
+  /** Landcover class colors (forest, grass, park, urban_area…) over the style pack's palette. */
+  landcover?: Readonly<Record<string, string>>;
 }
 
 /** A host-selected geographic data package for the current camera region. */
@@ -179,6 +194,8 @@ export interface EarthTerrainSource {
     elevation?: TerrainTileArchive;
     landcover?: TerrainTileArchive;
     features?: TerrainTileArchive;
+    /** Serves the package's `features.buildingDetail` level (finer building footprints). */
+    buildingDetail?: TerrainTileArchive;
   };
 }
 
@@ -189,6 +206,11 @@ export interface EarthViewOptions {
   sampleStructureTerrain?: StructureTerrainSampler;
   /** Shared sky/ground reflections for metal and glass. Defaults to true. */
   reflections?: boolean;
+  /**
+   * Sun shadows from buildings, trees and landmarks around what the camera frames (default
+   * true). Adaptive quality turns them off at its two lowest levels.
+   */
+  shadows?: boolean;
   canvas: HTMLCanvasElement;
   /** A fixed `molen/terrain-package@1` manifest. Omit when using `terrainSource`. */
   terrain?: TerrainPackageDescriptor;
@@ -204,6 +226,8 @@ export interface EarthViewOptions {
     elevation?: TerrainTileArchive;
     landcover?: TerrainTileArchive;
     features?: TerrainTileArchive;
+    /** Serves the package's `features.buildingDetail` level (finer building footprints). */
+    buildingDetail?: TerrainTileArchive;
   };
   /** Content packs; without them buildings are plain extrusions and there are no cars. */
   content?: EarthContent;
@@ -242,6 +266,17 @@ export interface EarthViewOptions {
   backend?: RendererBackendPreference;
   /** Highest device pixel ratio rendered (default 2). */
   maxPixelRatio?: number;
+  /**
+   * Terrain and layer geometry this device can keep on screen, bytes (default
+   * `earthMemoryBudget()`, from the browser's memory report). Memory pressure is measured
+   * against it, and the terrain cache keeps at least this much.
+   */
+  memoryBudget?: number;
+  /**
+   * Highest level `quality: 'auto'` climbs to (0-5, default 3, Balanced). Above it buildings
+   * switch to the high preset, which rebuilds them across the view for little visible gain.
+   */
+  maxQualityLevel?: number;
   /** Cancels the mount while it is still starting. */
   signal?: AbortSignal;
   /** Tile, layer and content failures (the view keeps running on what loaded). */
@@ -265,6 +300,10 @@ export interface EarthViewStats {
   frames: number;
   /** Adaptive performance level (0-5). */
   qualityLevel: number;
+  /** Why adaptive quality last changed level, once it has. */
+  qualityReason?: AdaptiveQualityReason;
+  /** Displayed terrain and layer bytes over the level's resident budget; above 1 lowers quality. */
+  memoryPressure: number;
   displayedTiles: number;
   loadingTiles: number;
   failedTiles: number;
@@ -275,6 +314,11 @@ export interface EarthViewStats {
   frameLatitude: number;
   /** Ambient life counts, when it is on. */
   ambient?: EarthAmbientStats;
+  /**
+   * Building generation since the current terrain stream started, when content packs are
+   * loaded: tiles generated, buildings drawn as geometry, and instanced stand-ins.
+   */
+  worldgen?: { tiles: number; buildings: number; standIns: number };
 }
 
 export interface EarthView {
@@ -321,10 +365,52 @@ export interface EarthView {
 }
 
 const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
+/** Degrees past the view where ground stays built at reduced detail, covering a quick turn. */
+const PERIPHERAL_DEGREES = 20;
+/** Error weight of that band: roughly a level coarser than the view beside it. */
+const PERIPHERAL_DETAIL = 0.4;
+/** The package with its bare-ground surface layers recolored by name (others untouched). */
+function withGroundColors(
+  pkg: TerrainPackageDescriptor,
+  ground: Readonly<Record<string, string>> | undefined,
+): TerrainPackageDescriptor {
+  const layers = pkg.surface?.layers;
+  if (ground === undefined || layers === undefined) return pkg;
+  return {
+    ...pkg,
+    surface: {
+      ...pkg.surface,
+      layers: layers.map((layer) =>
+        ground[layer.name] !== undefined
+          ? { ...layer, color: ground[layer.name] as string }
+          : layer,
+      ),
+    },
+  };
+}
+
+/** How long a level must hold before adaptive quality turns sticky, ms. */
+const QUALITY_CALIBRATION_MS = 12_000;
+/** After calibration: down after sustained overload, up after long headroom, changes far apart. */
+const STICKY_QUALITY = { decreaseDelayMs: 2_500, increaseDelayMs: 20_000, cooldownMs: 6_000 };
+/** A quality level change waits until the camera has been still this long, ms... */
+const QUALITY_SETTLE_MS = 600;
+/** ...or has waited this long, ms. */
+const QUALITY_HOLD_MAX_MS = 4_000;
+/** Memory pressure at which a level change applies at once, moving or not. */
+const URGENT_MEMORY_PRESSURE = 1.25;
 /** Re-anchor the metric frame once the view is this far (degrees latitude) from it. */
 const REANCHOR_DEGREES = 1;
 /** Recheck a host's regional source after roughly five kilometers of manual panning. */
 const SOURCE_CHECK_DEGREES = 0.05;
+
+/**
+ * How far back the orbit camera may pull for a terrain view distance, meters. Much past half the
+ * view distance the ground it looks at sinks into haze, and past the view distance nothing draws.
+ */
+export function earthOrbitMaxRange(viewDistance: number): number {
+  return Math.max(2_000, viewDistance * 0.45);
+}
 const DEFAULT_ENVIRONMENT: EnvironmentData = {
   ambient: { sky: '#d7eaf2', ground: '#283b32', intensity: 0.48 },
   sun: { direction: [-6, 10, 4], color: '#fff0ce', intensity: 2.05 },
@@ -400,11 +486,40 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   const report =
     options.onError ?? ((error, context) => console.warn(`[molen-earth] ${context}`, error));
   const automatic = (options.quality ?? 'auto') === 'auto';
-  let level = automatic ? 3 : earthQualityLevel(options.quality as TerrainQualityPreset);
+  let level = automatic
+    ? earthInitialQualityLevel()
+    : earthQualityLevel(options.quality as TerrainQualityPreset);
   let tier = earthPerformanceTier(level);
   const quality = (): TerrainQualityPreset =>
     automatic ? tier.quality : (options.quality as TerrainQualityPreset);
   const maxPixelRatio = options.maxPixelRatio ?? 2;
+  const memoryBudget = options.memoryBudget ?? earthMemoryBudget();
+  if (!(memoryBudget > 0) || !Number.isFinite(memoryBudget))
+    throw new RangeError('memoryBudget must be a positive number of bytes');
+  // Ground just left must stay warm up to the device budget, whatever the level: a smaller cache
+  // re-streams it on every pan, and loses the intermediate levels that bridge a refinement.
+  // Ground a little past the view stays loaded as bare terrain, so turning the camera reveals
+  // ground that is already there; its buildings and trees follow once it is in view.
+  const terrainBudget = (): TerrainPyramidBudget => {
+    const base = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
+    return {
+      ...base,
+      peripheralDegrees: PERIPHERAL_DEGREES,
+      peripheralDetail: PERIPHERAL_DETAIL,
+      maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
+      maxResidentTiles: Math.max(
+        base.maxResidentTiles,
+        Math.min(512, Math.round(memoryBudget / (2 * 1024 * 1024))),
+      ),
+    };
+  };
+  // Sun shadows: high-resolution at the Balanced level and above, medium below that, and off at
+  // the two lowest levels, where the extra shadow pass costs more than it shows.
+  const shadowsOn = options.shadows ?? true;
+  const shadowQuality = (): 'off' | 'medium' | 'high' =>
+    !shadowsOn ? 'off' : level >= 3 ? 'high' : level >= 2 ? 'medium' : 'off';
+  const worldgenCacheBytes = (): number =>
+    Math.max(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget / 4);
   const viewport = (): [number, number] => [
     Math.max(1, canvas.clientWidth),
     Math.max(1, canvas.clientHeight),
@@ -565,6 +680,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           content?.worldgen !== undefined
             ? createEarthWorldgen({
                 ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+                ...(options.style?.landcover !== undefined
+                  ? { landcoverColors: options.style.landcover }
+                  : {}),
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -597,6 +715,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 : {}),
               ...(selected.archives?.features !== undefined
                 ? { featuresArchive: selected.archives.features }
+                : {}),
+              ...(selected.archives?.buildingDetail !== undefined
+                ? { buildingDetailArchive: selected.archives.buildingDetail }
                 : {}),
               waterLayer: {
                 visible: true,
@@ -631,6 +752,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })(),
             });
             layers = semantic.layers;
+            // Finer building footprints are optional: without them the feature tiles' own stay.
+            if (semantic.semantics.buildingDetailError !== undefined)
+              report(semantic.semantics.buildingDetailError, 'building detail');
           } catch (error) {
             // Bare terrain still renders; semantic sidecars are optional by contract.
             report(error, 'semantic layers');
@@ -638,31 +762,35 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         }
         const elevationWorker = options.workers?.elevation?.();
         if (elevationWorker !== undefined) parts.push(() => elevationWorker.terminate());
-        const budget = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
+        const budget = terrainBudget();
         const [viewWidth, viewHeight] = viewport();
-        const opened = await createTerrainPackagePyramidStream(pkg, {
-          ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
-          ...(selected.archives?.elevation !== undefined
-            ? { archive: selected.archives.elevation }
-            : {}),
-          frame,
-          ...budget,
-          ...(elevationWorker !== undefined ? { elevationWorker } : {}),
-          admission: renderer.admission,
-          prepareObject: (object, prepareSignal, parent) =>
-            renderer.prepareObject(object, prepareSignal, parent),
-          createTileGroup: () => renderer.createRenderGroup(),
-          morphMilliseconds: 180,
-          layers,
-          initialView: {
-            position: view.position,
-            verticalFov: VERTICAL_FOV,
-            viewportHeight: viewHeight,
-            direction: view.direction,
-            aspect: viewWidth / viewHeight,
+        const opened = await createTerrainPackagePyramidStream(
+          withGroundColors(pkg, options.style?.ground),
+          {
+            ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
+            ...(selected.archives?.elevation !== undefined
+              ? { archive: selected.archives.elevation }
+              : {}),
+            frame,
+            ...budget,
+            ...(elevationWorker !== undefined ? { elevationWorker } : {}),
+            admission: renderer.admission,
+            prepareObject: (object, prepareSignal, parent) =>
+              renderer.prepareObject(object, prepareSignal, parent),
+            createTileGroup: () => renderer.createRenderGroup(),
+            morphMilliseconds: 180,
+            shadows: shadowsOn,
+            layers,
+            initialView: {
+              position: view.position,
+              verticalFov: VERTICAL_FOV,
+              viewportHeight: viewHeight,
+              direction: view.direction,
+              aspect: viewWidth / viewHeight,
+            },
+            onError: (error, context) => report(error, `${context.layerId ?? 'elevation'} tile`),
           },
-          onError: (error, context) => report(error, `${context.layerId ?? 'elevation'} tile`),
-        });
+        );
         const stream = opened.stream;
         parts.push(() => {
           stream.object.removeFromParent();
@@ -752,12 +880,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ...(target.pitch !== undefined ? { pitch: target.pitch } : {}),
       };
     };
-    const orbit = new OrbitController({
-      ...orbitTarget(options.camera),
-      range: options.camera.range ?? 3_000,
-      heading: options.camera.heading ?? 0,
-      pitch: options.camera.pitch ?? 0.6,
-    });
+    const orbit = new OrbitController(
+      {
+        ...orbitTarget(options.camera),
+        range: options.camera.range ?? 3_000,
+        heading: options.camera.heading ?? 0,
+        pitch: options.camera.pitch ?? 0.6,
+      },
+      {
+        maxRange: earthOrbitMaxRange(
+          (automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality())).viewDistance,
+        ),
+      },
+    );
     let pose = orbit.update(0, input.read(0), environment);
     stack = await createStack(frameLatitude, pose);
     disposers.push(() => stack?.dispose());
@@ -1108,19 +1243,33 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       aircraft.view = 'chase';
     };
 
-    // Adaptive quality.
-    const controller = new AdaptiveQualityController({ initialLevel: level });
+    // Adaptive quality. The view first calibrates with the controller's quick defaults, so a slow
+    // device settles on a level it can hold within seconds. Once a level has held for
+    // QUALITY_CALIBRATION_MS it turns sticky: every change swaps resolution and detail across the
+    // whole view, so later ones need sustained overload (not one burst of streaming while the
+    // camera turns) or a long spell of headroom.
+    const maxQualityLevel = Math.max(0, Math.min(5, Math.floor(options.maxQualityLevel ?? 3)));
+    if (automatic) level = Math.min(level, maxQualityLevel);
+    let controller = new AdaptiveQualityController({
+      initialLevel: level,
+      maxLevel: maxQualityLevel,
+    });
+    let calibrated = false;
+    let levelSince = performance.now();
+    let qualityReason: AdaptiveQualityReason | undefined;
     const applyTier = (): void => {
       tier = earthPerformanceTier(level);
       lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;
       const current = stack;
       if (current !== undefined) {
-        const budget = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
-        current.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
+        const budget = terrainBudget();
+        current.stream.setBudget(budget);
         current.viewDistance = budget.viewDistance;
+        renderer.setShadowQuality(shadowQuality());
+        orbit.setRangeLimits({ maxRange: earthOrbitMaxRange(budget.viewDistance) });
         current.worldgen?.setQuality(quality());
         current.ambient?.setBudget(ambientBudget());
-        current.worldgen?.setCacheBudget(automatic ? tier.cacheBytes : 192 * 1024 * 1024);
+        current.worldgen?.setCacheBudget(worldgenCacheBytes());
         void current.surface
           .setOptions({
             style: 'modern',
@@ -1245,6 +1394,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let lastEmitted = '';
     let bakingFor: EarthWorldgen | undefined;
     let frameHandle = 0;
+    // A level change is held while the camera moves, since applying one rebuilds detail across
+    // the view.
+    // Frame work, where the browser can time the GPU: with both GPU and CPU work known, slow
+    // frames while tiles stream in lower quality only when rendering itself is the cost. Without
+    // GPU timing, CPU work alone would hide a GPU-bound device's overload, so neither is sent.
+    const gpuTimer = automatic ? renderer.createGpuTimer?.() : undefined;
+    disposers.push(() => gpuTimer?.dispose());
+    let workMs = 0;
+    let heldLevel: number | undefined;
+    let heldReason: AdaptiveQualityReason | undefined;
+    let heldSince = 0;
+    let movedAt = Number.NEGATIVE_INFINITY;
+    let lastPose = pose;
 
     const orbitFrame = (dt: number, frameInput: NavigationInput): NavigationPose => {
       const wasFlying = orbit.flying;
@@ -1411,6 +1573,38 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       disposers.push(() => audio?.dispose());
     }
 
+    // The square the sun's shadow covers: around the orbit target and sized to the view, or a
+    // little ahead of the walker, car or aircraft, where most of the frame is.
+    const shadowFocus = (
+      current: NavigationPose,
+    ): { center: [number, number, number]; radius: number } => {
+      if (mode === 'orbit' || pending !== undefined) {
+        const state = orbit.state;
+        return {
+          center: [state.target[0], state.target[1], state.target[2]],
+          radius: Math.min(2_500, Math.max(150, state.range * 1.2)),
+        };
+      }
+      const [x, y, z] = current.position;
+      const ground = groundHeight(x, z) ?? y;
+      const radius =
+        mode === 'walk'
+          ? 160
+          : mode === 'drive'
+            ? 280
+            : Math.min(2_500, Math.max(300, (y - ground) * 2));
+      const forward = Math.hypot(current.direction[0], current.direction[2]) || 1;
+      const reach = radius * 0.5;
+      return {
+        center: [
+          x + (current.direction[0] / forward) * reach,
+          ground,
+          z + (current.direction[2] / forward) * reach,
+        ],
+        radius,
+      };
+    };
+
     const frame = (now: number): void => {
       frameHandle = requestAnimationFrame(frame);
       const frameMs = now - last;
@@ -1418,16 +1612,46 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       last = now;
       const current = stack;
       const frameInput = input.read(dt);
+      const workStart = performance.now();
+      const gpuMs = gpuTimer?.poll();
       if (automatic && current !== undefined) {
-        const stats = current.stream.stats();
+        // stream.stats() walks every tile's objects; per frame, only the constant-time reads.
+        const loading = current.stream.loading();
+        const memoryPressure = current.stream.pressure().displayedBytes / memoryBudget;
         const change = controller.sample(frameMs, {
           active: !document.hidden,
-          loading: stats.loading > 0 || stats.loadingLayers > 0,
-          memoryPressure: current.stream.pressure().displayedByteRatio,
+          loading: loading.tiles > 0 || loading.layers > 0,
+          memoryPressure,
+          ...(gpuTimer !== undefined && workMs > 0 ? { cpuFrameMs: workMs } : {}),
+          ...(gpuMs !== undefined ? { gpuFrameMs: gpuMs } : {}),
         });
         if (change !== undefined) {
-          level = change.level;
+          if (heldLevel === undefined) heldSince = now;
+          heldLevel = change.level;
+          heldReason = change.reason;
+        }
+        if (
+          heldLevel !== undefined &&
+          (now - movedAt >= QUALITY_SETTLE_MS ||
+            now - heldSince >= QUALITY_HOLD_MAX_MS ||
+            memoryPressure > URGENT_MEMORY_PRESSURE)
+        ) {
+          level = heldLevel;
+          qualityReason = heldReason;
+          heldLevel = undefined;
+          levelSince = now;
           applyTier();
+        } else if (
+          !calibrated &&
+          heldLevel === undefined &&
+          now - levelSince >= QUALITY_CALIBRATION_MS
+        ) {
+          controller = new AdaptiveQualityController({
+            initialLevel: level,
+            maxLevel: maxQualityLevel,
+            ...STICKY_QUALITY,
+          });
+          calibrated = true;
         }
       }
       if (pending !== undefined && current !== undefined) completeEntry(current, now);
@@ -1480,6 +1704,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (id !== undefined) emit('markerclick', { id });
       }
       markers.update(pose.position);
+      if (shadowsOn) renderer.setShadowFocus(shadowFocus(pose));
       viewer.setCamera({ position: pose.position, lookAt: pose.lookAt });
       if (audio !== undefined) {
         if (audioStack !== current) {
@@ -1499,8 +1724,24 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       const origin = renderer.getWorldOrigin();
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
+      const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
+      if (timing) gpuTimer?.end();
       frames++;
+      workMs = performance.now() - workStart;
+      if (
+        Math.hypot(
+          pose.position[0] - lastPose.position[0],
+          pose.position[1] - lastPose.position[1],
+          pose.position[2] - lastPose.position[2],
+        ) > 0.05 ||
+        pose.direction[0] * lastPose.direction[0] +
+          pose.direction[1] * lastPose.direction[1] +
+          pose.direction[2] * lastPose.direction[2] <
+          0.99999
+      )
+        movedAt = now;
+      lastPose = pose;
       const worldgen = current?.worldgen;
       if (worldgen !== undefined && worldgen !== bakingFor) {
         bakingFor = worldgen;
@@ -1608,6 +1849,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           mode,
           frames,
           qualityLevel: level,
+          ...(qualityReason !== undefined ? { qualityReason } : {}),
+          memoryPressure: (stack?.stream.pressure().displayedBytes ?? 0) / memoryBudget,
           displayedTiles: streamStats?.displayed ?? 0,
           loadingTiles: (streamStats?.loading ?? 0) + (streamStats?.loadingLayers ?? 0),
           failedTiles: (streamStats?.failed ?? 0) + (streamStats?.failedLayers ?? 0),
@@ -1617,6 +1860,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           triangles: renderStats.triangles,
           frameLatitude,
           ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
+          ...(stack?.worldgen !== undefined
+            ? (() => {
+                const generated = (stack.worldgen as EarthWorldgen).stats();
+                return {
+                  worldgen: {
+                    tiles: generated.tiles,
+                    buildings: generated.buildings,
+                    standIns: generated.boxes,
+                  },
+                };
+              })()
+            : {}),
         };
       },
       get ambientEnabled() {

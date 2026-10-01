@@ -29,14 +29,9 @@ const livery = mat('airliner-livery', '#1f4f8c', 0.2, 0.4);
 const belly = mat('airliner-belly', '#b9bfc4', 0.3, 0.45);
 const metal = mat('engine-metal', '#8f989e', 0.8, 0.3);
 const glass = mat('vehicle-glass', '#26343c', 0.1, 0.12, { transparent: true, opacity: 0.82 });
-const trim = mat('trim-charcoal', '#22272b', 0.05, 0.7);
 const rubber = mat('rubber', '#141718', 0, 0.92);
-const rim = mat('wheel-rim', '#9aa2a6', 0.7, 0.35);
-const lamp = mat('lamp-lens', '#fff4d6', 0, 0.3, { emissive: '#fff4d6', emissiveIntensity: 0.6 });
-const tail = mat('tail-lens', '#c9302c', 0, 0.3, { emissive: '#8a1512', emissiveIntensity: 0.5 });
 const dark = mat('fan-dark', '#1c2126', 0.3, 0.6);
 
-const L = 38.0;
 const SPAN = 35.8;
 const R = 1.95; // fuselage radius
 

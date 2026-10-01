@@ -38,6 +38,8 @@ export interface BackendCaptureStats {
   fogFar: number | undefined;
   toneMapping: number;
   gpuValidationErrors: string[];
+  /** Position array types of quantized building cells after upload (three.js swaps widened ones). */
+  cellPositionArrays: string[];
 }
 
 declare global {
@@ -207,10 +209,15 @@ function stats(): BackendCaptureStats {
   let skinnedMeshes = 0;
   let instancedMeshes = 0;
   let shadowCasters = 0;
+  const cellPositionArrays = new Set<string>();
   renderer.worldRoot.traverse((object) => {
     if ((object as THREE.SkinnedMesh).isSkinnedMesh) skinnedMeshes++;
     if ((object as THREE.InstancedMesh).isInstancedMesh) instancedMeshes++;
     if ((object as THREE.Mesh).isMesh && object.castShadow) shadowCasters++;
+    if ((object as THREE.Mesh).isMesh && object.name.startsWith('worldgen:buildings:'))
+      cellPositionArrays.add(
+        (object as THREE.Mesh).geometry.getAttribute('position').array.constructor.name,
+      );
   });
   const timer = renderer.createGpuTimer();
   const timerAvailable = timer !== undefined;
@@ -233,6 +240,7 @@ function stats(): BackendCaptureStats {
     fogFar: renderer.scene.fog instanceof THREE.Fog ? renderer.scene.fog.far : undefined,
     toneMapping: renderer.three.toneMapping,
     gpuValidationErrors: [...gpuValidationErrors],
+    cellPositionArrays: [...cellPositionArrays],
   };
 }
 

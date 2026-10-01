@@ -4,8 +4,11 @@
 pins, labels you render to images, waypoints. A marker keeps a constant on-screen size. It sits on
 the ground, re-snapping as finer terrain streams in, hides behind hills and buildings through the
 depth test, and can fade with distance. With `declutter: true` a pin whose on-screen footprint
-overlaps a more important one is hidden: higher `priority` first, then pins already on screen (so
-they do not flicker as the camera moves), then the nearest. The Earth view declutters its markers. They ignore the scene's fog, so distance haze never washes a
+overlaps a more important one is hidden: higher `priority` first, then pins already on screen, then
+the nearest. A pin on screen keeps its place until the inner part of its footprint is covered,
+while a newcomer needs its whole footprint clear, so pins do not flicker as the camera moves. Pins
+fade in and out over `fadeMs` (default 180; 0 pops), and a pin fading out no longer takes taps.
+The Earth view declutters its markers. They ignore the scene's fog, so distance haze never washes a
 pin into a blank card; the layer's own `fade` handles distance. Markers are budgeted so the nearest or most important ones
 draw, and `pick(x, y)` resolves a click or tap to a marker id.
 

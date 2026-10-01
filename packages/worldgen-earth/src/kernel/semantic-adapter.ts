@@ -35,7 +35,7 @@ import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
 import { residentialTreePolygons } from './residential-trees';
-import { analyzeTileEdge, PROTOMAPS_TILE_BUFFER } from './tile-edges';
+import { analyzeTileEdge, buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
 
 export interface TileGeometry {
   level: number;
@@ -171,7 +171,7 @@ export function semanticTileToBatch(
   geom: TileGeometry,
   options: SemanticAdapterOptions,
 ): SemanticBatch {
-  const buffer = options.buffer ?? PROTOMAPS_TILE_BUFFER;
+  const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;
   const tileBounds: [number, number, number, number] = [
     geom.originX,

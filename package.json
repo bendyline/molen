@@ -25,7 +25,7 @@
     "pretest:unit": "pnpm -r build",
     "test:unit": "pnpm -r --workspace-concurrency=1 --no-bail test:unit",
     "test": "pnpm test:unit",
-    "pretest:golden": "pnpm -r --filter '!@bendyline/molen-docs-site' build",
+    "pretest:golden": "pnpm -r --filter '!molen' --filter '!@bendyline/molen-docs-site' build",
     "test:golden": "pnpm -r --workspace-concurrency=1 --no-bail test:golden",
     "verify": "pnpm assets:check && pnpm assets:test && pnpm lint && pnpm typecheck && pnpm source:check && pnpm docs:check && pnpm test:unit && pnpm audit:prod",
     "all": "pnpm install && pnpm assets:fetch && pnpm build && pnpm verify && pnpm smoke:packed && pnpm docs:site:check && pnpm docs:site:build && pnpm exec playwright install chromium && pnpm test:golden",

@@ -1,11 +1,28 @@
 import { describe, expect, it } from 'vitest';
 import {
+  earthInitialQualityLevel,
+  earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
 } from '../src/client/performance';
 
+const MIB = 1024 * 1024;
+
 describe('earth device detail policy', () => {
+  it('sizes a fixed memory budget and a starting level from what the device reports', () => {
+    expect(earthMemoryBudget({ deviceMemory: 8 })).toBe(768 * MIB);
+    expect(earthMemoryBudget({ deviceMemory: 4 })).toBe(384 * MIB);
+    expect(earthMemoryBudget({ deviceMemory: 0.5 })).toBe(192 * MIB);
+    expect(earthMemoryBudget({ touch: true })).toBe(256 * MIB);
+    expect(earthMemoryBudget({})).toBe(512 * MIB);
+    expect(earthInitialQualityLevel({ touch: true, deviceMemory: 8 })).toBe(1);
+    expect(earthInitialQualityLevel({ deviceMemory: 2 })).toBe(1);
+    expect(earthInitialQualityLevel({ deviceMemory: 4 })).toBe(2);
+    expect(earthInitialQualityLevel({ deviceMemory: 8 })).toBe(3);
+    expect(earthInitialQualityLevel({})).toBe(3);
+  });
+
   it('coordinates six monotonically increasing detail and working-set budgets', () => {
     const tiers = Array.from({ length: 6 }, (_, level) => earthPerformanceTier(level));
     expect(new Set(tiers.map((tier) => tier.name)).size).toBe(6);

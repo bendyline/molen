@@ -1,14 +1,6 @@
 /** Researched current exteriors. Dimensions are metres; photographs are references only. */
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
-import {
-  annulus,
-  archBay,
-  face,
-  frame,
-  tau,
-  transform,
-  triangle,
-} from './heritage-tower-detail-mesh.mjs';
+import { annulus, archBay, face, tau, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
 function buildTughrul(out) {

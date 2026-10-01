@@ -81,6 +81,8 @@ export interface CreateEarthWorldgenOptions {
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
   interiors?: boolean;
+  /** Landcover class colors (forest, grass, park, urban_area…) over the style pack's palette. */
+  landcoverColors?: Readonly<Record<string, string>>;
   /** Distance LOD for street props and landmarks (default true). */
   propLod?: boolean;
   /** Per-tile generation telemetry. */
@@ -194,6 +196,9 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     lodPolicy: options.lodPolicy,
     interiors: options.interiors ?? true,
     propLod: options.propLod ?? true,
+    ...(options.landcoverColors !== undefined
+      ? { landcover: { landcoverColors: options.landcoverColors } }
+      : {}),
     ...(options.onTileStats !== undefined ? { onTileStats: options.onTileStats } : {}),
     ...(workers.landcover !== undefined
       ? { landcoverGenerator: createTerrainLandcoverWorkerBridge(workers.landcover()) }

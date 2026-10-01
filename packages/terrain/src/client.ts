@@ -53,6 +53,7 @@ export {
   createTerrainPackagePyramidStream,
   createTerrainPackageSemanticSource,
   createTerrainPackageStream,
+  type OpenTerrainPackageBuildingDetail,
   type OpenTerrainPackageElevation,
   type OpenTerrainPackageOptions,
   type OpenTerrainPackagePyramid,

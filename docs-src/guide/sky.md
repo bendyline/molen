@@ -88,6 +88,11 @@ When enabled, sky lighting replaces `environment.ambient` and `environment.sun`.
 instead. Sunlight fades around the horizon; moonlight depends on altitude, phase and darkness.
 Only the Sun casts a sky shadow in phase 1. Shadows also require `environment.shadows` and
 scene geometry that casts/receives shadows; their local frustum follows the camera.
+`renderer.setShadowQuality('off' | 'low' | 'medium' | 'high')` turns sun shadows on or off at a
+map resolution without rebuilding the environment, and `renderer.setShadowFocus({ center,
+radius })` aims them at a point in absolute world coordinates covering ±`radius` meters — for a
+large world, what the camera frames rather than the camera itself. The box moves in whole
+shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores the default.
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.

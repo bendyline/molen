@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   BOX_PLACEMENT_SET_ID,
+  GABLE_BOX_PLACEMENT_SET_ID,
   generateWorldgenBatch,
   generateWorldgenBatchSteps,
   worldgenTransferables,
@@ -175,6 +176,51 @@ describe('batch generation', () => {
     expect(
       generateWorldgenBatch({ buildings: requests(), pack, tier: 99 }).stats.buildingsBoxed,
     ).toBe(8);
+  });
+
+  it('falls back to walls and roof, then a gabled stand-in, before a plain box', () => {
+    const houses = requests().map((request) => ({ ...request, labels: ['house'], levels: 2 }));
+    const simplified = generateWorldgenBatch({
+      buildings: houses,
+      pack,
+      budgets: { detailedCount: 0 },
+    });
+    const structural = generateWorldgenBatch({ buildings: houses, pack, tier: 2 });
+    expect(structural.stats.vertices).toBeLessThan(simplified.stats.vertices);
+    // Room for every house's walls and roof, but not every facade.
+    const squeezed = generateWorldgenBatch({
+      buildings: houses,
+      pack,
+      budgets: {
+        detailedCount: 0,
+        maxBuildingVertices: Math.floor(
+          (structural.stats.vertices + simplified.stats.vertices) / 2,
+        ),
+      },
+    });
+    expect(squeezed.stats.buildingsBoxed).toBe(0);
+    expect(squeezed.stats.buildingsRendered).toBe(houses.length);
+    expect(squeezed.records.map((record) => record.roof)).toEqual(
+      simplified.records.map((record) => record.roof),
+    );
+    // No room at all: pitched houses stand in as gabled boxes, ridged along their longer side.
+    const exhausted = generateWorldgenBatch({
+      buildings: houses,
+      pack,
+      budgets: { maxBuildingVertices: 0 },
+    });
+    expect(exhausted.stats.buildingsBoxed).toBe(houses.length);
+    const gabled = exhausted.placements.find((set) => set.setId === GABLE_BOX_PLACEMENT_SET_ID);
+    expect(gabled?.modelRef).toBe('builtin:box.gable');
+    const pitched = simplified.records.filter((record) =>
+      ['gable', 'hip', 'pyramid', 'gambrel', 'mansard'].includes(record.roof),
+    ).length;
+    expect(pitched).toBeGreaterThan(0);
+    expect(gabled?.count).toBe(pitched);
+    for (let index = 0; index < (gabled?.count ?? 0); index++) {
+      const offset = index * PLACEMENT_STRIDE;
+      expect(gabled?.data[offset + 4]).toBeGreaterThanOrEqual(gabled?.data[offset + 6] as number);
+    }
   });
 
   it('skips degenerate outlines and reports empty batches', () => {

@@ -6,8 +6,7 @@ import { box } from './structure-mesh.mjs';
 
 const stone = [0.76, 0.65, 0.43],
   pale = [0.83, 0.74, 0.55],
-  old = [0.55, 0.48, 0.32],
-  dark = [0.055, 0.055, 0.04];
+  old = [0.55, 0.48, 0.32];
 const scale = 0.052530115464,
   entry = 3.3,
   roof = 19.3,
@@ -75,7 +74,7 @@ function part(out, s) {
   if (!s.center) return core;
   return {
     ...core,
-    addQuad(slot, ref, ps, _normal, _uv, color) {
+    addQuad(slot, _ref, ps, _normal, _uv, color) {
       const nu = Math.max(
         1,
         Math.ceil(Math.max(Math.abs(ps[1][0] - ps[0][0]), Math.abs(ps[2][0] - ps[3][0])) / 0.15),

@@ -291,9 +291,10 @@ function buildMichael(out) {
   // Original gilded Michael group: armoured angel, feathered wings, shield, sword and defeated dragon.
   const figure = transform(out, 0, [0, 49.02, 0]),
     goldOut = {
-      addQuad: (s, r, p, n, u, c) => figure.addQuad('carvedstone', r, p, n, u, c),
-      addTriangle: (s, r, p, n, u, c) => figure.addTriangle('carvedstone', r, p, n, u, c),
-      addConvexPolygon: (s, r, p, n, u, c) => figure.addConvexPolygon('carvedstone', r, p, n, u, c),
+      addQuad: (_s, r, p, n, u, c) => figure.addQuad('carvedstone', r, p, n, u, c),
+      addTriangle: (_s, r, p, n, u, c) => figure.addTriangle('carvedstone', r, p, n, u, c),
+      addConvexPolygon: (_s, r, p, n, u, c) =>
+        figure.addConvexPolygon('carvedstone', r, p, n, u, c),
     };
   sphere(goldOut, 'metal', [0, 0.16, 0], [0.38, 0.18, 0.32], gold, 20, 12);
   for (const s of [-1, 1]) {

@@ -22,7 +22,7 @@ import { identityFor } from './building-identity';
 import { buildingLabels, contextLabelForPolygon, landcoverLabel } from './labels';
 import { regionScatterId, regionStyleRules } from './region';
 import type { SemanticAdapterOptions, TileGeometry } from './semantic-adapter';
-import { PROTOMAPS_TILE_BUFFER } from './tile-edges';
+import { buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
 
 const HOMES = new Set([
   'house',
@@ -68,7 +68,7 @@ export function residentialTreePolygons(
     );
   const patches: Array<{ identity: string; polygons: ScatterPolygon[] }> = [];
   const seen = new Set<string>();
-  const buffer = options.buffer ?? PROTOMAPS_TILE_BUFFER;
+  const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   for (const feature of tile.buildings) {
     if (
       feature.class === 'building_part' ||

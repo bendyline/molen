@@ -67,6 +67,8 @@ export interface QueuedBuilding {
 }
 
 export const BOX_PLACEMENT_SET_ID: string = 'buildings:box';
+/** Stand-ins for pitched buildings: the `builtin:box.gable` model. */
+export const GABLE_BOX_PLACEMENT_SET_ID: string = 'buildings:box.gable';
 
 /** Hash every typed array of an output (positions, normals, uvs, colors, indices, placements). */
 export function hashWorldgenOutput(
@@ -127,7 +129,20 @@ export function placementSetsFromProps(
   return sets;
 }
 
-function placementSetFromBoxes(boxes: readonly BoxPlacement[]): PlacementSet | undefined {
+function placementSetsFromBoxes(boxes: readonly BoxPlacement[]): PlacementSet[] {
+  const gabled = boxes.filter((box) => box.roof === 'gable');
+  const flat = boxes.filter((box) => box.roof !== 'gable');
+  return [
+    placementSetFromBoxes(flat, BOX_PLACEMENT_SET_ID, 'builtin:box'),
+    placementSetFromBoxes(gabled, GABLE_BOX_PLACEMENT_SET_ID, 'builtin:box.gable'),
+  ].filter((set): set is PlacementSet => set !== undefined);
+}
+
+function placementSetFromBoxes(
+  boxes: readonly BoxPlacement[],
+  setId: string,
+  modelRef: string,
+): PlacementSet | undefined {
   if (boxes.length === 0) return undefined;
   const data = new Float32Array(boxes.length * PLACEMENT_STRIDE);
   boxes.forEach((box, index) => {
@@ -143,7 +158,7 @@ function placementSetFromBoxes(boxes: readonly BoxPlacement[]): PlacementSet | u
     data[offset + 8] = box.color[1];
     data[offset + 9] = box.color[2];
   });
-  return { setId: BOX_PLACEMENT_SET_ID, modelRef: 'builtin:box', count: boxes.length, data };
+  return { setId, modelRef, count: boxes.length, data };
 }
 
 /** The buildings, sorted by priority (area descending, then identity hash), with styles chosen. */
@@ -207,17 +222,45 @@ export function* generateWorldgenBatchSteps(
   const records: BuildingRecord[] = [];
   const props = new Map<string, PropPlacement[]>();
   // Reserve inexpensive architecture for the whole admitted batch before allowing large
-  // footprints to spend the remaining budget on textures, facade bands, and roof furniture.
+  // footprints to spend the remaining budget on textures, facade bands, and roof furniture:
+  // first walls and roof for every building (the style's coarsest tier, a box only when even
+  // that does not fit), then a simplified facade for as many as fit, largest first. Interior
+  // openings come with full detail: cut into every budget facade they would cost a crowded
+  // neighbourhood its windows.
   const baselines: Array<{ mesh: MeshBufferBuilder; result: BuildingResult } | undefined> = [];
   const remainingMaterials = new Map<string, number>();
   let reservedVertices = 0;
-  const total = queue.length * 2;
+  const total = queue.length * 3;
+  const reserve = (mesh: MeshBufferBuilder, sign: 1 | -1): void => {
+    reservedVertices += sign * mesh.vertexCount();
+    for (const key of mesh.materialKeys()) {
+      const count = (remainingMaterials.get(key) ?? 0) + sign;
+      if (count <= 0) remainingMaterials.delete(key);
+      else remainingMaterials.set(key, count);
+    }
+  };
+  const fitsWith = (add: MeshBufferBuilder, remove?: MeshBufferBuilder): boolean => {
+    if (
+      reservedVertices - (remove?.vertexCount() ?? 0) + add.vertexCount() >
+      budgets.maxBuildingVertices
+    )
+      return false;
+    const keys = new Set(remainingMaterials.keys());
+    if (remove !== undefined)
+      for (const key of remove.materialKeys())
+        if ((remainingMaterials.get(key) ?? 0) <= 1) keys.delete(key);
+    for (const key of add.materialKeys()) keys.add(key);
+    return keys.size <= budgets.maxMaterialGroups;
+  };
+  const simplifiedTiers: number[] = [];
   for (let index = 0; index < queue.length; index++) {
     const item = queue[index] as QueuedBuilding;
     const style = pack.archstyles[item.styleId];
     if (style === undefined || index >= budgets.maxBuildings) {
       stats.buildingsDropped++;
     } else {
+      const structuralTier = Math.max(baseTier, style.lod.tiers.at(-1)?.minTier ?? 0);
+      simplifiedTiers[index] = structuralTier;
       let mesh = new MeshBufferBuilder();
       let result = generateBuilding(
         {
@@ -225,20 +268,15 @@ export function* generateWorldgenBatchSteps(
           style,
           pack: identity,
           ground,
-          tier: baseTier,
+          tier: structuralTier,
           analysis: item.analysis,
           simplified: true,
-          ...interiors,
         },
         mesh,
       );
-      const keys = mesh.materialKeys();
       if (result.skipped !== undefined) {
         mesh = new MeshBufferBuilder();
-      } else if (
-        reservedVertices + mesh.vertexCount() > budgets.maxBuildingVertices ||
-        new Set([...remainingMaterials.keys(), ...keys]).size > budgets.maxMaterialGroups
-      ) {
+      } else if (result.box === undefined && !fitsWith(mesh)) {
         mesh = new MeshBufferBuilder();
         result = generateBuilding(
           {
@@ -252,13 +290,47 @@ export function* generateWorldgenBatchSteps(
           mesh,
         );
       }
-      reservedVertices += mesh.vertexCount();
-      for (const key of mesh.materialKeys()) {
-        remainingMaterials.set(key, (remainingMaterials.get(key) ?? 0) + 1);
-      }
+      reserve(mesh, 1);
       baselines[index] = { mesh, result };
     }
     if ((index + 1) % step === 0) yield { done: index + 1, total };
+  }
+  for (let index = 0; index < queue.length; index++) {
+    const item = queue[index] as QueuedBuilding;
+    const baseline = baselines[index];
+    const style = pack.archstyles[item.styleId];
+    if (
+      baseline !== undefined &&
+      style !== undefined &&
+      (simplifiedTiers[index] as number) > baseTier &&
+      baseline.result.box === undefined &&
+      baseline.result.skipped === undefined &&
+      reservedVertices < budgets.maxBuildingVertices
+    ) {
+      const mesh = new MeshBufferBuilder();
+      const result = generateBuilding(
+        {
+          request: item.request,
+          style,
+          pack: identity,
+          ground,
+          tier: baseTier,
+          analysis: item.analysis,
+          simplified: true,
+        },
+        mesh,
+      );
+      if (
+        result.skipped === undefined &&
+        result.box === undefined &&
+        fitsWith(mesh, baseline.mesh)
+      ) {
+        reserve(baseline.mesh, -1);
+        reserve(mesh, 1);
+        baselines[index] = { mesh, result };
+      }
+    }
+    if ((index + 1) % step === 0) yield { done: queue.length + index + 1, total };
   }
   for (let index = 0; index < queue.length; index++) {
     const item = queue[index] as QueuedBuilding;
@@ -355,7 +427,6 @@ export function* generateWorldgenBatchSteps(
           analysis: item.analysis,
           simplified: true,
           collapseMaterials: false,
-          ...interiors,
         },
         textured,
       );
@@ -397,12 +468,11 @@ export function* generateWorldgenBatchSteps(
       }
       list.push(prop);
     }
-    if ((index + 1) % step === 0) yield { done: queue.length + index + 1, total };
+    if ((index + 1) % step === 0) yield { done: 2 * queue.length + index + 1, total };
   }
   const buildings = out.isEmpty() ? undefined : out.finalize();
   const placements: PlacementSet[] = [];
-  const boxSet = placementSetFromBoxes(boxes);
-  if (boxSet !== undefined) placements.push(boxSet);
+  placements.push(...placementSetsFromBoxes(boxes));
   let usedInstances = 0;
   const buildingProps = placementSetsFromProps(props);
   const admit = (set: PlacementSet): void => {

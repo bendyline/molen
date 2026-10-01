@@ -75,6 +75,56 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
   };
 }
 
+/** What a device reports about its memory; see `earthMemoryBudget`. */
+export interface EarthDeviceMemory {
+  /** `navigator.deviceMemory` in GiB (Chromium reports at most 8), when the browser gives it. */
+  deviceMemory?: number;
+  /** A touch-first device (phone or tablet), whose tabs are killed early under memory pressure. */
+  touch?: boolean;
+}
+
+function browserDeviceMemory(): EarthDeviceMemory {
+  const reported =
+    typeof navigator !== 'undefined'
+      ? (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+      : undefined;
+  const touch = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  return { ...(reported !== undefined ? { deviceMemory: reported } : {}), touch };
+}
+
+/**
+ * Terrain and layer geometry a device can keep on screen, bytes. Adaptive quality measures memory
+ * pressure against this fixed budget, so stepping down (which selects fewer, coarser tiles)
+ * relieves it; a budget that shrank with each level would cascade to the minimum level while the
+ * view's geometry stayed the same. The terrain cache also keeps at least this much, so ground
+ * just left is still warm when the view pans back. 96 MiB per reported GiB within 192–768 MiB;
+ * without a report, 256 MiB on touch devices and 512 MiB elsewhere.
+ */
+export function earthMemoryBudget(device: EarthDeviceMemory = browserDeviceMemory()): number {
+  const { deviceMemory, touch } = device;
+  const mib =
+    deviceMemory !== undefined && Number.isFinite(deviceMemory) && deviceMemory > 0
+      ? Math.min(768, Math.max(192, deviceMemory * 96))
+      : touch
+        ? 256
+        : 512;
+  return mib * MIB;
+}
+
+/**
+ * The adaptive level a view starts at before measuring frames: 1 (Low) on touch devices and at
+ * 2 GiB or less, 2 (Medium) at 4 GiB, otherwise 3 (Balanced). Calibration then moves it, so a
+ * phone does not first stream a desktop's detail.
+ */
+export function earthInitialQualityLevel(
+  device: EarthDeviceMemory = browserDeviceMemory(),
+): number {
+  const { deviceMemory, touch } = device;
+  if (touch === true || (deviceMemory !== undefined && deviceMemory <= 2)) return 1;
+  if (deviceMemory !== undefined && deviceMemory <= 4) return 2;
+  return 3;
+}
+
 /** Cap total pixels as well as pixel ratio, including ultrawide and high-DPI screens. */
 export function earthPixelRatio(
   level: number,

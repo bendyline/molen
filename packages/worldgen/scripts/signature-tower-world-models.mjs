@@ -1545,7 +1545,7 @@ function buildTuntex(out, m) {
   mappedCap(out, 'metal', shaft, 145, dark, [], true);
   mappedCap(out, 'metal', shaft, 327, trim);
   const lowCenter = plan(344740873);
-  for (const { a, b, n } of edges(lowCenter))
+  for (const { a, b } of edges(lowCenter))
     for (let j = 0; j < 4; j++) {
       const y = 50 + j * 5;
       grid(
@@ -1846,7 +1846,7 @@ function hamraClippedPane(out, polygon, glass, trim) {
     face(out, 'metal', [p[i], p[k], inset[k], inset[i]], trim);
   }
 }
-function buildHamra(out, m) {
+function buildHamra(out) {
   const limestone = [0.79, 0.735, 0.62],
     glass = [0.23, 0.35, 0.42],
     trim = [0.68, 0.7, 0.67];
@@ -2019,7 +2019,7 @@ function buildHamra(out, m) {
   roofHeights.push(westTop, eastTop);
   const roofProxy = {
     ...out,
-    addTriangle(slot, ref, p, n, uv, color) {
+    addTriangle(slot, _ref, p, _n, _uv, color) {
       const lifted = p.map((v) => {
         let best = 0,
           d = Infinity;
@@ -2238,7 +2238,7 @@ function buildCentralPlaza(out, m) {
       },
     };
   plazaFacade(clear, lobby, 0.18, 23.6, { gold: [0.51, 0.59, 0.55], step: 4.1 });
-  for (const { a, b, len } of edges(plan).filter((e) => e.len > 35)) {
+  for (const { a, b } of edges(plan).filter((e) => e.len > 35)) {
     for (let i = 0; i < 5; i++) {
       const p = lerp(a, b, 0.12 + i * 0.19),
         x = center[0] + (p[0] - center[0]) * 0.96,
@@ -2373,7 +2373,7 @@ function buildCentralPlaza(out, m) {
       8,
     );
   // Bronze/glass door frames occupy all three recessed corner entry fronts.
-  for (const { a, b, len, n } of edges(lobby).filter((e) => e.len > 3 && e.len < 8)) {
+  for (const { a, b, len } of edges(lobby).filter((e) => e.len > 3 && e.len < 8)) {
     const p = lerp(a, b, 0.5),
       d = [(b[0] - a[0]) / len, (b[1] - a[1]) / len];
     for (const u of [-1.05, 0, 1.05])
@@ -2399,7 +2399,7 @@ function buildCentralPlaza(out, m) {
 }
 
 function marinaGlazing(out, plan, y0, y1, step, white) {
-  for (const { a, b, len, n } of edges(plan)) {
+  for (const { a, b, n } of edges(plan)) {
     grid(
       out,
       [
@@ -2564,7 +2564,7 @@ function build23Marina(out, m) {
   }
   // Six-storey entrance volume: slanted lower glazing and a screened structural
   // transfer storey. The outer white W braces stay above the landscaped podium.
-  for (const { a, b, len, n } of edges(plan)) {
+  for (const { a, b, n } of edges(plan)) {
     const lowA = shift([a[0], 12.7, a[1]], n, 0.9),
       lowB = shift([b[0], 12.7, b[1]], n, 0.9),
       hiA = [a[0], 18.4, a[1]],
@@ -2607,7 +2607,7 @@ function build23Marina(out, m) {
     bandPlan(out, plan, y, 0.74, 0.52, white, 'metal');
   // Four cardinal facets carry twelve real triangular duplex balconies each:
   //48 open terraces, with separate slab, glass guard and shallow plunge basin.
-  for (const { a, b, len, n } of edges(plan).filter(
+  for (const { a, b, n } of edges(plan).filter(
     (e) => Math.abs(e.n[0]) > 0.95 || Math.abs(e.n[2]) > 0.95,
   )) {
     const l = lerp(a, b, 0.22),
@@ -2618,7 +2618,7 @@ function build23Marina(out, m) {
     for (let floor = 0; floor < 12; floor++) {
       const y = 225.9 + 7.6 * floor;
       mappedSolid(out, 'metal', balcony, y - 0.34, y, white);
-      for (const { a: p, b: q, n: bn } of edges(balcony).filter(
+      for (const { a: p, b: q } of edges(balcony).filter(
         (e) => Math.abs(e.n[0] * n[0] + e.n[2] * n[2]) < 0.995,
       )) {
         face(
@@ -2661,7 +2661,7 @@ function build23Marina(out, m) {
   };
   // The four broad triangular canopies alternate with open mast/bracing slots.
   // This is deliberately an open crown, not an unbroken octagonal pyramid.
-  for (const { a, b, len, n } of edges(plan)) {
+  for (const { a, b, n } of edges(plan)) {
     const upper = !(Math.abs(n[0]) > 0.95 || Math.abs(n[2]) > 0.95);
     grid(
       out,

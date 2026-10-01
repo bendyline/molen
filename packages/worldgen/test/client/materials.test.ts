@@ -97,6 +97,39 @@ describe('resolved material set', () => {
     mesh.geometry.dispose();
   });
 
+  it('draws textured glass untinted, with the glass tone standing in until it bakes', async () => {
+    let finish: ((material: THREE.MeshStandardMaterial) => void) | undefined;
+    const resolver = {
+      acquire: vi.fn(
+        () =>
+          new Promise<THREE.MeshStandardMaterial>((resolve) => {
+            finish = resolve;
+          }),
+      ),
+      release: vi.fn(),
+    };
+    const set = createResolvedMaterialSet(resolver as unknown as MaterialResolver, {
+      progressive: true,
+    });
+    const ref = 'matgraph:window_punched';
+    const glass = set.materialFor('window', ref) as THREE.MeshStandardMaterial;
+    // Before the bake: the flat window material, colored by the glass vertex tone.
+    expect(glass.map).toBeNull();
+    expect(glass.vertexColors).toBe(true);
+    expect(set.materialFor('window', ref)).toBe(glass);
+    const preparation = set.prepare([ref]);
+    const source = new THREE.MeshStandardMaterial({ map: new THREE.Texture(), roughness: 0.3 });
+    finish?.(source);
+    await preparation;
+    // After: the same object, now the texture alone; vertex color no longer darkens it.
+    expect(glass.map).toBe(source.map);
+    expect(glass.vertexColors).toBe(false);
+    expect(set.materialFor('window', ref)).toBe(glass);
+    // Other slots sharing the ref keep their tint.
+    expect((set.materialFor('wall', ref) as THREE.MeshStandardMaterial).vertexColors).toBe(true);
+    set.dispose();
+  });
+
   it('releases a bake that completes after the viewer is disposed', async () => {
     let finish: ((material: THREE.MeshStandardMaterial) => void) | undefined;
     const resolver = {

@@ -11,6 +11,7 @@ import {
 } from './package-client';
 import type { TerrainPackageDescriptor } from './package-types';
 import type { TerrainPyramidTileLayer } from './pyramid-stream';
+import { createBuildingDetailTerrainSemanticSource } from './semantic-building-detail';
 import {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticPyramidLayer,
@@ -39,6 +40,13 @@ export interface CreateTerrainPackageSemanticLayersOptions
    * roads or buildings whenever the vector archive stops short of the terrain.
    */
   overzoom?: boolean;
+  /**
+   * Compose built-feature tiles' buildings and places from the package's `features.buildingDetail`
+   * sidecar, when it declares one (default on). `maxDepth` bounds how many levels coarser than the
+   * detail level a tile may be (default 2, i.e. 16 detail tiles per composed tile); `false` keeps
+   * every tile's own, generalized footprints.
+   */
+  buildingDetail?: false | { maxDepth?: number };
 }
 
 export interface TerrainPackageSemanticLayers {
@@ -67,7 +75,14 @@ export async function createTerrainPackageSemanticLayers(
   pkg: TerrainPackageDescriptor,
   options: CreateTerrainPackageSemanticLayersOptions,
 ): Promise<TerrainPackageSemanticLayers> {
-  const { landcoverLayer, waterLayer, featuresLayer, overzoom = true, ...openOptions } = options;
+  const {
+    landcoverLayer,
+    waterLayer,
+    featuresLayer,
+    overzoom = true,
+    buildingDetail,
+    ...openOptions
+  } = options;
   const semantics = await openTerrainPackageSemantics(pkg, openOptions);
   const layers: TerrainPyramidTileLayer[] = [];
   let landcoverSource = semantics.landcover?.source;
@@ -187,7 +202,21 @@ export async function createTerrainPackageSemanticLayers(
     ) === true
   ) {
     const style = featuresLayer ?? {};
-    const featureSource = featuresSource as TerrainPackageSemanticSource;
+    // Buildings and places from the finer detail sidecar, where the package carries one; roads,
+    // water and land use keep the feature tiles' own.
+    const featureSource =
+      semantics.buildingDetail !== undefined && buildingDetail !== false
+        ? createBuildingDetailTerrainSemanticSource(
+            featuresSource as TerrainPackageSemanticSource,
+            semantics.buildingDetail.source,
+            {
+              level: semantics.buildingDetail.level,
+              ...(buildingDetail?.maxDepth !== undefined
+                ? { maxDepth: buildingDetail.maxDepth }
+                : {}),
+            },
+          )
+        : (featuresSource as TerrainPackageSemanticSource);
     const landSource = landcoverSource;
     // Surface areas often live in a separate land-use sidecar. Join them for Human mode,
     // retaining already-combined source tiles and leaving hydrology reads independent.
