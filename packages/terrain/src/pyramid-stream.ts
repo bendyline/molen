@@ -142,6 +142,15 @@ export interface TerrainPyramidStreamOptions
     TerrainTileRetryOptions {
   /** Optional refinement height morph for bare surfaces. Grounded layers retain atomic handoff. */
   morphMilliseconds?: number;
+  /**
+   * Sun shadows: every tile surface and layer mesh receives them, and layer meshes standing
+   * taller than `shadowCasterHeight` meters (default 1.5: buildings, trees, landmarks) cast
+   * them; flat roads and landcover do not. A layer part can opt in or out explicitly with
+   * `userData.shadowCaster` = true or false (inherited by its children), and out of receiving
+   * with `userData.shadowReceiver = false` (water does).
+   */
+  shadows?: boolean;
+  shadowCasterHeight?: number;
   /** Shared frame budget for construction/publication, also passed to semantic adapters. */
   admission?: SceneAdmission;
   /**
@@ -727,6 +736,42 @@ interface ObjectGeometryStats {
  * marks every descendant's world matrix dirty, so a city of static buildings would pay for a full
  * matrix pass every frame. Subtrees marked `userData.dynamicTransform = true` keep updating.
  */
+const casterBox = new THREE.Box3();
+
+/**
+ * Mark tile content for sun shadows: everything receives, and tall parts cast. An object's
+ * `userData.shadowCaster` (true or false) decides for it and everything beneath it; draped
+ * ground (landcover, water, road surfaces) is marked false where it is built.
+ */
+function markShadows(
+  root: THREE.Object3D,
+  casterHeight: number,
+  inherited?: boolean,
+  parentMatrix?: THREE.Matrix4,
+): void {
+  const own = root.userData.shadowCaster;
+  const decided = own === true || own === false ? own : inherited;
+  // Heights are measured in the layer's own frame from its (frozen) local matrices, leaving
+  // world matrices to the renderer once the layer is attached to its tile.
+  const matrix =
+    parentMatrix === undefined ? root.matrix.clone() : parentMatrix.clone().multiply(root.matrix);
+  const mesh = root as THREE.Mesh;
+  if (mesh.isMesh) {
+    // Shadows smear across a reflective water surface; water opts out with shadowReceiver.
+    mesh.receiveShadow = mesh.userData.shadowReceiver !== false;
+    if (decided !== undefined) mesh.castShadow = decided;
+    else {
+      const geometry = mesh.geometry;
+      if (geometry.boundingBox === null) geometry.computeBoundingBox();
+      casterBox.copy(geometry.boundingBox as THREE.Box3);
+      // Instances stand at their own heights; their shared shape decides.
+      if (!(mesh as THREE.InstancedMesh).isInstancedMesh) casterBox.applyMatrix4(matrix);
+      mesh.castShadow = casterBox.max.y - casterBox.min.y > casterHeight;
+    }
+  }
+  for (const child of root.children) markShadows(child, casterHeight, decided, matrix);
+}
+
 function freezeStaticTransforms(root: THREE.Object3D): void {
   if (root.userData.dynamicTransform === true) return;
   if (root.matrixAutoUpdate) {
@@ -920,6 +965,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(options.maxResidentBytes === undefined
         ? {}
         : { maxResidentBytes: options.maxResidentBytes }),
+      ...(options.hysteresis === undefined ? {} : { hysteresis: options.hysteresis }),
+      ...(options.peripheralDegrees === undefined
+        ? {}
+        : { peripheralDegrees: options.peripheralDegrees }),
+      ...(options.peripheralDetail === undefined
+        ? {}
+        : { peripheralDetail: options.peripheralDetail }),
     };
     requireBudget(this.budget);
     this.retryPolicy = resolveTerrainTileRetryPolicy(options);
@@ -1489,6 +1541,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             throw new DOMException('Tile cancelled', 'AbortError');
           surface.mesh.visible = false;
           freezeStaticTransforms(object);
+          if (this.options.shadows === true) surface.mesh.receiveShadow = true;
           this.resident.set(key, {
             address,
             heightfield,
@@ -1725,7 +1778,23 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return result;
   }
 
+  /**
+   * Layers (buildings, trees, water) are built for ground in the camera's view and its guard
+   * band. Peripheral ground stays bare until a turn brings it into view: cheap terrain that is
+   * already there, instead of a whole band of detail no one is looking at.
+   */
+  private wantsLayers(address: TerrainPyramidTileAddress): boolean {
+    const peripheral = (this.budget.peripheralDegrees ?? 0) > 0;
+    return (
+      !peripheral ||
+      this.view === undefined ||
+      intersectsHorizontalView(this.view, tileBounds(this.descriptor, address))
+    );
+  }
+
   private layersReady(tile: ResidentTile, allowFailed = false): boolean {
+    // Peripheral ground carries no layers until it is in view: its bare surface is complete.
+    if (!this.wantsLayers(tile.address)) return true;
     for (const layer of this.layerById.values()) {
       if (
         this.layerVisibility.get(layer.id) === true &&
@@ -1788,6 +1857,20 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
           ) {
             candidates.add(key);
+            continue;
+          }
+          if (!this.wantsLayers(tile.address)) {
+            // Peripheral ground never gets layers of its own. Detail already shown inside it
+            // may stay, but never a coarser ancestor's, which would cover the view beside it.
+            for (const previousKey of previous) {
+              const old = this.resident.get(previousKey);
+              if (
+                old !== undefined &&
+                old.address.level >= tile.address.level &&
+                pyramidAddressesOverlap(tile.address, old.address)
+              )
+                candidates.add(previousKey);
+            }
             continue;
           }
           for (const previousKey of previous) {
@@ -1928,6 +2011,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             this.layerRetries.clear(key);
             object.visible = false;
             freezeStaticTransforms(object);
+            if (this.options.shadows === true)
+              markShadows(object, this.options.shadowCasterHeight ?? 1.5);
             current.layers.set(layer.id, object);
             current.object.add(object);
             this.trackAllocations(current);
@@ -1989,7 +2074,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...new Set([...this.displayed, ...this.replacementTiles, ...this.selected.keys()]),
     ]
       .map((key) => this.resident.get(key))
-      .filter((tile): tile is ResidentTile => tile !== undefined)
+      .filter((tile): tile is ResidentTile => tile !== undefined && this.wantsLayers(tile.address))
       .map((tile) => {
         const bounds = tileBounds(this.descriptor, tile.address);
         return {

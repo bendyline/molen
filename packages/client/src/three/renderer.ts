@@ -11,6 +11,12 @@ import {
   type GpuFrameTimerOptions,
 } from './gpu-frame-timer';
 import {
+  focusDirectionalShadow,
+  SHADOW_MAP_SIZE,
+  type ShadowFocus,
+  type ShadowQuality,
+} from './shadow-focus';
+import {
   createWebGlSkyReflectionFilter,
   reflectionStateFromLights,
   type SkyReflectionFilter,
@@ -246,10 +252,71 @@ export class Renderer {
   private environmentSeconds = 0;
   private environmentTimeOverride: number | undefined;
   private readonly lastRenderStats = { drawCalls: 0, triangles: 0 };
+  private shadowFocus: ShadowFocus | undefined;
+  private readonly shadowCenter = new THREE.Vector3();
+  private readonly shadowDirection = new THREE.Vector3();
 
   /** Active clear-sky visual and sampled ephemeris, when environment.sky is configured. */
   get sky(): SkyVisual | undefined {
     return this.activeSky;
+  }
+
+  /**
+   * Aim the sun's shadow at a focus (absolute world coordinates) covering ±`radius` meters, or
+   * `undefined` for the environment's own fixed box. Call whenever what the camera frames
+   * moves: an orbit target, a walker, a car. Shadows must be on (`setShadowQuality`).
+   */
+  setShadowFocus(focus: ShadowFocus | undefined): void {
+    if (focus !== undefined && (!(focus.radius > 0) || !Number.isFinite(focus.radius)))
+      throw new RangeError('Shadow focus radius must be a positive number of meters');
+    this.shadowFocus =
+      focus === undefined ? undefined : { center: [...focus.center], radius: focus.radius };
+  }
+
+  /** Turn sun shadows on at a map resolution, or off, without rebuilding the environment. */
+  setShadowQuality(quality: ShadowQuality): void {
+    const enabled = quality !== 'off';
+    for (const light of this.sunLights()) {
+      light.castShadow = enabled;
+      if (!enabled) continue;
+      const size = SHADOW_MAP_SIZE[quality];
+      if (light.shadow.mapSize.x !== size) {
+        light.shadow.mapSize.set(size, size);
+        light.shadow.map?.dispose();
+        light.shadow.map = null;
+      }
+    }
+    this.three.shadowMap.enabled = enabled;
+    this.three.shadowMap.type = quality === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+  }
+
+  /** The directional lights standing for the sun: the environment rig's, and the sky's. */
+  private sunLights(): THREE.DirectionalLight[] {
+    const lights: THREE.DirectionalLight[] = [];
+    findEnvironmentRig(this.scene)?.traverse((object) => {
+      if (object instanceof THREE.DirectionalLight && object.userData.molenSun === true)
+        lights.push(object);
+    });
+    if (this.activeSky) lights.push(this.activeSky.sunLight);
+    return lights;
+  }
+
+  private applyShadowFocus(): void {
+    const focus = this.shadowFocus;
+    if (focus === undefined || !this.three.shadowMap.enabled) return;
+    const center = this.shadowCenter.set(
+      focus.center[0] - this.worldOrigin[0],
+      focus.center[1] - this.worldOrigin[1],
+      focus.center[2] - this.worldOrigin[2],
+    );
+    for (const light of this.sunLights()) {
+      if (!light.castShadow) continue;
+      const direction =
+        light === this.activeSky?.sunLight
+          ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
+          : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
+      focusDirectionalShadow(light, direction, center, focus.radius);
+    }
   }
 
   /** Active weather effects; physical weather data is also available in the simulation component. */
@@ -1020,6 +1087,7 @@ export class Renderer {
       if (sky) {
         sky.update(this.environmentTimeOverride ?? this.environmentSeconds);
         sky.prepareCamera(this.camera);
+        this.applyShadowFocus();
         const autoClear = this.three.autoClear;
         const autoReset = this.three.info.autoReset;
         this.three.info.reset();
@@ -1033,6 +1101,7 @@ export class Renderer {
           this.three.info.autoReset = autoReset;
         }
       } else {
+        this.applyShadowFocus();
         this.renderScene();
       }
       // Upload warm-ups and reflection filtering also render offscreen. Only a completed

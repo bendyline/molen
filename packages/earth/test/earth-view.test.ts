@@ -7,7 +7,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
 import { ENTITY_TYPES } from './entity-types';
 
-const viewerState = vi.hoisted(() => ({ disposed: 0, frames: 0 }));
+const viewerState = vi.hoisted(() => ({
+  disposed: 0,
+  frames: 0,
+  shadowQuality: undefined as string | undefined,
+  shadowRadius: undefined as number | undefined,
+}));
 
 vi.mock('@bendyline/molen-client', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@bendyline/molen-client')>();
@@ -41,6 +46,12 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         getViewportSize: () => size,
         stats: () => ({ drawCalls: 0, triangles: 0 }),
         setStarCatalog: () => {},
+        setShadowQuality: (quality: string) => {
+          viewerState.shadowQuality = quality;
+        },
+        setShadowFocus: (focus: { radius: number } | undefined) => {
+          viewerState.shadowRadius = focus?.radius;
+        },
       };
       renderer.scene.add(renderer.worldRoot);
       return {
@@ -213,6 +224,9 @@ describe('mountEarthView', () => {
     // The target settled onto the 100 m plateau, so the camera sits above it.
     expect(camera.altitude).toBeGreaterThan(100 + 2_000 * Math.sin(0.6) * 0.9);
     expect(view.credits[0]?.label).toBe('© OpenStreetMap contributors');
+    // Sun shadows cover the orbit target, sized to the 2 km view.
+    expect(viewerState.shadowQuality).toBe('high');
+    expect(viewerState.shadowRadius).toBeCloseTo(2_400, -1);
     expect(canvas.tabIndex).toBe(0);
     expect(canvas.style.touchAction).toBe('none');
     expect(errors).toEqual([]);

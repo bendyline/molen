@@ -81,6 +81,10 @@ export function applyEnvironment(renderer: Renderer, env: EnvironmentData): void
     );
     const d = sun.direction ?? [5, 10, 7];
     dir.position.set(d[0], d[1], d[2]);
+    // Marks the sun for Renderer.setShadowQuality/setShadowFocus, which re-aim its shadow.
+    dir.userData.molenSun = true;
+    dir.userData.molenSunDirection = new THREE.Vector3(d[0], d[1], d[2]).normalize();
+    rig.add(dir.target);
     if (shadows !== 'off' && sun.castShadow === true) {
       dir.castShadow = true;
       const size = SHADOW_MAP_SIZE[shadows];

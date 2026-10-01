@@ -10,9 +10,24 @@ Portable source bundle for `molen.entities.aircraft.p51d`. The entity definition
 - Behavior: `scripts/interactions.ts`
 - Imported output: `assets/molen/entities/aircraft/p51d/asset.json`
 
+The airframe is lofted from analytic sections at the real P-51D's size (9.83 m long, 11.28 m
+span): a laminar-flow wing with a straight trailing edge, root glove, 5° dihedral and squared tips,
+a teardrop canopy behind a three-panel windscreen, the ventral radiator scoop, a dorsal fillet and
+a 3.4 m four-blade propeller. It is finished in natural metal with lacquered wings, an olive-drab
+anti-glare panel, a red nose, spinner and tail, yellow wing bands and star-and-bar insignia, all as
+geometry with no textures. It rests level on its wheels, matching the airplane solver on the
+ground; the nose faces +Z and the pilot eye, thrust line and wing reference match the entity
+definition. `propeller` spins about Z; `gear--1`, `gear-1` and `tail-gear` hide with the gear up;
+`flap±1`, `aileron±1` and `elevator±1` rotate about local X (each flap and aileron under a
+`*-hinge` frame on its hinge line) and `rudder` about Y.
+
 The cockpit is part of the main GLB and appears in exterior and seated views. Its layout and
 builder can change independently of any other aircraft. Generate an edited preview with
 `node models/generate.mjs --out /tmp/p-51-candidate.glb`; review it before adopting a new master.
+In the engine repository, `pnpm assets:build --update-lock` rebuilds the master and its lock. A
+direct run that should match those bytes needs the build's portable math:
+`node --import=./packages/worldgen/scripts/install-deterministic-math.mjs content/entities/source/aircraft/p-51/models/generate.mjs`
+from the repository root.
 
 Flight tuning uses 1,264 kW maximum shaft power, 0.83 propeller efficiency, a 14,500 N static
 thrust cap, and a clean drag polar of `0.019 + 0.055 * CL²`. The power is approximately

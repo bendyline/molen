@@ -248,6 +248,122 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it('keeps peripheral ground bare, then builds its layers when a turn brings it into view', async () => {
+    const d = descriptor({ rootSize: 8_192, maxLevel: 6, tileResolution: 9 });
+    const turn = (degrees: number) => {
+      const r = (degrees * Math.PI) / 180;
+      return {
+        position: [4_096, 40, 4_096] as [number, number, number],
+        verticalFov: 0.7,
+        viewportHeight: 600,
+        direction: [Math.sin(r), -0.15, -Math.cos(r)] as [number, number, number],
+        aspect: 1.5,
+      };
+    };
+    const loads = new Map<string, number>();
+    const layered = new Set<string>();
+    const stream = createTerrainPyramidStream(
+      d,
+      {
+        async load(address) {
+          const key = terrainPyramidTileKey(address);
+          loads.set(key, (loads.get(key) ?? 0) + 1);
+          return flatTile(d, address);
+        },
+      },
+      {
+        initialView: turn(0),
+        maxScreenSpaceError: 4,
+        viewDistance: 3_000,
+        maxSelectedTiles: 256,
+        maxResidentTiles: 1_024,
+        maxConcurrentLoads: 16,
+        maxConcurrentLayerLoads: 16,
+        peripheralDegrees: 60,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            createTile({ address }) {
+              layered.add(terrainPyramidTileKey(address));
+              return new THREE.Group();
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const displayed = stream.displayedTiles().map(terrainPyramidTileKey);
+      const bare = displayed.filter((key) => !layered.has(key));
+      expect(bare.length).toBeGreaterThan(0);
+      expect(stream.isAreaReady(4_096, 4_096, 30)).toBe(true);
+      stream.update(turn(70));
+      await stream.whenIdle();
+      const nowLayered = bare.filter((key) => layered.has(key));
+      expect(nowLayered.length).toBeGreaterThan(0);
+      // The ground was already there: turning did not fetch it again.
+      expect(nowLayered.every((key) => loads.get(key) === 1)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  }, 30_000);
+
+  it('places a shadowed layer published after its tile has rendered', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const pending: Array<() => void> = [];
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        shadows: true,
+        layers: [
+          {
+            id: 'human',
+            category: 'human-feature',
+            minLevel: 1,
+            createTile() {
+              const tower = new THREE.Mesh(
+                new THREE.BoxGeometry(1, 20, 1),
+                new THREE.MeshBasicMaterial(),
+              );
+              tower.position.set(2, 0, 3);
+              return new Promise<THREE.Object3D>((resolve) =>
+                pending.push(() => resolve(new THREE.Group().add(tower))),
+              );
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await expect.poll(() => pending.length).toBe(4);
+      // A frame renders the tiles before their layers arrive, settling every world matrix.
+      stream.object.updateMatrixWorld();
+      for (const resolve of pending) resolve();
+      await stream.whenIdle();
+      stream.object.updateMatrixWorld();
+      const tower = (stream.object.getObjectByName('layer:human:1/1/1') as THREE.Group)
+        .children[0] as THREE.Mesh;
+      const origin = terrainPyramidTileOrigin(d, { level: 1, x: 1, z: 1 });
+      expect(tower.castShadow).toBe(true);
+      expect(new THREE.Vector3().setFromMatrixPosition(tower.matrixWorld).toArray()).toEqual([
+        origin[0] + 2,
+        0,
+        origin[1] + 3,
+      ]);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('freezes static tile transforms and leaves marked moving parts alone', async () => {
     const d = descriptor({ maxLevel: 1 });
     const stream = createTerrainPyramidStream(
@@ -261,6 +377,7 @@ describe('screen-space terrain pyramid', () => {
         maxResidentTiles: 16,
         maxConcurrentLoads: 4,
         maxConcurrentLayerLoads: 4,
+        shadows: true,
         layers: [
           {
             id: 'human',
@@ -268,7 +385,7 @@ describe('screen-space terrain pyramid', () => {
             minLevel: 1,
             createTile() {
               const building = new THREE.Mesh(
-                new THREE.BoxGeometry(),
+                new THREE.BoxGeometry(1, 20, 1),
                 new THREE.MeshBasicMaterial(),
               );
               building.position.set(2, 0, 3);
@@ -293,6 +410,10 @@ describe('screen-space terrain pyramid', () => {
         2, 0, 3,
       ]);
       expect(flag.matrixAutoUpdate).toBe(true);
+      // Shadows: the tall building casts, everything receives, and an ordinary (unforced)
+      // matrix pass still places it inside its tile.
+      expect(building.castShadow).toBe(true);
+      expect(building.receiveShadow).toBe(true);
       const tile = stream.object.getObjectByName('tile:1/0/0') as THREE.Group;
       expect(tile.matrixAutoUpdate).toBe(false);
       expect(tile.children.every((child) => !child.matrixAutoUpdate)).toBe(true);

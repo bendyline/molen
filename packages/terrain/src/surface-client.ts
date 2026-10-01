@@ -88,6 +88,8 @@ export function createTerrainSurfaceObject(
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
   const group = new THREE.Group();
   group.name = 'semantic:surfaces';
+  // Draped over the ground: receives sun shadows, never casts them onto itself.
+  group.userData.shadowCaster = false;
   group.userData.surfaceStyle = style.id;
   const stats: TerrainSurfaceStats = {
     roads: 0,

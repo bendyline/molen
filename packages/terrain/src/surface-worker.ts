@@ -195,6 +195,7 @@ export function createTerrainSurfaceWorkerBridge(
     else {
       const group = new THREE.Group();
       group.name = 'semantic:surfaces';
+      group.userData.shadowCaster = false;
       group.userData.surfaceStats = result.stats;
       group.userData.surfaceStyle = result.style;
       group.userData.inferredParkingAreas = result.inferredParkingAreas;

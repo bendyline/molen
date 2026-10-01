@@ -60,6 +60,15 @@ Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
 given the sunlight comes from the same point, so lit faces agree with the glow in the sky. `fog`,
 `water`, `background` and the rest of `environment` (ambient light, tone mapping, exposure) follow.
+`ground` recolors the terrain package's bare-ground surface layers by name (for example
+`{ lowland: '#8b9e70' }`), and `landcover` sets landcover class colors (forest, grass, park,
+residential, commercial…) over the style pack's palette; an unlisted class falls back to a
+neutral olive.
+
+Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
+the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
+shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
+turns shadows off at its two lowest levels; `shadows: false` turns them off entirely.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -471,7 +480,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 - `quality: 'auto'` adapts terrain budgets, building detail and pixel ratio to measured frame
   times (`stats().qualityLevel`, 0-5, with `stats().qualityReason`). A preset pins the quality.
   It starts at `earthInitialQualityLevel()`: level 1 on touch devices and at 2 GiB or less, 2 at
-  4 GiB, otherwise 3. Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
+  4 GiB, otherwise 3, and climbs no higher than `maxQualityLevel` (default 3; above it buildings
+  switch to the high preset, which rebuilds them across the view). Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
   reports GPU and CPU work per frame, so slow frames while tiles stream in lower the level only
   when rendering itself is the cost; without GPU timing it goes by frame times alone. The view
   first calibrates quickly, so a slow device settles within seconds. Once a level has held for
@@ -479,6 +489,9 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
   waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25
   applies it at once.
+- Ground 20° past each side of the view stays loaded as bare terrain (the stream's
+  `peripheralDegrees`), so turning the camera reveals ground at once and its buildings and trees
+  follow.
 - Memory pressure (`stats().memoryPressure`) is the geometry on screen over `memoryBudget`, a
   fixed per-device budget: `earthMemoryBudget()` gives 96 MiB per GiB the browser reports within
   192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the

@@ -306,10 +306,18 @@ coarse tile. `stream.stats()` adds selected/displayed counts, effective
 screen-space error, displayed-level range, and leaf fallback count. Quality presets set explicit
 error, view-distance, concurrency, selection, and residency budgets. Include `direction` and
 `aspect` in each view update to reject tiles safely outside a guarded horizontal camera cone while
-retaining direction-independent coarse coverage to the configured distance. In-flight surface
+retaining direction-independent coarse coverage to the configured distance. `peripheralDegrees`
+widens that cone for ground only: tiles up to that many degrees past it stay selected at reduced
+detail (`peripheralDetail`, default 0.4, weighs their error) as bare terrain, without layers, so
+turning the camera reveals ground that is already there; layers build once the tile is in view. In-flight surface
 requests finish into a bounded warm cache instead of being restarted on every small camera turn;
 hidden cached tiles are evicted only when capacity is needed. Sparse descendants also share a
 bounded decoded-ancestor cache, avoiding repeated PNG decode/resample work while panning.
+
+With `shadows: true` every tile surface and layer mesh receives sun shadows, and layer meshes
+taller than `shadowCasterHeight` (default 1.5 m: buildings, trees, landmarks) cast them. A layer
+marks draped parts with `userData.shadowCaster = false` (inherited by their children; landcover,
+water and road surfaces are marked) and water with `userData.shadowReceiver = false`.
 
 `TerrainPyramidTileLayer` provides the same classification/hydrology/human-feature lifecycle over
 adaptive tiles. Its optional inclusive `minLevel`/`maxLevel` bounds keep expensive decoration off

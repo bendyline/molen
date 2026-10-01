@@ -815,11 +815,17 @@ export function createWorldgenSemanticRenderers(
   };
   const classification: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
-      const colors = surfaceColors(pack, defaultScatterId);
+      const packColors = surfaceColors(pack, defaultScatterId);
+      const hostColors = options.landcover?.landcoverColors;
+      // Host colors refine the style pack's palette class by class rather than replacing it.
+      const colors =
+        packColors === undefined && hostColors === undefined
+          ? undefined
+          : { ...packColors, ...hostColors };
       const meshOptions: TerrainSemanticMeshOptions = {
-        ...(colors !== undefined ? { landcoverColors: colors } : {}),
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
         ...options.landcover,
+        ...(colors !== undefined ? { landcoverColors: colors } : {}),
         renderWater: false,
         renderTransportation: false,
         renderBuildings: false,

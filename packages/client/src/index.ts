@@ -103,6 +103,7 @@ export type {
   TopDownOrtho,
 } from './three/renderer';
 export { nextWorldOrigin, orthoFrustum, Renderer } from './three/renderer';
+export type { ShadowFocus, ShadowQuality } from './three/shadow-focus';
 export type { SkyReflectionFilter, SkyReflectionState } from './three/sky-reflections';
 export {
   createWebGlSkyReflectionFilter,
