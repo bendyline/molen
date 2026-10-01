@@ -1,33 +1,42 @@
 /**
  * Renderer-independent spatial partition and compact LOD buffers, prepared before transfer.
  *
- * Cells are quantized: positions are 16-bit offsets from the cell's center in units of one
- * uniform `positionScale` (under a centimeter for a 512 m cell), and normals are 8-bit. A
- * building vertex takes 20 bytes instead of 35, which is most of a city's resident memory. The
- * scale is uniform so a renderer can apply it as an object scale without distorting normals,
+ * Cells are quantized: positions are normalized 16-bit offsets from the cell's center, scaled by
+ * one uniform `positionScale` (a step under a centimeter for a 512 m cell), and normals are
+ * 8-bit. Positions, normals and colors are laid out GPU-ready, as normalized (x, y, z, pad)
+ * vertices of {@link CELL_VERTEX_STRIDE} components, so a renderer wraps the transferred arrays
+ * without copying and a cache of prepared cells shares one copy with live geometry. A building
+ * vertex takes 24 bytes instead of 35. The padding is load-bearing: WebGPU accepts only
+ * four-byte-aligned vertex strides, and three.js widens unnormalized 16-bit attributes to 32 bits
+ * on WebGPU (on the GPU and in the CPU copy), so a bare Int16 vec3 would cost as much as Float32.
+ * The scale is uniform so a renderer can apply it as an object scale without distorting normals,
  * collision or picking, all of which read attributes through their item accessors.
  */
 import type { MeshBuffers, MeshGroup } from './types';
 
+/** Components per quantized vertex: x, y, z and one padding component. */
+export const CELL_VERTEX_STRIDE = 4;
+/** Largest signed normalized 16-bit value; `snorm16` decodes as `max(value / 32767, -1)`. */
+export const QUANTIZED_MAX = 32767;
+
 export interface PreparedBuildingCell {
   key: string;
-  /** Offsets from `center` in units of `positionScale` meters. */
+  /** Normalized offsets from `center`, (x, y, z, pad) per vertex, in units of `positionScale`. */
   positions: Int16Array;
-  /** Meters per position unit (uniform on every axis). */
+  /** Meters per normalized unit (uniform on every axis): the object scale a renderer applies. */
   positionScale: number;
   /** Cell center in the batch's coordinates. */
   center: [number, number, number];
-  /** Unit normals, normalized signed bytes. */
+  /** Unit normals as normalized signed bytes, (x, y, z, pad) per vertex. */
   normals: Int8Array;
   uvs: Float32Array;
+  /** Normalized RGB, (r, g, b, pad) per vertex. */
   colors: Uint8Array;
   indices: Uint16Array | Uint32Array;
   structuralIndices: Uint16Array | Uint32Array;
   groups: MeshGroup[];
   bounds: [number, number, number, number, number, number];
 }
-
-const QUANTIZED_MAX = 32767;
 
 export function prepareBuildingCells(buffers: MeshBuffers, cellSize = 512): PreparedBuildingCell[] {
   if (!Number.isFinite(cellSize) || cellSize <= 0)
@@ -88,10 +97,10 @@ export function prepareBuildingCells(buffers: MeshBuffers, cellSize = 512): Prep
       }
       ranges.push({ ...source, start, count: indices.length - start });
     }
-    const positions = new Int16Array(remap.size * 3),
-      normals = new Int8Array(remap.size * 3);
+    const positions = new Int16Array(remap.size * CELL_VERTEX_STRIDE),
+      normals = new Int8Array(remap.size * CELL_VERTEX_STRIDE);
     const uvs = new Float32Array(remap.size * 2),
-      colors = new Uint8Array(remap.size * 3);
+      colors = new Uint8Array(remap.size * CELL_VERTEX_STRIDE);
     const bounds: PreparedBuildingCell['bounds'] = [
       Infinity,
       Infinity,
@@ -118,15 +127,17 @@ export function prepareBuildingCells(buffers: MeshBuffers, cellSize = 512): Prep
       (bounds[5] as number) - center[2],
       1e-3,
     );
-    const positionScale = reach / QUANTIZED_MAX;
+    // Offsets are within `reach` up to float rounding, far below half a step, so values stay
+    // within ±QUANTIZED_MAX; that matters because an Int16Array wraps an overflow, not clamps it.
     for (const [old, index] of remap) {
       for (let axis = 0; axis < 3; axis++) {
         const value = buffers.positions[old * 3 + axis] as number;
-        positions[index * 3 + axis] = Math.round(
-          (value - (center[axis] as number)) / positionScale,
+        const target = index * CELL_VERTEX_STRIDE + axis;
+        positions[target] = Math.round(
+          ((value - (center[axis] as number)) / reach) * QUANTIZED_MAX,
         );
-        normals[index * 3 + axis] = Math.round((buffers.normals[old * 3 + axis] as number) * 127);
-        colors[index * 3 + axis] = buffers.colors[old * 3 + axis] as number;
+        normals[target] = Math.round((buffers.normals[old * 3 + axis] as number) * 127);
+        colors[target] = buffers.colors[old * 3 + axis] as number;
       }
       uvs[index * 2] = buffers.uvs[old * 2] as number;
       uvs[index * 2 + 1] = buffers.uvs[old * 2 + 1] as number;
@@ -135,7 +146,7 @@ export function prepareBuildingCells(buffers: MeshBuffers, cellSize = 512): Prep
     return {
       key,
       positions,
-      positionScale,
+      positionScale: reach,
       center,
       normals,
       uvs,

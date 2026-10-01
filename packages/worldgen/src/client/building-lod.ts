@@ -1,8 +1,12 @@
 /** Spatial building batches retain structural faces and windows at every detail level. */
 import * as THREE from 'three';
-import { type PreparedBuildingCell, prepareBuildingCells } from '../kernel/building-cells';
+import {
+  type PreparedBuildingCell,
+  prepareBuildingCells,
+  QUANTIZED_MAX,
+} from '../kernel/building-cells';
 import type { MeshBuffers } from '../kernel/types';
-import { packedColorAttribute, packedNormalAttribute } from './color-attribute';
+import { paddedVec3Attribute } from './color-attribute';
 import { bindMaterialGroups } from './material-groups';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 import type { WorldgenMaterialSet } from './upload';
@@ -41,18 +45,20 @@ export function createBuildingCellLod(
   );
   const center = new THREE.Vector3(...cell.center);
   const radius = bounds.getSize(new THREE.Vector3()).length() / 2;
-  // Quantized cell space: offsets from the center in units of the cell's uniform scale.
+  // Quantized cell space: normalized offsets from the center, times the cell's uniform scale.
   const scale = cell.positionScale;
-  // One unit of slack: rounding can put a vertex half a unit past its exact offset.
+  // One step of slack: rounding can put a vertex half a step past its exact offset.
+  const step = 1 / QUANTIZED_MAX;
   const localBounds = new THREE.Box3(
     bounds.min.clone().sub(center).divideScalar(scale),
     bounds.max.clone().sub(center).divideScalar(scale),
-  ).expandByScalar(1);
+  ).expandByScalar(step);
+  // Prepared GPU-ready, so a cache of prepared cells and the geometry share one copy.
   const attributes = {
-    position: new THREE.BufferAttribute(cell.positions, 3),
-    normal: packedNormalAttribute(cell.normals),
+    position: paddedVec3Attribute(cell.positions),
+    normal: paddedVec3Attribute(cell.normals),
     uv: new THREE.BufferAttribute(cell.uvs, 2),
-    color: packedColorAttribute(cell.colors),
+    color: paddedVec3Attribute(cell.colors),
   };
   const fullIndex = new THREE.BufferAttribute(cell.indices, 1);
   const lod = new ScreenSpaceLod(policy, radius);
@@ -68,7 +74,7 @@ export function createBuildingCellLod(
     );
     const list = detail === 0 ? bindMaterialGroups(geometry, cell.groups, materials) : flatMaterial;
     geometry.boundingBox = localBounds.clone();
-    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), radius / scale + 1);
+    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), radius / scale + step);
     const mesh = new THREE.Mesh(geometry, list);
     mesh.name = `${lod.name}:lod${detail}`;
     mesh.scale.setScalar(scale);

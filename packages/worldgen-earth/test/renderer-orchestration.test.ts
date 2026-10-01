@@ -397,12 +397,13 @@ describe('worldgen human-feature tile orchestration', () => {
     const generated = output();
     generated.buildingCells = Array.from({ length: 3 }, (_, i) => ({
       key: String(i),
-      positions: new Int16Array([0, 0, 0, 1, 0, 0, 0, 0, 1]),
+      // GPU-ready (x, y, z, pad) vertices: normalized offsets times positionScale meters.
+      positions: new Int16Array([0, 0, 0, 0, 32767, 0, 0, 0, 0, 0, 32767, 0]),
       positionScale: 1,
       center: [0, 0, 0] as [number, number, number],
-      normals: new Int8Array(9),
+      normals: new Int8Array(12),
       uvs: new Float32Array(6),
-      colors: new Uint8Array(9),
+      colors: new Uint8Array(12),
       indices: new Uint16Array([0, 1, 2]),
       structuralIndices: new Uint16Array([0, 1, 2]),
       groups: [],

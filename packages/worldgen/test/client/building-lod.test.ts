@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
-import { createBuildingDetailLod } from '../../src/client/building-lod';
+import { createBuildingCellLod, createBuildingDetailLod } from '../../src/client/building-lod';
 import { ScreenSpaceLod } from '../../src/client/screen-space-lod';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { generateBuilding } from '../../src/kernel/building';
+import { prepareBuildingCells } from '../../src/kernel/building-cells';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 import { FLAT_GROUND, type MeshBuffers, type Vec2 } from '../../src/kernel/types';
 import { createTestPack } from '../helpers/pack';
@@ -130,10 +131,14 @@ describe('building detail cells', () => {
         expect(
           (mesh.geometry.getAttribute('color') as THREE.InterleavedBufferAttribute).data.stride,
         ).toBe(4);
-        // WebGPU rejects vertex strides that are not a multiple of four bytes.
-        const normal = mesh.geometry.getAttribute('normal') as THREE.InterleavedBufferAttribute;
-        expect(normal.normalized).toBe(true);
-        expect(normal.data.stride * normal.array.BYTES_PER_ELEMENT).toBe(4);
+        // WebGPU rejects vertex strides that are not a multiple of four bytes, and three.js
+        // widens unnormalized 16-bit attributes to 32 bits there; normalized data stays compact.
+        for (const name of ['position', 'normal', 'color']) {
+          const attribute = mesh.geometry.getAttribute(name) as THREE.InterleavedBufferAttribute;
+          expect(attribute.normalized, name).toBe(true);
+          expect((attribute.data.stride * attribute.array.BYTES_PER_ELEMENT) % 4, name).toBe(0);
+        }
+        expect(mesh.geometry.getAttribute('position').array).toBeInstanceOf(Int16Array);
       }
     }
     expect(new Set(allMeshes.map((mesh) => mesh.geometry.index?.array.buffer)).size).toBe(
@@ -222,6 +227,24 @@ describe('building detail cells', () => {
     disposeWorldgenObject(root);
     expect(disposals).toBe(6);
     expect(materialDisposals).toBe(0);
+    material.dispose();
+  });
+
+  it('wraps transferred cell buffers without copying, so a cache and the geometry share one copy', () => {
+    const material = new THREE.MeshStandardMaterial();
+    const [cell] = prepareBuildingCells(fixture(), 512);
+    if (cell === undefined) throw new Error('fixture produced no cells');
+    const lod = createBuildingCellLod(cell, { materialFor: () => material }, material, {
+      viewportHeight: 1_000,
+      maxPixelError: 1,
+    });
+    for (const level of lod.levels) {
+      const geometry = (level.object as THREE.Mesh).geometry;
+      expect(geometry.getAttribute('position').array).toBe(cell.positions);
+      expect(geometry.getAttribute('normal').array).toBe(cell.normals);
+      expect(geometry.getAttribute('color').array).toBe(cell.colors);
+      expect(geometry.getAttribute('uv').array).toBe(cell.uvs);
+    }
     material.dispose();
   });
 

@@ -184,6 +184,9 @@ async function render(
   expect(result.shadowsEnabled).toBe(true);
   expect(result.fogFar).toBe(60);
   expect(result.toneMapping).toBeGreaterThan(0);
+  // Quantized building positions must reach the GPU at 16 bits: three.js widens unnormalized
+  // 16-bit attributes to Int32 on WebGPU, which would cost as much as Float32.
+  expect(result.cellPositionArrays).toEqual(['Int16Array']);
   await capture(page, name);
   await writeFile(join(OUT, `${name}.json`), JSON.stringify(result, null, 2));
   return result;
