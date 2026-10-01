@@ -1,3 +1,12 @@
+## @bendyline/molen-client [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.4...@bendyline/molen-client@0.0.5) (2026-10-01)
+
+### Bug Fixes
+
+* Lint fixes ([8916237](https://github.com/bendyline/molen/commit/8916237a9bc53adf039efef74b24486e1c680dd6))
+* More graphical updates ([3e8e002](https://github.com/bendyline/molen/commit/3e8e00297b628634b653f4462a1188fd7ef8abcb))
+* Visualization fixes ([60af86c](https://github.com/bendyline/molen/commit/60af86ca90ba1e58cdf6570116305dc0d17d363f))
+* Viz improvements ([6411e43](https://github.com/bendyline/molen/commit/6411e43272ffb455b12edfdcfb378bba43b2a76d))
+
 ## @bendyline/molen-client [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.3...@bendyline/molen-client@0.0.4) (2026-09-30)
 
 ### Bug Fixes

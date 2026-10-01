@@ -1,3 +1,9 @@
+## @bendyline/molen-entities [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.4...@bendyline/molen-entities@0.0.5) (2026-10-01)
+
+### Bug Fixes
+
+* Update project.json ([735ebe8](https://github.com/bendyline/molen/commit/735ebe899b69839b260bb61eb6d2834f18a0df46))
+
 ## @bendyline/molen-entities [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.3...@bendyline/molen-entities@0.0.4) (2026-09-30)
 
 ### Bug Fixes

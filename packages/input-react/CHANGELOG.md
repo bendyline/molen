@@ -1,3 +1,10 @@
+## @bendyline/molen-input-react [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-input-react@0.0.4...@bendyline/molen-input-react@0.0.5) (2026-10-01)
+
+
+### Dependencies
+
+* **@bendyline/molen-client:** upgraded to 0.0.5
+
 ## @bendyline/molen-input-react [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-input-react@0.0.3...@bendyline/molen-input-react@0.0.4) (2026-09-30)
 
 ### Bug Fixes

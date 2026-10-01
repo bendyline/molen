@@ -1,3 +1,20 @@
+## @bendyline/molen-tooling [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.4...@bendyline/molen-tooling@0.0.5) (2026-10-01)
+
+### Bug Fixes
+
+* More molen work ([593fcae](https://github.com/bendyline/molen/commit/593fcaea2ad98ace45940ae12c4c768fd3f516b3))
+* More test fixes ([c86187e](https://github.com/bendyline/molen/commit/c86187e60d277a9576be67e57fc734bf897ecf4a))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.5
+* **@bendyline/molen-client:** upgraded to 0.0.5
+* **@bendyline/molen-figures:** upgraded to 0.0.5
+* **@bendyline/molen-terrain:** upgraded to 0.0.5
+* **@bendyline/molen-worldgen:** upgraded to 0.0.5
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.5
+
 ## @bendyline/molen-tooling [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.3...@bendyline/molen-tooling@0.0.4) (2026-09-30)
 
 ### Bug Fixes
