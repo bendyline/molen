@@ -130,6 +130,10 @@ describe('building detail cells', () => {
         expect(
           (mesh.geometry.getAttribute('color') as THREE.InterleavedBufferAttribute).data.stride,
         ).toBe(4);
+        // WebGPU rejects vertex strides that are not a multiple of four bytes.
+        const normal = mesh.geometry.getAttribute('normal') as THREE.InterleavedBufferAttribute;
+        expect(normal.normalized).toBe(true);
+        expect(normal.data.stride * normal.array.BYTES_PER_ELEMENT).toBe(4);
       }
     }
     expect(new Set(allMeshes.map((mesh) => mesh.geometry.index?.array.buffer)).size).toBe(

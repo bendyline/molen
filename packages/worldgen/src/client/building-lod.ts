@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { type PreparedBuildingCell, prepareBuildingCells } from '../kernel/building-cells';
 import type { MeshBuffers } from '../kernel/types';
-import { packedColorAttribute } from './color-attribute';
+import { packedColorAttribute, packedNormalAttribute } from './color-attribute';
 import { bindMaterialGroups } from './material-groups';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 import type { WorldgenMaterialSet } from './upload';
@@ -50,7 +50,7 @@ export function createBuildingCellLod(
   ).expandByScalar(1);
   const attributes = {
     position: new THREE.BufferAttribute(cell.positions, 3),
-    normal: new THREE.BufferAttribute(cell.normals, 3, true),
+    normal: packedNormalAttribute(cell.normals),
     uv: new THREE.BufferAttribute(cell.uvs, 2),
     color: packedColorAttribute(cell.colors),
   };
