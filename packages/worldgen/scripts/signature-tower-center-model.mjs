@@ -337,12 +337,6 @@ function bamboo(out, x, z, seed) {
     }
   }
 }
-function rail(out, plan, y) {
-  for (const { length, at } of edges(plan)) {
-    frameEdge(out, at(0, y + 1.05), at(length, y + 1.05), 0.055);
-    for (let x = 0.1; x < length; x += 1.45) frameEdge(out, at(x, y), at(x, y + 1.05), 0.045);
-  }
-}
 function base(out, m) {
   // Ground columns are distinct from the projected star skin and retain the public space below the tower.
   const footprint = rect(-31, -31, 31, 31);

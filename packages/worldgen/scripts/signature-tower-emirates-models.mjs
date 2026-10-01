@@ -268,7 +268,7 @@ function crown(out, bodyTop, low, high, height) {
   // Two solid cladded triangular gables flank a genuine sloped glass roof.
   const roofY = (x) => low + ((x - rear) / H) * (high - low);
   for (const edge of [edges(plan)[0], edges(plan)[2]]) {
-    const { at, len } = edge,
+    const { at } = edge,
       n = 40;
     for (let i = 0; i < n; i++) {
       const a = i / n,

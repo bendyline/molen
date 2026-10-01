@@ -1,7 +1,6 @@
 /** Independently referenced landmark exteriors; never used as anonymous category buildings. */
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
-  annulus,
   archBay,
   balcony,
   column,

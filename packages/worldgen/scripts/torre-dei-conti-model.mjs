@@ -1,6 +1,6 @@
 /** The documented pre-November-2025 Torre dei Conti; never a present-day intact replacement. */
 import { beam, loft } from './authored-structure-mesh.mjs';
-import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
+import { face, transform } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 
 const brick = [0.57, 0.43, 0.31],
