@@ -117,6 +117,12 @@ export interface TerrainSemanticTile {
   pois?: TerrainPoiFeature[];
   /** Source merged/generalized footprints cannot reliably identify individual premises. */
   buildingsGeneralized?: boolean;
+  /**
+   * Level the building footprints were read at, when finer than the tile (composed from a
+   * building-detail sidecar). Their clip buffer is the source's buffer divided by
+   * 2^(buildingSourceLevel - tile level); tile-edge ownership rules should narrow theirs to match.
+   */
+  buildingSourceLevel?: number;
 }
 
 function assertFinite(value: number, path: string): void {
@@ -291,6 +297,11 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
   }
   if (tile.buildingsGeneralized !== undefined && typeof tile.buildingsGeneralized !== 'boolean')
     throw new Error('buildingsGeneralized must be boolean');
+  if (
+    tile.buildingSourceLevel !== undefined &&
+    (!Number.isSafeInteger(tile.buildingSourceLevel) || tile.buildingSourceLevel < 0)
+  )
+    throw new Error('buildingSourceLevel must be a whole level');
   for (let index = 0; index < tile.buildings.length; index++) {
     const feature = tile.buildings[index] as TerrainBuildingFeature;
     assertPolygons(feature.polygons, `/buildings/${index}/polygons`);

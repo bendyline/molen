@@ -26,6 +26,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
+  buildingBoxGeometry,
   createBuildingCellLod,
   createBuildingDetailLod,
   createInstancedPlacementLod,
@@ -38,7 +39,6 @@ import {
   type ModelLibrary,
   type ScreenSpaceLodPolicy,
   type StructureModelLibrary,
-  unitBoxGeometry,
   type WorldgenMaterialSet,
 } from '@bendyline/molen-worldgen/client';
 import type {
@@ -54,7 +54,11 @@ import type { TileGeometry } from '../kernel/semantic-adapter';
 import { isStructureViewingDate } from '../kernel/structure-date';
 import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
 import { matchMapStructures, orientMappedStructure } from '../kernel/structure-matching';
-import { type WorldgenQualityPreset, worldgenTileBudgetForQuality } from '../kernel/tile-budgets';
+import {
+  type WorldgenQualityPreset,
+  worldgenBuildingCellSize,
+  worldgenTileBudgetForQuality,
+} from '../kernel/tile-budgets';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
@@ -313,7 +317,7 @@ export function createWorldgenSemanticRenderers(
     if (models === undefined) return [];
     const objects: THREE.Object3D[] = [];
     for (const set of sets) {
-      if (set.modelRef === 'builtin:box' || set.count === 0) continue;
+      if (buildingBoxGeometry(set.modelRef) !== undefined || set.count === 0) continue;
       try {
         const coarse = context.address.level < context.pyramid.maxLevel;
         const prepared = await models.prepare(set.modelRef, coarse);
@@ -417,19 +421,22 @@ export function createWorldgenSemanticRenderers(
               flatMaterials.materialFor('wall', 'palette:#ffffff'),
               options.lodPolicy,
               `${name}:buildings`,
-              512,
+              worldgenBuildingCellSize(
+                Math.max(0, context.pyramid.maxLevel - context.address.level),
+              ),
               output.buildingCells,
             )
           : buffersToObject3D(output.buildings, materials, `${name}:buildings`),
       );
     for (const set of output.placements) {
-      if (set.modelRef !== 'builtin:box') continue;
+      const geometry = buildingBoxGeometry(set.modelRef);
+      if (geometry === undefined) continue;
       group.add(
         createInstancedPlacements(
           set,
-          unitBoxGeometry(),
+          geometry,
           materials.materialFor('wall', 'palette:#ffffff'),
-          `${name}:boxes`,
+          `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
         ),
       );
     }

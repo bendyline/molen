@@ -193,7 +193,10 @@ const view = await mountEarthView({
 });
 ```
 
-The host can return `archives` in the result to fetch tiles from its own PMTiles service. Keep
+The host can return `archives` in the result to fetch tiles from its own PMTiles service
+(`elevation`, `landcover`, `features`, and `buildingDetail` for a package's finer building tier;
+see [terrain](terrain.md)). A building-detail archive that fails to open is reported as an error
+and the view carries on with the feature tiles' own footprints. Keep
 pack attribution visible through `view.credits`, which follows the active terrain source. Listen
 for `terrainchange` to refresh an attribution panel when the package changes. Direct jumps and
 completed flights resolve the destination immediately; manual panning rechecks the host source
@@ -498,6 +501,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   level steps down, and since stepping down selects fewer, coarser tiles, pressure falls rather
   than cascading to the minimum. The terrain cache keeps at least the budget, so ground just left
   is still warm when the view pans back.
+- `stats().worldgen` counts styled building generation since the current terrain stream started
+  (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
 - `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 

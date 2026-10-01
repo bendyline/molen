@@ -7,11 +7,11 @@ import {
 } from '@bendyline/molen-client';
 import {
   buffersToObject3D,
+  buildingBoxGeometry,
   createInstancedPlacements,
   createResolvedMaterialSet,
   createVertexColorMaterialSet,
   ModelLibrary,
-  unitBoxGeometry,
 } from '@bendyline/molen-worldgen/client';
 import {
   type LandmarkDefinitions,
@@ -172,11 +172,12 @@ async function buildSession(scene: ScenePayload, size: [number, number]): Promis
       data,
     };
     if (data.length < set.count * PLACEMENT_STRIDE) continue;
-    if (set.modelRef === 'builtin:box') {
+    const boxGeometry = buildingBoxGeometry(set.modelRef);
+    if (boxGeometry !== undefined) {
       root.add(
         createInstancedPlacements(
           set,
-          unitBoxGeometry(),
+          boxGeometry,
           flat.materialFor('wall', 'palette:#ffffff'),
           `preview:${set.setId}`,
         ),

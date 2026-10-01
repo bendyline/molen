@@ -161,7 +161,7 @@ describe('facades', () => {
     expect(again.facade).toEqual(full.facade);
   });
 
-  it('keeps a bounded subset of real windows and the same roof in the budget fallback', () => {
+  it('keeps a row of windows on every floor and the same roof in the budget fallback', () => {
     const doc = style({ roof: GABLE_ONLY, materials: TEXTURED_MATERIALS });
     const request = {
       identity: 'large-facade',
@@ -178,8 +178,6 @@ describe('facades', () => {
     const simple = build(doc, { request, simplified: true });
     expect(simple.record?.roof).toBe(full.record?.roof);
     expect(simple.record?.height).toBe(full.record?.height);
-    expect(simple.facade?.windows).toBeGreaterThan(0);
-    expect(simple.facade?.windows).toBeLessThanOrEqual(4 * 3 * 2);
     expect(simple.facade?.bands).toBe(0);
     expect(simple.props).toHaveLength(0);
     expect(simple.buffers.vertexCount).toBeLessThan(full.buffers.vertexCount / 2);
@@ -188,17 +186,19 @@ describe('facades', () => {
       buffers.groups
         .filter((group) => group.slot === 'window')
         .flatMap((group) => [...buffers.indices.slice(group.start, group.start + group.count)]);
-    const fullPositions = new Set(
-      windowVertices(full.buffers).map((v) =>
-        [...full.buffers.positions.slice(v * 3, v * 3 + 3)].join(','),
-      ),
-    );
-    for (const vertex of windowVertices(simple.buffers)) {
-      expect(
-        fullPositions.has(
-          [...simple.buffers.positions.slice(vertex * 3, vertex * 3 + 3)].join(','),
+    // The long walls draw one strip per floor; every floor that has windows at full detail
+    // still has them, at the same sill and head heights.
+    const levels = (buffers: MeshBuffers): number[] =>
+      [
+        ...new Set(
+          windowVertices(buffers).map((v) =>
+            Math.round((buffers.positions[v * 3 + 1] as number) * 100),
+          ),
         ),
-      ).toBe(true);
+      ].sort((a, b) => a - b);
+    expect(levels(simple.buffers)).toEqual(levels(full.buffers));
+    expect(simple.facade?.windows).toBeGreaterThan(4 * 3 * 2);
+    for (const vertex of windowVertices(simple.buffers)) {
       expect(simple.buffers.colors[vertex * 3]).toBeLessThan(80);
     }
     const seamed = build(doc, {

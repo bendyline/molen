@@ -99,7 +99,9 @@ await surfaces.setOptions({
 ## What is drawn
 
 - Modern streets use asphalt, exposed shoulder strips, curb/sidewalk bands, lane dividers, edge paint, stop
-  bars and zebra crossings. Mapped paths are cut at same-grade carriageway edges, so footway
+  bars and zebra crossings. Shoulders, like the other street details, are drawn on the finest
+  detail tiles only: a few decimeters wide, they are below a pixel on the coarser tiles kilometers
+  away, where draping them segment by segment once cost more memory than the roads themselves. Mapped paths are cut at same-grade carriageway edges, so footway
   fills cannot compete with asphalt at walking height; paths beneath bridges remain continuous.
   Nearby nodes on divided roads form one junction; crossings follow
   the external approaches, and short turning links receive no independent crossings. Same-grade

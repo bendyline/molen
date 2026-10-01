@@ -682,6 +682,108 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
           "type": "string",
           "const": "protomaps-basemap@1",
           "description": "Attribute profile of the tiles; always 'protomaps-basemap@1' when set."
+        },
+        "buildingDetail": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "pmtiles",
+                      "description": "Archive kind; always 'pmtiles'."
+                    },
+                    "path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Package-relative path of the PMTiles archive."
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "path"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "pmtiles",
+                      "description": "Archive kind; always 'pmtiles'."
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Absolute URL of the PMTiles archive."
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "url"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "pmtiles-set",
+                      "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                    },
+                    "path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Package-relative path of the archive-set document."
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "path"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "pmtiles-set",
+                      "description": "Archive kind 'pmtiles-set': a molen/archive-set@1 document naming many archives."
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Absolute URL of the archive-set document."
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "url"
+                  ],
+                  "additionalProperties": false
+                }
+              ],
+              "description": "Archive holding finer feature tiles read only for building footprints and places."
+            },
+            "level": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 30,
+              "description": "The one level the archive is read at (e.g. 15, where Protomaps keeps every building)."
+            }
+          },
+          "required": [
+            "source",
+            "level"
+          ],
+          "additionalProperties": false,
+          "description": "Optional finer tiles for buildings: basemaps generalize footprints below their last zoom, so coarser feature tiles take their buildings from this level where it has tiles."
         }
       },
       "required": [

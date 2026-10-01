@@ -329,22 +329,35 @@ Containment is a spatial inference because stock Protomaps does not publish pare
 
 ## 8. Budgets and quality
 
-`worldgenTileBudgetForQuality(quality, levelBelowMax)` caps buildings and vertices per tile.
-Building batches reserve simple architecture before allocating extra detail to the largest
-footprints. The budget fallback preserves the authored footprint, roof shape, and (where the
-active style tier permits them) up to three window columns and two rows per wall, using shared
-vertex-colored materials during reservation. Eligible simplified buildings recover their shared
-textures when material groups fit, even if no geometric detail fits. High admits 24 material
-groups at the finest level, including flat fallback slots. The fallback omits raised window
-surrounds, trim bands, overhangs, separate foundation meshes, and roof
-props. Simplified and coarse buildings extend their walls below the lowest sampled ground,
-keeping roofs and windows level without gaps on downhill sides or extra vertices and draw calls.
-Box fallbacks do the same; intentionally elevated `minHeight` parts retain their clearance.
-`detailedCount` limits eligibility for extra detail; it no longer turns all later buildings into
-boxes. Vertex and material-group caps still apply, with boxes used when the simple geometry
-cannot fit or the requested tier is beyond the style's last tier. Buildings beyond
-`maxBuildings` are still omitted. Quality and detail remain tile-based, not camera-distance
-updates per building.
+`worldgenTileBudgetForQuality(quality, levelBelowMax)` caps buildings and vertices per tile. The
+numbers are sized for real footprints: a zoom-15 suburb puts 800 to 1,600 houses in a zoom-14
+tile, and a downtown about 1,700 footprints and parts.
+
+A batch spends its budget in priority order, largest footprints first. First every building gets
+walls and its roof shape (the style's coarsest tier); only when even that does not fit does a
+building become an instanced stand-in. Then buildings gain a simplified facade while it fits, then
+the largest (`detailedCount`) gain full detail. The simplified facade preserves the authored
+footprint, roof shape and, where the active style tier permits them, a window on every floor:
+walls with up to three bays keep their real windows, and longer walls draw each floor's punched or
+grid windows as one strip whose window texture repeats once per bay, four vertices a floor and
+wall. It uses shared vertex-colored materials during reservation; eligible simplified buildings
+recover their shared textures when material groups fit, even if no geometric detail fits. Interior
+openings come with full detail only: cut into every budget facade they would cost a crowded
+neighbourhood its windows. High admits 24 material groups at the finest level, including flat
+fallback slots. The fallback omits raised window surrounds, trim bands, overhangs, separate
+foundation meshes, and roof props. Simplified and coarse buildings extend their walls below the
+lowest sampled ground, keeping roofs and windows level without gaps on downhill sides or extra
+vertices and draw calls. Stand-ins do the same; intentionally elevated `minHeight` parts retain
+their clearance.
+
+Stand-ins are instanced: `builtin:box` for flat-roofed buildings, and `builtin:box.gable` (set
+`buildings:box.gable`) for pitched ones, a box whose walls stop at the eave (`GABLE_BOX_EAVE` of
+its height) under a roof ridged along its longer side, the roof shaded darker than the walls. From
+the air a neighbourhood of stand-ins still reads as roofs. `buildingBoxGeometry(modelRef)` returns
+the shared geometry for either. Buildings beyond `maxBuildings` are still omitted. Quality and
+detail remain tile-based, not camera-distance updates per building. `worldgenBuildingCellSize`
+batches the finest level's buildings into 512 m cells and coarser levels' into 1024 m cells, since
+each cell is a draw.
 
 Generation is cooperative: the renderer yields between chunks of both reservation and detail
 work, and aborts when a tile is evicted. The explorer HUD reports buildings, boxes, and generation
@@ -353,7 +366,7 @@ time per tile.
 Detail tiers come from the level below the finest (tier 0 at the finest level, 1 one level
 below, ...) plus one at economy quality. A style's `lod.tiers` say which features survive each
 tier: roof shape, roof features, facade windows, facade bands, props; beyond the last tier the
-building is a tinted box. `maxMaterialGroups` caps the mesh groups (draw calls) of one batch:
+building is a stand-in. `maxMaterialGroups` caps the mesh groups (draw calls) of one batch:
 once a batch would exceed it, later buildings render their textured parts as vertex colors
 (`stats.materialsCollapsed`), so the largest buildings keep their textures first.
 

@@ -216,6 +216,8 @@ describe('mountEarthView', () => {
     expect(stats.displayedTiles).toBeGreaterThan(0);
     expect(stats.failedTiles).toBe(0);
     expect(stats.frameLatitude).toBe(47.6);
+    // Without content packs there are no styled buildings to count.
+    expect(stats.worldgen).toBeUndefined();
     const camera = view.getCamera();
     expect(camera.mode).toBe('orbit');
     expect(camera.latitude).toBeCloseTo(47.6, 6);

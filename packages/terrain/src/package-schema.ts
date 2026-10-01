@@ -195,6 +195,23 @@ const terrainPackageSchema = z.strictObject({
         .literal('protomaps-basemap@1')
         .describe("Attribute profile of the tiles; always 'protomaps-basemap@1' when set.")
         .optional(),
+      buildingDetail: z
+        .strictObject({
+          source: archiveSource.describe(
+            'Archive holding finer feature tiles read only for building footprints and places.',
+          ),
+          level: z
+            .int()
+            .min(0)
+            .max(30)
+            .describe(
+              'The one level the archive is read at (e.g. 15, where Protomaps keeps every building).',
+            ),
+        })
+        .describe(
+          'Optional finer tiles for buildings: basemaps generalize footprints below their last zoom, so coarser feature tiles take their buildings from this level where it has tiles.',
+        )
+        .optional(),
     })
     .describe('Optional vector feature tiles (water, roads, buildings).')
     .optional(),
@@ -273,7 +290,11 @@ function validateTerrainPackage(data: unknown): ValidationIssue[] {
       }>;
     };
     landcover?: { source: { path: string } | { url: string } };
-    features?: { source: { path: string } | { url: string }; layers: string[] };
+    features?: {
+      source: { path: string } | { url: string };
+      layers: string[];
+      buildingDetail?: { source: { path: string } | { url: string } };
+    };
     models?: { index: string };
     files: Array<{ path: string }>;
   };
@@ -362,9 +383,12 @@ function validateTerrainPackage(data: unknown): ValidationIssue[] {
     });
   }
   const declared = new Set(pkg.files.map((file) => file.path));
-  const archiveSources = [pkg.elevation.source, pkg.landcover?.source, pkg.features?.source].filter(
-    (source): source is { path: string } | { url: string } => source !== undefined,
-  );
+  const archiveSources = [
+    pkg.elevation.source,
+    pkg.landcover?.source,
+    pkg.features?.source,
+    pkg.features?.buildingDetail?.source,
+  ].filter((source): source is { path: string } | { url: string } => source !== undefined);
   const sources = [
     ...archiveSources.flatMap((source) => ('path' in source ? [source.path] : [])),
     pkg.models?.index,

@@ -7,7 +7,12 @@ export type {
   WorldgenEntityLayerOptions,
 } from './client/entity-layer';
 export { createWorldgenEntityLayer } from './client/entity-layer';
-export { createInstancedPlacements, unitBoxGeometry } from './client/instanced-box';
+export {
+  buildingBoxGeometry,
+  createInstancedPlacements,
+  gableBoxGeometry,
+  unitBoxGeometry,
+} from './client/instanced-box';
 export {
   createInstancedPlacementLod,
   type InstancedPlacementLodOptions,

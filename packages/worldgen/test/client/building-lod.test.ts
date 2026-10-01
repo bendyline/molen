@@ -39,23 +39,41 @@ function meshesAt(root: THREE.Group, detail: number): THREE.Mesh[] {
   return root.children.map((cell) => (cell as ScreenSpaceLod).levels[detail]?.object as THREE.Mesh);
 }
 
+/** Cell vertices decoded to the batch's coordinates (quantized cells carry a scale). */
 function verticesAt(root: THREE.Group, detail: number): number[] {
+  root.updateMatrixWorld(true);
+  const point = new THREE.Vector3();
   return meshesAt(root, detail).flatMap((mesh) =>
-    Array.from(mesh.geometry.index?.array ?? []).flatMap((index) =>
-      Array.from(mesh.geometry.getAttribute('position').array.slice(index * 3, index * 3 + 3)),
-    ),
+    Array.from(mesh.geometry.index?.array ?? []).flatMap((index) => {
+      point.fromBufferAttribute(mesh.geometry.getAttribute('position'), index);
+      point.applyMatrix4(mesh.matrixWorld);
+      return [point.x, point.y, point.z];
+    }),
   );
 }
 function sourceVertices(buffers: MeshBuffers, indices: readonly number[]): number[] {
   return indices.flatMap((index) => Array.from(buffers.positions.slice(index * 3, index * 3 + 3)));
 }
 
-// Compare whole oriented triangles, allowing only cell/group reordering.
-const sorted = (values: number[]): string[] => {
-  const triangles: string[] = [];
-  for (let i = 0; i < values.length; i += 9) triangles.push(values.slice(i, i + 9).join(','));
-  return triangles.sort();
+// Compare whole oriented triangles, allowing only cell/group reordering and quantization.
+const sorted = (values: number[]): number[][] => {
+  const triangles: number[][] = [];
+  for (let i = 0; i < values.length; i += 9) triangles.push(values.slice(i, i + 9));
+  const key = (t: number[]) => t.map((v) => Math.round(v * 10)).join(',');
+  return triangles.sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
 };
+function expectSameTriangles(actual: number[], expected: number[]): void {
+  const a = sorted(actual);
+  const b = sorted(expected);
+  expect(a.length).toBe(b.length);
+  // Cells store 16-bit positions: well under a millimeter for buildings this size.
+  const worst = a.reduce(
+    (max, triangle, i) =>
+      Math.max(max, ...triangle.map((v, k) => Math.abs(v - (b[i]?.[k] ?? Number.NaN)))),
+    0,
+  );
+  expect(worst).toBeLessThan(1e-3);
+}
 
 describe('building detail cells', () => {
   it('retains every structural face and material in compact cells with shared LOD attributes', () => {
@@ -82,20 +100,17 @@ describe('building detail cells', () => {
     );
     expect(root.children).toHaveLength(2);
     expect(root.children.every((cell) => cell instanceof ScreenSpaceLod)).toBe(true);
-    expect(sorted(verticesAt(root, 0))).toEqual(
-      sorted(sourceVertices(buffers, Array.from(inputIndices))),
-    );
-    expect(sorted(verticesAt(root, 1))).toEqual(
-      sorted(sourceVertices(buffers, Array.from(inputIndices))),
-    );
+    expectSameTriangles(verticesAt(root, 0), sourceVertices(buffers, Array.from(inputIndices)));
+    expectSameTriangles(verticesAt(root, 1), sourceVertices(buffers, Array.from(inputIndices)));
+    // The far level keeps walls, roofs, foundations and windows; trim and detail drop out.
     const structure = buffers.groups
-      .filter((group) => ['wall', 'roof', 'foundation'].includes(group.slot))
+      .filter((group) => ['wall', 'roof', 'foundation', 'window'].includes(group.slot))
       .flatMap((group) =>
         Array.from(buffers.indices.subarray(group.start, group.start + group.count)),
       );
     expect(structure.length).toBeGreaterThan(0);
     expect(structure.length).toBeLessThan(buffers.indices.length);
-    expect(sorted(verticesAt(root, 2))).toEqual(sorted(sourceVertices(buffers, structure)));
+    expectSameTriangles(verticesAt(root, 2), sourceVertices(buffers, structure));
 
     const allMeshes = [0, 1, 2].flatMap((detail) => meshesAt(root, detail));
     for (let cell = 0; cell < root.children.length; cell++) {
@@ -156,12 +171,18 @@ describe('building detail cells', () => {
       for (const mesh of meshesAt(root, detail)) {
         const sphere = mesh.geometry.boundingSphere as THREE.Sphere;
         const box = mesh.geometry.boundingBox as THREE.Box3;
-        expect(sphere.radius).toBeLessThan(100);
+        expect(sphere.radius * mesh.scale.x).toBeLessThan(100);
+        const lod = mesh.parent as THREE.Object3D;
         for (const index of mesh.geometry.index?.array ?? []) {
           position.fromBufferAttribute(mesh.geometry.getAttribute('position'), index);
           expect(box.containsPoint(position)).toBe(true);
           expect(position.distanceTo(sphere.center)).toBeLessThanOrEqual(sphere.radius + 1e-6);
-          const expected = position.clone().add(root.position);
+          // World = root + cell center + quantized offset × the cell's uniform scale.
+          const expected = position
+            .clone()
+            .multiplyScalar(mesh.scale.x)
+            .add(lod.position)
+            .add(root.position);
           position.applyMatrix4(mesh.matrixWorld);
           expect(position.distanceTo(expected)).toBeLessThan(1e-6);
         }

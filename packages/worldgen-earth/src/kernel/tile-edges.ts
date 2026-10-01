@@ -15,6 +15,20 @@ import { clipRingToRect } from '@bendyline/molen-worldgen/kernel';
 /** Protomaps basemap tiles carry a 64 / 4096 buffer. */
 export const PROTOMAPS_TILE_BUFFER: number = 64 / 4096;
 
+/**
+ * The clip buffer of a tile's building footprints. Footprints composed from a finer level
+ * (`buildingSourceLevel`, a building-detail sidecar) were cut at that level's buffer, which is
+ * 2^(source - tile level) times narrower in this tile's units.
+ */
+export function buildingClipBuffer(
+  tile: { buildingSourceLevel?: number },
+  level: number,
+  buffer: number = PROTOMAPS_TILE_BUFFER,
+): number {
+  const source = tile.buildingSourceLevel;
+  return source !== undefined && source > level ? buffer / 2 ** (source - level) : buffer;
+}
+
 const EPS = 1 / 8192;
 
 export type EdgeDecision =

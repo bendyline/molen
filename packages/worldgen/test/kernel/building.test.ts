@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { type BuildingGenerateInput, generateBuilding } from '../../src/kernel/building';
+import {
+  type BuildingGenerateInput,
+  GABLE_BOX_EAVE,
+  generateBuilding,
+} from '../../src/kernel/building';
 import { analyzeFootprint } from '../../src/kernel/footprint';
 import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 import { resolveBuildingRecipe } from '../../src/kernel/recipe';
@@ -239,7 +243,10 @@ describe('building generation', () => {
     const ground: HeightSampler = { ...FLAT_GROUND, sampleHeight: (x, z) => -x - z };
     const result = build({ ground, tier: 99 });
     expect(result.box?.y).toBeLessThan(-24);
-    expect((result.box?.y as number) + (result.box?.sy as number)).toBeCloseTo(
+    // A pitched stand-in's walls end at its eave; its roof rises above the record's height.
+    const walls =
+      result.box?.roof === 'gable' ? GABLE_BOX_EAVE * (result.box.sy as number) : result.box?.sy;
+    expect((result.box?.y as number) + (walls as number)).toBeCloseTo(
       (result.record?.base as number) + (result.record?.height as number),
       6,
     );

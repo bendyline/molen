@@ -1,4 +1,4 @@
-/** Spatial building batches retain structural faces at every detail level. */
+/** Spatial building batches retain structural faces and windows at every detail level. */
 import * as THREE from 'three';
 import { type PreparedBuildingCell, prepareBuildingCells } from '../kernel/building-cells';
 import type { MeshBuffers } from '../kernel/types';
@@ -39,11 +39,18 @@ export function createBuildingCellLod(
     new THREE.Vector3(...cell.bounds.slice(0, 3)),
     new THREE.Vector3(...cell.bounds.slice(3)),
   );
-  const center = bounds.getCenter(new THREE.Vector3());
+  const center = new THREE.Vector3(...cell.center);
   const radius = bounds.getSize(new THREE.Vector3()).length() / 2;
+  // Quantized cell space: offsets from the center in units of the cell's uniform scale.
+  const scale = cell.positionScale;
+  // One unit of slack: rounding can put a vertex half a unit past its exact offset.
+  const localBounds = new THREE.Box3(
+    bounds.min.clone().sub(center).divideScalar(scale),
+    bounds.max.clone().sub(center).divideScalar(scale),
+  ).expandByScalar(1);
   const attributes = {
     position: new THREE.BufferAttribute(cell.positions, 3),
-    normal: new THREE.BufferAttribute(cell.normals, 3),
+    normal: new THREE.BufferAttribute(cell.normals, 3, true),
     uv: new THREE.BufferAttribute(cell.uvs, 2),
     color: packedColorAttribute(cell.colors),
   };
@@ -60,15 +67,16 @@ export function createBuildingCellLod(
       detail === 2 ? new THREE.BufferAttribute(cell.structuralIndices, 1) : fullIndex,
     );
     const list = detail === 0 ? bindMaterialGroups(geometry, cell.groups, materials) : flatMaterial;
-    geometry.boundingBox = bounds.clone();
-    geometry.boundingSphere = new THREE.Sphere(center.clone(), radius);
+    geometry.boundingBox = localBounds.clone();
+    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), radius / scale + 1);
     const mesh = new THREE.Mesh(geometry, list);
     mesh.name = `${lod.name}:lod${detail}`;
-    mesh.position.copy(center).negate();
+    mesh.scale.setScalar(scale);
     mesh.updateMatrix();
     mesh.matrixAutoUpdate = false;
     mesh.receiveShadow = true;
-    mesh.castShadow = detail === 0;
+    // The middle level is the same geometry; its shadows keep a street from flattening out.
+    mesh.castShadow = detail <= 1;
     mesh.userData.worldgenOwnedGeometry = true;
     lod.addDetail(mesh, [0, 0.35, 0.9][detail] as number);
   }

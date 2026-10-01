@@ -194,6 +194,8 @@ export interface EarthTerrainSource {
     elevation?: TerrainTileArchive;
     landcover?: TerrainTileArchive;
     features?: TerrainTileArchive;
+    /** Serves the package's `features.buildingDetail` level (finer building footprints). */
+    buildingDetail?: TerrainTileArchive;
   };
 }
 
@@ -224,6 +226,8 @@ export interface EarthViewOptions {
     elevation?: TerrainTileArchive;
     landcover?: TerrainTileArchive;
     features?: TerrainTileArchive;
+    /** Serves the package's `features.buildingDetail` level (finer building footprints). */
+    buildingDetail?: TerrainTileArchive;
   };
   /** Content packs; without them buildings are plain extrusions and there are no cars. */
   content?: EarthContent;
@@ -310,6 +314,11 @@ export interface EarthViewStats {
   frameLatitude: number;
   /** Ambient life counts, when it is on. */
   ambient?: EarthAmbientStats;
+  /**
+   * Building generation since the current terrain stream started, when content packs are
+   * loaded: tiles generated, buildings drawn as geometry, and instanced stand-ins.
+   */
+  worldgen?: { tiles: number; buildings: number; standIns: number };
 }
 
 export interface EarthView {
@@ -707,6 +716,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               ...(selected.archives?.features !== undefined
                 ? { featuresArchive: selected.archives.features }
                 : {}),
+              ...(selected.archives?.buildingDetail !== undefined
+                ? { buildingDetailArchive: selected.archives.buildingDetail }
+                : {}),
               waterLayer: {
                 visible: true,
                 mesh: {
@@ -740,6 +752,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })(),
             });
             layers = semantic.layers;
+            // Finer building footprints are optional: without them the feature tiles' own stay.
+            if (semantic.semantics.buildingDetailError !== undefined)
+              report(semantic.semantics.buildingDetailError, 'building detail');
           } catch (error) {
             // Bare terrain still renders; semantic sidecars are optional by contract.
             report(error, 'semantic layers');
@@ -1845,6 +1860,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           triangles: renderStats.triangles,
           frameLatitude,
           ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
+          ...(stack?.worldgen !== undefined
+            ? (() => {
+                const generated = (stack.worldgen as EarthWorldgen).stats();
+                return {
+                  worldgen: {
+                    tiles: generated.tiles,
+                    buildings: generated.buildings,
+                    standIns: generated.boxes,
+                  },
+                };
+              })()
+            : {}),
         };
       },
       get ambientEnabled() {

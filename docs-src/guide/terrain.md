@@ -377,6 +377,39 @@ ancestors, since one ancestor serves up to four children at a time. Layers creat
 `createTerrainPackageSemanticLayers` then reach the package's `maxLevel`; pass `overzoom: false`
 to stop them at the sidecar's levels.
 
+Basemaps also generalize buildings below their last zoom: Protomaps keeps almost no footprints
+below zoom 15, so a zoom-13 or zoom-14 feature tile shows streets and trees but no houses. A
+package can carry that last zoom separately, often only near where people look, as a building
+detail sidecar:
+
+```json
+"features": {
+  "source": { "kind": "pmtiles-set", "url": "https://tiles.example/archive-set.json" },
+  "encoding": "mvt",
+  "layers": ["water", "transportation", "building", "poi"],
+  "profile": "protomaps-basemap@1",
+  "buildingDetail": {
+    "source": { "kind": "pmtiles-set", "url": "https://tiles.example/hd/archive-set.json" },
+    "level": 15
+  }
+}
+```
+
+The human-feature layer then takes its buildings and places from the detail level for tiles up to
+two levels coarser (`buildingDetail: { maxDepth }` on `createTerrainPackageSemanticLayers`, or
+`false` to keep the generalized footprints); roads, water and land use stay as the feature tiles
+have them. `composeTerrainBuildingDetail` assembles a coarser tile from its detail descendants
+(4 or 16 tiles): a footprint seen by several descendants is matched by its source id and its
+clipped copies are unioned, so each building appears once, whole, cut exactly where a real tile
+at the coarser level with a proportionally narrower buffer would cut it. `buildingSourceLevel` on
+the composed tile tells renderers that narrower buffer, so tile-edge ownership still agrees between
+neighbours. Descendants the archive lacks keep the coarse tile's buildings in their part of the
+tile. `createBuildingDetailTerrainSemanticSource` wraps any feature source this way and keeps
+recently loaded detail tiles, since a tile and its children share them. Only the `building` and
+`poi` layers of detail tiles are decoded. The detail archive is optional: if it cannot be opened,
+`openTerrainPackageSemantics` reports `buildingDetailError` and the feature tiles carry on alone.
+Hosts with their own transport pass `buildingDetailArchive`.
+
 The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightSource` walks to the
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into
 the requested tile bounds. This supports broad coarse coverage plus a small regional detail window

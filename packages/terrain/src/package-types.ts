@@ -88,6 +88,17 @@ export interface TerrainPackageDescriptor {
     layers: Array<'water' | 'transportation' | 'building' | 'poi'>;
     /** Declared source schema; enables a matching built-in decoder without guessing. */
     profile?: TerrainPackageSemanticProfile;
+    /**
+     * Finer tiles for building footprints and places, same encoding and profile. Basemaps merge
+     * and drop buildings below their last zoom (Protomaps keeps almost none below 15), so a
+     * package may carry that zoom separately, often only where people look. Feature tiles a
+     * level or two coarser take their buildings from it; tiles it does not cover keep their own.
+     */
+    buildingDetail?: {
+      source: TerrainPackageArchiveSource;
+      /** The one level the archive is read at (e.g. 15). */
+      level: number;
+    };
   };
   models?: { index: string };
   preset?: '1gb' | '5gb' | '20gb';

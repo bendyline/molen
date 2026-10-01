@@ -82,7 +82,15 @@ export function createResolvedMaterialSet(
   const pending = new Map<string, Promise<void>>();
   const failures = new Map<string, string>();
   const placeholders = new Map<string, THREE.MeshStandardMaterial>();
+  // Textured glass draws its texture untinted: the vertex color of a window carries the glass
+  // tone for flat levels instead (see the recipe), so the window slot gets its own variant.
+  const glass = new Map<string, THREE.MeshStandardMaterial>();
   let disposed = false;
+  const untinted = (target: THREE.MeshStandardMaterial, from: THREE.Material): void => {
+    target.copy(from as THREE.MeshStandardMaterial);
+    target.vertexColors = false;
+    target.needsUpdate = true;
+  };
 
   async function prepareOne(ref: string): Promise<void> {
     try {
@@ -113,6 +121,11 @@ export function createResolvedMaterialSet(
       material.needsUpdate = true;
       sources.set(ref, source);
       prepared.set(ref, material);
+      const window = glass.get(ref);
+      if (window !== undefined) {
+        untinted(window, material);
+        window.name = `worldgen:${ref}:glass`;
+      }
     } catch (error) {
       if (!disposed) failures.set(ref, (error as Error).message);
     }
@@ -136,6 +149,21 @@ export function createResolvedMaterialSet(
     },
     materialFor(slot: MaterialSlot, ref: string): THREE.Material {
       const material = prepared.get(ref);
+      if (slot === 'window' && !ref.startsWith('palette:') && !disposed) {
+        let window = glass.get(ref);
+        if (window === undefined) {
+          if (material === undefined && !options.progressive) return flat.materialFor(slot, ref);
+          // Until the texture bakes, the flat glass tone (vertex color) stands in.
+          window =
+            material !== undefined
+              ? new THREE.MeshStandardMaterial()
+              : (flat.materialFor(slot, ref).clone() as THREE.MeshStandardMaterial);
+          if (material !== undefined) untinted(window, material);
+          window.name = `worldgen:${ref}:glass`;
+          glass.set(ref, window);
+        }
+        return window;
+      }
       if (material) return material;
       if (!options.progressive || ref.startsWith('palette:') || disposed)
         return flat.materialFor(slot, ref);
@@ -150,10 +178,15 @@ export function createResolvedMaterialSet(
     dispose(): void {
       if (disposed) return;
       disposed = true;
-      for (const material of new Set([...prepared.values(), ...placeholders.values()]))
+      for (const material of new Set([
+        ...prepared.values(),
+        ...placeholders.values(),
+        ...glass.values(),
+      ]))
         material.dispose();
       prepared.clear();
       placeholders.clear();
+      glass.clear();
       for (const source of sources.values()) resolver.release(source);
       sources.clear();
       flat.dispose?.();

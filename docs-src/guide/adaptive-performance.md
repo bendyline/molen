@@ -51,8 +51,11 @@ Transitions have 15% hysteresis.
 
 Builtin vegetation uses three shared models in spatial cells; the far fir/conifer is 12 triangles
 and the far broadleaf crown is 20. Building cells use authored materials nearby, a single
-vertex-color material farther away, then remove window/door/trim faces while retaining walls,
-roof shapes and foundations. Cell bounds let frustum culling reject offscreen batches.
+vertex-color material farther away (where window glass keeps a dark glass tone rather than turning
+white, and buildings still cast shadows), then remove door, trim and detail faces while retaining
+walls, roof shapes, foundations and windows, so a distant facade keeps its rows of windows. Cells
+store positions as 16-bit offsets with one uniform scale per cell and normals as 8-bit values,
+20 bytes a vertex instead of 35. Cell bounds let frustum culling reject offscreen batches.
 These are conservative authored detail tolerances, not measured mesh-simplification error bounds.
 
 Terrain selection also culls by horizontal view direction. Mesh frustum culling and the GPU

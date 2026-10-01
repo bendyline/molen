@@ -21,7 +21,13 @@
       "townhouses",
       "dormitory"
     ],
-    "contextClasses": ["residential", "none", "farmland", "forest", "wood"]
+    "contextClasses": [
+      "residential",
+      "none",
+      "farmland",
+      "forest",
+      "wood"
+    ]
   },
   "massing": {
     "floorHeight": {
@@ -209,7 +215,10 @@
       "palette": "siding",
       "tint": "multiply",
       "uv": "meters",
-      "uvScale": [3, 2.4],
+      "uvScale": [
+        3,
+        2.4
+      ],
       "uvOffset": "meters",
       "uvMirror": true
     },
@@ -223,7 +232,10 @@
       "palette": "roof",
       "tint": "multiply",
       "uv": "meters",
-      "uvScale": [2, 2],
+      "uvScale": [
+        2,
+        2
+      ],
       "uvOffset": "meters",
       "uvMirror": false
     },
@@ -250,7 +262,10 @@
       "palette": "foundation",
       "tint": "multiply",
       "uv": "meters",
-      "uvScale": [2, 2],
+      "uvScale": [
+        2,
+        2
+      ],
       "uvOffset": "meters",
       "uvMirror": false
     },
@@ -271,29 +286,49 @@
     "siding": {
       "entries": [
         {
-          "color": "#8b9a7a",
+          "color": "#93a385",
           "weight": 3,
           "name": "sage"
         },
         {
-          "color": "#5e6b7a",
-          "weight": 3,
-          "name": "slate"
+          "color": "#6f8296",
+          "weight": 2,
+          "name": "slate blue"
         },
         {
-          "color": "#a89f8e",
-          "weight": 2,
+          "color": "#b3aa98",
+          "weight": 3,
           "name": "warm grey"
         },
         {
-          "color": "#7a5a45",
-          "weight": 2,
+          "color": "#86634c",
+          "weight": 1,
           "name": "cedar"
         },
         {
-          "color": "#ece7dc",
-          "weight": 1,
+          "color": "#ece4d0",
+          "weight": 2,
           "name": "cream"
+        },
+        {
+          "color": "#f1efe8",
+          "weight": 2,
+          "name": "white"
+        },
+        {
+          "color": "#9fb2c2",
+          "weight": 1,
+          "name": "dusty blue"
+        },
+        {
+          "color": "#8f4c3f",
+          "weight": 1,
+          "name": "barn red"
+        },
+        {
+          "color": "#dccb92",
+          "weight": 1,
+          "name": "butter"
         }
       ],
       "jitter": {
@@ -305,19 +340,24 @@
     "roof": {
       "entries": [
         {
-          "color": "#3f4245",
+          "color": "#45484b",
           "weight": 5,
           "name": "charcoal shingle"
         },
         {
-          "color": "#5a4a3c",
+          "color": "#5e4e40",
           "weight": 2,
           "name": "brown shingle"
         },
         {
-          "color": "#2f3a34",
-          "weight": 2,
+          "color": "#36423b",
+          "weight": 1,
           "name": "moss green"
+        },
+        {
+          "color": "#5b6166",
+          "weight": 2,
+          "name": "slate grey"
         }
       ],
       "jitter": {
@@ -367,7 +407,10 @@
         "min": 1,
         "max": 1
       },
-      "roof": ["gable", "hip"],
+      "roof": [
+        "gable",
+        "hip"
+      ],
       "spacing": 4,
       "margin": 1.2,
       "scale": {
@@ -382,15 +425,26 @@
     "tiers": [
       {
         "minTier": 0,
-        "keep": ["roof-shape", "roof-features", "facade-texture", "facade-bands", "props"]
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
       },
       {
         "minTier": 1,
-        "keep": ["roof-shape", "facade-texture"]
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
       },
       {
         "minTier": 2,
-        "keep": ["roof-shape"]
+        "keep": [
+          "roof-shape"
+        ]
       }
     ]
   }

@@ -111,6 +111,12 @@ export {
 export { type RenderedGroundSource, renderedGroundSampler } from './rendered-ground';
 export { registerTerrainSchemas } from './schema';
 export {
+  composeTerrainBuildingDetail,
+  createBuildingDetailTerrainSemanticSource,
+  type TerrainBuildingDetailChild,
+  type TerrainBuildingDetailOptions,
+} from './semantic-building-detail';
+export {
   createOverzoomTerrainSemanticSource,
   overzoomTerrainSemanticTile,
   type TerrainSemanticOverzoomOptions,

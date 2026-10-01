@@ -203,20 +203,23 @@ export function createTerrainSurfaceObject(
       { width: road.width, color, elevation },
       { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
     );
-    // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt.
+    // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt. They
+    // are a few decimeters wide: below a pixel on coarser tiles, which are kilometers away, yet
+    // draped segment by segment they were most of those tiles' memory.
     const shoulderWidth = road.unpaved ? 0.7 : 0.3;
-    for (const sign of [-1, 1])
-      appendTerrainLineBand(
-        edges,
-        road.path,
-        {
-          width: shoulderWidth,
-          offset: sign * (road.width / 2 + shoulderWidth / 2),
-          color: style.shoulder,
-          elevation: elevation - 0.04,
-        },
-        { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
-      );
+    if (detailed)
+      for (const sign of [-1, 1])
+        appendTerrainLineBand(
+          edges,
+          road.path,
+          {
+            width: shoulderWidth,
+            offset: sign * (road.width / 2 + shoulderWidth / 2),
+            color: style.shoulder,
+            elevation: elevation - 0.04,
+          },
+          { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
+        );
     if (!detailed) continue;
     if (road.kind === 'rail') {
       for (const offset of [-0.72, 0.72])

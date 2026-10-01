@@ -66,9 +66,9 @@ export {
 export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
 export { matchMapStructures, orientMappedStructure } from './kernel/structure-matching';
 export type { WorldgenQualityPreset } from './kernel/tile-budgets';
-export { worldgenTileBudgetForQuality } from './kernel/tile-budgets';
+export { worldgenBuildingCellSize, worldgenTileBudgetForQuality } from './kernel/tile-budgets';
 export type { EdgeDecision } from './kernel/tile-edges';
-export { analyzeTileEdge, PROTOMAPS_TILE_BUFFER } from './kernel/tile-edges';
+export { analyzeTileEdge, buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './kernel/tile-edges';
 export type { WorldgenTileInput, WorldgenTileOutput } from './kernel/tile-generate';
 export {
   generateWorldgenTile,

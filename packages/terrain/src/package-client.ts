@@ -166,6 +166,8 @@ export interface OpenTerrainPackageSemanticsOptions {
   decoder: TerrainSemanticTileDecoder;
   landcoverArchive?: TerrainTileArchive;
   featuresArchive?: TerrainTileArchive;
+  /** Host-provided archive for `features.buildingDetail` (instead of opening its source). */
+  buildingDetailArchive?: TerrainTileArchive;
 }
 
 export interface OpenTerrainPackageSemanticSidecar {
@@ -175,10 +177,24 @@ export interface OpenTerrainPackageSemanticSidecar {
   source: TerrainPackageSemanticSource;
 }
 
+/** The building-detail sidecar: one finer level, read only for buildings and places. */
+export interface OpenTerrainPackageBuildingDetail {
+  archive: TerrainTileArchive;
+  level: number;
+  /** Loads tiles at `level` (other levels resolve to undefined). */
+  source: TerrainPackageSemanticSource;
+}
+
 export interface OpenTerrainPackageSemantics {
   package: TerrainPackageDescriptor;
   landcover?: OpenTerrainPackageSemanticSidecar;
   features?: OpenTerrainPackageSemanticSidecar;
+  buildingDetail?: OpenTerrainPackageBuildingDetail;
+  /**
+   * Why the declared building-detail sidecar could not be opened. It only refines buildings, so
+   * the feature tiles carry on with their own footprints; hosts may report this.
+   */
+  buildingDetailError?: Error;
 }
 
 function checkPackageLevel(pkg: TerrainPackageDescriptor, level: number): void {
@@ -586,10 +602,76 @@ export async function openTerrainPackageSemantics(
       ),
     };
   }
+  let buildingDetail: OpenTerrainPackageBuildingDetail | undefined;
+  let buildingDetailError: Error | undefined;
+  const detail = pkg.features?.buildingDetail;
+  if (detail !== undefined && features !== undefined) {
+    try {
+      const archive =
+        options.buildingDetailArchive ?? openTerrainPackageArchive(detail.source, options.baseUrl);
+      if (archive.getHeader !== undefined) {
+        const header = await archive.getHeader();
+        if (detail.level < header.minZoom || detail.level > header.maxZoom) {
+          throw new Error(
+            `building detail archive levels ${header.minZoom}-${header.maxZoom} do not include level ${detail.level}`,
+          );
+        }
+        if (header.tileType !== undefined && header.tileType !== TileType.Mvt) {
+          throw new Error(`building detail archive tile type must be mvt, got ${header.tileType}`);
+        }
+      }
+      buildingDetail = {
+        archive,
+        level: detail.level,
+        source: createTerrainPackageBuildingDetailSource(
+          pkg,
+          archive,
+          options.decoder,
+          detail.level,
+        ),
+      };
+    } catch (error) {
+      buildingDetailError = error instanceof Error ? error : new Error(String(error));
+    }
+  }
   return {
     package: pkg,
     ...(landcover !== undefined ? { landcover } : {}),
     ...(features !== undefined ? { features } : {}),
+    ...(buildingDetail !== undefined ? { buildingDetail } : {}),
+    ...(buildingDetailError !== undefined ? { buildingDetailError } : {}),
+  };
+}
+
+/** Decode only buildings and places from a building-detail archive, at its one level. */
+function createTerrainPackageBuildingDetailSource(
+  pkg: TerrainPackageDescriptor,
+  archive: TerrainTileArchive,
+  decoder: TerrainSemanticTileDecoder,
+  level: number,
+): TerrainPackageSemanticSource {
+  const layers = (pkg.features?.layers ?? []).filter(
+    (layer) => layer === 'building' || layer === 'poi',
+  );
+  return {
+    async load(
+      address: TerrainPyramidTileAddress,
+      signal: AbortSignal,
+    ): Promise<TerrainSemanticTile | undefined> {
+      if (address.level !== level || signal.aborted || layers.length === 0) return undefined;
+      const archiveY = pkg.tileMatrix.scheme === 'tms' ? 2 ** level - 1 - address.z : address.z;
+      const archiveTile = await archive.getZxy(level, address.x, archiveY, signal);
+      if (archiveTile === undefined || signal.aborted) return undefined;
+      const decoded = await decoder.decode(new Uint8Array(archiveTile.data), {
+        address: { ...address },
+        content: 'features',
+        encoding: 'mvt',
+        layers,
+      });
+      if (signal.aborted) return undefined;
+      assertTerrainSemanticTile(decoded);
+      return decoded;
+    },
   };
 }
 

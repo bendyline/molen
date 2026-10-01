@@ -165,7 +165,7 @@ export {
 } from './kernel/batch';
 export { DEFAULT_WORLDGEN_BUDGETS, normalizeBudgets } from './kernel/budgets';
 export type { BoxPlacement, BuildingGenerateInput, BuildingResult } from './kernel/building';
-export { generateBuilding } from './kernel/building';
+export { GABLE_BOX_EAVE, generateBuilding } from './kernel/building';
 export type { WorldgenBuildingData } from './kernel/components';
 export {
   registerWorldgenComponents,

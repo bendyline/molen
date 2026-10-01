@@ -51,7 +51,23 @@ export interface BoxPlacement {
   sy: number;
   sz: number;
   color: RGB;
+  /**
+   * `gable`: a pitched building's stand-in, the `builtin:box.gable` model (walls to
+   * `GABLE_BOX_EAVE` of its height, then a roof ridged along local x, the longer side).
+   */
+  roof?: 'gable';
 }
+
+/** Eave of the unit `builtin:box.gable` model, as a fraction of its height. */
+export const GABLE_BOX_EAVE = 0.62;
+
+const PITCHED_STAND_IN: ReadonlySet<string> = new Set([
+  'gable',
+  'hip',
+  'pyramid',
+  'gambrel',
+  'mansard',
+]);
 
 export interface BuildingGenerateInput {
   request: BuildingRequest;
@@ -215,19 +231,31 @@ export function generateBuilding(
   };
   if (recipe.box) {
     record.roof = 'box';
-    return {
+    const box = boxPlacement(
       analysis,
-      recipe,
-      record,
-      box: boxPlacement(
-        analysis,
-        wallBase,
-        recipe.totalHeight,
-        recipe.parts.wall.color,
-        input.ground,
-        recipe.minHeight === 0 ? foundationDepth : undefined,
-      ),
-    };
+      wallBase,
+      recipe.totalHeight,
+      recipe.parts.wall.color,
+      input.ground,
+      recipe.minHeight === 0 ? foundationDepth : undefined,
+    );
+    // A pitched building keeps a roof even as a stand-in: from above, roofs are what a
+    // neighbourhood is made of. The ridge runs along the longer side.
+    if (
+      PITCHED_STAND_IN.has(recipe.roof.type) &&
+      input.request.clipped !== true &&
+      recipe.minHeight === 0
+    ) {
+      box.roof = 'gable';
+      if (box.sz > box.sx) {
+        [box.sx, box.sz] = [box.sz, box.sx];
+        box.yaw += Math.PI / 2;
+      }
+      // A mapped height is ground to top, roof included; otherwise the walls end at the eave,
+      // as the full building's would, and the roof rises above it.
+      if (input.request.height === undefined) box.sy /= GABLE_BOX_EAVE;
+    }
+    return { analysis, recipe, record, box };
   }
 
   const geometryTier = input.simplified === true ? Math.max(2, input.tier) : input.tier;
@@ -521,7 +549,9 @@ export function generateBuilding(
               structuralOpenings: site.openings,
             }
           : {}),
-        ...(input.simplified === true ? { maxWindowColumns: 3, maxWindowRows: 2 } : {}),
+        ...(input.simplified === true
+          ? { maxWindowColumns: 3, maxWindowRows: 3, windowStrips: true }
+          : {}),
         ...(keepWindows && recipe.facade.windows !== undefined
           ? { windows: recipe.facade.windows }
           : {}),
