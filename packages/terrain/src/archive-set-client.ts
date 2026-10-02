@@ -13,7 +13,13 @@ import {
   type TerrainArchiveSetDescriptor,
   type TerrainArchiveSetRouter,
 } from './archive-set';
-import type { TerrainArchiveHeader, TerrainArchiveTile, TerrainTileArchive } from './package-types';
+import type {
+  TerrainArchiveEntryInfo,
+  TerrainArchiveHeader,
+  TerrainArchiveOpener,
+  TerrainArchiveTile,
+  TerrainTileArchive,
+} from './package-types';
 
 export interface TerrainArchiveSetArchiveOptions {
   /**
@@ -21,8 +27,11 @@ export interface TerrainArchiveSetArchiveOptions {
    * passed as an object with relative archive URLs.
    */
   baseUrl?: string | URL;
-  /** Open one member archive by absolute URL (default: the official PMTiles HTTP reader). */
-  openArchive?: (url: string, id: string) => TerrainTileArchive;
+  /**
+   * Open one member archive by absolute URL (default: the official PMTiles HTTP reader). The set
+   * lists each member's `sha256` and `bytes` when it knows them; a caching transport keys by them.
+   */
+  openArchive?: TerrainArchiveOpener;
   /** Member archives kept open at once (default 12). */
   maxOpenArchives?: number;
   /** Fetch used for the set document (default: global fetch). */
@@ -91,14 +100,14 @@ export function createTerrainArchiveSetArchive(
     return new URL(url, baseUrl).href;
   };
 
-  const member = (id: string, url: string): TerrainTileArchive => {
+  const member = (id: string, url: string, entry: TerrainArchiveEntryInfo): TerrainTileArchive => {
     const existing = open.get(id);
     if (existing !== undefined) {
       open.delete(id);
       open.set(id, existing);
       return existing;
     }
-    const archive = openArchive(resolveUrl(url), id);
+    const archive = openArchive(resolveUrl(url), id, entry);
     open.set(id, archive);
     while (open.size > maxOpen) open.delete(open.keys().next().value as string);
     return archive;
@@ -121,10 +130,11 @@ export function createTerrainArchiveSetArchive(
     ): Promise<TerrainArchiveTile | undefined> {
       const route = (await router()).resolve(level, x, y);
       if (route === undefined) return undefined;
-      const archive =
-        route.kind === 'base'
-          ? member('base', route.base.url)
-          : member(route.entry.id, route.entry.url);
+      const listed = route.kind === 'base' ? route.base : route.entry;
+      const archive = member(route.kind === 'base' ? 'base' : route.entry.id, listed.url, {
+        ...(listed.sha256 !== undefined ? { sha256: listed.sha256 } : {}),
+        ...(listed.bytes !== undefined ? { bytes: listed.bytes } : {}),
+      });
       return archive.getZxy(level, x, y, signal);
     },
     async descriptor(): Promise<TerrainArchiveSetDescriptor> {

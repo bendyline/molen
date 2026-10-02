@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { createPack, type Pack } from '@bendyline/molen-pack';
+import { createBlockCache, createMemoryByteStore } from '@bendyline/molen-pack/cache';
 import { describe, expect, it, vi } from 'vitest';
 import { loadEarthContent, openPacksFromIndex } from '../src/client/content';
 
@@ -69,6 +70,77 @@ describe('Earth pack transport', () => {
       pack?.close();
       unexpectedFetch.mockRestore();
     }
+  });
+});
+
+describe('Earth pack byte cache', () => {
+  it('opens packs again from cached bytes, revalidating only the index', async () => {
+    const model = randomBytes(300_000);
+    const { bytes, manifest } = await createPack(
+      [
+        { path: 'models/a.glb', bytes: model },
+        { path: 'models/b.glb', bytes: randomBytes(2 * 1024 * 1024) },
+      ],
+      { id: 'example.cached', version: '1.0.0' },
+    );
+    const indexUrl = 'https://host.example/packs/index.json';
+    const index = {
+      format: 'molen/pack-index@1',
+      packs: {
+        'example.cached': {
+          file: 'cached-0123456789ab.zip',
+          size: bytes.length,
+          version: '1.0.0',
+          contentHash: manifest.contentHash,
+        },
+      },
+    };
+    const requests: { url: string; range: string | null; ifNoneMatch: string | null }[] = [];
+    const fetchImpl = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      const headers = new Headers(init?.headers);
+      const range = headers.get('range');
+      requests.push({ url, range, ifNoneMatch: headers.get('if-none-match') });
+      if (url === indexUrl) {
+        if (headers.get('if-none-match') === '"i1"') return new Response(null, { status: 304 });
+        return new Response(JSON.stringify(index), {
+          headers: { 'content-type': 'application/json', etag: '"i1"' },
+        });
+      }
+      const match = /^bytes=(\d+)-(\d+)$/.exec(range ?? '');
+      if (match === null) throw new Error(`expected an explicit range, got ${range}`);
+      const start = Number(match[1]);
+      const end = Math.min(Number(match[2]), bytes.length - 1);
+      return new Response(bytes.slice(start, end + 1), {
+        status: 206,
+        headers: { 'content-range': `bytes ${start}-${end}/${bytes.length}`, etag: '"z1"' },
+      });
+    }) as typeof fetch;
+    const store = createMemoryByteStore();
+
+    const cache = createBlockCache(store);
+    const [first] = await openPacksFromIndex(indexUrl, ['example.cached'], fetchImpl, {
+      byteCache: cache,
+    });
+    expect(new Uint8Array(await (first as Pack).readBytes('models/a.glb'))).toEqual(
+      new Uint8Array(model),
+    );
+    first?.close();
+    await cache.flush();
+    const firstVisit = requests.length;
+    expect(firstVisit).toBeGreaterThan(1);
+
+    const [again] = await openPacksFromIndex(indexUrl, ['example.cached'], fetchImpl, {
+      byteCache: createBlockCache(store),
+    });
+    expect(new Uint8Array(await (again as Pack).readBytes('models/a.glb'))).toEqual(
+      new Uint8Array(model),
+    );
+    again?.close();
+    // Only the index's revalidation went out (answered 304); every pack byte came from the cache.
+    expect(requests.slice(firstVisit)).toEqual([
+      { url: indexUrl, range: null, ifNoneMatch: '"i1"' },
+    ]);
   });
 });
 

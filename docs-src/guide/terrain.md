@@ -242,6 +242,17 @@ transport call `createTerrainArchiveSetArchive(urlOrDocument, { openArchive })` 
 and `encodeTerrainArchiveSetPartitions` writes the run-length lists. Validate a set document with
 `molen validate archive-set.json`.
 
+`openArchive(url, id, entry)` receives each member's `sha256` and `bytes` when the set lists them.
+To keep tiles across visits, pass `cachingArchiveOpener(cache)` (`@bendyline/molen-terrain/client`)
+over a `BlockCache` from `@bendyline/molen-pack/cache`. It keys each archive by its listed hash,
+or by URL when none is listed, and reads repeated tiles from memory or IndexedDB. Without a host
+archive, the package adapters open sources through an optional `transport` (`{ openArchive, fetch }`)
+on `openTerrainPackageElevation`, `openTerrainPackagePyramid`, `openTerrainPackageSemantics` and the
+stream factories. `openTerrainPackageArchive(source, baseUrl, { openArchive, fetch, id, entry })`
+does the same for one source, and `terrainPackageArchiveEntry(pkg, source)` finds a single
+archive's `files` record. The Earth view wires all of this from one `byteCache` option (see
+[the Earth view](earth-view.md)).
+
 Compilers write package archives with the portable PMTiles v3 writer in
 `@bendyline/molen-terrain/kernel` (Node, Workers and browsers). `writePmtilesArchive(tiles,
 { tileType: 'png', bounds })` builds a whole archive in memory; for archives too large for memory,

@@ -12,6 +12,7 @@ import type { TerrainDescriptor } from './descriptor-types';
 import type { Heightfield } from './heightfield';
 import { buildChunkGeometry, type ChunkMeshOptions, lodStepForDistance } from './mesh';
 
+export { type CachingArchiveOpenerOptions, cachingArchiveOpener } from './archive-cache';
 export {
   createTerrainArchiveSetArchive,
   type TerrainArchiveSetArchive,
@@ -53,6 +54,7 @@ export {
   createTerrainPackagePyramidStream,
   createTerrainPackageSemanticSource,
   createTerrainPackageStream,
+  type OpenTerrainPackageArchiveOptions,
   type OpenTerrainPackageBuildingDetail,
   type OpenTerrainPackageElevation,
   type OpenTerrainPackageOptions,
@@ -77,6 +79,7 @@ export {
   type TerrainPackageStreamOptions,
   type TerrainParentFallbackEvent,
   terrainDescriptorFromPackage,
+  terrainPackageArchiveEntry,
   terrainPackageArchiveSourceLocation,
   terrainPyramidDescriptorFromPackage,
 } from './package-client';
@@ -89,8 +92,11 @@ export {
   type TerrainPackageSemanticLayers,
 } from './package-semantic-client';
 export type {
+  TerrainArchiveEntryInfo,
   TerrainArchiveHeader,
+  TerrainArchiveOpener,
   TerrainArchiveTile,
+  TerrainArchiveTransport,
   TerrainPackageSemanticContent,
   TerrainSemanticTileDecodeContext,
   TerrainSemanticTileDecoder,

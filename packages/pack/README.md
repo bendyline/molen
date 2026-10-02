@@ -13,7 +13,8 @@ npm i @bendyline/molen-pack
 ```
 
 Node >= 22.13, ESM only. The `.` export runs in browsers, Workers and Node; `./node` adds file and
-directory helpers for Node. Its only dependencies are `@bendyline/molen-schema` and `fflate`.
+directory helpers for Node, and `./cache` a persistent byte cache with no dependencies at all. The
+package's only dependencies are `@bendyline/molen-schema` and `fflate`.
 
 ## Use
 
@@ -61,6 +62,37 @@ built.file; // 'my.props-3f2a9c1e5b7d.zip', named by a hash of its bytes
 const pack = await openDirPack('content/my-props');
 ```
 
+## Cache what you read
+
+`./cache` keeps the bytes of range-read archives (packs, PMTiles) across visits. Each archive is
+split into 64 KiB blocks held in memory and in IndexedDB; neighbouring misses become one range
+request, concurrent reads share blocks, and the least recently used blocks go once the store passes
+its budget.
+
+```ts
+import {
+  cachingRangeReader,
+  createBlockCache,
+  createIndexedDbByteStore,
+  createMemoryByteStore,
+  urlRangeReader,
+} from '@bendyline/molen-pack/cache';
+import { openPack } from '@bendyline/molen-pack';
+
+const cache = createBlockCache(
+  createIndexedDbByteStore({ budgetBytes: 300 * 1024 * 1024 }) ?? createMemoryByteStore(),
+);
+// Key a pack by its content hash so a cached copy can never be another version.
+const reader = urlRangeReader(url, { size: entry.size });
+const pack = await openPack(cachingRangeReader(reader, cache, { key: entry.contentHash, url }));
+```
+
+`cachingRangeSource(source, cache, archive)` does the same for a PMTiles `Source`, and
+`cachingDocumentFetch(cache.store)` wraps `fetch` so small JSON documents are revalidated with
+`If-None-Match` instead of refetched and still load offline. A stable URL whose file is replaced
+in place is cached with `keyBy: 'etag'`: each server version is its own archive and older ones are
+deleted. Store failures (private browsing, quota) only cost network, never a failed read.
+
 ## What's in it
 
 - `openPack(input, options)` — a `Pack` from a URL, `Blob`, bytes, or a `RangeReader`, with
@@ -72,6 +104,8 @@ const pack = await openDirPack('content/my-props');
   view of loose files, from bytes in any environment.
 - `./node`: `buildPack`, `openFilePack`, `openDirPack`, `openPackAt`, `readPackSource`,
   `extractPack`.
+- `./cache`: `createBlockCache`, `createIndexedDbByteStore`, `createMemoryByteStore`,
+  `cachingRangeSource`, `cachingRangeReader`, `urlRangeReader`, `cachingDocumentFetch`.
 
 A pack is a standard zip you can open with any zip tool. Binary files are their own members,
 deflated when that helps. Small text files are concatenated into a few deflated solid blocks,

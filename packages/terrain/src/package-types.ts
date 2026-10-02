@@ -137,6 +137,33 @@ export interface TerrainPackageFrame {
   latitude: number;
 }
 
+/** What an archive set or package lists about one archive, for transports that key its bytes. */
+export interface TerrainArchiveEntryInfo {
+  /** Hex SHA-256 of the archive file. */
+  sha256?: string;
+  /** Archive size in bytes. */
+  bytes?: number;
+}
+
+/**
+ * Opens one PMTiles archive by absolute URL. `id` names it within its set (`'base'` for a set's
+ * base archive, or the package section for a single archive); `entry` carries what the set or the
+ * package's `files` list knows about it.
+ */
+export type TerrainArchiveOpener = (
+  url: string,
+  id: string,
+  entry?: TerrainArchiveEntryInfo,
+) => TerrainTileArchive;
+
+/** How a terrain package's archives are opened when the host passes no archive of its own. */
+export interface TerrainArchiveTransport {
+  /** Open each PMTiles archive (default: the official PMTiles HTTP reader). */
+  openArchive?: TerrainArchiveOpener;
+  /** Fetch used for `molen/archive-set@1` documents (default: global fetch). */
+  fetch?: typeof fetch;
+}
+
 export interface TerrainTileArchive {
   getZxy(
     level: number,

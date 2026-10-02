@@ -828,6 +828,9 @@ importers:
       '@types/node':
         specifier: ^24
         version: 24.13.2
+      fake-indexeddb:
+        specifier: 6.2.5
+        version: 6.2.5
       tsdown:
         specifier: 'catalog:'
         version: 0.22.2(typescript@6.0.3)
@@ -905,6 +908,9 @@ importers:
 
   packages/terrain:
     dependencies:
+      '@bendyline/molen-pack':
+        specifier: workspace:*
+        version: link:../pack
       '@bendyline/molen-schema':
         specifier: workspace:*
         version: link:../schema
@@ -3331,6 +3337,10 @@ packages:
   express@5.2.1:
     resolution: {integrity: sha512-hIS4idWWai69NezIdRt2xFVofaF4j+6INOpJlVOLDO8zXGpUVEVzIYk12UUi2JzjEzWL3IOAxcTubgz9Po0yXw==}
     engines: {node: '>= 18'}
+
+  fake-indexeddb@6.2.5:
+    resolution: {integrity: sha512-CGnyrvbhPlWYMngksqrSSUT1BAVP49dZocrHuK0SvtR0D5TMs5wP0o3j7jexDJW01KSadjBp1M/71o/KR3nD1w==}
+    engines: {node: '>=18'}
 
   fast-check@3.23.2:
     resolution: {integrity: sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==}
@@ -7385,6 +7395,8 @@ snapshots:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
+
+  fake-indexeddb@6.2.5: {}
 
   fast-check@3.23.2:
     dependencies:

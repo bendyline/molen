@@ -19,6 +19,8 @@ import { WEB_MERCATOR_HALF_WORLD_METERS, wgs84ToWebMercator } from './geospatial
 import { Heightfield } from './heightfield';
 import { terrainPackageMetersPerUnit } from './package-frame';
 import type {
+  TerrainArchiveEntryInfo,
+  TerrainArchiveTransport,
   TerrainPackageArchiveSource,
   TerrainPackageDescriptor,
   TerrainPackageFrame,
@@ -60,6 +62,8 @@ export interface OpenTerrainPackageOptions {
   baseUrl?: string | URL;
   /** Native/test archive implementation; otherwise the official PMTiles URL reader is used. */
   archive?: TerrainTileArchive;
+  /** How the package's archive is opened when `archive` is not given (a cache, a native reader). */
+  transport?: TerrainArchiveTransport;
   /** Use the nearest available ancestor elevation tile when requested detail is missing. */
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
@@ -79,6 +83,7 @@ export interface TerrainPackageStreamOptions extends TerrainStreamOptions {
   level: number;
   baseUrl?: string | URL;
   archive?: TerrainTileArchive;
+  transport?: TerrainArchiveTransport;
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
   /** Metric frame for projected packages; defaults to the bounds' center latitude. */
@@ -97,6 +102,8 @@ export interface OpenTerrainPackagePyramidOptions {
   baseUrl?: string | URL;
   /** Native/test archive implementation; otherwise the official PMTiles URL reader is used. */
   archive?: TerrainTileArchive;
+  /** How the package's archive is opened when `archive` is not given (a cache, a native reader). */
+  transport?: TerrainArchiveTransport;
   /** Use the nearest available ancestor elevation tile when exact pyramid detail is absent. */
   parentFallback?: boolean;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
@@ -168,6 +175,10 @@ export interface OpenTerrainPackageSemanticsOptions {
   featuresArchive?: TerrainTileArchive;
   /** Host-provided archive for `features.buildingDetail` (instead of opening its source). */
   buildingDetailArchive?: TerrainTileArchive;
+  /** How sidecar archives the host did not provide are opened (a cache, a native reader). */
+  transport?: TerrainArchiveTransport;
+  /** The building-detail sidecar's transport, when it differs (a lower cache priority). */
+  buildingDetailTransport?: TerrainArchiveTransport;
 }
 
 export interface OpenTerrainPackageSemanticSidecar {
@@ -389,16 +400,59 @@ function sameTerrainPackageArchiveSource(
   );
 }
 
+export interface OpenTerrainPackageArchiveOptions extends TerrainArchiveTransport {
+  /** Name passed to `openArchive` for a single archive (default: its URL). */
+  id?: string;
+  /** What the package knows about a single archive (see `terrainPackageArchiveEntry`). */
+  entry?: TerrainArchiveEntryInfo;
+}
+
 /**
- * Open a declared package source with the default transport: the official PMTiles reader for a
- * single archive, or a lazily routed archive set (`molen/archive-set@1`) for `pmtiles-set`.
+ * Open a declared package source: one PMTiles archive, or a lazily routed archive set
+ * (`molen/archive-set@1`) for `pmtiles-set`. Without a transport, archives use the official
+ * PMTiles HTTP reader; `openArchive` replaces it for every archive (a cache, a native reader).
  */
 export function openTerrainPackageArchive(
   source: TerrainPackageArchiveSource,
   baseUrl?: string | URL,
+  options: OpenTerrainPackageArchiveOptions = {},
 ): TerrainTileArchive {
   const url = resolveTerrainPackageArchiveUrl(source, baseUrl);
-  return source.kind === 'pmtiles-set' ? createTerrainArchiveSetArchive(url) : new PMTiles(url);
+  if (source.kind === 'pmtiles-set') {
+    return createTerrainArchiveSetArchive(url, {
+      ...(options.openArchive !== undefined ? { openArchive: options.openArchive } : {}),
+      ...(options.fetch !== undefined ? { fetch: options.fetch } : {}),
+    });
+  }
+  return options.openArchive !== undefined
+    ? options.openArchive(url, options.id ?? url, options.entry)
+    : new PMTiles(url);
+}
+
+/** The `files` record of a package-relative single archive: its hash and size, when listed. */
+export function terrainPackageArchiveEntry(
+  pkg: TerrainPackageDescriptor,
+  source: TerrainPackageArchiveSource,
+): TerrainArchiveEntryInfo | undefined {
+  if (source.kind !== 'pmtiles' || !('path' in source)) return undefined;
+  const file = pkg.files?.find((record) => record.path === source.path);
+  return file === undefined ? undefined : { sha256: file.sha256, bytes: file.bytes };
+}
+
+/** Open one section's declared archive through `transport`, naming it for the opener. */
+function openSectionArchive(
+  pkg: TerrainPackageDescriptor,
+  source: TerrainPackageArchiveSource,
+  id: string,
+  baseUrl: string | URL | undefined,
+  transport: TerrainArchiveTransport | undefined,
+): TerrainTileArchive {
+  const entry = terrainPackageArchiveEntry(pkg, source);
+  return openTerrainPackageArchive(source, baseUrl, {
+    ...transport,
+    id,
+    ...(entry !== undefined ? { entry } : {}),
+  });
 }
 
 /** Adapt one declared semantic sidecar into normalized, format-neutral tile geometry. */
@@ -559,7 +613,13 @@ export async function openTerrainPackageSemantics(
   let landcoverArchive = options.landcoverArchive;
   let featuresArchive = options.featuresArchive;
   if (pkg.landcover !== undefined && landcoverArchive === undefined) {
-    landcoverArchive = openTerrainPackageArchive(pkg.landcover.source, options.baseUrl);
+    landcoverArchive = openSectionArchive(
+      pkg,
+      pkg.landcover.source,
+      'landcover',
+      options.baseUrl,
+      options.transport,
+    );
   }
   if (pkg.features !== undefined && featuresArchive === undefined) {
     if (
@@ -569,7 +629,13 @@ export async function openTerrainPackageSemantics(
     ) {
       featuresArchive = landcoverArchive;
     } else {
-      featuresArchive = openTerrainPackageArchive(pkg.features.source, options.baseUrl);
+      featuresArchive = openSectionArchive(
+        pkg,
+        pkg.features.source,
+        'features',
+        options.baseUrl,
+        options.transport,
+      );
     }
   }
   let landcover: OpenTerrainPackageSemanticSidecar | undefined;
@@ -608,7 +674,14 @@ export async function openTerrainPackageSemantics(
   if (detail !== undefined && features !== undefined) {
     try {
       const archive =
-        options.buildingDetailArchive ?? openTerrainPackageArchive(detail.source, options.baseUrl);
+        options.buildingDetailArchive ??
+        openSectionArchive(
+          pkg,
+          detail.source,
+          'building-detail',
+          options.baseUrl,
+          options.buildingDetailTransport ?? options.transport,
+        );
       if (archive.getHeader !== undefined) {
         const header = await archive.getHeader();
         if (detail.level < header.minZoom || detail.level > header.maxZoom) {
@@ -892,7 +965,8 @@ export async function openTerrainPackageElevation(
   checkPackageLevel(pkg, options.level);
   const descriptor = terrainDescriptorFromPackage(pkg, options.level, options.frame);
   const archive =
-    options.archive ?? openTerrainPackageArchive(pkg.elevation.source, options.baseUrl);
+    options.archive ??
+    openSectionArchive(pkg, pkg.elevation.source, 'elevation', options.baseUrl, options.transport);
   const parentFallback = options.parentFallback ?? true;
   let minAvailableLevel = pkg.tileMatrix.minLevel;
   let maxAvailableLevel = options.level;
@@ -932,7 +1006,8 @@ export async function openTerrainPackagePyramid(
   options: OpenTerrainPackagePyramidOptions = {},
 ): Promise<OpenTerrainPackagePyramid> {
   const archive =
-    options.archive ?? openTerrainPackageArchive(pkg.elevation.source, options.baseUrl);
+    options.archive ??
+    openSectionArchive(pkg, pkg.elevation.source, 'elevation', options.baseUrl, options.transport);
   let minLevel = pkg.tileMatrix.minLevel;
   let maxLevel = pkg.tileMatrix.maxLevel;
   if (archive.getHeader !== undefined) {
@@ -977,13 +1052,22 @@ export async function createTerrainPackageStream(
   pkg: TerrainPackageDescriptor,
   options: TerrainPackageStreamOptions,
 ): Promise<TerrainPackageStream> {
-  const { level, baseUrl, archive, parentFallback, onParentFallback, frame, ...streamOptions } =
-    options;
+  const {
+    level,
+    baseUrl,
+    archive,
+    transport,
+    parentFallback,
+    onParentFallback,
+    frame,
+    ...streamOptions
+  } = options;
   const opened = await openTerrainPackageElevation(pkg, {
     level,
     ...(frame !== undefined ? { frame } : {}),
     ...(baseUrl !== undefined ? { baseUrl } : {}),
     ...(archive !== undefined ? { archive } : {}),
+    ...(transport !== undefined ? { transport } : {}),
     ...(parentFallback !== undefined ? { parentFallback } : {}),
     ...(onParentFallback !== undefined ? { onParentFallback } : {}),
   });
@@ -1001,6 +1085,7 @@ export async function createTerrainPackagePyramidStream(
   const {
     baseUrl,
     archive,
+    transport,
     parentFallback,
     onParentFallback,
     elevationWorker,
@@ -1014,6 +1099,7 @@ export async function createTerrainPackagePyramidStream(
     ...(onElevationTiming ? { onElevationTiming } : {}),
     ...(baseUrl !== undefined ? { baseUrl } : {}),
     ...(archive !== undefined ? { archive } : {}),
+    ...(transport !== undefined ? { transport } : {}),
     ...(parentFallback !== undefined ? { parentFallback } : {}),
     ...(onParentFallback !== undefined ? { onParentFallback } : {}),
   });

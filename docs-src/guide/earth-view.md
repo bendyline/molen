@@ -202,6 +202,57 @@ for `terrainchange` to refresh an attribution panel when the package changes. Di
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
 
+## Byte cache and prefetch
+
+Terrain, landcover, feature and building tiles, content packs and the small documents that name
+them can persist across visits in a byte cache from `@bendyline/molen-pack/cache`. Ground a viewer
+has seen then streams from disk instead of the network, and a revisited city costs almost no
+requests. The cache splits each archive into 64 KiB blocks held in memory and in IndexedDB,
+merges neighbouring misses into one range request, shares a block between concurrent reads, and
+evicts least recently used blocks past a byte budget.
+
+```ts
+import { createBlockCache, createIndexedDbByteStore, createMemoryByteStore } from '@bendyline/molen-pack/cache';
+import { loadEarthContent, mountEarthView, openPacksFromIndex } from '@bendyline/molen-earth/client';
+
+const store = createIndexedDbByteStore({ name: 'my-app-bytes', budgetBytes: 300 * 1024 * 1024 });
+const byteCache = createBlockCache(store ?? createMemoryByteStore());
+
+const packs = await openPacksFromIndex(indexUrl, undefined, undefined, { byteCache });
+const view = await mountEarthView({
+  canvas,
+  terrain,
+  baseUrl,
+  content: await loadEarthContent(packs),
+  byteCache,
+  camera: { latitude: 47.6205, longitude: -122.3493, range: 1500 },
+});
+```
+
+The view opens the package's own archives through the cache, keyed by the SHA-256 that its
+`files` list or archive sets give, or by URL when none is listed. Archives you pass in `archives`
+are used as given, so route them through the cache yourself where you want them kept: wrap a
+PMTiles source with `cachingRangeSource`, or open archive-set members with `cachingArchiveOpener`
+from `@bendyline/molen-terrain/client`. A stable URL whose file is replaced in place needs
+`keyBy: 'etag'`, so each server version becomes its own archive. Content packs are keyed by their
+content hash, file and size. Pass the same cache to `openPacksFromIndex` and `mountEarthView` so
+packs and terrain share one budget. `cachingDocumentFetch` keeps the small JSON documents (pack
+index, archive sets, manifests) and revalidates them with `If-None-Match`, serving the stored copy
+offline.
+
+With a byte cache the view also prefetches. It follows the camera's own track, so it works for an
+orbit pan, a car and an aircraft alike. It places virtual views 20, 40 and 60 seconds ahead,
+selects their tiles the way the stream would, and reads those archive tiles into the cache. It
+reads bytes only and decodes nothing, two reads at a time, only while the stream has a free load
+slot, and pauses when the page is hidden, offline or on Save-Data. It waits out camera animations
+(a fly-to, getting into a vehicle), whose momentary speed is not travel, and never looks more than
+15 km ahead. Tune it with `prefetch` (`horizonSeconds`, `stepsSeconds`, `maxConcurrent`,
+`maxDistanceMeters`), or turn it off with `prefetch: false`. A host
+that knows the route, such as a simulator's flight plan, queues places with
+`view.prefetch([{ latitude, longitude, altitude }])`. Those go first and resolve once read. A
+`flyTo` within the current frame queues its destination. `view.cacheStats()` reports block hits,
+network requests, stored bytes and prefetch progress.
+
 ## Ambient life
 
 Cars drive the mapped roads, pedestrians walk the footways, trains run the railways and aircraft
