@@ -54,6 +54,15 @@ describe('reviewed source-local geographic frame', () => {
     ).toBeUndefined();
     expect(reviewedSourceMapFrame({ ...fixture(), frameBytes: undefined })).toBeUndefined();
   });
+  it('retains a reviewed frame when checkout changes only line endings', () => {
+    const data = fixture();
+    const lf = JSON.stringify(frame, null, 2);
+    data.spec.geographicProposal.mapGeometryHash = `sha256:${createHash('sha256').update(lf).digest('hex')}`;
+    data.frameBytes = Buffer.from(lf.replaceAll('\n', '\r\n'));
+    expect(reviewedSourceMapFrame(data)).toEqual(frame);
+    data.frameBytes = Buffer.from(data.frameBytes.toString().replace('0.17', '0.18'));
+    expect(reviewedSourceMapFrame(data)).toBeUndefined();
+  });
   it('accepts the earlier signed ensemble basis field without accepting generic provenance prose', () => {
     const prior = {
       ...frame,

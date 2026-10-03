@@ -1,13 +1,15 @@
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { matchesEvidenceText } from '../../../../packages/worldgen/scripts/evidence-text-hash.mjs';
 
 /** Use the attributed source-local frame when authoring corrected the shared map evidence. */
 export function sourceLocalFootprint(spec, bytes) {
   if (spec.geographicProposal?.mapGeometrySource !== 'map-frame.json') return undefined;
   assert(bytes, `${spec.id}: source-local footprint evidence is missing`);
-  const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-  assert.equal(hash, spec.geographicProposal.mapGeometryHash, `${spec.id}: map frame changed`);
+  const hash = spec.geographicProposal.mapGeometryHash;
+  assert(matchesEvidenceText(bytes, hash), `${spec.id}: map frame changed`);
   const frame = JSON.parse(bytes.toString('utf8'));
+  const label = frame.geometryLabel;
+  assert(label === undefined || (typeof label === 'string' && label.length < 200));
   const evidenceUrl = frame.sourceUrl ?? frame.source;
   assert(
     typeof evidenceUrl === 'string' && /^https?:\/\//.test(evidenceUrl),
@@ -34,8 +36,8 @@ export function sourceLocalFootprint(spec, bytes) {
       latitude - (-x * s + z * c) / meters,
     ];
   };
-  if (!polygon) return { lines: centerlines.map((line) => line.map(project)), hash };
+  if (!polygon) return { lines: centerlines.map((line) => line.map(project)), hash, label };
   const footprint = polygon.map(project);
   if (footprint[0].some((value, i) => value !== footprint.at(-1)[i])) footprint.push(footprint[0]);
-  return { footprint, hash };
+  return { footprint, hash, label };
 }

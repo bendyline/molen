@@ -20,13 +20,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-31,258 triangles, 60,026 vertices, 5 surface groups; 2,479,252 source bytes. SHA-256: `sha256:dd8a5e629af9cf155fd35939fcf451c2ceba0bfc7d7d470ba2ac8fe7506bd0a3`. Actual bounds: -23.532, 0.000, -5.821 to 6.568, 46.000, 8.723 m.
+31,258 triangles, 60,026 vertices, 5 surface groups; 2,539,292 source bytes. SHA-256: `sha256:68dff7c364eb38c5a076484a7b1337ba29ed565c303b0ac5630499495edd47b5`. Actual bounds: -23.532, 0.000, -5.821 to 6.568, 46.000, 8.723 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.stone_ashlar` (2.4 × 1.5 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.stone_granite` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Mapped circular tower-part centroid is the model origin. Main building long axis fixes heading0.068090906725rad; residential block extends west and round-window pediment faces south. Host terrain supplies the rock-island contact;52m sea elevation is not applied as building height. Proposed anchor 22.499259431579, 59.723439410526 (longitude, latitude), heading 0.068090906725 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Mapped circular tower-part centroid is the model origin. Main building long axis fixes heading0.068090906725rad; residential block extends west and round-window pediment faces south. Host terrain supplies the rock-island contact;52m sea elevation is not applied as building height. Proposed anchor 22.499259431579, 59.723439410526 (longitude, latitude), heading 0.068090906725 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -34,6 +34,6 @@ Mapped circular tower-part centroid is the model origin. Main building long axis
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Asset is the main connected lighthouse/keeper building. Detached island outbuildings, trenches and natural rock are separate map features. Individual battle marks and stone blocks are represented by shared granite surface rather than invented documentary damage.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0653`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0653`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-northern-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

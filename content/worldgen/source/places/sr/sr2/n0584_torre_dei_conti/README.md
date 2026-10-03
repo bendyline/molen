@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/torre-dei-conti-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-22,086 triangles; 44,172 vertices; 8 material groups; 1,815,676 source bytes. Source hash: `sha256:e7818d661e7d99eabfd52313e4893b0f73b808669d67ef681df04a29bf43963f`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+22,086 triangles; 44,172 vertices; 8 material groups; 1,859,864 source bytes. Source hash: `sha256:1c80b8d39820c047ab65a02419b03beeff9275216a75a1ecb71b96fd6b1e9ebc`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0584`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

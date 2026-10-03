@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/avicenna-mausoleum-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-36,740 triangles; 72,062 vertices; 5 material groups; 2,966,192 source bytes. Source hash: `sha256:f40a901ae3a57a17d17d12c7b8c5a6462d32f206d0f8dfd437d52b8c42103a71`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+36,740 triangles; 72,062 vertices; 5 material groups; 3,038,268 source bytes. Source hash: `sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0601`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -11,11 +11,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.tourmontparnasse56.com/fr/la-tour-montparnasse-en-chiffres/)
 - [Reference](https://www.paris.fr/pages/la-tour-montparnasse-fete-ses-50-ans-24034)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-89,632 triangles; 265,992 vertices; 3 material groups; 10,387,664 bytes. Native bounds: -30.955, 0.000, -19.579 to 30.955, 210.027, 19.579. Source hash: `sha256:2eec7c91e8efc9b1bf5b31d4b9e6c7a2ebff4e5f4ba21cc34a8ad26e914888a0`.
+89,632 triangles; 265,992 vertices; 3 material groups; 10,653,672 bytes. Native bounds: -30.955, 0.000, -19.579 to 30.955, 210.027, 19.579. Source hash: `sha256:79fafbad74c3fca55d148fd5a97314d90027cfb9c14ce5e3ee99cbaa29c059d2`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

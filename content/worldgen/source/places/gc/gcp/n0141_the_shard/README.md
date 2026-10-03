@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.macegroup.com/projects/the-shard/)
 - [Reference](https://www.arup.com/projects/the-shard/)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-269,299 triangles; 578,981 vertices; 3 material groups; 23,498,156 bytes. Native bounds: -43.493, 0.000, -30.671 to 43.457, 309.652, 30.671. Source hash: `sha256:c546fa41ecf700319fb5fd6b3c509311a6024529ff729ac8fae8759e71506275`.
+269,299 triangles; 578,981 vertices; 3 material groups; 24,077,148 bytes. Native bounds: -43.493, 0.000, -30.671 to 43.457, 309.652, 30.671. Source hash: `sha256:80e65f53174a440d80c1fd18300e6685d3cb820c97dd69d5e8208438851c60d9`.
 
 {"up":"+Y","longitudinal":"+X along the cached mapped building frame","front":"+Z toward the long southern edge in that frame","origin":"Exact-QID outer-envelope rectangle center at ground level; eight independently mapped facade planes retain their individual peaks"}
 

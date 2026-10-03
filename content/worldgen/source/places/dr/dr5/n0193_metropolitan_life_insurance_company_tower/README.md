@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.kpf.com/project/one-madison-avenue)
 - [Reference](https://www.openstreetmap.org/way/158404390)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-290,454 triangles; 655,634 vertices; 9 material groups; 26,437,748 bytes. Native bounds: -13.312, 0.000, -11.837 to 13.417, 213.360, 11.837. Source hash: `sha256:26cd26cc8c7fb533ae4d6a967cfe6855c88c69e88920ff519de4d5dab8ec34c3`.
+290,454 triangles; 655,634 vertices; 9 material groups; 27,093,396 bytes. Native bounds: -13.312, 0.000, -11.837 to 13.417, 213.360, 11.837. Source hash: `sha256:ad4e4a6093e254598bbbfd37e4b936c7fb3445e2225895d530012b8501b070a5`.
 
 {"up":"+Y","front":"+X toward Madison Avenue","north":"+Z toward East24th Street"}
 

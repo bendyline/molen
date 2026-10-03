@@ -155,7 +155,11 @@ describe('resolved material set', () => {
   it('bakes every pack material once with vertex colors and repeat wrapping', async () => {
     const resolver = new MaterialResolver(provider);
     const set = createResolvedMaterialSet(resolver);
-    const refs = stylePackMaterialRefs(pack);
+    // Landmark-only surfaces are acquired by the model loader, not archstyle traversal.
+    const porousRefs = ['metal_perforated_round', 'metal_perforated_square'].map(
+      (name) => `matgraph:molen.worldgen.material.${name}`,
+    );
+    const refs = [...stylePackMaterialRefs(pack), ...porousRefs];
     await Promise.all([set.prepare(refs), set.prepare(refs)]);
     expect(set.failures.size).toBe(0);
     const wall = set.materialFor(
@@ -175,6 +179,15 @@ describe('resolved material set', () => {
     ) as THREE.MeshStandardMaterial;
     expect(window.roughnessMap).toBeNull();
     expect(window.roughness).toBe(77 / 255);
+    for (const ref of porousRefs) {
+      const screen = set.materialFor('wall', ref) as THREE.MeshStandardMaterial;
+      expect(screen.transparent).toBe(true);
+      expect(screen.depthWrite).toBe(false);
+      expect(screen.alphaTest).toBe(0);
+      expect(screen.map?.generateMipmaps).toBe(true);
+      expect(screen.map?.minFilter).toBe(THREE.LinearMipmapLinearFilter);
+      expect(set.materialFor('trim', ref)).toBe(screen);
+    }
     const flat = set.materialFor('trim', 'palette:#ffffff') as THREE.MeshStandardMaterial;
     expect(flat.map).toBeNull();
     expect(flat.vertexColors).toBe(true);

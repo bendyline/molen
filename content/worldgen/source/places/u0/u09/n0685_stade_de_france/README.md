@@ -18,7 +18,7 @@ Primary photographs and plans inform original mesh geometry only. No reference p
 
 ## Authored geometry and materials
 
-911,098 triangles, 1,759,684 vertices, 8 surface groups; 72,526,480 source bytes. SHA-256: `sha256:b3004f1abd93377f48b72e6f8ec5daa0049237a204c67be56ea035f13fc15052`. Actual bounds: -147.920, -11.020, -171.567 to 148.865, 61.000, 168.835 m.
+911,098 triangles, 1,759,684 vertices, 8 surface groups; 74,286,180 source bytes. SHA-256: `sha256:72003d9d3176ca15e7b5e85f225956d4c4d7c9db3ad3a2f487eb160fb1928ced`. Actual bounds: -147.920, -11.020, -171.567 to 148.865, 61.000, 168.835 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.brick` (1.92 × 0.9 m), `matgraph:molen.worldgen.material.metal_standing_seam` (2.5 × 3 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center; nativeY0 is natural forecourt and the field liesY-11. Native+Z follows the mapped south-southeast goal axis."}.
 

@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.skyscrapercenter.com/frankfurt-am-main/commerzbank-tower/780/)
 - [Reference](https://www.openstreetmap.org/way/183060777)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-214,907 triangles; 632,523 vertices; 5 material groups; 24,720,356 bytes. Native bounds: -30.485, 0.000, -28.080 to 30.485, 300.000, 27.936. Source hash: `sha256:f667faa1bbcef987ca007548993c36bba0a0bf9b961b695f3e9104e43a2152af`.
+214,907 triangles; 632,523 vertices; 5 material groups; 25,352,888 bytes. Native bounds: -30.485, 0.000, -28.080 to 30.485, 300.000, 27.936. Source hash: `sha256:536721203e4dcab7d0ccc9c048cbdfba76e2b3c63d49159a5f60626951340c6e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

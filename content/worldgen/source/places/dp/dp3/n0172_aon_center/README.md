@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.aoncenter.info/toc.cfm)
 - [Reference](https://www.openstreetmap.org/way/64388609)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-169,774 triangles; 434,320 vertices; 5 material groups; 17,241,776 bytes. Native bounds: -30.505, 0.000, -30.054 to 30.505, 346.300, 30.054. Source hash: `sha256:bbb5836761f6715351d16455dc57071bf2617fd36b007ff1486817f8bda6d149`.
+169,774 triangles; 434,320 vertices; 5 material groups; 17,676,112 bytes. Native bounds: -30.505, 0.000, -30.054 to 30.505, 346.300, 30.054. Source hash: `sha256:75d5b9ad7100d1d840f1fa72b4f5ab94be19464a94a32722d3db3dc2e426350e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.mori.co.jp/en/img/article/090828e.pdf)
 - [Reference](https://old.skyscraper.org/EXHIBITIONS/SUPERTALL/wfc.php)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-227,144 triangles; 454,280 vertices; 3 material groups; 18,627,888 bytes. Native bounds: -41.132, 0.000, -41.044 to 41.132, 492.000, 41.044. Source hash: `sha256:211748216e94193e5dd49dc9adf0dd552b4baffb5d769ea1e9a0268594ff9d4c`.
+227,144 triangles; 454,280 vertices; 3 material groups; 19,082,184 bytes. Native bounds: -41.132, 0.000, -41.044 to 41.132, 492.000, 41.044. Source hash: `sha256:7a026395f00bf0f68c68afdbacb6694fcc9701aa39199a2bacfeb72432c366ea`.
 
 {"up":"+Y","longitudinal":"+X along the crown edge/58 m square diagonal","front":"+Z through the aperture","origin":"Ground-level center of the tower square; excludes wider retail podium"}
 

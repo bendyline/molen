@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/lamberti-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-90,122 triangles; 181,972 vertices; 8 material groups; 7,455,140 source bytes. Source hash: `sha256:4a82a7c12c93d8b83a48daed6cdb26f4f21c956b88910987e7a911dc4e8e6ccb`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+90,122 triangles; 181,972 vertices; 8 material groups; 7,637,124 source bytes. Source hash: `sha256:53601aeeb6540f0487b6fa0ed5f602bcf0b0e650e0f2df8a74ebbe624912ecf7`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0605`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

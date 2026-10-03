@@ -350,6 +350,40 @@ const MATERIALS = {
     ],
     outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal', normal: 'normal' },
   },
+  metal_stainless_polished: {
+    doc: 'Polished uncoated stainless steel, shared by engraved metal, sculpture and architectural trim. Model geometry supplies distinct patterns; the graph supplies a low-roughness reflective finish.',
+    seed: 209,
+    nodes: [
+      ...fibers(3, 72, 0.998),
+      ramp('out', 'fiber-noise', [
+        [0, '#eeeeee'],
+        [1, '#f4f4f4'],
+      ]),
+      levels('rough', 'fiber-noise', 0.075, 0.105),
+      { id: 'metal', type: 'const', params: { value: 1 } },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal' },
+  },
+  metal_stainless_beadblasted: {
+    doc: 'Fine isotropic bead-blasted uncoated stainless steel for sculpture and architectural cladding. The shared fine grain softens reflections without painted-metal shading or baked panel joints.',
+    seed: 210,
+    nodes: [
+      noise('grain-noise', 128, 2, 0),
+      ramp('out', 'grain-noise', [
+        [0, '#e8e9e9'],
+        [1, '#eeeeee'],
+      ]),
+      levels('rough', 'grain-noise', 0.42, 0.5),
+      { id: 'metal', type: 'const', params: { value: 1 } },
+      {
+        id: 'normal',
+        type: 'height-to-normal',
+        input: 'grain-noise',
+        params: { strength: 0.00003 },
+      },
+    ],
+    outputs: { baseColor: 'out', roughness: 'rough', metalness: 'metal', normal: 'normal' },
+  },
   stone_marble: {
     doc: 'Continuous honed marble for modeled columns, sculpture and cladding: restrained mineral veins and fine grain without brick courses or mortar joints. Stone color comes from vertex tint.',
     seed: 207,
@@ -1179,7 +1213,7 @@ const MATERIALS = {
   metal_perforated_round: {
     doc: 'Painted sheet metal with round4mm alpha apertures on12mm square centers. Neutral tintable finish; panel folds and edge trims remain geometry. A reusable reconstruction, not a particular facade fabrication schedule.',
     seed: 133,
-    alphaTest: 0.3,
+    alphaCoverage: true,
     nodes: [
       { id: 'distance', type: 'gradient', params: { kind: 'radial', angleDeg: 0 } },
       ramp('color', 'distance', [
@@ -1196,7 +1230,7 @@ const MATERIALS = {
   metal_perforated_square: {
     doc: 'Painted metal with real square alpha cutouts:65.5mm apertures on85mm centers. Tint with vertex colors; use opaque geometry for cassette folds and supporting frames.',
     seed: 131,
-    alphaTest: 0.3,
+    alphaCoverage: true,
     nodes: [
       bricks('holes', 1, 1, (1 - 65.5 / 85) / 2, 0),
       ramp('color', 'holes', [
@@ -1234,6 +1268,7 @@ function materialDocument(entry) {
     size: [256, 256],
     seed: entry.seed,
     ...(entry.alphaTest === undefined ? {} : { alphaTest: entry.alphaTest }),
+    ...(entry.alphaCoverage ? { alphaCoverage: true } : {}),
     nodes: roughness
       ? [...entry.nodes, { id: 'rough', type: 'const', params: { value: 0.88 } }]
       : entry.nodes,

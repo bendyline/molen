@@ -141,6 +141,8 @@ interface ReviewInput {
   placement?: StructurePlacement;
   /** Actual mapped perimeter, not a generated footprint. Coordinates are WGS84. */
   footprint?: [number, number][];
+  /** Optional source credit for non-OSM reference geometry. */
+  footprintLabel?: string;
   /** Open mapped road alignments, kept separate without artificial closing segments. */
   footprintLines?: [number, number][][];
 }
@@ -152,6 +154,11 @@ let outline: THREE.Line | undefined;
 let resourceStart = 0;
 let loadStart = 0;
 let selectionBounds: [number, number, number, number] | undefined;
+const terrainSamples: {
+  placementId: string;
+  coordinate: [number, number];
+  height: number;
+}[] = [];
 const bounds = new THREE.Box3();
 
 function unload() {
@@ -186,6 +193,7 @@ function unload() {
 
 async function mount(input: ReviewInput) {
   unload();
+  terrainSamples.length = 0;
   active = input;
   resourceStart = resources.length;
   loadStart = loads.length;
@@ -208,6 +216,26 @@ async function mount(input: ReviewInput) {
       ...(input.viewingDate !== undefined ? { viewingDate: input.viewingDate } : {}),
       structureObjects: models,
       metersPerUnit: factor,
+      ...(entry.terrainReference
+        ? {
+            // Synthetic bank datum puts native Y0 on the review plane while exercising
+            // the real off-origin reference path. It is not a geographic terrain survey.
+            sampleStructureTerrain: (
+              coordinate: readonly [number, number],
+              request: { entry: StructurePlacement },
+            ) => {
+              const height =
+                (request.entry.terrainReference?.modelHeight ?? 0) *
+                (request.entry.scale?.[1] ?? 1);
+              terrainSamples.push({
+                placementId: request.entry.id,
+                coordinate: [...coordinate],
+                height,
+              });
+              return height;
+            },
+          }
+        : {}),
       roads: { renderTransportation: false },
     });
     const context: TerrainPyramidTileLayerContext = {
@@ -379,6 +407,10 @@ function telemetry() {
     ),
     loads: loads.slice(loadStart),
     selectionBounds,
+    terrainSamples: terrainSamples.map((sample) => ({
+      ...sample,
+      coordinate: [...sample.coordinate],
+    })),
     visibleStructures,
     groundCutoutActive: ground.geometry !== uncutGroundGeometry,
     groundCoversCutoutProbe: cutoutProbe() ? groundAt(cutoutProbe() as THREE.Vector3) : null,
@@ -452,7 +484,7 @@ async function view(input: {
   caption(
     '#detail',
     input.placement
-      ? 'North is up · magenta: cached OSM outline · flat terrain placement check'
+      ? `North is up · magenta: ${active?.footprintLabel ?? 'cached OSM outline'} · flat terrain placement check`
       : `${input.name} · shared world-viewer materials`,
   );
   caption(

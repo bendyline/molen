@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.shda.gov.cn/dawh/csjy/202509/t20250919_75918.html)
 - [Reference](https://www.icppcc.cn/newsDetail_1000332)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-288,124 triangles; 596,664 vertices; 5 material groups; 24,344,020 bytes. Native bounds: -58.763, 0.000, -66.400 to 58.763, 468.000, 37.900. Source hash: `sha256:2c2e31d9b6689da1388607ff07d59a4336458eb0ff2468f4182e73350b296564`.
+288,124 triangles; 596,664 vertices; 5 material groups; 24,940,700 bytes. Native bounds: -58.763, 0.000, -66.400 to 58.763, 468.000, 37.900. Source hash: `sha256:e74b5dbc52f7a581dd7f6fa759360bdf9c2e3f630baff2ebaa172f30fbc96120`.
 
 {"up":"+Y","longitudinal":"+X between the two southern buttress feet","front":"-Z toward the single opposite radial buttress","origin":"Ground level below the circular middle of the mapped tower, not the outer-envelope rectangle center"}
 

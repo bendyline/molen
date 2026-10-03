@@ -24,7 +24,7 @@ Original geometry; copyrighted reference photographs and diagrams were consulted
 
 ## Authored geometry and materials
 
-1,147,020 triangles, 2,078,324 vertices, 7 surface groups; 86,509,500 source bytes. SHA-256: `sha256:d90749e29d6ddacb331804d5591ddb74f3ced7253b8e2b26e88a26fa8c5c702f`. Actual bounds: -201.200, -1.010, -145.656 to 148.000, 94.000, 145.656 m.
+1,147,020 triangles, 2,078,324 vertices, 7 surface groups; 88,587,840 source bytes. SHA-256: `sha256:622bce6cf7aa948c426ce7ac65eca97d622784808d8113f6e47722754949d29d`. Actual bounds: -201.200, -1.010, -145.656 to 148.000, 94.000, 145.656 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Exact mapped pitch centre at ground Y0; +Z north goal and +X west stand. The museum is on -X."}.
 

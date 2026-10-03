@@ -1,0 +1,109 @@
+{
+  "format": "molen/structure-reconstruction-evidence@1",
+  "candidateId": "N0621",
+  "scope": "Main tall tower source; observatory candidate remains incomplete.",
+  "publishedDimensions": [
+    {
+      "source": "https://www.mpg.de/9365148/ATTO-Factsheet-Aug2015en.pdf",
+      "finding": "3 by 3 m ground section;325 m structure;331 m including lightning conductor;1500 steps. Main-tower location is S2°08′45.13″ W59°00′20.12″, attributed by the publication to Google Maps.",
+      "values": {
+        "shaftWidthMeters": 3,
+        "structuralHeightMeters": 325,
+        "totalHeightMeters": 331,
+        "steps": 1500
+      }
+    },
+    {
+      "source": "https://www.bgc-jena.mpg.de/~csierra/blog/2025/02/08/Sampling-Heights/",
+      "finding": "Field measurement and subsequent tower drawing establish a321 m top platform,324 m gas inlets and331 m tip. Foundation height above nearby ground varies; no universal terrain datum is inferred.",
+      "values": {
+        "platformHeightMeters": 321,
+        "gasInletsMeters": 324
+      }
+    },
+    {
+      "source": "https://amt.copernicus.org/articles/19/101/2026/amt-19-101-2026.html",
+      "finding": "RoLi rail is on the southern corner at202° azimuth. Six guy attachment heights;6 m main rail segments;3 m brackets;4 m power rails at128 mm offset;40 mm frame extrusions. Figure1 CAD and Figure2 photographs were visually inspected.",
+      "values": {
+        "azimuthDegrees": 202,
+        "guyLevelsMeters": [
+          54,
+          108,
+          162,
+          216,
+          270,
+          321
+        ],
+        "railSegmentMeters": 6,
+        "bracketSpacingMeters": 3,
+        "powerRailSegmentMeters": 4,
+        "powerRailOffsetMeters": 0.128,
+        "frameSectionMeters": 0.04,
+        "homeHeightMeters": 8.3
+      }
+    }
+  ],
+  "inspectedImages": [
+    {
+      "source": "https://www.attoproject.org/media/gallery/",
+      "images": [
+        "https://live.staticflickr.com/65535/48470815001_0fde74c873_c.jpg",
+        "https://live.staticflickr.com/65535/48470963847_9a1fe24e2b_c.jpg",
+        "https://live.staticflickr.com/65535/48403976171_98c083f057_c.jpg",
+        "https://live.staticflickr.com/65535/48471230827_b2106aab15_c.jpg"
+      ],
+      "finding": "Square shaft, bolted angle chords and X bracing, internal stairs, alternating red/white sections and top platform with outriggers. Platform width and band boundaries are proportional readings."
+    },
+    {
+      "source": "https://www.bgc-jena.mpg.de/~csierra/blog/2025/02/08/Sampling-Heights/",
+      "images": [
+        "tower.png",
+        "tip.jpg",
+        "zerom.jpg",
+        "sixm.jpg",
+        "inlets.jpg"
+      ],
+      "finding": "Top elevation drawing, lightning-rod head, base grating and top inlet caps inspected in the browser. No image files redistributed."
+    }
+  ],
+  "locationEvidence": {
+    "source": "https://www.openstreetmap.org/node/3215117056",
+    "sourceDocument": "content/earth/structures/evidence/osm-features.json",
+    "sourceDocumentHash": "sha256:d7013710fbebcce266736771d937590ad701deb46fb15841fb94372d2a4bf352",
+    "element": {
+      "type": "node",
+      "id": 3215117056,
+      "lat": -2.1458835,
+      "lon": -59.0056354,
+      "tags": {
+        "name": "Amazon Tall Tower Observatory",
+        "wikidata": "Q18109585",
+        "wikipedia": "pt:Observatório de Torre Alta da Amazônia",
+        "height": "325",
+        "man_made": "tower",
+        "tower:construction": "guyed_lattice"
+      }
+    },
+    "axis": "Native(-X,+Z) is the lift corner: bearing225° at zero heading, then202° after the23° placement rotation. The node and primary coordinate differ by about6 m; a3 m shaft cannot claim surveyed fit from this evidence."
+  },
+  "reconstruction": {
+    "paintBandMeters": 30,
+    "stairSchedule": "107 alternating14-tread flights over321 m plus two ground treads; exact landing schedule is unresolved.",
+    "provisionalGuyAnchorRadiiMeters": [
+      75,
+      150,
+      225
+    ],
+    "platformWidthMeters": 6,
+    "outerTopOutriggerRadiusMeters": 3.8,
+    "geometryMethod": "Closed angle extrusions and physical bar grating, exact repeated mesh instances, explicit curves for paired study guys; no decimation or embedded bitmap textures."
+  },
+  "unresolved": [
+    "Surveyed foundation and cable anchor coordinates/elevations",
+    "Exact guy cable counts, attachment topology and pretension sag",
+    "Exact flange sizes, bolt schedule, stair/landing distribution and paint boundaries",
+    "Complete current scientific and rescue equipment",
+    "Independent80/81 m companion tower and laboratory-compound sources"
+  ],
+  "referencePolicy": "Publications and photographs retain their original rights and are used as visual references only. Original geometry uses shared repository materials. OSM point data: © OpenStreetMap contributors, ODbL1.0."
+}

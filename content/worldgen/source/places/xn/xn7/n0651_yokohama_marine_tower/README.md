@@ -20,13 +20,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-40,150 triangles, 85,826 vertices, 3 surface groups; 3,488,040 source bytes. SHA-256: `sha256:d47faa1569d5f48452f7020e6695781dfbb4f7afe2aa2d2e72f20842c7e42376`. Actual bounds: -32.505, 0.000, -31.500 to 19.190, 106.000, 19.830 m.
+40,150 triangles, 85,826 vertices, 3 surface groups; 3,573,880 source bytes. SHA-256: `sha256:9ad6868a2c7809dcdb232b7cb34e3460e36de14c596663a7bc030e26267b1d90`. Actual bounds: -32.505, 0.000, -31.500 to 19.190, 106.000, 19.830 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Tower axis uses mapped upper-pod center. Authored +X east/+Z south and heading0 retain the mapped circular podium and concave northwest glazed annex in their real positions. Whole asset must not be fit to the raised-pod polygon. Proposed anchor 139.650902072, 35.443934377 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Tower axis uses mapped upper-pod center. Authored +X east/+Z south and heading0 retain the mapped circular podium and concave northwest glazed annex in their real positions. Whole asset must not be fit to the raised-pod polygon. Proposed anchor 139.650902072, 35.443934377 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -34,6 +34,6 @@ Tower axis uses mapped upper-pod center. Authored +X east/+Z south and heading0 
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Published overallheight and decagon are respected. Podium plan and12m height are mapped. Observation-level elevation, truss sections, glazing subdivisions and9m annex roof height are photo-proportioned; mapped80-88m raisedpod tags conflict with the106m current envelope and are not treated as measured stage elevations. Podium planting, interiors and changing display signage are excluded.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0651`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0651`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-lattice-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

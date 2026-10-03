@@ -28,9 +28,9 @@ function value(image: RGBAImage, u: number, v: number): number {
 }
 
 describe('canonical construction material library', () => {
-  it('ships 65 shared 256-square materials with independently usable surface response', async () => {
+  it('ships 67 shared 256-square materials with independently usable surface response', async () => {
     const files = (await readdir(materialDir)).filter((name) => name.endsWith('.matgraph.json'));
-    expect(files.length).toBe(65);
+    expect(files.length).toBe(67);
     const style = JSON.parse(await readFile(resolve(materialDir, '../stylepack.json'), 'utf8'));
     expect(Object.values(style.materials).sort()).toEqual(
       files.map((name) => `materials/${name}`).sort(),
@@ -42,11 +42,13 @@ describe('canonical construction material library', () => {
       const roughness = baked.slots.roughness;
       expect(roughness, id).toBeDefined();
       if (roughness !== undefined) {
-        expect(value(roughness, 0.5, 0.5), id).toBeGreaterThanOrEqual(50);
+        expect(value(roughness, 0.5, 0.5), id).toBeGreaterThanOrEqual(
+          id === 'metal_stainless_polished' ? 19 : 50,
+        );
         expect(value(roughness, 0.5, 0.5), id).toBeLessThanOrEqual(253);
       }
     }
-  }, 30_000); // Bakes all 65 material graphs; 3-5s alone, past the 5s default under load.
+  }, 30_000); // Bakes all 67 material graphs; 3-5s alone, past the 5s default under load.
 
   it('repeats every lap board and barrel rib instead of clamping a scaled coordinate', async () => {
     const lap = bakeMatGraph(await material('siding_lap', 256)).slots.baseColor;
@@ -75,6 +77,12 @@ describe('canonical construction material library', () => {
     const stainless = bakeMatGraph(await material('metal_stainless'));
     expect(value(stainless.slots.metalness as RGBAImage, 0.5, 0.5)).toBe(255);
     expect(value(stainless.slots.roughness as RGBAImage, 0.5, 0.5)).toBeLessThan(100);
+    const polished = bakeMatGraph(await material('metal_stainless_polished'));
+    const blasted = bakeMatGraph(await material('metal_stainless_beadblasted'));
+    expect(value(polished.slots.metalness as RGBAImage, 0.5, 0.5)).toBe(255);
+    expect(value(blasted.slots.metalness as RGBAImage, 0.5, 0.5)).toBe(255);
+    expect(value(polished.slots.roughness as RGBAImage, 0.5, 0.5)).toBeLessThan(28);
+    expect(value(blasted.slots.roughness as RGBAImage, 0.5, 0.5)).toBeGreaterThan(100);
     const film = bakeMatGraph(await material('etfe_film'));
     expect(value(film.slots.metalness as RGBAImage, 0.5, 0.5)).toBe(0);
     expect(value(film.slots.roughness as RGBAImage, 0.5, 0.5)).toBeLessThan(75);
@@ -108,7 +116,8 @@ describe('canonical construction material library', () => {
     const image = perforated.slots.baseColor;
     if (!image) throw new Error('missing perforated map');
     const alpha = (x: number, y: number) => image.data[(y * 256 + x) * 4 + 3];
-    expect(perforated.meta.alphaTest).toBe(0.3);
+    expect(perforated.meta.alphaCoverage).toBe(true);
+    expect(perforated.meta.alphaTest).toBeUndefined();
     expect(alpha(128, 128)).toBe(0);
     expect(alpha(3, 128)).toBe(255);
     const open = Array.from({ length: 256 }, (_, x) => alpha(x, 128)).filter((a) => a === 0).length;
@@ -117,7 +126,8 @@ describe('canonical construction material library', () => {
     const roundImage = round.slots.baseColor;
     if (!roundImage) throw new Error('missing round aperture map');
     const roundAlpha = (x: number, y: number) => roundImage.data[(y * 256 + x) * 4 + 3];
-    expect(round.meta.alphaTest).toBe(0.3);
+    expect(round.meta.alphaCoverage).toBe(true);
+    expect(round.meta.alphaTest).toBeUndefined();
     expect(roundAlpha(128, 128)).toBe(0);
     expect(roundAlpha(94, 94)).toBe(255); // corners outside a circle, unlike a square aperture
     const diameter = Array.from({ length: 256 }, (_, x) => roundAlpha(x, 128)).filter(

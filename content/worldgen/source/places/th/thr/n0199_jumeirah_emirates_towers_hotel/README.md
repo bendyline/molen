@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.jumeirah.com/en/stay/dubai/jumeirah-emirates-towers)
 - [Reference](https://www.servcorp.ae/en/serviced-offices/locations/dubai/emirates-tower/)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-340,488 triangles; 761,392 vertices; 5 material groups; 30,737,888 bytes. Native bounds: -37.021, 0.000, -28.073 to 32.353, 309.000, 28.073. Source hash: `sha256:93e183933ba98b764594370da72c5ffae24f7b2fc11379c66ff24c38843223ed`.
+340,488 triangles; 761,392 vertices; 5 material groups; 31,499,296 bytes. Native bounds: -37.021, 0.000, -28.073 to 32.353, 309.000, 28.073. Source hash: `sha256:182f446b6f0fa9156c6175e28b310deba04c81a5327ff6271dde5fd73460f6d3`.
 
 {"up":"+Y","front":"+X toward inward apex and mast","outerLobby":"-X opposite the mast"}
 

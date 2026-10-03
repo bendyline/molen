@@ -13,6 +13,7 @@ import {
   validateAuthoredMesh,
 } from './authored-structure-mesh.mjs';
 import { embedGraphFallbacks } from './embed-graph-fallbacks.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { signatureTowers } from './signature-tower-models.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
@@ -152,7 +153,7 @@ function geographicProposal(study, mapped) {
     mapGeometrySource: mapped.sourceLocalFrame
       ? 'map-frame.json'
       : 'content/earth/structures/georeferencing.json',
-    mapGeometryHash: mapped.sourceLocalFrame?.hash ?? hash(evidenceBytes),
+    mapGeometryHash: mapped.sourceLocalFrame?.hash ?? hashEvidenceText(evidenceBytes),
     mapGeometryLicense: 'ODbL-1.0',
     attribution: '© OpenStreetMap contributors',
   };
@@ -320,9 +321,12 @@ for (const study of signatureTowers.filter(
     scaleBasis:
       'Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.',
     geometrySource:
+      study.geometrySource ??
       'Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.',
     sourceLicense:
+      study.sourceLicense ??
       'Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.',
+    ...(study.dataAttribution ? { dataAttribution: study.dataAttribution } : {}),
     materialMethod: study.embeddedCanonicalGraphs?.length
       ? 'Canonical shared graphs use metric UVs and vertex tint through molenSurface extras. Opted-in alpha screens embed a portable fallback baked from the same canonical graph; the world viewer replaces this copy with the shared texture. Transparent guards retain local PBR alpha.'
       : 'Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.',
@@ -435,10 +439,18 @@ for (const study of signatureTowers.filter(
       scripts: [],
       textures: [],
       sounds: [],
-      documents: [...new Set([...priorDocuments, 'README.md', 'preview.png', ...optional])],
+      documents: [
+        ...new Set([
+          ...priorDocuments,
+          'README.md',
+          'preview.png',
+          ...optional,
+          ...(study.sourceDocuments ?? []),
+        ]),
+      ],
     },
   };
-  const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence and reconstruction\n\nPublished dimensions and reconstructed details are separated in spec.json. Primary references:\n\n${study.refs.map((url) => `- [Reference](${url})`).join('\n')}\n\nNo third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.\n\n## Model and axes\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} bytes. Native bounds: ${min.map((v) => v.toFixed(3)).join(', ')} to ${max.map((v) => v.toFixed(3)).join(', ')}. Source hash: \`${hash(glb)}\`.\n\n${JSON.stringify(study.nativeAxes)}\n\nThe geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Reproduce\n\nRun \`node packages/worldgen/scripts/generate-signature-towers.mjs --ids=${study.id}\` (or add \`--check\`). The generator preserves manually edited masters by checking their baseline hashes. Import through the standard authored-model workflow with optimization disabled; then capture all QA cameras, including shared-surface views.\n\n## Pending work\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nThis bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.\n`;
+  const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence and reconstruction\n\nPublished dimensions and reconstructed details are separated in spec.json. Primary references:\n\n${study.refs.map((url) => `- [Reference](${url})`).join('\n')}\n\nNo third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.\n\n## Model and axes\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} bytes. Native bounds: ${min.map((v) => v.toFixed(3)).join(', ')} to ${max.map((v) => v.toFixed(3)).join(', ')}. Source hash: \`${hash(glb)}\`.\n\n${JSON.stringify(study.nativeAxes)}\n\nThe geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Reproduce\n\nRun \`node packages/worldgen/scripts/generate-signature-towers.mjs --ids=${study.id}\` (or add \`--check\`). The generator preserves manually edited masters by checking their baseline hashes. Import through the standard authored-model workflow with optimization disabled; then capture all QA cameras, including shared-surface views.\n\n## Pending work\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nThis bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.\n`;
   await emit(modelPath, glb);
   for (const [name, data] of [
     ['spec.json', spec],
@@ -446,7 +458,15 @@ for (const study of signatureTowers.filter(
     ['source.json', source],
   ])
     await emit(resolve(dir, name), Buffer.from(`${JSON.stringify(data, null, 2)}\n`));
-  await emit(resolve(dir, 'README.md'), Buffer.from(readme));
+  await emit(
+    resolve(dir, 'README.md'),
+    Buffer.from(
+      readme +
+        (study.dataAttribution
+          ? `\n## Additional geographic data\n\n${study.dataAttribution}\n`
+          : ''),
+    ),
+  );
   console.log(
     `${study.id} ${assetId}: ${mesh.triangleCount} triangles, ${glb.length} bytes, ${hash(glb)}`,
   );

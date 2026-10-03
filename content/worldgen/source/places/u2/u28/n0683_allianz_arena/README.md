@@ -2,7 +2,7 @@
 
 ![Lit Molen preview](preview.png)
 
-Munich stadium with individually inflated diagonal ETFE cushions, continuous rounded white envelope, transparent inner-roof and lower facade film, forty-eight lattice roof trusses, exposed inclined concrete columns, fifteen circumferential cascade stairs, raised ring promenade, three steepening gray/red/gray seating tiers, two goal-end screens and a marked105×68m field.
+Munich stadium with individually inflated diagonal ETFE cushions, continuous rounded white envelope, transparent inner-roof and lower facade film, forty-eight lattice roof trusses, exposed inclined concrete columns, fifteen circumferential cascade stairs, raised ring promenade, three steepening gray/red/gray seating tiers, two goal-end screens and a marked105Ã—68m field.
 
 ## Identity and evidence
 
@@ -24,13 +24,13 @@ Public primary photographs are used for architectural analysis only. No photogra
 
 ## Authored geometry and materials
 
-1,426,422 triangles, 2,703,604 vertices, 7 surface groups; 111,747,112 source bytes. SHA-256: `sha256:fae872a150c784f3c346f93275ddcd315bfc90948ddf4624f3806737eaf02395`. Actual bounds: -120.018, 0.000, -137.537 to 119.565, 51.589, 154.010 m.
+1,426,422 triangles, 2,703,604 vertices, 7 surface groups; 114,450,732 source bytes. SHA-256: `sha256:f07ce08f66f05e716982580f0278eadf4769c315ac0ac5fe78e79ee0bdedfcce`. Actual bounds: -120.018, 0.000, -137.537 to 119.565, 51.589, 154.010 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.etfe_film` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center at ground playing-field datum. Native +Z points south-southwest along the pitch; +X points east-southeast."}.
 
 ## Placement proposal
 
-Exact68×105m pitch sets center and orientation; north-up mapped aperture and facade align independently. +Z faces the southern esplanade; west technical/team side is-X. GroundY0 is the playing-field/lower structural-foot datum; raised promenade is modeled at10m, consistent with the operator0â€“12m esplanade description. Host terrain supplies the long esplanade; no claim of survey-grade elevation. Proposed anchor 11.624701997079471, 48.218793999470286 (longitude, latitude), heading 0.26577841384531603 radians. Elevation policy: **terrain-contact**. See qa.json for the geographic review status and scope; this placement proposal does not claim surveyed site accuracy. Native ground and pitch datums follow the individual geographic proposal; depressed bowls require their declared terrain cutout.
+Exact68Ã—105m pitch sets center and orientation; north-up mapped aperture and facade align independently. +Z faces the southern esplanade; west technical/team side is-X. GroundY0 is the playing-field/lower structural-foot datum; raised promenade is modeled at10m, consistent with the operator0â€“12m esplanade description. Host terrain supplies the long esplanade; no claim of survey-grade elevation. Proposed anchor 11.624701997079471, 48.218793999470286 (longitude, latitude), heading 0.26577841384531603 radians. Elevation policy: **terrain-contact**. See qa.json for the geographic review status and scope; this placement proposal does not claim surveyed site accuracy. Native ground and pitch datums follow the individual geographic proposal; depressed bowls require their declared terrain cutout.
 
 ## Limitations and review
 

@@ -18,7 +18,7 @@ The detailed hanger account implies 344 hangers, while the general account says 
 
 ## Source and verification
 
-Original deterministic geometry from `packages/worldgen/scripts/severn-bridge-model.mjs`, with five PBR materials and no third-party mesh or embedded photograph. 308,648 triangles, 563,792 vertices, 23,439,340 bytes. Actual AABB: -818.750, 0.000, -20.000 to 818.750, 135.384, 20.000 m. SHA-256: `sha256:85ab2f4c6bf7785f80e924ed62b3a292fc0f06bb80862ef70c1c80a263b6f05d`.
+Original deterministic geometry from `packages/worldgen/scripts/severn-bridge-model.mjs`, with five PBR materials and no third-party mesh or embedded photograph. 308,648 triangles, 563,792 vertices, 24,003,148 bytes. Actual AABB: -818.750, 0.000, -20.000 to 818.750, 135.384, 20.000 m. SHA-256: `sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450`.
 
 Regenerate with `node packages/worldgen/scripts/generate-severn-bridge.mjs`; verify determinism with `--check`. The generator protects artist-edited GLB masters by comparing their baseline hash before any overwrite and validates finite attributes, triangle winding and nondegenerate Float32 geometry. Import using the normal Molen asset workflow and `--no-optimize`: whole-crossing position quantization destroys small parapet and cable geometry. Do not handwrite runtime asset sidecars.
 

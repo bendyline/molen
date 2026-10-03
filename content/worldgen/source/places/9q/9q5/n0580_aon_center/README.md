@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/aon-los-angeles-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-304,188 triangles; 608,812 vertices; 4 material groups; 24,961,388 source bytes. Source hash: `sha256:562e4fb52c5bbec9769c8b846b606cf7266cf09c5cf98515f91d2425afe52af9`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+304,188 triangles; 608,812 vertices; 4 material groups; 25,570,216 source bytes. Source hash: `sha256:781e8436eb33a40185f78f4b159ca920be49aa6595c41af111386fb5ab0cb4ea`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0580`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

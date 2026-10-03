@@ -93,9 +93,21 @@ function depsOf(node: GraphNode): string[] {
 
 /** Material graph: duplicate ids, dangling node/output references, and cycles. */
 function validateMatGraph(data: unknown): ValidationIssue[] {
-  const doc = data as { nodes?: GraphNode[]; outputs?: Record<string, string | undefined> };
+  const doc = data as {
+    nodes?: GraphNode[];
+    outputs?: Record<string, string | undefined>;
+    alphaTest?: number;
+    alphaCoverage?: boolean;
+  };
   const nodes = doc.nodes ?? [];
   const issues: ValidationIssue[] = [];
+  if (doc.alphaCoverage && (doc.alphaTest !== undefined || !doc.outputs?.baseColor)) {
+    issues.push({
+      path: '/alphaCoverage',
+      code: 'alpha_coverage',
+      message: 'alphaCoverage requires baseColor and cannot be combined with alphaTest',
+    });
+  }
   const ids = new Set<string>();
   nodes.forEach((n, i) => {
     if (ids.has(n.id)) {
@@ -506,6 +518,12 @@ const outputs = z
 // (matgraph-types.ts) plus registerMaterialSchemas().
 const matGraphSchema = z.strictObject({
   format: z.literal('molen/matgraph@1').describe("Format envelope; always 'molen/matgraph@1'."),
+  alphaCoverage: z
+    .boolean()
+    .optional()
+    .describe(
+      'Filter baseColor alpha as fractional surface coverage for porous surfaces. Uses mipmapped alpha blending; requires baseColor and excludes alphaTest. Like portable glTF BLEND, overlapping transparent surfaces require sorting.',
+    ),
   alphaTest: z
     .number()
     .min(0)

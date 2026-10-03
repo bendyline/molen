@@ -217,6 +217,9 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                 "items": false,
                 "minItems": 2,
                 "maxItems": 2
+              },
+              "includeConnectedApproaches": {
+                "type": "boolean"
               }
             },
             "required": [

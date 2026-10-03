@@ -14,7 +14,7 @@ The exact-identity OSM outline has a **309.007 × 6.695 m envelope**. That envel
 
 Authored in `packages/worldgen/scripts/gamla-bron-model.mjs`: paired bowstrings and lattice webs, built-up I-section chords and trestles, gussets and bolt heads, deck boards and joists, three-bar railings, masonry course seams, pipe collars and brackets, utility poles and wire, and low lighting fittings.
 
-156,768 source triangles; 292,148 vertices; 6 material groups; 12,109,980 bytes. SHA-256: `sha256:2e952088498ff6ad1d786eb0922af0807990be1845d91510e02295ca0c875b5e`. Actual bounds: -154.500, -0.012, -4.225 to 154.500, 14.200, 4.225 m.
+156,768 source triangles; 292,148 vertices; 6 material groups; 12,402,144 bytes. SHA-256: `sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55`. Actual bounds: -154.500, -0.012, -4.225 to 154.500, 14.200, 4.225 m.
 
 Up +Y, bridge length +X, transverse +Z. Origin is the horizontal midpoint of the nominal span system. **Y=0 is the reconstructed exposed-pier/river surface**, provisionally sea-level zero in the viewer. Native +X faces NNE toward the city bank, and +Z carries the downstream ESE pipe and pole line. Seasonal river level and exact bank grading depend on host data.
 

@@ -1,0 +1,59 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0621_amazon_tall_tower_observatory",
+  "sourceHash": "sha256:adb9523540d2773eb0d2b48be67b8d3cea0d24d7e0f0b283d9d5e0de6e91e134",
+  "runtimeHash": "sha256:ebd168645be6c5a12b8344e27291ec452a8b9f6180d1569b5fc3b9d88ccc0f88",
+  "captureReportHash": "sha256:f37a3ee8d10a60b2d03eb8c7c3eb65a48015e3abc9c772cea58b7e47e6d78b7b",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Render integrity of the current main-tower reconstruction; observatory completion remains pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/full-main-tower.png",
+      "shots/lattice-and-stairs.png",
+      "shots/angle-joints.png",
+      "shots/roli-instrument-carriage.png",
+      "shots/top-platform.png",
+      "shots/inlets-and-lightning.png",
+      "shots/base-and-safety-rail.png",
+      "shots/guy-attachment.png",
+      "shots/whole-guy-envelope.png"
+    ],
+    "notes": "All 14 current portable frames inspected. Bolted closed angle sections, open bar-grating stairs/landings, banded lattice, service rails, stationary RoLi carriage and top equipment are visibly coherent. The full tower and lightning-tip framing were corrected and recaptured. Real-scale thin guys undersample in distant views; no artificial thickening was applied."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:1382bc8a8a40a9820e21a3ba714edaec966efee0120e00dc0fba7f64b278416c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/full-main-tower.png",
+      "shots/shared/lattice-and-stairs.png",
+      "shots/shared/angle-joints.png",
+      "shots/shared/roli-instrument-carriage.png",
+      "shots/shared/top-platform.png",
+      "shots/shared/inlets-and-lightning.png",
+      "shots/shared/base-and-safety-rail.png",
+      "shots/shared/guy-attachment.png",
+      "shots/shared/whole-guy-envelope.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All 14 current shared frames inspected, with full-resolution full-height, angle-joint, instrument-carriage and lightning-tip checks. Three canonical material graphs each load once. Reflective stainless equipment is darker in the shared scene than the portable fallback. Current placement transform and unloaded geometry checks pass; the flat fixture and provisional anchor blocks do not establish real terrain fit. Stored mesh triangles are 184412; instance-expanded model triangles are 737916."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:8522be7fcdca92d7bfddf6433d7a29eb9ba13fe8dd43dd27a6136da63d46be24",
+    "notes": "The exact-QID OSM point and published coordinate identify the main tower but differ by about 6 m. The published 202-degree lift corner determines the signed 23-degree heading. Foundation position, study guy-anchor radii/topology and real ground contacts are not independently surveyed or verified; no footprint approval is claimed."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "The 325 m main tower is individually authored with published dimensions and component vocabulary. Exact flange/bolt/landing schedules, paint boundaries, cable-anchor topology/sag and present instrument/rescue equipment need further evidence. The independent 80/81 m companion towers and laboratory compound remain unauthored. The observatory candidate is incomplete."
+  }
+}

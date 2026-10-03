@@ -21,7 +21,7 @@ Original authored geometry and shared procedural surfaces. Reference photographs
 
 ## Authored geometry and materials
 
-2,069,882 triangles, 3,998,268 vertices, 6 surface groups; 164,781,524 source bytes. SHA-256: `sha256:7271f23bee36c947d215ef7cc71ce25003afcb8ffcc95c5bd7ed2bd0fa0ea532`. Actual bounds: -170.400, -1.800, -170.400 to 170.400, 74.520, 170.400 m.
+2,069,882 triangles, 3,998,268 vertices, 6 surface groups; 168,779,808 source bytes. SHA-256: `sha256:6c56edabeb5947220817615502f71c442fbfe440630e5b2fff6af2ecc5a36ae5`. Actual bounds: -170.400, -1.800, -170.400 to 170.400, 74.520, 170.400 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped playing-field center, +Z north-northwest. Y0 is the surrounding plaza at the lowest outer step; the public entrance podium is +2.2m and the visible football field is recessed beneath it."}.
 

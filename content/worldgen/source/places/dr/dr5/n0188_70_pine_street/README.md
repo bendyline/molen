@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.dthcapital.com/properties/70-pine-street)
 - [Reference](https://www.openstreetmap.org/way/278069587)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-576,846 triangles; 1,428,536 vertices; 8 material groups; 56,925,628 bytes. Native bounds: -39.345, 0.000, -20.654 to 39.941, 290.170, 20.413. Source hash: `sha256:0a242441b3a7bd48a77a3f3911627e3f3262c379e831757bac0dde21a75afec2`.
+576,846 triangles; 1,428,536 vertices; 8 material groups; 58,354,180 bytes. Native bounds: -39.345, 0.000, -20.654 to 39.941, 290.170, 20.413. Source hash: `sha256:a2bcb80fb183a169d110e2db25b4cfa3f931388684dee846f40fcbb47f130a40`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

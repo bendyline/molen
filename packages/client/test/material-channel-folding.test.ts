@@ -11,6 +11,27 @@ const baseColor = image(255, 255, 255, 255, 180, 100, 60, 0);
 const meta = { filter: 'linear' as const, alphaTest: 0.3 };
 
 describe('constant PBR channel folding', () => {
+  it('filters fractional coverage without a cutoff or transparent depth occlusion', () => {
+    const material = materialFromBaked({
+      meta: { filter: 'linear', alphaCoverage: true },
+      slots: { baseColor },
+    });
+    expect(material.alphaHash).toBe(false);
+    expect(material.alphaTest).toBe(0);
+    expect(material.transparent).toBe(true);
+    expect(material.depthWrite).toBe(false);
+    expect(material.map?.generateMipmaps).toBe(true);
+    expect(material.map?.minFilter).toBe(THREE.LinearMipmapLinearFilter);
+    expect((material.map as THREE.DataTexture).image.data).toEqual(new Uint8Array(baseColor.data));
+    material.map?.dispose();
+    material.dispose();
+    expect(() =>
+      materialFromBaked({
+        meta: { filter: 'linear', alphaCoverage: true, alphaTest: 0.5 },
+        slots: { baseColor },
+      }),
+    ).toThrow('alphaCoverage');
+  });
   it('uses the exact G/B bytes, leaving varying unused channels and alpha irrelevant', () => {
     const material = materialFromBaked({
       meta,

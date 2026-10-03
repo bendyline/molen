@@ -26,6 +26,12 @@ capability for shapes that genuinely need sculpting, retopology, rigging, or com
 
 For shared polygonal style, fidelity targets and canonical materials, follow [3D art guidelines](3d-art-guidelines.md).
 
+For programmatic captures of reflective metal or glass, pass `reflections: true` to
+`screenshotScene` or `screenshotAsset` from `@bendyline/molen-tooling`. This enables the
+viewer's shared procedural sky/ground environment; the default remains the legacy light rig.
+The repository landmark capture script accepts `--reflections` and records that mode in its
+hash-bound report. See [sky reflections](sky.md#reflections) for the runtime lighting model.
+
 ## 1. Convert the prompt into an asset brief
 
 Before making geometry, decide the points that affect the runtime result:

@@ -1,0 +1,269 @@
+{
+  "id": "N0791",
+  "planId": "N0791",
+  "assetId": "molen.worldgen.structure.n0791_london_king_s_cross_railway_station",
+  "title": "London King's Cross railway station",
+  "category": "railway_station",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q219867"
+  },
+  "wikidataId": "Q219867",
+  "visualBrief": "Individual twin barrel train sheds, stock-brick clock facade and glazed arches, separately articulated eastern/western ranges, suburban shed and three-circle western concourse shell with funnel and diagrid. Roof ribs and facade bays reuse mesh buffers across glTF nodes.",
+  "size": [
+    166,
+    36,
+    250
+  ],
+  "actualBounds": {
+    "min": [
+      -84.10997009277344,
+      -0.029398368671536446,
+      -122.08999633789062
+    ],
+    "max": [
+      81.30000305175781,
+      36,
+      128.00144958496094
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 6,
+    "meshInstances": 192,
+    "materialCount": 7,
+    "method": "Reusable named mesh parts with glTF node transforms; shared materials, no duplicated bitmap library."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the southern clock facade; +X is east; +Y is up",
+    "origin": "Approximate combined station and concourse plan centre, at platform approach ground level"
+  },
+  "scaleBasis": "The engineering report fixes the 36 m clock tower, 138 m concourse roof diameter and 65 m platform bridge. Train spans and range proportions follow the inspected scaled sections. Roof meridian radii fit the documented three-tangent-circle construction and remain provisional.",
+  "geographicProposal": {
+    "anchor": [
+      -0.123780713,
+      51.532079651
+    ],
+    "heading": -0.039709233788,
+    "source": "https://www.openstreetmap.org/way/260720558",
+    "orientationConfidence": "axis-only",
+    "evidence": "Exact-QID combined footprint supplies the approximate anchor and long axis. Native +Z is the documented southern front.",
+    "limitations": "Separate building member footprints, concourse center, suburban shed boundary, signed heading and terrain datum require a map-overlay/site rendering. This study is not activated for automatic placement.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID combined footprint supplies the approximate anchor and long axis. Native +Z is the documented southern front. Separate building member footprints, concourse center, suburban shed boundary, signed heading and terrain datum require a map-overlay/site rendering. This study is not activated for automatic placement."
+  },
+  "sourceFacts": {
+    "clockTowerHeightMeters": 36,
+    "concourseDiameterMeters": 138,
+    "concourseDescriptionMeters": [
+      120,
+      20
+    ],
+    "platformBridgeMeters": 65,
+    "easternRangeLengthMeters": 240,
+    "roofRibBoxWidthMeters": 0.15,
+    "diagridTubeDiameterMeters": [
+      0.139,
+      0.219
+    ],
+    "drawings": "Arup Journal 2/2012: photographs pp.8–9,11,15; station sections pp.10–11; three tangent-circle construction Fig.3 p.13; Western Range plan and historic section p.27; proposed square p.42.",
+    "dimensionsCaution": "The 30.48 m train span and detailed envelope proportions are a scaled section fit in this study, not an independent building survey. The 2012 square image is a proposal, not proof of current site conditions."
+  },
+  "referencePages": [
+    "https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-2012-issue-2.pdf",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1078328",
+    "https://www.networkrail.co.uk/who-we-are/our-history/iconic-infrastructure/the-history-of-london-kings-cross-station/",
+    "https://www.openstreetmap.org/way/260720558"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Detailed source study, not maximum-fidelity certification. The scene must be compared with current station photographs and surveyed member footprints.",
+    "Western Range contains historically distinct ranges, the bomb gap, parcels atrium and booking hall. Current repeated facade modules require replacement with their precise individual elevations and openings.",
+    "Clock tick marks stand in for Roman numerals; station name lettering, entrance fanlights, precise stone cornices, doors, drainage, roof lantern details, signage and shopfronts need individual authoring.",
+    "The concourse uses a faithful construction method with estimated meridian radii and support positions. Exact diagrid topology, glazed roof zones, mezzanine boundaries and escalators are unfinished.",
+    "Platforms and rails are schematic; no trains, underground station, adjacent hotel or square furnishings are embedded. Transparent glass and final lighting require further material review.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "southern-front",
+      "position": [
+        90,
+        29,
+        222
+      ],
+      "lookAt": [
+        34,
+        16,
+        121
+      ]
+    },
+    {
+      "name": "clock-face",
+      "position": [
+        43,
+        31,
+        148
+      ],
+      "lookAt": [
+        34,
+        30,
+        122
+      ]
+    },
+    {
+      "name": "western-concourse",
+      "position": [
+        -155,
+        65,
+        124
+      ],
+      "lookAt": [
+        -49,
+        12,
+        47
+      ]
+    },
+    {
+      "name": "concourse-funnel",
+      "position": [
+        -49,
+        3.2,
+        54
+      ],
+      "lookAt": [
+        -16,
+        15,
+        51
+      ]
+    },
+    {
+      "name": "roof-assembly",
+      "position": [
+        -115,
+        175,
+        218
+      ],
+      "lookAt": [
+        -4,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "eastern-range",
+      "position": [
+        171,
+        31,
+        -12
+      ],
+      "lookAt": [
+        80,
+        10,
+        3
+      ]
+    },
+    {
+      "name": "shed-interior",
+      "position": [
+        50,
+        4,
+        87
+      ],
+      "lookAt": [
+        50,
+        14,
+        -30
+      ]
+    },
+    {
+      "name": "northern-sheds",
+      "position": [
+        20,
+        46,
+        -220
+      ],
+      "lookAt": [
+        14,
+        10,
+        -70
+      ]
+    },
+    {
+      "name": "far-station",
+      "position": [
+        -310,
+        230,
+        390
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ]
+}

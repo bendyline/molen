@@ -11,11 +11,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.sampasky.com.br/sobre-nos)
 - [Reference](https://www.farolsantander.com.br/assets/sites/2/20241204172903/Manual-de-Eventos-Farol-Santander-2025.pdf?_rsc=1mcjp)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-86,720 triangles; 229,494 vertices; 4 material groups; 9,075,740 bytes. Native bounds: -36.275, 0.000, -11.475 to 35.275, 170.000, 11.475. Source hash: `sha256:b1573f18714ec0e35b96836cb51583f84f42471116996ed088f9aab9bb90040a`.
+86,720 triangles; 229,494 vertices; 4 material groups; 9,305,248 bytes. Native bounds: -36.275, 0.000, -11.475 to 35.275, 170.000, 11.475. Source hash: `sha256:937d4f363f65fca7f50effab8026cf2ad82a2debeae8c903ee671095d0b411b4`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

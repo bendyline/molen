@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://old.skyscraper.org/EXHIBITIONS/TEN_TOPS/date.php)
 - [Reference](https://www.openstreetmap.org/way/186351092)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-737,002 triangles; 1,599,202 vertices; 5 material groups; 64,819,276 bytes. Native bounds: -20.811, 0.000, -19.682 to 20.811, 414.000, 19.682. Source hash: `sha256:0e75d09a07964da3522b1bc8ade3b7e04a858268b538957ef4a8b4348bfe14f0`.
+737,002 triangles; 1,599,202 vertices; 5 material groups; 66,418,492 bytes. Native bounds: -20.811, 0.000, -19.682 to 20.811, 414.000, 19.682. Source hash: `sha256:23683c8a62b40830fa971cbb8a8f943329ff420e53f137c97fc2c2d5a1d91f1a`.
 
 {"up":"+Y","longAxis":"+X northeast","shortAxis":"+Z southeast"}
 

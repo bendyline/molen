@@ -29,6 +29,222 @@ const context = {
   }),
 } as TerrainPyramidTileLayerContext;
 describe('extended structure geometry', () => {
+  it('clips an opted-in authored approach only through its shared bridge endpoint', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        id: 'bridge',
+        class: 'path',
+        bridge: true,
+        lines: [
+          [
+            [0.3, 0.5],
+            [0.7, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'west',
+        class: 'path',
+        lines: [
+          [
+            [0.3, 0.5],
+            [0, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'east',
+        class: 'path',
+        lines: [
+          [
+            [0.7, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'crossing',
+        class: 'path',
+        lines: [
+          [
+            [0.3, 0.5],
+            [0.3, 0.8],
+          ],
+        ],
+      },
+      {
+        id: 'nearby',
+        class: 'path',
+        lines: [
+          [
+            [0.3, 0.51],
+            [0, 0.51],
+          ],
+        ],
+      },
+      {
+        id: 'tunnel',
+        class: 'path',
+        tunnel: true,
+        lines: [
+          [
+            [0.3, 0.5],
+            [0, 0.5],
+          ],
+        ],
+      },
+    );
+    const model: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [8, 10],
+        includeConnectedApproaches: true,
+      },
+    };
+    const result = withoutStructureRoads(tile, context, [model], 1);
+    expect(result.transportation.map((road) => road.id)).toEqual([
+      'west',
+      'east',
+      'crossing',
+      'nearby',
+      'tunnel',
+    ]);
+    expect(result.transportation[0]?.lines).toEqual([
+      [
+        [0.25, 0.5],
+        [0, 0.5],
+      ],
+    ]);
+    expect(result.transportation[1]?.lines).toEqual([
+      [
+        [0.75, 0.5],
+        [1, 0.5],
+      ],
+    ]);
+    expect(result.transportation[0]?.bridgeConnections?.[0]).toEqual({
+      point: [0.25, 0.5],
+      elevation: 8,
+      radius: 20,
+    });
+    expect(result.transportation.slice(2)).toEqual(tile.transportation.slice(3));
+    expect(tile.transportation[1]?.lines[0]?.[0]).toEqual([0.3, 0.5]);
+    if (model.replaceRoads) model.replaceRoads.includeConnectedApproaches = false;
+    expect(withoutStructureRoads(tile, context, [model], 1).transportation[0]).toBe(
+      tile.transportation[1],
+    );
+  });
+  it('positions endpoint heights at the actual asymmetric outline centerline', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'path',
+      bridge: true,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+    });
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [
+        {
+          ...entry,
+          replaceRoads: {
+            length: 100,
+            width: 20,
+            deckHeights: [3, 7],
+            outline: [
+              [-60, -10],
+              [30, -10],
+              [50, 10],
+              [-40, 10],
+            ],
+          },
+        },
+      ],
+      1,
+    );
+    expect(result.transportation[0]?.bridgeConnections?.map((hint) => hint.point)).toEqual([
+      [0.25, 0.5],
+      [0.7, 0.5],
+    ]);
+  });
+  it('transfers a removed bridge endpoint only to its connected outward approach', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        id: 'bridge',
+        class: 'path',
+        bridge: true,
+        lines: [
+          [
+            [0.25, 0.5],
+            [0.75, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'west',
+        class: 'path',
+        lines: [
+          [
+            [0.25, 0.5],
+            [0, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'crossing',
+        class: 'path',
+        lines: [
+          [
+            [0.25, 0.5],
+            [0.25, 0.1],
+          ],
+        ],
+      },
+      {
+        id: 'nearby',
+        class: 'path',
+        lines: [
+          [
+            [0.25, 0.51],
+            [0, 0.51],
+          ],
+        ],
+      },
+      {
+        id: 'tunnel',
+        class: 'path',
+        tunnel: true,
+        lines: [
+          [
+            [0.25, 0.5],
+            [0, 0.5],
+          ],
+        ],
+      },
+    );
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      [{ ...entry, replaceRoads: { length: 100, width: 20, deckHeights: [8, 10] } }],
+      1,
+      () => 20,
+    );
+    expect(result.transportation.some((f) => f.id === 'bridge')).toBe(false);
+    expect(result.transportation.find((f) => f.id === 'west')?.bridgeConnections).toEqual([
+      { point: [0.25, 0.5], elevation: 28, radius: 20 },
+    ]);
+    for (const id of ['crossing', 'nearby', 'tunnel'])
+      expect(result.transportation.find((f) => f.id === id)?.bridgeConnections).toBeUndefined();
+    expect(tile.transportation.every((f) => !f.bridgeConnections)).toBe(true);
+  });
   it('retains texture coordinates and material groups across a tile seam', () => {
     const source = new THREE.BoxGeometry(400, 8, 20);
     const matrix = new THREE.Matrix4().makeTranslation(200, 12, 100);

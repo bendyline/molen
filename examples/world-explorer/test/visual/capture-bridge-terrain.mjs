@@ -20,7 +20,7 @@ const ids = (
 const terrainSet = process.argv.find((arg) => arg.startsWith('--terrain-set='))?.slice(14) ?? '';
 const reviewRoads = process.argv.includes('--with-roads');
 const suffix = reviewRoads ? '-roads' : '';
-if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik'].includes(terrainSet))
+if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik', 'wales'].includes(terrainSet))
   throw new Error('Unknown terrain evidence set');
 const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain', terrainSet);
 const fixtureHash = hash(

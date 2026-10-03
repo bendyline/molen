@@ -25,7 +25,7 @@ Published primary pictures and engineering figures inform an original component-
 
 ## Authored geometry and materials
 
-903,922 triangles, 1,741,216 vertices, 7 surface groups; 71,793,536 source bytes. SHA-256: `sha256:58361aa9d0fd08ef829c7e458b90fa7c7199c2cdf27bc49c72ed9521720a13aa`. Actual bounds: -160.700, 0.000, -171.500 to 160.700, 133.283, 133.540 m.
+903,922 triangles, 1,741,216 vertices, 7 surface groups; 73,534,768 source bytes. SHA-256: `sha256:8fcd72e41515867f5bacc500d42c8e3b24f6cd9f944bf72ee53043d1ff237bfd`. Actual bounds: -160.700, 0.000, -171.500 to 160.700, 133.283, 133.540 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_standing_seam` (2.5 × 3 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"-Z","origin":"Mapped pitch center at playing-field/structural-foot gradeY0. Native+X east along the goal axis; +Zsouth. The inclined arch stands on the northern side."}.
 

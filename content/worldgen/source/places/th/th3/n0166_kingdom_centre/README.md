@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.architectmagazine.com/project-gallery/kingdom-centre/)
 - [Reference](https://www.openstreetmap.org/way/264745922)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-313,550 triangles; 723,782 vertices; 5 material groups; 29,098,148 bytes. Native bounds: -140.157, 0.000, -137.546 to 140.156, 302.389, 137.545. Source hash: `sha256:f5d59393c127632d240a113fcdeed5179375d55cef857a40e36f07c719983bd4`.
+313,550 triangles; 723,782 vertices; 5 material groups; 29,821,944 bytes. Native bounds: -140.157, 0.000, -137.546 to 140.156, 302.389, 137.545. Source hash: `sha256:b44efe841a1a4ab8bc8ebef52ef9a9b67f2a580373768aa20fc28ebd1bccd6d0`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

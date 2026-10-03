@@ -9,25 +9,35 @@ import { agathaTower } from './agatha-tower-model.mjs';
 import { aljazTower } from './aljaz-tower-model.mjs';
 import { alphabeticTower } from './alphabetic-tower-model.mjs';
 import { aonLosAngeles } from './aon-los-angeles-model.mjs';
+import { attoTower } from './atto-tower-model.mjs';
+import { encodeAuthoredAssembly } from './authored-glb-assembly.mjs';
 import { cross, normalize, validateAuthoredMesh } from './authored-structure-mesh.mjs';
 import { avicennaMausoleum } from './avicenna-mausoleum-model.mjs';
 import { bierpinsel } from './bierpinsel-model.mjs';
 import { calahorraTower } from './calahorra-tower-model.mjs';
 import { civicTowers } from './civic-tower-models.mjs';
 import { civicTowersMore } from './civic-tower-more-models.mjs';
+import { emleyMoor } from './emley-moor-model.mjs';
 import { finalHeritageTowers } from './final-heritage-tower-models.mjs';
+import { garniTemple } from './garni-temple-model.mjs';
+import { gatewayArch } from './gateway-arch-model.mjs';
 import { gerbrandyTower } from './gerbrandy-tower-model.mjs';
 import { gothicHeritageTowers } from './gothic-heritage-tower-models.mjs';
 import { grosHorloge } from './gros-horloge-model.mjs';
+import { grunewaldTower } from './grunewald-tower-model.mjs';
 import { heritageTowers } from './heritage-tower-models.mjs';
 import { heritageTowers580 } from './heritage-towers-580-models.mjs';
 import { heritageTowers580More } from './heritage-towers-580-more-models.mjs';
 import { hidirlikTower } from './hidirlik-tower-model.mjs';
+import { karnan } from './karnan-model.mjs';
+import { kingsCrossStation } from './kings-cross-station-model.mjs';
 import { laboeMemorial } from './laboe-memorial-model.mjs';
 import { lambertiTower } from './lamberti-tower-model.mjs';
 import { lotusTower } from './lotus-tower-model.mjs';
+import { montelbaanstoren } from './montelbaanstoren-model.mjs';
 import { nextHeritageTowers } from './next-heritage-tower-models.mjs';
 import { moreHeritageTowers } from './next-heritage-tower-more-models.mjs';
+import { spireOfDublin } from './spire-of-dublin-model.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
@@ -59,7 +69,15 @@ const surfaces = {
   avicenna_granite: { graph: 'stone_basalt_raw', slot: 'wall', roughness: 0.96 },
   laboe_granite: { graph: 'stone_basalt_raw', slot: 'wall', roughness: 0.91 },
   yser_stone: { graph: 'stone_sandstone_raw', slot: 'wall', roughness: 0.96 },
+  grunewald_stone: { graph: 'stone_sandstone_raw', slot: 'wall', roughness: 0.96 },
+  garni_basalt: { graph: 'stone_basalt_raw', slot: 'wall', roughness: 0.92 },
   brick: { graph: 'brick', slot: 'wall', roughness: 0.94 },
+  montel_round_brick: {
+    graph: 'brick',
+    slot: 'wall',
+    roughness: 0.94,
+    cylinder: { center: [0, 0], radius: 4.325 },
+  },
   riga_brick: {
     graph: 'brick',
     slot: 'wall',
@@ -93,6 +111,19 @@ const surfaces = {
   brickroof: { graph: 'brick', slot: 'roof', roughness: 0.91 },
   wood: { graph: 'wood_plain', slot: 'trim', roughness: 0.84 },
   metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.65 },
+  stainless: { graph: 'metal_stainless', slot: 'trim', roughness: 0.31, metallic: 1 },
+  polished_stainless: {
+    graph: 'metal_stainless_polished',
+    slot: 'trim',
+    roughness: 0.09,
+    metallic: 1,
+  },
+  beadblasted_stainless: {
+    graph: 'metal_stainless_beadblasted',
+    slot: 'trim',
+    roughness: 0.46,
+    metallic: 1,
+  },
   slate: { graph: 'slate', slot: 'roof', roughness: 0.88 },
   plaster: { graph: 'plaster_lime', slot: 'wall', roughness: 0.93 },
   copper: { graph: 'metal_copper', slot: 'roof', roughness: 0.76 },
@@ -206,7 +237,18 @@ for (const asset of [
   sukharevTower,
   bierpinsel,
   gerbrandyTower,
+  montelbaanstoren,
+  grunewaldTower,
+  garniTemple,
+  kingsCrossStation,
+  gatewayArch,
+  spireOfDublin,
+  emleyMoor,
+  attoTower,
+  karnan,
 ].filter((asset) => !filter || asset.planId === filter)) {
+  if (asset.encodeAssembly && asset.groundNormalize)
+    throw new Error(`${asset.id}: assembly parts must supply an explicit shared ground datum`);
   const dir = structureSourceDirectory(asset.id);
   const assetId = `molen.worldgen.structure.${asset.id}`;
   const modelPath = resolve(dir, 'models/source.glb');
@@ -237,27 +279,51 @@ for (const asset of [
     max[i % 3] = Math.max(max[i % 3], n);
   });
   const glb = Buffer.from(
-    encodeGlb(
-      mesh,
-      mesh.groups.map((group) => {
-        const surface = used.get(`${group.slot}:${group.materialRef}`);
-        return {
-          name: `${surface.graph ?? 'recess'}-${surface.slot}`,
-          roughness: surface.roughness,
-          metallic: 0,
-          ...(surface.graph
-            ? { sharedSurface: { ref: group.materialRef, slot: group.slot, uv: 'repeats' } }
-            : {}),
-        };
-      }),
-      `Molen original researched ${asset.title}`,
-    ),
+    asset.encodeAssembly
+      ? asset.encodeAssembly((build, name) => {
+          const partBuilder = new MeshBufferBuilder(),
+            partUsed = new Map();
+          build(wrap(partBuilder, partUsed, asset.componentMap));
+          const partMesh = partBuilder.finalize();
+          asset.decorateMesh?.(partMesh);
+          validateAuthoredMesh(partMesh, `${asset.id}/${name}`);
+          return encodeGlb(
+            partMesh,
+            partMesh.groups.map((group) => {
+              const surface = partUsed.get(`${group.slot}:${group.materialRef}`);
+              return {
+                name: `${surface.graph ?? 'recess'}-${surface.slot}`,
+                roughness: surface.roughness,
+                metallic: surface.metallic ?? 0,
+                ...(surface.graph
+                  ? { sharedSurface: { ref: group.materialRef, slot: group.slot, uv: 'repeats' } }
+                  : {}),
+              };
+            }),
+            name,
+          );
+        }, encodeAuthoredAssembly)
+      : encodeGlb(
+          mesh,
+          mesh.groups.map((group) => {
+            const surface = used.get(`${group.slot}:${group.materialRef}`);
+            return {
+              name: `${surface.graph ?? 'recess'}-${surface.slot}`,
+              roughness: surface.roughness,
+              metallic: surface.metallic ?? 0,
+              ...(surface.graph
+                ? { sharedSurface: { ref: group.materialRef, slot: group.slot, uv: 'repeats' } }
+                : {}),
+            };
+          }),
+          `Molen original researched ${asset.title}`,
+        ),
   );
   const gltf = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString('utf8'));
-  for (const [i, group] of mesh.groups.entries())
+  for (const group of mesh.groups)
     if (
       group.materialRef.startsWith('matgraph:') &&
-      gltf.materials[i]?.extras?.molenSurface?.ref !== group.materialRef
+      !gltf.materials.some((material) => material.extras?.molenSurface?.ref === group.materialRef)
     )
       throw new Error('Built GLB encoder lacks required shared-surface metadata');
   const spec = {
@@ -265,13 +331,27 @@ for (const asset of [
     planId: asset.planId,
     assetId,
     title: asset.title,
-    category: 'tower',
+    category: asset.category ?? 'tower',
     quality: 'detailed',
     identity: { wikidata: asset.wikidata },
     wikidataId: asset.wikidata,
     visualBrief: asset.brief,
     size: asset.size,
     actualBounds: { min, max },
+    ...(asset.encodeAssembly
+      ? {
+          assembly: {
+            uniqueMeshes: gltf.meshes.length,
+            meshInstances: gltf.nodes.reduce((sum, node) => {
+              const attributes = node.extensions?.EXT_mesh_gpu_instancing?.attributes;
+              return sum + (attributes ? gltf.accessors[Object.values(attributes)[0]].count : 1);
+            }, 0),
+            materialCount: gltf.materials.length,
+            method:
+              'Reusable named mesh parts with glTF node transforms; shared materials, no duplicated bitmap library.',
+          },
+        }
+      : {}),
     nativeAxes: { up: '+Y', front: asset.front, origin: asset.origin },
     scaleBasis: asset.scaleBasis,
     ...(asset.appearance ? { appearance: asset.appearance } : {}),
@@ -355,6 +435,7 @@ for (const asset of [
       position: [extent * 0.65, h * 0.65, extent * 1.9],
       lookAt: [0, h * 0.48, 0],
       fov: 38,
+      ...asset.previewCamera,
     },
     physics: { engine: 'none' },
   };
@@ -374,6 +455,8 @@ for (const asset of [
         'reference-metadata.json',
         'map-evidence.json',
         'map-frame.json',
+        'map-parts.json',
+        'state-park-boundary.json',
         'reconstruction-brief.json',
       ].includes(name),
     )

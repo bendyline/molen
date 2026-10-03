@@ -18,7 +18,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-97254 triangles; 11322944 bytes; 2 material groups. SHA256: sha256:0335698c5694276d12a645c018974a5a10ad925bb43809ce9612687f934ae3a9.
+97254 triangles; 11613072 bytes; 2 material groups. SHA256: sha256:f84ee3da46d21a01e511b4268160a6f0b7b1e0c5d63b7e7968d00ce6464a8100.
 
 Shared surfaces (gravel, stone_limestone_weathered) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 

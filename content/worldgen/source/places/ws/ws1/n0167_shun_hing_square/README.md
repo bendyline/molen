@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.rlb.com/wp-content/uploads/sites/5/2020/09/RLB-Tall-Buildings-Global1.pdf)
 - [Reference](https://www.openstreetmap.org/way/64601041)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-495,525 triangles; 1,241,901 vertices; 4 material groups; 49,415,660 bytes. Native bounds: -35.850, 0.000, -19.586 to 35.762, 384.000, 30.152. Source hash: `sha256:3e404cd444749d5b8c947788d895d442fd487d84f31bde26f3859c88c4c0eb03`.
+495,525 triangles; 1,241,901 vertices; 4 material groups; 50,657,576 bytes. Native bounds: -35.850, 0.000, -19.586 to 35.762, 384.000, 30.152. Source hash: `sha256:9b901ffbcff457547427593a06a406546b7f1677a9ab75179cc6f9d0d85aad3b`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

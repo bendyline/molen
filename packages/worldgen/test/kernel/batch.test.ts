@@ -277,4 +277,30 @@ describe('batch generation', () => {
     expect(json.materials[1]).toMatchObject({ alphaMode: 'MASK', alphaCutoff: 0.35 });
     expect(json.materials[2]).toMatchObject({ alphaMode: 'OPAQUE', doubleSided: false });
   });
+
+  it('aligns every RGB vertex to four bytes without adding alpha or changing colors', () => {
+    const mesh = generateWorldgenBatch({ buildings: requests().slice(0, 2), pack }).buildings;
+    expect(mesh).toBeDefined();
+    if (!mesh) return;
+    const original = mesh.colors.slice();
+    const glb = encodeGlb(mesh);
+    const jsonLength = new DataView(glb.buffer).getUint32(12, true);
+    const json = JSON.parse(new TextDecoder().decode(glb.subarray(20, 20 + jsonLength)));
+    for (const primitive of json.meshes[0].primitives) {
+      const accessor = json.accessors[primitive.attributes.COLOR_0];
+      const view = json.bufferViews[accessor.bufferView];
+      expect(accessor).toMatchObject({ type: 'VEC3', componentType: 5121, normalized: true });
+      expect(view.byteStride).toBe(4);
+      expect(view.byteOffset % 4).toBe(0);
+      const start = 28 + jsonLength + view.byteOffset;
+      for (let vertex = 0; vertex < accessor.count; vertex++) {
+        expect(glb.subarray(start + vertex * 4, start + vertex * 4 + 3)).toEqual(
+          original.subarray(vertex * 3, vertex * 3 + 3),
+        );
+        expect(glb[start + vertex * 4 + 3]).toBe(0);
+      }
+    }
+    expect(mesh.colors).toEqual(original);
+    expect(encodeGlb(mesh)).toEqual(glb);
+  });
 });

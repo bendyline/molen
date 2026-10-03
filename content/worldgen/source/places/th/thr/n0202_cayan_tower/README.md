@@ -18,11 +18,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.skyscrapercenter.com/building/cayan-tower/464)
 - [Reference](https://www.openstreetmap.org/way/195527255)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-498,522 triangles; 1,159,420 vertices; 7 material groups; 46,568,936 bytes. Native bounds: -24.288, 0.000, -25.873 to 34.025, 306.400, 35.025. Source hash: `sha256:feb178932b5a3c9911e1b00c2b595b9b93d2a4fafafb5af938dfe5157714603a`.
+498,522 triangles; 1,159,420 vertices; 7 material groups; 47,728,372 bytes. Native bounds: -24.288, 0.000, -25.873 to 34.025, 306.400, 35.025. Source hash: `sha256:3c2fcaf167947cbbdc465942144771f949e97fc2cd5ad53614419c28ee4a4656`.
 
 {"up":"+Y","longAxis":"+X northeast toward attached parking podium","shortAxis":"+Z southeast; clockwise shaft twist viewed from above"}
 

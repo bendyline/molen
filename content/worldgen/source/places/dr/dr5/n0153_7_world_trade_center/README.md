@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.imoa.info/molybdenum-uses/molybdenum-grade-stainless-steels/architecture/world-trade-center.php)
 - [Reference](https://www.openstreetmap.org/way/277890516)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-84,972 triangles; 254,044 vertices; 5 material groups; 9,914,364 bytes. Native bounds: -40.858, 0.000, -24.834 to 40.858, 226.030, 24.834. Source hash: `sha256:a3b447a62d2e1f3ae96fb73d85a422eadd8279c4157e52ca5c41248125895317`.
+84,972 triangles; 254,044 vertices; 5 material groups; 10,168,428 bytes. Native bounds: -40.858, 0.000, -24.834 to 40.858, 226.030, 24.834. Source hash: `sha256:54cae1dc2a40dc9b909ca22fc1a0d69f3e0d3665cc1a282211a6c666fa16d153`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

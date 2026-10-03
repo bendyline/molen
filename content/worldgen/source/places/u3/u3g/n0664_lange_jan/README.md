@@ -18,13 +18,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-26,764 triangles, 50,456 vertices, 5 surface groups; 2,090,328 source bytes. SHA-256: `sha256:5b9798f948e598559ba7719c83534399a3124db167fea1a9dc89b832e266b74f`. Actual bounds: -6.000, 0.000, -6.000 to 6.000, 41.600, 6.240 m.
+26,764 triangles, 50,456 vertices, 5 surface groups; 2,140,800 source bytes. SHA-256: `sha256:29113479b6eab77d5bcf092d47202f070c9132fb1e1feead9a4926a0992b2ff5`. Actual bounds: -6.000, 0.000, -6.000 to 6.000, 41.600, 6.240 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone_limestone` (2.4 × 1.6 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Exact-QID mapped tower replaces the catalog coordinate about 214 m north. Mapped main entrance northwest of tower center fixes authored +Z portal. The approximately 9.7 m mapped circle is smaller than the operator’s approximately 12 m flared base; physical operator dimensions govern model size. Proposed anchor 16.398528877, 56.196057454 (longitude, latitude), heading -2.2748968630941637 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Exact-QID mapped tower replaces the catalog coordinate about 214 m north. Mapped main entrance northwest of tower center fixes authored +Z portal. The approximately 9.7 m mapped circle is smaller than the operator’s approximately 12 m flared base; physical operator dimensions govern model size. Proposed anchor 16.398528877, 56.196057454 (longitude, latitude), heading -2.2748968630941637 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -32,6 +32,6 @@ Exact-QID mapped tower replaces the catalog coordinate about 214 m north. Mapped
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Small facade details and the auxiliary sector-light housing are reconstructed from original photographs. Adjacent detached station buildings and site cannons remain separate features; the portal tablet is represented in relief without a copied inscription texture.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0664`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0664`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-swedish-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

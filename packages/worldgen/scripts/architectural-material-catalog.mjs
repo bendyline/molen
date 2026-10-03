@@ -34,6 +34,8 @@ export const MATERIAL_PREVIEW_TINTS = {
   metal_perforated_round_open: '#e5e8e9',
   metal_expanded_diamond: '#e5e8e9',
   metal_stainless: '#e4e7e8',
+  metal_stainless_polished: '#e4e7e8',
+  metal_stainless_beadblasted: '#e4e7e8',
   stone: '#b4b09e',
   stone_ashlar: '#c7c1b0',
   stone_limestone: '#d2c8ae',
@@ -124,6 +126,8 @@ const families = [
       'metal_copper',
       'metal_painted',
       'metal_stainless',
+      'metal_stainless_polished',
+      'metal_stainless_beadblasted',
       'metal_perforated_square',
       'metal_perforated_round',
       'metal_perforated_round_open',
@@ -238,7 +242,7 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
         ].includes(key)
       )
         use.splice(0, use.length, 'boulder', 'irregular-block', 'foundation', 'sculpture');
-      if (key === 'metal_stainless')
+      if (key.startsWith('metal_stainless'))
         use.splice(0, use.length, 'bridge', 'structural-steel', 'rail', 'sculpture', 'trim');
       if (['stone', 'stone_ashlar', 'stone_basalt', 'concrete_plain'].includes(key))
         use.push('foundation', 'pier');

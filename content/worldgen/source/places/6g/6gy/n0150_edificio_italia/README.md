@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.edificioitalia.com.br/imprensa)
 - [Reference](https://www.edificioitalia.com.br/post/roz%C5%A1i%C5%99ujte-svoji-komunitu-na-blogu)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-488,628 triangles; 1,037,860 vertices; 4 material groups; 42,191,468 bytes. Native bounds: -27.288, 0.000, -13.768 to 27.289, 165.000, 13.768. Source hash: `sha256:9b6d552c75bb989c4a0a34d180b9c4fab01c1cf502920636f7903c1ef080ba78`.
+488,628 triangles; 1,037,860 vertices; 4 material groups; 43,229,340 bytes. Native bounds: -27.288, 0.000, -13.768 to 27.289, 165.000, 13.768. Source hash: `sha256:13c81269b8c550a8fcae08dddcc4daaa6bb89c7a7663939d734c940fa71fe323`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

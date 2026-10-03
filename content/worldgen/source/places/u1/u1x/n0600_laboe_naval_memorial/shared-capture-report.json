@@ -5,7 +5,7 @@
   "runtimeHash": "sha256:4ab27b8bcd2303986a7ca81db22e4344a6d2e26841e76e5b1e3c29c8a8a76f3f",
   "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:b0a4a5d96e694fe01eeb5293fe2289b2f7cb35531210c849ce944e370154f7e3",
+  "specHash": "sha256:065349c99d18d8493437e82f1fb3405900eda84184cb6b06731c737d2851c3d1",
   "placementHash": "sha256:8ff51c75ccae10e16123661ea5b529ee66abe2311ef0b1dc77fbea9d34694b06",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
@@ -814,5 +814,21 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:b0a4a5d96e694fe01eeb5293fe2289b2f7cb35531210c849ce944e370154f7e3",
+    "previousCaptureReportHash": "sha256:695d477c4e3b157cd439a4129c46d224c89f96ee4132848b5f2f14716bb0461b",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/u1/u1x/n0600_laboe_naval_memorial/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:3edfe057852ed3d26b400757e79115e6dcc2dbd7ed489a259cd8ff4e9d2fb62a",
+        "current": "sha256:503fb01505bc39bde9d067a2bdbed973407560133dee3bfb431d33582e122805"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

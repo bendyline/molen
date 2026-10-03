@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.istructe.org/structural-awards/projects/2013/china-central-television-new-headquarters/)
 - [Reference](https://www.openstreetmap.org/relation/7820447)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-199,468 triangles; 525,824 vertices; 3 material groups; 20,799,796 bytes. Native bounds: -84.120, 0.000, -83.000 to 84.120, 233.820, 79.120. Source hash: `sha256:6a37e0a2dabcee9b5ae61065c72da22c2d63d0d7faf3298e907cb4a1bf21a48c`.
+199,468 triangles; 525,824 vertices; 3 material groups; 21,325,632 bytes. Native bounds: -84.120, 0.000, -83.000 to 84.120, 233.820, 79.120. Source hash: `sha256:e712f58b1290d3f743c1ea56578aaeaf97adb59c582f7ddc94e76dfeaec94a97`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

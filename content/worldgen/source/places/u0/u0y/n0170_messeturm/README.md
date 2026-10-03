@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.hochtief.de/ueber-hochtief/geschichte/messeturm-in-frankfurt-am-main)
 - [Reference](https://www.skyscrapercenter.com/building/messeturm/796)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-243,716 triangles; 571,814 vertices; 4 material groups; 22,940,908 bytes. Native bounds: -22.700, 0.000, -22.936 to 22.838, 256.517, 22.700. Source hash: `sha256:9b4c07a30fe25a13673382b58e4ca7b7e016d490afd91bfb384f0486e541602a`.
+243,716 triangles; 571,814 vertices; 4 material groups; 23,512,736 bytes. Native bounds: -22.700, 0.000, -22.936 to 22.838, 256.517, 22.700. Source hash: `sha256:2457085d6237f744e189f012286e451d94fb9da4495d18349814c6e1c2aa66c1`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

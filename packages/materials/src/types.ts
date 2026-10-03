@@ -9,7 +9,7 @@ export type MaterialSlot = 'baseColor' | 'roughness' | 'metalness' | 'normal' | 
 
 export interface BakedMaterial {
   slots: Partial<Record<MaterialSlot, RGBAImage>>;
-  meta: { filter: 'nearest' | 'linear'; alphaTest?: number };
+  meta: { filter: 'nearest' | 'linear'; alphaTest?: number; alphaCoverage?: boolean };
 }
 
 const MAX_IMAGE_DIMENSION = 8192;

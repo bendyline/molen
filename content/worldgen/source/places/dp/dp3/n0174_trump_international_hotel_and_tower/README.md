@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.spiderstaging.com/casestudies/sign-installation-trump-international-hotel-tower/)
 - [Reference](https://www.openstreetmap.org/way/64594680)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-185,089 triangles; 485,737 vertices; 7 material groups; 19,225,900 bytes. Native bounds: -55.508, 0.000, -21.769 to 54.377, 423.200, 21.960. Source hash: `sha256:3a91bc2b7a1ceb7c443f2cd96a286453832f8fdefebff230edcf9476f9afc175`.
+185,089 triangles; 485,737 vertices; 7 material groups; 19,711,652 bytes. Native bounds: -55.508, 0.000, -21.769 to 54.377, 423.200, 21.960. Source hash: `sha256:289b01f1003a46daf01d4dfe395a61f750ebfa0bcdbf5c86e5107e9276a26e83`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

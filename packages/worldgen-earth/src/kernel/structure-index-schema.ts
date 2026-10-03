@@ -42,6 +42,7 @@ const placement = z
           .optional(),
         deckHeight: finite.optional(),
         deckHeights: z.tuple([finite, finite]).optional(),
+        includeConnectedApproaches: z.boolean().optional(),
       })
       .refine(
         (road) => road.deckHeight === undefined || road.deckHeights === undefined,

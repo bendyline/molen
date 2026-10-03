@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/agatha-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-137,914 triangles; 410,850 vertices; 5 material groups; 16,038,012 source bytes. Source hash: `sha256:93a263f92465b84c7b1f71484b7c29c9c1e4da6cb22b0cb246abf5b02b27d8b5`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+137,914 triangles; 410,850 vertices; 5 material groups; 16,448,876 source bytes. Source hash: `sha256:3aa3c16cdaf49101059dedcb7ec4e0ef4fa408e08a1881ab87f2c6278140ed83`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0609`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

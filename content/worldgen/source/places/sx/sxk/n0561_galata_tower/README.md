@@ -18,7 +18,7 @@ Operator and municipal photographs/plans were inspected as references. No third-
 
 ## Authored geometry and materials
 
-121,046 triangles, 233,414 vertices, 9 surface groups; 9,627,060 source bytes. SHA-256: `sha256:128a0b54fcf07ca1d836e63c1b6f35ed5431df46371a889ecbc8f9a2e46de289`. Actual bounds: -9.080, 0.000, -9.080 to 9.080, 66.900, 10.120 m.
+121,046 triangles, 233,414 vertices, 9 surface groups; 9,860,488 source bytes. SHA-256: `sha256:7a506d2e3030de406497406511c51ce742a0166c514e16da348401e63b689801`. Actual bounds: -9.080, 0.000, -9.080 to 9.080, 66.900, 10.120 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.brick` (1.92 × 0.9 m), `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone_ashlar` (2.4 × 1.5 m), `matgraph:molen.worldgen.material.stone_drywall` (2 × 2 m), `matgraph:molen.worldgen.material.metal_standing_seam` (2.5 × 3 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z south entrance","origin":"center of circular masonry footprint at outside paving grade"}.
 

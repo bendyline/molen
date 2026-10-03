@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/torun-leaning-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-45,782 triangles; 99,758 vertices; 6 material groups; 4,044,628 source bytes. Source hash: `sha256:001c5a868ce7fbefa44763ea3a3821d8b65556965e8b9c630d8a379b4f5643eb`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+45,782 triangles; 99,758 vertices; 6 material groups; 4,144,396 source bytes. Source hash: `sha256:c5c86fdcafa19a24c65d1a76be3550aba29d05dcbde8a48f3c3fba07e6944789`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0595`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://bocgroup.com/en/aboutus/corpprofile/boctower.html)
 - [Reference](https://www.openstreetmap.org/way/25604760)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-156,097 triangles; 462,531 vertices; 3 material groups; 18,064,120 bytes. Native bounds: -27.349, 0.000, -27.267 to 27.349, 367.400, 27.267. Source hash: `sha256:0a7a8871ea7c2fd9d556cb4d79e5e2b380a934bc72003c138eec1922eb622e8c`.
+156,097 triangles; 462,531 vertices; 3 material groups; 18,526,660 bytes. Native bounds: -27.349, 0.000, -27.267 to 27.349, 367.400, 27.267. Source hash: `sha256:7193bb67a6a8939d205e5274f0992b55fc8a48bf7df2d2cc7e2d8150704a7cad`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

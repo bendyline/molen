@@ -1,0 +1,243 @@
+{
+  "id": "N0621",
+  "planId": "N0621",
+  "assetId": "molen.worldgen.structure.n0621_amazon_tall_tower_observatory",
+  "title": "Amazon Tall Tower Observatory",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q18109585"
+  },
+  "wikidataId": "Q18109585",
+  "visualBrief": "Square 3 m research lattice with closed angle-section chords and X braces, visible bolt heads, red/white bands, 1500 grated treads and landings, safety rails, cable trays, 321 m top platform, 331 m lightning rod, six guy levels, external HighStep rails and a detailed stationary RoLi instrument carriage. Shared painted steel, stainless steel and concrete; repeated sections are GPU instances.",
+  "actualBounds": {
+    "min": [
+      -159.7990264892578,
+      0,
+      -159.7990264892578
+    ],
+    "max": [
+      159.7990264892578,
+      331,
+      159.7990264892578
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 4,
+    "meshInstances": 215,
+    "materialCount": 4,
+    "method": "Reusable named mesh parts with glTF node transforms; shared materials, no duplicated bitmap library."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Native (-X,+Z) shaft corner carries the lift. At heading 23 degrees, that corner faces published azimuth 202 degrees; +Y is up.",
+    "origin": "Main 325 m tower center; Y=0 is provisional base slab underside, not a surveyed site datum."
+  },
+  "scaleBasis": "MPI publishes a 3×3 m cross section, 325 m frame, 331 m tip and 1500 steps. The 2025 field report/drawing fixes the 321 m platform; the 2026 RoLi paper fixes the 202-degree lift corner, rail spacing and six guy heights. Bolted angles, stairs, top platform and instruments follow inspected operator photographs. Flange dimensions, paint-band boundaries, individual tread distribution and guy anchor radii are proportional reconstruction requiring further confirmation.",
+  "geographicProposal": {
+    "anchor": [
+      -59.0056354,
+      -2.1458835
+    ],
+    "heading": 0.40142572795869574,
+    "source": "https://www.openstreetmap.org/node/3215117056",
+    "orientationConfidence": "documented-lift-corner",
+    "evidence": "Exact-QID OSM tower node identifies the main structure, approximately 6 m from the published 2015 coordinate. Native (-X,+Z) corner has bearing 225 degrees before placement; heading 23 degrees produces the independently published lift-corner bearing 202 degrees.",
+    "limitations": "The foundation position, guy-anchor distances and ground heights require site validation. Study anchor radii 75/150/225 m are provisional; do not treat their blocks as surveyed. This asset currently covers the main tall tower. The two separate 80/81 m companion towers and laboratory compound remain required site work.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID OSM tower node identifies the main structure, approximately 6 m from the published 2015 coordinate. Native (-X,+Z) corner has bearing 225 degrees before placement; heading 23 degrees produces the independently published lift-corner bearing 202 degrees. The foundation position, guy-anchor distances and ground heights require site validation. Study anchor radii 75/150/225 m are provisional; do not treat their blocks as surveyed. This asset currently covers the main tall tower. The two separate 80/81 m companion towers and laboratory compound remain required site work."
+  },
+  "sourceFacts": {
+    "shaftWidthMeters": 3,
+    "structuralHeightMeters": 325,
+    "totalHeightMeters": 331,
+    "topPlatformMeters": 321,
+    "documentedSteps": 1500,
+    "guyAttachmentMeters": [
+      54,
+      108,
+      162,
+      216,
+      270,
+      321
+    ],
+    "liftCornerAzimuthDegrees": 202,
+    "railSectionMeters": 6,
+    "bracketSpacingMeters": 3,
+    "powerRailSectionMeters": 4,
+    "powerRailOffsetMeters": 0.128,
+    "roliHomeMeters": 8.3
+  },
+  "referencePages": [
+    "https://www.mpg.de/9365148/ATTO-Factsheet-Aug2015en.pdf",
+    "https://www.bgc-jena.mpg.de/~csierra/blog/2025/02/08/Sampling-Heights/",
+    "https://www.bgc-jena.mpg.de/5149255/atto",
+    "https://amt.copernicus.org/articles/19/101/2026/amt-19-101-2026.html",
+    "https://www.attoproject.org/media/gallery/",
+    "https://www.attoproject.org/wp-content/uploads/2019/03/ATTO-Newsletter_2_Mar19.pdf",
+    "https://www.openstreetmap.org/node/3215117056"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Guy anchors, sag, paired cable topology, full foundation arrangement and terrain contacts need independent measured site evidence. Present anchor radii 75/150/225 m are provisional geometric reconstruction, not certified placement.",
+    "Main lattice/stair flange sizes, intermediate landings, paint-band limits and detailed bolt pattern are proportioned from photographs. Published 1500 treads are distributed as 107 flights of 14 plus two entrance treads; the exact real landing/tread schedule remains unresolved.",
+    "The RoLi carriage uses published equipment vocabulary with proportional housing dimensions. It is static at the documented home height. The complete present instrument inventory, inlet routing and rescue equipment still need confirmation.",
+    "The smaller 80 m walk-up and 81 m triangular towers, laboratory containers and ancillary facility structures are not yet authored. Completion of the observatory candidate remains pending these scope and site checks.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "full-main-tower",
+      "position": [
+        225,
+        190,
+        640
+      ],
+      "lookAt": [
+        0,
+        165,
+        0
+      ]
+    },
+    {
+      "name": "lattice-and-stairs",
+      "position": [
+        7,
+        41,
+        10
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ]
+    },
+    {
+      "name": "angle-joints",
+      "position": [
+        3.3,
+        54.6,
+        4.7
+      ],
+      "lookAt": [
+        0.8,
+        54.8,
+        1.5
+      ]
+    },
+    {
+      "name": "roli-instrument-carriage",
+      "position": [
+        -4.5,
+        10.3,
+        5.8
+      ],
+      "lookAt": [
+        -1.8,
+        9.5,
+        1.8
+      ]
+    },
+    {
+      "name": "top-platform",
+      "position": [
+        13,
+        330,
+        18
+      ],
+      "lookAt": [
+        0,
+        324,
+        0
+      ]
+    },
+    {
+      "name": "inlets-and-lightning",
+      "position": [
+        -10,
+        327.8,
+        13
+      ],
+      "lookAt": [
+        0,
+        326.6,
+        0
+      ]
+    },
+    {
+      "name": "base-and-safety-rail",
+      "position": [
+        -7,
+        4,
+        9
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "guy-attachment",
+      "position": [
+        6,
+        111,
+        10
+      ],
+      "lookAt": [
+        0,
+        108,
+        0
+      ]
+    },
+    {
+      "name": "whole-guy-envelope",
+      "position": [
+        390,
+        290,
+        530
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ]
+    }
+  ]
+}

@@ -17,13 +17,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-38,480 triangles, 73,366 vertices, 6 surface groups; 3,033,192 source bytes. SHA-256: `sha256:167638cd7fd5f95993ac5bcd079adc6b5a9e75a67020274f1e0dd14db5f35637`. Actual bounds: -2.947, 0.000, -3.950 to 2.947, 20.450, 2.960 m.
+38,480 triangles, 73,366 vertices, 6 surface groups; 3,106,572 source bytes. SHA-256: `sha256:4d721aca512bfef94ebd9c45d0c6effccb57189fb9d7e81bc755870fd005106e`. Actual bounds: -2.947, 0.000, -3.950 to 2.947, 20.450, 2.960 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Official project supplies the lighthouse coordinate, correcting the catalog island reference. Native+Z solar banks face the southern sea side; opposite door is landward/north. This quadrant follows the project site photographs and solar array configuration, while the survey model resolves internal180-degree opposition. A survey-north axis is not supplied; exact azimuth is photo-reconstructed. Footing contacts the mapped island terrain rather than forcing the20m focal elevation onto the base. Proposed anchor 26.67976, 59.968681 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Official project supplies the lighthouse coordinate, correcting the catalog island reference. Native+Z solar banks face the southern sea side; opposite door is landward/north. This quadrant follows the project site photographs and solar array configuration, while the survey model resolves internal180-degree opposition. A survey-north axis is not supplied; exact azimuth is photo-reconstructed. Footing contacts the mapped island terrain rather than forcing the20m focal elevation onto the base. Proposed anchor 26.67976, 59.968681 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -31,6 +31,6 @@ Official project supplies the lighthouse coordinate, correcting the catalog isla
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Published survey/photographic exterior is modeled using clean shared red plaster/iron rather than retaining baked photographic shadows. Thin gallery wire, glass panes and roof hardware are reconstructed as real geometry; surrounding detached derelict houses and island rock terrain remain map features. Small optical hardware is represented only to the detail visible through the lantern. Current maintenance color may vary, but the red daymark and structural arrangement follow the maritime-heritage project.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0672`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0672`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-rodsher-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

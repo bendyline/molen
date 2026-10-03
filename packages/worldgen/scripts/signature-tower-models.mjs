@@ -1,6 +1,10 @@
 /** Three individually researched tower reconstructions. All dimensions are meters. */
 import { beam, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
+import { montevideoStudy } from './montevideo-tower-model.mjs';
+import { oneCanadaSquareStudy } from './one-canada-square-model.mjs';
+import { rembrandtStudy } from './rembrandt-tower-model.mjs';
 import { buildMappedShard, shardReconstruction } from './shard-tower-model.mjs';
+import { bitexcoStudy } from './signature-tower-bitexco-model.mjs';
 import { skylineExpansion } from './signature-tower-expansion-models.mjs';
 import { skylineGlobal } from './signature-tower-global-models.mjs';
 import { skylineNext } from './signature-tower-next-models.mjs';
@@ -382,6 +386,10 @@ function buildPearl(out) {
 }
 
 export const signatureTowers = [
+  oneCanadaSquareStudy,
+  montevideoStudy,
+  rembrandtStudy,
+  bitexcoStudy,
   ...skylineExpansion,
   ...skylineNext,
   ...skylineGlobal,

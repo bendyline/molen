@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/gros-horloge-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-353,490 triangles; 714,650 vertices; 7 material groups; 29,258,712 source bytes. Source hash: `sha256:1266f29429c44602532a6d914c1bc148a7ef36efcc866723e6d9b3885c693cc0`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+353,490 triangles; 714,650 vertices; 7 material groups; 29,973,376 source bytes. Source hash: `sha256:bfaf997a5c72b99f75a4de96ec09955e43981fe10d0f39b70f979244548bbafc`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0612`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

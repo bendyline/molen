@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.saintpeters.org/the-space)
 - [Reference](https://www.openstreetmap.org/way/164105516)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-462,042 triangles; 1,058,036 vertices; 7 material groups; 42,579,784 bytes. Native bounds: -70.660, -4.010, -31.780 to 54.541, 280.592, 31.780. Source hash: `sha256:961a92822765e2e7b07ffb1b087569bf30ed0784df74fcbc84d5e5952abdcd3c`.
+462,042 triangles; 1,058,036 vertices; 7 material groups; 43,637,836 bytes. Native bounds: -70.660, -4.010, -31.780 to 54.541, 280.592, 31.780. Source hash: `sha256:bc9179cfca596be1a31672475deeb5352542c5e7f98ad3342cf371ae83abfe50`.
 
 {"up":"+Y","longAxis":"+X towardThird Avenue/east-southeast","shortAxis":"+Z toward53rd Street/south-southwest"}
 

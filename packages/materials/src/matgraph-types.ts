@@ -61,6 +61,10 @@ export interface MatGraphDoc {
   format: 'molen/matgraph@1';
   /** Optional cutout threshold for the baked base-color alpha; omitted graphs remain opaque. */
   alphaTest?: number;
+  /** Filter base-color alpha as fractional surface coverage (e.g. fine metal mesh).
+   * Mutually exclusive with alphaTest. Rendered with mipmapped alpha blending.
+   */
+  alphaCoverage?: boolean;
   size: [number, number];
   seed: number;
   nodes: MatNode[];

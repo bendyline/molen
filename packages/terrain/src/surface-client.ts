@@ -116,10 +116,10 @@ export function createTerrainSurfaceObject(
       for (const [x, z] of [road.path.points[0], road.path.points.at(-1)] as TerrainSemanticPoint[])
         groundEnds.add(`${Math.round(x * 10)}/${Math.round(z * 10)}`);
   for (const road of network.roads) {
-    if (!road.feature.bridge) continue;
+    if (!road.feature.bridge && !road.feature.bridgeConnections?.length) continue;
     const profile = bridgeDeckProfile(road, bridges, groundEnds);
     bridgeProfiles.set(road, profile);
-    appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
+    if (road.feature.bridge) appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
   if (bridgeMesh) {
@@ -181,7 +181,7 @@ export function createTerrainSurfaceObject(
   };
   for (const road of network.roads) {
     stats.roads++;
-    const elevation = road.feature.bridge ? 0 : road.elevation;
+    const elevation = bridgeProfiles.has(road) ? 0 : road.elevation;
     const clipPath =
       road.kind === 'path' && !road.feature.bridge
         ? {

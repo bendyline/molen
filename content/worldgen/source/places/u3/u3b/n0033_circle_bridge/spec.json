@@ -1,0 +1,354 @@
+{
+  "planId": "N0033",
+  "id": "N0033",
+  "assetId": "molen.worldgen.structure.n0033_circle_bridge",
+  "title": "Circle Bridge (Cirkelbroen)",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q11963844",
+  "referenceCoordinate": {
+    "latitude": 55.67243,
+    "longitude": 12.5838
+  },
+  "visualBrief": "Five staggered cream decks, white trumpet-shaped supports and tapered masts, ring-supported stainless stays, tomato-red diamond rails and Guariuba handrails; original closed-state Copenhagen exterior.",
+  "size": [
+    40.71990776062012,
+    27.78279757499695,
+    18.28600025177002
+  ],
+  "actualBounds": {
+    "min": [
+      -20.235212326049805,
+      -2.7827975749969482,
+      -9.12600040435791
+    ],
+    "max": [
+      20.484695434570312,
+      25,
+      9.15999984741211
+    ]
+  },
+  "nativeAxes": {
+    "x": "Northeast, from P1/Applebys Plads to P5/Christiansbro",
+    "y": "Up; Y0 is provisional local sea level",
+    "z": "Southeast toward Christianshavns Kanal; the main harbor lies northwest, native -Z"
+  },
+  "sourceFacts": {
+    "designer": "Olafur Eliasson",
+    "completed": 2015,
+    "circularPlatforms": 5,
+    "cables": 118,
+    "reportedOverallMeters": [
+      39.3,
+      25,
+      19.6
+    ],
+    "closedClearanceMeters": 2.25,
+    "rotatingPlatforms": [
+      "P3",
+      "P4",
+      "P5"
+    ],
+    "pivotPlatform": "P3",
+    "materials": {
+      "deck": "Matacryl waterproof coating",
+      "rail": "RAL3016 gloss60",
+      "handrail": "Guariuba"
+    },
+    "engineerDesign2012": {
+      "platformDiametersMeters": [
+        9.4,
+        13.3
+      ],
+      "maxMastAboveDeckMeters": 22.2,
+      "mastDiameterMeters": [
+        0.3,
+        0.2
+      ],
+      "stayDiameterMeters": 0.01,
+      "rampWidthMeters": 3
+    },
+    "evidence": "2012 Ramboll/Pihl/VSB presentation plan, pontoon, pivot section and production views inspected. The 2015 fact sheet supersedes its teak material note and earlier navigation-clearance proposal."
+  },
+  "reconstruction": {
+    "platforms": [
+      {
+        "name": "P1",
+        "x": -14.348,
+        "z": 4.347,
+        "r": 4.7,
+        "mast": 17.2,
+        "stays": 22,
+        "end": -1
+      },
+      {
+        "name": "P2",
+        "x": -9.451,
+        "z": -2.345,
+        "r": 6,
+        "mast": 22.2,
+        "stays": 25
+      },
+      {
+        "name": "P3",
+        "x": 0.608,
+        "z": -2.476,
+        "r": 6.65,
+        "mast": 22,
+        "stays": 27
+      },
+      {
+        "name": "P4",
+        "x": 7.19,
+        "z": 4.26,
+        "r": 4.9,
+        "mast": 14.7,
+        "stays": 22
+      },
+      {
+        "name": "P5",
+        "x": 14.195,
+        "z": 0.425,
+        "r": 5,
+        "mast": 17.2,
+        "stays": 22,
+        "end": 1
+      }
+    ],
+    "deckAboveProvisionalWaterMeters": 2.8,
+    "mastTopsAboveWaterMeters": [
+      20,
+      25,
+      24.8,
+      17.5,
+      20
+    ],
+    "handrailHeightMeters": 1.17,
+    "railRodDiameterMeters": 0.024,
+    "mastSpreaderFraction": 0.72,
+    "modeledStayCount": 118,
+    "state": "Closed, static exterior; no opening animation",
+    "note": "Circle centers fit OSM arc groups. Deck radii include an estimated outboard flange; the mapped edge is approximate. Stay allocation, intermediate heights, fittings and submerged tank are photo/drawing proportions. Deck2.8m plus22.2m maximum mast gives the designer25m overall envelope; a surveyed vertical datum is not claimed."
+  },
+  "referencePages": [
+    "https://olafureliasson.net/artwork/cirkelbroen-2015/",
+    "https://olafureliasson.net/press/cirkelbroen",
+    "https://steelinfo.dk/files/pdf/dsi/steelday_2012/11.%20Cirkelbroen.pdf",
+    "https://cdn.archilovers.com/projects/ebb80424-9531-4fd0-811e-656a4b4de7a1.pdf"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q11963844",
+    "featureIds": [
+      "way/419513906"
+    ],
+    "source": "https://www.openstreetmap.org/way/419513906",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:98b2b2c16ff0ffff0ac099395913505ed0ed68d57827d06b8323d09e6460d03d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      12.58378042,
+      55.672432086
+    ],
+    "heading": 0.709739442414,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native Y0 intentionally represents the water contact plane, not the minimum mesh bound. Engineer2012 slide8 shows the pontoon below water and the deck above it. Submerged geometry must remain below0. Absolute local water-level calibration and quay fit remain pending; this reviews the model datum convention only.",
+    "notes": "Exact-QID way419513906 fixes the plan. Engineer north arrow resolves P1 southwest and P5 northeast. Native Y0 provisionally uses local sea level; do not drape the bridge midpoint to canal-bed terrain. Shore ramps and measured water datum remain a separate site-fit task."
+  },
+  "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
+  "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
+  "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; current renders and geographic fit require review",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "The2012 engineering presentation is a design-stage reference.2015 photos/material fact sheet control visible appearance; as-built shop drawings were not available.",
+    "Individual mast heights, circle-edge offsets,118-stay distribution and small hardware are proportional reconstructions. Maximum fidelity remains pending measured as-built confirmation.",
+    "Sea-level Y0 and2.8m deck datum are provisional. The2.25m published navigation clearance is not a uniform underside height; real quay and water-level fit require site validation.",
+    "The bridge is closed and static. Internal hydraulics, concealed ribs and buried piles are outside this exterior asset; submerged pontoon dimensions are approximate.",
+    "Only short shore connection stubs are included. The20–23m granite-clad quay ramps, adjacent buildings and harbor furniture belong to site context.",
+    "Shared concrete grain approximates the non-slip Matacryl coating; no proprietary product texture or photograph is embedded. Lights are modeled in unlit daytime state."
+  ],
+  "qaCameras": [
+    {
+      "name": "deck-plan",
+      "position": [
+        0,
+        62,
+        0.01
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 45
+    },
+    {
+      "name": "harbor-elevation",
+      "position": [
+        0,
+        15,
+        -62
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 42
+    },
+    {
+      "name": "canal-elevation",
+      "position": [
+        0,
+        15,
+        62
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 42
+    },
+    {
+      "name": "diamond-rail",
+      "position": [
+        -15,
+        5.9,
+        13
+      ],
+      "lookAt": [
+        -14.35,
+        3.4,
+        8
+      ],
+      "fov": 45
+    },
+    {
+      "name": "walk-through",
+      "position": [
+        -17,
+        4.45,
+        4.4
+      ],
+      "lookAt": [
+        -3,
+        4,
+        -1
+      ],
+      "fov": 66
+    },
+    {
+      "name": "trumpet-support",
+      "position": [
+        -8,
+        0.5,
+        12
+      ],
+      "lookAt": [
+        -9.45,
+        1.3,
+        -2.35
+      ],
+      "fov": 50
+    },
+    {
+      "name": "mast-ring",
+      "position": [
+        -3,
+        21,
+        8
+      ],
+      "lookAt": [
+        -9.45,
+        19,
+        -2.35
+      ],
+      "fov": 50
+    },
+    {
+      "name": "stay-anchors",
+      "position": [
+        -7.5,
+        4.7,
+        -11.5
+      ],
+      "lookAt": [
+        -9.3,
+        3,
+        -8.2
+      ],
+      "fov": 48
+    },
+    {
+      "name": "north-entrance",
+      "position": [
+        26,
+        7,
+        4
+      ],
+      "lookAt": [
+        17,
+        3.2,
+        0.4
+      ],
+      "fov": 50
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
+  "mesh": {
+    "triangles": 166522,
+    "vertices": 298444,
+    "materials": 4,
+    "bytes": 12745196,
+    "sha256": "sha256:15417d6bfa6e0d93de9fbf5a08dafcd1dfcfeb3c48d521765b3458f8bde37257"
+  }
+}

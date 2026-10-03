@@ -6,8 +6,10 @@ import {
   frameStats,
   importAsset,
   scaffoldExperience,
+  screenshotAsset,
   screenshotScene,
 } from '@bendyline/molen-tooling';
+import { NodeIO } from '@gltf-transform/core';
 import { PNG } from 'pngjs';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildCubeGlb } from '../fixtures/build-glb';
@@ -60,6 +62,80 @@ beforeAll(async () => {
 });
 
 describe('golden: gltf asset rendering', () => {
+  it('opt-in sky reflections illuminate imported metals in scene and turntable captures', async () => {
+    const io = new NodeIO();
+    const doc = await io.readBinary(await buildCubeGlb());
+    doc
+      .getRoot()
+      .listMaterials()[0]
+      ?.setBaseColorFactor([0.9, 0.9, 0.9, 1])
+      .setMetallicFactor(1)
+      .setRoughnessFactor(0.2);
+    const source = join(projectDir, 'metal-src.glb');
+    await writeFile(source, await io.writeBinary(doc));
+    const imported = await importAsset({
+      path: source,
+      id: 'metal',
+      projectPath: join(projectDir, 'project.json'),
+    });
+    expect(imported.ok, imported.error).toBe(true);
+    const scene = JSON.parse(await readFile(scenePath, 'utf8'));
+    scene.entities[0].components.renderable = { kind: 'gltf', ref: 'metal' };
+    const images = [];
+    for (const reflections of [false, true]) {
+      const path = join(OUT, `metal-reflections-${reflections}.png`);
+      const result = await screenshotScene({
+        scene,
+        projectPath: join(projectDir, 'project.json'),
+        ticks: 0,
+        size: [200, 200],
+        clearColor: '#bbd4e7',
+        reflections,
+        outPath: path,
+      });
+      expect(result.ok, result.error).toBe(true);
+      expect(result.renderStats?.triangles).toBeGreaterThanOrEqual(12);
+      images.push(PNG.sync.read(await readFile(path)));
+    }
+    let delta = 0;
+    for (let y = 80; y < 120; y++)
+      for (let x = 80; x < 120; x++) {
+        const i = (y * 200 + x) * 4;
+        for (let c = 0; c < 3; c++)
+          delta += (images[1]?.data[i + c] ?? 0) - (images[0]?.data[i + c] ?? 0);
+      }
+    expect(delta / (40 * 40 * 3)).toBeGreaterThan(15);
+    const result = await screenshotAsset({
+      ref: 'metal',
+      projectPath: join(projectDir, 'project.json'),
+      angles: 1,
+      size: [200, 200],
+      clearColor: '#bbd4e7',
+      reflections: true,
+      outDir: join(OUT, 'metal-turntable-reflections'),
+    });
+    expect(result.ok, result.error).toBe(true);
+    expect(result.triangles).toBeGreaterThanOrEqual(12);
+    const framePath = result.frames?.[0]?.path;
+    if (!framePath) throw new Error('Missing metal turntable frame');
+    const frame = PNG.sync.read(await readFile(framePath));
+    const center = (100 * 200 + 100) * 4;
+    const unreflected = await screenshotAsset({
+      ref: 'metal',
+      projectPath: join(projectDir, 'project.json'),
+      angles: 1,
+      size: [200, 200],
+      clearColor: '#bbd4e7',
+      reflections: false,
+      outDir: join(OUT, 'metal-turntable-no-reflections'),
+    });
+    expect(unreflected.ok, unreflected.error).toBe(true);
+    const unreflectedPath = unreflected.frames?.[0]?.path;
+    if (!unreflectedPath) throw new Error('Missing unreflected metal frame');
+    const baseline = PNG.sync.read(await readFile(unreflectedPath));
+    expect((frame.data[center] ?? 0) - (baseline.data[center] ?? 0)).toBeGreaterThan(15);
+  });
+
   it('preserves centimetre surface separation in a distant architectural capture', async () => {
     const scene = JSON.parse(await readFile(scenePath, 'utf8'));
     scene.entities = [

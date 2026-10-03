@@ -1,0 +1,91 @@
+{
+  "format": "molen/structure-reference-metadata@1",
+  "candidateId": "N0623",
+  "title": "Rembrandt Tower",
+  "references": [
+    {
+      "url": "https://www.zzdp.nl/nl/project/de-omval",
+      "role": "original architect",
+      "facts": "135 m roof; stepped middle and crown, uniform windows, concrete core and steel frame; three distinct Omval towers, not a single building"
+    },
+    {
+      "url": "https://arcam.nl/architectuur-gids/rembrandttoren/",
+      "role": "Amsterdam architecture centre",
+      "facts": "36 storeys; nine-storey stepped base, twenty-storey shaft with glazed corner bays, four-storey corner towers beginning at level 29, upper seven floors stepped; clouded grey granite, anthracite aluminium window framing; main entrance with canopy faces south"
+    },
+    {
+      "url": "https://repository.tudelft.nl/file/File_22b7fccf-7ca6-4d29-aa2d-6d47cf923d6c",
+      "role": "K.V. Tolsma, 2010 MSc thesis",
+      "local": "tolsma-2010.pdf",
+      "inspectedPages": [
+        64,
+        65,
+        83
+      ],
+      "facts": "135 m functional height, 150 m architectural height; structural facade 32.4 m, core14.4 m, typical floor pitch3.4 m, first three floors taller; drawing appendix gives core plan only",
+      "warning": "The paper's40floors/136m is an analytical simplification, not actual tower geometry.35floors in narrative conflicts with Arcam36count; resolve visible facade levels from photographs."
+    },
+    {
+      "url": "https://www.brandveiligmetstaal.nl/upload/File/FSE_Rembrandttoren.pdf",
+      "role": "TNO fire research report",
+      "status": "Search indexed135mheight32.4x32.4mplan; direct download blocked by Cloudflare; figures not inspected."
+    },
+    {
+      "url": "https://www.rembrandttower.nl/nl/",
+      "role": "building operator",
+      "status": "Text read; photos still to inspect"
+    },
+    {
+      "url": "https://api.3dbag.nl/collections/pand/items/NL.IMBAG.Pand.0363100012113758",
+      "role": "3DBAG geographic roof envelope",
+      "local": "bag-rembrandt.json",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://docs.3dbag.nl/en/copyright/",
+      "attribution": "© 3DBAG by tudelft3d and 3DGI",
+      "observations": "87KB CityJSONFeature with LoD1.2,1.3,2.2. Coordinates EPSG7415RDNew+NAP, transform retained. AHN5source2023; building ground-0.597mNAP, max roof133.938mNAP; mast not included. LoD2.2RMSE1.10m, val3dity104/203 errors. Inspect roof polygons; use as attributed height/envelope evidence, not blindly as finished geometry. Website asks map credit at bottom right if integrated."
+    },
+    {
+      "url": "https://www.ikb.edu.pl/UK/Syllabus/WP5B-Rembrandt%20Tower-Syllabus.pdf",
+      "role": "independently indexed engineering paper copy",
+      "status": "Web retrieval timed out. Direct HTTPS retrieval failed certificate hostname validation; no bypass attempted and no document inspected."
+    },
+    {
+      "url": "https://paolo.nu/wp-content/uploads/2019/11/Brochure-Rembrant-Toren-Amsterdam.pdf",
+      "role": "operator brochure, credited to DvM B.V. for Rembrandt Tower C.V. on PDF page29; hosted by third-party agency",
+      "local": "rembrandt-brochure.pdf",
+      "inspectedPages": [
+        14,
+        18
+      ],
+      "facts": "31 PDF spreads,35storeys150mheight stated, triple revolving entrance doors shown on page14, illuminated beacon/crown on page18; contains no floor plans.",
+      "warning": "Page17 contains an unremoved editorial image note, so this appears to be a proof/draft. Do not use as sole evidence of current finishes or floor count."
+    }
+  ],
+  "inspectedPhotos": [
+    {
+      "url": "https://arcam.nl/wp-content/uploads/2021/06/2-139.jpg",
+      "observations": "Clear full-height three-quarter view: inset glazed corner strips, narrow vertical granite mullions, dark spandrels, open colonnaded band below four projecting glazed upper corner volumes, narrower central cap with paired horizontal louvers and a ringed beacon mast. Base partly hidden by trees.",
+      "detailInspection": "Native-resolution top view visually corroborates14narrow main window bays and7opencolonnadebays. Windows have broad dark lower spandrels. Beacon has cylindrical base, three projecting horizontal rings, mesh-textured upper cylinder and needle tip. Offset white roof maintenance crane extends past the roof. Central front of the top cap has6narrowwindows and3double-width upper louver bays. Fine glazed-corner volumes have finer vertical subdivisions."
+    },
+    {
+      "url": "https://img2.storyblok.com/2880x0/filters:quality(80)/f/289717489470719/2985x1970/207b4a8088/zzdp_omval_mondriaan-04.jpg",
+      "observations": "Architect page hero viewed, not standaloneimage: Rembrandt tower visible behind Breitner tower; useful crown, incomplete lower facade."
+    },
+    {
+      "url": "https://rembrandttower.nl/wp-content/uploads/2019/09/Headerbeeld-2.jpg",
+      "observations": "Operator long-distance skyline image inspected. Distinguishes Rembrandt left from other Omval towers."
+    },
+    {
+      "url": "https://arcam.nl/wp-content/uploads/2021/06/3-101.jpg",
+      "observations": "Archive street-level view inspected: two clear lower setbacks, deep inset corner glazing, grid facade and open top transition under four corner volumes. Adjacent towers are under construction, so this is a historical geometry reference, not proof of current finishes.",
+      "detailInspection": "Native-resolution crown view: roughly14 narrow window modules across each main stone facade, with seven double-width open bays in the colonnade above. This suggests14x1.8m=25.2m face within32.4moverallshaft, leaving3.6mcorner returns. This is an image-derived provisional count, not a measured drawing. Typical window has a dark lower spandrel/transom; top glazing uses finer subdivisions. Archive mast appears unfinished and cannot define the current beacon."
+    }
+  ],
+  "provisionalDesignHypotheses": [
+    "Main shaft32.4mstructural plan;14x1.8mstone facadefield25.2mwith3.6mcorner zones, pending verification against newer photos.",
+    "Main facade finishes near106.9maboveBAGground; open transition approx3.25mup to110.1m; corner volumes top approx120.5m; centralroof132.3m. Treat these as survey-envelope estimates.",
+    "Ground/BAGfootprint48mupperboundingboxoversimplifiessteppedentrancefront. UseconcaveLOD0outlineonlyasreferenceandcheckwithcurrententrancephotos.",
+    "Central cap cross plan inferred jointly from photo6x1.8mface and3DBAGsurface492: overall21.6m, arms10.8mwide, four5.4mcornercutouts; ideal area349.92m2 vs sensed352.45m2. Sensor boundary is noisy, so regularization must remain declared as inference."
+  ],
+  "evidenceNotes": "Referenced photographs and publications are not redistributed. bag-source.json retains the attributed public CityJSON response. roof-envelope.json contains measured data in the local frame, not instructions to reuse faulty surface triangulation. The generator consumes these local records without a network request."
+}

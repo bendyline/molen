@@ -10,14 +10,14 @@ it('places named landmarks locally, binds shared surfaces and releases them on t
     process.execPath,
     [
       resolve('test/visual/capture-landmark-library.mjs'),
-      '--ids=N0144,N0641,N0603,N0682',
+      '--ids=N0144,N0641,N0603,N0682,N0031',
       '--out-dir',
       out,
       '--force',
     ],
     { cwd: process.cwd(), timeout: 360000, maxBuffer: 4 * 1024 * 1024 },
   );
-  for (const id of ['N0144', 'N0641', 'N0603', 'N0682']) {
+  for (const id of ['N0144', 'N0641', 'N0603', 'N0682', 'N0031']) {
     const report = JSON.parse(
       await readFile(resolve(out, id, 'shared-capture-report.json'), 'utf8'),
     );
@@ -28,6 +28,17 @@ it('places named landmarks locally, binds shared surfaces and releases them on t
       groundRestored: true,
     });
     expect(report.placementHash).toMatch(/^sha256:/);
+    if (id === 'N0031') {
+      for (const frame of report.frames) {
+        const samples = frame.state.terrainSamples.filter(
+          (sample: { placementId: string }) => sample.placementId === frame.state.placementId,
+        );
+        expect(samples.length).toBeGreaterThan(0);
+        expect(samples[0].coordinate).toEqual([1.936803, 41.4749082]);
+        expect(samples[0].height).toBeCloseTo(14.933, 6);
+        expect(frame.state.position[1]).toBeCloseTo(0, 6);
+      }
+    }
     expect(
       report.frames.some((frame: { camera: { placement?: boolean } }) => frame.camera.placement),
     ).toBe(true);

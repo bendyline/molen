@@ -7,7 +7,7 @@
   "footprintEvidenceHash": "sha256:d1558679d68971a0d8a85af7bbf873a0104c636cd5089d094983166ec1447055",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
-  "specHash": "sha256:ed74d4311790100969cd4ba99ba765926f9cc3586b2843ac594c4c91d95ab764",
+  "specHash": "sha256:ab79000e3f5a165b1c0fb566705eb4b2d1c0b4db57e780f1c71dc3df4dd8874c",
   "placementHash": "sha256:abe31e42bead5ec6cc748615fd03b1d96d9324d881986573c12a548197e1474d",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -1298,5 +1298,31 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:ed74d4311790100969cd4ba99ba765926f9cc3586b2843ac594c4c91d95ab764",
+    "previousCaptureReportHash": "sha256:df7d11e0f95f972fc064193b966a8230198cad15b5a5fdaff0ff6a39203013fd",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/dr/dr5/n0205_seagram_building/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:d1558679d68971a0d8a85af7bbf873a0104c636cd5089d094983166ec1447055",
+        "current": "sha256:3aa1d7c2a5fa1aeee663ac7b1f45b95a965d79f8863ae4fa9d52e1ef4d99d419"
+      },
+      {
+        "path": "mesh.bytes",
+        "previous": 29490600,
+        "current": 30234772
+      },
+      {
+        "path": "mesh.sha256",
+        "previous": "sha256:6aca84a4badc7b8081075aadaab3e3ae49af62c23aa8b10c52359807019fef2d",
+        "current": "sha256:708547d760a77815f7e2aa590550e632f6c64411f5f64eed88aedb66d361b819"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

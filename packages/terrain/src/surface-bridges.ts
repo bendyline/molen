@@ -26,7 +26,8 @@ export function bridgeDeckProfile(
         ? { deckElevation: road.feature.deckElevation }
         : {}),
       clearance: road.kind === 'path' ? 3 : 6,
-      approachLift: road.elevation - 4,
+      approachLift: road.feature.bridge ? road.elevation - 4 : road.elevation,
+      groundApproach: !road.feature.bridge,
       connects: [connects(a), connects(b)],
       connections: (road.feature.bridgeConnections ?? []).map((connection) => ({
         point: [

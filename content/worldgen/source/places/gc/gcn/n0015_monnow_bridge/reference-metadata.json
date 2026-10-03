@@ -1,0 +1,53 @@
+{
+  "format": "molen/structure-reconstruction-evidence@1",
+  "candidateId": "N0015",
+  "referencePages": [
+    "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=2218",
+    "https://commons.wikimedia.org/wiki/File:20200308_Monmouth_bridge_gate.jpg",
+    "https://commons.wikimedia.org/wiki/File:20200308_Monmouth_east_bridge.jpg",
+    "https://commons.wikimedia.org/wiki/File:Monmouth_-_Monnow_Bridge_-_geograph.org.uk_-_6006131.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gate_Tower,_Monnow_Bridge_-_geograph.org.uk_-_7725437.jpg",
+    "https://www.openstreetmap.org/way/855452311",
+    "https://www.openstreetmap.org/way/855457354",
+    "https://datamap.gov.wales/maps/lidar-data-download/"
+  ],
+  "geometryInputs": [
+    "map-frame.json",
+    "site-approaches.json"
+  ],
+  "independentEvidence": [
+    "content/earth/structures/evidence/bridge-terrain/wales/N0015.json",
+    "content/earth/structures/evidence/bridge-terrain/wales/N0015-deck-profile.json",
+    "content/earth/structures/evidence/bridge-terrain/wales/N0015-roof-profile.json",
+    "content/earth/structures/evidence/bridge-terrain/wales/N0015-road-profile.json"
+  ],
+  "reconstruction": {
+    "originSourceHeightMeters": 13.4,
+    "roofRidgeSourceHeightMeters": 29.94203514664563,
+    "roadFit": "Unoccluded 1 m DSM road pixels; cubic at the bridge, sampled slopes at approaches. Fit residual is not measurement accuracy.",
+    "horizontalTransform": "PROJ OSTN15 OSGB36/WGS84 transformation with the recorded grid; 1 m declared horizontal accuracy.",
+    "verticalDatum": "Source metre heights relative to the sampled dry bank; the TIFF does not declare an explicit vertical CRS. No absolute datum conversion is assumed.",
+    "retainingWalls": "OSM ways 172233193,172233195,855452310; extent ends at native X -24 and +23. Masonry thickness, house-side pavement limits and individual courses are reconstructed."
+  },
+  "validation": {
+    "sourceAndRuntimeKhronos": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 4
+    },
+    "exactSourceRegeneration": "passed",
+    "triangles": 432223,
+    "sourceBytes": 34496632,
+    "runtimeBytes": 34496188,
+    "sharedGraphs": 3,
+    "textureImages": 0,
+    "inspectedFrames": 37
+  },
+  "limitations": [
+    "Arch stations, pier elevations, stone arrangements and minor roof details are reconstructed from primary photographs, not survey geometry.",
+    "Upper gatehouse interior rooms and unseen structure are outside this exterior asset; the three public passages remain open.",
+    "The older reported 7.3 m bridge width differs from the current mapped widened footways; the model retains the complete mapped deck.",
+    "LiDAR provides modeled water and ground, not underwater foundations. The bank reference requires sufficiently detailed host terrain and a cross-tile sampler; terrain/approach image review remains required.",
+    "Approach caps end at native X -24 and +23. Surrounding houses, the western retaining wall continuation and remote riverbank paths are outside this bridge asset. Unmapped pavement edges, wall thickness and stone positions are reconstructed."
+  ]
+}

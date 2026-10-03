@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://awards-api.skyscrapercenter.com/building/metlife-building/909)
 - [Reference](https://www.openstreetmap.org/way/137564641)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-444,875 triangles; 1,330,965 vertices; 6 material groups; 51,925,812 bytes. Native bounds: -57.102, 0.000, -46.975 to 57.102, 246.300, 46.976. Source hash: `sha256:a3fc7abda15f16bf365ea04f7065ec88bc99098f159cca1d22f7a168f6a1ee1e`.
+444,875 triangles; 1,330,965 vertices; 6 material groups; 53,256,792 bytes. Native bounds: -57.102, 0.000, -46.975 to 57.102, 246.300, 46.976. Source hash: `sha256:de7c0bc234120e180c4f1dbdf1c67c82277661748e8cc15dd8b70501d5a897d2`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

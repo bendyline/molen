@@ -20,13 +20,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-42,596 triangles, 75,580 vertices, 7 surface groups; 3,160,632 source bytes. SHA-256: `sha256:cda70433d3626739f0e9de1bffd42f287fe4b664a338cfb001e64637c9c6fd60`. Actual bounds: -5.700, 0.000, -10.760 to 20.800, 62.600, 10.770 m.
+42,596 triangles, 75,580 vertices, 7 surface groups; 3,236,224 source bytes. SHA-256: `sha256:a026590a151d4f3b4966e17a95698388ceced52d9b6ca163585a4c2bedd109c9`. Actual bounds: -5.700, 0.000, -10.760 to 20.800, 62.600, 10.770 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone_ashlar` (2.4 × 1.5 m), `matgraph:molen.worldgen.material.stone_limestone` (2.4 × 1.6 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.stone_granite` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Origin is the exact mapped round tower centroid. Mapped keeper complex extends authored+X east-southeast, fixing the quadrant. Shaft window azimuth is photo reconstructed on the keeper side. Host terrain supplies coastal ground;69m sea elevation is not applied as tower height. Proposed anchor -6.442194584211, 36.737914042105 (longitude, latitude), heading -0.183905284578 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Origin is the exact mapped round tower centroid. Mapped keeper complex extends authored+X east-southeast, fixing the quadrant. Shaft window azimuth is photo reconstructed on the keeper side. Host terrain supplies coastal ground;69m sea elevation is not applied as tower height. Proposed anchor -6.442194584211, 36.737914042105 (longitude, latitude), heading -0.183905284578 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -34,6 +34,6 @@ Origin is the exact mapped round tower centroid. Mapped keeper complex extends a
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Keeper block heights and window rhythm are reconstructed from municipal exterior photographs over the mapped plan; the simplified OSM12m whole-base tag is not imposed on the lower wings. Neighboring restaurant, palms and coastal embankment are separate features. Glazing is a static optical envelope.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0655`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0655`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-atlantic-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

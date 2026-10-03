@@ -17,11 +17,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.openstreetmap.org/way/145341258)
 - [Reference](https://www.openstreetmap.org/way/145341297)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-286,644 triangles; 744,156 vertices; 10 material groups; 29,490,600 bytes. Native bounds: -31.350, 0.000, -48.364 to 31.350, 157.015, 46.800. Source hash: `sha256:6aca84a4badc7b8081075aadaab3e3ae49af62c23aa8b10c52359807019fef2d`.
+286,644 triangles; 744,156 vertices; 10 material groups; 30,234,772 bytes. Native bounds: -31.350, 0.000, -48.364 to 31.350, 157.015, 46.800. Source hash: `sha256:708547d760a77815f7e2aa590550e632f6c64411f5f64eed88aedb66d361b819`.
 
 {"up":"+Y","longAxis":"+X toward52nd Street SSW","front":"+Z toward Park Avenue WNW"}
 

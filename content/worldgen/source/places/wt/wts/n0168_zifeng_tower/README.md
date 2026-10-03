@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://swacdn.s3.amazonaws.com/1/41a6271b_zifengtower-nanjinggreenland.pdf)
 - [Reference](https://www.openstreetmap.org/way/140809508)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-301,407 triangles; 761,125 vertices; 5 material groups; 30,259,428 bytes. Native bounds: -84.288, 0.000, -50.881 to 43.526, 450.000, 68.124. Source hash: `sha256:c3bf7a2c5783fa0c8d7c43711885abcf262d3a6afb97968646ab6a0deacb9b71`.
+301,407 triangles; 761,125 vertices; 5 material groups; 31,020,568 bytes. Native bounds: -84.288, 0.000, -50.881 to 43.526, 450.000, 68.124. Source hash: `sha256:3395914fe8240671572d4d2ab830403e00ae79335de6e6a6877752f645e48645`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

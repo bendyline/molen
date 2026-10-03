@@ -4,6 +4,10 @@
 [source index](../structure-index.json). Named landmarks live in standard WGS84 geohash
 folders, with a two-character region and three-character cell:
 
+Find editable geometry code through the [authoring index](../authoring-index.json) and follow
+the [source build guide](../AUTHORING.md). The GLBs below are generated outputs restored by
+`pnpm assets:fetch` or rebuilt by `pnpm assets:build`; the recipes remain in Git.
+
 ```text
 content/worldgen/source/
   places/

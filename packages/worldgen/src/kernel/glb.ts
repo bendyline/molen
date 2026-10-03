@@ -61,13 +61,24 @@ export function encodeGlb(
   generator = '@bendyline/molen-worldgen',
 ): Uint8Array {
   const views: Array<{ data: Uint8Array; target: number }> = [];
-  const bufferViews: Array<{ buffer: 0; byteOffset: number; byteLength: number; target: number }> =
-    [];
+  const bufferViews: Array<{
+    buffer: 0;
+    byteOffset: number;
+    byteLength: number;
+    target: number;
+    byteStride?: number;
+  }> = [];
   let binaryLength = 0;
-  const addView = (array: ArrayBufferView, target: number): number => {
+  const addView = (array: ArrayBufferView, target: number, byteStride?: number): number => {
     binaryLength = align4(binaryLength);
     const data = new Uint8Array(array.buffer, array.byteOffset, array.byteLength);
-    bufferViews.push({ buffer: 0, byteOffset: binaryLength, byteLength: data.byteLength, target });
+    bufferViews.push({
+      buffer: 0,
+      byteOffset: binaryLength,
+      byteLength: data.byteLength,
+      target,
+      ...(byteStride === undefined ? {} : { byteStride }),
+    });
     views.push({ data, target });
     binaryLength += data.byteLength;
     return bufferViews.length - 1;
@@ -75,7 +86,15 @@ export function encodeGlb(
   const positionView = addView(buffers.positions, ARRAY_BUFFER);
   const normalView = addView(buffers.normals, ARRAY_BUFFER);
   const uvView = addView(buffers.uvs, ARRAY_BUFFER);
-  const colorView = addView(buffers.colors, ARRAY_BUFFER);
+  // glTF vertex attributes must begin on a four-byte boundary at every vertex. Keep RGB
+  // semantics (no alpha channel) while padding its three unsigned bytes to a legal stride.
+  const alignedColors = new Uint8Array(buffers.vertexCount * 4);
+  for (let vertex = 0; vertex < buffers.vertexCount; vertex++) {
+    alignedColors[vertex * 4] = buffers.colors[vertex * 3] as number;
+    alignedColors[vertex * 4 + 1] = buffers.colors[vertex * 3 + 1] as number;
+    alignedColors[vertex * 4 + 2] = buffers.colors[vertex * 3 + 2] as number;
+  }
+  const colorView = addView(alignedColors, ARRAY_BUFFER, 4);
   const indexView = addView(buffers.indices, ELEMENT_ARRAY_BUFFER);
   binaryLength = align4(binaryLength);
 

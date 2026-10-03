@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/torre-del-mangia-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-115,282 triangles; 235,852 vertices; 9 material groups; 9,643,208 source bytes. Source hash: `sha256:ca741b450e261ae8f602fe7ad2c6bad944b7799000d0f6a85c1068bb8ed02c35`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+115,282 triangles; 235,852 vertices; 9 material groups; 9,879,072 source bytes. Source hash: `sha256:1fcd667c58ca9e19efb32cc6b8b3e4eedcd1ad63ac8a8edc35f92057f4f008e6`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0596`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -1,0 +1,78 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0620_karnan",
+  "sourceHash": "sha256:61cf21c5bf16a87254076fb19933f193888cbe3ad4b121e93fd049b16f1b05cb",
+  "runtimeHash": "sha256:46eb4c94e672a3c55972d4d4cea4c65a799f6063ef9573910cc9e74b300adfcd",
+  "captureReportHash": "sha256:1f395c57ad0bc3f32429dcb1e8f3fa9d46593f1f25503924873759bf6a5db16b",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current exterior reconstruction render integrity; maximum fidelity remains pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southwest-entrance.png",
+      "shots/northwest-privy.png",
+      "shots/southeast-oratory.png",
+      "shots/northeast-rear.png",
+      "shots/entrance-stair.png",
+      "shots/royal-window.png",
+      "shots/stair-turret-crown.png",
+      "shots/roof-terrace.png",
+      "shots/brick-and-putlogs.png",
+      "shots/ground-plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "All16 current portable views inspected. Fixed the turret/main-wall gap, closed the window sills, corrected inward oculus normals and removed regular diagonal weathering. Whole-elevation cameras now include the mast. Current silhouette, recessed openings, elevated entrance stair, collar-wall study and roof geometry render coherently."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5ee972ea962f739bfa4819fe5fe64da70934a9a305497ee9dc3d63cda63553c8",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southwest-entrance.png",
+      "shots/shared/northwest-privy.png",
+      "shots/shared/southeast-oratory.png",
+      "shots/shared/northeast-rear.png",
+      "shots/shared/entrance-stair.png",
+      "shots/shared/royal-window.png",
+      "shots/shared/stair-turret-crown.png",
+      "shots/shared/roof-terrace.png",
+      "shots/shared/brick-and-putlogs.png",
+      "shots/shared/ground-plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All16 current shared-material/placement frames inspected; brick-and-putlogs and north-up placement checked at full resolution. Six canonical graphs resolve once each. Metric brick joints, stone belt, wood stairs, metal grilles and concrete terrace are visible. No per-model bitmap textures are embedded. Model unload releases all geometry. Actual structure has irregular medieval brickwork and repairs; regular canonical brick pattern remains a fidelity limitation."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:6a93d3903707837c99a3f177567a6635e8dd315b2317fa533cf0a1698bd7f104",
+    "notes": "The north-up flat-terrain frame matches the mapped main footprint and offset turret. Primary publication independently identifies southwest stair facade and northwest privy, resolving signed heading. Reconstructed collar-wall extent, external stair footprint, foundation datum and real sloping terrain contacts are not yet independently validated."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Main34.5 m crenellations are documented; the38.5 m stair turret,44 m mast, opening levels and5.8 m raised threshold are photographic estimates. Exact restored elevation datum, current roof furniture, stair dimensions and collar ruins require further measured evidence. Putlog pattern and brick repairs are approximate; interior rooms and distant terrace stairs are outside this exterior asset. Do not count this candidate as complete."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "triangles": 76762,
+    "materials": 7,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  }
+}

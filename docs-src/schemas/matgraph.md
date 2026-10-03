@@ -62,6 +62,10 @@ A small node graph (noise, gradients, ramps, blends) CPU-rasterized to textures.
       "const": "molen/matgraph@1",
       "description": "Format envelope; always 'molen/matgraph@1'."
     },
+    "alphaCoverage": {
+      "description": "Filter baseColor alpha as fractional surface coverage for porous surfaces. Uses mipmapped alpha blending; requires baseColor and excludes alphaTest. Like portable glTF BLEND, overlapping transparent surfaces require sorting.",
+      "type": "boolean"
+    },
     "alphaTest": {
       "description": "Optional alpha cutout threshold for baseColor RGBA. Omit for opaque materials; this does not enable blended transparency.",
       "type": "number",

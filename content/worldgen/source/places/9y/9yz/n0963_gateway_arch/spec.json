@@ -1,0 +1,212 @@
+{
+  "id": "N0963",
+  "planId": "N0963",
+  "assetId": "molen.worldgen.structure.n0963_gateway_arch",
+  "title": "Gateway Arch",
+  "category": "monument",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q2027162"
+  },
+  "wikidataId": "Q2027162",
+  "visualBrief": "Weighted catenary shell with equilateral triangular sections, separate steel faces, longitudinal shop welds, field station welds, 32 recessed observation ports and crown service hatch. Entirely editable metric geometry with a shared brushed-stainless surface.",
+  "size": [
+    192.024,
+    192.024,
+    16.46
+  ],
+  "actualBounds": {
+    "min": [
+      -96.01374053955078,
+      0,
+      -8.242782592773438
+    ],
+    "max": [
+      96.01374053955078,
+      192.02549743652344,
+      8.242782592773438
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+X is north and +Z is west; the two glazed elevations face east and west",
+    "origin": "Ground-level midpoint between the two leg centroids"
+  },
+  "scaleBasis": "NPS published centroid equation and section dimensions. Surface reconstruction yields 192.024 m height and approximately 192.025 m width without independent scaling. Ground plane clips the sloped foot sections.",
+  "geographicProposal": {
+    "anchor": [
+      -90.184972222,
+      38.624611111
+    ],
+    "heading": 1.5707963267948966,
+    "source": "https://www.nps.gov/jeff/planyourvisit/architecture.htm",
+    "orientationConfidence": "axis-only",
+    "evidence": "NPS states a north-south leg axis; native +X is north. Anchor currently comes from the candidate identity.",
+    "limitations": "Precise leg coordinates, geographic origin and plaza datum require map/site verification. No automatic placement approved.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "NPS states a north-south leg axis; native +X is north. Anchor currently comes from the candidate identity. Precise leg coordinates, geographic origin and plaza datum require map/site verification. No automatic placement approved."
+  },
+  "sourceFacts": {
+    "heightMeters": 192.024,
+    "widthMeters": 192.024,
+    "sectionSideMeters": [
+      16.4592,
+      5.1816
+    ],
+    "centroidFormula": {
+      "A": 68.7672,
+      "C": 3.0022,
+      "L": 299.2239,
+      "H": 625.0925,
+      "units": "feet",
+      "equation": "height = H - A * (cosh(C*x/L)-1)"
+    },
+    "windowCount": 32,
+    "windowSizeMeters": [
+      0.6858,
+      0.1778
+    ],
+    "windowDimensionCaution": "NPS fact sheet says 27 inches wide; 2010 HSR says approximately 24 inches. The source uses the fact-sheet external width; clear opening/frame distinction is unresolved.",
+    "steel": "Type 304, number 3 brushed finish",
+    "outerPlateMeters": 0.00635
+  },
+  "referencePages": [
+    "https://home.nps.gov/jeff/planyourvisit/mathematical-equation.htm",
+    "https://home.nps.gov/jeff/planyourvisit/gateway-arch-fact-sheet.htm",
+    "https://www.nps.gov/jeff/planyourvisit/architecture.htm",
+    "https://npshistory.com/publications/jeff/hsr-gateway-arch-v1.pdf",
+    "https://www.nps.gov/jeff/planyourvisit/gateway-arch.htm"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Centroid and envelope are dimensionally constrained; construction station positions, window station offsets and service hatch dimensions remain a reconstruction pending original drawing comparison.",
+    "Current leg exit surrounds, ground apron and museum entrance are separate unfinished site features. Underground interior is not represented.",
+    "Brushed stainless is shared; weld staining, local oil-canning and current cleaning condition require a photographic material pass.",
+    "NPS sources differ on window width and count prefabricated segments differently; these discrepancies remain recorded rather than silently harmonized.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "west-elevation",
+      "position": [
+        0,
+        100,
+        360
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ]
+    },
+    {
+      "name": "east-elevation",
+      "position": [
+        0,
+        100,
+        -360
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ]
+    },
+    {
+      "name": "north-foot",
+      "position": [
+        116,
+        5,
+        27
+      ],
+      "lookAt": [
+        89,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "south-foot",
+      "position": [
+        -112,
+        7,
+        -30
+      ],
+      "lookAt": [
+        -89,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "crown-ports",
+      "position": [
+        12,
+        192,
+        24
+      ],
+      "lookAt": [
+        0,
+        189.4,
+        1.5
+      ]
+    },
+    {
+      "name": "extrados",
+      "position": [
+        20,
+        214,
+        21
+      ],
+      "lookAt": [
+        0,
+        191,
+        0
+      ]
+    },
+    {
+      "name": "intrados",
+      "position": [
+        15,
+        165,
+        0
+      ],
+      "lookAt": [
+        0,
+        190,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        330,
+        230,
+        580
+      ],
+      "lookAt": [
+        0,
+        94,
+        0
+      ]
+    }
+  ]
+}

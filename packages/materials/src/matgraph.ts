@@ -410,6 +410,14 @@ function bakeSlots(
  */
 export function bakeMatGraph(doc: MatGraphDoc): BakedMaterial {
   if (
+    (doc.alphaCoverage !== undefined && typeof doc.alphaCoverage !== 'boolean') ||
+    (doc.alphaCoverage && (doc.alphaTest !== undefined || !doc.outputs?.baseColor))
+  ) {
+    throw new Error(
+      `material graph alphaCoverage requires baseColor and excludes alphaTest — ${VALIDATE_HINT}`,
+    );
+  }
+  if (
     doc.alphaTest !== undefined &&
     (!Number.isFinite(doc.alphaTest) || doc.alphaTest < 0 || doc.alphaTest > 1)
   ) {
@@ -428,6 +436,7 @@ export function bakeMatGraph(doc: MatGraphDoc): BakedMaterial {
     meta: {
       filter: 'linear',
       ...(doc.alphaTest === undefined ? {} : { alphaTest: doc.alphaTest }),
+      ...(doc.alphaCoverage ? { alphaCoverage: true } : {}),
     },
   };
 }

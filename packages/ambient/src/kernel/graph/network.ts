@@ -436,11 +436,12 @@ export class TransportNetwork implements GraphStore {
         dense.heights.forEach((h, i) => {
           ys[i] = h;
         });
-      } else if (draft.bridge) {
+      } else if (draft.bridge || draft.bridgeConnections?.length) {
         const deck = bridgeDeckHeightFn(path, heightAt, {
           ...(draft.deckElevation !== undefined ? { deckElevation: draft.deckElevation } : {}),
           clearance: draft.class === 'walk' ? 3 : 6,
           approachLift: lift,
+          groundApproach: !draft.bridge,
           connects: [gradeRoad.has(piece.from), gradeRoad.has(piece.to)],
           ...(draft.bridgeConnections !== undefined
             ? { connections: draft.bridgeConnections }

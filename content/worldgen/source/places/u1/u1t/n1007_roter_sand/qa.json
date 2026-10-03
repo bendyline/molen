@@ -1,0 +1,49 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n1007_roter_sand",
+  "sourceHash": "sha256:c5890297e4dd4adc21bf950c7a8105464269b4458ca5c8f8898f3931055e0762",
+  "runtimeHash": "sha256:a3ecef4d778caed8a49744af14c9dd8a1476f3b63d1dd32ed5bb25645c6cbe3d",
+  "captureReportHash": "sha256:9121ad2dfd426d09eb1f30d8a634d43462cfb3d104a655a24390494c79481a2b",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Portable rendering, visibility and material fallback review. This is not maximum-fidelity acceptance.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/service-bays.png",
+      "shots/stair-lantern.png",
+      "shots/landing-ladders.png",
+      "shots/shaft-rivets.png"
+    ],
+    "notes": "Inspected the lit preview, all four turntable angles and four close-ups. The unequal bay silhouette, white/red shaft, lantern framing, domes, davit, ladder rungs, plate seams and rivets render coherently. Neutral turntables are dark on the black plinth; the shared close-up exposes both rails and rungs. Porthole apertures and junction detailing remain fidelity work."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:864382b20edfc4e439880331ef527e26b6a3779d0b55dd654db0a896a2aed31a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/service-bays.png",
+      "shots/shared/stair-lantern.png",
+      "shots/shared/landing-ladders.png",
+      "shots/shared/shaft-rivets.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all nine viewer frames, including the top-down placement fixture and full-size gallery/ladder close-ups. Painted metal and wood each load once through the canonical shared graph resolver. No browser errors; unloaded geometry count returns to zero. Flat fixture ground is not representative of the offshore site."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:35d619c1365e27bdc69a9649c01722229596301959120323f25c6a0f92f7d708",
+    "notes": "Exact-identity OSM node and 2019 survey agree on the offshore anchor. Survey directions fix the south, WNW and NE bays with heading zero; local tip transforms to +28.90 m at the proposed -2.05 m datum. The flat fixture confirms these transforms. Actual water datum, tides, plan fit and later relocation still need review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Initial individually authored 2018–2019 exterior. Refine true porthole wall apertures, bay/gallery joins, caisson plan and small fittings against the survey. Plate/rivet spacing and fittings are reconstructed; lantern optics, interiors, buried foundations and exact corrosion are absent. Do not count as a completed maximum-fidelity replica."
+  }
+}

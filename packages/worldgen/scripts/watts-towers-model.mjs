@@ -1,8 +1,8 @@
 /** Original Watts Towers exterior, from City Archives engineering drawings, NPS and LACMA conservation records. */
 
-import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { cross, loft, normalize, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { annulus, face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -989,11 +989,9 @@ export const wattsTowers = {
     heading: map.heading,
     source: map.source,
     mapGeometrySource: 'map-frame.json',
-    mapGeometryHash:
-      'sha256:' +
-      createHash('sha256')
-        .update(readFileSync(structureSourcePath('n0613_watts_towers', 'map-frame.json')))
-        .digest('hex'),
+    mapGeometryHash: hashEvidenceText(
+      readFileSync(structureSourcePath('n0613_watts_towers', 'map-frame.json')),
+    ),
     status: 'preview-proposal',
     evidence: map.basis,
     limitations:

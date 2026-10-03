@@ -1,0 +1,317 @@
+{
+  "planId": "N0623",
+  "id": "N0623",
+  "assetId": "molen.worldgen.structure.n0623_rembrandt_tower",
+  "title": "Rembrandt Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q2361620",
+  "referenceCoordinate": {
+    "latitude": 52.345083333,
+    "longitude": 4.917011111
+  },
+  "visualBrief": "Amsterdam’s granite-clad Rembrandt Tower: stepped cross-shaped podium, fourteen-bay facades with deeply recessed glazed corners, seven-bay open crown galleries, four glazed corner towers, a cross-shaped mechanical cap, ringed beacon and parked maintenance crane. The southern entrance has three revolving doors and a projecting canopy.",
+  "size": [
+    48.03999900817871,
+    150,
+    53.420000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -23.65999984741211,
+      0,
+      -23.920000076293945
+    ],
+    "max": [
+      24.3799991607666,
+      150,
+      29.5
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast along the BAG rear wall",
+    "front": "+Z south-southeast toward the entrance square",
+    "origin": "Center of the BAG ground-envelope rectangle; Y0 uses terrain contact. The upper shaft is offset0.36m east and0.10m south in this frame."
+  },
+  "sourceFacts": {
+    "publishedRoofHeightMeters": 135,
+    "publishedTipHeightMeters": 150,
+    "publishedTypicalStoreyHeightMeters": 3.4,
+    "publishedStructuralShaftWidthMeters": 32.4,
+    "publishedCoreWidthMeters": 14.4,
+    "storeyDescriptions": "Architect/Arcam describe nine lower levels and twenty shaft levels; Arcam gives36 overall, the operator brochure35. Counts use differing conventions and are not silently reconciled.",
+    "surveyEnvelopeYear": 2023
+  },
+  "reconstruction": {
+    "shaftFieldBays": 14,
+    "shaftFieldWidthMeters": 25.2,
+    "cornerRecessMeters": 3.6,
+    "capCross": {
+      "outerWidthMeters": 21.6,
+      "armWidthMeters": 10.8
+    },
+    "heightDatumsMeters": {
+      "baseRoof": 22.063000000000002,
+      "middleRoof": 37.03,
+      "terrace": 106.887,
+      "colonnade": 110.10849999999999,
+      "cornerRoof": 120.49549999999999,
+      "capRoof": 132.3175
+    },
+    "upperCenterOffsetXZ": [
+      0.36,
+      0.1
+    ],
+    "facade": "Window modules and open gallery count are inferred from inspected full-resolution architecture-centre photographs. Cladding joints, transoms, stone thickness, louver pitch, canopy and door dimensions are original proportional reconstruction.",
+    "envelope": "Roof datums use retained 3DBAG horizontal surfaces. Irregular LiDAR-derived polygons are not imported as a finished model. Twenty shaft intervals interpolate measured envelope datums; their3.49mmean differs from the published3.4mtypical floor pitch and awaits floor-elevation drawings."
+  },
+  "referencePages": [
+    "https://www.zzdp.nl/nl/project/de-omval",
+    "https://arcam.nl/architectuur-gids/rembrandttoren/",
+    "https://www.rembrandttower.nl/nl/",
+    "https://repository.tudelft.nl/file/File_22b7fccf-7ca6-4d29-aa2d-6d47cf923d6c",
+    "https://api.3dbag.nl/collections/pand/items/NL.IMBAG.Pand.0363100012113758",
+    "https://docs.3dbag.nl/en/copyright/",
+    "https://www.openstreetmap.org/way/44451577"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      4.917060476756789,
+      52.34506411408192
+    ],
+    "heading": 0.3589785079857852,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/44451577",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/44451577"
+    ],
+    "wikidataId": "Q2361620",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b1c0921edb945ad6c43dac9c0e3f77225c24317f713bc25fc3fc35ec32f4f648",
+    "mapGeometryLicense": "CC-BY-4.0 / ODbL-1.0",
+    "attribution": "© 3DBAG by tudelft3d and 3DGI; identity match © OpenStreetMap contributors, ODbL-1.0",
+    "notes": "BAG identifier matches the exact-QID OSM object. RD coordinates are transformed to WGS84 using the retained PROJ operation; native +Z faces the southern entrance. This center lies about6.7m south of the older simplified OSM rectangle center. Actual sidewalk datum and facade fit remain pending."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original procedural exterior reconstructed from photographs, published dimensions and separately retained 3DBAG ground/roof evidence. The downloaded CityJSON is reference data, not the rendered mesh.",
+  "sourceLicense": "Original Molen recipe under repository MIT license. Referenced footprint and roof measurements: © 3DBAG by tudelft3d and 3DGI, CC BY4.0. Exact identity match: © OpenStreetMap contributors, ODbL1.0. Publication photos are linked, not redistributed.",
+  "dataAttribution": "© 3DBAG by tudelft3d and 3DGI, [CC BY4.0](https://docs.3dbag.nl/en/copyright/). The source bundle retains the2023 CityJSON response, converted footprint, roof measurements and coordinate operation. Molen regularizes architectural modules and roof levels and authors new facade geometry; it does not claim a surveyed reconstruction. Identity evidence: © OpenStreetMap contributors, ODbL1.0.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Facade dimensions, storey elevations, podium returns, roof parapets, canopy and maintenance equipment require measured drawings and current site comparison before maximum-fidelity approval. The35/36storey source discrepancy is retained.",
+    "3DBAG roof mesh reports1.10mRMSE and validation flags104/203. Its reconstructed maximum differs from its roof attribute; the published150mtip is modeled independently of the noisy survey extrema.",
+    "Glazing uses reflective opaque PBR except the transparent entrance cylinders. Interior fit-out, basement, neighboring towers and mobile street furniture are outside this exterior asset.",
+    "The southern orientation is supported by Arcam and the retained footprint. Precise sidewalk contact, canopy projection and scene-level attribution display remain to be verified in the actual geographic viewer."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entrance",
+      "position": [
+        38,
+        13,
+        70
+      ],
+      "lookAt": [
+        0,
+        9,
+        22
+      ]
+    },
+    {
+      "name": "podium-setbacks",
+      "position": [
+        64,
+        47,
+        68
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "facade-grid",
+      "position": [
+        4,
+        76,
+        42
+      ],
+      "lookAt": [
+        0,
+        74,
+        16.2
+      ]
+    },
+    {
+      "name": "corner-glazing",
+      "position": [
+        39,
+        81,
+        39
+      ],
+      "lookAt": [
+        14,
+        78,
+        14
+      ]
+    },
+    {
+      "name": "open-crown-gallery",
+      "position": [
+        42,
+        111,
+        55
+      ],
+      "lookAt": [
+        0,
+        108,
+        7
+      ]
+    },
+    {
+      "name": "glazed-corner-towers",
+      "position": [
+        48,
+        130,
+        52
+      ],
+      "lookAt": [
+        0,
+        117,
+        0
+      ]
+    },
+    {
+      "name": "cross-cap",
+      "position": [
+        48,
+        157,
+        49
+      ],
+      "lookAt": [
+        0,
+        130,
+        0
+      ]
+    },
+    {
+      "name": "beacon-and-crane",
+      "position": [
+        26,
+        147,
+        24
+      ],
+      "lookAt": [
+        3,
+        140,
+        0
+      ]
+    },
+    {
+      "name": "north-low-roofs",
+      "position": [
+        -53,
+        28,
+        -63
+      ],
+      "lookAt": [
+        0,
+        12,
+        -15
+      ]
+    },
+    {
+      "name": "roof-plan",
+      "position": [
+        1,
+        190,
+        3
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -420,
+        220,
+        560
+      ],
+      "lookAt": [
+        0,
+        74,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 641134,
+    "vertices": 1280028,
+    "materials": 8,
+    "bytes": 53779084,
+    "sha256": "sha256:e338bb2296879f88c91fd591cd616757b9859e17bc0d69790f4218a530f165a7"
+  }
+}

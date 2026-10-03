@@ -9,6 +9,46 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it('keeps ground approach lane heights aligned with an authored deck through a graph split', () => {
+    const net = new TransportNetwork();
+    net.registerTile({
+      key: 'approach',
+      origin: [0, 0],
+      tileSize: 100,
+      heightAt: () => 5,
+      features: [
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+          bridgeConnections: [{ point: [0, 0.5], elevation: 18, radius: 20 }],
+        },
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0.1, 0.5],
+              [0.1, 0.8],
+            ],
+          ],
+        },
+      ],
+    });
+    const edges = [...net.edgeList()].filter((e) =>
+      e.path.points.every((p) => Math.abs(p[1] - 50) < 1e-6),
+    );
+    expect(edges.length).toBeGreaterThan(1);
+    for (const edge of edges)
+      for (let i = 0; i < edge.path.points.length; i++) {
+        const x = edge.path.points[i]?.[0] as number,
+          t = Math.max(0, Math.min(1, x / 20));
+        expect(edge.ys[i]).toBeCloseTo(5.32 + (18 - 5.32) * (1 - t * t * (3 - 2 * t)), 5);
+      }
+  });
   it('builds a signalised crossroads from a document', () => {
     const net = new TransportNetwork();
     net.addDocument(TRANSPORT_NETWORK_EXAMPLE);

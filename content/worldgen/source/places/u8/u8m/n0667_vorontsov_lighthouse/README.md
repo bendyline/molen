@@ -20,13 +20,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-54,128 triangles, 102,790 vertices, 5 surface groups; 4,250,432 source bytes. SHA-256: `sha256:ee4a70ffab986b0eb314ad4d1a5cd5e1065a42624556fb88717c157e047643e6`. Actual bounds: -10.041, 0.000, -10.292 to 6.156, 31.181, 24.000 m.
+54,128 triangles, 102,790 vertices, 5 surface groups; 4,353,236 source bytes. SHA-256: `sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c`. Actual bounds: -10.041, 0.000, -10.292 to 6.156, 31.181, 24.000 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Exact-QID tower node anchors the cylinder. +Z follows the south-southeast pier axis (0.5rad from south toward east); compound shoreline points are inverse-rotated from world coordinates. The model waterline isY0, quay body rises above it and lighthouse service deck isY4. Absolute sea-level placement retains the operator’s27m light elevation; local tides/waves are host water effects. Published compound photographs resolve harbor-facing service facade on the southwest side. Proposed anchor 30.7600343, 46.4965348 (longitude, latitude), heading 0.5 radians. Elevation policy: **sea-level**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Exact-QID tower node anchors the cylinder. +Z follows the south-southeast pier axis (0.5rad from south toward east); compound shoreline points are inverse-rotated from world coordinates. The model waterline isY0, quay body rises above it and lighthouse service deck isY4. Absolute sea-level placement retains the operator’s27m light elevation; local tides/waves are host water effects. Published compound photographs resolve harbor-facing service facade on the southwest side. Proposed anchor 30.7600343, 46.4965348 (longitude, latitude), heading 0.5 radians. Elevation policy: **sea-level**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -34,6 +34,6 @@ Exact-QID tower node anchors the cylinder. +Z follows the south-southeast pier a
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Exterior represents the operator-published2018–2019 configuration. Hidden power-room equipment and unlocated later solar equipment are not invented; external service fittings visible in those references are represented. Published26m structural and27m light heights govern the silhouette; service-deck height, pipe details and cast-iron seam pitch are reconstructed from photographs. The remaining long breakwater is a separate map structure.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0667`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0667`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-blacksea-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

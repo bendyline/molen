@@ -20,7 +20,7 @@ Original exterior geometry under repository license. Architect/operator images w
 
 ## Authored geometry and materials
 
-726,110 triangles, 1,448,770 vertices, 6 surface groups; 59,423,804 source bytes. SHA-256: `sha256:b822fc8cb4100588681ea4e8783ae9a3027aced464093914a5423fceea440ff1`. Actual bounds: -53.104, 0.000, -44.294 to 42.775, 527.300, 77.738 m.
+726,110 triangles, 1,448,770 vertices, 6 surface groups; 60,872,588 source bytes. SHA-256: `sha256:3f6c601de738c8c322671aeb2afb08f8c9c5cfdfaf2943c7c11da65da4d3cafe`. Actual bounds: -53.104, 0.000, -44.294 to 42.775, 527.300, 77.738 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"−X west Skydeck side","origin":"center of the nine-tube tower footprint at nominal street grade"}.
 
