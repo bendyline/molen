@@ -53,14 +53,14 @@ describe('asset import (glTF -> asset@1 sidecar)', () => {
     expect(reimported.dir).toBe(first.dir);
     expect(await readFile(reimported.sidecarPath as string)).toEqual(original);
     const manifest = JSON.parse(await readFile(projectPath, 'utf8'));
-    expect(manifest.assets['landmark.tower']).toBe(relativeDir + '/asset.json');
+    expect(manifest.assets['landmark.tower']).toBe(`${relativeDir}/asset.json`);
     await expect(stat(join(projectDir, 'assets/landmark/tower'))).rejects.toThrow();
     expect((await inspectAsset({ ref: 'landmark.tower', projectPath, verify: true })).ok).toBe(
       true,
     );
     const staged = await stageAssets({ projectPath, outDir: join(parent, 'served') });
     expect(staged.ok, staged.error).toBe(true);
-    expect(staged.index?.['landmark.tower']).toBe(relativeDir + '/model.glb');
+    expect(staged.index?.['landmark.tower']).toBe(`${relativeDir}/model.glb`);
     expect(await readFile(join(parent, 'served', relativeDir, 'collision.bin'))).toEqual(
       await readFile(join(first.dir as string, 'collision.bin')),
     );

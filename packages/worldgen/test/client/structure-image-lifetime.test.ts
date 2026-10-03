@@ -152,7 +152,7 @@ it.each([
   'data:image/png;base64,AAAA',
 ])('preserves host-cached URI images across reloads with per-scene ownership: %s', async (uri) => {
   const cacheEnabled = THREE.Cache.enabled;
-  const cacheKey = 'image-bitmap:' + uri;
+  const cacheKey = `image-bitmap:${uri}`;
   const cachedImage = new Bitmap(),
     embeddedImage = new Bitmap();
   const ownedScenes = new WeakSet<THREE.Object3D>();
