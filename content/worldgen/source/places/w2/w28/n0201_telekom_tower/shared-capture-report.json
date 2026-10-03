@@ -1,11 +1,12 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0201_telekom_tower",
-  "sourceHash": "sha256:498d9423187321259dec398bbc2cf55619a365bad5f46737cb513c90bb040a10",
-  "runtimeHash": "sha256:4cfe8a6a9cd34df2042509c91375d952598c59e4845e5486b08eca2d04980ca1",
-  "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
+  "sourceHash": "sha256:b80a3508b1e66f2e76a737daa711367e6a4a71dff64a302f081d7dd955defada",
+  "runtimeHash": "sha256:1fd16263bbfe597abaa6154b9a1ce80b48744ac7b3a2772bd502c0afbc297084",
+  "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:b1557bd9ac58cfac602283d4b01659137be7b8b2d4c4408f1e3427e09efa3db0",
+  "clippingMode": "legacy",
+  "specHash": "sha256:89b2cfc4e58adf838749c66f37f77a44dbb7b2afb853632f6df04a82f05504a8",
   "placementHash": "sha256:dd25036f3a832fff3a6724b2a8812a71e35578e29038a1d4b869ed6b3e8b5ef6",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -28,7 +29,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:ab2806e9469005d43032823d9abf41e8ab52bd72997a3005f1f882d2276246ac",
+      "hash": "sha256:d2c67dee3818785b7c7bf8e8c83d966ea9b5f60fa6d750bae292e082f2c4325c",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -58,10 +59,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -78,8 +79,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -89,7 +93,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:c393e4259f955bba88b7c9af2d0907ff13863bc7aa61cf45aef175e024f36276",
+      "hash": "sha256:a45921bf5699efba963c97cfead8a516874c3cecd9d14387e61cb4fb5b5b6d58",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -119,10 +123,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -139,8 +143,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -150,7 +157,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:32fdc3ef18ec365d17df12ae2c225da84ad39058f3b948616405a9be4d63c1a8",
+      "hash": "sha256:dd4d7b340688f5a0bb6bd20f693b84ae12d1fad28d449e55b846bc3d528f1b7a",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -180,10 +187,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -200,8 +207,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -211,7 +221,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:7f08cd03c757d3fcd3924e08c269edf6563ebc5b3ccdb407b95d9401ccc1e08f",
+      "hash": "sha256:6a502f8585844b3ce8d15b86561c53d8c5064cd53e3b5bd14bf33359416dbb9f",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -241,10 +251,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -261,8 +271,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -272,7 +285,7 @@
     },
     {
       "path": "shots/shared/opposed-curved-wings.png",
-      "hash": "sha256:e6faaa7bb14ee619f1984bc981f977dda190f62e63674f75e17e3def31994902",
+      "hash": "sha256:9fb3aa087c5b855ffec681287a93b6b8db4db8782368131997be2be88e1334f9",
       "camera": {
         "name": "opposed-curved-wings",
         "position": [
@@ -311,10 +324,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -331,8 +344,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -342,7 +358,7 @@
     },
     {
       "path": "shots/shared/open-sky-gardens.png",
-      "hash": "sha256:f574d46439fc9d1b35b902291c32b740fc589dcdf2e7d66556e21cf8766266ff",
+      "hash": "sha256:c2fd2aa64177480f3017eccdbcf6a5ded4376bd8d93f67b674c5a42183397a45",
       "camera": {
         "name": "open-sky-gardens",
         "position": [
@@ -381,10 +397,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -401,8 +417,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -412,7 +431,7 @@
     },
     {
       "path": "shots/shared/bowstring-garden-truss.png",
-      "hash": "sha256:da255b8d8a207b3212170850fefca121dac286e98b2ed06a92e44fac6b103d26",
+      "hash": "sha256:b5c72d13d30d428884ff41cbdeb41350d1fa446e9f547018d7d049dfa10907d6",
       "camera": {
         "name": "bowstring-garden-truss",
         "position": [
@@ -451,10 +470,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -471,8 +490,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -482,7 +504,7 @@
     },
     {
       "path": "shots/shared/ribbon-sunshades.png",
-      "hash": "sha256:f5724ac8e8097cfaa22eea8dd921e5b2fe37285df2590a46420a15f5b028bce4",
+      "hash": "sha256:5f1f16287c3e931d5e2b59de3b1cf167424b2c7525d9c9e63a1e1da57088e705",
       "camera": {
         "name": "ribbon-sunshades",
         "position": [
@@ -521,10 +543,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -541,8 +563,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -552,7 +577,7 @@
     },
     {
       "path": "shots/shared/helipad-bowl.png",
-      "hash": "sha256:ccfff03551686d7ffc368ff2b3bd9c200c1f423651617f5af84e9f2159d7fcf3",
+      "hash": "sha256:8c3329a74c3d0a1df59b7200a1560f6d449929d9460d87a624587ad294808064",
       "camera": {
         "name": "helipad-bowl",
         "position": [
@@ -591,10 +616,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -611,8 +636,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -622,7 +650,7 @@
     },
     {
       "path": "shots/shared/helipad-open-grating.png",
-      "hash": "sha256:ec2e6adc86cbb93787758553b56e215cde67214b8b979c62d02957a0baefbe5a",
+      "hash": "sha256:e7675acc74f188663bc6714dcce96e29e1fa070be11923ba80e2cc354a83dc23",
       "camera": {
         "name": "helipad-open-grating",
         "position": [
@@ -661,10 +689,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -681,8 +709,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -692,7 +723,7 @@
     },
     {
       "path": "shots/shared/antenna-sail.png",
-      "hash": "sha256:f20b94030f7ed1357bec403f61a168f110f046e00c3e9abe4c24eb2df1c12da6",
+      "hash": "sha256:281991a63b0c862fdf6ebf1ff5d9720e8186101cc3f2b5f2c87e2abd7785c810",
       "camera": {
         "name": "antenna-sail",
         "position": [
@@ -731,10 +762,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -751,8 +782,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -762,7 +796,7 @@
     },
     {
       "path": "shots/shared/tall-wing-taper.png",
-      "hash": "sha256:1e6c4c136237942708245d6892c7c5a10c41f48e48ee4a3938cb81c509fa05d9",
+      "hash": "sha256:e126b7ff42c2cf131ef1f28208d73989e9be10da8f4996dddc5d13fa5ba15fb7",
       "camera": {
         "name": "tall-wing-taper",
         "position": [
@@ -801,10 +835,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -821,8 +855,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -832,7 +869,7 @@
     },
     {
       "path": "shots/shared/planted-terrace.png",
-      "hash": "sha256:5524a141cf67df74b0c94bc011364223b4dbef9d4f8f5056954b6fbeaad07569",
+      "hash": "sha256:5a06fd60d26405e3d9983b960a67b22c3d48e2b0c5aeb2d01694c8a036697dc3",
       "camera": {
         "name": "planted-terrace",
         "position": [
@@ -871,10 +908,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -891,8 +928,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -902,7 +942,7 @@
     },
     {
       "path": "shots/shared/ground-entrance.png",
-      "hash": "sha256:e4c52d1e0e2de14936d5d3a4257f3dab34e097e3aaba9b52e61f8fc6ca41e908",
+      "hash": "sha256:277120ceb1e72452a48cb7d3c1682ecc4aab6bc88779bfc5e884d8f0f7a7fccc",
       "camera": {
         "name": "ground-entrance",
         "position": [
@@ -941,10 +981,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -961,8 +1001,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -972,7 +1015,7 @@
     },
     {
       "path": "shots/shared/far-bamboo-silhouette.png",
-      "hash": "sha256:a6c323e9fd8964b2a40b5d42f0d0c6325f7290ffae7655dfe1a0dbe04d050e2b",
+      "hash": "sha256:601e69c20566b29da4e213473bfaf420aad8c01fe11425002a489cc196ca1ef2",
       "camera": {
         "name": "far-bamboo-silhouette",
         "position": [
@@ -1011,10 +1054,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -1031,8 +1074,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -1072,10 +1118,10 @@
           ]
         },
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a4f268b1-cb6c-4af1-8608-c5ce2de0c1bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f4a784f6-005e-4e9d-abed-6c810c38aae4",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83dcf0cb-d6f5-4d22-95dd-ab92f3543f83",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "6dcf384e-e541-4b68-852e-c1b1bdb3f4fd"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "bdabb17b-3fa4-4b8b-8aa5-822ed59a10c3",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "befc9c31-b83a-4fa5-b509-6cd3631b4c4a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "90e603c1-7d7f-437d-ae27-2985131ead56",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "808642f7-0e8c-45c3-b1d7-2d0d672f4632"
         },
         "loads": [
           "molen.worldgen.structure.n0201_telekom_tower"
@@ -1092,8 +1138,11 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_round": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_perforated_square": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.stone_granite": 1
         },
@@ -1112,5 +1161,31 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:bcf024b804719b6dce055c82d52ad61827c3395479f386dac8da859b6c265f39",
+    "previousCaptureReportHash": "sha256:69393326f639e9564641187a719585fb95c778962ae1e9dec0acb0346345b1bd",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/w2/w28/n0201_telekom_tower/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:75047db6e82c8d201c781f33beb9ac6054f87453f143fe0dabbed0962f3b42da",
+        "current": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c"
+      },
+      {
+        "path": "mesh.bytes",
+        "previous": 126664912,
+        "current": 129776392
+      },
+      {
+        "path": "mesh.sha256",
+        "previous": "sha256:b80a3508b1e66f2e76a737daa711367e6a4a71dff64a302f081d7dd955defada",
+        "current": "sha256:915a7b79b8319e32eed5642fe99f2177593d8958facb25d1f964c78542d74b4f"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.hmwhitesa.com/site/assets/files/1212/the_new_york_times_building.pdf)
 - [Reference](https://www.openstreetmap.org/relation/1860567)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-212,151 triangles; 494,519 vertices; 5 material groups; 19,857,264 bytes. Native bounds: -62.067, 0.000, -30.137 to 61.963, 319.000, 30.378. Source hash: `sha256:7d4cbbdb7bbdacae2358a947935b152f093572a8a333e7aa6b3e938d77a2755c`.
+212,151 triangles; 494,519 vertices; 5 material groups; 20,351,796 bytes. Native bounds: -62.067, 0.000, -30.137 to 61.963, 319.000, 30.378. Source hash: `sha256:6dd43f918d1631acc6846e8876a5ba311e38095fcfbb4b5de79cfe75f8c143b6`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

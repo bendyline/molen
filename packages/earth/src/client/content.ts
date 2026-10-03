@@ -6,8 +6,20 @@
 
 import { type AssetProvider, decodeStarCatalog, type SkyStar } from '@bendyline/molen-client';
 import { createTypeLibrary, type TypeLibrary } from '@bendyline/molen-kernel/content';
-import { createPackSet, openPack, type Pack, type PackSet } from '@bendyline/molen-pack';
-import type { PackIndex, VehicleData } from '@bendyline/molen-schema';
+import {
+  createPackSet,
+  type OpenPackOptions,
+  openPack,
+  type Pack,
+  type PackSet,
+} from '@bendyline/molen-pack';
+import {
+  type BlockCache,
+  cachingDocumentFetch,
+  cachingRangeReader,
+  urlRangeReader,
+} from '@bendyline/molen-pack/cache';
+import type { PackIndex, PackIndexEntry, VehicleData } from '@bendyline/molen-schema';
 import type { TerrainParkedVehicle } from '@bendyline/molen-terrain/client';
 import {
   type ResolvedStylePack,
@@ -120,6 +132,17 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
   };
 }
 
+export interface OpenPacksFromIndexOptions {
+  /**
+   * Keep pack bytes in this cache (`createBlockCache` from `@bendyline/molen-pack/cache`): the
+   * index is revalidated instead of refetched, and a pack read before opens from cached bytes.
+   * Pass the same cache to `mountEarthView` so terrain shares its budget.
+   */
+  byteCache?: BlockCache;
+  /** With `byteCache`: packs at most this size are fetched whole on first use (default 4 MiB). */
+  wholeBelow?: number;
+}
+
 /**
  * Open the packs with the given ids from a `molen/pack-index@1` document at `indexUrl`, in
  * parallel and hash-checked. Ids the index does not list are skipped. The supplied fetch
@@ -129,29 +152,56 @@ export async function openPacksFromIndex(
   indexUrl: string | URL,
   ids: readonly string[] = Object.values(EARTH_PACK_IDS),
   fetchImpl: typeof fetch = fetch,
+  options: OpenPacksFromIndexOptions = {},
 ): Promise<Pack[]> {
   const url = new URL(indexUrl, typeof document === 'undefined' ? undefined : document.baseURI);
-  const response = await fetchImpl(url);
+  const cache = options.byteCache;
+  const response = await (cache !== undefined
+    ? cachingDocumentFetch(cache.store, fetchImpl)
+    : fetchImpl)(url);
   if (!response.ok) throw new Error(`content packs: HTTP ${response.status} for ${url}`);
   const index = (await response.json()) as PackIndex;
+  /** One pack file: through the cache by content and file name when there is one. */
+  const open = (
+    entry: PackIndexEntry,
+    extra: OpenPackOptions & { signal?: AbortSignal },
+  ): Promise<Pack> => {
+    const fileUrl = new URL(entry.file, url).href;
+    if (cache === undefined) {
+      return openPack(fileUrl, { fetch: fetchImpl, sizeHint: entry.size, ...extra });
+    }
+    const reader = urlRangeReader(fileUrl, {
+      size: entry.size,
+      fetch: fetchImpl,
+      ...(extra.signal !== undefined ? { signal: extra.signal } : {}),
+    });
+    return openPack(
+      cachingRangeReader(
+        reader,
+        cache,
+        // The content hash names what the pack holds; the file and size pin its zip layout.
+        {
+          key: `pack:${entry.contentHash}:${entry.file}:${entry.size}`,
+          url: fileUrl,
+          size: entry.size,
+        },
+        options.wholeBelow !== undefined ? { wholeBelow: options.wholeBelow } : {},
+      ),
+      { label: fileUrl, ...extra },
+    );
+  };
   const opened = await Promise.allSettled(
     ids.map(async (id) => {
       const entry = index.packs[id];
       if (entry === undefined) return undefined;
-      const core = await openPack(new URL(entry.file, url).href, {
-        fetch: fetchImpl,
-        sizeHint: entry.size,
-        expect: { contentHash: entry.contentHash },
-      });
+      const core = await open(entry, { expect: { contentHash: entry.contentHash } });
       try {
         return await withModelArchives(core, (archiveId, contentHash, signal) => {
           const archive = index.packs[archiveId];
           if (!archive || archive.contentHash !== contentHash)
             throw new Error(`Missing or stale model archive in index: ${archiveId}`);
-          return openPack(new URL(archive.file, url).href, {
-            fetch: fetchImpl,
+          return open(archive, {
             mode: 'range',
-            sizeHint: archive.size,
             expect: { contentHash },
             integrity: 'sha256',
             maxCacheBytes: 4 * 1024 * 1024,

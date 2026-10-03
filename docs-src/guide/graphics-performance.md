@@ -113,6 +113,12 @@ pixels and its old entries are pruned. Store failures fall back to baking. `crea
 and `mountEarthView` accept the store as `materialStore`; World Explorer passes the IndexedDB store
 unless `materialCache=0`.
 
+Terrain and content bytes persist the same way through a `BlockCache` from
+`@bendyline/molen-pack/cache`, passed to `mountEarthView` as `byteCache` (see
+[the Earth view](earth-view.md)). It saves network and decompression time, not frame time: decoding
+and meshing still run for every tile the stream loads. Prefetching reads bytes only, so it never
+competes with tile construction on the main thread.
+
 World-generation workers also prepare building spatial cells and full/structural LOD indices.
 The renderer requests `renderCellsOnly` when using cell LODs so it does not retain a redundant
 canonical building mesh. Per-cell Three object assembly is a separate queue job. Generation

@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://360chicago.com/articles/news-and-press/360-chicago-announces-the-debut-of-tilt)
 - [Reference](https://www.openstreetmap.org/way/31064573)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-148,110 triangles; 431,054 vertices; 4 material groups; 16,866,924 bytes. Native bounds: -42.171, 0.000, -27.348 to 42.177, 456.900, 27.347. Source hash: `sha256:51d419e9db015e9149fed90db40e33737895026968cd537d4e5b94d2a471a531`.
+148,110 triangles; 431,054 vertices; 4 material groups; 17,297,992 bytes. Native bounds: -42.171, 0.000, -27.348 to 42.177, 456.900, 27.347. Source hash: `sha256:39160d4e80eb3dc9c403d6279d8427130c6c065f2d0824a56aa4a4c2d181f7e9`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

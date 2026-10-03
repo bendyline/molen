@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/tyholt-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-133,426 triangles; 266,556 vertices; 3 material groups; 10,932,904 source bytes. Source hash: `sha256:fd01f803c21cad5f12284a5f071d7d9cdd456d5c8f14166ffce903579484a0b4`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+133,426 triangles; 266,556 vertices; 3 material groups; 11,199,476 source bytes. Source hash: `sha256:a0b0f767ea45efc6c79522606c417991f1e67723ba9ddb2eea6fa7276daa4fea`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0606`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

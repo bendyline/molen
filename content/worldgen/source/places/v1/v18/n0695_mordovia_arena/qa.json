@@ -1,9 +1,9 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0695_mordovia_arena",
-  "sourceHash": "sha256:b9e0c1c89e513cbbffed5effe7e7592c1efa37e5ee2bf9f15852e822b68b0570",
-  "runtimeHash": "sha256:54f57fab4ba351cf3968f86b06c16727bd6b9c92faf7830a8dc2bd9ccddf5557",
-  "captureReportHash": "sha256:a39bb6482061d5357adf988c609540749ea6e4720f6a3d4ece9a0a1463d4cf1d",
+  "sourceHash": "sha256:5f7cbca2b3fc3d6d1a4a4f8e76ec791a6e126629725cc56a0743e9ec981b8332",
+  "runtimeHash": "sha256:f7ff7f6b94c7a5b2ed7898af9d78af9a0968d84c323d5afe22235f4478761cf6",
+  "captureReportHash": "sha256:e6d913bf104a1195dc0e51415d71aaf6ef90cd9988a0e8c6307a38e98b185218",
   "visualReview": {
     "status": "passed",
     "scope": "Completed exterior and visible football bowl.",
@@ -25,18 +25,18 @@
       "shots/near-roof-panels.png",
       "shots/far-roof-envelope.png"
     ],
-    "notes": "All sixteen current portable and sixteen shared frames inspected, with full-resolution cassette, stair and distant-envelope views. Revised tread/stringer intersections are closed. Individual lattice consoles, square-perforated folded cassettes, shell color progression, two concourses, six mapped stair approaches, orange/white seating, Cyrillic city lettering, screens and roof lights are coherent."
+    "notes": "All sixteen current portable and sixteen shared frames inspected, with full-resolution cassette, stair and distant-envelope views. Revised tread/stringer intersections are closed. Individual lattice consoles, square-perforated folded cassettes, shell color progression, two concourses, six mapped stair approaches, orange/white seating, Cyrillic city lettering, screens and roof lights are coherent. 2026-10-01 filtering follow-up: inspected every newly rendered portable frame and the corresponding shared views. Mipmapped fractional coverage removes the repeating interference bands while retaining near apertures and visible structure behind the panels. No changed geometry, silhouette or panel orientation was observed."
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:834b58b37a435a58f70f4c6bac651349361237881d0aefc2218d31685d76ec67",
-    "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
+    "captureReportHash": "sha256:589f74b1500ba527b8d8595224327f471150b6923f620ea46b496c23dd71b92d",
+    "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
     "specHash": "sha256:82de00bec285c9270ca67c8419da78f62e270c3b52666a21cae002c176b147c4",
     "materialGraphs": {
       "matgraph:molen.worldgen.material.metal_perforated_square": {
         "path": "materials/metal_perforated_square.matgraph.json",
-        "hash": "sha256:f12058417eb51d202ef3740309bd308914c4e8e17d8d163a3aec6c97cb3cc362"
+        "hash": "sha256:51722a6e28bb79b7b7b3274fc9ccf0a5d341ee28b332627005d7aac3d6d1f937"
       },
       "matgraph:molen.worldgen.material.membrane": {
         "path": "materials/membrane.matgraph.json",
@@ -69,17 +69,23 @@
       "shots/shared/far-roof-envelope.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Canonical square-hole material shows actual openings and supporting steel in close views. The 0.3 alpha cutoff retains the subpixel shell at distance; fine perforations alias and eventually average opaque rather than disappearing. Portable fallback embeds the identical canonical graph bake, and world-viewer replacement uses the shared texture. Sky-PMREM lighting and geographic unload assertions passed."
+    "notes": "2026-10-01: inspected all current reflected shared frames, full-size near and intermediate facade views, all four overview directions, interiors and north-up placement. Fractional alpha coverage uses trilinear filtering and standard blending, matching the portable GLB. Near holes remain visible; distant panels retain average openness without the prior moire bands or the grain observed in a rejected stochastic-coverage experiment. Canonical surfaces are acquired once and unloaded with zero live model geometries. Conventional transparent layer sorting remains a renderer limitation; no new layer-order defect was visible in these views."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:a034fad841beaf62b04f4aa434ec84a3199934860367d7f8bb1e0d159eac5125",
-    "notes": "Exact stadium roof relation7718715 and enclosed pitch590956380 set the centered north/south field axis. The north-up rendered envelope matches the mapped roof outline, six mapped approach routes join the podium, and east stand city lettering agrees with the operator seating plan. NativeY0 is ground/pitch contact; small stringer feet extend below it."
+    "notes": "Exact stadium roof relation7718715 and enclosed pitch590956380 set the centered north/south field axis. The north-up rendered envelope matches the mapped roof outline, six mapped approach routes join the podium, and east stand city lettering agrees with the operator seating plan. NativeY0 is ground/pitch contact; small stringer feet extend below it. 2026-10-01: fresh north-up placement and close entrance views inspected against the unchanged signed frame; current transform, footprint relationship and datum remain consistent with this scoped review. Flat fixture does not newly certify site terrain. Filtering follow-up: fresh north-up capture inspected; the placement hash, geometry bounds and contact relationship are unchanged."
   },
   "fidelityReview": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Executed steel engineer, cassette fabricator, stadium operator and rod supplier support the actual individual structure. Eighty-eight consoles follow the structural engineer where the cassette supplier prose differs. Cassette distribution, local section details, seating inventory and roof camber are reconstructed from published photographs, not fabrication drawings. No event graphics or enclosed service rooms are modeled."
-  }
+    "notes": "Executed steel engineer, cassette fabricator, stadium operator and rod supplier support the actual individual structure. Eighty-eight consoles follow the structural engineer where the cassette supplier prose differs. Cassette distribution, local section details, seating inventory and roof camber are reconstructed from published photographs, not fabrication drawings. No event graphics or enclosed service rooms are modeled. 2026-10-01 filtering follow-up: the facade sampling defect is resolved in current portable and shared captures. Earlier scoped exterior acceptance is restored with the same documented geometric reconstructions. This is not a fabrication survey, full interior or exact optical microgeometry simulation."
+  },
+  "reviewHistory": [
+    {
+      "date": "2026-10-01",
+      "result": "Returned to pending after fresh captures exposed facade moire. Restored after filtered coverage was rendered and inspected; binary-cutout and stochastic experiments are retained in local diagnostic artifacts."
+    }
+  ]
 }

@@ -85,6 +85,10 @@ export async function embedGraphFallbacks(input, refs, root) {
       if (graph.alphaTest !== undefined) {
         material.alphaMode = 'MASK';
         material.alphaCutoff = graph.alphaTest;
+      } else if (graph.alphaCoverage) {
+        // Match the shared material's filtered fractional coverage in core glTF.
+        material.alphaMode = 'BLEND';
+        delete material.alphaCutoff;
       }
       found = true;
     }

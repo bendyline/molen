@@ -298,6 +298,8 @@ for (const name of [
   'wood_painted_shingle',
   'metal_painted',
   'metal_stainless',
+  'metal_stainless_polished',
+  'metal_stainless_beadblasted',
   'stone_travertine',
   'clay_fired',
   'stone_granite',

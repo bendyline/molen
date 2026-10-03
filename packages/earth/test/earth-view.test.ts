@@ -2,7 +2,12 @@
 // pyramid, navigation, markers and quality code, with only WebGL replaced. A procedural archive
 // supplies flat PNG16 elevation so streaming, placement and re-anchoring run end to end.
 
-import { encodePng16, type TerrainPackageDescriptor } from '@bendyline/molen-terrain/kernel';
+import { createBlockCache, createMemoryByteStore } from '@bendyline/molen-pack/cache';
+import {
+  encodePng16,
+  type TerrainPackageDescriptor,
+  writePmtilesArchive,
+} from '@bendyline/molen-terrain/kernel';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
 import { ENTITY_TYPES } from './entity-types';
@@ -434,6 +439,131 @@ describe('mountEarthView', () => {
     expect(view.getCamera().longitude).toBeCloseTo(-87.6, 5);
     expect(view.stats().displayedTiles).toBeGreaterThan(0);
     view.dispose();
+  });
+
+  it('streams elevation it opens itself through a byte cache, from disk on the next visit', async () => {
+    // A real PNG16 elevation archive at levels 0-6, served over HTTP ranges.
+    const tiles = [];
+    for (let z = 0; z <= 6; z++) {
+      for (let y = 0; y < 2 ** z; y++) {
+        for (let x = 0; x < 2 ** z; x++) tiles.push({ z, x, y, data: flat });
+      }
+    }
+    const bytes = writePmtilesArchive(tiles, { tileType: 'png', bounds: [-180, -85, 180, 85] });
+    const url = 'https://terrain.example/v1/elevation.pmtiles';
+    let requests = 0;
+    vi.stubGlobal('fetch', async (input: RequestInfo | URL, init?: RequestInit) => {
+      expect(String(input)).toBe(url);
+      requests++;
+      const match = /^bytes=(\d+)-(\d+)$/.exec(new Headers(init?.headers).get('range') ?? '');
+      if (match === null) throw new Error('expected a range request');
+      const start = Number(match[1]);
+      const end = Math.min(Number(match[2]), bytes.length - 1);
+      return new Response(bytes.slice(start, end + 1), {
+        status: 206,
+        headers: {
+          'content-range': `bytes ${start}-${end}/${bytes.length}`,
+          'content-length': String(end - start + 1),
+          etag: '"t1"',
+        },
+      });
+    });
+    const pkg: TerrainPackageDescriptor = {
+      ...earth,
+      tileMatrix: { ...earth.tileMatrix, maxLevel: 6 },
+      files: [{ path: 'elevation.pmtiles', sha256: 'ab12', bytes: bytes.length }],
+    };
+    const store = createMemoryByteStore();
+    const visit = async () => {
+      const cache = createBlockCache(store);
+      const view = await mountEarthView({
+        canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+        terrain: pkg,
+        baseUrl: 'https://terrain.example/v1/terrain-package.json',
+        byteCache: cache,
+        camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+        style: { sky: false },
+      });
+      await pump(20);
+      await settle(view);
+      await cache.flush();
+      const stats = { view: view.stats(), cache: view.cacheStats().cache };
+      view.dispose();
+      return stats;
+    };
+    const first = await visit();
+    expect(first.view.displayedTiles).toBeGreaterThan(0);
+    expect(first.view.failedTiles).toBe(0);
+    expect(first.cache?.storeArchives).toBe(1);
+    const firstRequests = requests;
+    expect(firstRequests).toBeGreaterThan(0);
+
+    const second = await visit();
+    expect(second.view.displayedTiles).toBe(first.view.displayedTiles);
+    expect(requests).toBe(firstRequests);
+    expect(second.cache?.storeHits).toBeGreaterThan(0);
+  });
+
+  it('reads places a host queues into the byte cache before the camera gets there', async () => {
+    const tiles = [];
+    for (let z = 0; z <= 8; z++) {
+      for (let y = 0; y < 2 ** z; y++) {
+        for (let x = 0; x < 2 ** z; x++) tiles.push({ z, x, y, data: flat });
+      }
+    }
+    const bytes = writePmtilesArchive(tiles, { tileType: 'png', bounds: [-180, -85, 180, 85] });
+    let requests = 0;
+    vi.stubGlobal('fetch', async (_input: RequestInfo | URL, init?: RequestInit) => {
+      requests++;
+      const match = /^bytes=(\d+)-(\d+)$/.exec(new Headers(init?.headers).get('range') ?? '');
+      if (match === null) throw new Error('expected a range request');
+      const start = Number(match[1]);
+      const end = Math.min(Number(match[2]), bytes.length - 1);
+      return new Response(bytes.slice(start, end + 1), {
+        status: 206,
+        headers: {
+          'content-range': `bytes ${start}-${end}/${bytes.length}`,
+          'content-length': String(end - start + 1),
+        },
+      });
+    });
+    const pkg: TerrainPackageDescriptor = {
+      ...earth,
+      tileMatrix: { ...earth.tileMatrix, maxLevel: 8 },
+      files: [{ path: 'elevation.pmtiles', sha256: 'cd34', bytes: bytes.length }],
+    };
+    const mountWith = (prefetch: false | undefined) =>
+      mountEarthView({
+        canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+        terrain: pkg,
+        baseUrl: 'https://terrain.example/v1/terrain-package.json',
+        byteCache: createBlockCache(createMemoryByteStore(), { blockBytes: 4096 }),
+        ...(prefetch === false ? { prefetch } : {}),
+        camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+        style: { sky: false },
+      });
+    const view = await mountWith(undefined);
+    await pump(20);
+    await settle(view);
+    const before = requests;
+    // About 250 km east (this archive's finest tiles are ~100 km wide): nothing there is resident.
+    const result = await view.prefetch([{ latitude: 47.6, longitude: -119, altitude: 800 }]);
+    expect(result.requested).toBeGreaterThan(0);
+    expect(result.warmed).toBe(result.requested);
+    // Every tile here is the same image, which the archive stores once, so the reads may all be
+    // served from bytes the view already fetched; prefetch.test.ts counts archive reads.
+    expect(requests).toBeGreaterThanOrEqual(before);
+    expect(view.cacheStats().prefetch?.warmed).toBe(result.warmed);
+    view.dispose();
+
+    const off = await mountWith(false);
+    expect(await off.prefetch([{ latitude: 47.6, longitude: -121.8 }])).toEqual({
+      requested: 0,
+      warmed: 0,
+      failed: 0,
+    });
+    expect(off.cacheStats().prefetch).toBeUndefined();
+    off.dispose();
   });
 
   it('pauses rendering and releases everything on dispose', async () => {

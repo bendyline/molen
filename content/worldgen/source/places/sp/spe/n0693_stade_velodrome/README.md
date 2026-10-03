@@ -20,7 +20,7 @@ Original authored geometry and shared procedural materials. Primary reference ph
 
 ## Authored geometry and materials
 
-1,291,404 triangles, 2,565,728 vertices, 6 surface groups; 105,300,888 source bytes. SHA-256: `sha256:eb223e4145645a5d874b98f5ed1a8c8e71b88239b0e9f7aae51454ac66af435e`. Actual bounds: -130.782, -0.100, -136.489 to 129.799, 65.273, 137.840 m.
+1,291,404 triangles, 2,565,728 vertices, 6 surface groups; 107,866,632 source bytes. SHA-256: `sha256:930c995442d3b87cd1e25c91186c1285a0eae98e5a372fe902456ef49252f4cd`. Actual bounds: -130.782, -0.100, -136.489 to 129.799, 65.273, 137.840 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped playing-field center; +Z north-northwest, +X west toward Jean Bouin. Y0 is the playing-field/close-apron reference plane."}.
 

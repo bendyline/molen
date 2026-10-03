@@ -6,7 +6,7 @@
   "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
   "footprintEvidenceHash": "sha256:b8385620f652305ac337040d0aba110096b3e5dd45e011397233857f504c82bf",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:b7f4b7e35516488ea1c65c82bc8ce31caa9e5c21cb83dc24efce9aec61ccebf7",
+  "specHash": "sha256:bc0462360163a21f89f2165097c708e8e3d67230e39fdb8956bbdd98d80f401d",
   "placementHash": "sha256:17505f2dd00241fe89648dc16a78bcd5f7f503039e120ab440c92357cfd45319",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -777,5 +777,21 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:b7f4b7e35516488ea1c65c82bc8ce31caa9e5c21cb83dc24efce9aec61ccebf7",
+    "previousCaptureReportHash": "sha256:0e50476356ab3704642a4e7e3a4f1e74f4fa295ec93d44f4d240e8ebc1b1c5a8",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/u5/u5r/n0606_tyholttarnet/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:b8385620f652305ac337040d0aba110096b3e5dd45e011397233857f504c82bf",
+        "current": "sha256:a2d87b761b0397ce92124963360ac760b806327b77755ae0c6f640d0dc199bcf"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

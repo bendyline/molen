@@ -17,11 +17,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://thgcreative.com/thg-gallery/top-of-the-rock/)
 - [Reference](https://www.openstreetmap.org/way/487519790)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-1,007,083 triangles; 2,988,895 vertices; 10 material groups; 116,701,784 bytes. Native bounds: -81.565, 0.000, -28.822 to 82.048, 259.074, 28.822. Source hash: `sha256:efe1f8a3866d60fd18cec53c23eb4ae2aa695ef8a1ca6ac8d3e9de392b6be05e`.
+1,007,083 triangles; 2,988,895 vertices; 10 material groups; 119,690,692 bytes. Native bounds: -81.565, 0.000, -28.822 to 82.048, 259.074, 28.822. Source hash: `sha256:a51c8f26a7fc5c3be71d40aaa2195c70a36883c6e9daaa57f3f165fd9c223fd8`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

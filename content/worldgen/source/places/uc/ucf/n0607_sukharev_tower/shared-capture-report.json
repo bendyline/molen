@@ -7,7 +7,7 @@
   "viewingDate": "1930-01-01",
   "footprintEvidenceHash": "sha256:da1a8f4ee77450922902e06787e8ca8abfe3c622eb8872dd50dcd2b69bf79fb1",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:a55291dcd848127be96189d0e4cc7b545806724c8991a0ec95d9573a81713e10",
+  "specHash": "sha256:1e9af983455ee7a7df9494c2170fde8fd3c897afe398dd14e74a1e5c98cad244",
   "placementHash": "sha256:8cd2c28b62eaa818765512ee0c4805968b4bf05f454e347ad2d479b43ddc21a2",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
@@ -1070,5 +1070,21 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:a55291dcd848127be96189d0e4cc7b545806724c8991a0ec95d9573a81713e10",
+    "previousCaptureReportHash": "sha256:64549fca1f5e9967bcde13ca152de22fe12945ebbe51d73eed8356482acc52e0",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/uc/ucf/n0607_sukharev_tower/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:da1a8f4ee77450922902e06787e8ca8abfe3c622eb8872dd50dcd2b69bf79fb1",
+        "current": "sha256:3b7e800f6f6ce234ab428401c3a29f15e3bcaeb50f1169e456faf87899deeeda"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

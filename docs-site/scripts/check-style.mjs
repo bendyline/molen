@@ -70,7 +70,7 @@ const withoutCode = (line) => line.replace(/`+[^`]*`+/g, '');
  * markdown is also read as plain text (npm tarball, llms.txt), so only portable syntax is allowed.
  */
 export function checkPage(page, text) {
-  const lines = text.split('\n');
+  const lines = text.split(/\r?\n/);
   const { data, offset } = frontmatter(lines);
   const home = /^layout:\s*home\b/m.test(data);
   const problems = [];

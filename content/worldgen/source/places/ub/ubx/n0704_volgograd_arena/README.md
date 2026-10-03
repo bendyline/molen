@@ -20,7 +20,7 @@ Primary architect/engineer photographs and technical text consulted, not embedde
 
 ## Authored geometry and materials
 
-1,655,874 triangles, 2,991,452 vertices, 9 surface groups; 124,575,964 source bytes. SHA-256: `sha256:7ab6edcef486b587d7c76ae7aa73a3fea5cfc5947c8aeac33d803a639fe1891f`. Actual bounds: -200.833, -0.174, -180.959 to 153.848, 49.660, 177.129 m.
+1,655,874 triangles, 2,991,452 vertices, 9 surface groups; 127,567,432 source bytes. SHA-256: `sha256:e8ad58867b55f8b6eb763da43fa2b72ab47195b4d0d2391ff4f01045364f962c`. Actual bounds: -200.833, -0.174, -180.959 to 153.848, 49.660, 177.129 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped field centre at ground-level playing surface. +Z geographic north and+X west; the elevated entry bridge/deck lies8.4m above the ground."}.
 

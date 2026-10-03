@@ -1,9 +1,9 @@
 # Shared architectural material library
 
-The library contains **65 canonical procedural surface graphs**. Forty-five existing patterns
+The library contains **67 canonical procedural surface graphs**. Forty-five existing patterns
 remain intact. Added surfaces cover painted wood, continuous coated and uncoated metals,
 timber, canvas, marble, travertine, raw and weathered limestone, fired clay, ETFE film,
-raw basalt, raw sandstone, cast bronze and four perforated metal patterns. Every graph is a small editable
+raw basalt, raw sandstone, cast bronze, polished and bead-blasted stainless steel, and four perforated metal patterns. Every graph is a small editable
 `molen/matgraph@1` document in `content/worldgen/materials`, authored through
 `packages/worldgen/scripts/generate-pack.mjs`.
 
@@ -32,6 +32,8 @@ it is excluded from runtime packs. Material graph references are stable runtime 
 | Individually modeled fired bricks | clay_fired | `#b47554` | 0.8 × 0.8 m |
 | Natural timber beams | wood_plain | `#b7a17b` | 2 × 0.25 m |
 | Cream sail canvas | fabric_canvas | `#e5ddc6` | 0.25 × 0.25 m |
+| Polished stainless steel | metal_stainless_polished | `#d8d9d7` | 1 × 1 m |
+| Bead-blasted stainless steel | metal_stainless_beadblasted | `#d8d9d7` | 1 × 1 m |
 
 Every reference uses the prefix `matgraph:molen.worldgen.material.`. The white, cream and blue
 wood variants share one painted-lap texture set. Green, white and gray shingles share one
@@ -42,6 +44,11 @@ The base colors contain restrained construction variation and no baked direction
 Normal maps add small surface relief; they do not replace silhouette geometry. Intact painted
 steel is dielectric even though its underlying structure is metal. Existing glazing surfaces
 retain their own colors and do not take an opaque wall tint.
+
+The two stainless finishes share neutral metallic color and differ in roughness and grain.
+They were inspected together on the Spire of Dublin with environment reflections enabled;
+its source bundle records the current captures. Use true geometry for large perforations
+and distinctive engraved or polished patterns. These material graphs provide surface finish.
 
 ## UV and GLB contract
 
@@ -203,23 +210,25 @@ fidelity, weathering, irregular substrate detail and geometry-aligned mapping st
 
 ## Square perforations and cast bronze
 
-`metal_perforated_square` uses 65.5 mm square base-color alpha cutouts on 85 mm centers,
-with `alphaTest: 0.3`. Metric authored UVs repeat every 0.085 m; cassette folded returns
-and structural supports remain geometry. Actual hole texels are fully transparent. Cutout
-textures use linear minification without mip averaging, which otherwise closes small holes
-at distance. The neutral map accepts vertex tint. Mordovia Arena embeds a portable copy baked
-through the public material CLI and uses the shared surface in the world viewer.
+`metal_perforated_square` uses 65.5 mm square alpha apertures on 85 mm centers,
+with `alphaCoverage: true`. Metric authored UVs repeat every 0.085 m; cassette folded returns
+and structural supports remain geometry. Hole texels are fully transparent. Mipmapped blending
+preserves average open area at distance. The neutral map accepts vertex tint. Mordovia Arena
+embeds a portable copy baked through the public material CLI with glTF `BLEND`, matching the
+shared viewer surface. Inspect overlapping transparent layers from both sides.
 
 `metal_bronze_cast` repeats every 0.25 m and has continuous fine patination and casting pits,
 with no sheet seams. Representative roughness and metalness are approximately 0.65.
-Both graphs were reviewed in [cutout-bronze.png](cutout-bronze.png).
+The earlier hard-cutout revision and bronze were reviewed in [cutout-bronze.png](cutout-bronze.png).
+Current coverage filtering is reviewed in the Mordovia Arena source bundle.
 
 ## Round perforations
 
-`metal_perforated_round` provides 4 mm round holes on 12 mm centers.
+`metal_perforated_round` provides 4 mm round holes on 12 mm centers, with mipmapped fractional
+coverage like the square pattern. Current filtering is reviewed in Rostec Arena's source bundle.
 `metal_perforated_round_open` provides 9 mm holes on 12 mm centers, approximately 44% open
-area for a more transparent shade screen. Both use actual base-color alpha cutouts with
-cutoff 0.3, neutral tint and 0.012 m repeat. The high-open dimensions are a reusable
+area for a more transparent shade screen and retains hard alpha cutoff 0.3. Both use neutral
+tint and a 0.012 m repeat. The high-open dimensions are a reusable
 reconstruction within a published 30–60% facade range, rather than a measured fabrication
 schedule. See [round-cutout.png](round-cutout.png) and [round-open-cutout.png](round-open-cutout.png).
 

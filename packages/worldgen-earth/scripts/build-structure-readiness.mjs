@@ -3,7 +3,9 @@ import { createHash } from 'node:crypto';
 import { readdir, readFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
+import { reviewedGlbEncoding } from '../../worldgen/scripts/reviewed-glb-encoding.mjs';
 import { validateStructureCollections } from '../../worldgen/scripts/structure-collections.mjs';
 import { writeIndex } from '../../worldgen/scripts/structure-model-files.mjs';
 import {
@@ -100,11 +102,12 @@ async function modelReadiness(candidate, geo) {
   const images = await imageFiles(sourceDirectory);
   const placement = placements.entries.find((entry) => entry.asset === asset);
   const placementHash = placement ? hash(JSON.stringify(placement)) : null;
+  const encoding = reviewedGlbEncoding(source, sourceHash);
   const reviewMatches = Boolean(
     sourceHash &&
       runtimeHash &&
       qa &&
-      qa.sourceHash === sourceHash &&
+      encoding.matchesSource(qa.sourceHash) &&
       qa.runtimeHash === runtimeHash,
   );
   // A model hash alone does not bind a review to the actual renders the reviewer saw.
@@ -112,8 +115,8 @@ async function modelReadiness(candidate, geo) {
   const reviewedFrames = qa?.visualReview?.inspectedFrames ?? [];
   let capturesMatch = Boolean(
     captureBytes &&
-      qa?.captureReportHash === hash(captureBytes) &&
-      capture?.sourceHash === sourceHash &&
+      matchesEvidenceText(captureBytes, qa?.captureReportHash) &&
+      encoding.matchesSource(capture?.sourceHash) &&
       capture?.runtimeHash === runtimeHash &&
       reviewedFrames.length > 0,
   );
@@ -128,11 +131,11 @@ async function modelReadiness(candidate, geo) {
   const needsSharedReview = (spec?.sharedSurfaces?.length ?? 0) > 0;
   let sharedMatches = Boolean(
     sharedCaptureBytes &&
-      qa?.sharedSurfaceReview?.captureReportHash === hash(sharedCaptureBytes) &&
-      sharedCapture?.sourceHash === sourceHash &&
+      matchesEvidenceText(sharedCaptureBytes, qa?.sharedSurfaceReview?.captureReportHash) &&
+      encoding.matchesSource(sharedCapture?.sourceHash) &&
       sharedCapture?.runtimeHash === runtimeHash &&
       specBytes &&
-      sharedCapture?.specHash === hash(specBytes) &&
+      encoding.matchesSpec(specBytes, sharedCapture?.specHash) &&
       sharedFrames.length > 0,
   );
   for (const path of sharedFrames) {
@@ -142,7 +145,7 @@ async function modelReadiness(candidate, geo) {
   }
   for (const graph of Object.values(sharedCapture?.materialGraphs ?? {})) {
     const data = await bytes(`content/worldgen/${graph.path}`);
-    if (!data || hash(data) !== graph.hash) sharedMatches = false;
+    if (!matchesEvidenceText(data, graph.hash)) sharedMatches = false;
   }
   const sharedReviewed =
     reviewMatches && sharedMatches && qa.sharedSurfaceReview?.status === 'passed';
@@ -210,6 +213,9 @@ async function modelReadiness(candidate, geo) {
         path: sourcePath,
         hash: sourceHash ?? null,
         matchesManifestAndImport: sourceMatches,
+        ...(reviewMatches && qa.sourceHash !== sourceHash
+          ? { reviewedEncoding: { repair: 'rgb-u8-four-byte-stride', sourceHash: qa.sourceHash } }
+          : {}),
       },
       runtime: {
         present: Boolean(runtime && sidecar),
@@ -392,7 +398,9 @@ portable render, shared-material render, geographic fit and maximum exterior fid
 
 ## Authored models
 
-Review labels below describe the current model hashes. Regeneration invalidates older approvals.
+Review labels bind the current source and runtime to inspected captures. Geometry changes invalidate
+older approvals. The RGB alignment repair preserves a review only when the exact historical source
+bytes can be reconstructed and the runtime bytes, inspected images and material graphs still match.
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 

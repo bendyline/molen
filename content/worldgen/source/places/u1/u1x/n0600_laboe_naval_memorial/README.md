@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/laboe-memorial-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-47,862 triangles; 95,722 vertices; 7 material groups; 3,928,764 source bytes. Source hash: `sha256:c6efcf03e7b2b6f82e45661365b1b63113e0f8395b5bd4a9c99205aaea16e4d9`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+47,862 triangles; 95,722 vertices; 7 material groups; 4,024,500 source bytes. Source hash: `sha256:0c4c7dbf292dc6727cd83a0c10a27bc90223d80b5b5c36f750e4dc59511559ac`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0600`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

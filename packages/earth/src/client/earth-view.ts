@@ -38,6 +38,12 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
+  type BlockCache,
+  type BlockCacheStats,
+  cachingDocumentFetch,
+} from '@bendyline/molen-pack/cache';
+import {
+  cachingArchiveOpener,
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackagePyramidStream,
@@ -57,6 +63,7 @@ import {
 import {
   type TerrainPackageDescriptor,
   terrainPackageMetersPerUnit,
+  terrainPyramidTileKey,
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
@@ -92,6 +99,15 @@ import {
   earthPixelRatio,
   earthQualityLevel,
 } from './performance';
+import {
+  createEarthPrefetcher,
+  type EarthPrefetchArchives,
+  type EarthPrefetcher,
+  type EarthPrefetchOptions,
+  type EarthPrefetchPoint,
+  type EarthPrefetchResult,
+  type EarthPrefetchStats,
+} from './prefetch';
 import { EarthVehicles } from './vehicles';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
@@ -255,6 +271,19 @@ export interface EarthViewOptions {
    * `@bendyline/molen-client`; a later visit reads them instead of baking.
    */
   materialStore?: BakedMaterialStore;
+  /**
+   * Keep terrain bytes across visits: elevation, landcover, feature and building tiles read
+   * through this cache (`createBlockCache` over `createIndexedDbByteStore`, both from
+   * `@bendyline/molen-pack/cache`), so ground seen before streams from disk. Archives passed in
+   * `archives` are used as given. Pass the same cache to `openPacksFromIndex` for content packs.
+   */
+  byteCache?: BlockCache;
+  /**
+   * With `byteCache`: read terrain ahead of the camera into the cache, along its track (on by
+   * default; false turns it off). Only bytes are read, two at a time, when the stream has a free
+   * load slot. Hosts that know the route queue places with `EarthView.prefetch`.
+   */
+  prefetch?: EarthPrefetchOptions | false;
   style?: EarthViewStyle;
   /** Keyboard target (default the canvas, which should have `tabindex="0"`). */
   keyTarget?: NavigationKeyTarget;
@@ -321,6 +350,14 @@ export interface EarthViewStats {
   worldgen?: { tiles: number; buildings: number; standIns: number };
 }
 
+/** What {@link EarthView.cacheStats} reports. */
+export interface EarthCacheStats {
+  /** The byte cache, when the view was mounted with one. */
+  cache?: BlockCacheStats;
+  /** Look-ahead reads into the cache, when prefetching is on. */
+  prefetch?: EarthPrefetchStats;
+}
+
 export interface EarthView {
   readonly viewer: MolenClient;
   readonly input: NavigationInputSource;
@@ -354,6 +391,17 @@ export interface EarthView {
   /** Resolves when the terrain for the current view has streamed in. */
   whenIdle(): Promise<void>;
   stats(): EarthViewStats;
+  /** Byte cache counters (hits, network requests, stored bytes) and prefetch progress. */
+  cacheStats(): EarthCacheStats;
+  /**
+   * Read the terrain around places the viewer is expected to reach into the byte cache (a
+   * simulator's flight plan, the next stop of a tour), ahead of the camera's own look-ahead.
+   * Resolves when they are read; resolves with nothing requested without a byte cache.
+   */
+  prefetch(
+    points: readonly EarthPrefetchPoint[],
+    options?: { signal?: AbortSignal },
+  ): Promise<EarthPrefetchResult>;
   /** The sound layer (volume, mute, bus gains) once it has loaded; undefined when silent. */
   readonly audio: AudioLayer | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
@@ -443,6 +491,7 @@ interface EarthStack {
   frameLatitude: number;
   metersPerUnit: number;
   stream: TerrainPyramidStream;
+  prefetcher: EarthPrefetcher | undefined;
   surface: TerrainSurfaceRenderer;
   worldgen: EarthWorldgen | undefined;
   vehicles: EarthVehicles | undefined;
@@ -496,6 +545,27 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   const memoryBudget = options.memoryBudget ?? earthMemoryBudget();
   if (!(memoryBudget > 0) || !Number.isFinite(memoryBudget))
     throw new RangeError('memoryBudget must be a positive number of bytes');
+  // Archives the view opens itself read through the byte cache. A set's base archive (the
+  // coarse levels every view starts from) outlives detail; building detail goes first.
+  const cacheTransport =
+    options.byteCache !== undefined
+      ? (() => {
+          const cache = options.byteCache;
+          const fetchDocument = cachingDocumentFetch(cache.store);
+          return {
+            normal: {
+              openArchive: cachingArchiveOpener(cache, {
+                priority: (_url, id) => (id === 'base' ? 'high' : 'normal'),
+              }),
+              fetch: fetchDocument,
+            },
+            low: {
+              openArchive: cachingArchiveOpener(cache, { priority: 'low' }),
+              fetch: fetchDocument,
+            },
+          };
+        })()
+      : undefined;
   // Ground just left must stay warm up to the device budget, whatever the level: a smaller cache
   // re-streams it on every pan, and loses the intermediate levels that bridge a refinement.
   // Ground a little past the view stays loaded as bare terrain, so turning the camera reveals
@@ -704,12 +774,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        let sidecars: Omit<EarthPrefetchArchives, 'elevation'> = {};
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
               ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
+              ...(cacheTransport !== undefined
+                ? { transport: cacheTransport.normal, buildingDetailTransport: cacheTransport.low }
+                : {}),
               ...(selected.archives?.landcover !== undefined
                 ? { landcoverArchive: selected.archives.landcover }
                 : {}),
@@ -752,6 +826,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })(),
             });
             layers = semantic.layers;
+            const { landcover, features, buildingDetail } = semantic.semantics;
+            sidecars = {
+              ...(landcover !== undefined ? { landcover } : {}),
+              ...(features !== undefined ? { features } : {}),
+              // The detail source reads its level under tiles up to two levels coarser.
+              ...(buildingDetail !== undefined
+                ? {
+                    buildingDetail: {
+                      archive: buildingDetail.archive,
+                      level: buildingDetail.level,
+                      maxDepth: 2,
+                    },
+                  }
+                : {}),
+            };
             // Finer building footprints are optional: without them the feature tiles' own stay.
             if (semantic.semantics.buildingDetailError !== undefined)
               report(semantic.semantics.buildingDetailError, 'building detail');
@@ -771,6 +860,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(selected.archives?.elevation !== undefined
               ? { archive: selected.archives.elevation }
               : {}),
+            ...(cacheTransport !== undefined ? { transport: cacheTransport.normal } : {}),
             frame,
             ...budget,
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
@@ -797,6 +887,45 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        // Look ahead along the camera's track into the byte cache (bytes only, spare slots only).
+        let prefetcher: EarthPrefetcher | undefined;
+        if (options.byteCache !== undefined && options.prefetch !== false) {
+          const header = await opened.archive.getHeader?.();
+          const created = createEarthPrefetcher({
+            descriptor: opened.descriptor,
+            scheme: pkg.tileMatrix.scheme,
+            archives: {
+              elevation: {
+                archive: opened.archive,
+                maxLevel: Math.min(header?.maxZoom ?? Infinity, opened.descriptor.maxLevel),
+              },
+              ...sidecars,
+            },
+            metersPerUnit,
+            budget: () => stream.getBudget(),
+            resident: () => new Set(stream.residentTiles().map(terrainPyramidTileKey)),
+            busy: () => {
+              const loading = stream.loading();
+              const limits = stream.getBudget();
+              return (
+                loading.tiles >= limits.maxConcurrentLoads ||
+                loading.layers >= limits.maxConcurrentLayerLoads
+              );
+            },
+            groundHeight: (x, z) => stream.sampleHeight(x, z),
+            viewShape: () => {
+              const [w, h] = viewport();
+              return {
+                verticalFov: VERTICAL_FOV,
+                viewportHeight: canvas.height || h,
+                aspect: w / h,
+              };
+            },
+            ...(options.prefetch !== undefined ? { options: options.prefetch } : {}),
+          });
+          prefetcher = created;
+          parts.push(() => created.dispose());
+        }
         let ambient: EarthAmbient | undefined;
         let aircraft: EarthAircraft | undefined;
         const vehicles =
@@ -846,6 +975,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           frameLatitude,
           metersPerUnit,
           stream,
+          prefetcher,
           surface,
           worldgen,
           vehicles,
@@ -1685,6 +1815,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           });
           streamed = { position: pose.position, direction: pose.direction };
         }
+        if (anchoring === undefined) {
+          // A fly-to or a vehicle entry moves the camera fast for a moment; that is not travel.
+          const steady = pending === undefined && !(mode === 'orbit' && orbit.flying);
+          current.prefetcher?.frame(now, pose.position, pose.direction, steady);
+        }
         current.vehicles?.sync(now, pose.position);
         current.ambient?.sync(
           now,
@@ -1771,6 +1906,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     document.addEventListener('visibilitychange', onVisibility);
     disposers.push(() => document.removeEventListener('visibilitychange', onVisibility));
 
+    /** Queue geographic points with the current stack's prefetcher (nothing without one). */
+    const prefetchPoints = (
+      points: readonly EarthPrefetchPoint[],
+      prefetchSignal?: AbortSignal,
+    ): Promise<EarthPrefetchResult> => {
+      const current = stack;
+      if (current?.prefetcher === undefined) {
+        return Promise.resolve({ requested: 0, warmed: 0, failed: 0 });
+      }
+      const positions = points.map((point) => {
+        const [x, z] = wgs84ToWorld(current.metersPerUnit, point.longitude, point.latitude);
+        const y =
+          point.altitude !== undefined ? point.altitude / current.metersPerUnit : pose.position[1];
+        return [x, y, z];
+      });
+      return current.prefetcher.enqueue(positions, prefetchSignal);
+    };
     return {
       viewer,
       input,
@@ -1813,6 +1965,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       flyTo(target, flyOptions = {}) {
         if (mode !== 'orbit') setMode('orbit', { force: true });
         const far = Math.abs(target.latitude - frameLatitude) > REANCHOR_DEGREES;
+        // Read the destination's terrain while the camera travels: same frame only (a far hop
+        // re-anchors, and the new stack streams it), and only past what the view already holds.
+        if (!far) {
+          const from = camera();
+          const [fx, fz] = toWorld(from.latitude, from.longitude);
+          const [tx, tz] = toWorld(target.latitude, target.longitude);
+          if (Math.hypot(tx - fx, tz - fz) * metersPerUnit > 1_000)
+            void prefetchPoints([target]).catch(() => undefined);
+        }
         pendingAnchor = far || options.terrainSource !== undefined ? target : undefined;
         orbit.flyTo(orbitTarget(target), flyOptions);
       },
@@ -1874,6 +2035,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : {}),
         };
       },
+      cacheStats() {
+        const prefetch = stack?.prefetcher?.stats();
+        return {
+          ...(options.byteCache !== undefined ? { cache: options.byteCache.stats() } : {}),
+          ...(prefetch !== undefined ? { prefetch } : {}),
+        };
+      },
+      prefetch: (points, prefetchOptions = {}) => prefetchPoints(points, prefetchOptions.signal),
       get ambientEnabled() {
         return ambientOn;
       },
@@ -1886,6 +2055,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (next === paused || disposed) return;
         paused = next;
         audio?.layer.setSuspended(paused);
+        stack?.prefetcher?.setPaused(paused);
         if (paused) {
           cancelAnimationFrame(frameHandle);
           input.map.reset();

@@ -17,11 +17,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.openstreetmap.org/way/195527261)
 - [Reference](https://www.openstreetmap.org/way/1074877791)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-286,882 triangles; 769,522 vertices; 4 material groups; 30,378,548 bytes. Native bounds: -32.754, 0.000, -32.000 to 24.866, 425.019, 33.949. Source hash: `sha256:3ccd18d22dda11ed98f1b2c6b161548b4b63fae2bb368d876bc51e2c3219bad6`.
+286,882 triangles; 769,522 vertices; 4 material groups; 31,148,084 bytes. Native bounds: -32.754, 0.000, -32.000 to 24.866, 425.019, 33.949. Source hash: `sha256:434af75e3651516837a961ba6e4ee620aaf01d57400a434ec2558f948995606c`.
 
 {"up":"+Y","longAxis":"+X northeast toward Dubai","shortAxis":"+Z southeast toward Sheikh Zayed Road; -Z sea"}
 

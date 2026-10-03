@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/watts-towers-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-1,079,668 triangles; 1,990,678 vertices; 4 material groups; 82,632,464 source bytes. Source hash: `sha256:5789990cec90ad0d52c62c311b7c19e16addf2ebe061aac34fcb111928054c33`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+1,079,668 triangles; 1,990,678 vertices; 4 material groups; 84,623,156 source bytes. Source hash: `sha256:c8f9ee81fc1c5d98db730905ea99a988ccbf1a4c6758d2b659e3170f7f34b81f`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0613`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

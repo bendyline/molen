@@ -66,7 +66,9 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
   bridge?: boolean;
   /** Optional surveyed bridge deck elevation in absolute world Y units. */
   deckElevation?: number;
-  /** Join an inferred approach to an authored deck. Points use normalized tile coordinates. */
+  /** Join an inferred bridge or connected ground approach to an authored deck.
+   * Ground approaches blend back to terrain without generating bridge slabs.
+   * Points use normalized tile coordinates. */
   bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
   tunnel?: boolean;
 }

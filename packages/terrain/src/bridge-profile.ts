@@ -11,6 +11,8 @@ export interface BridgeDeckOptions {
   approachLift: number;
   /** Whether each end meets a grade road: `[start, end]`. */
   connects: readonly [boolean, boolean];
+  /** A connected ground approach follows terrain, with only a local endpoint correction. */
+  groundApproach?: boolean;
   /** Authored deck endpoints in the path's frame, blended in over `radius`. */
   connections?: readonly { point: TerrainSemanticPoint; elevation: number; radius: number }[];
 }
@@ -37,7 +39,31 @@ export function bridgeDeckHeightFn(
   const dx = b[0] - a[0],
     dz = b[1] - a[1],
     length2 = dx * dx + dz * dz || 1;
-  const connections = options.connections ?? [];
+  const candidates = options.connections ?? [];
+  // Each clipped fragment must use its own nearest deck endpoint. Short landmarks can
+  // have overlapping hint radii; applying both in sequence would overwrite the west join
+  // with the east height. A full span can still select a distinct hint at each end.
+  const nearest = (point: TerrainSemanticPoint) =>
+    candidates.reduce<(typeof candidates)[number] | undefined>(
+      (best, item) =>
+        !best ||
+        Math.hypot(point[0] - item.point[0], point[1] - item.point[1]) <
+          Math.hypot(point[0] - best.point[0], point[1] - best.point[1])
+          ? item
+          : best,
+      undefined,
+    );
+  const connections = [
+    ...new Set(
+      [nearest(a), nearest(b)].filter(
+        (item): item is (typeof candidates)[number] => item !== undefined,
+      ),
+    ),
+  ];
+  const smooth = (v: number) => {
+    const t = Math.max(0, Math.min(1, v));
+    return t * t * (3 - 2 * t);
+  };
   return (x, z) => {
     const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2));
     // Keeps the slab above terrain at crests without sagging into the river/valley.
@@ -46,7 +72,9 @@ export function bridgeDeckHeightFn(
       startClearance + t * path.length * 0.12,
       endClearance + (1 - t) * path.length * 0.12,
     );
-    let height = Math.max(start + (end - start) * t, groundAt(a[0] + dx * t, a[1] + dz * t) + lift);
+    let height = options.groundApproach
+      ? groundAt(x, z) + options.approachLift
+      : Math.max(start + (end - start) * t, groundAt(a[0] + dx * t, a[1] + dz * t) + lift);
     for (const connection of connections) {
       // A deck endpoint covers its entire width, then fades into the inferred approach.
       const distance = Math.hypot(x - connection.point[0], z - connection.point[1]);
@@ -55,7 +83,21 @@ export function bridgeDeckHeightFn(
         0,
         Math.min(1, (distance - flatRadius) / (connection.radius - flatRadius)),
       );
-      const weight = 1 - blend * blend * (3 - 2 * blend);
+      const atStart =
+        Math.hypot(a[0] - connection.point[0], a[1] - connection.point[1]) <=
+        Math.hypot(b[0] - connection.point[0], b[1] - connection.point[1]);
+      const weight = options.groundApproach
+        ? 1 -
+          smooth(
+            Math.hypot(a[0] + dx * t - connection.point[0], a[1] + dz * t - connection.point[1]) /
+              connection.radius,
+          )
+        : (1 - blend * blend * (3 - 2 * blend)) *
+          (atStart && options.connects[1]
+            ? 1 - smooth(t)
+            : !atStart && options.connects[0]
+              ? smooth(t)
+              : 1);
       height += (connection.elevation - height) * weight;
     }
     return height;

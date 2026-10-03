@@ -17,13 +17,17 @@ test('source-local signed frame overrides unrelated global footprint without mov
       ],
     },
   };
-  const bytes = Buffer.from(JSON.stringify(frame));
+  const bytes = Buffer.from(JSON.stringify(frame, null, 2));
   const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
   const spec = {
     id: 'N0189',
     geographicProposal: { mapGeometrySource: 'map-frame.json', mapGeometryHash: hash },
   };
   const result = sourceLocalFootprint(spec, bytes);
+  assert.deepEqual(
+    sourceLocalFootprint(spec, Buffer.from(bytes.toString().replaceAll('\n', '\r\n'))),
+    result,
+  );
   assert.equal(result.hash, hash);
   assert.deepEqual(result.footprint[0], frame.anchor);
   assert.deepEqual(result.footprint.at(-1), frame.anchor);

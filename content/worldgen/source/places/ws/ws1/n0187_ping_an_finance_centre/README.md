@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://global.ctbuh.org/resources/papers/download/1997-anything-goes.pdf)
 - [Reference](https://www.openstreetmap.org/way/535860513)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-588,158 triangles; 1,730,478 vertices; 5 material groups; 67,627,824 bytes. Native bounds: -38.519, 0.000, -38.519 to 44.799, 599.167, 38.519. Source hash: `sha256:3b2942748b38f78822656395e60e4bbaeb711a9c31c08f2318f0d0fbaef5b431`.
+588,158 triangles; 1,730,478 vertices; 5 material groups; 69,358,316 bytes. Native bounds: -38.519, 0.000, -38.519 to 44.799, 599.167, 38.519. Source hash: `sha256:7efb6368e19b98744b4423bec5a8ecdb42e520aec350c65576d7fdb659190a6d`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

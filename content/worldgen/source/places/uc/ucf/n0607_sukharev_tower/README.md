@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/sukharev-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-570,056 triangles; 1,133,680 vertices; 8 material groups; 46,524,168 source bytes. Source hash: `sha256:ca0af27836ba3389f4046c021964648f2971c833366e29c8364facacc00ee2a6`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+570,056 triangles; 1,133,680 vertices; 8 material groups; 47,657,864 source bytes. Source hash: `sha256:164389a953b480802cf1d85c9c868cd6f35418072ea0f03a8d5f909cb6a7f00d`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0607`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

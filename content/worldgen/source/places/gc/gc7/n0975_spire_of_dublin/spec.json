@@ -1,0 +1,225 @@
+{
+  "id": "N0975",
+  "planId": "N0975",
+  "assetId": "molen.worldgen.structure.n0975_spire_of_dublin",
+  "title": "Spire of Dublin",
+  "category": "monument",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1134365"
+  },
+  "wikidataId": "Q1134365",
+  "visualBrief": "Tapered 120 m stainless steel monument, separate reflective geological pattern islands, 11,884 actual tip perforations with plate reveals and internal diffuser, concentric base grating, dark stone surround and eight removable bollards. Reusable polished and bead-blasted material graphs supply the metal finishes.",
+  "size": [
+    8.1,
+    120,
+    8.1
+  ],
+  "actualBounds": {
+    "min": [
+      -4.050000190734863,
+      0,
+      -4.050000190734863
+    ],
+    "max": [
+      4.050000190734863,
+      120,
+      4.050000190734863
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 213,
+    "meshInstances": 11885,
+    "materialCount": 5,
+    "method": "Reusable named mesh parts with glTF node transforms; shared materials, no duplicated bitmap library."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the provisional southern approach; axial form is rotationally symmetric but the base pattern is not",
+    "origin": "Spire centre at street pavement datum"
+  },
+  "scaleBasis": "Dublin City Council and fabricator dimensions fix the 120 m cone, 3 m base and 150 mm tip. IMOA fixes 11,884 holes of 15 mm diameter over the upper 12 m. Surround/grating/bollards are scaled from the inspected architect photograph, not a site survey.",
+  "geographicProposal": {
+    "anchor": [
+      -6.260254122,
+      53.349801149
+    ],
+    "heading": 0,
+    "source": "https://www.openstreetmap.org/way/96578181",
+    "orientationConfidence": "axis-only",
+    "evidence": "Exact-QID mapped spire polygon provides the centre. Published dimensions supersede the smaller mapped footprint and mapped 121.2 m height.",
+    "limitations": "A 2.2 m mapped footprint does not match the 3 m published base. Base-pattern azimuth, pavement contact, bollard locations and current streetscape require site review.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID mapped spire polygon provides the centre. Published dimensions supersede the smaller mapped footprint and mapped 121.2 m height. A 2.2 m mapped footprint does not match the 3 m published base. Base-pattern azimuth, pavement contact, bollard locations and current streetscape require site review."
+  },
+  "sourceFacts": {
+    "heightMeters": 120,
+    "baseDiameterMeters": 3,
+    "tipDiameterMeters": 0.15,
+    "patternHeightMeters": 10,
+    "perforatedHeightMeters": 12,
+    "holes": 11884,
+    "holeDiameterMeters": 0.015,
+    "wallThicknessMeters": [
+      0.035,
+      0.02,
+      0.01
+    ],
+    "steel": "Type 316",
+    "fabricatedFrusta": 8
+  },
+  "referencePages": [
+    "https://www.visitdublin.com/the-spire",
+    "https://aqua-design.ie/case-studies/the-spire-dublin/",
+    "https://www.imoa.info/molybdenum-uses/molybdenum-grade-stainless-steels/architecture/stainless-steel-spire-graces.php",
+    "https://www.publicart.ie/fileadmin/user_upload/PDF_Folder/The_Spire_of_Dublin_-_Science_and_Technology_in_Action.pdf",
+    "https://www.newsteelconstruction.com/wp/making-the-dublin-spire/",
+    "https://www.openstreetmap.org/way/96578181"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_polished",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "The unique base stencil is an original stratified reconstruction. Its complete individual island shapes and azimuth require a measured or photographic unwrap before maximum-fidelity approval.",
+    "Exact frustum joints, hole row layout and stagger are unresolved. Hole count and diameter are faithful; the present explicit layout is reconstructed.",
+    "Current night lighting, basal lighting, maintenance door and service hardware remain unfinished. The static pale diffuser represents daylight rather than an active beacon.",
+    "Ground surround and bollards follow early architect photographs and require comparison with the present streetscape. No surrounding tram tracks or buildings are baked into the model.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "south-elevation",
+      "position": [
+        0,
+        62,
+        184
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "base-pattern",
+      "position": [
+        6,
+        5,
+        11
+      ],
+      "lookAt": [
+        0,
+        4.7,
+        0
+      ]
+    },
+    {
+      "name": "base-grating",
+      "position": [
+        9,
+        7,
+        9
+      ],
+      "lookAt": [
+        0,
+        0.4,
+        0
+      ]
+    },
+    {
+      "name": "tip-perforations",
+      "position": [
+        0.8,
+        117.2,
+        1.5
+      ],
+      "lookAt": [
+        0,
+        117.2,
+        0
+      ]
+    },
+    {
+      "name": "tip-profile",
+      "position": [
+        6,
+        114,
+        17
+      ],
+      "lookAt": [
+        0,
+        114,
+        0
+      ]
+    },
+    {
+      "name": "street-upward",
+      "position": [
+        7,
+        1.7,
+        12
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "far-spire",
+      "position": [
+        110,
+        75,
+        260
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    }
+  ]
+}

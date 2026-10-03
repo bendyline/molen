@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://pkin.pl/galeria-zdjec/)
 - [Reference](https://www.openstreetmap.org/relation/1319250)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-183,246 triangles; 439,312 vertices; 4 material groups; 17,577,568 bytes. Native bounds: -133.670, 0.000, -108.096 to 133.679, 237.000, 108.031. Source hash: `sha256:63de8e830ba2539438201739c4abeb640a2b3a5f5dff22d88897f089f5c971f0`.
+183,246 triangles; 439,312 vertices; 4 material groups; 18,016,896 bytes. Native bounds: -133.670, 0.000, -108.096 to 133.679, 237.000, 108.031. Source hash: `sha256:464474e166074775c4b2f78c708f55073d22bed0d6dff69eb9f9b48c10988063`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"Native-Z ceremonial entrance; Congress Hall at native+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

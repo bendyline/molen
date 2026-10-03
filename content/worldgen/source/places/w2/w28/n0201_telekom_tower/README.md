@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.openstreetmap.org/way/154443873)
 - [Reference](https://www.openstreetmap.org/way/594858890)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-1,479,966 triangles; 3,111,466 vertices; 7 material groups; 126,664,912 bytes. Native bounds: -51.051, -0.001, -39.690 to 34.460, 310.000, 39.995. Source hash: `sha256:b80a3508b1e66f2e76a737daa711367e6a4a71dff64a302f081d7dd955defada`.
+1,479,966 triangles; 3,111,466 vertices; 7 material groups; 129,776,392 bytes. Native bounds: -51.051, -0.001, -39.690 to 34.460, 310.000, 39.995. Source hash: `sha256:915a7b79b8319e32eed5642fe99f2177593d8958facb25d1f964c78542d74b4f`.
 
 {"up":"+Y","longAxis":"+X southeast in mapped envelope frame","shortAxis":"+Z southwest; antenna north-northwest of helipad"}
 

@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/calahorra-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-24,827 triangles; 49,957 vertices; 6 material groups; 2,050,036 source bytes. Source hash: `sha256:4ca75a56648b3e1c24a43c86a9db9cd8138c9fb377a9c647f42e4f8e715c6e7c`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+24,827 triangles; 49,957 vertices; 6 material groups; 2,100,008 source bytes. Source hash: `sha256:c244ed44e19177e96aa6aaa737cf168de2c93dda223f74bc856715057914f61b`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0603`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

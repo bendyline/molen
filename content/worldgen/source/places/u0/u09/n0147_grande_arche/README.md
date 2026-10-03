@@ -11,11 +11,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://pop.culture.gouv.fr/notice/merimee/ACR0000683)
 - [Reference](https://www.parisladefense.com/en/district/towers-buildings/grande-arche)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-371,160 triangles; 811,536 vertices; 4 material groups; 32,860,496 bytes. Native bounds: -53.570, 0.000, -56.025 to 53.570, 111.728, 56.025. Source hash: `sha256:012f2c50532cb77006680045fad39ba9b4dd24804d595b376b738fefd82c84e9`.
+371,160 triangles; 811,536 vertices; 4 material groups; 33,672,048 bytes. Native bounds: -53.570, 0.000, -56.025 to 53.570, 111.728, 56.025. Source hash: `sha256:36d0508fe2924833ac452d95015082453d99d5851a221b2b7f82ae3b01fbc927`.
 
 {"up":"+Y","longitudinal":"+Z along the published 112 m depth","front":"+Z toward the southeast historic axis","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

@@ -2,8 +2,9 @@
 
 This is a **candidate inventory**, not a claim that 1,000 finished GLBs are ready for Earth
 placement. [Browse the searchable gallery](gallery.html) or use the machine-readable
-[catalog](candidates.json). **Authoring is paused for the user-requested results review and cleanup.**
-The all-1,000 scope remains recorded; see [round review](ROUND-REVIEW.md) for the current summary.
+[catalog](candidates.json). **Authoring resumed on 2026-10-01.** The [next 300](NEXT-300.json)
+are a production queue, with Roter Sand started as an individually researched exterior.
+The all-1,000 scope remains recorded; [round review](ROUND-REVIEW.md) preserves the earlier cleanup snapshot.
 No unfinished candidate is counted as complete. The generated
 [production progress](PROGRESS.md) lists current imports, visual and shared-material reviews,
 geographic approvals and completed models. It updates from the current model/report hashes;
@@ -16,6 +17,8 @@ Use the [canonical source gallery](../places/gallery.html), [layout guide](../pl
 or [source index](../structure-index.json) to find them. This folder retains the candidate
 inventory, research snapshots and production history. After authoring a new bundle, run
 `node packages/worldgen/scripts/index-structure-sources.mjs` before import or capture.
+The [authoring guide](../AUTHORING.md) and [recipe index](../authoring-index.json) connect each
+authored structure to editable generator code and the source-only asset build.
 
 ## Collections of separately located buildings
 

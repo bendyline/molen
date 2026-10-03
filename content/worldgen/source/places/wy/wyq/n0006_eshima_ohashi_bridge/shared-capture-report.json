@@ -5,7 +5,7 @@
   "runtimeHash": "sha256:1cf77cf55724afd8c0862e3ff33bacec193556b20bdbb4dfdc752970c6bfa030",
   "fixtureHash": "sha256:3dc3824114fb46029b6a424af8098d75a98b8b5bd306db741d028163415abde5",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:0ccfe6ffe48abc6210e90284b7e72e1abe2e625e580c4b59ce2f8152f0c5f9a7",
+  "specHash": "sha256:1f40b799c1aaf19686006843d15015898362ac0206d3c9e8b81e533bfe54c611",
   "placementHash": "sha256:3f0772da332d1ab1f8b4b9b7ed2d4b6b82d74561e1584930a507e080bde46954",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.metal_painted": {
@@ -758,5 +758,31 @@
     "liveModelGeometries": 0
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:0ccfe6ffe48abc6210e90284b7e72e1abe2e625e580c4b59ce2f8152f0c5f9a7",
+    "previousCaptureReportHash": "sha256:7d54368f340b1bbc6a1c21dc92243094f232c4a53136773563a50248b7a5821b",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/wy/wyq/n0006_eshima_ohashi_bridge/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+        "current": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c"
+      },
+      {
+        "path": "mesh.bytes",
+        "previous": 59046912,
+        "current": 60454680
+      },
+      {
+        "path": "mesh.sha256",
+        "previous": "sha256:882766e427fcc6b3a055ec7d3161aa9732d5200a33851caa52e6e722657f1fd8",
+        "current": "sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

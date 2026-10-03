@@ -441,7 +441,6 @@
       "variants": [],
       "resolution": [256, 256],
       "channels": ["baseColor", "roughness", "metalness"],
-      "alphaTest": 0.3,
       "textureMemory": { "uncompressedRgba8Bytes": 786432, "withMipmapsUpperBoundBytes": 1048576 }
     },
     {
@@ -481,7 +480,6 @@
       "variants": [],
       "resolution": [256, 256],
       "channels": ["baseColor", "roughness", "metalness"],
-      "alphaTest": 0.3,
       "textureMemory": { "uncompressedRgba8Bytes": 786432, "withMipmapsUpperBoundBytes": 1048576 }
     },
     {
@@ -502,6 +500,44 @@
       "resolution": [256, 256],
       "channels": ["baseColor", "roughness", "metalness", "normal"],
       "textureMemory": { "uncompressedRgba8Bytes": 1048576, "withMipmapsUpperBoundBytes": 1398102 }
+    },
+    {
+      "id": "molen.worldgen.material.metal_stainless_beadblasted",
+      "key": "metal_stainless_beadblasted",
+      "materialRef": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "path": "materials/metal_stainless_beadblasted.matgraph.json",
+      "family": "metal",
+      "construction": "Fine isotropic bead-blasted uncoated stainless steel for sculpture and architectural cladding. The shared fine grain softens reflections without painted-metal shading or baked panel joints.",
+      "finish": "construction-surface",
+      "use": ["bridge", "structural-steel", "rail", "sculpture", "trim"],
+      "repeatMeters": [1, 1],
+      "uvMode": "meters",
+      "uvOrientation": "U along the horizontal construction course; V upwards on walls. Surface-aligned local metric UVs.",
+      "defaultTint": "#e4e7e8",
+      "tintMode": "multiply",
+      "variants": [],
+      "resolution": [256, 256],
+      "channels": ["baseColor", "roughness", "metalness", "normal"],
+      "textureMemory": { "uncompressedRgba8Bytes": 1048576, "withMipmapsUpperBoundBytes": 1398102 }
+    },
+    {
+      "id": "molen.worldgen.material.metal_stainless_polished",
+      "key": "metal_stainless_polished",
+      "materialRef": "matgraph:molen.worldgen.material.metal_stainless_polished",
+      "path": "materials/metal_stainless_polished.matgraph.json",
+      "family": "metal",
+      "construction": "Polished uncoated stainless steel, shared by engraved metal, sculpture and architectural trim. Model geometry supplies distinct patterns; the graph supplies a low-roughness reflective finish.",
+      "finish": "construction-surface",
+      "use": ["bridge", "structural-steel", "rail", "sculpture", "trim"],
+      "repeatMeters": [1, 1],
+      "uvMode": "meters",
+      "uvOrientation": "U along the horizontal construction course; V upwards on walls. Surface-aligned local metric UVs.",
+      "defaultTint": "#e4e7e8",
+      "tintMode": "multiply",
+      "variants": [],
+      "resolution": [256, 256],
+      "channels": ["baseColor", "roughness", "metalness"],
+      "textureMemory": { "uncompressedRgba8Bytes": 786432, "withMipmapsUpperBoundBytes": 1048576 }
     },
     {
       "id": "molen.worldgen.material.metal_standing_seam",

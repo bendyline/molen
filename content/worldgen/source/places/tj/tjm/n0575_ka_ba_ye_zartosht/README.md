@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/heritage-tower-models.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-14,038 triangles; 28,080 vertices; 2 material groups; 1,153,244 source bytes. Source hash: `sha256:4a1f46137b8216ee8ff302f326b1f967b1838ad7a66f699e0f49db530be1295c`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+14,038 triangles; 28,080 vertices; 2 material groups; 1,181,340 source bytes. Source hash: `sha256:0dc595aa6418cd360bb4b765571cf6cad273223eadd8ee5e51996b1d225c3545`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0575`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

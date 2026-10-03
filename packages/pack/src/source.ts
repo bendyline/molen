@@ -252,54 +252,112 @@ export async function openUrl(url: string, options: UrlOptions): Promise<OpenedU
     kind: 'range',
     tail: first.bytes,
     ...(total !== undefined && Number.isFinite(total) ? { size: total } : {}),
-    reader: (size) => ({
-      size,
-      read: (offset, length, readSignal) =>
-        withRetry(
-          async (attemptSignal) => {
-            const headers: Record<string, string> = {
-              Range: `bytes=${offset}-${offset + length - 1}`,
-            };
-            if (etag !== undefined) headers['If-Range'] = etag;
-            const response = await fetcher(url, {
-              headers,
-              signal:
-                readSignal === undefined
-                  ? attemptSignal
-                  : AbortSignal.any([attemptSignal, readSignal]),
-            });
-            if (response.status === 200) {
-              // With If-Range, a full response means the file changed underneath us.
-              if (etag !== undefined) throw new PackChangedError(url);
-              const all = await fetchBytes(response);
-              options.onResponse(all.length);
-              return all.subarray(offset, offset + length);
-            }
-            if (response.status !== 206) throw new HttpStatusError(url, response.status);
-            const returnedRange = contentRange(
-              response.headers.get('content-range') ?? undefined,
-              url,
-            );
-            if (
-              returnedRange !== undefined &&
-              (returnedRange.start !== offset ||
-                returnedRange.end !== offset + length - 1 ||
-                (returnedRange.size !== undefined && returnedRange.size !== size))
-            ) {
-              throw new Error(`range ${offset}+${length} of ${url} was not honoured`);
-            }
-            const bytes = await fetchBytes(response);
-            options.onResponse(bytes.length);
-            if (bytes.length !== length) {
-              throw new Error(`range ${offset}+${length} of ${url} returned ${bytes.length} bytes`);
-            }
-            return bytes;
-          },
-          retry,
-          signal,
-        ),
-    }),
+    reader: (size) =>
+      httpRangeReader(url, {
+        fetch: fetcher,
+        retry,
+        signal,
+        size,
+        ...(etag !== undefined ? { etag } : {}),
+        learnEtag: false,
+        onResponse: options.onResponse,
+      }),
   };
+}
+
+interface HttpRangeReaderOptions {
+  fetch: typeof fetch;
+  retry: PackRetryOptions;
+  signal: AbortSignal;
+  size: number;
+  /** Validator sent as If-Range; a server that answers 200 instead has changed the file. */
+  etag?: string;
+  /** Adopt the first response's strong ETag as the validator when none was given. */
+  learnEtag: boolean;
+  onResponse(bytes: number): void;
+}
+
+/** Range reads of one URL, validated with If-Range when a strong ETag is known. */
+function httpRangeReader(url: string, options: HttpRangeReaderOptions): RangeReader {
+  const { fetch: fetcher, retry, signal, size } = options;
+  let etag = options.etag;
+  return {
+    size,
+    read: (offset, length, readSignal) =>
+      withRetry(
+        async (attemptSignal) => {
+          const headers: Record<string, string> = {
+            Range: `bytes=${offset}-${offset + length - 1}`,
+          };
+          if (etag !== undefined) headers['If-Range'] = etag;
+          const response = await fetcher(url, {
+            headers,
+            signal:
+              readSignal === undefined
+                ? attemptSignal
+                : AbortSignal.any([attemptSignal, readSignal]),
+          });
+          if (response.status === 200) {
+            // With If-Range, a full response means the file changed underneath us.
+            if (etag !== undefined) throw new PackChangedError(url);
+            const all = await fetchBytes(response);
+            options.onResponse(all.length);
+            return all.subarray(offset, offset + length);
+          }
+          if (response.status !== 206) throw new HttpStatusError(url, response.status);
+          const returnedRange = contentRange(
+            response.headers.get('content-range') ?? undefined,
+            url,
+          );
+          if (
+            returnedRange !== undefined &&
+            (returnedRange.start !== offset ||
+              returnedRange.end !== offset + length - 1 ||
+              (returnedRange.size !== undefined && returnedRange.size !== size))
+          ) {
+            throw new Error(`range ${offset}+${length} of ${url} was not honoured`);
+          }
+          const bytes = await fetchBytes(response);
+          options.onResponse(bytes.length);
+          if (bytes.length !== length) {
+            throw new Error(`range ${offset}+${length} of ${url} returned ${bytes.length} bytes`);
+          }
+          if (options.learnEtag && etag === undefined) {
+            etag = strongEtag(response.headers.get('etag') ?? undefined);
+          }
+          return bytes;
+        },
+        retry,
+        signal,
+      ),
+  };
+}
+
+export interface UrlRangeReaderOptions {
+  /** Total size in bytes (a pack index lists it). */
+  size: number;
+  fetch?: typeof fetch;
+  retry?: PackRetryOptions;
+  /** Aborts every read. */
+  signal?: AbortSignal;
+}
+
+/**
+ * A `RangeReader` over a URL whose size is already known, with no opening request: the first
+ * response's strong ETag becomes the If-Range validator for every later read, so a file replaced
+ * mid-read fails with `PackChangedError` instead of mixing versions. Pair it with
+ * `cachingRangeReader` to open a pack from cached bytes.
+ */
+export function urlRangeReader(url: string, options: UrlRangeReaderOptions): RangeReader {
+  const fetcher = options.fetch ?? ((input, init) => globalThis.fetch(input, init));
+  return httpRangeReader(url, {
+    fetch: fetcher,
+    retry: options.retry ?? {},
+    signal: options.signal ?? new AbortController().signal,
+    size: options.size,
+    learnEtag: true,
+    onResponse: () => undefined,
+  });
 }
 
 interface Waiter {

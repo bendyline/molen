@@ -25,6 +25,8 @@ export interface AssetShotInput {
   clipTime?: number;
   size?: [number, number];
   clearColor?: string;
+  /** Enable the viewer's shared procedural sky/ground reflection environment. */
+  reflections?: boolean;
   outDir: string;
 }
 
@@ -107,6 +109,17 @@ async function screenshotAssetImpl(input: AssetShotInput): Promise<AssetShotOutp
     },
     plugins: {},
   };
+  if (input.reflections) {
+    keyframe.entities['capture-lighting'] = {
+      environment: {
+        ambient: { sky: '#e3e7eb', ground: '#73756b', intensity: 1.15 },
+        sun: { direction: [-8, 14, 9], color: '#fff1d3', intensity: 2.2 },
+        background: input.clearColor ?? '#bfd1df',
+        toneMapping: 'agx',
+        exposure: 1.08,
+      },
+    };
+  }
 
   const { chromium } = await import('playwright');
   const { browser, server } = await startCaptureResources(
@@ -145,6 +158,7 @@ async function screenshotAssetImpl(input: AssetShotInput): Promise<AssetShotOutp
         size,
         terrain: null,
         clearColor: input.clearColor ?? '#181d24',
+        reflections: input.reflections ?? false,
         assetsBaseUrl: `${server.url}/files/`,
         assetsIndex: { [sidecar.id]: modelUrlRel },
       };

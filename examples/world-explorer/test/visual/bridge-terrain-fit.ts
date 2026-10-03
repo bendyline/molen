@@ -42,7 +42,7 @@ interface Evidence {
 const content = `/@fs/${__LANDMARK_CONTENT_ROOT__}/`;
 const terrainSet = new URLSearchParams(location.search).get('terrainSet') ?? '';
 const reviewRoads = new URLSearchParams(location.search).get('roads') === '1';
-if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik'].includes(terrainSet))
+if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik', 'wales'].includes(terrainSet))
   throw new Error('Unknown terrain evidence set');
 const terrainFolder = `earth/structures/evidence/bridge-terrain/${terrainSet ? `${terrainSet}/` : ''}`;
 async function json<T>(path: string): Promise<T> {
@@ -248,7 +248,9 @@ async function mount(id: string) {
   const semantic = createEmptyTerrainSemanticTile();
   if (
     reviewRoads &&
-    ((terrainSet === 'gsi' && id === 'N0021') || (terrainSet === 'gugik' && id === 'N0029'))
+    ((terrainSet === 'gsi' && id === 'N0021') ||
+      (terrainSet === 'gugik' && id === 'N0029') ||
+      (terrainSet === 'wales' && id === 'N0015'))
   ) {
     const roadEvidence = await json<{
       features: { id: string; tags: Record<string, string>; coordinates: [number, number][] }[];
@@ -258,54 +260,77 @@ async function mount(id: string) {
       // ground segments. Do not turn unrelated bank paths into bridge approaches.
       if (
         !(
-          id === 'N0021'
+          id === 'N0015'
             ? [
-                '27794392',
-                '27794399',
-                '361084556',
-                '273471558',
-                '273471562',
-                '273471569',
-                '273471585',
-                '465069395',
-                '465069396',
+                '60781949',
+                '60781969',
+                '309648399',
+                '855457353',
+                '855457355',
+                '31191717',
+                '167201327',
+                '167201338',
+                '172233191',
+                '172233201',
               ]
-            : [
-                '237351914',
-                '303805844',
-                '331947900',
-                '462094677',
-                '589900396',
-                '589900405',
-                '4941144',
-                '186137543',
-                '589900403',
-                '589900406',
-                '4925775',
-                '229399399',
-                '186137533',
-                '232658141',
-                '996552885',
-                '589900438',
-                '589900439',
-                // Independent lower-bank roads must survive landmark replacement.
-                '173870821',
-                '1208164349',
-                '119695456',
-                '195284372',
-              ]
+            : id === 'N0021'
+              ? [
+                  '27794392',
+                  '27794399',
+                  '361084556',
+                  '273471558',
+                  '273471562',
+                  '273471569',
+                  '273471585',
+                  '465069395',
+                  '465069396',
+                ]
+              : [
+                  '237351914',
+                  '303805844',
+                  '331947900',
+                  '462094677',
+                  '589900396',
+                  '589900405',
+                  '4941144',
+                  '186137543',
+                  '589900403',
+                  '589900406',
+                  '4925775',
+                  '229399399',
+                  '186137533',
+                  '232658141',
+                  '996552885',
+                  '589900438',
+                  '589900439',
+                  // Independent lower-bank roads must survive landmark replacement.
+                  '173870821',
+                  '1208164349',
+                  '119695456',
+                  '195284372',
+                ]
         ).includes(road.id)
       )
         continue;
-      const footway = ['footway', 'path', 'cycleway'].includes(road.tags.highway);
+      const footway = ['footway', 'path', 'cycleway', 'pedestrian'].includes(road.tags.highway);
+      const laneCount = Number(road.tags.lanes);
       semantic.transportation.push({
         id: road.id,
         name: road.tags['name:en'] ?? road.tags.name,
         class: footway ? 'path' : 'tertiary',
         bridge: ['yes', 'viaduct'].includes(road.tags.bridge),
+        tunnel: !!road.tags.tunnel && road.tags.tunnel !== 'no',
         layer: Number(road.tags.layer ?? 0),
-        width: Number(road.tags.width) || (footway ? 2.8 : id === 'N0021' ? 8.8 : 7),
-        lanes: footway ? undefined : Number(road.tags.lanes),
+        width:
+          Number(road.tags.width) ||
+          (id === 'N0015' && road.tags.highway === 'pedestrian'
+            ? 3.84
+            : footway
+              ? 2.8
+              : id === 'N0021'
+                ? 8.8
+                : 7),
+        lanes: !footway && Number.isSafeInteger(laneCount) && laneCount > 0 ? laneCount : undefined,
         oneway: road.tags.oneway === 'yes',
         lines: [
           road.coordinates.map((point) => {
@@ -379,14 +404,10 @@ async function mount(id: string) {
     structureObjects: models,
     metersPerUnit: factor,
     roads: { renderTransportation: reviewRoads },
-    ...(hasUnknownHeights
-      ? {
-          sampleStructureTerrain: (coordinate: readonly [number, number]) => {
-            const [x, z] = wgs84ToWorld(factor, ...coordinate);
-            return sampleEvidenceGrid(heights, resolution, size, origin, x, z);
-          },
-        }
-      : {}),
+    sampleStructureTerrain: (coordinate: readonly [number, number]) => {
+      const [x, z] = wgs84ToWorld(factor, ...coordinate);
+      return sampleEvidenceGrid(heights, resolution, size, origin, x, z);
+    },
   });
   const context: TerrainPyramidTileLayerContext = {
     address: { level: 16, x: 0, z: 0 },

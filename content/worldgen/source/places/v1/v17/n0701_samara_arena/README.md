@@ -20,7 +20,7 @@ Architect/engineer reference photographs and drawings were consulted, not embedd
 
 ## Authored geometry and materials
 
-1,350,270 triangles, 2,448,660 vertices, 7 surface groups; 101,910,152 source bytes. SHA-256: `sha256:a7f89907999193c108f9d802051ae2847412d634e89d64f325184f2294858c68`. Actual bounds: -169.346, 0.000, -169.587 to 169.352, 60.375, 169.943 m.
+1,350,270 triangles, 2,448,660 vertices, 7 surface groups; 104,358,828 source bytes. SHA-256: `sha256:f50702ad50722d67264bb0329eefef8ebf5fcd7452036c3fc4f491eb4cabdc8f`. Actual bounds: -169.346, 0.000, -169.587 to 169.352, 60.375, 169.943 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Exact mapped pitch center at field/streetY0. +Z points north-northwest; roof-star phase comes from exact mapped tips."}.
 

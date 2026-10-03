@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.skyscrapercenter.com/building/id/445)
 - [Reference](https://www.openstreetmap.org/way/23973401)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-701,784 triangles; 1,529,178 vertices; 5 material groups; 61,945,832 bytes. Native bounds: -30.497, 0.000, -24.666 to 29.959, 310.300, 24.632. Source hash: `sha256:817508773dc38fe7248dbff6cfba5e9103651c82ed0867d970d06136d8346990`.
+701,784 triangles; 1,529,178 vertices; 5 material groups; 63,475,020 bytes. Native bounds: -30.497, 0.000, -24.666 to 29.959, 310.300, 24.632. Source hash: `sha256:8bb00b0fd3d677a38d1aebc4bc19d69ef1779955e2fddae8ce23d549c73146f2`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

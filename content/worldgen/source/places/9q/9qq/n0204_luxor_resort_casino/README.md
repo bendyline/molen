@@ -19,11 +19,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.openstreetmap.org/way/118344869)
 - [Reference](https://www.openstreetmap.org/way/399368723)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-276,371 triangles; 627,231 vertices; 5 material groups; 25,272,724 bytes. Native bounds: -135.873, 0.000, -194.047 to 228.950, 106.710, 91.516. Source hash: `sha256:1c8f3fe5497dce03bab28a9b207a29c35b8fd59f0cb2c27a527fa55e5b706a77`.
+276,371 triangles; 627,231 vertices; 5 material groups; 25,899,968 bytes. Native bounds: -135.873, 0.000, -194.047 to 228.950, 106.710, 91.516. Source hash: `sha256:67c7052f535bdae5c0aa5b1ff990a6d11c62bdaca283f40ca72f12de440de996`.
 
 {"up":"+Y","longAxis":"+X east to Sphinx and Strip obelisk","shortAxis":"+Z south; later twin wings lie north"}
 

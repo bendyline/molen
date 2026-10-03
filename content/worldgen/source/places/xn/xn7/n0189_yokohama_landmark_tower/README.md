@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.skyscrapercenter.com/yokohama/landmark-tower/547/)
 - [Reference](https://www.openstreetmap.org/way/64891750)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-151,118 triangles; 442,222 vertices; 7 material groups; 17,295,308 bytes. Native bounds: -37.200, 0.000, -37.200 to 37.200, 296.300, 37.200. Source hash: `sha256:e7082b94736a5a7beea0f22b5bbdd057c1ee1d7a0f4df9659b7863beba474c6b`.
+151,118 triangles; 442,222 vertices; 7 material groups; 17,737,544 bytes. Native bounds: -37.200, 0.000, -37.200 to 37.200, 296.300, 37.200. Source hash: `sha256:6e5eff3ea7a6620f67519f74ad5a0191d6da553f2354b1090d2bcb607ee77fa8`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

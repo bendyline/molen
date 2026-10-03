@@ -27,6 +27,7 @@ import { rodsherStudies } from './lighthouse-rodsher-model.mjs';
 import { rumeliStudies } from './lighthouse-rumeli-model.mjs';
 import { lighthouseSouthBalticStudies } from './lighthouse-south-baltic-models.mjs';
 import { lighthouseSwedishStudies } from './lighthouse-swedish-models.mjs';
+import { roterSandStudies } from './roter-sand-model.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
@@ -44,28 +45,33 @@ const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex
 const candidates = JSON.parse(
   await readFile(resolve(root, 'content/worldgen/source/next-1000/candidates.json'), 'utf8'),
 ).candidates;
-const studies = [
-  ...lighthouseStudies,
-  ...lighthouseExpansionStudies,
-  ...lighthouseCoastalStudies,
-  ...lighthouseOffshoreStudies,
-  ...lighthouseLatticeStudies,
-  ...lighthouseNorthernStudies,
-  ...lighthouseAtlanticStudies,
-  ...lighthouseBalticIronStudies,
-  ...lighthouseBalticNextStudies,
-  ...lighthouseSouthBalticStudies,
-  ...lighthouseKullenLizardStudies,
-  ...lighthouseNorthseaStudies,
-  ...lighthouseFinalCoastalStudies,
-  ...lighthouseSwedishStudies,
-  ...lighthouseAmericasStudies,
-  ...lighthouseBlackseaStudies,
-  ...hatterasStudies,
-  ...rumeliStudies,
-  ...rodsherStudies,
-  ...wisloujscieStudies,
-];
+const studySources = new Map(
+  [
+    [lighthouseStudies, 'lighthouse-models.mjs'],
+    [lighthouseExpansionStudies, 'lighthouse-expansion-models.mjs'],
+    [lighthouseCoastalStudies, 'lighthouse-coastal-models.mjs'],
+    [lighthouseOffshoreStudies, 'lighthouse-offshore-models.mjs'],
+    [lighthouseLatticeStudies, 'lighthouse-lattice-models.mjs'],
+    [lighthouseNorthernStudies, 'lighthouse-northern-models.mjs'],
+    [lighthouseAtlanticStudies, 'lighthouse-atlantic-models.mjs'],
+    [lighthouseBalticIronStudies, 'lighthouse-baltic-iron-models.mjs'],
+    [lighthouseBalticNextStudies, 'lighthouse-baltic-next-models.mjs'],
+    [lighthouseSouthBalticStudies, 'lighthouse-south-baltic-models.mjs'],
+    [lighthouseKullenLizardStudies, 'lighthouse-kullen-lizard-models.mjs'],
+    [lighthouseNorthseaStudies, 'lighthouse-northsea-models.mjs'],
+    [lighthouseFinalCoastalStudies, 'lighthouse-final-coastal-models.mjs'],
+    [lighthouseSwedishStudies, 'lighthouse-swedish-models.mjs'],
+    [lighthouseAmericasStudies, 'lighthouse-americas-models.mjs'],
+    [lighthouseBlackseaStudies, 'lighthouse-blacksea-models.mjs'],
+    [hatterasStudies, 'lighthouse-hatteras-model.mjs'],
+    [rumeliStudies, 'lighthouse-rumeli-model.mjs'],
+    [rodsherStudies, 'lighthouse-rodsher-model.mjs'],
+    [wisloujscieStudies, 'wisloujscie-model.mjs'],
+    [roterSandStudies, 'roter-sand-model.mjs'],
+  ].flatMap(([studies, file]) => studies.map((study) => [study, file])),
+);
+const studies = [...studySources.keys()];
+
 const surfaces = {
   brick: { graph: 'brick', slot: 'wall', roughness: 0.92, metallic: 0 },
   ground: { graph: 'gravel', slot: 'foundation', roughness: 1, metallic: 0 },
@@ -282,7 +288,7 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
       documents: ['README.md', 'preview.png', ...optional],
     },
   };
-  const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.\n\nRegenerate with \`node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`packages/worldgen/scripts/lighthouse-models.mjs\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;
+  const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in \`qa.json\` and the readiness ledger; source generation alone does not approve a model.\n\nRegenerate with \`node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`packages/worldgen/scripts/${studySources.get(asset)}\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;
   await emit(modelPath, glb);
   for (const [name, value] of [
     ['spec.json', spec],

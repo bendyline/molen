@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://group.schindler.com/en/media/stories/landmark-81.html)
 - [Reference](https://www.openstreetmap.org/way/622296615)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-512,049 triangles; 1,517,677 vertices; 5 material groups; 59,266,460 bytes. Native bounds: -61.701, 0.000, -59.663 to 61.704, 461.200, 59.670. Source hash: `sha256:a2705c01599d89dbd8b4841d9be9649afc5f61e2146a7fb04992924c4e16a883`.
+512,049 triangles; 1,517,677 vertices; 5 material groups; 60,784,152 bytes. Native bounds: -61.701, 0.000, -59.663 to 61.704, 461.200, 59.670. Source hash: `sha256:5f8f8f0c882946129add81fd436e9503b12e13c3b5b7fd3e7fb93829a8d379b0`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

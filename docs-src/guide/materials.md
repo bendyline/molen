@@ -84,6 +84,7 @@ evidence across environments rather than a proof across JS engines; see
 - `outputs` maps PBR slots (baseColor, roughness, metalness, normal, emissive, ao) to node ids.
 - Cycles are a validation error naming the path.
 - Optional `alphaTest: 0.5` renders base-color RGBA alpha as cutout holes; ramps accept `#rrggbbaa`. Omitted graphs remain opaque. Cutouts write depth normally and do not use blended transparency.
+- For fine porous surfaces, `alphaCoverage: true` uses mipmapped alpha blending. It preserves average open area when holes become smaller than a pixel, avoiding repeating interference bands. It requires `baseColor` and cannot be combined with `alphaTest`. Portable glTF graph fallbacks use the same standard `BLEND` mode. As with other transparent materials, intersecting layers need appropriate geometry grouping and sorting; review them from both sides.
 
 Bake and inspect:
 

@@ -7,8 +7,8 @@ import { MeshBufferBuilder } from '../../src/kernel/mesh-buffers';
 const root = fileURLToPath(new URL('../../../../', import.meta.url));
 
 describe('portable canonical graph fallback', () => {
-  it('keeps aperture alpha and linear minification while preserving opaque mip sampling', async () => {
-    const names = ['metal_perforated_round_open', 'metal_painted'];
+  it('exports hard masks and fractional coverage with their distinct portable alpha modes', async () => {
+    const names = ['metal_perforated_round_open', 'metal_painted', 'metal_perforated_square'];
     const refs = names.map((name) => `matgraph:molen.worldgen.material.${name}`);
     const builder = new MeshBufferBuilder();
     for (const ref of refs)
@@ -52,6 +52,9 @@ describe('portable canonical graph fallback', () => {
     expect(doc.materials[1].alphaMode).toBe('OPAQUE');
     expect(doc.samplers[doc.textures[0].sampler].minFilter).toBe(9729);
     expect(doc.samplers[doc.textures[1].sampler].minFilter).toBe(9987);
+    expect(doc.materials[2].alphaMode).toBe('BLEND');
+    expect(doc.materials[2].alphaCutoff).toBeUndefined();
+    expect(doc.samplers[doc.textures[2].sampler].minFilter).toBe(9987);
     for (let i = 0; i < names.length; i++) {
       const view = doc.bufferViews[doc.images[i].bufferView];
       const start = 28 + jsonLength + view.byteOffset;

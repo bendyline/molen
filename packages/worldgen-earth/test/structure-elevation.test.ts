@@ -148,13 +148,19 @@ describe('landmark ground reference', () => {
       terrainReference: undefined,
       datum: 'sea-level',
       bounds: [-0.001, -0.001, 0.001, 0.001],
-      replaceRoads: { length: 100, width: 20, deckHeights: [3, 5] },
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [3, 5],
+        includeConnectedApproaches: true,
+      },
     };
     expect(getSchema('structure-placements')?.zod.safeParse(catalog(absolute)).success).toBe(true);
     expect(() => createStructureIndex(catalog(absolute))).not.toThrow();
     for (const replaceRoads of [
       { length: -1, width: 20 },
       { length: 100, width: 0 },
+      { length: 100, width: 20, includeConnectedApproaches: 'yes' as unknown as boolean },
       {
         length: 100,
         width: 20,

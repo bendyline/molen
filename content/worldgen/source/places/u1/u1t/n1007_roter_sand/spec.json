@@ -1,0 +1,162 @@
+{
+  "id": "N1007",
+  "key": "roter_sand",
+  "title": "Roter Sand",
+  "wikidataId": "Q220034",
+  "authoringFile": "roter-sand-model.mjs",
+  "size": [
+    14.4,
+    30.95,
+    14.4
+  ],
+  "metricTriangleUv": true,
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z south; +X east",
+    "origin": "Tower axis at historic low-water reference; no buried caisson geometry."
+  },
+  "visualBrief": "Offshore riveted taper with black plinth, white/red/white shaft, red service room and three unequal-height round bays; white lantern, black domes, scalloped gallery, portholes, rivets, ladders, davit and mooring dolphins.",
+  "sourceFacts": {
+    "survey": "GMG GA218014, 14 June 2019, section 1.02 pp I-5–7; field visits October 2018 and May 2019",
+    "plinthHeightMeters": 6.1,
+    "plinthDiametersMeters": [
+      10.1,
+      6.4
+    ],
+    "shaftHeightMeters": 12.7,
+    "shaftDiametersMeters": [
+      6.4,
+      5.1
+    ],
+    "bayDiameterMeters": 1.9,
+    "bayBearingsDegrees": [
+      180,
+      292.5,
+      45
+    ],
+    "lanternDiameterMeters": 4,
+    "baseLadderRungs": 19,
+    "aboveLowWaterMeters": 30.95,
+    "verticalDatum": "GMG III-9 uses low water = NN -2.05 m; tower tip NN +28.90 m"
+  },
+  "referencePages": [
+    "https://www.denkmalschutz.de/fileadmin/media/Bilder/Denkmal/Leuchtturm_Roter_Sand/Gutachten_Sanierung_Juni2019.pdf",
+    "https://urn.dsm.museum/DSA/DSA08_1985_199216_Peters.pdf",
+    "https://www.denkmalschutz.de/denkmale-erhalten/stiftungseigene-denkmale/leuchtturm-roter-sand/chronik-und-zukunft-des-leuchturms.html",
+    "https://www.openstreetmap.org/node/635484478"
+  ],
+  "referenceRights": "Original geometry uses published dimensional facts. Source photographs and drawings retain their rights and are not redistributed.",
+  "geographicProposal": {
+    "anchor": [
+      8.0821686,
+      53.8531662
+    ],
+    "heading": 0,
+    "elevationMode": "sea-level",
+    "elevationMeters": -2.05,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/635484478",
+    "notes": "Exact-identity OSM node 635484478 agrees within 0.1 m with the 2019 engineering report WGS84 coordinate 53°51′11.4″ N / 8°04′55.81″ E; the older DSD 2010 and candidate coordinates are about 207 m north. Survey compass directions fix bay orientation. GMG III-9 places historic low water at NN -2.05 m; sea-level preview assumes the viewer zero approximates NN, with tidal/water-datum review pending. Owner’s 2026 chronology describes a future relocation, not a completed move."
+  },
+  "limitations": [
+    "Initial detailed offshore exterior study of the 2018–2019 surveyed appearance; not yet approved for maximum fidelity or geographic activation.",
+    "Plinth plan, seam/rivet spacing, small fittings, porthole positions and battery cupboard are reconstructed within published principal dimensions; not a fabrication survey.",
+    "Shaft portholes use recessed-looking disks; their wall apertures, bay-wall intersections and gallery junctions need close-up refinement. Hidden interiors, underwater foundations, exact corrosion patterns and working lamp optics are not modeled.",
+    "Offshore anchor and compass orientation are evidence-backed; viewer NN/sea-level equivalence, tides, footprint fit and any later relocation still require geographic review."
+  ],
+  "qaCameras": [
+    {
+      "name": "service-bays",
+      "position": [
+        12,
+        25,
+        17
+      ],
+      "lookAt": [
+        0,
+        23.7,
+        0
+      ]
+    },
+    {
+      "name": "stair-lantern",
+      "position": [
+        13,
+        29,
+        -15
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "landing-ladders",
+      "position": [
+        12,
+        9,
+        -10
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "shaft-rivets",
+      "position": [
+        6,
+        16,
+        9
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ],
+  "assetId": "molen.worldgen.structure.n1007_roter_sand",
+  "category": "lighthouse",
+  "quality": "detailed",
+  "actualBounds": {
+    "min": [
+      -6.086635112762451,
+      0,
+      -6.893626689910889
+    ],
+    "max": [
+      6.086635112762451,
+      30.950000762939453,
+      6.893626689910889
+    ]
+  },
+  "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
+  "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",
+  "materialMethod": "Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "Source geometry ready; fallback/shared renders, maximum fidelity and geographic fit require separate review.",
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed."
+}

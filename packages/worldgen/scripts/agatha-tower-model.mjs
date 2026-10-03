@@ -1,8 +1,8 @@
 /** St. Agatha’s Tower: original exterior from the national inventory and custodian photographs. */
 
-import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { facade, face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -555,7 +555,7 @@ export const agathaTower = {
     heading: map.heading,
     source: map.source,
     mapGeometrySource: 'map-frame.json',
-    mapGeometryHash: `sha256:${createHash('sha256').update(mapBytes).digest('hex')}`,
+    mapGeometryHash: hashEvidenceText(mapBytes),
     evidence: map.basis,
     limitations:
       'Terrain contact is at the tower foundation. Stair flight follows the photographed entrance axis and reconstructed rise; hillside retaining walls, the separate star-shaped entrenchment and terrain steps remain map/terrain features.',

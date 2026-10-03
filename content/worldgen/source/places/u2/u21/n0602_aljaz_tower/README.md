@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/aljaz-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-23,236 triangles; 48,260 vertices; 2 material groups; 1,969,796 source bytes. Source hash: `sha256:564680c26f5d071bfac1e76ef5baf493a58e501689d4e8f2c545fc2df56b001c`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+23,236 triangles; 48,260 vertices; 2 material groups; 2,018,068 source bytes. Source hash: `sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0602`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

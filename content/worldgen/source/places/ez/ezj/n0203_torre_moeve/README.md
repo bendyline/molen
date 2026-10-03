@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.skyscrapercenter.com/building/wd/878)
 - [Reference](https://www.openstreetmap.org/way/188396764)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-421,986 triangles; 1,192,922 vertices; 6 material groups; 46,819,644 bytes. Native bounds: -26.565, 0.000, -21.350 to 26.565, 248.315, 21.350. Source hash: `sha256:2569c2fac4bd9d1bbfaee547a11f93cabef7f8edeb3a05dbbf85236b3a140edb`.
+421,986 triangles; 1,192,922 vertices; 6 material groups; 48,012,576 bytes. Native bounds: -26.565, 0.000, -21.350 to 26.565, 248.315, 21.350. Source hash: `sha256:2748c8aab3696c2c22ef743f88997ca309047a886aaba657300bff6d6d5d7358`.
 
 {"up":"+Y","longAxis":"+X east-southeast between cores","shortAxis":"+Z south-southwest glass office frontage"}
 

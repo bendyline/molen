@@ -6,7 +6,7 @@
   "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
   "footprintEvidenceHash": "sha256:8f118e3ac645c4faf18e819feacc8f31340c6f1cdb01cfcb01ec8b00ba841c0f",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:7f4fcf5d0344fcf9e2333095bdf4115c0a87d9a2c8614d3cb5a2bc07659819ec",
+  "specHash": "sha256:54b1e4a7cec58f30074f411ab5b27fb94042a5e0d00df5f5593a09f80bb8c3e6",
   "placementHash": "sha256:a0b659997417e9635278c63a7a3e63ebab166ec89a9fc98c6453c6342e810315",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
@@ -841,5 +841,21 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:7f4fcf5d0344fcf9e2333095bdf4115c0a87d9a2c8614d3cb5a2bc07659819ec",
+    "previousCaptureReportHash": "sha256:64f0053a5dec9ac0d1caf6739acf520453c3ffec07e27efa6882dd42b0d94d09",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/u0/u0p/n0605_torre_dei_lamberti/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:8f118e3ac645c4faf18e819feacc8f31340c6f1cdb01cfcb01ec8b00ba841c0f",
+        "current": "sha256:3e39f816f4e0cb8545ef8c80f0ba58d69db1325dbd41a306ef7501c58ae86363"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

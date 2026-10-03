@@ -1,0 +1,58 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0209_bitexco_financial_tower",
+  "sourceHash": "sha256:beaa86c5e99dfc2cb6ad76418007c73361b838773d67aef512cd42de47d7c1f8",
+  "runtimeHash": "sha256:15ac75f0d8743680e2f11fc421c52263978fd1e0d81b0030002e46ca83d65b2f",
+  "captureReportHash": "sha256:1a56e43348d8bac7ebfb4aa8e1c546089c2fe61ebe4f0bd1678d2ae28e6a3227",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Portable geometry presentation only; detailed architectural fidelity remains pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/curved-shaft.png",
+      "shots/helipad-above.png",
+      "shots/helipad-soffit.png",
+      "shots/inclined-crown.png",
+      "shots/crown-reverse.png",
+      "shots/podium-canopy.png",
+      "shots/ground-entrance.png",
+      "shots/mechanical-belt.png",
+      "shots/far-lotus.png"
+    ],
+    "notes": "Inspected all fourteen final portable frames in the contact sheet. Corrected crown-cut winding, clipped partial facade bays, coplanar spandrels and mechanical louvers, and reversed entrance returns. The entrance is now one continuous recessed glazed frontage with jambs only at its ends. Smooth shared stone replaces coursed stone on the white podium bands. Fine geometric mullions can alias in the portable long-distance views."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:581fed4ecf53a1671c7c3332e6942812edd37f9379861260e949dc6556b0ae0d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/curved-shaft.png",
+      "shots/shared/helipad-above.png",
+      "shots/shared/helipad-soffit.png",
+      "shots/shared/inclined-crown.png",
+      "shots/shared/crown-reverse.png",
+      "shots/shared/podium-canopy.png",
+      "shots/shared/ground-entrance.png",
+      "shots/shared/mechanical-belt.png",
+      "shots/shared/far-lotus.png"
+    ],
+    "notes": "Inspected all thirteen final shared frames, with full-size entrance, helipad soffit and reverse crown views. All 315402 triangles load with four canonical material graphs and no private bitmap; unload passes. Opaque glass is a local PBR material. The isolated fixture verifies asset rendering, not geographic placement."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "The exact-QID parent way and six mapped parts supply the anchor, shaft/crown/podium relationship and projected helipad. Street-level site fit, signed orientation and vertical datum still need geographic rendering review. No placement was activated."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "The source reconstructs the curved lotus shaft, inclined upper leaf, helipad/safety net and asymmetric retail podium using engineer photographs, the 2018 form study and mapped parts. Curvature is reconstructed rather than measured. Exact helipad soffit panel layout, crown equipment, storefront/entrance arrangement, signage, canopy details and facade tone require further comparison. Turner and the CVU observatory heights differ (178 versus 181.9 metres). These unresolved details preclude a completed-model claim."
+  }
+}

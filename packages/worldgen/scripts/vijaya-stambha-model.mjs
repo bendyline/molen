@@ -1,8 +1,13 @@
 /** Original detailed exterior reconstruction from ASI plan and official/firsthand photographs. */
+import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+import { structureSourcePath } from './structure-source-paths.mjs';
 
+const mapBytes = readFileSync(structureSourcePath('n0611_vijaya_stambha', 'map-frame.json'));
+const map = JSON.parse(mapBytes);
 const tau = Math.PI * 2,
   slot = 'yser_stone';
 const sand = [0.61, 0.4, 0.22],
@@ -658,8 +663,10 @@ export const vijayaStambha = {
   scaleBasis:
     'UNESCO nomination 247rev printed 2.47–2.48 reproduces the ASI stepped-cross plan and records 37.19 m overall height, 14.32 m maximum width and nine storeys. Thomas Holbein Hendley’s firsthand India volume 1 describes the narrower tower body as 30 ft wide; this is treated separately from the broad support terrace. Intermediate level heights and projections are proportional reconstructions from official tourism photos, UNESCO close views and Baudesson’s primary 1882 north/southwest/south-entrance photographs, checked against the modern comparison. No inconsistent printed raster scale is promoted to a new surveyed dimension.',
   geographicProposal: {
-    anchor: [74.645123975, 24.887826525],
-    heading: 0.026694748787334657,
+    anchor: map.anchor,
+    heading: map.heading,
+    mapGeometrySource: 'map-frame.json',
+    mapGeometryHash: hashEvidenceText(mapBytes),
     source: 'https://www.openstreetmap.org/way/1549061397',
     status: 'preview-proposal',
     evidence:

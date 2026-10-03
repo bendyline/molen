@@ -137,7 +137,9 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   capability packages and never the reverse, so keep Earth-host policy (modes, quality tiers,
   re-anchoring) here and generic mechanisms in the packages it composes.
 - `@bendyline/molen-pack` depends only on schema (+ `fflate`). Its `.` entry runs in browsers,
-  Workers and Node and imports no `node:` modules; file-system helpers live in `/node`. The
+  Workers and Node and imports no `node:` modules; file-system helpers live in `/node`. `/cache`
+  (the persistent byte cache: block cache, IndexedDB store, PMTiles and pack adapters) imports
+  nothing at all, so a host can cache map bytes without loading the pack reader. The
   client does not depend on it: a pack set hands the client an `AssetProvider`-shaped object.
 - **Content is not in npm packages.** Models, style packs, catalogs and the star table live under
   the top-level `content/<pack>/` directories, each with a `molen-pack.source.json`, and ship as

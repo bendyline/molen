@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.tangeweb.com/project/modegakuen/)
 - [Reference](https://www.arup.com/projects/the-arup-journal-2000s/the-arup-journal-2009-issue-2/)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-173,844 triangles; 397,896 vertices; 3 material groups; 16,014,860 bytes. Native bounds: -27.498, 0.000, -25.087 to 25.286, 203.650, 25.087. Source hash: `sha256:f4450c800d16d692200db75265f1e0abc56f3aeab20dc7b41b56d8dd95640a01`.
+173,844 triangles; 397,896 vertices; 3 material groups; 16,412,772 bytes. Native bounds: -27.498, 0.000, -25.087 to 25.286, 203.650, 25.087. Source hash: `sha256:050622be8aa53681f120bcf6f18a84bd8248a5a80ce31a9db569f1ca72eeee41`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

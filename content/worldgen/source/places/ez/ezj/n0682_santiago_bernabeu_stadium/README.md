@@ -24,7 +24,7 @@ Primary published photos and drawings are used only for dimensional and visual a
 
 ## Authored geometry and materials
 
-1,262,386 triangles, 2,440,764 vertices, 7 surface groups; 100,579,408 source bytes. SHA-256: `sha256:dd91ff1653cdb7c096edef65144c1ea67789fead174c77bf17ac14afe40645d4`. Actual bounds: -108.069, -9.200, -111.032 to 134.275, 56.820, 109.540 m.
+1,262,386 triangles, 2,440,764 vertices, 7 surface groups; 103,020,184 source bytes. SHA-256: `sha256:c5eca8a8ba3f33c7de628b27920d1aa60e7a0bf68a24a954c292a12542ae8ef1`. Actual bounds: -108.069, -9.200, -111.032 to 134.275, 56.820, 109.540 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_stainless` (1 × 1 m), `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center projected to street gradeY=0. Native+Z south-slightlywest, +X east-slightlysouth; playing surface isY=-9.2m, reconstructed from the architect section scale."}.
 

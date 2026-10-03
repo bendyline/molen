@@ -202,6 +202,57 @@ for `terrainchange` to refresh an attribution panel when the package changes. Di
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
 
+## Byte cache and prefetch
+
+Terrain, landcover, feature and building tiles, content packs and the small documents that name
+them can persist across visits in a byte cache from `@bendyline/molen-pack/cache`. Ground a viewer
+has seen then streams from disk instead of the network, and a revisited city costs almost no
+requests. The cache splits each archive into 64 KiB blocks held in memory and in IndexedDB,
+merges neighbouring misses into one range request, shares a block between concurrent reads, and
+evicts least recently used blocks past a byte budget.
+
+```ts
+import { createBlockCache, createIndexedDbByteStore, createMemoryByteStore } from '@bendyline/molen-pack/cache';
+import { loadEarthContent, mountEarthView, openPacksFromIndex } from '@bendyline/molen-earth/client';
+
+const store = createIndexedDbByteStore({ name: 'my-app-bytes', budgetBytes: 300 * 1024 * 1024 });
+const byteCache = createBlockCache(store ?? createMemoryByteStore());
+
+const packs = await openPacksFromIndex(indexUrl, undefined, undefined, { byteCache });
+const view = await mountEarthView({
+  canvas,
+  terrain,
+  baseUrl,
+  content: await loadEarthContent(packs),
+  byteCache,
+  camera: { latitude: 47.6205, longitude: -122.3493, range: 1500 },
+});
+```
+
+The view opens the package's own archives through the cache, keyed by the SHA-256 that its
+`files` list or archive sets give, or by URL when none is listed. Archives you pass in `archives`
+are used as given, so route them through the cache yourself where you want them kept: wrap a
+PMTiles source with `cachingRangeSource`, or open archive-set members with `cachingArchiveOpener`
+from `@bendyline/molen-terrain/client`. A stable URL whose file is replaced in place needs
+`keyBy: 'etag'`, so each server version becomes its own archive. Content packs are keyed by their
+content hash, file and size. Pass the same cache to `openPacksFromIndex` and `mountEarthView` so
+packs and terrain share one budget. `cachingDocumentFetch` keeps the small JSON documents (pack
+index, archive sets, manifests) and revalidates them with `If-None-Match`, serving the stored copy
+offline.
+
+With a byte cache the view also prefetches. It follows the camera's own track, so it works for an
+orbit pan, a car and an aircraft alike. It places virtual views 20, 40 and 60 seconds ahead,
+selects their tiles the way the stream would, and reads those archive tiles into the cache. It
+reads bytes only and decodes nothing, two reads at a time, only while the stream has a free load
+slot, and pauses when the page is hidden, offline or on Save-Data. It waits out camera animations
+(a fly-to, getting into a vehicle), whose momentary speed is not travel, and never looks more than
+15 km ahead. Tune it with `prefetch` (`horizonSeconds`, `stepsSeconds`, `maxConcurrent`,
+`maxDistanceMeters`), or turn it off with `prefetch: false`. A host
+that knows the route, such as a simulator's flight plan, queues places with
+`view.prefetch([{ latitude, longitude, altitude }])`. Those go first and resolve once read. A
+`flyTo` within the current frame queues its destination. `view.cacheStats()` reports block hits,
+network requests, stored bytes and prefetch progress.
+
 ## Ambient life
 
 Cars drive the mapped roads, pedestrians walk the footways, trains run the railways and aircraft
@@ -235,14 +286,26 @@ tile must resolve the same model origin, avoiding inconsistent ground samples be
 `replaceRoads: { length, width, deckHeight?, deckHeights? }` describes a model-local rectangle along +X:
 mapped parallel bridge lines inside it are replaced only after the model loads successfully.
 Outside approach fragments remain procedural. `deckHeight` joins those approaches to the
-model's deck height above its origin, blending back over 100 m; include that margin in `bounds`.
+model's deck height above its origin, blending back over at most 100 m; include that margin in `bounds`.
 For sloped decks, use `deckHeights: [negativeXEnd, positiveXEnd]` instead of `deckHeight`.
 Both heights are native model Y and follow the model's Y scale, resolved origin and heading.
-These joins apply to remaining bridge-tagged road fragments, not unrelated ground roads.
+Each remaining bridge fragment uses its nearest authored endpoint and returns to the height
+of a connected ground road at its far end. If a replaced bridge ends on the model boundary,
+an outward ground approach sharing that endpoint receives a local height correction, fading
+back to terrain within 20 m or the approach length. The painter and traffic graph use the same
+profile. This does not generate a slab beneath ground roads or lift nearby perpendicular
+crossings, tunnels or disconnected riverbank paths.
 Skewed or curved structures may add `replaceRoads.outline: [[x, z], ...]`, a simple native
 footprint polygon. It replaces the rectangle for suppression, including concave bends;
-parallel road segments outside it remain intact. `length` still locates the two connection
-stations at native X=-length/2 and X=+length/2, Z=0, and `deckHeights` keeps that endpoint order.
+parallel road segments outside it remain intact. Connection stations use the outline's outer
+intersections with native Z=0, ordered negative to positive X. Without an intersecting outline,
+they fall back to X=-length/2 and X=+length/2. `deckHeights` keeps that endpoint order.
+If the asset includes its retaining walls and approach pavement, set
+`replaceRoads.includeConnectedApproaches: true`. A grade road is then clipped inside the outline
+only if it shares a covered endpoint with a mapped bridge and continues outward along the bridge
+axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, transverse paths
+and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
+endpoint; disconnected or generalized map geometry is left in place.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision.
 
 ### Bridge elevations and terrain fit
@@ -439,8 +502,10 @@ on-demand material eviction policy is not yet implemented.
 Constant roughness and metalness channels use exact numeric factors instead of textures;
 other maps retain their authored pixels. Across the full library this removes 58 texture
 allocations, reducing estimated base-level RGBA8 texel storage from 45.75 to 31.25 MiB.
-These are storage estimates, not measured driver allocations. Alpha-cutout surfaces retain
-linear sampling without mip averaging so small perforations remain open.
+These are storage estimates, not measured driver allocations. Hard alpha-cutout surfaces retain
+linear sampling without mip averaging. Fine porous surfaces can opt into `alphaCoverage: true`:
+mipmapped alpha blending preserves average open area at distance, with the same `BLEND` fallback
+in portable GLBs. Review overlapping transparent layers and close-up hole detail from both sides.
 
 Hosts composing their own renderer can supply `StructureModelLibrary` with
 `resolveSurface: ({ ref, slot }) => materials.materialFor(slot, ref)` using a

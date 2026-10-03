@@ -24,8 +24,9 @@ const archiveSetSchema = z.strictObject({
     .min(0)
     .max(10)
     .describe(
-      'Level whose tiles partition the detail archives; a detail tile belongs to the archive listing its ancestor at this level.',
-    ),
+      'Level whose tiles partition the detail archives; a detail tile belongs to the archive listing its ancestor at this level. Required when archives is not empty.',
+    )
+    .optional(),
   base: z
     .strictObject({
       url: z
@@ -65,6 +66,35 @@ const archiveSetSchema = z.strictObject({
       }),
     )
     .describe('Detail archives, each owning a disjoint set of partition cells.'),
+  geohash: z
+    .array(
+      z.strictObject({
+        precision: z
+          .int()
+          .min(1)
+          .max(6)
+          .describe('Geohash length of a cell (3: 1.40625° square, about 156 km at the equator).'),
+        minLevel: level.describe('Coarsest level the tier serves.'),
+        maxLevel: level.describe('Finest level the tier serves.'),
+        url: z
+          .string()
+          .min(1)
+          .regex(/\{cell\}/)
+          .describe(
+            'Archive URL template, relative to this document or absolute; {cell} becomes the cell geohash.',
+          ),
+        cells: z
+          .string()
+          .regex(/^(\d+(-\d+)?(,\d+(-\d+)?)*)?$/)
+          .describe(
+            'Run-length list of the cells that have an archive, as geohash indices (the characters read as one base-32 number).',
+          ),
+      }),
+    )
+    .describe(
+      'Geohash-partitioned tiers: per band of levels, one archive per cell; a tile belongs to the cell holding its center.',
+    )
+    .optional(),
 });
 
 function expand(ranges: string): number[] {
@@ -80,7 +110,15 @@ function expand(ranges: string): number[] {
 function validateArchiveSet(data: unknown): ValidationIssue[] {
   const set = data as z.infer<typeof archiveSetSchema>;
   const issues: ValidationIssue[] = [];
-  const cells = 4 ** set.partitionLevel;
+  const partitionLevel = set.partitionLevel ?? 0;
+  const cells = 4 ** partitionLevel;
+  if (set.archives.length > 0 && set.partitionLevel === undefined) {
+    issues.push({
+      path: '/partitionLevel',
+      code: 'missing_partition_level',
+      message: 'partitionLevel is required when archives is not empty',
+    });
+  }
   if (set.base !== undefined && set.base.minLevel > set.base.maxLevel) {
     issues.push({
       path: '/base',
@@ -88,13 +126,45 @@ function validateArchiveSet(data: unknown): ValidationIssue[] {
       message: 'base.minLevel must be less than or equal to base.maxLevel',
     });
   }
-  if (set.base === undefined && set.archives.length === 0) {
+  if (set.base === undefined && set.archives.length === 0 && (set.geohash ?? []).length === 0) {
     issues.push({
       path: '/archives',
       code: 'empty_set',
-      message: 'an archive set needs a base or at least one archive',
+      message: 'an archive set needs a base, an archive or a geohash tier',
     });
   }
+  const tiers = set.geohash ?? [];
+  tiers.forEach((tier, index) => {
+    const path = `/geohash/${index}`;
+    if (tier.minLevel > tier.maxLevel) {
+      issues.push({ path, code: 'level_order', message: 'minLevel must not exceed maxLevel' });
+    }
+    if (set.base !== undefined && tier.minLevel <= set.base.maxLevel) {
+      issues.push({
+        path,
+        code: 'base_overlap',
+        message: `tier minLevel ${tier.minLevel} overlaps the base (through level ${set.base.maxLevel}); the base wins`,
+      });
+    }
+    for (const other of tiers.slice(index + 1)) {
+      if (tier.minLevel <= other.maxLevel && other.minLevel <= tier.maxLevel) {
+        issues.push({
+          path,
+          code: 'tier_overlap',
+          message: `tiers ${tier.minLevel}-${tier.maxLevel} and ${other.minLevel}-${other.maxLevel} share levels`,
+        });
+      }
+    }
+    const limit = 32 ** tier.precision;
+    const outside = expand(tier.cells).find((cell) => cell >= limit);
+    if (outside !== undefined) {
+      issues.push({
+        path: `${path}/cells`,
+        code: 'cell_range',
+        message: `cell ${outside} is outside the ${limit} geohash cells of precision ${tier.precision}`,
+      });
+    }
+  });
   const ids = new Set<string>();
   const owners = new Map<number, string>();
   set.archives.forEach((archive, index) => {
@@ -103,11 +173,11 @@ function validateArchiveSet(data: unknown): ValidationIssue[] {
       issues.push({ path, code: 'duplicate_id', message: `archive id "${archive.id}" repeats` });
     }
     ids.add(archive.id);
-    if (archive.minLevel > archive.maxLevel || archive.minLevel < set.partitionLevel) {
+    if (archive.minLevel > archive.maxLevel || archive.minLevel < partitionLevel) {
       issues.push({
         path,
         code: 'level_order',
-        message: `archive levels must satisfy partitionLevel (${set.partitionLevel}) <= minLevel <= maxLevel`,
+        message: `archive levels must satisfy partitionLevel (${partitionLevel}) <= minLevel <= maxLevel`,
       });
     }
     if (set.base !== undefined && archive.minLevel <= set.base.maxLevel) {
@@ -122,7 +192,7 @@ function validateArchiveSet(data: unknown): ValidationIssue[] {
         issues.push({
           path: `${path}/partitions`,
           code: 'partition_range',
-          message: `partition ${cell} is outside the ${cells} cells of level ${set.partitionLevel}`,
+          message: `partition ${cell} is outside the ${cells} cells of level ${partitionLevel}`,
         });
         break;
       }
@@ -146,7 +216,7 @@ export function registerTerrainArchiveSetSchema(): void {
     id: 'molen/archive-set@1',
     title: 'Archive set',
     description:
-      'One tile pyramid split across PMTiles archives: a coarse base plus detail archives partitioned by the tile at a fixed level.',
+      'One tile pyramid split across PMTiles archives: a coarse base plus detail archives partitioned by the tile at a fixed level or by geohash cell.',
     examples: [
       {
         format: 'molen/archive-set@1',
@@ -161,6 +231,23 @@ export function registerTerrainArchiveSetSchema(): void {
             minLevel: 8,
             maxLevel: 13,
             partitions: '2600-2603,2728-2731',
+          },
+        ],
+      },
+      {
+        format: 'molen/archive-set@1',
+        name: 'world-elevation',
+        tileType: 'png',
+        base: { url: 'base.pmtiles', minLevel: 0, maxLevel: 5 },
+        archives: [],
+        geohash: [
+          { precision: 2, minLevel: 6, maxLevel: 8, url: 'g2/{cell}.pmtiles', cells: '320-330' },
+          {
+            precision: 3,
+            minLevel: 9,
+            maxLevel: 13,
+            url: 'g3/{cell}.pmtiles',
+            cells: '12866-12870',
           },
         ],
       },

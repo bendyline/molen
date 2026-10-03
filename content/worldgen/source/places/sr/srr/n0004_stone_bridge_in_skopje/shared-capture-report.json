@@ -5,7 +5,7 @@
   "runtimeHash": "sha256:6b0fb2a62a6d2264a901c6ddd37066de31e3beec9986621800d105c7652e008a",
   "fixtureHash": "sha256:3dc3824114fb46029b6a424af8098d75a98b8b5bd306db741d028163415abde5",
   "reflectionMode": "none",
-  "specHash": "sha256:8a849b0521064140d1e3fb635a9b2c480b0fa574ff12f05705f85b2e889a67b4",
+  "specHash": "sha256:7c0b91f27211deca663629a562ffc1ca87505f12eff858dc0ae2308d448329c2",
   "placementHash": "sha256:4307c7f99314f9e4922f67eb60893ad8dd2bfb4ad45f315cf6254c1ec84a1f63",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.clay_fired": {
@@ -616,5 +616,31 @@
     "liveModelGeometries": 0
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:8a849b0521064140d1e3fb635a9b2c480b0fa574ff12f05705f85b2e889a67b4",
+    "previousCaptureReportHash": "sha256:4a9709e7211887fb3d2e98ec3b2b8267e04474b7a49d776f5101c29ca1d8c9a9",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/sr/srr/n0004_stone_bridge_in_skopje/spec.json",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:41c0718a0ae573c89fbb613784413394bec4c77c8b579318957fe6568105097a",
+        "current": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c"
+      },
+      {
+        "path": "mesh.bytes",
+        "previous": 38184464,
+        "current": 39115588
+      },
+      {
+        "path": "mesh.sha256",
+        "previous": "sha256:9577841e21d7aaeeeb8549fc026401ec1befff3e824e0eeb84c52d316f9bd8e7",
+        "current": "sha256:97b89aa20fe8483a18f2df8bb276ac65a904fcc9c5c11bf9333c712d99b8f27a"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization) and reversible RGB alignment statistics changed. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

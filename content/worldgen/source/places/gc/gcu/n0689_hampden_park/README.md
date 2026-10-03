@@ -23,7 +23,7 @@ Original component-authored mesh. Published photographs/plans are evidence only;
 
 ## Authored geometry and materials
 
-1,118,062 triangles, 2,088,516 vertices, 8 surface groups; 86,519,280 source bytes. SHA-256: `sha256:2b0093e5b771ca9b2f10de175cd756d55c79dbd4debfaf2be4c7e21980954ad4`. Actual bounds: -127.380, -4.450, -146.221 to 112.294, 30.621, 149.647 m.
+1,118,062 triangles, 2,088,516 vertices, 8 surface groups; 88,607,812 source bytes. SHA-256: `sha256:bb4bdfb885ff9893f7e8d3df60d05174d1b1c03e4230ec102a5e437a42941faa`. Actual bounds: -127.380, -4.450, -146.221 to 112.294, 30.621, 149.647 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.brick` (1.92 × 0.9 m), `matgraph:molen.worldgen.material.metal_standing_seam` (2.5 × 3 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m), `matgraph:molen.worldgen.material.gravel` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch centroid, native +Z toward the east goal and +X toward the North Stand. Y0 is the public South Stand forecourt; the pitch is reconstructed 4.2m below it."}.
 

@@ -3,9 +3,14 @@
 import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { beam, cross, loft, normalize, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { annulus, archBay, face, tau, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
+
+const hermannFrameBytes = readFileSync(
+  structureSourcePath('n0571_hermannsdenkmal', 'map-frame.json'),
+);
 
 function polygon(out, slot, ring, bottom, top, color) {
   const p = ring.slice();
@@ -745,6 +750,9 @@ export const finalHeritageTowers = [
       evidence:
         'The mapped concentric monument parts surround exact-QID identity node 241929305. The circular base gives the anchor, while the published west-facing statue resolves the rotation that a round footprint cannot.',
       orientationConfidence: 'mapped-concentric-foundation-and-published-statue-facing',
+      mapGeometrySource: 'map-frame.json',
+      mapGeometryHash: hashEvidenceText(hermannFrameBytes),
+      mapGeometryLicense: 'ODbL-1.0',
       limitations:
         'The open circular viewing platform is registered from the surrounding ground plinth, not the narrow statue footprint. Neighboring paths and landscape stairs remain map scenery.',
     },

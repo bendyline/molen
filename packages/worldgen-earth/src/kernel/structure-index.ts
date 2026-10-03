@@ -39,6 +39,8 @@ export interface StructurePlacement {
     /** Uniform native deck Y, or separate native Y values at negative-X / positive-X ends. */
     deckHeight?: number;
     deckHeights?: [number, number];
+    /** Also clip longitudinal grade approaches sharing a covered bridge endpoint. */
+    includeConnectedApproaches?: boolean;
   };
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
@@ -293,6 +295,8 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
         road.length <= 0 ||
         !Number.isFinite(road.width) ||
         road.width <= 0 ||
+        (road.includeConnectedApproaches !== undefined &&
+          typeof road.includeConnectedApproaches !== 'boolean') ||
         (road.deckHeight !== undefined && !Number.isFinite(road.deckHeight)) ||
         (road.deckHeights !== undefined &&
           (road.deckHeight !== undefined ||

@@ -54,6 +54,77 @@ function vertices(object: THREE.Object3D, name: string) {
   return mesh.geometry.getAttribute('position');
 }
 describe('automatic bridge structures', () => {
+  it('grades a connected ground approach without adding a bridge slab or a second surface lift', () => {
+    const tile = fixture(false);
+    tile.transportation[0] = {
+      class: 'highway',
+      width: 12,
+      lines: [
+        [
+          [0, 0.5],
+          [1, 0.5],
+        ],
+      ],
+      bridgeConnections: [{ point: [0, 0.5], elevation: 18, radius: 20 }],
+    };
+    const object = createTerrainSurfaceObject(tile, context());
+    expect(object.getObjectByName('surfaces:bridges')).toBeUndefined();
+    const p = vertices(object, 'semantic:transportation');
+    for (const [x, y] of [
+      [0, 18],
+      [200, 5.32],
+    ]) {
+      const ys = Array.from({ length: p.count }, (_, i) => i)
+        .filter((i) => p.getX(i) === x)
+        .map((i) => p.getY(i));
+      expect(ys.length).toBeGreaterThan(0);
+      for (const actual of ys) expect(actual).toBeCloseTo(y as number);
+    }
+    disposeTerrainSurfaceObject(object);
+  });
+  it('tapers a short authored connector to its actual shared ground-road endpoint', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        class: 'highway',
+        bridge: true,
+        width: 6,
+        lines: [
+          [
+            [0, 0.5],
+            [0.05, 0.5],
+          ],
+        ],
+        bridgeConnections: [
+          { point: [0, 0.5], elevation: 18, radius: 100 },
+          { point: [-0.15, 0.5], elevation: 22, radius: 100 },
+        ],
+      },
+      {
+        class: 'highway',
+        width: 6,
+        lines: [
+          [
+            [0.05, 0.5],
+            [0.1, 0.5],
+          ],
+        ],
+      },
+    );
+    const object = createTerrainSurfaceObject(tile, context());
+    const p = vertices(object, 'semantic:transportation');
+    for (const [x, y] of [
+      [0, 18],
+      [10, 5.32],
+    ]) {
+      const ys = Array.from({ length: p.count }, (_, i) => i)
+        .filter((i) => Math.abs(p.getX(i) - (x as number)) < 1e-5)
+        .map((i) => p.getY(i));
+      expect(ys.length).toBeGreaterThan(0);
+      for (const actual of ys) expect(actual).toBeCloseTo(y as number);
+    }
+    disposeTerrainSurfaceObject(object);
+  });
   it('builds an elevated deck, vertical slab faces, barriers and supports on water-height terrain', () => {
     const object = createTerrainSurfaceObject(fixture(), context());
     const p = vertices(object, 'surfaces:bridges');

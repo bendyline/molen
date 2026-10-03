@@ -22,13 +22,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-64,018 triangles, 118,892 vertices, 6 surface groups; 4,933,036 source bytes. SHA-256: `sha256:07eb538e45e1cf8921e32f3cf7e6420a4f1245d4fb67daea1016317389fd50bc`. Actual bounds: -4.456, 0.000, -4.456 to 4.456, 40.000, 5.000 m.
+64,018 triangles, 118,892 vertices, 6 surface groups; 5,051,940 source bytes. SHA-256: `sha256:8f0f2c1b13d2af6e4d6891f1a1b32fdae77d8d2204644b642fa428b35fb885c4`. Actual bounds: -4.456, 0.000, -4.456 to 4.456, 40.000, 5.000 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Exact-QID base center corrects the catalog coordinate approximately58m southwest. Entry faces the southeastern/eastern station forecourt, reconstructed from the public-library aerial and present mapped service court. Square gallery and the seaward glazed lantern share this station axis; facade angle is a photographed quadrant, not a survey bearing. Proposed anchor 21.095725009, 55.727682701 (longitude, latitude), heading 1.06 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Exact-QID base center corrects the catalog coordinate approximately58m southwest. Entry faces the southeastern/eastern station forecourt, reconstructed from the public-library aerial and present mapped service court. Square gallery and the seaward glazed lantern share this station axis; facade angle is a photographed quadrant, not a survey bearing. Proposed anchor 21.095725009, 55.727682701 (longitude, latitude), heading 1.06 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -36,6 +36,6 @@ Exact-QID base center corrects the catalog coordinate approximately58m southwest
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Component proportions below the 40m total are reference-photo reconstructions. The exact restored2025 paint tone and movable communications equipment may change; temporary flags, cables spanning the site and detached service buildings remain outside this tower model. The preserved broad base is modeled separately from the modern shaft. No claim of optical-sector navigational accuracy.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0676`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0676`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-south-baltic-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

@@ -1,0 +1,201 @@
+{
+  "id": "N0622",
+  "planId": "N0622",
+  "assetId": "molen.worldgen.structure.n0622_montelbaanstoren",
+  "title": "Montelbaanstoren",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q1946061"
+  },
+  "wikidataId": "Q1946061",
+  "visualBrief": "Amsterdam’s round brick defensive tower with broad 1610 foot, octagonal upper masonry, four black-and-gold Roman clock faces, two genuinely open lead-clad timber stages, bells, balustrades, curved Renaissance scrolls and slender crown/finial.",
+  "size": [
+    10.5,
+    42.05,
+    10.5
+  ],
+  "actualBounds": {
+    "min": [
+      -5.1275315284729,
+      0,
+      -5.1275315284729
+    ],
+    "max": [
+      5.1275315284729,
+      42.04999923706055,
+      5.1275315284729
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the provisional principal clock/window face; signed site orientation pending",
+    "origin": "Tower axis at surrounding pavement; foundations below street level excluded"
+  },
+  "scaleBasis": "The municipal measured section’s 0–10 m bar gives approximately 42.05 m above its ground line. AHN4 surface peak 43.5 m NAP and nearby pavement around 2.02 m NAP independently support a roughly 42 m exterior, but raster sampling can miss the narrow finial. The catalog’s 48 m historical figure is retained as conflicting evidence, not silently used to stretch the drawing.",
+  "geographicProposal": {
+    "anchor": [
+      4.905663475,
+      52.372039158
+    ],
+    "heading": 1.407879250402,
+    "source": "https://www.openstreetmap.org/way/57864086",
+    "orientationConfidence": "axis-only",
+    "evidence": "Exact-QID mapped footprint supplies anchor and an undirected plan axis. AHN surface peak lies within about one metre of that center.",
+    "limitations": "The asymmetrical plinth/entrance, signed clock-face facing and pavement elevation need local site-fit review before activation.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Exact-QID mapped footprint supplies anchor and an undirected plan axis. AHN surface peak lies within about one metre of that center. The asymmetrical plinth/entrance, signed clock-face facing and pavement elevation need local site-fit review before activation."
+  },
+  "sourceFacts": {
+    "section": "Amsterdam BMA, Historisch hout in Amsterdamse monumenten (2012), printed pp. 156–158; section after an earlier measured drawing",
+    "sectionGroundToTipMeters": 42.05,
+    "sectionScaleBarMeters": 10,
+    "sectionPixelScale": 37.1,
+    "historicalReportedHeightMeters": 48,
+    "ahn4": {
+      "surfacePeakNapMeters": 43.5,
+      "nearbyGroundMedianNapMeters": 2.0209,
+      "groundSampleRadiusMeters": 15,
+      "cellMeters": 0.5,
+      "collectionYears": "2020–2022"
+    },
+    "stageHeightsMeters": {
+      "masonry": 19,
+      "clockTop": 23.57,
+      "lowerLanternTop": 28.56,
+      "upperLanternBase": 30.98,
+      "upperLanternTop": 35.3,
+      "tip": 42.05
+    },
+    "clockFaces": 4,
+    "bells": 2
+  },
+  "referencePages": [
+    "https://monumentenregister.cultureelerfgoed.nl/monumenten/4025",
+    "https://www.amsterdam.nl/stadsarchief/stukken/grachten-torens/montelbaanstoren/",
+    "https://pure.uva.nl/ws/files/2809631/178913_Historisch_hout_in_Amsterdamse_monumenten.pdf",
+    "https://www.amsterdam-monumentenstad.nl/database/grachtenboek_objecten.php?id=5391",
+    "https://service.pdok.nl/rws/actueel-hoogtebestand-nederland/wcs/v1_0?SERVICE=WCS&REQUEST=GetCapabilities",
+    "https://www.openstreetmap.org/way/57864086"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Initial measured-section reconstruction; not approved for maximum fidelity or geographic placement.",
+    "Fine window distribution, masonry repairs, stone cross-frames, lead seams, corner scrolls and crown profiles require additional facade comparison. Details are original reconstructions within the section envelope.",
+    "The 48 m historical height discrepancy remains documented; 42.05 m is an explicit section-derived working scale, not a new survey measurement.",
+    "Clock hands are a static 10:10 illustration; working mechanisms, inaccessible internal framing, buried foundations and the surrounding quay are excluded.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "clock-stage",
+      "position": [
+        8,
+        23,
+        12
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "lower-lantern",
+      "position": [
+        9,
+        27,
+        10
+      ],
+      "lookAt": [
+        0,
+        26.5,
+        0
+      ]
+    },
+    {
+      "name": "upper-lantern",
+      "position": [
+        6,
+        36,
+        9
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ]
+    },
+    {
+      "name": "masonry-windows",
+      "position": [
+        9,
+        8,
+        13
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        55,
+        28,
+        70
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    }
+  ]
+}

@@ -19,7 +19,7 @@ Original deterministic mesh informed by primary architect/engineer references; n
 
 ## Authored geometry and materials
 
-1,465,414 triangles, 2,836,732 vertices, 7 surface groups; 116,874,516 source bytes. SHA-256: `sha256:1ba5eb3df98b46f5efde3b8be75f4e0c8f7989686eeb708b1e7b04817a6eaae1`. Actual bounds: -152.388, -5.040, -170.135 to 152.321, 69.028, 170.188 m.
+1,465,414 triangles, 2,836,732 vertices, 7 surface groups; 119,711,264 source bytes. SHA-256: `sha256:b073024d24408faf25a2524a18ab29a6da69a81a15c2cfbd96a90b8bd7479a89`. Actual bounds: -152.388, -5.040, -170.135 to 152.321, 69.028, 170.188 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Exact mapped pitch polygon area centroid; native +Z is the southward playing axis. Native Y0 is the structural plaza; field Y-5 is a section-scaled relative grade."}.
 

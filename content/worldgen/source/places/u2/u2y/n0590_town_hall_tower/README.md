@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/civic-tower-more-models.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-100,224 triangles; 204,064 vertices; 6 material groups; 8,348,536 source bytes. Source hash: `sha256:b8856abba54c5126b381ef70580e32afbf8683db7a4c2599344cba94a04650f6`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+100,224 triangles; 204,064 vertices; 6 material groups; 8,552,612 source bytes. Source hash: `sha256:d9b94bfd15bde66fa59fc142c957f17c951317be85867ed3cebc4e7b0cbcc81a`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0590`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

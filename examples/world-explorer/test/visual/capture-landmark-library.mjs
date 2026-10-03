@@ -6,6 +6,10 @@ import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
 import {
+  hashEvidenceText,
+  matchesEvidenceText,
+} from '../../../../packages/worldgen/scripts/evidence-text-hash.mjs';
+import {
   authoredModels,
   content,
   hashBytes,
@@ -19,6 +23,7 @@ import {
 } from '../../../../packages/worldgen-earth/dist/kernel.mjs';
 import { featureLines } from '../../../../packages/worldgen-earth/scripts/structure-map-geometry.mjs';
 import { sourceLocalFootprint } from './landmark-capture-footprint.mjs';
+import { landmarkSceneTriangles } from './landmark-capture-geometry.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(resolve(root, 'packages/tooling/package.json'));
@@ -43,15 +48,14 @@ const evidence = await readOptionalJson(
   resolve(root, 'content/earth/structures/evidence/osm-features.json'),
 );
 const pack = await readOptionalJson(resolve(content, 'stylepack.json'));
-const fixtureHash = hashBytes(
-  Buffer.concat(
-    await Promise.all(
-      ['landmark-library.ts', 'landmark-library.html', 'landmark-capture-clipping.mjs'].map(
-        (name) => readFile(resolve(here, name)),
-      ),
+const fixtureBytes = Buffer.concat(
+  await Promise.all(
+    ['landmark-library.ts', 'landmark-library.html', 'landmark-capture-clipping.mjs'].map((name) =>
+      readFile(resolve(here, name)),
     ),
   ),
 );
+const fixtureHash = hashEvidenceText(fixtureBytes);
 // The previous fixture excluded sea-level entries. Its terrain-only path, lighting and
 // cameras are unchanged, so those existing image-hash-bound reviews remain reproducible.
 const terrainOnlyFixtureHash =
@@ -82,6 +86,13 @@ const legacyClippingFixtureHash =
 // Only asset URL resolution changed; model bytes, cameras and rendering are unchanged.
 const conventionAssetFixtureHash =
   'sha256:be058e28bfed8e1aca0503d33060226a079b1d252f0b99ea231ce2d93d7f044b';
+// The bank-reference sampler changes only geographic entries with terrainReference.
+// Other entries and bounded asset-review captures retain their prior rendering path.
+const originContactFixtureHash =
+  'sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042';
+// An opt-in source label changes only the placement caption for non-OSM reference data.
+const osmCaptionFixtureHash =
+  'sha256:1fdd7e5e99dbdd7f25f2c656a2f6d782fada208969740897011b66b32f5ffe44';
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const selected = await authoredModels();
@@ -135,23 +146,31 @@ try {
     const placement = structureIndex
       .query([-180, -90, 180, 90], queryOptions)
       .find((entry) => entry.asset === spec.assetId);
-    const specHash = hashBytes(await readFile(resolve(dir, 'spec.json')));
+    const specBytes = await readFile(resolve(dir, 'spec.json'));
+    const specHash = hashEvidenceText(specBytes);
     const placementHash = placement ? hashBytes(JSON.stringify(placement)) : null;
-    const localFootprint = sourceLocalFootprint(
-      spec,
+    const sourceFrameBytes =
       spec.geographicProposal?.mapGeometrySource === 'map-frame.json'
         ? await readFile(resolve(dir, 'map-frame.json'))
-        : undefined,
-    );
+        : undefined;
+    const localFootprint = sourceLocalFootprint(spec, sourceFrameBytes);
     const prior = await readOptionalJson(resolve(output, 'shared-capture-report.json'));
     let current =
-      (!localFootprint || prior?.footprintEvidenceHash === localFootprint.hash) &&
+      (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
+      (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
       prior?.sourceHash === sourceHash &&
       (prior?.viewingDate ?? null) === (viewingDate ?? null) &&
       prior?.runtimeHash === sidecar.hash &&
       (prior?.reflectionMode ?? 'none') === reflectionMode &&
       (prior?.clippingMode ?? 'legacy') === clippingMode &&
-      (prior?.fixtureHash === fixtureHash ||
+      (!placement?.terrainReference ||
+        placement.bounds ||
+        prior?.frames?.some((frame) =>
+          frame.state?.terrainSamples?.some((sample) => sample.placementId === placement.id),
+        )) &&
+      (matchesEvidenceText(fixtureBytes, prior?.fixtureHash) ||
+        prior?.fixtureHash === osmCaptionFixtureHash ||
+        prior?.fixtureHash === originContactFixtureHash ||
         prior?.fixtureHash === conventionAssetFixtureHash ||
         (prior?.fixtureHash === legacyClippingFixtureHash && clippingMode === 'legacy') ||
         (prior?.fixtureHash === undatedFixtureHash && viewingDate === undefined) ||
@@ -164,7 +183,7 @@ try {
         (prior?.fixtureHash === unreflectedFixtureHash && reflectionMode === 'none') ||
         (prior?.fixtureHash === optInUnformattedFixtureHash && reflectionMode === 'none') ||
         (prior?.fixtureHash === terrainOnlyFixtureHash && placement?.datum !== 'sea-level')) &&
-      prior?.specHash === specHash &&
+      matchesEvidenceText(specBytes, prior?.specHash) &&
       prior?.placementHash === placementHash &&
       prior?.frames?.length > 0 &&
       (!placement?.groundCutout ||
@@ -176,15 +195,18 @@ try {
               frame.state?.groundCoversCutoutProbe === false,
           )));
     if (current) {
-      for (const [path, expected] of [
-        ...prior.frames.map((frame) => [resolve(output, frame.path), frame.hash]),
+      for (const [path, expected, text] of [
+        ...prior.frames.map((frame) => [resolve(output, frame.path), frame.hash, false]),
         ...Object.values(prior.materialGraphs).map((graph) => [
           resolve(content, graph.path),
           graph.hash,
+          true,
         ]),
       ]) {
         try {
-          if (hashBytes(await readFile(path)) !== expected) current = false;
+          const bytes = await readFile(path);
+          if (text ? !matchesEvidenceText(bytes, expected) : hashBytes(bytes) !== expected)
+            current = false;
         } catch (error) {
           if (error.code !== 'ENOENT') throw error;
           current = false;
@@ -214,12 +236,16 @@ try {
       title: spec.title,
       placement,
       footprint,
+      footprintLabel: localFootprint?.label,
       footprintLines: localFootprint?.lines,
       viewingDate,
     });
+    const runtimeGltf = JSON.parse(
+      runtimeBytes.subarray(20, 20 + runtimeBytes.readUInt32LE(12)).toString('utf8'),
+    );
     assert.equal(
       mounted.triangles,
-      sidecar.stats.triangles,
+      landmarkSceneTriangles(runtimeGltf, { expandGpuInstances: false }),
       'The original detailed geometry must reach the viewer',
     );
     assert(mounted.loads.includes(spec.assetId), 'The requested landmark must be loaded');
@@ -266,12 +292,28 @@ try {
         'Geographic anchor must be the model origin',
       );
       assert(Math.abs(mounted.position[1] - (placement.elevation ?? 0)) < 1e-6);
+      if (placement.terrainReference) {
+        const samples = mounted.terrainSamples.filter(
+          (sample) => sample.placementId === placement.id,
+        );
+        assert(samples.length > 0, 'The viewer must sample the separate bank reference');
+        for (const sample of samples) {
+          assert.deepEqual(sample.coordinate, placement.terrainReference.anchor);
+          assert.equal(
+            sample.height,
+            placement.terrainReference.modelHeight * (placement.scale?.[1] ?? 1),
+          );
+        }
+      }
     }
     const materialGraphs = {};
     for (const surface of Object.keys(mounted.surfaces)) {
       const ref = surface.slice('worldgen:'.length);
       const path = pack.materials[ref.replace(/^matgraph:/, '')];
-      materialGraphs[ref] = { path, hash: hashBytes(await readFile(resolve(content, path))) };
+      materialGraphs[ref] = {
+        path,
+        hash: hashEvidenceText(await readFile(resolve(content, path))),
+      };
     }
     const cameras = Array.isArray(spec.qaCameras)
       ? spec.qaCameras
@@ -292,6 +334,15 @@ try {
       assert(/^[a-z0-9_-]+$/.test(view.name), `Invalid camera name: ${view.name}`);
       const state = await page.evaluate((input) => window.landmarkLibraryQA.view(input), view);
       assert(state.draws > 0 && state.renderedTriangles > 0);
+      if (
+        view.name === 'angle-0' &&
+        runtimeGltf.extensionsUsed?.includes('EXT_mesh_gpu_instancing')
+      ) {
+        assert(
+          state.renderedTriangles >= landmarkSceneTriangles(runtimeGltf),
+          'Every GPU instance must reach an actual draw in the full-asset view',
+        );
+      }
       assert.equal(
         state.groundCutoutActive,
         !!placement?.groundCutout,
@@ -343,6 +394,7 @@ try {
       fixtureHash,
       ...(viewingDate !== undefined ? { viewingDate } : {}),
       ...(localFootprint ? { footprintEvidenceHash: localFootprint.hash } : {}),
+      ...(localFootprint?.label ? { footprintLabel: localFootprint.label } : {}),
       reflectionMode,
       clippingMode,
       specHash,

@@ -65,6 +65,8 @@ function textureFrom(
 export function materialFromBaked(baked: BakedMaterial): THREE.MeshStandardMaterial {
   // Reject malformed images before allocating any material or texture resources.
   for (const image of Object.values(baked.slots)) if (image !== undefined) validateImage(image);
+  if (baked.meta.alphaCoverage && (baked.meta.alphaTest !== undefined || !baked.slots.baseColor))
+    throw new Error('alphaCoverage requires baseColor and cannot be combined with alphaTest');
   const material = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 1 });
   const filter = baked.meta.filter;
   if (baked.slots.baseColor !== undefined) {
@@ -100,6 +102,26 @@ export function materialFromBaked(baked: BakedMaterial): THREE.MeshStandardMater
   if (baked.meta.alphaTest !== undefined) {
     material.alphaTest = baked.meta.alphaTest;
     material.transparent = false;
+  }
+  if (baked.meta.alphaCoverage) {
+    // Fractional alpha preserves average open area once individual holes become subpixel.
+    // Match portable glTF BLEND. Do not let transparent holes occlude later draw calls.
+    material.alphaTest = 0;
+    material.transparent = true;
+    material.depthWrite = false;
+    for (const texture of [
+      material.map,
+      material.normalMap,
+      material.roughnessMap,
+      material.metalnessMap,
+      material.emissiveMap,
+      material.aoMap,
+    ]) {
+      if (!texture || texture.magFilter === THREE.NearestFilter) continue;
+      texture.generateMipmaps = true;
+      texture.minFilter = THREE.LinearMipmapLinearFilter;
+      texture.needsUpdate = true;
+    }
   }
   return material;
 }

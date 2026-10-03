@@ -1,6 +1,7 @@
 import { validate } from '@bendyline/molen-schema';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { bakeMatGraph } from '../src/matgraph';
+import type { MatGraphDoc } from '../src/matgraph-types';
 import { bakePalette } from '../src/palette';
 import { registerMaterialSchemas } from '../src/schema';
 import { createImage } from '../src/types';
@@ -360,6 +361,21 @@ describe('matgraph alpha cutouts', () => {
     for (const alphaTest of [-0.1, 1.1, Number.NaN, Number.POSITIVE_INFINITY]) {
       expect(validate('matgraph' as never, { ...graph, alphaTest }).ok).toBe(false);
       expect(() => bakeMatGraph({ ...validatedGraph(graph), alphaTest })).toThrow('alphaTest');
+    }
+  });
+  it('preserves fractional alpha for porous surfaces and rejects conflicting modes', () => {
+    const { alphaTest: _cutoff, ...source } = graph;
+    const coverage = { ...source, alphaCoverage: true };
+    const baked = bakeMatGraph(validatedGraph(coverage));
+    expect(baked.meta).toEqual({ filter: 'linear', alphaCoverage: true });
+    expect(baked.slots.baseColor).toEqual(bakeMatGraph(validatedGraph(graph)).slots.baseColor);
+    for (const invalid of [
+      { ...coverage, alphaTest: 0.3 },
+      { ...coverage, outputs: { roughness: 'paint' } },
+      { ...coverage, alphaCoverage: 'true' },
+    ]) {
+      expect(validate('matgraph' as never, invalid).ok).toBe(false);
+      expect(() => bakeMatGraph(invalid as unknown as MatGraphDoc)).toThrow('alphaCoverage');
     }
   });
 });

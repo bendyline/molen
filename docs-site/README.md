@@ -19,6 +19,12 @@ warnings while you work, a failure under `docs:site:check`.
 Each of those runs `pnpm -r build` first — the generators read packages' built `dist/`, per the
 repo's build invariant, and the build stages the examples' `dist/` output.
 
+Generation, checks, builds and staging share a lock in `.artifacts/docs-site.lock`. A concurrent
+command waits until the current command finishes, so regeneration cannot delete API pages while
+VitePress reads them. A build holds the lock through compilation and staging. Failed commands
+release it; a later command recovers the lock if its owning process has exited. The dev server
+releases it after generation so subsequent edits can still regenerate its watched pages.
+
 ## Where each section comes from
 
 | Section | Source of truth | Generator |

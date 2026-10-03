@@ -11,10 +11,12 @@ import {
   validateAuthoredMesh,
 } from './authored-structure-mesh.mjs';
 import { blueBridgeStudy } from './blue-bridge-model.mjs';
+import { circleBridgeStudy } from './circle-bridge-model.mjs';
 import { cordobaStudy } from './cordoba-roman-bridge-model.mjs';
 import { dragonBridgeStudy } from './dragon-bridge-model.mjs';
 import { dyavolskiStudy } from './dyavolski-most-model.mjs';
 import { eshimaStudy } from './eshima-ohashi-model.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { gandhiSetuStudy } from './gandhi-setu-model.mjs';
 import { haghtanakStudy } from './haghtanak-bridge-model.mjs';
 import { helixStudy } from './helix-bridge-model.mjs';
@@ -27,6 +29,7 @@ import { mesStudy } from './mes-bridge-model.mjs';
 import { monnowStudy } from './monnow-bridge-model.mjs';
 import { poniatowskiStudy } from './poniatowski-bridge-model.mjs';
 import { pontAvalStudy } from './pont-aval-model.mjs';
+import { pontDelDiableStudy } from './pont-del-diable-model.mjs';
 import { redYerevanStudy } from './red-yerevan-bridge-model.mjs';
 import { sanjoOhashiStudy } from './sanjo-ohashi-model.mjs';
 import { skopjeAqueductStudy } from './skopje-aqueduct-model.mjs';
@@ -172,6 +175,8 @@ for (const study of [
   blueBridgeStudy,
   tolbiacStudy,
   poniatowskiStudy,
+  circleBridgeStudy,
+  pontDelDiableStudy,
 ].filter((s) => !ids || ids.includes(s.id))) {
   const candidate = catalog.candidates.find((c) => c.id === study.id),
     mapped = evidence.candidates.find((c) => c.candidateId === study.id);
@@ -252,12 +257,15 @@ for (const study of [
       featureIds: mapped.featureIds,
       source: mapped.featureSources?.[0],
       mapGeometrySource: 'content/earth/structures/georeferencing.json',
-      mapGeometryHash: hashBytes(mapBytes),
+      mapGeometryHash: hashEvidenceText(mapBytes),
       mapGeometryLicense: 'ODbL-1.0',
       attribution: '© OpenStreetMap contributors',
       ...study.geographic(mapped),
       ...(sourceFrame
-        ? { mapGeometrySource: study.mapFrameDocument, mapGeometryHash: hashBytes(sourceFrame) }
+        ? {
+            mapGeometrySource: study.mapFrameDocument,
+            mapGeometryHash: hashEvidenceText(sourceFrame),
+          }
         : {}),
     },
     geometrySource:

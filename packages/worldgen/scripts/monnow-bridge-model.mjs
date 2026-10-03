@@ -2,6 +2,11 @@
 
 import { readFileSync } from 'node:fs';
 import { loft, normalFor } from './authored-structure-mesh.mjs';
+import {
+  buildMonnowApproaches,
+  monnowApproachHeight,
+  monnowRoadOutline,
+} from './monnow-approaches.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
@@ -20,11 +25,19 @@ const tint = (s) => {
   const t = rand(s * 3);
   return (t < 0.72 ? red : buff).map((v) => v + (rand(s * 7) - 0.5) * 0.055);
 };
-const deck = (x) => 5.15 + 0.5 * Math.exp(-(((x + 1) / 12) ** 2));
+// Cubic fit to independently sampled Welsh Government DSM road stations outside the
+// gatehouse occlusion. Source-height origin 13.4 m is transferred to a dry-bank reference.
+// The 1 m raster constrains the broad crown, not individual stones or survey precision.
+const deck = (x) =>
+  ((-0.0000584435023917965 * x - 0.0024805789789153422) * x + 0.01839900828785006) * x +
+  19.193598698869433 -
+  13.4 -
+  0.045;
 const gateX = 5.0,
   gateZ = 0.16,
   base = deck(gateX),
-  eave = base + 8.4;
+  eave = base + 8.55,
+  roofRise = 2.15;
 function extrude(out, poly, d0, d1, color = red, slot = 'sandstone', gate = false, rubble = false) {
   if (rubble && poly.length === 4) {
     const center = poly[0].map((_, k) => poly.reduce((s, p) => s + p[k], 0) / poly.length);
@@ -231,7 +244,7 @@ function bridge(out) {
     );
   }
   // Separate masonry blocks retain true bed joints; cut each against the arch envelope.
-  for (let row = 0, y = 0; y < 5.65; row++, y += 0.34)
+  for (let row = 0, y = 0; y < 5.85; row++, y += 0.34)
     for (let x = -18.35 - (row % 2) * 0.43; x < 15.12; x += 0.86) {
       const aa = Math.max(-18.35, x + 0.013),
         bb = Math.min(15.12, x + 0.846);
@@ -295,21 +308,35 @@ function bridge(out) {
     }
   // Walkways follow the entire mapped widened perimeter, including skewed ends.
   const poly = frame.geometry.outline.slice(0, -1);
-  out.addCap(
-    'road',
-    'palette:#ffffff',
-    poly,
-    [],
-    (p) => deck(p[0]) + 0.045,
-    [0, 1, 0],
-    (p) => p,
-    [0.235, 0.22, 0.183],
-  );
-  for (let x = -18.0; x < 14.9; x += 0.38) {
-    const b = Math.min(15.03, x + 0.36),
-      w = bridgeWidth((x + b) / 2),
-      y = deck(x);
+  // Short transverse strips follow the measured crown. A single triangulated perimeter
+  // would draw long flat chords through the curved walking surface.
+  for (let x = -19.5; x < 15.2; x += 0.2) {
+    const strip = cut(cut(poly, 0, x, 1), 0, x + 0.2, -1);
+    if (strip.length < 3) continue;
+    out.addCap(
+      'road',
+      'palette:#ffffff',
+      strip,
+      [],
+      (p) => deck(p[0]) + 0.045,
+      [0, 1, 0],
+      (p) => p,
+      [0.235, 0.22, 0.183],
+    );
+  }
+  for (let station = frame.geometry.outline[2][0]; station < 15.14; station += 0.38) {
     for (const side of [-1, 1]) {
+      // The skewed ends are entrances, not parapet paths. Stop each longitudinal
+      // wall at its mapped corner rather than stepping stones across the road join.
+      const limits =
+        side < 0
+          ? [frame.geometry.outline[0][0], frame.geometry.outline[10][0]]
+          : [frame.geometry.outline[2][0], frame.geometry.outline[9][0]];
+      const x = Math.max(station, limits[0]),
+        b = Math.min(station + 0.36, limits[1]);
+      if (b - x < 0.03) continue;
+      const w = bridgeWidth((x + b) / 2),
+        y = deck(x);
       const z = w[side < 0 ? 0 : 1];
       if (!(x > 2.55 && x < 7.4)) {
         courseFace(out, x, b, y + 0.12, y + 1.2, side < 0 ? z : z - 0.54, side < 0 ? z + 0.54 : z, {
@@ -652,7 +679,7 @@ function gatehouse(out) {
   roof(out);
 }
 function roof(out) {
-  const top = eave + 2.6,
+  const top = eave + roofRise,
     roofColor = [0.245, 0.258, 0.204];
   const tile = (q, seed) => {
     if (normalFor(...q)[1] < 0) q.reverse();
@@ -675,7 +702,7 @@ function roof(out) {
   // Separate conical ends and the two planar slopes keep the capsule parameter seam
   // outside every shingle. Adjacent rows overlap as real thin stone roof courses.
   for (const side of [-1, 1]) {
-    const p = (t, z) => [gateX + side * 2.29 * (1 - t), eave + 2.6 * t, z];
+    const p = (t, z) => [gateX + side * 2.29 * (1 - t), eave + roofRise * t, z];
     let q = [p(0, gateZ - 2.95), p(0, gateZ + 2.95), p(1, gateZ + 2.95), p(1, gateZ - 2.95)];
     if (normalFor(...q)[1] < 0) q.reverse();
     quad(out, 'sandstone', q, normalFor(...q), roofColor);
@@ -691,7 +718,7 @@ function roof(out) {
       }
     const cone = (a, t) => [
       gateX + 2.29 * (1 - t) * Math.cos(a),
-      eave + 2.6 * t,
+      eave + roofRise * t,
       gateZ + side * (2.95 + 2.14 * (1 - t) * Math.sin(a)),
     ];
     for (let i = 0; i < 80; i++) {
@@ -773,7 +800,56 @@ function roof(out) {
 }
 export function buildMonnow(out) {
   bridge(out);
+  buildMonnowApproaches(out, { deck, cut, extrude, tint, mortar, buff });
   gatehouse(out);
+}
+function worldCoordinate(x, z) {
+  const radius = 6378137,
+    factor = Math.cos((frame.anchor[1] * Math.PI) / 180);
+  const cx = ((frame.anchor[0] * Math.PI) / 180) * radius * factor;
+  const cz = -radius * Math.asinh(Math.tan((frame.anchor[1] * Math.PI) / 180)) * factor;
+  const c = Math.cos(frame.heading),
+    s = Math.sin(frame.heading);
+  return [
+    (((cx + c * x + s * z) / factor / radius) * 180) / Math.PI,
+    (Math.atan(Math.sinh(-(cz - s * x + c * z) / factor / radius)) * 180) / Math.PI,
+  ];
+}
+function geographicProposal() {
+  const corners = [
+    [-70, -25],
+    [-70, 25],
+    [70, -25],
+    [70, 25],
+  ].map(([x, z]) => worldCoordinate(x, z));
+  return {
+    anchor: frame.anchor,
+    heading: frame.heading,
+    featureIds: ['way/855452311', 'way/855457354', 'way/60781949', 'way/855457353'],
+    source: 'https://www.openstreetmap.org/way/855452311',
+    elevationMode: 'terrain-contact',
+    terrainReference: {
+      anchor: worldCoordinate(-30, 0),
+      modelHeight: 4.439042663574219,
+      basis:
+        'Dry western approach at native X=-30 m: original Welsh Government DTM 17.83904 m, 4.43904 m above the chosen native origin. DSM road stations constrain the deck independently. Host terrain must resolve this bank point consistently across tiles; river-center samples cannot replace it.',
+    },
+    bounds: [
+      Math.min(...corners.map((p) => p[0])),
+      Math.min(...corners.map((p) => p[1])),
+      Math.max(...corners.map((p) => p[0])),
+      Math.max(...corners.map((p) => p[1])),
+    ],
+    replaceRoads: {
+      length: 47,
+      width: 21,
+      outline: monnowRoadOutline,
+      deckHeights: [monnowApproachHeight(-24, deck), monnowApproachHeight(23, deck)],
+      includeConnectedApproaches: true,
+    },
+    notes:
+      'Decorated gate face southwest, plain face northeast. Independent 2021 LiDAR DTM/DSM constrains the deck crown, approach slopes and bank reference. Retaining walls follow mapped lines. Filtered water is not bathymetry; submerged foundations remain reconstructed. The loaded model clips covered bridge roads and connected grade approaches within its exact outline. Current terrain and road-context capture is required.',
+  };
 }
 export const monnowStudy = {
   id: 'N0015',
@@ -783,7 +859,7 @@ export const monnowStudy = {
   build: buildMonnow,
   mapFrameDocument: 'map-frame.json',
   brief:
-    'Current three-span pedestrian bridge and unique surviving gatehouse: ribbed medieval vaults, widened segmental outer arches, cutwaters, corbelled footways, individually coursed mixed sandstone, three unlike gate passages, western machicolations and garderobe, roof of two half cones joined by a ridge, separate stone roof courses and exposed oak passage timbers.',
+    'Current three-span pedestrian bridge and unique surviving gatehouse: ribbed medieval vaults, widened segmental outer arches, cutwaters, corbelled footways, individually coursed mixed sandstone, three unlike gate passages, western machicolations and garderobe, roof of two half cones joined by a ridge, separate stone roof courses and exposed oak passage timbers. Mapped retaining walls and LiDAR-constrained sloping approaches join the banks.',
   refs: [
     'https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=2218',
     'https://commons.wikimedia.org/wiki/File:20200308_Monmouth_bridge_gate.jpg',
@@ -792,6 +868,7 @@ export const monnowStudy = {
     'https://commons.wikimedia.org/wiki/File:Gate_Tower,_Monnow_Bridge_-_geograph.org.uk_-_7725437.jpg',
     'https://www.openstreetmap.org/way/855452311',
     'https://www.openstreetmap.org/way/855457354',
+    'https://datamap.gov.wales/maps/lidar-data-download/',
   ],
   sourceFacts: {
     heritageRecord: 'Cadw listed building 2218, Grade I',
@@ -803,10 +880,10 @@ export const monnowStudy = {
   },
   reconstruction: {
     bridgeArchClearSpansMeters: [9.2, 9.8, 7.6],
-    gateHeightAboveDeckMeters: 11,
+    gateHeightAboveDeckMeters: 10.79,
     gateRoadwayOpeningMeters: 3.84,
     heightBasis:
-      'Photo-scaled elevations and secondary published 11 m gate height; no measured engineering survey is asserted.',
+      '2021 Welsh Government 1 m DSM constrains the deck crown. Roof-slope samples extrapolate to about29.94 m in source height units near native X5; rounded eave/roof dimensions follow that envelope. Cell spacing, fit residual and modeled precision are not survey accuracy. Gate passages, arches and individual stonework remain photographic reconstruction.',
     planBasis:
       'Complete named perimeter and exact-identity gate plan, with signed northeast town-facing axis. Earlier global record contained only one split14.59 m path segment.',
   },
@@ -815,20 +892,13 @@ export const monnowStudy = {
     y: 'up from low water/pier footing reconstruction',
     z: 'southeast across bridge toward downstream river',
   },
-  geographic: () => ({
-    anchor: frame.anchor,
-    heading: frame.heading,
-    featureIds: ['way/855452311', 'way/855457354', 'way/60781949', 'way/855457353'],
-    source: 'https://www.openstreetmap.org/way/855452311',
-    elevationMode: 'terrain-contact',
-    notes:
-      'The decorated gate face looks southwest toward Overmonnow; plain face looks northeast into town. Lowest supports use a reconstructed low-water datum, requiring real river/bank fit review.',
-  }),
+  geographic: geographicProposal,
   limitations: [
     'Arch stations, pier elevations, stone arrangements and minor roof details are reconstructed from primary photographs, not survey geometry.',
     'Upper gatehouse interior rooms and unseen structure are outside this exterior asset; the three public passages remain open.',
     'The older reported 7.3 m bridge width differs from the current mapped widened footways; the model retains the complete mapped deck.',
-    'Real riverbed and bank elevations must be reviewed before geographic approval.',
+    'LiDAR provides modeled water and ground, not underwater foundations. The bank reference requires sufficiently detailed host terrain and a cross-tile sampler; terrain/approach image review remains required.',
+    'Approach caps end at native X -24 and +23. Surrounding houses, the western retaining wall continuation and remote riverbank paths are outside this bridge asset. Unmapped pavement edges, wall thickness and stone positions are reconstructed.',
   ],
   camera: { position: [-31, 22, 33], lookAt: [0, 7, 0], fov: 46 },
   qaCameras: [

@@ -126,13 +126,13 @@ for (const e of [...entries.flatMap(e => e.collection?.members ?? (e.preview ? [
   const card = document.createElement('article'); card.className = 'card';
   const img = document.createElement('img'); img.src = e.preview; img.alt = e.title; img.loading = 'lazy';
   const imageLink = document.createElement('a'); imageLink.href = e.preview; imageLink.title = 'Open full-size review image'; imageLink.append(img);
-  const caption = document.createElement('div'); caption.textContent = e.id + ' · ' + e.title + ' · ' + e.quality;
+  const caption = document.createElement('div'); caption.textContent = \`\${e.id} · \${e.title} · \${e.quality}\`;
   card.append(imageLink, caption); (e.reusable ? document.getElementById('reusable') : cards).append(card);
 }
 function render() {
   const q = search.value.trim().toLowerCase();
-  const matches = entries.filter(e => (!category.value || e.category === category.value) && (!status.value || e.status === status.value) && (!q || (e.id + ' ' + e.title).toLowerCase().includes(q)));
-  count.textContent = matches.length + ' / ' + entries.length;
+  const matches = entries.filter(e => (!category.value || e.category === category.value) && (!status.value || e.status === status.value) && (!q || \`\${e.id} \${e.title}\`.toLowerCase().includes(q)));
+  count.textContent = \`\${matches.length} / \${entries.length}\`;
   rows.replaceChildren();
   for (const e of matches) {
     const tr = document.createElement('tr');
@@ -140,9 +140,9 @@ function render() {
     const title = document.createElement('td'); const link = document.createElement('a'); link.href = e.source; link.textContent = e.title; link.target = '_blank'; link.rel = 'noopener'; title.append(link);
     const group = document.createElement('td'); group.textContent = e.category.replaceAll('_', ' ');
     const score = document.createElement('td'); score.textContent = e.sitelinks;
-    const state = document.createElement('td'); state.textContent = e.collection ? e.collection.readyCount + ' / ' + e.collection.requiredCount + ' independent members complete' : e.quality ? e.quality + (e.visualReviewed ? ' · reviewed' : ' · review pending') : 'Source model pending'; if (e.visualReviewed) state.className = 'modeled';
+    const state = document.createElement('td'); state.textContent = e.collection ? \`\${e.collection.readyCount} / \${e.collection.requiredCount} independent members complete\` : e.quality ? e.quality + (e.visualReviewed ? ' · reviewed' : ' · review pending') : 'Source model pending'; if (e.visualReviewed) state.className = 'modeled';
     const placement = document.createElement('td'); placement.textContent = e.verified ? 'Verified placement' : e.previewPlacement ? 'World-viewer preview' : e.mapEvidence; placement.title = e.blockers.join('\\n');
-    const coord = document.createElement('td'); coord.className = 'coord'; coord.textContent = e.referenceCoordinate.latitude.toFixed(4) + ', ' + e.referenceCoordinate.longitude.toFixed(4);
+    const coord = document.createElement('td'); coord.className = 'coord'; coord.textContent = \`\${e.referenceCoordinate.latitude.toFixed(4)}, \${e.referenceCoordinate.longitude.toFixed(4)}\`;
     tr.append(id, title, group, score, state, placement, coord); rows.append(tr);
   }
 }

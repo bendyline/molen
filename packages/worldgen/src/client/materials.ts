@@ -109,8 +109,8 @@ export function createResolvedMaterialSet(
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
         if (texture.magFilter !== THREE.NearestFilter) {
-          // Coverage masks need their authored threshold at distance; ordinary mip averaging
-          // fills or erases fine perforations. Keep opaque surfaces' normal mipmapped path.
+          // Hard cutouts retain their authored threshold. Fractional coverage materials
+          // use mipmapped blending so subpixel openings retain their average open area.
           texture.generateMipmaps = !(material.alphaTest > 0);
           texture.minFilter =
             material.alphaTest > 0 ? THREE.LinearFilter : THREE.LinearMipmapLinearFilter;

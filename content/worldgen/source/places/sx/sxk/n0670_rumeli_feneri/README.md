@@ -18,13 +18,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-21,710 triangles, 40,856 vertices, 7 surface groups; 1,694,548 source bytes. SHA-256: `sha256:323efa1be02bfaee20331ea8facf07fe07893b9b7415a6537a1b816b9d681daf`. Actual bounds: -4.991, 0.000, -4.462 to 4.650, 33.800, 4.462 m.
+21,710 triangles, 40,856 vertices, 7 surface groups; 1,735,420 source bytes. SHA-256: `sha256:783c7d52e6578dbcce5403fb3eb3bfab84a9c23dce9bcc8d45e43444a39712d9`. Actual bounds: -4.991, 0.000, -4.462 to 4.650, 33.800, 4.462 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.stone_limestone` (2.4 × 1.6 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.stone_granite` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Mapped octagonal tower bounding-box center; authored+X east,+Z south and all eight ground vertices preserve the actual footprint direction. This is within one meter of the exact-QID tower node. South/southeast photographed stair-window faces are matched to the coastal photo axis, while the west doorway faces the landward approach. Ground contact uses the tower footing, not the58m optical elevation. Proposed anchor 29.11214925, 41.23422865 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Mapped octagonal tower bounding-box center; authored+X east,+Z south and all eight ground vertices preserve the actual footprint direction. This is within one meter of the exact-QID tower node. South/southeast photographed stair-window faces are matched to the coastal photo axis, while the west doorway faces the landward approach. Ground contact uses the tower footing, not the58m optical elevation. Proposed anchor 29.11214925, 41.23422865 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -32,6 +32,6 @@ Mapped octagonal tower bounding-box center; authored+X east,+Z south and all eig
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Source follows the operator-published tower exterior and antenna configuration. Ministry reports restoration activity but provides no verified completed replacement equipment configuration; temporary construction gear is omitted. Unpublished floor heights, windows, lantern hardware and tomb doorway trim are photograph-proportioned. Unresolved inscription text is not fabricated. Neighboring detached keeper/public buildings, mosque and modern control tower remain separate map structures.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0670`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0670`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-rumeli-model.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

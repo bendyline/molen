@@ -1,0 +1,245 @@
+{
+  "id": "N1006",
+  "planId": "N1006",
+  "assetId": "molen.worldgen.structure.n1006_emley_moor_transmitting_station",
+  "title": "Emley Moor transmitting station",
+  "category": "tower",
+  "quality": "detailed",
+  "identity": {
+    "wikidata": "Q638586"
+  },
+  "wikidataId": "Q638586",
+  "visualBrief": "Individual tapered concrete broadcasting tower, 20-bay glazed turret, four lower cantilever platforms, antenna mounting rings and modern shortened two-stage radome. True shaft-door recesses, cabin windows, panel frames, safety rails, ladders and obstruction lights use shared procedural surfaces.",
+  "size": [
+    28,
+    319,
+    28
+  ],
+  "actualBounds": {
+    "min": [
+      -12.1899995803833,
+      0,
+      -12.1899995803833
+    ],
+    "max": [
+      13.79561996459961,
+      319,
+      13.675000190734863
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z is the provisional main entrance, with the lower GPO platform stack on +X; compass orientation awaits site review",
+    "origin": "Center of the mapped tower footprint, Y=0 at ground contact"
+  },
+  "scaleBasis": "Arup original sections set concrete dimensions and cabin rhythm; dated February/September 2023 photographs set the current antenna envelope and mounting details. The mapped circular footprint supplies a center but its 17.6 m diameter conflicts with the published 24.38 m base; it is not a sizing source.",
+  "geographicProposal": {
+    "anchor": [
+      -1.664470242105263,
+      53.61206580526316
+    ],
+    "heading": 0,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/476925020",
+    "evidence": "Named communication tower inside the exact-QID Emley Moor station parcel. Mean ring center; the circular outline cannot supply entrance azimuth.",
+    "limitations": "Named tower identity must be bound separately from the QID site polygon. Site entrance and platform azimuth, dated antenna dimensions and terrain fit remain pending.",
+    "notes": "Named communication tower inside the exact-QID Emley Moor station parcel. Mean ring center; the circular outline cannot supply entrance azimuth. Named tower identity must be bound separately from the QID site polygon. Site entrance and platform azimuth, dated antenna dimensions and terrain fit remain pending."
+  },
+  "sourceFacts": {
+    "concreteHeightMeters": 274.32,
+    "originalOverallHeightMeters": 330.4,
+    "baseDiameterMeters": 24.38,
+    "topDiameterMeters": 6.4,
+    "originalTurretFloorMeters": 263.6,
+    "turretRadialBays": 20,
+    "windowSizeMeters": [
+      1.8,
+      1.8
+    ],
+    "reportedPost2021HeightMeters": 319,
+    "originalLowerRadomeDiameterMeters": 3.66,
+    "originalUpperRadomeDiameterMeters": 1.52,
+    "originalMastHeightsMeters": [
+      30.48,
+      25.6
+    ],
+    "originalWallThicknessMeters": [
+      0.533,
+      0.35
+    ],
+    "heightConflict": "Arqiva 2023 and Historic England retain about 330.4 m; the dated photographic survey reports 319 m after the 2021 antenna rebuild. Current model follows its visibly shortened top, with approximate segment heights."
+  },
+  "referencePages": [
+    "https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-1972-issue-1.pdf",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1350339",
+    "https://www.arqiva.com/news/end-of-an-era-emley-moor",
+    "https://tx.mb21.co.uk/gallery/gallerypage.php?txid=336&pageid=4299",
+    "https://tx.mb21.co.uk/gallery/gallerypage.php?txid=336&pageid=4370",
+    "https://tx.mb21.co.uk/gallery/gallerypage.php?txid=336&pageid=32",
+    "https://tx.mb21.co.uk/gallery/gallerypage.php?txid=336&pageid=1851",
+    "https://www.openstreetmap.org/way/476925020"
+  ],
+  "geometrySource": "Original deterministic geometry informed by cited dimensions, measured plans and photographs. No downloaded mesh or photographic texture is embedded.",
+  "sourceLicense": "Original geometry under repository license. Map-derived outline information is attributed to OpenStreetMap contributors, ODbL-1.0. Reference publications retain their own rights.",
+  "materialMethod": "Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "The modern radome transition heights are scaled estimates from dated 2023 photographs, not fabrication dimensions. Both historical and current-height claims remain explicit.",
+    "Turret external radius/height, equipment positions, lift-joint rhythm, doors and platforms are detailed reconstructions. Exact current antenna inventory and compass phases remain pending.",
+    "The lower antenna gallery and small entrance cage follow 2011 photos; the upper array follows 2023 photos. Current ground equipment, independent station buildings, fences and cable ducts need coordinated site review.",
+    "Map ring is smaller than the engineering base. Geographic approval requires resolving its envelope and validating site azimuth and ground datum.",
+    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+  ],
+  "reviewStatus": "source-geometry; visual verification required",
+  "importOptions": {
+    "optimize": false
+  },
+  "qaCameras": [
+    {
+      "name": "complete-tower",
+      "position": [
+        340,
+        168,
+        440
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ]
+    },
+    {
+      "name": "entrance-and-base",
+      "position": [
+        26,
+        12,
+        42
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "lower-platforms",
+      "position": [
+        40,
+        41,
+        25
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "name": "turret-front",
+      "position": [
+        24,
+        268,
+        36
+      ],
+      "lookAt": [
+        0,
+        262,
+        0
+      ]
+    },
+    {
+      "name": "turret-rear",
+      "position": [
+        -24,
+        270,
+        -36
+      ],
+      "lookAt": [
+        0,
+        263,
+        0
+      ]
+    },
+    {
+      "name": "antenna-mounts",
+      "position": [
+        16,
+        257,
+        -22
+      ],
+      "lookAt": [
+        0,
+        257,
+        0
+      ]
+    },
+    {
+      "name": "modern-radome",
+      "position": [
+        26,
+        297,
+        37
+      ],
+      "lookAt": [
+        0,
+        297,
+        0
+      ]
+    },
+    {
+      "name": "upper-collar",
+      "position": [
+        8,
+        300,
+        10
+      ],
+      "lookAt": [
+        0,
+        299,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -620,
+        160,
+        820
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ]
+    }
+  ]
+}

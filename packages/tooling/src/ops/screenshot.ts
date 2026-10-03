@@ -57,6 +57,8 @@ export interface ScreenshotInput {
   terrain?: TerrainShot;
   /** Background clear color; defaults to sky-blue with terrain, else dark. */
   clearColor?: string;
+  /** Enable the viewer's shared procedural sky/ground reflections for PBR metals and glass. */
+  reflections?: boolean;
 }
 
 export interface RenderStats {
@@ -228,6 +230,7 @@ async function screenshotSceneImpl(input: ScreenshotInput): Promise<ScreenshotOu
       size: [number, number];
       terrain: unknown;
       clearColor: string;
+      reflections: boolean;
       assetsBaseUrl: string | null;
       assetsIndex: Record<string, string> | null;
     } = {
@@ -238,6 +241,7 @@ async function screenshotSceneImpl(input: ScreenshotInput): Promise<ScreenshotOu
       size,
       terrain: terrainPayload ?? null,
       clearColor,
+      reflections: input.reflections ?? false,
       assetsBaseUrl: filesRoot !== undefined ? `${server.url}/files/` : null,
       assetsIndex: assetsIndex ?? null,
     };

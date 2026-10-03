@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/gerbrandy-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-140,946 triangles; 267,316 vertices; 3 material groups; 11,049,748 source bytes. Source hash: `sha256:6d4ce5d933f35ca8c0bf7112b99680ecf110fb2fc9d5fcc7f36b62a1f2e7c898`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+140,946 triangles; 267,316 vertices; 3 material groups; 11,317,080 source bytes. Source hash: `sha256:7e2a95aff5e04df38ab7155c2242d79390814e5c959deaeddfb12c1c2d9f4505`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0615`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

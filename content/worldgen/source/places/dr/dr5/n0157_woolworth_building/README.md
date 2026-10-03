@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.nicholsonandgalloway.com/news/nicholson-and-galloway-awarded-woolworth/)
 - [Reference](https://www.openstreetmap.org/way/75363809)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-137,916 triangles; 313,066 vertices; 4 material groups; 12,615,000 bytes. Native bounds: -29.803, 0.000, -22.820 to 29.803, 241.402, 22.820. Source hash: `sha256:f09bde22b847f862b5b54a196820d380f92ae21ac158d77f46f0163ce3f2ce50`.
+137,916 triangles; 313,066 vertices; 4 material groups; 12,928,080 bytes. Native bounds: -29.803, 0.000, -22.820 to 29.803, 241.402, 22.820. Source hash: `sha256:c7c9911e8b6166634508a892bace711ef53d2b5f1d4b28b20a44f46f3e636e94`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

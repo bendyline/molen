@@ -12,7 +12,7 @@ This is a reusable **wind_turbine category** model, not a named landmark. Macro 
 
 Original deterministic geometry from `packages/worldgen/scripts/map-structure-models.mjs`; no downloaded mesh, trademark or photographic texture. Shared material-graph references in GLB material extras with metric repeat UVs; original vertex colors supply tints. Standalone GLB keeps portable PBR fallback materials. Textures are resolved from the shared library and are not duplicated per model. References: [source](https://www.nrel.gov/docs/fy09osti/38060.pdf), [source](https://www.nrel.gov/docs/fy10osti/45891.pdf). Reference documents inform the model and are not redistributed.
 
-19,344 source triangles, 38,928 vertices, 3 material groups, 1,597,072 bytes. Source SHA-256: `sha256:edcfa1c3822b078bd41c2c965c1fe138a9b761fe0898e52521f03c7f6329e9ea`.
+19,344 source triangles, 38,928 vertices, 3 material groups, 1,636,016 bytes. Source SHA-256: `sha256:180d669e177cc032b301b356e3149d22f9480b1565a0c77da79010fc1a7da1d1`.
 
 Regenerate with `node packages/worldgen/scripts/generate-map-structures.mjs`; verify reproducibility with `--check`. Import through `import-next-1000-models.mjs` or the normal `molen asset import` workflow with `--no-optimize`. Runtime asset: `molen.worldgen.structure.map_wind_turbine`. The generator refuses to overwrite a GLB whose hash differs from its source manifest.
 

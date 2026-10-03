@@ -13,11 +13,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.hsb.se/omhsb/goda-exempel/hsb-malmo---turning-torso-certifierad-med-miljobyggnad-idrift-silver/)
 - [Reference](https://www.openstreetmap.org/way/30926877)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-69,986 triangles; 174,602 vertices; 4 material groups; 6,953,720 bytes. Native bounds: -19.882, 0.000, -16.264 to 21.916, 190.071, 24.893. Source hash: `sha256:ac1f133ba378121a997bd7b34c87e60688e49e4c21b846f678ce5ac18ed378fe`.
+69,986 triangles; 174,602 vertices; 4 material groups; 7,128,336 bytes. Native bounds: -19.882, 0.000, -16.264 to 21.916, 190.071, 24.893. Source hash: `sha256:c18a76d352577e2cde556a58006eb0c16a1b1f3c88ee535504119922b0f343ae`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

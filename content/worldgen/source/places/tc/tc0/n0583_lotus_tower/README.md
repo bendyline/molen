@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/lotus-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-339,396 triangles; 681,602 vertices; 3 material groups; 27,931,180 source bytes. Source hash: `sha256:5b35082ce20ec2c0792aa5f70992fcf2ad054ef066f7f4c9ef275c6781c1089f`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+339,396 triangles; 681,602 vertices; 3 material groups; 28,612,796 source bytes. Source hash: `sha256:23fbac8ac47f8f205bdcae1ba3d76601ecbff205314ae09ab7ec86398e7f0521`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0583`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

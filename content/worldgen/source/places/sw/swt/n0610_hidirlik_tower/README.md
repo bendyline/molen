@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/hidirlik-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-77,044 triangles; 153,464 vertices; 4 material groups; 6,298,468 source bytes. Source hash: `sha256:d729802c6f134256f8a8ee6b84f8cb4c6b73cc9681f84cb3d08ce30c8756be65`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+77,044 triangles; 153,464 vertices; 4 material groups; 6,451,944 source bytes. Source hash: `sha256:11be190e693c630ea30f2d6485d6a89706be4a0a670bbb96f5af84c2a369edad`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0610`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

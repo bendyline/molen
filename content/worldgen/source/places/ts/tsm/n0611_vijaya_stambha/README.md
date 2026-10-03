@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/vijaya-stambha-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-851,816 triangles; 1,922,904 vertices; 2 material groups; 77,525,336 source bytes. Source hash: `sha256:43cbcb9132919cce564e37935b0e339cd7a3873eeb4e7f371074aff3a0c2aabf`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+851,816 triangles; 1,922,904 vertices; 2 material groups; 79,448,256 source bytes. Source hash: `sha256:38aec4c2e9773dc99065637ca5742a1b2a343d53c8ccec04299a1a565eba3ebf`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0611`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -29,6 +29,7 @@ interface CaptureRequest {
   size: [number, number];
   terrain?: TerrainPayload;
   clearColor?: string;
+  reflections?: boolean;
   /** Base URL gltf asset refs resolve against (the capture server's /files/ mount). */
   assetsBaseUrl?: string;
   /** Asset id -> URL (relative to assetsBaseUrl), from the project manifest. */
@@ -75,6 +76,7 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
     height: req.size[1],
     pixelRatio: 1,
     antialias: false,
+    reflections: req.reflections ?? false,
     clearColor: req.clearColor ?? '#11131a',
     kinds: [figureKind(), ambientVehicleKind()],
     ...(req.assetsBaseUrl != null

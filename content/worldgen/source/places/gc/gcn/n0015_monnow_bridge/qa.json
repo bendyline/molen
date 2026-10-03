@@ -1,9 +1,9 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0015_monnow_bridge",
-  "sourceHash": "sha256:583c14671cfcacad5a168ee5ced4420d72caad35750169f87fb7d9e32c733a89",
-  "runtimeHash": "sha256:b70760829d4152577797d0192f6ea186e9b54a633632f4c242d4d55610e685f8",
-  "captureReportHash": "sha256:961457e91868ee2c3e0c5c7e7265dffc53443e3a7c696c64e914973504dbcd62",
+  "sourceHash": "sha256:f3c42580c0269af7d483cee82f00f1d8cbd6ee2db925045a08b54a57a865ddb8",
+  "runtimeHash": "sha256:a68451d5b6f9347ffa481971da526bf2a05493f71736947825daac0735805205",
+  "captureReportHash": "sha256:66316e24bedbb832c5f81ebb8319a59099f2a5bd58524d4e76633055466694e2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,11 +21,11 @@
       "shots/stone-roof.png",
       "shots/roadway-passage.png"
     ],
-    "notes": "All13 final portable views inspected. Three bridge vaults and three different gate passages remain open. Rounded gate ends and stone roof close correctly; upper windows have actual cut openings and recessed dark inserts. The three western machicolation arches now meet their stepped corbels; window is above the relieving arch."
+    "notes": "Inspected all 13 current portable frames. Three vaults and three gate passages are open. Crown follows short slope strips; parapets end at their actual longitudinal wall corners instead of stepping across skewed entrances. Retaining walls, approach caps, roof, corbels and recessed windows render consistently."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f9ad8a484332d368e14720a1f4f75d94f662ac536e9fa127f2307aa8c5370f7b",
+    "captureReportHash": "sha256:feee1ee60aa9aea0afd2f9925f2df90f8eacc14df8055723b3063ef2f10dbebb",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -38,19 +38,47 @@
       "shots/shared/machicolations.png",
       "shots/shared/north-garderobe.png",
       "shots/shared/stone-roof.png",
-      "shots/shared/roadway-passage.png",
-      "shots/shared/placement.png"
+      "shots/shared/roadway-passage.png"
     ],
-    "notes": "All13 final shared surface frames inspected. Mixed red/buff sandstone, individual stone slate courses, recessed timber ceiling and ironwork render with the shared library. Current load and unload assertions pass."
+    "notes": "Inspected all 12 current shared-surface asset views with sky reflections. Canonical sandstone, painted metal and timber graphs are shared; no bitmap images are embedded. Bounds/clipping and unload checks pass. Geographic fit was reviewed in the separate real-terrain fixture."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:b6aec4af89e821ba77b742cc7daa6d6b53f9eb5db4ead18349e199e12f0cdc7e",
-    "notes": "Exact bridge perimeter and separate gate footprint reviewed with +X northeast toward Monmouth. Decorated face points southwest and plain face northeast. Flat map review passes; real riverbed/bank fit has not yet been verified."
+    "status": "passed",
+    "placementHash": "sha256:f645aa19bfdcf38d2744f72a7013e8cd1e08cdecd6f785d31c4d1d675d983e06",
+    "notes": "Current production placement and clipping reviewed over independent, unmodified Welsh Government 1 m DTM, with and without mapped OSM roads. Native +X is northeast into Monmouth; decorated gate face southwest. A dry western bank reference carries the native origin consistently across tiles. End probes near X -23.8/+22.8 show approximately 0.05/0.16 m surface separation from the filtered DTM. Both public-road joins are continuous, covered procedural spans are removed, perpendicular paths/tunnels remain intact, and model resources unload. Coarse water elevations are not bathymetry. Host terrain must use a consistent vertical reference and resolve the bank point; generalized map data lacking shared endpoints cannot use the optional connected-approach clipping.",
+    "terrainCaptures": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/wales/N0015-fit-report.json",
+        "reportHash": "sha256:e5ae6880717cb68e387f61235678376ebf35b13f8b35904e6b4ef5df30d272c6",
+        "inspectedFrames": [
+          "shots/N0015/bank-oblique.png",
+          "shots/N0015/side-elevation.png",
+          "shots/N0015/reverse-bank.png",
+          "shots/N0015/plan.png",
+          "shots/N0015/west-approach.png",
+          "shots/N0015/east-approach.png"
+        ],
+        "terrainEvidenceHash": "sha256:c7ad7c803ba7ce97357bd36fa38e3c8a2a21657f4e770b2198e1c765297025f4"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/wales/N0015-roads-fit-report.json",
+        "reportHash": "sha256:bf3da9943c260f172e751cf101af26252c5bbc6d574ccbc919226fa812440891",
+        "inspectedFrames": [
+          "shots/N0015-roads/bank-oblique.png",
+          "shots/N0015-roads/side-elevation.png",
+          "shots/N0015-roads/reverse-bank.png",
+          "shots/N0015-roads/plan.png",
+          "shots/N0015-roads/west-approach.png",
+          "shots/N0015-roads/east-approach.png"
+        ],
+        "terrainEvidenceHash": "sha256:c7ad7c803ba7ce97357bd36fa38e3c8a2a21657f4e770b2198e1c765297025f4",
+        "roadEvidenceHash": "sha256:fafbd3ef0dd649b385235f71fdd8ede9ed0a372f9335f47519c8f91dc0e4db78"
+      }
+    ]
   },
   "fidelityReview": {
     "target": "maximum",
     "status": "passed",
-    "notes": "254,408-triangle original exterior based on Cadw2218 and dated primary photos. Includes ribbed medieval vaults inside later segmental widening, actual passages with pointed and Caernarvon heads, northwest garderobe, west machicolations, roof of two half cones and central ridge, eaves corbels/gutter, recessed upper openings and hand-worked rubble relief. Exact arch stations, elevations, individual stones and roof details are reconstructed; no survey/scan precision or upper-room interior is asserted."
+    "notes": "432223-triangle authored exterior, including ribbed medieval vaults within widened segmental arches, three unlike open passages, western machicolations and north garderobe, mixed sandstone rubble, stone slate roof and oak passage timbers. Current LiDAR-constrained crown and roof envelope, mapped retaining walls and sloping approach caps reviewed. The original skewed bridge and gate footprints are retained; individual masonry, wall thickness, hidden foundations and minor details are reconstructed. Upper rooms and surrounding buildings/remote riverbank walls are outside this exterior bridge asset; no scan or survey precision is asserted."
   }
 }

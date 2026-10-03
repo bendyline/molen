@@ -6,7 +6,7 @@
   "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
   "footprintEvidenceHash": "sha256:44191064d5b55dfa88e6eb8b3b57753e1f2e03d95376f5f2376cea7f009e3cf7",
   "reflectionMode": "sky-pmrem",
-  "specHash": "sha256:3f688f53e3e46dbc0a0ba1f675bf38ff5e24815807a7f0911f849901df660f88",
+  "specHash": "sha256:c8c81bde67400b14767346d593e7509d9275fafb788c3c49ad6d91d461f1fd54",
   "placementHash": "sha256:9f5c0bb3b003ea86e4cb5d2bda90abb34943416735a5f75544b6a9285ed88a5c",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_basalt_raw": {
@@ -911,5 +911,32 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "specMetadataReconciliation": {
+    "kind": "non-render-metadata",
+    "date": "2026-10-02",
+    "previousSpecHash": "sha256:3f688f53e3e46dbc0a0ba1f675bf38ff5e24815807a7f0911f849901df660f88",
+    "previousCaptureReportHash": "sha256:1c976b6d1e9cee1b36f86c458add90471ceea0f35ac200fef92c9cbd198d26bc",
+    "reviewedSpecRevision": "9e1b56235a9870e02bff16fb739a24eae1fca40f",
+    "reviewedSpecPath": "content/worldgen/source/places/sz/szp/n0014_haghtanak_bridge/spec.json",
+    "reviewedSpecRecovery": "Exact recorded hash verified against repository revision.",
+    "changes": [
+      {
+        "path": "geographicProposal.mapGeometryHash",
+        "previous": "sha256:44191064d5b55dfa88e6eb8b3b57753e1f2e03d95376f5f2376cea7f009e3cf7",
+        "current": "sha256:1ba7e5ffbdbfd3a6d70e6075933d0ac38f670b7e32a750e3de065a1454cf6d90"
+      },
+      {
+        "path": "mesh.bytes",
+        "previous": 316513248,
+        "current": 324374144
+      },
+      {
+        "path": "mesh.sha256",
+        "previous": "sha256:e4b38ec16d86f03e1ed10acfe4ab0638e478dda0138f8f9253607efc0b973993",
+        "current": "sha256:109c6fda8bcd1c3b88dfae06c79c4efb4832695beb39c4576507601c8d08b820"
+      }
+    ],
+    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization), a corrected copyright character, and reversible RGB alignment statistics may differ. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
+  }
 }

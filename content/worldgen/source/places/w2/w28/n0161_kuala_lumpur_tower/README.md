@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://thetravelauthor.com/kl-tower-kuala-lumpur-your-complete-guide/)
 - [Reference](https://www.openstreetmap.org/way/589740576)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-96,580 triangles; 178,284 vertices; 7 material groups; 7,403,012 bytes. Native bounds: -29.924, 0.000, -29.885 to 29.922, 421.000, 29.882. Source hash: `sha256:071369302ff8e1c81339e29723b174c009b8e58be910d709a11da7ac4f3df4fd`.
+96,580 triangles; 178,284 vertices; 7 material groups; 7,581,308 bytes. Native bounds: -29.924, 0.000, -29.885 to 29.922, 421.000, 29.882. Source hash: `sha256:9de5c7e116055e7b16e6849eee5ce08c82405694b450fd5941f7ad0068524d31`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/yser-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-48,463 triangles; 97,931 vertices; 6 material groups; 4,012,888 source bytes. Source hash: `sha256:38011b1d0c851b71220a51855a9c23839d8d4daf8e84e01a567749dcf47d87dc`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+48,463 triangles; 97,931 vertices; 6 material groups; 4,110,832 source bytes. Source hash: `sha256:f73256e0ae7248763d6f44ed31c3f565bd69f6fab54496fb217fd329dccd1b82`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0604`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

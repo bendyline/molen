@@ -15,11 +15,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.abenoharukas-300.jp/en/observatory/guide.html)
 - [Reference](https://www.openstreetmap.org/way/488467176)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-170,849 triangles; 494,279 vertices; 4 material groups; 19,352,768 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:22c01ca4d72683cf8bb92a43dd5c127ac3c5f946e7b0bcc9b192fd860fb5228a`.
+170,849 triangles; 494,279 vertices; 4 material groups; 19,847,060 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:d45fbad957afa01939fbda607a0068f7860ecc8b4d2c10af4171e6b8febd7e64`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Center of whole mapped podium ground datum; main tower is at nativeX about -89 m"}
 

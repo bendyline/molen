@@ -20,13 +20,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-87,188 triangles, 211,388 vertices, 3 surface groups; 8,447,188 source bytes. SHA-256: `sha256:aa646deb6db04b8b4b43cb6612275ff89f5940a6ce9506b036cd298764d88d3a`. Actual bounds: -28.261, 0.000, -41.261 to 28.261, 131.400, 41.261 m.
+87,188 triangles, 211,388 vertices, 3 surface groups; 8,658,592 source bytes. SHA-256: `sha256:7f417fc648085c6af7dd032c21c8741afc749557040fbc4e682e30227d7598cf`. Actual bounds: -28.261, 0.000, -41.261 to 28.261, 131.400, 41.261 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Tower core centered on mapped upper control-room circular parts. Elongated base +Z axis aligns with mapped opposed sloped wings, north/south roof directions349.5/169.5degrees. Upper tower rotational symmetry has no facade ambiguity; unsupported four-way entry canopies were removed. Proposed anchor 39.149702, 21.468607 (longitude, latitude), heading 0.18326 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Tower core centered on mapped upper control-room circular parts. Elongated base +Z axis aligns with mapped opposed sloped wings, north/south roof directions349.5/169.5degrees. Upper tower rotational symmetry has no facade ambiguity; unsupported four-way entry canopies were removed. Proposed anchor 39.149702, 21.468607 (longitude, latitude), heading 0.18326 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -34,6 +34,6 @@ Tower core centered on mapped upper control-room circular parts. Elongated base 
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Intermediate capsule radii, arch subdivisions and glazing colors are photo-proportioned to the published total height, with mapped base size. The continuous base envelope is retained without fabricated entrance canopies. Surrounding terminal, port pavement and transient roof equipment are separate site features.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0644`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0644`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-coastal-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

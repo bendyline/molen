@@ -44,10 +44,12 @@ export {
   type EarthWorldgenContent,
   type LoadEarthContentOptions,
   loadEarthContent,
+  type OpenPacksFromIndexOptions,
   openPacksFromIndex,
 } from './client/content';
 export { afterPreparation } from './client/deferred';
 export {
+  type EarthCacheStats,
   type EarthCameraState,
   type EarthCameraTarget,
   type EarthMarker,
@@ -78,6 +80,22 @@ export {
   earthPixelRatio,
   earthQualityLevel,
 } from './client/performance';
+export {
+  createEarthPrefetcher,
+  createMotionEstimator,
+  type EarthPrefetchArchives,
+  type EarthPrefetcher,
+  type EarthPrefetcherDeps,
+  type EarthPrefetchLevels,
+  type EarthPrefetchOptions,
+  type EarthPrefetchPoint,
+  type EarthPrefetchResult,
+  type EarthPrefetchRole,
+  type EarthPrefetchStats,
+  type EarthPrefetchTarget,
+  earthPrefetchTargets,
+  extrapolateTrack,
+} from './client/prefetch';
 export { EarthVehicles, type EarthVehiclesOptions } from './client/vehicles';
 export {
   type CreateEarthWorldgenOptions,

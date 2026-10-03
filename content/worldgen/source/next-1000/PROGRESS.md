@@ -2,25 +2,27 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 220 authored assets, 220 imported assets and 212 active geographic asset previews.
+There are 236 authored assets, 236 imported assets and 223 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and maximum exterior fidelity pass.
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 220 |
-| Runtime GLBs imported | 220 |
-| Current source and runtime hashes verified | 220 |
-| Portable visual reviews passed | 218 |
-| Shared-material reviews passed | 215 |
-| Active geographic previews | 212 |
+| Source GLBs authored | 236 |
+| Runtime GLBs imported | 236 |
+| Current source and runtime hashes verified | 236 |
+| Portable visual reviews passed | 234 |
+| Shared-material reviews passed | 232 |
+| Active geographic previews | 223 |
 | Maximum exterior fidelity reviews passed | 192 |
-| Complete | 161 |
-| Source models still to author | 780 |
+| Complete | 167 |
+| Source models still to author | 764 |
 
 ## Authored models
 
-Review labels below describe the current model hashes. Regeneration invalidates older approvals.
+Review labels bind the current source and runtime to inspected captures. Geometry changes invalidate
+older approvals. The RGB alignment repair preserves a review only when the exact historical source
+bytes can be reconstructed and the runtime bytes, inspected images and material graphs still match.
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 
@@ -39,7 +41,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0011 | [Mes Bridge](../places/sr/srm/n0011_mes_bridge/README.md) | 334084 | Passed | Passed | Pending | Passed | Pending |
 | N0012 | [Kazarma Mycenaean Bridge](../places/sw/sw8/n0012_kazarma_mycenaean_bridge/README.md) | 97254 | Passed | Passed | Pending | Passed | Pending |
 | N0014 | [Haghtanak bridge](../places/sz/szp/n0014_haghtanak_bridge/README.md) | 3448236 | Passed | Passed | Pending | Passed | Pending |
-| N0015 | [Monnow Bridge](../places/gc/gcn/n0015_monnow_bridge/README.md) | 254408 | Passed | Passed | Pending | Passed | Pending |
+| N0015 | [Monnow Bridge](../places/gc/gcn/n0015_monnow_bridge/README.md) | 432223 | Passed | Passed | Passed | Passed | Yes |
 | N0016 | [Dyavolski most](../places/sx/sx3/n0016_dyavolski_most/README.md) | 519774 | Passed | Passed | Pending | Passed | Pending |
 | N0017 | [Red Bridge](../places/sz/szp/n0017_red_bridge/README.md) | 746998 | Passed | Passed | Pending | Passed | Pending |
 | N0018 | [Skopje Aqueduct](../places/sr/srr/n0018_skopje_aqueduct/README.md) | 2224784 | Passed | Passed | Pending | Pending | Pending |
@@ -54,6 +56,8 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0027 | [Blue Bridge](../places/ud/udt/n0027_blue_bridge/README.md) | 926900 | Passed | Passed | Pending | Pending | Pending |
 | N0028 | [pont de Tolbiac](../places/u0/u09/n0028_pont_de_tolbiac/README.md) | 795350 | Passed | Passed | Passed | Passed | Yes |
 | N0029 | [Poniatowski Bridge](../places/u3/u3q/n0029_poniatowski_bridge/README.md) | 3326408 | Passed | Passed | Pending | Passed | Pending |
+| N0031 | [Pont del Diable](../places/sp/sp3/n0031_pont_del_diable/README.md) | 369096 | Passed | Passed | Pending | Pending | Pending |
+| N0033 | [Circle Bridge](../places/u3/u3b/n0033_circle_bridge/README.md) | 166522 | Passed | Passed | Pending | Pending | Pending |
 | N0136 | [Willis Tower](../places/dp/dp3/n0136_willis_tower/README.md) | 726110 | Passed | Passed | Passed | Passed | Yes |
 | N0137 | [Mode Gakuen Cocoon Tower](../places/xn/xn7/n0137_mode_gakuen_cocoon_tower/README.md) | 173844 | Passed | Passed | Pending | Pending | Pending |
 | N0138 | [Mirante do Vale](../places/6g/6gy/n0138_mirante_do_vale/README.md) | 86720 | Passed | Passed | Passed | Passed | Yes |
@@ -126,6 +130,9 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0205 | [Seagram Building](../places/dr/dr5/n0205_seagram_building/README.md) | 286644 | Passed | Passed | Passed | Passed | Yes |
 | N0206 | [The Center](../places/we/wec/n0206_the_center/README.md) | 522444 | Passed | Passed | Passed | Passed | Yes |
 | N0207 | [Bank of America Plaza](../places/dn/dn5/n0207_bank_of_america_plaza/README.md) | 407421 | Passed | Passed | Passed | Passed | Yes |
+| N0209 | [Bitexco Financial Tower](../places/w3/w3g/n0209_bitexco_financial_tower/README.md) | 315402 | Passed | Passed | Pending | Pending | Pending |
+| N0222 | [One Canada Square](../places/gc/gcp/n0222_one_canada_square/README.md) | 964326 | Passed | Passed | Pending | Pending | Pending |
+| N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |
 | N0563 | [Azadi Tower](../places/tn/tnk/n0563_azadi_tower/README.md) | 162112 | Passed | Passed | Passed | Passed | Yes |
@@ -134,7 +141,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0567 | [Einstein Tower](../places/u3/u33/n0567_einstein_tower/README.md) | 37135 | Passed | Passed | Passed | Passed | Yes |
 | N0569 | [Saint-Jacques Tower](../places/u0/u09/n0569_saint_jacques_tower/README.md) | 162896 | Passed | Passed | Passed | Passed | Yes |
 | N0570 | [Powder Tower](../places/u2/u2f/n0570_powder_tower/README.md) | 128240 | Passed | Passed | Passed | Passed | Yes |
-| N0571 | [Hermannsdenkmal](../places/u1/u1n/n0571_hermannsdenkmal/README.md) | 46316 | Passed | Passed | Passed | Passed | Pending |
+| N0571 | [Hermannsdenkmal](../places/u1/u1n/n0571_hermannsdenkmal/README.md) | 46316 | Passed | Passed | Passed | Passed | Yes |
 | N0572 | [Giotto's Campanile](../places/sr/srb/n0572_giotto_s_campanile/README.md) | 211048 | Passed | Passed | Passed | Passed | Yes |
 | N0573 | [Cœur Défense](../places/u0/u09/n0573_c_ur_defense/README.md) | 319436 | Passed | Passed | Passed | Passed | Yes |
 | N0574 | [Söyembikä Tower](../places/v1/v1f/n0574_soyembika_tower/README.md) | 38612 | Passed | Passed | Pending | Pending | Pending |
@@ -155,7 +162,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0590 | [Town Hall Tower](../places/u2/u2y/n0590_town_hall_tower/README.md) | 100224 | Passed | Passed | Passed | Passed | Yes |
 | N0591 | [Kızıl Kule](../places/sw/swq/n0591_k_z_l_kule/README.md) | 25650 | Passed | Passed | Passed | Passed | Yes |
 | N0595 | [Leaning Tower of Toruń](../places/u3/u3m/n0595_leaning_tower_of_torun/README.md) | 45782 | Passed | Passed | Pending | Passed | Pending |
-| N0596 | [Torre del Mangia](../places/sr/sr8/n0596_torre_del_mangia/README.md) | 115282 | Passed | Pending | Passed | Passed | Pending |
+| N0596 | [Torre del Mangia](../places/sr/sr8/n0596_torre_del_mangia/README.md) | 115282 | Passed | Passed | Passed | Passed | Yes |
 | N0599 | [Triq il-Wiesgħa Tower](../places/sq/sq6/n0599_triq_il_wiesg_a_tower/README.md) | 22250 | Passed | Passed | Passed | Passed | Yes |
 | N0600 | [Laboe Naval Memorial](../places/u1/u1x/n0600_laboe_naval_memorial/README.md) | 47862 | Passed | Passed | Passed | Passed | Yes |
 | N0601 | [Avicenna Mausoleum](../places/tn/tn4/n0601_avicenna_mausoleum/README.md) | 36740 | Passed | Passed | Passed | Passed | Yes |
@@ -166,13 +173,20 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0606 | [Tyholttårnet](../places/u5/u5r/n0606_tyholttarnet/README.md) | 133426 | Passed | Passed | Passed | Passed | Yes |
 | N0607 | [Sukharev Tower](../places/uc/ucf/n0607_sukharev_tower/README.md) | 570056 | Passed | Passed | Passed | Passed | Yes |
 | N0608 | [Turtle Tower](../places/w7/w7e/n0608_turtle_tower/README.md) | 270704 | Passed | Passed | Passed | Passed | Yes |
-| N0609 | [St. Agatha's Tower](../places/sq/sq6/n0609_st_agatha_s_tower/README.md) | 137914 | Passed | Passed | Passed | Passed | Pending |
+| N0609 | [St. Agatha's Tower](../places/sq/sq6/n0609_st_agatha_s_tower/README.md) | 137914 | Passed | Passed | Passed | Passed | Yes |
 | N0610 | [Hidirlik Tower](../places/sw/swt/n0610_hidirlik_tower/README.md) | 77044 | Passed | Passed | Passed | Passed | Yes |
-| N0611 | [Vijaya Stambha](../places/ts/tsm/n0611_vijaya_stambha/README.md) | 851816 | Passed | Passed | Passed | Passed | Pending |
+| N0611 | [Vijaya Stambha](../places/ts/tsm/n0611_vijaya_stambha/README.md) | 851816 | Passed | Passed | Passed | Passed | Yes |
 | N0612 | [Gros Horloge](../places/u0/u0b/n0612_gros_horloge/README.md) | 353490 | Passed | Passed | Passed | Passed | Yes |
-| N0613 | [Watts Towers](../places/9q/9q5/n0613_watts_towers/README.md) | 1079668 | Passed | Passed | Passed | Passed | Pending |
+| N0613 | [Watts Towers](../places/9q/9q5/n0613_watts_towers/README.md) | 1079668 | Passed | Passed | Passed | Passed | Yes |
 | N0614 | [Bierpinsel](../places/u3/u33/n0614_bierpinsel/README.md) | 104857 | Passed | Passed | Passed | Passed | Yes |
 | N0615 | [Gerbrandy Tower](../places/u1/u15/n0615_gerbrandy_tower/README.md) | 140946 | Passed | Passed | Passed | Passed | Yes |
+| N0616 | [Grunewald Tower](../places/u3/u33/n0616_grunewald_tower/README.md) | 296070 | Passed | Passed | Pending | Pending | Pending |
+| N0619 | [Montevideo](../places/u1/u15/n0619_montevideo/README.md) | 493066 | Passed | Passed | Pending | Pending | Pending |
+| N0620 | [Kärnan](../places/u3/u3c/n0620_karnan/README.md) | 76762 | Passed | Passed | Pending | Pending | Pending |
+| N0621 | [Amazon Tall Tower Observatory](../places/6x/6xw/n0621_amazon_tall_tower_observatory/README.md) | 184412 | Passed | Passed | Pending | Pending | Pending |
+| N0622 | [Montelbaanstoren](../places/u1/u17/n0622_montelbaanstoren/README.md) | 123692 | Passed | Passed | Pending | Pending | Pending |
+| N0623 | [Rembrandt Tower](../places/u1/u17/n0623_rembrandt_tower/README.md) | 641134 | Passed | Passed | Pending | Pending | Pending |
+| N1006 | [Emley Moor transmitting station](../places/gc/gcw/n1006_emley_moor_transmitting_station/README.md) | 271888 | Passed | Passed | Pending | Pending | Pending |
 | N0637 | [Tower of Hercules](../places/ez/ezd/n0637_tower_of_hercules/README.md) | 13060 | Passed | Passed | Pending | Pending | Pending |
 | N0638 | [Maiden's Tower](../places/sx/sxk/n0638_maiden_s_tower/README.md) | 16480 | Passed | Passed | Passed | Passed | Pending |
 | N0639 | [Cordouan Lighthouse](../places/gb/gbp/n0639_cordouan_lighthouse/README.md) | 42006 | Passed | Passed | Passed | Passed | Yes |
@@ -217,6 +231,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0678 | [Skagen Lighthouse](../places/u4/u4r/n0678_skagen_lighthouse/README.md) | 198236 | Passed | Passed | Passed | Passed | Yes |
 | N0679 | [Kullen lighthouse](../places/u6/u60/n0679_kullen_lighthouse/README.md) | 149988 | Passed | Passed | Passed | Passed | Yes |
 | N0680 | [Lizard Lighthouse](../places/gb/gbu/n0680_lizard_lighthouse/README.md) | 142646 | Passed | Passed | Passed | Passed | Yes |
+| N1007 | [Roter Sand](../places/u1/u1t/n1007_roter_sand/README.md) | 208672 | Passed | Passed | Pending | Pending | Pending |
 | N0681 | [Maracanã Stadium](../places/75/75c/n0681_maracana/README.md) | 692648 | Passed | Passed | Passed | Passed | Yes |
 | N0682 | [Bernabéu](../places/ez/ezj/n0682_santiago_bernabeu_stadium/README.md) | 1262386 | Passed | Passed | Passed | Passed | Yes |
 | N0683 | [Allianz Arena](../places/u2/u28/n0683_allianz_arena/README.md) | 1426422 | Passed | Passed | Passed | Passed | Yes |
@@ -244,7 +259,10 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0705 | [BC Place](../places/c2/c2b/n0705_bc_place/README.md) | 1736182 | Passed | Passed | Passed | Passed | Yes |
 | N0706 | [Khalifa International Stadium](../places/th/thk/n0706_khalifa_international_stadium/README.md) | 1147020 | Passed | Passed | Passed | Passed | Yes |
 | N0707 | [Parken Stadium](../places/u3/u3b/n0707_parken_stadium/README.md) | 663256 | Passed | Passed | Passed | Passed | Yes |
+| N0791 | [London King's Cross railway station](../places/gc/gcp/n0791_london_king_s_cross_railway_station/README.md) | 132146 | Passed | Passed | Pending | Pending | Pending |
 | N0796 | [Tokyo Station](../places/xn/xn7/n0796_tokyo_station/README.md) | 3182 | Pending | Not required | Pending | Pending | Pending |
 | N0946 | [Stonehenge](../places/gc/gcn/n0946_stonehenge/README.md) | 804 | Pending | Not required | Pending | Pending | Pending |
+| N0963 | [Gateway Arch](../places/9y/9yz/n0963_gateway_arch/README.md) | 50314 | Passed | Passed | Pending | Pending | Pending |
+| N0975 | [Spire of Dublin](../places/gc/gc7/n0975_spire_of_dublin/README.md) | 193294 | Passed | Passed | Pending | Pending | Pending |
 
 Regenerate with `node packages/worldgen-earth/scripts/build-structure-readiness.mjs`.

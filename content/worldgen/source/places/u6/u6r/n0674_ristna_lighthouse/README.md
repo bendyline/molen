@@ -21,13 +21,13 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 ## Authored geometry and materials
 
-68,696 triangles, 143,024 vertices, 5 surface groups; 5,833,356 source bytes. SHA-256: `sha256:d2bc7d7d4956ad0bd664630349566b77ced0583778b6522d8ebca7a0b634ad7c`. Actual bounds: -3.010, 0.000, -3.010 to 3.010, 27.200, 3.040 m.
+68,696 triangles, 143,024 vertices, 5 surface groups; 5,976,396 source bytes. SHA-256: `sha256:d3328345835d0fc4183bba5a833628ac5c70f6a31c71a4b5f33b4bd23d5869a1`. Actual bounds: -3.010, 0.000, -3.010 to 3.010, 27.200, 3.040 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.stone_granite` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
 
 ## Placement proposal
 
-Authority coordinate fixes the tower within meters of exact-QIDnode3369819188. Native+Z doorway faces southeast, reconstructed from the2014 society aerial with western coast behind, the northern/eastern station buildings and the approach from Ristna majaka tee. This is a photographed quadrant reconstruction, not a surveyed doorway bearing; the eight-rib mass has45degree symmetry. Proposed anchor 22.05526516, 58.9400605 (longitude, latitude), heading 0.7853981634 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ordinary ground models use terrain contact; Kiipsaare requires an offshore water/base-height check.
+Authority coordinate fixes the tower within meters of exact-QIDnode3369819188. Native+Z doorway faces southeast, reconstructed from the2014 society aerial with western coast behind, the northern/eastern station buildings and the approach from Ristna majaka tee. This is a photographed quadrant reconstruction, not a surveyed doorway bearing; the eight-rib mass has45degree symmetry. Proposed anchor 22.05526516, 58.9400605 (longitude, latitude), heading 0.7853981634 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 
@@ -35,6 +35,6 @@ Authority coordinate fixes the tower within meters of exact-QIDnode3369819188. N
 - Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.
 - Detailed exterior follows the documented post1920 concrete jacket, not the original1874 open iron frame. Published total height and5m service drum constrain a photographed/archival component reconstruction. Exact entrance azimuth and minor restored2026 vent fittings are not surveyed. Detached station buildings remain map structures.
 
-Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.
+Near/far fixtures are in `spec.qaCameras`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in `qa.json` and the readiness ledger; source generation alone does not approve a model.
 
-Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0674`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.
+Regenerate with `node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=N0674`; add `--check` for reproducibility. Editable component recipes are in `packages/worldgen/scripts/lighthouse-baltic-next-models.mjs`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.

@@ -12,11 +12,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://thegherkin.com/availability/)
 - [Reference](https://www.arup.com/globalassets/downloads/insights/t/tall-buildings-rising-to-the-net-zero-challenge/tall-buildings-rising-to-the-net-zero-challenge_arupv2-1.pdf)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-94,364 triangles; 219,816 vertices; 3 material groups; 8,828,288 bytes. Native bounds: -28.416, 0.000, -28.412 to 28.416, 180.032, 28.412. Source hash: `sha256:6646b8847ee0ed126fbe1b5cc96173068b05284dde61c7a6a3a23a6c4a326f6c`.
+94,364 triangles; 219,816 vertices; 3 material groups; 9,048,116 bytes. Native bounds: -28.416, 0.000, -28.412 to 28.416, 180.032, 28.412. Source hash: `sha256:d66c621ed711c1ad27ccd810b2ef9fc4e80819c53376ef1c734a962466c75a0b`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z through one of six repeated entrances","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

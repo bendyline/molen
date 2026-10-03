@@ -1,7 +1,7 @@
-import { createHash } from 'node:crypto';
+import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 
 /** Accept a source-local frame only after the current model's placement was reviewed.
- * The spec binds exact evidence bytes; the source bundle makes that evidence durable.
+ * The spec binds evidence text (allowing Git LF/CRLF conversion); the bundle preserves it.
  */
 export function reviewedSourceMapFrame({
   frameBytes,
@@ -16,7 +16,7 @@ export function reviewedSourceMapFrame({
     !frameBytes ||
     proposal?.mapGeometrySource !== 'map-frame.json' ||
     !sourceManifest?.files?.documents?.includes('map-frame.json') ||
-    proposal.mapGeometryHash !== `sha256:${createHash('sha256').update(frameBytes).digest('hex')}`
+    !matchesEvidenceText(frameBytes, proposal.mapGeometryHash)
   )
     return undefined;
   let frame;

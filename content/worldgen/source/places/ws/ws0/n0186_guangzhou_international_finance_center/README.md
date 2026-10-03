@@ -14,11 +14,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.researchgate.net/publication/316893174_Engineering_of_Guangzhou_International_Finance_Centre)
 - [Reference](https://www.openstreetmap.org/way/184738716)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-425,949 triangles; 1,192,407 vertices; 2 material groups; 46,847,548 bytes. Native bounds: -35.629, 0.000, -37.619 to 35.569, 438.571, 32.709. Source hash: `sha256:11addfe4b2a481667a160f486d2caf361155eba6ea3205b4b77a41b19e939cde`.
+425,949 triangles; 1,192,407 vertices; 2 material groups; 48,039,968 bytes. Native bounds: -35.629, 0.000, -37.619 to 35.569, 438.571, 32.709. Source hash: `sha256:f361f2202a62904df1e7dc016733f8a1d7ac341da6655bb10841a5261b93af71`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

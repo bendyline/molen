@@ -200,7 +200,8 @@ function coveredPoint(p: TerrainSemanticPoint, ring: TerrainSemanticPoint[]): bo
 }
 
 /** Exact segment/footprint subtraction: keep approach fragments, including lines whose
- * endpoints are both outside a long bridge. Only bridge-tagged map features are replaced. */
+ * endpoints are both outside a long bridge. Grade approaches require an explicit opt-in
+ * and a shared covered bridge endpoint; unrelated grade roads are never replaced. */
 export function withoutStructureRoads(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
@@ -225,13 +226,28 @@ export function withoutStructureRoads(
         ? undefined
         : [entry.replaceRoads.deckHeight, entry.replaceRoads.deckHeight]);
     const placedHeight = resolvedElevation?.(entry);
+    // Skewed/asymmetric outlines need their actual centerline intersections, not +/-
+    // half the bounding length. Deck heights correspond to negative/positive X ends.
+    const centerlineEnds = [-hx, hx];
+    if (outline) {
+      const crossings = outline.flatMap((a, i) => {
+        const b = outline[(i + 1) % outline.length] as TerrainSemanticPoint;
+        if (a[1] === b[1]) return a[1] === 0 ? [a[0], b[0]] : [];
+        const t = -a[1] / (b[1] - a[1]);
+        return t >= 0 && t <= 1 ? [a[0] + (b[0] - a[0]) * t] : [];
+      });
+      if (crossings.length >= 2) {
+        centerlineEnds[0] = Math.min(...crossings);
+        centerlineEnds[1] = Math.max(...crossings);
+      }
+    }
     const connections =
       deckHeights === undefined
         ? []
-        : [-1, 1].map((sign, index) => ({
+        : centerlineEnds.map((endX, index) => ({
             point: [
-              (cx + c * sign * hx - context.origin[0]) / context.tileSize,
-              (cz - s * sign * hx - context.origin[1]) / context.tileSize,
+              (cx + c * endX - context.origin[0]) / context.tileSize,
+              (cz - s * endX - context.origin[1]) / context.tileSize,
             ] as TerrainSemanticPoint,
             elevation:
               (placedHeight ??
@@ -240,8 +256,104 @@ export function withoutStructureRoads(
               (deckHeights[index] as number) * (entry.scale?.[1] ?? 1),
             radius: 100,
           }));
-    transportation = transportation.flatMap((feature) => {
-      if (!feature.bridge || feature.tunnel) return [feature];
+    const localPoint = ([u, v]: TerrainSemanticPoint): TerrainSemanticPoint => {
+      const x = context.origin[0] + u * context.tileSize - cx,
+        z = context.origin[1] + v * context.tileSize - cz;
+      return [c * x - s * z, s * x + c * z];
+    };
+    const nodeKey = ([u, v]: TerrainSemanticPoint) =>
+      `${Math.round((context.origin[0] + u * context.tileSize) * 10)}/${Math.round((context.origin[1] + v * context.tileSize) * 10)}`;
+    const bankJoins = new Map<string, (typeof connections)[number]>();
+    const coveredBridgeEnds = new Set<string>();
+    // A removed bridge may end exactly where an untagged approach begins. Transfer
+    // the height only through that shared endpoint and the outward aligned road;
+    // nearby riverbank roads and perpendicular crossings retain their own elevation.
+    for (const feature of transportation) {
+      if (!feature.bridge || feature.tunnel) continue;
+      for (const line of feature.lines) {
+        if (line.length < 2) continue;
+        for (const point of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
+          const [x, z] = localPoint(point);
+          if (
+            entry.replaceRoads.includeConnectedApproaches &&
+            (outline ? coveredPoint([x, z], outline) : Math.abs(x) <= hx && Math.abs(z) <= hz)
+          )
+            coveredBridgeEnds.add(nodeKey(point));
+          if (!connections.length) continue;
+          if (Math.abs(Math.abs(x) - hx) > hz + 1 || Math.abs(z) > hz) continue;
+          let edgeDistance = Math.abs(Math.abs(x) - hx);
+          if (outline)
+            edgeDistance = Math.min(
+              ...outline.map((a, i) => {
+                const b = outline[(i + 1) % outline.length] as TerrainSemanticPoint;
+                const dx = b[0] - a[0],
+                  dz = b[1] - a[1],
+                  length2 = dx * dx + dz * dz;
+                const t = length2
+                  ? Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2))
+                  : 0;
+                return Math.hypot(x - a[0] - t * dx, z - a[1] - t * dz);
+              }),
+            );
+          if (edgeDistance > 0.5) continue;
+          const hint = connections[x < 0 ? 0 : 1];
+          if (hint) bankJoins.set(nodeKey(point), { ...hint, point, radius: 20 });
+        }
+      }
+    }
+    const input = entry.replaceRoads.includeConnectedApproaches
+      ? transportation.flatMap((feature) =>
+          feature.lines.map((line) =>
+            feature.lines.length === 1 ? feature : { ...feature, lines: [line] },
+          ),
+        )
+      : transportation;
+    transportation = input.flatMap((feature) => {
+      if (feature.tunnel) return [feature];
+      const coveredApproach =
+        !feature.bridge &&
+        feature.lines.some((line) =>
+          [0, line.length - 1].some((index) => {
+            if (line.length < 2) return false;
+            const point = line[index] as TerrainSemanticPoint;
+            if (!coveredBridgeEnds.has(nodeKey(point))) return false;
+            const p = localPoint(point),
+              q = localPoint(line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint);
+            return (
+              Math.abs(q[0]) > Math.abs(p[0]) && Math.abs(q[1] - p[1]) <= Math.abs(q[0] - p[0])
+            );
+          }),
+        );
+      if (!feature.bridge && !coveredApproach) {
+        return feature.lines.map((line) => {
+          if (line.length < 2) return { ...feature, lines: [line] };
+          const hints = [];
+          for (const index of [0, line.length - 1]) {
+            const point = line[index] as TerrainSemanticPoint,
+              next = line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint;
+            const hint = bankJoins.get(nodeKey(point));
+            if (!hint) continue;
+            const p = localPoint(point),
+              q = localPoint(next);
+            if (Math.abs(q[0]) <= Math.abs(p[0]) || Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0]))
+              continue;
+            const length = line.slice(1).reduce((sum, p, i) => {
+              const a = line[i] as TerrainSemanticPoint;
+              return sum + Math.hypot(p[0] - a[0], p[1] - a[1]) * context.tileSize;
+            }, 0);
+            if (length > 0) hints.push({ ...hint, radius: Math.min(hint.radius, length) });
+          }
+          return hints.length
+            ? {
+                ...feature,
+                lines: [line],
+                bridgeConnections: [...(feature.bridgeConnections ?? []), ...hints],
+              }
+            : feature.lines.length === 1
+              ? feature
+              : { ...feature, lines: [line] };
+        });
+      }
       const lines: TerrainSemanticLine[] = [];
       let replaced = false;
       for (const line of feature.lines) {
@@ -322,7 +434,14 @@ export function withoutStructureRoads(
               ...feature,
               lines,
               ...(connections.length
-                ? { bridgeConnections: [...(feature.bridgeConnections ?? []), ...connections] }
+                ? {
+                    bridgeConnections: [
+                      ...(feature.bridgeConnections ?? []),
+                      ...connections.map((connection) =>
+                        feature.bridge ? connection : { ...connection, radius: 20 },
+                      ),
+                    ],
+                  }
                 : {}),
             },
           ]

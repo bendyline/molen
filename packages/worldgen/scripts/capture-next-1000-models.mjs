@@ -2,6 +2,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { screenshotAsset, screenshotScene } from '../../tooling/dist/index.mjs';
+import { hashEvidenceText, matchesEvidenceText } from './evidence-text-hash.mjs';
 import {
   authoredModels,
   content,
@@ -11,7 +12,20 @@ import {
   registerSourceDocuments,
 } from './structure-model-files.mjs';
 
+const usage =
+  'Usage: node packages/worldgen/scripts/capture-next-1000-models.mjs [--ids=N0001,N0002] [--reflections] [--force]';
+if (process.argv.includes('--help')) {
+  console.log(usage);
+  process.exit(0);
+}
+for (const arg of process.argv.slice(2)) {
+  if (!['--reflections', '--force'].includes(arg) && !/^--ids=[A-Za-z0-9_,.-]+$/.test(arg)) {
+    throw new Error(`Unknown argument ${arg}. ${usage}`);
+  }
+}
+
 const project = await readOptionalJson(projectPath);
+const reflections = process.argv.includes('--reflections');
 for (const { dir, spec, sourceHash } of await authoredModels()) {
   const sidecarPath = project?.assets?.[spec.assetId];
   if (!sidecarPath) throw new Error(`${spec.id}: runtime asset is not registered`);
@@ -19,14 +33,16 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
   if (!sidecar || sidecar.sourceHash !== sourceHash)
     throw new Error(`${spec.id}: import current model first`);
   const scenePath = resolve(dir, 'scene.json');
-  const sceneHash = hashBytes(await readFile(scenePath));
+  const sceneBytes = await readFile(scenePath);
+  const sceneHash = hashEvidenceText(sceneBytes);
   const reportPath = resolve(dir, 'capture-report.json');
   const previous = await readOptionalJson(reportPath);
   const current =
     previous?.sourceHash === sourceHash &&
     previous?.runtimeHash === sidecar.hash &&
-    previous?.sceneHash === sceneHash &&
+    matchesEvidenceText(sceneBytes, previous?.sceneHash) &&
     previous?.captureVersion === 3 &&
+    (previous?.reflectionMode ?? 'none') === (reflections ? 'sky-pmrem' : 'none') &&
     previous?.qaCamerasHash === hashBytes(JSON.stringify(spec.qaCameras ?? {}));
   if (current && !process.argv.includes('--force')) {
     let complete = true;
@@ -44,6 +60,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
     }
   }
   const scene = await screenshotScene({
+    reflections,
     scenePath,
     projectPath,
     ticks: 30,
@@ -55,6 +72,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
       `${spec.id}: lit capture failed: ${scene.error ?? JSON.stringify(scene.renderStats)}`,
     );
   const turntable = await screenshotAsset({
+    reflections,
     ref: spec.assetId,
     projectPath,
     angles: 4,
@@ -70,6 +88,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
   for (const [name, camera] of cameras) {
     if (!/^[a-z0-9_-]+$/.test(name)) throw new Error(`${spec.id}: invalid QA camera name`);
     const shot = await screenshotScene({
+      reflections,
       scenePath,
       projectPath,
       ticks: 30,
@@ -93,6 +112,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
       {
         format: 'molen/structure-capture-report@1',
         captureVersion: 3,
+        ...(reflections ? { reflectionMode: 'sky-pmrem' } : {}),
         assetId: spec.assetId,
         qaCamerasHash: hashBytes(JSON.stringify(spec.qaCameras ?? {})),
         sourceHash,

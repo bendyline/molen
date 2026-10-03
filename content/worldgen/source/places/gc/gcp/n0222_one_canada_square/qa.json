@@ -1,0 +1,81 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0222_one_canada_square",
+  "sourceHash": "sha256:14c413cae5e3836d384e695f2591c202663ad918600403622ad13f8b62147f0f",
+  "runtimeHash": "sha256:3116ecfc8ae629cadbb912d94dc41d24b918131abea38176d1fc8a447d8de2dc",
+  "captureReportHash": "sha256:9cae7a43b8e90ca98b709ae2c6261b78cac6057ca0af234b239834eef4586d11",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity; maximum fidelity remains pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/pyramid-louvres.png",
+      "shots/upper-four-levels.png",
+      "shots/west-terrace.png",
+      "shots/punched-window-detail.png",
+      "shots/stepped-corner.png",
+      "shots/north-entrance.png",
+      "shots/east-entrance.png",
+      "shots/south-entrance.png",
+      "shots/west-entrance.png",
+      "shots/revolving-door.png",
+      "shots/roof-and-plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 17 current portable views. Closed the projecting lobby roof and returns before final capture, tightened overview framing, and used the existing sky-reflection option for physically metallic surfaces. Individual punched windows, stepped corners, terrace, folded pyramid louvres and four-wing entrance doors render. Fine roof slats show aliasing at distant viewpoints; this is retained for future LOD work."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:30c547a689be972ea735b28a907d537cf05d2d0a6a1fbe4f0b77f03754f70822",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/pyramid-louvres.png",
+      "shots/shared/upper-four-levels.png",
+      "shots/shared/west-terrace.png",
+      "shots/shared/punched-window-detail.png",
+      "shots/shared/stepped-corner.png",
+      "shots/shared/north-entrance.png",
+      "shots/shared/east-entrance.png",
+      "shots/shared/south-entrance.png",
+      "shots/shared/west-entrance.png",
+      "shots/shared/revolving-door.png",
+      "shots/shared/roof-and-plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 17 current viewer frames, including full-resolution entrance, window-detail and north-up placement images. Four canonical graphs each load once; no embedded images. Unloading leaves zero live model geometries. The fixture uses flat terrain and cannot establish actual street contact."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:3118702bd20297fc81996caccb3d7cf52bdd1f8b37c7ca918a049f2889e920fd",
+    "notes": "Exact Q503477 match to OSM way 5986754. Lower envelope follows the retained footprint; the tower is offset X=-2.65 m within it, and west terrace faces west. Heading -0.172600059102 and anchor [-0.019514156,51.50493389] are map-derived. Signed current facade fit, canopy extents and real pavement datum still require verification."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Published 1.8 x 2.75 m windows, typical 4.11 m storeys and 4.71 m level 50 are used directly. The recipe distinguishes 56.9/49.8 m internal dimensions from reconstructed external plans. Lower-floor datum, nine-door distribution, pyramid dimensions/louvre profile, current entrance elevations and roof equipment are not fully measured. The architect’s 235 m and council’s 236 m height datums remain unresolved. Do not count this model as completed."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "triangles": 964326,
+    "uniquePositionVertices": 1916364,
+    "materials": 7,
+    "sharedGraphs": 4,
+    "embeddedImages": 0
+  }
+}

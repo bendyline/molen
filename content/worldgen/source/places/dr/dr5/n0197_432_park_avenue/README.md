@@ -16,11 +16,11 @@ Published dimensions and reconstructed details are separated in spec.json. Prima
 - [Reference](https://www.432parkavenue.com/assets/data/brochures/432Park_DigitalBrochure.pdf)
 - [Reference](https://www.openstreetmap.org/way/261499924)
 
-No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glass is an opaque PBR approximation.
+No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.
 
 ## Model and axes
 
-299,488 triangles; 636,844 vertices; 6 material groups; 25,886,912 bytes. Native bounds: -25.445, 0.000, -19.185 to 21.877, 425.500, 19.283. Source hash: `sha256:3aa36f495f061ad406665b43e8e2bea6f8788936323ff62cbf907b051c5eb992`.
+299,488 triangles; 636,844 vertices; 6 material groups; 26,523,772 bytes. Native bounds: -25.445, 0.000, -19.185 to 21.877, 425.500, 19.283. Source hash: `sha256:4d1d113ea44ec05314053b67e19f216b0e932be99861fd630cf472a75cc7548e`.
 
 {"up":"+Y","longAxis":"+X toward57th Street/northeast","shortAxis":"+Z towardPark Avenue/southeast"}
 
