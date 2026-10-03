@@ -1,3 +1,10 @@
+## @bendyline/molen-entities [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.5...@bendyline/molen-entities@0.0.6) (2026-10-03)
+
+
+### Dependencies
+
+* **@bendyline/molen-pack:** upgraded to 0.0.5
+
 ## @bendyline/molen-entities [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.4...@bendyline/molen-entities@0.0.5) (2026-10-01)
 
 ### Bug Fixes

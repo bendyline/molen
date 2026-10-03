@@ -1,3 +1,17 @@
+## @bendyline/molen-terrain [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.5...@bendyline/molen-terrain@0.0.6) (2026-10-03)
+
+### Bug Fixes
+
+* Archive work ([0dcb5e0](https://github.com/bendyline/molen/commit/0dcb5e04d00762280ac70ddccd4659b9c366f32d))
+* Earth caching ([9e1b562](https://github.com/bendyline/molen/commit/9e1b56235a9870e02bff16fb739a24eae1fca40f))
+* Model files ([9ae8b2e](https://github.com/bendyline/molen/commit/9ae8b2e65df1bc9165638b3b1b926e1e69b375e8))
+
+
+### Dependencies
+
+* **@bendyline/molen-pack:** upgraded to 0.0.5
+* **@bendyline/molen-client:** upgraded to 0.0.6
+
 ## @bendyline/molen-terrain [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.4...@bendyline/molen-terrain@0.0.5) (2026-10-01)
 
 ### Bug Fixes

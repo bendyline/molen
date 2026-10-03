@@ -1,3 +1,20 @@
+## @bendyline/molen-earth [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.5...@bendyline/molen-earth@0.0.6) (2026-10-03)
+
+### Bug Fixes
+
+* Earth caching ([9e1b562](https://github.com/bendyline/molen/commit/9e1b56235a9870e02bff16fb739a24eae1fca40f))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.6
+* **@bendyline/molen-materials:** upgraded to 0.0.5
+* **@bendyline/molen-pack:** upgraded to 0.0.5
+* **@bendyline/molen-terrain:** upgraded to 0.0.6
+* **@bendyline/molen-worldgen:** upgraded to 0.0.6
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.6
+* **@bendyline/molen-client:** upgraded to 0.0.6
+
 ## @bendyline/molen-earth [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.4...@bendyline/molen-earth@0.0.5) (2026-10-01)
 
 ### Bug Fixes

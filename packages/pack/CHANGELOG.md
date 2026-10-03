@@ -1,3 +1,9 @@
+## @bendyline/molen-pack [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.4...@bendyline/molen-pack@0.0.5) (2026-10-03)
+
+### Bug Fixes
+
+* Earth caching ([9e1b562](https://github.com/bendyline/molen/commit/9e1b56235a9870e02bff16fb739a24eae1fca40f))
+
 ## @bendyline/molen-pack [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.3...@bendyline/molen-pack@0.0.4) (2026-09-30)
 
 ### Bug Fixes

@@ -1,3 +1,14 @@
+## @bendyline/molen-client [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.5...@bendyline/molen-client@0.0.6) (2026-10-03)
+
+### Bug Fixes
+
+* Model files ([9ae8b2e](https://github.com/bendyline/molen/commit/9ae8b2e65df1bc9165638b3b1b926e1e69b375e8))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.5
+
 ## @bendyline/molen-client [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.4...@bendyline/molen-client@0.0.5) (2026-10-01)
 
 ### Bug Fixes
