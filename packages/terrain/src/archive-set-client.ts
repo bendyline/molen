@@ -130,11 +130,16 @@ export function createTerrainArchiveSetArchive(
     ): Promise<TerrainArchiveTile | undefined> {
       const route = (await router()).resolve(level, x, y);
       if (route === undefined) return undefined;
-      const listed = route.kind === 'base' ? route.base : route.entry;
-      const archive = member(route.kind === 'base' ? 'base' : route.entry.id, listed.url, {
-        ...(listed.sha256 !== undefined ? { sha256: listed.sha256 } : {}),
-        ...(listed.bytes !== undefined ? { bytes: listed.bytes } : {}),
-      });
+      const archive =
+        route.kind === 'cell'
+          ? member(route.id, route.url, {})
+          : (() => {
+              const listed = route.kind === 'base' ? route.base : route.entry;
+              return member(route.kind === 'base' ? 'base' : route.entry.id, listed.url, {
+                ...(listed.sha256 !== undefined ? { sha256: listed.sha256 } : {}),
+                ...(listed.bytes !== undefined ? { bytes: listed.bytes } : {}),
+              });
+            })();
       return archive.getZxy(level, x, y, signal);
     },
     async descriptor(): Promise<TerrainArchiveSetDescriptor> {
