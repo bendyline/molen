@@ -1,3 +1,10 @@
+## @bendyline/molen-ambient [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.6...@bendyline/molen-ambient@0.0.7) (2026-10-03)
+
+
+### Dependencies
+
+* **@bendyline/molen-terrain:** upgraded to 0.0.7
+
 ## @bendyline/molen-ambient [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.5...@bendyline/molen-ambient@0.0.6) (2026-10-03)
 
 ### Bug Fixes

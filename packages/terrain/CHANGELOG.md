@@ -1,3 +1,9 @@
+## @bendyline/molen-terrain [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.6...@bendyline/molen-terrain@0.0.7) (2026-10-03)
+
+### Bug Fixes
+
+* Avoid using timestamps ([d6c1a94](https://github.com/bendyline/molen/commit/d6c1a94052696b0ce2c2b6afe9355e036803ab4b))
+
 ## @bendyline/molen-terrain [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.5...@bendyline/molen-terrain@0.0.6) (2026-10-03)
 
 ### Bug Fixes
