@@ -11,14 +11,14 @@
 //   node scripts/generate-all.mjs --check  # fail if anything is stale or off-style (CI)
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { checkStyle } from './check-style.mjs';
 import { generateApi } from './generate-api.mjs';
 import { generateCli } from './generate-cli.mjs';
 import { generateGuides } from './generate-guides.mjs';
 import { generateSamples } from './generate-samples.mjs';
 import { siteDir } from './packages.mjs';
-
-const check = process.argv.includes('--check');
+import { withSiteLock } from './site-lock.mjs';
 
 function guideSidebar(guides) {
   // Section boundaries are editorial; everything else follows GUIDE_ORDER.
@@ -117,7 +117,7 @@ function samplesSidebar(entries) {
   ];
 }
 
-async function main() {
+export async function generateAll({ check = false } = {}) {
   const { guides, schemas } = await generateGuides();
   const apiIndex = await generateApi();
   await generateCli();
@@ -154,8 +154,7 @@ async function main() {
   if (check) {
     const current = await readFile(outPath, 'utf8').catch(() => '');
     if (current !== next) {
-      console.error('docs site navigation is stale — run `pnpm docs:site:gen` and commit.');
-      process.exit(1);
+      throw new Error('docs site navigation is stale — run `pnpm docs:site:gen` and commit.');
     }
   } else {
     await writeFile(outPath, next);
@@ -166,8 +165,7 @@ async function main() {
     for (const problem of style) console.warn(problem);
     const summary = `${style.length} page style problem(s); see docs-site/STYLE.md.`;
     if (check) {
-      console.error(summary);
-      process.exit(1);
+      throw new Error(summary);
     }
     console.warn(summary);
   }
@@ -179,4 +177,11 @@ async function main() {
   );
 }
 
-await main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  withSiteLock(siteDir, () => generateAll({ check: process.argv.includes('--check') })).catch(
+    (error) => {
+      console.error(error.message);
+      process.exitCode = 1;
+    },
+  );
+}
