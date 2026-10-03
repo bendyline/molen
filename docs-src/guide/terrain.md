@@ -291,6 +291,9 @@ stream the tile payloads to disk in tile-id order (`pmtilesTileId(z, x, y)`) and
 `createPmtilesPrefix(records, dataLength, options)` in front of them. Official readers fetch only the
 first 16 KiB to find the root directory, so the writer moves entries into gzip-compressed leaf
 directories once one root would overflow that window; archives of any size stay readable.
+Internal gzip timestamps are fixed at zero, so identical inputs produce byte-identical archives
+and stable content hashes across rebuilds. Tile payloads are stored verbatim: callers that
+precompress them must also use fixed timestamps to keep the resulting archive reproducible.
 
 The optional `surface` block declares `seaLevel` and portable height/slope material bands. If it is
 omitted, the projected-Earth adapter supplies a conservative dirt/sand/grass/rock/snow palette.

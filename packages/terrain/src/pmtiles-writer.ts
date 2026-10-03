@@ -7,6 +7,10 @@
 // leaf directories, growing the leaf size until the root fits (the go-pmtiles strategy). Every
 // archive this module writes therefore opens through the official `pmtiles` reader at any size.
 //
+// Internal gzip timestamps are fixed at zero so identical tile bytes and options produce
+// byte-identical archives across rebuilds. Caller-supplied tile payloads are stored verbatim.
+//
+// Related: ../test/pmtiles-writer.test.ts, docs-src/guide/terrain.md.
 // Spec: https://github.com/protomaps/PMTiles/blob/main/spec/v3/spec.md
 
 import { gzipSync } from 'fflate';
@@ -121,7 +125,7 @@ export function serializePmtilesDirectory(entries: readonly PmtilesDirectoryEntr
 }
 
 function compressedDirectory(entries: readonly PmtilesDirectoryEntry[]): Uint8Array {
-  return gzipSync(serializePmtilesDirectory(entries));
+  return gzipSync(serializePmtilesDirectory(entries), { mtime: 0 });
 }
 
 function concat(parts: readonly Uint8Array[]): Uint8Array {
@@ -224,7 +228,9 @@ export function createPmtilesPrefix(
   }
 
   const { root, leaves } = buildPmtilesDirectories(entries);
-  const metadata = gzipSync(new TextEncoder().encode(JSON.stringify(options.metadata ?? {})));
+  const metadata = gzipSync(new TextEncoder().encode(JSON.stringify(options.metadata ?? {})), {
+    mtime: 0,
+  });
   const rootOffset = PMTILES_HEADER_BYTES;
   const metadataOffset = rootOffset + root.byteLength;
   const leavesOffset = metadataOffset + metadata.byteLength;

@@ -1,6 +1,16 @@
+/**
+ * PMTiles writer regression tests.
+ *
+ * Reads archives through the official pmtiles reader to verify directory sizing, metadata,
+ * streaming output and tile payloads. Clock-controlled rebuilds cover both root-only and
+ * leaf-directory archives so build time cannot change their content hashes.
+ *
+ * Related: ../src/pmtiles-writer.ts, docs-src/guide/terrain.md.
+ */
+
 import { gzipSync } from 'fflate';
 import { Compression, PMTiles, type RangeResponse, type Source, TileType } from 'pmtiles';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   buildPmtilesDirectories,
   createPmtilesPrefix,
@@ -98,6 +108,27 @@ describe('PMTiles writer', () => {
       expect(await readTile(archive, z, x, y)).toBe(`tile ${z}/${x}/${y}`);
     }
     expect(await archive.getZxy(8, 0, 0)).toBeUndefined();
+  });
+
+  it.each([
+    { layout: 'root-only', levels: [0, 1, 2] },
+    { layout: 'leaf-directory', levels: [0, 1, 2, 3, 4, 5, 6, 7] },
+  ])('keeps $layout archives byte-identical across build times', ({ levels }) => {
+    const tiles = everyTile(levels);
+    const options = {
+      tileType: 'png',
+      metadata: { name: 'reproducible terrain' },
+      bounds: [-180, -85, 180, 85],
+    } as const;
+    vi.useFakeTimers({ toFake: ['Date'] });
+    try {
+      vi.setSystemTime(new Date('2026-01-01T00:00:00Z'));
+      const first = writePmtilesArchive(tiles, options);
+      vi.setSystemTime(new Date('2026-01-02T00:00:00Z'));
+      expect(writePmtilesArchive(tiles, options)).toEqual(first);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('streams: a prefix plus separately written tile data forms the same archive', async () => {
