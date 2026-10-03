@@ -1,6 +1,6 @@
 # Archive set (`molen/archive-set@1`)
 
-One tile pyramid split across PMTiles archives: a coarse base plus detail archives partitioned by the tile at a fixed level.
+One tile pyramid split across PMTiles archives: a coarse base plus detail archives partitioned by the tile at a fixed level or by geohash cell.
 
 ## Example
 
@@ -56,7 +56,7 @@ One tile pyramid split across PMTiles archives: a coarse base plus detail archiv
       "type": "integer",
       "minimum": 0,
       "maximum": 10,
-      "description": "Level whose tiles partition the detail archives; a detail tile belongs to the archive listing its ancestor at this level."
+      "description": "Level whose tiles partition the detail archives; a detail tile belongs to the archive listing its ancestor at this level. Required when archives is not empty."
     },
     "base": {
       "type": "object",
@@ -161,13 +161,58 @@ One tile pyramid split across PMTiles archives: a coarse base plus detail archiv
         "additionalProperties": false
       },
       "description": "Detail archives, each owning a disjoint set of partition cells."
+    },
+    "geohash": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "precision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6,
+            "description": "Geohash length of a cell (3: 1.40625° square, about 156 km at the equator)."
+          },
+          "minLevel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 30,
+            "description": "Coarsest level the tier serves."
+          },
+          "maxLevel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 30,
+            "description": "Finest level the tier serves."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\{cell\\}",
+            "description": "Archive URL template, relative to this document or absolute; {cell} becomes the cell geohash."
+          },
+          "cells": {
+            "type": "string",
+            "pattern": "^(\\d+(-\\d+)?(,\\d+(-\\d+)?)*)?$",
+            "description": "Run-length list of the cells that have an archive, as geohash indices (the characters read as one base-32 number)."
+          }
+        },
+        "required": [
+          "precision",
+          "minLevel",
+          "maxLevel",
+          "url",
+          "cells"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Geohash-partitioned tiers: per band of levels, one archive per cell; a tile belongs to the cell holding its center."
     }
   },
   "required": [
     "format",
     "name",
     "tileType",
-    "partitionLevel",
     "archives"
   ],
   "additionalProperties": false

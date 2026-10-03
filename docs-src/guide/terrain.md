@@ -242,6 +242,37 @@ transport call `createTerrainArchiveSetArchive(urlOrDocument, { openArchive })` 
 and `encodeTerrainArchiveSetPartitions` writes the run-length lists. Validate a set document with
 `molen validate archive-set.json`.
 
+A set can instead (or as well) be partitioned by **geohash**. Each entry of `geohash` is a tier:
+a band of levels with one archive per geohash cell of `precision` characters, named by a URL
+template, and the `cells` that have an archive as a run-length list of geohash indices (the
+cell's characters read as one base-32 number). Equal-angle cells match data organized by geohash
+and give readable names; a whole planet can be stacked as a small base plus, say, two-character
+cells for the middle levels and three-character cells (1.40625°, about 156 km at the equator)
+for detail:
+
+```json
+{
+  "format": "molen/archive-set@1",
+  "name": "world-elevation",
+  "tileType": "png",
+  "base": { "url": "base.pmtiles", "minLevel": 0, "maxLevel": 5 },
+  "archives": [],
+  "geohash": [
+    { "precision": 2, "minLevel": 6, "maxLevel": 8, "url": "g2/{cell}.pmtiles", "cells": "320-330" },
+    { "precision": 3, "minLevel": 9, "maxLevel": 13, "url": "g3/{cell}.pmtiles", "cells": "11331-11400" }
+  ]
+}
+```
+
+Geohash cells do not nest with Mercator tiles, so a tile belongs to the cell holding its center:
+`terrainTileGeohash(level, x, y, precision)` in the kernel half is the rule, and producers must
+place every tile by it (extra tiles in an archive are harmless). Cells not listed are never
+requested, so open ocean costs nothing. `partitionLevel` is required only when `archives` is not
+empty; tiers may not share levels with each other or the base. `encodeTerrainArchiveSetCells`
+writes the `cells` list from geohashes, `terrainArchiveSetTierCells` expands it, and the kernel
+exports the geohash helpers (`encodeGeohash`, `geohashIndex`, `geohashFromIndex`,
+`geohashBounds`).
+
 `openArchive(url, id, entry)` receives each member's `sha256` and `bytes` when the set lists them.
 To keep tiles across visits, pass `cachingArchiveOpener(cache)` (`@bendyline/molen-terrain/client`)
 over a `BlockCache` from `@bendyline/molen-pack/cache`. It keys each archive by its listed hash,

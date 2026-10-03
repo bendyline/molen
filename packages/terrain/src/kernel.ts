@@ -1,13 +1,16 @@
 export {
   createTerrainArchiveSetRouter,
+  encodeTerrainArchiveSetCells,
   encodeTerrainArchiveSetPartitions,
   parseTerrainArchiveSetPartitions,
   type TerrainArchiveSetBase,
   type TerrainArchiveSetDescriptor,
   type TerrainArchiveSetEntry,
+  type TerrainArchiveSetGeohashTier,
   type TerrainArchiveSetRoute,
   type TerrainArchiveSetRouter,
   type TerrainArchiveSetTileType,
+  terrainArchiveSetTierCells,
 } from './archive-set';
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
 export type {
@@ -16,6 +19,14 @@ export type {
   TerrainStreamingOptions,
 } from './descriptor-types';
 export { generateHeightmap, generateHeightmapPng, type HeightmapGenOptions } from './gen';
+export {
+  encodeGeohash,
+  GEOHASH_MAX_PRECISION,
+  geohashBounds,
+  geohashFromIndex,
+  geohashIndex,
+  terrainTileGeohash,
+} from './geohash';
 export {
   projectedToWorld,
   WEB_MERCATOR_EARTH_RADIUS_METERS,
