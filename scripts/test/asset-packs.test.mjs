@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
@@ -29,6 +30,7 @@ import {
   pythonProblems,
   validatePlan,
 } from '../build-assets.mjs';
+import { checkSourceBundles } from '../check-source-bundles.mjs';
 
 const roots = [];
 const quiet = () => {};
@@ -357,6 +359,138 @@ test('flags GLBs that are neither locked nor declared masters', async () => {
   await assert.rejects(checkAssets({ root, log: quiet }), /Unlocked GLB: assets\/test\/new.glb/);
   await rm(join(root, 'assets/test/model.glb'));
   await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
+});
+
+test('local checks warn about unfinished GLBs while pinned bytes and packing remain strict', async () => {
+  const root = await fixture();
+  const pinned = 'assets/test/model.glb';
+  const unfinished = 'assets/test/new.glb';
+  await asset(root, pinned);
+  const lock = await lockFixture(root, [pinned]);
+  await asset(root, unfinished, Buffer.from('unfinished'));
+  const messages = [];
+  assert.equal(
+    await checkAssets({ root, allowUnlocked: true, log: (message) => messages.push(message) }),
+    1,
+  );
+  assert.match(messages[0], /Warning: 1 unpinned GLBs/);
+  assert.ok(messages[0].includes(unfinished));
+  assert.deepEqual(await readLock(root), lock);
+  assert.equal(await readFile(join(root, unfinished), 'utf8'), 'unfinished');
+  const command = resolve('scripts/asset-packs.mjs');
+  const checked = spawnSync(process.execPath, [command, 'check', '--root', root], {
+    encoding: 'utf8',
+  });
+  assert.equal(checked.status, 0, checked.stderr);
+  assert.match(checked.stdout, /Warning: 1 unpinned GLBs/);
+  const strict = spawnSync(process.execPath, [command, 'check', '--root', root, '--strict'], {
+    encoding: 'utf8',
+  });
+  assert.equal(strict.status, 1);
+  assert.match(strict.stderr, /Unlocked GLB/);
+  await assert.rejects(packAssets({ root, log: quiet }), /Unlocked GLB/);
+  await asset(root, pinned, Buffer.from('changed'));
+  await assert.rejects(
+    checkAssets({ root, allowUnlocked: true, log: quiet }),
+    /Changed assets\/test\/model.glb/,
+  );
+  await rm(join(root, pinned));
+  await assert.rejects(
+    checkAssets({ root, allowUnlocked: true, log: quiet }),
+    /Missing assets\/test\/model.glb/,
+  );
+});
+
+async function sourceBundleFixture(root, { models = [{ path: 'models/source.glb' }] } = {}) {
+  const path = 'content/entities/source/test';
+  const bundle = {
+    format: 'molen/source-bundle@1',
+    id: 'molen.test',
+    kind: 'entity',
+    title: 'Test bundle',
+    files: {
+      definitions: [],
+      models,
+      scripts: [],
+      textures: [],
+      sounds: [],
+      documents: ['reference.json'],
+    },
+  };
+  await mkdir(join(root, path), { recursive: true });
+  await writeFile(join(root, path, 'source.json'), JSON.stringify(bundle));
+  return path;
+}
+
+test('source checks skip unfinished models until pinned, and strict checks include them', async () => {
+  const root = await fixture();
+  const ready = 'assets/test/model.glb';
+  await asset(root, ready);
+  await lockFixture(root, [ready]);
+  const path = await sourceBundleFixture(root);
+  const source = `${path}/models/source.glb`;
+  const messages = [];
+  assert.deepEqual(
+    await checkSourceBundles({
+      root,
+      allowUnlocked: true,
+      log: (message) => messages.push(message),
+    }),
+    { verified: 0, skipped: 1 },
+  );
+  assert.match(messages[0], /Warning: skipping unpinned model source bundle/);
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), /ENOENT/);
+  await asset(root, source);
+  await lockFixture(root, [ready, source]);
+  // Once pinned, the incomplete evidence blocks both modes.
+  await assert.rejects(
+    checkSourceBundles({ root, allowUnlocked: true, log: quiet }),
+    /reference.json/,
+  );
+  await writeFile(join(root, path, 'reference.json'), '{}');
+  assert.deepEqual(await checkSourceBundles({ root, allowUnlocked: true, log: quiet }), {
+    verified: 1,
+    skipped: 0,
+  });
+  await writeFile(join(root, path, 'omitted.json'), '{}');
+  await assert.rejects(
+    checkSourceBundles({ root, allowUnlocked: true, log: quiet }),
+    /source files missing from manifest: omitted.json/,
+  );
+});
+
+test('authored masters, pinned runtime models and non-model sources still require complete bundles', async () => {
+  const source = 'content/entities/source/test/models/source.glb';
+  const masterRoot = await fixture({ masters: [source] });
+  await asset(masterRoot, 'assets/test/model.glb');
+  await asset(masterRoot, source);
+  await lockFixture(masterRoot, ['assets/test/model.glb']);
+  await sourceBundleFixture(masterRoot);
+  await assert.rejects(
+    checkSourceBundles({ root: masterRoot, allowUnlocked: true, log: quiet }),
+    /reference.json/,
+  );
+
+  const runtimeRoot = await fixture();
+  await asset(runtimeRoot, 'content/entities/assets/test/model.glb');
+  await lockFixture(runtimeRoot, ['content/entities/assets/test/model.glb']);
+  await sourceBundleFixture(runtimeRoot, {
+    models: [{ path: 'models/source.glb', output: 'assets/test/asset.json' }],
+  });
+  await writeFile(join(runtimeRoot, 'content/entities/project.json'), '{}');
+  await assert.rejects(
+    checkSourceBundles({ root: runtimeRoot, allowUnlocked: true, log: quiet }),
+    /models\/source.glb/,
+  );
+
+  const dataRoot = await fixture();
+  await asset(dataRoot, 'assets/test/model.glb');
+  await lockFixture(dataRoot, ['assets/test/model.glb']);
+  await sourceBundleFixture(dataRoot, { models: [] });
+  await assert.rejects(
+    checkSourceBundles({ root: dataRoot, allowUnlocked: true, log: quiet }),
+    /reference.json/,
+  );
 });
 
 function fakeGitHub(release, { existing } = {}) {

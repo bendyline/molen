@@ -54,10 +54,9 @@ describe('bounded landmark LOD streaming', () => {
   it('reserves all skylines before upgrades and stays stable around an LOD threshold', async () => {
     let now = 0;
     const doc = manifest();
-    doc.runtimeLods.levels[0]!.errorMeters = 0.1;
-    for (const level of doc.runtimeLods.levels.slice(1)) {
-      level.errorMeters = 0;
-      level.drawCalls = 4;
+    for (const [index, level] of doc.runtimeLods.levels.entries()) {
+      level.errorMeters = index === 0 ? 0.1 : 0;
+      if (index > 0) level.drawCalls = 4;
     }
     const load = vi.fn(async () => model());
     const streamer = new StructureLodStreamer(async () => doc, load, {

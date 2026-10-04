@@ -49,8 +49,15 @@ tree. `pnpm all` and `pnpm dev` fetch automatically.
 
 When the release is not published yet, the local source-build fallback verifies every pinned
 GLB and warns about additional, unpinned outputs from models still in progress. Those outputs
-stay as local work. `pnpm assets:build` and `pnpm assets:check` still require the complete
-inventory to match the lock; use them when finalizing a model batch.
+stay as local work. `pnpm assets:check` also warns about unpinned GLBs instead of blocking
+`pnpm all`; missing or changed pinned GLBs still fail. `pnpm source:check` skips model bundles
+whose source and runtime GLBs are not yet pinned or declared authored masters, with a warning.
+Bundles containing a pinned GLB or authored master, and bundles without GLB models, still
+receive all source checks. The structure authoring index is checked in either mode.
+
+When finalizing a model batch, use `pnpm assets:check --strict` and
+`pnpm source:check --strict` to include unfinished work. `pnpm assets:build` and
+`pnpm assets:pack` always require the complete GLB inventory to match the lock.
 
 To build everything from source instead, with no network access for models (Node 24, the major
 `asset-build.json` pins):

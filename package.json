@@ -13,7 +13,7 @@
     "reinstall": "node scripts/clean.mjs && pnpm install && pnpm -r build && pnpm install",
     "pretypecheck": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
-    "source:check": "node scripts/check-source-bundles.mjs && node packages/worldgen/scripts/index-structure-authoring.mjs --check",
+    "source:check": "node scripts/check-source-bundles.mjs",
     "assets:build": "node scripts/build-assets.mjs",
     "assets:pack": "node scripts/asset-packs.mjs pack",
     "assets:fetch": "node scripts/asset-packs.mjs fetch",
