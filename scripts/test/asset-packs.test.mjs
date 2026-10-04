@@ -21,7 +21,14 @@ import {
   verifyArchive,
   writeLock,
 } from '../asset-packs.mjs';
-import { checkPython, importPlan, pythonProblems, validatePlan } from '../build-assets.mjs';
+import {
+  buildAssetsFromSource,
+  checkPython,
+  importPlan,
+  preparePython,
+  pythonProblems,
+  validatePlan,
+} from '../build-assets.mjs';
 
 const roots = [];
 const quiet = () => {};
@@ -527,4 +534,180 @@ test('checks the Python interpreter and its pinned packages before any generator
   await assert.rejects(checkPython(root, python, missing), /Set PYTHON/);
   // A build with no Python jobs never looks for an interpreter.
   await checkPython(root, [{ id: 'oak', command: ['node', 'scripts/oak.mjs'] }], missing);
+});
+
+async function pythonFixture() {
+  const root = await fixture();
+  await mkdir(join(root, 'examples/game/tools'), { recursive: true });
+  await writeFile(join(root, 'examples/game/tools/requirements.txt'), 'Pillow==12.2.0\n');
+  const jobs = [{ id: 'game', command: ['python', 'examples/game/tools/generate.py'] }];
+  const local = join(
+    root,
+    '.artifacts/asset-build/python',
+    process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
+  );
+  return { root, jobs, local };
+}
+
+function pythonProbe(interpreters, calls = []) {
+  return (executable) => {
+    calls.push(executable);
+    const found = interpreters.get(executable);
+    return found ? { status: 0, stdout: JSON.stringify(found) } : { error: { code: 'ENOENT' } };
+  };
+}
+
+test('uses a newer installed Python and installs pins only in the local environment', async () => {
+  const { root, jobs, local } = await pythonFixture();
+  const interpreters = new Map([
+    ['python3', { python: [3, 9, 6], packages: { Pillow: null } }],
+    ['python3.12', { python: [3, 12, 13], packages: { Pillow: null } }],
+  ]);
+  const setupCalls = [];
+  const selected = await preparePython(root, jobs, {
+    executable: null,
+    candidates: [local, 'python3', 'python3.12'],
+    probe: pythonProbe(interpreters),
+    setup: async (executable, args) => {
+      setupCalls.push([executable, ...args]);
+      if (args.includes('install'))
+        interpreters.set(local, { python: [3, 12, 13], packages: { Pillow: '12.2.0' } });
+    },
+    log: quiet,
+  });
+  assert.equal(selected, local);
+  assert.deepEqual(setupCalls, [
+    ['python3.12', '-m', 'venv', join(root, '.artifacts/asset-build/python')],
+    [
+      local,
+      '-m',
+      'pip',
+      '--disable-pip-version-check',
+      'install',
+      '--no-input',
+      '-r',
+      'examples/game/tools/requirements.txt',
+    ],
+  ]);
+});
+
+test('reuses an environment with all pins, without setup or network access', async () => {
+  const { root, jobs, local } = await pythonFixture();
+  const ready = { python: [3, 12, 13], packages: { Pillow: '12.2.0' } };
+  for (const executable of [local, 'python3.12']) {
+    const selected = await preparePython(root, jobs, {
+      executable: null,
+      candidates: [local, 'python3', 'python3.12'],
+      probe: pythonProbe(
+        new Map([
+          ['python3', { python: [3, 10, 1], packages: { Pillow: null } }],
+          [executable, ready],
+        ]),
+      ),
+      setup: async () => assert.fail('No setup needed'),
+      log: quiet,
+    });
+    assert.equal(selected, executable);
+  }
+});
+
+test('honors explicit Python overrides and fails before setup for incompatible Python', async () => {
+  const { root, jobs } = await pythonFixture();
+  const calls = [];
+  const options = {
+    probe: pythonProbe(
+      new Map([['chosen-python', { python: [3, 9, 6], packages: { Pillow: null } }]]),
+      calls,
+    ),
+    setup: async () => assert.fail('Incompatible Python must not run setup'),
+    log: quiet,
+  };
+  await assert.rejects(
+    preparePython(root, jobs, { ...options, executable: 'chosen-python' }),
+    /chosen-python is Python 3.9.6/,
+  );
+  assert.deepEqual(calls, ['chosen-python']);
+  await assert.rejects(
+    preparePython(root, jobs, {
+      ...options,
+      executable: null,
+      candidates: ['chosen-python', 'missing-python'],
+    }),
+    /No usable Python 3.10\+ found/,
+  );
+  assert.equal(
+    await preparePython(root, [{ command: ['node', 'scripts/oak.mjs'] }], {
+      ...options,
+      probe: () => assert.fail('Node-only builds must not probe Python'),
+    }),
+    undefined,
+  );
+});
+
+test('does not accept an environment whose dependency installation left pins missing', async () => {
+  const { root, jobs, local } = await pythonFixture();
+  await assert.rejects(
+    preparePython(root, jobs, {
+      executable: null,
+      candidates: ['python3.12'],
+      probe: pythonProbe(
+        new Map([
+          ['python3.12', { python: [3, 12, 13], packages: { Pillow: null } }],
+          [local, { python: [3, 12, 13], packages: { Pillow: '11.0.0' } }],
+        ]),
+      ),
+      setup: async () => {},
+      log: quiet,
+    }),
+    /pins Pillow==12.2.0/,
+  );
+});
+
+test('source restoration tolerates work in progress while enforcing every pinned byte', async () => {
+  const root = await fixture();
+  await writeFile(
+    join(root, 'asset-build.json'),
+    JSON.stringify({
+      format: 'molen/asset-build@2',
+      node: process.versions.node.split('.')[0],
+      generators: [],
+      masters: [],
+    }),
+  );
+  // No jobs load packages in this fixture; satisfy the build preflight without compiling.
+  for (const path of [
+    'packages/schema/dist/index.mjs',
+    'packages/worldgen/dist/kernel.mjs',
+    'packages/tooling/dist/index.mjs',
+    'packages/tooling/dist/cli.mjs',
+  ]) {
+    await mkdir(join(root, path, '..'), { recursive: true });
+    await writeFile(join(root, path), '');
+  }
+  const pinned = 'assets/ready/model.glb';
+  const unfinished = 'assets/in-progress/model.glb';
+  await asset(root, pinned);
+  await lockFixture(root, [pinned]);
+  await asset(root, unfinished, Buffer.from('unfinished geometry'));
+  const messages = [];
+  const options = { root, generate: false, log: (message) => messages.push(message) };
+  // A full source verification still requires unfinished outputs to be finalized in the lock.
+  await assert.rejects(buildAssetsFromSource(options), /unexpected.*assets\/in-progress/);
+  const report = await buildAssetsFromSource({ ...options, allowUnlocked: true });
+  assert.deepEqual(report.lock.unexpected, [unfinished]);
+  assert.ok(messages.some((message) => /^Warning:.*not pinned/.test(message)));
+  assert.match(messages.at(-1), /1 pinned GLBs restored/);
+  assert.equal((await readLock(root)).files.length, 1);
+  assert.equal(await readFile(join(root, unfinished), 'utf8'), 'unfinished geometry');
+  // In-progress work never excuses a changed or missing required asset.
+  await asset(root, pinned, Buffer.from('changed geometry'));
+  await assert.rejects(
+    buildAssetsFromSource({ ...options, allowUnlocked: true }),
+    /changed.*assets\/ready/,
+  );
+  await rm(join(root, pinned));
+  await assert.rejects(
+    buildAssetsFromSource({ ...options, allowUnlocked: true }),
+    /missing.*assets\/ready/,
+  );
 });

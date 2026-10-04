@@ -775,9 +775,9 @@ async function main() {
           return;
         }
         if (!(error instanceof ReleaseMissingError)) throw error;
-        console.log(`${error.message}\nBuilding the GLBs from source instead (pnpm assets:build).`);
+        console.log(`Warning: ${error.message}\nBuilding the pinned GLBs locally.`);
         const { buildAssetsFromSource } = await import('./build-assets.mjs');
-        await buildAssetsFromSource({ root, compile: true });
+        await buildAssetsFromSource({ root, compile: true, allowUnlocked: true });
       }
       break;
     case 'check':

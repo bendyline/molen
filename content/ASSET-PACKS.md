@@ -47,6 +47,11 @@ one you built yourself unless you pass `--force`. `--offline` uses only the loca
 `.artifacts/asset-packs/`, and `--prefix content/worldgen/assets/places/c2/` restores part of the
 tree. `pnpm all` and `pnpm dev` fetch automatically.
 
+When the release is not published yet, the local source-build fallback verifies every pinned
+GLB and warns about additional, unpinned outputs from models still in progress. Those outputs
+stay as local work. `pnpm assets:build` and `pnpm assets:check` still require the complete
+inventory to match the lock; use them when finalizing a model batch.
+
 To build everything from source instead, with no network access for models (Node 24, the major
 `asset-build.json` pins):
 
@@ -56,9 +61,13 @@ pnpm assets:build
 
 This compiles the packages if needed, moves the previous generated GLBs aside, runs every
 generator, imports every model, and compares all of it with the lock. The Lantern Dungeon
-generator needs Python 3.10+ with `pip install -r examples/lantern-dungeon/tools/requirements.txt`.
-The build runs `$PYTHON` (default `python3`, or `python` on Windows) and checks its version and
-pinned packages before any generator starts.
+generator needs Python 3.10+. The build discovers a compatible installed interpreter, including
+versioned commands such as `python3.12`, so an older system `python3` does not block it. When
+the pinned packages are missing, it creates `.artifacts/asset-build/python/` and installs them
+there from `examples/lantern-dungeon/tools/requirements.txt` (the first install needs network
+access). Later builds reuse that environment without installing again. System Python packages
+are left alone. Set `PYTHON` to choose an interpreter explicitly; that override must already
+have the required version and pinned packages. All Python checks finish before generators start.
 A full build takes a few minutes on a workstation and writes about 18 GB. The report and one log
 per generator are in `.artifacts/asset-build/`.
 
