@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:2dbe7c3a528bf7163ad565edcbe16d760f3852a4005c7a37313c99b36a88685c",
   "sourceHash": "sha256:b7fb95192d8aa548f7895d7e8b1b3a7890ef604616fa4b491854ffac14edf1a5",
   "bounds": {
     "aabb": {
-      "min": [-35.1, -0.0019, -24.0998],
-      "max": [35.1, 42.0019, 24.0998]
+      "min": [
+        -35.1,
+        -0.0019,
+        -24.0998
+      ],
+      "max": [
+        35.1,
+        42.0019,
+        24.0998
+      ]
     },
     "sphere": {
-      "center": [0, 21, 0],
+      "center": [
+        0,
+        21,
+        0
+      ],
       "radius": 47.3524
     }
   },
@@ -39,19 +56,25 @@
   "materials": [
     {
       "name": "structure-cladding",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "glazing-or-reflective-panel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -61,12 +84,90 @@
       {
         "node": "worldgen",
         "points": [
-          -35.1, -0.0019, -24.0998, -35.1, -0.0019, 24.0998, -35.1, 42.0019, -24.0998, -35.1,
-          42.0019, 24.0998, 35.1, -0.0019, -24.0998, 35.1, -0.0019, 24.0998, 35.1, 42.0019,
-          -24.0998, 35.1, 42.0019, 24.0998
+          -35.1,
+          -0.0019,
+          -24.0998,
+          -35.1,
+          -0.0019,
+          24.0998,
+          -35.1,
+          42.0019,
+          -24.0998,
+          -35.1,
+          42.0019,
+          24.0998,
+          35.1,
+          -0.0019,
+          -24.0998,
+          35.1,
+          -0.0019,
+          24.0998,
+          35.1,
+          42.0019,
+          -24.0998,
+          35.1,
+          42.0019,
+          24.0998
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:2dbe7c3a528bf7163ad565edcbe16d760f3852a4005c7a37313c99b36a88685c",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:714825ec785501ed4841f02640130ad9fc65d7fe0f046b9fb98231258f054cc8",
+        "bytes": 34076,
+        "gzipBytes": 13219,
+        "triangles": 1980,
+        "cpuBytes": 33000,
+        "gpuBytes": 33000,
+        "errorMeters": 0.1404,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:c4ff767fe6c55bfc3ac8c4201df5986ca15d73935bf4bff2551f12eaa72165ab",
+        "bytes": 94196,
+        "gzipBytes": 18235,
+        "triangles": 1980,
+        "cpuBytes": 91080,
+        "gpuBytes": 91080,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c4ff767fe6c55bfc3ac8c4201df5986ca15d73935bf4bff2551f12eaa72165ab",
+        "bytes": 94196,
+        "gzipBytes": 18235,
+        "triangles": 1980,
+        "cpuBytes": 91080,
+        "gpuBytes": 91080,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c4ff767fe6c55bfc3ac8c4201df5986ca15d73935bf4bff2551f12eaa72165ab",
+        "bytes": 94196,
+        "gzipBytes": 18235,
+        "triangles": 1980,
+        "cpuBytes": 91080,
+        "gpuBytes": 91080,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  }
 }

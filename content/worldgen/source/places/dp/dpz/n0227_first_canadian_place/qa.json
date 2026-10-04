@@ -1,0 +1,89 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0227_first_canadian_place",
+  "sourceHash": "sha256:5dc99b60279e3f56bb1160090988d33712948200c508b9efa5028b4f8ff34b13",
+  "runtimeHash": "sha256:cb9de2e0e5116c0b49062e5ba2fe23361e9a8643c8248180739b3d67acbb3be9",
+  "captureReportHash": "sha256:b8e5706483ff28065ba315045bb3e7fb1d0693592f150fd9c46ca48975063d04",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity; geographic and maximum-fidelity approval remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/white-spandrels.png",
+      "shots/frit-closeup.png",
+      "shots/bronze-corner.png",
+      "shots/window-pairs.png",
+      "shots/crown-lettering.png",
+      "shots/roof-equipment.png",
+      "shots/north-mast.png",
+      "shots/antenna-panels.png",
+      "shots/south-mast.png",
+      "shots/colonnade.png",
+      "shots/entrance-doors.png",
+      "shots/roof-plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 18 current portable views. Recessed bronze corners, paired vision lights, distinct white spandrels, colonnade piers, door hardware, roof plant and three masts render without missing parts. The render review corrected poorly aimed detail cameras and removed opaque backing from the lobby glass; perimeter seals remain and a full ceiling closes the lobby. The portable fallback is plain white, without an embedded frit texture. Thin lattice members and guy wires alias at distance and need LOD treatment. The broader retail podium and exact BMO lettering remain unfinished."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f6cccaee0fb97a8edf0d01d3e0a390c3463a6b5460772d53ced60a9521b6f60b",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/white-spandrels.png",
+      "shots/shared/frit-closeup.png",
+      "shots/shared/bronze-corner.png",
+      "shots/shared/window-pairs.png",
+      "shots/shared/crown-lettering.png",
+      "shots/shared/roof-equipment.png",
+      "shots/shared/north-mast.png",
+      "shots/shared/antenna-panels.png",
+      "shots/shared/south-mast.png",
+      "shots/shared/colonnade.png",
+      "shots/shared/entrance-doors.png",
+      "shots/shared/roof-plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 18 current world-viewer views, including a full-resolution entrance view. The triangular frit resolves in the closeup and reduces to a pale finish at distance. Six canonical graphs each load once; no embedded images. Clear lobby glass retains its local transparent PBR material and visible floor behind it. Reusable GPU instances retain the complete repeated facade geometry. Unloading leaves zero live model geometries. The placement view checks the tower against the cached map outline on a flat fixture; it does not verify the wider site or actual terrain contact."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:f52238620eebc0c68607feded02deaedd7a7db2606323e9311ce17a1cffaa693",
+    "notes": "Exact Q1052475 match to OSM way 27767627; anchor [-79.381691573,43.648765146], heading 0.277301287909. The independently inferred notched rectangle is close to the cached outline, without being stretched to force a match. Signed facade/entrance registration, the wider retail podium boundary, street slope and contact elevation remain unapproved."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "The 298.1 m architectural height, 355 m main tip, 287.1 m highest occupied floor, 72 storeys and owner module dimensions are represented. The 289.9 m body parapet is a photographic working datum, not a measured survey. Floor allocation, corner panel counts, frit pitch, seal sections, exact mast/antenna arrangement, BMO lettering, doors and colonnade pier allocation remain reconstructions. The wider three-level retail podium is not yet authored. Do not count this preview as complete."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 27
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 27
+    },
+    "validatorLimitations": "The validator reports EXT_mesh_gpu_instancing as unsupported information; instance transforms/counts and assembled height were additionally checked, and all instances were rendered in Molen. Other informational messages concern unused fallback UVs/accessors.",
+    "expandedTriangles": 1246424,
+    "uniqueMeshTriangles": 165344,
+    "uniquePositionVertices": 314868,
+    "uniqueMeshes": 4,
+    "instances": 70,
+    "materials": 10,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  }
+}

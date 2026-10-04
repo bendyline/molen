@@ -1,0 +1,123 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0234_barolo_palace",
+  "sourceHash": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8",
+  "runtimeHash": "sha256:c486f38e0760052fb52fd79b5f82991378bbcfcf1449bd253dc8332eab9be093",
+  "captureReportHash": "sha256:c2c6c859140d66199a289c65a9a213c45d9a4881df59237f68b7fc69fa473bd4",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/avenida-front.png",
+      "shots/bow-window-relief.png",
+      "shots/portal.png",
+      "shots/through-passage.png",
+      "shots/green-mansard.png",
+      "shots/tower-pointed-arch.png",
+      "shots/balconies.png",
+      "shots/crown-and-lantern.png",
+      "shots/lantern-mechanism.png",
+      "shots/rear-elevation.png",
+      "shots/courtyards.png"
+    ],
+    "notes": "Inspected all 16 portable frames. Bow windows, polygonal projecting bays, curved balconies, green mansard openings, pointed arches, tiered crown, lantern and open through passage render. Corrected initially concave pointed-arch curves and recessed tower pilasters before final capture. Rear facade, light courts, passage furnishings and exact ornamental profiles need stronger evidence."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:25987f3b277c6e41128274b42a4ea7cbab7536fb08f33203e61ad4ed06d5c256",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/avenida-front.png",
+      "shots/shared/bow-window-relief.png",
+      "shots/shared/portal.png",
+      "shots/shared/through-passage.png",
+      "shots/shared/green-mansard.png",
+      "shots/shared/tower-pointed-arch.png",
+      "shots/shared/balconies.png",
+      "shots/shared/crown-and-lantern.png",
+      "shots/shared/lantern-mechanism.png",
+      "shots/shared/rear-elevation.png",
+      "shots/shared/courtyards.png"
+    ],
+    "notes": "Inspected all 15 shared-material asset-review views. The concrete, painted metal and marble graphs each load once; glazing uses local PBR. No embedded images. Viewer eviction leaves zero live model geometries. Placement is deliberately inactive, so no geographic placement frame is claimed."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:3e86a41c9be48b19baac50ff2788b5dd688301010edbc2b9247f242287d167ee",
+    "notes": "The exact-QID OSM feature has a 60.285 by 43.074 m outline, conflicting with the documented 30.88 by 44.21 m parcel. Draft registration is inactive and does not suppress map footprints. Municipal parcel 012-039-004, actual anchor, signed yaw, terrain contact and site boundaries must be verified."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Original geometry reconstructed from owner front, mansard, tower and lantern photographs; municipal heritage book photo plates and H-plan description; rear photograph by Elsapucai; aerial photograph linked by El Ojo del Arte. Intermediate elevations, light-court dimensions, tower offset, mouldings and decorative motifs are approximate. Geographic registration is unresolved: the cached 60 m frontage conflicts with the documented 30.88 m frontage. This model is catalogued but not automatically placed. Maximum exterior fidelity remains pending. H-plan proportions, intermediate heights, tower offset, dome curvature, balcony profiles and ornamental relief are photographic reconstructions without measured drawings. The rear uses the observed related façade vocabulary but requires a more complete elevation reference. Light-court windows, roofs and party walls are schematic. Owner height is 100 m; national heritage lists 103 m, and dome heights differ between references. This model uses 100 m and records the disagreement. Mansard tiling, figurative sculptures, exact façade inscriptions, full shopfront signs, modern air-conditioning equipment and surveyed passage furnishings remain unauthored. No third-party photographs or meshes are embedded."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 17
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 17
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent transform/count/bounds checks and Molen renders cover instancing; other information concerns unused fallback attributes.",
+    "expandedTriangles": 870924,
+    "uniqueMeshTriangles": 646738,
+    "uniquePositionVertices": 1162112,
+    "uniqueMeshes": 4,
+    "instances": 116,
+    "materials": 5,
+    "sharedGraphs": 3,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual integrity and byte/layout checks; physical-device measurements pending.",
+    "notes": "Inspected the master and all four authored runtime levels side by side. The final skyline retains separate crown and lantern steps in 36,532 bytes. District, street and closeup are 2,667,888, 8,457,044 and 10,862,720 bytes. Skyline plus district total 2,704,420 bytes. Authored levels deliberately remove small grille bars and relief instead of relying on automatic reduction of disconnected trim. Shared surface references and physical UV repeats are preserved. The 49.61 MB detailed master remains separate. Triangle counts still exceed the generic targets at detailed levels; streaming/memory budgets and physical-device testing remain necessary.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:4ea5acb1d7be7b8c38684979121e8ee9c64fbadf0f57d1a1331c2780ef3c1827",
+        "bytes": 36532,
+        "triangles": 480,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:5fe054b42e23395393ac2de8ab68e0063c6dfb3eb165cbe0bec0dabaac921b1f",
+        "bytes": 2667888,
+        "triangles": 33368,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:bb8015562cb2c8ad6db7d276e372cd548d2a945a1f13a1ccc899f81c7fc408a5",
+        "bytes": 8457044,
+        "triangles": 106076,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:bb89f0301e998c626eead6bcafc26a1d20f675c07fe8f2228441c7a0646ba69f",
+        "bytes": 10862720,
+        "triangles": 135188,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

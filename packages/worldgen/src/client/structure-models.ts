@@ -20,6 +20,25 @@ export interface StructureModel {
   bounds: THREE.Box3;
 }
 
+export interface StructureAcquireOptions {
+  signal?: AbortSignal;
+  /** Metric world coordinates, before renderer floating-origin adjustment. */
+  position?: readonly [number, number, number];
+}
+
+export interface StructureInstanceOptions {
+  position?: readonly [number, number, number];
+  scale?: number;
+  /** Apply placement/clipping to each replacement before its atomic publication. */
+  prepare?: (instance: THREE.Object3D) => THREE.Object3D;
+}
+
+export interface StructureModelSource {
+  acquire(ref: string, options?: StructureAcquireOptions): Promise<StructureModel>;
+  instantiate(model: StructureModel, options?: StructureInstanceOptions): THREE.Object3D;
+  release(ref: string): void;
+}
+
 function imagesOf(materials: Set<THREE.Material>): Set<ImageBitmap> {
   const images = new Set<ImageBitmap>();
   if (typeof ImageBitmap === 'undefined') return images;
@@ -247,10 +266,11 @@ export class StructureModelLibrary {
   }
 
   /** Clone transforms, retaining the shared immutable geometry and materials. */
-  instantiate(model: StructureModel): THREE.Object3D {
+  instantiate(model: StructureModel, options?: StructureInstanceOptions): THREE.Object3D {
     if (this.disposed || this.ready.get(model.ref) !== model)
       throw new Error(`Structure model "${model.ref}" is no longer acquired`);
-    return model.scene.clone(true);
+    const instance = model.scene.clone(true);
+    return options?.prepare?.(instance) ?? instance;
   }
 
   /** Pair with each successful acquire, after removing that instance from the scene. */

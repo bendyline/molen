@@ -69,7 +69,11 @@ import {
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
-import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import type {
+  ScreenSpaceLodPolicy,
+  StructureStreamingOptions,
+  StructureStreamingStats,
+} from '@bendyline/molen-worldgen/client';
 import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
@@ -303,6 +307,8 @@ export interface EarthViewOptions {
    * against it, and the terrain cache keeps at least this much.
    */
   memoryBudget?: number;
+  /** Source-derived landmark streaming budgets; false explicitly loads full legacy models. */
+  landmarkStreaming?: StructureStreamingOptions | false;
   /**
    * Highest level `quality: 'auto'` climbs to (0-5, default 3, Balanced). Above it buildings
    * switch to the high preset, which rebuilds them across the view for little visible gain.
@@ -350,6 +356,7 @@ export interface EarthViewStats {
    * loaded: tiles generated, buildings drawn as geometry, and instanced stand-ins.
    */
   worldgen?: { tiles: number; buildings: number; standIns: number };
+  structures?: StructureStreamingStats;
 }
 
 /** What {@link EarthView.cacheStats} reports. */
@@ -764,6 +771,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 metersPerUnit,
                 quality: quality(),
                 lodPolicy,
+                ...(options.landmarkStreaming !== undefined
+                  ? { landmarkStreaming: options.landmarkStreaming }
+                  : {}),
                 ...(options.workers !== undefined ? { workers: options.workers } : {}),
                 ...(options.materialStore !== undefined
                   ? { materialStore: options.materialStore }
@@ -1808,6 +1818,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
       if (current !== undefined) {
         current.stream.updateTransitions(now);
+        current.worldgen?.updateStructures({
+          position: pose.position,
+          direction: pose.direction,
+          verticalFov: VERTICAL_FOV,
+          viewportHeight: canvas.height,
+          maxPixelError: automatic ? tier.objectPixelError : 2,
+        });
         if (
           now - streamTime >= 100 ||
           viewNeedsImmediateUpdate(
@@ -2042,6 +2059,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           triangles: renderStats.triangles,
           frameLatitude,
           ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
+          ...(stack?.worldgen?.structureStats()
+            ? { structures: stack.worldgen.structureStats() }
+            : {}),
           ...(stack?.worldgen !== undefined
             ? (() => {
                 const generated = (stack.worldgen as EarthWorldgen).stats();

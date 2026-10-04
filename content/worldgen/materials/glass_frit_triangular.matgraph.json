@@ -1,0 +1,99 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 136,
+  "nodes": [
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    {
+      "id": "inverse-v",
+      "type": "ramp",
+      "input": "v",
+      "params": { "stops": [{ "t": 0, "color": "#ffffff" }, { "t": 1, "color": "#000000" }] }
+    },
+    {
+      "id": "rising",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.5 }
+    },
+    {
+      "id": "falling",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inverse-v" },
+      "params": { "mode": "mix", "factor": 0.5 }
+    },
+    {
+      "id": "line-a",
+      "type": "ramp",
+      "input": "rising",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#d9dfdf" },
+          { "t": 0.006, "color": "#d9dfdf" },
+          { "t": 0.013, "color": "#fafafa" },
+          { "t": 0.487, "color": "#fafafa" },
+          { "t": 0.494, "color": "#d9dfdf" },
+          { "t": 0.506, "color": "#d9dfdf" },
+          { "t": 0.513, "color": "#fafafa" },
+          { "t": 0.987, "color": "#fafafa" },
+          { "t": 0.994, "color": "#d9dfdf" },
+          { "t": 1, "color": "#d9dfdf" }
+        ]
+      }
+    },
+    {
+      "id": "line-b",
+      "type": "ramp",
+      "input": "falling",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#d9dfdf" },
+          { "t": 0.006, "color": "#d9dfdf" },
+          { "t": 0.013, "color": "#fafafa" },
+          { "t": 0.487, "color": "#fafafa" },
+          { "t": 0.494, "color": "#d9dfdf" },
+          { "t": 0.506, "color": "#d9dfdf" },
+          { "t": 0.513, "color": "#fafafa" },
+          { "t": 0.987, "color": "#fafafa" },
+          { "t": 0.994, "color": "#d9dfdf" },
+          { "t": 1, "color": "#d9dfdf" }
+        ]
+      }
+    },
+    {
+      "id": "line-c",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#d9dfdf" },
+          { "t": 0.006, "color": "#d9dfdf" },
+          { "t": 0.013, "color": "#fafafa" },
+          { "t": 0.487, "color": "#fafafa" },
+          { "t": 0.494, "color": "#d9dfdf" },
+          { "t": 0.506, "color": "#d9dfdf" },
+          { "t": 0.513, "color": "#fafafa" },
+          { "t": 0.987, "color": "#fafafa" },
+          { "t": 0.994, "color": "#d9dfdf" },
+          { "t": 1, "color": "#d9dfdf" }
+        ]
+      }
+    },
+    {
+      "id": "diagonals",
+      "type": "blend",
+      "inputs": { "a": "line-a", "b": "line-b" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "color",
+      "type": "blend",
+      "inputs": { "a": "diagonals", "b": "line-c" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.2 } },
+    { "id": "metal", "type": "const", "params": { "value": 0 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

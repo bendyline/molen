@@ -24,6 +24,7 @@ export const MATERIAL_PREVIEW_TINTS = {
   tile_glazed: '#7c9d8f',
   tile_ceramic: '#bf8a6c',
   tile_mosaic: '#9eb8ba',
+  glass_frit_triangular: '#f3f4ed',
   metal_standing_seam: '#929f9b',
   metal_corrugated: '#a9b2b2',
   metal_copper: '#8db2a0',
@@ -118,6 +119,7 @@ const families = [
     ['shingle_asphalt', 'slate', 'tile_ceramic', 'tile_flat', 'tile_glazed', 'membrane', 'gravel'],
   ],
   ['ceramic', ['tile_mosaic']],
+  ['glass-surface', ['glass_frit_triangular']],
   [
     'metal',
     [
@@ -263,6 +265,9 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       if (key === 'wood_plain')
         uvOrientation =
           'U along the timber grain/long axis; V across it. No board seams in this surface.';
+      if (key === 'glass_frit_triangular')
+        uvOrientation =
+          'Metric U/V divided by 0.05m and 0.08660254m. Equilateral ceramic-frit triangles on opaque backed glass, with no baked lighting or relief normal. Pattern pitch is a photograph reconstruction; panel joints and retaining trims remain geometry.';
       if (key === 'etfe_film')
         uvOrientation =
           'Surface-aligned metric UVs; nondirectional smooth polymer film. Panel seams and inflation remain geometry. Transparent parts retain local PBR alpha instead of binding this opaque shared graph.';

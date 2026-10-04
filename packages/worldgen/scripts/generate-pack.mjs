@@ -87,6 +87,21 @@ const blend = (id, a, b, mode, factor = 1) => ({
   params: { mode, factor },
 });
 
+/** Thin ceramic-frit gaps, repeating at the endpoints and half-cell. */
+const fritLines = (id, input) =>
+  ramp(id, input, [
+    [0, '#d9dfdf'],
+    [0.006, '#d9dfdf'],
+    [0.013, '#fafafa'],
+    [0.487, '#fafafa'],
+    [0.494, '#d9dfdf'],
+    [0.506, '#d9dfdf'],
+    [0.513, '#fafafa'],
+    [0.987, '#fafafa'],
+    [0.994, '#d9dfdf'],
+    [1, '#d9dfdf'],
+  ]);
+
 /** Mirrored coordinates meet exactly at texture borders; anisotropy follows construction. */
 function fibers(xScale, yScale, low = 0.9) {
   const scale = Math.max(xScale, yScale);
@@ -1163,6 +1178,28 @@ const MATERIALS = {
       0.94,
       0.93,
     ),
+  },
+  glass_frit_triangular: {
+    doc: 'White ceramic-frit equilateral triangles behind flat backed glass. Original procedural reconstruction from the First Canadian Place architect close-up; 50mm triangle side is an unmeasured working scale. Smooth glass has no relief normal, alpha cutouts, copied photography or baked reflections. Panel joints and metallic retaining trims remain geometry.',
+    seed: 136,
+    nodes: [
+      { id: 'u', type: 'gradient', params: { kind: 'linear', angleDeg: 0 } },
+      { id: 'v', type: 'gradient', params: { kind: 'linear', angleDeg: 90 } },
+      ramp('inverse-v', 'v', [
+        [0, '#ffffff'],
+        [1, '#000000'],
+      ]),
+      blend('rising', 'u', 'v', 'mix', 0.5),
+      blend('falling', 'u', 'inverse-v', 'mix', 0.5),
+      fritLines('line-a', 'rising'),
+      fritLines('line-b', 'falling'),
+      fritLines('line-c', 'v'),
+      multiply('diagonals', 'line-a', 'line-b'),
+      multiply('color', 'diagonals', 'line-c'),
+      { id: 'rough', type: 'const', params: { value: 0.2 } },
+      { id: 'metal', type: 'const', params: { value: 0 } },
+    ],
+    outputs: { baseColor: 'color', roughness: 'rough', metalness: 'metal' },
   },
   metal_expanded_diamond: {
     doc: 'Neutral painted expanded aluminium with staggered elongated diamond alpha apertures and56% open area, following the Warsaw stadium engineer manual. A0.12m by0.04m repeat reconstructs the observed3:1 aspect; the precise fabrication pitch remains unmeasured. Woven facade strips, thickness and supporting posts remain geometry.',

@@ -80,14 +80,24 @@
         "packages/worldgen/scripts/generate-signature-towers.mjs"
       ],
       "implementation": [
+        "packages/worldgen/scripts/authored-glb-assembly.mjs",
         "packages/worldgen/scripts/authored-structure-mesh.mjs",
+        "packages/worldgen/scripts/barolo-palace-model.mjs",
+        "packages/worldgen/scripts/china-world-tower-model.mjs",
         "packages/worldgen/scripts/deterministic-math.mjs",
         "packages/worldgen/scripts/deterministic-pow.mjs",
         "packages/worldgen/scripts/embed-graph-fallbacks.mjs",
         "packages/worldgen/scripts/evidence-text-hash.mjs",
+        "packages/worldgen/scripts/first-canadian-place-model.mjs",
+        "packages/worldgen/scripts/four-world-trade-center-model.mjs",
         "packages/worldgen/scripts/generate-signature-towers.mjs",
+        "packages/worldgen/scripts/gran-torre-costanera-model.mjs",
         "packages/worldgen/scripts/install-deterministic-math.mjs",
+        "packages/worldgen/scripts/istanbul-sapphire-model.mjs",
+        "packages/worldgen/scripts/millennium-tower-model.mjs",
         "packages/worldgen/scripts/montevideo-tower-model.mjs",
+        "packages/worldgen/scripts/montsoreau-castle-model.mjs",
+        "packages/worldgen/scripts/nina-tower-model.mjs",
         "packages/worldgen/scripts/one-canada-square-model.mjs",
         "packages/worldgen/scripts/rembrandt-tower-model.mjs",
         "packages/worldgen/scripts/shard-tower-model.mjs",
@@ -124,7 +134,8 @@
         "packages/worldgen/scripts/structure-asset-paths.mjs",
         "packages/worldgen/scripts/structure-collections.mjs",
         "packages/worldgen/scripts/structure-mesh.mjs",
-        "packages/worldgen/scripts/structure-source-paths.mjs"
+        "packages/worldgen/scripts/structure-source-paths.mjs",
+        "packages/worldgen/scripts/two-prudential-plaza-model.mjs"
       ]
     },
     {
@@ -199,6 +210,7 @@
         "packages/worldgen/scripts/civic-tower-models.mjs",
         "packages/worldgen/scripts/civic-tower-more-models.mjs",
         "packages/worldgen/scripts/compact-authored-mesh.mjs",
+        "packages/worldgen/scripts/copan-model.mjs",
         "packages/worldgen/scripts/deterministic-math.mjs",
         "packages/worldgen/scripts/deterministic-pow.mjs",
         "packages/worldgen/scripts/emley-moor-model.mjs",
@@ -4734,6 +4746,27 @@
       ]
     },
     {
+      "assetId": "molen.worldgen.structure.n0218_4_world_trade_center",
+      "candidateId": "N0218",
+      "title": "4 World Trade Center",
+      "sourceBundle": "content/worldgen/source/places/dr/dr5/n0218_4_world_trade_center/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0218_4_world_trade_center",
+          "output": "assets/places/dr/dr5/n0218_4_world_trade_center/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:5a3fa6abc10d1f29be65241109d4895bb75d2f09305134912ab5bd46ec77f2af"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/four-world-trade-center-model.mjs"
+      ]
+    },
+    {
       "assetId": "molen.worldgen.structure.n0222_one_canada_square",
       "candidateId": "N0222",
       "title": "One Canada Square",
@@ -4752,6 +4785,216 @@
       ],
       "recipes": [
         "packages/worldgen/scripts/one-canada-square-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0223_edificio_copan",
+      "candidateId": "N0223",
+      "title": "Edifício Copan",
+      "sourceBundle": "content/worldgen/source/places/6g/6gy/n0223_edificio_copan/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0223_edificio_copan",
+          "output": "assets/places/6g/6gy/n0223_edificio_copan/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:c4c9e68eea0b187848462527b490d915d0b5423f4923694f5af923fae3e643fa"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-heritage-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/copan-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0227_first_canadian_place",
+      "candidateId": "N0227",
+      "title": "First Canadian Place",
+      "sourceBundle": "content/worldgen/source/places/dp/dpz/n0227_first_canadian_place/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0227_first_canadian_place",
+          "output": "assets/places/dp/dpz/n0227_first_canadian_place/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:5dc99b60279e3f56bb1160090988d33712948200c508b9efa5028b4f8ff34b13"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/first-canadian-place-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0228_two_prudential_plaza",
+      "candidateId": "N0228",
+      "title": "Two Prudential Plaza",
+      "sourceBundle": "content/worldgen/source/places/dp/dp3/n0228_two_prudential_plaza/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0228_two_prudential_plaza",
+          "output": "assets/places/dp/dp3/n0228_two_prudential_plaza/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:bc16932d1b6a6598c4b62fa75e08291169989a8802d1b456a5fe2392c379d291"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/two-prudential-plaza-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0229_istanbul_sapphire",
+      "candidateId": "N0229",
+      "title": "Istanbul Sapphire",
+      "sourceBundle": "content/worldgen/source/places/sx/sxk/n0229_istanbul_sapphire/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0229_istanbul_sapphire",
+          "output": "assets/places/sx/sxk/n0229_istanbul_sapphire/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:506abc7a5d43de50edd7d0ef1d4612782a8051f90d4c66633c9cc6b57feffad9"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/istanbul-sapphire-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0230_nina_tower",
+      "candidateId": "N0230",
+      "title": "Nina Tower",
+      "sourceBundle": "content/worldgen/source/places/we/wec/n0230_nina_tower/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0230_nina_tower",
+          "output": "assets/places/we/wec/n0230_nina_tower/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:6c5ae84b36dc718b7eba3ae710b8a07c3f0542674f4ad442c0a7c0abe0d51cd8"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/nina-tower-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0232_gran_torre_costanera",
+      "candidateId": "N0232",
+      "title": "Gran Torre Costanera",
+      "sourceBundle": "content/worldgen/source/places/66/66j/n0232_gran_torre_costanera/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0232_gran_torre_costanera",
+          "output": "assets/places/66/66j/n0232_gran_torre_costanera/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:67a735d20dda6726824a42acf8cc91acfe5333e00eca782b923384e3ddae3e74"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/gran-torre-costanera-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0233_china_world_trade_center_tower_iii",
+      "candidateId": "N0233",
+      "title": "China World Trade Center Tower III",
+      "sourceBundle": "content/worldgen/source/places/wx/wx4/n0233_china_world_trade_center_tower_iii/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0233_china_world_trade_center_tower_iii",
+          "output": "assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/china-world-tower-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0234_barolo_palace",
+      "candidateId": "N0234",
+      "title": "Palacio Barolo",
+      "sourceBundle": "content/worldgen/source/places/69/69y/n0234_barolo_palace/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0234_barolo_palace",
+          "output": "assets/places/69/69y/n0234_barolo_palace/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/barolo-palace-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0235_millennium_tower",
+      "candidateId": "N0235",
+      "title": "Millennium Tower, Vienna",
+      "sourceBundle": "content/worldgen/source/places/u2/u2e/n0235_millennium_tower/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0235_millennium_tower",
+          "output": "assets/places/u2/u2e/n0235_millennium_tower/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:9b5fe07fede15c7a47aee383c0e988589cfb4da45ba0a2d2cef9076b7ea63307"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/millennium-tower-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0236_chateau_de_montsoreau",
+      "candidateId": "N0236",
+      "title": "Château de Montsoreau",
+      "sourceBundle": "content/worldgen/source/places/u0/u02/n0236_chateau_de_montsoreau/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0236_chateau_de_montsoreau",
+          "output": "assets/places/u0/u02/n0236_chateau_de_montsoreau/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/montsoreau-castle-model.mjs"
       ]
     },
     {

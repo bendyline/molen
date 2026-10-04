@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:bf44ee58b43084cd5c698ea51b4349d3c34c0a59f8e82036d50391137683b9aa",
   "sourceHash": "sha256:af41ee14d19fa8647ec31f06c35a5164dcc393a09eb2670578190b0a85638aab",
   "bounds": {
     "aabb": {
-      "min": [-33.0012, 0, -18.9988],
-      "max": [32.0012, 87, 21.9988]
+      "min": [
+        -33.0012,
+        0,
+        -18.9988
+      ],
+      "max": [
+        32.0012,
+        87,
+        21.9988
+      ]
     },
     "sphere": {
-      "center": [-0.5, 43.5, 1.5],
+      "center": [
+        -0.5,
+        43.5,
+        1.5
+      ],
       "radius": 58.0412
     }
   },
@@ -39,13 +56,17 @@
   "materials": [
     {
       "name": "structure-cladding",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -55,12 +76,90 @@
       {
         "node": "worldgen",
         "points": [
-          -33.0012, 0, -18.9988, -33.0012, 0, 21.9988, -33.0012, 87, -18.9988, -33.0012, 87,
-          21.9988, 32.0012, 0, -18.9988, 32.0012, 0, 21.9988, 32.0012, 87, -18.9988, 32.0012, 87,
+          -33.0012,
+          0,
+          -18.9988,
+          -33.0012,
+          0,
+          21.9988,
+          -33.0012,
+          87,
+          -18.9988,
+          -33.0012,
+          87,
+          21.9988,
+          32.0012,
+          0,
+          -18.9988,
+          32.0012,
+          0,
+          21.9988,
+          32.0012,
+          87,
+          -18.9988,
+          32.0012,
+          87,
           21.9988
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:bf44ee58b43084cd5c698ea51b4349d3c34c0a59f8e82036d50391137683b9aa",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:76197015f5a47f66a2315934b8db9a4eb04d8227025407b24386bccd75988623",
+        "bytes": 4176,
+        "gzipBytes": 1789,
+        "triangles": 200,
+        "cpuBytes": 3152,
+        "gpuBytes": 3152,
+        "errorMeters": 0.174,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:66baa0dae1d4f6791aab9fe7826bd92ea74ce2f5a1593014aa7fe261bac0995f",
+        "bytes": 10720,
+        "gzipBytes": 2469,
+        "triangles": 200,
+        "cpuBytes": 8520,
+        "gpuBytes": 8520,
+        "errorMeters": 0,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:66baa0dae1d4f6791aab9fe7826bd92ea74ce2f5a1593014aa7fe261bac0995f",
+        "bytes": 10720,
+        "gzipBytes": 2469,
+        "triangles": 200,
+        "cpuBytes": 8520,
+        "gpuBytes": 8520,
+        "errorMeters": 0,
+        "drawCalls": 2
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:66baa0dae1d4f6791aab9fe7826bd92ea74ce2f5a1593014aa7fe261bac0995f",
+        "bytes": 10720,
+        "gzipBytes": 2469,
+        "triangles": 200,
+        "cpuBytes": 8520,
+        "gpuBytes": 8520,
+        "errorMeters": 0,
+        "drawCalls": 2
+      }
+    ]
+  }
 }

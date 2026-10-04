@@ -82,10 +82,21 @@ export async function inspectAsset(input: InspectAssetInput): Promise<InspectAss
         verifyErrors.push(`${trimesh.bin}: ${(e as Error).message}`);
       }
     }
-    // Variants carry no hash (they are derived from main); they must at least exist.
+    if (sidecar.runtimeLods && sidecar.runtimeLods.masterHash !== sidecar.hash)
+      verifyErrors.push('runtimeLods: stale master hash');
+    for (const level of sidecar.runtimeLods?.levels ?? [])
+      if (sidecar.files.variants[level.name] !== level.file)
+        verifyErrors.push(`runtimeLods: missing or mismatched variant "${level.name}"`);
+    // Runtime LODs carry byte hashes; other variants must at least exist.
     for (const [name, file] of Object.entries(sidecar.files.variants)) {
       try {
-        await readFile(join(dir, file));
+        const bytes = await readFile(join(dir, file));
+        const level = sidecar.runtimeLods?.levels.find((level) => level.name === name);
+        if (
+          level &&
+          (level.file !== file || level.bytes !== bytes.byteLength || level.hash !== sha256(bytes))
+        )
+          verifyErrors.push(`variant "${name}" (${file}): runtime LOD hash/size mismatch`);
       } catch (e) {
         verifyErrors.push(`variant "${name}" (${file}): ${(e as Error).message}`);
       }

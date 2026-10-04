@@ -2,21 +2,21 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 236 authored assets, 236 imported assets and 223 active geographic asset previews.
+There are 247 authored assets, 247 imported assets and 232 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and maximum exterior fidelity pass.
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 236 |
-| Runtime GLBs imported | 236 |
-| Current source and runtime hashes verified | 236 |
-| Portable visual reviews passed | 234 |
-| Shared-material reviews passed | 232 |
-| Active geographic previews | 223 |
+| Source GLBs authored | 247 |
+| Runtime GLBs imported | 247 |
+| Current source and runtime hashes verified | 247 |
+| Portable visual reviews passed | 245 |
+| Shared-material reviews passed | 243 |
+| Active geographic previews | 232 |
 | Maximum exterior fidelity reviews passed | 192 |
 | Complete | 167 |
-| Source models still to author | 764 |
+| Source models still to author | 753 |
 
 ## Authored models
 
@@ -131,7 +131,18 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0206 | [The Center](../places/we/wec/n0206_the_center/README.md) | 522444 | Passed | Passed | Passed | Passed | Yes |
 | N0207 | [Bank of America Plaza](../places/dn/dn5/n0207_bank_of_america_plaza/README.md) | 407421 | Passed | Passed | Passed | Passed | Yes |
 | N0209 | [Bitexco Financial Tower](../places/w3/w3g/n0209_bitexco_financial_tower/README.md) | 315402 | Passed | Passed | Pending | Pending | Pending |
+| N0218 | [4 World Trade Center](../places/dr/dr5/n0218_4_world_trade_center/README.md) | 242702 | Passed | Passed | Pending | Pending | Pending |
 | N0222 | [One Canada Square](../places/gc/gcp/n0222_one_canada_square/README.md) | 964326 | Passed | Passed | Pending | Pending | Pending |
+| N0223 | [Edifício Copan](../places/6g/6gy/n0223_edificio_copan/README.md) | 119600 | Passed | Passed | Pending | Pending | Pending |
+| N0227 | [First Canadian Place](../places/dp/dpz/n0227_first_canadian_place/README.md) | 165344 | Passed | Passed | Pending | Pending | Pending |
+| N0228 | [Two Prudential Plaza](../places/dp/dp3/n0228_two_prudential_plaza/README.md) | 45962 | Passed | Passed | Pending | Pending | Pending |
+| N0229 | [Istanbul Sapphire](../places/sx/sxk/n0229_istanbul_sapphire/README.md) | 947096 | Passed | Passed | Pending | Pending | Pending |
+| N0230 | [Nina Tower](../places/we/wec/n0230_nina_tower/README.md) | 86792 | Passed | Passed | Pending | Pending | Pending |
+| N0232 | [Gran Torre Costanera](../places/66/66j/n0232_gran_torre_costanera/README.md) | 177840 | Passed | Passed | Pending | Pending | Pending |
+| N0233 | [China World Trade Center Tower III](../places/wx/wx4/n0233_china_world_trade_center_tower_iii/README.md) | 485508 | Passed | Passed | Pending | Pending | Pending |
+| N0234 | [Barolo Palace](../places/69/69y/n0234_barolo_palace/README.md) | 646738 | Passed | Passed | Pending | Pending | Pending |
+| N0235 | [Millennium Tower](../places/u2/u2e/n0235_millennium_tower/README.md) | 30296 | Passed | Passed | Pending | Pending | Pending |
+| N0236 | [Château de Montsoreau](../places/u0/u02/n0236_chateau_de_montsoreau/README.md) | 40797 | Passed | Passed | Pending | Pending | Pending |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |

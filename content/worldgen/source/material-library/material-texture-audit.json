@@ -7,25 +7,25 @@
     "cutouts": "Alpha-test base-color maps remain textures. Audit records alphaTest but does not infer a no-mipmap policy from it."
   },
   "summary": {
-    "materials": 65,
+    "materials": 68,
     "baked": {
-      "textures": 183,
-      "baseLevelRgba8Bytes": 47972352,
-      "fullMipChainRgba8Bytes": 63962892
+      "textures": 193,
+      "baseLevelRgba8Bytes": 50593792,
+      "fullMipChainRgba8Bytes": 67458132
     },
-    "constantResponseChannels": 58,
-    "constantResponseChannelsBySlot": { "roughness": 49, "metalness": 9 },
+    "constantResponseChannels": 62,
+    "constantResponseChannelsBySlot": { "roughness": 50, "metalness": 12 },
     "afterConstantResponseFolding": {
-      "textures": 125,
-      "baseLevelRgba8Bytes": 32768000,
-      "fullMipChainRgba8Bytes": 43690500
+      "textures": 131,
+      "baseLevelRgba8Bytes": 34340864,
+      "fullMipChainRgba8Bytes": 45787644
     },
     "allChannelsAfterTheoreticalExactDeduplication": {
-      "textures": 151,
-      "baseLevelRgba8Bytes": 39583744,
-      "fullMipChainRgba8Bytes": 52778124
+      "textures": 158,
+      "baseLevelRgba8Bytes": 41418752,
+      "fullMipChainRgba8Bytes": 55224792
     },
-    "duplicateChannelGroups": 12
+    "duplicateChannelGroups": 13
   },
   "duplicateChannels": [
     {
@@ -99,6 +99,7 @@
       "filter": "linear",
       "copies": [
         "molen.worldgen.material.etfe_film#metalness",
+        "molen.worldgen.material.glass_frit_triangular#metalness",
         "molen.worldgen.material.metal_expanded_diamond#metalness",
         "molen.worldgen.material.metal_perforated_round#metalness",
         "molen.worldgen.material.metal_perforated_round_open#metalness",
@@ -125,6 +126,17 @@
       "copies": [
         "molen.worldgen.material.metal_perforated_square#roughness",
         "molen.worldgen.material.plaster_tadelakt#roughness"
+      ]
+    },
+    {
+      "sha256": "sha256:3b874d3ba46c638fc3094f8e92fb744ca974893873f8885f54e23760f9b6311b",
+      "dimensions": [256, 256],
+      "colorSpace": "linear",
+      "filter": "linear",
+      "copies": [
+        "molen.worldgen.material.metal_stainless#metalness",
+        "molen.worldgen.material.metal_stainless_beadblasted#metalness",
+        "molen.worldgen.material.metal_stainless_polished#metalness"
       ]
     },
     {
@@ -724,6 +736,49 @@
       ]
     },
     {
+      "id": "molen.worldgen.material.glass_frit_triangular",
+      "graphHash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6",
+      "repeatMeters": [0.05, 0.08660254],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.glass_frit_triangular",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:87aebae764797edff5e36bb04a31ce32f326962f6addbc9149891f05e8fb2e03",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.glass_frit_triangular",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:896856d3216034a67d1bc9a68b911619d6203820a3b8764d1976f9f4e5e363bf",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "G", "byte": 51, "scalar": 0.2 }
+        },
+        {
+          "material": "molen.worldgen.material.glass_frit_triangular",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:b7997c60612a8f60f104b19583162aaac7dde1f1ab2e8ef7c9b935550e2b0aa8",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 0, "scalar": 0 }
+        }
+      ]
+    },
+    {
       "id": "molen.worldgen.material.gravel",
       "graphHash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec",
       "repeatMeters": [2, 2],
@@ -1032,10 +1087,9 @@
     },
     {
       "id": "molen.worldgen.material.metal_perforated_round",
-      "graphHash": "sha256:78f39ce5c28a38b74894db8d641965425041b418f4fb67a7c1cf53b7ed723c6b",
+      "graphHash": "sha256:e8a12829a9a5c09661eb60ce2eb4deb064de202142e091b1d1ffe6e329ff8943",
       "repeatMeters": [0.012, 0.012],
       "uvMode": "meters",
-      "alphaTest": 0.3,
       "channels": [
         {
           "material": "molen.worldgen.material.metal_perforated_round",
@@ -1120,10 +1174,9 @@
     },
     {
       "id": "molen.worldgen.material.metal_perforated_square",
-      "graphHash": "sha256:f12058417eb51d202ef3740309bd308914c4e8e17d8d163a3aec6c97cb3cc362",
+      "graphHash": "sha256:51722a6e28bb79b7b7b3274fc9ccf0a5d341ee28b332627005d7aac3d6d1f937",
       "repeatMeters": [0.085, 0.085],
       "uvMode": "meters",
-      "alphaTest": 0.3,
       "channels": [
         {
           "material": "molen.worldgen.material.metal_perforated_square",
@@ -1212,6 +1265,101 @@
           "sha256": "sha256:40462f48e3385d2ece1b1a88a3c108f37252980befc05ba09b1c9b54d1c95023",
           "bytes": 262144,
           "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_stainless_beadblasted",
+      "graphHash": "sha256:49b7f5eb3d09b1b8c460f88ecf491ed3884e60717beee0ab540fe78800054aff",
+      "repeatMeters": [1, 1],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_stainless_beadblasted",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:5f705d900323b7b84eda527d9d1fd51273507741f1b8e862a6ccc0e0a664b522",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless_beadblasted",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:334987fcc7d3ac897f5bb2b5dd23efe8e3fc89cc823d13716608adb1c49cff21",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless_beadblasted",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:3b874d3ba46c638fc3094f8e92fb744ca974893873f8885f54e23760f9b6311b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 255, "scalar": 1 }
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless_beadblasted",
+          "slot": "normal",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:4f6b8e352ac4cf51ed0896cfbe26dce9c5b5da7e31771b5d157d6f6c90e75265",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        }
+      ]
+    },
+    {
+      "id": "molen.worldgen.material.metal_stainless_polished",
+      "graphHash": "sha256:b727e8101b2ad53f7c6615c992a674691a248d0ee802f1be49060870a4c87974",
+      "repeatMeters": [1, 1],
+      "uvMode": "meters",
+      "channels": [
+        {
+          "material": "molen.worldgen.material.metal_stainless_polished",
+          "slot": "baseColor",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb",
+          "filter": "linear",
+          "sha256": "sha256:3151b0e3bd60a70b2277f91d3aaad4bb52a8d1379b35423ba13e0ceb9383a808",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless_polished",
+          "slot": "roughness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:e9be95373ae064fc327ddd3b965b73d10c6d65318b3ce1700b2378e8aa35ddea",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524
+        },
+        {
+          "material": "molen.worldgen.material.metal_stainless_polished",
+          "slot": "metalness",
+          "width": 256,
+          "height": 256,
+          "colorSpace": "linear",
+          "filter": "linear",
+          "sha256": "sha256:3b874d3ba46c638fc3094f8e92fb744ca974893873f8885f54e23760f9b6311b",
+          "bytes": 262144,
+          "fullMipChainBytes": 349524,
+          "constantResponse": { "channel": "B", "byte": 255, "scalar": 1 }
         }
       ]
     },

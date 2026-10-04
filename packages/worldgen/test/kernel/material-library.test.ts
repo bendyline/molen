@@ -28,9 +28,9 @@ function value(image: RGBAImage, u: number, v: number): number {
 }
 
 describe('canonical construction material library', () => {
-  it('ships 67 shared 256-square materials with independently usable surface response', async () => {
+  it('ships 68 shared 256-square materials with independently usable surface response', async () => {
     const files = (await readdir(materialDir)).filter((name) => name.endsWith('.matgraph.json'));
-    expect(files.length).toBe(67);
+    expect(files.length).toBe(68);
     const style = JSON.parse(await readFile(resolve(materialDir, '../stylepack.json'), 'utf8'));
     expect(Object.values(style.materials).sort()).toEqual(
       files.map((name) => `materials/${name}`).sort(),
@@ -48,7 +48,7 @@ describe('canonical construction material library', () => {
         expect(value(roughness, 0.5, 0.5), id).toBeLessThanOrEqual(253);
       }
     }
-  }, 30_000); // Bakes all 67 material graphs; 3-5s alone, past the 5s default under load.
+  }, 30_000); // Bakes all 68 material graphs; 3-5s alone, past the 5s default under load.
 
   it('repeats every lap board and barrel rib instead of clamping a scaled coordinate', async () => {
     const lap = bakeMatGraph(await material('siding_lap', 256)).slots.baseColor;

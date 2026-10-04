@@ -49,12 +49,19 @@ export interface ResolvedMaterialSet extends WorldgenMaterialSet {
   prepare(refs: readonly string[]): Promise<void>;
   /** References that failed to bake (rendered with the flat slot material), with the reason. */
   readonly failures: ReadonlyMap<string, string>;
+  /** Conservative RGBA residency including mipmaps; shared textures counted once. */
+  readonly textureBytes?: number;
   dispose(): void;
 }
 
 export interface ResolvedMaterialSetOptions {
   /** Render colors immediately and upgrade the same material objects as textures finish baking. */
   progressive?: boolean;
+  /** Bake a shared surface when a visible model first requests it. */
+  prepareOnUse?: boolean;
+  /** Keep flat placeholders when adding a texture would exceed this shared library budget. */
+  maxTextureBytes?: number;
+  concurrency?: number;
 }
 
 const TEXTURE_KEYS = [
@@ -85,6 +92,16 @@ export function createResolvedMaterialSet(
   // Textured glass draws its texture untinted: the vertex color of a window carries the glass
   // tone for flat levels instead (see the recipe), so the window slot gets its own variant.
   const glass = new Map<string, THREE.MeshStandardMaterial>();
+  const rejected = new Set<string>();
+  const textures = new Set<THREE.Texture>();
+  let textureBytes = 0;
+  let baking = 0;
+  const waiters: Array<() => void> = [];
+  const limit = options.concurrency ?? Infinity;
+  if (!(limit > 0) || (limit !== Infinity && !Number.isInteger(limit)))
+    throw new Error('Material concurrency must be positive');
+  if (options.maxTextureBytes !== undefined && !(options.maxTextureBytes > 0))
+    throw new Error('Material texture budget must be positive');
   let disposed = false;
   const untinted = (target: THREE.MeshStandardMaterial, from: THREE.Material): void => {
     target.copy(from as THREE.MeshStandardMaterial);
@@ -93,12 +110,46 @@ export function createResolvedMaterialSet(
   };
 
   async function prepareOne(ref: string): Promise<void> {
+    if (baking >= limit) await new Promise<void>((resolve) => waiters.push(resolve));
+    else baking++;
     try {
+      if (disposed) return;
       const source = await resolver.acquire(ref);
       if (disposed) {
         resolver.release(source);
         return;
       }
+      const added = [
+        ...new Set(
+          Object.values(source).filter(
+            (value): value is THREE.Texture =>
+              value instanceof THREE.Texture && !textures.has(value),
+          ),
+        ),
+      ];
+      const bytes = added.reduce((sum, texture) => {
+        const image = texture.image as
+          | { width?: number; height?: number; data?: ArrayBufferView }
+          | undefined;
+        return (
+          sum +
+          Math.ceil(
+            (Math.max(
+              image?.data?.byteLength ?? 0,
+              (image?.width ?? 0) * (image?.height ?? 0) * 4,
+            ) *
+              4) /
+              3,
+          )
+        );
+      }, 0);
+      if (textureBytes + bytes > (options.maxTextureBytes ?? Infinity)) {
+        rejected.add(ref);
+        resolver.release(source);
+        return;
+      }
+      textureBytes += bytes;
+      for (const texture of added) textures.add(texture);
       const material = placeholders.get(ref) ?? new THREE.MeshStandardMaterial();
       material.copy(source as THREE.MeshStandardMaterial);
       material.vertexColors = true;
@@ -128,26 +179,37 @@ export function createResolvedMaterialSet(
       }
     } catch (error) {
       if (!disposed) failures.set(ref, (error as Error).message);
+    } finally {
+      const next = waiters.shift();
+      if (next) next();
+      else baking--;
     }
+  }
+
+  function prepare(refs: readonly string[]): Promise<void> {
+    if (disposed) return Promise.resolve();
+    const waits: Promise<void>[] = refs.length ? [] : [...pending.values()];
+    for (const ref of refs) {
+      if (ref.startsWith('palette:') || prepared.has(ref) || failures.has(ref) || rejected.has(ref))
+        continue;
+      let wait = pending.get(ref);
+      if (wait === undefined) {
+        wait = prepareOne(ref).finally(() => pending.delete(ref));
+        pending.set(ref, wait);
+      }
+      waits.push(wait);
+    }
+    return Promise.all(waits).then(() => undefined);
   }
 
   return {
     failures,
-    async prepare(refs: readonly string[]): Promise<void> {
-      if (disposed) return;
-      const waits: Promise<void>[] = [];
-      for (const ref of refs) {
-        if (ref.startsWith('palette:') || prepared.has(ref) || failures.has(ref)) continue;
-        let wait = pending.get(ref);
-        if (wait === undefined) {
-          wait = prepareOne(ref).finally(() => pending.delete(ref));
-          pending.set(ref, wait);
-        }
-        waits.push(wait);
-      }
-      await Promise.all(waits);
+    get textureBytes() {
+      return textureBytes;
     },
+    prepare,
     materialFor(slot: MaterialSlot, ref: string): THREE.Material {
+      if (options.prepareOnUse) void prepare([ref]);
       const material = prepared.get(ref);
       if (slot === 'window' && !ref.startsWith('palette:') && !disposed) {
         let window = glass.get(ref);
@@ -189,6 +251,8 @@ export function createResolvedMaterialSet(
       glass.clear();
       for (const source of sources.values()) resolver.release(source);
       sources.clear();
+      textures.clear();
+      textureBytes = 0;
       flat.dispose?.();
     },
   };

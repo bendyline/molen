@@ -59,6 +59,10 @@ export interface ScreenshotInput {
   clearColor?: string;
   /** Enable the viewer's shared procedural sky/ground reflections for PBR metals and glass. */
   reflections?: boolean;
+  /** Enable multisample antialiasing for fine model detail; default false for golden captures. */
+  antialias?: boolean;
+  /** Fit enabled sun shadows to loaded scene bounds; default false for existing captures. */
+  fitShadows?: boolean;
 }
 
 export interface RenderStats {
@@ -231,6 +235,8 @@ async function screenshotSceneImpl(input: ScreenshotInput): Promise<ScreenshotOu
       terrain: unknown;
       clearColor: string;
       reflections: boolean;
+      antialias: boolean;
+      fitShadows: boolean;
       assetsBaseUrl: string | null;
       assetsIndex: Record<string, string> | null;
     } = {
@@ -242,6 +248,8 @@ async function screenshotSceneImpl(input: ScreenshotInput): Promise<ScreenshotOu
       terrain: terrainPayload ?? null,
       clearColor,
       reflections: input.reflections ?? false,
+      antialias: input.antialias ?? false,
+      fitShadows: input.fitShadows ?? false,
       assetsBaseUrl: filesRoot !== undefined ? `${server.url}/files/` : null,
       assetsIndex: assetsIndex ?? null,
     };

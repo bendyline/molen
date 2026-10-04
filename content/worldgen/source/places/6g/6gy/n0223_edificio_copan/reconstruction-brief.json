@@ -1,0 +1,61 @@
+{
+  "candidateId": "N0223",
+  "status": "Source-authored model under visual review; geographic and maximum-fidelity approval pending",
+  "mappedEnvelope": {
+    "source": "content/earth/structures/georeferencing.json",
+    "feature": "way/8100248",
+    "pointsIncludingClosure": 200,
+    "areaSquareMeters": 2687.8346345,
+    "longAxisMeters": 133.295,
+    "shortAxisMeters": 43.44,
+    "indexConvention": "Zero-based geometry.outline indices in the recorded map frame"
+  },
+  "curves": {
+    "principalBriseEdge": [
+      0,
+      64
+    ],
+    "endFaceOne": [
+      64,
+      65
+    ],
+    "rearStairOneProjection": [
+      66,
+      82
+    ],
+    "rearLiftTowerProjection": [
+      108,
+      136
+    ],
+    "rearStairTwoProjection": [
+      162,
+      179
+    ],
+    "rearStairThreeProjection": [
+      180,
+      196
+    ],
+    "endFaceTwo": [
+      197,
+      199
+    ]
+  },
+  "modelingDecisions": [
+    "Use the mapped principal edge as a curved-facade reference; resample by arc length rather than allocating a window module to every uneven OSM edge.",
+    "Separate rear stair/lift projections from the habitable floor plate. Three stair projections correspond to open helices in the measured study, not closed cylinders.",
+    "Build continuous projecting brise slabs, support brackets, glazing behind the brises and distinct transfer levels. Exact brise section and offsets still need a directly inspected dimensional source.",
+    "Build cobogo openings as real perforations at close range, with geometric reveals and separate dark backing/interior surfaces as appropriate.",
+    "Keep the commercial podium separate. The original design section includes program and ramp details altered during execution and cannot alone establish its as-built shape.",
+    "Reuse shared ceramic mosaic, painted concrete, metal, glass and paving surfaces; add a canonical ceramic mosaic graph only if the existing library has no adequate material.",
+    "Model the documented decommissioned helipad without inferring current operational markings or equipment.",
+    "Reconcile unsigned map heading with a north-up site view and the primary-plan compass before approving geographic placement."
+  ],
+  "remainingMeasurements": [
+    "Floor, transfer, roof, helipad and ground elevation datums",
+    "Brise projection, thickness, interval, brackets and cladding module",
+    "Rear cobogo shape/module and storey-dependent panel layout",
+    "Helical stair radii, flight direction, risers, landings and rail construction",
+    "Podium perimeter, levels, entrance positions and terrain slope",
+    "Roof equipment silhouettes and present construction-state date"
+  ]
+}

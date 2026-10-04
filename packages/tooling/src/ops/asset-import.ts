@@ -4,6 +4,7 @@ import { basename, dirname, extname, join, relative, resolve } from 'node:path';
 import type { AssetHull, AssetSidecar } from '@bendyline/molen-schema';
 import { encodeCollisionTrimesh, validate } from '@bendyline/molen-schema';
 import type {
+  Accessor,
   Document,
   ILogger,
   Material,
@@ -207,12 +208,17 @@ function buildStats(doc: Document, sizeBytes: number): AssetSidecar['stats'] {
   const root = doc.getRoot();
   let triangles = 0;
   let vertices = 0;
+  const positions = new Set<Accessor>();
   let primitives = 0;
   for (const mesh of root.listMeshes()) {
     triangles += primTriangleCount(mesh);
     for (const prim of mesh.listPrimitives()) {
       primitives++;
-      vertices += prim.getAttribute('POSITION')?.getCount() ?? 0;
+      const position = prim.getAttribute('POSITION');
+      if (position && !positions.has(position)) {
+        positions.add(position);
+        vertices += position.getCount();
+      }
     }
   }
   return {

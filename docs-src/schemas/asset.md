@@ -171,6 +171,106 @@ Per-asset metadata written by `molen asset import`: bounds + collision geometry 
       "pattern": "^sha256:[0-9a-f]{64}$",
       "description": "'sha256:<hex>' of the pre-import source file."
     },
+    "runtimeLods": {
+      "type": "object",
+      "properties": {
+        "recipe": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "recipeHash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "masterHash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "levels": {
+          "minItems": 4,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "skyline",
+                  "district",
+                  "street",
+                  "closeup"
+                ]
+              },
+              "file": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^(?![A-Za-z]:|[/\\\\])(?!.*\\\\)(?!.*(?:^|\\/)\\.\\.(?:\\/|$)).+$"
+              },
+              "hash": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "gzipBytes": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "triangles": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "cpuBytes": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "gpuBytes": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "errorMeters": {
+                "type": "number",
+                "minimum": 0
+              },
+              "drawCalls": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "name",
+              "file",
+              "hash",
+              "bytes",
+              "gzipBytes",
+              "triangles",
+              "cpuBytes",
+              "gpuBytes",
+              "errorMeters",
+              "drawCalls"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "recipe",
+        "masterHash",
+        "levels"
+      ],
+      "additionalProperties": false,
+      "description": "Separately fetchable source-derived runtime LODs, bound to the master hash."
+    },
     "bounds": {
       "type": "object",
       "properties": {

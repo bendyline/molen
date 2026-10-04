@@ -1,0 +1,120 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0235_millennium_tower",
+  "sourceHash": "sha256:9b5fe07fede15c7a47aee383c0e988589cfb4da45ba0a2d2cef9076b7ea63307",
+  "runtimeHash": "sha256:a75353cc880488718538c9b61d331bf66cb3801377ab22227765b8d3b8a185af",
+  "captureReportHash": "sha256:de305db4589003422ffbbd1da1f2030c77acddc1a87d51cbb361219f58689b63",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and real-world geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front-double-cylinder.png",
+      "shots/curtain-wall-seam.png",
+      "shots/facade-spandrel-and-fins.png",
+      "shots/rear-spine.png",
+      "shots/stepped-hood.png",
+      "shots/sloping-glass-crown.png",
+      "shots/paired-antenna.png",
+      "shots/tower-entry-columns.png",
+      "shots/footprint-from-above.png"
+    ],
+    "notes": "Inspected all 14 portable views, including curved seam, spandrel glazing, columns, rear spine, stepped hood, sloping glass and braced antenna. Corrected overlapping inner hood arcs before final captures. Main-body elevations, exact crown details and modern entrance remain provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5b1aca59faa8e4b34c2c24fa4bb5c6d0d0a7ea2f888a94a9caca5b64b8773344",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front-double-cylinder.png",
+      "shots/shared/curtain-wall-seam.png",
+      "shots/shared/facade-spandrel-and-fins.png",
+      "shots/shared/rear-spine.png",
+      "shots/shared/stepped-hood.png",
+      "shots/shared/sloping-glass-crown.png",
+      "shots/shared/paired-antenna.png",
+      "shots/shared/tower-entry-columns.png",
+      "shots/shared/footprint-from-above.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 14 shared-material views. Canonical painted metal and stainless steel each load once. Opaque glazing remains local PBR and no images are embedded. Eviction leaves zero live model geometries. One frame aligns the model with the cached OSM outline on flat terrain; it does not establish real terrain or surrounding-building fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:261c72dfc8ed5094c755ac041a557c0f978d6fe167f1698e0f14c07c903aef30",
+    "notes": "Exact-QID OSM way/105310525 supplies anchor, signed heading and asymmetric plan. Flat-terrain overlay matches curved lobes and projecting spine. Actual terrain contact, signed crown orientation, renovated entry and adjacent mall connection remain unverified."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Individual deterministic reconstruction from owner architecture and office plan, Podrecca exterior and facade photographs, architect descriptions and exact-QID OSM footprint. Floor elevations, crown tiers, mullion dimensions, entrance layout and mast sections are reconstructed, not measured construction drawings. Maximum exterior fidelity is pending. Main-body 140.5 m map tag is provisionally distinguished from the taller crown/spine and 202 m antenna; surveyed tier elevations are unavailable. Upper hood radii, concentric setbacks, sloping roof boundaries, lamella profiles and mast geometry are photographic reconstructions. Photographs do not resolve all roof service equipment. The reconstructed entrance and support spacing need as-built verification, including the 2017 renovated lobby. No claim is made to model its sculptural interior. Adjacent Millennium City mall, housing and footbridge are separate buildings and are outside this tower asset. Terrain, mall connection and signed roof orientation have not passed geographic fit review. No third-party mesh, photograph or floor-plan image is embedded. Glass is local PBR; painted metal and stainless steel use shared canonical material definitions."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 16
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 16
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent instance counts and transformed bounds, plus Molen rendered-triangle counts, cover the extension. Other information concerns unused fallback attributes.",
+    "expandedTriangles": 268856,
+    "uniqueMeshTriangles": 30296,
+    "uniquePositionVertices": 59604,
+    "uniqueMeshes": 4,
+    "instances": 84,
+    "materials": 4,
+    "sharedGraphs": 2,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual, byte, triangle and layout checks; physical-device measurements pending.",
+    "notes": "Inspected master plus four authored runtime levels at a common camera. Fixed the district floor-band facets to match the underlying curved wall. Skyline, district, street and closeup are 22,228 / 204,916 / 1,050,636 / 3,565,420 bytes, with 268 / 2,646 / 15,672 / 60,880 triangles. All meet planned triangle targets; initial skyline plus district are 227,144 bytes. The separately preserved 2,517,792-byte master uses instanced floors; the 3.57 MB closeup trades its 268,856 rendered triangles for 60,880 and four draws. Shared surface bindings and separate vertex attributes are preserved.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:33b12193b0bd0d916ad742cca9f4766f0d1aa59d9d935a64f4cef80b057c0478",
+        "bytes": 22228,
+        "triangles": 268,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:9456ac428f66d31e2167d2550e8032ad6305ae4906dad68ec96be4d59c66d4be",
+        "bytes": 204916,
+        "triangles": 2646,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:993bff72cbcd2df206259932b94338c06a634747c1b057a3419719c4e5eb2c4c",
+        "bytes": 1050636,
+        "triangles": 15672,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:98f98d9eb821fd904867dc2ad5964882fcb85150601d04a9e1f022d244b6c85e",
+        "bytes": 3565420,
+        "triangles": 60880,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

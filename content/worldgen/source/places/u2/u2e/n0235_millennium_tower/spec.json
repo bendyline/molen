@@ -1,0 +1,278 @@
+{
+  "planId": "N0235",
+  "id": "N0235",
+  "assetId": "molen.worldgen.structure.n0235_millennium_tower",
+  "title": "Millennium Tower, Vienna",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q80495",
+  "referenceCoordinate": {
+    "latitude": 48.24,
+    "longitude": 16.386944444
+  },
+  "visualBrief": "Two interlocking cylindrical glazed office volumes, projecting service spine, narrow silver mullions and glass spandrels, recessed entry columns, stepped lamella-screened hood, sloping glass crown and paired braced antenna masts.",
+  "size": [
+    43.11268424987793,
+    202,
+    35.328386306762695
+  ],
+  "actualBounds": {
+    "min": [
+      -21.515052795410156,
+      0,
+      -17.748394012451172
+    ],
+    "max": [
+      21.597631454467773,
+      202,
+      17.579992294311523
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 4,
+    "meshInstances": 84,
+    "storedTriangles": 30296,
+    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X between cylindrical lobes in cached map frame",
+    "front": "-Z at the concave facade seam; +Z toward projecting rear service spine",
+    "origin": "Cached mapped envelope center at ground datum"
+  },
+  "sourceFacts": {
+    "overallHeightMeters": 202,
+    "antennaHeightMeters": 30,
+    "upperFloors": 50,
+    "completed": 1999,
+    "officeGridMeters": 1.4,
+    "officeClearHeightMeters": [
+      2.75,
+      2.8
+    ],
+    "ownerFloorAreaSquareMeters": [
+      840,
+      900
+    ],
+    "mappedHeightTagMeters": 140.5
+  },
+  "reconstruction": {
+    "basis": "Individual deterministic reconstruction from owner architecture and office plan, Podrecca exterior and facade photographs, architect descriptions and exact-QID OSM footprint. Floor elevations, crown tiers, mullion dimensions, entrance layout and mast sections are reconstructed, not measured construction drawings.",
+    "fittedCirclesXZRadius": [
+      [
+        6.929062122565541,
+        -3.0088255330872755,
+        14.561976003512664
+      ],
+      [
+        -6.963934100335889,
+        -3.2039184928407964,
+        14.44876302388983
+      ]
+    ],
+    "circleFitRmsMeters": [
+      0.18850531230706732,
+      0.12856047447901986
+    ],
+    "bodyHeightMeters": 140.5,
+    "bodyHeightBasis": "OSM height tag interpreted as cylindrical body based on photographed stepped profile; requires an elevation drawing.",
+    "reconstructedSpineHeightMeters": 172,
+    "reconstructedHoodTopMeters": 153.4,
+    "reconstructedOfficeFloorPitchMeters": 3.25
+  },
+  "referencePages": [
+    "https://www.millenniumtower.at/en/architecture/",
+    "https://www.millenniumtower.at/en/office/",
+    "https://www.podrecca.com/projects/millenium-tower",
+    "https://www.atp.ag/en/projects/millennium-tower-vienna/",
+    "https://ifgroup.org/en/project/millennium-tower-vienna",
+    "https://www.tandfonline.com/doi/abs/10.2749/101686699780481961",
+    "https://www.openstreetmap.org/way/105310525"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "map-outline registration; signed crown orientation and real-world visual fit pending",
+    "anchor": [
+      16.38702191,
+      48.240306985
+    ],
+    "heading": -0.151859229319,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/105310525",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/105310525"
+    ],
+    "wikidataId": "Q80495",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Native local coordinates directly fit both mapped curved arcs and the projecting rear spine of exact-QID way/105310525. Retain its signed anchor and heading, with no generic height or envelope stretching. Ground and neighboring mall interfaces remain unverified."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity is pending. Main-body 140.5 m map tag is provisionally distinguished from the taller crown/spine and 202 m antenna; surveyed tier elevations are unavailable.",
+    "Upper hood radii, concentric setbacks, sloping roof boundaries, lamella profiles and mast geometry are photographic reconstructions. Photographs do not resolve all roof service equipment.",
+    "The reconstructed entrance and support spacing need as-built verification, including the 2017 renovated lobby. No claim is made to model its sculptural interior.",
+    "Adjacent Millennium City mall, housing and footbridge are separate buildings and are outside this tower asset. Terrain, mall connection and signed roof orientation have not passed geographic fit review.",
+    "No third-party mesh, photograph or floor-plan image is embedded. Glass is local PBR; painted metal and stainless steel use shared canonical material definitions."
+  ],
+  "qaCameras": [
+    {
+      "name": "front-double-cylinder",
+      "position": [
+        0,
+        112,
+        -245
+      ],
+      "lookAt": [
+        0,
+        98,
+        0
+      ]
+    },
+    {
+      "name": "curtain-wall-seam",
+      "position": [
+        0,
+        78,
+        -30
+      ],
+      "lookAt": [
+        0,
+        78,
+        -15
+      ]
+    },
+    {
+      "name": "facade-spandrel-and-fins",
+      "position": [
+        33,
+        61,
+        -19
+      ],
+      "lookAt": [
+        17,
+        60,
+        -10
+      ]
+    },
+    {
+      "name": "rear-spine",
+      "position": [
+        40,
+        126,
+        190
+      ],
+      "lookAt": [
+        0,
+        106,
+        13
+      ]
+    },
+    {
+      "name": "stepped-hood",
+      "position": [
+        -51,
+        165,
+        -61
+      ],
+      "lookAt": [
+        0,
+        147,
+        -1
+      ]
+    },
+    {
+      "name": "sloping-glass-crown",
+      "position": [
+        43,
+        180,
+        48
+      ],
+      "lookAt": [
+        0,
+        159,
+        9
+      ]
+    },
+    {
+      "name": "paired-antenna",
+      "position": [
+        -20,
+        188,
+        43
+      ],
+      "lookAt": [
+        0,
+        187,
+        16
+      ]
+    },
+    {
+      "name": "tower-entry-columns",
+      "position": [
+        -27,
+        5,
+        -40
+      ],
+      "lookAt": [
+        -2,
+        4,
+        -12
+      ]
+    },
+    {
+      "name": "footprint-from-above",
+      "position": [
+        5,
+        255,
+        25
+      ],
+      "lookAt": [
+        0,
+        100,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 268856,
+    "vertices": 536724,
+    "materials": 4,
+    "bytes": 2518992,
+    "sha256": "sha256:9b5fe07fede15c7a47aee383c0e988589cfb4da45ba0a2d2cef9076b7ea63307"
+  }
+}

@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:268f162d5aa60e0930c4786885a2d2823ced9893e03396dc13f06ffd5cd7f1b8",
   "sourceHash": "sha256:856860b20b42e20571f8a1a7ac622bcb57166d5bd530edc9e60e4c8eed88e2c8",
   "bounds": {
     "aabb": {
-      "min": [-16.0293, -0.0008, -15.9706],
-      "max": [16.0293, 8.3008, 15.9706]
+      "min": [
+        -16.0293,
+        -0.0008,
+        -15.9706
+      ],
+      "max": [
+        16.0293,
+        8.3008,
+        15.9706
+      ]
     },
     "sphere": {
-      "center": [0, 4.15, 0],
+      "center": [
+        0,
+        4.15,
+        0
+      ],
       "radius": 16.5403
     }
   },
@@ -39,19 +56,25 @@
   "materials": [
     {
       "name": "masonry-or-cladding",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "roof-and-lintel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "foundation-stone",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -61,12 +84,90 @@
       {
         "node": "worldgen",
         "points": [
-          -16.0293, -0.0008, -15.9706, -16.0293, -0.0008, 15.9706, -16.0293, 8.3008, -15.9706,
-          -16.0293, 8.3008, 15.9706, 16.0293, -0.0008, -15.9706, 16.0293, -0.0008, 15.9706, 16.0293,
-          8.3008, -15.9706, 16.0293, 8.3008, 15.9706
+          -16.0293,
+          -0.0008,
+          -15.9706,
+          -16.0293,
+          -0.0008,
+          15.9706,
+          -16.0293,
+          8.3008,
+          -15.9706,
+          -16.0293,
+          8.3008,
+          15.9706,
+          16.0293,
+          -0.0008,
+          -15.9706,
+          16.0293,
+          -0.0008,
+          15.9706,
+          16.0293,
+          8.3008,
+          -15.9706,
+          16.0293,
+          8.3008,
+          15.9706
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:268f162d5aa60e0930c4786885a2d2823ced9893e03396dc13f06ffd5cd7f1b8",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:869201c408e11fa9c8738d176a29603ac89d810e279ef5d4417f821f212299a4",
+        "bytes": 14468,
+        "gzipBytes": 6350,
+        "triangles": 804,
+        "cpuBytes": 13400,
+        "gpuBytes": 13400,
+        "errorMeters": 0.0641172,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8a7b8fc808ebc79842d29586c3eb1431bbbc38beaeae549459e708198bbcc738",
+        "bytes": 40096,
+        "gzipBytes": 9253,
+        "triangles": 804,
+        "cpuBytes": 36984,
+        "gpuBytes": 36984,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:8a7b8fc808ebc79842d29586c3eb1431bbbc38beaeae549459e708198bbcc738",
+        "bytes": 40096,
+        "gzipBytes": 9253,
+        "triangles": 804,
+        "cpuBytes": 36984,
+        "gpuBytes": 36984,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:8a7b8fc808ebc79842d29586c3eb1431bbbc38beaeae549459e708198bbcc738",
+        "bytes": 40096,
+        "gzipBytes": 9253,
+        "triangles": 804,
+        "cpuBytes": 36984,
+        "gpuBytes": 36984,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  }
 }

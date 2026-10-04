@@ -1,0 +1,299 @@
+{
+  "planId": "N0234",
+  "id": "N0234",
+  "assetId": "molen.worldgen.structure.n0234_barolo_palace",
+  "title": "Palacio Barolo",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q571763",
+  "referenceCoordinate": {
+    "latitude": -34.609555555,
+    "longitude": -58.385861111
+  },
+  "visualBrief": "H-plan palace with a through passage, repeated projecting bow windows, three-level green mansards, central bays and circular balconies, pointed tower arches, layered cornices, ribbed crown and glazed lighthouse.",
+  "size": [
+    31.049999237060547,
+    100,
+    47.739444732666016
+  ],
+  "actualBounds": {
+    "min": [
+      -15.524999618530273,
+      0,
+      -23.869722366333008
+    ],
+    "max": [
+      15.524999618530273,
+      100,
+      23.869722366333008
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 4,
+    "meshInstances": 116,
+    "storedTriangles": 646738,
+    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward Hipólito Yrigoyen",
+    "front": "-Z toward Avenida de Mayo",
+    "origin": "Working parcel center at pavement datum, not a verified geographic anchor"
+  },
+  "sourceFacts": {
+    "plotWidthMeters": 30.88,
+    "plotDepthMeters": 44.21,
+    "passageWidthMeters": 7.5,
+    "passageHeightMeters": 13.5,
+    "ownerOverallHeightMeters": 100,
+    "municipalDomeHeightMeters": 86,
+    "ownerDomeHeightMeters": 90,
+    "nationalHeritageOverallHeightMeters": 103,
+    "cadastralParcel": "012-039-004",
+    "entrances": [
+      "Avenida de Mayo 1370",
+      "Hipólito Yrigoyen 1373"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Original geometry reconstructed from owner front, mansard, tower and lantern photographs; municipal heritage book photo plates and H-plan description; rear photograph by Elsapucai; aerial photograph linked by El Ojo del Arte. Intermediate elevations, light-court dimensions, tower offset, mouldings and decorative motifs are approximate.",
+    "bodyRoofMeters": 40.1,
+    "mansardTopMeters": 52.4,
+    "towerCenterXZ": [
+      0,
+      -14
+    ],
+    "overallHeightChoiceMeters": 100
+  },
+  "referencePages": [
+    "https://palaciobarolo.com.ar/palacio-barolo/resena-historica/",
+    "https://palaciobarolo.com.ar/palacio-barolo/arquitectura/",
+    "https://palaciobarolo.com.ar/multimedia/",
+    "https://buenosaires.gob.ar/areas/cultura/cpphc/archivos/libros/temas_15.pdf",
+    "https://www.argentina.gob.ar/node/439660",
+    "https://documentosboletinoficial.buenosaires.gob.ar/publico/PE-DIS-MJGGC-DGIUR-663-26-ANX.pdf",
+    "https://commons.wikimedia.org/wiki/File:Palacio_Barolo_(desde_calle_Yrigoyen).JPG",
+    "https://elojodelarte.com/patrimonio/el-palacio-barolo"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "cached-footprint-conflict; automatic placement disabled",
+    "anchor": [
+      -58.38572525,
+      -34.60965975
+    ],
+    "heading": 0.086139560133,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/1386044833",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/1386044833"
+    ],
+    "wikidataId": "Q571763",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "OSM way 1386044833 has exact Q571763 identity but a 60.285 by 43.074 m outline, inconsistent with the documented 30.88 by 44.21 m parcel. Do not stretch this model or suppress neighboring map buildings using that outline. Municipal parcel 012-039-004 is the next registration source."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Geographic registration is unresolved: the cached 60 m frontage conflicts with the documented 30.88 m frontage. This model is catalogued but not automatically placed.",
+    "Maximum exterior fidelity remains pending. H-plan proportions, intermediate heights, tower offset, dome curvature, balcony profiles and ornamental relief are photographic reconstructions without measured drawings.",
+    "The rear uses the observed related façade vocabulary but requires a more complete elevation reference. Light-court windows, roofs and party walls are schematic.",
+    "Owner height is 100 m; national heritage lists 103 m, and dome heights differ between references. This model uses 100 m and records the disagreement.",
+    "Mansard tiling, figurative sculptures, exact façade inscriptions, full shopfront signs, modern air-conditioning equipment and surveyed passage furnishings remain unauthored. No third-party photographs or meshes are embedded."
+  ],
+  "qaCameras": [
+    {
+      "name": "avenida-front",
+      "position": [
+        0,
+        37,
+        -94
+      ],
+      "lookAt": [
+        0,
+        42,
+        -14
+      ]
+    },
+    {
+      "name": "bow-window-relief",
+      "position": [
+        -12,
+        22,
+        -32
+      ],
+      "lookAt": [
+        -10,
+        22,
+        -22
+      ]
+    },
+    {
+      "name": "portal",
+      "position": [
+        0,
+        7,
+        -39
+      ],
+      "lookAt": [
+        0,
+        7,
+        -21
+      ]
+    },
+    {
+      "name": "through-passage",
+      "position": [
+        0,
+        4,
+        -18
+      ],
+      "lookAt": [
+        0,
+        5,
+        15
+      ]
+    },
+    {
+      "name": "green-mansard",
+      "position": [
+        -22,
+        49,
+        -43
+      ],
+      "lookAt": [
+        -9,
+        47,
+        -20
+      ]
+    },
+    {
+      "name": "tower-pointed-arch",
+      "position": [
+        -18,
+        67,
+        -40
+      ],
+      "lookAt": [
+        0,
+        66,
+        -21
+      ]
+    },
+    {
+      "name": "balconies",
+      "position": [
+        18,
+        79,
+        -37
+      ],
+      "lookAt": [
+        2,
+        78,
+        -20
+      ]
+    },
+    {
+      "name": "crown-and-lantern",
+      "position": [
+        -20,
+        99,
+        -37
+      ],
+      "lookAt": [
+        0,
+        91,
+        -14
+      ]
+    },
+    {
+      "name": "lantern-mechanism",
+      "position": [
+        -4,
+        98,
+        -19
+      ],
+      "lookAt": [
+        0,
+        97,
+        -14
+      ]
+    },
+    {
+      "name": "rear-elevation",
+      "position": [
+        0,
+        42,
+        85
+      ],
+      "lookAt": [
+        0,
+        43,
+        12
+      ]
+    },
+    {
+      "name": "courtyards",
+      "position": [
+        61,
+        78,
+        38
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 870924,
+    "vertices": 1640060,
+    "materials": 5,
+    "bytes": 49608172,
+    "sha256": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8"
+  }
+}

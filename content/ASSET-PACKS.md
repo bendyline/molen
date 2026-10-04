@@ -14,6 +14,7 @@ identical files.
 | Generate | The programs in [`asset-build.json`](../asset-build.json), plus the specs, material graphs and textures they read | `models/source.glb` in each source bundle, and a few direct runtime models |
 | Import | Each bundle's `source.json` model entry (`pipeline`, sidecar `output`) and optional `spec.json` `importOptions`, then the `afterImport` scripts in `asset-build.json` that derive reports from the imported models | The runtime `model.glb` beside each `asset.json` sidecar |
 | Verify | `asset-lock.json` | Nothing; any byte difference fails the build |
+| Derive landmark detail levels (after import, before verification) | The imported structure master and `packages/tooling/scripts/landmark-lods.mjs` | Separate `model.skyline.glb`, `model.district.glb`, `model.street.glb`, `model.closeup.glb`, plus hash/cost metadata in the sidecar |
 
 The generators are the source of truth. Most live in `packages/worldgen/scripts/` (landmarks,
 bridges, stadiums, towers, lighthouses, props). The others are the aircraft recipes in
@@ -63,9 +64,87 @@ per generator are in `.artifacts/asset-build/`.
 
 ## Change a model
 
+### Fast authoring loop
+
+Use the existing package builds until a generator dependency or runtime package changes.
+For an individual structure, generate and import only its ID. For example:
+
+```sh
+node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0228
+# Only when a new source bundle was added:
+node packages/worldgen/scripts/index-structure-sources.mjs
+node packages/worldgen/scripts/import-next-1000-models.mjs --ids=N0228
+node packages/tooling/scripts/generate-landmark-lods.mjs --ids=N0228
+```
+
+Validate the changed GLB's attributes, winding, bounds, material bindings and source/runtime
+hashes. During geometry iteration, inspect the silhouette and affected detail views. Once that
+model's geometry is stable, capture and inspect its complete required portable/shared-material
+review set. Re-render when geometry, materials, placement or capture behavior changes; do not
+re-render unchanged models. Placement changes additionally require a geographic fit review.
+
+Refresh the catalog, galleries and aggregate texture inventory once per meaningful batch.
+After the selected generators and imports have run, a local lock checkpoint can use
+`pnpm assets:build --no-generate --update-lock`: this reuses current source GLBs, imports only
+stale runtime models, and hashes the inventory without running every generator. Review that
+only the intended paths changed and none disappeared. This checkpoint does **not** prove a
+clean source rebuild; use the full build below once at a batch milestone and in Assets CI.
+
+Model-only iterations do not require `pnpm verify`, `pnpm audit:prod`, `pnpm smoke:packed`,
+documentation builds or the full engine golden suite. Those checks cover engine packaging,
+dependencies and unrelated applications. Run relevant engine tests when changing the loader,
+renderer, shared authoring infrastructure or build workflow; leave the complete release gate
+to its CI/batch boundary. A dependency audit is not a model-quality check.
+
+### Runtime landmark detail levels
+
+The `worldgen-runtime-lods` after-import job applies to every registered
+`molen.worldgen.structure.*` asset. It reads the canonical import without changing it or its
+source master. The four runtime files are independent downloads and use separate vertex
+attribute streams to avoid duplicate Float32/Uint8 GPU uploads. Detailed levels retain the
+master's shared-material references; their portable embedded fallback images are omitted.
+The distant skyline uses vertex colors and shader-derived flat normals, requiring no textures.
+
+The skyline recipe partitions source geometry into local convex pieces and simplifies their
+exterior. Small openings and thin details can disappear. The other levels weld coincident
+vertices, remove narrow trim within a 2% surface-area allowance per material, and simplify with
+a bounded error setting. Triangle targets are advisory for detailed levels: the generator
+retains geometry when further reduction would damage the main surfaces. Large stadiums and
+other dense structures can therefore remain expensive. The viewer admits an upgrade only
+within its geometry and render budgets; additional authored LODs may be needed to
+make those structures detailed on phones. Estimated geometric error is not a certified bound.
+
+`asset.json.runtimeLods` records each level's hash, raw/gzip sizes, geometry bytes, triangle/draw
+costs and estimated error, bound to both the master hash and generator recipe hash. The existing
+Assets workflow rebuilds and verifies these files through `asset-build.json`; release packs and
+`asset-lock.json` include them automatically. No GLBs are committed.
+
+For a targeted visual comparison and integrity check:
+
+```sh
+node examples/world-explorer/test/performance/review-lods.mjs --ids=n0229_istanbul_sapphire
+node packages/tooling/scripts/check-landmark-lods.mjs
+```
+
+For one model, pass `--ids=N0230` to the LOD checker. Source-authored skyline overrides
+live beside the detailed model recipes and are registered in
+`packages/tooling/scripts/authored-landmark-lods.mjs`. Use these when automatic reduction
+loses characteristic openings or crowns. The normal LOD generator and release source build
+apply them automatically. Their recipe hash includes the model recipe and shared geometry
+helpers; other models retain their existing derivative hashes. Review every override beside
+its master. Nina Tower is the first example: its two towers, open crowns and skybridge are
+preserved in a 65 KB silhouette, with no embedded textures.
+
+The integrity check covers all registered structures, source hashes, runtime hashes, material
+bindings and vertex layouts. Comparison renders cover selected models, not a visual approval
+of every generated level. See `examples/world-explorer/test/performance/README.md` for the
+repeatable loading benchmark and device-testing limitations.
+
+### Finalize a model batch
+
 1. Edit the generator, spec, material graph or texture. Iterate with the bundle's own command,
    for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=N0692`.
-2. Run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
+2. Once the batch is stable, run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
    `asset-lock.json` for whatever the source now produces.
 3. Review the diff: generator code, regenerated metadata (`source.json`, `spec.json`, sidecars,
    README), and the lock entries that changed. Commit them together. Never commit a built GLB,
@@ -133,8 +212,9 @@ Structures reference shared, procedural material graphs
 (`content/worldgen/materials/*.matgraph.json`) through `extras.molenSurface` on their glTF
 materials. The client bakes each graph once and shares it across every model that uses it, so
 the landmark GLBs embed no textures beyond a few kilobyte-sized portable fallbacks. Model size
-is geometry. The largest runtime models are single flattened meshes of millions of triangles,
-and they would benefit from instancing repeated parts, meshopt compression and LODs.
+is geometry. Canonical imports can contain millions of triangles; the viewer now streams the
+separate source-derived levels described above. Further source instancing and compression can
+reduce the cost of detailed levels that still exceed practical device budgets.
 
 Two sets still embed image textures. Each textured Lantern Dungeon model carries its own copy of
 the shared limestone set from `asset-src/shared/textures/`. The red barn embeds its three

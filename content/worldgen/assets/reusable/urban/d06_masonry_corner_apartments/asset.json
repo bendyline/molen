@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:3b4e5773b76df2d0b02209765000c78a508ae5aee8a4615d2e3833c7222f2ca9",
   "sourceHash": "sha256:ea351a1a5e907be00d2973a15d79f40ef41f826dcaa8982780ce3d0d9b32e513",
   "bounds": {
     "aabb": {
-      "min": [-35.1, 0.0005, -24.1011],
-      "max": [35.1, 27.9995, 26.0011]
+      "min": [
+        -35.1,
+        0.0005,
+        -24.1011
+      ],
+      "max": [
+        35.1,
+        27.9995,
+        26.0011
+      ]
     },
     "sphere": {
-      "center": [0, 14, 0.95],
+      "center": [
+        0,
+        14,
+        0.95
+      ],
       "radius": 45.2051
     }
   },
@@ -39,19 +56,25 @@
   "materials": [
     {
       "name": "structure-cladding",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "glazing-or-reflective-panel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -61,12 +84,90 @@
       {
         "node": "worldgen",
         "points": [
-          -35.1, 0.0005, -24.1011, -35.1, 0.0005, 26.0011, -35.1, 27.9995, -24.1011, -35.1, 27.9995,
-          26.0011, 35.1, 0.0005, -24.1011, 35.1, 0.0005, 26.0011, 35.1, 27.9995, -24.1011, 35.1,
-          27.9995, 26.0011
+          -35.1,
+          0.0005,
+          -24.1011,
+          -35.1,
+          0.0005,
+          26.0011,
+          -35.1,
+          27.9995,
+          -24.1011,
+          -35.1,
+          27.9995,
+          26.0011,
+          35.1,
+          0.0005,
+          -24.1011,
+          35.1,
+          0.0005,
+          26.0011,
+          35.1,
+          27.9995,
+          -24.1011,
+          35.1,
+          27.9995,
+          26.0011
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:3b4e5773b76df2d0b02209765000c78a508ae5aee8a4615d2e3833c7222f2ca9",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:ff2ae0bd948224164cb0d9e9b01f77602daafe6e52f77f621550877aec07619a",
+        "bytes": 31272,
+        "gzipBytes": 12137,
+        "triangles": 1812,
+        "cpuBytes": 30200,
+        "gpuBytes": 30200,
+        "errorMeters": 0.1404,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:db761b34e80685036e22fe87c4aec49a3b4dda5e521c8319b11f96187236cd5d",
+        "bytes": 86488,
+        "gzipBytes": 15489,
+        "triangles": 1812,
+        "cpuBytes": 83352,
+        "gpuBytes": 83352,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:db761b34e80685036e22fe87c4aec49a3b4dda5e521c8319b11f96187236cd5d",
+        "bytes": 86488,
+        "gzipBytes": 15489,
+        "triangles": 1812,
+        "cpuBytes": 83352,
+        "gpuBytes": 83352,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:db761b34e80685036e22fe87c4aec49a3b4dda5e521c8319b11f96187236cd5d",
+        "bytes": 86488,
+        "gzipBytes": 15489,
+        "triangles": 1812,
+        "cpuBytes": 83352,
+        "gpuBytes": 83352,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  }
 }

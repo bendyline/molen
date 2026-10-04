@@ -1,0 +1,87 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0228_two_prudential_plaza",
+  "sourceHash": "sha256:bc16932d1b6a6598c4b62fa75e08291169989a8802d1b456a5fe2392c379d291",
+  "runtimeHash": "sha256:08d9791247edb1b42a025965caf104aeb76c75dd2b886d7f00f1e4693cb05108",
+  "captureReportHash": "sha256:8252ef172f8bb1a50743a172619e93543554302e5d25fedf2045a6603849bc4c",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Render integrity only. This is not maximum-fidelity or geographic approval.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/granite-window-reveals.png",
+      "shots/panel-joints.png",
+      "shots/central-glazing.png",
+      "shots/first-chevron.png",
+      "shots/second-chevron.png",
+      "shots/upper-shoulders.png",
+      "shots/crown-bands.png",
+      "shots/spire-collar.png",
+      "shots/entrance-hardware.png",
+      "shots/lobby.png",
+      "shots/plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 17 current portable frames. Corrected the initial detached short pyramid to a continuous four-plane crown intersecting the facade; trimmed upper floor plates and facade details to its roof planes. Window recesses, jointed granite, two lower chevron recess sequences, crown ribs, spire seams, doors and transparent lobby render without absent instances. The latest mesh passes winding/Float32 validation. The smooth crown slope and level setback caps still differ from the photographed stepped and sloping details; this is recorded as fidelity work, not approved as a finished replica."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:dd1832174c340dfde949d942d9c38bb8cbcab963637db0dc418fa53a0b975f1f",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/granite-window-reveals.png",
+      "shots/shared/panel-joints.png",
+      "shots/shared/central-glazing.png",
+      "shots/shared/first-chevron.png",
+      "shots/shared/second-chevron.png",
+      "shots/shared/upper-shoulders.png",
+      "shots/shared/crown-bands.png",
+      "shots/shared/spire-collar.png",
+      "shots/shared/entrance-hardware.png",
+      "shots/shared/lobby.png",
+      "shots/shared/plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 17 world-viewer views. Four canonical graphs are read once each; shared granite resolves in the closeup, metals retain their finish and blue/clear glazing retains its local PBR material. No embedded images. All 3,789 instances retain their detailed facade geometry. Unload disposes every live model geometry. Roof reflections are strong in the lit view. The placement capture is a flat map-outline fixture, not an actual-terrain review."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:b1030989c477c409e1c6619db276d9c7a2f6931b9e0bfdf4f8575a2f1fd9dd62",
+    "notes": "Exact Q1121971 match to OSM way 64388666; anchor [-87.622721048,41.885419934], yaw -1.551105215919. Owner north arrow independently confirms the long north/south axis. The footprint fits the cached envelope in the current flat fixture. Signed entrances, plaza/lobby connection to One Prudential and real ground datum are still unapproved."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "303.3 m tip and 24.384 m spire represented. Highest occupied 250 m and 64 floors are recorded separately from the inferred facade interval. The photograph-based chevron levels, bay proportions, roof slope and crown band sections are provisional. Crown terracing, angled metal setback caps, exact entrances and the shared plaza/podium need further authoring. Do not count this asset as complete."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 77
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 77
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by this validator and reported as information. Independent instance-transform, count and assembled-bound checks and Molen captures cover that extension. Remaining informational entries concern unused fallback UVs/accessors.",
+    "expandedTriangles": 894844,
+    "uniqueMeshTriangles": 45962,
+    "uniquePositionVertices": 135024,
+    "uniqueMeshes": 14,
+    "instances": 3789,
+    "materials": 8,
+    "sharedGraphs": 4,
+    "embeddedImages": 0
+  }
+}

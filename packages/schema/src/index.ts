@@ -6,6 +6,8 @@ export type {
   AssetBounds,
   AssetCollision,
   AssetHull,
+  AssetRuntimeLod,
+  AssetRuntimeLods,
   AssetSidecar,
   AssetStats,
   AssetTrimeshHeader,

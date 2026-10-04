@@ -17,6 +17,7 @@ import { bierpinsel } from './bierpinsel-model.mjs';
 import { calahorraTower } from './calahorra-tower-model.mjs';
 import { civicTowers } from './civic-tower-models.mjs';
 import { civicTowersMore } from './civic-tower-more-models.mjs';
+import { copan } from './copan-model.mjs';
 import { emleyMoor } from './emley-moor-model.mjs';
 import { finalHeritageTowers } from './final-heritage-tower-models.mjs';
 import { garniTemple } from './garni-temple-model.mjs';
@@ -56,6 +57,7 @@ const check = process.argv.includes('--check');
 const filter = process.argv.find((arg) => /^N\d{4}$/.test(arg));
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const surfaces = {
+  mosaic: { graph: 'tile_mosaic', slot: 'wall', roughness: 0.38 },
   marble: { graph: 'stone_marble', slot: 'wall', roughness: 0.6 },
   limestone: { graph: 'stone_limestone', slot: 'wall', roughness: 0.94 },
   limestone_raw: { graph: 'stone_limestone_raw', slot: 'wall', roughness: 0.94 },
@@ -130,6 +132,7 @@ const surfaces = {
   concrete: { graph: 'concrete_plain', slot: 'wall', roughness: 0.91 },
   turf: { slot: 'roof', roughness: 1 },
   glass: { slot: 'wall', roughness: 0.22 },
+  copan_glass: { slot: 'window', roughness: 0.22 },
   shadow: { slot: 'wall', roughness: 1 },
   carvedstone: { slot: 'trim', roughness: 0.94 },
 };
@@ -246,6 +249,7 @@ for (const asset of [
   emleyMoor,
   attoTower,
   karnan,
+  copan,
 ].filter((asset) => !filter || asset.planId === filter)) {
   if (asset.encodeAssembly && asset.groundNormalize)
     throw new Error(`${asset.id}: assembly parts must supply an explicit shared ground datum`);

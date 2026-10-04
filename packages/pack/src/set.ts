@@ -7,8 +7,8 @@ import type { Pack, ReadOptions } from './pack';
 
 /** The shape of the client's AssetProvider, so this package needs no client dependency. */
 export interface AssetProviderLike {
-  load(ref: string): Promise<ArrayBuffer>;
-  loadText(ref: string): Promise<string>;
+  load(ref: string, options?: ReadOptions): Promise<ArrayBuffer>;
+  loadText(ref: string, options?: ReadOptions): Promise<string>;
 }
 
 export interface PackAssetProviderOptions {
@@ -116,17 +116,17 @@ class Packs implements PackSet {
         : hit;
     };
     return {
-      load: async (ref) => {
+      load: async (ref, readOptions) => {
         const hit = pick(ref);
-        if (hit !== undefined) return hit.pack.readBytes(hit.path);
-        if (options.fallback !== undefined) return options.fallback.load(ref);
-        return this.readBytes(ref);
+        if (hit !== undefined) return hit.pack.readBytes(hit.path, readOptions);
+        if (options.fallback !== undefined) return options.fallback.load(ref, readOptions);
+        return this.readBytes(ref, readOptions);
       },
-      loadText: async (ref) => {
+      loadText: async (ref, readOptions) => {
         const hit = this.resolve(ref);
-        if (hit !== undefined) return hit.pack.readText(hit.path);
-        if (options.fallback !== undefined) return options.fallback.loadText(ref);
-        return this.readText(ref);
+        if (hit !== undefined) return hit.pack.readText(hit.path, readOptions);
+        if (options.fallback !== undefined) return options.fallback.loadText(ref, readOptions);
+        return this.readText(ref, readOptions);
       },
     };
   }

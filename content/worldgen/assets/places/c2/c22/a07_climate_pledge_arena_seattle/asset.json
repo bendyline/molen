@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:05fe55e2a05a3c5430262fac0e1dbc243518e32865431b19ffab0092bb71f0fe",
   "sourceHash": "sha256:375cefd5e25fe8d26e6b3fa05949b053a9babe044cc2e5165f6bc71c88e2aa79",
   "bounds": {
     "aabb": {
-      "min": [-76, 0.0024, -54.0004],
-      "max": [76, 34.9976, 54.0004]
+      "min": [
+        -76,
+        0.0024,
+        -54.0004
+      ],
+      "max": [
+        76,
+        34.9976,
+        54.0004
+      ]
     },
     "sphere": {
-      "center": [0, 17.5, 0],
+      "center": [
+        0,
+        17.5,
+        0
+      ],
       "radius": 76.041
     }
   },
@@ -39,13 +56,17 @@
   "materials": [
     {
       "name": "roof-or-deck",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-foundation",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -55,12 +76,90 @@
       {
         "node": "worldgen",
         "points": [
-          -76, 0.0024, -54.0004, -76, 0.0024, 54.0004, -76, 34.9976, -54.0004, -76, 34.9976,
-          54.0004, 76, 0.0024, -54.0004, 76, 0.0024, 54.0004, 76, 34.9976, -54.0004, 76, 34.9976,
+          -76,
+          0.0024,
+          -54.0004,
+          -76,
+          0.0024,
+          54.0004,
+          -76,
+          34.9976,
+          -54.0004,
+          -76,
+          34.9976,
+          54.0004,
+          76,
+          0.0024,
+          -54.0004,
+          76,
+          0.0024,
+          54.0004,
+          76,
+          34.9976,
+          -54.0004,
+          76,
+          34.9976,
           54.0004
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:05fe55e2a05a3c5430262fac0e1dbc243518e32865431b19ffab0092bb71f0fe",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:98ff86f64365273dbf7746bc1d26d716050b67703178464d7cde371f02144b89",
+        "bytes": 31888,
+        "gzipBytes": 15288,
+        "triangles": 1952,
+        "cpuBytes": 30848,
+        "gpuBytes": 30848,
+        "errorMeters": 0.304,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:c3ff5f68b570f75437a684557ce88050c0aa03733fad79f1355babcb77452c14",
+        "bytes": 86400,
+        "gzipBytes": 24123,
+        "triangles": 1952,
+        "cpuBytes": 84192,
+        "gpuBytes": 84192,
+        "errorMeters": 0,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c3ff5f68b570f75437a684557ce88050c0aa03733fad79f1355babcb77452c14",
+        "bytes": 86400,
+        "gzipBytes": 24123,
+        "triangles": 1952,
+        "cpuBytes": 84192,
+        "gpuBytes": 84192,
+        "errorMeters": 0,
+        "drawCalls": 2
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c3ff5f68b570f75437a684557ce88050c0aa03733fad79f1355babcb77452c14",
+        "bytes": 86400,
+        "gzipBytes": 24123,
+        "triangles": 1952,
+        "cpuBytes": 84192,
+        "gpuBytes": 84192,
+        "errorMeters": 0,
+        "drawCalls": 2
+      }
+    ]
+  }
 }

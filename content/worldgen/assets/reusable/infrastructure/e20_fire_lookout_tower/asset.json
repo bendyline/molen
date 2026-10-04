@@ -4,17 +4,34 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:049281bed247241fd6ab07a697b055f7a17d6aa9df234a0e45d8a324513e5aff",
   "sourceHash": "sha256:141b443c679ca70c88474ea513c3f72a7404561198236e18f7c0bb4621955bfd",
   "bounds": {
     "aabb": {
-      "min": [-11.0008, -0.1393, -11.0008],
-      "max": [11.0008, 44, 11.0008]
+      "min": [
+        -11.0008,
+        -0.1393,
+        -11.0008
+      ],
+      "max": [
+        11.0008,
+        44,
+        11.0008
+      ]
     },
     "sphere": {
-      "center": [0, 21.9303, 0],
+      "center": [
+        0,
+        21.9303,
+        0
+      ],
       "radius": 26.2596
     }
   },
@@ -39,19 +56,25 @@
   "materials": [
     {
       "name": "structure-cladding",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "roof-or-deck",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -61,12 +84,90 @@
       {
         "node": "worldgen",
         "points": [
-          -11.0008, -0.1393, -11.0008, -11.0008, -0.1393, 11.0008, -11.0008, 44, -11.0008, -11.0008,
-          44, 11.0008, 11.0008, -0.1393, -11.0008, 11.0008, -0.1393, 11.0008, 11.0008, 44, -11.0008,
-          11.0008, 44, 11.0008
+          -11.0008,
+          -0.1393,
+          -11.0008,
+          -11.0008,
+          -0.1393,
+          11.0008,
+          -11.0008,
+          44,
+          -11.0008,
+          -11.0008,
+          44,
+          11.0008,
+          11.0008,
+          -0.1393,
+          -11.0008,
+          11.0008,
+          -0.1393,
+          11.0008,
+          11.0008,
+          44,
+          -11.0008,
+          11.0008,
+          44,
+          11.0008
         ]
       }
     ]
   },
-  "extensionsUsed": ["KHR_mesh_quantization"]
+  "extensionsUsed": [
+    "KHR_mesh_quantization"
+  ],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:049281bed247241fd6ab07a697b055f7a17d6aa9df234a0e45d8a324513e5aff",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5d1b35cacb593487d8bec13dd46eafd4baf86e695bb02d84c31aac716e62e720",
+        "bytes": 4432,
+        "gzipBytes": 2011,
+        "triangles": 206,
+        "cpuBytes": 3380,
+        "gpuBytes": 3380,
+        "errorMeters": 0.0882786,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:9900ab0ef205da115b779ae6bffce0504498c2bd4e5b970627ff455d2cb95d74",
+        "bytes": 12296,
+        "gzipBytes": 2875,
+        "triangles": 206,
+        "cpuBytes": 9196,
+        "gpuBytes": 9196,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9900ab0ef205da115b779ae6bffce0504498c2bd4e5b970627ff455d2cb95d74",
+        "bytes": 12296,
+        "gzipBytes": 2875,
+        "triangles": 206,
+        "cpuBytes": 9196,
+        "gpuBytes": 9196,
+        "errorMeters": 0,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9900ab0ef205da115b779ae6bffce0504498c2bd4e5b970627ff455d2cb95d74",
+        "bytes": 12296,
+        "gzipBytes": 2875,
+        "triangles": 206,
+        "cpuBytes": 9196,
+        "gpuBytes": 9196,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ]
+  }
 }

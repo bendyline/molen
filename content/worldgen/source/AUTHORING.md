@@ -775,3 +775,680 @@ Git check found zero unmerged index entries, and `asset-lock.json` parses succes
 Logs are `verify-final.log`, `smoke-packed-final.log`, `docs-site-check-final.log`, and
 `test-golden-final.log` in the evidence directory above. These checks do not change the
 pending geographic and maximum-fidelity review statuses. No release was published.
+
+## 4 World Trade Center: independent office plans and flush glazing
+
+N0218 now has an original deterministic recipe in
+`packages/worldgen/scripts/four-world-trade-center-model.mjs`, registered with the signature-towers
+generator. Its source bundle is `places/dr/dr5/n0218_4_world_trade_center`.
+
+The lower notched parallelogram and upper trapezoid are independent of the mapped retail
+envelope. Geometry includes the northwest triangular terrace, individually jointed glass,
+folded vertical plant louvres, tall clear lobby, revolving doors and adjacent swing doors.
+Published dimensions include 297.7 m architectural height, 279.9 m occupied height, a 46 ft
+lobby, five-foot glass modules and the owner's 13 ft 5 in floor interval. Office-plan scale,
+translation and several vertical datums remain explicit reconstructions.
+
+The final model has 242,702 triangles, 483,174 unique position vertices, eight materials,
+five shared material graphs and no embedded images. Source/runtime sizes are
+20,311,168 / 20,310,508 bytes. Both GLBs pass Khronos validation with zero errors and warnings.
+All 34 current portable/shared frames were inspected. Review found and repaired open glass
+seal seams and facade mullions crossing entrance openings. Opt-in capture antialiasing and
+bounds-fitted sun shadows improve review of fine joints and large structures while preserving
+the existing default capture path. Distant fine details still need LOD treatment; the glass
+uses conventional shadow maps rather than optical transmission.
+
+Five canonical graphs load once each, and unloading leaves zero live model geometries.
+The map envelope matches exact-QID OSM way 278033587, independently corroborated by NYC
+BIN 1088795. The municipal 3D archive contained no usable tower geometry at this location.
+Signed facade fit, drawing registration, actual pavement contact, dimensioned office plans,
+entrance allocation and roof plant still need evidence. Geographic and maximum-fidelity
+approval remain pending: this model is a preview, not a completed entry.
+
+The ledger is **237 authored / 167 complete**, with 235 portable and 233 shared reviews.
+The full source build produced **766 GLBs** in 227 seconds with all 384 runtime imports current.
+The lock is **`assets-30584b8357a2d622`**. Research, diagnostic renders and build logs are in
+`.artifacts/four-world-trade-center-research/`.
+
+Fresh repository gates for this 237-model snapshot passed on 2026-10-03: `pnpm verify`
+(including the owner-authorized npm production audit, with no known vulnerabilities),
+`pnpm smoke:packed` (16 tarballs and seven templates), `pnpm docs:site:check`, and
+`pnpm test:golden`. Source validation checked 569 logical bundles and shared-surface
+validation checked 681 source/runtime GLBs. World Explorer passed all nine visual test
+files: ten tests passed and two WebGPU tests were explicitly skipped under the established
+software WebGL configuration. Earth View passed both visual tests. The read-only Git
+check found zero unmerged index entries, and `asset-lock.json` parses successfully.
+The lock comparison found only the two new N0218 GLBs, with no changes to earlier binary
+hashes. Logs are `verify-final.log`, `smoke-packed-final.log`, `docs-site-check-final.log`,
+and `test-golden-final.log` in the evidence directory above. These checks do not approve
+the pending geographic or maximum-fidelity reviews. No release was published.
+
+## Edifício Copan: curved brises and reusable open geometry
+
+N0223 now has an original deterministic recipe in `packages/worldgen/scripts/copan-model.mjs`,
+registered with the heritage-towers generator. The geographic source bundle is
+`places/6g/6gy/n0223_edificio_copan`. Its references include the FAUUSP conservation study,
+the architect's foundation, IBGE's site report and restoration-contractor photographs.
+
+The mapped S-shaped slab has three projecting brise blades per typical floor, recessed
+glazing, distinct rear glazed and perforated facades, three open helical stairs, a rounded
+lift tower, end-wall slit windows and provisional gallery/roof geometry. Screen cells have
+real openings and reveals; stair flights include treads, cores, landings and balustrades.
+Eleven reusable meshes form 1,059 instances. The assembled model contains 2,715,884 triangles,
+while the GLB stores 119,600 mesh triangles and 211,818 unique position vertices. Source and
+runtime files are 9,111,604 and 9,108,584 bytes. Seven materials use five shared graphs with
+no embedded images. Glass is separated from the matte recess material.
+
+All 34 current portable and world-viewer frames were inspected. The initial placement
+review caught roof enclosures extending outside the slab; these now sit fully inboard.
+The roof-plan camera was widened. Shared graphs load once each, and unloading leaves zero
+live model geometries. The nearby Edifício Itália falls within the query radius and is hidden
+in the isolated capture fixture. Both GLBs pass Khronos validation with zero errors or warnings.
+The validator does not validate EXT_mesh_gpu_instancing; additional transform/count checks
+and the Molen captures exercise the assembled geometry. Fine brises/screens still need LOD
+treatment at distance.
+
+The 115 m height and 32 residential storeys follow IBGE. Mapped height/level counts and the
+published plan's scale remain unresolved. The wider commercial/cinema podium, stair access
+portals and measured flight details, floor datums, brise sections, screen module, roof layout,
+signed facade registration and street slope remain pending. This architectural reconstruction
+omits temporary restoration netting and does not claim restoration is complete. Geographic
+and maximum-fidelity approval remain pending; Copan is a preview.
+
+The full source rebuild produced 768 GLBs in 293 seconds, with 385 current runtime imports.
+Lock `assets-ac614b1250565811` adds only Copan's source/runtime pair; all earlier binary hashes
+are unchanged. Research, validation, contact sheets and build logs are in
+`.artifacts/copan-research/`. GLBs remain ignored build outputs.
+
+The ledger is **238 authored / 167 complete**, with 236 portable and 234 shared reviews.
+Copan's source hash is `c4c9e68eea0b187848462527b490d915d0b5423f4923694f5af923fae3e643fa`;
+its runtime hash is `11dd3f30906396e248a9503943d069d14f3e64c2dfcc4d9483d11a156541e1fa`.
+
+Fresh repository gates for this 238-model snapshot passed on 2026-10-03: `pnpm verify`
+(including the owner-authorized npm production audit, with no known vulnerabilities),
+`pnpm smoke:packed` (16 tarballs and seven templates), `pnpm docs:site:check`, and
+`pnpm test:golden`. Source validation checked 570 logical bundles, shared-surface validation
+checked 683 source/runtime GLBs, and all 768 locked GLBs matched. World Explorer passed nine
+visual test files with ten passing tests and two explicitly skipped WebGPU tests under the
+software WebGL configuration. Earth View passed both visual tests. The read-only Git check
+found zero unmerged index entries, and `asset-lock.json` parses successfully. Logs are
+`verify-final.log`, `smoke-packed-final.log`, `docs-site-check-final.log`, and
+`test-golden-final.log` in `.artifacts/copan-research/`. These checks do not approve Copan's
+pending geographic or maximum-fidelity reviews. No release was published.
+
+## First Canadian Place: shared frit and reusable facade floors
+
+N0227 now has an original deterministic recipe in
+`packages/worldgen/scripts/first-canadian-place-model.mjs`, registered with the signature-towers
+generator. Its geographic source bundle is `places/dp/dpz/n0227_first_canadian_place`.
+References include the recladding design architect, B+H's renewal study and finished colonnade
+photograph, Brookfield's leasing plan and building specifications, Halsall's facade-engineering
+presentation, the height registry and original 2022 rooftop photography. Construction and
+design-option images are distinguished from completed-building evidence.
+
+The post-2012 facade has four recessed bronze corners, individually jointed white glass
+spandrels, paired vision lights, a recessed lobby colonnade, door hardware, BMO crown panels,
+roof plant and three detailed masts. The owner's 12 ft 8 in average slab interval, 10 ft mullion
+spacing and 23 ft lobby ceiling inform the working grid. These dimensions came from extracted
+specification text; the separate leasing plan was inspected visually. The 298.1 m architectural
+height, 355 m tip and 287.1 m highest occupied floor are distinct datums. The working 289.9 m
+body parapet is photograph-based and remains unverified.
+
+Four reusable meshes form 70 instances, including 67 copies of the typical office floor.
+The complete assembly contains 1,246,424 triangles; the GLB stores 165,344 mesh triangles
+and 314,868 unique position vertices. Source and runtime files are 13,332,416 and 13,330,824
+bytes. Ten materials use six canonical graphs, without embedded images. Instancing avoids
+duplicated stored facade geometry; it does not remove its rendered triangles.
+
+The new `glass_frit_triangular` graph provides smooth backed glass with triangular ceramic
+frit. Its 50 mm pitch is inferred from photography. It uses metric UVs, a reusable neutral
+base-color pattern and constant response factors, with no relief normal or alpha cutouts.
+It brings the central library to 68 graphs. The refreshed inventory covers 685 structure
+source/runtime GLBs, with zero shared-binding issues. Eight tiny embedded fallback PNGs
+remain generated from canonical graphs; no new texture artwork was extracted.
+
+All 36 current portable and world-viewer frames were inspected. Initial render review caught
+poorly aimed detail cameras and opaque backing behind lobby glazing. The corrected glazing
+has perimeter seals, visible floor behind it and a closed lobby ceiling. Portable fallback
+cladding is plain white; the world viewer resolves the shared triangular frit in closeup.
+Thin mast members and guy wires still need distance LOD treatment. Shared graphs each load
+once, and unloading leaves zero live model geometries. Both GLBs pass Khronos validation
+with zero errors or warnings. The validator cannot validate EXT_mesh_gpu_instancing; separate
+transform/count/bounds checks and actual Molen renders verify the assembly.
+
+The cached exact-QID map frame supplies a preview at [-79.381691573, 43.648765146] with
+heading 0.277301287909. The independently inferred notched rectangle is close to the map
+outline, without a forced fit. The wider three-level retail podium is not authored. Measured
+floor and crown allocation, panel counts, frit pitch, mast positions, secondary antenna heights,
+exact lettering, doors and colonnade allocation remain reconstruction work. Signed site
+registration, street slope and ground contact remain unapproved. Geographic and maximum-fidelity
+reviews are pending; this model is a preview and does not increase the complete count.
+
+The ledger is **239 authored / 167 complete**, with 237 portable and 235 shared reviews.
+Source hash: `5dc99b60279e3f56bb1160090988d33712948200c508b9efa5028b4f8ff34b13`.
+Runtime hash: `cb9de2e0e5116c0b49062e5ba2fe23361e9a8643c8248180739b3d67acbb3be9`.
+Research, validation and contact sheets are in `.artifacts/first-canadian-place-research/`.
+
+The full source rebuild produced 770 GLBs in 170 seconds, with 386 current runtime imports.
+Lock `assets-d053e9485966f92e` adds only First Canadian Place's source/runtime pair; every
+earlier binary hash is unchanged. GLBs remain ignored build outputs. The initial repository
+gate detected the old material count in the generated style-pack description; regenerating
+the structure resource index corrected it to 68.
+
+Fresh repository gates for this 239-model snapshot passed on 2026-10-03: `pnpm verify`
+(including the owner-authorized npm production audit, with no known vulnerabilities),
+`pnpm smoke:packed` (16 tarballs and seven templates), `pnpm docs:site:check`, and
+`pnpm test:golden`. The material-library test's previous 67-graph expectation was updated
+to 68, and its five tests and the full suite passed. Source validation checked 571 logical
+bundles, shared-surface validation checked 685 source/runtime GLBs, and all 770 locked GLBs
+matched. World Explorer passed nine visual test files with ten passing tests and two explicitly
+skipped WebGPU tests under software WebGL; Earth View passed both visual tests. Read-only Git
+checks found zero unmerged index entries and no whitespace errors. Logs are `verify-final.log`,
+`smoke-packed-final.log`, `docs-site-check-final.log`, and `test-golden-final.log` in
+`.artifacts/first-canadian-place-research/`. These checks do not approve the outstanding
+geographic or maximum-fidelity work. No release was published.
+
+### Next candidate: Two Prudential Plaza research
+
+N0228 primary research is saved in `.artifacts/two-prudential-research/`. The owner's
+[leasing plans for floors 28–30](https://www.theprulife.com/wp-content/uploads/2021/06/OTP_Large-Block-Plans_All-28-30.pdf)
+were retrieved; pages 3 and 5 were visually inspected. Their north arrow and street labels
+establish the long north-south axis and projecting central north/south bays, with differing
+corner treatment on the two floors. They do not provide a dimensioned scale. The marketed
+22,000 ft² floor area must not be equated to the gross building footprint.
+
+The [height registry](https://www.skyscrapercenter.com/chicago/two-prudential-plaza/489)
+gives 303.3 m architectural/tip height, 250 m highest occupied level and 64 floors.
+The [concrete contractor's page](https://mchughconcrete.com/projects/two-prudential-plaza/)
+agrees on 995 ft height but contradicts itself with 60 and 68 storeys. These values are
+recorded separately. Dimensioned plan, setback/crown levels, facade grid and material finish,
+signed site placement and the shared lobby/plaza boundary remain research work. This candidate
+had no authored model at the research checkpoint. The reconstruction below now supplies its
+source and runtime preview; completion approval remains pending.
+
+The owner's [April 2024 photo brochure](https://www.theprulife.com/wp-content/uploads/2024/04/Pru_FilmingScoutBrochure_April2024.pdf)
+also supplies inspected views of Lake Street Plaza, entrance paving and planters, the tall
+glazed lobby and the relationship with One Prudential. Its terrace pictures describe the shared
+complex; they do not establish a terrace on Two Prudential's crown. The crown remains partly
+occluded in these photographs; the reconstruction below adds original exterior photographs.
+
+### Two Prudential Plaza source reconstruction — 2026-10-03
+
+N0228 now has a deterministic recipe in
+`packages/worldgen/scripts/two-prudential-plaza-model.mjs`, registered with the signature-tower
+generator. Source evidence and reviews live in
+`places/dp/dp3/n0228_two_prudential_plaza/`; the matching runtime sidecar uses the same geography.
+Original 2012 photographs by Chicago Architecture Today and a 2016 photograph by MusikAnimal
+were inspected alongside the owner plans. References are linked and attributed in the source
+bundle; no photographs or downloaded meshes are used as model content.
+
+The reconstruction includes individual granite joints and arrises, window reveals and sills,
+glazed central strips, two lower chevron setback sequences, the upper diamond crown, segmented
+80-foot spire, tall lobby glass, doors and handles. The first render revealed a detached short
+pyramid. A second geometry pass made the crown intersect the upper facade, trimming floor
+plates and facade modules to four roof planes. The smooth roof slope and level setback caps
+still need to become the exact photographed terracing and angled cap profiles.
+
+The current GLB stores **45,962 unique triangles** in **14 meshes**, with **3,789 instances**
+producing **894,844 expanded triangles**. Source size is **5,546,212 bytes** and runtime size
+is **5,542,624 bytes**. Eight material bindings reuse four canonical graphs (granite, concrete,
+painted metal and stainless steel) plus local PBR glazing. There are **zero embedded images**.
+The full instance count, transforms, triangle total and 303.3 m assembled height were checked
+independently. Khronos validation reports zero errors and zero warnings for both GLBs; its
+77 informational messages include unsupported GPU-instancing and unused fallback attributes.
+
+All **17 portable and 17 shared-material captures** were inspected. The four shared graphs each
+load once and viewer eviction leaves zero live model geometries. The map-outline fixture uses
+the exact-QID Chicago anchor and the north/south axis established by the owner plan. It does
+not prove real terrain contact, signed entrance placement or the neighboring shared site.
+The wider plaza, stairs, sculpture, planting, lobby connection and podium remain unauthored.
+Floor allocation, bay dimensions, chevron heights and crown details remain reconstructions.
+Geographic and maximum-fidelity reviews are explicitly pending.
+
+The ledger is **240 authored / 167 complete**, with 238 portable and 236 shared reviews.
+Source hash: `bc16932d1b6a6598c4b62fa75e08291169989a8802d1b456a5fe2392c379d291`.
+Runtime hash: `08d9791247edb1b42a025965caf104aeb76c75dd2b886d7f00f1e4693cb05108`.
+Validation, contact sheets and local build logs are in `.artifacts/two-prudential-research/`.
+
+The full rebuild produced **772 GLBs** in 162 seconds, with 387 current runtime imports.
+Lock `assets-c5f319d74d9f0125` adds only this source/runtime pair; all 770 previous locked
+hashes remain unchanged. The refreshed texture inventory covers 687 structure GLBs and
+342 authored masters, with no invalid bindings and no additional embedded image bytes.
+
+`pnpm verify` passed, including the already authorized production audit (no known
+vulnerabilities), and `pnpm smoke:packed` passed for 16 tarballs and seven templates. The owner
+then corrected the excessive per-model verification cadence. The remaining broad gate runner
+was stopped during `docs:site:check`; `test:golden` was not run for this snapshot. These two
+checks are not reported as passed. The targeted model validations and 34 inspected captures
+above are current. `AGENTS.md` and `content/ASSET-PACKS.md` now preserve the owner's targeted
+model workflow: no repeated whole-repository rebuilds or dependency audits for each model.
+
+### Next candidate: Istanbul Sapphire research
+
+N0229 research is saved in `.artifacts/istanbul-sapphire-research/research-notes.json`.
+The [architect's project description](https://www.tabanlioglu.com/project/sapphire/) and its
+Murat Germen exterior photograph were inspected. They establish a double facade, vertical
+gardens, four residential zones and a glass skin curving outward into the retail canopy.
+These require distinct geometry and a wider site frame than the cached rectangular tower part.
+
+The [registry record](https://www.skyscrapercenter.com/building/torre-costanera/748) is explicitly
+titled Sapphire Tower, Istanbul despite its misleading URL slug. It records 261 m tip and
+architectural height, a 234.9 m observatory, 55 above-ground floors and ten basement floors.
+Cached exact-QID OSM way 673790538 instead tags 235 m and 64 levels on a building part.
+Keep these datums separate. Floor plans, the upper blade/crown, facade cavities, signed canopy
+orientation and the retail podium remain to be researched. The following reconstruction now
+provides N0229's source and runtime preview; it does not constitute completion approval.
+
+### Istanbul Sapphire source reconstruction — 2026-10-03
+
+N0229 is authored by `packages/worldgen/scripts/istanbul-sapphire-model.mjs`, with source
+evidence in `places/sx/sxk/n0229_istanbul_sapphire/`. The architect-hosted March 2013
+Architecture and Urbanism section and winter-garden photograph were inspected alongside the
+exterior photograph. The recipe separates the outer weather skin from recessed apartment
+glazing, projecting wood balcony fascias, rails, plants and support bands. It also includes
+the end blade, curved asymmetric retail canopy, mall galleries, observation floors and mast.
+Initial renders exposed missing lower end glazing and canopy columns stopping short of the
+roof; both were corrected before the final capture set.
+
+The source stores **947,096 triangles and 1,892,360 vertices** in 21 meshes. Reused garden
+sections give 35 instances and **1,547,192 expanded triangles**. The source is 79,531,556 bytes;
+the runtime is 79,525,836 bytes. Five existing canonical graphs supply metal, concrete, wood
+and stone finishes. There are no embedded images. The initial 184 MB output was reduced with
+shared garden meshes and planar quad preservation, without a mesh-decimation step.
+
+The owner questioned the remaining size. Measured runtime storage is 22,708,320 bytes of
+positions, 22,708,320 of normals, 15,138,880 of UVs, 5,677,080 of vertex colors and 11,365,152
+of indices, plus approximately 1.93 MB of padding, transforms and metadata. Repeated facade
+frames and seals are still stored separately. Further reusable geometry is a required
+optimization target; a shared texture library alone does not solve this geometry duplication.
+
+Khronos validation has zero errors/warnings on both files. Independent transform/count/bound
+checks cover GPU instancing, which the validator does not support. All **18 portable and
+18 shared-material frames** were inspected. All five shared graphs are read once each; viewer
+unload leaves zero live model geometries. The exact-QID tower-part anchor is retained, but the
+flat outline fixture does not prove the wider canopy boundary, its signed direction or real
+ground contact. Roof datums, facade divisions, detailed planting and site fit remain pending.
+This model is **not counted complete**.
+
+The ledger is **241 authored / 167 complete**, with 239 portable and 237 shared reviews.
+The targeted generator `--ids=N0229 --check` reproduced the current bytes after source formatting.
+No repository-wide builds or dependency audits were run for this model. A local
+`assets:build --no-generate --update-lock` checkpoint took 25 seconds and pins 774 GLBs in
+`assets-4004fddbffb6150d`; only Sapphire's source/runtime pair was added, with all 772 prior
+hashes unchanged. This is a local inventory checkpoint, not a fresh full-source rebuild.
+
+Source hash: `506abc7a5d43de50edd7d0ef1d4612782a8051f90d4c66633c9cc6b57feffad9`.
+Runtime hash: `6d9ff0dce95bf6b3cdf8225f85d664d6cd9dfe03a531048a39e9623153444a7f`.
+
+### Next candidate: Nina Tower research
+
+N0230 needs the full two-tower complex and curved skybridge over its shared podium.
+The [height registry](https://www.skyscrapercenter.com/building/nina-tower/421) gives the tall
+tower 320.4 m tip, 301.1 m highest occupied level and 80 floors. Its separate `/104` record
+describes the earlier 518 m proposal and must not be substituted for the built structure.
+The [hotel's 2024 factsheet](https://www.ninahotelgroup.com/media/iy4ffnai/240315-tww-fact-sheet-en.pdf)
+identifies tall Tower 2 and shorter Tower 1, with the connection at labelled level 41. Marketing
+floor numbers are distinct from counted floors. The
+[2018 planning report](https://www.tpb.gov.hk/en/papers/MPC/TWK/A_TW_497/A_TW_497_Main_Paper_final.pdf)
+records an eight-storey podium, 36- and 72-storey towers and two basement levels; its drawing
+attachments should provide a stronger site and podium frame. An indexed
+[review annex](https://www.tpb.gov.hk/en/papers/TPB/TWK/A_TW_497_RV/A_TW_497_RV_Annex%20b.pdf)
+contains plan and section drawings, but their pixels have not yet been inspected. No Nina
+model is authored at this checkpoint. Geometry reuse for Sapphire is the immediate follow-up.
+
+### Nina Tower source reconstruction — 2026-10-04
+
+N0230 now has an original deterministic recipe in `packages/worldgen/scripts/nina-tower-model.mjs`
+and a source bundle at `places/we/wec/n0230_nina_tower/`. The hotel factsheet, planning annex
+plans/sections and Sika's exterior reference were inspected. The model includes both rounded
+towers, curved open crowns, refuge louvres, modular facade bays, enclosed curved skybridge,
+triangular bridge trusses and a shared podium. Entrances and the podium are still schematic.
+An entrance attachment error and an obstructed corner camera were corrected during review.
+
+The 9,209,716-byte source stores 86,792 unique mesh triangles in 16 meshes. Its 11,956
+instances expand to 1,313,564 triangles. The runtime master is 9,159,960 bytes. Four existing
+canonical material graphs supply metal, concrete and stone; there are no embedded images.
+All 14 portable and 13 shared-material captures were inspected. Shared graphs each load
+once, and eviction leaves zero live model geometries. Source/runtime Khronos validation has
+zero errors or warnings; independent checks cover the unsupported GPU-instancing extension.
+
+The first automatically reduced skyline distorted the towers and crowns. A source-authored
+skyline now preserves their openings and bridge in 64,612 bytes. The normal LOD/release
+generator applies this override and fingerprints its recipe independently, preserving other
+models' current hashes. District, street and closeup levels are approximately 5.32, 6.16 and
+27.82 MB. The optional closeup is larger than the instanced master because reduction flattens
+instances. Initial loading uses the skyline. Physical device performance remains unmeasured.
+
+The geographic anchor is unresolved. The planning drawing gives a provisional local frame;
+the catalog coordinate is not a verified tower center. OSM endpoints returned 406/429 during
+research. The placement is an **inactive draft**, with footprint replacement disabled.
+Maximum exterior fidelity and geographic fit are pending; this model is not counted complete.
+
+The inventory is now **344 registered structures**: 242 from the next-1000 plan and 102 older
+landmarks/reusable structures. The next-1000 ledger remains **167 complete**, with 758 models
+still unauthored. Current source/runtime reproducibility, geometry, shared materials and the
+four LODs passed targeted checks. Authored-LOD tests cover determinism, download/layout budgets,
+cache reuse, missing-file repair and stale-master rejection. No repository-wide build or
+dependency audit was run for this addition.
+
+Source hash: `6c5ae84b36dc718b7eba3ae710b8a07c3f0542674f4ad442c0a7c0abe0d51cd8`.
+Runtime hash: `5b9320f3f88c3e1f6298a1ef28f979e9a1ca563dd022dd0bea915db10368b178`.
+Reference metadata and reviews live with the source; local logs and validation evidence are in
+`.artifacts/nina-tower-research/`. Gran Torre Costanera and China World Tower have useful
+primary reference leads and exact-QID cached footprints for the next authoring pass.
+
+Inventory checkpoint `assets-19e39e204a72169c` pins 2,152 GLBs. It adds only Nina Tower's
+source, master and four runtime levels; all 2,146 prior hashes are unchanged. This was a
+local checkpoint with targeted source reproduction, not a fresh full-catalog source rebuild.
+
+### Gran Torre Costanera source reconstruction — 2026-10-04
+
+N0232 now has an original deterministic recipe in
+`packages/worldgen/scripts/gran-torre-costanera-model.mjs` and a source bundle at
+`places/66/66j/n0232_gran_torre_costanera/`. The architect's exterior, crown and observatory
+photographs and the owner's floor-60 plan and brochure were inspected. They establish four
+folded, tapering walls, recessed corner strips and projecting crown screens with visible steel
+lattice. The model also includes the observatory floor, glass canopy, supporting rods and doors.
+Intermediate facade dimensions and entrance details remain reconstructions. The owner's
+249.6 m floor-60 datum is kept separate from the marketed 300 m observatory height.
+
+The 14,961,060-byte source stores 177,840 unique mesh triangles in four meshes. Ten instances
+expand to 702,432 triangles. The runtime master is 14,959,636 bytes. Five existing canonical
+graphs supply metal, concrete, wood and stone; no bitmap images are embedded. A framing
+member initially extended below ground and an observatory camera sat inside the core; both
+were corrected before final captures. All **15 portable and 15 shared-material frames** were
+inspected. Shared graphs each load once, and eviction leaves zero live model geometries.
+Source/runtime Khronos validation has zero errors or warnings; independent bounds, transform
+and triangle checks cover the unsupported GPU-instancing extension.
+
+The original authored skyline retains the tapered outline and four open crown walls in
+**40,160 bytes**. District, street and closeup levels are 2,330,604, 3,293,048 and 7,332,336 bytes.
+All four levels were inspected beside the master and pass geometry/layout validation. District
+and street exceed their advisory triangle targets to preserve major surfaces. Initial skyline
+and district downloads each fit the 3 MB phone target; physical-device performance remains
+unmeasured. The authored-LOD tests pass for both Nina Tower and Gran Torre.
+
+OSM way 1179710949 exactly matches Q1542408 and supplies the preview anchor and undirected
+axis. The flat-terrain map-outline render checks visualization at that assumed datum; it does
+not prove the entrance direction, actual terrain contact or neighboring site boundaries.
+The signed yaw, geographic fit and maximum exterior fidelity remain pending. Surrounding
+mall buildings are separate identities and are not represented by this tower model.
+
+The catalog now has **345 registered structures**: 243 from the next-1000 plan and 102 older
+or reusable structures. The plan remains **167 complete**, with **757 still unauthored**.
+There are 241 current portable reviews, 239 shared-material reviews and 229 active previews.
+The targeted source generator and import checks reproduce the current bytes. No whole-engine
+build, full-catalog generation or dependency audit was run for this addition.
+
+Source hash: `67a735d20dda6726824a42acf8cc91acfe5333e00eca782b923384e3ddae3e74`.
+Runtime hash: `d3346545708265e7f2b59f0faf5faa8f0d22dad489728f7bab22c527aefa72b2`.
+Reference metadata and reviews live with the source; local validation, contact sheets and logs
+are in `.artifacts/gran-torre-research/`.
+
+Inventory checkpoint `assets-30ed00c45e864279` pins 2,158 GLBs. It adds only Gran Torre's
+source, master and four runtime levels; all 2,152 prior hashes remain unchanged. Nina Tower's
+LOD recipe fingerprint was refreshed because the shared authored-LOD registry gained this
+second model; Nina's GLB bytes did not change. The checkpoint took 83 seconds, reusing every
+current import. It is not a fresh full-catalog source rebuild.
+
+### China World Tower A source reconstruction — 2026-10-04
+
+N0233 now has an original deterministic recipe in
+`packages/worldgen/scripts/china-world-tower-model.mjs` and a source bundle at
+`places/wx/wx4/n0233_china_world_trade_center_tower_iii/`. SOM's Tim Griffith photographs
+and pages 10–11 of Meinhardt's facade brochure were inspected. The brochure establishes
+600 mm external glass fins and curtain-wall planes that alternate their slope between floors.
+The recipe models those features, recessed corner glazing, service louvre belts, large diamond
+fins at the base, a cross-braced crown, roof helipad, separate canopies and curved vestibules.
+Published floor counts differ (74, 80 and 81), so intermediate model levels are explicitly
+reconstructed. The separate mall, ballroom annex and pedestrian bridges remain outside the
+individual tower asset.
+
+The 40,771,324-byte source stores 485,508 unique mesh triangles in five meshes. Seven
+instances expand to **938,584 triangles**. The runtime master is 40,769,720 bytes. Four existing
+canonical metal/concrete/stone graphs are shared; glazing uses local PBR and no images are
+embedded. Initial renders exposed inward-facing glass panels and open corner returns. Their
+winding and joins were corrected before all **16 portable and 16 shared-material captures**
+were regenerated and inspected. Shared graphs each load once, and eviction leaves zero live
+model geometries. Source/master validation has zero errors or warnings; independent checks
+cover the validator's unsupported instancing extension.
+
+An authored skyline retains the taper, canopy and open crown framing in **39,800 bytes**.
+District, street and closeup levels are 2,034,396, 2,736,544 and 9,656,612 bytes. All four were
+inspected beside the master and passed Khronos and vertex-layout checks. Skyline plus district
+downloads total under 3 MB. The detailed 40.77 MB master remains separate. Fine fins alias at
+distance; physical-device frame times remain unmeasured. The four targeted authored-LOD tests
+passed, and the source generator/import checks reproduce the current bytes.
+
+Exact Q2006129 map identity supplies the anchor and tower rectangle. SOM identifies hotel
+entry on the east and offices on the west. The cached heading maps native -Z east and +Z west,
+and the flat-terrain outline fixture was inspected with that signed frame. Exact canopy extent,
+real terrain contact and adjoining site fit remain unapproved. Crown details, roof plant,
+vestibules and facade dimensions remain reconstructions; the glass frit pattern and night
+lighting are also pending. This is not maximum-fidelity completion.
+
+The inventory is **346 registered structures**: **244 next-1000 models** plus 102 older or
+reusable structures. The plan remains **167 complete**, with **756 still unauthored**. There
+are 242 portable reviews, 240 shared-material reviews and 230 active previews. No whole-engine
+build, full-catalog generation or dependency audit was run for this addition.
+
+Source hash: `692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3`.
+Runtime hash: `1dc90e14f0f484acd03bb011a925a131637f683ffdae8277da008bdfa0b37b71`.
+Reference metadata and reviews live with the source; local validation, contact sheets and logs
+are in `.artifacts/china-world-tower-research/`.
+
+Inventory checkpoint `assets-7d701262738accba` pins 2,164 GLBs, adding only this model's
+source, master and four runtime levels. All 2,158 previous model hashes remain unchanged.
+The authored-LOD registry fingerprint was refreshed for Nina and Gran Torre; their GLB bytes
+did not change. This 85-second local checkpoint reused current imports and is not a fresh
+full-catalog source rebuild.
+
+### Next candidate: Palacio Barolo research
+
+N0234 has useful primary reference leads. The
+[building's historical account](https://palaciobarolo.com.ar/palacio-barolo/resena-historica/)
+specifies a 30.88 m frontage on a 1,365 m² parcel, 22 floors and two basements, a 90 m dome
+and a 100 m tip including the lantern. Its through-passage links Avenida de Mayo to Hipólito
+Yrigoyen; the rear entrance and elevation must be researched as well as the familiar street
+front. The [building's architecture page](https://palaciobarolo.com.ar/palacio-barolo/arquitectura/)
+and municipal [heritage volume 15](https://buenosaires.gob.ar/areas/cultura/cpphc/archivos/libros/temas_15.pdf)
+are next references to inspect visually. A FADU search result promising historic plans returned
+404; its unseen drawings must not be treated as geometry evidence. No Barolo model is authored
+at this checkpoint.
+
+### Palacio Barolo source reconstruction — 2026-10-04
+
+N0234 now has an original deterministic recipe in
+`packages/worldgen/scripts/barolo-palace-model.mjs` and source bundle at
+`places/69/69y/n0234_barolo_palace/`. Owner photographs, the municipal heritage book,
+national heritage entry, a rear photograph and an aerial view were inspected. The recipe
+models the H-plan light courts, through passage, projecting bow windows, green mansards,
+paired circular balconies, pointed arches, layered cornices, ribbed crown and glazed lantern.
+The documented parcel is 30.88 by 44.21 m; intermediate elevations and ornamental profiles
+remain reconstructions. Height references conflict (100 versus 103 m overall; 86 versus
+90 m dome), and the chosen model height is explicitly 100 m.
+
+The source master is **49,608,172 bytes**, storing 646,738 unique triangles across four meshes.
+Its 116 instances expand to **870,924 triangles**. The runtime master is 49,606,948 bytes.
+Three existing canonical graphs cover concrete, painted metal and marble; glazing uses
+local PBR. No images are embedded. Initial renders prompted corrections to pointed-arch
+curves and pilaster placement. All **16 portable and 15 shared-material views** were then
+recaptured and inspected. Each graph loads once; eviction leaves zero live model geometries.
+Both source and runtime master pass Khronos validation with zero errors and warnings;
+independent instance counts and transformed bounds cover the unsupported instancing extension.
+
+Automatic reduction initially produced excessively large intermediate levels. This model now
+has authored skyline, district, street and closeup recipes that omit small relief and grille
+bars at distance while retaining the building's composition. They preserve canonical material
+references and metric UV repeats, and store separate vertex attributes to avoid duplicated
+uploads. Runtime sizes are **36,532 / 2,667,888 / 8,457,044 / 10,862,720 bytes**. Skyline plus
+district total **2,704,420 bytes**, under the 3 MB initial phone target. All levels were
+inspected beside the master and pass geometry and layout validation. Detailed levels still
+exceed the generic triangle targets; device measurements and streaming budgets remain
+necessary. Six targeted authored-LOD tests pass, including deterministic bytes, budget,
+shared-surface and vertex-layout checks. Source generation and import reproduce current bytes.
+
+Placement is deliberately **draft/inactive**. Cached OSM way 1386044833 carries Q571763 but
+has a 60.285 by 43.074 m outline, inconsistent with the documented parcel width. The municipal
+2026 planning annex identifies parcel **012-039-004**, which must be resolved before using
+an anchor and signed orientation. The draft does not suppress neighboring map buildings.
+Full rear elevation, court proportions, fine figurative ornament, inscriptions, mansard tiling,
+modern equipment and measured roof profiles remain pending. This is not maximum-fidelity
+completion or geographic approval.
+
+The catalog now has **347 registered structures**: **245 next-1000 models** plus 102 older
+or reusable structures. The plan remains **167 complete**, with **755 still unauthored**;
+243 portable and 241 shared-material reviews are current, and 230 geographic previews are
+active. Only targeted authoring/LOD checks were run for this addition.
+
+Source hash: `5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8`.
+Runtime hash: `c486f38e0760052fb52fd79b5f82991378bbcfcf1449bd253dc8332eab9be093`.
+References and hash-bound reviews live in the source bundle; local validation, render contact
+sheets and logs are under `.artifacts/barolo-research/`.
+
+Inventory checkpoint `assets-06ba9a902beab614` pins 2,170 GLBs, adding only Barolo's source,
+master and four runtime levels. All 2,164 previous model hashes remain unchanged. The three
+earlier authored skyline recipes received new fingerprints because their registry now supports
+authored intermediate levels; their GLB bytes are unchanged. The 89-second local checkpoint
+reused current imports and is not a fresh full-catalog source rebuild.
+
+Next sequential candidate is N0235, **Millennium Tower in Vienna (Q80495)**. Resolve its
+specific identity and primary architectural references before modeling; the next candidates
+N0236 Château de Montsoreau and N0237 Neuschwanstein Castle require independent heritage
+research rather than reuse of the tower recipe. Barolo's geographic conflict and fine-detail
+work remain recorded in its source and readiness ledger.
+
+### Millennium Tower, Vienna source reconstruction — 2026-10-04
+
+N0235 now has an original deterministic recipe in
+`packages/worldgen/scripts/millennium-tower-model.mjs` and source bundle at
+`places/u2/u2e/n0235_millennium_tower/`. Owner architecture, office grid and floor plan,
+Podrecca's exterior and facade photographs, ATP's project description and the structural
+engineers' abstract establish this specific Vienna tower (Q80495). Two separately fitted
+circles reproduce the mapped footprint, with radial RMS residuals of 0.189 and 0.129 m.
+The recipe includes the concave seam, glass spandrels, silver mullions, projecting rear
+spine, entry columns, stepped screened hood, sloping glazed crown and paired braced masts.
+
+The source master is **2,518,992 bytes**, storing 30,296 unique triangles in four meshes;
+84 instances expand to **268,856 rendered triangles**. Runtime master size is 2,517,792 bytes.
+Repeated office floors share geometry. Painted metal and stainless steel use existing
+canonical graphs, glazing uses local PBR, and there are no embedded images. All **14 portable
+and 14 shared-material views** were inspected after correcting the hood arc intersections.
+Both graphs load once; unloading leaves zero live model geometries. Source and runtime
+pass Khronos validation with zero errors and warnings. Independent instance counts and
+transformed bounds, and the viewer's rendered triangle count, cover the validator's
+unsupported instancing extension.
+
+Automatic closeup reduction expanded the master to 9.95 MB. The model now has four authored
+runtime levels, preserving its stepped silhouette while omitting subpixel facade relief.
+Final levels are **22,228 / 204,916 / 1,050,636 / 3,565,420 bytes**, with
+**268 / 2,646 / 15,672 / 60,880 triangles**. All four meet their planned triangle budgets.
+Initial skyline plus district is **227,144 bytes**, below the phone and laptop download
+targets. The closeup intentionally trades instancing and 268,856 master triangles for four
+draws and 60,880 triangles. District floor-band facets were corrected after inspecting the
+comparison image. All levels pass geometry and separate-attribute layout checks; seven
+focused authored-LOD tests pass. Physical device performance remains unmeasured.
+
+The map-derived placement is an **active preview**, using way/105310525's signed anchor
+and heading without stretching the tower to the 140.5 m map height tag. Its flat-terrain
+outline fixture matches the lobes and rear spine. Actual terrain contact, mall connections
+and signed crown orientation still need a contextual review. The 140.5 m tag is provisionally
+interpreted as the main body, with reconstructed 153.4 m hood and 172 m spine beneath the
+documented 202 m antenna tip. Measured tier elevations, exact lamella profiles, roof equipment
+and renovated entrance are outstanding. Maximum-fidelity and geographic approvals remain
+pending; render integrity does not complete this candidate.
+
+Inventory is now **348 registered structures**: **246 next-1000 models** plus 102 older or
+reusable structures. The plan has **167 complete**, **754 still unauthored**, 244 current
+portable reviews, 242 shared-material reviews and 231 active geographic previews.
+Only the changed model was generated/imported and visually captured. Source generation and
+import checks reproduce its current hashes. No engine build or dependency audit was run.
+
+Source hash: `9b5fe07fede15c7a47aee383c0e988589cfb4da45ba0a2d2cef9076b7ea63307`.
+Runtime hash: `a75353cc880488718538c9b61d331bf66cb3801377ab22227765b8d3b8a185af`.
+Reference metadata and hash-bound reviews are in the source bundle; local validation and
+comparison sheets are in `.artifacts/millennium-tower-research/`.
+
+Inventory checkpoint `assets-96bc5748240c8d3f` pins **2,176 GLBs**, adding only this model's
+source, runtime master and four levels. All **2,170 previous hashes remain unchanged**.
+Four earlier authored-LOD sidecars received updated recipe fingerprints, with no GLB byte
+changes. The 89-second local checkpoint reused all current imports; it was not a full source
+rebuild. No assets were committed or published.
+
+### Next candidate: Château de Montsoreau
+
+N0236 (Q1143049) has a substantial primary
+[regional heritage dossier, IA49009670](https://gertrude.paysdelaloire.fr/dossier/IA49009670),
+with 83 illustrations and a reference to Salleron's 1886–1888 north exterior drawing. Its text
+describes a tuffeau main range, two quadrangular towers, asymmetric return wings and two
+different polygonal stair towers. The eastern stair tower has Renaissance relief and slate
+discs in its terrace guard. Historical tower roofs are no longer present: current and historic
+states must be distinguished. Its northern riverside face and southern courtyard need separate
+study. The [museum's owner page](https://www.chateau-montsoreau.com/wordpress/fr/100-chateau-100-contemporain/le-chateau/)
+is another primary reference. These pages were read; the dossier's image plates and drawings
+have not yet been visually inspected. No N0236 geometry is authored at this checkpoint.
+
+## N0236 Château de Montsoreau checkpoint — 2026-10-04
+
+Added an individually authored source master and runtime asset under
+`places/u0/u02/n0236_chateau_de_montsoreau/`. The regional Inventaire Général dossier,
+five inspected exterior/detail photographs and the museum owner's publication establish the
+current castle's distinguishing features. The source separates the two flat square terraces,
+four river dormers, three courtyard dormers, unequal return wings, western pointed stair and
+Renaissance stair with two rows of slate discs. Recessed cross windows, machicolations,
+Gothic gables/crockets, chimney stacks and the battered river base have individual geometry.
+The captured revisions fix a stair hiding one courtyard dormer and roof planes crossing the
+square terraces, and correct the river window ranks against the primary photograph.
+
+The source is **3,397,240 bytes**; the runtime master is **3,396,600 bytes**, with
+**40,797 triangles**, 80,655 vertices and seven materials. Five existing shared graphs provide
+limestone, raw limestone, slate, wood and painted metal. No images are embedded. All
+**13 portable and 13 shared-material frames** were inspected. Each shared graph loads once;
+unloading leaves zero live model geometries. Source and runtime pass Khronos validation with
+zero errors and warnings. Informational unused UV attributes serve the shared surfaces.
+
+Four independently authored runtime levels preserve the empty courtyard and distinctive
+silhouette. Skyline/district/street/closeup are **69,624 / 126,448 / 600,480 / 2,654,576 bytes**,
+with **873 / 1,529 / 8,221 / 35,433 triangles**. Every triangle target passes; skyline plus
+district is **196,072 bytes**, below both initial download targets. Eight focused authored-LOD
+tests pass, and every derivative passes geometry and separate-attribute layout validation.
+The comparison fixture now fits its camera depth interval to asset bounds: its previous
+1 cm–100 km range caused false district-window z-fighting. All five levels were inspected
+together after that correction. Physical laptop/phone measurements remain pending.
+
+The **active map preview** uses exact-QID OSM way/175416989's signed anchor and heading.
+That feature is a castle precinct, with no building or height tag, and includes the open court.
+Occupied ranges are reconstructed separately; the model does not fill the entire boundary.
+Preview registration now honors explicit `replaceFootprint: false` while retaining the prior
+default for other previews. A flat-terrain overlay confirms registration only. Surveyed heights,
+terrain/road datum, retained walls and exact occupied bounds remain outstanding. The owner's
+35 m terrace statement has an unclear datum and is not adopted as a surveyed model height.
+Renaissance figurative panels, medallions, deer and putti remain unsculpted. **Geographic and
+maximum-fidelity approvals remain pending**, so render acceptance does not complete N0236.
+
+Inventory is **349 registered structures**, including **247 next-1000 authored/imported models**
+and 102 older or reusable structures. The plan has **167 fully complete**, **753 unauthored**,
+245 portable reviews, 243 shared-material reviews and 232 active geographic previews.
+Source generation/import/placement checks reproduce N0236's exact current hashes. Work stayed
+within the targeted model loop, with no engine build, dependency audit or full source rebuild.
+
+Source hash: `240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f`.
+Runtime hash: `ca0ea042ded1f01dfa79b2207165d55ac48ab2ab738e614c9db5a63a46f2ccbe`.
+References, limitations and hash-bound reviews live with the source bundle; local validation
+and comparison sheets are in `.artifacts/montsoreau-research/`.
+
+Inventory checkpoint **`assets-72ce6873e9e2360a`** pins **2,182 GLBs**. Only N0236's source,
+runtime master and four detail levels were added; all **2,176 previous hashes are unchanged**.
+The local checkpoint reused current imports in 86 seconds. Five earlier authored-LOD sidecars
+received updated recipe fingerprints without changing their GLB bytes. No Git mutation or
+asset publication was performed.
+
+### Next candidate: Neuschwanstein Castle
+
+N0237 (Q4152) has an [official building history and labeled complex plan](https://www.neuschwanstein.de/englisch/palace/history.htm)
+from the Bavarian Palace Administration. The text distinguishes the Gateway Building, Palas,
+Bower, Square Tower and connecting ranges; the later Bower and Square Tower were completed
+in 1892 in simplified form. Current architecture must be distinguished from unrealized designs.
+The cached exact-QID map record is way/221601969, anchor `[10.749533954, 47.557554931]`,
+heading `0.381105898007`. The official text was read; its plan image and exterior photographs
+have not yet been inspected for this recipe. No N0237 geometry is counted at this checkpoint.

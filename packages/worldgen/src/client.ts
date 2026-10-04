@@ -28,10 +28,23 @@ export type { ResolvedMaterialSet, ResolvedMaterialSetOptions } from './client/m
 export { createResolvedMaterialSet, createVertexColorMaterialSet } from './client/materials';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
+  type StructureAcquireOptions,
+  type StructureInstanceOptions,
   type StructureModel,
   StructureModelLibrary,
   type StructureModelLibraryOptions,
+  type StructureModelSource,
 } from './client/structure-models';
+export {
+  type StructureLodManifest,
+  StructureLodStreamer,
+  type StructureStreamingBudget,
+  type StructureStreamingOptions,
+  type StructureStreamingStats,
+  type StructureStreamingView,
+  structureGeometryBytes,
+  structureStreamingBudget,
+} from './client/structure-streamer';
 export type { LoadedStylePack, LoadStylePackOptions } from './client/stylepack-loader';
 export { loadStylePack, withStylePackDocuments } from './client/stylepack-loader';
 export type { WorldgenMaterialSet } from './client/upload';

@@ -6,6 +6,7 @@ import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { encodeAuthoredAssembly } from './authored-glb-assembly.mjs';
 import {
   cross,
   normalize,
@@ -42,6 +43,9 @@ const expandedSelection = selectedStructureIds(selection, collections);
 const evidenceBytes = await readFile(resolve(root, 'content/earth/structures/georeferencing.json'));
 const evidence = JSON.parse(evidenceBytes);
 const surfaces = {
+  frit: { graph: 'glass_frit_triangular', slot: 'wall', roughness: 0.2, metallic: 0 },
+  fcp_vision: { slot: 'window', roughness: 0.16, metallic: 0.08, ref: 'palette:#fffefd' },
+  bronze_glass: { slot: 'window', roughness: 0.17, metallic: 0.05, ref: 'palette:#fffefe' },
   gold: { graph: 'metal_stainless', slot: 'trim', roughness: 0.3, metallic: 1 },
   bronze: { graph: 'metal_bronze_cast', slot: 'trim', roughness: 0.65, metallic: 0.7 },
   screen: { graph: 'metal_perforated_round_open', slot: 'wall', roughness: 0.5, metallic: 0 },
@@ -60,6 +64,15 @@ const surfaces = {
   wood: { graph: 'wood_plain', slot: 'trim', roughness: 0.82, metallic: 0 },
   brick: { graph: 'brick', slot: 'wall', roughness: 0.9, metallic: 0 },
   canvas: { graph: 'fabric_canvas', slot: 'roof', roughness: 0.92, metallic: 0 },
+  slate: { graph: 'slate', slot: 'roof', roughness: 0.85, metallic: 0 },
+  sandstone: { graph: 'stone_sandstone', slot: 'wall', roughness: 0.85, metallic: 0 },
+  weathered: {
+    graph: 'stone_limestone_weathered',
+    slot: 'foundation',
+    roughness: 0.9,
+    metallic: 0,
+  },
+  copper: { graph: 'metal_copper', slot: 'roof', roughness: 0.5, metallic: 0.85 },
   glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
   clear_glass: {
     slot: 'window',
@@ -231,7 +244,7 @@ for (const study of signatureTowers.filter(
       ...frame,
       featureSources: [frame.sourceUrl],
       featureIds: frame.elements.map((p) => `${p.type}/${p.id}`),
-      sourceLocalFrame: { hash: hash(bytes), identityStatus: frame.identityStatus },
+      sourceLocalFrame: { hash: hashEvidenceText(bytes), identityStatus: frame.identityStatus },
     };
   }
   const modelPath = resolve(dir, 'models/source.glb');
@@ -260,24 +273,50 @@ for (const study of signatureTowers.filter(
     max[i % 3] = Math.max(max[i % 3], mesh.positions[i]);
   }
   const encoded = Buffer.from(
-    encodeGlb(
-      mesh,
-      mesh.groups.map((group) => {
-        const s = used.get(`${group.slot}:${group.materialRef}`);
-        return {
-          name: `${s.graph ?? group.slot}-${group.slot}`,
-          roughness: s.roughness,
-          metallic: s.metallic,
-          ...(s.opacity !== undefined
-            ? { baseColorFactor: [1, 1, 1, s.opacity], alphaMode: 'BLEND', doubleSided: true }
-            : {}),
-          ...(s.graph
-            ? { sharedSurface: { ref: group.materialRef, slot: s.slot, uv: 'repeats' } }
-            : {}),
-        };
-      }),
-      `Molen original ${study.title}`,
-    ),
+    study.encodeAssembly
+      ? study.encodeAssembly((build, name) => {
+          const partBuilder = new MeshBufferBuilder(),
+            partUsed = new Map();
+          build(mappedBuilder(partBuilder, partUsed));
+          const partMesh = partBuilder.finalize();
+          validateAuthoredMesh(partMesh, `${study.id}/${name}`);
+          return encodeGlb(
+            partMesh,
+            partMesh.groups.map((group) => {
+              const s = partUsed.get(`${group.slot}:${group.materialRef}`);
+              return {
+                name: `${s.graph ?? group.slot}-${group.slot}`,
+                roughness: s.roughness,
+                metallic: s.metallic,
+                ...(s.opacity !== undefined
+                  ? { baseColorFactor: [1, 1, 1, s.opacity], alphaMode: 'BLEND', doubleSided: true }
+                  : {}),
+                ...(s.graph
+                  ? { sharedSurface: { ref: group.materialRef, slot: s.slot, uv: 'repeats' } }
+                  : {}),
+              };
+            }),
+            name,
+          );
+        }, encodeAuthoredAssembly)
+      : encodeGlb(
+          mesh,
+          mesh.groups.map((group) => {
+            const s = used.get(`${group.slot}:${group.materialRef}`);
+            return {
+              name: `${s.graph ?? group.slot}-${group.slot}`,
+              roughness: s.roughness,
+              metallic: s.metallic,
+              ...(s.opacity !== undefined
+                ? { baseColorFactor: [1, 1, 1, s.opacity], alphaMode: 'BLEND', doubleSided: true }
+                : {}),
+              ...(s.graph
+                ? { sharedSurface: { ref: group.materialRef, slot: s.slot, uv: 'repeats' } }
+                : {}),
+            };
+          }),
+          `Molen original ${study.title}`,
+        ),
   );
   const glb = await embedGraphFallbacks(
     encoded,
@@ -288,10 +327,10 @@ for (const study of signatureTowers.filter(
     root,
   );
   const gltf = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString('utf8'));
-  for (const [index, group] of mesh.groups.entries())
+  for (const group of mesh.groups)
     if (
       group.materialRef.startsWith('matgraph:') &&
-      gltf.materials[index]?.extras?.molenSurface?.ref !== group.materialRef
+      !gltf.materials.some((material) => material.extras?.molenSurface?.ref === group.materialRef)
     )
       throw new Error(
         'Built GLB encoder lacks shared-surface metadata; build worldgen before authoring',
@@ -305,13 +344,31 @@ for (const study of signatureTowers.filter(
       : {}),
     assetId,
     title: study.title,
-    category: 'skyscraper',
+    category: study.category ?? 'skyscraper',
     quality: 'detailed',
     wikidataId: study.wikidataId,
     referenceCoordinate: candidate.referenceCoordinate,
     visualBrief: study.brief,
     size,
     actualBounds: { min, max },
+    ...(study.encodeAssembly
+      ? {
+          assembly: {
+            uniqueMeshes: gltf.meshes.length,
+            meshInstances: gltf.nodes.reduce((n, node) => {
+              const attributes = node.extensions?.EXT_mesh_gpu_instancing?.attributes;
+              return n + (attributes ? gltf.accessors[Object.values(attributes)[0]].count : 1);
+            }, 0),
+            storedTriangles: gltf.meshes.reduce(
+              (n, m) =>
+                n + m.primitives.reduce((s, p) => s + gltf.accessors[p.indices].count / 3, 0),
+              0,
+            ),
+            method:
+              'Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies.',
+          },
+        }
+      : {}),
     nativeAxes: study.nativeAxes,
     sourceFacts: study.sourceFacts,
     ...(study.appearance ? { appearance: study.appearance } : {}),
@@ -319,6 +376,7 @@ for (const study of signatureTowers.filter(
     referencePages: study.refs,
     geographicProposal: geographicProposal(study, mapped),
     scaleBasis:
+      study.scaleBasis ??
       'Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.',
     geometrySource:
       study.geometrySource ??
@@ -451,6 +509,12 @@ for (const study of signatureTowers.filter(
     },
   };
   const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence and reconstruction\n\nPublished dimensions and reconstructed details are separated in spec.json. Primary references:\n\n${study.refs.map((url) => `- [Reference](${url})`).join('\n')}\n\nNo third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.\n\n## Model and axes\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} bytes. Native bounds: ${min.map((v) => v.toFixed(3)).join(', ')} to ${max.map((v) => v.toFixed(3)).join(', ')}. Source hash: \`${hash(glb)}\`.\n\n${JSON.stringify(study.nativeAxes)}\n\nThe geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Reproduce\n\nRun \`node packages/worldgen/scripts/generate-signature-towers.mjs --ids=${study.id}\` (or add \`--check\`). The generator preserves manually edited masters by checking their baseline hashes. Import through the standard authored-model workflow with optimization disabled; then capture all QA cameras, including shared-surface views.\n\n## Pending work\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nThis bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.\n`;
+  const geographicReadme = study.geographicNote
+    ? readme.replace(
+        'The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.',
+        study.geographicNote,
+      )
+    : readme;
   await emit(modelPath, glb);
   for (const [name, data] of [
     ['spec.json', spec],
@@ -461,7 +525,7 @@ for (const study of signatureTowers.filter(
   await emit(
     resolve(dir, 'README.md'),
     Buffer.from(
-      readme +
+      geographicReadme +
         (study.dataAttribution
           ? `\n## Additional geographic data\n\n${study.dataAttribution}\n`
           : ''),

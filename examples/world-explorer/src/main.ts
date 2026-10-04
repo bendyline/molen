@@ -493,7 +493,7 @@ async function loadWorldgen(options: {
   let preparation: Promise<void> | undefined;
   return {
     ...worldgen,
-    // Surface baking progress in the HUD and the startup timeline.
+    // Record the initial warm-up. Later visible surfaces bake on demand.
     prepareMaterials(): Promise<void> {
       preparation ??= (async () => {
         const status = document.getElementById('worldgen-status');
@@ -1531,6 +1531,13 @@ async function main(): Promise<void> {
     // Keep the inexpensive 10 Hz cadence while the view barely changes, but refresh before this
     // frame renders if a drag or movement could outrun the selector's view guard band. Otherwise
     // the camera can briefly face resident-but-hidden terrain and expose a horizon-sized hole.
+    worldgen?.updateStructures({
+      position: camera.pos,
+      direction: viewDirection,
+      verticalFov: 60,
+      viewportHeight: canvas.height,
+      maxPixelError: lodPolicy.maxPixelError,
+    });
     const terrainViewChanged =
       adaptive &&
       viewNeedsImmediateUpdate(
@@ -1720,6 +1727,8 @@ async function main(): Promise<void> {
       const unavailableTiles = stats.failed - stats.missing;
       status.id = unavailableTiles > 0 ? 'error' : 'status';
       const worldgenStats = worldgen?.stats();
+      const landmarkStats = worldgen?.structureStats();
+      status.dataset.sharedTextureBytes = String(landmarkStats?.sharedTextureBytes ?? 0);
       const worldgenSummary =
         worldgenStats === undefined
           ? `worldgen off${styleUnavailableReason !== undefined ? ' (pack unavailable)' : ''}`
@@ -1743,6 +1752,11 @@ async function main(): Promise<void> {
           ? [`layer error: ${lastLayerError}`]
           : []),
         worldgenSummary,
+        ...(landmarkStats
+          ? [
+              `landmarks ${landmarkStats.assets} assets · ${landmarkStats.loading} loading · ${(landmarkStats.gpuBytes / 1_000_000).toFixed(1)} MB geometry · ${((landmarkStats.sharedTextureBytes ?? 0) / 1_000_000).toFixed(1)} MB shared textures`,
+            ]
+          : []),
         ...(worldgenStats?.interiors
           ? [
               `interiors ${worldgenStats.interiors.resident} resident / ${worldgenStats.interiors.sites} available · ${worldgenStats.interiors.pending} generating · ${(worldgenStats.interiors.bytes / 1_048_576).toFixed(1)}MiB · ${worldgenStats.interiors.failed} failed`,

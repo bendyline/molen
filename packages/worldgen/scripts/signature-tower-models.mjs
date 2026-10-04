@@ -1,6 +1,16 @@
 /** Three individually researched tower reconstructions. All dimensions are meters. */
 import { beam, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
+import { baroloPalaceStudy } from './barolo-palace-model.mjs';
+import { chinaWorldTowerStudy } from './china-world-tower-model.mjs';
+import { firstCanadianPlaceStudy } from './first-canadian-place-model.mjs';
+import { fourWorldTradeCenterStudy } from './four-world-trade-center-model.mjs';
+import { granTorreCostaneraStudy } from './gran-torre-costanera-model.mjs';
+import { istanbulSapphireStudy } from './istanbul-sapphire-model.mjs';
+import { millenniumTowerStudy } from './millennium-tower-model.mjs';
 import { montevideoStudy } from './montevideo-tower-model.mjs';
+import { montsoreauStudy } from './montsoreau-castle-model.mjs';
+import { neuschwansteinStudy } from './neuschwanstein-castle-model.mjs';
+import { ninaTowerStudy } from './nina-tower-model.mjs';
 import { oneCanadaSquareStudy } from './one-canada-square-model.mjs';
 import { rembrandtStudy } from './rembrandt-tower-model.mjs';
 import { buildMappedShard, shardReconstruction } from './shard-tower-model.mjs';
@@ -10,6 +20,7 @@ import { skylineGlobal } from './signature-tower-global-models.mjs';
 import { skylineNext } from './signature-tower-next-models.mjs';
 import { skylineWorld } from './signature-tower-world-models.mjs';
 import { quad, tube } from './structure-mesh.mjs';
+import { twoPrudentialPlazaStudy } from './two-prudential-plaza-model.mjs';
 
 const ref = 'palette:#ffffff';
 const aluminum = [0.69, 0.73, 0.75];
@@ -386,6 +397,17 @@ function buildPearl(out) {
 }
 
 export const signatureTowers = [
+  millenniumTowerStudy,
+  montsoreauStudy,
+  neuschwansteinStudy,
+  baroloPalaceStudy,
+  chinaWorldTowerStudy,
+  granTorreCostaneraStudy,
+  ninaTowerStudy,
+  fourWorldTradeCenterStudy,
+  firstCanadianPlaceStudy,
+  twoPrudentialPlazaStudy,
+  istanbulSapphireStudy,
   oneCanadaSquareStudy,
   montevideoStudy,
   rembrandtStudy,
