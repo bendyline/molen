@@ -178,6 +178,12 @@ export {
   type TerrainSurfaceStats,
 } from './surface-client';
 export {
+  type TerrainTrafficSignal,
+  type TerrainTrafficSignalColor,
+  type TerrainTrafficSignalResolver,
+  updateTerrainSurfaceSignals,
+} from './surface-signals';
+export {
   resolveTerrainSurfaceStyle,
   TERRAIN_SURFACE_STYLES,
   type TerrainParkedVehicle,
@@ -197,6 +203,12 @@ export {
   type TerrainTileLoadState,
   type TerrainTileRetryOptions,
 } from './tile-retry';
+export {
+  createTerrainTunnelObject,
+  sampleTerrainTunnel,
+  type TerrainTunnelClearance,
+  withTerrainTunnels,
+} from './tunnels';
 
 export interface TerrainObjectOptions {
   /** If given, chunks pick LOD by distance from this world position; else all full-res. */

@@ -5,14 +5,16 @@
   "title": "P-51D Mustang",
   "order": 0,
   "files": {
-    "definitions": ["entity.types.json"],
+    "definitions": [
+      "entity.types.json"
+    ],
     "models": [
       {
         "path": "models/source.glb",
         "assetId": "molen.entities.aircraft.p51d",
         "output": "assets/molen/entities/aircraft/p51d/asset.json",
         "pipeline": "import",
-        "sha256": "sha256:7d65f1cc79bcaa3c90135de65748cb41d1fd276e6aaa3acc2b69aa73e9ba2dde"
+        "sha256": "sha256:970cd55cac5343f52fd62784b5bfbd369ee2ea255a1d8ec483ee98553ff6d141"
       }
     ],
     "generators": [
@@ -27,6 +29,10 @@
       {
         "id": "interior-builder",
         "path": "models/interior.mjs"
+      },
+      {
+        "id": "instrument-parts",
+        "path": "models/instruments.mjs"
       }
     ],
     "scripts": [
@@ -37,6 +43,10 @@
     ],
     "textures": [],
     "sounds": [],
-    "documents": ["README.md", "verification.json"]
+    "documents": [
+      "README.md",
+      "verification.json",
+      "REFERENCES.md"
+    ]
   }
 }

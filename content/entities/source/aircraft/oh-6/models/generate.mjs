@@ -1,13 +1,14 @@
-/** Editable, deterministic aircraft masters. No network, bitmap textures, or private dependencies. */
+/** Deterministic OH-6A master. Four main blades, two tail blades and the original braced tail. */
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { instrumentParts } from './instruments.mjs';
 import { addInterior } from './interior.mjs';
 
-// GLTFExporter uses FileReader only to pack its binary buffer in Node.
 globalThis.FileReader = class {
   readAsArrayBuffer(blob) {
     blob.arrayBuffer().then((value) => {
@@ -20,80 +21,25 @@ const root = dirname(fileURLToPath(import.meta.url));
 const interiorLayout = JSON.parse(await readFile(resolve(root, 'interior.json'), 'utf8'));
 const mat = (name, color, metalness = 0, roughness = 0.6) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness });
-const silver = mat('brushed-aluminum', '#9da9ae', 0.75, 0.38);
-const red = mat('signal-red-paint', '#a32723', 0.2, 0.4);
-const olive = mat('olive-drab', '#465544', 0.15, 0.62);
-const dark = mat('cockpit-charcoal', '#172026', 0.05, 0.78);
-const green = mat('interior-green', '#53624a');
-const rubber = mat('rubber', '#14191b', 0, 0.92);
-const white = mat('ivory-markings', '#ebe9d6', 0, 0.5);
-const blue = mat('instrument-sky', '#33729c');
-const brown = mat('instrument-earth', '#79583e');
-const yellow = mat('warning-yellow', '#e3b63b');
-const ink = mat('luminous-instrument-ink', '#dce9cd');
-ink.emissive.set('#dce9cd');
-ink.emissiveIntensity = 0.4;
-const GLYPHS = {
-  A: ['010', '101', '111', '101', '101'],
-  I: ['111', '010', '010', '010', '111'],
-  S: ['111', '100', '111', '001', '111'],
-  L: ['100', '100', '100', '100', '111'],
-  T: ['111', '010', '010', '010', '010'],
-  R: ['110', '101', '110', '101', '101'],
-  P: ['110', '101', '110', '100', '100'],
-  M: ['101', '111', '111', '101', '101'],
-  V: ['101', '101', '101', '101', '010'],
-  H: ['101', '101', '111', '101', '101'],
-  D: ['110', '101', '101', '101', '110'],
-  G: ['111', '100', '101', '101', '111'],
-  0: ['111', '101', '101', '101', '111'],
-  3: ['111', '001', '111', '001', '111'],
-  6: ['111', '100', '111', '101', '111'],
-  9: ['111', '101', '111', '001', '111'],
-};
-function lettering(parent, name, text, x, y, z, pixel = 0.0022) {
-  const positions = [],
-    normals = [],
-    indices = [];
-  [...text].forEach((char, c) => {
-    (GLYPHS[char] ?? []).forEach((row, r) => {
-      [...row].forEach((v, col) => {
-        if (v !== '1') return;
-        const px = x + ((text.length * 4) / 2 - c * 4 - col) * pixel,
-          py = y + (2.5 - r) * pixel;
-        const i = positions.length / 3;
-        positions.push(
-          px,
-          py,
-          z,
-          px - pixel * 0.8,
-          py,
-          z,
-          px - pixel * 0.8,
-          py - pixel * 0.8,
-          z,
-          px,
-          py - pixel * 0.8,
-          z,
-        );
-        normals.push(0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1);
-        indices.push(i, i + 2, i + 1, i, i + 3, i + 2);
-      });
-    });
-  });
-  const geo = new T.BufferGeometry();
-  geo.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
-  geo.setAttribute('normal', new T.Float32BufferAttribute(normals, 3));
-  geo.setIndex(indices);
-  mesh(parent, name, geo, ink);
-}
+const silver = mat('machined-aluminum', '#a5a9a6', 0.78, 0.34);
+const olive = mat('olive-drab-enamel', '#515442', 0.08, 0.66);
+const dark = mat('cockpit-charcoal', '#232728', 0.12, 0.75);
+const green = mat('interior-green', '#606950', 0, 0.85);
+const rubber = mat('rubber', '#171a19', 0, 0.95);
+const white = mat('ivory-markings', '#d9d9c9', 0, 0.62);
+const blue = mat('instrument-sky', '#577d96');
+const brown = mat('instrument-earth', '#6a604d');
+const yellow = mat('warning-yellow', '#d8ae42');
+const red = mat('warning-red', '#af312a', 0.08, 0.5);
+const bladePaint = mat('rotor-blade-coating', '#303431', 0.32, 0.58);
+const exhaustMetal = mat('heat-stained-exhaust', '#746b56', 0.68, 0.56);
 const glass = new T.MeshStandardMaterial({
-  name: 'clear-canopy',
-  color: '#a6d7e0',
+  name: 'clear-cabin-glazing',
+  color: '#d5e0de',
   transparent: true,
-  opacity: 0.22,
-  metalness: 0.05,
-  roughness: 0.22,
+  opacity: 0.12,
+  metalness: 0.08,
+  roughness: 0.13,
   side: T.DoubleSide,
   depthWrite: false,
 });
@@ -116,14 +62,14 @@ function box(parent, name, size, pos, material = dark) {
   return mesh(parent, name, new T.BoxGeometry(...size), material, pos);
 }
 function sphere(parent, name, radii, pos, material) {
-  return mesh(parent, name, new T.SphereGeometry(1, 28, 16), material, pos, radii);
+  return mesh(parent, name, new T.SphereGeometry(1, 24, 16), material, pos, radii);
 }
-function rod(parent, name, a, b, radius, material = silver) {
+function rod(parent, name, a, b, radius, material = silver, topRadius = radius) {
   const delta = new T.Vector3(...b).sub(new T.Vector3(...a));
   const obj = mesh(
     parent,
     name,
-    new T.CylinderGeometry(radius, radius, delta.length(), 8),
+    new T.CylinderGeometry(topRadius, radius, delta.length(), 12),
     material,
     a,
   );
@@ -131,449 +77,527 @@ function rod(parent, name, a, b, radius, material = silver) {
   obj.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), delta.normalize());
   return obj;
 }
-function lining(parent, name, shell, center, material) {
-  // Physical sheet thickness keeps the interior visible without double-sided exterior
-  // faces self-shadowing. Winding is reversed only on the inset interior surface.
-  const geometry = shell.clone();
-  geometry.translate(-center[0], -center[1], -center[2]);
-  geometry.scale(0.975, 0.975, 0.975);
-  geometry.translate(...center);
-  const indices = geometry.index.array;
-  for (let i = 0; i < indices.length; i += 3) {
-    [indices[i + 1], indices[i + 2]] = [indices[i + 2], indices[i + 1]];
-  }
-  const normals = geometry.getAttribute('normal');
-  for (let i = 0; i < normals.count; i++)
-    normals.setXYZ(i, -normals.getX(i), -normals.getY(i), -normals.getZ(i));
-  mesh(parent, name, geometry, material);
-}
-function loft(parent, name, stations, material, openCockpit = false) {
-  const positions = [],
-    indices = [],
-    segments = 28;
-  for (const [z, y, rx, ry] of stations)
-    for (let j = 0; j <= segments; j++) {
-      const a = (j / segments) * Math.PI * 2;
-      if (openCockpit && z >= -1.15 - 1e-6 && z <= 0.99 + 1e-6 && j > 0 && j < 14) {
-        // Bring the opaque sidewalls all the way up to the canopy's elliptical sill.
-        // Removing the entire upper half left the seat and controls exposed from the side.
-        const rim = 0.58 * Math.sqrt(Math.max(0, 1 - ((z + 0.08) / 1.07) ** 2));
-        positions.push(Math.cos(((j - 1) / 12) * Math.PI) * rim, 2.05, z);
-      } else {
-        positions.push(Math.cos(a) * rx, y + Math.sin(a) * ry, z);
-      }
-    }
-  for (let i = 0; i < stations.length - 1; i++)
-    for (let j = 0; j < segments; j++) {
-      if (
-        openCockpit &&
-        stations[i][0] >= -1.15 - 1e-6 &&
-        stations[i + 1][0] <= 0.99 + 1e-6 &&
-        j >= 1 &&
-        j < 13
-      )
-        continue;
-      const a = i * (segments + 1) + j,
-        b = a + segments + 1;
-      indices.push(a, a + 1, b, b, a + 1, b + 1);
-    }
-  const geo = new T.BufferGeometry();
-  geo.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
-  geo.setIndex(indices);
-  geo.computeVertexNormals();
-  if (openCockpit) lining(parent, 'fuselage-interior', geo, [0, 1.57, -0.08], green);
-  return mesh(parent, name, geo, material);
-}
-function tube(parent, name, points, material, radius = 0.022, closed = false) {
+function tube(parent, name, points, material = olive, radius = 0.014) {
   return mesh(
     parent,
     name,
     new T.TubeGeometry(
-      new T.CatmullRomCurve3(
-        points.map((p) => new T.Vector3(...p)),
-        closed,
-      ),
-      Math.max(8, points.length * 2),
+      new T.CatmullRomCurve3(points.map((p) => new T.Vector3(...p))),
+      points.length === 2 ? 1 : Math.max(12, points.length * 3),
       radius,
-      6,
-      closed,
+      8,
+      false,
     ),
     material,
   );
 }
-function helicopterCabin(parent) {
-  // One shared surface: opaque skin and glazed panels meet along the same edges.
-  // A transparent whole sphere cannot stand in for the doors, roof and aft cabin.
-  const latitudes = [
-    0,
-    0.24,
-    0.48,
-    0.68,
-    0.88,
-    1.1,
-    1.32,
-    1.56,
-    1.7,
-    1.9,
-    2.12,
-    2.36,
-    2.62,
-    2.88,
-    Math.PI,
-  ];
-  const sides = 32;
-  const point = (theta, phi) => [
-    0.94 * Math.sin(theta) * Math.sin(phi),
-    1.48 + 1.02 * Math.cos(theta),
-    0.48 + 1.53 * Math.sin(theta) * Math.cos(phi),
-  ];
-  const panel = (i, j) => {
-    if (i < 0 || i >= latitudes.length - 1) return 'skin';
-    const theta = (latitudes[i] + latitudes[i + 1]) / 2;
-    const phi = Math.abs(-Math.PI + ((((j + sides) % sides) + 0.5) * Math.PI * 2) / sides);
-    if (phi < (Math.PI * 3) / 8 && theta > 0.48 && theta < 2.12) return 'windshield';
-    if (phi < (Math.PI * 5) / 8 && theta > 0.88 && theta < 1.56) return 'door-window';
-    return 'skin';
+const api = {
+  group,
+  mesh,
+  box,
+  sphere,
+  rod,
+  silver,
+  olive,
+  dark,
+  green,
+  rubber,
+  white,
+  blue,
+  brown,
+  yellow,
+  red,
+  glass,
+};
+const { text } = instrumentParts(api);
+const point = (theta, phi, lift = 0) => [
+  (0.91 + lift) * Math.sin(theta) * Math.sin(phi),
+  1.43 + (1.02 + lift) * Math.cos(theta),
+  0.26 + (1.73 + lift) * Math.sin(theta) * Math.cos(phi),
+];
+function lining(parent, name, geometry, center, material) {
+  const geo = geometry.clone();
+  geo.translate(-center[0], -center[1], -center[2]);
+  geo.scale(0.982, 0.982, 0.982);
+  geo.translate(...center);
+  const index = geo.index.array;
+  for (let i = 0; i < index.length; i += 3)
+    [index[i + 1], index[i + 2]] = [index[i + 2], index[i + 1]];
+  const normal = geo.getAttribute('normal');
+  for (let i = 0; i < normal.count; i++)
+    normal.setXYZ(i, -normal.getX(i), -normal.getY(i), -normal.getZ(i));
+  mesh(parent, name, geo, material);
+}
+function cabin(parent) {
+  // Glazing follows the same egg surface as the opaque doors, including separate aft windows.
+  const phiCount = 80;
+  const kind = (phi) => {
+    const a = Math.abs(phi);
+    return a <= Math.PI * 0.35
+      ? 'windshield'
+      : a <= Math.PI * 0.64
+        ? 'door'
+        : a >= Math.PI * 0.71 && a <= Math.PI * 0.9
+          ? 'aft-window'
+          : 'skin';
   };
-  const buffers = {
-    skin: { positions: [], normals: [], indices: [] },
-    glass: { positions: [], normals: [], indices: [] },
+  const cuts = (phi) => {
+    const a = Math.abs(phi),
+      k = kind(phi);
+    let top = 0.72,
+      bottom = 1.72;
+    if (k === 'windshield') {
+      top = 0.48;
+      bottom = 2.18;
+    }
+    if (k === 'door') {
+      const u = (a - Math.PI * 0.495) / 0.47;
+      top = 0.64 + 0.3 * u * u;
+      bottom = 1.72 - 0.15 * u * u;
+    }
+    if (k === 'aft-window') {
+      const u = (a - Math.PI * 0.805) / 0.3;
+      top = 0.86 + 0.18 * u * u;
+      bottom = 1.51 - 0.09 * u * u;
+    }
+    return [
+      0,
+      0.22,
+      0.43,
+      top,
+      top + (bottom - top) * 0.25,
+      top + (bottom - top) * 0.5,
+      top + (bottom - top) * 0.75,
+      bottom,
+      2.38,
+      2.7,
+      Math.PI,
+    ];
   };
-  for (let i = 0; i < latitudes.length - 1; i++) {
-    for (let j = 0; j < sides; j++) {
-      const a = latitudes[i],
-        b = latitudes[i + 1];
-      const c = -Math.PI + (j * Math.PI * 2) / sides,
-        d = c + (Math.PI * 2) / sides;
-      const kind = panel(i, j),
-        buffer = buffers[kind === 'skin' ? 'skin' : 'glass'];
-      const start = buffer.positions.length / 3;
+  const buffers = new Map();
+  function buffer(name) {
+    if (!buffers.has(name)) buffers.set(name, { positions: [], normals: [], indices: [] });
+    return buffers.get(name);
+  }
+  // Boundary angles have duplicate columns: adjoining panels still meet exactly at their cut.
+  const boundaries = [0, 0.35, 0.64, 0.71, 0.9, 1].flatMap((v) => [-v * Math.PI, v * Math.PI]);
+  const phis = [
+    ...new Set([
+      ...Array.from({ length: phiCount + 1 }, (_, i) => -Math.PI + (i * Math.PI * 2) / phiCount),
+      ...boundaries,
+    ]),
+  ].sort((a, b) => a - b);
+  for (let j = 0; j < phis.length - 1; j++) {
+    const a = phis[j],
+      b = phis[j + 1],
+      mid = (a + b) / 2,
+      k = kind(mid);
+    // Compute each column using this panel's side of the boundary to avoid seams.
+    const inset = 1e-7;
+    const ca = cuts(a + inset),
+      cb = cuts(b - inset);
+    for (let i = 0; i < ca.length - 1; i++) {
+      const glazed = k !== 'skin' && i >= 3 && i < 7;
+      const name = glazed ? `${k}-glazing` : 'cabin-panels';
+      const dst = buffer(name),
+        start = dst.positions.length / 3;
       for (const [theta, phi] of [
-        [a, c],
-        [b, c],
-        [b, d],
-        [a, d],
+        [ca[i], a],
+        [ca[i + 1], a],
+        [cb[i + 1], b],
+        [cb[i], b],
       ]) {
         const p = point(theta, phi);
-        buffer.positions.push(...p);
-        buffer.normals.push(
-          ...new T.Vector3(p[0] / 0.94 ** 2, (p[1] - 1.48) / 1.02 ** 2, (p[2] - 0.48) / 1.53 ** 2)
+        dst.positions.push(...p);
+        dst.normals.push(
+          ...new T.Vector3(p[0] / 0.91 ** 2, (p[1] - 1.43) / 1.02 ** 2, (p[2] - 0.26) / 1.73 ** 2)
             .normalize()
             .toArray(),
         );
       }
-      if (i > 0) buffer.indices.push(start, start + 1, start + 3);
-      if (i < latitudes.length - 2) buffer.indices.push(start + 1, start + 2, start + 3);
-      if (kind !== panel(i, j + 1) || (j === sides / 2 - 1 && kind === 'windshield')) {
-        tube(parent, 'glazing-upright', [point(a, d), point((a + b) / 2, d), point(b, d)], olive);
-      }
-      if (kind !== panel(i + 1, j)) {
-        tube(parent, 'glazing-rail', [point(b, c), point(b, (c + d) / 2), point(b, d)], olive);
-      }
+      if (i > 0) dst.indices.push(start, start + 1, start + 3);
+      if (i < ca.length - 2) dst.indices.push(start + 1, start + 2, start + 3);
+      if (glazed && (i === 3 || i === 6))
+        tube(
+          parent,
+          `${k}-seal`,
+          [point(ca[i === 3 ? i : i + 1], a, 0.003), point(cb[i === 3 ? i : i + 1], b, 0.003)],
+          olive,
+          0.013,
+        );
     }
+    if (k === 'windshield')
+      tube(
+        parent,
+        'windscreen-cross-rail',
+        [point(ca[5], a, 0.004), point(cb[5], b, 0.004)],
+        olive,
+        0.012,
+      );
   }
-  for (const [kind, buffer] of Object.entries(buffers)) {
-    const geometry = new T.BufferGeometry();
-    geometry.setAttribute('position', new T.Float32BufferAttribute(buffer.positions, 3));
-    geometry.setAttribute('normal', new T.Float32BufferAttribute(buffer.normals, 3));
-    geometry.setIndex(buffer.indices);
-    mesh(
-      parent,
-      kind === 'skin' ? 'cabin-panels' : 'cabin-canopy-windows',
-      geometry,
-      kind === 'skin' ? olive : glass,
-    );
-    if (kind === 'skin') lining(parent, 'cabin-interior', geometry, [0, 1.48, 0.48], green);
+  for (const [name, data] of buffers) {
+    const geo = new T.BufferGeometry();
+    geo.setAttribute('position', new T.Float32BufferAttribute(data.positions, 3));
+    geo.setAttribute('normal', new T.Float32BufferAttribute(data.normals, 3));
+    geo.setIndex(data.indices);
+    mesh(parent, name, geo, name === 'cabin-panels' ? olive : glass);
+    if (name === 'cabin-panels') lining(parent, 'cabin-interior', geo, [0, 1.43, 0.26], green);
   }
   for (const side of [-1, 1]) {
-    const phi = (side * Math.PI * 5) / 8;
+    for (const phi of [0, Math.PI * 0.35, Math.PI * 0.64, Math.PI * 0.71, Math.PI * 0.9]) {
+      const [, , , top, , , , bottom] = cuts(side * (phi + (phi === 0 ? 0 : -1e-6)));
+      tube(
+        parent,
+        'glazing-upright',
+        Array.from({ length: 14 }, (_, i) =>
+          point(top + ((bottom - top) * i) / 13, side * phi, 0.005),
+        ),
+        olive,
+        phi === 0 ? 0.018 : 0.022,
+      );
+    }
+    // Full door outline continues below its arched window to the belly sill.
+    const phi = side * Math.PI * 0.64;
     tube(
       parent,
       'door-aft-seam',
-      [1.56, 1.7, 1.9, 2.12, 2.36].map((theta) => point(theta, phi)),
+      Array.from({ length: 14 }, (_, i) => point(1.6 + (0.77 * i) / 13, phi, 0.006)),
       dark,
-      0.008,
+      0.004,
     );
-    const handle = point(1.68, side * 1.78);
+    const handle = point(1.82, side * 1.75, 0.018);
     rod(
       parent,
-      'door-handle',
-      [handle[0] + side * 0.02, handle[1], handle[2] - 0.08],
-      [handle[0] + side * 0.02, handle[1], handle[2] + 0.08],
-      0.016,
+      `door-handle-${side}`,
+      [handle[0], handle[1], handle[2] - 0.065],
+      [handle[0], handle[1], handle[2] + 0.065],
+      0.013,
       dark,
+    );
+    for (const theta of [1.13, 1.77]) {
+      const p = point(theta, side * 2.02, 0.015);
+      box(parent, `door-hinge-${side}-${theta}`, [0.025, 0.035, 0.06], p, silver);
+    }
+    sphere(
+      parent,
+      `navigation-light-${side}`,
+      [0.03, 0.025, 0.03],
+      [side * 0.88, 1.2, -0.27],
+      side === 1 ? red : mat('navigation-green', '#3f8156', 0.1, 0.25),
     );
   }
 }
-function wing(parent, name, outline, height, thickness, material = silver) {
+function loft(parent, name, stations, material) {
+  const n = 40,
+    vertices = [],
+    indices = [];
+  for (const [z, y, rx, ry] of stations)
+    for (let i = 0; i <= n; i++) {
+      const a = (i * Math.PI * 2) / n;
+      vertices.push(rx * Math.sin(a), y + ry * Math.cos(a), z);
+    }
+  for (let k = 0; k < stations.length - 1; k++)
+    for (let i = 0; i < n; i++) {
+      const a = k * (n + 1) + i,
+        b = a + n + 1;
+      indices.push(a, b, a + 1, b, b + 1, a + 1);
+    }
+  const geo = new T.BufferGeometry();
+  geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return mesh(parent, name, geo, material);
+}
+function fin(parent, name, outline, width, material = olive) {
   const shape = new T.Shape();
-  outline.forEach(([x, z], i) => {
-    if (i) shape.lineTo(x, -z);
-    else shape.moveTo(x, -z);
+  outline.forEach(([z, y], i) => {
+    if (i) shape.lineTo(z, y);
+    else shape.moveTo(z, y);
   });
   shape.closePath();
   const geo = new T.ExtrudeGeometry(shape, {
-    depth: thickness,
+    depth: width,
     bevelEnabled: true,
-    bevelSize: 0.035,
-    bevelThickness: 0.025,
-    bevelSegments: 1,
+    bevelSize: 0.005,
+    bevelThickness: 0.004,
+    bevelSegments: 2,
     steps: 1,
   });
-  geo.rotateX(-Math.PI / 2);
-  return mesh(parent, name, geo, material, [0, height, 0]);
+  // Shape XY is authored as ZY, extrusion becomes X.
+  geo.rotateY(-Math.PI / 2);
+  geo.translate(width / 2, 0, 0);
+  return mesh(parent, name, geo, material);
 }
-
-function _mustang() {
-  const g = new T.Group();
-  g.name = 'P-51D-Mustang';
-  const cockpitStations = Array.from({ length: 15 }, (_, i) => {
-    const z = -0.08 + 1.07 * Math.sin(-Math.PI / 2 + (i * Math.PI) / 14);
-    const t = (z + 1.15) / 2.14;
-    return [z, 1.57, 0.54 + t * 0.03, 0.6 + t * 0.03];
-  });
-  loft(
-    g,
-    'fuselage',
+function engine(parent) {
+  // The rear cabin skin already supplies the cowl; remove the old second oversized sphere.
+  fin(
+    parent,
+    'transmission-fairing',
     [
-      [-4.98, 1.42, 0.015, 0.06],
-      [-4.4, 1.45, 0.15, 0.3],
-      [-3.2, 1.52, 0.31, 0.44],
-      ...cockpitStations,
-      [2.5, 1.58, 0.51, 0.57],
-      [3.9, 1.58, 0.38, 0.41],
-      [4.35, 1.58, 0.3, 0.3],
+      [-0.15, 2.22],
+      [-0.35, 2.61],
+      [-1.16, 2.44],
+      [-1.28, 2.05],
     ],
-    silver,
-    true,
+    0.48,
   );
-  loft(
-    g,
-    'red-engine-cowl',
-    [
-      [3.65, 1.58, 0.425, 0.46],
-      [4.35, 1.58, 0.31, 0.32],
-    ],
-    red,
-  );
-  box(g, 'anti-glare-panel', [0.65, 0.025, 2.5], [0, 2.13, 2.15], olive);
-  sphere(g, 'ventral-radiator', [0.42, 0.38, 0.86], [0, 0.88, -0.68], silver);
-  box(g, 'radiator-inlet', [0.6, 0.25, 0.04], [0, 0.86, 0.11], dark);
   for (const side of [-1, 1]) {
-    wing(
-      g,
-      `wing-${side}`,
-      [
-        [side * 0.4, 1.65],
-        [side * 2.3, 1.4],
-        [side * 5.58, 0.45],
-        [side * 5.6, -0.45],
-        [side * 4.7, -0.86],
-        [side * 0.4, -1.0],
-      ],
-      1.03,
-      0.12,
-    );
-    wing(
-      g,
-      `tailplane-${side}`,
-      [
-        [side * 0.1, -3.35],
-        [side * 2, -4.0],
-        [side * 2, -4.5],
-        [side * 0.1, -4.5],
-      ],
-      1.55,
-      0.065,
-    );
-    const flap = group(g, `flap-${side}`, [side * 1.75, 1.08, -0.83]);
-    box(flap, 'flap-surface', [1.9, 0.05, 0.31], [0, 0, -0.12], silver);
-    const aileron = group(g, `aileron-${side}`, [side * 4.0, 1.08, -0.69]);
-    box(aileron, 'aileron-surface', [1.9, 0.045, 0.25], [0, 0, 0], silver);
-    for (let i = 0; i < 6; i++)
-      rod(
-        g,
-        `exhaust-${side}-${i}`,
-        [side * 0.48, 1.73, 2.6 - i * 0.18],
-        [side * 0.62, 1.71, 2.5 - i * 0.18],
-        0.045,
-        dark,
-      );
-    for (let i = 0; i < 3; i++)
+    box(parent, `engine-air-intake-${side}`, [0.014, 0.2, 0.38], [side * 0.257, 2.39, -0.76], dark);
+    for (let i = 0; i < 7; i++)
       box(
-        g,
-        `recognition-stripe-${side}-${i}`,
-        [0.25, 0.014, 1.75],
-        [side * (2.65 + i * 0.4), 1.19, 0.05],
-        i % 2 ? white : dark,
+        parent,
+        `intake-louver-${side}-${i}`,
+        [0.017, 0.009, 0.37],
+        [side * 0.27, 2.305 + i * 0.025, -0.76],
+        olive,
       );
-    const gear = group(g, `gear-${side}`, [side * 1.65, 1.08, 0.95]);
-    rod(gear, 'oleo-strut', [0, 0, 0], [side * 0.1, -0.65, 0.05], 0.055);
-    const wheel = mesh(gear, 'main-wheel', new T.CylinderGeometry(0.34, 0.34, 0.21, 20), rubber, [
-      side * 0.1,
-      -0.73,
-      0.05,
-    ]);
-    wheel.rotation.z = Math.PI / 2;
-    box(gear, 'gear-door', [0.22, 0.62, 0.055], [0, -0.28, 0], silver);
+    const seam = Array.from({ length: 18 }, (_, i) => point(0.73 + i * 0.093, side * 2.6, 0.006));
+    tube(parent, 'engine-access-seam', seam, dark, 0.004);
   }
-  const fin = wing(
-    g,
-    'vertical-fin',
+  const exit = group(parent, 'exhaust-outlet', [0, 1.42, -1.49]);
+  const bend = new T.CatmullRomCurve3(
     [
-      [0, -3.1],
-      [1.55, -4.1],
-      [1.55, -4.5],
-      [0, -4.65],
-    ],
-    0,
-    0.09,
-    red,
+      [0.16, 0.16, 0.21],
+      [0.04, 0.13, 0.06],
+      [0, 0.1, -0.1],
+      [0, 0.12, -0.29],
+    ].map((p) => new T.Vector3(...p)),
   );
-  fin.rotation.z = Math.PI / 2;
-  fin.position.y = 1.68;
-  const tailWheel = mesh(
-    g,
-    'tail-wheel',
-    new T.CylinderGeometry(0.17, 0.17, 0.12, 16),
-    rubber,
-    [0, 0.18, -4],
-  );
-  tailWheel.rotation.z = Math.PI / 2;
-  rod(g, 'tail-strut', [0, 0.26, -4], [0, 1.22, -3.9], 0.035);
-  const canopy = mesh(
-    g,
-    'bubble-canopy',
-    new T.SphereGeometry(1, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2),
-    glass,
-    [0, 2.05, -0.08],
-    [0.58, 0.65, 1.07],
-  );
-  canopy.renderOrder = 2;
-  tube(
-    g,
-    'cockpit-sill',
-    Array.from({ length: 28 }, (_, i) => {
-      const a = (i * Math.PI * 2) / 28;
-      return [0.58 * Math.cos(a), 2.05, -0.08 + 1.07 * Math.sin(a)];
-    }),
-    silver,
-    0.018,
-    true,
-  );
-  for (const z of [-0.91, 0.66]) {
-    const points = [];
-    const radius = Math.sqrt(1 - ((z + 0.08) / 1.07) ** 2);
-    for (let i = 0; i <= 16; i++) {
-      const a = (i / 16) * Math.PI;
-      points.push(
-        new T.Vector3(Math.cos(a) * 0.58 * radius, 2.05 + Math.sin(a) * 0.65 * radius, z),
-      );
-    }
-    mesh(
-      g,
-      'canopy-frame',
-      new T.TubeGeometry(new T.CatmullRomCurve3(points), 20, 0.02, 6, false),
-      silver,
-    );
-  }
-  tube(
-    g,
-    'windscreen-divider',
-    [0.66, 0.78, 0.88, 0.96, 0.99].map((z) => [
-      0,
-      2.05 + 0.65 * Math.sqrt(Math.max(0, 1 - ((z + 0.08) / 1.07) ** 2)),
-      z,
-    ]),
-    silver,
-    0.018,
-  );
-  addInterior(g, interiorLayout, {
-    group,
-    box,
-    rod,
-    sphere,
-    mesh,
-    lettering,
-    silver,
+  mesh(exit, 'exhaust-pipe', new T.TubeGeometry(bend, 20, 0.155, 24, false), exhaustMetal);
+  const mouth = mesh(
+    exit,
+    'exhaust-dark-opening',
+    new T.CircleGeometry(0.144, 32),
     dark,
-    white,
-    yellow,
-    blue,
-    brown,
-    green,
-    rubber,
-    olive,
-  });
-  const prop = group(g, 'propeller', [0, 1.58, 4.36]);
+    [0, 0.12, -0.298],
+  );
+  mouth.rotation.y = Math.PI;
+  mesh(
+    exit,
+    'exhaust-lip',
+    new T.TorusGeometry(0.153, 0.012, 8, 32),
+    exhaustMetal,
+    [0, 0.12, -0.293],
+  );
+  rod(exit, 'exhaust-divider', [0, -0.025, -0.3], [0, 0.265, -0.3], 0.009, exhaustMetal);
+}
+function rotorHead(parent) {
+  rod(parent, 'rotor-mast', [0, 2.29, -0.25], [0, 2.69, -0.25], 0.049, silver);
+  const swash = group(parent, 'swashplate', [0, 2.48, -0.25]);
+  for (const y of [0, 0.055])
+    mesh(
+      swash,
+      'swashplate-ring',
+      new T.TorusGeometry(0.135, 0.018, 8, 24).rotateX(Math.PI / 2),
+      silver,
+      [0, y, 0],
+    );
+  sphere(parent, 'mast-boot', [0.085, 0.12, 0.085], [0, 2.4, -0.25], rubber);
+  const rotor = group(parent, 'main-rotor', [0, 2.69, -0.25]);
+  const cap = mesh(rotor, 'rotor-head', new T.CylinderGeometry(0.09, 0.12, 0.08, 16), dark);
+  cap.position.y = 0.015;
   for (let i = 0; i < 4; i++) {
-    const blade = group(prop, `prop-blade-${i}`);
-    blade.rotation.z = (i * Math.PI) / 2;
-    box(blade, 'blade', [0.16, 1.48, 0.05], [0.05, 0.84, 0], dark);
-    box(blade, 'blade-tip', [0.16, 0.14, 0.056], [0.05, 1.54, 0], yellow);
+    const blade = group(rotor, `rotor-blade-${i}`);
+    blade.rotation.y = (i * Math.PI) / 2 + 0.25;
+    rod(blade, 'blade-grip', [0.1, 0, 0], [0.42, 0, 0], 0.036, silver);
+    box(blade, 'grip-hinge', [0.085, 0.09, 0.105], [0.25, 0, 0], silver);
+    rod(blade, 'pitch-link', [0.29, -0.2, 0.065], [0.35, -0.015, 0.065], 0.009, silver);
+    // Chord, tapered tips and small droop; 4.025 m radius, rather than five MD-500 blades.
+    const vertices = [],
+      indices = [];
+    const sections = [
+      [0.38, 0.16, 0],
+      [0.58, 0.18, 0],
+      [1.2, 0.185, -0.01],
+      [3.55, 0.18, -0.06],
+      [4.025, 0.135, -0.085],
+    ];
+    for (const [r, chord, y] of sections)
+      for (const [z, dy] of [
+        [-0.5, 0.003],
+        [-0.25, 0.02],
+        [0.5, 0.002],
+        [0.35, -0.014],
+        [-0.4, -0.012],
+      ])
+        vertices.push(r, y + dy, z * chord);
+    for (let j = 0; j < sections.length - 1; j++)
+      for (let k = 0; k < 5; k++) {
+        const a = j * 5 + k,
+          b = j * 5 + ((k + 1) % 5),
+          c = a + 5,
+          d = b + 5;
+        indices.push(a, b, c, b, d, c);
+      }
+    indices.push(0, 2, 1, 0, 3, 2, 0, 4, 3, 20, 21, 22, 20, 22, 23, 20, 23, 24);
+    const geo = new T.BufferGeometry();
+    geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
+    geo.setIndex(indices);
+    geo.computeVertexNormals();
+    mesh(blade, 'rotor-airfoil', geo, bladePaint);
+    box(blade, 'rotor-tip', [0.1, 0.022, 0.13], [3.974, -0.082, 0], yellow);
   }
-  const spinner = mesh(g, 'spinner', new T.ConeGeometry(0.32, 0.49, 24), red, [0, 1.58, 4.59]);
-  spinner.rotation.x = Math.PI / 2;
-  return g;
+}
+function tail(parent) {
+  loft(
+    parent,
+    'tail-boom',
+    [
+      [-4.99, 1.63, 0.06, 0.07],
+      [-4.5, 1.67, 0.083, 0.1],
+      [-3.0, 1.84, 0.13, 0.15],
+      [-1.3, 1.94, 0.26, 0.29],
+    ],
+    olive,
+  );
+  fin(
+    parent,
+    'tail-fin',
+    [
+      [-4.99, 0.91],
+      [-4.8, 0.91],
+      [-4.47, 2.52],
+      [-4.71, 2.61],
+    ],
+    0.04,
+  );
+  // The original OH-6 has an angled, braced stabilizer beneath the upper fin, not a T-tail.
+  for (const side of [-1, 1]) {
+    const shape = new T.Shape();
+    shape.moveTo(0, 0);
+    shape.lineTo(side * 0.76, 0.04);
+    shape.lineTo(side * 0.69, -0.29);
+    shape.lineTo(0, -0.31);
+    shape.closePath();
+    const geo = new T.ExtrudeGeometry(shape, {
+      depth: 0.025,
+      bevelEnabled: true,
+      bevelSize: 0.004,
+      bevelThickness: 0.003,
+      bevelSegments: 1,
+    });
+    geo.rotateX(-Math.PI / 2);
+    const stabilizer = mesh(parent, `tail-stabilizer-${side}`, geo, olive, [0, 2.02, -4.6]);
+    stabilizer.rotation.z = side * 0.18;
+    rod(parent, `tail-brace-${side}`, [0, 2.49, -4.6], [side * 0.67, 2.13, -4.75], 0.016, olive);
+  }
+  const rotor = group(parent, 'tail-rotor', [0.18, 1.7, -4.88]);
+  rod(rotor, 'tail-hub', [-0.13, 0, 0], [0.095, 0, 0], 0.043, silver);
+  for (let i = 0; i < 2; i++) {
+    const blade = group(rotor, `tail-blade-${i}`);
+    blade.rotation.x = i * Math.PI;
+    box(blade, 'tail-blade-airfoil', [0.022, 0.6, 0.105], [0.014, 0.33, 0], white);
+    box(blade, 'tail-blade-warning', [0.025, 0.075, 0.11], [0.014, 0.52, 0], red);
+    box(blade, 'tail-blade-tip', [0.025, 0.035, 0.11], [0.014, 0.612, 0], yellow);
+  }
+}
+function skids(parent) {
+  for (const side of [-1, 1]) {
+    tube(
+      parent,
+      `skid-${side}`,
+      [
+        [side * 0.99, 0.055, -1.42],
+        [side * 0.99, 0.055, 0.6],
+        [side * 0.99, 0.065, 1.4],
+        [side * 0.99, 0.12, 1.66],
+        [side * 0.99, 0.24, 1.84],
+      ],
+      olive,
+      0.045,
+    );
+    for (const z of [-0.75, 0.91]) {
+      tube(
+        parent,
+        `skid-cross-tube-${side}-${z}`,
+        [
+          [0, 0.54, z],
+          [side * 0.47, 0.58, z],
+          [side * 0.74, 0.48, z],
+          [side * 0.99, 0.12, z],
+        ],
+        olive,
+        0.035,
+      );
+      box(parent, 'skid-saddle', [0.12, 0.025, 0.09], [side * 0.99, 0.094, z], silver);
+    }
+    box(parent, `skid-step-${side}`, [0.08, 0.025, 0.41], [side * 0.88, 0.31, 0.53], dark);
+  }
+}
+function details(parent) {
+  for (const side of [-1, 1]) {
+    const markings = group(parent, `tail-markings-${side}`, [side * 0.142, 1.91, -2.9]);
+    // Text initially faces -Z; the local face rotates outward on either boom side.
+    markings.rotation.y = side === 1 ? -Math.PI / 2 : Math.PI / 2;
+    const stencil = text(markings, 'army-stencil', 'UNITED STATES ARMY', 0, 0, 0, 0.022, dark);
+    markings.updateMatrixWorld(true);
+    const positions = stencil.geometry.getAttribute('position');
+    for (let i = 0; i < positions.count; i++) {
+      const p = new T.Vector3()
+        .fromBufferAttribute(positions, i)
+        .applyMatrix4(markings.matrixWorld);
+      const aft = p.z < -3;
+      const t = aft ? (-p.z - 3) / 1.5 : (-p.z - 1.3) / 1.7;
+      const rx = aft ? 0.13 - t * 0.047 : 0.26 - t * 0.13;
+      const ry = aft ? 0.15 - t * 0.05 : 0.29 - t * 0.14;
+      const y = aft ? 1.84 - t * 0.17 : 1.94 - t * 0.1;
+      const dy = p.y - 1.91;
+      p.set(side * (rx * Math.sqrt(Math.max(0, 1 - (dy / ry) ** 2)) + 0.003), y + dy, p.z);
+      positions.setXYZ(i, ...p.toArray());
+    }
+    stencil.geometry.computeVertexNormals();
+    stencil.geometry.computeBoundingBox();
+    stencil.geometry.computeBoundingSphere();
+    parent.add(stencil);
+    parent.remove(markings);
+    const serial = group(parent, `serial-markings-${side}`, [side * 0.272, 2.41, -0.83]);
+    serial.rotation.y = side === 1 ? -Math.PI / 2 : Math.PI / 2;
+    text(serial, 'aircraft-serial', '16172', 0, 0, 0, 0.017, dark);
+  }
+  rod(parent, 'belly-antenna', [0, 0.46, -0.1], [0, 0.18, 0.16], 0.009, dark);
+  rod(parent, 'tail-antenna', [0, 1.81, -2.66], [0, 1.45, -2.92], 0.009, dark);
+  sphere(parent, 'anti-collision-beacon', [0.045, 0.035, 0.045], [0, 2.47, -1.05], red);
+  // Small fasteners are batched; they should not each cost a draw call.
+  const rivets = [];
+  for (const side of [-1, 1])
+    for (let j = 0; j < 26; j++) {
+      const p = point(1.84 + j * 0.012, side * 2.65, 0.008);
+      rivets.push(new T.SphereGeometry(0.0032, 6, 4).translate(...p));
+    }
+  mesh(parent, 'cowl-fasteners', mergeGeometries(rivets), silver);
+}
+/** Merge repeated static frame segments at the root, leaving every animated child intact. */
+function mergeStaticFrames(parent) {
+  const batches = new Map();
+  for (const object of [...parent.children]) {
+    if (!object.isMesh) continue;
+    const key = `${object.name}:${object.material.name}`;
+    if (!batches.has(key)) batches.set(key, []);
+    batches.get(key).push(object);
+  }
+  for (const objects of batches.values()) {
+    if (objects.length < 2) continue;
+    const geometries = objects.map((object) => {
+      object.updateMatrix();
+      const geometry = object.geometry.clone().applyMatrix4(object.matrix);
+      geometry.deleteAttribute('uv');
+      return geometry;
+    });
+    mesh(parent, objects[0].name, mergeGeometries(geometries), objects[0].material);
+    for (const object of objects) parent.remove(object);
+  }
 }
 function helicopter() {
   const g = new T.Group();
-  g.name = 'OH-6';
-  helicopterCabin(g);
-  sphere(g, 'engine-housing', [0.76, 0.65, 0.89], [0, 1.8, -0.83], olive);
-  loft(
-    g,
-    'tail-boom',
-    [
-      [-4.99, 1.81, 0.06, 0.07],
-      [-4.3, 1.78, 0.1, 0.12],
-      [-1.45, 1.62, 0.28, 0.3],
-    ],
-    olive,
-  );
-  for (const side of [-1, 1]) {
-    rod(g, 'skid', [side * 1.02, 0.08, -1.22], [side * 1.02, 0.08, 1.48], 0.06, dark);
-    rod(g, 'skid-toe', [side * 1.02, 0.08, 1.48], [side * 1.02, 0.23, 1.86], 0.06, dark);
-    for (const z of [-0.7, 0.9])
-      rod(g, 'skid-strut', [side * 0.57, 0.82, z], [side * 1.02, 0.12, z], 0.045, silver);
-  }
-  rod(g, 'rotor-mast', [0, 2.12, -0.25], [0, 2.6, -0.25], 0.09, silver);
-  const rotor = group(g, 'main-rotor', [0, 2.64, -0.25]);
-  for (let i = 0; i < 5; i++) {
-    const blade = group(rotor, `rotor-blade-${i}`);
-    blade.rotation.y = (i / 5) * Math.PI * 2;
-    box(blade, 'rotor-airfoil', [3.72, 0.035, 0.17], [2.16, 0, 0], dark);
-    box(blade, 'rotor-tip', [0.18, 0.04, 0.18], [3.91, 0, 0], yellow);
-  }
-  const tailFin = box(g, 'tail-fin', [0.07, 1.27, 0.54], [0, 1.79, -4.53], olive);
-  tailFin.rotation.x = -0.16;
-  box(g, 't-tail', [1.65, 0.055, 0.4], [0, 2.4, -4.47], olive);
-  const tail = group(g, 'tail-rotor', [-0.18, 1.84, -4.58]);
-  rod(tail, 'tail-hub', [-0.08, 0, 0], [0.08, 0, 0], 0.055);
-  for (let i = 0; i < 1; i++) {
-    const blade = box(tail, `tail-blade-${i}`, [0.04, 1.26, 0.12], [0, 0, 0], dark);
-    blade.rotation.x = (i * Math.PI) / 2;
-  }
-  rod(g, 'exhaust', [-0.3, 2.0, -1.17], [-0.3, 2.17, -1.65], 0.14, dark);
-  addInterior(g, interiorLayout, {
-    group,
-    box,
-    rod,
-    sphere,
-    mesh,
-    lettering,
-    silver,
-    dark,
-    white,
-    yellow,
-    blue,
-    brown,
-    green,
-    rubber,
-    olive,
-  });
-  const collective = group(g, 'collective', [-0.68, 0.74, 0.67]);
-  rod(collective, 'collective-lever', [0, 0, 0], [0, 0.16, 0.4], 0.022, dark);
+  g.name = 'OH-6A-Cayuse';
+  cabin(g);
+  engine(g);
+  skids(g);
+  rotorHead(g);
+  tail(g);
+  details(g);
+  mergeStaticFrames(g);
+  addInterior(g, interiorLayout, api);
   return g;
 }
 /**

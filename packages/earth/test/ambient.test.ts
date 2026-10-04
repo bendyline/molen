@@ -1,4 +1,4 @@
-import { AmbientAgent } from '@bendyline/molen-ambient/kernel';
+import { AmbientAgent, signalColor, signalTiming } from '@bendyline/molen-ambient/kernel';
 import { World } from '@bendyline/molen-kernel/world';
 import type {
   TerrainPyramidTileLayerContext,
@@ -91,6 +91,48 @@ describe('semantic tile observation', () => {
 });
 
 describe('earth ambient life', () => {
+  it('shows the same signal colour as NPC control and invalidates matches on tile unload', () => {
+    const parent = new THREE.Group();
+    const layer = new THREE.Group();
+    parent.add(layer);
+    const ambient = new EarthAmbient({ parent, settings: {} });
+    ambient.added(layer, tile(), context());
+    ambient.sync(0, { position: [5200, 2, -2800], direction: [0, 0, 1] });
+    ambient.handle.flush();
+    const junction = [...ambient.handle.network.junctionList()].find((j) => j.control === 'signal');
+    expect(junction).toBeDefined();
+    if (!junction) throw new Error('Fixture must contain a signalised junction');
+    const timing = signalTiming(junction, ambient.world.tickRate);
+    const heads = junction.arms.map((arm) => ({
+      junction: [junction.x, junction.z] as const,
+      direction: [arm.dx, arm.dz] as const,
+      radius: junction.radius,
+    }));
+    const observed = new Set<string>();
+    for (let tick = 0; tick <= timing.cycleTicks; tick += 60) {
+      if (tick > 0) for (let step = 0; step < 60; step++) ambient.world.step();
+      for (const [i, arm] of junction.arms.entries()) {
+        const color = ambient.surfaceSignalColor(heads[i] as (typeof heads)[number]);
+        expect(color).toBe(
+          signalColor(junction, arm.group, ambient.world.tick, ambient.world.tickRate),
+        );
+        observed.add(color as string);
+      }
+    }
+    expect(observed).toEqual(new Set(['red', 'amber', 'green']));
+    const arm = junction.arms[0];
+    if (!arm) throw new Error('Fixture must contain a road arm');
+    const head = {
+      junction: [junction.x, junction.z] as const,
+      direction: [arm.dx, arm.dz] as const,
+      radius: junction.radius,
+    };
+    expect(ambient.surfaceSignalColor(head)).toBeDefined();
+    ambient.removed(layer);
+    ambient.handle.flush();
+    expect(ambient.surfaceSignalColor(head)).toBeUndefined();
+    ambient.dispose();
+  });
   it('spawns traffic on displayed tiles, drops it when the tile hides, and cleans up', () => {
     const parent = new THREE.Group();
     const layer = new THREE.Group();

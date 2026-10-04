@@ -1,0 +1,30 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "Mount Baker tunnel flight",
+  "path": "/?lat=47.590063&lon=-122.28835&alt=36&yaw=3.141592653589793&pitch=0&quality=economy&backend=webgl&freeze&ambient=0&nostyles&hud=0",
+  "viewport": [1280, 720],
+  "probes": [
+    { "name": "location", "selector": "#location" },
+    { "name": "status", "selector": "#status" }
+  ],
+  "actions": [
+    { "type": "click", "selector": "button[data-mode=\"human\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 600,
+      "timeoutMs": 240000
+    },
+    { "type": "screenshot", "name": "01-portal", "timeoutMs": 120000 },
+    { "type": "keys", "keys": ["w", "Shift"], "durationMs": 8000 },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    { "type": "screenshot", "name": "02-inside", "timeoutMs": 120000 }
+  ]
+}

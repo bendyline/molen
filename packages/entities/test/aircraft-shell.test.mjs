@@ -43,8 +43,9 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
   });
   it('encloses both OH-6 door bottoms and the cabin roof with solid panels', async () => {
     const scene = await load('oh6', version);
+    // The arched OH-6A door glazing reaches lower than the old rectangular window.
     for (const side of [-1, 1])
-      for (const y of [1.38, 1.42, 1.46])
+      for (const y of [1.06, 1.1, 1.14])
         for (const z of [-0.1, 0.45, 0.85]) {
           const surface = hit(scene, [side * 3, y, z], [-side, 0, 0]);
           expect(surface.object.material.transparent).toBe(false);
@@ -67,5 +68,41 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
     const surface = hit(scene, eye, [0.15, 0, 1]);
     expect(surface.object.material.transparent).toBe(true);
     expect(surface.object.material.opacity).toBeLessThan(0.3);
+  });
+});
+
+describe.each(['source', 'imported'])('reference aircraft details (%s)', (version) => {
+  it('uses the OH-6A four-blade main rotor and two-blade tail rotor', async () => {
+    const scene = await load('oh6', version);
+    const main = scene.getObjectByName('main-rotor');
+    const tail = scene.getObjectByName('tail-rotor');
+    expect(main.children.filter((node) => /^rotor-blade-/.test(node.name))).toHaveLength(4);
+    expect(tail.children.filter((node) => /^tail-blade-\d+$/.test(node.name))).toHaveLength(2);
+    expect(scene.getObjectByName('tail-brace--1')).toBeDefined();
+    expect(scene.getObjectByName('tail-brace-1')).toBeDefined();
+    expect(scene.getObjectByName('t-tail')).toBeUndefined();
+  });
+  it('gives each aircraft its own mechanical cockpit', async () => {
+    const mustang = await load('p51d', version);
+    const cayuse = await load('oh6', version);
+    expect(mustang.getObjectByName('k14-gunsight')).toBeDefined();
+    expect(mustang.getObjectByName('throttle-quadrant')).toBeDefined();
+    expect(mustang.getObjectByName('manifold-instrument')).toBeDefined();
+    expect(cayuse.getObjectByName('pedestal-body')).toBeDefined();
+    expect(cayuse.getObjectByName('torque-instrument')).toBeDefined();
+    expect(cayuse.getObjectByName('control-stick_1')).toBeDefined();
+    // Gauges face the pilot, rather than being hidden behind the panel's back face.
+    for (const [scene, eye, gaugeId] of [
+      [mustang, [0, 2.28, 0.05], 'airspeed-instrument'],
+      [cayuse, [-0.38, 1.7, 0.6], 'airspeed-instrument'],
+    ]) {
+      const gauge = scene.getObjectByName(gaugeId);
+      const target = new Vector3();
+      gauge.getWorldPosition(target);
+      const origin = new Vector3(...eye);
+      const surface = hit(scene, eye, target.sub(origin).toArray());
+      expect(surface.object.name).toMatch(/airspeed-(cover|hub|pointer|dial)/);
+      expect(surface.object.name).not.toBe('instrument-panel');
+    }
   });
 });

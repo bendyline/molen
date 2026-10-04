@@ -525,12 +525,17 @@ of images that may come from an external cache.
 
 Mapped roads with `bridge: true` receive solid decks, edge barriers and regularly spaced
 supports in the shared terrain surface renderer, including its worker path. Road, rail and
-pedestrian spans follow mapped centerlines and widths; tunnels are omitted. Complete spans
+pedestrian spans follow mapped centerlines and widths. Complete spans
 interpolate between bank heights and connect to adjoining ground roads. Clipped spans use
 estimated terrain clearance (6 m for roads/rail, 3 m for paths); a semantic provider can set
 `deckElevation` to an absolute surveyed height. These are visual approximations: tile data
 does not establish bridge engineering type, navigation clearance, foundations or collision.
 The SR-520 preview replaces the floating section; its approaches use this same fallback.
+
+Mapped tunnels receive separate inferred underground bores and portal cuts that retain the
+terrain above them. Aircraft support queries use the bore floor while underground. Centerlines
+alone do not establish surveyed grades, widths or clearances; see [Tunnels](surface-rendering.md#tunnels)
+for the metadata overrides, inference and bounded route stitching.
 
 Regional procedural styles are separate from exact structures. The atlas's ordered rules use
 mapped building class, footprint size, context, and known height to choose a style. A rule can

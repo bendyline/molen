@@ -53,7 +53,7 @@ export interface EarthAircraftOptions {
   /** Scene parent for aircraft models (the streamed terrain root). */
   root: THREE.Object3D;
   /** Terrain height at world X/Z, or undefined while it is still streaming. */
-  sampleHeight: (x: number, z: number) => number | undefined;
+  sampleHeight: (x: number, z: number, y?: number) => number | undefined;
   /** Load an aircraft model by entity type id, e.g. from the entities content pack. */
   loadModel: (id: string) => Promise<THREE.Object3D>;
   /** Entity types: aircraft specs, cockpit, seats and sounds. */
@@ -142,7 +142,7 @@ export class EarthAircraft {
   message: string = '';
   private readonly world: World;
   private readonly root: THREE.Object3D;
-  private readonly sampleHeight: (x: number, z: number) => number | undefined;
+  private readonly sampleHeight: (x: number, z: number, y?: number) => number | undefined;
   private readonly loadModel: (id: string) => Promise<THREE.Object3D>;
   private readonly types: TypeLibrary;
   private readonly vehicleEnvironment: VehicleEnvironment;
@@ -176,7 +176,7 @@ export class EarthAircraft {
     this.object.name = 'earth:aircraft';
     this.root.add(this.object);
     installAircraft(this.world, {
-      groundHeight: (x, z) => this.sampleHeight(x, z),
+      groundHeight: (x, z, y) => this.sampleHeight(x, z, y),
       canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
     });
   }

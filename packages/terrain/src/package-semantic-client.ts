@@ -10,7 +10,7 @@ import {
   terrainPackageArchiveSourceLocation,
 } from './package-client';
 import type { TerrainPackageDescriptor } from './package-types';
-import type { TerrainPyramidTileLayer } from './pyramid-stream';
+import type { TerrainPyramidHeightSource, TerrainPyramidTileLayer } from './pyramid-stream';
 import { createBuildingDetailTerrainSemanticSource } from './semantic-building-detail';
 import {
   createDefaultTerrainSemanticRenderer,
@@ -19,6 +19,7 @@ import {
   type TerrainSemanticTileRenderer,
 } from './semantic-client';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
+import { withTerrainTunnels } from './tunnels';
 
 export interface TerrainPackageSemanticLayerStyle {
   id?: string;
@@ -34,6 +35,8 @@ export interface CreateTerrainPackageSemanticLayersOptions
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
   waterLayer?: TerrainPackageSemanticLayerStyle;
   featuresLayer?: TerrainPackageSemanticLayerStyle;
+  /** Render inferred underground corridors in the finest feature levels. Share the stream's elevation source. */
+  tunnels?: { heights: TerrainPyramidHeightSource; minLevel?: number };
   /**
    * Serve terrain levels finer than a sidecar's last level from that level's tiles, rescaled and
    * clipped (default true). Without it the finest terrain tiles near the camera have no water,
@@ -79,6 +82,7 @@ export async function createTerrainPackageSemanticLayers(
     landcoverLayer,
     waterLayer,
     featuresLayer,
+    tunnels,
     overzoom = true,
     buildingDetail,
     ...openOptions
@@ -236,18 +240,26 @@ export async function createTerrainPackageSemanticLayers(
         return land ? { ...tile, landcover: land.landcover } : tile;
       },
     };
+    const inner =
+      style.renderer ??
+      createDefaultTerrainSemanticRenderer({
+        ...style.mesh,
+        renderLandcover: false,
+        renderWater: false,
+      });
     layers.push(
       createTerrainSemanticPyramidLayer({
         id: style.id ?? 'human-features',
         category: 'human-feature',
         source: surfaceSource,
-        renderer:
-          style.renderer ??
-          createDefaultTerrainSemanticRenderer({
-            ...style.mesh,
-            renderLandcover: false,
-            renderWater: false,
-          }),
+        renderer: tunnels
+          ? withTerrainTunnels(
+              inner,
+              featuresSource as TerrainPackageSemanticSource,
+              tunnels.heights,
+              tunnels.minLevel ?? semantics.features.maxLevel,
+            )
+          : inner,
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??

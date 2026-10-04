@@ -38,7 +38,15 @@ describe('browser: walk navigation', () => {
     expect(position(frames.get('03-no-flight-on-foot')?.status)).toEqual(after);
     expect(frames.get('05-landed')?.navigation).toContain('On ground');
     expect(frames.get('06-fly')?.navigation).toContain('Fly mode');
-    expect(position(frames.get('06-fly')?.status)[2] - after[2]).toBeGreaterThan(30);
+    // Free flight keeps street/tunnel height instead of lifting the camera 35 m into a roof.
+    const altitude = (name: string): number => {
+      const match = frames.get(name)?.location?.match(/Altitude ([\d.-]+) m/);
+      if (!match) throw new Error(`Missing altitude for ${name}`);
+      return Number(match[1]);
+    };
+    const flightLift = altitude('06-fly') - altitude('05-landed');
+    expect(flightLift).toBeGreaterThan(0);
+    expect(flightLift).toBeLessThan(2);
   });
 });
 

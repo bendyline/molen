@@ -40,6 +40,14 @@
       "text": "Fly mode",
       "timeoutMs": 60000
     },
+    { "type": "key-down", "keys": ["KeyE"] },
+    {
+      "type": "wait-for",
+      "note": "Switching to flight keeps street height for tunnel access. Climb explicitly until ground birdsong fades, allowing for slow software-rendered frames.",
+      "selector": "#sound-status:text-matches(\"ambience.birds (?:[1-5]?[0-9]|6[0-5])%\")",
+      "timeoutMs": 240000
+    },
+    { "type": "key-up", "keys": ["KeyE"] },
     { "type": "wait", "durationMs": 1500 },
     { "type": "screenshot", "name": "02-fly-low" },
     { "type": "key-down", "keys": ["KeyE"] },

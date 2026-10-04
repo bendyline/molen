@@ -183,7 +183,12 @@ function fixture(): Uint8Array {
         {
           id: 6,
           type: 2,
-          properties: { kind: 'minor_road', is_tunnel: true },
+          properties: {
+            kind: 'minor_road',
+            is_tunnel: true,
+            tunnel_floor_elevation: '-12 m',
+            tunnel_clearance: '6.5 m',
+          },
           geometry: [
             [
               { x: 0, y: 3072 },
@@ -258,7 +263,12 @@ describe('MVT terrain semantic decoder', () => {
       layer: 1,
       bridge: true,
     });
-    expect(tile.transportation[1]).toMatchObject({ id: 6, tunnel: true });
+    expect(tile.transportation[1]).toMatchObject({
+      id: 6,
+      tunnel: true,
+      tunnelFloorElevation: -12,
+      tunnelClearance: 6.5,
+    });
     expect(tile.buildings).toEqual([
       expect.objectContaining({
         id: 7,

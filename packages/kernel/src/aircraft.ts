@@ -75,7 +75,7 @@ export function aircraftMounts(spec: AircraftSpec): MountableData {
   };
 }
 export interface AircraftEnvironment {
-  groundHeight(x: number, z: number): number | undefined;
+  groundHeight(x: number, z: number, y?: number): number | undefined;
   wind?: [number, number, number];
   /** Optional shared atmospheric conditions. Otherwise retain the stock altitude-density model. */
   weather?: WeatherData;
@@ -229,7 +229,7 @@ export function stepAircraft(
     };
   });
   for (let n = 0; n < steps; n++) {
-    const ground = env.groundHeight(t.pos[0], t.pos[2]);
+    const ground = env.groundHeight(t.pos[0], t.pos[2], t.pos[1]);
     if (ground === undefined || !Number.isFinite(ground)) {
       s.waitingForTerrain = true;
       break;
@@ -439,7 +439,7 @@ export function stepAircraft(
     for (let i = 0; i < 3; i++)
       s.velocity[i] = (s.velocity[i] ?? 0) + ((force[i] ?? 0) / spec.mass) * h;
     const pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h) as [number, number, number];
-    const support = env.groundHeight(pos[0], pos[2]);
+    const support = env.groundHeight(pos[0], pos[2], pos[1]);
     if (support === undefined || !Number.isFinite(support)) {
       Object.assign(s, previous, { waitingForTerrain: true });
       if (previous.engines === undefined) delete s.engines;

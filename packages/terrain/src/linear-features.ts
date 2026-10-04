@@ -140,7 +140,11 @@ export class TerrainSurfaceMeshBuilder {
     }
   }
 
-  mesh(name: string, material: THREE.Material = SURFACE_MATERIAL): THREE.Mesh | undefined {
+  mesh(
+    name: string,
+    material: THREE.Material = SURFACE_MATERIAL,
+    groundSurface = true,
+  ): THREE.Mesh | undefined {
     if (this.positions.length === 0) return undefined;
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
@@ -150,7 +154,7 @@ export class TerrainSurfaceMeshBuilder {
     mesh.name = name;
     mesh.receiveShadow = true;
     mesh.userData.terrainOwnedGeometry = true;
-    markTerrainGroundSurface(mesh);
+    if (groundSurface) markTerrainGroundSurface(mesh);
     return mesh;
   }
 }
