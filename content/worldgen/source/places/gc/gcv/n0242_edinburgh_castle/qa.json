@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0242_edinburgh_castle",
+  "sourceHash": "sha256:4cd274cfb172ebeddbbb803c2f7f3cd6aa3140f3c27f8823e8bda61562641388",
+  "runtimeHash": "sha256:237f5465a63525801cde32c93ddba3c8b2b5d39102ef9c8a0ad1f09ed1868f7c",
+  "captureReportHash": "sha256:38833232264d63a7cb7995a0655282ab4068c514ccb9c2934b6906a9f22b4157",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; architectural fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/palace-clock-crown-square.png",
+      "shots/great-hall-and-queen-anne.png",
+      "shots/memorial-crown-square.png",
+      "shots/half-moon-battery-palace.png",
+      "shots/east-gatehouse-passage.png",
+      "shots/argyle-tower-and-chapel.png",
+      "shots/hospital-square.png",
+      "shots/barracks-south-exterior.png",
+      "shots/open-courts-and-roof-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable views. Corrected gate rotations and overlapping component walls, memorial entrance/window overlap and stair treads. The final views preserve open Crown Square and Hospital Square, palace clock turret, Great Hall, memorial, chapel, stepped batteries, barracks and open gate vaults. Castle Rock and exact roof/window patterns remain reconstructed."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:59b038314c3d1845ee4edf60e99c72b87c7e82d67fb958090ddc28f43aea74ab",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/palace-clock-crown-square.png",
+      "shots/shared/great-hall-and-queen-anne.png",
+      "shots/shared/memorial-crown-square.png",
+      "shots/shared/half-moon-battery-palace.png",
+      "shots/shared/east-gatehouse-passage.png",
+      "shots/shared/argyle-tower-and-chapel.png",
+      "shots/shared/hospital-square.png",
+      "shots/shared/barracks-south-exterior.png",
+      "shots/shared/open-courts-and-roof-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Seven canonical material graphs each load once, glazing remains local PBR, and unloading leaves zero live model geometries. These studio captures do not establish geographic fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:ba20e53ad5dde622aa3cc3c9505ac13a813ca44270b3ce8ec394cb57a2fc85dd",
+    "notes": "Exact Q212065 precinct way/4301292 with mapped component positions; anchor [-3.200425671,55.948548674], cached heading -0.238261013131. Signed axis, real terrain elevation and courtyard levels still need geographic review. Draft placement with replaceFootprint=false; enclosing precinct must not replace all OSM building footprints."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity is pending. Courtyard elevations, heights, roof junctions, opening positions, and gatehouse fit are reconstructed rather than surveyed. Master includes architectural niches, stonework, window frames, guns and crenellations; statues, memorial carvings, heraldic shields and inscriptions are not faithful sculptural reproductions. Castle Rock is represented only by provisional stepped retaining plinths. No claim of terrain fit, exact geology, interiors, trees or temporary esplanade installations. The palace turret clock is static. Dormers, precisely stepped gables, decorative ridge pieces, Foogs Gate and individual roof details still need close-reference refinement. Shared sandstone, raw limestone, weathered limestone, slate, ceramic chimney pots, timber and painted metal; PBR glazing. No embedded images."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "validatorLimitations": "Unused-UV information reflects procedural material graphs resolved by Molen. Geometry validation does not certify architectural accuracy.",
+    "triangles": 259930,
+    "vertices": 518622,
+    "materials": 8,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Authored LOD comparison and automated triangle/download/layout/determinism checks; physical phone and laptop measurements pending.",
+    "notes": "788 / 3636 / 12770 / 45598 triangles. Skyline plus district totals 331624 bytes; street 964872 bytes; close-up 3491812 bytes. Separate source master is 21794276 bytes. Skyline preserves principal blocks and courtyard voids while omitting fine crenellations, minor outbuildings and chimneys.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0242_edinburgh_castle/model.skyline.glb",
+        "hash": "sha256:6e410046ba334d4379fa1b12468fa84a6243dc29a27ffb3b6aa16c82c98112fd",
+        "bytes": 65672,
+        "triangles": 788,
+        "vertices": 1654,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -137.7790069580078,
+          0,
+          -75.02899932861328
+        ],
+        "max": [
+          137.7790069580078,
+          49,
+          68.94000244140625
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0242_edinburgh_castle/model.district.glb",
+        "hash": "sha256:aecf0c46631e89c2226814891d01118a40066a0fd3ca40011caf1ae26f03a4fb",
+        "bytes": 265952,
+        "triangles": 3636,
+        "vertices": 6546,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -138.46334838867188,
+          0,
+          -75.61663818359375
+        ],
+        "max": [
+          137.7790069580078,
+          49,
+          75.02899932861328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0242_edinburgh_castle/model.street.glb",
+        "hash": "sha256:772e162349e8c318a4643647c1d748ccbe437eb55ba704cff7845196c8268f9c",
+        "bytes": 964872,
+        "triangles": 12770,
+        "vertices": 24436,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -138.46334838867188,
+          0,
+          -75.64414978027344
+        ],
+        "max": [
+          137.7790069580078,
+          49,
+          75.72151947021484
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0242_edinburgh_castle/model.closeup.glb",
+        "hash": "sha256:b809dfec66eac6a2ed7f4c214712dd2e8fa6fec708fb9325c189944fd7e3f36b",
+        "bytes": 3491812,
+        "triangles": 45598,
+        "vertices": 89122,
+        "materials": 8,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -138.54156494140625,
+          0,
+          -75.7144546508789
+        ],
+        "max": [
+          137.7790069580078,
+          49,
+          75.80066680908203
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

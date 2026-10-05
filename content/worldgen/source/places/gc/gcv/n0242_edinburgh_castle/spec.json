@@ -1,0 +1,291 @@
+{
+  "planId": "N0242",
+  "id": "N0242",
+  "assetId": "molen.worldgen.structure.n0242_edinburgh_castle",
+  "title": "Edinburgh Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q212065",
+  "referenceCoordinate": {
+    "latitude": 55.9487,
+    "longitude": -3.20073
+  },
+  "visualBrief": "Edinburgh Castle with stepped wards, open Crown Square and Hospital Square, Royal Palace and octagonal clock turret, Great Hall, Queen Anne range, Scottish National War Memorial, St Margaret chapel, New Barracks, Governors House, Half Moon and Argyle batteries, and open gate passages.",
+  "size": [
+    276.32057189941406,
+    49,
+    151.51512145996094
+  ],
+  "actualBounds": {
+    "min": [
+      -138.54156494140625,
+      0,
+      -75.7144546508789
+    ],
+    "max": [
+      137.7790069580078,
+      49,
+      75.80066680908203
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X toward the eastern entrance/esplanade",
+    "front": "+Z toward the southern palace and barracks exterior",
+    "origin": "Cached exact-identity precinct center, provisional gate-level datum"
+  },
+  "sourceFacts": {
+    "mapIdentity": "OSM way/4301292, exact Q212065 precinct",
+    "mapComponents": 116,
+    "surveyedVerticalDimensions": false
+  },
+  "reconstruction": {
+    "basis": "Individual OSM component polygons and height tags, illustrated plan and inspected exterior photographs.",
+    "lowerWardDatumMeters": 6,
+    "upperWardDatumMeters": 17,
+    "palaceClockTopMeters": 37,
+    "flagpoleTopMeters": 49
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/way/4301292",
+    "https://www.edinburghcastle.scot/media/fpanlfr2/orientation-map.pdf",
+    "https://www.edinburghcastle.scot/see-and-do/highlights/the-royal-palace/",
+    "https://www.edinburghcastle.scot/see-and-do/highlights/half-moon-battery/",
+    "https://commons.wikimedia.org/wiki/File:Edinburgh_Castle_plan_coloured.png",
+    "https://commons.wikimedia.org/wiki/File:Edinburgh_Castle_from_the_south_east.JPG",
+    "https://commons.wikimedia.org/wiki/File:Façade_of_the_Scottish_National_War_Memorial,_Edinburgh_Castle,_Scotland,_UK.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Mapped component frame; terrain datum, signed orientation and geographic visual fit pending",
+    "anchor": [
+      -3.200425671,
+      55.948548674
+    ],
+    "heading": -0.238261013131,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/4301292",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/4301292"
+    ],
+    "wikidataId": "Q212065",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "The whole precinct includes courts and batteries, not a single building footprint. Do not erase all map buildings based on the enclosing polygon."
+  },
+  "scaleBasis": "OSM footprints in meters; cached exact-identity precinct frame. Relative levels, roofs and opening dimensions are reconstructed, not a terrain survey.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Reference photos linked only; no copied image textures or external meshes.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity is pending. Courtyard elevations, heights, roof junctions, opening positions, and gatehouse fit are reconstructed rather than surveyed.",
+    "Master includes architectural niches, stonework, window frames, guns and crenellations; statues, memorial carvings, heraldic shields and inscriptions are not faithful sculptural reproductions.",
+    "Castle Rock is represented only by provisional stepped retaining plinths. No claim of terrain fit, exact geology, interiors, trees or temporary esplanade installations.",
+    "The palace turret clock is static. Dormers, precisely stepped gables, decorative ridge pieces, Foogs Gate and individual roof details still need close-reference refinement.",
+    "Shared sandstone, raw limestone, weathered limestone, slate, ceramic chimney pots, timber and painted metal; PBR glazing. No embedded images."
+  ],
+  "qaCameras": [
+    {
+      "name": "palace-clock-crown-square",
+      "position": [
+        50,
+        29,
+        33
+      ],
+      "lookAt": [
+        74,
+        28,
+        26
+      ]
+    },
+    {
+      "name": "great-hall-and-queen-anne",
+      "position": [
+        62,
+        34,
+        20
+      ],
+      "lookAt": [
+        49,
+        24,
+        48
+      ]
+    },
+    {
+      "name": "memorial-crown-square",
+      "position": [
+        56,
+        27,
+        39
+      ],
+      "lookAt": [
+        46,
+        24,
+        10
+      ]
+    },
+    {
+      "name": "half-moon-battery-palace",
+      "position": [
+        150,
+        56,
+        32
+      ],
+      "lookAt": [
+        74,
+        24,
+        10
+      ]
+    },
+    {
+      "name": "east-gatehouse-passage",
+      "position": [
+        150,
+        9,
+        -43
+      ],
+      "lookAt": [
+        106.5,
+        5,
+        -25.6
+      ]
+    },
+    {
+      "name": "argyle-tower-and-chapel",
+      "position": [
+        58,
+        37,
+        -80
+      ],
+      "lookAt": [
+        23,
+        19,
+        -29
+      ]
+    },
+    {
+      "name": "hospital-square",
+      "position": [
+        -86,
+        30,
+        -14
+      ],
+      "lookAt": [
+        -93,
+        14,
+        -32
+      ]
+    },
+    {
+      "name": "barracks-south-exterior",
+      "position": [
+        -60,
+        40,
+        125
+      ],
+      "lookAt": [
+        -33,
+        18,
+        43
+      ]
+    },
+    {
+      "name": "open-courts-and-roof-plan",
+      "position": [
+        0,
+        230,
+        80
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 259930,
+    "vertices": 518622,
+    "materials": 8,
+    "bytes": 21794276,
+    "sha256": "sha256:4cd274cfb172ebeddbbb803c2f7f3cd6aa3140f3c27f8823e8bda61562641388"
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "planId": "N0253",
+  "id": "N0253",
+  "assetId": "molen.worldgen.structure.n0253_bratislava_castle",
+  "title": "Bratislava Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q593311",
+  "referenceCoordinate": {
+    "latitude": 48.142222222,
+    "longitude": 17.1
+  },
+  "visualBrief": "White four-wing palace around a real open courtyard, unequal square/octagonal corner towers and swept terracotta crowns; curved Court of Honour pavilions, separate gates, mapped barracks, riding hall and Baroque garden.",
+  "size": [
+    340.98204040527344,
+    57.650001525878906,
+    310.9169616699219
+  ],
+  "actualBounds": {
+    "min": [
+      -173.4095458984375,
+      0,
+      -155.33169555664062
+    ],
+    "max": [
+      167.57249450683594,
+      57.650001525878906,
+      155.58526611328125
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast, 58.412 degrees north of east",
+    "front": "South entrance toward native -X/+Z; +Z southeast",
+    "origin": "Mapped grounds anchor; provisional lower Sigismund Gate datum"
+  },
+  "sourceFacts": {
+    "identity": "Q593311 identifies grounds way/1128350263; palace Q13425656 is way/8160490 and relation/14610630.",
+    "mappedEnvelopeMeters": [
+      334.485,
+      310.572
+    ],
+    "mappedFeatures": 334,
+    "officialCrownTowerHeightMeters": 47,
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "OSM independent parts fix the palace, courtyard, towers, gates and garden plan. Official tourist-board photographs and the NR SR 2018 reconstruction illustration guide exterior forms.",
+    "verticalDatum": "Provisional palace terrace Y=10, Crown roof tip Y=57 (47 m above terrace), finial Y=57.65. Museum height takes precedence over conflicting OSM 31 m tower tags; exact measured datum and other building heights require review.",
+    "state": "Restored Baroque palace and garden; Great Moravian church survives as low archaeological foundations."
+  },
+  "referencePages": [
+    "https://www.snm.sk/en/museums/museum-of-history/museum-of-history/visit/expositions?clanok=crown-tower-1",
+    "https://www.visitbratislava.com/places/bratislava-castle/",
+    "https://www.visitbratislava.com/wp-content/uploads/2020/01/4DL_hrad_2023_EN_web.pdf",
+    "https://www.nrsr.sk/web/Dynamic/Download.aspx?DocID=448675",
+    "https://www.openstreetmap.org/way/1128350263",
+    "https://www.openstreetmap.org/relation/14610630"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft pending terrace heights, directional fit and terrain contact",
+    "anchor": [
+      17.100792149,
+      48.142390437
+    ],
+    "heading": 1.019493535917,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/1128350263",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/1128350263"
+    ],
+    "wikidataId": "Q593311",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d75de21845dd9946634076837dae4c13d434a95045a615727f80867eba54b887",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Enclosure includes open grounds. Palace court, gardens and park must remain open; do not replace the enclosure with a solid building."
+  },
+  "scaleBasis": "Meter map coordinates. Native +X 58.412 degrees north of east; +Z southeast. Terrace elevations, facade bay rhythms, roof pitches and portals are reconstructed, not a measured survey.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map data © OpenStreetMap contributors, ODbL-1.0. Official illustrations and photographs were inspected as architectural references; no third-party photograph or mesh is embedded.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity pending: detailed surveyed elevations are unavailable. Palace facades, tower clocks, dormers, chimneys, gate profiles and roof junctions need photographic refinement.",
+    "Museum gives Crown Tower height 47 m; OSM tower parts say 31 m. The recipe uses the museum value above a provisional terrace, without claiming that its height datum is verified.",
+    "Landscape field, supporting platforms and terrace heights are interpreted. The four historical garden terraces are not yet modeled to measured levels. Retaining walls, stairs and terrain contact require in-world fitting.",
+    "The original equestrian sculpture is an interpretive silhouette, not a likeness of the Svätopluk artwork. Garden figures, St Elizabeth statue, ornamental carving, mature trees, interiors and underground remains are unfinished or omitted.",
+    "Shared plaster, tile, stone, wood, gravel and metal carry materials; no embedded images. Detailed masters retain modeled tile courses, window joinery and trim. No physical-device benchmark approval is claimed."
+  ],
+  "qaCameras": [
+    {
+      "name": "mapped-palace-and-garden-plan",
+      "position": [
+        0,
+        510,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "south-court-of-honour",
+      "position": [
+        -156,
+        42,
+        20
+      ],
+      "lookAt": [
+        -65,
+        30,
+        -27
+      ]
+    },
+    {
+      "name": "crown-tower-and-western-barracks",
+      "position": [
+        -166,
+        66,
+        -114
+      ],
+      "lookAt": [
+        -60,
+        25,
+        -60
+      ]
+    },
+    {
+      "name": "open-courtyard",
+      "position": [
+        -37,
+        65,
+        -12
+      ],
+      "lookAt": [
+        -37,
+        18,
+        -44
+      ]
+    },
+    {
+      "name": "garden-and-riding-hall",
+      "position": [
+        98,
+        80,
+        -127
+      ],
+      "lookAt": [
+        30,
+        17,
+        -53
+      ]
+    },
+    {
+      "name": "garden-parterre-and-fountain",
+      "position": [
+        116,
+        28,
+        -28
+      ],
+      "lookAt": [
+        55,
+        10,
+        -53
+      ]
+    },
+    {
+      "name": "north-barracks-and-nicholas-gate",
+      "position": [
+        227,
+        38,
+        52
+      ],
+      "lookAt": [
+        133,
+        13,
+        -20
+      ]
+    },
+    {
+      "name": "sigismund-gate-and-lower-park",
+      "position": [
+        -105,
+        26,
+        202
+      ],
+      "lookAt": [
+        -65,
+        9,
+        130
+      ]
+    },
+    {
+      "name": "leopold-gate-and-buttressed-terrace",
+      "position": [
+        -225,
+        38,
+        5
+      ],
+      "lookAt": [
+        -117,
+        12,
+        -15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 684637,
+    "vertices": 1388547,
+    "materials": 10,
+    "bytes": 58208900,
+    "sha256": "sha256:1e9b67723d4932c70c47afbe1a86850894ed9bc183b75aefafbb26deabd32802"
+  }
+}

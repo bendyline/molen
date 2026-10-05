@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0247_karlstejn_castle",
+  "sourceHash": "sha256:2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85",
+  "runtimeHash": "sha256:cb8384afda77ff8eabe62fb097b1d76e5b155e85d63d352f60b288e54cb866f6",
+  "captureReportHash": "sha256:ae47a4ac13d116cf631e8d2f719058784483f137b160d12a1b9cb2f107fd8d90",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity. Maximum fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/great-tower-chapel-windows.png",
+      "shots/great-tower-east.png",
+      "shots/marian-lantern-and-gallery.png",
+      "shots/imperial-palace-loggia.png",
+      "shots/palace-eastern-turret.png",
+      "shots/burgrave-timber-gallery.png",
+      "shots/well-court.png",
+      "shots/elevated-timber-skyway.png",
+      "shots/mapped-courtyard-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. Great and Marian towers, palace and its eastern turret, Burgrave House, well tower and two elevated passages remain distinct. Fixed a collapsed short timber panel, blocked loggia apertures and curtain-wall face directions. Gate openings and the space under the timber skyway remain visible. Terrace geometry is conspicuous and provisional; this is not a terrain-fitted survey."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2a5c8281f26bff6524093063c1c39c9fb953b4a17e9d5f52ac1bd400abda2f8c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/great-tower-chapel-windows.png",
+      "shots/shared/great-tower-east.png",
+      "shots/shared/marian-lantern-and-gallery.png",
+      "shots/shared/imperial-palace-loggia.png",
+      "shots/shared/palace-eastern-turret.png",
+      "shots/shared/burgrave-timber-gallery.png",
+      "shots/shared/well-court.png",
+      "shots/shared/elevated-timber-skyway.png",
+      "shots/shared/mapped-courtyard-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Seven reusable graphs load once each. Plaster, timber, slate, limestone, carved stone, granite and painted metal resolve correctly; glass/recesses use local PBR colors. Unloading leaves zero live model geometries. Stone patterning is regular and roof shingle contrast differs by LOD; further material fidelity refinement is pending."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:0ae1a2581cf3aab5db20d896d7af4a29ad6c55e1a59fff8039d31a1cca3943da",
+    "notes": "Exact Q266698 match on OSM relation/6706848 and separate mapped component outlines. Draft anchor [14.187600418,49.939448506], heading 0.340165327482. replaceFootprint=false because the enclosing boundary contains open courts. Stepped terrace elevations, tower base datum, approach and final terrain contact remain unverified."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending. Individual roof silhouettes and mapped component positions are authored, but measured elevations, window layouts on obscured faces and nineteenth-century restoration details need refinement. Official 60 m Great Tower height differs from OSM 53 m. The seven-meter exposed-base interpretation and stepped terrace elevations are provisional, not a survey. The Burgrave roof junctions, palace loggia, gatehouse portals, wall crenellation spacing, dormers and chimney positions use photograph-derived proportions. Interior artworks and rooms are outside this exterior asset. Covered bridges are separate raised structures with visible space beneath. Their deck elevations, support details and stairs require on-site dimensions. Shared plaster, wood, slate and stone graphs avoid embedded images. Shingle relief, masonry joints and wood boards are procedural details; existing stone surfaces need material-specific weathering. Foundation terraces are local contact geometry, not the full castle hill. Approach terrain, surrounding forest and buildings beyond the precinct are excluded."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "validatorLimitations": "Unused UV notices reflect procedural shared surfaces. Geometry validity does not certify the architectural dimensions.",
+    "triangles": 556934,
+    "vertices": 1115998,
+    "materials": 9,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance is not measured.",
+    "notes": "830 / 3824 / 13788 / 61044 triangles. Skyline plus district 314332 bytes. Street 1004492 bytes; closeup 4690592 bytes. Detailed source master 46864188 bytes. Skyline retains the principal tower and bridge arrangement; higher tiers add windows, crenellations, timber, joints and shingles.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0247_karlstejn_castle/model.skyline.glb",
+        "hash": "sha256:2bb74f3fe49b2849ec5e5c04c8f068c6f6e758eac0f37986225a6848e856b9de",
+        "bytes": 66904,
+        "triangles": 830,
+        "vertices": 1682,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -75.5,
+          0,
+          -72.40069580078125
+        ],
+        "max": [
+          75,
+          75,
+          71.89445495605469
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0247_karlstejn_castle/model.district.glb",
+        "hash": "sha256:cf6d3b43ee810c342819cc5608c2b724fe6e26425d3c025c0e1f39fbad20b3f3",
+        "bytes": 247428,
+        "triangles": 3824,
+        "vertices": 5941,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -75.4000015258789,
+          0,
+          -72.40069580078125
+        ],
+        "max": [
+          76.14382934570312,
+          75,
+          71.89445495605469
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0247_karlstejn_castle/model.street.glb",
+        "hash": "sha256:609f2892f7a82b3937e0cb2620092585a7953666ce26e30a2968a7b0585645f5",
+        "bytes": 1004492,
+        "triangles": 13788,
+        "vertices": 25307,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -75.4000015258789,
+          0,
+          -72.42533874511719
+        ],
+        "max": [
+          76.14382934570312,
+          75,
+          71.90156555175781
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0247_karlstejn_castle/model.closeup.glb",
+        "hash": "sha256:a22a44ddb07415fd918c1b0888acbce1a40ff41019056b6dc75cec2858cb0477",
+        "bytes": 4690592,
+        "triangles": 61044,
+        "vertices": 119819,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -75.4000015258789,
+          0,
+          -72.42533874511719
+        ],
+        "max": [
+          76.23283386230469,
+          75,
+          71.90156555175781
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      }
+    ]
+  }
+}

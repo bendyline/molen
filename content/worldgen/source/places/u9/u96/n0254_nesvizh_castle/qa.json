@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0254_nesvizh_castle",
+  "sourceHash": "sha256:265d4166b08bc10b7bb06532d44d4ff7aba160f03cbc98ea4aa454d389e61f70",
+  "runtimeHash": "sha256:89797757b1e9fb4586e78c3a8ea315d7d8858a99f4dcb743a355a95b5857f55d",
+  "captureReportHash": "sha256:8d306bd503d8659174ecb7abbea8dafee3ecb8c2890c0c86f51ac066fa1af858",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior rendering only. Maximum architectural fidelity and geographic terrain fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/mapped-six-sided-courtyard.png",
+      "shots/west-gate-and-arch-bridge.png",
+      "shots/gate-tower-crown.png",
+      "shots/palace-central-risalit.png",
+      "shots/southern-wing-and-tower.png",
+      "shots/palace-tower-crown.png",
+      "shots/northern-court-gallery.png",
+      "shots/eastern-palace-and-service-wing.png",
+      "shots/earth-bastions-and-moat-edge.png"
+    ],
+    "notes": "Inspected all 14 current portable views: mapped six-sided open court, separate gallery roofs, palace risalit and arcaded terrace, two unequal towers, west gate passage, three-arch approach bridge, service wings and bastions. Corrected curved-roof winding, bridge vaults below the ground datum, hollow bastion interiors, buried balcony, missing tower windows and partly occluded palace facades. Terrain is an angular provisional reconstruction; facade/roof junctions, tower profiles, carvings and fine architecture still need refinement."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:fbe1291a334d76da595d5fb6ba545e247b7724e658621a247e04842d53429861",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/mapped-six-sided-courtyard.png",
+      "shots/shared/west-gate-and-arch-bridge.png",
+      "shots/shared/gate-tower-crown.png",
+      "shots/shared/palace-central-risalit.png",
+      "shots/shared/southern-wing-and-tower.png",
+      "shots/shared/palace-tower-crown.png",
+      "shots/shared/northern-court-gallery.png",
+      "shots/shared/eastern-palace-and-service-wing.png",
+      "shots/shared/earth-bastions-and-moat-edge.png"
+    ],
+    "notes": "Inspected 13 current world-viewer asset-review frames. Seven common surface graphs (lime plaster, ceramic tile, raw limestone, granite, wood, painted metal and cast bronze) each load once. Ochre walls, pale trim, ceramic roofs and dark metal crowns are visible. No embedded images. Unloading leaves zero live model geometries. These isolated captures do not approve in-world terrain alignment."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:f6d87be581efb6f5a579397b26807bb4ed556a8181a62b353cc8ee8111b05664",
+    "notes": "Exact Q719422 castle grounds relation/14560856; palace relation/1732915 and court way/128279266. Draft anchor [26.691942596,53.222787871], heading -0.47453422597; +X 27.188 degrees south of east and entrance toward -X. replaceFootprint=false. Provisional court Y=4, bank crests Y=8 and horizontal site fitting need review against actual terrain. The broader UNESCO park and church are outside this asset."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending: individual pilasters, clock faces, heraldic and figurative sculpture, exact window rhythms, dormers and roof junctions require more reference work. Ground datum, rampart slopes, bridge arches and terrace levels are inferred rather than surveyed; in-world terrain fit has not passed. Water and park trees belong to the host terrain layers. Some roof geometry and facade profiles are reconstructed; curved gallery roofs and stacked tower profiles need further photographic refinement. Palace interiors, wider park and the separate Corpus Christi Church are outside this exterior asset. Detailed source retains tiled roof courses and window reveals. Four separate runtime tiers share plaster, ceramic tile, stone, wood and metal; no embedded images. Physical device approval is pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces; valid geometry is not proof of architectural accuracy.",
+    "triangles": 186936,
+    "vertices": 384070,
+    "materials": 9,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected common-camera comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffer views. Physical laptop/phone measurements remain pending.",
+    "notes": "997 / 2499 / 9801 / 33422 triangles. Initial skyline plus district 295688 bytes. Street 625124 bytes; closeup 2462336 bytes; source master 16074828 bytes. All 41 authored-LOD regression checks passed before the final model-local facade/passage correction; both affected Nesvizh cases passed again afterward. Exact source regeneration matches. Skyline retains the court, towers, bridge and bastions; closer tiers restore materials, windows and details.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u9/u96/n0254_nesvizh_castle/model.skyline.glb",
+        "hash": "sha256:beedeb195f5962bedcd9224e0f484e9592fcad0f78ff8e5d5b1edb851120a0ee",
+        "bytes": 94508,
+        "triangles": 997,
+        "vertices": 2420,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -116.81036376953125,
+          0,
+          -94.31199645996094
+        ],
+        "max": [
+          115.10600280761719,
+          37,
+          94.31199645996094
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u9/u96/n0254_nesvizh_castle/model.district.glb",
+        "hash": "sha256:9d8e150f0fec180339788b1611c36eeaefa468ed9102a84eaa341eb5f39a1270",
+        "bytes": 201180,
+        "triangles": 2499,
+        "vertices": 4942,
+        "materials": 7,
+        "sharedGraphs": 5,
+        "images": 0,
+        "min": [
+          -116.81036376953125,
+          0,
+          -94.31199645996094
+        ],
+        "max": [
+          115.10600280761719,
+          37,
+          94.31199645996094
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u9/u96/n0254_nesvizh_castle/model.street.glb",
+        "hash": "sha256:5fd7a7157e1d49fb05cf3e3348f28cedcd5fd3fb513043a81325bb22eac5a704",
+        "bytes": 625124,
+        "triangles": 9801,
+        "vertices": 15465,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -116.81190490722656,
+          0,
+          -94.31199645996094
+        ],
+        "max": [
+          115.10600280761719,
+          37.900001525878906,
+          94.31199645996094
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u9/u96/n0254_nesvizh_castle/model.closeup.glb",
+        "hash": "sha256:9f33cc1d32f9803df8f1931862a62e347dbae0167b1c667767b0c8ceb72f7715",
+        "bytes": 2462336,
+        "triangles": 33422,
+        "vertices": 62526,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -116.81190490722656,
+          0,
+          -94.31199645996094
+        ],
+        "max": [
+          115.10600280761719,
+          37.900001525878906,
+          94.31199645996094
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      }
+    ]
+  }
+}

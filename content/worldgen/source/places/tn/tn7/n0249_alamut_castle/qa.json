@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0249_alamut_castle",
+  "sourceHash": "sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588",
+  "runtimeHash": "sha256:5f278d74d54e58c21b07e64350042d4e795386f0c5de1bfa0a75abe822defea9",
+  "captureReportHash": "sha256:f72ae5bef1fb42a7b5bfd02363dd5f7a94d61098b827d092557457bfd50a01d3",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity. Maximum fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/upper-castle-plan.png",
+      "shots/northwest-cells-and-cisterns.png",
+      "shots/rock-cut-reservoir.png",
+      "shots/central-excavation.png",
+      "shots/brick-arches-and-plaster.png",
+      "shots/three-central-cisterns.png",
+      "shots/eastern-gate-remains.png",
+      "shots/cliff-and-approach.png",
+      "shots/southern-retaining-wall.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. Ten mapped upper-castle ruin groups remain roofless; five interpreted cisterns have open cut walls, recessed floors and a ladder. Brick arch remnants, broken walls and northwest cells remain distinct. Fixed the floating approach with a local rock ledge and tied cliff ribs to physical arc length across LODs. Exposed stones have chipped faces. Heights, cistern positions and terrain contact are provisional; this review does not establish archaeological accuracy."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:92a87e8ca6ee9197977b58357ace617062de5b83b761c4f57a7bacb41e445f80",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/upper-castle-plan.png",
+      "shots/shared/northwest-cells-and-cisterns.png",
+      "shots/shared/rock-cut-reservoir.png",
+      "shots/shared/central-excavation.png",
+      "shots/shared/brick-arches-and-plaster.png",
+      "shots/shared/three-central-cisterns.png",
+      "shots/shared/eastern-gate-remains.png",
+      "shots/shared/cliff-and-approach.png",
+      "shots/shared/southern-retaining-wall.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Six reusable graphs load once each: sandstone, weathered limestone, brick, lime plaster, timber and painted metal. Cistern water uses local PBR color. Reservoirs remain visibly recessed; arch openings and cut stair contact remain visible. Unloading leaves zero live model geometries. Procedural stone still has regular coursing and the flat plateau/cliff geology need measured refinement. Skyline uses a compact vertex-color material and appears lighter than the textured tiers."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:44d6e65156418f3b54628b11780c81a457903e5f785921cc990255a3c38818a8",
+    "notes": "Exact Q4706020 match on OSM way/590499418, with upper-castle envelope and ten ruin footprints. Draft anchor [50.586098381,36.44473323], heading -0.796374558514. replaceFootprint=false. Local rock contact, wall heights, stair elevations and reservoir depths require terrain and archaeological-plan checks. Lower/onion castle and passing zone are outside this modeled upper-castle extent."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity pending: mapped ruin footprints are preserved, but heights, individual chamber divisions, arch positions, masonry profiles and cistern positions/depths need measured archaeological plans. Includes the mapped upper castle only. The lower/onion castle, passing zone and complete 220 m mountain require additional source coverage and terrain integration. Rock geometry is a provisional local contact. Geological strata, excavated floor levels and the approach stair vertical alignment are not surveyed. The roofless state follows 2024 UNESCO views. Protective scaffolding visible in 2014 field photos is not treated as permanent historic architecture. Shared procedural sandstone, weathered stone, brick, plaster, timber and metal contain no embedded photos. Exact rock and mortar appearance remain to refine."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
+    "triangles": 271061,
+    "vertices": 652777,
+    "materials": 7,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance not measured.",
+    "notes": "801 / 1467 / 3621 / 39879 triangles. Skyline plus district 191764 bytes. Street 288548 bytes; closeup 2915412 bytes. Detailed source master 26756940 bytes. All tiers retain the mapped ruin groups and open cisterns; arches, stair treads, railings and masonry relief appear progressively. Cliff detail remains approximate and the skyline color is lighter than textured tiers.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.skyline.glb",
+        "hash": "sha256:535c926e6eb1917f96a67bedcf904ce15caae017c3518a08ca8d96fe426dbab3",
+        "bytes": 68396,
+        "triangles": 801,
+        "vertices": 1727,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          0,
+          -31.85854148864746
+        ],
+        "max": [
+          95.87474822998047,
+          47.02859878540039,
+          31.852489471435547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.district.glb",
+        "hash": "sha256:8a7c77da8bb46e157799475d57284ee77d2c15f805780cf496007371993fc559",
+        "bytes": 123368,
+        "triangles": 1467,
+        "vertices": 3045,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          0,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          47.02859878540039,
+          32.703094482421875
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.street.glb",
+        "hash": "sha256:4e252d64d9ed3661f4c8dc78cecc5dc2e96bbae791f679913b9323c09df73d08",
+        "bytes": 288548,
+        "triangles": 3621,
+        "vertices": 7241,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          0,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          47.02859878540039,
+          33.131134033203125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.closeup.glb",
+        "hash": "sha256:08b164567f48c6501649db7c2bee9b1a3184898f2e707c1a247ae5e4bb0c8963",
+        "bytes": 2915412,
+        "triangles": 39879,
+        "vertices": 74099,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          0,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          47.02859878540039,
+          33.91617202758789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      }
+    ]
+  }
+}

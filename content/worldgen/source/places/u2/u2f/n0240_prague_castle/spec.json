@@ -1,0 +1,311 @@
+{
+  "planId": "N0240",
+  "id": "N0240",
+  "assetId": "molen.worldgen.structure.n0240_prague_castle",
+  "title": "Prague Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q193369",
+  "referenceCoordinate": {
+    "latitude": 50.09,
+    "longitude": 14.4
+  },
+  "visualBrief": "Mapped castle complex with open second and third courtyards, St Vitus Cathedral and its unequal Gothic and Baroque towers, St George Basilica, royal palace ranges, Rosenberg and Lobkowicz palaces, Powder and Black towers and the small Golden Lane houses.",
+  "size": [
+    559.3898010253906,
+    99.38000304996967,
+    184.14527130126953
+  ],
+  "actualBounds": {
+    "min": [
+      -279.9246520996094,
+      -0.07999999821186066,
+      -92.09080505371094
+    ],
+    "max": [
+      279.46514892578125,
+      99.30000305175781,
+      92.0544662475586
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from western palace toward the eastern gate",
+    "front": "+Z toward the southern gardens",
+    "origin": "Cached OSM precinct center; provisional base datum"
+  },
+  "sourceFacts": {
+    "cathedralSouthTowerHeightMeters": 99.3,
+    "stGeorgeTowerHeightMeters": 41,
+    "cathedralCompletion": 1929,
+    "footprints": "Individual OpenStreetMap relations and ways, retrieved 2026-10-04",
+    "surveyedVerticalDimensions": false
+  },
+  "reconstruction": {
+    "basis": "Individual mapped polygons with court holes, separately reconstructed elevations and roofs from the official visitor plan and inspected exterior photographs.",
+    "verticalDatum": "Provisional shared base; actual sloping site levels are pending.",
+    "roofProfiles": "Individually arranged palace roof runs; cathedral mapped nave, choir and chapel parts. Minor roofs use oriented enclosing rectangles."
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/relation/3312247",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/castle-map",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/objects-for-visitors/st.-vitus-cathedral-10330",
+    "https://www.hrad.cz/en/prague-castle-for-visitors/objects-for-visitors/old-royal-palace-10332",
+    "https://virtualni.praha.eu/towers/cathedral-of-st-vitus-at-prague-castle",
+    "https://virtualni.praha.eu/towers/basilica-of-st-george-at-the-prague-castle",
+    "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_St._Vitus_Cathedral_and_Prague_Castle_grounds.jpg",
+    "https://commons.wikimedia.org/wiki/File:West_facade_of_St._Vitus_Cathedral-Prague.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bazilika_Svat%C3%A9ho_Ji%C5%99%C3%AD-Prague.JPG"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Individual horizontal map parts; terrain datum and full geographic fit pending",
+    "anchor": [
+      14.401732746,
+      50.090863652
+    ],
+    "heading": 0.33583241035,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/3312247",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/3312247"
+    ],
+    "wikidataId": "Q193369",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Retain cached signed heading and anchor. The precinct includes open courts; never replace its complete polygon with a building. Real cross-site terrain and roof alignment need review before activation."
+  },
+  "scaleBasis": "Meter-scale map coordinates in the cached signed precinct frame. Municipal published tower heights constrain the main vertical landmarks; palace levels, roof rises and smaller detail are estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Individual map geometry derives from © OpenStreetMap contributors, ODbL-1.0; map-parts.json records source, date, meter frame and tags. Photographs are linked only; no photographic pixels or third-party mesh are included.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending. Reconstructed exterior is not surveyed as-built geometry; smaller elevations, roof valleys, facade bay spacing and ground levels need verification.",
+    "Cathedral rose tracery, buttresses, portal carvings, saints, heraldic lion and Golden Gate mosaic are incomplete. Geometry indicates architectural form without claiming individually reproduced sculpture.",
+    "Golden Lane colors and roof profiles are approximate; its small houses and northern gallery use mapped plan positions. Daliborka and north-facing defensive details need additional source coverage.",
+    "No interiors, gardens, terrain hill, temporary scaffolding or copied photographs. Palace courtyard holes remain empty and require host terrain.",
+    "Canonical shared limestone, raw limestone, lime plaster, ceramic tile, slate, copper, painted metal, wood and granite graphs are reused; glazing is local PBR."
+  ],
+  "qaCameras": [
+    {
+      "name": "west-courtyards",
+      "position": [
+        -365,
+        125,
+        155
+      ],
+      "lookAt": [
+        -170,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "cathedral-west",
+      "position": [
+        -248,
+        76,
+        -28
+      ],
+      "lookAt": [
+        -133,
+        47,
+        -27
+      ]
+    },
+    {
+      "name": "south-tower-and-golden-gate",
+      "position": [
+        -132,
+        46,
+        80
+      ],
+      "lookAt": [
+        -85,
+        40,
+        -14
+      ]
+    },
+    {
+      "name": "cathedral-north",
+      "position": [
+        -91,
+        59,
+        -138
+      ],
+      "lookAt": [
+        -80,
+        29,
+        -28
+      ]
+    },
+    {
+      "name": "cathedral-choir",
+      "position": [
+        83,
+        81,
+        -33
+      ],
+      "lookAt": [
+        -45,
+        37,
+        -29
+      ]
+    },
+    {
+      "name": "saint-george-west",
+      "position": [
+        1,
+        39,
+        -17
+      ],
+      "lookAt": [
+        72,
+        19,
+        -18
+      ]
+    },
+    {
+      "name": "eastern-palaces",
+      "position": [
+        215,
+        118,
+        155
+      ],
+      "lookAt": [
+        150,
+        13,
+        -20
+      ]
+    },
+    {
+      "name": "golden-lane",
+      "position": [
+        176,
+        7.8,
+        -65
+      ],
+      "lookAt": [
+        204,
+        3.5,
+        -67
+      ]
+    },
+    {
+      "name": "open-courts-plan",
+      "position": [
+        0,
+        590,
+        80
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 567918,
+    "vertices": 1142800,
+    "materials": 10,
+    "bytes": 47961476,
+    "sha256": "sha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0"
+  }
+}

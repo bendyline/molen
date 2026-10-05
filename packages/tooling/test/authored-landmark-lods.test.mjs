@@ -21,6 +21,26 @@ it.each([
   { id: 'molen.worldgen.structure.n0235_millennium_tower', height: 202 },
   { id: 'molen.worldgen.structure.n0236_chateau_de_montsoreau', height: 38.4 },
   { id: 'molen.worldgen.structure.n0237_neuschwanstein_castle', height: 65 },
+  { id: 'molen.worldgen.structure.n0239_windsor_castle', height: 52 },
+  { id: 'molen.worldgen.structure.n0240_prague_castle', height: 99.3 },
+  { id: 'molen.worldgen.structure.n0241_wartburg', height: 34 },
+  { id: 'molen.worldgen.structure.n0242_edinburgh_castle', height: 49 },
+  { id: 'molen.worldgen.structure.n0243_malbork_castle', height: 46 },
+  { id: 'molen.worldgen.structure.n0244_kronborg_castle', height: 64 },
+  { id: 'molen.worldgen.structure.n0245_hofburg_palace', height: 66 },
+  { id: 'molen.worldgen.structure.n0246_takht_e_soleyman', height: 23.2 },
+  { id: 'molen.worldgen.structure.n0247_karlstejn_castle', height: 75 },
+  { id: 'molen.worldgen.structure.n0248_bran_castle', height: 40.4 },
+  { id: 'molen.worldgen.structure.n0249_alamut_castle', height: 47.0286 },
+  { id: 'molen.worldgen.structure.n0250_mir_castle_complex', height: 31.75 },
+  { id: 'molen.worldgen.structure.n0251_kernave', height: 35.9431 },
+  { id: 'molen.worldgen.structure.n0252_hohenzollern_castle', height: 78 },
+  { id: 'molen.worldgen.structure.n0253_bratislava_castle', height: 57 },
+  { id: 'molen.worldgen.structure.n0254_nesvizh_castle', height: 37 },
+  { id: 'molen.worldgen.structure.n0255_buda_castle', height: 62 },
+  { id: 'molen.worldgen.structure.n0256_durham_castle', height: 30.2 },
+  { id: 'molen.worldgen.structure.n0257_citadel_of_salah_ed_din', height: 70 },
+  { id: 'molen.worldgen.structure.n0258_sforza_castle', height: 73 },
 ])('keeps $id deterministic, within budget and free of mixed-type uploads', async ({
   id,
   height,
@@ -117,4 +137,62 @@ it('reuses current outputs, repairs a missing derivative, and rejects a changed 
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+it.each([
+  'n0239_windsor_castle',
+  'n0240_prague_castle',
+  'n0241_wartburg',
+  'n0242_edinburgh_castle',
+  'n0243_malbork_castle',
+  'n0244_kronborg_castle',
+  'n0245_hofburg_palace',
+  'n0246_takht_e_soleyman',
+  'n0247_karlstejn_castle',
+  'n0248_bran_castle',
+  'n0249_alamut_castle',
+  'n0250_mir_castle_complex',
+  'n0251_kernave',
+  'n0252_hohenzollern_castle',
+  'n0253_bratislava_castle',
+  'n0254_nesvizh_castle',
+  'n0255_buda_castle',
+  'n0256_durham_castle',
+  'n0257_citadel_of_salah_ed_din',
+  'n0258_sforza_castle',
+])('keeps %s detail levels within landmark budgets with reusable surfaces', async (key) => {
+  const id = `molen.worldgen.structure.${key}`;
+  let previous = 0;
+  const byteBudgets = { district: 2_900_000, street: 6_000_000, closeup: 12_000_000 };
+  const triangleBudgets = { district: 4_000, street: 16_000, closeup: 64_000 };
+  for (const name of ['district', 'street', 'closeup']) {
+    const a = await authoredDetail(id, name),
+      b = await authoredDetail(id, name);
+    expect(a.bytes.equals(b.bytes)).toBe(true);
+    expect(a.bytes.length).toBeLessThan(byteBudgets[name]);
+    expect(a.triangles).toBeGreaterThan(previous);
+    expect(a.triangles).toBeLessThanOrEqual(triangleBudgets[name]);
+    previous = a.triangles;
+    const g = JSON.parse(a.bytes.toString('utf8', 20, 20 + a.bytes.readUInt32LE(12)));
+    expect(g.images ?? []).toHaveLength(0);
+    expect(
+      g.materials.some(
+        (m) =>
+          m.extras?.molenSurface?.ref ===
+          `matgraph:molen.worldgen.material.${key === 'n0251_kernave' ? 'wood_plain' : ['n0248_bran_castle', 'n0250_mir_castle_complex', 'n0253_bratislava_castle', 'n0254_nesvizh_castle'].includes(key) ? 'plaster_lime' : ['n0243_malbork_castle', 'n0258_sforza_castle'].includes(key) ? 'brick' : ['n0256_durham_castle', 'n0241_wartburg', 'n0242_edinburgh_castle', 'n0244_kronborg_castle', 'n0249_alamut_castle', 'n0252_hohenzollern_castle'].includes(key) ? 'stone_sandstone' : 'stone_limestone'}`,
+      ),
+    ).toBe(true);
+    const types = new Map();
+    for (const mesh of g.meshes)
+      for (const p of mesh.primitives)
+        for (const index of Object.values(p.attributes)) {
+          const a = g.accessors[index];
+          if (!types.has(a.bufferView)) types.set(a.bufferView, new Set());
+          types.get(a.bufferView).add(a.componentType);
+        }
+    for (const values of types.values()) expect(values.size).toBe(1);
+  }
+  const initial =
+    (await authoredSkyline(id)).bytes.length + (await authoredDetail(id, 'district')).bytes.length;
+  expect(initial).toBeLessThan(3_000_000);
 });

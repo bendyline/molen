@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0255_buda_castle",
+  "sourceHash": "sha256:96d12a760a6a61c59e37040aad4a25a1b9188ed8719d89b445c1b211ed56fffa",
+  "runtimeHash": "sha256:248cc36d85ad3442abf70e100a2ec194703d7b2e6928f109f06d63dd8a567558",
+  "captureReportHash": "sha256:8f67739e31bb5220bd47b2a18fee77da54259618e351a26379efc823cd720cea",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior rendering only; maximum architectural fidelity and geographic approval remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/six-wings-and-open-lions-court.png",
+      "shots/danube-frontage.png",
+      "shots/postwar-dome-and-ribs.png",
+      "shots/north-a-and-b-pavilions.png",
+      "shots/lions-court-and-library.png",
+      "shots/restored-south-range.png",
+      "shots/library-west-front.png",
+      "shots/south-history-museum-wing.png",
+      "shots/terrace-and-central-portico.png"
+    ],
+    "notes": "Inspected all 14 final portable frames. Six palace wings and Lions Court remain separate; stepped river pavilions, postwar copper dome, window reveals, architectural trim, dormers, columns and immediate terraces render. Fixed an unsupported roof edge and floating chimney, then recaptured all views. Roof junctions, the broad library roof and exact facade rhythms remain architectural approximations, explicitly awaiting further reference refinement."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:10ed38ede0747570ad7b1e434174d30b07f57146fb64fa2c799d67bb9b72e4e8",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/six-wings-and-open-lions-court.png",
+      "shots/shared/danube-frontage.png",
+      "shots/shared/postwar-dome-and-ribs.png",
+      "shots/shared/north-a-and-b-pavilions.png",
+      "shots/shared/lions-court-and-library.png",
+      "shots/shared/restored-south-range.png",
+      "shots/shared/library-west-front.png",
+      "shots/shared/south-history-museum-wing.png",
+      "shots/shared/terrace-and-central-portico.png"
+    ],
+    "notes": "Inspected 13 final world-viewer asset-review frames. Seven shared surface graphs (limestone, raw limestone, granite, copper, wood, painted metal and bronze) each load once; no embedded images. Model disposal leaves zero live geometries. Framing intentionally includes close detail crops; isolated asset views do not certify terrain alignment."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:f25a96189b1d37be779cae3419634144e26e390ab2fb93b8f19839d3a6233c7b",
+    "notes": "Exact Q46313 palace relation/6486918. Draft anchor [19.039308745,47.495824657], heading -0.853630134323; +X 48.909 degrees south of east, river frontage toward -Z. replaceFootprint=false. Court Y=4 and dome tip Y=62 are provisional. Reference state is 2021; the A/B reconstruction begun in 2022 is not presented as completed future architecture."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending: exact window rhythms, sculptural works, heraldry, roof junctions and library/A-wing roof details require additional bespoke reference work. Architectural ornament is modeled; figurative statues are not substituted with generic objects. The temporal reference is 2021. North-wing A/B reconstruction began in 2022; this asset is not a claim about the current construction site or a completed future restoration. Heights, dome profile and terrace elevations are inferred. In-world terrain fit and facade orientation review remain pending; replaceFootprint=false. Palace interiors, separate Guardhouse, Riding Hall, Mace/Karakash towers, Castle Garden Bazaar and whole Castle Hill terrain are outside this palace exterior asset. Master and four independent LODs share central stone, copper, wood and metal surface graphs without embedded images. Physical laptop/phone approval remains pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces. Valid geometry does not establish architectural accuracy.",
+    "triangles": 394698,
+    "vertices": 803772,
+    "materials": 9,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected common-camera comparison and measured deterministic generation, geometry/download budgets and homogeneous attribute buffer views. Physical laptop/phone measurements remain pending.",
+    "notes": "919 / 3875 / 15982 / 62888 triangles. Initial skyline plus district 376292 bytes. Street 1226572 bytes; closeup 4648844 bytes; detailed source 33677224 bytes. All 43 authored-LOD regression checks passed; both Buda cases passed again after the local roof/chimney correction. Final source regeneration is byte-identical. Four independent runtime tiers retain the palace plan, open court and dome.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u2m/n0255_buda_castle/model.skyline.glb",
+        "hash": "sha256:d2bcd727b088e7524b965c11da12738d0d4c9d603c9bba01c288a2dc6ced6e29",
+        "bytes": 77348,
+        "triangles": 919,
+        "vertices": 1958,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -174,
+          0,
+          -94
+        ],
+        "max": [
+          175,
+          62,
+          78
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u2m/n0255_buda_castle/model.district.glb",
+        "hash": "sha256:b3d12ac6f3e0f27925e3771bd02ab10adaedf07deb19fa0f8dec7c13ec8db46c",
+        "bytes": 298944,
+        "triangles": 3875,
+        "vertices": 7459,
+        "materials": 6,
+        "sharedGraphs": 5,
+        "images": 0,
+        "min": [
+          -174,
+          0,
+          -94
+        ],
+        "max": [
+          175,
+          62,
+          78
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u2m/n0255_buda_castle/model.street.glb",
+        "hash": "sha256:2341d3ec63e9b02125624e031a954067bb823d37b05c2fccceaff18a66e657e9",
+        "bytes": 1226572,
+        "triangles": 15982,
+        "vertices": 31206,
+        "materials": 6,
+        "sharedGraphs": 5,
+        "images": 0,
+        "min": [
+          -174,
+          0,
+          -94.19999694824219
+        ],
+        "max": [
+          175.01942443847656,
+          62,
+          78.19999694824219
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u2m/n0255_buda_castle/model.closeup.glb",
+        "hash": "sha256:f4bd9bf93bc970589ba5d7e3a914cb292dbf3a2c57fcab874d727b2872430896",
+        "bytes": 4648844,
+        "triangles": 62888,
+        "vertices": 112694,
+        "materials": 8,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -174,
+          0,
+          -94.19999694824219
+        ],
+        "max": [
+          175.01942443847656,
+          62,
+          78.19999694824219
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

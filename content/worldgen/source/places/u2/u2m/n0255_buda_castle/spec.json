@@ -1,0 +1,292 @@
+{
+  "planId": "N0255",
+  "id": "N0255",
+  "assetId": "molen.worldgen.structure.n0255_buda_castle",
+  "title": "Buda Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q46313",
+  "referenceCoordinate": {
+    "latitude": 47.496111111,
+    "longitude": 19.039722222
+  },
+  "visualBrief": "Six-wing Royal Palace exterior with long stepped Danube frontage, two tall river pavilions, the ribbed green postwar dome, open Lions Court, library wing, South Range and immediate stone terraces; documented 2021 reference state.",
+  "size": [
+    349.01942443847656,
+    62,
+    172.39999389648438
+  ],
+  "actualBounds": {
+    "min": [
+      -174,
+      0,
+      -94.19999694824219
+    ],
+    "max": [
+      175.01942443847656,
+      62,
+      78.19999694824219
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X 48.909 degrees south of east",
+    "front": "Danube frontage toward native -Z; north A pavilion toward -X",
+    "origin": "Exact palace map anchor; provisional local terrace base"
+  },
+  "sourceFacts": {
+    "identity": "Q46313, exact palace building relation/6486918",
+    "mappedEnvelopeMeters": [
+      339.728,
+      149.092
+    ],
+    "referenceState": "2021, before A/B reconstruction begun in 2022",
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM palace outline and courtyard; official National Hauszmann Program existing-state photographs, wing plan and 2020 drone still.",
+    "state": "Representative 2021 completed exterior including restored South Range. Future Hauszmann north-wing renderings are not treated as existing buildings.",
+    "verticalDatum": "Provisional local terrace base Y=0, palace/court Y=4, dome tip Y=62. Heights and fine facade details are visual estimates, not a survey."
+  },
+  "referencePages": [
+    "https://nemzetihauszmannprogram.hu/nhp-strategy-2021.pdf",
+    "https://info.budavaripalotanegyed.hu/",
+    "https://commons.wikimedia.org/wiki/File:Floor_plans_of_Buda_Castle_en.svg",
+    "https://www.pestbuda.hu/en/cikk/20201117_a_bird_s_eye_view_of_the_royal_palace_of_buda_castle",
+    "https://pestbuda.hu/en/cikk/20201121_masterpieces_with_a_view_a_visit_to_the_royal_palace_of_buda_castle",
+    "https://www.openstreetmap.org/relation/6486918"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft: 2021 state, vertical datum and in-world directional fit pending",
+    "anchor": [
+      19.039308745,
+      47.495824657
+    ],
+    "heading": -0.853630134323,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/6486918",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/6486918"
+    ],
+    "wikidataId": "Q46313",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7f202a072ca97dc302a91269395033660f048412f8bac6052b072f29f37e7fea",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Open Lions Court, A-F palace wings and immediate terraces only. Do not replace the entire castle hill or treat planned 2022+ reconstruction as completed architecture."
+  },
+  "scaleBasis": "Horizontal meters from exact mapped identity. Roof profiles, elevations and facade bay counts are reconstructed with explicit uncertainty.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map data © OpenStreetMap contributors, ODbL-1.0. Original deterministic geometry; reference photos and third-party meshes are not embedded.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending: exact window rhythms, sculptural works, heraldry, roof junctions and library/A-wing roof details require additional bespoke reference work. Architectural ornament is modeled; figurative statues are not substituted with generic objects.",
+    "The temporal reference is 2021. North-wing A/B reconstruction began in 2022; this asset is not a claim about the current construction site or a completed future restoration.",
+    "Heights, dome profile and terrace elevations are inferred. In-world terrain fit and facade orientation review remain pending; replaceFootprint=false.",
+    "Palace interiors, separate Guardhouse, Riding Hall, Mace/Karakash towers, Castle Garden Bazaar and whole Castle Hill terrain are outside this palace exterior asset.",
+    "Master and four independent LODs share central stone, copper, wood and metal surface graphs without embedded images. Physical laptop/phone approval remains pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "six-wings-and-open-lions-court",
+      "position": [
+        0,
+        470,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "danube-frontage",
+      "position": [
+        0,
+        47,
+        -310
+      ],
+      "lookAt": [
+        0,
+        23,
+        -35
+      ]
+    },
+    {
+      "name": "postwar-dome-and-ribs",
+      "position": [
+        -61,
+        73,
+        -101
+      ],
+      "lookAt": [
+        -12,
+        45,
+        -34
+      ]
+    },
+    {
+      "name": "north-a-and-b-pavilions",
+      "position": [
+        -196,
+        48,
+        -128
+      ],
+      "lookAt": [
+        -115,
+        19,
+        -40
+      ]
+    },
+    {
+      "name": "lions-court-and-library",
+      "position": [
+        48,
+        45,
+        -29
+      ],
+      "lookAt": [
+        53,
+        20,
+        47
+      ]
+    },
+    {
+      "name": "restored-south-range",
+      "position": [
+        171,
+        34,
+        29
+      ],
+      "lookAt": [
+        105,
+        17,
+        9
+      ]
+    },
+    {
+      "name": "library-west-front",
+      "position": [
+        42,
+        49,
+        175
+      ],
+      "lookAt": [
+        48,
+        20,
+        54
+      ]
+    },
+    {
+      "name": "south-history-museum-wing",
+      "position": [
+        222,
+        61,
+        -87
+      ],
+      "lookAt": [
+        130,
+        18,
+        -28
+      ]
+    },
+    {
+      "name": "terrace-and-central-portico",
+      "position": [
+        -9,
+        13,
+        -128
+      ],
+      "lookAt": [
+        -12,
+        17,
+        -60
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 394698,
+    "vertices": 803772,
+    "materials": 9,
+    "bytes": 33677224,
+    "sha256": "sha256:96d12a760a6a61c59e37040aad4a25a1b9188ed8719d89b445c1b211ed56fffa"
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0244_kronborg_castle",
+  "sourceHash": "sha256:19d963e651b26285ce37f136aac82dd41fe21fb689ca37b4cd863a8501e18e9a",
+  "runtimeHash": "sha256:60873fb83873e7f54c078f5cf574734c5863ff19b83ae8b54e26941b00d1414d",
+  "captureReportHash": "sha256:bf0dffdea3478a47c65e8d8f601a9a23694bed9006a66e0cab70171549e7f4e4",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; architectural fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/trumpeter-courtyard.png",
+      "shots/cannon-tower.png",
+      "shots/north-entry.png",
+      "shots/lighthouse-east.png",
+      "shots/chapel-and-pigeon-tower.png",
+      "shots/south-renaissance-gables.png",
+      "shots/courtyard-north-wing.png",
+      "shots/fortress-moat-edges.png",
+      "shots/four-wings-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable views and the common-camera LOD comparison. Corrected hidden dormer shutters and a review camera intersecting the north-east tower. Four separate wings, courtyard, open north passage, distinct flat Cannon Tower, Trumpeter lanterns, corner spires and mapped bastion edges are present. Exact facade openings, roof joins and sculpture remain provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:315e24d3570e8765f32f074da11b16cab6bc34ec02f7fe4ba6fb0d2591f7b5af",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/trumpeter-courtyard.png",
+      "shots/shared/cannon-tower.png",
+      "shots/shared/north-entry.png",
+      "shots/shared/lighthouse-east.png",
+      "shots/shared/chapel-and-pigeon-tower.png",
+      "shots/shared/south-renaissance-gables.png",
+      "shots/shared/courtyard-north-wing.png",
+      "shots/shared/fortress-moat-edges.png",
+      "shots/shared/four-wings-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Eight canonical material graphs each load once; glazing and turf remain local PBR. Unloading leaves zero live model geometries. These captures do not establish geographic fit. Copper panel repeat and replacement patch pattern require architectural refinement."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:d2837f217bcc00d7884b22555ea8df32d2e1846baeee2bab3372404c0d4e8182",
+    "notes": "Exact Q189358 relation/1588209, north-east lighthouse node and south-east chapel establish a signed frame. Anchor [12.621716106,56.039011686], heading 1.482790729732. Courtyard height above wall foot and terrain fit remain provisional; draft placement and replaceFootprint=false. Bastion extent is not an occupied replacement footprint."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending. Individual exterior reconstruction uses measured horizontal map coordinates and a referenced Trumpeter height; other heights and exact facade openings are proportional estimates. Royal heraldic reliefs and figurative sculpture are represented by abstract stonework, not faithful sculptural replicas. Exact gable scrolls, clock faces, roof junctions and copper replacement patches need refinement. Fortress edges follow selected mapped moat and embankment lines. Wall height is reconstructed. Full crownwork, ravelins, coastal batteries, moat excavation and surrounding garrison buildings are outside the present source scope. Four courtyard stair turrets and corner spires require further dimension checks. The five-meter courtyard datum is provisional and must not be treated as terrain-verified. No interiors, temporary scaffolding, photographic textures or recreation of the removed Renaissance fountain. Shared sandstone, limestone, copper, granite, brick, timber, metal and local PBR glazing/turf."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "validatorLimitations": "Unused-UV information reflects procedural materials resolved by Molen. Validation does not certify architectural accuracy.",
+    "triangles": 337000,
+    "vertices": 672132,
+    "materials": 10,
+    "sharedGraphs": 8,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Authored LOD comparison and targeted triangle/download/layout/determinism checks. Physical phone and laptop measurements pending.",
+    "notes": "958 / 3316 / 11238 / 21684 triangles. Skyline plus district totals 337476 bytes; street 868416 bytes; close-up 1659508 bytes. Separate source master 28246264 bytes. Skyline omits small stair turrets and gable ornament while preserving the principal towers, roofed wings and open courtyard.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u3/u3b/n0244_kronborg_castle/model.skyline.glb",
+        "hash": "sha256:6d4d6d30cc73aa1ba50cbf86167452e9fdb9479790e8df15e082162ccf580ad1",
+        "bytes": 77208,
+        "triangles": 958,
+        "vertices": 1946,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -109.48999786376953,
+          0,
+          -92.16799926757812
+        ],
+        "max": [
+          104.47899627685547,
+          64,
+          91.64199829101562
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u3/u3b/n0244_kronborg_castle/model.district.glb",
+        "hash": "sha256:545d14316bbda39086268800e84f9e599f047535da1811c5ec5108d7b3f85da7",
+        "bytes": 260268,
+        "triangles": 3316,
+        "vertices": 6411,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -109.48999786376953,
+          0,
+          -92.16799926757812
+        ],
+        "max": [
+          104.47899627685547,
+          64,
+          91.64199829101562
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u3/u3b/n0244_kronborg_castle/model.street.glb",
+        "hash": "sha256:2b4692b8ae3605750d3f15702d2d7532c50f1647bf86b63c738fff60886b1782",
+        "bytes": 868416,
+        "triangles": 11238,
+        "vertices": 21951,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -109.54130554199219,
+          0,
+          -92.23298645019531
+        ],
+        "max": [
+          104.54353332519531,
+          64,
+          91.69905090332031
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u3/u3b/n0244_kronborg_castle/model.closeup.glb",
+        "hash": "sha256:db23df7b48c75985ed426a6e26c6386c1554a6d19c72f8d8587c4babfe0f231c",
+        "bytes": 1659508,
+        "triangles": 21684,
+        "vertices": 42183,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -109.54130554199219,
+          0,
+          -92.23298645019531
+        ],
+        "max": [
+          104.54353332519531,
+          64,
+          91.69905090332031
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      }
+    ]
+  }
+}

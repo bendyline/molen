@@ -2,21 +2,21 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 247 authored assets, 247 imported assets and 232 active geographic asset previews.
+There are 268 authored assets, 268 imported assets and 232 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and maximum exterior fidelity pass.
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 247 |
-| Runtime GLBs imported | 247 |
-| Current source and runtime hashes verified | 247 |
-| Portable visual reviews passed | 245 |
-| Shared-material reviews passed | 243 |
+| Source GLBs authored | 268 |
+| Runtime GLBs imported | 268 |
+| Current source and runtime hashes verified | 268 |
+| Portable visual reviews passed | 266 |
+| Shared-material reviews passed | 264 |
 | Active geographic previews | 232 |
 | Maximum exterior fidelity reviews passed | 192 |
 | Complete | 167 |
-| Source models still to author | 753 |
+| Source models still to author | 732 |
 
 ## Authored models
 
@@ -143,6 +143,27 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0234 | [Barolo Palace](../places/69/69y/n0234_barolo_palace/README.md) | 646738 | Passed | Passed | Pending | Pending | Pending |
 | N0235 | [Millennium Tower](../places/u2/u2e/n0235_millennium_tower/README.md) | 30296 | Passed | Passed | Pending | Pending | Pending |
 | N0236 | [Château de Montsoreau](../places/u0/u02/n0236_chateau_de_montsoreau/README.md) | 40797 | Passed | Passed | Pending | Pending | Pending |
+| N0237 | [Neuschwanstein Castle](../places/u0/u0r/n0237_neuschwanstein_castle/README.md) | 234177 | Passed | Passed | Pending | Pending | Pending |
+| N0239 | [Windsor Castle](../places/gc/gcp/n0239_windsor_castle/README.md) | 385417 | Passed | Passed | Pending | Pending | Pending |
+| N0240 | [Prague Castle](../places/u2/u2f/n0240_prague_castle/README.md) | 567918 | Passed | Passed | Pending | Pending | Pending |
+| N0241 | [Wartburg](../places/u1/u1p/n0241_wartburg/README.md) | 227673 | Passed | Passed | Pending | Pending | Pending |
+| N0242 | [Edinburgh Castle](../places/gc/gcv/n0242_edinburgh_castle/README.md) | 259930 | Passed | Passed | Pending | Pending | Pending |
+| N0243 | [Malbork Castle](../places/u3/u3t/n0243_malbork_castle/README.md) | 516537 | Passed | Passed | Pending | Pending | Pending |
+| N0244 | [Kronborg Castle](../places/u3/u3b/n0244_kronborg_castle/README.md) | 337000 | Passed | Passed | Pending | Pending | Pending |
+| N0245 | [Hofburg Palace](../places/u2/u2e/n0245_hofburg_palace/README.md) | 606293 | Passed | Passed | Pending | Pending | Pending |
+| N0246 | [Takht-e Soleyman](../places/tn/tn9/n0246_takht_e_soleyman/README.md) | 817410 | Passed | Passed | Pending | Pending | Pending |
+| N0247 | [Karlštejn Castle](../places/u2/u2f/n0247_karlstejn_castle/README.md) | 556934 | Passed | Passed | Pending | Pending | Pending |
+| N0248 | [Bran Castle](../places/u8/u84/n0248_bran_castle/README.md) | 145600 | Passed | Passed | Pending | Pending | Pending |
+| N0249 | [Alamut Castle](../places/tn/tn7/n0249_alamut_castle/README.md) | 271061 | Passed | Passed | Pending | Pending | Pending |
+| N0250 | [Mir Castle Complex](../places/u9/u9d/n0250_mir_castle_complex/README.md) | 255892 | Passed | Passed | Pending | Pending | Pending |
+| N0251 | [Kernavė](../places/u9/u9c/n0251_kernave/README.md) | 140410 | Passed | Passed | Pending | Pending | Pending |
+| N0252 | [Hohenzollern Castle](../places/u0/u0w/n0252_hohenzollern_castle/README.md) | 349299 | Passed | Passed | Pending | Pending | Pending |
+| N0253 | [Bratislava Castle](../places/u2/u2s/n0253_bratislava_castle/README.md) | 684637 | Passed | Passed | Pending | Pending | Pending |
+| N0254 | [Nesvizh Castle](../places/u9/u96/n0254_nesvizh_castle/README.md) | 186936 | Passed | Passed | Pending | Pending | Pending |
+| N0255 | [Buda Castle](../places/u2/u2m/n0255_buda_castle/README.md) | 394698 | Passed | Passed | Pending | Pending | Pending |
+| N0256 | [Durham Castle](../places/gc/gcw/n0256_durham_castle/README.md) | 193007 | Passed | Passed | Pending | Pending | Pending |
+| N0257 | [Citadel of Salah Ed-Din](../places/sy/sy3/n0257_citadel_of_salah_ed_din/README.md) | 320144 | Passed | Passed | Pending | Pending | Pending |
+| N0258 | [Sforza Castle](../places/u0/u0n/n0258_sforza_castle/README.md) | 509200 | Passed | Passed | Pending | Pending | Pending |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |

@@ -1452,3 +1452,1192 @@ in 1892 in simplified form. Current architecture must be distinguished from unre
 The cached exact-QID map record is way/221601969, anchor `[10.749533954, 47.557554931]`,
 heading `0.381105898007`. The official text was read; its plan image and exterior photographs
 have not yet been inspected for this recipe. No N0237 geometry is counted at this checkpoint.
+
+## N0237 Neuschwanstein Castle checkpoint — 2026-10-04
+
+Added an individually arranged source master under
+`places/u0/u0r/n0237_neuschwanstein_castle/`, registered through the standard importer and
+catalog. The Bavarian Palace Administration's labeled plan and five detailed photographic
+views establish the cranked Palas, unequal stair towers, western open galleries, Bower,
+Knights' House, Square Tower, connecting ranges and two open courts. The gatehouse has
+distinct red-brick outer and sandstone inner faces. Recessed paired/triple arches, dormers,
+corbels, battlements, stairs and clock have geometry. Captured revisions close an eave gap,
+join the main stair to the northern Palas projection, extend the base under the gatehouse,
+and correct its outer fenestration and stepped-gable connections.
+
+The source is **20,017,068 bytes**; the runtime master is **20,016,148 bytes**, with
+**234,177 triangles**, 477,805 vertices and eleven materials. Nine existing canonical graphs
+provide limestone, raw/weathered limestone, sandstone, slate, copper, brick, painted metal
+and wood; glass and recess use local PBR materials. There are no embedded images or copied
+photographic textures. All **14 portable and 13 shared-material frames** were inspected.
+Each shared graph loads once, and unload leaves zero live model geometries. Source and runtime
+pass Khronos validation with zero errors and warnings. Eleven informational unused-UV reports
+refer to attributes consumed by Molen's shared surfaces. The shared capture succeeded despite
+Vite's unrelated dependency scan warning about the traffic-signals fixture; no engine rebuild
+was needed.
+
+Four authored runtime levels preserve the castle's arrangement and open courts. Skyline,
+district, street and closeup are **46,028 / 152,228 / 1,186,140 / 3,967,496 bytes**, with
+**562 / 1,948 / 15,891 / 58,753 triangles**. Every triangle target passes. Skyline plus
+district totals **198,256 bytes**, below both initial download targets. Nine focused
+authored-LOD tests pass, and all four derivatives pass geometry and separate-attribute
+layout validation. Master and all four levels were inspected together. Physical laptop
+and phone performance measurements remain pending.
+
+The map registration remains **draft**, with exact-QID OSM way/221601969's anchor
+`[10.749533954, 47.557554931]` and heading `0.381105898007`. This is a whole precinct with
+no building or height tag. Individual ranges are approximately transcribed from the official
+plan. The cached 65 m height is unreferenced, and the two retained court levels, cliff contact,
+occupied boundaries and vertical datum are not surveyed. `replaceFootprint` remains false;
+the draft is discoverable in the catalog but inactive in world placement. Painted murals,
+heraldic relief, statues, capitals and exact tracery still need dedicated work. **Geographic
+fit and maximum exterior fidelity remain pending**; render review does not complete N0237.
+
+Inventory is now **350 registered structures**: **248 authored/imported next-1000 models**
+and 102 older or reusable models. The plan has **167 fully complete**, **752 unauthored**,
+246 portable reviews, 244 shared-material reviews and 232 active geographic previews.
+Source-generation, import and placement checks reproduce the current model hashes.
+
+Source hash: `c78849de7780d2383656cb12873fabfc55a14e03a6ec92bc96be18d2d7ed3c8f`.
+Runtime hash: `5e1ea57c9cd3c93d60cd5274e0e244a48903d52869e034a78932bfe3c2f5589e`.
+References and hash-bound reviews are in the source bundle; local validation and comparison
+sheets are in `.artifacts/neuschwanstein-research/`.
+
+Lock **`assets-4e5f7660b5e46200`** pins **2,188 GLBs**. The lock conflict was resolved by
+concurrent owner work before this checkpoint, yielding `assets-b6322d023cc8cb8d`; its four
+updated aircraft files were verified locally. A broad update-lock command was rejected by
+automatic approval. The completed narrower checkpoint adds only N0237's six verified files,
+preserves all **2,182 prior entries exactly**, recomputes the snapshot through `createLock`,
+and refuses concurrent edits. Six earlier authored-LOD sidecars receive current shared-recipe
+fingerprints; all thirty of their master/LOD runtime files still match the preserved lock.
+No full source rebuild, engine suite, dependency audit, Git mutation or publication was run.
+
+### Windsor Castle research handoff (superseded by the checkpoint below)
+
+N0239 (Q42646) is still unauthored. The Royal Collection Trust's
+[building history](https://www.rct.uk/visit/windsor-castle/who-built-windsor-castle) was read:
+its current exterior includes the nineteenth-century raising of the Round Tower and
+Wyatville's remodelling, so earlier drawings cannot be treated as the current building.
+The [owner's visitor page](https://www.rct.uk/visit/windsor-castle) and
+[official family trail](https://media.rct.uk/sites/default/files/RCT%20-%20WC%20-%20CASTLES%20FAMILY%20TRAIL%20-%20A4%204PP%20-%20OUT%20with%20crops%20and%20bleed%2009%202022.pdf)
+provide starting references. Their plan/photo pixels have not been inspected for this recipe.
+Cached OSM way/23580556 supplies precinct anchor `[-0.604139816, 51.483842171]`, heading
+`0.052063510228` and a 582.008 by 198.339 m envelope. It has no building or height tag.
+The Upper, Middle and Lower Wards, chapel, cloister and separate occupied ranges require
+individual reconstruction; the precinct must not be extruded as one building.
+
+## Windsor Castle source checkpoint — 2026-10-04
+
+N0239 now has a reproducible individual exterior recipe at
+`packages/worldgen/scripts/windsor-castle-model.mjs` and a source bundle at
+`places/gc/gcp/n0239_windsor_castle/`. The bundle records individual OSM ways,
+courtyard holes, references, model, scene, import, placement and hash-bound render reviews.
+Horizontal geometry uses the signed cached map frame; mapped palace ranges remain separate
+from the gardens and open wards. The Round Tower, chapel, cloister, towers, roofs and
+gateways are independently arranged. Photographs were inspected and linked; no reference
+pixels or third-party mesh were copied. Seven canonical shared material graphs are reused.
+
+The detailed source is **32,829,044 bytes**, **385,417 triangles**, **783,315 vertices**,
+eight materials and zero images. The imported master is **32,828,336 bytes**.
+Separate authored runtime levels preserve the master:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 43,248 | 521 |
+| District | 78,100 | 1,101 |
+| Street | 1,075,244 | 14,812 |
+| Close-up | 4,639,360 | 62,481 |
+
+Initial skyline plus district totals **121,348 bytes**. All four geometry targets pass;
+separate vertex attributes avoid mixed-type GPU uploads. Physical-device measurements
+remain pending. The recipe fingerprint includes Windsor's map data so geographic edits
+invalidate its derivatives.
+
+Inspected **14 portable and 13 shared-material frames**, plus the common-camera LOD
+comparison. Corrected disconnected chimney bases, supported raised palace ranges and
+distinguished the two-storey rectangular cloister fenestration from palace windows.
+Khronos validation passed all six GLBs with **zero errors and warnings**; unused-UV
+informational messages reflect Molen's external shared-surface bindings. Shared graphs
+load once each, and unloading leaves zero live model geometries. Source generation
+`--check` reproduces the current bytes. **11 focused authored-LOD tests pass**.
+
+**Geographic fit and maximum exterior fidelity are pending.** The draft keeps
+`replaceFootprint=false`. Cross-site elevations, motte/terrain contact, window bay spacing,
+roof profiles, tracery, heraldic beasts, statues and relief require further work. Studio
+render approval does not count N0239 as a completed maximum-fidelity landmark.
+
+Current inventory: **351 registered structures**, including **249 authored/imported
+next-1000 models**, **167 fully complete**, and **751 unauthored**. Portable reviews are
+247; shared-material reviews are 245; active geographic previews remain 232.
+
+Source hash: `e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396`.
+Runtime hash: `6032a6df55310e3b3b0bba716c2ae47cf0c1947a225f5854984a09b89d01d573`.
+Lock **`assets-bf11c2155d6cd5e9`** pins **2,194 GLBs**: only Windsor's six entries were
+added, with all 2,188 previous entries preserved exactly. The seven earlier authored-LOD
+sidecars have current shared-recipe fingerprints; their 35 master/LOD files still match
+the prior lock. No full rebuild, engine suite, dependency audit, Git mutation or
+publication was run. **N0240 Prague Castle is the next unauthored candidate.**
+
+## Prague Castle source checkpoint — 2026-10-04
+
+N0240 now has an individual recipe at `packages/worldgen/scripts/prague-castle-model.mjs`
+and source bundle at `places/u2/u2f/n0240_prague_castle/`. Individual attributed OSM
+polygons retain the palace court holes, cathedral chapel and tower positions, churches,
+palaces and Golden Lane houses. The owner's illustrated plan and three exterior
+photographs were inspected; references and their use are recorded in the bundle.
+Nine existing shared material graphs are reused, including lime plaster and ceramic tile.
+
+The source master is **47,961,476 bytes**, **567,918 triangles**, **1,142,800 vertices**,
+ten materials and zero embedded images. The imported master is **47,960,628 bytes**.
+Separate authored viewer levels preserve this detailed source:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 62,276 | 761 |
+| District | 282,988 | 3,777 |
+| Street | 978,708 | 13,490 |
+| Close-up | 5,072,848 | 63,278 |
+
+Initial skyline plus district totals **345,264 bytes**. All four triangle targets pass.
+Inspected 14 portable and 13 shared-material frames and the common-camera LOD comparison.
+Corrected reversed palace facade direction, unsupported roof wedges over narrow lanes,
+and the Golden Lane camera. Subordinate roof slopes are clipped to occupied map polygons
+with filled raking end walls. The western, cathedral and eastern courts remain open.
+All six GLBs pass Khronos validation with **zero errors and warnings**; unused-UV
+informational messages are expected for externally resolved shared materials.
+Shared graphs load once each, and unloading leaves zero live model geometries.
+Source generation `--check` reproduces the master; **13 focused authored-LOD tests pass**.
+
+**Geographic fit and maximum exterior fidelity remain pending.** The signed map anchor
+is `[14.401732746, 50.090863652]`, heading `0.33583241035`. Cross-site ground elevations,
+roof valleys, exact facade bays, sculptured tracery, saints, the summit lion, Golden Gate
+mosaic and Daliborka require further work. Golden Lane colors are approximate. Placement
+stays draft with `replaceFootprint=false`. Physical-device performance measurements are
+also pending. Studio render integrity does not certify architectural or geographic accuracy.
+
+Inventory now has **352 registered structures**, including **250 authored/imported
+next-1000 models**, **167 fully complete**, and **750 unauthored**. Portable reviews are
+248; shared-material reviews are 246; active geographic previews remain 232.
+
+Source hash: `80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0`.
+Runtime hash: `0715c75083351a20d4bc7ad4e62c046a9800399711a6771a38d44132db04171d`.
+Lock **`assets-c821a6356fc84326`** pins **2,200 GLBs**: added Prague's six validated files
+and preserved all 2,194 preceding entries exactly. The eight earlier authored-LOD sidecars
+have refreshed common-registry fingerprints; their 40 master/LOD files still match the
+previous lock. No repository-wide rebuild, engine suite, dependency audit, Git mutation
+or publication was run. **N0241 Wartburg is the next unauthored candidate.**
+
+## Wartburg source checkpoint — 2026-10-04
+
+N0241 now has an individual recipe at `packages/worldgen/scripts/wartburg-castle-model.mjs`
+and source bundle at `places/u1/u1p/n0241_wartburg/`. The exact Q151545 map point anchors
+a signed meter frame from the South Tower toward the northern gatehouse. Twenty-one
+attributed component ways describe buildings and walls; their envelope is not an occupied
+precinct footprint. Two courtyards remain open. The owner plan and four linked exterior
+photographs informed the Palas arcades, copper roof, keep and cross, white South Tower,
+timber halls, projecting Vogtei oriel and covered galleries.
+
+The source master is **18,803,828 bytes**, **227,673 triangles**, **446,281 vertices**,
+ten materials and zero embedded images. The imported master is **18,802,968 bytes**.
+Nine canonical shared material graphs are reused. Separate authored viewer models:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 80,196 | 976 |
+| District | 167,236 | 2,144 |
+| Street | 775,684 | 10,204 |
+| Close-up | 1,629,032 | 22,843 |
+
+Initial skyline plus district totals **247,432 bytes**. Inspected 14 portable and 13
+shared-material frames plus the common-camera LOD comparison. Corrected floating chimneys,
+gable materials, South Tower stair direction and roof winding, outward gate arch surfaces,
+and obstructed review cameras. All six GLBs pass Khronos validation with zero errors or
+warnings; unused UV information reflects externally resolved materials. Shared graphs load
+once each, and unloading leaves zero live model geometries. Source generation `--check`
+reproduces the master. **15 focused authored-LOD tests pass.** Physical-device performance
+measurements remain pending.
+
+**Geographic fit and maximum fidelity remain pending.** The source anchor is
+`[10.3063142, 50.965902]`, heading `1.3697714204430447`. Model placement remains draft,
+with `replaceFootprint=false`. The keep height is provisional: the owner's nearly 34 m
+description conflicts with OSM's 40–46 m tags. The reconstructed top is 34 m, including
+the documented 3.8 m cross. Court elevations, exact roof profiles, facade spacing,
+Palas lions/capitals, Gothic oriel tracery and terrain contact need further work.
+
+Inventory: **353 registered structures**, including **251 authored/imported next-1000
+models**, **167 fully complete**, and **749 unauthored**. Portable reviews are 249;
+shared-material reviews are 247; active geographic previews remain 232.
+
+Source hash: `573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372`.
+Runtime hash: `9e41999a6648e196df41877c925edb153f83c68f87320821285478154a1cd52f`.
+Lock **`assets-692ef1d30a6da0e6`** pins **2,206 GLBs**: only Wartburg's six validated files
+were added; all 2,200 existing entries are preserved. Nine earlier authored-LOD sidecars
+have current common-registry fingerprints and their 45 master/LOD files retain the locked
+bytes. **N0242 Edinburgh Castle is the next unauthored candidate.**
+
+## Edinburgh Castle source checkpoint — 2026-10-04
+
+N0242 now has an individual recipe at `packages/worldgen/scripts/edinburgh-castle-model.mjs`
+and a source bundle at `places/gc/gcv/n0242_edinburgh_castle/`. Attributed OSM component
+polygons preserve the palace, Great Hall, Queen Anne range, memorial, chapel, barracks,
+Hospital Square, gateways and defensive walls. The official plan labels and inspected
+exterior photographs inform the reconstruction. Crown Square and Hospital Square remain
+open. The enclosing precinct is not treated as one occupied building footprint.
+
+The source master is **21,794,276 bytes**, **259,930 triangles**, **518,622 vertices**,
+eight materials and zero embedded images. The imported master is **21,793,564 bytes**.
+Seven canonical shared material graphs are reused. Separate authored viewer models:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 65,672 | 788 |
+| District | 265,952 | 3,636 |
+| Street | 964,872 | 12,770 |
+| Close-up | 3,491,812 | 45,598 |
+
+Initial skyline plus district totals **331,624 bytes**. Inspected all 14 portable and
+13 shared-material frames and the common-camera LOD comparison. Corrected gate rotations,
+overlapping gate-part walls, memorial doorway/window overlap and reversed stair treads.
+All six GLBs pass Khronos validation with zero errors or warnings. Source generation
+`--check` reproduces the master; **17 focused authored-LOD tests pass**. Seven material
+graphs load once each, and unloading leaves zero live model geometries. Physical laptop
+and phone measurements remain pending.
+
+**Geographic fit and maximum fidelity remain pending.** The source anchor is
+`[-3.200425671, 55.948548674]`, cached heading `-0.238261013131`. Relative ward elevations,
+Castle Rock, exact gate and roof details, facade openings, heraldry, memorial sculpture and
+Foogs Gate need further work. The current retaining plinths do not establish real terrain
+fit. Placement remains draft with `replaceFootprint=false`.
+
+Inventory: **354 registered structures**, including **252 authored/imported next-1000
+models**, **167 fully complete**, and **748 unauthored**. Portable reviews are 250;
+shared-material reviews are 248; active geographic previews remain 232.
+
+Source hash: `4cd274cfb172ebeddbbb803c2f7f3cd6aa3140f3c27f8823e8bda61562641388`.
+Runtime hash: `237f5465a63525801cde32c93ddba3c8b2b5d39102ef9c8a0ad1f09ed1868f7c`.
+Lock **`assets-188597fa0ccb3703`** pins **2,212 GLBs**: only Edinburgh's six validated files
+were added; all 2,206 previous entries were preserved exactly. Ten earlier authored-LOD
+sidecars have refreshed registry fingerprints and their 50 master/LOD files retain their
+locked bytes. **N0243 Malbork Castle is the next unauthored candidate.**
+
+## Malbork Castle source checkpoint — 2026-10-04
+
+N0243 now has an individual recipe at `packages/worldgen/scripts/malbork-castle-model.mjs`
+and source bundle at `places/u3/u3t/n0243_malbork_castle/`. The source records 103 attributed
+OSM features. The exact Q71279 relation covers the High and Middle Castle precinct; named
+Lower Castle buildings and towers extend the component frame northward. High Castle retains
+its courtyard hole, raised Dansker gallery and keep. Middle Castle retains its U-shaped court,
+Grand Masters Palace and open entry. Lower Castle includes Karwan, St Lawrence, service
+ranges and defensive towers. The envelope is not an occupied replacement footprint.
+
+The detailed source master is **44,329,516 bytes**, **516,537 triangles**, **1,059,079 vertices**,
+seven materials and zero embedded images. The imported master is **44,328,876 bytes**.
+Six existing material graphs supply brick, ceramic tile, limestone, granite, wood and painted
+metal; glazing remains local PBR. Separate authored viewer models:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 78,648 | 964 |
+| District | 233,176 | 3,170 |
+| Street | 1,035,396 | 15,350 |
+| Close-up | 3,672,768 | 51,343 |
+
+Initial skyline plus district totals **311,824 bytes**. Skyline omits curtain walls and minor
+outbuildings while retaining principal wards, open courts and major towers. Inspected all
+14 portable and 13 shared-material views plus the common-camera LOD comparison. Corrected
+cloister arches below ground, windows crossing courtyard offsets, inward-facing passage
+spandrels, solid gate obstructions and bridge-end railings. All six GLBs pass Khronos validation
+with zero errors or warnings. The source `--check` rebuild reproduces the master and **19
+focused authored-LOD tests pass**. Six graphs load once each; unloading leaves zero live model
+geometries. Physical phone and laptop measurements remain pending.
+
+**Geographic fit and maximum fidelity remain pending.** Anchor `[19.027655287, 54.03991349]`,
+heading `0.857051662697`, draft placement and `replaceFootprint=false`. The museum ticket
+site describes a nearly 70 m tower without a datum; the current ground-relative 46 m crown
+is explicitly provisional. Terrain, moat depths, exact roof joins, windows, dormers, church
+Madonna mosaic, fine tracery and complete outer earthworks need further work. Current render
+integrity approval does not certify those architectural or geographic details.
+
+Inventory: **355 registered structures**, including **253 authored/imported next-1000
+models**, **167 fully complete**, and **747 unauthored**. Portable reviews are 251;
+shared-material reviews are 249; active geographic previews remain 232.
+
+Source hash: `7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193`.
+Runtime hash: `8be58eccd2d4389249c7e883f42f32b17b89e10de01cab001e599a1bd945f6b8`.
+Lock **`assets-6182ee003d4146e8`** pins **2,218 GLBs**: Malbork's six validated files were
+added while all 2,212 prior entries were preserved. Eleven earlier authored-LOD sidecars
+have refreshed registry fingerprints; all 55 earlier master/LOD files still match their
+locked bytes. The shared capture emitted an unrelated stale terrain-export dependency-scan
+warning, but completed every landmark frame and unload check. **N0244 Kronborg Castle is
+the next unauthored candidate.**
+
+## Kronborg Castle source checkpoint — 2026-10-04
+
+N0244 now has its own recipe at `packages/worldgen/scripts/kronborg-castle-model.mjs`
+and source bundle at `places/u3/u3b/n0244_kronborg_castle/`. Thirteen attributed OSM
+features, the north-east lighthouse node, museum plan, aerial views and courtyard views
+establish the horizontal reconstruction. Separate wings keep the courtyard and north
+passage open. The model distinguishes the flat Cannon/Telegraph Tower, tall Trumpeter,
+three other corner spires, four domed stair turrets, copper roofs and Renaissance gables.
+Selected mapped moat/embankment edges define the bastion extent.
+
+The preserved source master is **28,246,264 bytes**, **337,000 triangles**, **672,132 vertices**,
+ten materials and zero embedded images. Eight canonical material graphs provide sandstone,
+limestone, copper, granite, brick, timber, painted metal and gilded-metal surfaces. Glazing
+and turf remain local PBR. The imported master is **28,245,400 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 77,208 | 958 |
+| District | 260,268 | 3,316 |
+| Street | 868,416 | 11,238 |
+| Close-up | 1,659,508 | 21,684 |
+
+Initial skyline plus district totals **337,476 bytes**. Skyline omits small stair turrets
+and gable ornament while preserving the main silhouette, courtyard and entrance opening.
+Inspected all 14 portable and 13 shared-material views plus the common-camera LOD comparison.
+Corrected shutters hidden behind dormer faces and an inspection camera intersecting a tower.
+All six GLBs pass Khronos validation with zero errors or warnings; the source is reproducible.
+**21 focused authored-LOD tests pass**. Each of eight material graphs loads once; unloading
+leaves zero live model geometries. Physical phone and laptop measurements remain pending.
+
+**Geographic fit and maximum fidelity remain pending.** Anchor `[12.621716106,56.039011686]`,
+heading `1.482790729732`, draft placement and `replaceFootprint=false`. The CBS study p.57
+reports Trumpeter height as 59 m above the courtyard / 62 m above water. The reconstructed
+five-meter courtyard elevation above fortress wall foot is provisional. Other tower heights,
+exact openings, roof joins, copper patches, clock faces, heraldic sculpture and complete
+outer crownwork/ravelins require refinement. Render-integrity approval does not certify them.
+
+Inventory: **356 registered structures**, including **254 authored/imported next-1000 models**,
+**167 fully complete**, and **746 unauthored**. Portable reviews are 252; shared-material
+reviews are 250; active geographic previews remain 232.
+
+Source hash: `19d963e651b26285ce37f136aac82dd41fe21fb689ca37b4cd863a8501e18e9a`.
+Runtime hash: `60873fb83873e7f54c078f5cf574734c5863ff19b83ae8b54e26941b00d1414d`.
+Lock **`assets-2df7416071d762b4`** pins **2,224 GLBs**: only Kronborg's six validated files
+were added, preserving all 2,218 previous entries. Twelve earlier authored-LOD sidecars have
+refreshed registry fingerprints; all 60 earlier master/LOD files retain their locked bytes.
+The shared-capture fixture again emitted the unrelated stale terrain-export dependency-scan
+warning but completed every landmark frame and unload check. **N0245 Hofburg Palace is next.**
+
+## 2026-10-04 — Hofburg Palace source and runtime checkpoint
+
+Added **N0245 Hofburg Palace** as an individual source recipe with attributed map parts,
+reference observations, import, draft placement and four browser LODs. The model follows
+separate palace wings and open courts, the Michaeler domes and mapped columns, Amalien clock,
+Neue Burg curve and colonnade, library dome, Augustinian spire, Stallburg, Albertina terrace
+and Palmenhaus. Source: `places/u2/u2e/n0245_hofburg_palace/`.
+
+The source master contains **606,293 triangles**, **1,258,179 vertices**, eleven material
+slots and **zero embedded images**. Ten canonical material graphs cover limestone, carved
+stone, lime plaster, ceramic tile, slate, copper, granite, timber, painted metal and gilding.
+Glazing remains local PBR. Source bytes: **52,576,076**; imported master: **52,575,140**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 66,800 | 819 |
+| District | 340,008 | 3,946 |
+| Street | 1,228,492 | 15,612 |
+| Close-up | 4,891,288 | 63,398 |
+
+Initial skyline plus district totals **406,808 bytes**. All 14 portable and 13 shared-material
+views and the common-camera LOD comparison were inspected. Iteration repaired artificial roof
+folds, concealed clock/drum windows, facade and rustication crossing the main passage, and
+unsupported chimney repetitions. Roof fields remain faceted approximations, especially at
+complex joins. Skyline simplifies roof masses and omits minor court holes and terrace details.
+All six GLBs pass Khronos validation with zero errors or warnings. Source regeneration is
+byte-identical. **23 targeted authored-LOD tests pass**; formatting checks pass. Ten graphs
+load once each and unload leaves zero live model geometries. Physical-device tests remain pending.
+
+**Geographic fit and maximum exterior fidelity remain pending.** Exact Q46242 relation/3898175
+and named component outlines establish anchor `[16.365909858,48.20633]`, heading
+`1.524057778872`. Placement stays draft with `replaceFootprint=false`. The common ground datum,
+Albertina terrain contact and main passage alignment are unverified. Exact roof junctions,
+opening positions, imperial sculpture, fountains, capitals, court arcades, Swiss portal,
+Palmenhaus central pavilion and Albertina lower levels need further authoring. Render-integrity
+reviews do not certify architectural fidelity or real-world fit.
+
+Inventory: **357 registered structures**, **255 authored/imported next-1000 models**,
+**167 fully complete**, **745 unauthored**, 253 portable reviews, 251 shared-material reviews,
+and 232 active geographic previews.
+
+Source hash: `79084a947c6c83616f25e862fab35a882027b1012e91d045614889f344256de9`.
+Runtime hash: `a5eb2965947f604d0c3b1dc73ee159d70556ac247667bd87e83e8ee812e2997e`.
+Lock **`assets-665e209524dc0bb9`** pins **2,230 GLBs**: six Hofburg files added, all 2,224
+previous entries preserved. Thirteen earlier authored-LOD fingerprints were refreshed once;
+all 65 earlier master/LOD files remain byte-identical to their pins. The capture fixture emitted
+the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; all landmark
+frames and unload checks completed. No repository-wide build or npm audit was run.
+
+**Next: N0246 Takht-e Soleyman.** The cached identity has no resolved physical footprint.
+UNESCO provides an official nomination dossier and site description at
+<https://whc.unesco.org/en/list/1077> and <https://whc.unesco.org/uploads/nominations/1077.pdf>.
+Current ruins, site layout and terrain must be distinguished from historical reconstructions.
+
+## 2026-10-04 — Takht-e Soleyman source and runtime checkpoint
+
+Added **N0246 Takht-e Soleyman** as a reproducible source recipe, imported model, draft
+geographic placement and four authored browser LODs. The mapped oval enclosure and spring
+lake surround roofless temple rooms, western column halls, the broken west iwan, two octagonal
+foundations and an oblique red-stone four-column hall. Source:
+`places/tn/tn9/n0246_takht_e_soleyman/`.
+
+The source master has **817,410 triangles**, **1,641,262 vertices**, eight material groups,
+six reusable graphs and **zero embedded images**. Graphs cover coursed limestone, raw limestone,
+weathered limestone, travertine, brick and sandstone; the lake and dark recesses use local PBR
+colors. Source bytes: **68,898,992**; imported master: **68,898,276**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 85,524 | 992 |
+| District | 306,824 | 3,830 |
+| Street | 681,692 | 8,872 |
+| Close-up | 4,833,048 | 62,330 |
+
+Initial skyline plus district totals **392,348 bytes**. All 14 final portable views, 13 shared
+views and the common-camera LOD comparison were inspected. Corrections removed Float32 profile
+slivers, repaired normals on uneven tower tops, filled gate spandrels, roughened the broken iwan
+edge and turned the old gate's seven blind niches outward. Six GLBs pass Khronos validation with
+zero errors or warnings; source regeneration is byte-identical. **25 targeted authored-LOD tests
+pass** and formatting checks pass. Each shared graph loads once and model unload leaves zero
+live geometries. Physical phone/laptop measurements remain pending.
+
+**Maximum archaeological fidelity and geographic fit remain pending.** OSM way/203537193
+matches the English Wikipedia identity and UNESCO reference 1077, but carries no Wikidata tag.
+The lake is way/314769016. The anchor is `[47.23476205,36.60460215]`, heading `pi/2`;
+placement stays draft with `replaceFootprint=false`. The enclosing footprint includes empty
+land and water. Interior rooms are proportional interpretations of Dietrich Huff's published
+phase plans, not surveyed coordinates. Individual bastion stations, erosion profiles, restored
+arches and the 22 m iwan peak need measured refinement. Stone courses remain overly regular.
+The 1.2 m contact slab is provisional; it does not recreate the geological mound above the valley.
+
+Inventory: **358 registered structures**, **256 authored/imported next-1000 models**,
+**167 fully complete**, **744 unauthored**, 254 portable reviews, 252 shared-material reviews,
+and 232 active geographic previews. This addition is not counted as maximum-fidelity complete.
+
+Source hash: `41b6f6084c0178b38b404cefe961b44af4931cfea734ba1b0ac5c6ea266f5901`.
+Runtime hash: `cd4bb85a8565839e03ec95ad660d0dea840c750dba2cc7520a1935a247a8cef8`.
+Lock **`assets-79bcff6c8a4f0dd4`** pins **2,236 GLBs**: six new files added, all 2,230 prior
+entries preserved. Fourteen prior authored-LOD fingerprints were refreshed once; all 70
+previous master/LOD files remain byte-identical to their pins. The first shared capture emitted
+the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; all final frames
+and unload checks completed. No repository-wide rebuild or dependency audit was run.
+
+**Next: N0247 Karlstejn Castle** (catalog title Karlštejn Castle), exact mapped identity
+Q266698 / relation 6706848. Its cached 150 by 143 m enclosure has only an undirected axis;
+separate palace/tower outlines, signed orientation and the stepped hill datum need research.
+
+## 2026-10-04 — Karlštejn Castle source and runtime checkpoint
+
+Added **N0247 Karlštejn Castle** with separately mapped Great Tower, Marian Tower,
+Imperial Palace and round eastern turret, Burgrave House, well tower, gatehouses,
+curtain walls and two raised covered passages. Source:
+`places/u2/u2f/n0247_karlstejn_castle/`. The deterministic recipe includes window
+apertures, timber galleries, half-timber framing, dormers and slate shingle relief.
+
+The source master has **556,934 triangles**, **1,115,998 vertices**, nine material groups,
+seven reusable material graphs and **zero embedded images**. Source master:
+**46,864,188 bytes**; imported master: **46,863,404 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 66,904 | 830 |
+| District | 247,428 | 3,824 |
+| Street | 1,004,492 | 13,788 |
+| Close-up | 4,690,592 | 61,044 |
+
+Initial skyline plus district totals **314,332 bytes**. All 14 final portable views,
+13 shared-material views and the common-camera LOD comparison were inspected. Fixed a
+zero-width timber panel, loggia apertures initially blocked by a second wall, and curtain-wall
+face directions. All six GLBs pass Khronos validation with zero errors or warnings.
+Source regeneration is byte-identical; **27 targeted authored-LOD tests pass** and formatting
+checks pass. Seven shared graphs load once each; unload leaves zero live model geometries.
+Physical phone/laptop performance remains unmeasured.
+
+**Geographic fit and maximum exterior fidelity remain pending.** Exact Q266698 identity
+matches OSM relation/6706848. Anchor `[14.187600418,49.939448506]`, heading
+`0.340165327482`; placement remains draft with `replaceFootprint=false`. The enclosing
+boundary includes empty courts. The Great Tower's official 60 m height and OSM 53 m height
+use an unresolved datum; the seven-meter exposed-base interpretation is provisional.
+Stepped terrace elevations, terrain contact, Burgrave roof junctions, obscured facade windows,
+chimneys and bridge support details need measured refinement. Regular stone courses and
+LOD-dependent slate contrast also need fidelity work. No maximum-fidelity approval is asserted.
+
+Inventory: **359 registered structures**, **257 authored/imported next-1000 models**,
+**167 fully complete**, **743 unauthored**, 255 portable reviews, 253 shared-material reviews,
+and 232 active geographic previews.
+
+Source hash: `2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85`.
+Runtime hash: `cb8384afda77ff8eabe62fb097b1d76e5b155e85d63d352f60b288e54cb866f6`.
+Lock **`assets-949a40efa6e8e96f`** pins **2,242 GLBs**: six new files added and all 2,236
+prior entries preserved. Fifteen previous authored-LOD fingerprints were refreshed once;
+all 75 earlier master/LOD files remain byte-identical to their lock entries. The shared
+capture fixture emitted the existing unrelated `updateTerrainSurfaceSignals` dependency-scan
+warning; final landmark frames and unload checks completed. No repository-wide rebuild or
+dependency audit was run.
+
+**Next: N0248 Bran Castle**, Q390275, reference coordinate `[25.3671,45.515]`.
+Research its individually shaped towers, compact courtyard, roof levels and rocky terrain
+before authoring; do not substitute a generic castle.
+
+## 2026-10-04 — N0248 Bran Castle source and runtime checkpoint
+
+Added `places/u8/u84/n0248_bran_castle/` from a deterministic authored recipe,
+OSM outer/inner rings and five mapped tower parts. The castle includes an open courtyard,
+round western tower, southern stair turret, steep single-slope keep roof, scalloped rear
+parapet, timber belfry, projecting eastern tower chamber, galleries, well and entrance stairs.
+Official chronology, visitor map and exterior/courtyard photographs are recorded as references.
+
+The source master has **145,600 triangles**, **333,850 vertices**, eight material groups,
+six shared material graphs and **zero embedded images**. Source: **13,770,396 bytes**;
+imported master: **13,769,692 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 66,612 | 719 |
+| District | 172,892 | 2,469 |
+| Street | 311,860 | 4,389 |
+| Close-up | 2,545,052 | 33,031 |
+
+Initial skyline plus district totals **239,504 bytes**. All 14 final portable renders,
+13 shared-material renders and the common-camera LOD comparison were inspected. Corrected
+inward-facing tower walls and keep gables, roof junction gaps, a doorway/window overlap,
+masonry crossing the entrance, a capped well and gallery walls extending above their roof.
+All six GLBs pass Khronos validation with zero errors or warnings. Source rebuild is byte-identical.
+Shared graphs load once each and unloading leaves zero live model geometries. Physical phone
+and laptop measurements remain pending.
+
+**Maximum exterior fidelity and geographic fit remain pending.** Exact Q390275 identity
+matches OSM relation/3300200. Anchor `[25.367082771,45.515080804]`, heading
+`-0.689652279939`; placement remains draft with `replaceFootprint=false`. OSM height tags
+from 50 to 73 m have no verified common datum. Authored local heights, roof valleys, window
+rhythms, chimney placement and four-meter rock contact are estimates. This is not a surveyed
+castle or complete terrain hill. Rounded tile detail, plaster weathering and stone texture
+need further refinement; material contrast still differs across levels.
+
+Inventory: **360 registered structures**, **258 authored/imported next-1000 models**,
+**167 fully complete**, **742 unauthored**, 256 portable reviews, 254 shared-material reviews,
+and 232 active geographic previews.
+
+Source hash: `1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff`.
+Runtime hash: `d3a721671c12168d6a445dead537ff0e346bbd87432ad888bc716f121b182d0a`.
+Lock **`assets-5f658db5bfd3dd4b`** pins **2,248 GLBs**: six additions with all 2,242 prior
+entries preserved. Sixteen previous authored-LOD fingerprints were refreshed once; their
+80 earlier master/LOD files remain byte-identical to the lock. Targeted LOD checks passed.
+The capture fixture still logs the unrelated `updateTerrainSurfaceSignals` dependency-scan
+warning; landmark frames and unload checks succeeded. No repository-wide build or audit ran.
+
+**Next: N0249 Alamut Castle**, Q4706020. Cached exact OSM way/590499418 has a 176.148 ×
+53.917 m envelope and a draft map axis. UNESCO nomination 1770 identifies surviving ruins,
+rock-cut structures and water systems. Research the present remains and levels; do not invent
+an intact medieval reconstruction. The public nomination document was too large for the web
+reader and direct download hit a JavaScript challenge; the UNESCO listing and evaluation
+remain available for research.
+
+## 2026-10-04 — N0249 Alamut Castle source and runtime checkpoint
+
+Added `places/tn/tn7/n0249_alamut_castle/` from a deterministic authored recipe,
+OSM upper-castle outline and ten mapped ruin groups. Roofless chambers, northwest ridge
+cells, five interpreted rock-cut reservoirs, brick arches, broken masonry, patches of
+plaster, local cliff contact and approach stairs are included. The 2024 UNESCO photographs
+and published plan/field references are documented; older temporary excavation shelters
+are not treated as permanent historic architecture.
+
+The source master has **271,061 triangles**, **652,777 vertices**, seven material groups,
+six shared material graphs and **zero embedded images**. Source: **26,756,940 bytes**;
+imported master: **26,756,304 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 68,396 | 801 |
+| District | 123,368 | 1,467 |
+| Street | 288,548 | 3,621 |
+| Close-up | 2,915,412 | 39,879 |
+
+Initial skyline plus district totals **191,764 bytes**. Inspected all 14 final portable
+renders, 13 shared-material renders and the common-camera LOD comparison. Corrected a
+floating stair approach with a local cut-rock ledge, kept cliff ribs at consistent physical
+positions across detail levels, and added chipped stone faces. All six GLBs pass Khronos
+validation with zero errors or warnings. Source regeneration is byte-identical. The
+31 targeted LOD checks passed before the visual repair; the two Alamut checks passed again
+afterward. Shared graphs load once each and unloading leaves zero live model geometries.
+Physical phone and laptop measurements remain pending.
+
+**Maximum exterior fidelity and geographic fit remain pending.** Exact Q4706020 identity
+matches OSM way/590499418. Anchor `[50.586098381,36.44473323]`, heading
+`-0.796374558514`; placement remains draft with `replaceFootprint=false`. Wall heights,
+cistern locations/depths, chamber divisions, arch positions, excavated floor levels and
+stair elevations require measured archaeological plans. The local cliff is not the full
+mountain. The lower/onion castle and passing zone need separate source coverage. Flat
+plateau geometry, regular mortar patterns, rock strata and the lighter skyline material
+need refinement; no maximum-fidelity approval is asserted.
+
+Inventory: **361 registered structures**, **259 authored/imported next-1000 models**,
+**167 fully complete**, **741 unauthored**, 257 portable reviews, 255 shared-material reviews,
+and 232 active geographic previews.
+
+Source hash: `9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588`.
+Runtime hash: `5f278d74d54e58c21b07e64350042d4e795386f0c5de1bfa0a75abe822defea9`.
+Lock **`assets-6be3f59c6e387fcb`** pins **2,254 GLBs**: six additions with all 2,248 prior
+entries preserved. Seventeen previous authored-LOD fingerprints were refreshed once; all
+85 earlier master/LOD files remain byte-identical to the lock. The capture fixture emitted
+the existing unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark
+captures and unload checks succeeded. No repository-wide build or dependency audit ran.
+
+**Next: N0250 Mir Castle Complex**, Q209643. Exact OSM relation/1579104 has an outer
+ring and courtyard hole, draft anchor `[26.472922093,53.451203802]`, heading
+`-0.224560956675` and mapped envelope 78.855 × 75.802 m. The public OSM area response is
+cached in `.artifacts/mir-research/map-raw.json`. The ICOMOS evaluation available at
+https://whc.unesco.org/document/169793 describes five towers, square lower and octagonal
+upper stages, recessed plaster ornament, brick facades and tiled roofs. Its 2000 dimensions
+are historical evidence; current restoration state and all five tower facades still need
+visual inspection. The 17 MB nomination exceeded the web reader's size limit, while the
+small evaluation text was readable (PDF screenshot requests returned cache misses).
+
+## 2026-10-04 — N0250 Mir Castle source and runtime checkpoint
+
+Added `places/u9/u9d/n0250_mir_castle_complex/` with a deterministic geometry recipe,
+mapped building-part polygons and reference notes from the official museum photographs.
+The five towers have separate brick/plaster ornament; the L-shaped palace surrounds an
+open courtyard. Covered wall walks, west gate passage, north arched bridge, timber gallery,
+roof tiles, dormers, chimneys and balcony are included.
+
+The source master has **255,892 triangles**, **593,826 vertices**, ten material groups,
+eight shared graphs and **zero embedded images**. Source: **24,453,976 bytes**;
+imported master: **24,453,128 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 63,532 | 712 |
+| District | 237,812 | 3,245 |
+| Street | 767,700 | 12,761 |
+| Close-up | 3,047,424 | 41,155 |
+
+Initial skyline plus district totals **301,344 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings. All **33 authored-LOD regression checks** pass; the master
+regenerates byte for byte. Inspected 14 portable and 13 shared-material renders plus the
+common-camera LOD comparison. Removed hidden palace trim and drains that protruded through
+the south wall, split gate ornament around the open arch, and corrected dormer side normals.
+The eight shared graphs load once each; unloading leaves zero live model geometries.
+Physical phone and laptop measurements remain pending.
+
+**Maximum exterior fidelity and geographic fit remain pending.** Exact Q209643 matches
+OSM relation/1579104; draft anchor `[26.472922093,53.451203802]`, heading
+`-0.224560956675`, `replaceFootprint=false`. Map tower roof heights of 30/31 m differ from
+the ICOMOS evaluation's 22–26 m figures; height datum needs resolution. Window rhythms,
+plaster patterns, roof details and bridge elevation remain photographic interpretations.
+The separate chapel-crypt, guardhouse, moat, park, ramparts and later palace remains are
+outside this castle-and-bridge geometry. Fieldstone texture and cross-LOD color need further
+refinement. No full-complex or maximum-fidelity approval is asserted.
+
+Inventory: **362 registered structures**, **260 authored/imported next-1000 models**,
+**167 fully complete**, **740 unauthored**, 258 portable reviews, 256 shared-material reviews,
+and 232 active geographic previews. The source index contains 363 bundles.
+
+Source hash: `f309ea5ba68616121c06e1529e32274ebbabb6ae386a14da3e273f40bb32ecee`.
+Runtime hash: `a01a84fbf58e2f7d3444958759b04683e5702a56433f7bbe5863a346f8915a9d`.
+Lock **`assets-9d1f474fb25019ec`** pins **2,260 GLBs**: six additions with all 2,254 prior
+entries preserved. Eighteen prior authored-LOD fingerprints were refreshed; all 90 earlier
+master/LOD files remain byte-identical to the lock. The capture fixture still emits its
+unrelated `updateTerrainSurfaceSignals` dependency-scan warning; model captures and unload
+checks succeeded. No repository-wide build or dependency audit ran.
+
+**Next: N0251 Kernavė**, Q215315. The candidate currently identifies a town and has no exact
+mapped castle footprint. The [UNESCO property](https://whc.unesco.org/en/list/1137/) describes
+an archaeological landscape with five surviving hillforts; the
+[reserve's official site](https://www.kernave.org/) also identifies an outdoor exhibition of
+reconstructed medieval homesteads. Research and map these separately. Do not place an invented
+intact castle at the town coordinate or silently substitute the reconstruction exhibit for
+the five hillforts. N0252 Hohenzollern Castle has exact OSM way/93612350 with a 175.611 ×
+88.98 m enclosure outline, but its palace/tower parts still need research and mapping.
+
+## 2026-10-04 — N0251 Kernavė source and runtime checkpoint
+
+Added `places/u9/u9c/n0251_kernave/` and the source recipe
+`packages/worldgen/scripts/kernave-landscape-model.mjs`. The candidate Q215315 is a town,
+so the model explicitly covers five independently identified hillforts and the separate
+modern museum reconstruction. OSM fixes component positions, twelve wooden building
+footprints, three yards' fence lines, paths and stairs. Published archaeological dimensions
+and official aerial photographs inform the interpreted earthworks and timber construction.
+No intact medieval castle is invented at the town point.
+
+The source master has **140,410 triangles**, **379,638 vertices**, three material groups,
+two reusable graphs (timber and gravel) and zero embedded images. Grass remains vertex color.
+Source: **15,354,172 bytes**; imported master: **15,353,816 bytes**.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 93,196 | 918 |
+| District | 281,216 | 2,770 |
+| Street | 1,321,856 | 15,170 |
+| Close-up | 4,008,352 | 48,534 |
+
+Initial skyline plus district is **374,412 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings. All **35 authored-LOD regression checks** pass. Source
+regeneration reproduces the exact bytes. Inspected 14 portable and 13 shared-material frames
+plus the common-camera LOD comparison. Closed timber-course gaps and retained the flat
+courtyard terrace at low LODs. Both material graphs load once; unloading leaves zero live
+model geometries. Physical phone/laptop performance remains unmeasured.
+
+**Maximum fidelity and geographic fit remain pending.** Draft anchor `[24.8517,54.8824]`,
+heading zero (+X east, +Z south), `replaceFootprint=false`. The height field uses interpreted
+contours and relative hill-slope heights, not a surveyed elevation raster. Terrain patch edges,
+steep-slope shading, ground material, vegetation, exact timber details and the wider reserve
+need further work. Do not treat the standalone patch surfaces as verified world terrain.
+The archaeological landscape is not a single building footprint and is not activated.
+
+Inventory: **363 registered structures**, **261 authored/imported next-1000 models**,
+**167 fully complete**, **739 unauthored**, 259 portable reviews, 257 shared-material reviews,
+232 active geographic previews and 192 maximum-fidelity approvals. Source index: 364 bundles.
+
+Source hash: `b9709daddae6b379c702d47d39c6bb990a5616df8f27fa3fd5dd0c2d197d59fa`.
+Runtime hash: `a0389cf7d6c40ee3ecb5e7908c5a14e3c036d728afca2ff4eee94e81325f10d2`.
+Lock **`assets-43aea3e69bf9a2d7`** pins **2,266 GLBs**, adding six and preserving all 2,260
+previous entries. Nineteen prior authored-LOD fingerprints were refreshed once; all 95
+previous master/LOD files still match their lock hashes. The visual fixture's unrelated
+`updateTerrainSurfaceSignals` dependency-scan warning remains; landmark captures succeeded.
+No repository-wide build or dependency audit ran.
+
+**Next: N0252 Hohenzollern Castle**, Q156457. Exact OSM way/93612350 is the enclosure,
+not the palace roof footprint. Cached georeferencing gives anchor `[8.967537148,48.323560831]`,
+heading `-0.254203978258`, and envelope 175.611 × 88.98 m. Research palace/tower parts and
+current official photographs before authoring; do not extrude the enclosure into a building.
+
+## 2026-10-04 — N0252 Hohenzollern Castle source and runtime checkpoint
+
+Added `places/u0/u0w/n0252_hohenzollern_castle/` and the editable recipe
+`packages/worldgen/scripts/hohenzollern-castle-model.mjs`. The mapped enclosure is kept
+separate from three palace wings, named towers, two chapels, gatehouses and spiral entry
+ramps. Original architectural reconstruction uses the operator's visitor plan, Stüler's
+1854 design elevations and a 2005 courtyard photograph; these are references, not embedded
+textures or a claim of current surveyed conditions.
+
+The source master has **349,299 triangles**, **718,009 vertices**, nine material groups,
+seven shared material graphs and zero embedded images. Source: **30,044,980 bytes**;
+imported master: **30,044,200 bytes**. Reused sandstone, limestone, raw limestone, granite,
+slate, wood and painted metal; grass and glass remain local PBR colors.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 90,496 | 983 |
+| District | 241,336 | 2,999 |
+| Street | 827,344 | 11,891 |
+| Close-up | 4,239,436 | 56,562 |
+
+Initial skyline plus district totals **331,832 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings; UV-use notices reflect external procedural surfaces. All
+**37 authored-LOD regression checks** pass and the source regenerates byte for byte.
+Inspected 14 portable and 13 shared-material renders plus the common-camera LOD comparison.
+Repaired floating support walls, connected the carriage court/gate platform and cut the hall
+roof around the Watch Tower. All seven graphs load once; unloading leaves zero live model
+geometries. Physical phone and laptop measurements remain pending.
+
+**Maximum exterior fidelity and geographic fit remain pending.** Exact Q156457 matches
+OSM way/93612350. Draft anchor `[8.967537148,48.323560831]`, heading `-0.254203978258`,
+`replaceFootprint=false`; +X points 14.565 degrees south of east. The +30 m entry-to-court
+datum is inferred from separate map elevation tags, not surveyed connected floors. Tall
+provisional support skirts, local rock/terrain contact, ramp gradients and vaults, facade
+rhythms, crown details and roof joins need further work. Forest, ivy, statuary, water tower,
+parking buildings and interiors are outside the asset. It is registered for asset review
+but is not an approved geographic replacement.
+
+Inventory: **364 registered structures**, **262 authored/imported next-1000 models**,
+**167 fully complete**, **738 unauthored**, 260 portable reviews, 258 shared-material reviews,
+232 active geographic previews and 192 maximum-fidelity approvals. Source index: 365 bundles.
+
+Source hash: `5cb6e4124350dee11d4dd9368b9ae214494f141b73d15c7d050fcf08c45838e7`.
+Runtime hash: `6e608b386f84f7036ec3a3d9699f3c7a6b12524fbbc19d29c8de6c8371a32720`.
+Lock **`assets-28410671462d0ba7`** pins **2,272 GLBs**, six additions with all 2,266 prior
+entries preserved. Twenty earlier authored-LOD fingerprints were refreshed once; all 100
+previous master/LOD files remain byte-identical to the lock. Capture fixtures still emit
+the unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark captures and
+unload checks succeed. No repository-wide build or dependency audit ran.
+
+**Next: N0253 Bratislava Castle**, Q593311. Cached exact OSM way/1128350263 has an approximately
+334.485 × 310.572 m site envelope, anchor `[17.100792149,48.142390437]`, heading
+`1.019493535917`. This is the castle grounds, not the four-towered palace roof. Research and
+map the palace, open courtyard, terraces, gardens, surviving gates and surrounding buildings
+individually before authoring. N0254 Nesvizh Castle and N0255 Buda Castle follow in the list.
+
+## 2026-10-04 — N0253 Bratislava Castle source and runtime checkpoint
+
+Added `places/u2/u2s/n0253_bratislava_castle/` and the editable recipe
+`packages/worldgen/scripts/bratislava-castle-model.mjs`. The independent palace wings,
+four unequal corner towers, open courtyard, Court of Honour pavilions, surrounding barracks,
+riding hall, four gates, hedge parterres and archaeological foundations use saved map parts.
+Official museum/tourist-board references and the NR SR 2018 illustration guide the original
+reconstruction. No third-party photographs or meshes are bundled.
+
+The detailed source master has **684,637 triangles**, **1,388,547 vertices**, ten material groups,
+eight shared graphs and zero embedded images. Source: **58,208,900 bytes**; imported master:
+**58,208,048 bytes**. Lime plaster, tile, granite, raw limestone, wood, painted metal, cast bronze
+and gravel reuse the common surface library. Grass and glazing use local PBR colors.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 90,884 | 963 |
+| District | 296,024 | 3,810 |
+| Street | 1,018,160 | 15,773 |
+| Close-up | 4,645,552 | 62,481 |
+
+Initial skyline plus district totals **386,908 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings; unused-UV notices reflect procedural shared materials. All
+**39 authored-LOD regression checks** pass, and source regeneration reproduces the exact bytes.
+Inspected 14 portable and 13 shared-material frames plus the common-camera LOD comparison.
+Corrected inward entrance details, clock winding, pavilion roof coverage, buried forecourt
+buttresses and garden support. Eight surface graphs load once; unloading leaves zero live
+model geometries. Physical laptop/phone measurements remain pending.
+
+**Maximum fidelity and geographic fit remain pending.** Draft anchor `[17.100792149,48.142390437]`,
+heading `1.019493535917`, native +X 58.412 degrees north of east; the south entrance faces
+native -X/+Z. `replaceFootprint=false`. The exact grounds match is way/1128350263 (Q593311);
+the palace is separately way/8160490 and relation/14610630 (Q13425656). The museum's 47 m
+Crown Tower height conflicts with mapped 31 m parts. The model uses the museum figure above
+a provisional 10 m terrace. Heights, four garden terrace levels, broad support skirts,
+terrain fit, gate profiles, facade rhythm, dormers, roof junctions and stair connections need
+further refinement. The equestrian figure is an interpretive silhouette; detailed sculpture,
+garden figures, mature trees and interiors are unfinished. This is an authored exterior asset,
+not a maximum-fidelity or geographic approval.
+
+Inventory: **365 registered structures**, **263 authored/imported next-1000 assets**,
+**167 fully complete**, **737 unauthored**, 261 portable reviews, 259 shared-material reviews,
+232 active geographic previews and 192 maximum-fidelity approvals. Source index: 366 bundles.
+
+Source hash: `1e9b67723d4932c70c47afbe1a86850894ed9bc183b75aefafbb26deabd32802`.
+Runtime hash: `72b0a45ef15cbba6f9c7f406e1ce6bf0e75ed146f250ba4dbdda333fadfc9e2e`.
+Lock **`assets-2adc124064fa3b04`** pins **2,278 GLBs**, adding six and preserving all 2,272
+previous entries. Twenty-one prior authored-LOD metadata fingerprints were refreshed once;
+all 105 previous master/LOD files still match their pinned bytes. The existing unrelated
+`updateTerrainSurfaceSignals` dependency-scan warning occurred; model capture succeeded.
+No repository-wide build or dependency audit ran.
+
+**Next: N0254 Nesvizh Castle**, Q719422. Cached map evidence matches relation/14560856,
+anchor `[26.691942596,53.222787871]`, heading `-0.47453422597`, envelope 230.213 × 188.624 m.
+Research the palace, gate, courtyard and bastion parts before authoring; the grounds envelope
+must not be extruded as one building. N0255 Buda Castle and N0256 Durham Castle follow.
+
+## 2026-10-04 — N0254 Nesvizh Castle source and runtime checkpoint
+
+Added `places/u9/u96/n0254_nesvizh_castle/` with the editable recipe
+`packages/worldgen/scripts/nesvizh-castle-model.mjs`. The six-sided court remains open;
+individual mapped palace/roof parts, two unequal towers, curved western galleries,
+ceremonial gate, three-arch bridge, service buildings and grass bastions form the exterior.
+Saved 148 attributed map features and reference metadata. The museum courtyard photograph
+and UNDP's 2021 exterior photograph guide the original reconstruction; no third-party
+photographs or meshes are bundled.
+
+The source master has **186,936 triangles**, **384,070 vertices**, nine material groups,
+seven shared surface graphs and zero embedded images. Source: **16,074,828 bytes**;
+imported master: **16,074,052 bytes**. Lime plaster, ceramic tile, raw limestone, granite,
+wood, painted metal and cast bronze reuse the common library. Grass and glazing use
+local PBR colors.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 94,508 | 997 |
+| District | 201,180 | 2,499 |
+| Street | 625,124 | 9,801 |
+| Close-up | 2,462,336 | 33,422 |
+
+Initial skyline plus district totals **295,688 bytes**. All six GLBs pass Khronos
+validation with zero errors or warnings; unused-UV notices reflect external procedural
+surfaces. All 41 authored-LOD checks passed; the two affected Nesvizh cases passed again
+after the final model-local facade/passage correction. Source regeneration reproduces
+identical bytes. Inspected 14 portable and 13 shared-material frames and the common-camera
+LOD comparison. Corrected roof winding, bridge vaults below ground, hollow bastion interiors,
+tower windows, a buried balcony and partial facade occlusion. Each of seven shared graphs
+loads once; unloading leaves zero live model geometries. Physical-device measurements
+remain pending.
+
+**Maximum exterior fidelity and geographic fit remain pending.** Draft anchor
+`[26.691942596,53.222787871]`, heading `-0.47453422597`, +X 27.188 degrees south of east;
+the west approach faces -X. `replaceFootprint=false`. Exact grounds identity is
+relation/14560856, with palace relation/1732915 and court way/128279266. Provisional
+court Y=4, earth crests Y=8, mapped tower tip Y=37 and finial Y=37.9 require surveyed datum
+and in-world terrain fitting. Rampart profiles are angular and provisional. Roof junctions,
+window rhythms, tower crowns/clocks, exact portal elevations, dormers and sculpture need
+further reference refinement. Heraldic shapes are geometric interpretations. Interiors,
+park trees, water and the separate Corpus Christi Church are outside this exterior asset.
+This technical render review is not a maximum-fidelity or geographic approval.
+
+Inventory: **366 registered structures**, **264 authored/imported next-1000 assets**,
+**167 fully complete**, **736 unauthored**, 262 portable reviews, 260 shared-material reviews,
+232 active geographic previews and 192 maximum-fidelity approvals. Source index: 367 bundles.
+
+Source hash: `265d4166b08bc10b7bb06532d44d4ff7aba160f03cbc98ea4aa454d389e61f70`.
+Runtime hash: `89797757b1e9fb4586e78c3a8ea315d7d8858a99f4dcb743a355a95b5857f55d`.
+Lock **`assets-6bac3775f26737c4`** pins **2,284 GLBs**, adding six while preserving all
+2,278 prior entries. Twenty-two earlier authored-LOD metadata fingerprints were refreshed
+once; all 110 previous master/LOD files remain byte-identical to the lock. Capture fixtures
+still emit the unrelated `updateTerrainSurfaceSignals` dependency-scan warning; landmark
+captures and eviction checks succeed. No repository-wide build or npm audit ran.
+
+**Next: N0255 Buda Castle**, Q46313. Cached exact map relation/6486918 has anchor
+`[19.039308745,47.495824657]`, heading `-0.853630134323`, envelope 339.728 × 149.092 m.
+Research the present palace state, separate wings, dome, courtyards and terraced retaining
+walls before authoring. Historic restorations must be distinguished from current buildings.
+N0256 Durham Castle follows.
+
+## 2026-10-04 — N0255 Buda Castle source and runtime checkpoint
+
+Added `places/u2/u2m/n0255_buda_castle/` and editable recipe
+`packages/worldgen/scripts/buda-castle-model.mjs`. The A–F palace wings, long Danube
+frontage, ribbed postwar dome, open Lions Court, library pavilion, South Range and
+immediate terraces form the exterior. Attributed map geometry and reference metadata
+are preserved beside the recipe outputs. No third-party photographs or meshes are bundled.
+
+**Temporal reference: 2021.** The National Hauszmann Program's official publication
+separates existing palace photographs from historical images and future designs. This
+asset follows the completed 2021 exterior, including the restored South Range. A/B
+reconstruction began in 2022; neither the current construction site nor the proposed
+completed restoration is claimed here. Exact future/current-state architecture needs
+its own review.
+
+The detailed source has **394,698 triangles**, **803,772 vertices**, nine material groups,
+seven shared surface graphs and zero embedded images. Source: **33,677,224 bytes**;
+imported master: **33,676,452 bytes**. Limestone, raw limestone, granite, copper, wood,
+painted metal and bronze use the central library. Glass and dark recesses use local PBR.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 77,348 | 919 |
+| District | 298,944 | 3,875 |
+| Street | 1,226,572 | 15,982 |
+| Close-up | 4,648,844 | 62,888 |
+
+Initial skyline plus district is **376,292 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings; unused-UV notices correspond to shared procedural materials.
+Source regeneration is byte-identical. All 43 authored-LOD regression checks passed, and
+the two Buda cases passed again after the local roof/chimney correction. Inspected all
+14 final portable and 13 final shared-material frames plus the common-camera LOD comparison.
+Repaired a floating roof edge and a chimney starting above its roof. Seven graphs each
+load once; unloading leaves zero live model geometry. Physical laptop/phone approval
+remains pending. The new recipe passes its focused Biome check.
+
+**Maximum fidelity and geographic fit remain pending.** Draft exact-QID palace anchor
+`[19.039308745,47.495824657]`, heading `-0.853630134323`; +X is 48.909 degrees south of east,
+Danube frontage faces -Z. `replaceFootprint=false`. Palace/court Y=4 and dome tip Y=62 are
+inferred, not surveyed. Individual window rhythms, library/A-wing roofs, roof intersections,
+ornamental sculpture and heraldry require further reference refinement. No generic statue
+stands in for the missing sculptural works. Interiors, separate Guardhouse/Riding Hall,
+Mace/Karakash towers, Castle Garden Bazaar and entire Castle Hill terrain are outside this
+palace exterior asset. The technical render approval does not approve architectural fidelity.
+
+Inventory: **367 registered structures**, **265 authored/imported next-1000 assets**,
+**167 fully complete**, **735 unauthored**, 263 portable reviews, 261 shared-material reviews,
+232 active geographic previews and 192 maximum-fidelity approvals. Source index: 368 bundles.
+
+Source hash: `96d12a760a6a61c59e37040aad4a25a1b9188ed8719d89b445c1b211ed56fffa`.
+Runtime hash: `248cc36d85ad3442abf70e100a2ec194703d7b2e6928f109f06d63dd8a567558`.
+Lock **`assets-ecf236b68efa0d77`** pins **2,290 GLBs**, adding six while preserving all
+2,284 prior entries. Refreshed 23 earlier authored-LOD recipe fingerprints once; all
+115 previous runtime-master/LOD files stayed byte-identical to their pins. The existing
+unrelated `updateTerrainSurfaceSignals` dependency-scan warning persists; landmark captures
+and disposal checks succeed. No repository-wide build, security audit or Git operation ran.
+
+**Next: N0256 Durham Castle**, Q752266. Cached way/81522967, anchor
+`[-1.576564741,54.775561357]`, heading `0.524419899749`, envelope 98.284 × 67.703 m.
+This mapped wing outline is not the whole castle: research the separate keep, motte,
+Great Hall, chapel, gateway and courtyard before authoring. Do not omit the keep just
+because the exact-QID building outline excludes it.
+
+## N0256 Durham Castle checkpoint — 2026-10-04
+
+Added `places/gc/gcw/n0256_durham_castle/` with a deterministic source recipe,
+attributed map components, reference metadata, imported master, four authored runtime
+levels, draft geographic record and hash-bound render evidence. The main range's
+exact-QID OSM outline excludes the keep; the model explicitly includes the separately
+mapped octagonal keep, motte retaining arcs, gatehouse and open bailey. Great Hall domed
+turrets, Cosin porch and oriel, Black Stairs, lower Tunstall Gallery, upper hall, clock
+stair and chapel have distinct geometry. Historic England's four listed descriptions
+and Durham University's exterior photographs informed the reconstruction.
+
+The detailed source has **193,007 triangles**, **391,289 vertices**, eight material groups,
+six shared graphs and zero embedded images. Source: **16,407,064 bytes**; imported master:
+**16,406,356 bytes**. Sandstone, raw limestone, slate, wood, painted metal and gravel
+reuse the central material library. Glass, recesses and lawn use local PBR.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 79,892 | 953 |
+| District | 241,612 | 3,169 |
+| Street | 1,181,760 | 15,467 |
+| Close-up | 2,162,176 | 29,825 |
+
+Initial skyline plus district: **321,504 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings; unused-UV notices correspond to external shared surfaces.
+Final source regeneration is byte-identical. All 45 authored-LOD regression checks
+passed; both Durham checks passed again after the local geometry corrections. Inspected
+all 14 final portable and 13 final shared-material frames, plus the same-camera LOD
+comparison. Repaired an inverted hall/garden-stair partition, occluded oriel and stair
+windows, exposed upper-hall ends and inward porch risers. Six graphs load once each;
+unloading leaves zero live model geometry. Focused Biome check passes. Physical laptop
+and phone measurements remain pending.
+
+**Maximum fidelity and geographic fit remain pending.** Draft main-range anchor
+`[-1.576564741,54.775561357]`, heading `0.524419899749`; native +X is 30.047 degrees north
+of east. `replaceFootprint=false`. Courtyard Y=0.12 and keep platform Y=10 are inferred,
+not surveyed. Rear elevations, hidden roofs, exact window tracery and heraldic/figurative
+carvings require further architectural refinement. Plain reserved shield panels are not
+complete carvings. Interiors, Cathedral, Palace Green Library and surrounding city are
+outside this castle exterior asset. Technical rendering approval does not certify those
+architectural details or terrain placement.
+
+Inventory: **368 registered structures**, **266 authored/imported next-1000 assets**,
+**167 fully complete**, **734 unauthored**, 264 portable reviews, 262 shared-material
+reviews, 232 active geographic previews and 192 maximum-fidelity approvals. Source index:
+369 bundles.
+
+Source hash: `7fee2a5d8b31bbce3e59a071d8eeb7a8db12714ef718b19592cb1b84aaf4f6a8`.
+Runtime hash: `2cd837b33a37e0983efe7a42c62c10e18fc3bac02f3368dce76e34d8350421c6`.
+Lock **`assets-f667137d64ce9938`** pins **2,296 GLBs**, adding six while preserving all
+2,290 prior entries. Refreshed 24 earlier authored-LOD recipe fingerprints once and
+verified their 120 runtime-master/LOD files remained byte-identical to existing pins.
+The unrelated `updateTerrainSurfaceSignals` dependency-scan warning appeared during the
+first shared capture; all landmark capture and disposal checks succeeded. No repository-wide
+build, security audit or Git mutation ran.
+
+**Next: N0257 Citadel of Salah Ed-Din**, Q277531, reference coordinate
+`[36.057222,35.595833]`. Research the actual Syrian citadel and surviving fabric before
+modeling; do not conflate it with the Cairo citadel of a similar name. N0258 is Sforza Castle.
+
+## N0257 Citadel of Salah Ed-Din checkpoint — 2026-10-04
+
+Added `places/sy/sy3/n0257_citadel_of_salah_ed_din/`, Q277531, the Syrian citadel near
+Al-Haffah. The source bundle contains the exact-identity OSM ridge and mapped tower
+footprints, interpreted components from AKTC's phased site and palace plans, primary
+reference metadata, a deterministic recipe, imported master and four authored runtime
+levels. Nearby modern village buildings are excluded. This is an interpreted conserved
+and ruined exterior; it is not an intact medieval reconstruction or a 2026 condition survey.
+
+The model separates the long lower ward, chapel and gates, raised Byzantine fortress,
+Ayyubid courtyard and baths, mosque and square minaret, northern cistern, master tower,
+pillared hall, southern cistern, projecting round towers and the isolated moat needle.
+Open spaces stay open. Corrected stretched terrain fans by clipping the outline to a
+regular sampling grid, joined cliff edges, excluded level floors from the terrain and
+extended their foundations. Replaced regular block-like wall heads with continuous,
+uneven rubble profiles. Bedrock relief and unrecorded elevations remain interpretations.
+
+Master: **320,144 triangles**, **649,070 vertices**, seven material groups, six shared
+graphs, **zero embedded images**. Source **27,212,528 bytes**, imported master
+**27,211,880 bytes**. Limestone, raw limestone, weathered limestone, lime plaster,
+painted metal and gravel reuse the central procedural material library; no new bitmap
+texture was generated.
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 79,204 | 919 |
+| District | 314,008 | 3,848 |
+| Street | 906,248 | 12,930 |
+| Close-up | 1,551,516 | 24,128 |
+
+Initial skyline plus district: **393,212 bytes**. All six GLBs pass Khronos validation
+with zero errors or warnings. Unused-UV notices correspond to external shared surfaces.
+Final source regeneration is byte-identical. All 47 authored-LOD cases passed; the two
+Citadel cases passed again after the final terrain changes. Final focused Biome check
+passes. Inspected all 14 portable and 13 shared-material frames and the same-camera LOD
+comparison. Each of six material graphs loads once; eviction leaves zero live model
+geometry. Physical laptop and phone performance measurements remain pending.
+
+**Maximum fidelity and geographic fit remain pending.** Ruin profiles, recent entrance
+roof collapse/propping, exact chamber openings, masonry scars and natural cliff relief
+need further current photographic and topographic refinement. Draft anchor
+`[36.055056392,35.595076267]`, heading `0.427014283192`; native +X points toward the eastern
+moat. `replaceFootprint=false`. The model base is Y=0, eastern court Y=42 and inner-fortress
+platform Y=53; these are relative, inferred levels. The bedrock must be fitted to world
+terrain before approval. Asset-review rendering does not certify that fit. Complete,
+navigable interiors and the modern village are outside the modeled exterior scope.
+
+Inventory: **369 registered structures**, **267 authored/imported next-1000 assets**,
+**167 fully complete**, **733 unauthored**, 265 portable reviews, 263 shared-material
+reviews, 232 active geographic previews and 192 maximum-fidelity approvals. Source
+index: 370 bundles.
+
+Source hash: `eb61f0965485bbac558b40961c24e71d0cf5b17691dbbe1d7f23a08cc50c593e`.
+Runtime hash: `cbbe77e7019e3e289e1ca469c1ac33786b35bfef3224c0819d4e469f9b67ff75`.
+Lock **`assets-074236a4c986f5c0`** pins **2,302 GLBs**; six added, all 2,296 prior entries
+preserved. Refreshed 25 earlier authored-LOD registry fingerprints once and verified all
+125 existing runtime-master/LOD files remain byte-identical to their pins. The unrelated
+`updateTerrainSurfaceSignals` dependency-scan warning appeared; all requested capture
+and disposal checks completed. No repository-wide build, dependency audit or Git mutation
+ran.
+
+**Next: N0258 Sforza Castle**, Q23354, Milan. Cached exact-QID relation/1918, anchor
+`[9.179624311,45.470327662]`, heading `0.746042938648`, envelope 219.957 × 200.243 m.
+Research the different courtyards, Filarete tower, round corner towers, Rocchetta and
+Ducal Court, roofs, moat and park-facing elevations before authoring. Preserve the
+courtyards instead of extruding the entire compound as one filled block.
+
+
+## N0258 Sforza Castle checkpoint — 2026-10-04
+
+Added `places/u0/u0n/n0258_sforza_castle/`, exact Q23354 / OSM relation 1918 in Milan.
+The deterministic source recipe uses mapped building-part footprints, three open courts,
+Filarete clock tower and octagonal crown, two round stone city towers, square rear towers,
+Torre di Bona, roofed wall walks, museum ranges, courtyard porticoes, moat bridges and the
+projecting Ponticella. Primary photographic references are the Regione Lombardia heritage
+inventory and the municipality's restoration contractor. Source data and attribution are
+checked in; reference photographs are research-only. Relative elevations are inferred.
+
+Corrected a reversed tower gallery, inward-facing facade detail, stray masonry inside
+open gateways and the filled park entrance. Arcades have recessed backs, columns and
+continuous spandrels; street and close-up geometry retain their depth. Nine existing shared
+material graphs supply brick, granite, limestone, raw limestone, plaster, tile, copper,
+painted metal and gravel. No new bitmap textures and zero embedded images.
+
+Master: **509,200 triangles**, **1,032,360 vertices**, 11 material groups. Source
+**43,281,340 bytes**; imported master **43,280,424 bytes**. Four independent runtime levels:
+
+| Level | Bytes | Triangles |
+| --- | ---: | ---: |
+| Skyline | 63,360 | 780 |
+| District | 227,852 | 2,954 |
+| Street | 671,460 | 9,600 |
+| Close-up | 3,976,920 | 56,716 |
+
+Initial skyline plus district is **291,212 bytes**. All six GLBs pass Khronos validation
+with zero errors/warnings; unused-UV notices reflect external procedural surfaces. Source
+regeneration is byte-identical. All 49 authored-LOD cases passed; both Sforza cases passed
+again after final gateway/arcade corrections. Focused Biome checks pass. Inspected all
+14 portable frames, 13 shared-material frames and the same-camera master/LOD comparison.
+Each of nine material graphs loads once; unload leaves zero live model geometry.
+Physical laptop/phone measurements remain pending.
+
+**Maximum fidelity and geographic fit remain pending.** Exact fenestration, frescoes,
+carved heraldry, figurative reliefs, sculpture, inscriptions and conservation scars need
+further work. Inferred tower heights, roof pitches and moat levels are not surveyed.
+Draft anchor `[9.179624311,45.470327662]`, heading `0.746042938648`; native +X northeast,
++Z toward the southeast Filarete gate. Model moat Y=0, courts Y=3. `replaceFootprint=false`.
+Asset-review rendering does not approve terrain fit. Enclosed museum interiors, collections,
+the public fountain and nearby civic sculpture are outside this exterior's current scope.
+
+Inventory: **370 registered structures**, **268 authored/imported next-1000 assets**,
+**167 fully complete**, **732 unauthored**; 266 portable reviews, 264 shared-material
+reviews, 232 active geographic previews, 192 maximum-fidelity approvals, 371 source bundles.
+
+Source hash: `f5494818b50041d91b1434f110032249bec0d6a312d4eb08e5c36fbcd119faa1`.
+Runtime hash: `eefe4cdaba6a04ce3d7839ea3265c044d6e6f1c948afe38a82bc8ee2408b3455`.
+Lock **`assets-e5f5d554f9a8d3b3`** pins **2,308 GLBs**; six added and all 2,302 prior pins
+preserved. Refreshed 26 earlier authored-LOD registry fingerprints once and verified their
+130 existing master/LOD GLBs remain byte-identical. The existing traffic-signals
+`updateTerrainSurfaceSignals` dependency-scan warning did not prevent landmark captures.
+No repository-wide build, dependency audit, upload or Git mutation ran.
+
+**Next: N0259 Shanhai Pass**, Q1048381, reference `[119.75357,40.00916]`. Research the
+specific pass gate and associated wall extent before authoring; distinguish the gate,
+fortified town, Great Wall and coastal Laolongtou rather than merging separate sites.
+N0260 is Khotyn Fortress, Q141012.
+
+### Owner-requested wind-down — 2026-10-04
+
+Stopped after N0258 Sforza Castle. No N0259 model source or geometry was started.
+Sforza's source master, imported master, four runtime levels, shared materials,
+27 inspected captures, source registry, geographic draft, galleries, readiness ledger and
+six lock entries are saved. The final close-out check confirms all six files match their
+lock pins and the source/runtime hashes match the QA record. No generators or captures
+remain running. Building is paused at the owner's request.
+
+This is a completed authoring/packaging checkpoint, **not maximum-fidelity approval**.
+Sforza's architectural-detail and in-world geographic-fit reviews remain pending as
+listed in its README/spec/QA. On resumption, resolve those before describing this model
+as fully complete; then continue the candidate queue. Overall completion remains 167/1000.

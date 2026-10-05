@@ -1,0 +1,335 @@
+{
+  "planId": "N0241",
+  "id": "N0241",
+  "assetId": "molen.worldgen.structure.n0241_wartburg",
+  "title": "Wartburg",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q151545",
+  "referenceCoordinate": {
+    "latitude": 50.966111111,
+    "longitude": 10.306388888
+  },
+  "visualBrief": "The long two-court Wartburg complex: Romanesque Palas with green copper roof and grouped round-arched windows; sandstone Bergfried and gilded cross; white South Tower; half-timbered Gadem, Vogtei and Ritterhaus; bent covered galleries, open gate passages, Neue Kemenate and Ritterbad.",
+  "size": [
+    152.0560760498047,
+    34.064999997615814,
+    56.65185737609863
+  ],
+  "actualBounds": {
+    "min": [
+      -60.47112274169922,
+      -0.06499999761581421,
+      -31.19350814819336
+    ],
+    "max": [
+      91.58495330810547,
+      34,
+      25.458349227905273
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from Suedturm toward Torhaus (north)",
+    "front": "+Z toward eastern Palas exterior",
+    "origin": "Exact OSM Q151545 point, provisional terrain-contact datum"
+  },
+  "sourceFacts": {
+    "mapIdentity": "OSM node/2272817622, exact Q151545",
+    "componentFootprints": 21,
+    "crossHeightMeters": 3.8,
+    "bergfriedHeightConflict": "OSM tags give 40–46 m; owner describes nearly 34 m. Reconstruction uses a 34 m top including cross pending measured datum.",
+    "surveyedVerticalDimensions": false
+  },
+  "reconstruction": {
+    "basis": "Individual OSM building polygons, official illustrated plan and inspected exterior photographs.",
+    "verticalDatum": "Provisional common ground; courtyard levels and hill require site verification.",
+    "bergfriedTopMeters": 34,
+    "southTowerTopMeters": 20.5,
+    "palasEavesMeters": 15.5,
+    "palasRoofRidgeMeters": 22.7
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/node/2272817622",
+    "https://www.wartburg.de/lageplan",
+    "https://www.wartburg.de/gebaeude/bergfried",
+    "https://www.wartburg.de/objekt-des-monats-archiv/das-kreuz-auf-dem-bergfried",
+    "https://commons.wikimedia.org/wiki/File:Wartburg-Courtyard.01.JPG",
+    "https://commons.wikimedia.org/wiki/File:Eisenach_Wartburg_18.JPG",
+    "https://commons.wikimedia.org/wiki/File:Eisenach_Wartburg_17.jpg",
+    "https://commons.wikimedia.org/wiki/File:Wartburg_Vogtei.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Component horizontal map frame; terrain datum and geographic fit pending",
+    "anchor": [
+      10.3063142,
+      50.965902
+    ],
+    "heading": 1.3697714204430447,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/node/2272817622",
+    "groundModelY": 0,
+    "featureIds": [
+      "node/2272817622",
+      "way/42440072",
+      "way/217972867",
+      "way/217973923",
+      "way/217973920",
+      "way/217973922",
+      "way/940756325",
+      "way/217972837",
+      "way/636506075",
+      "way/217973919",
+      "way/217972835",
+      "way/217972836",
+      "way/217973918",
+      "way/217973921",
+      "way/218083100",
+      "way/218083099",
+      "way/218083104",
+      "way/940754602",
+      "way/940760146",
+      "way/940760147",
+      "way/635440980",
+      "way/635440982"
+    ],
+    "wikidataId": "Q151545",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f75897e0b7e975a2f815001b2cd60e18ade6e901b47c899b53e39013454f2e05",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Exact point identity and named component footprints. Envelope includes two open courts and must not replace map buildings as one solid polygon. Site levels and outer covered stair require review."
+  },
+  "scaleBasis": "Meter-scale OSM footprint coordinates; signed +X from South Tower toward gatehouse. Published 3.8 m cross height constrains keep crown; most vertical dimensions are reconstructed.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Photographs and official plan linked as references only; no copied photographic textures or third-party mesh.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity remains pending: exterior reconstruction is not surveyed as-built geometry. Heights, stair elevations, roof junctions, window spacing and weathering require more source comparison.",
+    "Palas heraldic lions and carved capitals, precise Gothic oriel tracery and roof dormers are incomplete. No sculpture is claimed as a faithful individual reproduction.",
+    "The keep height is deliberately provisional because OSM height tags disagree with the owner description. Cross is 3.8 m; ground and parapet datums need measurement.",
+    "Vogtei roof is represented as a gable instead of its exact half-hip profile. Gadem roof intersections and covered South Tower stair attachment need further review.",
+    "No interiors, landscape hill, trees, temporary works or photographic textures. Open courtyard voids are preserved.",
+    "Shared sandstone, raw limestone, plaster, timber, slate, tile, copper, painted metal and gold-colored stainless graphs; local PBR glazing."
+  ],
+  "qaCameras": [
+    {
+      "name": "palas-court-arcades",
+      "position": [
+        -2,
+        13,
+        -4
+      ],
+      "lookAt": [
+        -12,
+        8,
+        12
+      ]
+    },
+    {
+      "name": "palas-east-roof",
+      "position": [
+        -44,
+        35,
+        82
+      ],
+      "lookAt": [
+        -10,
+        11,
+        17
+      ]
+    },
+    {
+      "name": "bergfried-and-cross",
+      "position": [
+        -17,
+        29,
+        -37
+      ],
+      "lookAt": [
+        14,
+        20,
+        4
+      ]
+    },
+    {
+      "name": "south-tower-and-gadem",
+      "position": [
+        -59,
+        34,
+        -40
+      ],
+      "lookAt": [
+        -38,
+        9,
+        -7
+      ]
+    },
+    {
+      "name": "vogtei-oriel",
+      "position": [
+        29,
+        18,
+        8
+      ],
+      "lookAt": [
+        62,
+        7,
+        -13
+      ]
+    },
+    {
+      "name": "northern-gatehouse",
+      "position": [
+        130,
+        25,
+        17
+      ],
+      "lookAt": [
+        82,
+        7,
+        -6
+      ]
+    },
+    {
+      "name": "northern-court-galleries",
+      "position": [
+        58,
+        20,
+        1
+      ],
+      "lookAt": [
+        35,
+        6,
+        -5
+      ]
+    },
+    {
+      "name": "western-halls",
+      "position": [
+        -15,
+        39,
+        -104
+      ],
+      "lookAt": [
+        16,
+        8,
+        -10
+      ]
+    },
+    {
+      "name": "two-open-courts-plan",
+      "position": [
+        15,
+        145,
+        25
+      ],
+      "lookAt": [
+        15,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 227673,
+    "vertices": 446281,
+    "materials": 10,
+    "bytes": 18803828,
+    "sha256": "sha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372"
+  }
+}

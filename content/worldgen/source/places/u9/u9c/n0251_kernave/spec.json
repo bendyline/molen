@@ -1,0 +1,250 @@
+{
+  "planId": "N0251",
+  "id": "N0251",
+  "assetId": "molen.worldgen.structure.n0251_kernave",
+  "title": "Kernavė",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q215315",
+  "referenceCoordinate": {
+    "latitude": 54.883333333,
+    "longitude": 24.85
+  },
+  "visualBrief": "Five individually positioned surviving hillfort earthworks, mapped pedestrian paths and timber stairs, plus the separate modern three-yard museum reconstruction with twelve mapped wooden buildings and board fencing.",
+  "size": [
+    803,
+    36.00058364868164,
+    772
+  ],
+  "actualBounds": {
+    "min": [
+      -338,
+      0,
+      -247
+    ],
+    "max": [
+      465,
+      36.00058364868164,
+      525
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east",
+    "front": "+Z south",
+    "origin": "[24.8517,54.8824], interpreted relative landscape datum"
+  },
+  "sourceFacts": {
+    "hillforts": 5,
+    "modernReconstructedYards": 3,
+    "mappedReconstructionBuildings": 12,
+    "surveyedTerrain": false,
+    "identity": "Q215315 is the town; map-parts.json identifies five independent hillfort nodes and the modern open-air exhibit."
+  },
+  "reconstruction": {
+    "basis": "Vengalis and Velius (2019) hilltop dimensions and surviving bank descriptions; OSM component positions, paths, stair lines and building/fence geometry; official museum aerial views.",
+    "datum": "Relative landscape model. Hill slope heights are not absolute elevations. Museum terrace at 30 m is an interpretation awaiting terrain survey.",
+    "state": "Current archaeological landscape, not an imagined intact medieval castle."
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1137/",
+    "https://whc.unesco.org/document/151842",
+    "https://doi.org/10.15388/ArchLit.2019.20.4",
+    "https://www.kernave.lt/ekspozicija-po-atviru-dangumi/",
+    "https://www.openstreetmap.org/node/1690273888"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Composite archaeological site; surveyed elevations, terrain blending and local fit pending",
+    "anchor": [
+      24.8517,
+      54.8824
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/node/1690273888",
+    "groundModelY": 0,
+    "featureIds": [
+      "node/1690273888",
+      "node/1715016466",
+      "node/1715016458",
+      "node/1690273903",
+      "node/1690273897",
+      "node/6435315520"
+    ],
+    "wikidataId": "Q215315",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ae5432db574e1d9fc1b4982c8ea982c486fe8836338007e27358470655f15b1d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Do not flatten or replace map buildings. Five hillforts and a separate modern museum reconstruction occupy distinct positions. Source landscape patches are not a surveyed terrain replacement."
+  },
+  "scaleBasis": "Meters from geographic map positions and published hill dimensions. East/south axes. Relative elevations, slope contours and wood-building heights remain interpretations.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Dimensions summarized from Vengalis & Velius 2019, CC-BY-4.0. Reference photos and LiDAR figure viewed for research only, no image or raster redistribution.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity pending: earthwork contours are interpreted from documented top dimensions and aerial views; no elevation raster or surveyed mesh is bundled. Terrace datum, erosion scars and inter-hill gullies require measured terrain.",
+    "Q215315 names the town. This source depicts five surviving hillforts and the separate modern open-air reconstruction; it must not be matched as a single castle footprint.",
+    "The three museum yards retain twelve mapped building envelopes and mapped wooden fences. Wall heights, doors, roof pitches, individual boards and log details are approximate. A minor annex is represented within its main roof envelope.",
+    "Published current banks are included. Ancient palisades, towers and buried settlement remains are not reconstructed above ground. Old church remains, chapels, modern museum, wider reserve vegetation and river terrain still need separate site coverage.",
+    "Grass uses vertex color; timber and gravel use existing reusable procedural surface graphs. No model-specific bitmap textures. Landscape patch edges remain visible in standalone review and need host-terrain blending before activation.",
+    "Mapped stairs retain their horizontal routes; step rises/counts derive from the interpreted terrain and are not a certified reconstruction of visitor access."
+  ],
+  "qaCameras": [
+    {
+      "name": "five-hillforts-and-museum-plan",
+      "position": [
+        70,
+        1230,
+        145
+      ],
+      "lookAt": [
+        70,
+        0,
+        145.1
+      ]
+    },
+    {
+      "name": "central-four-earthworks",
+      "position": [
+        265,
+        240,
+        275
+      ],
+      "lookAt": [
+        0,
+        15,
+        -62
+      ]
+    },
+    {
+      "name": "aukuro-platform-and-stairs",
+      "position": [
+        -115,
+        62,
+        135
+      ],
+      "lookAt": [
+        -32,
+        14,
+        32
+      ]
+    },
+    {
+      "name": "mindaugo-bank-and-ascent",
+      "position": [
+        132,
+        72,
+        -12
+      ],
+      "lookAt": [
+        45,
+        16,
+        -91
+      ]
+    },
+    {
+      "name": "pilies-large-plateau",
+      "position": [
+        -185,
+        148,
+        -270
+      ],
+      "lookAt": [
+        -37,
+        18,
+        -105
+      ]
+    },
+    {
+      "name": "lizdeikos-earth-bank",
+      "position": [
+        145,
+        78,
+        150
+      ],
+      "lookAt": [
+        65,
+        17,
+        41
+      ]
+    },
+    {
+      "name": "kriveikiskio-fifth-hillfort",
+      "position": [
+        485,
+        76,
+        570
+      ],
+      "lookAt": [
+        405,
+        18,
+        465
+      ]
+    },
+    {
+      "name": "modern-three-craft-yards",
+      "position": [
+        -385,
+        100,
+        -91
+      ],
+      "lookAt": [
+        -285,
+        31,
+        -177
+      ]
+    },
+    {
+      "name": "timber-walls-and-board-roofs",
+      "position": [
+        -304,
+        37,
+        -193
+      ],
+      "lookAt": [
+        -287,
+        32,
+        -200
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 140410,
+    "vertices": 379638,
+    "materials": 3,
+    "bytes": 15354172,
+    "sha256": "sha256:b9709daddae6b379c702d47d39c6bb990a5616df8f27fa3fd5dd0c2d197d59fa"
+  }
+}

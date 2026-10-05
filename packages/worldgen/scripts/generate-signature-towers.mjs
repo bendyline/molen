@@ -43,6 +43,7 @@ const expandedSelection = selectedStructureIds(selection, collections);
 const evidenceBytes = await readFile(resolve(root, 'content/earth/structures/georeferencing.json'));
 const evidence = JSON.parse(evidenceBytes);
 const surfaces = {
+  aggregate: { graph: 'gravel', slot: 'foundation', roughness: 0.98, metallic: 0 },
   frit: { graph: 'glass_frit_triangular', slot: 'wall', roughness: 0.2, metallic: 0 },
   fcp_vision: { slot: 'window', roughness: 0.16, metallic: 0.08, ref: 'palette:#fffefd' },
   bronze_glass: { slot: 'window', roughness: 0.17, metallic: 0.05, ref: 'palette:#fffefe' },
@@ -63,6 +64,8 @@ const surfaces = {
   foliage: { slot: 'wall', roughness: 0.94, metallic: 0 },
   wood: { graph: 'wood_plain', slot: 'trim', roughness: 0.82, metallic: 0 },
   brick: { graph: 'brick', slot: 'wall', roughness: 0.9, metallic: 0 },
+  plaster: { graph: 'plaster_lime', slot: 'wall', roughness: 0.88, metallic: 0 },
+  tile: { graph: 'tile_ceramic', slot: 'roof', roughness: 0.88, metallic: 0 },
   canvas: { graph: 'fabric_canvas', slot: 'roof', roughness: 0.92, metallic: 0 },
   slate: { graph: 'slate', slot: 'roof', roughness: 0.85, metallic: 0 },
   sandstone: { graph: 'stone_sandstone', slot: 'wall', roughness: 0.85, metallic: 0 },

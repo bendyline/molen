@@ -1,0 +1,294 @@
+{
+  "planId": "N0252",
+  "id": "N0252",
+  "assetId": "molen.worldgen.structure.n0252_hohenzollern_castle",
+  "title": "Hohenzollern Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q156457",
+  "referenceCoordinate": {
+    "latitude": 48.323561111,
+    "longitude": 8.9674
+  },
+  "visualBrief": "Mapped horseshoe palace and distinct Kaiser, Markgraf, Bishop, Michael and Watch towers, two separately shaped chapels, bastion ring and multilevel open entrance ramps with gate tunnels.",
+  "size": [
+    176.8592071533203,
+    79.19999694824219,
+    89.03998947143555
+  ],
+  "actualBounds": {
+    "min": [
+      -87.83169555664062,
+      0,
+      -44.51993179321289
+    ],
+    "max": [
+      89.02751159667969,
+      79.19999694824219,
+      44.520057678222656
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-southeast, 14.565 degrees south of east",
+    "front": "+X entrance; +Z south-southwest",
+    "origin": "Mapped enclosure anchor, provisional lower Eagle Gate height"
+  },
+  "sourceFacts": {
+    "identity": "Exact Q156457 on OSM way/93612350; enclosure is not a building footprint",
+    "mappedEnvelopeMeters": [
+      175.611,
+      88.98
+    ],
+    "mappedFeatures": 43,
+    "chapels": 2,
+    "surveyedVerticalDatum": false,
+    "referenceState": "Normal exterior architecture from the official illustrated plan, Stüler 1854 design elevations and a 2005 courtyard photograph; temporary 2026 restoration scaffolding is excluded."
+  },
+  "reconstruction": {
+    "basis": "Individual OSM parts constrain the horizontal plan. Official visitor illustration distinguishes bastions and ramp levels. Historical architect elevations and courtyard photography guide unique towers, roofs and facade detail.",
+    "verticalDatum": "Lower Eagle Gate is local Y=0, court is provisionally +30 m from nearby mapped elevation tags (825/855). These are not surveyed connected floor levels. Tower heights and window proportions are reconstructed estimates.",
+    "state": "19th-century neo-Gothic palace, with surviving older St Michael chapel and open fortified entrance."
+  },
+  "referencePages": [
+    "https://burg-hohenzollern.com/en/",
+    "https://burg-hohenzollern.com/en/about-the-castle/ubersichtsplan-der-burg-kopie",
+    "https://burg-hohenzollern.com/en/about-the-castle/castle-history",
+    "https://commons.wikimedia.org/wiki/File:Colorierter_Entwurf_-_Schloss_Hohenzollern_-_St%C3%BCler.jpg",
+    "https://commons.wikimedia.org/wiki/File:BurgHohenzollernInnenhof02.jpg",
+    "https://www.openstreetmap.org/way/93612350"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft pending vertical datum, compass facing and terrain contact verification",
+    "anchor": [
+      8.967537148,
+      48.323560831
+    ],
+    "heading": -0.254203978258,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/93612350",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/93612350"
+    ],
+    "wikidataId": "Q156457",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6212f9a449c28d3cf6209368a709a9839bd4560a37ea6f7302354a0216bf8de7",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "The map envelope is a bastion ring. Do not replace the entire enclosure with a solid building or cover the courtyard and ramp openings."
+  },
+  "scaleBasis": "Map coordinates in meters; native +X east-southeast, 14.565 degrees south of east. Roofs, facade modules, gate widths and vertical levels are interpreted.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Official illustration, public-domain architect drawing and CC-BY-SA courtyard photograph are research references only; no third-party images or meshes bundled.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity pending: no as-built measured elevations were available. Palace heights, roof ridges, tower crowns, dormers, window modules and chapel details are architectural reconstructions from references.",
+    "The original 1854 elevations are design drawings rather than a current measured survey. The courtyard photograph is from 2005; the model excludes temporary modern scaffolding and does not claim a surveyed 2026 state.",
+    "Spiral road centerlines and covered layers are mapped, but ramp gradients, retaining wall thickness, vault shapes and gate clearances are estimated. Supporting skirts are provisional; actual rock contour, grade and terrain contact remain unfinished.",
+    "The forested mountain, distant water tower, parking buildings, vegetation/ivy, statuary, museum interiors and inaccessible casemates are outside this exterior asset.",
+    "Shared sandstone, raw limestone, limestone, granite, slate, wood and painted metal surfaces carry exterior materials; no embedded photographs. Procedural masonry joints and slate courses are approximations."
+  ],
+  "qaCameras": [
+    {
+      "name": "mapped-court-and-ramp-plan",
+      "position": [
+        0,
+        250,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "west-towers-and-bastions",
+      "position": [
+        -161,
+        76,
+        -66
+      ],
+      "lookAt": [
+        -55,
+        44,
+        -3
+      ]
+    },
+    {
+      "name": "north-palace-and-kaiserturm",
+      "position": [
+        -32,
+        76,
+        -137
+      ],
+      "lookAt": [
+        -27,
+        45,
+        -19
+      ]
+    },
+    {
+      "name": "south-palace-and-markgraf",
+      "position": [
+        -65,
+        70,
+        116
+      ],
+      "lookAt": [
+        -45,
+        44,
+        15
+      ]
+    },
+    {
+      "name": "courtyard-and-two-chapels",
+      "position": [
+        27,
+        46,
+        2
+      ],
+      "lookAt": [
+        -38,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "watch-tower-and-court-stair",
+      "position": [
+        -24,
+        42,
+        8
+      ],
+      "lookAt": [
+        -56,
+        43,
+        -1
+      ]
+    },
+    {
+      "name": "christ-chapel-and-carriage-court",
+      "position": [
+        30,
+        48,
+        -37
+      ],
+      "lookAt": [
+        5,
+        40,
+        -13
+      ]
+    },
+    {
+      "name": "upper-gate-and-drawbridge",
+      "position": [
+        77,
+        47,
+        -20
+      ],
+      "lookAt": [
+        41,
+        35,
+        -5
+      ]
+    },
+    {
+      "name": "spiral-entry-and-eagle-gate",
+      "position": [
+        129,
+        54,
+        66
+      ],
+      "lookAt": [
+        63,
+        15,
+        16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 349299,
+    "vertices": 718009,
+    "materials": 9,
+    "bytes": 30044980,
+    "sha256": "sha256:5cb6e4124350dee11d4dd9368b9ae214494f141b73d15c7d050fcf08c45838e7"
+  }
+}

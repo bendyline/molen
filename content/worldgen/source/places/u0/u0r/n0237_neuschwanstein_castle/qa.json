@@ -1,0 +1,116 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+  "sourceHash": "sha256:c78849de7780d2383656cb12873fabfc55a14e03a6ec92bc96be18d2d7ed3c8f",
+  "runtimeHash": "sha256:5e1ea57c9cd3c93d60cd5274e0e244a48903d52869e034a78932bfe3c2f5589e",
+  "captureReportHash": "sha256:fc1430c34c87c03cca8863d85586332aa919165c1190d938a5582a40f3c77b25",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and real-terrain geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southern-palas-and-bower.png",
+      "shots/northwest-towers.png",
+      "shots/palas-court-gable.png",
+      "shots/western-open-galleries.png",
+      "shots/main-stair-crown.png",
+      "shots/knights-house-and-square-tower.png",
+      "shots/gatehouse-outer-brick.png",
+      "shots/gatehouse-inner-clock.png",
+      "shots/two-courtyards-and-roofs.png"
+    ],
+    "notes": "Inspected all 14 portable frames after closing a roof/eave gap, joining the main stair to the northern Palas projection, extending the foundation under the gatehouse, separating inner/outer gate fenestration and joining its stepped gables. Views show the cranked Palas, unequal towers, three western open galleries, Bower, Knights House, Square Tower and two open courts. Detailed framing crops portions of the tall facades; turntables show the complete silhouette. Sculptural details, vertical dimensions and exact profiles remain provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c86f3ce4b443c93fb214b002938e3e56f3331080e740d34469e3fc001ab8a608",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southern-palas-and-bower.png",
+      "shots/shared/northwest-towers.png",
+      "shots/shared/palas-court-gable.png",
+      "shots/shared/western-open-galleries.png",
+      "shots/shared/main-stair-crown.png",
+      "shots/shared/knights-house-and-square-tower.png",
+      "shots/shared/gatehouse-outer-brick.png",
+      "shots/shared/gatehouse-inner-clock.png",
+      "shots/shared/two-courtyards-and-roofs.png"
+    ],
+    "notes": "Inspected all 13 studio shared-surface views. Limestone, raw limestone, weathered limestone, sandstone, slate, copper, brick, painted metal and wood each load once. Glazing is local PBR; no embedded images. Unload leaves zero live model geometries. Draft placement is inactive, so these are studio renders, not evidence of real-terrain placement."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:605370bad4aeb30372adb1e08e3deae77724e13702a00cf7e27ebb34412339af",
+    "notes": "Exact-QID OSM way/221601969 provides signed precinct anchor and heading. The boundary has no building or height tag and includes two courts. The official plan provides approximate individual parts. Keep placement draft and replaceFootprint=false until the steep ridge, court levels, occupied outlines and structural-base datum are reviewed in context."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Individual exterior reconstructed from the official labeled plan and inspected south, northwest, outer-gate and courtyard photographs. The cached OSM boundary is a precinct. Plan parts are manually transcribed and approximately scaled inside that boundary, not surveyed building footprints. Maximum exterior fidelity remains pending: plan transcription, floor heights, narrow roofs and tower profiles are photographic reconstructions, not measured elevations. The cached 65 m height has no cited source. The unbuilt central keep and chapel are excluded. Current gatehouse and later Bower/Square Tower are represented; scaffolding and temporary conservation work are not architectural features. Palas painted murals, heraldic portal relief, human/animal statues, carved capitals and exact tracery require dedicated sculptural/painting work. No substituted generic figure is claimed accurate. No natural mountain, moat, forest or interiors are included. The retained court levels and basement walls require sloped-terrain integration; the model is a geographic draft. All geometry is original. Reference images are linked, never embedded or copied into texture maps. Limestone, raw limestone, weathered limestone, sandstone, slate, copper, brick, painted metal and wood use canonical shared materials."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "validatorLimitations": "Informational unused UV attributes belong to canonical shared-surface bindings resolved by Molen.",
+    "triangles": 234177,
+    "vertices": 477805,
+    "materials": 11,
+    "sharedGraphs": 9,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual, byte, triangle and layout checks; physical-device measurements pending.",
+    "notes": "Inspected master and four authored levels at one common camera. Main cranked Palas, unequal towers, gatehouse and open courts remain identifiable. Skyline/district/street/closeup are 46,028 / 152,228 / 1,186,140 / 3,967,496 bytes with 562 / 1,948 / 15,891 / 58,753 triangles. Initial skyline plus district totals 198,256 bytes; all triangle targets pass. Separate attributes avoid mixed-type GPU upload duplication. Nine focused authored-LOD tests pass. Detailed source master is independently preserved at 20,017,068 bytes.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:d9c382cbabeb6e33e433c80a6a669afe6b64ea78bdc8530e02df03cd826c77e0",
+        "bytes": 46028,
+        "triangles": 562,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a0d8af633ab7f2145790e47a31fe9c0676079380708004892494960c7390ee21",
+        "bytes": 152228,
+        "triangles": 1948,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:66af2236af95005d7a595991b862f77785301c31246bae1c1df68db370b36de1",
+        "bytes": 1186140,
+        "triangles": 15891,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:04ea4de50d470fcdc30f45ad16169397e07126207816fc240b5101e402fa7d1f",
+        "bytes": 3967496,
+        "triangles": 58753,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

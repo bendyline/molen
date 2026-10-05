@@ -1,0 +1,286 @@
+{
+  "planId": "N0249",
+  "id": "N0249",
+  "assetId": "molen.worldgen.structure.n0249_alamut_castle",
+  "title": "Alamut Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q4706020",
+  "referenceCoordinate": {
+    "latitude": 36.444722222,
+    "longitude": 50.586111111
+  },
+  "visualBrief": "Roofless Alamut upper-castle ruins on a narrow fluted rock ridge, with ten mapped ruin groups, northwest cells, open rock-cut reservoirs, brick arch remnants, broken stone walls and eastern approach stairs.",
+  "size": [
+    191.16907501220703,
+    47.02859878540039,
+    67.18659591674805
+  ],
+  "actualBounds": {
+    "min": [
+      -95.29432678222656,
+      0,
+      -33.28897476196289
+    ],
+    "max": [
+      95.87474822998047,
+      47.02859878540039,
+      33.897621154785156
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X southeast, 45.63 degrees south of east",
+    "front": "+Z southwest",
+    "origin": "Mapped upper castle anchor, provisional local rock contact"
+  },
+  "sourceFacts": {
+    "identity": "Exact Q4706020 on OSM way/590499418",
+    "mappedEnvelopeMeters": [
+      176.148,
+      53.917
+    ],
+    "mappedRuinGroups": 10,
+    "currentReferenceDates": [
+      "2024-01-01",
+      "2024-12-22"
+    ],
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "OSM upper-castle outline and ruin groups; UNESCO 2024 aerial/ground photographs; published Willey ground plan and 2014 field photographs for cisterns and northwest ridge.",
+    "verticalDatum": "Local bedrock contact with plateau 38 - 0.032*x + 0.012*z meters. Ruin walls and cut depths are photographic estimates. The much larger mountain is not included.",
+    "state": "Surviving roofless archaeological remains. Temporary excavation shelters in older photographs are omitted in the 2024 interpretation."
+  },
+  "referencePages": [
+    "https://whc.unesco.org/en/list/1770/",
+    "https://whc.unesco.org/en/documents/220797",
+    "https://whc.unesco.org/en/documents/220798",
+    "https://www.openstreetmap.org/way/590499418",
+    "https://www.burgenwelt.org/iran/alamut/object.php"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Map anchor and ten surviving footprints retained; vertical datum and terrain fit pending",
+    "anchor": [
+      50.586098381,
+      36.44473323
+    ],
+    "heading": -0.796374558514,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/590499418",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/590499418"
+    ],
+    "wikidataId": "Q4706020",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0b3cec46341d60b118ac737edef502611da16b4a5fbc27e3a47f60668c403c5d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Do not extrude the upper-castle boundary as a solid building. Ruin chambers and cisterns remain open."
+  },
+  "scaleBasis": "Map outlines in meters; +X 45.63 degrees south of east. Only the horizontal outer envelope and mapped ruin footprints are georeferenced; heights and chamber subdivisions remain approximate.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. UNESCO/ACHB photographs and published plan are references only; no pixels or third-party mesh copied.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity pending: mapped ruin footprints are preserved, but heights, individual chamber divisions, arch positions, masonry profiles and cistern positions/depths need measured archaeological plans.",
+    "Includes the mapped upper castle only. The lower/onion castle, passing zone and complete 220 m mountain require additional source coverage and terrain integration.",
+    "Rock geometry is a provisional local contact. Geological strata, excavated floor levels and the approach stair vertical alignment are not surveyed.",
+    "The roofless state follows 2024 UNESCO views. Protective scaffolding visible in 2014 field photos is not treated as permanent historic architecture.",
+    "Shared procedural sandstone, weathered stone, brick, plaster, timber and metal contain no embedded photos. Exact rock and mortar appearance remain to refine."
+  ],
+  "qaCameras": [
+    {
+      "name": "upper-castle-plan",
+      "position": [
+        0,
+        230,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "northwest-cells-and-cisterns",
+      "position": [
+        -99,
+        67,
+        1
+      ],
+      "lookAt": [
+        -58,
+        39,
+        -12
+      ]
+    },
+    {
+      "name": "rock-cut-reservoir",
+      "position": [
+        -82,
+        49,
+        -12
+      ],
+      "lookAt": [
+        -74,
+        38,
+        -19
+      ]
+    },
+    {
+      "name": "central-excavation",
+      "position": [
+        -39,
+        71,
+        37
+      ],
+      "lookAt": [
+        -4,
+        39,
+        1
+      ]
+    },
+    {
+      "name": "brick-arches-and-plaster",
+      "position": [
+        -20,
+        47,
+        11
+      ],
+      "lookAt": [
+        -10,
+        41,
+        -3
+      ]
+    },
+    {
+      "name": "three-central-cisterns",
+      "position": [
+        42,
+        66,
+        25
+      ],
+      "lookAt": [
+        12,
+        38,
+        7
+      ]
+    },
+    {
+      "name": "eastern-gate-remains",
+      "position": [
+        110,
+        55,
+        19
+      ],
+      "lookAt": [
+        74,
+        37,
+        -1
+      ]
+    },
+    {
+      "name": "cliff-and-approach",
+      "position": [
+        65,
+        41,
+        -93
+      ],
+      "lookAt": [
+        48,
+        24,
+        -24
+      ]
+    },
+    {
+      "name": "southern-retaining-wall",
+      "position": [
+        21,
+        49,
+        72
+      ],
+      "lookAt": [
+        42,
+        37,
+        16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 271061,
+    "vertices": 652777,
+    "materials": 7,
+    "bytes": 26756940,
+    "sha256": "sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588"
+  }
+}

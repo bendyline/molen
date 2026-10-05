@@ -1,36 +1,89 @@
 {
-  "format": "molen/structure-reference-notes@1",
-  "candidateId": "N0237",
-  "provenance": "Restored from the committed spec.json and README.md. These are the references and reconstruction assumptions recorded during model authoring; no additional reference inspection is claimed.",
+  "format": "molen/structure-reference-metadata@1",
+  "assetId": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+  "reviewDate": "2026-10-04",
   "references": [
     {
-      "url": "https://www.neuschwanstein.de/englisch/palace/history.htm"
+      "url": "https://www.neuschwanstein.de/englisch/palace/history.htm",
+      "publisher": "Bavarian Palace Administration",
+      "observations": "Owner's construction history: foundations in 1869, Gateway occupied in 1873, Palas topping-out in 1880, simplified Bower and Square Tower completed in 1892. Walls are brick with light limestone cladding. The unbuilt central keep and chapel are excluded.",
+      "inspectedImages": [
+        "https://www.neuschwanstein.de/bilder/schloss/grundriss790.png"
+      ],
+      "planInterpretation": "Inspected the 790 by 310 pixel labeled plan: Palas, two unequal spiral stairs, Bower, Knights' House, Square Tower, connecting range, gatehouse and two open courts. Manually transcribed part extents, approximately scaled at 0.194 m/pixel around pixel [395,155]. No scale bar or surveyed elevation was available; this is a proportional reconstruction inside the cached map precinct."
     },
     {
-      "url": "https://www.neuschwanstein.de/englisch/palace/index.htm"
+      "url": "https://www.neuschwanstein.de/englisch/palace/index.htm",
+      "publisher": "Bavarian Palace Administration",
+      "inspectedImages": [
+        "https://www.neuschwanstein.de/bilder/schloss/neuschwanstein790a.jpg"
+      ],
+      "observations": "Inspected the southern landscape panorama for overall limestone walls, dark roofs and mountain setting. The natural ridge is not included in this structural model."
     },
     {
-      "url": "https://www.neuschwanstein.de/bilder/schloss/grundriss790.png"
+      "url": "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg",
+      "photographer": "Thomas Wolf",
+      "date": "2013-07-31",
+      "license": "CC BY-SA 3.0 DE",
+      "imageInspected": true,
+      "observations": "South exterior: six Palas window ranks, paired arches, west open galleries, unequal stair towers, copper-colored dormers, steep slate roofs, corner bartizans and projecting Bower bays. Original photograph used for architectural observation; no pixels copied into textures."
     },
     {
-      "url": "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg"
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Neuschwanstein_Castle_(view_from_the_northwest).jpg",
+      "photographer": "Carsten Steger",
+      "imageInspected": true,
+      "observations": "Northwest aerial: northern Palas projection joins the main cylindrical stair, lower north range, Knights' House with corner turrets, and rectangular Square Tower with corbelled upper arcades, octagonal upper stage and pointed cap."
     },
     {
-      "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Neuschwanstein_Castle_(view_from_the_northwest).jpg"
+      "url": "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_im_November_2020_(9).jpg",
+      "photographer": "Cmcmcm1",
+      "date": "2020-11-16",
+      "license": "CC BY-SA 4.0",
+      "imageInspected": true,
+      "observations": "Outer gatehouse has brick wings, pale central portal with timber gate and sparse upper openings, stepped gable and cylindrical corner turrets. Exterior portal does not share the inner face's large triple windows. Heraldic relief and facade anchor ties remain pending."
     },
     {
-      "url": "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_im_November_2020_(9).jpg"
+      "url": "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano1.jpg",
+      "photographer": "Lokilech",
+      "imageInspected": true,
+      "observations": "Gatehouse court face is warm yellow/beige stone above a pale base, with a triple arcade/balcony and central clock in the stepped gable; end turrets have dark caps inside crenellated crowns. The photographed passage is open, while this current model depicts a closed timber gate; no interior passage is claimed."
     },
     {
-      "url": "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano1.jpg"
+      "url": "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano2.jpg",
+      "photographer": "Lokilech",
+      "imageInspected": true,
+      "observations": "Palas court gable has decorated lunettes, murals, suspended bartizans and central balcony. The north entrance stair rises along the gallery. Painted murals, exact sculpture and carved detail have not been reconstructed and keep maximum-fidelity review pending."
     },
     {
-      "url": "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano2.jpg"
-    },
-    {
-      "url": "https://www.openstreetmap.org/way/221601969"
+      "url": "https://www.openstreetmap.org/way/221601969",
+      "publisher": "OpenStreetMap contributors",
+      "license": "ODbL-1.0",
+      "observations": "Cached exact Q4152 record is a castle precinct, historic=castle, with neither a building nor height tag. Its 159.33 by 66.264 m oriented envelope includes the open courts and is not an occupied footprint. Registration uses the signed frame, with separate occupied ranges derived from the official plan."
     }
   ],
+  "unavailableReferences": [
+    {
+      "url": "https://overpass-api.de/api/interpreter",
+      "status": "Individual building-part query failed with HTTP 406 and 504; no individual building footprints obtained or claimed."
+    },
+    {
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=10.7477,47.5567,10.7518,47.5586",
+      "status": "HTTP 429; no map extract obtained from this request."
+    }
+  ],
+  "registration": {
+    "featureId": "way/221601969",
+    "wikidataId": "Q4152",
+    "anchorLongitudeLatitude": [
+      10.749533954,
+      47.557554931
+    ],
+    "headingRadians": 0.381105898007,
+    "status": "draft; steep terrain contact and occupied-range fit unresolved",
+    "decision": "Native +X runs from western Palas toward eastern gatehouse; +Z faces the southern Marienbruecke view. Upper/lower courts are provisionally 8.2/6.5 m above the model base. The cached 65 m height is unreferenced and is not a surveyed elevation. Keep replaceFootprint=false and placement inactive pending contextual terrain review."
+  },
+  "licenseBoundary": "Original reconstruction under repository license, with separately attributed OpenStreetMap-derived registration. Reference publications and photographs are linked only; none are redistributed or used as bitmap textures. Shared repository material graphs supply architectural surfaces.",
+  "candidateId": "N0237",
   "sourceFacts": {
     "constructionStarted": 1869,
     "gatehouseOccupied": 1873,
@@ -64,6 +117,5 @@
     "Palas painted murals, heraldic portal relief, human/animal statues, carved capitals and exact tracery require dedicated sculptural/painting work. No substituted generic figure is claimed accurate.",
     "No natural mountain, moat, forest or interiors are included. The retained court levels and basement walls require sloped-terrain integration; the model is a geographic draft.",
     "All geometry is original. Reference images are linked, never embedded or copied into texture maps. Limestone, raw limestone, weathered limestone, sandstone, slate, copper, brick, painted metal and wood use canonical shared materials."
-  ],
-  "licenseBoundary": "Original procedural geometry with canonical shared repository materials. Reference publications and photographs are linked only; none are embedded as geometry or bitmap textures."
+  ]
 }

@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0257_citadel_of_salah_ed_din",
+  "sourceHash": "sha256:eb61f0965485bbac558b40961c24e71d0cf5b17691dbbe1d7f23a08cc50c593e",
+  "runtimeHash": "sha256:cbbe77e7019e3e289e1ca469c1ac33786b35bfef3224c0819d4e469f9b67ff75",
+  "captureReportHash": "sha256:ed97263d0bb4909f5cb3b409bbad775e9d65a3e80ea2504bf966995c7764eb98",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior rendering only; architectural maximum fidelity and geographic approval remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-ridge-and-lower-town.png",
+      "shots/master-tower-and-rock-cut-moat.png",
+      "shots/needle-and-frankish-gate.png",
+      "shots/eastern-curtain-and-pillared-hall.png",
+      "shots/ayyubid-palace-and-courtyard.png",
+      "shots/mosque-square-minaret-and-baths.png",
+      "shots/byzantine-fortress-and-chapel.png",
+      "shots/north-cistern-and-inner-ramparts.png",
+      "shots/western-town-chapel-and-gates.png"
+    ],
+    "notes": "Inspected all 14 final portable frames. The long ridge, open lower ward, separate inner fortress, chapel, courtyard, baths, mosque and square minaret, cisterns, master tower, pillared hall and moat needle render. Replaced stretched terrain fans, joined rock-skirt edges, cut level floors out of the terrain and extended foundations. Wall heads are continuous uneven rubble instead of regular crenels. Bedrock and unrecorded elevations remain interpreted."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:a11ed469f235bed862b9ca9924396c2ffb019192874733ec3681df10af59901d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-ridge-and-lower-town.png",
+      "shots/shared/master-tower-and-rock-cut-moat.png",
+      "shots/shared/needle-and-frankish-gate.png",
+      "shots/shared/eastern-curtain-and-pillared-hall.png",
+      "shots/shared/ayyubid-palace-and-courtyard.png",
+      "shots/shared/mosque-square-minaret-and-baths.png",
+      "shots/shared/byzantine-fortress-and-chapel.png",
+      "shots/shared/north-cistern-and-inner-ramparts.png",
+      "shots/shared/western-town-chapel-and-gates.png"
+    ],
+    "notes": "Inspected all 13 final world-viewer asset-review frames. Six central graphs (limestone, raw limestone, weathered limestone, lime plaster, painted metal and gravel) each load once. No embedded images. Unloading leaves zero live model geometry. Isolated asset-review captures do not establish terrain contact or exact geographic orientation."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:7bd8491f386c8b203911ee9ee5ce62a1192aa7e615e9a0af6c0c55d4610a6649",
+    "notes": "Q277531 exact OSM relation/5579293 with mapped defensive towers. Draft anchor [36.055056392,35.595076267], heading 0.427014283192. Native +X toward the eastern moat, +Z toward the south. replaceFootprint=false. Bedrock, floor elevations and the primary-plan registration are interpreted; in-world terrain and orientation review remain pending."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending: exact ruin profiles, recently collapsed entrance roof and propping, chamber openings and masonry scars need additional current photographic review. Palace and unmapped walls are approximate plan traces; inferred terrain and levels require in-world review. replaceFootprint=false. This exterior includes visible vault and courtyard geometry, not a complete navigable interior. No reference photographs or bitmap textures are embedded. Detailed master plus four independent runtime models share reusable stone, plaster, metal and gravel surfaces. Physical laptop and phone tests remain pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces. Valid geometry does not establish architectural accuracy.",
+    "triangles": 320144,
+    "vertices": 649070,
+    "materials": 7,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected same-camera master/LOD comparison; geometry/download budgets, deterministic generation and homogeneous attribute buffer views verified. Physical laptop/phone measurements remain pending.",
+    "notes": "919 / 3848 / 12930 / 24128 triangles; initial skyline plus district 393212 bytes. Street 906248 bytes; closeup 1551516 bytes; detailed source 27212528 bytes. All 47 authored-LOD checks passed; both Citadel cases passed again after the final terrain corrections. Source regeneration is byte-identical. Four independent levels preserve the ridge, principal tower masses, inner fortress, mosque, cisterns and open moat.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/sy/sy3/n0257_citadel_of_salah_ed_din/model.skyline.glb",
+        "hash": "sha256:bfeaf3fdf3eaaa16e3eb25d30d7f5886ca9237922f6d1d59501b5dfe7264a09f",
+        "bytes": 79204,
+        "triangles": 919,
+        "vertices": 2008,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -358.8686218261719,
+          0,
+          -86.20112609863281
+        ],
+        "max": [
+          403.8836669921875,
+          70,
+          101.4671401977539
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/sy/sy3/n0257_citadel_of_salah_ed_din/model.district.glb",
+        "hash": "sha256:c3d5aa53bb2dc9d44a96c2d535052573996c1b4b3fe1f2137414bf710d9a5f52",
+        "bytes": 314008,
+        "triangles": 3848,
+        "vertices": 7846,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -362.534912109375,
+          0,
+          -85.9193115234375
+        ],
+        "max": [
+          403.8836669921875,
+          70,
+          101.31869506835938
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/sy/sy3/n0257_citadel_of_salah_ed_din/model.street.glb",
+        "hash": "sha256:784525d598dddaf3da2098e3d08ffd8a1aebb177c79b68872cc3c13caa5f079a",
+        "bytes": 906248,
+        "triangles": 12930,
+        "vertices": 22781,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -362.534912109375,
+          0,
+          -85.9193115234375
+        ],
+        "max": [
+          403.8836669921875,
+          70,
+          101.31869506835938
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/sy/sy3/n0257_citadel_of_salah_ed_din/model.closeup.glb",
+        "hash": "sha256:5f5ebfc6979639e06ab9dc2509f9c9051bf362ccb0438c957f4513ec9ff251b5",
+        "bytes": 1551516,
+        "triangles": 24128,
+        "vertices": 38837,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -362.534912109375,
+          0,
+          -85.9193115234375
+        ],
+        "max": [
+          403.8836669921875,
+          70.23300170898438,
+          101.31869506835938
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      }
+    ]
+  }
+}

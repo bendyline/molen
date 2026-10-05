@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0248_bran_castle",
+  "sourceHash": "sha256:1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff",
+  "runtimeHash": "sha256:d3a721671c12168d6a445dead537ff0e346bbd87432ad888bc716f121b182d0a",
+  "captureReportHash": "sha256:24c5cbe41a5da93d48702a92ada71a94a32805020894ba4e8303745020e60615",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity. Maximum fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/round-western-tower.png",
+      "shots/keep-scallops-and-belfry.png",
+      "shots/keep-steep-roof.png",
+      "shots/eastern-stone-tower.png",
+      "shots/south-stair-turret.png",
+      "shots/open-courtyard-gallery.png",
+      "shots/courtyard-well.png",
+      "shots/southern-entry-stairs.png",
+      "shots/courtyard-roof-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. Mapped courtyard remains open; round west tower, stair turret, steep keep roof, scalloped rear parapet, timber belfry and projecting eastern tower remain separate. Fixed reversed curved-wall/gable normals, open roof junctions, an entrance/window overlap, masonry across the door, capped well and gallery backwalls extending above the roof. Heights and terrain contact are provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:205dbbb4221e3b9b49f426220883b40259cec3e6e8f459a66919f88ea608e916",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/round-western-tower.png",
+      "shots/shared/keep-scallops-and-belfry.png",
+      "shots/shared/keep-steep-roof.png",
+      "shots/shared/eastern-stone-tower.png",
+      "shots/shared/south-stair-turret.png",
+      "shots/shared/open-courtyard-gallery.png",
+      "shots/shared/courtyard-well.png",
+      "shots/shared/southern-entry-stairs.png",
+      "shots/shared/courtyard-roof-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Six reusable graphs load once each: plaster, carved limestone, granite, timber, ceramic tile and painted metal. Glass and dark recesses use local PBR colors. Well is visibly hollow; entrance and gallery apertures remain clear. Unloading leaves zero live model geometries. Roof color and tile scale vary across LODs; stone/plaster weathering needs further fidelity work."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:fa2632d4bcaa4c83a5628b6266ec15fb73d375f83cb8b1e9c56523cc72a438dd",
+    "notes": "Exact Q390275 match on OSM relation/3300200 with inner courtyard ring and five building parts. Draft anchor [25.367082771,45.515080804], heading -0.689652279939. replaceFootprint=false. OSM height datum is unresolved; photograph-derived heights and the four-meter local rock contact must be checked against terrain and measured elevations."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending: mapped horizontal layout is retained but measured elevations, roof valleys and obscured window positions require refinement. OSM height tags from 50 to 73 m have an unresolved common datum. The authored local heights are photographic estimates, not a survey. The courtyard gallery, well ironwork, scalloped keep parapet, entrance portal, chimneys and window rhythms use photographic proportions. Interior rooms, artworks and furniture are outside this exterior asset. The four-meter rock contact is not the full hill. Park, forest, approach paths and terrain fitting remain separate. Shared procedural plaster, stone, timber, ceramic tile and metal avoid embedded images. Plaster weathering and the distinctive rounded tile pattern need further material-specific refinement."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
+    "triangles": 145600,
+    "vertices": 333850,
+    "materials": 8,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance not measured.",
+    "notes": "719 / 2469 / 4389 / 33031 triangles. Skyline plus district 239504 bytes. Street 311860 bytes; closeup 2545052 bytes. Detailed source master 13770396 bytes. The four tiers preserve the primary silhouette, while windows, stairs, gallery joinery and roof relief appear progressively.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u8/u84/n0248_bran_castle/model.skyline.glb",
+        "hash": "sha256:753de05e275fb100476b4556bdbc8f23d2461f6c8cf75e43c5fa8ffa5d5e6b76",
+        "bytes": 66612,
+        "triangles": 719,
+        "vertices": 1691,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -24.799840927124023,
+          0,
+          -14.266719818115234
+        ],
+        "max": [
+          24.799840927124023,
+          40.400001525878906,
+          14.266719818115234
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u8/u84/n0248_bran_castle/model.district.glb",
+        "hash": "sha256:c1e23a45c4c932ebf8373894d276bf99088b153ae795c5adb96ccfc77f9f6a30",
+        "bytes": 172892,
+        "triangles": 2469,
+        "vertices": 4125,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -24.799840927124023,
+          0,
+          -14.266719818115234
+        ],
+        "max": [
+          24.799840927124023,
+          40.400001525878906,
+          14.266719818115234
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u8/u84/n0248_bran_castle/model.street.glb",
+        "hash": "sha256:afb6fab60a76f330d96d07c01d8684e8069d1797e5985787c6a43e6b0e63bd0f",
+        "bytes": 311860,
+        "triangles": 4389,
+        "vertices": 7663,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -24.799840927124023,
+          0,
+          -14.266719818115234
+        ],
+        "max": [
+          24.799840927124023,
+          40.400001525878906,
+          18.009305953979492
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u8/u84/n0248_bran_castle/model.closeup.glb",
+        "hash": "sha256:588f13b420ac542f8c55e93661d0f04cfe6f88759d0d900ec7caee83c48495d5",
+        "bytes": 2545052,
+        "triangles": 33031,
+        "vertices": 64921,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -24.799840927124023,
+          0,
+          -14.266719818115234
+        ],
+        "max": [
+          24.799840927124023,
+          40.400001525878906,
+          18.009305953979492
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

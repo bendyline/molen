@@ -1,0 +1,294 @@
+{
+  "planId": "N0239",
+  "id": "N0239",
+  "assetId": "molen.worldgen.structure.n0239_windsor_castle",
+  "title": "Windsor Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q42646",
+  "referenceCoordinate": {
+    "latitude": 51.483888888,
+    "longitude": -0.604444444
+  },
+  "visualBrief": "Individually arranged Upper, Middle and Lower Wards: mapped palace ranges and named towers, open quadrangle, Round Tower and artificial motte, Saint George’s and Albert Memorial chapels, timber-and-brick Horseshoe Cloister and Henry VIII gateway.",
+  "size": [
+    582.5897827148438,
+    52,
+    199.02924346923828
+  ],
+  "actualBounds": {
+    "min": [
+      -291.41259765625,
+      0,
+      -99.34272003173828
+    ],
+    "max": [
+      291.17718505859375,
+      52,
+      99.6865234375
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from Lower Ward toward Upper Ward and East Terrace Garden",
+    "front": "+Z toward the Long Walk",
+    "origin": "Cached OSM precinct center; provisional structural base"
+  },
+  "sourceFacts": {
+    "stoneCastleConstruction": "1165–1179",
+    "saintGeorgesChapelConstruction": "1475–1511",
+    "majorExteriorRemodelling": "1800–1830",
+    "footprints": "Individual OpenStreetMap ways and courtyard holes, retrieved 2026-10-04",
+    "surveyedVerticalDimensions": false
+  },
+  "reconstruction": {
+    "basis": "Meter-scale mapped building footprints in the cached signed precinct frame, with separately reconstructed Gothic elevations, roofs, chimneys and corbelled tower crowns from inspected aerial, quadrangle, Round Tower, chapel and cloister photographs.",
+    "verticalDatum": "Provisional base; upper ranges begin at +4 m, artificial motte top +11.8 m. No surveyed cross-site levels.",
+    "roundTowerCrownY": 39.61,
+    "flagpoleTipY": 52,
+    "heights": "Photographic estimates; do not treat as measured building heights."
+  },
+  "referencePages": [
+    "https://www.rct.uk/visit/windsor-castle/who-built-windsor-castle",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1117776",
+    "https://www.openstreetmap.org/way/23580556",
+    "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Windsor_Castle.jpg",
+    "https://commons.wikimedia.org/wiki/File:Windsor_Castle_Upper_Ward_Quadrangle_Corrected_2-_Nov_2006.jpg",
+    "https://commons.wikimedia.org/wiki/File:Windsor_Castle_Round_Tower.JPG",
+    "https://commons.wikimedia.org/wiki/File:St._Georges_Chapel,_Windsor_Castle_(1)_v2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Horseshoe_Cloister_-_2026.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Individual map footprints; real terrain and vertical datum pending",
+    "anchor": [
+      -0.604139816,
+      51.483842171
+    ],
+    "heading": 0.052063510228,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/23580556",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/23580556"
+    ],
+    "wikidataId": "Q42646",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Preserve the cached anchor and signed heading without scaling. Precinct includes open gardens and courtyards: never replace its entire polygon with a building. Cross-site levels need terrain integration before world activation."
+  },
+  "scaleBasis": "Horizontal coordinates are individual mapped footprints. Heights, roofs, window spacing and ground steps are reconstructed estimates. Natural hill and cross-site slope remain outside this asset.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Individual building geometry in map-parts.json derives from © OpenStreetMap contributors, ODbL-1.0. Its source URL, signed meter frame and retrieval date are recorded with the data. Reference photographs are linked only; no pixels are redistributed in the model.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity is pending. This is an original exterior reconstruction, not a surveyed as-built model. Heights, facade bay spacing, roof profiles and corner details need elevation verification.",
+    "Chapel tracery is geometric but simplified; heraldic beasts, statues, heraldry, gates and sculptural capitals require dedicated individually verified detail. No generic statue is claimed to represent them.",
+    "No interiors, natural hill, foliage, temporary works or royal flags are supplied. Artificial motte, structural walls and terrace revetments use provisional elevations. The open grounds require real terrain contact.",
+    "Chapel and Albert Chapel volumes follow manually aligned mapped envelopes; palace and residential ranges use exact individual plan vertices with tolerance reduction. Roofing is independently reconstructed.",
+    "Shared limestone, raw limestone, weathered limestone, slate, wood, brick and painted-metal graphs are reused; glazing is local PBR. No new bitmap textures or copied photographic pixels."
+  ],
+  "qaCameras": [
+    {
+      "name": "upper-ward-south",
+      "position": [
+        75,
+        48,
+        230
+      ],
+      "lookAt": [
+        82,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "upper-quadrangle",
+      "position": [
+        12,
+        29,
+        -14
+      ],
+      "lookAt": [
+        95,
+        19,
+        46
+      ]
+    },
+    {
+      "name": "north-state-apartments",
+      "position": [
+        90,
+        58,
+        -180
+      ],
+      "lookAt": [
+        86,
+        24,
+        -47
+      ]
+    },
+    {
+      "name": "round-tower-crown",
+      "position": [
+        -77,
+        52,
+        68
+      ],
+      "lookAt": [
+        -16,
+        28,
+        -10
+      ]
+    },
+    {
+      "name": "chapel-south",
+      "position": [
+        -217,
+        27,
+        98
+      ],
+      "lookAt": [
+        -181,
+        15,
+        10
+      ]
+    },
+    {
+      "name": "chapel-west-window",
+      "position": [
+        -260,
+        23,
+        20
+      ],
+      "lookAt": [
+        -215,
+        17,
+        4
+      ]
+    },
+    {
+      "name": "horseshoe-cloister",
+      "position": [
+        -240,
+        10,
+        12
+      ],
+      "lookAt": [
+        -258,
+        6,
+        37
+      ]
+    },
+    {
+      "name": "henry-viii-gate",
+      "position": [
+        -201,
+        13,
+        134
+      ],
+      "lookAt": [
+        -197,
+        8,
+        85
+      ]
+    },
+    {
+      "name": "wards-and-open-courts",
+      "position": [
+        -30,
+        610,
+        120
+      ],
+      "lookAt": [
+        -25,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 385417,
+    "vertices": 783315,
+    "materials": 8,
+    "bytes": 32829044,
+    "sha256": "sha256:e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396"
+  }
+}

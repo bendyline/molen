@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0243_malbork_castle",
+  "sourceHash": "sha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193",
+  "runtimeHash": "sha256:8be58eccd2d4389249c7e883f42f32b17b89e10de01cab001e599a1bd945f6b8",
+  "captureReportHash": "sha256:66e31cc26abd3ca17ef91ed2d4ac3a1238a853eb9f2e2b04607b3131800c7bef",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; architectural fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/high-castle-cloister.png",
+      "shots/high-castle-and-dansker.png",
+      "shots/middle-castle-courtyard.png",
+      "shots/grand-masters-palace.png",
+      "shots/church-and-keep.png",
+      "shots/north-gate-and-bridge.png",
+      "shots/lower-castle-karwan.png",
+      "shots/lower-castle-ranges.png",
+      "shots/all-three-castles-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable views. Corrected below-ground cloister arches, windows crossing courtyard offsets, reversed gate-spandrel normals and bridge-end railings. Open courts, raised Dansker gallery, the Middle Castle entry, palace and named Lower Castle structures are present. Turntables establish full extent; targeted cameras inspect architectural details. Heights, roof junctions and omitted ornament remain provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5ac378524b253661e627e797045c16633d0338bf5acb3c679d27cbeb63de9f2f",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/high-castle-cloister.png",
+      "shots/shared/high-castle-and-dansker.png",
+      "shots/shared/middle-castle-courtyard.png",
+      "shots/shared/grand-masters-palace.png",
+      "shots/shared/church-and-keep.png",
+      "shots/shared/north-gate-and-bridge.png",
+      "shots/shared/lower-castle-karwan.png",
+      "shots/shared/lower-castle-ranges.png",
+      "shots/shared/all-three-castles-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Six canonical material graphs each load once, glazing remains local PBR, and unloading leaves zero live model geometries. These studio captures do not establish geographic fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:3ecfebdef09db8f939958e3d56113616ab256285886d74d0b1e3b3579ebfdafe",
+    "notes": "Exact Q71279 relation/6436433 identifies the main castle; named Lower Castle components extend beyond it. Anchor [19.027655287,54.03991349], heading 0.857051662697. Ground datum, keep height, terrain fit and complete outer fortifications remain pending. Draft placement with replaceFootprint=false; the component envelope must never become a solid replacement footprint."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity pending: this is an individual exterior reconstruction, not a surveyed as-built model. Vertical dimensions, irregular roof junctions and exact fenestration require further comparison. The museum ticket site describes the tower as nearly 70 m without a datum. The current 46 m ground-relative keep is provisional; do not treat it as a verified measured height. The church Madonna mosaic and figurative sculpture are not reproduced. Their recess is preserved. Exact tracery, gate decoration, decorative gables and rooftop dormers need further work. Lower Castle is represented by selected existing mapped structures and eastern walls; ruins, archaeological foundations, contemporary ticket facilities and complete outer earthworks are not included. No interiors, moat excavation, landscape, temporary works or photographic textures. The High Castle courtyard and Middle Castle court remain open. Shared brick, ceramic tile, timber, limestone, granite and painted-metal surfaces; local PBR glazing. Fine brick bonds and roof seams stay in the source master."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "validatorLimitations": "Unused-UV information reflects procedural material graphs resolved by Molen. Geometry validation does not certify architectural accuracy.",
+    "triangles": 516537,
+    "vertices": 1059079,
+    "materials": 7,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Authored LOD comparison and automated triangle/download/layout/determinism checks; physical phone and laptop measurements pending.",
+    "notes": "964 / 3170 / 15350 / 51343 triangles. Skyline plus district totals 311824 bytes; street 1035396 bytes; close-up 3672768 bytes. The separate detailed source master is 44329516 bytes. Skyline retains principal wards and towers but omits curtain walls and minor outbuildings. Phone and laptop hardware measurements remain pending.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.skyline.glb",
+        "hash": "sha256:d9cb33f1af3392e67f520653bbee45a6a04936ab421bca31eb93120e39c76abd",
+        "bytes": 78648,
+        "triangles": 964,
+        "vertices": 1985,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -96.48164367675781,
+          0,
+          -86.42406463623047
+        ],
+        "max": [
+          446.52239990234375,
+          46,
+          126.41213989257812
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.district.glb",
+        "hash": "sha256:4838f1041142d16d296c9450962d96885e420ebb32d8a3643757d036ea22b68c",
+        "bytes": 233176,
+        "triangles": 3170,
+        "vertices": 5778,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -132.22854614257812,
+          0,
+          -87.06714630126953
+        ],
+        "max": [
+          446.52239990234375,
+          46,
+          187.02908325195312
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.street.glb",
+        "hash": "sha256:2426d8d3cdb07104c6b89e48efad8bc10d249fbaece2471f79300b668820d154",
+        "bytes": 1035396,
+        "triangles": 15350,
+        "vertices": 25999,
+        "materials": 6,
+        "sharedGraphs": 5,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          0,
+          -86.4861831665039
+        ],
+        "max": [
+          446.399169921875,
+          46,
+          187.02908325195312
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.closeup.glb",
+        "hash": "sha256:2299b6f48f0d1f585dfc75fbea31d70ec5d13fd5e142e212e727cd149e3e41ca",
+        "bytes": 3672768,
+        "triangles": 51343,
+        "vertices": 93226,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          0,
+          -86.4861831665039
+        ],
+        "max": [
+          446.399169921875,
+          46,
+          187.02908325195312
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      }
+    ]
+  }
+}
