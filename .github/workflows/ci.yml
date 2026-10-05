@@ -81,7 +81,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - uses: ./.github/actions/fetch-assets
-      - run: pnpm -r build
+      # Packing consumes library dist, not browser apps or their multi-gigabyte content packs.
+      - run: pnpm -r --filter './packages/**' build
       - run: pnpm smoke:packed
 
   golden:
@@ -107,14 +108,22 @@ jobs:
       # but lose the device on the explorer's scenes (blank canvas, "Instance dropped"), so
       # WebGPU cases skip here and every WebGL and fallback case still runs. Run them locally or
       # on a GPU runner; see docs-src/guide/rendering-backends.md.
-      - run: pnpm test:golden
+      - name: Golden tests with resource diagnostics
+        run: node scripts/run-golden-diagnostics.mjs -- pnpm test:golden
         env:
           MOLEN_SKIP_WEBGPU: '1'
           # The explorer's content packs are read locally here, so skip deflating about 2 GB of
           # models in JavaScript: 90% of their build, 13 of this job's minutes.
           MOLEN_PACK_COMPRESSION: store
       - uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
+        with:
+          name: golden-diagnostics
+          path: .artifacts/golden-ci/
+          if-no-files-found: ignore
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: failure() || cancelled()
         with:
           name: golden-diffs
           # Most golden tests live under examples/ — omitting them meant the common failure
@@ -122,4 +131,5 @@ jobs:
           path: |
             packages/*/test/golden/__output__/**
             examples/*/test/golden/__output__/**
+            examples/world-explorer/.artifacts/landmark-library-golden/**
           retention-days: 7

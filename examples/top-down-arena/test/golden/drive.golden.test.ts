@@ -54,6 +54,8 @@ describe('golden: arena drive scenario', () => {
     const center = { x: 0.49, y: 0.48, width: 0.02, height: 0.04 };
     const before = await frameStats(start, { region: center });
     expect(before.mean[1]).toBeGreaterThan(before.mean[0] + 60);
+    // This played perspective view also covers the former static arena smoke capture.
+    expect((await frameStats(start)).coverage).toBeGreaterThan(0.03);
     const later = await frameStats(after, { region: center });
     expect(later.mean[1]).toBeLessThan(later.mean[0] + 20);
   });

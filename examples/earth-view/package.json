@@ -12,7 +12,7 @@
     "predev": "node ../world-explorer/scripts/build-content-packs.mjs",
     "prebuild": "node ../world-explorer/scripts/build-content-packs.mjs",
     "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
-    "test:golden": "pnpm run build && vitest run --config vitest.golden.config.ts"
+    "test:golden": "vitest run --config vitest.golden.config.ts"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",

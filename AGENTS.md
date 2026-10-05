@@ -112,8 +112,10 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 ## Build invariant & conventions
 
 - **Build before typecheck/test**: packages consume each other's `dist`. The root scripts encode
-  this (`pretypecheck`/`pretest:unit` run `pnpm -r build`); run `pnpm typecheck`, `pnpm test:unit`
-  from the root, or `pnpm -r build` first if invoking `tsc`/`vitest` in a package directly.
+  this (`pretypecheck`/`pretest:unit` rebuild the library packages); run `pnpm typecheck`,
+  `pnpm test:unit` from the root, or `pnpm -r --filter './packages/**' build` first if invoking
+  `tsc`/`vitest` in a package directly. `pnpm test:golden` additionally stages shared packs once
+  and builds the examples with golden suites.
 - **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, source and docs checks,
   test:unit, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
   into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and

@@ -1,20 +1,26 @@
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { frameStats, rasterizeMaterial } from '@bendyline/molen-tooling';
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-const DIR = join(process.cwd(), 'test', 'golden');
-const OUT = join(DIR, '__output__');
+// This exercises the Node PNG exporter, not a browser. Keep it in the unit lane.
+let out: string;
+beforeAll(async () => {
+  out = await mkdtemp(join(tmpdir(), 'molen-material-rasterize-'));
+});
+afterAll(async () => {
+  if (out) await rm(out, { recursive: true, force: true });
+});
 
 // The ramp's darkest and lightest stops bound every baked texel.
 const DARK = [0x3a, 0x3f, 0x2e];
 const LIGHT = [0xa8, 0xa2, 0x82];
 
-describe('golden: material graph', () => {
+describe('material graph PNG export', () => {
   it('bakes the same varied rock texture every time, within its ramp', async () => {
-    await mkdir(OUT, { recursive: true });
     const bake = async (name: string): Promise<string> => {
-      const outPath = join(OUT, `${name}.png`);
+      const outPath = join(out, `${name}.png`);
       const r = await rasterizeMaterial({
         outPath,
         inline: {

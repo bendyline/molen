@@ -18,7 +18,6 @@ import {
   type PlacementSet,
   type ResolvedStylePack,
   stylePackAssetIndex,
-  stylePackMaterialRefs,
   type WorldgenBatchDoc,
   type WorldgenBatchOutput,
   type WorldgenStats,
@@ -287,7 +286,10 @@ async function previewWorldgenImpl(input: WorldgenPreviewInput): Promise<Worldge
       filesBaseUrl,
       assetIndex: stylePackAssetIndex(pack, filesBaseUrl),
       landmarks,
-      materialRefs: stylePackMaterialRefs(pack),
+      // The style pack also contains materials for hundreds of structures absent from this
+      // preview. Bake only refs actually used by its procedural meshes; props carry their
+      // own GLB materials. Preparing the whole library dominated each lineup capture.
+      materialRefs: [...new Set(output.buildings?.groups.map((group) => group.materialRef) ?? [])],
       ground: {
         y: groundY,
         minX: bounds.min[0] - extent,

@@ -4,20 +4,24 @@ import { resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { expect, it } from 'vitest';
 
+// Keep one shared-tile model, one ground cutout and one terrain-height placement. The other
+// catalog models repeat the same load/surface/eviction assertions and have asset-build checks.
+const IDS = ['N0603', 'N0682', 'N0031'];
+
 it('places named landmarks locally, binds shared surfaces and releases them on tile eviction', async () => {
   const out = resolve('.artifacts/landmark-library-golden');
   await promisify(execFile)(
     process.execPath,
     [
       resolve('test/visual/capture-landmark-library.mjs'),
-      '--ids=N0144,N0641,N0603,N0682,N0031',
+      `--ids=${IDS.join(',')}`,
       '--out-dir',
       out,
       '--force',
     ],
     { cwd: process.cwd(), timeout: 360000, maxBuffer: 4 * 1024 * 1024 },
   );
-  for (const id of ['N0144', 'N0641', 'N0603', 'N0682', 'N0031']) {
+  for (const id of IDS) {
     const report = JSON.parse(
       await readFile(resolve(out, id, 'shared-capture-report.json'), 'utf8'),
     );
