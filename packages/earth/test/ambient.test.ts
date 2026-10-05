@@ -91,6 +91,7 @@ describe('semantic tile observation', () => {
 });
 
 describe('earth ambient life', () => {
+  // A full signal cycle steps a live traffic world: 6 s on CI, beyond Vitest's 5 s default.
   it('shows the same signal colour as NPC control and invalidates matches on tile unload', () => {
     const parent = new THREE.Group();
     const layer = new THREE.Group();
@@ -132,7 +133,7 @@ describe('earth ambient life', () => {
     ambient.handle.flush();
     expect(ambient.surfaceSignalColor(head)).toBeUndefined();
     ambient.dispose();
-  });
+  }, 60_000);
   it('spawns traffic on displayed tiles, drops it when the tile hides, and cleans up', () => {
     const parent = new THREE.Group();
     const layer = new THREE.Group();

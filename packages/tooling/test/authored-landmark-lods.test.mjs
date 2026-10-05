@@ -69,6 +69,7 @@ it.each([
   expect(await landmarkLodRecipeHash(id)).not.toBe(await landmarkLodRecipeHash('unregistered'));
 });
 
+// Builds each of three detailed GLBs twice; this exceeded Vitest's 5 s default on CI.
 it('keeps Barolo detail levels deterministic, within download budgets, and bound to shared surfaces', async () => {
   const id = 'molen.worldgen.structure.n0234_barolo_palace';
   const budgets = { district: 2_950_000, street: 9_000_000, closeup: 12_000_000 };
@@ -104,7 +105,7 @@ it('keeps Barolo detail levels deterministic, within download budgets, and bound
     if (level === 'district')
       expect(a.bytes.length + (await authoredSkyline(id)).bytes.length).toBeLessThan(3_000_000);
   }
-});
+}, 60_000);
 
 it('reuses current outputs, repairs a missing derivative, and rejects a changed master', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'molen-authored-lod-'));

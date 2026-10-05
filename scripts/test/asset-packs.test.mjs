@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
@@ -149,6 +149,30 @@ test('packs, then restores exact bytes into a fresh checkout and reuses the arch
   await fetchAssets({ root: fresh, offline: true, fetchImpl: fail, log: quiet });
   await fetchAssets({ root: fresh, fetchImpl: fail, log: quiet });
   assert.equal(await checkAssets({ root: fresh, log: quiet }), 2);
+});
+
+test('restores a cached source build into a fresh checkout before its release is published', async () => {
+  const source = await fixture();
+  const path = 'content/entities/assets/tree/model.glb';
+  const bytes = Buffer.from('source-built geometry');
+  await asset(source, path, bytes);
+  const lock = await lockFixture(source, [path]);
+  await packAssets({ root: source, log: quiet });
+  const fresh = await fixture();
+  await writeLock(fresh, lock);
+  await cp(join(source, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
+    recursive: true,
+  });
+  await fetchAssets({
+    root: fresh,
+    offline: true,
+    fetchImpl: () => {
+      throw new Error('A cached source build must not fetch an unpublished release');
+    },
+    log: quiet,
+  });
+  assert.deepEqual(await readFile(join(fresh, path)), bytes);
+  assert.equal(await checkAssets({ root: fresh, log: quiet }), 1);
 });
 
 test('reports an unpublished snapshot distinctly so callers can build from source', async () => {
