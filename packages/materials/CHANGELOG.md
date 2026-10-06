@@ -1,3 +1,10 @@
+## @bendyline/molen-materials [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.5...@bendyline/molen-materials@0.0.6) (2026-10-06)
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+
 ## @bendyline/molen-materials [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-materials@0.0.4...@bendyline/molen-materials@0.0.5) (2026-10-03)
 
 ### Bug Fixes

@@ -1,3 +1,30 @@
+## @bendyline/molen-tooling [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.7...@bendyline/molen-tooling@0.0.8) (2026-10-06)
+
+### Bug Fixes
+
+* Asset updates ([294d66e](https://github.com/bendyline/molen/commit/294d66eddd99e5bfa3c8cf3d3d4025b7a5a73ffd))
+* Bump sharp version ([603e548](https://github.com/bendyline/molen/commit/603e5486862d202a03bd9b6a841e45abd0779bfe))
+* Hash content updates ([bf9da96](https://github.com/bendyline/molen/commit/bf9da96981f3d22e9b5ed625d15386954c7e269a))
+* Molen test fixes ([8a5d8f7](https://github.com/bendyline/molen/commit/8a5d8f7832c2e5fdf5192b4b29e7c245bae2850e))
+* Simplify tests ([6dd9121](https://github.com/bendyline/molen/commit/6dd9121b44a87756483104ee3929256311c6cd2e))
+* Test fix ([b3d8eb0](https://github.com/bendyline/molen/commit/b3d8eb0fd25b55d5ab56139eecb16151ef811a54))
+* Test refactor ([e01fa09](https://github.com/bendyline/molen/commit/e01fa0931db901af1c83bd3b8e82a5a4f370f31e))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.8
+* **@bendyline/molen-client:** upgraded to 0.0.7
+* **@bendyline/molen-figures:** upgraded to 0.0.7
+* **@bendyline/molen-kernel:** upgraded to 0.0.5
+* **@bendyline/molen-materials:** upgraded to 0.0.6
+* **@bendyline/molen-pack:** upgraded to 0.0.6
+* **@bendyline/molen-physics-rapier:** upgraded to 0.0.5
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+* **@bendyline/molen-terrain:** upgraded to 0.0.8
+* **@bendyline/molen-worldgen:** upgraded to 0.0.7
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.8
+
 ## @bendyline/molen-tooling [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.6...@bendyline/molen-tooling@0.0.7) (2026-10-03)
 
 

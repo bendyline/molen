@@ -1,3 +1,11 @@
+## @bendyline/molen-physics-rapier [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-physics-rapier@0.0.4...@bendyline/molen-physics-rapier@0.0.5) (2026-10-06)
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.5
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+
 ## @bendyline/molen-physics-rapier [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-physics-rapier@0.0.3...@bendyline/molen-physics-rapier@0.0.4) (2026-09-30)
 
 ### Bug Fixes

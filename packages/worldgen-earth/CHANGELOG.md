@@ -1,3 +1,18 @@
+## @bendyline/molen-worldgen-earth [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.7...@bendyline/molen-worldgen-earth@0.0.8) (2026-10-06)
+
+### Bug Fixes
+
+* Asset updates ([294d66e](https://github.com/bendyline/molen/commit/294d66eddd99e5bfa3c8cf3d3d4025b7a5a73ffd))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.5
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+* **@bendyline/molen-terrain:** upgraded to 0.0.8
+* **@bendyline/molen-worldgen:** upgraded to 0.0.7
+* **@bendyline/molen-client:** upgraded to 0.0.7
+
 ## @bendyline/molen-worldgen-earth [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.6...@bendyline/molen-worldgen-earth@0.0.7) (2026-10-03)
 
 

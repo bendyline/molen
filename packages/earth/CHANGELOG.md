@@ -1,3 +1,25 @@
+## @bendyline/molen-earth [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.7...@bendyline/molen-earth@0.0.8) (2026-10-06)
+
+### Bug Fixes
+
+* Asset updates ([294d66e](https://github.com/bendyline/molen/commit/294d66eddd99e5bfa3c8cf3d3d4025b7a5a73ffd))
+* Molen test fixes ([8a5d8f7](https://github.com/bendyline/molen/commit/8a5d8f7832c2e5fdf5192b4b29e7c245bae2850e))
+* Test refactor ([e01fa09](https://github.com/bendyline/molen/commit/e01fa0931db901af1c83bd3b8e82a5a4f370f31e))
+* Tunnels and models ([93a48ed](https://github.com/bendyline/molen/commit/93a48edf9aa53ce64394878a5e728f90b02712eb))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.8
+* **@bendyline/molen-kernel:** upgraded to 0.0.5
+* **@bendyline/molen-materials:** upgraded to 0.0.6
+* **@bendyline/molen-pack:** upgraded to 0.0.6
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+* **@bendyline/molen-terrain:** upgraded to 0.0.8
+* **@bendyline/molen-worldgen:** upgraded to 0.0.7
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.8
+* **@bendyline/molen-client:** upgraded to 0.0.7
+
 ## @bendyline/molen-earth [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.6...@bendyline/molen-earth@0.0.7) (2026-10-03)
 
 

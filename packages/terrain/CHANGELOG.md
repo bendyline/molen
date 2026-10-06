@@ -1,3 +1,17 @@
+## @bendyline/molen-terrain [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.7...@bendyline/molen-terrain@0.0.8) (2026-10-06)
+
+### Bug Fixes
+
+* Tunnels and models ([93a48ed](https://github.com/bendyline/molen/commit/93a48edf9aa53ce64394878a5e728f90b02712eb))
+
+
+### Dependencies
+
+* **@bendyline/molen-pack:** upgraded to 0.0.6
+* **@bendyline/molen-schema:** upgraded to 0.0.5
+* **@bendyline/molen-client:** upgraded to 0.0.7
+* **@bendyline/molen-kernel:** upgraded to 0.0.5
+
 ## @bendyline/molen-terrain [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.6...@bendyline/molen-terrain@0.0.7) (2026-10-03)
 
 ### Bug Fixes
