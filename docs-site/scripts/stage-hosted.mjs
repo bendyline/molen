@@ -3,10 +3,17 @@
 //
 //   /play/               examples/home/dist   the samples gallery
 //   /play/<id>/          examples/<id>/dist   each sample's production build
-//   /packs/index.json    content/<pack>/      every content pack, a molen/pack-index@1 index whose
-//                                            `file` entries sit beside it, so
+//   /packs/index.json    content/<pack>/      the core content packs, a molen/pack-index@1 index
+//                                            whose `file` entries sit beside it, so
 //                                            `molen pack fetch https://molen.dev/packs/index.json`
-//                                            resolves them relative to the index URL
+//                                            resolves them relative to the index URL. The landmark
+//                                            model archives are left out (see below).
+//
+// The samples that load content packs (dist/packs/) are staged without them: their pages get
+// `<meta name="molen-packs" content="…">` naming ASSETS_INDEX, every pack including the landmark
+// model archives, unzipped on qualla.com's CDN (published from molen's packs by qualla-internal's
+// `npm run build:molen-assets` and `scripts/sync-to-r2.sh --assets`). The archives are gigabytes;
+// GitHub Pages publishes at most 1 GB. Publish `_a` for a release before deploying its site.
 //
 // VitePress never sees these directories: they are plain static files copied in after it finishes,
 // so it builds no route, search entry or page for them. `.vitepress/config.mts` keeps root-relative
@@ -17,8 +24,8 @@
 // every example is one — so the check below that the declared list matches examples/ on disk is
 // what keeps a new sample from being staged before it is built. A missing or root-absolute build
 // fails the step instead of publishing a partial gallery.
-import { access, cp, readdir, readFile, rm, stat } from 'node:fs/promises';
-import { join, relative } from 'node:path';
+import { access, cp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { join, relative, sep } from 'node:path';
 import { repoRoot, siteDir } from './packages.mjs';
 import { stageContentPacks } from './stage-content-packs.mjs';
 
@@ -28,6 +35,8 @@ const packsDir = join(outDir, 'packs');
 const examplesDir = join(repoRoot, 'examples');
 const contentDir = join(repoRoot, 'content');
 const GALLERY = 'home';
+/** The pack index the hosted samples read; MOLEN_SITE_ASSETS overrides it. */
+const ASSETS_INDEX = process.env.MOLEN_SITE_ASSETS || 'https://qualla.com/_a/index.json';
 
 const exists = (path) =>
   access(path).then(
@@ -158,21 +167,42 @@ async function main() {
       throw new Error(`Refusing to clean a path outside the built site: ${target}`);
     await rm(target, { recursive: true, force: true });
   }
-  await cp(join(examplesDir, GALLERY, 'dist'), playDir, { recursive: true });
-  for (const id of ids) {
-    await cp(join(examplesDir, id, 'dist'), join(playDir, id), { recursive: true });
-  }
-
   const packs = await stageContentPacks(contentDir, packsDir, {
     reuseFromDir: join(examplesDir, 'world-explorer/public/packs'),
+    modelArchives: false,
   });
   if (packs.length === 0) {
     console.error(`stage-hosted: no content packs found under ${rel(contentDir)}/.`);
     process.exit(1);
   }
 
+  await cp(join(examplesDir, GALLERY, 'dist'), playDir, { recursive: true });
+  const hosted = [];
+  for (const id of ids) {
+    const dist = join(examplesDir, id, 'dist');
+    const target = join(playDir, id);
+    const ownPacks = join(dist, 'packs');
+    if (!(await exists(join(ownPacks, 'index.json')))) {
+      await cp(dist, target, { recursive: true });
+      continue;
+    }
+    await cp(dist, target, {
+      recursive: true,
+      filter: (source) => source !== ownPacks && !source.startsWith(ownPacks + sep),
+    });
+    const meta = `<meta name="molen-packs" content="${ASSETS_INDEX}" />`;
+    for (const page of (await readdir(target)).filter((file) => file.endsWith('.html'))) {
+      const path = join(target, page);
+      const html = await readFile(path, 'utf8');
+      if (!html.includes('</head>')) throw new Error(`/play/${id}/${page} has no </head>`);
+      await writeFile(path, html.replace('</head>', `  ${meta}\n  </head>`));
+    }
+    hosted.push(id);
+  }
+
   console.log(
-    `stage-hosted: /play/ (gallery + ${ids.length} samples, ${mb(await directorySize(playDir))}), ` +
+    `stage-hosted: /play/ (gallery + ${ids.length} samples, ${mb(await directorySize(playDir))}` +
+      `${hosted.length > 0 ? `; ${hosted.join(', ')} read ${ASSETS_INDEX}` : ''}), ` +
       `/packs/ (${packs.join(', ')}, ${mb(await directorySize(packsDir))})`,
   );
 }

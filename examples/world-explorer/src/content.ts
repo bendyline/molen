@@ -24,8 +24,17 @@ export interface ExplorerContent extends EarthContent {
   types: TypeLibrary;
 }
 
-function packIndex(base: URL): URL {
-  return new URL('packs/index.json', base);
+/**
+ * The pack index: `packs/index.json` beside the page, unless the page names another with
+ * `<meta name="molen-packs">`. molen.dev's copy of this sample reads the hosted assets index
+ * (docs-site/scripts/stage-hosted.mjs adds the tag) instead of shipping gigabytes of packs.
+ */
+export function packIndex(base: URL): URL {
+  const shared =
+    typeof document === 'undefined'
+      ? undefined
+      : document.querySelector<HTMLMetaElement>('meta[name="molen-packs"]')?.content;
+  return new URL(shared || 'packs/index.json', base);
 }
 
 /** Only the star catalog, for a page that shows a sky and nothing else. */

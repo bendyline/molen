@@ -1,7 +1,8 @@
 /**
  * Open a pack from any source and read its files. Only the tail of a remote pack is fetched up
  * front (manifest and central directory); files are read on demand, and small documents that
- * share a solid block arrive together.
+ * share a solid block arrive together. An unzipped pack — its files served loose beside its
+ * `molen-pack.json` — opens from that manifest's URL and reads each file with its own request.
  */
 
 import {
@@ -13,11 +14,14 @@ import {
 import { describePack, type PackFile, type PackOptions, sha256 } from './build';
 import {
   blobReader,
+  HttpStatusError,
   openUrl,
   type PackRetryOptions,
   type RangeReader,
   ReadScheduler,
   TAIL_BYTES,
+  urlRangeReader,
+  withRetry,
 } from './source';
 import {
   decodeMember,
@@ -324,6 +328,183 @@ class MemoryPack extends BasePack {
   }
 }
 
+export interface OpenDirectoryPackOptions
+  extends Pick<
+    OpenPackOptions,
+    | 'fetch'
+    | 'signal'
+    | 'retry'
+    | 'concurrency'
+    | 'integrity'
+    | 'expect'
+    | 'maxCacheBytes'
+    | 'onProgress'
+    | 'label'
+  > {
+  /**
+   * How to read one file, given its URL and manifest entry (default: `urlRangeReader` over
+   * `fetch`). Wrap that in `cachingRangeReader` keyed by `entry.sha256` to keep files in a byte
+   * cache; identical files then share one copy across packs and versions.
+   */
+  fileReader?(url: string, entry: PackEntry): RangeReader;
+}
+
+/** Whether `url` names an unzipped pack (its `molen-pack.json`) rather than a zip. */
+export function isDirectoryPackUrl(url: string | URL): boolean {
+  const { pathname } = new URL(String(url), 'http://pack.invalid/');
+  return pathname.split('/').at(-1) === PACK_MANIFEST_ENTRY;
+}
+
+/** A pack whose files sit loose beside its manifest; each read fetches one file. */
+class DirectoryPack extends BasePack {
+  private readonly cache: ByteCache;
+  private active = 0;
+  private readonly waiting: { high: boolean; start(): void }[] = [];
+  private bytesRead = 0;
+  private requests = 0;
+
+  constructor(
+    readonly manifest: PackManifest,
+    readonly label: string,
+    private readonly base: URL,
+    private readonly reader: (url: string, entry: PackEntry) => RangeReader,
+    private readonly controller: AbortController,
+    private readonly options: OpenDirectoryPackOptions,
+  ) {
+    super();
+    this.cache = new ByteCache(options.maxCacheBytes ?? 16 * 1024 * 1024);
+  }
+
+  /** A file's URL beside the manifest, each path segment escaped. */
+  private url(path: string): string {
+    return new URL(path.split('/').map(encodeURIComponent).join('/'), this.base).href;
+  }
+
+  /** Run `task` within the concurrency limit, high-priority reads first. */
+  private slot<T>(high: boolean, task: () => Promise<T>): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      const start = (): void => {
+        this.active++;
+        task()
+          .then(resolve, reject)
+          .finally(() => {
+            this.active--;
+            const next = this.waiting.findIndex((waiter) => waiter.high);
+            this.waiting.splice(next === -1 ? 0 : next, 1)[0]?.start();
+          });
+      };
+      if (this.active < (this.options.concurrency ?? 6)) start();
+      else this.waiting.push({ high, start });
+    });
+  }
+
+  private bytes(path: string, options?: ReadOptions): Promise<Uint8Array> {
+    if (this.controller.signal.aborted) return Promise.reject(this.controller.signal.reason);
+    const entry = this.entry(path);
+    // Loads are shared between callers, so they run under the pack's signal, not a caller's.
+    const load = this.cache.get(path, async () => {
+      if (entry.size === 0) return new Uint8Array(0);
+      const bytes = await this.slot(options?.priority !== 'low', () =>
+        this.reader(this.url(path), entry).read(0, entry.size, this.controller.signal),
+      );
+      this.bytesRead += bytes.length;
+      this.requests++;
+      this.options.onProgress?.({
+        label: this.label,
+        bytes: this.bytesRead,
+        requests: this.requests,
+      });
+      return bytes;
+    });
+    return untilAborted(load, options?.signal);
+  }
+
+  async readBytes(path: string, options?: ReadOptions): Promise<ArrayBuffer> {
+    const entry = this.entry(path);
+    const bytes = await this.bytes(path, options);
+    if (bytes.length !== entry.size) {
+      throw new PackIntegrityError(
+        this.manifest.id,
+        path,
+        `${bytes.length} bytes, expected ${entry.size}`,
+      );
+    }
+    if (this.options.integrity === 'sha256') {
+      const actual = await sha256(bytes);
+      if (actual !== entry.sha256) {
+        throw new PackIntegrityError(this.manifest.id, path, `sha256 is ${actual}`);
+      }
+    }
+    return copy(bytes);
+  }
+
+  async prefetch(paths: readonly string[], options?: ReadOptions): Promise<void> {
+    await Promise.all(paths.map((path) => this.bytes(path, options)));
+  }
+
+  close(): void {
+    this.controller.abort(new Error(`pack "${this.manifest.id}" was closed`));
+    this.cache.clear();
+  }
+}
+
+/**
+ * Open an unzipped pack from the URL of its `molen-pack.json`: the manifest lists every file
+ * loose (no solid blocks), and each file is read from its path beside the manifest when first
+ * needed. `writeDirectoryPack` in `@bendyline/molen-pack/node` writes this layout; it suits a CDN
+ * better than a zip, since every file is its own cacheable URL. Relative URLs resolve against the
+ * page.
+ */
+export async function openDirectoryPack(
+  manifestUrl: string | URL,
+  options: OpenDirectoryPackOptions = {},
+): Promise<Pack> {
+  const page = (globalThis as { location?: { href?: string } }).location?.href;
+  const href = new URL(String(manifestUrl), page).href;
+  const label = options.label ?? href;
+  const fetcher: typeof fetch = options.fetch ?? ((input, init) => globalThis.fetch(input, init));
+  const controller = new AbortController();
+  const signal =
+    options.signal === undefined
+      ? controller.signal
+      : AbortSignal.any([options.signal, controller.signal]);
+  const retry = options.retry ?? {};
+  const text = await withRetry(
+    async (attemptSignal) => {
+      const response = await fetcher(href, { signal: attemptSignal });
+      if (!response.ok) throw new HttpStatusError(href, response.status);
+      return response.text();
+    },
+    retry,
+    signal,
+  );
+  let manifestDoc: unknown;
+  try {
+    manifestDoc = JSON.parse(text);
+  } catch (error) {
+    throw new Error(`${label}: ${PACK_MANIFEST_ENTRY} is not valid JSON`, { cause: error });
+  }
+  const parsed = validate('pack', manifestDoc);
+  if (!parsed.ok) throw new Error(`${label}: invalid pack manifest\n${parsed.formatted}`);
+  const manifest = parsed.value;
+  if (options.expect !== undefined && manifest.contentHash !== options.expect.contentHash) {
+    throw new Error(
+      `${label}: pack "${manifest.id}" has contentHash ${manifest.contentHash}, expected ${options.expect.contentHash}`,
+    );
+  }
+  const blocked = Object.entries(manifest.entries).find(([, entry]) => entry.block !== undefined);
+  if (Object.keys(manifest.blocks).length > 0 || blocked !== undefined) {
+    throw new Error(
+      `${label}: an unzipped pack lists every file loose, but "${manifest.id}" has solid blocks`,
+    );
+  }
+  const reader =
+    options.fileReader ??
+    ((url: string, entry: PackEntry) =>
+      urlRangeReader(url, { size: entry.size, fetch: fetcher, retry, signal }));
+  return new DirectoryPack(manifest, label, new URL(href), reader, controller, options);
+}
+
 /**
  * A pack over loose files, with the same manifest a built pack of those files would have. For
  * tests, development, and content generated at runtime.
@@ -355,8 +536,15 @@ function defaultLabel(input: PackInput): string {
   return 'bytes';
 }
 
-/** Open a pack. Reads only the manifest and zip directory; files are fetched when read. */
+/**
+ * Open a pack. Reads only the manifest and zip directory; files are fetched when read. A URL whose
+ * last segment is `molen-pack.json` opens an unzipped pack (`openDirectoryPack`).
+ */
 export async function openPack(input: PackInput, options: OpenPackOptions = {}): Promise<Pack> {
+  if ((typeof input === 'string' || input instanceof URL) && isDirectoryPackUrl(input)) {
+    const { mode: _mode, sizeHint: _sizeHint, wholeThreshold: _whole, ...directory } = options;
+    return openDirectoryPack(input, directory);
+  }
   const label = options.label ?? defaultLabel(input);
   const controller = new AbortController();
   const signal =

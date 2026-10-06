@@ -3,6 +3,7 @@
 import { mkdir, open, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import {
+  PACK_MANIFEST_ENTRY,
   type PackIndex,
   type PackIndexEntry,
   type PackManifest,
@@ -274,4 +275,128 @@ export async function extractPack(pack: Pack, outDir: string): Promise<string[]>
   };
   await writeFile(join(root, PACK_SOURCE_FILE), `${JSON.stringify(config, null, 2)}\n`);
   return written;
+}
+
+/**
+ * Write `pack` unzipped, for static hosting: every file at its own path under `outDir`, then a
+ * `molen-pack.json` that lists them loose (no solid blocks) with the same contentHash. Serve the
+ * directory and `openPack('<url>/molen-pack.json')` reads it back. The manifest is written last,
+ * so a directory without one is an interrupted write.
+ */
+export async function writeDirectoryPack(
+  pack: Pack,
+  outDir: string,
+): Promise<{ manifest: PackManifest; manifestBytes: number }> {
+  const root = resolve(outDir);
+  for (const path of pack.paths()) {
+    const target = join(root, ...path.split('/'));
+    if (!target.startsWith(root + sep))
+      throw new Error(`refusing to write outside ${root}: ${path}`);
+    await mkdir(dirname(target), { recursive: true });
+    await writeFile(target, new Uint8Array(await pack.readBytes(path)));
+  }
+  const entries = Object.fromEntries(
+    Object.entries(pack.manifest.entries).map(
+      ([path, { block: _block, offset: _offset, ...entry }]) => [path, entry],
+    ),
+  );
+  const manifest: PackManifest = { ...pack.manifest, blocks: {}, entries };
+  const parsed = validate('pack', manifest);
+  if (!parsed.ok)
+    throw new Error(`${pack.label}: unzipped manifest is invalid\n${parsed.formatted}`);
+  const text = `${JSON.stringify(manifest)}\n`;
+  await mkdir(root, { recursive: true });
+  await writeFile(join(root, PACK_MANIFEST_ENTRY), text);
+  return { manifest, manifestBytes: new TextEncoder().encode(text).length };
+}
+
+export interface HostPacksOptions {
+  /** Where to publish: `<pack id>/<version>/…` per pack, then `index.json`. */
+  outDir: string;
+  /** Which pack ids to publish (default: every pack in the index). */
+  include?(id: string): boolean;
+  log?(line: string): void;
+}
+
+export interface HostedPacks {
+  /** Path of the written `index.json`. */
+  indexPath: string;
+  index: PackIndex;
+  /** Pack ids written by this call. */
+  written: string[];
+  /** Pack ids whose version directory was already complete. */
+  reused: string[];
+}
+
+/** A pack version's directory: the first 12 hex digits of its contentHash. */
+export function hostedVersionDir(contentHash: string): string {
+  return contentHash.replace('sha256:', '').slice(0, 12);
+}
+
+/**
+ * Publish the packs a pack index lists (a `molen/pack-index@1` file beside its built zips)
+ * unzipped, for a CDN. Each pack version goes to `<id>/<12 hex of its contentHash>/` once and never
+ * changes, so a host can serve those files as immutable; `index.json`, written last and the only
+ * document that changes between releases, names each version's `molen-pack.json`. Complete
+ * version directories from an earlier run are kept; older versions are left in place for clients
+ * still holding an older index.
+ */
+export async function hostPacks(
+  sourceIndexPath: string,
+  options: HostPacksOptions,
+): Promise<HostedPacks> {
+  const source = resolve(sourceIndexPath);
+  const outDir = resolve(options.outDir);
+  const log = options.log ?? (() => undefined);
+  const raw = await readFile(source, 'utf8').catch((error: unknown) => {
+    throw new Error(`${source}: cannot read the pack index`, { cause: error });
+  });
+  const parsed = validate('pack-index', JSON.parse(raw));
+  if (!parsed.ok) throw new Error(`${source} is not a pack index:\n${parsed.formatted}`);
+  const packs: Record<string, PackIndexEntry> = {};
+  const written: string[] = [];
+  const reused: string[] = [];
+  const ids = Object.keys(parsed.value.packs).sort();
+  for (const id of ids) {
+    if (options.include !== undefined && !options.include(id)) continue;
+    const entry = parsed.value.packs[id] as PackIndexEntry;
+    const version = hostedVersionDir(entry.contentHash);
+    const dir = join(outDir, id, version);
+    const manifestPath = join(dir, PACK_MANIFEST_ENTRY);
+    let manifestBytes: number | undefined;
+    try {
+      const existing = JSON.parse(await readFile(manifestPath, 'utf8')) as PackManifest;
+      if (existing.contentHash === entry.contentHash) {
+        manifestBytes = (await stat(manifestPath)).size;
+        reused.push(id);
+      }
+    } catch {}
+    if (manifestBytes === undefined) {
+      // Missing or interrupted: write the version directory from scratch.
+      await rm(dir, { recursive: true, force: true });
+      const pack = await openFilePack(join(dirname(source), ...entry.file.split('/')), {
+        expect: { contentHash: entry.contentHash },
+      });
+      try {
+        manifestBytes = (await writeDirectoryPack(pack, dir)).manifestBytes;
+      } finally {
+        pack.close();
+      }
+      written.push(id);
+      log(`${id}@${entry.version} → ${id}/${version}/`);
+    }
+    packs[id] = {
+      version: entry.version,
+      file: `${id}/${version}/${PACK_MANIFEST_ENTRY}`,
+      contentHash: entry.contentHash,
+      size: manifestBytes,
+    };
+  }
+  const index: PackIndex = { format: 'molen/pack-index@1', packs };
+  const checked = validate('pack-index', index);
+  if (!checked.ok) throw new Error(`hosted pack index is invalid:\n${checked.formatted}`);
+  await mkdir(outDir, { recursive: true });
+  const indexPath = join(outDir, PACK_INDEX_FILE);
+  await writeFile(indexPath, `${JSON.stringify(index, null, 2)}\n`);
+  return { indexPath, index, written, reused };
 }

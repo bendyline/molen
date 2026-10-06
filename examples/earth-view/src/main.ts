@@ -26,7 +26,12 @@ const stage = document.getElementById('stage') as HTMLDivElement;
 const message = document.getElementById('message') as HTMLParagraphElement;
 const credit = document.getElementById('credit') as HTMLParagraphElement;
 
-const content = await openPacksFromIndex(new URL('packs/index.json', location.href)).then((packs) =>
+// molen.dev names its hosted assets index with this tag (docs-site/scripts/stage-hosted.mjs);
+// elsewhere the packs sit beside the page.
+const packIndex =
+  document.querySelector<HTMLMetaElement>('meta[name="molen-packs"]')?.content ||
+  'packs/index.json';
+const content = await openPacksFromIndex(new URL(packIndex, location.href)).then((packs) =>
   loadEarthContent(packs),
 );
 const manifests = new Map<string, TerrainPackageDescriptor>();
