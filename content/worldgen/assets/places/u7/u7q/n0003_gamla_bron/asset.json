@@ -4,7 +4,12 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc",
   "sourceHash": "sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55",
@@ -32,7 +37,7 @@
   },
   "stats": {
     "triangles": 156768,
-    "vertices": 1752888,
+    "vertices": 292148,
     "meshes": 1,
     "primitives": 6,
     "materials": 6,
@@ -131,5 +136,60 @@
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:9621647ef19b06ea54525a0dd94f6b65e1433a10a5b3bacedc0b3d25e1e78ea9",
+        "bytes": 16584,
+        "gzipBytes": 8282,
+        "triangles": 998,
+        "cpuBytes": 15540,
+        "gpuBytes": 15540,
+        "errorMeters": 64.41215549878766,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8265ed19ea1f8924440dfbeb1dab99d4186313ced3b441d6206852199bfe1619",
+        "bytes": 593200,
+        "gzipBytes": 106124,
+        "triangles": 5256,
+        "cpuBytes": 586044,
+        "gpuBytes": 586044,
+        "errorMeters": 0.6065915924533349,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:d7ee2a15451424176a76d9a588de46c49e369341a3aa7c58c19a68890b4b4532",
+        "bytes": 2509752,
+        "gzipBytes": 462567,
+        "triangles": 23576,
+        "cpuBytes": 2502516,
+        "gpuBytes": 2502516,
+        "errorMeters": 0.30349517376344115,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:2653ab1a2de100b74953c50962a3c5d9d503e60c12b9d4141cd5d010fdc719b2",
+        "bytes": 7247556,
+        "gzipBytes": 1271140,
+        "triangles": 71338,
+        "cpuBytes": 7240308,
+        "gpuBytes": 7240308,
+        "errorMeters": 0.13129231960138038,
+        "drawCalls": 6
+      }
+    ]
+  }
 }

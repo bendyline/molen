@@ -28,6 +28,8 @@ const renderer = createDefaultTerrainSemanticRenderer({ surfaceRenderer: surface
 // in createTerrainPackageSemanticLayers.
 
 await surfaces.setOptions({ style: '1910' });
+// Call once per frame with absolute simulation time (seconds).
+surfaces.updateSignals(tick / tickRate);
 console.log(surfaces.stats());
 // Dispose the stream/layers, then the shared controller when the experience closes.
 surfaces.dispose();
@@ -106,7 +108,9 @@ await surfaces.setOptions({
   Nearby nodes on divided roads form one junction; crossings follow
   the external approaches, and short turning links receive no independent crossings. Same-grade
   junctions leave their centers clear of lane paint.
-  Four-way major junctions can receive illustrative traffic signals. Instanced streetlights
+  Four-way major junctions can receive curbside masts with bars over the incoming lanes,
+  yellow backplates, shaded round lenses, and one signal head per lane (up to three).
+  Red, amber and green lenses are self-lit, remaining visible at night. Instanced streetlights
   occupy eligible corners outside road corridors, buildings, and water.
 - Parking, plazas, and pedestrian polygons are filled, with holes retained. Pedestrian polygons
   and mapped paths use distinct heights above parking pavement, including inferred lots, so
@@ -142,12 +146,21 @@ await surfaces.setOptions({
 - Simple surfaces retain road and parking fills with decoration disabled.
 
 The decoder preserves road `subclass`, `service`, `link` (including Protomaps `is_link`), `surface`, `lanes`, `oneway`, `layer`, `bridge`, `tunnel`
-and explicit `width`. Properties absent from the source use class-based defaults. Tunnels are
-omitted; bridges and differing layers do not form surface junctions. Bridge ribbons retain the
+and explicit `width`. Properties absent from the source use class-based defaults. Tunnel roads are
+excluded from the ground painter; Earth views add separate underground bores as described below.
+Bridges and differing layers do not form surface junctions. Bridge ribbons retain the
 existing approximate terrain-relative elevation; this renderer does not build engineered bridge
 decks. Crossing paint, inferred sidewalks, signal placement and parking occupancy are decorative,
-not traffic-control or navigation data. [Ambient life](ambient-life.md) builds its own lane graph
-from the same features for NPC traffic.
+not surveyed traffic-control or navigation data. [Ambient life](ambient-life.md) builds its own lane graph
+from the same features for NPC traffic. Earth view and world explorer match signal heads to
+that graph, displaying the same phase that controls approaching cars. Without a matching
+simulation junction, signals use a deterministic cycle: 24 seconds green, 3 seconds amber,
+and 2 seconds all-red clearance, with opposing approaches sharing a phase. Custom hosts
+call `surfaces.updateSignals(elapsedSeconds, resolver?)`; a resolver receives a world-space
+`junction`, outward approach `direction`, and junction `radius`, and returns `'red'`, `'amber'`,
+`'green'`, or `undefined` for the default cycle. Direct/static consumers can call
+`updateTerrainSurfaceSignals(object, elapsedSeconds, resolver?)` on the surface object instead.
+Here `object` is the group returned by `createTerrainSurfaceObject`.
 
 Ground surfaces render at all available semantic levels. Fine markings and fixtures default to
 the finest pyramid level; `detailLevelsBelowMax` extends them to coarser levels. Fixture/car and
@@ -168,6 +181,39 @@ priority over inferred fills. A parking POI alone does not supply a boundary.
 Protomaps deliberately includes a subset of OSM features. Its documented `landuse` polygon
 kinds do not currently include parking, while roads may carry `parking_aisle` detail.
 See the [Protomaps layer reference](https://docs.protomaps.com/basemaps/layers).
+
+## Tunnels
+
+World explorer and `mountEarthView` render mapped `tunnel: true` corridors in Human mode.
+Roads, paths and railways receive an open-ended floor, walls and ceiling. Portal cuts remove
+terrain and draped paving only below the bore ceiling, leaving the hill above it intact.
+Visible mesh collision includes the lining. World explorer's free flight slows near the ground,
+can descend to 2 m above a road, and uses the bore floor and ceiling while underground.
+Aircraft ground support also uses the bore floor at the aircraft's altitude; its existing body
+collision still determines whether an aircraft fits.
+
+The Seattle PMTiles fixture contains `is_tunnel` centerlines for the Mount Baker Ridge road and
+bicycle/pedestrian tunnels. It supplies neither surveyed floor elevations nor clearances.
+The default infers a straight grade between terrain heights at the complete route's endpoints,
+with 6.5 m road, 6 m rail and 3.5 m path clearance and the existing transport width defaults.
+These are approximate interiors, not surveyed tunnel geometry. Semantic providers can supply
+`tunnelFloorElevation` (absolute world Y) and `tunnelClearance`; the MVT decoder accepts
+`tunnel_floor_elevation` and `tunnel_clearance`/`tunnel_height`, or configurable property names.
+
+Fragments are clipped out of their tile buffers and joined across neighboring tiles before
+grading, so tile boundaries do not create portals or conflicting floor heights. Searches are
+bounded to 16 tiles. Unresolved long routes and branches are omitted rather than assigning a
+terrain height to an underground tile boundary. Tunnel inference runs at the finest source
+feature level and above. Hiding the Human layer also removes its portal cuts and navigation
+support; the original elevation heightfield always remains available for surface anchoring.
+
+Custom package hosts opt in with `createTerrainPackageSemanticLayers` (or its profiled variant),
+passing `tunnels: { heights: elevationSource }` alongside their feature renderer. Share the
+elevation source returned by `openTerrainPackagePyramid` with the terrain stream.
+`withTerrainTunnels` wraps a custom semantic renderer, and `sampleTerrainTunnel(root, x, y, z)`
+returns a visible bore's floor and ceiling in the root's coordinate frame. Observers above the
+ceiling continue using the surface height. Static hosts can use `createTerrainTunnelObject`
+with complete route lines and a ground sampler that covers both portals.
 
 ## Lines beyond roads
 

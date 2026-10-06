@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0245_hofburg_palace",
+  "sourceHash": "sha256:79084a947c6c83616f25e862fab35a882027b1012e91d045614889f344256de9",
+  "runtimeHash": "sha256:a5eb2965947f604d0c3b1dc73ee159d70556ac247667bd87e83e8ee812e2997e",
+  "captureReportHash": "sha256:6b49e9e6ef359f3a548371fe850d65d923ddb1470628e6e1898ca433a694b739",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Render integrity only; geographic fit and maximum architectural fidelity remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/michaeler-three-domes.png",
+      "shots/neue-burg-curved-front.png",
+      "shots/amalien-clock.png",
+      "shots/inner-burg-and-chancellery.png",
+      "shots/swiss-court-roofs.png",
+      "shots/stallburg-and-riding-school.png",
+      "shots/library-and-augustiner.png",
+      "shots/albertina-and-palmenhaus.png",
+      "shots/complete-open-courtyard-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable frames. Open courts, Michaeler entrance, three domes, Amalien clock, Neue Burg curve, library and Augustinian spire render. Repaired folded roofs, facade segments and rustication blocking the passage, concealed clock/drum details and unsupported repeated chimneys. Roof fields are still faceted reconstructions and exact openings/sculpture remain pending."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:acfb272fa1205b98494e2abfdb64076c1ce6f6e2e7bc6a1773d1696ce22665a9",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/michaeler-three-domes.png",
+      "shots/shared/neue-burg-curved-front.png",
+      "shots/shared/amalien-clock.png",
+      "shots/shared/inner-burg-and-chancellery.png",
+      "shots/shared/swiss-court-roofs.png",
+      "shots/shared/stallburg-and-riding-school.png",
+      "shots/shared/library-and-augustiner.png",
+      "shots/shared/albertina-and-palmenhaus.png",
+      "shots/shared/complete-open-courtyard-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material frames. Ten reusable graphs load once each, glazing remains local PBR, and unloading leaves zero live model geometries. These views verify material bindings and rendering, not real-world fit. Roof junctions and metallic patch pattern need further architectural refinement."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:1a280fe75571528bbe23d18c07093981a7db3fd97763acc94b8a7fdd4ec9a6e9",
+    "notes": "Exact Q46242 relation/3898175 and named component outlines. Anchor [16.365909858,48.20633], heading 1.524057778872. Common ground datum, passage alignment and Albertina bastion terrain fit remain unverified. Draft and replaceFootprint=false; enclosure includes empty courts."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending. Roof junctions, facade opening positions and repeated ornament are reconstructed; map heights are not a survey. Individual imperial statues, fountains, heraldic reliefs, equestrian monuments and detailed capitals are not faithfully sculpted; no generic stand-in is counted as those monuments. Court roof ridges and compound wing intersections need refinement. Michaeler passage is reconstructed and requires pedestrian/road alignment review. Palmenhaus central pavilion, Albertina basements and canopy supports, Swiss portal decoration, Stallburg arcades and small court stair towers require further detail. Ground datum is provisional. No interiors, temporary equipment or neighbouring Michaelerkirche included."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "validatorLimitations": "Unused-UV information reflects shared procedural surfaces. Validation does not certify architecture.",
+    "triangles": 606293,
+    "vertices": 1258179,
+    "materials": 11,
+    "sharedGraphs": 10,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison plus authored triangle/download/layout/determinism checks. Physical phones and laptops not measured.",
+    "notes": "819 / 3946 / 15612 / 63398 triangles. Initial skyline plus district: 406808 bytes; street: 1228492; closeup: 4891288. Source master: 52576076 bytes. Skyline uses simplified roof masses and omits minor court holes, balustrades, windows and terrace details. Roof and facade refinement increases through the tiers.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u2e/n0245_hofburg_palace/model.skyline.glb",
+        "hash": "sha256:05a08409247026018bad2b28db5d726f758f87caddd1fac912b67940bca4a9bb",
+        "bytes": 66800,
+        "triangles": 819,
+        "vertices": 1680,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -212.63600158691406,
+          0,
+          -202.3209991455078
+        ],
+        "max": [
+          209.20799255371094,
+          66,
+          202.3209991455078
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u2e/n0245_hofburg_palace/model.district.glb",
+        "hash": "sha256:cea500b0e98fa8508ca9abcb38fd498a36cfb898a36c431d6c7453bfbbeed3d4",
+        "bytes": 340008,
+        "triangles": 3946,
+        "vertices": 8455,
+        "materials": 10,
+        "sharedGraphs": 9,
+        "images": 0,
+        "min": [
+          -226.23599243164062,
+          0,
+          -202.3209991455078
+        ],
+        "max": [
+          215.09100341796875,
+          66,
+          224.86300659179688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u2e/n0245_hofburg_palace/model.street.glb",
+        "hash": "sha256:b6342daadca2f6cc13cdf7a92acb59adf6fff6412e82af3f4c38fe90caca2e5c",
+        "bytes": 1228492,
+        "triangles": 15612,
+        "vertices": 31188,
+        "materials": 10,
+        "sharedGraphs": 9,
+        "images": 0,
+        "min": [
+          -227.6739959716797,
+          0,
+          -202.36753845214844
+        ],
+        "max": [
+          215.15567016601562,
+          66,
+          224.86300659179688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u2e/n0245_hofburg_palace/model.closeup.glb",
+        "hash": "sha256:022b859e734949c8de4ba03a5ca485b0431a56a9b643d0804ad86d7526c12e63",
+        "bytes": 4891288,
+        "triangles": 63398,
+        "vertices": 124933,
+        "materials": 11,
+        "sharedGraphs": 10,
+        "images": 0,
+        "min": [
+          -227.6739959716797,
+          0,
+          -202.36692810058594
+        ],
+        "max": [
+          215.15567016601562,
+          66,
+          224.86300659179688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 11
+      }
+    ]
+  }
+}

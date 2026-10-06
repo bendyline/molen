@@ -1,0 +1,318 @@
+{
+  "planId": "N0243",
+  "id": "N0243",
+  "assetId": "molen.worldgen.structure.n0243_malbork_castle",
+  "title": "Malbork Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q71279",
+  "referenceCoordinate": {
+    "latitude": 54.039722222,
+    "longitude": 19.027777777
+  },
+  "visualBrief": "Three-part brick Gothic Malbork: High Castle with an open cloister court, crenellated keep and church; elevated Dansker passage; U-shaped Middle Castle with an open gate, Grand Masters Palace; Lower Castle armoury, St Lawrence chapel, service ranges and named defensive towers.",
+  "size": [
+    584.4886474609375,
+    46,
+    273.51526641845703
+  ],
+  "actualBounds": {
+    "min": [
+      -138.0894775390625,
+      0,
+      -86.4861831665039
+    ],
+    "max": [
+      446.399169921875,
+      46,
+      187.02908325195312
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from High Castle toward Lower Castle",
+    "front": "+Z toward eastern fortifications",
+    "origin": "Cached exact-QID map anchor at provisional local ground"
+  },
+  "sourceFacts": {
+    "mapIdentity": "Exact Q71279 relation/6436433; individual Lower Castle buildings extend beyond that relation",
+    "mappedFeatures": 103,
+    "highCastleCourtHole": "way/62682245 in building relation/975353",
+    "surveyedVerticalDimensions": false,
+    "ownerTowerDescription": "The ticket site describes nearly 70 m; datum is unspecified and requires reconciliation with ground-relative reconstruction."
+  },
+  "reconstruction": {
+    "basis": "OSM individual building and wall coordinates plus inspected river, courtyard, main tower, palace and ground-plan references.",
+    "highCastleEavesMeters": 22,
+    "highCastleRoofMeters": 33.5,
+    "keepCrownMeters": 46,
+    "middleCastleEavesMeters": 16,
+    "grandMastersPalaceRoofMeters": 34,
+    "buttermilkTowerTopMeters": 28.8,
+    "verticalDatum": "Provisional common local ground; castle terraces and moat depth not surveyed."
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/relation/6436433",
+    "https://zamek.malbork.pl/en/home/visit/history-of-the-castle/",
+    "https://bilety.zamek.malbork.pl/trasy-zwiedzania.html",
+    "https://commons.wikimedia.org/wiki/File:Malbork_zamek_zblizenie.jpg",
+    "https://commons.wikimedia.org/wiki/File:Malbork_-_Zamek_Średni_-_Dziedziniec.JPG",
+    "https://commons.wikimedia.org/wiki/File:Zamek_wysoki_wieza_glowna.jpg",
+    "https://commons.wikimedia.org/wiki/File:Malbork_Castle_Exterior_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Malborg_plan_przyziemia_zamku.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Component coordinates and signed orientation drafted; terrain and geographic fit pending",
+    "anchor": [
+      19.027655287,
+      54.03991349
+    ],
+    "heading": 0.857051662697,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/6436433",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/6436433",
+      "way/62144157",
+      "way/62144160",
+      "way/62682246",
+      "way/62682251",
+      "way/101914542",
+      "way/101915237",
+      "way/106152188",
+      "way/122122604",
+      "way/122122605",
+      "way/122122606",
+      "way/122122609",
+      "way/122122612",
+      "way/122123490",
+      "way/122123493",
+      "way/122123499",
+      "way/122123503",
+      "way/261512865",
+      "way/261512932",
+      "way/261512960",
+      "way/261513127",
+      "way/261513528",
+      "way/261513654",
+      "way/261513898",
+      "way/261513909",
+      "way/261513946",
+      "way/432786363",
+      "way/432786364",
+      "way/698950336",
+      "way/700531007"
+    ],
+    "wikidataId": "Q71279",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:407d7e0a5d42e7a451967fb1a68a70d1ba034fbbcf552f3df76060c76b26d65f",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "The source frame includes named Lower Castle components beyond the OSM main-precinct relation. Open courts, moat gaps and tower intervals must stay open."
+  },
+  "scaleBasis": "Meter-scale attributed OSM components. Native +X runs from High Castle toward the northern Lower Castle; +Z points toward the eastern curtain. Full component envelope is never a solid replacement footprint.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Photographs linked for reference; no photographic textures or third-party meshes copied.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity pending: this is an individual exterior reconstruction, not a surveyed as-built model. Vertical dimensions, irregular roof junctions and exact fenestration require further comparison.",
+    "The museum ticket site describes the tower as nearly 70 m without a datum. The current 46 m ground-relative keep is provisional; do not treat it as a verified measured height.",
+    "The church Madonna mosaic and figurative sculpture are not reproduced. Their recess is preserved. Exact tracery, gate decoration, decorative gables and rooftop dormers need further work.",
+    "Lower Castle is represented by selected existing mapped structures and eastern walls; ruins, archaeological foundations, contemporary ticket facilities and complete outer earthworks are not included.",
+    "No interiors, moat excavation, landscape, temporary works or photographic textures. The High Castle courtyard and Middle Castle court remain open.",
+    "Shared brick, ceramic tile, timber, limestone, granite and painted-metal surfaces; local PBR glazing. Fine brick bonds and roof seams stay in the source master."
+  ],
+  "qaCameras": [
+    {
+      "name": "high-castle-cloister",
+      "position": [
+        -31,
+        14,
+        31
+      ],
+      "lookAt": [
+        -10,
+        14,
+        35
+      ]
+    },
+    {
+      "name": "high-castle-and-dansker",
+      "position": [
+        -165,
+        68,
+        -105
+      ],
+      "lookAt": [
+        -39,
+        15,
+        14
+      ]
+    },
+    {
+      "name": "middle-castle-courtyard",
+      "position": [
+        17,
+        38,
+        29
+      ],
+      "lookAt": [
+        115,
+        15,
+        23
+      ]
+    },
+    {
+      "name": "grand-masters-palace",
+      "position": [
+        -20,
+        29,
+        -97
+      ],
+      "lookAt": [
+        39,
+        16,
+        -27
+      ]
+    },
+    {
+      "name": "church-and-keep",
+      "position": [
+        10,
+        50,
+        143
+      ],
+      "lookAt": [
+        -10,
+        24,
+        48
+      ]
+    },
+    {
+      "name": "north-gate-and-bridge",
+      "position": [
+        176,
+        24,
+        50
+      ],
+      "lookAt": [
+        115,
+        12,
+        25
+      ]
+    },
+    {
+      "name": "lower-castle-karwan",
+      "position": [
+        266,
+        36,
+        174
+      ],
+      "lookAt": [
+        228,
+        13,
+        98
+      ]
+    },
+    {
+      "name": "lower-castle-ranges",
+      "position": [
+        336,
+        120,
+        -168
+      ],
+      "lookAt": [
+        267,
+        10,
+        2
+      ]
+    },
+    {
+      "name": "all-three-castles-plan",
+      "position": [
+        160,
+        470,
+        90
+      ],
+      "lookAt": [
+        160,
+        0,
+        38
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 516537,
+    "vertices": 1059079,
+    "materials": 7,
+    "bytes": 44329516,
+    "sha256": "sha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193"
+  }
+}

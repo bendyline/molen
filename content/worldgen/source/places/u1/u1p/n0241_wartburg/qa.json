@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0241_wartburg",
+  "sourceHash": "sha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372",
+  "runtimeHash": "sha256:9e41999a6648e196df41877c925edb153f83c68f87320821285478154a1cd52f",
+  "captureReportHash": "sha256:0aa4ea7348e4f306305dd0b3f6ba19b52e54b3a92a7d1acabfc4c737a3d04895",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only. Maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/palas-court-arcades.png",
+      "shots/palas-east-roof.png",
+      "shots/bergfried-and-cross.png",
+      "shots/south-tower-and-gadem.png",
+      "shots/vogtei-oriel.png",
+      "shots/northern-gatehouse.png",
+      "shots/northern-court-galleries.png",
+      "shots/western-halls.png",
+      "shots/two-open-courts-plan.png"
+    ],
+    "notes": "Inspected 14 portable frames. Corrected floating chimney placement, gable materials, South Tower stair direction and roof winding, outward gate arch surfaces, and obstructed Palas/South Tower cameras. Courtyards remain open. Palas, keep and cross, white South Tower, timber halls and bent covered galleries are separately arranged. Exact roof profiles, carving and site levels remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:87ba531483d729bb8f1df944689dc4247ae2adf21c2b49e4d46629ae3ec6fc3b",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/palas-court-arcades.png",
+      "shots/shared/palas-east-roof.png",
+      "shots/shared/bergfried-and-cross.png",
+      "shots/shared/south-tower-and-gadem.png",
+      "shots/shared/vogtei-oriel.png",
+      "shots/shared/northern-gatehouse.png",
+      "shots/shared/northern-court-galleries.png",
+      "shots/shared/western-halls.png",
+      "shots/shared/two-open-courts-plan.png"
+    ],
+    "notes": "Inspected 13 shared-material studio views. Nine canonical graphs load once each; glazing is local PBR and no images are embedded. Final gate view shows an open curved arch. Unload leaves zero live model geometries. Studio views do not establish geographic fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:5af92f93b85ad7d511ed01b2ac03af7b0101f11e7a5f535b62bdc186f9af85d8",
+    "notes": "Signed source-local meter frame anchored at exact Q151545 node [10.3063142,50.965902], heading 1.3697714204430447 from South Tower toward Torhaus. Named individual footprint ways are not an occupied precinct polygon. Heights and site datum remain provisional. Draft placement and replaceFootprint=false retained."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending: exterior reconstruction is not surveyed as-built geometry. Heights, stair elevations, roof junctions, window spacing and weathering require more source comparison. Palas heraldic lions and carved capitals, precise Gothic oriel tracery and roof dormers are incomplete. No sculpture is claimed as a faithful individual reproduction. The keep height is deliberately provisional because OSM height tags disagree with the owner description. Cross is 3.8 m; ground and parapet datums need measurement. Vogtei roof is represented as a gable instead of its exact half-hip profile. Gadem roof intersections and covered South Tower stair attachment need further review. No interiors, landscape hill, trees, temporary works or photographic textures. Open courtyard voids are preserved. Shared sandstone, raw limestone, plaster, timber, slate, tile, copper, painted metal and gold-colored stainless graphs; local PBR glazing."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "validatorLimitations": "Unused-UV information reflects procedural material graphs resolved by Molen; geometry validation does not certify architectural accuracy.",
+    "triangles": 227673,
+    "vertices": 446281,
+    "materials": 10,
+    "sharedGraphs": 9,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera visual comparison, triangle/download budgets, deterministic LOD checks and separated vertex layouts. Physical-device measurements remain pending.",
+    "notes": "976 / 2144 / 10204 / 22843 triangles. Initial skyline plus district is 247432 bytes; street 775684 bytes; close-up 1629032 bytes. Source master remains 18803828 bytes. Distant skyline omits minor outbuildings and cistern detail but retains the two courts and principal tower/roof silhouettes.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.skyline.glb",
+        "hash": "sha256:f649c1187be02ab3a8376cf745dc008a5f66149afddfb8661975649168c91add",
+        "bytes": 80196,
+        "triangles": 976,
+        "vertices": 2026,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          0,
+          -22.712684631347656
+        ],
+        "max": [
+          91.37000274658203,
+          34,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.district.glb",
+        "hash": "sha256:3a2b8bd94f2424d9ded27d1919860456d790f6c75b0bdd1c0d526bfb7ae36031",
+        "bytes": 167236,
+        "triangles": 2144,
+        "vertices": 3988,
+        "materials": 9,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          0,
+          -30.975000381469727
+        ],
+        "max": [
+          91.37000274658203,
+          34,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.street.glb",
+        "hash": "sha256:3f2fd74ebed7c737b24284523afe0cb694364fdea28c8fb4ebadc53009b65444",
+        "bytes": 775684,
+        "triangles": 10204,
+        "vertices": 19544,
+        "materials": 9,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -0.06499999761581421,
+          -31.11050796508789
+        ],
+        "max": [
+          91.50080871582031,
+          34,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.closeup.glb",
+        "hash": "sha256:371b9e33d24f90986fae647b7eb8b22b5ce3520f06704b61479b0e317cb50b81",
+        "bytes": 1629032,
+        "triangles": 22843,
+        "vertices": 41107,
+        "materials": 10,
+        "sharedGraphs": 9,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -0.06499999761581421,
+          -31.11050796508789
+        ],
+        "max": [
+          91.50271606445312,
+          34,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      }
+    ]
+  }
+}

@@ -5,14 +5,16 @@
   "title": "OH-6",
   "order": 1,
   "files": {
-    "definitions": ["entity.types.json"],
+    "definitions": [
+      "entity.types.json"
+    ],
     "models": [
       {
         "path": "models/source.glb",
         "assetId": "molen.entities.aircraft.oh6",
         "output": "assets/molen/entities/aircraft/oh6/asset.json",
         "pipeline": "import",
-        "sha256": "sha256:a83e4faeb101a994d621400a4e575d260064767ae7b214db2b30c3f514c012bb"
+        "sha256": "sha256:0e98f48e8c9d6c9235ab6ef9c4cdb8358e5756f2a8b223281b649b8935b5acc4"
       }
     ],
     "generators": [
@@ -27,6 +29,10 @@
       {
         "id": "interior-builder",
         "path": "models/interior.mjs"
+      },
+      {
+        "id": "instrument-parts",
+        "path": "models/instruments.mjs"
       }
     ],
     "scripts": [
@@ -37,6 +43,10 @@
     ],
     "textures": [],
     "sounds": [],
-    "documents": ["README.md", "verification.json"]
+    "documents": [
+      "README.md",
+      "verification.json",
+      "REFERENCES.md"
+    ]
   }
 }

@@ -33,7 +33,10 @@ function transformPoint(point: TerrainSemanticPoint, scale: number, ox: number, 
 }
 
 /** Liang–Barsky clip of every segment; consecutive kept segments join into one line. */
-function clipLine(line: TerrainSemanticLine, box: Box): TerrainSemanticLine[] {
+export function clipTerrainSemanticLine(
+  line: TerrainSemanticLine,
+  box: Box,
+): TerrainSemanticLine[] {
   const out: TerrainSemanticLine[] = [];
   let current: TerrainSemanticLine | undefined;
   for (let index = 0; index + 1 < line.length; index++) {
@@ -173,7 +176,7 @@ export function overzoomTerrainSemanticTile(
       .filter((polygon): polygon is TerrainSemanticPolygon => polygon !== undefined);
   const lines = (list: readonly TerrainSemanticLine[]) =>
     list.flatMap((line) =>
-      clipLine(
+      clipTerrainSemanticLine(
         line.map((point) => transformPoint(point, scale, ox, oy)),
         box,
       ),

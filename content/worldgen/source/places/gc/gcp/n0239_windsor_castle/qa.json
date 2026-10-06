@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0239_windsor_castle",
+  "sourceHash": "sha256:e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396",
+  "runtimeHash": "sha256:6032a6df55310e3b3b0bba716c2ae47cf0c1947a225f5854984a09b89d01d573",
+  "captureReportHash": "sha256:0e1dffe144009c07553b9c9f82a37d8edf47a3204cadec7cf3acc4a0a9188afe",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity; exterior fidelity and geographic fit are still pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/upper-ward-south.png",
+      "shots/upper-quadrangle.png",
+      "shots/north-state-apartments.png",
+      "shots/round-tower-crown.png",
+      "shots/chapel-south.png",
+      "shots/chapel-west-window.png",
+      "shots/horseshoe-cloister.png",
+      "shots/henry-viii-gate.png",
+      "shots/wards-and-open-courts.png"
+    ],
+    "notes": "Inspected 14 portable frames. Corrected floating chimney bases, supported raised palace ranges, changed cloister to two rectangular window rows and separated palace Gothic lower windows from rectangular upper windows. Upper quadrangle, Lower Ward and cloister court remain open. Roof joins and exact bay arrangements remain approximate. Turntables cover the silhouette; dedicated detail frames carry facade inspection."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e6c111a7d3e66c9fb257d4952a98a49f6e0207d23f7f48a40a3eb607bd6ddd00",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/upper-ward-south.png",
+      "shots/shared/upper-quadrangle.png",
+      "shots/shared/north-state-apartments.png",
+      "shots/shared/round-tower-crown.png",
+      "shots/shared/chapel-south.png",
+      "shots/shared/chapel-west-window.png",
+      "shots/shared/horseshoe-cloister.png",
+      "shots/shared/henry-viii-gate.png",
+      "shots/shared/wards-and-open-courts.png"
+    ],
+    "notes": "Inspected 13 shared-material studio views: seven canonical graphs, one read each; local PBR glazing and zero embedded images. Unload leaves zero model geometries. These studio views do not establish terrain fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:71a66efec4c53da3658b7f07c7b9279992c8e1c3904118da95580b5ad7bde778",
+    "notes": "Individual OSM building footprints and courtyard holes use the cached precinct anchor [-0.604139816,51.483842171] and signed heading 0.052063510228. Vertical datum, artificial motte and cross-site levels are provisional. Placement stays draft and replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity is pending. This is an original exterior reconstruction, not a surveyed as-built model. Heights, facade bay spacing, roof profiles and corner details need elevation verification. Chapel tracery is geometric but simplified; heraldic beasts, statues, heraldry, gates and sculptural capitals require dedicated individually verified detail. No generic statue is claimed to represent them. No interiors, natural hill, foliage, temporary works or royal flags are supplied. Artificial motte, structural walls and terrace revetments use provisional elevations. The open grounds require real terrain contact. Chapel and Albert Chapel volumes follow manually aligned mapped envelopes; palace and residential ranges use exact individual plan vertices with tolerance reduction. Roofing is independently reconstructed. Shared limestone, raw limestone, weathered limestone, slate, wood, brick and painted-metal graphs are reused; glazing is local PBR. No new bitmap textures or copied photographic pixels."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "validatorLimitations": "Unused-UV information is expected for shared surface graphs resolved by Molen.",
+    "triangles": 385417,
+    "vertices": 783315,
+    "materials": 8,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected master/four-level common-camera comparison and checked bytes, triangles, deterministic output and GPU attribute layout; physical-device measurements pending.",
+    "notes": "521 / 1101 / 14812 / 62481 triangles. Skyline plus district is 121348 bytes. Street is 1075244 bytes and closeup is 4639360 bytes. Fine tracery, individual merlons, chimneys and distant terrace revetments are omitted at lower levels; open ward silhouettes and main towers are retained.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcp/n0239_windsor_castle/model.skyline.glb",
+        "hash": "sha256:1d65ae6a77bf977374935278d392009c048c99b18ef607cddae7ea34b6738bd1",
+        "bytes": 43248,
+        "triangles": 521,
+        "vertices": 1077,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -289.5,
+          0,
+          -75
+        ],
+        "max": [
+          174.5,
+          52,
+          98.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcp/n0239_windsor_castle/model.district.glb",
+        "hash": "sha256:43fd8563bd0a533340caecf8f041a1634b59e7bd0f8fa19fd3b52d2f1e696b17",
+        "bytes": 78100,
+        "triangles": 1101,
+        "vertices": 1853,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -289.5,
+          0,
+          -75.23210906982422
+        ],
+        "max": [
+          174.5,
+          52,
+          98.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcp/n0239_windsor_castle/model.street.glb",
+        "hash": "sha256:5ef369c681897753c7634f75cf35ee1fea13e2b7e5f4484819fbdaa2e81f26ae",
+        "bytes": 1075244,
+        "triangles": 14812,
+        "vertices": 27131,
+        "materials": 8,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -291.0039978027344,
+          0,
+          -99.16999816894531
+        ],
+        "max": [
+          291.0039978027344,
+          52,
+          99.16999816894531
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcp/n0239_windsor_castle/model.closeup.glb",
+        "hash": "sha256:388f2d05abcc76f09c6c7747b9f123fb71e37c1ccc7caab98e43cca4546dc5e2",
+        "bytes": 4639360,
+        "triangles": 62481,
+        "vertices": 118188,
+        "materials": 8,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -291.3651428222656,
+          0,
+          -99.16999816894531
+        ],
+        "max": [
+          291.0039978027344,
+          52,
+          99.65998840332031
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

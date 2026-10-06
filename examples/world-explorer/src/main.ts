@@ -42,9 +42,11 @@ import {
   createTerrainPackageStream,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterialAsync,
+  sampleTerrainTunnel,
   setTerrainWaterTime,
   type TerrainPackagePyramidStream,
   type TerrainPackageStream,
+  type TerrainPyramidHeightSource,
   type TerrainPyramidStreamStats,
   type TerrainPyramidTileLayer,
   type TerrainQualityPreset,
@@ -491,7 +493,7 @@ async function loadWorldgen(options: {
   let preparation: Promise<void> | undefined;
   return {
     ...worldgen,
-    // Surface baking progress in the HUD and the startup timeline.
+    // Record the initial warm-up. Later visible surfaces bake on demand.
     prepareMaterials(): Promise<void> {
       preparation ??= (async () => {
         const status = document.getElementById('worldgen-status');
@@ -763,6 +765,10 @@ async function main(): Promise<void> {
     (section) => section !== undefined,
   );
   let realSemanticLayers: TerrainPyramidTileLayer[] = [];
+  let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
+  const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
+    provideTunnelHeights = resolve;
+  });
   let semanticUnavailableReason: string | undefined;
   // Ambient life (NPC traffic, walkers, trains, aircraft) reads road tiles as they are built.
   // ?ambient=0 turns it off; frozen captures (?freeze, every golden) leave it off unless
@@ -779,6 +785,11 @@ async function main(): Promise<void> {
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
+        tunnels: {
+          heights: {
+            load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
+          },
+        },
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         waterLayer: {
           visible: true,
@@ -966,6 +977,7 @@ async function main(): Promise<void> {
       })
     : undefined;
   startupStage('terrain-stream');
+  if (pyramidEarth) provideTunnelHeights(pyramidEarth.source);
   const maybeStream = fixedEarth?.stream ?? pyramidEarth?.stream;
   if (maybeStream === undefined) throw new Error('terrain stream was not created');
   const stream = maybeStream;
@@ -1098,7 +1110,9 @@ async function main(): Promise<void> {
   let navigation: 'fly' | 'walk' = 'fly';
   let aircraft: WorldAircraft | undefined;
   const sampleHeight = (x: number, z: number): number | undefined =>
-    aircraft?.groundHeight(x, z) ?? stream.sampleHeight(x, z);
+    sampleTerrainTunnel(stream.object, x, camera.pos[1], z)?.floor ??
+    aircraft?.groundHeight(x, z) ??
+    stream.sampleHeight(x, z);
   // Cars and aircraft: definitions from the entities pack's types, models read from the same pack
   // the first time each is shown.
   const loadEntityModel = async (id: string): Promise<THREE.Object3D> =>
@@ -1115,7 +1129,10 @@ async function main(): Promise<void> {
   aircraft = new WorldAircraft(
     vehicles.world,
     stream.object,
-    (x, z) => stream.sampleHeight(x, z),
+    (x, z, y) =>
+      y === undefined
+        ? stream.sampleHeight(x, z)
+        : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ?? stream.sampleHeight(x, z)),
     camera.pos,
     loadEntityModel,
     content.types,
@@ -1195,7 +1212,7 @@ async function main(): Promise<void> {
       walkCollision.clear();
       camera.pos[1] = Math.max(
         camera.pos[1],
-        (sampleHeight(camera.pos[0], camera.pos[2]) ?? camera.pos[1]) + 35,
+        (sampleHeight(camera.pos[0], camera.pos[2]) ?? camera.pos[1]) + 2,
       );
       if (document.pointerLockElement === canvas) document.exitPointerLock();
     }
@@ -1389,7 +1406,11 @@ async function main(): Promise<void> {
     const dt = Math.min(0.1, (now - lastTime) / 1000);
     lastTime = now;
     const sprint = keys.has('ShiftLeft') || keys.has('ShiftRight');
-    const speed = (sprint ? 3_000 : 850) * dt;
+    const tunnelBefore = sampleTerrainTunnel(stream.object, ...camera.pos);
+    const previousFlyPosition: [number, number, number] = [...camera.pos];
+    const groundBelow = sampleHeight(camera.pos[0], camera.pos[2]);
+    const altitudeAGL = Math.max(0, camera.pos[1] - (groundBelow ?? camera.pos[1] - 850));
+    const speed = Math.max(12, Math.min(850, altitudeAGL * 1.2)) * (sprint ? 3.5 : 1) * dt;
     let viewDirection = cameraForward(camera.yaw, camera.pitch);
     const forward = cameraPlanarForward(camera.yaw);
     const right = cameraRight(camera.yaw);
@@ -1428,6 +1449,10 @@ async function main(): Promise<void> {
       brake: keys.has('Space') || document.hidden || !document.hasFocus(),
     });
     flight.render();
+    surfaceRenderer.updateSignals(
+      params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
+      ambient?.surfaceSignalColor,
+    );
     if (ambient !== undefined) {
       const ambientStarted = performance.now();
       ambient.render(camera.pos, dt);
@@ -1484,12 +1509,35 @@ async function main(): Promise<void> {
       if (keys.has('KeyD')) move(right, speed);
       if (keys.has('KeyE')) move([0, 1, 0], speed);
       if (keys.has('KeyQ')) move([0, 1, 0], -speed);
-      const ground = sampleHeight(camera.pos[0], camera.pos[2]);
-      if (ground !== undefined && camera.pos[1] < ground + 35) camera.pos[1] = ground + 35;
+      // Probe at the previous height so raising the camera cannot jump through a bore's roof.
+      const tunnel = sampleTerrainTunnel(
+        stream.object,
+        camera.pos[0],
+        tunnelBefore ? Math.min(camera.pos[1], tunnelBefore.ceiling - 0.1) : camera.pos[1],
+        camera.pos[2],
+      );
+      if (tunnel)
+        camera.pos[1] = Math.max(
+          tunnel.floor + Math.min(2, (tunnel.ceiling - tunnel.floor) / 2),
+          Math.min(tunnel.ceiling - 0.3, camera.pos[1]),
+        );
+      else {
+        const ground = sampleHeight(camera.pos[0], camera.pos[2]);
+        if (tunnelBefore && ground !== undefined && camera.pos[1] < ground) {
+          camera.pos = previousFlyPosition;
+        } else if (ground !== undefined && camera.pos[1] < ground + 2) camera.pos[1] = ground + 2;
+      }
     }
     // Keep the inexpensive 10 Hz cadence while the view barely changes, but refresh before this
     // frame renders if a drag or movement could outrun the selector's view guard band. Otherwise
     // the camera can briefly face resident-but-hidden terrain and expose a horizon-sized hole.
+    worldgen?.updateStructures({
+      position: camera.pos,
+      direction: viewDirection,
+      verticalFov: 60,
+      viewportHeight: canvas.height,
+      maxPixelError: lodPolicy.maxPixelError,
+    });
     const terrainViewChanged =
       adaptive &&
       viewNeedsImmediateUpdate(
@@ -1679,6 +1727,8 @@ async function main(): Promise<void> {
       const unavailableTiles = stats.failed - stats.missing;
       status.id = unavailableTiles > 0 ? 'error' : 'status';
       const worldgenStats = worldgen?.stats();
+      const landmarkStats = worldgen?.structureStats();
+      status.dataset.sharedTextureBytes = String(landmarkStats?.sharedTextureBytes ?? 0);
       const worldgenSummary =
         worldgenStats === undefined
           ? `worldgen off${styleUnavailableReason !== undefined ? ' (pack unavailable)' : ''}`
@@ -1702,6 +1752,11 @@ async function main(): Promise<void> {
           ? [`layer error: ${lastLayerError}`]
           : []),
         worldgenSummary,
+        ...(landmarkStats
+          ? [
+              `landmarks ${landmarkStats.assets} assets · ${landmarkStats.loading} loading · ${(landmarkStats.gpuBytes / 1_000_000).toFixed(1)} MB geometry · ${((landmarkStats.sharedTextureBytes ?? 0) / 1_000_000).toFixed(1)} MB shared textures`,
+            ]
+          : []),
         ...(worldgenStats?.interiors
           ? [
               `interiors ${worldgenStats.interiors.resident} resident / ${worldgenStats.interiors.sites} available · ${worldgenStats.interiors.pending} generating · ${(worldgenStats.interiors.bytes / 1_048_576).toFixed(1)}MiB · ${worldgenStats.interiors.failed} failed`,

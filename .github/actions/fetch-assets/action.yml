@@ -15,16 +15,14 @@ runs:
       shell: bash
       run: |
         set +e
-        pnpm assets:fetch --no-build
+        if [ "${{ steps.cache.outputs.cache-hit }}" = 'true' ]; then
+          pnpm assets:fetch --no-build --offline
+        else
+          pnpm assets:fetch --no-build
+        fi
         status=$?
         if [ "$status" -eq 3 ]; then echo "build=true" >> "$GITHUB_OUTPUT"; exit 0; fi
         exit "$status"
-    # Only a completed download is worth caching; a source build leaves no archives.
-    - if: steps.cache.outputs.cache-hit != 'true' && steps.fetch.outputs.build != 'true'
-      uses: actions/cache/save@v4
-      with:
-        path: .artifacts/asset-packs/
-        key: molen-glbs-${{ hashFiles('asset-lock.json') }}
     # asset-build.json pins the Node major that produced the lock; the job's own Node comes back
     # afterwards, so the rest of the job still tests the version it asked for.
     - if: steps.fetch.outputs.build == 'true'
@@ -45,7 +43,15 @@ runs:
       run: |
         pip install -r examples/lantern-dungeon/tools/requirements.txt
         pnpm assets:build --compile
+        # Make the verified source build restorable before its release exists. The check job
+        # saves it once; dependent jobs and reruns restore it offline instead of rebuilding.
+        pnpm assets:pack
     - if: steps.fetch.outputs.build == 'true'
       uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node.outputs.version }}
+    - if: steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: .artifacts/asset-packs/
+        key: molen-glbs-${{ hashFiles('asset-lock.json') }}

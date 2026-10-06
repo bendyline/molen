@@ -1,0 +1,2455 @@
+{
+  "format": "molen/landmark-streaming-measurements@1",
+  "localDate": "2026-10-03",
+  "assetRelease": "assets-e7d2334ddbf528a5",
+  "assetSnapshot": "e7d2334ddbf528a52265dfc94866bd55362588f84c077be34b3337601db2b24e",
+  "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+  "methodology": "WebGL landmark-only scene; real StructureModelLibrary, optional StructureLodStreamer, and shared materials. Two simultaneous initial acquisitions; detail concurrency follows the selected preset. Cold loopback HTTP, no network throttling. Synthetic grid. No terrain, traffic, sky reflections or tile scheduler. Two material workers bake used surfaces. Streaming samples follow 300 settling frames; the pan rotates 20 degrees in place. Timings include only this workload.",
+  "limitations": [
+    "Workstation measurements with phone/laptop budgets; physical target device acceptance is pending.",
+    "Unthrottled loopback HTTP with warm OS caches; first-load bytes exclude sidecars and pack metadata.",
+    "Other repository verification ran concurrently; timing values are diagnostic single samples.",
+    "Geometry byte estimates exclude parser temporaries, transport caches, JS objects and driver overhead.",
+    "Shared texture bytes include estimated mipmaps; no terrain, traffic, reflections or shadows.",
+    "Some detailed tiers exceed advisory triangle targets and cannot be admitted under small-device budgets.",
+    "Automated validity is not comprehensive visual approval of all four levels of every model."
+  ],
+  "device": {
+    "renderer": "ANGLE (AMD, AMD Radeon AI PRO R9700 (0x00007551) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (AMD)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "hardwareConcurrency": 32,
+    "deviceMemory": 32,
+    "width": 1440,
+    "height": 900,
+    "gpuTimerAvailable": true,
+    "shadows": false
+  },
+  "count": 41,
+  "models": [
+    {
+      "path": "content/worldgen/assets/places/sx/sxk/n0229_istanbul_sapphire/model.glb",
+      "masterHash": "sha256:6d9ff0dce95bf6b3cdf8225f85d664d6cd9dfe03a531048a39e9623153444a7f",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:c50e2a9be41090c246f56af3327cdc8524e1a7b8cd1b083f931fc9bbc1a35b1d",
+          "bytes": 15436,
+          "gzipBytes": 8355,
+          "triangles": 998,
+          "cpuBytes": 14404,
+          "gpuBytes": 14404,
+          "errorMeters": 80.86789226881085,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:4650291a0d67db1e921c934c5c0ea9de96ae7461073fca10dcda4d4e99c43bb6",
+          "bytes": 3581652,
+          "gzipBytes": 567794,
+          "triangles": 39620,
+          "cpuBytes": 3570960,
+          "gpuBytes": 3570960,
+          "errorMeters": 0.5148763322844672,
+          "drawCalls": 9
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:05680957f068e997c236c1cd8787caf54a6bf23b38c2a88d291fccc8152f85e7",
+          "bytes": 4603576,
+          "gzipBytes": 756068,
+          "triangles": 51340,
+          "cpuBytes": 4592868,
+          "gpuBytes": 4592868,
+          "errorMeters": 0.25728057146144745,
+          "drawCalls": 9
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:75ef0a365c5fca14f6c562d46f594bbd4680ac30191214c31d1c91075957339d",
+          "bytes": 10540092,
+          "gzipBytes": 2001201,
+          "triangles": 108506,
+          "cpuBytes": 10529364,
+          "gpuBytes": 10529364,
+          "errorMeters": 0.1288491329554361,
+          "drawCalls": 9
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0153_7_world_trade_center/model.glb",
+      "masterHash": "sha256:a84b72ea8f9ca8674ff6777eea8eaa61292d92be5eba025992dc273635879f43",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:4be5f2a39bc2262e9eb4436368f2479cd1a691a0eaad92c4f832440198de4e13",
+          "bytes": 13692,
+          "gzipBytes": 7154,
+          "triangles": 998,
+          "cpuBytes": 12644,
+          "gpuBytes": 12644,
+          "errorMeters": 70.032834059461,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:e529fa665a4677ba97dd7212ffc3f1a9bb2029378f59f13f2fb272cf13d86166",
+          "bytes": 8281824,
+          "gzipBytes": 1636702,
+          "triangles": 82036,
+          "cpuBytes": 8275776,
+          "gpuBytes": 8275776,
+          "errorMeters": 0.40277576999844433,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:b593b087323664c19bec7b66b364428218a8fe6996f947f137d0e7dfc969c094",
+          "bytes": 8313024,
+          "gzipBytes": 1642258,
+          "triangles": 82293,
+          "cpuBytes": 8306976,
+          "gpuBytes": 8306976,
+          "errorMeters": 0.22288289942831457,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:2cdfddde84b83176537baf361b06969ef0ebba5c33494e250d44568f0f2ac971",
+          "bytes": 8511168,
+          "gzipBytes": 1689584,
+          "triangles": 84381,
+          "cpuBytes": 8505120,
+          "gpuBytes": 8505120,
+          "errorMeters": 0.11090917651102275,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/u0/u09/n0151_montparnasse_tower/model.glb",
+      "masterHash": "sha256:3bd2fbae67ebc79d936ba32acdfd2e01ae95784099ae8741252314c443abf868",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:e18d895a8439d092527d4ae06ef0fa2d426b8b030b6bb09a341b49bd87cf51e8",
+          "bytes": 13788,
+          "gzipBytes": 7507,
+          "triangles": 998,
+          "cpuBytes": 12740,
+          "gpuBytes": 12740,
+          "errorMeters": 65.07464077964626,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:bc620e912321f4fcf0d96c7b8ac22098a3f3478f1185422b200e5f9a71186cc8",
+          "bytes": 8044228,
+          "gzipBytes": 1407445,
+          "triangles": 86914,
+          "cpuBytes": 8040372,
+          "gpuBytes": 8040372,
+          "errorMeters": 0.4140788803959713,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:21d0d7e18145d519ebbfb5fefb71a4b3adac4d80544374857537cdee1a76eeaa",
+          "bytes": 8057808,
+          "gzipBytes": 1409848,
+          "triangles": 87099,
+          "cpuBytes": 8053952,
+          "gpuBytes": 8053952,
+          "errorMeters": 0.20695927940134334,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:f51cd18805a9abf23e4722784df9a365dd447454bcf0e2e47e1ca76b3a3948d8",
+          "bytes": 8073964,
+          "gzipBytes": 1414208,
+          "triangles": 87286,
+          "cpuBytes": 8070108,
+          "gpuBytes": 8070108,
+          "errorMeters": 0.1030353764808383,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/6g/6gy/n0138_mirante_do_vale/model.glb",
+      "masterHash": "sha256:2240e62f3346f614df54c385aa1c51f3127052f936f514c82019b5f67103c16f",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:d396ffb43d1fc7e2b975fcc3712cfa78c03a0e590956f20389bab5c562857336",
+          "bytes": 13692,
+          "gzipBytes": 7119,
+          "triangles": 1000,
+          "cpuBytes": 12656,
+          "gpuBytes": 12656,
+          "errorMeters": 52.67257350842086,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:a2295e908dbe1913d2f4c06e333b39077c399db3cbaf269c9fc7be84aecdbeda",
+          "bytes": 5054572,
+          "gzipBytes": 865377,
+          "triangles": 60698,
+          "cpuBytes": 5049576,
+          "gpuBytes": 5049576,
+          "errorMeters": 0.3358510250342137,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:e864656f05e134bdab4d23487af932588e79baed6ad85db8f6e30ad18c5de70d",
+          "bytes": 5357516,
+          "gzipBytes": 909060,
+          "triangles": 64254,
+          "cpuBytes": 5352516,
+          "gpuBytes": 5352516,
+          "errorMeters": 0.16537976088584694,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:16903ba9b65f4a1175b99408c9fc51f475f3833aa2ea7ade7c9caf099b73e9b8",
+          "bytes": 5915868,
+          "gzipBytes": 995792,
+          "triangles": 71220,
+          "cpuBytes": 5910864,
+          "gpuBytes": 5910864,
+          "errorMeters": 0.08237748877436535,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/6g/6gy/n0223_edificio_copan/model.glb",
+      "masterHash": "sha256:11dd3f30906396e248a9503943d069d14f3e64c2dfcc4d9483d11a156541e1fa",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:be82dae07390599545e81e5c7bece8c75958afb8db0034e67c050e10d7ab6a3b",
+          "bytes": 15024,
+          "gzipBytes": 8241,
+          "triangles": 988,
+          "cpuBytes": 13992,
+          "gpuBytes": 13992,
+          "errorMeters": 41.32370983642974,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:63c213cbdd7969a0d2b3a63031d7cd286163851c6e5c6a9e0769e3d791a81241",
+          "bytes": 16007608,
+          "gzipBytes": 2601040,
+          "triangles": 152466,
+          "cpuBytes": 15999120,
+          "gpuBytes": 15999120,
+          "errorMeters": 0.2623112442768821,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:3c93901b705d1a571ce066511bb3aa66e68060118e79ce95991307e00bee6473",
+          "bytes": 98117804,
+          "gzipBytes": 14477283,
+          "triangles": 952574,
+          "cpuBytes": 98109252,
+          "gpuBytes": 98109252,
+          "errorMeters": 0.13158989412969396,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:b10d90b1e4184a484d211a6478bf40a9782191f1831a231489bcad040e95f466",
+          "bytes": 109871272,
+          "gzipBytes": 16139863,
+          "triangles": 1071117,
+          "cpuBytes": 109862688,
+          "gpuBytes": 109862688,
+          "errorMeters": 0.06579849354121112,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/gc/gcp/n0149_30_st_mary_axe/model.glb",
+      "masterHash": "sha256:4df45f8f2ceccc3b1814e69f0a4010a96ebdd83651c5d5a23e4bdb2da76f8905",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:eb040004b34903822f1ae4ef9688f8e1fb2082e94c93827cf581a9c730e8d26d",
+          "bytes": 13344,
+          "gzipBytes": 8125,
+          "triangles": 998,
+          "cpuBytes": 12292,
+          "gpuBytes": 12292,
+          "errorMeters": 55.78084403888632,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:cd3334344e71e037f6a08250b31ef27cc2ef56c8c5880eae567eea23cf16528e",
+          "bytes": 3050000,
+          "gzipBytes": 571069,
+          "triangles": 27102,
+          "cpuBytes": 3046212,
+          "gpuBytes": 3046212,
+          "errorMeters": 0.34581834066028494,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:fe3536e868e790a4a73d58e28385d1ab393339f691d610aa17f499bc835c1ef5",
+          "bytes": 5710968,
+          "gzipBytes": 1136582,
+          "triangles": 50448,
+          "cpuBytes": 5707188,
+          "gpuBytes": 5707188,
+          "errorMeters": 0.17679774010238597,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:48281d559cebab352479c4745257732cf08b3b8c71f4d41e03a24e25e41a52a3",
+          "bytes": 9040932,
+          "gzipBytes": 1824563,
+          "triangles": 79808,
+          "cpuBytes": 9037152,
+          "gpuBytes": 9037152,
+          "errorMeters": 0.08891287070541357,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0152_trump_tower/model.glb",
+      "masterHash": "sha256:a6fdf0f204e038d68911d246159df62a4bdf37a7c0374eb792c5f4ff961f7c79",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:1ec941d87365448fd19494f6cc0c94482765fdd88b22c65c3df85d92f6a9942e",
+          "bytes": 14064,
+          "gzipBytes": 7465,
+          "triangles": 998,
+          "cpuBytes": 13012,
+          "gpuBytes": 13012,
+          "errorMeters": 62.711346341790495,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:5ab5c092d2e4984fd6c31a7fc29daebe8fda3bbbcc5f4a4476c7c13f01156fb1",
+          "bytes": 8630592,
+          "gzipBytes": 1787408,
+          "triangles": 83797,
+          "cpuBytes": 8624480,
+          "gpuBytes": 8624480,
+          "errorMeters": 0.38612914808429377,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:89cd59ec7b1a3d4ba6dce38d2f0104d0e51a0febae0edc1fbbac5dc783f924f1",
+          "bytes": 8768432,
+          "gzipBytes": 1819483,
+          "triangles": 84991,
+          "cpuBytes": 8762312,
+          "gpuBytes": 8762312,
+          "errorMeters": 0.1994366607459242,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:b4a7966c705c0bba2fb8e8d8241f46a86720b40e0114bbd9ab9cb2ba6ca59405",
+          "bytes": 9245520,
+          "gzipBytes": 1960959,
+          "triangles": 89825,
+          "cpuBytes": 9239400,
+          "gpuBytes": 9239400,
+          "errorMeters": 0.0997471603945819,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/w2/w28/n0161_kuala_lumpur_tower/model.glb",
+      "masterHash": "sha256:aec0d9df56c7ef2db145a16c1411e2bf6d3766926bba13f06d24fc595c0832f2",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:14e0b4e195c22d55f93d77ba986d574a30e93e28016dc1bfdb94f67c299baf8d",
+          "bytes": 15032,
+          "gzipBytes": 9108,
+          "triangles": 999,
+          "cpuBytes": 13996,
+          "gpuBytes": 13996,
+          "errorMeters": 130.44207910026577,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:3aa0322acdf26bcc119664aab780e1c97e9c1e24568e881ca5c72e893c30bc00",
+          "bytes": 1445440,
+          "gzipBytes": 350612,
+          "triangles": 14577,
+          "cpuBytes": 1436888,
+          "gpuBytes": 1436888,
+          "errorMeters": 0.8282604341420682,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:8c01b7c17dd3cdc4a47722fc6a01de5d4867e2f429600c53f5a197ba11733168",
+          "bytes": 2209556,
+          "gzipBytes": 570861,
+          "triangles": 22311,
+          "cpuBytes": 2200988,
+          "gpuBytes": 2200988,
+          "errorMeters": 0.4152075412230269,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:a05df2f8b250b4d3f406a175cf333ec457e83dd1413064947c3f2260c9f38758",
+          "bytes": 6366744,
+          "gzipBytes": 1606193,
+          "triangles": 62697,
+          "cpuBytes": 6358148,
+          "gpuBytes": 6358148,
+          "errorMeters": 0.15116175573848564,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/u3/u3c/n0158_turning_torso/model.glb",
+      "masterHash": "sha256:ca3b92b9baf1931ba702acb8145f8979c2e249b0b3f1ad31b6e8628355e615cf",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:d9bf2115d8cd4a200be19a3b3382d9841dfafaa485843d80804b7cd8f9c0e444",
+          "bytes": 15168,
+          "gzipBytes": 9423,
+          "triangles": 998,
+          "cpuBytes": 14116,
+          "gpuBytes": 14116,
+          "errorMeters": 58.891376391625954,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:4542d80d124de0242bc3ed46409792b4634b6a4a97da97cf5ecc6715401eb03c",
+          "bytes": 2777292,
+          "gzipBytes": 930122,
+          "triangles": 24696,
+          "cpuBytes": 2772288,
+          "gpuBytes": 2772288,
+          "errorMeters": 0.3751704892603599,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:84316540a5054b52b513288cbe755f6e494118c014c6b7a78fde24dd5fa93b88",
+          "bytes": 3066836,
+          "gzipBytes": 1014964,
+          "triangles": 27336,
+          "cpuBytes": 3061836,
+          "gpuBytes": 3061836,
+          "errorMeters": 0.18779747441848332,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:d77823209db3beac5cb8428bac2b77a4927ed7b19149e24deee17e596ee84797",
+          "bytes": 7307648,
+          "gzipBytes": 2244040,
+          "triangles": 64436,
+          "cpuBytes": 7302636,
+          "gpuBytes": 7302636,
+          "errorMeters": 0.06910101264933852,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0157_woolworth_building/model.glb",
+      "masterHash": "sha256:dd5ee8134acb2f956091b8a22f0679498a5a33a4d846da1c84bcfdf9663f15b8",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:ebabeba5148991f2dde982f5f27fa6b786d435bc0572aa01ca3c105fc39fe254",
+          "bytes": 14732,
+          "gzipBytes": 8025,
+          "triangles": 998,
+          "cpuBytes": 13684,
+          "gpuBytes": 13684,
+          "errorMeters": 74.79555012382595,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:0841df6d755ac618c2f3d08df861771a545b4ecdc587c97d49135f057880526f",
+          "bytes": 3825988,
+          "gzipBytes": 790558,
+          "triangles": 39144,
+          "cpuBytes": 3821112,
+          "gpuBytes": 3821112,
+          "errorMeters": 0.47634325314001214,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:ca6eddfe6abe3aa275fc8562f3c3141a9f86a0458672ce3f7c503c13061a6dd1",
+          "bytes": 6275044,
+          "gzipBytes": 1191638,
+          "triangles": 60420,
+          "cpuBytes": 6270156,
+          "gpuBytes": 6270156,
+          "errorMeters": 0.23712432825781887,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:080b1682e0b1dc33bd205e551ee4a71a8aa999923f108a2a7f32418bc5bd3fed",
+          "bytes": 12648896,
+          "gzipBytes": 2263084,
+          "triangles": 129230,
+          "cpuBytes": 12643980,
+          "gpuBytes": 12643980,
+          "errorMeters": 0.11857318353761229,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dp/dpz/n0227_first_canadian_place/model.glb",
+      "masterHash": "sha256:cb9de2e0e5116c0b49062e5ba2fe23361e9a8643c8248180739b3d67acbb3be9",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:1207959b09e5340b11ac31574d4b9a9a5ac9de7cbcec2462cd92c9cd281739e4",
+          "bytes": 15096,
+          "gzipBytes": 7963,
+          "triangles": 999,
+          "cpuBytes": 14060,
+          "gpuBytes": 14060,
+          "errorMeters": 109.99272703229063,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:b3d2e436af7f9f8cf1aa5fa15c70f7e4e2981f98265ab0ce3344e2ae00feab69",
+          "bytes": 9823528,
+          "gzipBytes": 1282522,
+          "triangles": 103596,
+          "cpuBytes": 9811632,
+          "gpuBytes": 9811632,
+          "errorMeters": 0.6979314098432645,
+          "drawCalls": 10
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:4f443c41f2f95bf68237c0b521cc1464ec185f7de109434a27020afe7fc07559",
+          "bytes": 10860780,
+          "gzipBytes": 1479997,
+          "triangles": 114511,
+          "cpuBytes": 10848848,
+          "gpuBytes": 10848848,
+          "errorMeters": 0.34962497699633166,
+          "drawCalls": 10
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:0ee817029d44900d1f59970660a47e08029ba7707d8b632832754c4acd335c61",
+          "bytes": 15335844,
+          "gzipBytes": 2023171,
+          "triangles": 151535,
+          "cpuBytes": 15323880,
+          "gpuBytes": 15323880,
+          "errorMeters": 0.1751409920472648,
+          "drawCalls": 10
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dp/dp3/n0228_two_prudential_plaza/model.glb",
+      "masterHash": "sha256:08d9791247edb1b42a025965caf104aeb76c75dd2b886d7f00f1e4693cb05108",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:b978c72777764b411f1585b3867526a9d4af8942c4f3846403bc16e7e57cc5be",
+          "bytes": 15396,
+          "gzipBytes": 7503,
+          "triangles": 999,
+          "cpuBytes": 14348,
+          "gpuBytes": 14348,
+          "errorMeters": 93.97406791237677,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:f5cf929dc3351a5ec3d564cf288951f247dbdb13e33a2e934e355a51540cad6a",
+          "bytes": 36733200,
+          "gzipBytes": 4304203,
+          "triangles": 350988,
+          "cpuBytes": 36723456,
+          "gpuBytes": 36723456,
+          "errorMeters": 0.5869756549161429,
+          "drawCalls": 8
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:a5c56a8eca945a381c7c9cd66775e9444dbc905e78ed9dac81a77d7774482c4e",
+          "bytes": 36957712,
+          "gzipBytes": 4346991,
+          "triangles": 353666,
+          "cpuBytes": 36947976,
+          "gpuBytes": 36947976,
+          "errorMeters": 0.2974912628313777,
+          "drawCalls": 8
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:6965b64aa46d96f36e3e367a15a7159b00cf78f3c71b3c090ce27c2d5bd4879c",
+          "bytes": 41283296,
+          "gzipBytes": 4883263,
+          "triangles": 401750,
+          "cpuBytes": 41273552,
+          "gpuBytes": 41273552,
+          "errorMeters": 0.1496278621147512,
+          "drawCalls": 8
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/xn/xn7/n0137_mode_gakuen_cocoon_tower/model.glb",
+      "masterHash": "sha256:c220e6ef20634c08a11a2c3108664abcea6f185ab86f01996b0d49f5e1f5460f",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:d1237024ee5decce894494bd1515499a3bbcba6d3dace411e869fcf4609f4906",
+          "bytes": 14136,
+          "gzipBytes": 8861,
+          "triangles": 994,
+          "cpuBytes": 13084,
+          "gpuBytes": 13084,
+          "errorMeters": 63.098644676411226,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:5542ea1a6c0e283f471caa506ae29a2b80c85fedfc1b69ff17e4a0c07b0add46",
+          "bytes": 6691428,
+          "gzipBytes": 1997487,
+          "triangles": 56367,
+          "cpuBytes": 6687576,
+          "gpuBytes": 6687576,
+          "errorMeters": 0.385095189462892,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:1616800b06796eedb1826cd303ac39fc8410dd72ea1b84e7172ebc607c1df7b4",
+          "bytes": 14241740,
+          "gzipBytes": 3879658,
+          "triangles": 124636,
+          "cpuBytes": 14237892,
+          "gpuBytes": 14237892,
+          "errorMeters": 0.1998921535664756,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:06c4fa72f16e207bd345fc92eb39e410f321757d3bb5d7d75ff554403f88345e",
+          "bytes": 18063288,
+          "gzipBytes": 4501829,
+          "triangles": 167224,
+          "cpuBytes": 18059436,
+          "gpuBytes": 18059436,
+          "errorMeters": 0.09975647813349758,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/6g/6gy/n0148_edificio_altino_arantes/model.glb",
+      "masterHash": "sha256:721cd5c496a27e97792db12434d73194dd5bbe52f016f22246c7b003dce36c46",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:21ab5d52c9681a80a9306c2b68606a6b838b9dc44f4cf34fa2f873c65719fa96",
+          "bytes": 14376,
+          "gzipBytes": 7145,
+          "triangles": 992,
+          "cpuBytes": 13328,
+          "gpuBytes": 13328,
+          "errorMeters": 49.95219000604477,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:ca7eca6c69ca9c978a0859c6895ea3547aab23645989da78f201c17723a6f7b9",
+          "bytes": 899472,
+          "gzipBytes": 177201,
+          "triangles": 13422,
+          "cpuBytes": 893448,
+          "gpuBytes": 893448,
+          "errorMeters": 0.31803598627064744,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:89243a7dc0838d5174e232dea14886297e4d09b1ebee3e0eb2e3d06969f9e55c",
+          "bytes": 1595096,
+          "gzipBytes": 269509,
+          "triangles": 19824,
+          "cpuBytes": 1589040,
+          "gpuBytes": 1589040,
+          "errorMeters": 0.15813195518957635,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:e996e936205b03fe21df515c247cd1dcdba146daab1743549e49415e32dd7fb1",
+          "bytes": 3136232,
+          "gzipBytes": 483933,
+          "triangles": 32360,
+          "cpuBytes": 3133320,
+          "gpuBytes": 3133320,
+          "errorMeters": 0,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dp/dp3/n0171_875_north_michigan_avenue/model.glb",
+      "masterHash": "sha256:a82d600472e668405b2e60f5b49c29339a7d4d58b1d9022dc86dc9484cef369d",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:7c7bdc108a97bc347ef5c8426ca58c7d8682bf1c24e05bd2d398e0ed81bce4ba",
+          "bytes": 14584,
+          "gzipBytes": 9342,
+          "triangles": 1000,
+          "cpuBytes": 13536,
+          "gpuBytes": 13536,
+          "errorMeters": 141.56528727057346,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:48bf7ad56c53b79b7e1ce2e9fa67196e8475d1af2f81e643ed4592e06c1e57bb",
+          "bytes": 11025368,
+          "gzipBytes": 2622327,
+          "triangles": 112499,
+          "cpuBytes": 11020440,
+          "gpuBytes": 11020440,
+          "errorMeters": 0.9009666851989822,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:28fc6e4ef67ed86c8b5455c1991a220428c3cf1b4625de12ed46a787ce02e3b5",
+          "bytes": 11117388,
+          "gzipBytes": 2646981,
+          "triangles": 113347,
+          "cpuBytes": 11112456,
+          "gpuBytes": 11112456,
+          "errorMeters": 0.4465670492168464,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:d24778cfbb0c6ddfcee4468272efae1c2cbcd88fb230f2705b058f582879de95",
+          "bytes": 11194212,
+          "gzipBytes": 2670324,
+          "triangles": 114130,
+          "cpuBytes": 11189280,
+          "gpuBytes": 11189280,
+          "errorMeters": 0.22483249286394308,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dp/dp3/n0172_aon_center/model.glb",
+      "masterHash": "sha256:fc64fc7741ad7837f533f031658549bf26af5e08b72be93ed6b5f1eeab2a5108",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:e50e505220198fc5a355fef7cc3779c686a2f3eb9df86f4beb97dea353fa7c94",
+          "bytes": 14732,
+          "gzipBytes": 7700,
+          "triangles": 1000,
+          "cpuBytes": 13680,
+          "gpuBytes": 13680,
+          "errorMeters": 107.29713062333026,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:58ac557d7bdeb554b1352ba9397961bf13b0d103f8d6882765a0170f3c81b41b",
+          "bytes": 6508652,
+          "gzipBytes": 1224962,
+          "triangles": 78936,
+          "cpuBytes": 6502416,
+          "gpuBytes": 6502416,
+          "errorMeters": 0.6817524950578312,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:541b07155a2b5ed48d5ec7588d30af8a542c4687c287c91b11ca1e83841e5706",
+          "bytes": 8310720,
+          "gzipBytes": 1502222,
+          "triangles": 95560,
+          "cpuBytes": 8304468,
+          "gpuBytes": 8304468,
+          "errorMeters": 0.3414330294169237,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:9adf76343fb469960bcdd9294cc178c655acbf01c38c439a5af5289b29b6e0f5",
+          "bytes": 11706484,
+          "gzipBytes": 2035144,
+          "triangles": 124568,
+          "cpuBytes": 11700228,
+          "gpuBytes": 11700228,
+          "errorMeters": 0.17105216336435328,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/w2/w28/n0178_merdeka_118/model.glb",
+      "masterHash": "sha256:6ec1d26ba40960d82253b67690089acc965d923e22857bba05b166612cc8c1b4",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:8dacb32e96b7fffcd190960769430a95e50c912c5d6e892ef672bd39633a191f",
+          "bytes": 14488,
+          "gzipBytes": 9163,
+          "triangles": 955,
+          "cpuBytes": 13444,
+          "gpuBytes": 13444,
+          "errorMeters": 210.34975035401814,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:215726330c32adec6bb7d3efecf6aa3d10bee91e0d92312c4d2684491a1d473d",
+          "bytes": 12901644,
+          "gzipBytes": 3090062,
+          "triangles": 121609,
+          "cpuBytes": 12895416,
+          "gpuBytes": 12895416,
+          "errorMeters": 1.3402959286124037,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:f6e1ed728b0bfc25621aabc63786879e8698acab9537c7e85f5c1cea1790f12e",
+          "bytes": 13376008,
+          "gzipBytes": 3238800,
+          "triangles": 125763,
+          "cpuBytes": 13369760,
+          "gpuBytes": 13369760,
+          "errorMeters": 0.669950494118061,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:74b9611af09cddc2059dcb448fb4cd4b291457733fc04d997df3bc17921ee3f7",
+          "bytes": 14011136,
+          "gzipBytes": 3417727,
+          "triangles": 130097,
+          "cpuBytes": 14004876,
+          "gpuBytes": 14004876,
+          "errorMeters": 0.3352476700879764,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/xn/xn7/n0189_yokohama_landmark_tower/model.glb",
+      "masterHash": "sha256:e887ec50f1f3c1503647c49094d94347bf14da409567c9d99285cd656fedbca0",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:24592d5276da4e05f80bcbbb893ff2d84c389ac4d56e2ba6b5c9a76fa43dd9e2",
+          "bytes": 13880,
+          "gzipBytes": 7212,
+          "triangles": 1000,
+          "cpuBytes": 12832,
+          "gpuBytes": 12832,
+          "errorMeters": 91.8051972385006,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:87e64aff61b5a5e6830490ec6c9f1c4c3e08b0266010e5423758f708b2a84ca6",
+          "bytes": 10787496,
+          "gzipBytes": 2004167,
+          "triangles": 104879,
+          "cpuBytes": 10778996,
+          "gpuBytes": 10778996,
+          "errorMeters": 0.5670691283450715,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:f0668a8be6da9ebdcef492966e24fbcecb354ffe547b9733c4d6dd54eb9c2584",
+          "bytes": 11185888,
+          "gzipBytes": 2081691,
+          "triangles": 109558,
+          "cpuBytes": 11177376,
+          "gpuBytes": 11177376,
+          "errorMeters": 0.291793547665387,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:156072f0398dd01399059ee34cddeb1f84835ddc7e6d83acb6f154564c1ebf5e",
+          "bytes": 12504420,
+          "gzipBytes": 2329585,
+          "triangles": 123743,
+          "cpuBytes": 12495896,
+          "gpuBytes": 12495896,
+          "errorMeters": 0.1463254802402405,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/we/wec/n0181_central_plaza/model.glb",
+      "masterHash": "sha256:8ed471aa9e441df5441f0b4381e77ea18531956d2daf31c51fb32c2e9afecb02",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:b09b110ac3aa89685e60c292be53e6a6d54ca6df3fae51d4ed1d75b843b2fb42",
+          "bytes": 14724,
+          "gzipBytes": 8394,
+          "triangles": 999,
+          "cpuBytes": 13676,
+          "gpuBytes": 13676,
+          "errorMeters": 115.97261331883487,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:8eda5446ca35251ea738e3068eada8ea3bcd0539973f4920163f32c9a0a5bbff",
+          "bytes": 8425948,
+          "gzipBytes": 1633762,
+          "triangles": 100489,
+          "cpuBytes": 8417468,
+          "gpuBytes": 8417468,
+          "errorMeters": 0.7394845338162533,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:26e6c56a755ea3c14628b40ac8b045d74f2aaa19e07d71fbcffc3d5fdd2e1e2b",
+          "bytes": 8758444,
+          "gzipBytes": 1702698,
+          "triangles": 103921,
+          "cpuBytes": 8749952,
+          "gpuBytes": 8749952,
+          "errorMeters": 0.3674092815069731,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:f90ec2944fa0484b3322eaab58aca199379d554b8520f96d37ab9a9b724869d5",
+          "bytes": 10697116,
+          "gzipBytes": 2075950,
+          "triangles": 123688,
+          "cpuBytes": 10688592,
+          "gpuBytes": 10688592,
+          "errorMeters": 0.1837750412895469,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/u3/u3q/n0146_palace_of_culture_and_science/model.glb",
+      "masterHash": "sha256:a0a1a3a0ffc33b8a74b852d6cb6ecaa4fac5054fa53aa5ec9d9c5e7e468ce7e0",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:54e81004b21b5678bf7c9e7d5b337861d048aa333e3beb4edf759b9ebe227701",
+          "bytes": 13700,
+          "gzipBytes": 7328,
+          "triangles": 986,
+          "cpuBytes": 12652,
+          "gpuBytes": 12652,
+          "errorMeters": 82.83511993775006,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:7883bb0510f572291149f7e090378ec6c2430af5bf1dcbd2fbd7746c7f1bf45c",
+          "bytes": 7146196,
+          "gzipBytes": 1232957,
+          "triangles": 91356,
+          "cpuBytes": 7141300,
+          "gpuBytes": 7141300,
+          "errorMeters": 0.5280384501855808,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:48f9518d85a9af95182000c23fdfd75c5a8c08dfc874e198315982f793592dad",
+          "bytes": 10990764,
+          "gzipBytes": 1797597,
+          "triangles": 127504,
+          "cpuBytes": 10985848,
+          "gpuBytes": 10985848,
+          "errorMeters": 0.2635767351111391,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:727e417678d640bfdd42f4cfebbf4a5a3a693daa7622b495e1e17c28ff23cc3e",
+          "bytes": 14412300,
+          "gzipBytes": 2287512,
+          "triangles": 163730,
+          "cpuBytes": 14407380,
+          "gpuBytes": 14407380,
+          "errorMeters": 0.13122965596718683,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/we/wec/n0156_bank_of_china_tower/model.glb",
+      "masterHash": "sha256:92cfec2915c73e457c658080c560547252270783dd418127b165795664d7a3dd",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:93ddaa5e2b237f32ae250e6f963a94ab756706282b051e33a5de064d3b4541b5",
+          "bytes": 15112,
+          "gzipBytes": 8484,
+          "triangles": 999,
+          "cpuBytes": 14060,
+          "gpuBytes": 14060,
+          "errorMeters": 113.83472651172838,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:ace006ac8117b274636adf64b760b7de9f9dd332950662974ee725de6d24a293",
+          "bytes": 7116716,
+          "gzipBytes": 1307514,
+          "triangles": 86680,
+          "cpuBytes": 7112868,
+          "gpuBytes": 7112868,
+          "errorMeters": 0.7155999005217478,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:71bcbffcef65be7649730d5bc4af4de953034b47231696489269c2e82d458d80",
+          "bytes": 7140248,
+          "gzipBytes": 1314651,
+          "triangles": 86879,
+          "cpuBytes": 7136396,
+          "gpuBytes": 7136396,
+          "errorMeters": 0.3616256147811376,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:a1a6eba01a62c9e81ebe63575a021a3fa34298e4dba73b798a06930f2121321e",
+          "bytes": 7174772,
+          "gzipBytes": 1325560,
+          "triangles": 87180,
+          "cpuBytes": 7170920,
+          "gpuBytes": 7170920,
+          "errorMeters": 0.18036503494727427,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/tj/tj4/n0180_al_hamra_tower/model.glb",
+      "masterHash": "sha256:8b11942bc4c0a2cce5dcdbe9aa89e9aa873d3ddaeb390f7cf6b0b6a4567ec43a",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:09f15c99d5913b1d63ced5d2bb0d757b23b17dff262dbab1f42c98ed41ea751f",
+          "bytes": 14724,
+          "gzipBytes": 8540,
+          "triangles": 999,
+          "cpuBytes": 13676,
+          "gpuBytes": 13676,
+          "errorMeters": 127.83704853387314,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:a162f95a4b196fc03e7f601ea22972fb53a15b286ba14b39e41214f567630041",
+          "bytes": 8512872,
+          "gzipBytes": 1593560,
+          "triangles": 132115,
+          "cpuBytes": 8504560,
+          "gpuBytes": 8504560,
+          "errorMeters": 0.8118346471094147,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:b04de0f307db0c8c75cefed3a5a9736ad4cf2eb0277bf9c490ab3d9e603c0cdb",
+          "bytes": 9103328,
+          "gzipBytes": 1697988,
+          "triangles": 138757,
+          "cpuBytes": 9094992,
+          "gpuBytes": 9094992,
+          "errorMeters": 0.4053240189206131,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:9439d7c528ab8a9397f4b1191ed455cc2b419c50cdd14d401359a1f98c595af4",
+          "bytes": 9475540,
+          "gzipBytes": 1769537,
+          "triangles": 144272,
+          "cpuBytes": 9467168,
+          "gpuBytes": 9467168,
+          "errorMeters": 0.20376818971095123,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/wt/wtw/n0140_shanghai_world_financial_center/model.glb",
+      "masterHash": "sha256:f981aab9c78c8c86a3325f202d0d4d1ef6aa8600c2b1f56dd4f101ae3068c9d8",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:6b8945dc3a6a364b79382c69b5a38e84f850770c9708f987418a6b2617e85a5a",
+          "bytes": 14536,
+          "gzipBytes": 8954,
+          "triangles": 997,
+          "cpuBytes": 13504,
+          "gpuBytes": 13504,
+          "errorMeters": 152.4406245067239,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:0031e6e15df9ce4ce574faaf3f1bbe046bb2f032793f99dc97ed4dc0c2c8bc0f",
+          "bytes": 511044,
+          "gzipBytes": 147150,
+          "triangles": 4541,
+          "cpuBytes": 507236,
+          "gpuBytes": 507236,
+          "errorMeters": 0.9490054912018924,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:9ddd473e63e07a7f496b7c728a476a480c5912be527f35f94721ecb19158ee10",
+          "bytes": 1395108,
+          "gzipBytes": 419437,
+          "triangles": 13537,
+          "cpuBytes": 1391300,
+          "gpuBytes": 1391300,
+          "errorMeters": 0.38684855732560897,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:4ce48908571a978ad5542eb18b858461093f0c560d72d6f55777cffce318a099",
+          "bytes": 6925860,
+          "gzipBytes": 1939007,
+          "triangles": 63005,
+          "cpuBytes": 6922028,
+          "gpuBytes": 6922028,
+          "errorMeters": 0.19030360297978294,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dp/dp3/n0174_trump_international_hotel_and_tower/model.glb",
+      "masterHash": "sha256:03f4cdd79c347c78cb0b1659aa18f85495d31dfa515e2ef29133e237802d01c4",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:db59a0a45d7fc55f6482d10f22da45843bd8f4ccef6f624afe2e7c12a8960b77",
+          "bytes": 14516,
+          "gzipBytes": 8693,
+          "triangles": 999,
+          "cpuBytes": 13468,
+          "gpuBytes": 13468,
+          "errorMeters": 131.12372416919828,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:0633bc728972edb13161b4e0df0a51576b5ec2d4d005d2d14cfc00bb73b6d6c3",
+          "bytes": 11369492,
+          "gzipBytes": 1984098,
+          "triangles": 120553,
+          "cpuBytes": 11361140,
+          "gpuBytes": 11361140,
+          "errorMeters": 0.8360288727827625,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:1430536ff58025276b204208844ef6ef0d24d58cf5c9504eb915b7dd455121fe",
+          "bytes": 11465488,
+          "gzipBytes": 2011180,
+          "triangles": 121412,
+          "cpuBytes": 11457120,
+          "gpuBytes": 11457120,
+          "errorMeters": 0.4155400091681757,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:679f58edc63361ca67d38ffd2e327423c1b2677b7da22a314aa9513d95ba521c",
+          "bytes": 12899168,
+          "gzipBytes": 2254556,
+          "triangles": 133900,
+          "cpuBytes": 12890772,
+          "gpuBytes": 12890772,
+          "errorMeters": 0.20780898602177095,
+          "drawCalls": 7
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/xn/xn0/n0139_abeno_harukas/model.glb",
+      "masterHash": "sha256:aabcf4cc69be622ced895cb5533d9b9a3d77d91ec209b6d348a4d5421d0d5aa7",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:05340fe91b9b77f8dad3dcc704308fd86e065fadd01fff57f929626f812c36af",
+          "bytes": 13392,
+          "gzipBytes": 7086,
+          "triangles": 998,
+          "cpuBytes": 12356,
+          "gpuBytes": 12356,
+          "errorMeters": 92.95160030897799,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:1a3a771b8b57e7cc72500b86fc18b5cfc9e59584f38a5ab47bd62da2393cef78",
+          "bytes": 11079996,
+          "gzipBytes": 2018073,
+          "triangles": 153042,
+          "cpuBytes": 11074992,
+          "gpuBytes": 11074992,
+          "errorMeters": 0.5914838427116321,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:0dbd80473f4e0860e2c115c518945c048703c85b8065c93a0281e4e888b7f6d5",
+          "bytes": 11487216,
+          "gzipBytes": 2090892,
+          "triangles": 156598,
+          "cpuBytes": 11482212,
+          "gpuBytes": 11482212,
+          "errorMeters": 0.29570130079040163,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:1420c7319727c81a96611fa4b8584b27bc52b0c92c34ce58ad22f4bb6603380a",
+          "bytes": 11987344,
+          "gzipBytes": 2154956,
+          "triangles": 162330,
+          "cpuBytes": 11982336,
+          "gpuBytes": 11982336,
+          "errorMeters": 0.14746088072185334,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0218_4_world_trade_center/model.glb",
+      "masterHash": "sha256:064a25b117a5de487d0022707c14712a682dca11d1441d6c4c6eeeff16628ca5",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:8ca233ecd3c8ae0028bb6064d4de0cb9744d8f266a6db6ebb6fd2f894f85bbfb",
+          "bytes": 13688,
+          "gzipBytes": 7731,
+          "triangles": 989,
+          "cpuBytes": 12640,
+          "gpuBytes": 12640,
+          "errorMeters": 92.23897137327583,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:067c3932586d5ff927647546c06396359d4c152b720e960ac30dab696c67ad59",
+          "bytes": 16947028,
+          "gzipBytes": 3229489,
+          "triangles": 200400,
+          "cpuBytes": 16937328,
+          "gpuBytes": 16937328,
+          "errorMeters": 0.5726698620555107,
+          "drawCalls": 8
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:f9cb5f4870553e43100b087f37af5ca5fec787e6a5fd665f53cd4f66773b871f",
+          "bytes": 17052744,
+          "gzipBytes": 3252079,
+          "triangles": 201374,
+          "cpuBytes": 17043036,
+          "gpuBytes": 17043036,
+          "errorMeters": 0.29341651417003595,
+          "drawCalls": 8
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:2e999cffb77e9042e349c053267897092f16495d579fa794983bac702afc0851",
+          "bytes": 17289680,
+          "gzipBytes": 3290598,
+          "triangles": 204092,
+          "cpuBytes": 17279964,
+          "gpuBytes": 17279964,
+          "errorMeters": 0.14566856581562024,
+          "drawCalls": 8
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0155_new_york_times_building/model.glb",
+      "masterHash": "sha256:2d5937e2ad7686b775f533c6b7dbefc84ed7cfe51a814a636f590f522268eb67",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:5932e13ad14bcdce67f9be1b0e5d3c475afe72280c4468c3ef4ecae5945b7e96",
+          "bytes": 14252,
+          "gzipBytes": 7616,
+          "triangles": 998,
+          "cpuBytes": 13220,
+          "gpuBytes": 13220,
+          "errorMeters": 98.83853499521327,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:cafbea0a483aa0797bd0dd25529d0feca52c74cb110e6cab864acdbd0d70e269",
+          "bytes": 9261032,
+          "gzipBytes": 1877289,
+          "triangles": 92343,
+          "cpuBytes": 9254840,
+          "gpuBytes": 9254840,
+          "errorMeters": 0.6120178159095648,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:12b0b6173741ae401e344686362de63d8516e48b1fd69fad8e5232c7de48d769",
+          "bytes": 9953904,
+          "gzipBytes": 2041203,
+          "triangles": 98535,
+          "cpuBytes": 9947684,
+          "gpuBytes": 9947684,
+          "errorMeters": 0.3129536686349811,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:f1d9a03da6a94ae7d8f6a1b0aa61788c15057def094f52e0f728fd39de98e419",
+          "bytes": 13303184,
+          "gzipBytes": 2693943,
+          "triangles": 126951,
+          "cpuBytes": 13296956,
+          "gpuBytes": 13296956,
+          "errorMeters": 0.15662109245900818,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/r7/r7j/n0162_q1_tower/model.glb",
+      "masterHash": "sha256:aee0daaa6cbae4d51c26c896f80e05cb7f2af1e003b74067d12627e5be575ca9",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:fcb48790fa4a7efb78788e8c82032da8f161cb79318e6871aaf21cd157c3a461",
+          "bytes": 14512,
+          "gzipBytes": 8351,
+          "triangles": 998,
+          "cpuBytes": 13476,
+          "gpuBytes": 13476,
+          "errorMeters": 99.92297033215135,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:a939c4b8975b9e176078aa603d1347398560ab6ce42e296a7ef7e0aaaf9145e6",
+          "bytes": 11045364,
+          "gzipBytes": 2006583,
+          "triangles": 108652,
+          "cpuBytes": 11039132,
+          "gpuBytes": 11039132,
+          "errorMeters": 0.63427908071335,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:24cb9b2ead7613880712e6f15666bd62b7cdfa315890620e4c9c05855ec7dd20",
+          "bytes": 11160516,
+          "gzipBytes": 2045267,
+          "triangles": 109696,
+          "cpuBytes": 11154284,
+          "gpuBytes": 11154284,
+          "errorMeters": 0.3169908863726052,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:cc09259c97bf28e042f78ecfe576878072b57e1be67f1cadd180c52a0c7c4c0a",
+          "bytes": 11590768,
+          "gzipBytes": 2163056,
+          "triangles": 113475,
+          "cpuBytes": 11584532,
+          "gpuBytes": 11584532,
+          "errorMeters": 0.15833574744178813,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/uc/ucf/n0169_mercury_city_tower/model.glb",
+      "masterHash": "sha256:3fe90ecba10a2e6e83808bce4aea4c89f8d44f61a10e090f99c403056f980ab8",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:17e946017340ec62b0852aa5b23cdb9a86eae0356d6ddc988bf11c325ad3668d",
+          "bytes": 14296,
+          "gzipBytes": 8533,
+          "triangles": 1000,
+          "cpuBytes": 13248,
+          "gpuBytes": 13248,
+          "errorMeters": 104.98077674363054,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:a7b45e241f69c5019047d1f2567e555d6a40270b1cdd7b6c4e70ad842f3a9fb7",
+          "bytes": 14356068,
+          "gzipBytes": 2998690,
+          "triangles": 146346,
+          "cpuBytes": 14352200,
+          "gpuBytes": 14352200,
+          "errorMeters": 0.6687746022640029,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:6aedc11ee7d2bbd57e7962936b0123e55dd8812ce58c62857b50ddc2897665bd",
+          "bytes": 15133756,
+          "gzipBytes": 3143097,
+          "triangles": 152996,
+          "cpuBytes": 15129888,
+          "gpuBytes": 15129888,
+          "errorMeters": 0.3326779591291328,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:168694a423863648b023b16630dc0059afc5de8a5bf91aa2fff1f88de00f3991",
+          "bytes": 15618784,
+          "gzipBytes": 3238280,
+          "triangles": 158031,
+          "cpuBytes": 15614916,
+          "gpuBytes": 15614916,
+          "errorMeters": 0.16633861448611714,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/wx/wx4/n0185_china_media_group_guanghua_road_office_area/model.glb",
+      "masterHash": "sha256:ad02ac77823f96f5e4351264de16f5a0b85479cf80f002cfcab101f28dcd285a",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:e9b01bba33789ac5cbeea6fc77db7ea04b25fd9ba9b6ccf849b786ee97d1d7b7",
+          "bytes": 12176,
+          "gzipBytes": 6718,
+          "triangles": 987,
+          "cpuBytes": 11188,
+          "gpuBytes": 11188,
+          "errorMeters": 72.44647728081745,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:15cd58ba9f8e582d5af361657cc36ff54015c7989767cae24e97d00857046eac",
+          "bytes": 600768,
+          "gzipBytes": 150629,
+          "triangles": 5729,
+          "cpuBytes": 597056,
+          "gpuBytes": 597056,
+          "errorMeters": 0.4614984809362287,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:76c873d5e54d94e655c04dc45053fba96152cc58d395c4f681bab6e9ec4d1bbf",
+          "bytes": 1578044,
+          "gzipBytes": 401468,
+          "triangles": 15982,
+          "cpuBytes": 1574308,
+          "gpuBytes": 1574308,
+          "errorMeters": 0.2220106407504973,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:5cb3c2047b1a2cf685c4194bc5fad6020b8ebc55f40afc6d9312c3db18b695cd",
+          "bytes": 5324156,
+          "gzipBytes": 1275765,
+          "triangles": 63888,
+          "cpuBytes": 5320400,
+          "gpuBytes": 5320400,
+          "errorMeters": 0.11138535586504625,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/ud/udt/n0160_lakhta_centre/model.glb",
+      "masterHash": "sha256:be74b57385f51621d47ae093c5086f036952abfd44d9e33528e48fd3bb630c21",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:52e4050ce96d17a82de2fbff4f9f78352243fd24a583a877f628a5f04f26ef15",
+          "bytes": 14460,
+          "gzipBytes": 9653,
+          "triangles": 1000,
+          "cpuBytes": 13424,
+          "gpuBytes": 13424,
+          "errorMeters": 143.14546447582612,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:f42019b4f09dffc5b3aa9143d1d21196ce8a6f3122dc06994adbdbf4f080cfbe",
+          "bytes": 15615232,
+          "gzipBytes": 5203867,
+          "triangles": 130136,
+          "cpuBytes": 15611400,
+          "gpuBytes": 15611400,
+          "errorMeters": 0.9081952477760279,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:c57dee672e2110784ec8bca47c38539c4094f01e3815e23a3a65cd0cd0f996ad",
+          "bytes": 16435828,
+          "gzipBytes": 5510776,
+          "triangles": 136976,
+          "cpuBytes": 16431996,
+          "gpuBytes": 16431996,
+          "errorMeters": 0.4540691030654889,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:2e7a682b1e4451a2258fa8f05d5269dde8b1d9832814215878cd8c807d789ac9",
+          "bytes": 17194988,
+          "gzipBytes": 5779022,
+          "triangles": 143336,
+          "cpuBytes": 17191140,
+          "gpuBytes": 17191140,
+          "errorMeters": 0.22678073260354906,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/u0/u0y/n0170_messeturm/model.glb",
+      "masterHash": "sha256:54e4b5bfffcd991c9104c86d5a1a3d33062a8923a0e91b8cbf68e141b2b2dc35",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:034c0b2ed935a3ee94ccd85466f55fb1d64b8ece6c3afcd0b178bc42a96c6101",
+          "bytes": 15096,
+          "gzipBytes": 8723,
+          "triangles": 1000,
+          "cpuBytes": 14048,
+          "gpuBytes": 14048,
+          "errorMeters": 79.47879256992672,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:f9ff2377ff7c7cc13b00eb5bc2a7b17b85f70e73933de195190f58f33d6e3b91",
+          "bytes": 7738540,
+          "gzipBytes": 1413856,
+          "triangles": 84462,
+          "cpuBytes": 7733536,
+          "gpuBytes": 7733536,
+          "errorMeters": 0.4881719694355383,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:fdae04633511c8aa919eab451a20fa2f7c510635cbc6b1c6cd7e4ccc93b35103",
+          "bytes": 7774460,
+          "gzipBytes": 1427508,
+          "triangles": 84788,
+          "cpuBytes": 7769440,
+          "gpuBytes": 7769440,
+          "errorMeters": 0.25080032874242736,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:de25fab786d43b99f4057468b8958719d03f5881d55351d32735d4638ec0f533",
+          "bytes": 11271724,
+          "gzipBytes": 2050808,
+          "triangles": 117006,
+          "cpuBytes": 11266676,
+          "gpuBytes": 11266676,
+          "errorMeters": 0.1267293293232534,
+          "drawCalls": 4
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/wt/wtw/n0145_jin_mao_tower/model.glb",
+      "masterHash": "sha256:e2c8c30a67f06a9d67d68dfa0ef5d0c6a1f3ea768727853831118c6dae3b266f",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:c4e5055c01be27f7c738a6ba588ef95e078d162ae097420de06ab223d1299831",
+          "bytes": 14624,
+          "gzipBytes": 7884,
+          "triangles": 998,
+          "cpuBytes": 13588,
+          "gpuBytes": 13588,
+          "errorMeters": 130.2871597664175,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:102dcfd49d5e215dc0aeebcf968d5ed59b64db0ed2df5119a6a28c5e28f4edaa",
+          "bytes": 15148792,
+          "gzipBytes": 2487003,
+          "triangles": 155133,
+          "cpuBytes": 15144936,
+          "gpuBytes": 15144936,
+          "errorMeters": 0.8255366973105538,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:3d502ee5aaf7a628ba03dee204d9e5fd7655de8a9c0108b172aa6886e84c9bf6",
+          "bytes": 15963476,
+          "gzipBytes": 2633363,
+          "triangles": 162489,
+          "cpuBytes": 15959616,
+          "gpuBytes": 15959616,
+          "errorMeters": 0.3974949713559681,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:e4222aa81e93e8fc8f0302d093a191e3d6795b2ee2a43dace27801597803f140",
+          "bytes": 18158420,
+          "gzipBytes": 3002064,
+          "triangles": 181457,
+          "cpuBytes": 18154560,
+          "gpuBytes": 18154560,
+          "errorMeters": 0.20640696565368444,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/gc/gcp/n0141_the_shard/model.glb",
+      "masterHash": "sha256:71cc5d9efbc30dd48fe7a167d41186763d8d051e709be2d359c5df36b219b11c",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:721cee25046543a3357e292e4c143be4c82cc81e50bad74ed8c0a84bd190ef6b",
+          "bytes": 14660,
+          "gzipBytes": 9054,
+          "triangles": 991,
+          "cpuBytes": 13612,
+          "gpuBytes": 13612,
+          "errorMeters": 95.94225608118583,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:3ce92233ad712d7463108fcc789e7d6dfdf2a98ceb5dc059744bf2cedfad140b",
+          "bytes": 1455040,
+          "gzipBytes": 469142,
+          "triangles": 14353,
+          "cpuBytes": 1451240,
+          "gpuBytes": 1451240,
+          "errorMeters": 0.6087033415189488,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:30fc83150d38e4beff5a9a71f2569fabfabd9e5b8f217973c61d0fa004b8e4fb",
+          "bytes": 2369676,
+          "gzipBytes": 731202,
+          "triangles": 22538,
+          "cpuBytes": 2365864,
+          "gpuBytes": 2365864,
+          "errorMeters": 0.30526126744106924,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:315d88c74ac26b789b4480b27f6ee88f94f0fee74dd8bb231bba3cdc12db638b",
+          "bytes": 5938828,
+          "gzipBytes": 1568194,
+          "triangles": 54513,
+          "cpuBytes": 5935008,
+          "gpuBytes": 5935008,
+          "errorMeters": 0.15227261842169124,
+          "drawCalls": 3
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/wt/wtw/n0144_oriental_pearl_tower/model.glb",
+      "masterHash": "sha256:752aca8154eccae054bbb81223fe00a25c765a983401f6da77f1f2d7f17c367e",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:54712edab38ff4fe7af75d2ada56dac378fb2040a8af9399f804bfe5c244261b",
+          "bytes": 15000,
+          "gzipBytes": 9550,
+          "triangles": 1000,
+          "cpuBytes": 13968,
+          "gpuBytes": 13968,
+          "errorMeters": 145.00449648200566,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:cb1460fd37f7d2bc71a72e18362ccf2b069450aae16e1a987dd9f29035f3badd",
+          "bytes": 14356488,
+          "gzipBytes": 3128073,
+          "triangles": 121234,
+          "cpuBytes": 14350264,
+          "gpuBytes": 14350264,
+          "errorMeters": 0.9238632914963723,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:3090cf9da949c8bae449e42384cefa5c3dd1232faf7a63fb1bd3d8f2c7a575b9",
+          "bytes": 17527944,
+          "gzipBytes": 3809109,
+          "triangles": 148490,
+          "cpuBytes": 17521704,
+          "gpuBytes": 17521704,
+          "errorMeters": 0.4619546531410694,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:d06ae177d652805d6c0b7ff5808fae6561a4a57efdfdd9824af60cf3cbe80402",
+          "bytes": 20201980,
+          "gzipBytes": 4453963,
+          "triangles": 171652,
+          "cpuBytes": 20195732,
+          "gpuBytes": 20195732,
+          "errorMeters": 0.2297527938471079,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/u0/u0y/n0159_commerzbank_tower/model.glb",
+      "masterHash": "sha256:c10fc6f9f124374dd2f8d1a67fb05f104cc4d86f95fef2b24107dcb3a422f406",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:a702e7b9dad0db2e73a74f3be41cf3f926e46708e6c17f19da39b2d91a18c370",
+          "bytes": 14700,
+          "gzipBytes": 8677,
+          "triangles": 1000,
+          "cpuBytes": 13664,
+          "gpuBytes": 13664,
+          "errorMeters": 92.95160030897799,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:9386fc00a539e2212ea8b7ed8573297c880c9054ab30d699eeabeba53a9ec1d8",
+          "bytes": 18510532,
+          "gzipBytes": 3444522,
+          "triangles": 181681,
+          "cpuBytes": 18504416,
+          "gpuBytes": 18504416,
+          "errorMeters": 0.5916283243705677,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:c83c035b0f1be4fc35677b27cd6fdb47d5aac3fa2e9559f85718cbd20c005f62",
+          "bytes": 18929528,
+          "gzipBytes": 3523016,
+          "triangles": 185944,
+          "cpuBytes": 18923412,
+          "gpuBytes": 18923412,
+          "errorMeters": 0.2963337656761133,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:ee0a27e170f736e5e5e32b95959102746da03382bdda523f50f046a53ca241ae",
+          "bytes": 19836252,
+          "gzipBytes": 3713171,
+          "triangles": 195392,
+          "cpuBytes": 19830132,
+          "gpuBytes": 19830132,
+          "errorMeters": 0.14725373968009767,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/9q/9qq/n0204_luxor_resort_casino/model.glb",
+      "masterHash": "sha256:4f29dde45cb05c41b0befe937d4cfa6b4ecb574537d724067a7f40a72a7411f4",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:4924a8b6ff0da3c8f2803fe6fcf61f7cf47dab535ea87d25df3ab1ac5455f1da",
+          "bytes": 14152,
+          "gzipBytes": 8456,
+          "triangles": 998,
+          "cpuBytes": 13108,
+          "gpuBytes": 13108,
+          "errorMeters": 113.0363342328078,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:92fe4065910cd5363ab576c035a338d2d440a43626b9606e15a3636ac72fcb65",
+          "bytes": 1024112,
+          "gzipBytes": 222413,
+          "triangles": 10763,
+          "cpuBytes": 1018040,
+          "gpuBytes": 1018040,
+          "errorMeters": 0.7166560109684442,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:62ce77664bb2d288986d286de8d6abdbc82a24b9772288e15045497a9cca4f96",
+          "bytes": 1713744,
+          "gzipBytes": 386826,
+          "triangles": 18101,
+          "cpuBytes": 1707656,
+          "gpuBytes": 1707656,
+          "errorMeters": 0.360451927593826,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:4ea2fede5a92ca811f5d554ca4bec4e03f936660d01efb808eecab3022c75609",
+          "bytes": 6947456,
+          "gzipBytes": 1782390,
+          "triangles": 63982,
+          "cpuBytes": 6941336,
+          "gpuBytes": 6941336,
+          "errorMeters": 0.16699216058427033,
+          "drawCalls": 5
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0197_432_park_avenue/model.glb",
+      "masterHash": "sha256:61afcd711b3fa535c307e9f9f5b2ed7ffa0612f2d6e2d2f90a02a43794ef4b75",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:ccd1269dd36b0b5983f3ccc8a157ae889a31f78b3ef4d8bf8f46c1f0a1e1adeb",
+          "bytes": 14688,
+          "gzipBytes": 6859,
+          "triangles": 939,
+          "cpuBytes": 13652,
+          "gpuBytes": 13652,
+          "errorMeters": 131.83635310490047,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:86f36afd3b154d9f7926463c18ee928bc35d7f879e01f3bbe965171b6a4dc145",
+          "bytes": 3088404,
+          "gzipBytes": 516370,
+          "triangles": 40874,
+          "cpuBytes": 3081180,
+          "gpuBytes": 3081180,
+          "errorMeters": 0.8378265320182143,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:b353cd9439f608bffd01cf8c7ca45539ad33f9cffe3b703e0444d260674ad176",
+          "bytes": 4197672,
+          "gzipBytes": 740864,
+          "triangles": 51090,
+          "cpuBytes": 4190436,
+          "gpuBytes": 4190436,
+          "errorMeters": 0.4129207938373237,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:1dbb0224312deba0f36ab747738b8082ebc43deae956ce6d7a00ff678c2dbac3",
+          "bytes": 8850104,
+          "gzipBytes": 1548859,
+          "triangles": 92567,
+          "cpuBytes": 8842856,
+          "gpuBytes": 8842856,
+          "errorMeters": 0.2088670834630802,
+          "drawCalls": 6
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0193_metropolitan_life_insurance_company_tower/model.glb",
+      "masterHash": "sha256:0444a8fea1f0df4db5cd99909c74ded0eb8fe429fb362ed37c0e4c2405bd6856",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:8f2bdc0f98f2188001483020df2ea6bd50faf36075b336d5d546df803444fb71",
+          "bytes": 14668,
+          "gzipBytes": 7826,
+          "triangles": 1000,
+          "cpuBytes": 13616,
+          "gpuBytes": 13616,
+          "errorMeters": 66.10717813974516,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:963253f4853ae95390485324763b47f4b4cedece7f074f50883513a02d37dbf0",
+          "bytes": 2260460,
+          "gzipBytes": 427688,
+          "triangles": 23115,
+          "cpuBytes": 2249556,
+          "gpuBytes": 2249556,
+          "errorMeters": 0.4213454460443619,
+          "drawCalls": 9
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:c59a807789240a568a1eca4c743d8aeeebeeaee3b234e952d87b28d8155b1545",
+          "bytes": 4870984,
+          "gzipBytes": 955686,
+          "triangles": 46809,
+          "cpuBytes": 4860060,
+          "gpuBytes": 4860060,
+          "errorMeters": 0.21072823729820864,
+          "drawCalls": 9
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:0f216395e8c8818561257f25b0c81e329cb0393954320996b119c95d8f33f1e3",
+          "bytes": 8180384,
+          "gzipBytes": 1663566,
+          "triangles": 81681,
+          "cpuBytes": 8169448,
+          "gpuBytes": 8169448,
+          "errorMeters": 0.10541314719472238,
+          "drawCalls": 9
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/w3/w3g/n0209_bitexco_financial_tower/model.glb",
+      "masterHash": "sha256:15ac75f0d8743680e2f11fc421c52263978fd1e0d81b0030002e46ca83d65b2f",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:274517dbbf686a0169448780af1200d22499796ba8c7ee76858971f6cf2e62d1",
+          "bytes": 14472,
+          "gzipBytes": 10014,
+          "triangles": 1000,
+          "cpuBytes": 13440,
+          "gpuBytes": 13440,
+          "errorMeters": 81.79740827190064,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:d5a10b4fd4c9d111d8d59ca9e81e7121d74f36159482013721dedcda3fe12ee5",
+          "bytes": 381616,
+          "gzipBytes": 117041,
+          "triangles": 3524,
+          "cpuBytes": 374452,
+          "gpuBytes": 374452,
+          "errorMeters": 0.519307659084863,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:c0dffea3ad83b7307250372891b2d6311d0d61c6cc52f1274ec5ad1309a3b8a5",
+          "bytes": 1385376,
+          "gzipBytes": 422076,
+          "triangles": 12749,
+          "cpuBytes": 1378148,
+          "gpuBytes": 1378148,
+          "errorMeters": 0.26051177879932846,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:9f76c444cf2aa8f277739e1f58d0ecb62d98c1314bf3d9fc784d135558d308d2",
+          "bytes": 6949984,
+          "gzipBytes": 2171746,
+          "triangles": 60102,
+          "cpuBytes": 6942708,
+          "gpuBytes": 6942708,
+          "errorMeters": 0.12912162046016915,
+          "drawCalls": 6
+        }
+      ]
+    },
+    {
+      "path": "content/worldgen/assets/places/dr/dr5/n0195_3_world_trade_center/model.glb",
+      "masterHash": "sha256:835abdc16d640f19a1d2099c48ff020c6a361cf00c6e4f12086ed8672bbd171c",
+      "levels": [
+        {
+          "name": "skyline",
+          "file": "model.skyline.glb",
+          "hash": "sha256:56bda92d9147b23da110cb98c99bcf3a7ac5ad4f65003be5f57103e994eb7c14",
+          "bytes": 13912,
+          "gzipBytes": 7429,
+          "triangles": 1000,
+          "cpuBytes": 12864,
+          "gpuBytes": 12864,
+          "errorMeters": 101.89949316112146,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "file": "model.district.glb",
+          "hash": "sha256:3966798d5b6dd585196fc64d68c0c0c30e388915d3753d8d4dadd6881e05e47b",
+          "bytes": 6597932,
+          "gzipBytes": 1139006,
+          "triangles": 104561,
+          "cpuBytes": 6589484,
+          "gpuBytes": 6589484,
+          "errorMeters": 0.6460255515410143,
+          "drawCalls": 7
+        },
+        {
+          "name": "street",
+          "file": "model.street.glb",
+          "hash": "sha256:565cee33d49245994adaca8034a9a617522762fec815354d516e0f3bffadf36e",
+          "bytes": 7188160,
+          "gzipBytes": 1246744,
+          "triangles": 109742,
+          "cpuBytes": 7179704,
+          "gpuBytes": 7179704,
+          "errorMeters": 0.32496685444482354,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "file": "model.closeup.glb",
+          "hash": "sha256:3cafb463fb8ab82f4fe78627b8e3d37ae9c60a1189604567a03bef1dde797af4",
+          "bytes": 8700700,
+          "gzipBytes": 1488652,
+          "triangles": 125682,
+          "cpuBytes": 8692232,
+          "gpuBytes": 8692232,
+          "errorMeters": 0.1624230402666737,
+          "drawCalls": 7
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "models": 343,
+    "derivatives": 1372,
+    "khronosValidated": true,
+    "errors": 0,
+    "warnings": 0,
+    "aboveAdvisoryTriangleTarget": 570,
+    "largestBytesByLevel": {
+      "skyline": 49236,
+      "district": 60573920,
+      "street": 98117804,
+      "closeup": 126842884
+    }
+  },
+  "presets": {
+    "phone": {
+      "capturedAt": "2026-10-04T00:47:23.538Z",
+      "initialDownloadedBytes": 590720,
+      "firstModelReadyMs": 69.7999999821186,
+      "loadMs": 445.59999999403954,
+      "initial": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 547996,
+        "gpuBytes": 547970,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 40787,
+        "drawCalls": 41,
+        "upgrades": 0,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 41
+        },
+        "sharedTextureBytes": 0
+      },
+      "settled": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 8588720,
+        "gpuBytes": 8588690,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 157710,
+        "drawCalls": 49,
+        "upgrades": 2,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 39,
+          "district": 2
+        },
+        "sharedTextureBytes": 3495260
+      },
+      "steady": {
+        "frameIntervalMs": {
+          "samples": 120,
+          "median": 16.699999999999818,
+          "p95": 16.700000000000728,
+          "max": 16.799999999999272
+        },
+        "renderCpuMs": {
+          "samples": 120,
+          "median": 0.5999999940395355,
+          "p95": 0.7000000178813934,
+          "max": 1
+        },
+        "gpuMs": {
+          "samples": 119,
+          "median": 0.07284,
+          "p95": 0.07532,
+          "max": 0.08192
+        },
+        "calls": 52,
+        "triangles": 158377,
+        "geometries": 52,
+        "textures": 11
+      },
+      "panAdditionalLoads": 0,
+      "afterPan": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 8588720,
+        "gpuBytes": 8588690,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 157710,
+        "drawCalls": 49,
+        "upgrades": 2,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 39,
+          "district": 2
+        },
+        "sharedTextureBytes": 3495260
+      },
+      "unload": {
+        "generatedGeometries": 62,
+        "disposedGeometries": 62,
+        "remainingGpuGeometries": 1
+      },
+      "errors": [],
+      "materialFailures": []
+    },
+    "laptop": {
+      "capturedAt": "2026-10-04T00:47:40.408Z",
+      "initialDownloadedBytes": 590720,
+      "firstModelReadyMs": 68.30000001192093,
+      "loadMs": 443.10000002384186,
+      "initial": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 547996,
+        "gpuBytes": 547970,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 40787,
+        "drawCalls": 41,
+        "upgrades": 0,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 41
+        },
+        "sharedTextureBytes": 0
+      },
+      "settled": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 43789108,
+        "gpuBytes": 43789064,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 496653,
+        "drawCalls": 73,
+        "upgrades": 7,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 34,
+          "district": 7
+        },
+        "sharedTextureBytes": 4194312
+      },
+      "steady": {
+        "frameIntervalMs": {
+          "samples": 120,
+          "median": 16.69999999999891,
+          "p95": 16.700000000000728,
+          "max": 16.80000000000109
+        },
+        "renderCpuMs": {
+          "samples": 120,
+          "median": 0.7000000178813934,
+          "p95": 1,
+          "max": 1.199999988079071
+        },
+        "gpuMs": {
+          "samples": 119,
+          "median": 0.15492,
+          "p95": 0.16312,
+          "max": 0.29252
+        },
+        "calls": 77,
+        "triangles": 497344,
+        "geometries": 81,
+        "textures": 19
+      },
+      "panAdditionalLoads": 0,
+      "afterPan": {
+        "assets": 41,
+        "loading": 0,
+        "queued": 0,
+        "cpuBytes": 43789108,
+        "gpuBytes": 43789064,
+        "reservedCpuBytes": 0,
+        "reservedGpuBytes": 0,
+        "skylineBytes": 590720,
+        "triangles": 496653,
+        "drawCalls": 73,
+        "upgrades": 7,
+        "evicted": 0,
+        "failed": 0,
+        "levels": {
+          "skyline": 34,
+          "district": 7
+        },
+        "sharedTextureBytes": 6291468
+      },
+      "unload": {
+        "generatedGeometries": 119,
+        "disposedGeometries": 119,
+        "remainingGpuGeometries": 1
+      },
+      "errors": [],
+      "materialFailures": []
+    }
+  }
+}

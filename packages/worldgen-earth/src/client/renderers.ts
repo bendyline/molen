@@ -38,7 +38,7 @@ import {
   type InteriorStreamingStats,
   type ModelLibrary,
   type ScreenSpaceLodPolicy,
-  type StructureModelLibrary,
+  type StructureModelSource,
   type WorldgenMaterialSet,
 } from '@bendyline/molen-worldgen/client';
 import type {
@@ -95,7 +95,7 @@ export interface WorldgenRendererOptions {
   /** Streamed geographic models; defaults to `models` when no separate library is supplied. */
   structureModels?: ModelLibrary;
   /** Full glTF hierarchy and PBR materials for authored structures; preferred over flattened props. */
-  structureObjects?: StructureModelLibrary;
+  structureObjects?: StructureModelSource;
   quality?: WorldgenQualityPreset;
   budgets?: Partial<WorldgenBudgets>;
   /** cos(center latitude) factor of the terrain package (1 for local packages). */
@@ -487,7 +487,9 @@ export function createWorldgenSemanticRenderers(
     return structures.flatMap((entry) => {
       const object = group.getObjectByName(`structure:${entry.id}`);
       if (object === undefined) return [];
-      const extent = new THREE.Box3().setFromObject(object).getSize(new THREE.Vector3());
+      const extent =
+        (object.userData.structureExtent as THREE.Vector3 | undefined) ??
+        new THREE.Box3().setFromObject(object).getSize(new THREE.Vector3());
       return [{ entry, size: [extent.x, extent.z] as const }];
     });
   }
@@ -545,44 +547,78 @@ export function createWorldgenSemanticRenderers(
           options.sampleStructureTerrain,
         );
         if (elevation === undefined || context.signal.aborted || disposed) continue;
-        const mesh = new THREE.Group();
+        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+        const position: [number, number, number] = [x, elevation, z];
+        const prepare = (instance: THREE.Object3D): THREE.Object3D => {
+          const mesh = new THREE.Group();
+          mesh.add(instance);
+          mesh.name = `structure:${entry.id}`;
+          mesh.position.set(x - context.origin[0], elevation, z - context.origin[1]);
+          mesh.rotation.y = entry.heading ?? 0;
+          if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
+          const placed = entry.bounds ? clipStructureObject(mesh, context.tileSize) : mesh;
+          if (entry.groundCutout) {
+            if (entry.bounds) {
+              mesh.updateMatrix();
+              setTerrainGroundCutout(
+                placed,
+                entry.groundCutout.outline.map(([px, pz]) => {
+                  const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
+                  return [p.x, p.z];
+                }),
+              );
+            } else setTerrainGroundCutout(placed, entry.groundCutout.outline);
+          }
+          placed.traverse((part) => {
+            part.castShadow = true;
+            part.receiveShadow = true;
+          });
+          return placed;
+        };
+        let object: THREE.Object3D;
         if (structureObjects) {
-          const prepared = await structureObjects.acquire(entry.asset);
+          const prepared = await structureObjects.acquire(entry.asset, {
+            position,
+            signal: context.signal,
+          });
           held = true;
-          mesh.add(structureObjects.instantiate(prepared));
+          object = structureObjects.instantiate(prepared, {
+            prepare,
+            position,
+            scale: Math.max(...(entry.scale ?? [1, 1, 1])),
+          });
+          const placement = new THREE.Matrix4().compose(
+            new THREE.Vector3(),
+            new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), entry.heading ?? 0),
+            new THREE.Vector3(...(entry.scale ?? [1, 1, 1])),
+          );
+          object.userData.structureExtent = prepared.bounds
+            .clone()
+            .applyMatrix4(placement)
+            .getSize(new THREE.Vector3());
         } else if (structureModels) {
           const prepared = await structureModels.acquire(entry.asset);
           held = true;
-          mesh.add(new THREE.Mesh(prepared.geometry, prepared.material));
-        }
+          object = prepare(new THREE.Mesh(prepared.geometry, prepared.material));
+        } else continue;
         if (context.signal.aborted || disposed) {
+          disposeTerrainSemanticObject(object);
+          disposeWorldgenObject(object);
           (structureObjects ?? structureModels)?.release(entry.asset);
           return;
         }
-        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
-        mesh.name = `structure:${entry.id}`;
-        mesh.position.set(x - context.origin[0], elevation, z - context.origin[1]);
-        mesh.rotation.y = entry.heading ?? 0;
-        if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
-        const object = entry.bounds ? clipStructureObject(mesh, context.tileSize) : mesh;
-        if (entry.bounds && object.children.length === 0) {
+        let hasGeometry = false;
+        object.traverse((part) => {
+          hasGeometry ||= (part as THREE.Mesh).isMesh === true;
+        });
+        if (entry.bounds && !hasGeometry) {
+          disposeTerrainSemanticObject(object);
+          disposeWorldgenObject(object);
           (structureObjects ?? structureModels)?.release(entry.asset);
           held = false;
           continue;
         }
-        if (entry.groundCutout) {
-          if (entry.bounds) {
-            mesh.updateMatrix();
-            setTerrainGroundCutout(
-              object,
-              entry.groundCutout.outline.map(([px, pz]) => {
-                const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
-                return [p.x, p.z];
-              }),
-            );
-          } else setTerrainGroundCutout(object, entry.groundCutout.outline);
-        }
-        object.name = mesh.name;
+        object.name = `structure:${entry.id}`;
         object.userData.structureElevation = elevation;
         object.traverse((part) => {
           part.castShadow = true;
@@ -691,6 +727,7 @@ export function createWorldgenSemanticRenderers(
               return;
             interiors?.unregister(resident.architecture);
             releaseStructureModels(resident.architecture);
+            disposeTerrainSemanticObject(resident.architecture);
             disposeWorldgenObject(resident.architecture);
             resident.architecture.removeFromParent();
             // Buildings are static: like the tile's first publication, stop per-frame transform
@@ -720,6 +757,7 @@ export function createWorldgenSemanticRenderers(
         } finally {
           if (replacement) {
             releaseStructureModels(replacement);
+            disposeTerrainSemanticObject(replacement);
             disposeWorldgenObject(replacement);
           }
           delete resident.pending;

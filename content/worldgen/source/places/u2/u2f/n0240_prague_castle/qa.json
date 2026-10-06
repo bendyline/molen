@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0240_prague_castle",
+  "sourceHash": "sha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0",
+  "runtimeHash": "sha256:0715c75083351a20d4bc7ad4e62c046a9800399711a6771a38d44132db04171d",
+  "captureReportHash": "sha256:9a6496ae44c9d691912fd7bca4a75f535f9225bfdc01967b758355a21dbcd787",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only. Maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/west-courtyards.png",
+      "shots/cathedral-west.png",
+      "shots/south-tower-and-golden-gate.png",
+      "shots/cathedral-north.png",
+      "shots/cathedral-choir.png",
+      "shots/saint-george-west.png",
+      "shots/eastern-palaces.png",
+      "shots/golden-lane.png",
+      "shots/open-courts-plan.png"
+    ],
+    "notes": "Inspected 14 portable frames. Corrected inverted palace facade direction, clipped subordinate roof slopes to occupied polygons and filled their raking end walls, reduced unsupported basilica cornices, and moved the Golden Lane camera into the lane. The palace courts remain open. Cathedral, basilica, palace ranges, roof runs and Golden Lane are individually arranged. Exact sculptural detail, heights and roof junctions are still approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7c813ba4247c83ab3a747cd6bae47e59cab49b3159739227ef98cdabbca868ec",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/west-courtyards.png",
+      "shots/shared/cathedral-west.png",
+      "shots/shared/south-tower-and-golden-gate.png",
+      "shots/shared/cathedral-north.png",
+      "shots/shared/cathedral-choir.png",
+      "shots/shared/saint-george-west.png",
+      "shots/shared/eastern-palaces.png",
+      "shots/shared/golden-lane.png",
+      "shots/shared/open-courts-plan.png"
+    ],
+    "notes": "Inspected 13 shared-material studio views, including the corrected Golden Lane roof junctions. Nine canonical graphs load once each; local PBR glazing; zero embedded images. Unload leaves zero model geometries. These studio views do not prove geographic fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:f3a17b99de553a5cd6354294e98bf7e8853737e1c12aa4f775d43b3f8c29975d",
+    "notes": "OSM building polygons and courtyard holes use anchor [14.401732746,50.090863652], signed heading 0.33583241035 and meter-scale coordinates. Cross-site elevations and terrain datum are provisional. Placement remains draft and replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending. Reconstructed exterior is not surveyed as-built geometry; smaller elevations, roof valleys, facade bay spacing and ground levels need verification. Cathedral rose tracery, buttresses, portal carvings, saints, heraldic lion and Golden Gate mosaic are incomplete. Geometry indicates architectural form without claiming individually reproduced sculpture. Golden Lane colors and roof profiles are approximate; its small houses and northern gallery use mapped plan positions. Daliborka and north-facing defensive details need additional source coverage. No interiors, gardens, terrain hill, temporary scaffolding or copied photographs. Palace courtyard holes remain empty and require host terrain. Canonical shared limestone, raw limestone, lime plaster, ceramic tile, slate, copper, painted metal, wood and granite graphs are reused; glazing is local PBR."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "validatorLimitations": "Unused-UV information reflects shared material graphs resolved by Molen. This validator does not establish architectural accuracy.",
+    "triangles": 567918,
+    "vertices": 1142800,
+    "materials": 10,
+    "sharedGraphs": 9,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera visual comparison, geometry/download budgets, deterministic output and vertex-layout checks. Physical-device measurements remain pending.",
+    "notes": "761 / 3777 / 13490 / 63278 triangles. Skyline plus district: 345264 bytes. Street: 978708 bytes; close-up: 5072848 bytes. Detail levels preserve the 47961476-byte source master, open courts and principal tower heights; fine sash bars and sculpture are reduced at distance.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0240_prague_castle/model.skyline.glb",
+        "hash": "sha256:715abaa6d1a206782cdb1a8b8c6d1ff3b87c2f6add911ef706dbb8b0135159ff",
+        "bytes": 62276,
+        "triangles": 761,
+        "vertices": 1564,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -279.14300537109375,
+          0,
+          -91
+        ],
+        "max": [
+          275.53900146484375,
+          99.30000305175781,
+          91.71800231933594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0240_prague_castle/model.district.glb",
+        "hash": "sha256:e8f9a4fea9f3deb219de56dae3e770ffcd82c51ad265a9692048dcc55a83ae4e",
+        "bytes": 282988,
+        "triangles": 3777,
+        "vertices": 6962,
+        "materials": 8,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -279.9246520996094,
+          0,
+          -91.84500122070312
+        ],
+        "max": [
+          279.02398681640625,
+          99.30000305175781,
+          91.71800231933594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0240_prague_castle/model.street.glb",
+        "hash": "sha256:219cf6849858f7e8344d6b26e698d655f6e162d377d0e8b0c7702a1784484639",
+        "bytes": 978708,
+        "triangles": 13490,
+        "vertices": 24605,
+        "materials": 10,
+        "sharedGraphs": 9,
+        "images": 0,
+        "min": [
+          -279.9246520996094,
+          0,
+          -91.71749877929688
+        ],
+        "max": [
+          279.14300537109375,
+          99.30000305175781,
+          91.71800231933594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u2f/n0240_prague_castle/model.closeup.glb",
+        "hash": "sha256:bc3ea28abe05b2dc9e70d99755cc8a346287712e6e4bc4f1614e8dc476c8d619",
+        "bytes": 5072848,
+        "triangles": 63278,
+        "vertices": 123529,
+        "materials": 10,
+        "sharedGraphs": 9,
+        "images": 0,
+        "min": [
+          -279.9246520996094,
+          -0.07999999821186066,
+          -91.80424499511719
+        ],
+        "max": [
+          279.225830078125,
+          99.30000305175781,
+          91.80451965332031
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      }
+    ]
+  }
+}

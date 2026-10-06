@@ -4,23 +4,40 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:65458556dd2a41fefd0a467608c35e7b1e53e5c0e9180d961811640bd2241294",
   "sourceHash": "sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450",
   "bounds": {
     "aabb": {
-      "min": [-818.75, 0, -20],
-      "max": [818.75, 135.3845, 20]
+      "min": [
+        -818.75,
+        0,
+        -20
+      ],
+      "max": [
+        818.75,
+        135.3845,
+        20
+      ]
     },
     "sphere": {
-      "center": [0, 67.6922, 0],
+      "center": [
+        0,
+        67.6922,
+        0
+      ],
       "radius": 821.7299
     }
   },
   "stats": {
     "triangles": 308648,
-    "vertices": 2818960,
+    "vertices": 563792,
     "meshes": 1,
     "primitives": 5,
     "materials": 5,
@@ -39,31 +56,41 @@
   "materials": [
     {
       "name": "asphalt-footways-and-markings",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "painted-and-galvanized-fittings",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "wrapped-cable-and-hanger-steel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "white-painted-steel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "pier-and-anchorage-concrete",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -73,11 +100,88 @@
       {
         "node": "worldgen",
         "points": [
-          -818.75, 0, -20, -818.75, 0, 20, -818.75, 135.3845, -20, -818.75, 135.3845, 20, 818.75, 0,
-          -20, 818.75, 0, 20, 818.75, 135.3845, -20, 818.75, 135.3845, 20
+          -818.75,
+          0,
+          -20,
+          -818.75,
+          0,
+          20,
+          -818.75,
+          135.3845,
+          -20,
+          -818.75,
+          135.3845,
+          20,
+          818.75,
+          0,
+          -20,
+          818.75,
+          0,
+          20,
+          818.75,
+          135.3845,
+          -20,
+          818.75,
+          135.3845,
+          20
         ]
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:65458556dd2a41fefd0a467608c35e7b1e53e5c0e9180d961811640bd2241294",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5f44c51c09cf5e4035bcee95a0d22b6d375ca7ba82bf80e36ad02327c8243724",
+        "bytes": 15076,
+        "gzipBytes": 8131,
+        "triangles": 1000,
+        "cpuBytes": 14080,
+        "gpuBytes": 14080,
+        "errorMeters": 406.84253878005427,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:7c3dd57487330f2d1b2fdf1ad5c1dff13d0e22b757d8f0a9043bb4a28d958d5e",
+        "bytes": 624408,
+        "gzipBytes": 116079,
+        "triangles": 5801,
+        "cpuBytes": 618800,
+        "gpuBytes": 618800,
+        "errorMeters": 3.2021710136246764,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:1c36114f8afec8efae843b332d826bcdb838b71d960cefa2f9871861c56a9fb2",
+        "bytes": 2065148,
+        "gzipBytes": 354256,
+        "triangles": 19002,
+        "cpuBytes": 2059488,
+        "gpuBytes": 2059488,
+        "errorMeters": 1.595016561881308,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:31fa6d2ae9b9c36d1641615132e86d2d7fa13c6bca7efbbf80628324f2eab0bf",
+        "bytes": 7191940,
+        "gzipBytes": 1278949,
+        "triangles": 64521,
+        "cpuBytes": 7186236,
+        "gpuBytes": 7186236,
+        "errorMeters": 0.8022253925281784,
+        "drawCalls": 5
+      }
+    ]
+  }
 }

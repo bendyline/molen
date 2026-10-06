@@ -8,7 +8,11 @@ import {
   Heightfield,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
-import { ModelLibrary, StructureModelLibrary } from '@bendyline/molen-worldgen/client';
+import {
+  ModelLibrary,
+  StructureLodStreamer,
+  StructureModelLibrary,
+} from '@bendyline/molen-worldgen/client';
 import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
@@ -111,6 +115,88 @@ function fixture(prepareObject?: (object: THREE.Object3D, signal: AbortSignal) =
 }
 
 describe('worldgen human-feature tile orchestration', () => {
+  it('keeps a streamed bridge oriented, elevated and clipped to the same tile through an upgrade', async () => {
+    let now = 0;
+    const objects = new StructureLodStreamer(
+      async () => ({
+        bounds: {
+          aabb: { min: [-300, -4, -10], max: [300, 4, 10] },
+          sphere: { center: [0, 0, 0], radius: 301 },
+        },
+        runtimeLods: {
+          recipe: 1,
+          masterHash: `sha256:${'0'.repeat(64)}`,
+          levels: (['skyline', 'district', 'street', 'closeup'] as const).map((name, i) => ({
+            name,
+            file: `model.${name}.glb`,
+            hash: `sha256:${String(i).repeat(64)}`,
+            bytes: 2000,
+            gzipBytes: 1000,
+            cpuBytes: 2000,
+            gpuBytes: 2000,
+            triangles: 12,
+            drawCalls: 1,
+            errorMeters: i === 3 ? 0 : 100,
+          })),
+        },
+      }),
+      async () =>
+        new THREE.Group().add(
+          new THREE.Mesh(new THREE.BoxGeometry(600, 8, 20), new THREE.MeshStandardMaterial()),
+        ),
+      { clock: () => now },
+    );
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Span',
+        entries: [
+          {
+            id: 'span',
+            title: 'Span',
+            asset: 'span',
+            anchor: [0, 0],
+            bounds: [-0.003, -0.003, 0.003, 0.003],
+            heading: Math.PI / 4,
+            elevation: 12,
+            datum: 'sea-level',
+            minLevel: 0,
+            status: 'preview',
+            source: 'https://example.com',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const ctx = context(new AbortController().signal);
+    ctx.origin = [-100, -100];
+    const root = await renderers.humanFeatures.createTile(createEmptyTerrainSemanticTile(), ctx);
+    const placed = root?.getObjectByName('structure:span');
+    if (!root || !placed) throw new Error('Missing bridge');
+    const before = new THREE.Box3().setFromObject(placed);
+    expect(before.min.x).toBeGreaterThanOrEqual(-0.001);
+    expect(before.max.x).toBeLessThanOrEqual(200.001);
+    expect(before.min.y).toBeCloseTo(8);
+    expect(before.max.y).toBeCloseTo(16);
+    const child = placed.children[0];
+    const oldMesh = placed.getObjectByProperty('isMesh', true) as THREE.Mesh;
+    const dispose = vi.spyOn(oldMesh.geometry, 'dispose');
+    now = 2000;
+    for (let i = 0; i < 4; i++) {
+      objects.update({ position: [0, 20, 0], verticalFov: 45, viewportHeight: 900 });
+      for (let j = 0; j < 20; j++) await Promise.resolve();
+    }
+    expect(placed.userData.landmarkLod).toBe('closeup');
+    expect(placed.children[0]).not.toBe(child);
+    expect(new THREE.Box3().setFromObject(placed).equals(before)).toBe(true);
+    expect(dispose).toHaveBeenCalledOnce();
+    renderers.humanFeatures.disposeTile?.(root);
+    objects.dispose();
+    renderers.dispose();
+    expect(objects.stats().gpuBytes).toBe(0);
+  });
   it.each([
     undefined,
     '1929-12-31',

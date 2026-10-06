@@ -1,0 +1,323 @@
+{
+  "planId": "N0237",
+  "id": "N0237",
+  "assetId": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+  "title": "Neuschwanstein Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q4152",
+  "referenceCoordinate": {
+    "latitude": 47.557488542,
+    "longitude": 10.749441807
+  },
+  "visualBrief": "Individually arranged cranked Palas and Throne Hall, unequal spiral stair towers, open galleries, paired Romanesque windows, copper dormers, Bower, Knights’ House, Square Tower and red-brick/yellow-stone gatehouse around two open courts.",
+  "size": [
+    153.30733489990234,
+    65,
+    51.04999923706055
+  ],
+  "actualBounds": {
+    "min": [
+      -76.30733489990234,
+      0,
+      -27
+    ],
+    "max": [
+      77,
+      65,
+      24.049999237060547
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from western Palas toward eastern gatehouse",
+    "front": "+Z toward the southern Marienbrücke view",
+    "origin": "Cached OSM precinct rectangle center at provisional lowest structural base"
+  },
+  "sourceFacts": {
+    "constructionStarted": 1869,
+    "gatehouseOccupied": 1873,
+    "palasToppingOut": 1880,
+    "bowerAndSquareTowerCompleted": 1892,
+    "wallConstruction": "Brick with light limestone cladding",
+    "planSource": "Bavarian Palace Administration labeled complex plan",
+    "cachedHeightMeters": 65,
+    "cachedHeightReliability": "Unreferenced Wikidata statement; treated as a provisional overall scale, not a surveyed elevation."
+  },
+  "reconstruction": {
+    "basis": "Individual exterior reconstructed from the official labeled plan and inspected south, northwest, outer-gate and courtyard photographs. The cached OSM boundary is a precinct. Plan parts are manually transcribed and approximately scaled inside that boundary, not surveyed building footprints.",
+    "planImageMetersPerPixelApprox": 0.194,
+    "planImageCenterPixels": [
+      395,
+      155
+    ],
+    "palasWesternWingRotationRadians": 0.21,
+    "palasEaveY": 41.5,
+    "palasRidgeY": 54.5,
+    "mainStairTipY": 65,
+    "upperCourtY": 8.2,
+    "lowerCourtY": 6.5,
+    "datum": "Provisional lowest structural base, with raised retained courts. Real terrain/cliff contact is not established."
+  },
+  "referencePages": [
+    "https://www.neuschwanstein.de/englisch/palace/history.htm",
+    "https://www.neuschwanstein.de/englisch/palace/index.htm",
+    "https://www.neuschwanstein.de/bilder/schloss/grundriss790.png",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg",
+    "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Neuschwanstein_Castle_(view_from_the_northwest).jpg",
+    "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_im_November_2020_(9).jpg",
+    "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Neuschwanstein_pano2.jpg",
+    "https://www.openstreetmap.org/way/221601969"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "precinct axis and official plan; sloped terrain datum unresolved",
+    "anchor": [
+      10.749533954,
+      47.557554931
+    ],
+    "heading": 0.381105898007,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/221601969",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/221601969"
+    ],
+    "wikidataId": "Q4152",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "The precinct outline establishes a broad map frame, not individual occupied footprints. The gatehouse is at native +X and western Palas at -X. Two retained courts have different levels; a single host terrain sample does not establish their cliff contact. Keep draft until terrain/reference elevation and occupied-range registration are reviewed."
+  },
+  "scaleBasis": "OSM precinct establishes horizontal envelope and axis. Official plan establishes distinct parts. 65 m unreferenced cached height and photographic proportions are provisional vertical scale; no surveyed elevation drawing inspected.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending: plan transcription, floor heights, narrow roofs and tower profiles are photographic reconstructions, not measured elevations. The cached 65 m height has no cited source.",
+    "The unbuilt central keep and chapel are excluded. Current gatehouse and later Bower/Square Tower are represented; scaffolding and temporary conservation work are not architectural features.",
+    "Palas painted murals, heraldic portal relief, human/animal statues, carved capitals and exact tracery require dedicated sculptural/painting work. No substituted generic figure is claimed accurate.",
+    "No natural mountain, moat, forest or interiors are included. The retained court levels and basement walls require sloped-terrain integration; the model is a geographic draft.",
+    "All geometry is original. Reference images are linked, never embedded or copied into texture maps. Limestone, raw limestone, weathered limestone, sandstone, slate, copper, brick, painted metal and wood use canonical shared materials."
+  ],
+  "qaCameras": [
+    {
+      "name": "southern-palas-and-bower",
+      "position": [
+        -45,
+        38,
+        165
+      ],
+      "lookAt": [
+        -27,
+        28,
+        3
+      ]
+    },
+    {
+      "name": "northwest-towers",
+      "position": [
+        -115,
+        70,
+        -146
+      ],
+      "lookAt": [
+        -14,
+        28,
+        -6
+      ]
+    },
+    {
+      "name": "palas-court-gable",
+      "position": [
+        26,
+        31,
+        5
+      ],
+      "lookAt": [
+        -13,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "western-open-galleries",
+      "position": [
+        -109,
+        32,
+        23
+      ],
+      "lookAt": [
+        -71,
+        28,
+        5
+      ]
+    },
+    {
+      "name": "main-stair-crown",
+      "position": [
+        -81,
+        54,
+        -49
+      ],
+      "lookAt": [
+        -52,
+        53,
+        -16
+      ]
+    },
+    {
+      "name": "knights-house-and-square-tower",
+      "position": [
+        20,
+        36,
+        -92
+      ],
+      "lookAt": [
+        19,
+        25,
+        -18
+      ]
+    },
+    {
+      "name": "gatehouse-outer-brick",
+      "position": [
+        128,
+        23,
+        7
+      ],
+      "lookAt": [
+        74,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "gatehouse-inner-clock",
+      "position": [
+        33,
+        24,
+        2
+      ],
+      "lookAt": [
+        68,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "two-courtyards-and-roofs",
+      "position": [
+        -5,
+        165,
+        55
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 234177,
+    "vertices": 477805,
+    "materials": 11,
+    "bytes": 20017068,
+    "sha256": "sha256:c78849de7780d2383656cb12873fabfc55a14e03a6ec92bc96be18d2d7ed3c8f"
+  }
+}

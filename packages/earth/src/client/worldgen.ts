@@ -13,6 +13,8 @@ import {
   type PixelGridDoc,
   withBakedMaterialStore,
 } from '@bendyline/molen-materials';
+import { sha256 } from '@bendyline/molen-pack';
+import type { AssetSidecar } from '@bendyline/molen-schema';
 import {
   createTerrainLandcoverWorkerBridge,
   type TerrainQualityPreset,
@@ -22,7 +24,12 @@ import {
   createResolvedMaterialSet,
   ModelLibrary,
   type ScreenSpaceLodPolicy,
+  StructureLodStreamer,
   StructureModelLibrary,
+  type StructureStreamingOptions,
+  type StructureStreamingStats,
+  type StructureStreamingView,
+  structureStreamingBudget,
 } from '@bendyline/molen-worldgen/client';
 import {
   createRegionResolver,
@@ -56,11 +63,15 @@ export interface EarthViewWorkers {
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
-  /** Bake the style pack's materials (idempotent); visible buildings gain textures as they finish. */
+  /** Wait for the initial requested surfaces; later visible buildings request textures on demand. */
   prepareMaterials(): Promise<void>;
+  updateStructures(view: StructureStreamingView): void;
+  structureStats(): StructureStreamingStats | undefined;
 }
 
 export interface CreateEarthWorldgenOptions {
+  /** Bounded, progressive landmark LODs by default; false opts into legacy full models. */
+  landmarkStreaming?: StructureStreamingOptions | false;
   /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
   viewingDate?: string;
   /** Ground heights in this terrain's vertical reference; may retrieve neighboring tiles. */
@@ -133,37 +144,95 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     options.materialStore === undefined
       ? pool
       : withBakedMaterialStore(pool ?? inThreadBaker, options.materialStore);
+  const streamingOptions = options.landmarkStreaming || {};
+  const nav =
+    typeof navigator === 'undefined'
+      ? undefined
+      : (navigator as Navigator & { deviceMemory?: number });
+  const mobile =
+    streamingOptions.mobile ?? ((nav?.maxTouchPoints ?? 0) > 0 || (nav?.deviceMemory ?? 8) <= 4);
   const materials = createResolvedMaterialSet(new MaterialResolver(options.assets, baker), {
     progressive: true,
+    prepareOnUse: true,
+    concurrency: 2,
+    maxTextureBytes:
+      streamingOptions.budget?.maxTextureBytes ?? structureStreamingBudget(mobile).maxTextureBytes,
   });
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
   const ownedImageScenes = new WeakSet<THREE.Object3D>();
-  const structureObjects = new StructureModelLibrary(
-    async (ref) => {
-      const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
-      // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
-      // from Three's host-global cache, even when this GLTFParser is new.
-      if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
-      return parsed.scene;
-    },
-    {
-      ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
-      resolveSurface: ({ ref, slot }) =>
-        sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
-    },
-  );
+  const legacyStructures =
+    options.landmarkStreaming === false
+      ? new StructureModelLibrary(
+          async (ref) => {
+            const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
+            // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
+            // from Three's host-global cache, even when this GLTFParser is new.
+            if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+            return parsed.scene;
+          },
+          {
+            ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
+            resolveSurface: ({ ref, slot }) =>
+              sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
+          },
+        )
+      : undefined;
+  const structureManifests = new Map<string, AssetSidecar>();
+  const streamingStructures =
+    options.landmarkStreaming === false
+      ? undefined
+      : new StructureLodStreamer(
+          async (ref) => {
+            const path = pack.assets[ref];
+            if (!path) throw new Error(`Unknown landmark asset: ${ref}`);
+            const sidecar = JSON.parse(
+              await options.assets.loadText(`pack:${options.content.styleId}/${path}`),
+            ) as AssetSidecar;
+            if (!sidecar.runtimeLods || sidecar.runtimeLods.masterHash !== sidecar.hash)
+              throw new Error(`Landmark ${ref} needs current source-derived runtime LODs`);
+            structureManifests.set(ref, sidecar);
+            return { bounds: sidecar.bounds, runtimeLods: sidecar.runtimeLods };
+          },
+          async (ref, level, signal) => {
+            const path = pack.assets[ref];
+            if (!path || !structureManifests.has(ref) || !/^[a-zA-Z0-9_.-]+\.glb$/.test(level.file))
+              throw new Error(`Invalid runtime landmark path: ${ref}`);
+            const directory = path.slice(0, path.lastIndexOf('/') + 1);
+            const bytes = await options.assets.load(
+              `pack:${options.content.styleId}/${directory}${level.file}`,
+              { signal },
+            );
+            if (signal.aborted) throw new DOMException('Landmark load cancelled', 'AbortError');
+            if (
+              bytes.byteLength !== level.bytes ||
+              (await sha256(new Uint8Array(bytes))) !== level.hash
+            )
+              throw new Error(`Runtime landmark hash mismatch: ${ref}/${level.name}`);
+            const parsed = await structureLoader.parseAsync(bytes, '');
+            if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+            return parsed.scene;
+          },
+          {
+            ...options.landmarkStreaming,
+            ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
+            ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
+            resolveSurface: ({ ref, slot }) =>
+              sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
+          },
+        );
+  const structureObjects = streamingStructures ?? legacyStructures;
+  if (!structureObjects) throw new Error('No structure model source');
   let preparation: Promise<void> | undefined;
   let disposed = false;
   const prepareMaterials = (): Promise<void> => {
     if (disposed) return Promise.resolve();
     preparation ??= (async () => {
       try {
-        await materials.prepare([...sharedRefs]);
+        await materials.prepare([]);
         if (!disposed && materials.failures.size > 0)
           options.onMaterialFailures?.(materials.failures);
       } finally {
-        pool?.dispose();
         if (disposed) materials.dispose();
       }
     })();
@@ -210,6 +279,11 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   return {
     ...renderers,
     prepareMaterials,
+    updateStructures: (view) => streamingStructures?.update(view),
+    structureStats: () =>
+      streamingStructures
+        ? { ...streamingStructures.stats(), sharedTextureBytes: materials.textureBytes ?? 0 }
+        : undefined,
     dispose() {
       if (disposed) return;
       disposed = true;

@@ -1,37 +1,120 @@
 {
+  "brief": {
+    "prompt": "Retrieve exterior and cockpit images for the P-51 and OH-6, and make both aircraft substantially more realistic and accurate.",
+    "variant": "single-seat P-51D with K-14-style sight",
+    "units": "meters",
+    "up": "+Y",
+    "forward": "+Z",
+    "style": "reference-informed realistic proportions and mechanical details, restrained procedural materials",
+    "geometryBudget": "under 60000 imported triangles; mechanical pivots retained",
+    "collision": "existing coarse aircraft probes; importer hull extraction capped at 128"
+  },
+  "method": {
+    "geometry": "deterministic three.js analytic sections, surface patches, mechanical parts and geometry lettering",
+    "textures": "No bitmap textures or image-generation prompts; photographs used only as inspected references. All material response and printed scales are authored procedurally.",
+    "references": "REFERENCES.md"
+  },
   "asset": {
     "id": "molen.entities.aircraft.p51d",
     "sourcePath": "content/entities/source/aircraft/p-51/models/source.glb",
+    "sourceHash": "sha256:970cd55cac5343f52fd62784b5bfbd369ee2ea255a1d8ec483ee98553ff6d141",
     "runtimePath": "content/entities/assets/molen/entities/aircraft/p51d/model.glb",
+    "runtimeHash": "sha256:811d4b208a492f23d2522b8e5f863d07c9fc7aefdc35f68b6629c525e23ceeca",
     "bounds": {
-      "min": [-5.655, -0.0003, -5.78],
-      "max": [5.655, 3.167, 4.0427]
+      "aabb": {
+        "min": [
+          -5.655,
+          -0.0003,
+          -5.78
+        ],
+        "max": [
+          5.655,
+          3.167,
+          4.0427
+        ]
+      },
+      "sphere": {
+        "center": [
+          0,
+          1.5834,
+          -0.8686
+        ],
+        "radius": 5.7206
+      }
     },
     "stats": {
-      "triangles": 22056,
-      "vertices": 15966,
-      "meshes": 110,
-      "primitives": 110,
-      "materials": 20,
+      "triangles": 56618,
+      "vertices": 53625,
+      "meshes": 285,
+      "primitives": 285,
+      "materials": 23,
       "textures": 0,
       "animations": 0,
-      "sizeBytes": 428416
+      "sizeBytes": 1021664
     },
-    "renderedTriangles": 26752,
-    "collisionHullCount": 128,
-    "extensions": ["KHR_materials_emissive_strength", "KHR_mesh_quantization"],
-    "browser": {
-      "manifest": ".artifacts/aircraft-shell/p51d-world/experience-run.json",
-      "diagnostics": [],
-      "frames": ["05-mustang-parked", "06-mustang-cockpit"]
-    }
+    "collisionHullCount": 128
   },
+  "validation": {
+    "assetVerification": true,
+    "scenesValidated": 4,
+    "simulationTicksPerScene": 30,
+    "captures": {
+      "turntableAngles": 8,
+      "inSceneViews": [
+        "exterior",
+        "cockpit",
+        "panel",
+        "side"
+      ],
+      "frames": [
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_0.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_1.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_2.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_3.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_4.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_5.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_6.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_7.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/exterior.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/cockpit.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/panel.png",
+        ".artifacts/aircraft-realism/qa/shots/p51d/side.png"
+      ],
+      "hashes": {
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_0.png": "sha256:32ec2e88b0ba321cf9cc0fd9f329cb7c0886d205b5ecacb802cb33b14133d9a3",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_1.png": "sha256:bb97ab39e76056bc538e64eebc4901bc21ecde281b4149498ca7f91ef1e05597",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_2.png": "sha256:042c0243c22f298add4ffc7fdc82ee6dd293343279936cd84f685b3011bd2571",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_3.png": "sha256:c8876354f1bf1a46f906d3f707fee703017fbed7bb534e7caabb00a95e350306",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_4.png": "sha256:d6a48af206492b466708324e92843afeb2b8f398f50540e307c4e9036eeaccbf",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_5.png": "sha256:1cc9ce94232a88f07d22903d630ec7a000d1bddeb3d10a7e797132cf39854b9b",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_6.png": "sha256:3770d65e8fa25dbd117e2dc1a6681867654ac22c932dae4095f620baa94b8f33",
+        ".artifacts/aircraft-realism/qa/shots/p51d/angle_7.png": "sha256:6ca7e7cba47aacd10be8e9dbc2418195df2b340c96d38d30136adfb834426806",
+        ".artifacts/aircraft-realism/qa/shots/p51d/exterior.png": "sha256:888921bd794940f5c6eb8f6f97b59e307ebce4c67ac54063a85fd83590315288",
+        ".artifacts/aircraft-realism/qa/shots/p51d/cockpit.png": "sha256:1295f165c447a8a8c16baab40a75821a428ae4ad0b181336f03534ab1778d82e",
+        ".artifacts/aircraft-realism/qa/shots/p51d/panel.png": "sha256:ea7dd7069b3494584df7fbe72005d2f80a5e54c63247865a18df1cb43bb601c2",
+        ".artifacts/aircraft-realism/qa/shots/p51d/side.png": "sha256:cb5b3a7132506e2fb3fded70517b6f5a6f9be121750a646d6615d16088ad9056"
+      }
+    },
+    "commands": [
+      "pnpm assets:build --update-lock",
+      "node packages/tooling/dist/cli.mjs asset inspect molen.entities.aircraft.p51d --verify --project content/entities/project.json",
+      "node .artifacts/aircraft-realism/capture-final.mjs",
+      "pnpm --filter @bendyline/molen-entities test:unit",
+      "pnpm verify",
+      "pnpm smoke:packed",
+      "pnpm docs:site:check",
+      "pnpm test:golden"
+    ],
+    "checkLogs": ".artifacts/aircraft-realism/"
+  },
+  "visualReview": "Inspected the imported GLB in eight turntable views, a lit apron, side detail and two seated panel views. Reviewed canopy visibility, padded coaming and reflector sight, asymmetric flight/engine instruments, side consoles and controls, bucket seat/harnesses, wing filler caps/access panels, cowling seams/fasteners and the retained P-51D silhouette.",
   "limitations": [
     "Assisted game flight, bounded pitch/bank; not certified performance or exact cockpit replicas.",
     "No autorotation, vortex-ring model, fuel/engine systems, aerobatics, weapons or crash deformation.",
     "Physics uses coarse airframe probes against nearby resident geometry; imported hull extraction is capped at 128.",
     "Cockpit controls are operated by the documented input bindings; most physical switches are visual details.",
-    "Session-local raised practice airfield; aircraft positions do not persist through page reload."
-  ],
-  "visualReview": "Rendered the imported model under an AgX/physical-sky rig at three-quarter front, side, top, front, underside, chase (gear up, level and banked), cockpit and close-ups of the windscreen, scoop, gear and tail, and with flaps, ailerons, elevators and rudder deflected. Proportions match the P-51D (9.83 m by 11.28 m); the teardrop canopy, three-panel windscreen, ventral scoop, dorsal fillet, glove and squared tips read from the chase camera. Opaque sides still enclose the seat below the sill and the windscreen keeps the forward view clear."
+    "Reference-informed approximation combining restored aircraft and period references; not a serial-specific cockpit replica.",
+    "Most added engine/system instruments and switches are visual details; the pre-existing simulation bindings remain live.",
+    "The solver retains its level ground pose instead of a parked taildragger nose-up attitude."
+  ]
 }

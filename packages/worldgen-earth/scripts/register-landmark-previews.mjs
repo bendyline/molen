@@ -63,7 +63,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
     elevation: absolute ? proposal.elevationMeters : 0,
     orientation: 'fixed',
     mapIdentity: { wikidata: spec.wikidataId, maxDistance: 80 },
-    replaceFootprint: active,
+    replaceFootprint: active && proposal.replaceFootprint !== false,
     ...(historical ? { appearance } : {}),
     ...(proposal.groundCutout ? { groundCutout: proposal.groundCutout } : {}),
     ...(proposal.terrainReference ? { terrainReference: proposal.terrainReference } : {}),

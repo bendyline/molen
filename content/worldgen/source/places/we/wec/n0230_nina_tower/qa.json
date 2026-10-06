@@ -1,0 +1,119 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0230_nina_tower",
+  "sourceHash": "sha256:6c5ae84b36dc718b7eba3ae710b8a07c3f0542674f4ad442c0a7c0abe0d51cd8",
+  "runtimeHash": "sha256:5b9320f3f88c3e1f6298a1ef28f979e9a1ca563dd022dd0bea915db10368b178",
+  "captureReportHash": "sha256:cdd55f3805486934d87de97b71a2cbe06537376ff9dd2f0a1fbc5b212baf51d5",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/facade-bays.png",
+      "shots/rounded-corner.png",
+      "shots/refuge-louvres.png",
+      "shots/curved-skybridge.png",
+      "shots/tall-sail-roof.png",
+      "shots/short-sail-roof.png",
+      "shots/podium-frontage.png",
+      "shots/site-plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 14 portable frames. Two rounded towers, separate curved crowns, refuge louvres, facade bays, skybridge trusses and podium render. Corrected a corner camera inside the other tower and attached entrance door geometry to the angled podium wall before final captures. Podium and entrances remain schematic."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:76885d8544e41f9ff170dc42121eae666af8437b9946b7b033349a5b6ff57e69",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/facade-bays.png",
+      "shots/shared/rounded-corner.png",
+      "shots/shared/refuge-louvres.png",
+      "shots/shared/curved-skybridge.png",
+      "shots/shared/tall-sail-roof.png",
+      "shots/shared/short-sail-roof.png",
+      "shots/shared/podium-frontage.png",
+      "shots/shared/site-plan.png",
+      "shots/shared/far-silhouette.png"
+    ],
+    "notes": "Inspected all 13 world-viewer frames and verified their hashes. Four canonical metal/concrete/stone graphs each load once; glazing uses local PBR. No embedded images. Viewer unload leaves zero live model geometries. Model is captured in asset-review mode; no geographic fit is claimed."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:f2073f034d9ceeaf79824a05b49d2e9eec156294fc5d968eda54fb6dc3afb1bf",
+    "notes": "Planning north-arrow plan establishes a provisional local arrangement only. Catalog coordinate is not a verified tall-tower anchor. OSM queries were unavailable. Placement is an inactive draft and cannot replace a map footprint. Anchor, signed yaw, footprint and terrain contact remain unapproved."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Published hotel diagram and 2018 planning plan/section, checked against the Sika exterior photograph. Roof curves, bay widths, refuge levels, small details, podium envelope and tower spacing are working reconstructions, not surveyed dimensions. Geographic registration is pending. The OSM lookup was unavailable, and the catalog coordinate must not be treated as the tower-center anchor; the source frame and heading are provisional. This is an exterior reconstruction, not maximum-fidelity completion. Measured floor polygons, curvature radii, crown rib dimensions, roof plant, facade subdivisions and true bridge curvature need further evidence. The public podium and entrances are schematic reconstructions. Full mall frontage, signage, footbridge connections, loading/transport bays and real pavement levels remain to be authored. Registry and planning floor counts use different scopes; hotel marketing floor labels omit numbers. Facade rows are allocated geometrically and do not certify every named storey datum."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 54
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 54
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent transform/count/bounds checks and Molen renders cover instancing; other information concerns unused fallback attributes.",
+    "expandedTriangles": 1313564,
+    "uniqueMeshTriangles": 86792,
+    "uniquePositionVertices": 174284,
+    "uniqueMeshes": 16,
+    "instances": 11956,
+    "materials": 7,
+    "sharedGraphs": 4,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual integrity and local byte/layout checks; physical-device measurements pending.",
+    "notes": "Inspected master and all four runtime levels side by side. Replaced a distorted automatic skyline with an original 65 KB authored silhouette retaining both crowns and the skybridge. Detailed closeup is an optional 27.82 MB download, larger than the 9.16 MB instanced master because its geometry is flattened; it is not the initial download.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:b88702ead3de50355370ed7c873ee160c6d3383b6d522a9c51726c1c8dd47dfb",
+        "bytes": 64612,
+        "triangles": 808,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:8805de0d92c735f56c8ae8baee70239966a318c3d1723f4ae53cbcc2a5a0b10b",
+        "bytes": 5321824,
+        "triangles": 56490,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:7a67ce899236c1241d42ca25f6a82730a7a1f46480c4dab9c2d4f34a4fe9b149",
+        "bytes": 6155548,
+        "triangles": 64650,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:65d3d78d9afec02be1877172ccd1ad44f47b2cfd091defd59a7b2a379befc6ab",
+        "bytes": 27817980,
+        "triangles": 290000,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

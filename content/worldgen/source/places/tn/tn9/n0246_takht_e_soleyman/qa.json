@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0246_takht_e_soleyman",
+  "sourceHash": "sha256:41b6f6084c0178b38b404cefe961b44af4931cfea734ba1b0ac5c6ea266f5901",
+  "runtimeHash": "sha256:cd4bb85a8565839e03ec95ad660d0dea840c750dba2cc7520a1935a247a8cef8",
+  "captureReportHash": "sha256:f5d388da93583e4ba5ac30071adc75149d04654e036d821abcccc03cba6ab13b",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Render integrity only; measured archaeological fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/lake-and-fire-sanctuary.png",
+      "shots/western-iwan-ruin.png",
+      "shots/western-iwan-back.png",
+      "shots/fire-temple-open-cella.png",
+      "shots/second-temple-pillars.png",
+      "shots/southeast-historic-gate.png",
+      "shots/red-stone-column-hall.png",
+      "shots/northern-gate-and-bastions.png",
+      "shots/archaeological-plan.png"
+    ],
+    "notes": "Inspected all 14 final portable frames. Mapped enclosure and lake remain open, low sanctuary rooms and column stumps are distinct, and the broken west-iwan wall dominates the ruin silhouette. Fixed near-collinear profile triangles, uneven-top normals, gate spandrel gaps and inward-facing blind niches. The master still has overly regular courses and simplified erosion; this is not a surveyed replica."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:58f0a3644d88fd7725f9dc10aa1da5a7de9a56c1c4e090c3a63aa53fe08bfdf1",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/lake-and-fire-sanctuary.png",
+      "shots/shared/western-iwan-ruin.png",
+      "shots/shared/western-iwan-back.png",
+      "shots/shared/fire-temple-open-cella.png",
+      "shots/shared/second-temple-pillars.png",
+      "shots/shared/southeast-historic-gate.png",
+      "shots/shared/red-stone-column-hall.png",
+      "shots/shared/northern-gate-and-bastions.png",
+      "shots/shared/archaeological-plan.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Six reusable graphs load once each. Local PBR colors represent water and dark recesses. Unloading leaves zero live model geometries. Material bindings work; existing coursed limestone is too regular and the stone/brick erosion needs further fidelity work."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:8cad8ea93fda1adee941ab27970e328d4a5d4568b25ce4002b532f93c6df7da4",
+    "notes": "OSM way/203537193 matches the Wikipedia name and UNESCO ref 1077; it has no Wikidata tag. Mapped lake way/314769016. Draft anchor [47.23476205,36.60460215], heading pi/2. The full enclosure includes water and empty land; replaceFootprint=false. Interior plan registration, wall stations, site datum and terrain contact remain unverified."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity remains pending. Interior plans are visually registered approximations, not a photogrammetric survey. Individual wall positions, present erosion profiles and archaeological phase boundaries need measured refinement. Thirty-eight bastions are documented, but the tower stations and surviving heights are reconstructed. The north, old southeast and newer south entrances need local measured alignment. The west iwan is modeled as a broken northern wall with partial vault springing. Its 22 m remaining peak, broken edges, side niches and octagonal foundations are proportional estimates. No complete ancient roof is asserted. Fire-temple corner piers, restored arches, basins and column stumps are interpreted from plans and photographs. Exact restoration dates and current condition are unverified; temporary scaffolding is excluded. Shared stone, travertine, brick and sandstone are used without embedded images. The spring uses local PBR color, without bathymetry or a bespoke water shader. Small stones and weathering are procedural details. The plateau slab is provisional. Full geological mound, distant Zendan/Belqeis sites, surrounding village and modern visitor structures are outside this asset. Terrain fit and hydrology remain pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "validatorLimitations": "Unused-UV information reflects shared procedural surfaces. Geometry validity does not certify archaeological reconstruction.",
+    "triangles": 817410,
+    "vertices": 1641262,
+    "materials": 8,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison and targeted authored triangle/download/layout/determinism checks. Physical phone/laptop performance remains unmeasured.",
+    "notes": "992 / 3830 / 8872 / 62330 triangles. Initial skyline plus district: 392348 bytes. Street: 681692 bytes; close-up: 4833048 bytes. Detailed source master: 68898992 bytes. Skyline removes most interior rooms, gate details, water-edge faces and stone relief; subsequent tiers restore them. Source masters are preserved.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/tn/tn9/n0246_takht_e_soleyman/model.skyline.glb",
+        "hash": "sha256:a90f776adcf6ab191d9c91c4cea7af6dcc22ac0472a557cfa19ec8b288d045e0",
+        "bytes": 85524,
+        "triangles": 992,
+        "vertices": 2171,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -204.71981811523438,
+          0,
+          -161.94140625
+        ],
+        "max": [
+          203.44601440429688,
+          23.200000762939453,
+          163.03126525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/tn/tn9/n0246_takht_e_soleyman/model.district.glb",
+        "hash": "sha256:aa0b8418d1af9786e1401a773e98e8c8f57a4ed0f636adfb606f25f76d2c831a",
+        "bytes": 306824,
+        "triangles": 3830,
+        "vertices": 7647,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -204.71981811523438,
+          0,
+          -161.94140625
+        ],
+        "max": [
+          203.44601440429688,
+          23.200000762939453,
+          163.03126525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/tn/tn9/n0246_takht_e_soleyman/model.street.glb",
+        "hash": "sha256:774b5677b4afd5738f5facdb54f9363931f136c717afda7f804fc232037ffc01",
+        "bytes": 681692,
+        "triangles": 8872,
+        "vertices": 17188,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -204.71981811523438,
+          0,
+          -161.94140625
+        ],
+        "max": [
+          203.44601440429688,
+          23.200000762939453,
+          163.03126525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/tn/tn9/n0246_takht_e_soleyman/model.closeup.glb",
+        "hash": "sha256:cbc71373d728bbe733c6e3e16472522d28a17de33be74098b175725af41f9c31",
+        "bytes": 4833048,
+        "triangles": 62330,
+        "vertices": 123592,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -205.01358032226562,
+          0,
+          -162.00498962402344
+        ],
+        "max": [
+          203.840087890625,
+          23.200000762939453,
+          163.06126403808594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

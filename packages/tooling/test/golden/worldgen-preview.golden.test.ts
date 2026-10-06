@@ -8,11 +8,12 @@ const OUT = join(DIR, '__output__');
 const STYLE_PACK = join(process.cwd(), '..', '..', 'content', 'worldgen');
 
 // Generation to pixels, closed: the default pack's lineup (one building of every footprint
-// class) rendered through the worldgen preview page, on flat and sloped ground. The generated
-// counts pin the geometry; the frame checks that it reached the screen.
+// class) rendered through the worldgen preview page on sloped ground. Unit tests cover flat
+// generation; repeating the same textured lineup on flat ground added a browser/material bake
+// without a distinct renderer assertion. Counts pin geometry; the frame checks it is visible.
 
 describe('golden: worldgen preview', () => {
-  for (const ground of ['flat', 'slope'] as const) {
+  for (const ground of ['slope'] as const) {
     it(`renders the lineup on ${ground} ground`, async () => {
       await mkdir(OUT, { recursive: true });
       const name = `worldgen-preview-${ground}`;

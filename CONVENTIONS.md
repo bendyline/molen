@@ -47,8 +47,13 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 ## Build & test
 
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
-  (`pnpm typecheck`, `pnpm test:unit`, `pnpm lint`) which run `pnpm -r build` first via `pre*`
-  hooks, or run `pnpm -r build` before invoking `tsc`/`vitest` inside a package.
+  (`pnpm typecheck`, `pnpm test:unit`) which rebuild the library packages first via `pre*`
+  hooks, or run `pnpm -r --filter './packages/**' build` before invoking `tsc`/`vitest`
+  inside a package. Headless unit/type checks do not build browser apps or their content packs.
+  `pnpm test:golden` builds libraries, stages the shared packs once, and builds only examples
+  with a golden suite; example suites consume those builds rather than rebuilding themselves.
+  `pnpm assets:test` builds the schema package before loading its source-bundle checks, so it
+  also works in a fresh checkout whose GLBs came from a release or cache.
 - CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
   `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
   `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.
@@ -67,6 +72,11 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   simulation- and bake-heavy tests (ambient, worldgen materials, client navigation) crossed their
   timeouts at random, failing a second run of a commit whose first run passed. Serial is slower
   and honest.
+  Golden tests also print a timestamp when each file/test starts and finishes. CI wraps the full
+  build/test command with `scripts/run-golden-diagnostics.mjs`: memory, CPU/I/O pressure, disk,
+  largest processes and cgroup OOM counters print every 15 seconds. Logs upload as
+  `golden-diagnostics` even after failure/cancellation when the runner survives; the samples in
+  the Actions log remain useful when the host disappears before artifact upload.
 - **Render tests need no reference image.** A software rasterizer is deterministic per build, not
   across machines, so a committed PNG only holds on the machine that recorded it, and every
   renderer change means re-recording it there. The `test:golden` suites instead check what a frame

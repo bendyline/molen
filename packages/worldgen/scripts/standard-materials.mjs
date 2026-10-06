@@ -38,6 +38,7 @@ export const MATERIAL_REPEAT_METERS = {
   tile_flat: [1.6, 1.8],
   tile_glazed: [2.25, 2.1],
   tile_mosaic: [0.6, 0.6],
+  glass_frit_triangular: [0.05, 0.08660254],
   metal_standing_seam: [2.5, 3],
   metal_corrugated: [1.2, 2],
   metal_copper: [1.8, 1.8],

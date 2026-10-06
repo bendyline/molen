@@ -1,9 +1,9 @@
 # Shared architectural material library
 
-The library contains **67 canonical procedural surface graphs**. Forty-five existing patterns
+The library contains **68 canonical procedural surface graphs**. Forty-five existing patterns
 remain intact. Added surfaces cover painted wood, continuous coated and uncoated metals,
 timber, canvas, marble, travertine, raw and weathered limestone, fired clay, ETFE film,
-raw basalt, raw sandstone, cast bronze, polished and bead-blasted stainless steel, and four perforated metal patterns. Every graph is a small editable
+raw basalt, raw sandstone, cast bronze, polished and bead-blasted stainless steel, four perforated metal patterns, and triangular ceramic frit on backed glass. Every graph is a small editable
 `molen/matgraph@1` document in `content/worldgen/materials`, authored through
 `packages/worldgen/scripts/generate-pack.mjs`.
 
@@ -34,6 +34,7 @@ it is excluded from runtime packs. Material graph references are stable runtime 
 | Cream sail canvas | fabric_canvas | `#e5ddc6` | 0.25 × 0.25 m |
 | Polished stainless steel | metal_stainless_polished | `#d8d9d7` | 1 × 1 m |
 | Bead-blasted stainless steel | metal_stainless_beadblasted | `#d8d9d7` | 1 × 1 m |
+| White triangular ceramic frit | glass_frit_triangular | `#f3f4ed` | 0.05 × 0.08660254 m |
 
 Every reference uses the prefix `matgraph:molen.worldgen.material.`. The white, cream and blue
 wood variants share one painted-lap texture set. Green, white and gray shingles share one
@@ -49,6 +50,12 @@ The two stainless finishes share neutral metallic color and differ in roughness 
 They were inspected together on the Spire of Dublin with environment reflections enabled;
 its source bundle records the current captures. Use true geometry for large perforations
 and distinctive engraved or polished patterns. These material graphs provide surface finish.
+
+`glass_frit_triangular` supplies a smooth, opaque backed-glass finish with a triangular ceramic
+pattern. Its 50 mm triangle side is a photographic reconstruction, not a measured fabrication
+dimension. The frit is within the glass laminate, so the graph adds no relief normal or alpha
+holes. Use separate geometry for panel joints, metal retainers and transparent vision lights.
+The graph is reusable across cladding panels and column wraps; each model supplies its tint.
 
 ## UV and GLB contract
 
@@ -83,17 +90,17 @@ measurements of a graphics driver's allocation.
 
 ## Shared texture allocation
 
-The [canonical bake audit](material-texture-audit.json) checks all 65 graphs at their authored
+The [canonical bake audit](material-texture-audit.json) checks all 68 graphs at their authored
 256² resolution. They are distinct surfaces: no complete baked material is duplicated.
 Their 21 named tint variants already reuse the underlying maps.
 
-| Allocation estimate for all 65 surfaces | Before constant-channel folding | After |
+| Allocation estimate for all 68 surfaces | Before constant-channel folding | After |
 | --- | ---: | ---: |
-| Texture images uploaded | 183 | 125 |
-| Base-level RGBA8 texels | 45.75 MiB | 31.25 MiB |
-| Full mip-chain RGBA8 texels, upper bound | 61.00 MiB | 41.67 MiB |
+| Texture images uploaded | 193 | 131 |
+| Base-level RGBA8 texels | 48.25 MiB | 32.75 MiB |
+| Full mip-chain RGBA8 texels, upper bound | 64.33 MiB | 43.67 MiB |
 
-49 roughness maps and nine metalness maps are constant in the channel the shader actually
+50 roughness maps and twelve metalness maps are constant in the channel the shader actually
 samples. The client replaces them with exact `byte / 255` factors, multiplied by the existing
 material factors. This preserves their response without allocating a texture or sampling it.
 Base color, normals, transparency and every nonconstant response map remain textures. These
@@ -111,8 +118,8 @@ predicate when their loader can prove exclusive ownership.
 
 The latest [GLB inventory](texture-audit.json) records the current source and runtime GLB counts,
 image inventory, vertex-color coverage and canonical shared-surface bindings.
-The refreshed inventory covers **647 GLBs**, counting editable masters and imported runtime
-copies separately. All 647 contain vertex colors; 436 bind canonical shared surfaces. Eight GLBs
+The refreshed inventory covers **689 GLBs**, counting editable masters and imported runtime
+copies separately. All 689 contain vertex colors; 478 bind canonical shared surfaces. Eight GLBs
 contain eight embedded images, representing four distinct image byte sequences and 16,514 bytes
 across all copies. Every image is bound as a base-color fallback for a shared surface.
 
@@ -120,22 +127,22 @@ These portable fallback PNGs are generated from the canonical graphs by
 `embed-graph-fallbacks.mjs`. They preserve perforated facades in standalone glTF viewers.
 The world viewer replaces those private fallback materials with shared graph materials;
 the embedded copies are not additional canonical surfaces. The reusable sources remain the
-65 procedural graphs, so this audit requires no extraction of new texture artwork.
+68 procedural graphs, so this audit requires no extraction of new texture artwork.
 
 `packages/worldgen/scripts/audit-structure-textures.mjs` reproduces this inventory, including
 per-file hashes, embedded image hashes if any are found, duplicate image groups and shared
 surface bindings. Re-running after more models or bindings are authored updates the inventory;
 hash equality alone does not authorize replacing unique artwork with a generic material.
 
-The inventory now counts **322 authored masters** separately from their runtime copies:
+The inventory now counts **343 authored masters** separately from their runtime copies:
 
 | Collection | Masters | Masters with shared surfaces | Shared / local material definitions |
 | --- | ---: | ---: | ---: |
 | Original catalog | 100 | 0 | 0 / 314 |
-| Next catalog | 220 | 216 | 769 / 412 |
+| Next catalog | 241 | 237 | 857 / 448 |
 | Generic map structures | 2 | 2 | 10 / 1 |
 
-These models use 34 canonical graphs; procedural buildings also use the wider library. All
+These models use 38 canonical graphs; procedural buildings also use the wider library. All
 existing shared references, slots and UV0 bindings pass validation. The report exposes
 `authoredCoverage.unboundModels`, per-material bindings and repeated local names. A name is
 only a review lead: it does not establish the material's substance or authorize replacement.
@@ -144,7 +151,7 @@ The 104 wholly unbound masters comprise the original 100 studies plus Normandie,
 Bridge, Tokyo Station and Stonehenge. The old studies mix substances in broad slots and use
 unit UVs on individual faces. Conversion needs component-level substance assignments and
 metric UVs first. Repeated stadium seats/pitches and bridge roads/markings are candidates for
-future shared finishes. Preserve the 65 transparent local definitions and unique art while
+future shared finishes. Preserve the 71 transparent local definitions and unique art while
 reviewing those assignments.
 
 ## Common authoring adapter
@@ -188,7 +195,7 @@ proof of correct texture scale or orientation; near/far visual review remains ne
 - `node packages/worldgen/scripts/generate-pack.mjs` generates graphs and catalog; `--check`
   verifies reproducible output.
 - `node packages/worldgen/scripts/preview-materials.mjs --out content/worldgen/source/material-library/all-surfaces.png`
-  schema-validates and bakes the current 65 graphs into a near/repeated swatch sheet.
+  schema-validates and bakes the current 68 graphs into a near/repeated swatch sheet.
 - Add `--ids=wood_painted_lap,wood_painted_shingle,wood_plain,fabric_canvas,metal_painted,stone_granite`
   and use `--out content/worldgen/source/material-library/new-surfaces.png` for that subset.
 - `node packages/worldgen/scripts/audit-structure-textures.mjs` refreshes the texture inventory.

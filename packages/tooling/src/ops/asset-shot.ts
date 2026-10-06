@@ -27,6 +27,8 @@ export interface AssetShotInput {
   clearColor?: string;
   /** Enable the viewer's shared procedural sky/ground reflection environment. */
   reflections?: boolean;
+  /** Enable multisample antialiasing for fine model detail; default false for golden captures. */
+  antialias?: boolean;
   outDir: string;
 }
 
@@ -159,6 +161,7 @@ async function screenshotAssetImpl(input: AssetShotInput): Promise<AssetShotOutp
         terrain: null,
         clearColor: input.clearColor ?? '#181d24',
         reflections: input.reflections ?? false,
+        antialias: input.antialias ?? false,
         assetsBaseUrl: `${server.url}/files/`,
         assetsIndex: { [sidecar.id]: modelUrlRel },
       };

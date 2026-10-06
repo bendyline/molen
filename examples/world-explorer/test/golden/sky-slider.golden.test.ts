@@ -85,14 +85,20 @@ describe('browser: sky time slider', () => {
         undefined,
         { timeout: 60000 },
       );
-      await page.waitForFunction(
-        () => !document.querySelector<HTMLElement>('#worldgen-status')?.hidden,
-      );
       await expect.poll(() => requested).toBe(true);
+      // Baking is now on demand. The startup warm-up can finish before Human mode asks
+      // for any surfaces; hold the workers while buildings render with flat materials.
+      await page.locator('button[data-mode="human"]').click();
+      await page.waitForFunction(
+        () =>
+          /worldgen [1-9]\d* buildings/.test(document.querySelector('#status')?.textContent ?? ''),
+        undefined,
+        { timeout: 60000 },
+      );
       const pending = await timings();
       expect(pending['first-frame']).toBeGreaterThan(0);
       expect(pending['material-baking-start']).toBeGreaterThan(pending['first-frame'] ?? 0);
-      expect(pending['material-baking']).toBeUndefined();
+      expect(await page.locator('#status').getAttribute('data-shared-texture-bytes')).toBe('0');
       const camera = await page.locator('#location').textContent();
       const sky = await page.locator('#sky-status').getAttribute('data-utc-ms');
       await page.locator('#sky-time').press('ArrowRight');
@@ -101,13 +107,11 @@ describe('browser: sky time slider', () => {
         sky,
       );
       expect(await page.locator('#location').textContent()).toBe(camera);
-      expect((await timings())['material-baking']).toBeUndefined();
+      expect(await page.locator('#status').getAttribute('data-shared-texture-bytes')).toBe('0');
       release();
       await page.waitForFunction(
         () =>
-          !!JSON.parse(
-            document.querySelector<HTMLElement>('#performance-status')?.dataset.startup ?? '{}',
-          )['material-baking'],
+          Number(document.querySelector<HTMLElement>('#status')?.dataset.sharedTextureBytes) > 0,
         undefined,
         { timeout: 120000 },
       );

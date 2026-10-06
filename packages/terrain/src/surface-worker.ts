@@ -12,6 +12,7 @@ import {
   type TerrainSurfaceGenerator,
   type TerrainSurfaceStats,
 } from './surface-client';
+import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
 import type { TerrainSurfaceOptions } from './surface-styles';
 
 export type TerrainSurfaceWorker = TerrainLandcoverWorker;
@@ -50,6 +51,7 @@ interface Result {
   style?: string;
   inferredParkingAreas?: number;
   vehicles?: VehiclePlacement[];
+  signalHeads?: TerrainSignalHead[];
   error?: string;
 }
 
@@ -74,37 +76,39 @@ export function installTerrainSurfaceWorker(
         false,
       );
       const transfer: ArrayBuffer[] = [];
-      const meshes = object.children.map((child): MeshData => {
-        const mesh = child as THREE.Mesh;
-        const instances = mesh as THREE.InstancedMesh;
-        let sphere: THREE.Sphere;
-        const data: MeshData = {
-          name: mesh.name,
-          castShadow: mesh.castShadow,
-          sphere: [0, 0, 0, 0],
-        };
-        if (instances.isInstancedMesh) {
-          instances.computeBoundingSphere();
-          sphere = instances.boundingSphere as THREE.Sphere;
-          data.matrices = instances.instanceMatrix.array as Float32Array;
-          data.instanceColors = instances.instanceColor?.array as Float32Array;
-          transfer.push(data.matrices.buffer as ArrayBuffer);
-          if (data.instanceColors) transfer.push(data.instanceColors.buffer as ArrayBuffer);
-        } else {
-          mesh.geometry.computeBoundingSphere();
-          sphere = mesh.geometry.boundingSphere as THREE.Sphere;
-          data.positions = mesh.geometry.getAttribute('position').array as Float32Array;
-          data.normals = mesh.geometry.getAttribute('normal').array as Float32Array;
-          data.colors = mesh.geometry.getAttribute('color').array as Float32Array;
-          transfer.push(
-            data.positions.buffer as ArrayBuffer,
-            data.normals.buffer as ArrayBuffer,
-            data.colors.buffer as ArrayBuffer,
-          );
-        }
-        data.sphere = [sphere.center.x, sphere.center.y, sphere.center.z, sphere.radius];
-        return data;
-      });
+      const meshes = object.children
+        .filter((child) => !child.name.startsWith('surface:signal-'))
+        .map((child): MeshData => {
+          const mesh = child as THREE.Mesh;
+          const instances = mesh as THREE.InstancedMesh;
+          let sphere: THREE.Sphere;
+          const data: MeshData = {
+            name: mesh.name,
+            castShadow: mesh.castShadow,
+            sphere: [0, 0, 0, 0],
+          };
+          if (instances.isInstancedMesh) {
+            instances.computeBoundingSphere();
+            sphere = instances.boundingSphere as THREE.Sphere;
+            data.matrices = instances.instanceMatrix.array as Float32Array;
+            data.instanceColors = instances.instanceColor?.array as Float32Array;
+            transfer.push(data.matrices.buffer as ArrayBuffer);
+            if (data.instanceColors) transfer.push(data.instanceColors.buffer as ArrayBuffer);
+          } else {
+            mesh.geometry.computeBoundingSphere();
+            sphere = mesh.geometry.boundingSphere as THREE.Sphere;
+            data.positions = mesh.geometry.getAttribute('position').array as Float32Array;
+            data.normals = mesh.geometry.getAttribute('normal').array as Float32Array;
+            data.colors = mesh.geometry.getAttribute('color').array as Float32Array;
+            transfer.push(
+              data.positions.buffer as ArrayBuffer,
+              data.normals.buffer as ArrayBuffer,
+              data.colors.buffer as ArrayBuffer,
+            );
+          }
+          data.sphere = [sphere.center.x, sphere.center.y, sphere.center.z, sphere.radius];
+          return data;
+        });
       scope.postMessage(
         {
           id: request.id,
@@ -113,6 +117,7 @@ export function installTerrainSurfaceWorker(
           style: object.userData.surfaceStyle as string,
           inferredParkingAreas: object.userData.inferredParkingAreas as number,
           vehicles: object.userData.vehicles as VehiclePlacement[],
+          signalHeads: object.userData.trafficSignalHeads as TerrainSignalHead[],
         } satisfies Result,
         transfer,
       );
@@ -239,6 +244,7 @@ export function createTerrainSurfaceWorkerBridge(
       }
       if (result.vehicles?.length)
         group.add(createParkedVehicleBatch(result.vehicles, job.context.origin));
+      appendTerrainSignalLenses(group, result.signalHeads ?? []);
       job.resolve(group);
     }
     pump();

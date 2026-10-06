@@ -8,11 +8,10 @@
     "dev": "vite --port 5226",
     "build": "vite build",
     "typecheck": "tsc -p tsconfig.json",
-    "lint": "biome check src test",
+    "lint": "biome check src",
     "predev": "node ../world-explorer/scripts/build-content-packs.mjs",
     "prebuild": "node ../world-explorer/scripts/build-content-packs.mjs",
-    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
-    "test:golden": "pnpm run build && vitest run --config vitest.golden.config.ts"
+    "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",

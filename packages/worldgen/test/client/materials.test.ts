@@ -31,6 +31,42 @@ const provider: AssetProvider = {
 };
 
 describe('resolved material set', () => {
+  it('bakes on use with bounded concurrency and rejects textures beyond the shared budget', async () => {
+    let active = 0,
+      maximum = 0;
+    const acquire = vi.fn(async () => {
+      maximum = Math.max(maximum, ++active);
+      await Promise.resolve();
+      active--;
+      return new THREE.MeshStandardMaterial({
+        map: new THREE.DataTexture(new Uint8Array(64 * 64 * 4), 64, 64),
+      });
+    });
+    const release = vi.fn((material: THREE.MeshStandardMaterial) => {
+      material.map?.dispose();
+      material.dispose();
+    });
+    const set = createResolvedMaterialSet({ acquire, release } as unknown as MaterialResolver, {
+      progressive: true,
+      prepareOnUse: true,
+      concurrency: 1,
+      maxTextureBytes: 22000,
+    });
+    const first = set.materialFor('wall', 'matgraph:first') as THREE.MeshStandardMaterial;
+    const second = set.materialFor('wall', 'matgraph:second') as THREE.MeshStandardMaterial;
+    expect(first.map).toBeNull();
+    await set.prepare([]);
+    expect(maximum).toBe(1);
+    expect(first.map).not.toBeNull();
+    expect(second.map).toBeNull();
+    expect(set.textureBytes).toBeLessThanOrEqual(22000);
+    expect(release).toHaveBeenCalledTimes(1);
+    set.materialFor('wall', 'matgraph:second');
+    await set.prepare([]);
+    expect(acquire).toHaveBeenCalledTimes(2);
+    set.dispose();
+    expect(release).toHaveBeenCalledTimes(2);
+  });
   it('keeps alpha-tested coverage maps linear without mipmaps while opaque maps use mipmaps', async () => {
     const mask = new THREE.DataTexture(
       new Uint8Array([255, 255, 255, 0, 255, 255, 255, 255]),

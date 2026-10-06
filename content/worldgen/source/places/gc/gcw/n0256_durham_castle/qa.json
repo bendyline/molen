@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0256_durham_castle",
+  "sourceHash": "sha256:7fee2a5d8b31bbce3e59a071d8eeb7a8db12714ef718b19592cb1b84aaf4f6a8",
+  "runtimeHash": "sha256:2cd837b33a37e0983efe7a42c62c10e18fc3bac02f3368dce76e34d8350421c6",
+  "captureReportHash": "sha256:9ee665a01f084b31d8631e15ea874cf539fff4e7dc64e4d31a9c5f4dc1474a9c",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior rendering only; maximum architectural fidelity and geographic approval remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/castle-and-open-bailey.png",
+      "shots/great-hall-four-domed-turrets.png",
+      "shots/cosin-porch-and-oriel.png",
+      "shots/tunstall-gallery-and-clock.png",
+      "shots/chapel-and-motte.png",
+      "shots/octagonal-keep.png",
+      "shots/gatehouse-open-passage.png",
+      "shots/north-and-west-ranges.png",
+      "shots/motte-retaining-walls.png"
+    ],
+    "notes": "Inspected all 14 final portable frames. Open bailey, separate octagonal keep, two mapped retaining arcs, Great Hall domed turrets, oriel and porch, low gallery, upper hall, clock stair, chapel and gate passage render. Corrected inverted hall/garden-stair partition, overlapping stair and oriel walls, two exposed upper-hall ends and inward porch step risers, then recaptured the entire model. Rear elevations and concealed roofs remain approximations awaiting further architectural reference work."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7335f432589cfee8eaae015cfb63d7487d9c6671b4ff617ed19e5074118af7a1",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/castle-and-open-bailey.png",
+      "shots/shared/great-hall-four-domed-turrets.png",
+      "shots/shared/cosin-porch-and-oriel.png",
+      "shots/shared/tunstall-gallery-and-clock.png",
+      "shots/shared/chapel-and-motte.png",
+      "shots/shared/octagonal-keep.png",
+      "shots/shared/gatehouse-open-passage.png",
+      "shots/shared/north-and-west-ranges.png",
+      "shots/shared/motte-retaining-walls.png"
+    ],
+    "notes": "Inspected all 13 final world-viewer asset-review views. Six reusable graphs (sandstone, raw limestone, slate, wood, painted metal and gravel) each load once. No embedded images. Disposal leaves zero live model geometries. Chapel detail camera intentionally crops surrounding structures; isolated asset rendering does not certify terrain alignment."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:2e447268d4a96d009736cc5cd80abe1836b3a5985e3c09cd1e3418c8cd2898a4",
+    "notes": "Q752266 main ranges use exact way/81522967. Separate mapped keep way/81522969 and gatehouse way/81522972 are retained. Draft anchor [-1.576564741,54.775561357], heading 0.524419899749; native +X 30.047 degrees north of east. replaceFootprint=false. Courtyard Y=0.12 and keep platform Y=10 are provisional; terrain and directional fit review remain pending."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity remains pending: rear elevation window rhythms, precise stone tracery, roof junctions, heraldic shields and figurative porch carvings need more bespoke reference work. Plain reserved panels are not complete carvings. Motte and floor elevations are inferred from courtyard photographs. In-world terrain contact and orientation review remain pending; replaceFootprint=false. Interior rooms, Norman Chapel vaults, Cathedral, Palace Green Library and surrounding city are outside this exterior asset. Detailed master and four independent runtime levels share central surfaces. Physical laptop and phone performance measurements remain pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 8
+    },
+    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces. Valid geometry does not establish architectural accuracy.",
+    "triangles": 193007,
+    "vertices": 391289,
+    "materials": 8,
+    "sharedGraphs": 6,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected same-camera master/LOD comparison; geometry/download budgets, deterministic generation and homogeneous attribute buffer views verified. Physical laptop/phone measurements remain pending.",
+    "notes": "953 / 3169 / 15467 / 29825 triangles; initial skyline plus district 321504 bytes. Street 1181760 bytes; closeup 2162176 bytes; detailed source 16407064 bytes. All 45 authored-LOD checks passed and both Durham cases passed again after the local corrections. Source regeneration is byte-identical. Four independent levels preserve the castle plan, open courtyard and separate keep.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.skyline.glb",
+        "hash": "sha256:3110ff0b6e010e14b8d5af776af95387aaf1cab2f5165e2e763ad399caf0d4a9",
+        "bytes": 79892,
+        "triangles": 953,
+        "vertices": 2021,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -49.14099884033203,
+          0,
+          -33.85100173950195
+        ],
+        "max": [
+          67.56199645996094,
+          30.200000762939453,
+          70.39749908447266
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.district.glb",
+        "hash": "sha256:9a20234c6883938db2aa3e620760c352bced811818bff2d30eac4537ec9ef04b",
+        "bytes": 241612,
+        "triangles": 3169,
+        "vertices": 6015,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -49.14099884033203,
+          0,
+          -33.85100173950195
+        ],
+        "max": [
+          67.73799896240234,
+          30.200000762939453,
+          70.59300231933594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.street.glb",
+        "hash": "sha256:dda347f121df7b01ec09e151afc6c7cff8206e1564e5f91de569e7a6120fbaa3",
+        "bytes": 1181760,
+        "triangles": 15467,
+        "vertices": 30013,
+        "materials": 7,
+        "sharedGraphs": 5,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          0,
+          -34.02204132080078
+        ],
+        "max": [
+          67.8388900756836,
+          30.200000762939453,
+          70.68367004394531
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.closeup.glb",
+        "hash": "sha256:aa2146b6a874d9fd7b70f17f06114b534521c131d5c5d401c8f434c1efa42642",
+        "bytes": 2162176,
+        "triangles": 29825,
+        "vertices": 54820,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          0,
+          -34.02204132080078
+        ],
+        "max": [
+          67.8388900756836,
+          30.200000762939453,
+          70.68367004394531
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ]
+  }
+}

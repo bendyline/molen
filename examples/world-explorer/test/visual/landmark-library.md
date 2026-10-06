@@ -28,7 +28,7 @@ screenshots with the portable GLB materials.
 Unchanged captures are reused after checking model, spec, placement, fixture, graph and
 image hashes. Use `--force` to recapture or `--check` to verify the saved set. Regression
 runs pass `--out-dir <directory>` and write one subdirectory per candidate, preserving the
-authoring images and their review records. The golden test covers a skyscraper and a
-lighthouse in different geographic cells, including unload checks for both.
+authoring images and their review records. This runner is a manual review tool; no CI suite
+runs it.
 
-Sunken structures use the production terrain polygon cutter on the review ground. The runner ray-tests a point inside the opening, confirms hiding the model restores ground, and confirms showing it reopens the ground. Unloading must restore the original geometry and its ray intersection. Ordinary models must keep their original ground geometry. The geographic golden includes the sunken Santiago Bernabéu stadium.
+Sunken structures use the production terrain polygon cutter on the review ground. The runner ray-tests a point inside the opening, confirms hiding the model restores ground, and confirms showing it reopens the ground. Unloading must restore the original geometry and its ray intersection. Ordinary models must keep their original ground geometry. The geographic golden includes the sunken Santiago Bernabï¿½u stadium.

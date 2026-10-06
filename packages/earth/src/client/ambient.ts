@@ -18,12 +18,18 @@ import {
   type AmbientTypes,
   type AmbientVehicleType,
   installAmbient,
+  type SignalTiming,
+  signalColor,
+  signalTiming,
+  type TransportJunction,
 } from '@bendyline/molen-ambient/kernel';
 import { World } from '@bendyline/molen-kernel/world';
 import type { AircraftSpec, VehicleData } from '@bendyline/molen-schema';
 import type {
   TerrainPyramidTileLayerContext,
   TerrainSemanticTile,
+  TerrainTrafficSignal,
+  TerrainTrafficSignalResolver,
 } from '@bendyline/molen-terrain/client';
 import { renderedGroundSampler, terrainPyramidTileKey } from '@bendyline/molen-terrain/kernel';
 import type * as THREE from 'three';
@@ -138,6 +144,62 @@ export class EarthAmbient implements SemanticTileObserver {
   private enabled = true;
   private budget: EarthAmbientBudget | undefined;
   private disposed = false;
+  private signalVersion = -1;
+  private signalMatches = new WeakMap<
+    TerrainTrafficSignal,
+    { junction: TransportJunction; group: number; timing: SignalTiming } | undefined
+  >();
+  private readonly signalCells = new Map<string, TransportJunction[]>();
+
+  /** Resolve rendered signal heads against the same phase and tick that controls NPC cars. */
+  readonly surfaceSignalColor: TerrainTrafficSignalResolver = (head) => {
+    if (this.disposed) return undefined;
+    const network = this.handle.network;
+    if (this.signalVersion !== network.version) {
+      this.signalMatches = new WeakMap();
+      this.signalCells.clear();
+      for (const junction of network.junctionList()) {
+        if (junction.control !== 'signal') continue;
+        const key = `${Math.floor(junction.x / 64)}/${Math.floor(junction.z / 64)}`;
+        const cell = this.signalCells.get(key) ?? [];
+        cell.push(junction);
+        this.signalCells.set(key, cell);
+      }
+      this.signalVersion = network.version;
+    }
+    if (!this.signalMatches.has(head)) {
+      let match: { junction: TransportJunction; group: number; timing: SignalTiming } | undefined;
+      let distance = Math.max(12, head.radius);
+      const minX = Math.floor((head.junction[0] - distance) / 64);
+      const maxX = Math.floor((head.junction[0] + distance) / 64);
+      const minZ = Math.floor((head.junction[1] - distance) / 64);
+      const maxZ = Math.floor((head.junction[1] + distance) / 64);
+      // A new road tile invalidates matches, but only nearby junctions need to be searched.
+      for (let x = minX; x <= maxX; x++)
+        for (let z = minZ; z <= maxZ; z++)
+          for (const junction of this.signalCells.get(`${x}/${z}`) ?? []) {
+            const d = Math.hypot(junction.x - head.junction[0], junction.z - head.junction[1]);
+            if (d >= distance) continue;
+            let alignment = 0.7;
+            for (const arm of junction.arms) {
+              const dot = arm.dx * head.direction[0] + arm.dz * head.direction[1];
+              if (dot <= alignment) continue;
+              alignment = dot;
+              match = {
+                junction,
+                group: arm.group,
+                timing: signalTiming(junction, this.world.tickRate),
+              };
+              distance = d;
+            }
+          }
+      this.signalMatches.set(head, match);
+    }
+    const match = this.signalMatches.get(head);
+    return match
+      ? signalColor(match.junction, match.group, this.world.tick, this.world.tickRate, match.timing)
+      : undefined;
+  };
 
   constructor(options: EarthAmbientOptions) {
     this.ownsWorld = options.world === undefined;
@@ -392,6 +454,8 @@ export class EarthAmbient implements SemanticTileObserver {
     this.renderer.dispose();
     this.handle.dispose();
     this.entries.clear();
+    this.signalCells.clear();
+    this.signalMatches = new WeakMap();
   }
 }
 

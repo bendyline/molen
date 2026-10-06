@@ -50,8 +50,10 @@ import {
   createTerrainSurfaceRenderer,
   createTerrainSurfaceWorkerBridge,
   createTerrainWaterMaterialAsync,
+  sampleTerrainTunnel,
   setTerrainWaterTime,
   type TerrainPyramidBudget,
+  type TerrainPyramidHeightSource,
   type TerrainPyramidStream,
   type TerrainPyramidTileLayer,
   type TerrainQualityPreset,
@@ -67,7 +69,11 @@ import {
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
-import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import type {
+  ScreenSpaceLodPolicy,
+  StructureStreamingOptions,
+  StructureStreamingStats,
+} from '@bendyline/molen-worldgen/client';
 import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
@@ -301,6 +307,8 @@ export interface EarthViewOptions {
    * against it, and the terrain cache keeps at least this much.
    */
   memoryBudget?: number;
+  /** Source-derived landmark streaming budgets; false explicitly loads full legacy models. */
+  landmarkStreaming?: StructureStreamingOptions | false;
   /**
    * Highest level `quality: 'auto'` climbs to (0-5, default 3, Balanced). Above it buildings
    * switch to the high preset, which rebuilds them across the view for little visible gain.
@@ -348,6 +356,7 @@ export interface EarthViewStats {
    * loaded: tiles generated, buildings drawn as geometry, and instanced stand-ins.
    */
   worldgen?: { tiles: number; buildings: number; standIns: number };
+  structures?: StructureStreamingStats;
 }
 
 /** What {@link EarthView.cacheStats} reports. */
@@ -762,6 +771,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 metersPerUnit,
                 quality: quality(),
                 lodPolicy,
+                ...(options.landmarkStreaming !== undefined
+                  ? { landmarkStreaming: options.landmarkStreaming }
+                  : {}),
                 ...(options.workers !== undefined ? { workers: options.workers } : {}),
                 ...(options.materialStore !== undefined
                   ? { materialStore: options.materialStore }
@@ -774,12 +786,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
+        const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
+          provideTunnelHeights = resolve;
+        });
         let sidecars: Omit<EarthPrefetchArchives, 'elevation'> = {};
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
+              tunnels: {
+                heights: {
+                  load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
+                },
+              },
               ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
               ...(cacheTransport !== undefined
                 ? { transport: cacheTransport.normal, buildingDetailTransport: cacheTransport.low }
@@ -882,6 +903,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           },
         );
         const stream = opened.stream;
+        provideTunnelHeights(opened.source);
         parts.push(() => {
           stream.object.removeFromParent();
           stream.dispose();
@@ -945,7 +967,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           const flyable = new EarthAircraft({
             world: vehicles.world,
             root: stream.object,
-            sampleHeight: (x, z) => stream.sampleHeight(x, z),
+            sampleHeight: (x, z, y) =>
+              y === undefined
+                ? stream.sampleHeight(x, z)
+                : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ?? stream.sampleHeight(x, z)),
             loadModel,
             types: content.types,
             vehicleEnvironment: vehicles.environment,
@@ -1793,6 +1818,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
       if (current !== undefined) {
         current.stream.updateTransitions(now);
+        current.worldgen?.updateStructures({
+          position: pose.position,
+          direction: pose.direction,
+          verticalFov: VERTICAL_FOV,
+          viewportHeight: canvas.height,
+          maxPixelError: automatic ? tier.objectPixelError : 2,
+        });
         if (
           now - streamTime >= 100 ||
           viewNeedsImmediateUpdate(
@@ -1832,6 +1864,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         }
         current.ambient?.update(dt);
         current.ambient?.render(pose.position, dt);
+        current.surface.updateSignals(
+          current.ambient
+            ? current.ambient.world.tick / current.ambient.world.tickRate
+            : now / 1000,
+          current.ambient?.surfaceSignalColor,
+        );
         updateEarthFog(fog, current.viewDistance, pose.position[1]);
       }
       for (const tap of frameInput.taps) {
@@ -2021,6 +2059,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           triangles: renderStats.triangles,
           frameLatitude,
           ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
+          ...(stack?.worldgen?.structureStats()
+            ? { structures: stack.worldgen.structureStats() }
+            : {}),
           ...(stack?.worldgen !== undefined
             ? (() => {
                 const generated = (stack.worldgen as EarthWorldgen).stats();

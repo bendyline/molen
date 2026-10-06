@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0258_sforza_castle",
+  "sourceHash": "sha256:f5494818b50041d91b1434f110032249bec0d6a312d4eb08e5c36fbcd119faa1",
+  "runtimeHash": "sha256:eefe4cdaba6a04ce3d7839ea3265c044d6e6f1c948afe38a82bc8ee2408b3455",
+  "captureReportHash": "sha256:43a03139491a8453c97eff6dbd4a3daaa04324e6ab5418342e5d426b3bee6ad5",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior rendering only; architectural maximum fidelity and geographic approval remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/three-courtyards-and-roof-plan.png",
+      "shots/filarete-clock-and-lantern.png",
+      "shots/city-front-and-round-towers.png",
+      "shots/rusticated-carmine-tower.png",
+      "shots/rocchetta-courtyard-arcades.png",
+      "shots/ducal-court-and-pool.png",
+      "shots/park-front-square-towers.png",
+      "shots/ponticella-and-falconiera.png",
+      "shots/arms-court-and-bona-tower.png"
+    ],
+    "notes": "Inspected all 14 final portable views: three open courts, distinct round and square towers, Filarete stages, clock and lantern, Bona tower, museum roofs, dry moat, gate bridges and Ponticella. Corrected the reversed Filarete gallery, inward-facing facade details, floating masonry in gateways and the filled rear gateway. Courtyard porticoes have depth and continuous arch spandrels. Sculptures, frescoes, exact fenestration and vertical survey remain fidelity work."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:8a4f2329f142afad3054b76c5704b4f55173a8fe39b86556edbea4acb997f3ad",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/three-courtyards-and-roof-plan.png",
+      "shots/shared/filarete-clock-and-lantern.png",
+      "shots/shared/city-front-and-round-towers.png",
+      "shots/shared/rusticated-carmine-tower.png",
+      "shots/shared/rocchetta-courtyard-arcades.png",
+      "shots/shared/ducal-court-and-pool.png",
+      "shots/shared/park-front-square-towers.png",
+      "shots/shared/ponticella-and-falconiera.png",
+      "shots/shared/arms-court-and-bona-tower.png"
+    ],
+    "notes": "Inspected all 13 final shared-material asset-review views. Nine central graphs (brick, granite, limestone, raw limestone, plaster, roof tile, copper, painted metal and gravel) each load once. No embedded images. Unloading leaves zero live model geometry. These isolated views do not establish terrain contact or precise geographic fit."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:c39da18c2ddee99c2a8221ba096c6250bbcf2a6c0f527bc0afa2cf29ec6521b7",
+    "notes": "Q23354 exact OSM relation/1918 and mapped part relations. Draft anchor [9.179624311,45.470327662], heading 0.746042938648. Native +X northeast, +Z southeast toward the Filarete entrance. Dry moat Y=0 and courts Y=3 are inferred relative levels. replaceFootprint=false; terrain and geographic orientation fit remain pending."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity pending: carved heraldry, equestrian relief, Saint Ambrose statue, frescoes, inscriptions and individual conservation scars are not reproduced. Heights, roof pitches, moat depth and arcade proportions are inferred from photographs, not a measured elevation survey. In-world placement remains draft; replaceFootprint=false. Gallery openings and gateways have geometry; enclosed museum interiors, collections and room circulation are outside this exterior model. Detailed master and four runtime levels share central procedural materials. Physical laptop/phone measurements remain pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 11
+    },
+    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces. Valid geometry does not establish architectural accuracy.",
+    "triangles": 509200,
+    "vertices": 1032360,
+    "materials": 11,
+    "sharedGraphs": 9,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Inspected same-camera master/LOD comparison; geometry/download budgets, deterministic generation and homogeneous attribute buffer views verified. Physical laptop/phone measurements remain pending.",
+    "notes": "780 / 2954 / 9600 / 56716 triangles; initial skyline plus district 291212 bytes. Street 671460 bytes; closeup 3976920 bytes; detailed source 43281340 bytes. All 49 authored-LOD checks passed; both Sforza cases passed again after final gateway and arcade corrections. Source regeneration is byte-identical. Four independent levels preserve the three courts, round and square towers, roof ranges and Filarete stages. Street and close-up retain real arcade depth. The skyline intentionally omits small ravelins, openings and trim.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0n/n0258_sforza_castle/model.skyline.glb",
+        "hash": "sha256:7126f5bb6e85e133d2d737b00f1fbcd1cc5f41e839dc89a40c1cf85d185b6027",
+        "bytes": 63360,
+        "triangles": 780,
+        "vertices": 1592,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -117.5,
+          0,
+          -117.5
+        ],
+        "max": [
+          109.97899627685547,
+          73,
+          118.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0n/n0258_sforza_castle/model.district.glb",
+        "hash": "sha256:9c526eb42e5e99622303a8a4edd316c36725b2d08fb9ffa6add603ae98fcb977",
+        "bytes": 227852,
+        "triangles": 2954,
+        "vertices": 5578,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -117.5,
+          0,
+          -119.58699798583984
+        ],
+        "max": [
+          109.97899627685547,
+          73,
+          118.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0n/n0258_sforza_castle/model.street.glb",
+        "hash": "sha256:17146c41ed71afd3fe21fcd0670509f4f10cd5dfa799c73b467b24a7165cbb96",
+        "bytes": 671460,
+        "triangles": 9600,
+        "vertices": 16726,
+        "materials": 10,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -117.5,
+          0,
+          -119.58699798583984
+        ],
+        "max": [
+          110.4000015258789,
+          73,
+          118.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0n/n0258_sforza_castle/model.closeup.glb",
+        "hash": "sha256:acde67056054f8325defd4eb94b763e72906d674377d78984352689354136fe6",
+        "bytes": 3976920,
+        "triangles": 56716,
+        "vertices": 100690,
+        "materials": 10,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -117.5,
+          0,
+          -119.58699798583984
+        ],
+        "max": [
+          110.4000015258789,
+          73,
+          118.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      }
+    ]
+  }
+}

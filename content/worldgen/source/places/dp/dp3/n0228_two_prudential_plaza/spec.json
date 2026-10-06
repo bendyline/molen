@@ -1,0 +1,334 @@
+{
+  "planId": "N0228",
+  "id": "N0228",
+  "assetId": "molen.worldgen.structure.n0228_two_prudential_plaza",
+  "title": "Two Prudential Plaza",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1121971",
+  "referenceCoordinate": {
+    "latitude": 41.885555555,
+    "longitude": -87.622777777
+  },
+  "visualBrief": "Individually jointed pale granite facade, recessed blue windows, glazed end strips, three series of north/south chevron setbacks, diamond crown, 80-foot spire and transparent double-height lobby. Repeated facade modules are GPU instances with shared canonical materials.",
+  "size": [
+    56.46900177001953,
+    303.29998779296875,
+    41.1510009765625
+  ],
+  "actualBounds": {
+    "min": [
+      -28.234500885009766,
+      0,
+      -20.57550048828125
+    ],
+    "max": [
+      28.234500885009766,
+      303.29998779296875,
+      20.57550048828125
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 14,
+    "meshInstances": 3789,
+    "storedTriangles": 45962,
+    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X south along the long mapped axis",
+    "front": "-Z east toward Stetson",
+    "origin": "Cached tower envelope center at provisional local pavement contact"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 303.3,
+    "highestOccupiedMeters": 250,
+    "aboveGroundFloors": 64,
+    "completionYear": 1990,
+    "contractorSpireLengthFeet": 80
+  },
+  "appearance": {
+    "period": "Original exterior with 2012/2016 photography and owner 2021 plans",
+    "excluded": "Unbuilt marketing proposals and neighboring One Prudential tower."
+  },
+  "reconstruction": {
+    "groundEnvelopeMeters": [
+      56.169,
+      40.851
+    ],
+    "officeBaseMeters": 9.75,
+    "workingFloorIntervalMeters": 3.875,
+    "officeFacadeRows": 63,
+    "crownLowestShoulderMeters": 224.0003,
+    "reconstructedRoofSlope": 1.4,
+    "spireBaseMeters": 278.916,
+    "planBasis": "Cached exact-QID ground envelope supplies scale and long-axis registration. The owner floor-28/30 plans establish north/south projections and re-entrant corners. A fourteen-bay end grid and stepped upper profiles are photographic reconstructions, not dimensioned floor polygons.",
+    "materialBasis": "Canonical granite, stainless steel, painted metal and concrete graphs, plus reusable blue and clear PBR glazing. Every masonry joint, reveal, sill, frame, crown rib and door handle is geometry; no photographic textures or per-model image copies.",
+    "assembly": {
+      "uniqueParts": 14,
+      "instances": 3789
+    }
+  },
+  "referencePages": [
+    "https://www.theprulife.com/wp-content/uploads/2021/06/OTP_Large-Block-Plans_All-28-30.pdf",
+    "https://www.theprulife.com/wp-content/uploads/2024/04/Pru_FilmingScoutBrochure_April2024.pdf",
+    "https://www.skyscrapercenter.com/chicago/two-prudential-plaza/489",
+    "https://mchughconcrete.com/projects/two-prudential-plaza/",
+    "https://www.linkedin.com/posts/turner-construction-company_builtbyturner-turnerchicago-onetwopru-activity-7333884834496356371-FkpT",
+    "https://commons.wikimedia.org/wiki/File:Two_Prudential_Plaza_Chicago_in_May_2016.jpg",
+    "https://commons.wikimedia.org/wiki/File:Two_Prudential_Plaza_-_Exterior_1_(7883111728).jpg",
+    "https://www.openstreetmap.org/way/64388666"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      -87.622721048,
+      41.885419934
+    ],
+    "heading": -1.551105215919,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/64388666",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/64388666"
+    ],
+    "wikidataId": "Q1121971",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cdd4d59d47a67cd2996452f5a95704cdef7fcd6651383b135abdc5175f180b56",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID footprint and owner north arrow establish the long axis. Cached yaw maps +X roughly south and -Z roughly east; signed entrance and actual shared-site elevation still require review."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending. Chevron heights, bay count, floor allocation, crown-to-shoulder transition and granite joint sections are photographic working reconstructions; source plans have no printed scale.",
+    "The crown now intersects the facade along four gables; roof slope, exact stepped profile and glazing-band heights require dimensioned upper-floor plans before completion approval.",
+    "The shared One/Two Prudential plaza, sculpture, planting, stairs, lobby connection and wider podium are outside the cached tower footprint and remain to be registered and authored.",
+    "Owner lobby photographs establish a tall glazed entrance, but signed door positions, exact pier spacing and ground levels remain provisional. Geographic and terrain-contact approval are pending.",
+    "The contractor website has conflicting storey counts. The registry count of 64 and 250 m highest occupied datum are recorded separately from the reconstructed facade grid."
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-window-reveals",
+      "position": [
+        33,
+        74,
+        14
+      ],
+      "lookAt": [
+        28.0845,
+        74,
+        14
+      ]
+    },
+    {
+      "name": "panel-joints",
+      "position": [
+        30,
+        75.4,
+        15.5
+      ],
+      "lookAt": [
+        28.0845,
+        75.4,
+        15.5
+      ]
+    },
+    {
+      "name": "central-glazing",
+      "position": [
+        39,
+        86,
+        0
+      ],
+      "lookAt": [
+        28.0845,
+        85,
+        0
+      ]
+    },
+    {
+      "name": "first-chevron",
+      "position": [
+        52,
+        148,
+        46
+      ],
+      "lookAt": [
+        24,
+        131,
+        8
+      ]
+    },
+    {
+      "name": "second-chevron",
+      "position": [
+        49,
+        209,
+        -46
+      ],
+      "lookAt": [
+        21,
+        188,
+        -7
+      ]
+    },
+    {
+      "name": "upper-shoulders",
+      "position": [
+        57,
+        268,
+        56
+      ],
+      "lookAt": [
+        0,
+        245,
+        0
+      ]
+    },
+    {
+      "name": "crown-bands",
+      "position": [
+        32,
+        277,
+        37
+      ],
+      "lookAt": [
+        0,
+        267,
+        0
+      ]
+    },
+    {
+      "name": "spire-collar",
+      "position": [
+        8,
+        286,
+        8
+      ],
+      "lookAt": [
+        0,
+        279.5,
+        0
+      ]
+    },
+    {
+      "name": "entrance-hardware",
+      "position": [
+        -5.2,
+        2.6,
+        -25
+      ],
+      "lookAt": [
+        -5.2,
+        1.6,
+        -20.4255
+      ]
+    },
+    {
+      "name": "lobby",
+      "position": [
+        -12,
+        5,
+        -36
+      ],
+      "lookAt": [
+        0,
+        4,
+        -20.4255
+      ]
+    },
+    {
+      "name": "plan",
+      "position": [
+        0,
+        354,
+        1
+      ],
+      "lookAt": [
+        0,
+        200,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -770,
+        370,
+        830
+      ],
+      "lookAt": [
+        0,
+        150,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 894844,
+    "vertices": 1760260,
+    "materials": 8,
+    "bytes": 5546212,
+    "sha256": "sha256:bc16932d1b6a6598c4b62fa75e08291169989a8802d1b456a5fe2392c379d291"
+  }
+}

@@ -4,6 +4,7 @@ import * as THREE from 'three';
 type Point = readonly [number, number];
 export type TerrainGroundOutline = readonly Point[];
 const owners = new WeakMap<THREE.Object3D, TerrainGroundOutline>();
+const ceilings = new WeakMap<THREE.Object3D, number>();
 const surfaces = new WeakSet<THREE.Mesh>();
 const ownerRefs = new Set<WeakRef<THREE.Object3D>>();
 const surfaceRefs = new Set<WeakRef<THREE.Mesh>>();
@@ -21,11 +22,16 @@ export function markTerrainGroundSurface(mesh: THREE.Mesh): void {
   surfaces.add(mesh);
 }
 
-/** A simple model-local X/Z polygon. Only a visible owner opens the ground. */
+/** A simple model-local X/Z polygon. Only a visible owner opens the ground.
+ * `maxHeight` limits removal to ground below this model-local Y, preserving terrain above a bore.
+ * Height-limited owners use translation and rotation about Y (no pitch/roll). */
 export function setTerrainGroundCutout(
   object: THREE.Object3D,
   outline: TerrainGroundOutline,
+  maxHeight?: number,
 ): void {
+  if (maxHeight !== undefined && !Number.isFinite(maxHeight))
+    throw new Error('Ground cutout ceiling must be finite');
   const points = outline.map(([x, z]) => [x, z] as Point);
   if (
     points.length > 3 &&
@@ -37,6 +43,9 @@ export function setTerrainGroundCutout(
     throw new Error('Ground cutout requires 3–512 finite X/Z vertices');
   if (!owners.has(object)) ownerRefs.add(new WeakRef(object));
   owners.set(object, points);
+  if (maxHeight !== undefined) {
+    ceilings.set(object, maxHeight);
+  } else ceilings.delete(object);
 }
 
 /** Original regular grid, used by terrain height morphs and normal-apron updates. */
@@ -89,11 +98,8 @@ function pieces(outline: TerrainGroundOutline): Point[][] {
     [],
   ).map((t) => t.map((i) => points[i] as Point));
 }
-function clip(polygon: number[][], a: Point, b: Point, inside: boolean): number[][] {
+function clipByDistance(polygon: number[][], distance: (p: number[]) => number): number[][] {
   const result: number[][] = [];
-  const distance = (p: number[]) =>
-    ((b[0] - a[0]) * ((p[2] as number) - a[1]) - (b[1] - a[1]) * ((p[0] as number) - a[0])) *
-    (inside ? 1 : -1);
   for (let i = 0; i < polygon.length; i++) {
     const p = polygon[i] as number[],
       q = polygon[(i + 1) % polygon.length] as number[],
@@ -114,11 +120,53 @@ function clip(polygon: number[][], a: Point, b: Point, inside: boolean): number[
 export function subtractTerrainGroundGeometry(
   source: THREE.BufferGeometry,
   outlines: readonly TerrainGroundOutline[],
+  maxHeights: readonly (number | undefined)[] = [],
 ): THREE.BufferGeometry {
   const names = ['position', ...Object.keys(source.attributes).filter((n) => n !== 'position')];
   const attrs = names.map((n) => source.getAttribute(n));
   const arrays = names.map(() => [] as number[]);
-  const cutters = outlines.flatMap(pieces).map((points) => ({ points, bounds: bounds(points) }));
+  const cutters = outlines.flatMap((outline, i) =>
+    pieces(outline).map((points) => ({ points, bounds: bounds(points), maxHeight: maxHeights[i] })),
+  );
+  // A mapped bore has hundreds of short cutters. Index them so a fine DEM triangle
+  // only visits nearby segments instead of scanning every opening on the tile.
+  const cellSize = 64;
+  const cells = new Map<string, number[]>();
+  const broad: number[] = [];
+  const cellBounds = (box: readonly number[]): [number, number, number, number] => [
+    Math.floor((box[0] as number) / cellSize),
+    Math.floor((box[1] as number) / cellSize),
+    Math.floor((box[2] as number) / cellSize),
+    Math.floor((box[3] as number) / cellSize),
+  ];
+  if (cutters.length > 16)
+    cutters.forEach((cutter, i) => {
+      const [x0, z0, x1, z1] = cellBounds(cutter.bounds);
+      if ((x1 - x0 + 1) * (z1 - z0 + 1) > 256) {
+        broad.push(i);
+        return;
+      }
+      for (let x = x0; x <= x1; x++)
+        for (let z = z0; z <= z1; z++) {
+          const key = `${x}/${z}`,
+            values = cells.get(key) ?? [];
+          values.push(i);
+          cells.set(key, values);
+        }
+    });
+  const nearbyCutters = (box: readonly number[]): typeof cutters => {
+    const [x0, z0, x1, z1] = cellBounds(box);
+    if (cutters.length <= 16 || (x1 - x0 + 1) * (z1 - z0 + 1) > 256)
+      return cutters.filter((c) => overlaps(box, c.bounds));
+    const candidates = new Set(broad);
+    for (let x = x0; x <= x1; x++)
+      for (let z = z0; z <= z1; z++)
+        for (const i of cells.get(`${x}/${z}`) ?? []) candidates.add(i);
+    return [...candidates]
+      .sort((a, b) => a - b)
+      .map((i) => cutters[i] as (typeof cutters)[number])
+      .filter((c) => overlaps(box, c.bounds));
+  };
   const count = source.index?.count ?? source.getAttribute('position').count;
   const groups = source.groups.length ? source.groups : [{ start: 0, count, materialIndex: 0 }];
   const result = new THREE.BufferGeometry();
@@ -133,7 +181,7 @@ export function subtractTerrainGroundGeometry(
       const vertices = [0, 1, 2].map((k) => (source.index ? source.index.getX(i + k) : i + k));
       const position = attrs[0] as THREE.BufferAttribute;
       const triangleBounds = bounds(vertices.map((v) => [position.getX(v), position.getZ(v)]));
-      const nearby = cutters.filter((cutter) => overlaps(triangleBounds, cutter.bounds));
+      const nearby = nearbyCutters(triangleBounds);
       if (!nearby.length) {
         for (const v of vertices)
           attrs.forEach((a, k) => {
@@ -154,12 +202,21 @@ export function subtractTerrainGroundGeometry(
             return [polygon];
           const outside: number[][][] = [];
           let remainder = polygon;
-          for (let j = 0; j < cutter.points.length && remainder.length >= 3; j++) {
-            const a = cutter.points[j] as Point,
-              b = cutter.points[(j + 1) % cutter.points.length] as Point;
-            const fragment = clip(remainder, a, b, false);
+          const planes = cutter.points.map((a, j) => {
+            const b = cutter.points[(j + 1) % cutter.points.length] as Point;
+            return (p: number[]) =>
+              (b[0] - a[0]) * ((p[2] as number) - a[1]) - (b[1] - a[1]) * ((p[0] as number) - a[0]);
+          });
+          // A bore removes only ground below its ceiling. The hill above it stays intact.
+          if (cutter.maxHeight !== undefined) {
+            const ceiling = cutter.maxHeight;
+            planes.push((p) => ceiling - (p[1] as number));
+          }
+          for (const distance of planes) {
+            if (remainder.length < 3) break;
+            const fragment = clipByDistance(remainder, (p) => -distance(p));
             if (fragment.length >= 3) outside.push(fragment);
-            remainder = clip(remainder, a, b, true);
+            remainder = clipByDistance(remainder, distance);
           }
           return outside;
         });
@@ -211,8 +268,11 @@ export class TerrainGroundCutoutController {
       }
       return false;
     };
-    const cutters: Array<{ points: THREE.Vector3[]; bounds: [number, number, number, number] }> =
-      [];
+    const cutters: Array<{
+      points: THREE.Vector3[];
+      bounds: [number, number, number, number];
+      maxHeight?: number;
+    }> = [];
     for (const ref of ownerRefs) {
       const object = ref.deref();
       if (!object) {
@@ -224,7 +284,14 @@ export class TerrainGroundCutoutController {
       const points = (owners.get(object) ?? []).map(([x, z]) =>
         new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
       );
-      cutters.push({ points, bounds: bounds(points.map((p) => [p.x, p.z])) });
+      const ceiling = ceilings.get(object);
+      cutters.push({
+        points,
+        bounds: bounds(points.map((p) => [p.x, p.z])),
+        ...(ceiling !== undefined
+          ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
+          : {}),
+      });
     }
     if (!cutters.length && !this.active.size) return false;
     const targets: THREE.Mesh[] = [];
@@ -247,7 +314,12 @@ export class TerrainGroundCutoutController {
       mesh.updateWorldMatrix(true, false);
       const inverse = new THREE.Matrix4().copy(mesh.matrixWorld).invert();
       const worldBox = box?.clone().applyMatrix4(mesh.matrixWorld);
-      const outlines = cutters.flatMap((c) => {
+      const nearby = cutters.filter(
+        (c) =>
+          worldBox &&
+          overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds),
+      );
+      const outlines = nearby.flatMap((c) => {
         if (
           !worldBox ||
           !overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds)
@@ -260,17 +332,23 @@ export class TerrainGroundCutoutController {
           }),
         ];
       });
+      const maxHeights = nearby.map((c) =>
+        c.maxHeight === undefined
+          ? undefined
+          : new THREE.Vector3(0, c.maxHeight, 0).applyMatrix4(inverse).y,
+      );
       if (!outlines.length) continue;
       seen.add(mesh);
       const key = JSON.stringify([
         outlines,
+        maxHeights,
         Object.values(source.attributes).map((a) =>
           a instanceof THREE.InterleavedBufferAttribute ? a.data.version : a.version,
         ),
       ]);
       if (this.active.get(mesh)?.key === key) continue;
       this.active.get(mesh)?.release();
-      const rendered = subtractTerrainGroundGeometry(source, outlines);
+      const rendered = subtractTerrainGroundGeometry(source, outlines, maxHeights);
       let released = false;
       const release = (disposeRendered = true) => {
         if (released) return;

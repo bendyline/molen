@@ -1,86 +1,334 @@
 {
   "root": "cockpit",
-  "eye": [0, 2.28, 0.05],
-  "width": 0.72,
-  "panelZ": 0.72,
-  "panelY": 1.93,
-  "material": "green",
+  "eye": [
+    0,
+    2.28,
+    0.05
+  ],
+  "panelZ": 0.79,
+  "panelOutline": [
+    [
+      -0.45,
+      1.63
+    ],
+    [
+      -0.45,
+      1.95
+    ],
+    [
+      -0.36,
+      2.12
+    ],
+    [
+      -0.18,
+      2.17
+    ],
+    [
+      0.18,
+      2.17
+    ],
+    [
+      0.36,
+      2.12
+    ],
+    [
+      0.45,
+      1.95
+    ],
+    [
+      0.45,
+      1.63
+    ],
+    [
+      0.34,
+      1.55
+    ],
+    [
+      -0.34,
+      1.55
+    ]
+  ],
   "gauges": [
     {
+      "id": "compass",
+      "label": "COMPASS",
+      "position": [
+        0.335,
+        2.025,
+        0.782
+      ],
+      "radius": 0.045,
+      "numbers": [
+        "N",
+        "E",
+        "S",
+        "W"
+      ],
+      "units": "",
+      "type": "compass"
+    },
+    {
       "id": "airspeed",
-      "label": "IAS",
-      "position": [-0.235, 2.03, 0.6779999999999999],
-      "radius": 0.089
+      "label": "AIRSPEED",
+      "position": [
+        0.185,
+        2.025,
+        0.782
+      ],
+      "radius": 0.062,
+      "numbers": [
+        "50",
+        "150",
+        "250",
+        "400",
+        "600"
+      ],
+      "units": "MPH"
     },
     {
       "id": "attitude",
-      "label": "ATT",
-      "position": [0, 2.03, 0.6779999999999999],
-      "radius": 0.089
+      "label": "",
+      "position": [
+        0.025,
+        2.025,
+        0.782
+      ],
+      "radius": 0.063,
+      "numbers": [],
+      "units": "",
+      "type": "horizon",
+      "square": true
     },
     {
       "id": "altimeter",
       "label": "ALT",
-      "position": [0.235, 2.03, 0.6779999999999999],
-      "radius": 0.089
+      "position": [
+        -0.14,
+        2.025,
+        0.782
+      ],
+      "radius": 0.063,
+      "numbers": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "units": "1000 FT"
+    },
+    {
+      "id": "manifold",
+      "label": "MANIFOLD",
+      "position": [
+        -0.33,
+        1.935,
+        0.782
+      ],
+      "radius": 0.064,
+      "numbers": [
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "70"
+      ],
+      "units": "IN HG"
+    },
+    {
+      "id": "clock",
+      "label": "CLOCK",
+      "position": [
+        0.34,
+        1.87,
+        0.782
+      ],
+      "radius": 0.045,
+      "numbers": [
+        "12",
+        "3",
+        "6",
+        "9"
+      ],
+      "units": "",
+      "type": "compass",
+      "angle": 0.8
+    },
+    {
+      "id": "turn",
+      "label": "TURN",
+      "position": [
+        0.185,
+        1.87,
+        0.782
+      ],
+      "radius": 0.06,
+      "numbers": [
+        "L",
+        "0",
+        "R"
+      ],
+      "units": "BANK",
+      "type": "turn"
     },
     {
       "id": "heading",
-      "label": "HDG",
-      "position": [-0.235, 1.81, 0.6779999999999999],
-      "radius": 0.089
+      "label": "GYRO",
+      "position": [
+        0.025,
+        1.87,
+        0.782
+      ],
+      "radius": 0.061,
+      "numbers": [
+        "N",
+        "E",
+        "S",
+        "W"
+      ],
+      "units": "",
+      "type": "compass",
+      "square": true
     },
     {
       "id": "vsi",
-      "label": "VSI",
-      "position": [0, 1.81, 0.6779999999999999],
-      "radius": 0.089
+      "label": "CLIMB",
+      "position": [
+        -0.14,
+        1.87,
+        0.782
+      ],
+      "radius": 0.061,
+      "numbers": [
+        "6",
+        "3",
+        "0",
+        "3",
+        "6"
+      ],
+      "units": "1000 FT"
     },
     {
       "id": "rpm",
       "label": "RPM",
-      "position": [0.235, 1.81, 0.6779999999999999],
-      "radius": 0.089
-    }
-  ],
-  "horizon": {
-    "position": [0, 2.03, 0.6679999999999999],
-    "radius": 0.067,
-    "wings": [0, 2.03, 0.657]
-  },
-  "seatXs": [0],
-  "switches": [
-    {
-      "from": [-0.315, 1.65, 0.72],
-      "to": [-0.315, 1.63, 0.69]
+      "position": [
+        -0.33,
+        1.76,
+        0.782
+      ],
+      "radius": 0.064,
+      "numbers": [
+        "5",
+        "10",
+        "20",
+        "30",
+        "40"
+      ],
+      "units": "HUNDREDS"
     },
     {
-      "from": [-0.225, 1.65, 0.72],
-      "to": [-0.225, 1.63, 0.69]
+      "id": "coolant",
+      "label": "COOLANT",
+      "position": [
+        -0.12,
+        1.718,
+        0.782
+      ],
+      "radius": 0.045,
+      "numbers": [
+        "50",
+        "100",
+        "150"
+      ],
+      "units": "C"
     },
     {
-      "from": [-0.135, 1.65, 0.72],
-      "to": [-0.135, 1.63, 0.69]
+      "id": "carb",
+      "label": "CARB AIR",
+      "position": [
+        0.01,
+        1.718,
+        0.782
+      ],
+      "radius": 0.045,
+      "numbers": [
+        "-50",
+        "0",
+        "50"
+      ],
+      "units": "C"
     },
     {
-      "from": [-0.045, 1.65, 0.72],
-      "to": [-0.045, 1.63, 0.69]
+      "id": "oil",
+      "label": "OIL FUEL",
+      "position": [
+        -0.32,
+        1.613,
+        0.782
+      ],
+      "radius": 0.041,
+      "numbers": [
+        "0",
+        "50",
+        "100"
+      ],
+      "units": "PSI",
+      "dual": true
     },
     {
-      "from": [0.045, 1.65, 0.72],
-      "to": [0.045, 1.63, 0.69]
+      "id": "fuel",
+      "label": "FUEL",
+      "position": [
+        -0.17,
+        1.613,
+        0.782
+      ],
+      "radius": 0.039,
+      "numbers": [
+        "E",
+        "1",
+        "F"
+      ],
+      "units": "GAL",
+      "dual": true
     },
     {
-      "from": [0.135, 1.65, 0.72],
-      "to": [0.135, 1.63, 0.69]
+      "id": "suction",
+      "label": "SUCTION",
+      "position": [
+        0.23,
+        1.62,
+        0.782
+      ],
+      "radius": 0.04,
+      "numbers": [
+        "0",
+        "3",
+        "6"
+      ],
+      "units": "IN HG"
     },
     {
-      "from": [0.225, 1.65, 0.72],
-      "to": [0.225, 1.63, 0.69]
-    },
-    {
-      "from": [0.315, 1.65, 0.72],
-      "to": [0.315, 1.63, 0.69]
+      "id": "oxygen",
+      "label": "OXYGEN",
+      "position": [
+        0.35,
+        1.62,
+        0.782
+      ],
+      "radius": 0.039,
+      "numbers": [
+        "0",
+        "200",
+        "400"
+      ],
+      "units": "PSI"
     }
   ]
 }

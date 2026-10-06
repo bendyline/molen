@@ -1,0 +1,307 @@
+{
+  "planId": "N0244",
+  "id": "N0244",
+  "assetId": "molen.worldgen.structure.n0244_kronborg_castle",
+  "title": "Kronborg Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q189358",
+  "referenceCoordinate": {
+    "latitude": 56.038611111,
+    "longitude": 12.621944444
+  },
+  "visualBrief": "Four sandstone Renaissance wings around an open courtyard; distinct Trumpeter, Cannon, Kings, lighthouse and Pigeon towers, copper roofs, domed stair turrets, ornate gables, north passage and mapped bastion edges.",
+  "size": [
+    214.32544708251953,
+    64,
+    184.1855010986328
+  ],
+  "actualBounds": {
+    "min": [
+      -109.64787292480469,
+      0,
+      -92.36796569824219
+    ],
+    "max": [
+      104.67757415771484,
+      64,
+      91.81753540039062
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X approximately north",
+    "front": "+Z approximately east",
+    "origin": "Cached OSM anchor at provisional fortress wall foot"
+  },
+  "sourceFacts": {
+    "mapIdentity": "Exact Q189358 relation/1588209",
+    "mappedFeatures": 13,
+    "courtyardHole": "way/113514655",
+    "lighthouseAnchor": "node/1400918158",
+    "trumpeterAboveCourtyardMeters": 59,
+    "trumpeterAboveWaterMeters": 62,
+    "surveyedVerticalDimensions": false
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM coordinates; museum plan, aerial and courtyard photographs; CBS height description.",
+    "courtAboveWallFootMeters": 5,
+    "mainEavesAboveCourtMeters": 20.8,
+    "cannonTowerAboveCourtMeters": 32.55,
+    "trumpeterAboveCourtMeters": 59,
+    "verticalDatum": "Provisional fortress wall foot. The five-meter court elevation is reconstructed; terrain fitting remains pending."
+  },
+  "referencePages": [
+    "https://www.openstreetmap.org/relation/1588209",
+    "https://kronborg.dk/en/experiences/the-castle-courtyard",
+    "https://kronborg.dk/en/history-of-kronborg",
+    "https://research-api.cbs.dk/ws/portalfiles/portal/58852980/Lise_Llyck.pdf",
+    "https://commons.wikimedia.org/wiki/File:Kronborg_-_Schlossplan.jpg",
+    "https://commons.wikimedia.org/wiki/File:KronborgCastleDenmarkOct152022_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kronborg_flygfoto_1,_2021.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kronborg_Courtyard_2018a.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kronborg_Courtyard_2018b.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed component orientation drafted; ground datum and terrain fit pending",
+    "anchor": [
+      12.621716106,
+      56.039011686
+    ],
+    "heading": 1.482790729732,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1588209",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/1588209"
+    ],
+    "wikidataId": "Q189358",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c6098ebf726855ca8e5ccadb10eb984c017757de6cc0045b6f1ae93a9f82bca5",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Lighthouse occupies mapped north-east corner. The enclosing bastion extent is not an occupied replacement footprint."
+  },
+  "scaleBasis": "Meter-scale main outer ring and courtyard from exact-QID OSM relation. Native +X points approximately north and +Z east; lighthouse node and chapel identify the signed corners.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Linked photographs are reference only; no third-party mesh or pixels distributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity remains pending. Individual exterior reconstruction uses measured horizontal map coordinates and a referenced Trumpeter height; other heights and exact facade openings are proportional estimates.",
+    "Royal heraldic reliefs and figurative sculpture are represented by abstract stonework, not faithful sculptural replicas. Exact gable scrolls, clock faces, roof junctions and copper replacement patches need refinement.",
+    "Fortress edges follow selected mapped moat and embankment lines. Wall height is reconstructed. Full crownwork, ravelins, coastal batteries, moat excavation and surrounding garrison buildings are outside the present source scope.",
+    "Four courtyard stair turrets and corner spires require further dimension checks. The five-meter courtyard datum is provisional and must not be treated as terrain-verified.",
+    "No interiors, temporary scaffolding, photographic textures or recreation of the removed Renaissance fountain. Shared sandstone, limestone, copper, granite, brick, timber, metal and local PBR glazing/turf."
+  ],
+  "qaCameras": [
+    {
+      "name": "trumpeter-courtyard",
+      "position": [
+        75,
+        57,
+        2.6
+      ],
+      "lookAt": [
+        -22,
+        34,
+        2.6
+      ]
+    },
+    {
+      "name": "cannon-tower",
+      "position": [
+        -97,
+        54,
+        -90
+      ],
+      "lookAt": [
+        -31,
+        22,
+        -32
+      ]
+    },
+    {
+      "name": "north-entry",
+      "position": [
+        90,
+        20,
+        0
+      ],
+      "lookAt": [
+        35,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "lighthouse-east",
+      "position": [
+        75,
+        44,
+        100
+      ],
+      "lookAt": [
+        36,
+        31,
+        35
+      ]
+    },
+    {
+      "name": "chapel-and-pigeon-tower",
+      "position": [
+        -65,
+        31,
+        82
+      ],
+      "lookAt": [
+        -31,
+        20,
+        31
+      ]
+    },
+    {
+      "name": "south-renaissance-gables",
+      "position": [
+        -100,
+        35,
+        5
+      ],
+      "lookAt": [
+        -35,
+        27,
+        5
+      ]
+    },
+    {
+      "name": "courtyard-north-wing",
+      "position": [
+        -17,
+        24,
+        2
+      ],
+      "lookAt": [
+        32,
+        18,
+        5
+      ]
+    },
+    {
+      "name": "fortress-moat-edges",
+      "position": [
+        -147,
+        70,
+        -156
+      ],
+      "lookAt": [
+        -25,
+        6,
+        -32
+      ]
+    },
+    {
+      "name": "four-wings-plan",
+      "position": [
+        0,
+        225,
+        8
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 337000,
+    "vertices": 672132,
+    "materials": 10,
+    "bytes": 28246264,
+    "sha256": "sha256:19d963e651b26285ce37f136aac82dd41fe21fb689ca37b4cd863a8501e18e9a"
+  }
+}

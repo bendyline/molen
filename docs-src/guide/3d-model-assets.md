@@ -31,6 +31,15 @@ For programmatic captures of reflective metal or glass, pass `reflections: true`
 viewer's shared procedural sky/ground environment; the default remains the legacy light rig.
 The repository landmark capture script accepts `--reflections` and records that mode in its
 hash-bound report. See [sky reflections](sky.md#reflections) for the runtime lighting model.
+For fine glazing joints, rails or louvres, programmatic `screenshotScene` and `screenshotAsset`
+calls also accept `antialias: true`. The landmark capture script exposes this as `--antialias`
+and records it in the report, so changing the setting invalidates cached captures. The default
+remains false for existing golden captures. Antialiasing reduces subpixel edge artifacts;
+it does not replace reviewing distant detail or authoring appropriate levels of detail.
+For large structures, `screenshotScene({ fitShadows: true, ... })` fits enabled sun shadows
+to the loaded scene bounds using the viewer's shadow-focus system. The landmark capture
+script records `--fit-shadows` separately. The default fixed shadow box is preserved;
+the option does not turn shadows on in scenes where they are disabled.
 
 ## 1. Convert the prompt into an asset brief
 

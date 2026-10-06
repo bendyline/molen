@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0250_mir_castle_complex",
+  "sourceHash": "sha256:f309ea5ba68616121c06e1529e32274ebbabb6ae386a14da3e273f40bb32ecee",
+  "runtimeHash": "sha256:a01a84fbf58e2f7d3444958759b04683e5702a56433f7bbe5863a346f8915a9d",
+  "captureReportHash": "sha256:c109fe386b66991905f117ee8352b00d41e16dc3704fce2fcabb70ceed3e2766",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Exterior render integrity. Maximum fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/castle-courtyard-plan.png",
+      "shots/west-gate-and-blind-niches.png",
+      "shots/southwest-brick-tower.png",
+      "shots/northwest-pale-tower.png",
+      "shots/courtyard-palace-and-gallery.png",
+      "shots/roof-tiles-and-dormers.png",
+      "shots/northeast-tower-and-bridge.png",
+      "shots/southeast-pale-tower.png",
+      "shots/southern-wallwalk-and-balcony.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. Five distinct towers, open courtyard, two palace wings, covered wall walks, gate passage and northern arched bridge remain visible. Removed hidden palace window trim and drains protruding through the south curtain wall, split the gate band around its opening and corrected dormer side normals. Facade rhythm and ornament remain an interpretation of museum photographs; this review does not establish surveyed accuracy."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e581c1dc7e0c2949da4d05af596f1d7399e9340d76dbd44c6830fa1880411832",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/castle-courtyard-plan.png",
+      "shots/shared/west-gate-and-blind-niches.png",
+      "shots/shared/southwest-brick-tower.png",
+      "shots/shared/northwest-pale-tower.png",
+      "shots/shared/courtyard-palace-and-gallery.png",
+      "shots/shared/roof-tiles-and-dormers.png",
+      "shots/shared/northeast-tower-and-bridge.png",
+      "shots/shared/southeast-pale-tower.png",
+      "shots/shared/southern-wallwalk-and-balcony.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Eight graphs load once each: brick, lime plaster, granite, raw limestone, sandstone, timber, ceramic tile and painted metal. Glass and chimney recesses use local PBR color. Roof tiles, blind niches, medallions and stone patches are visible; courtyard and arches remain open. Unloading leaves zero live model geometries. Regular fieldstone pattern and exact plaster ornament need refinement; skyline color differs from textured tiers."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:23d3d9765247bb34d9963c989c600d15cbb50177b7066df4e993cb05d8b5c745",
+    "notes": "Exact Q209643 on OSM relation/1579104, mapped castle and building-part polygons, north approach bridge way/128319139. Draft anchor [26.472922093,53.451203802], heading -0.224560956675, replaceFootprint=false. Tower height datum differs between map tags and ICOMOS evaluation. Ground contact, bridge elevation and approach bank need in-world terrain review. Separate chapel, guardhouse and other elements of the wider complex remain unmodeled."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity pending: facade proportions, blind-niche patterns, window counts, roof dormers and ridge/chimney positions are photographic interpretations rather than measured restoration drawings. The castle and northern arched bridge are modeled. The separate chapel-crypt, guardhouse, park, moat, earth ramparts and later palace remains of the wider complex still need authored geometry. Map tower roof heights of 30/31 m differ from the ICOMOS evaluation’s 22–26 m tower dimensions. Height datum and roof inclusion need resolution before geographic completion. Bridge arch count follows the museum view; pier geometry, deck elevation and contact with the approach embankment remain provisional. A narrow castle contact plinth is not a surveyed terrain model. Eight reusable procedural material graphs provide brick, lime plaster, granite, raw limestone, sandstone, timber, ceramic tile and painted metal. Glass is local PBR color; no embedded photographs."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
+    "triangles": 255892,
+    "vertices": 593826,
+    "materials": 10,
+    "sharedGraphs": 8,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance not measured.",
+    "notes": "712 / 3245 / 12761 / 41155 triangles. Skyline plus district 301344 bytes. Street 767700 bytes; closeup 3047424 bytes. Detailed source master 24453976 bytes. All tiers retain the five towers, open court and bridge arches. District uses facade cards; street restores recessed openings, chimneys and dormers; close-up restores tile relief, mullions and trim. All 33 authored-LOD regression checks passed and the master regenerates byte-identically. Skyline has a lighter vertex-color surface.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u9/u9d/n0250_mir_castle_complex/model.skyline.glb",
+        "hash": "sha256:025a9161432589ec2c57e0c007852cc42d54d5d27567bbe365c4ddae274ae490",
+        "bytes": 63532,
+        "triangles": 712,
+        "vertices": 1607,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -40.099998474121094,
+          0,
+          -67.0707778930664
+        ],
+        "max": [
+          40.099998474121094,
+          31.75,
+          38.400001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u9/u9d/n0250_mir_castle_complex/model.district.glb",
+        "hash": "sha256:f0a27ac67d18cf88f0d860abf416a7353ca404ee02be52d1ddb230368092882f",
+        "bytes": 237812,
+        "triangles": 3245,
+        "vertices": 5830,
+        "materials": 7,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -40.099998474121094,
+          0,
+          -67.0707778930664
+        ],
+        "max": [
+          40.099998474121094,
+          31.75,
+          38.400001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u9/u9d/n0250_mir_castle_complex/model.street.glb",
+        "hash": "sha256:abcb26f9b042f41561aef93cca8b37cc80be57d62e356b8e985349292454bf88",
+        "bytes": 767700,
+        "triangles": 12761,
+        "vertices": 18867,
+        "materials": 10,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -40.099998474121094,
+          0,
+          -67.0707778930664
+        ],
+        "max": [
+          40.099998474121094,
+          31.75,
+          38.400001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u9/u9d/n0250_mir_castle_complex/model.closeup.glb",
+        "hash": "sha256:bbc85dac0638bc2e25fd6a330633741c9892aebb1f2291b1db87d324fab6cd01",
+        "bytes": 3047424,
+        "triangles": 41155,
+        "vertices": 77455,
+        "materials": 10,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -40.099998474121094,
+          -0.054999999701976776,
+          -67.0707778930664
+        ],
+        "max": [
+          40.099998474121094,
+          31.75,
+          38.400001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      }
+    ]
+  }
+}

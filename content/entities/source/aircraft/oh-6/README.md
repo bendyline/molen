@@ -16,8 +16,19 @@ The cockpit is part of the main GLB and appears in exterior and seated views. It
 builder can change independently of any other aircraft. Generate an edited preview with
 `node models/generate.mjs --out /tmp/oh-6-candidate.glb`; review it before adopting a new master.
 
-Re-import from the package root with:
+In the engine repository, re-import from the repository root with:
 
 ```sh
-node ../tooling/dist/cli.mjs asset import source/aircraft/oh-6/models/source.glb --id molen.entities.aircraft.oh6 --project project.json --force
+node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft/oh-6/models/source.glb --id molen.entities.aircraft.oh6 --project content/entities/project.json --force
 ```
+
+The reference-informed cockpit and exterior pass is documented in [REFERENCES.md](REFERENCES.md).
+Instrument parts live in `models/instruments.mjs`; each source bundle carries its own copy so it
+remains portable. Materials and dial printing are procedural geometry with no bitmap textures.
+
+The exterior follows the OH-6A silhouette: an egg-shaped cabin with arched front door windows and
+separate rear glazing, a narrow transmission doghouse and louvered intakes, a tapered boom and
+braced tail stabilizer, a mechanical four-blade main rotor, a two-blade left-side tail rotor,
+curved low skid cross-tubes and a rear-facing exhaust outlet. The cockpit uses a narrow gray
+center pedestal with analog flight/engine instruments, dual tubular cyclics and collectives,
+exposed seat frames, harnesses and an aft bench. The main rotor radius remains 4.025 m.

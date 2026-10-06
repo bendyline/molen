@@ -1,0 +1,293 @@
+{
+  "planId": "N0254",
+  "id": "N0254",
+  "assetId": "molen.worldgen.structure.n0254_nesvizh_castle",
+  "title": "Nesvizh Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q719422",
+  "referenceCoordinate": {
+    "latitude": 53.222877777,
+    "longitude": 26.691736111
+  },
+  "visualBrief": "Restored ochre palace around its open irregular six-sided courtyard, distinct gate and palace towers with swept metal crowns, red tiled roofs, curved western galleries, ceremonial gate passage, stone arch bridge and grass bastions.",
+  "size": [
+    231.91790771484375,
+    37.900001525878906,
+    188.62399291992188
+  ],
+  "actualBounds": {
+    "min": [
+      -116.81190490722656,
+      0,
+      -94.31199645996094
+    ],
+    "max": [
+      115.10600280761719,
+      37.900001525878906,
+      94.31199645996094
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X 27.188 degrees south of east",
+    "front": "West gate and approach bridge toward native -X; +Z south-southwest",
+    "origin": "Mapped grounds anchor with provisional moat-side ground datum"
+  },
+  "sourceFacts": {
+    "identity": "Q719422 grounds relation/14560856; palace building relation/1732915 with inner court way/128279266.",
+    "mappedEnvelopeMeters": [
+      230.213,
+      188.624
+    ],
+    "mappedFeatures": 148,
+    "roofTipHeightAbovePalaceDatumMeters": 33,
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "OSM building parts, roof heights and min-height tags plus current museum courtyard photograph and UNDP 2021 exterior photograph.",
+    "state": "Restored palace exterior; historical engraving informs context only.",
+    "verticalDatum": "Provisional palace/court datum Y=4 above moat-side ground; mapped 33 m palace tower tip gives Y=37, finial Y=37.9. Earth-bank crests Y=8 are estimates."
+  },
+  "referencePages": [
+    "https://niasvizh.by/en/posetitelyam/dvortsovyy-ansambl/",
+    "https://niasvizh.by/en/history/dvortsovyy_kompleks/",
+    "https://niasvizh.by/upload/bg/dvorec_ekskyrsii_o_myzee.jpg",
+    "https://www.undp.org/belarus/news/sustainable-mobility-helps-tourism-spearhead-green-economy-belarus-regions",
+    "https://whc.unesco.org/en/list/1196/",
+    "https://www.openstreetmap.org/relation/14560856",
+    "https://www.openstreetmap.org/relation/1732915"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft pending terrain heights, roof fit and directional placement review",
+    "anchor": [
+      26.691942596,
+      53.222787871
+    ],
+    "heading": -0.47453422597,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/14560856",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/14560856"
+    ],
+    "wikidataId": "Q719422",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5e10c472f413eac459c56af62066439a9bf45f445c79716ad3a8516c800f87c9",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Castle grounds include open courtyard and earth banks. Never extrude or replace the whole grounds envelope as one building."
+  },
+  "scaleBasis": "Meter-scale map parts. Individual roof sections preserve mapped floor/roof heights. Facade rhythms, ornamental profiles and terrain levels remain an original visual reconstruction.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map data © OpenStreetMap contributors, ODbL-1.0. Reference photographs were inspected; no third-party photographs or meshes are embedded.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending: individual pilasters, clock faces, heraldic and figurative sculpture, exact window rhythms, dormers and roof junctions require more reference work.",
+    "Ground datum, rampart slopes, bridge arches and terrace levels are inferred rather than surveyed; in-world terrain fit has not passed. Water and park trees belong to the host terrain layers.",
+    "Some roof geometry and facade profiles are reconstructed; curved gallery roofs and stacked tower profiles need further photographic refinement. Palace interiors, wider park and the separate Corpus Christi Church are outside this exterior asset.",
+    "Detailed source retains tiled roof courses and window reveals. Four separate runtime tiers share plaster, ceramic tile, stone, wood and metal; no embedded images. Physical device approval is pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "mapped-six-sided-courtyard",
+      "position": [
+        0,
+        320,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "west-gate-and-arch-bridge",
+      "position": [
+        -146,
+        19,
+        24
+      ],
+      "lookAt": [
+        -72,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "gate-tower-crown",
+      "position": [
+        -81,
+        33,
+        34
+      ],
+      "lookAt": [
+        -56,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "palace-central-risalit",
+      "position": [
+        -24,
+        15,
+        -2
+      ],
+      "lookAt": [
+        23,
+        13,
+        -2
+      ]
+    },
+    {
+      "name": "southern-wing-and-tower",
+      "position": [
+        -20,
+        37,
+        89
+      ],
+      "lookAt": [
+        0,
+        18,
+        29
+      ]
+    },
+    {
+      "name": "palace-tower-crown",
+      "position": [
+        34,
+        43,
+        57
+      ],
+      "lookAt": [
+        10,
+        30,
+        30
+      ]
+    },
+    {
+      "name": "northern-court-gallery",
+      "position": [
+        -12,
+        20,
+        10
+      ],
+      "lookAt": [
+        -16,
+        12,
+        -31
+      ]
+    },
+    {
+      "name": "eastern-palace-and-service-wing",
+      "position": [
+        128,
+        40,
+        -2
+      ],
+      "lookAt": [
+        41,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "earth-bastions-and-moat-edge",
+      "position": [
+        -136,
+        23,
+        -118
+      ],
+      "lookAt": [
+        -55,
+        8,
+        -36
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 186936,
+    "vertices": 384070,
+    "materials": 9,
+    "bytes": 16074828,
+    "sha256": "sha256:265d4166b08bc10b7bb06532d44d4ff7aba160f03cbc98ea4aa454d389e61f70"
+  }
+}

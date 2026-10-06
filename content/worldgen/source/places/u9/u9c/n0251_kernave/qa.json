@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0251_kernave",
+  "sourceHash": "sha256:b9709daddae6b379c702d47d39c6bb990a5616df8f27fa3fd5dd0c2d197d59fa",
+  "runtimeHash": "sha256:a0389cf7d6c40ee3ecb5e7908c5a14e3c036d728afca2ff4eee94e81325f10d2",
+  "captureReportHash": "sha256:17f5ba34206c61f9b3e1d7e6fa606d0019a1983a39c0b2b9473e2354a70e58c3",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior render integrity. Survey accuracy, landscape finish and maximum fidelity remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/five-hillforts-and-museum-plan.png",
+      "shots/central-four-earthworks.png",
+      "shots/aukuro-platform-and-stairs.png",
+      "shots/mindaugo-bank-and-ascent.png",
+      "shots/pilies-large-plateau.png",
+      "shots/lizdeikos-earth-bank.png",
+      "shots/kriveikiskio-fifth-hillfort.png",
+      "shots/modern-three-craft-yards.png",
+      "shots/timber-walls-and-board-roofs.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. The five distinct hillforts, separately positioned museum yards, twelve timber buildings, board roofs, fences, mapped paths and stairs are visible. Closed gaps between timber courses and preserved a flat museum terrace in low LODs. Rectangular terrain patch edges, grid shading at steep slope transitions, missing vegetation and approximate contours remain unfinished; this is not a completed terrain reconstruction."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:635b5c976a9c1ee62f6cddf97a565baf9b392e16df7567b3b2fb05cbafdb7cd8",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/five-hillforts-and-museum-plan.png",
+      "shots/shared/central-four-earthworks.png",
+      "shots/shared/aukuro-platform-and-stairs.png",
+      "shots/shared/mindaugo-bank-and-ascent.png",
+      "shots/shared/pilies-large-plateau.png",
+      "shots/shared/lizdeikos-earth-bank.png",
+      "shots/shared/kriveikiskio-fifth-hillfort.png",
+      "shots/shared/modern-three-craft-yards.png",
+      "shots/shared/timber-walls-and-board-roofs.png"
+    ],
+    "notes": "Inspected all 13 shared-material renders. The existing wood_plain and gravel graphs load once each, with no embedded images; grass remains local vertex color. Timber roofs, fencing and paths render in the shared viewer. Unloading leaves zero live model geometries. Terrain finish and ground material consistency need refinement before maximum-fidelity approval."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:1fab51b950421e99895e9afcd8cd57d84179e4943ddfec0548c68fde7dbd714d",
+    "notes": "Q215315 identifies the town, not a castle building. Five independently identified OSM hillfort nodes and the separate modern craft-yard reconstruction retain their geographic offsets. Draft anchor [24.8517,54.8824], heading 0, replaceFootprint=false. Height contours and relative datum are interpreted from published dimensions; survey elevations, terrain blending and multi-part site fit need review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity pending: earthwork contours are interpreted from documented top dimensions and aerial views; no elevation raster or surveyed mesh is bundled. Terrace datum, erosion scars and inter-hill gullies require measured terrain. Q215315 names the town. This source depicts five surviving hillforts and the separate modern open-air reconstruction; it must not be matched as a single castle footprint. The three museum yards retain twelve mapped building envelopes and mapped wooden fences. Wall heights, doors, roof pitches, individual boards and log details are approximate. A minor annex is represented within its main roof envelope. Published current banks are included. Ancient palisades, towers and buried settlement remains are not reconstructed above ground. Old church remains, chapels, modern museum, wider reserve vegetation and river terrain still need separate site coverage. Grass uses vertex color; timber and gravel use existing reusable procedural surface graphs. No model-specific bitmap textures. Landscape patch edges remain visible in standalone review and need host-terrain blending before activation. Mapped stairs retain their horizontal routes; step rises/counts derive from the interpreted terrain and are not a certified reconstruction of visitor access."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 3
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 3
+    },
+    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
+    "triangles": 140410,
+    "vertices": 379638,
+    "materials": 3,
+    "sharedGraphs": 2,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance not measured.",
+    "notes": "918 / 2770 / 15170 / 48534 triangles. Skyline plus district 374412 bytes; street 1321856 bytes; closeup 4008352 bytes. Source master 15354172 bytes. The common-camera comparison retains all five hillfort positions and the separate courtyard group. Skyline is visibly coarse; each subsequent level adds smoother terrain, mapped trails, stairs and timber courses. All 35 authored-LOD regression checks passed. Source regeneration is byte-identical. Physical device performance and landscape fidelity remain unverified.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u9/u9c/n0251_kernave/model.skyline.glb",
+        "hash": "sha256:772cfb31afba88247db8b1718d66bd97f2c7fab9176829581b4e6c6e3d7ed4e8",
+        "bytes": 93196,
+        "triangles": 918,
+        "vertices": 2398,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -338,
+          0,
+          -247
+        ],
+        "max": [
+          465,
+          35.94308853149414,
+          525
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u9/u9c/n0251_kernave/model.district.glb",
+        "hash": "sha256:6fa103ccfb145e5f5cd43327c8abd8a2528cd57723b369c42b4432fa24d9d839",
+        "bytes": 281216,
+        "triangles": 2770,
+        "vertices": 7246,
+        "materials": 3,
+        "sharedGraphs": 2,
+        "images": 0,
+        "min": [
+          -338,
+          0,
+          -247
+        ],
+        "max": [
+          465,
+          35.94308853149414,
+          525
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u9/u9c/n0251_kernave/model.street.glb",
+        "hash": "sha256:05cfc3fc6968b505f3fa61f03f49066c5fef5ab4f2168c22c6ae3a0c3b3028b7",
+        "bytes": 1321856,
+        "triangles": 15170,
+        "vertices": 34085,
+        "materials": 3,
+        "sharedGraphs": 2,
+        "images": 0,
+        "min": [
+          -338,
+          0,
+          -247
+        ],
+        "max": [
+          465,
+          36.00058364868164,
+          525
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u9/u9c/n0251_kernave/model.closeup.glb",
+        "hash": "sha256:24c889968ba482ccd72e85dd05469c79dc06f456ce8cf4300e83f1e46dbb6756",
+        "bytes": 4008352,
+        "triangles": 48534,
+        "vertices": 103149,
+        "materials": 3,
+        "sharedGraphs": 2,
+        "images": 0,
+        "min": [
+          -338,
+          0,
+          -247
+        ],
+        "max": [
+          465,
+          36.00058364868164,
+          525
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 3
+      }
+    ]
+  }
+}

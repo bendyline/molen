@@ -7,8 +7,8 @@ import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
  * starting with "./" / "http(s):" pass through as URLs, so manifest-less demos stay trivial.
  */
 export interface AssetProvider {
-  load(ref: string): Promise<ArrayBuffer>;
-  loadText(ref: string): Promise<string>;
+  load(ref: string, options?: { signal?: AbortSignal }): Promise<ArrayBuffer>;
+  loadText(ref: string, options?: { signal?: AbortSignal }): Promise<string>;
 }
 
 function isUrlish(ref: string): boolean {
@@ -45,11 +45,11 @@ export function createUrlAssetProvider(
     }
     return urls;
   };
-  const fetchFirst = async (ref: string): Promise<Response> => {
+  const fetchFirst = async (ref: string, signal?: AbortSignal): Promise<Response> => {
     const urls = candidates(ref);
     for (let i = 0; i < urls.length; i++) {
       const url = urls[i] as string;
-      const res = await fetch(url);
+      const res = await fetch(url, signal ? { signal } : undefined);
       if (res.ok) return res;
       // Only a missing variant falls through; any other failure is the asset's error.
       if (res.status !== 404 || i === urls.length - 1) {
@@ -59,11 +59,11 @@ export function createUrlAssetProvider(
     throw new Error(`asset "${ref}": no candidate URL`);
   };
   return {
-    async load(ref: string): Promise<ArrayBuffer> {
-      return (await fetchFirst(ref)).arrayBuffer();
+    async load(ref: string, options?: { signal?: AbortSignal }): Promise<ArrayBuffer> {
+      return (await fetchFirst(ref, options?.signal)).arrayBuffer();
     },
-    async loadText(ref: string): Promise<string> {
-      return (await fetchFirst(ref)).text();
+    async loadText(ref: string, options?: { signal?: AbortSignal }): Promise<string> {
+      return (await fetchFirst(ref, options?.signal)).text();
     },
   };
 }

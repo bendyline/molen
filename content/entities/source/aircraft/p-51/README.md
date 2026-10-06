@@ -41,8 +41,12 @@ yaw to actual lift plus sideslip stability. Stall recovery is lower nose, add po
 then gently pull out after speed returns. See `packages/kernel/test/aircraft-performance.test.ts`
 in the repository for the reproducible performance and banked-stall scenarios.
 
-Re-import from the package root with:
+In the engine repository, re-import from the repository root with:
 
 ```sh
-node ../tooling/dist/cli.mjs asset import source/aircraft/p-51/models/source.glb --id molen.entities.aircraft.p51d --project project.json --force
+node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft/p-51/models/source.glb --id molen.entities.aircraft.p51d --project content/entities/project.json --force
 ```
+
+The reference-informed cockpit and exterior pass is documented in [REFERENCES.md](REFERENCES.md).
+Instrument parts live in `models/instruments.mjs`; each source bundle carries its own copy so it
+remains portable. Materials and dial printing are procedural geometry with no bitmap textures.

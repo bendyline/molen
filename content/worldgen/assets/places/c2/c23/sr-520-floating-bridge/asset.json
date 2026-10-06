@@ -4,23 +4,40 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:53b566c7372305d98d502ed446c14ceafab1e9678ed585f0ef6626dd03ecb06c",
   "sourceHash": "sha256:9c07755d817b445392e9da46911acd6dfe15aebf2ce3c18ed55c63862c49a530",
   "bounds": {
     "aabb": {
-      "min": [-1175, -1.2, -22],
-      "max": [1175, 13.496, 22]
+      "min": [
+        -1175,
+        -1.2,
+        -22
+      ],
+      "max": [
+        1175,
+        13.496,
+        22
+      ]
     },
     "sphere": {
-      "center": [0, 6.148, 0],
+      "center": [
+        0,
+        6.148,
+        0
+      ],
       "radius": 1175.1728
     }
   },
   "stats": {
     "triangles": 11764,
-    "vertices": 93840,
+    "vertices": 23460,
     "meshes": 1,
     "primitives": 4,
     "materials": 4,
@@ -39,25 +56,33 @@
   "materials": [
     {
       "name": "painted-steel",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "deck-or-roof",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "structural-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "concrete-foundation",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -67,11 +92,88 @@
       {
         "node": "worldgen",
         "points": [
-          -1175, -1.2, -22, -1175, -1.2, 22, -1175, 13.496, -22, -1175, 13.496, 22, 1175, -1.2, -22,
-          1175, -1.2, 22, 1175, 13.496, -22, 1175, 13.496, 22
+          -1175,
+          -1.2,
+          -22,
+          -1175,
+          -1.2,
+          22,
+          -1175,
+          13.496,
+          -22,
+          -1175,
+          13.496,
+          22,
+          1175,
+          -1.2,
+          -22,
+          1175,
+          -1.2,
+          22,
+          1175,
+          13.496,
+          -22,
+          1175,
+          13.496,
+          22
         ]
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:53b566c7372305d98d502ed446c14ceafab1e9678ed585f0ef6626dd03ecb06c",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:701010e95ddc5a06873d01f91f6f22bfb18b1a549b4760dc0c58f0deb9f2eb78",
+        "bytes": 8568,
+        "gzipBytes": 3798,
+        "triangles": 537,
+        "cpuBytes": 7560,
+        "gpuBytes": 7560,
+        "errorMeters": 430.497258602189,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:23b0f268a618a23d72af5c83197330f11a9d3a1ee371d0454bc33c739cf17819",
+        "bytes": 185916,
+        "gzipBytes": 16543,
+        "triangles": 2016,
+        "cpuBytes": 181440,
+        "gpuBytes": 181440,
+        "errorMeters": 2.3222976566861537,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:f59d0dca5474852339a233aa9c5582013ca66feb4eeac801acb63daf1fb9b191",
+        "bytes": 987980,
+        "gzipBytes": 108176,
+        "triangles": 11764,
+        "cpuBytes": 985728,
+        "gpuBytes": 985728,
+        "errorMeters": 0,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:f59d0dca5474852339a233aa9c5582013ca66feb4eeac801acb63daf1fb9b191",
+        "bytes": 987980,
+        "gzipBytes": 108176,
+        "triangles": 11764,
+        "cpuBytes": 985728,
+        "gpuBytes": 985728,
+        "errorMeters": 0,
+        "drawCalls": 4
+      }
+    ]
+  }
 }

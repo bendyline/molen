@@ -22,6 +22,55 @@ beforeAll(async () => {
 });
 
 describe('asset import (glTF -> asset@1 sidecar)', () => {
+  it('verifies runtime LOD source bindings, variant declarations and payload hashes', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'molen-asset-lods-'));
+    const imported = await importAsset({ path: glbPath, id: 'landmark.lods', outDir: root });
+    expect(imported.ok, imported.error).toBe(true);
+    const sidecar = imported.sidecar;
+    if (!sidecar || !imported.dir || !imported.sidecarPath) throw new Error('Missing import');
+    const bytes = await readFile(join(imported.dir, sidecar.files.main));
+    const names = ['skyline', 'district', 'street', 'closeup'] as const;
+    sidecar.runtimeLods = {
+      recipe: 1,
+      masterHash: sidecar.hash,
+      levels: names.map((name) => ({
+        name,
+        file: `model.${name}.glb`,
+        hash: sidecar.hash,
+        bytes: bytes.length,
+        gzipBytes: bytes.length,
+        triangles: 12,
+        cpuBytes: 1024,
+        gpuBytes: 1024,
+        errorMeters: 0,
+        drawCalls: 1,
+      })),
+    };
+    for (const level of sidecar.runtimeLods.levels) {
+      sidecar.files.variants[level.name] = level.file;
+      await writeFile(join(imported.dir, level.file), bytes);
+    }
+    const save = () => writeFile(imported.sidecarPath as string, JSON.stringify(sidecar));
+    await save();
+    expect((await inspectAsset({ ref: imported.sidecarPath, verify: true })).ok).toBe(true);
+    delete sidecar.files.variants.street;
+    await save();
+    expect(
+      (await inspectAsset({ ref: imported.sidecarPath, verify: true })).verifyErrors,
+    ).toContain('runtimeLods: missing or mismatched variant "street"');
+    sidecar.files.variants.street = 'model.street.glb';
+    sidecar.runtimeLods.masterHash = `sha256:${'0'.repeat(64)}`;
+    await writeFile(
+      join(imported.dir, 'model.street.glb'),
+      Buffer.concat([bytes, Buffer.from([0])]),
+    );
+    await save();
+    const invalid = await inspectAsset({ ref: imported.sidecarPath, verify: true });
+    expect(invalid.ok).toBe(false);
+    expect(invalid.verifyErrors).toContain('runtimeLods: stale master hash');
+    expect(invalid.verifyErrors?.some((error) => error.includes('hash/size mismatch'))).toBe(true);
+  });
+
   it('keeps stable IDs in custom bundle directories through reimport, inspection and staging', async () => {
     const parent = await mkdtemp(join(tmpdir(), 'molen-asset-layout-'));
     const project = await scaffoldExperience({ name: 'layout', dir: parent });

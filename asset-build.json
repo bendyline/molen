@@ -93,6 +93,10 @@
   ],
   "afterImport": [
     {
+      "id": "worldgen-runtime-lods",
+      "command": ["node", "packages/tooling/scripts/generate-landmark-lods.mjs"]
+    },
+    {
       "id": "lantern-dungeon-import-report",
       "command": ["node", "examples/lantern-dungeon/tools/import-assets.mjs"]
     }

@@ -1,0 +1,115 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0236_chateau_de_montsoreau",
+  "sourceHash": "sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f",
+  "runtimeHash": "sha256:ca0ea042ded1f01dfa79b2207165d55ac48ab2ab738e614c9db5a63a46f2ccbe",
+  "captureReportHash": "sha256:ef0902cc9fd6a921fd55d3ed89992718ab42d943185473d0d945ed0796f508ed",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and real-terrain geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/river-elevation.png",
+      "shots/river-dormers.png",
+      "shots/court-elevation.png",
+      "shots/western-stair.png",
+      "shots/renaissance-stair.png",
+      "shots/cross-window-and-corbel.png",
+      "shots/eastern-return.png",
+      "shots/roof-and-open-court.png"
+    ],
+    "notes": "Inspected all 13 portable frames. Corrected a stair/dormer overlap, removed roof planes crossing square-tower terraces, revised river window ranks and modeled the battered river base. Four north and three court dormers are visible. Occupied plan, vertical dimensions and figurative ornament remain provisional."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6619e9aedf5bf04a29878d05bc748b344c8bfa3c3521f64c749faa937d728726",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/river-elevation.png",
+      "shots/shared/river-dormers.png",
+      "shots/shared/court-elevation.png",
+      "shots/shared/western-stair.png",
+      "shots/shared/renaissance-stair.png",
+      "shots/shared/cross-window-and-corbel.png",
+      "shots/shared/eastern-return.png",
+      "shots/shared/roof-and-open-court.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 13 shared-surface views. Canonical limestone, raw limestone, slate, wood and painted metal each load once. Glazing is local PBR, no embedded images. Unload leaves zero live model geometries. The placement frame uses the cached OSM precinct and flat terrain; it does not verify occupied outlines or surveyed terrain contact."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:c45c13202d421adee192cdb58f2e5ef78acda659c9b1ebf63d8f6bd2123eef18",
+    "notes": "Exact-QID OSM way/175416989 provides signed precinct anchor and heading; negative Z is toward the Loire. The polygon includes an open court and has no building or height tag. Registration preserves replaceFootprint=false. Reconstructed occupied ranges, retaining walls, road datum and slope need terrain/site review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Individual reconstruction from the regional Inventaire Général exterior survey photographs and descriptions, owner publication and signed OSM castle precinct. The precinct polygon is not a building outline. Plan subdivisions, elevations, roof pitches, window sizes and ornament are photographic estimates. Maximum fidelity is pending: the Renaissance stair figurative panels, medallions, deer and putti are not sculpted; candelabra and Gothic crockets are reconstructed relief. No measured plan or section was inspected. The historical Salleron reference is an exterior view. Owner terrace height has an unresolved datum, so all vertical dimensions remain provisional. Roof junctions, occupied plan subdivisions, window positions and retaining-wall limits are estimates from exterior views inside an OSM precinct boundary. Physical terrain, moat, road and surrounding village are not part of this asset. Current square towers have flat terraces; historical pavilion roofs are deliberately not reconstructed. No interior rooms, movable shutters or engineering certification. Original geometry and shared limestone, raw limestone, slate, wood and painted-metal surfaces. Reference photographs are linked only; no copied images or per-model texture bitmaps."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 7
+    },
+    "validatorLimitations": "Informational unused UV attributes belong to canonical shared-surface bindings resolved by Molen.",
+    "triangles": 40797,
+    "vertices": 80655,
+    "materials": 7,
+    "sharedGraphs": 5,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual, byte, triangle and layout checks; physical-device measurements pending.",
+    "notes": "Inspected master and four authored levels at a common camera. Fixed the comparison fixture clipping range after its 1 cm to 100 km depth interval caused false district-window z-fighting; asset geometry was unchanged. Skyline/district/street/closeup are 69,624 / 126,448 / 600,480 / 2,654,576 bytes, with 873 / 1,529 / 8,221 / 35,433 triangles. Initial skyline plus district is 196,072 bytes; all triangle targets pass. Shared bindings and separate attributes are preserved. Source master is independently retained at 3,397,240 bytes.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:ca5c949e6d6fb0509dda5fd409d740f2e2612d670ad62ecd77fec0ef44adf748",
+        "bytes": 69624,
+        "triangles": 873,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:abbd0fb9c950acdf0366a5989fdf58cab2ae54b02eb07b0a59412e6acd28a4e4",
+        "bytes": 126448,
+        "triangles": 1529,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0b22f81ba93c08df24af92fd9b08e76f3871a397e3c769c74adadea3049a45ae",
+        "bytes": 600480,
+        "triangles": 8221,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:30c1a0494a4bbbaa1471f1981c567b78a1c283d4ab412d60bad3e1a4828623b4",
+        "bytes": 2654576,
+        "triangles": 35433,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

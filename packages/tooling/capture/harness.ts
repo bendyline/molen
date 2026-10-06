@@ -30,6 +30,8 @@ interface CaptureRequest {
   terrain?: TerrainPayload;
   clearColor?: string;
   reflections?: boolean;
+  antialias?: boolean;
+  fitShadows?: boolean;
   /** Base URL gltf asset refs resolve against (the capture server's /files/ mount). */
   assetsBaseUrl?: string;
   /** Asset id -> URL (relative to assetsBaseUrl), from the project manifest. */
@@ -75,7 +77,7 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
     width: req.size[0],
     height: req.size[1],
     pixelRatio: 1,
-    antialias: false,
+    antialias: req.antialias ?? false,
     reflections: req.reflections ?? false,
     clearColor: req.clearColor ?? '#11131a',
     kinds: [figureKind(), ambientVehicleKind()],
@@ -111,6 +113,11 @@ window.__molenCapture = async (req: CaptureRequest): Promise<CaptureStats> => {
   const worldBounds = new Box3().setFromObject(viewer.renderer.worldRoot);
   if (!worldBounds.isEmpty()) {
     const sphere = worldBounds.getBoundingSphere(new Sphere());
+    if (req.fitShadows && Number.isFinite(sphere.radius) && sphere.radius > 0)
+      viewer.renderer.setShadowFocus({
+        center: sphere.center.toArray(),
+        radius: sphere.radius,
+      });
     const camera = viewer.renderer.camera;
     const far = camera.position.distanceTo(sphere.center) + sphere.radius + 1;
     const forward = camera.getWorldDirection(new Vector3());

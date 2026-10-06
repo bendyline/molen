@@ -1,0 +1,89 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0229_istanbul_sapphire",
+  "sourceHash": "sha256:506abc7a5d43de50edd7d0ef1d4612782a8051f90d4c66633c9cc6b57feffad9",
+  "runtimeHash": "sha256:6d9ff0dce95bf6b3cdf8225f85d664d6cd9dfe03a531048a39e9623153444a7f",
+  "captureReportHash": "sha256:602bfae84986f988d2d994920b1603d7a796661bc403100f639bdd1797aecc3b",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/outer-glass-and-seals.png",
+      "shots/winter-garden-depth.png",
+      "shots/balcony-wood-and-rail.png",
+      "shots/support-floor-louvres.png",
+      "shots/end-blade-joints.png",
+      "shots/curved-canopy.png",
+      "shots/canopy-mullions.png",
+      "shots/retail-entrance.png",
+      "shots/rear-skirt.png",
+      "shots/observation-and-roof.png",
+      "shots/mast.png",
+      "shots/plan.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 18 portable frames, plus initial full-resolution canopy and garden closeups. The separate outer panes, interior glass, seals, projecting wood fascias, rails, plants, support bands, end blade, curved canopy, retail doors and mast render. Corrected missing lower side glazing and short canopy columns before this capture set. Repeated inner garden modules are retained behind a separately tapered outer facade. Roof profiles, exact support/garden levels and plant appearance remain reconstruction work."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f8c7925f7a738c2ff58b57596c5997b26b65986039d495710c2bc1c01668c5af",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/outer-glass-and-seals.png",
+      "shots/shared/winter-garden-depth.png",
+      "shots/shared/balcony-wood-and-rail.png",
+      "shots/shared/support-floor-louvres.png",
+      "shots/shared/end-blade-joints.png",
+      "shots/shared/curved-canopy.png",
+      "shots/shared/canopy-mullions.png",
+      "shots/shared/retail-entrance.png",
+      "shots/shared/rear-skirt.png",
+      "shots/shared/observation-and-roof.png",
+      "shots/shared/mast.png",
+      "shots/shared/plan.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 18 world-viewer frames and their current hashes. Five canonical material graphs are each read once. Wood slats, concrete, stone and the metal blade resolve their shared finishes; glazing remains local transparent/opaque PBR. No embedded images. Viewer unload leaves zero live model geometries. The geographic view uses a flat tower-part map-outline fixture, not real terrain or a verified retail site boundary."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:0036542b06b9e0de3e99edbf8c8ecfcffc7c5422e654cbde66ee54fc94e7013c",
+    "notes": "Exact Q166882 match to OSM building:part way 673790538; anchor [29.0058122,41.0849531], yaw -1.54183461736. The tower envelope aligns with the cached part in the flat fixture. Signed canopy/end-blade direction, the larger retail parcel, actual entrance positions and local ground elevations remain unapproved."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "261 m tip represented separately from the registry 234.9 m observatory and mapped 235 m height. The working 239.35 m roof, mast dimensions, taper, garden/cavity dimensions, facade row numbering, support-floor heights and canopy extent need dimensioned references. Plants, shopfronts, signage, exact retail circulation and rooftop equipment need more detail. Do not count this source-authored preview as a complete maximum-fidelity landmark."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 100
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 100
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by this validator and reported as information. Independent instance-transform/count/bound checks and Molen captures cover that extension. Other information concerns unused fallback attributes.",
+    "expandedTriangles": 1547192,
+    "uniqueMeshTriangles": 947096,
+    "uniquePositionVertices": 1892360,
+    "uniqueMeshes": 21,
+    "instances": 35,
+    "materials": 9,
+    "sharedGraphs": 5,
+    "embeddedImages": 0
+  }
+}

@@ -4,19 +4,17 @@ import { defineConfig } from 'vitest/config';
 // they run as a separate task (test:golden) after `pnpm build`, not with the fast unit tests.
 //
 // The budget is deliberately generous. A scenario spends most of its time inside `wait-for-stable`
-// on the streaming HUD, and on a software rasterizer that settle can take minutes. The switch to
-// Human mode is the slowest step: the synthetic lineup's measured 124-133s on a developer machine
-// and about 240s on a 4-vCPU CI runner, and store-library's (40-45s locally) projects to over 200s
-// on the slowest runners seen, which run it 3-5x slower than a developer machine. Both have since
-// grown (the lineup's Human mode streams about 4.5M triangles and took 250s locally) and ran past
-// 600s on CI runners, so every wait after a switch to Human mode allows 1200s. Screenshots in
-// those dense scenes allow 120s instead of the default 30s: the lineup's takes about 7s locally
-// (0.4s before the switch). These numbers are "this is definitely wedged" thresholds, not expected
-// durations: a healthy runner finishes far inside them, so raising them costs nothing when things
-// work. testTimeout must stay above the sum of every scenario's own action timeouts
-// (test/visual/*.play.json), or vitest kills the run first and the scenario's precise failure
-// message — which action, which probe text — is lost; the largest sum today is store-library's,
-// about 3480s.
+// on the streaming HUD, and on a software rasterizer that settle can take minutes; CI runners run
+// 3-5x slower than a developer machine. The timeouts are "this is definitely wedged" thresholds,
+// not expected durations, so raising them costs nothing when things work. testTimeout must stay
+// above the sum of every played scenario's own action timeouts, or vitest kills the run first and
+// the scenario's precise failure message — which action, which probe text — is lost; today the
+// only played scenario is walk-navigation's test/visual/walk-mode.play.json, about 2300s.
+//
+// Scenarios that stream real map data in Human mode (store library, soundscape, live quality,
+// tunnels) were removed from this lane: on CI they failed far more often from software-rendering
+// speed than from regressions, and unit tests cover their logic. Their play files that remain in
+// test/visual are for manual review with `molen play`.
 //
 // Files run one at a time, for the reason `test:golden` pins --workspace-concurrency=1: each file
 // drives its own software-rasterized browser, and on a 4-vCPU CI runner three at once starved the

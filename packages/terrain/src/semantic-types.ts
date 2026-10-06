@@ -71,6 +71,10 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
    * Points use normalized tile coordinates. */
   bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
   tunnel?: boolean;
+  /** Surveyed tunnel road-floor height in absolute world Y units. Otherwise inferred from portals. */
+  tunnelFloorElevation?: number;
+  /** Interior floor-to-ceiling clearance in world units. Otherwise class-based. */
+  tunnelClearance?: number;
 }
 
 export interface TerrainBuildingFeature extends TerrainStructureIdentity {
@@ -267,6 +271,12 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
     if (feature.layer !== undefined) assertFinite(feature.layer, `/transportation/${index}/layer`);
     if (feature.deckElevation !== undefined)
       assertFinite(feature.deckElevation, `/transportation/${index}/deckElevation`);
+    if (feature.tunnelFloorElevation !== undefined)
+      assertFinite(feature.tunnelFloorElevation, `/transportation/${index}/tunnelFloorElevation`);
+    if (feature.tunnelClearance !== undefined) {
+      assertFinite(feature.tunnelClearance, `/transportation/${index}/tunnelClearance`);
+      if (feature.tunnelClearance <= 0) throw new Error('tunnel clearance must be positive');
+    }
     for (const connection of feature.bridgeConnections ?? []) {
       assertFinite(connection.point[0], 'bridge connection x');
       assertFinite(connection.point[1], 'bridge connection z');

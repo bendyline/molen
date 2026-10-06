@@ -22,6 +22,12 @@ import { appendBridgeStructure, bridgeDeckProfile } from './surface-bridges';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
 import {
+  appendTerrainSignalLenses,
+  type TerrainSignalHead,
+  type TerrainTrafficSignalResolver,
+  updateTerrainSurfaceSignals,
+} from './surface-signals';
+import {
   resolveTerrainSurfaceStyle,
   type TerrainParkedVehicle,
   type TerrainSurfaceOptions,
@@ -127,6 +133,7 @@ export function createTerrainSurfaceObject(
     group.add(bridgeMesh);
   }
   const fixtures: TerrainBoxPlacement[] = [];
+  const signalHeads: TerrainSignalHead[] = [];
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
   let fixtureCount = 0;
@@ -370,6 +377,24 @@ export function createTerrainSurfaceObject(
       }
     if (!style.streetlights && !style.trafficSignals) continue;
     const arms = [...node.arms].sort((a, b) => Math.atan2(a.dz, a.dx) - Math.atan2(b.dz, b.dx));
+    const phaseGroups = arms.map(() => -1);
+    let phaseCount = 0;
+    for (const [i, arm] of arms.entries()) {
+      if ((phaseGroups[i] as number) >= 0) continue;
+      phaseGroups[i] = phaseCount;
+      let opposite = -1;
+      let bestDot = -0.7;
+      for (let j = i + 1; j < arms.length; j++) {
+        const other = arms[j] as (typeof arms)[number];
+        const dot = arm.dx * other.dx + arm.dz * other.dz;
+        if (phaseGroups[j] === -1 && dot < bestDot) {
+          opposite = j;
+          bestDot = dot;
+        }
+      }
+      if (opposite >= 0) phaseGroups[opposite] = phaseCount;
+      phaseCount++;
+    }
     for (let i = 0; i < arms.length && fixtureCount < maxFixtures; i++) {
       const a = arms[i],
         b = arms[(i + 1) % arms.length];
@@ -433,7 +458,7 @@ export function createTerrainSurfaceObject(
           },
         );
       }
-      // Signals are an illustrative treatment for major four-way junctions only.
+      // A curbside mast reaches across the approach, with heads facing arriving traffic.
       if (
         style.trafficSignals &&
         arms.length >= 4 &&
@@ -442,19 +467,73 @@ export function createTerrainSurfaceObject(
         stats.trafficSignals++;
         const sx = x + dx * 0.35,
           sz = z + dz * 0.35;
-        fixtures.push(
-          { x: sx, z: sz, y: y + 1.8, yaw, size: [0.1, 3.6, 0.1], color: '#586269' },
-          { x: sx, z: sz, y: y + 3.55, yaw, size: [0.32, 0.95, 0.24], color: '#242c30' },
+        const acrossX = a.dz,
+          acrossZ = -a.dx;
+        const lateral = (sx - a.x) * -a.dz + (sz - a.z) * a.dx;
+        const reach = Math.max(2, lateral + a.width / 2 + 0.6);
+        const armYaw = Math.atan2(acrossX, acrossZ);
+        const headYaw = Math.atan2(a.dx, a.dz);
+        // Include road grade when choosing mast height, retaining truck clearance.
+        const roadHeight = context.heightfield.sampleHeight(
+          context.origin[0] + sx + acrossX * reach,
+          context.origin[1] + sz + acrossZ * reach,
         );
-        for (let light = 0; light < 3; light++)
-          fixtures.push({
-            x: sx + dx * 0.14,
-            z: sz + dz * 0.14,
-            y: y + 3.85 - light * 0.29,
-            yaw,
-            size: [0.18, 0.18, 0.035],
-            color: ['#e65d48', '#806b31', '#284c43'][light] as string,
-          });
+        const top = Math.max(y + 7.4, roadHeight + a.road.elevation + 7.4);
+        fixtures.push(
+          {
+            x: sx,
+            z: sz,
+            y: (y + top) / 2,
+            yaw: armYaw,
+            size: [0.24, top - y, 0.24],
+            color: '#626d73',
+          },
+          { x: sx, z: sz, y: y + 0.16, yaw: armYaw, size: [0.52, 0.32, 0.52], color: '#969c99' },
+          { x: sx, z: sz, y: top - 0.1, yaw: armYaw, size: [0.34, 0.4, 0.34], color: '#626d73' },
+          {
+            x: sx + (acrossX * reach) / 2,
+            z: sz + (acrossZ * reach) / 2,
+            y: top,
+            yaw: armYaw,
+            size: [0.2, 0.22, reach],
+            color: '#626d73',
+          },
+        );
+        const lanes = Math.min(
+          3,
+          Math.max(1, Math.floor(inferLaneCount(a.road.feature, a.width) / 2)),
+        );
+        for (let lane = 0; lane < lanes; lane++) {
+          const distance = lateral + (a.width * (lane + 0.5)) / (lanes * 2);
+          const head: TerrainSignalHead = {
+            x: sx + acrossX * distance,
+            z: sz + acrossZ * distance,
+            y: top - 1.05,
+            yaw: headYaw,
+            junction: [context.origin[0] + node.x, context.origin[1] + node.z],
+            direction: [a.dx, a.dz],
+            radius: node.radius,
+            group: phaseGroups[i] as number,
+            groups: phaseCount,
+            offset: hash(context.origin[0] + node.x, context.origin[1] + node.z) * phaseCount * 29,
+          };
+          signalHeads.push(head);
+          fixtures.push(
+            { ...head, y: top - 0.3, size: [0.12, 0.6, 0.12], color: '#626d73' },
+            { ...head, size: [0.9, 1.8, 0.12], color: '#c99b3c' },
+            { ...head, size: [0.62, 1.5, 0.4], color: '#20272b' },
+          );
+          // Projecting visors shade the round lenses and make the head readable in daylight.
+          for (let light = 0; light < 3; light++)
+            fixtures.push({
+              ...head,
+              x: head.x + a.dx * 0.3,
+              z: head.z + a.dz * 0.3,
+              y: head.y + 0.58 - light * 0.38,
+              size: [0.43, 0.07, 0.32],
+              color: '#20272b',
+            });
+        }
       }
     }
   }
@@ -653,6 +732,7 @@ export function createTerrainSurfaceObject(
   }
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
+  appendTerrainSignalLenses(group, signalHeads);
   stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures;
   return group;
 }
@@ -677,6 +757,8 @@ export interface TerrainSurfaceRenderer {
   disposeTile(object: THREE.Object3D): void;
   /** Refresh resident tiles cooperatively, without refetching map data or rebuilding buildings. */
   setOptions(options: TerrainSurfaceOptions): Promise<void>;
+  /** Absolute simulation time in seconds; optionally resolve colours from a traffic graph. */
+  updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
   stats(): TerrainSurfaceStats & {
     tiles: number;
     loading: number;
@@ -705,6 +787,8 @@ export function createTerrainSurfaceRenderer(
   let revision = 0;
   let geometryRevision = 0;
   let disposed = false;
+  let signalTime = 0;
+  let signalResolver: TerrainTrafficSignalResolver | undefined;
   const register = (
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
@@ -743,6 +827,7 @@ export function createTerrainSurfaceRenderer(
       disposeTerrainSurfaceObject(root);
       root.clear();
       root.add(object);
+      updateTerrainSurfaceSignals(object, signalTime, signalResolver);
       geometryRevision++;
     };
     const pending = build().finally(() => {
@@ -755,7 +840,9 @@ export function createTerrainSurfaceRenderer(
     createTile(tile, context) {
       const root = register(tile, context);
       try {
-        root.add(createTerrainSurfaceObject(tile, context, options));
+        const object = createTerrainSurfaceObject(tile, context, options);
+        root.add(object);
+        updateTerrainSurfaceSignals(object, signalTime, signalResolver);
         geometryRevision++;
       } catch (error) {
         renderer.disposeTile(root);
@@ -802,6 +889,15 @@ export function createTerrainSurfaceRenderer(
         if (!tiles.has(root)) continue;
         await rebuild(root, entry);
         await new Promise<void>((resolve) => setTimeout(resolve, 0));
+      }
+    },
+    updateSignals(elapsedSeconds, resolve) {
+      if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');
+      signalTime = elapsedSeconds;
+      signalResolver = resolve;
+      for (const root of tiles.keys()) {
+        const object = root.children[0];
+        if (object) updateTerrainSurfaceSignals(object, signalTime, signalResolver);
       }
     },
     stats() {

@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0253_bratislava_castle",
+  "sourceHash": "sha256:1e9b67723d4932c70c47afbe1a86850894ed9bc183b75aefafbb26deabd32802",
+  "runtimeHash": "sha256:72b0a45ef15cbba6f9c7f406e1ce6bf0e75ed146f250ba4dbdda333fadfc9e2e",
+  "captureReportHash": "sha256:f5d290348090bcb038ccfe822310abaccfef9a984c78b0ee0ff80341b684debe",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical render integrity of the authored exterior. Architectural accuracy, terrain fit and maximum fidelity remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/mapped-palace-and-garden-plan.png",
+      "shots/south-court-of-honour.png",
+      "shots/crown-tower-and-western-barracks.png",
+      "shots/open-courtyard.png",
+      "shots/garden-and-riding-hall.png",
+      "shots/garden-parterre-and-fountain.png",
+      "shots/north-barracks-and-nicholas-gate.png",
+      "shots/sigismund-gate-and-lower-park.png",
+      "shots/leopold-gate-and-buttressed-terrace.png"
+    ],
+    "notes": "Inspected all 14 final portable frames: four distinct corner shafts/crowns, open courtyard, portal/balcony, curved Court of Honour pavilions, northern barracks, separate riding hall, gates, hedge parterres and archaeological foundations. Corrected inward entrance details, clock winding, missing pavilion roof, buried retaining buttresses and the garden support skirt. Large provisional platform walls, roof-to-wall fits, several roof joins, simplified gate elevations and incomplete paths/stairs still require architectural and landscape refinement."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e400a95f50a60a91ad04d70519de0c51b902b325cccbd7baa3e80990d9948b0d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/mapped-palace-and-garden-plan.png",
+      "shots/shared/south-court-of-honour.png",
+      "shots/shared/crown-tower-and-western-barracks.png",
+      "shots/shared/open-courtyard.png",
+      "shots/shared/garden-and-riding-hall.png",
+      "shots/shared/garden-parterre-and-fountain.png",
+      "shots/shared/north-barracks-and-nicholas-gate.png",
+      "shots/shared/sigismund-gate-and-lower-park.png",
+      "shots/shared/leopold-gate-and-buttressed-terrace.png"
+    ],
+    "notes": "Inspected all 13 final shared-material views. Eight shared graphs (lime plaster, tile, granite, raw limestone, timber, painted metal, cast bronze and gravel) each load once. White plaster, warm tile, timber window joinery, dark clocks and green hedges are visible. No embedded images; eviction leaves zero live model geometries. The fixture is an isolated asset review, not terrain-placement proof."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:16edf1cbd7a3b9480ed9d7132a4f36d1bbee3552cee867d3c4e608574ea9e4c6",
+    "notes": "Exact Q593311 on relation-associated castle grounds way/1128350263; palace independently Q13425656, way/8160490 and relation/14610630. Draft anchor [17.100792149,48.142390437], heading 1.019493535917, replaceFootprint=false. Native +X is 58.412 degrees north of east, with the south entrance toward -X/+Z. The museum height of 47 m conflicts with OSM 31 m tower tags. Terrace datum, terrain shape, full compass fit and building contact require geographic review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum exterior fidelity pending: detailed surveyed elevations are unavailable. Palace facades, tower clocks, dormers, chimneys, gate profiles and roof junctions need photographic refinement. Museum gives Crown Tower height 47 m; OSM tower parts say 31 m. The recipe uses the museum value above a provisional terrace, without claiming that its height datum is verified. Landscape field, supporting platforms and terrace heights are interpreted. The four historical garden terraces are not yet modeled to measured levels. Retaining walls, stairs and terrain contact require in-world fitting. The original equestrian sculpture is an interpretive silhouette, not a likeness of the Svätopluk artwork. Garden figures, St Elizabeth statue, ornamental carving, mature trees, interiors and underground remains are unfinished or omitted. Shared plaster, tile, stone, wood, gravel and metal carry materials; no embedded images. Detailed masters retain modeled tile courses, window joinery and trim. No physical-device benchmark approval is claimed."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 10
+    },
+    "validatorLimitations": "Unused UV notices reflect external procedural surfaces. Valid geometry does not establish architectural accuracy.",
+    "triangles": 684637,
+    "vertices": 1388547,
+    "materials": 10,
+    "sharedGraphs": 8,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera comparison, deterministic output, download/triangle budgets and homogeneous vertex buffer views. Physical devices remain unmeasured.",
+    "notes": "963 / 3810 / 15773 / 62481 triangles. Skyline plus district is 386908 bytes; street 1018160 bytes; closeup 4645552 bytes. Source master is 58208900 bytes. The common-camera comparison retains the four-wing palace, towers, northern barracks and separate garden. Skyline drops minor facade/landscape detail; district introduces shared surfaces; street and closeup restore windows, dormers and hedges. All 39 authored-LOD regressions pass; source regenerates byte for byte.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u2s/n0253_bratislava_castle/model.skyline.glb",
+        "hash": "sha256:b5a5fbd3d524cc2ec8a7965405d813da97631e21ddd032365ac808e60bb6fa84",
+        "bytes": 90884,
+        "triangles": 963,
+        "vertices": 2325,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -167.2429962158203,
+          0,
+          -155.28500366210938
+        ],
+        "max": [
+          167.24925231933594,
+          57,
+          155.58526611328125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u2s/n0253_bratislava_castle/model.district.glb",
+        "hash": "sha256:4bb94daf6a2973da4bc1fa967dcd99e32b4e3933f7093a19cb796fbde116b326",
+        "bytes": 296024,
+        "triangles": 3810,
+        "vertices": 7322,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -173.4095458984375,
+          0,
+          -155.33169555664062
+        ],
+        "max": [
+          167.24925231933594,
+          57,
+          155.58526611328125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u2s/n0253_bratislava_castle/model.street.glb",
+        "hash": "sha256:2bfaad138803aeb72ab813911e45c1f072eb7d8e8e12a21dca39fb58d7405e83",
+        "bytes": 1018160,
+        "triangles": 15773,
+        "vertices": 25353,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -173.4095458984375,
+          0,
+          -155.33169555664062
+        ],
+        "max": [
+          167.57249450683594,
+          57.650001525878906,
+          155.58526611328125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u2s/n0253_bratislava_castle/model.closeup.glb",
+        "hash": "sha256:16816735b94d084808775cf5e0b9294b116dae1517ed58582d8e6c8aec7f1f08",
+        "bytes": 4645552,
+        "triangles": 62481,
+        "vertices": 118293,
+        "materials": 10,
+        "sharedGraphs": 8,
+        "images": 0,
+        "min": [
+          -173.4095458984375,
+          0,
+          -155.33169555664062
+        ],
+        "max": [
+          167.57249450683594,
+          57.650001525878906,
+          155.58526611328125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 10
+      }
+    ]
+  }
+}

@@ -41,6 +41,6 @@ The [Seattle capture](captures/seattle-space-needle.png) records that view throu
   `mountEarthView` with worker factories. It then adds a `composeMarkerImage` pin, the credits
   and the mode buttons.
 - `src/*.worker.ts`: one line each, `import '@bendyline/molen-earth/workers/<name>';`.
-- `test/golden/earth-view.golden.test.ts`: a real-browser run (software WebGL). It asserts that
-  tiles stream at detail level 13 or finer with no failures, that the marker and credits exist,
-  that walking lands on the ground, and that ambient traffic appears on the streets around it. It also records screenshots for review.
+
+`mountEarthView` itself is covered by `packages/earth/test/earth-view.test.ts` (streaming, credits,
+markers and walking over a procedural archive). This example has no browser test of its own.

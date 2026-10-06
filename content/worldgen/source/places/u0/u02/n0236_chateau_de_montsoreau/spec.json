@@ -1,0 +1,268 @@
+{
+  "planId": "N0236",
+  "id": "N0236",
+  "assetId": "molen.worldgen.structure.n0236_chateau_de_montsoreau",
+  "title": "Château de Montsoreau",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q1143049",
+  "referenceCoordinate": {
+    "latitude": 47.2156,
+    "longitude": 0.0622
+  },
+  "visualBrief": "Tuffeau Loire castle with river-facing square terrace towers, asymmetric return wings, four northern and three courtyard Gothic dormers, slate roofs, machicolations, western pointed stair roof and eastern Renaissance stair with slate-disc balustrade.",
+  "size": [
+    53.14999961853027,
+    38.400001525878906,
+    45.19999885559082
+  ],
+  "actualBounds": {
+    "min": [
+      -31.600000381469727,
+      0,
+      -27.149999618530273
+    ],
+    "max": [
+      21.549999237060547,
+      38.400001525878906,
+      18.049999237060547
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east along the signed cached precinct frame",
+    "front": "-Z toward the Loire; +Z toward the courtyard",
+    "origin": "Cached precinct rectangle center at provisional road/base datum"
+  },
+  "sourceFacts": {
+    "mainConstructionCentury": 15,
+    "renaissanceStairDateRange": [
+      1510,
+      1530
+    ],
+    "mainRangeUpperFloors": 2,
+    "squareTowersHaveAdditionalFloor": true,
+    "riverDormersObserved": 4,
+    "courtyardDormersObserved": 3,
+    "greatHallLengthMeters": 17,
+    "ownerReportedTerraceHeightMeters": 35,
+    "ownerTerraceHeightDatum": "Unspecified; not adopted as a measured building elevation."
+  },
+  "reconstruction": {
+    "basis": "Individual reconstruction from the regional Inventaire Général exterior survey photographs and descriptions, owner publication and signed OSM castle precinct. The precinct polygon is not a building outline. Plan subdivisions, elevations, roof pitches, window sizes and ornament are photographic estimates.",
+    "mainEaveY": 21,
+    "mainRidgeY": 30.8,
+    "squareTowerParapetY": 28.48,
+    "courtY": 4.5,
+    "westernStairFinialY": 38.4,
+    "datum": "Provisional road/base level; no surveyed vertical datum.",
+    "occupiedPlanBasis": "Distinct wall masses fitted inside the northern OSM precinct edge; open court retained to the south."
+  },
+  "referencePages": [
+    "https://gertrude.paysdelaloire.fr/dossier/IA49009670",
+    "https://www.chateau-montsoreau.com/wordpress/fr/100-chateau-100-contemporain/le-chateau/",
+    "https://pop.culture.gouv.fr/notice/merimee/IA49009670",
+    "https://www.openstreetmap.org/way/175416989"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "precinct-registered preview; surveyed heights, terrain and occupied footprint fit pending",
+    "anchor": [
+      0.062337562,
+      47.21556495
+    ],
+    "heading": -0.502994439024,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/175416989",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/175416989"
+    ],
+    "wikidataId": "Q1143049",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "The exact-QID way/175416989 is the castle precinct, not an occupied building footprint. Its signed frame anchors the distinct northern ranges and open southern court. Do not stretch a single building mass to this boundary. Base datum, retaining walls and eastern/western extensions need terrain-context review."
+  },
+  "scaleBasis": "Cached exact-QID OSM precinct bounds provide horizontal scale. Vertical dimensions are photographic estimates; the published 35 m terrace statement has an unresolved datum.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity is pending: the Renaissance stair figurative panels, medallions, deer and putti are not sculpted; candelabra and Gothic crockets are reconstructed relief.",
+    "No measured plan or section was inspected. The historical Salleron reference is an exterior view. Owner terrace height has an unresolved datum, so all vertical dimensions remain provisional.",
+    "Roof junctions, occupied plan subdivisions, window positions and retaining-wall limits are estimates from exterior views inside an OSM precinct boundary. Physical terrain, moat, road and surrounding village are not part of this asset.",
+    "Current square towers have flat terraces; historical pavilion roofs are deliberately not reconstructed. No interior rooms, movable shutters or engineering certification.",
+    "Original geometry and shared limestone, raw limestone, slate, wood and painted-metal surfaces. Reference photographs are linked only; no copied images or per-model texture bitmaps."
+  ],
+  "qaCameras": [
+    {
+      "name": "river-elevation",
+      "position": [
+        -3,
+        20,
+        -103
+      ],
+      "lookAt": [
+        -3,
+        17,
+        -19
+      ]
+    },
+    {
+      "name": "river-dormers",
+      "position": [
+        -3,
+        29,
+        -44
+      ],
+      "lookAt": [
+        -3,
+        26,
+        -23
+      ]
+    },
+    {
+      "name": "court-elevation",
+      "position": [
+        -5,
+        21,
+        69
+      ],
+      "lookAt": [
+        -5,
+        19,
+        -9
+      ]
+    },
+    {
+      "name": "western-stair",
+      "position": [
+        -33,
+        27,
+        10
+      ],
+      "lookAt": [
+        -16,
+        24,
+        -9
+      ]
+    },
+    {
+      "name": "renaissance-stair",
+      "position": [
+        -2,
+        19,
+        9
+      ],
+      "lookAt": [
+        7,
+        17,
+        -9
+      ]
+    },
+    {
+      "name": "cross-window-and-corbel",
+      "position": [
+        -4,
+        17,
+        -0.5
+      ],
+      "lookAt": [
+        -7.6,
+        17,
+        -11
+      ]
+    },
+    {
+      "name": "eastern-return",
+      "position": [
+        42,
+        26,
+        33
+      ],
+      "lookAt": [
+        13,
+        17,
+        -3
+      ]
+    },
+    {
+      "name": "roof-and-open-court",
+      "position": [
+        -10,
+        90,
+        12
+      ],
+      "lookAt": [
+        -5,
+        5,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 40797,
+    "vertices": 80655,
+    "materials": 7,
+    "bytes": 3397240,
+    "sha256": "sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f"
+  }
+}

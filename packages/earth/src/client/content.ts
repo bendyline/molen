@@ -261,8 +261,8 @@ export async function loadEarthContent(
         spec: types.component<VehicleData>(id, 'vehicle').spec,
       })) ?? [],
     assets: {
-      load: (ref) => packs.readBytes(styleIndex[ref] ?? ref),
-      loadText: (ref) => packs.readText(styleIndex[ref] ?? ref),
+      load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),
+      loadText: (ref, options) => packs.readText(styleIndex[ref] ?? ref, options),
     },
     ...(worldgen !== undefined ? { worldgen } : {}),
     ...(worldgenError !== undefined ? { worldgenError } : {}),

@@ -1,7 +1,35 @@
+import { bratislavaStudy } from './bratislava-castle-model.mjs';
+import { budaStudy } from './buda-castle-model.mjs';
+import { durhamStudy } from './durham-castle-model.mjs';
+import { hohenzollernStudy } from './hohenzollern-castle-model.mjs';
+import { kernaveStudy } from './kernave-landscape-model.mjs';
+import { nesvizhStudy } from './nesvizh-castle-model.mjs';
+import { salahStudy } from './salah-citadel-model.mjs';
+import { sforzaStudy } from './sforza-castle-model.mjs';
 /** Three individually researched tower reconstructions. All dimensions are meters. */
+
+import { alamutStudy } from './alamut-castle-model.mjs';
 import { beam, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
+import { baroloPalaceStudy } from './barolo-palace-model.mjs';
+import { branStudy } from './bran-castle-model.mjs';
+import { chinaWorldTowerStudy } from './china-world-tower-model.mjs';
+import { edinburghStudy } from './edinburgh-castle-model.mjs';
+import { firstCanadianPlaceStudy } from './first-canadian-place-model.mjs';
+import { fourWorldTradeCenterStudy } from './four-world-trade-center-model.mjs';
+import { granTorreCostaneraStudy } from './gran-torre-costanera-model.mjs';
+import { hofburgStudy } from './hofburg-palace-model.mjs';
+import { istanbulSapphireStudy } from './istanbul-sapphire-model.mjs';
+import { karlstejnStudy } from './karlstejn-castle-model.mjs';
+import { kronborgStudy } from './kronborg-castle-model.mjs';
+import { malborkStudy } from './malbork-castle-model.mjs';
+import { millenniumTowerStudy } from './millennium-tower-model.mjs';
+import { mirStudy } from './mir-castle-model.mjs';
 import { montevideoStudy } from './montevideo-tower-model.mjs';
+import { montsoreauStudy } from './montsoreau-castle-model.mjs';
+import { neuschwansteinStudy } from './neuschwanstein-castle-model.mjs';
+import { ninaTowerStudy } from './nina-tower-model.mjs';
 import { oneCanadaSquareStudy } from './one-canada-square-model.mjs';
+import { pragueStudy } from './prague-castle-model.mjs';
 import { rembrandtStudy } from './rembrandt-tower-model.mjs';
 import { buildMappedShard, shardReconstruction } from './shard-tower-model.mjs';
 import { bitexcoStudy } from './signature-tower-bitexco-model.mjs';
@@ -10,6 +38,10 @@ import { skylineGlobal } from './signature-tower-global-models.mjs';
 import { skylineNext } from './signature-tower-next-models.mjs';
 import { skylineWorld } from './signature-tower-world-models.mjs';
 import { quad, tube } from './structure-mesh.mjs';
+import { takhtStudy } from './takht-e-soleyman-model.mjs';
+import { twoPrudentialPlazaStudy } from './two-prudential-plaza-model.mjs';
+import { wartburgStudy } from './wartburg-castle-model.mjs';
+import { windsorStudy } from './windsor-castle-model.mjs';
 
 const ref = 'palette:#ffffff';
 const aluminum = [0.69, 0.73, 0.75];
@@ -386,6 +418,37 @@ function buildPearl(out) {
 }
 
 export const signatureTowers = [
+  windsorStudy,
+  pragueStudy,
+  wartburgStudy,
+  edinburghStudy,
+  kronborgStudy,
+  hofburgStudy,
+  takhtStudy,
+  karlstejnStudy,
+  branStudy,
+  alamutStudy,
+  mirStudy,
+  hohenzollernStudy,
+  bratislavaStudy,
+  salahStudy,
+  sforzaStudy,
+  durhamStudy,
+  budaStudy,
+  nesvizhStudy,
+  kernaveStudy,
+  malborkStudy,
+  millenniumTowerStudy,
+  montsoreauStudy,
+  neuschwansteinStudy,
+  baroloPalaceStudy,
+  chinaWorldTowerStudy,
+  granTorreCostaneraStudy,
+  ninaTowerStudy,
+  fourWorldTradeCenterStudy,
+  firstCanadianPlaceStudy,
+  twoPrudentialPlazaStudy,
+  istanbulSapphireStudy,
   oneCanadaSquareStudy,
   montevideoStudy,
   rembrandtStudy,

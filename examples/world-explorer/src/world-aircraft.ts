@@ -81,7 +81,7 @@ export class WorldAircraft {
   constructor(
     readonly world: World,
     private readonly root: THREE.Object3D,
-    private readonly terrainHeight: (x: number, z: number) => number | undefined,
+    private readonly terrainHeight: (x: number, z: number, y?: number) => number | undefined,
     initial: [number, number, number],
     /** Load an aircraft's model by entity type id, e.g. from the entities content pack. */
     private readonly loadModel: (id: string) => Promise<THREE.Object3D>,
@@ -92,7 +92,7 @@ export class WorldAircraft {
     this.object.name = 'world:airfield';
     root.add(this.object);
     installAircraft(world, {
-      groundHeight: (x, z) => this.groundHeight(x, z),
+      groundHeight: (x, z, y) => this.groundHeight(x, z, y),
       canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
     });
   }
@@ -111,14 +111,14 @@ export class WorldAircraft {
   get power(): number {
     return this.inputs.power;
   }
-  groundHeight(x: number, z: number): number | undefined {
+  groundHeight(x: number, z: number, y?: number): number | undefined {
     if (
       this.elevation !== undefined &&
       Math.abs(x - this.center[0]) < 48 &&
       Math.abs(z - this.center[1]) < 450
     )
       return this.elevation;
-    return this.terrainHeight(x, z);
+    return this.terrainHeight(x, z, y);
   }
   spawnPosition(kind: AircraftChoice): [number, number, number] {
     return [this.center[0] + (kind === 'p51d' ? 0 : 23), this.elevation ?? 0, this.center[1] - 330];

@@ -1,0 +1,124 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0233_china_world_trade_center_tower_iii",
+  "sourceHash": "sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3",
+  "runtimeHash": "sha256:1dc90e14f0f484acd03bb011a925a131637f683ffdae8277da008bdfa0b37b71",
+  "captureReportHash": "sha256:f60827ae3b4ca7953141f17f1aba0886336a93a115c3d1d97f06849b3890d46e",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/alternating-curtain-wall.png",
+      "shots/glass-fin-brackets.png",
+      "shots/recessed-corner.png",
+      "shots/service-belt.png",
+      "shots/base-diamonds.png",
+      "shots/hotel-canopy.png",
+      "shots/hotel-vestibule.png",
+      "shots/office-entrance.png",
+      "shots/crown-lattice.png",
+      "shots/roof-helipad.png",
+      "shots/far-silhouette.png"
+    ],
+    "notes": "Inspected all 16 portable frames. Taper, alternating curtain-wall slopes, projecting glass fins and brackets, service belts, recessed corners, diamond base shading, crown lattice, canopies and vestibules render. Initial panels faced inward; corrected their winding and added closed returns at recessed corners, then regenerated all captures. Rooftop equipment, vestibules and finer facade dimensions remain reconstructions."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d6e154ab21c8d77cf764735c9ae695e3a62751120de6892ab9a3b6d76ae5945c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/alternating-curtain-wall.png",
+      "shots/shared/glass-fin-brackets.png",
+      "shots/shared/recessed-corner.png",
+      "shots/shared/service-belt.png",
+      "shots/shared/base-diamonds.png",
+      "shots/shared/hotel-canopy.png",
+      "shots/shared/hotel-vestibule.png",
+      "shots/shared/office-entrance.png",
+      "shots/shared/crown-lattice.png",
+      "shots/shared/roof-helipad.png",
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all 16 world-viewer frames including the map-outline view. Four canonical metal/concrete/stone graphs each load once. Glazing uses local PBR; no embedded images. Viewer eviction leaves zero live model geometries. Fine facade lines show distant aliasing; geometric continuity and material loading are intact."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:c2a2ed4cb7d52a0039d21ffbba9923db0efb85635361d5be0bab464b06f493aa",
+    "notes": "Exact Q2006129 match to OSM way 116944490 supplies tower center and rectangular plan axis. Cached yaw maps native -Z east, supporting the SOM hotel entrance description; opposite office entry faces west. The flat-terrain fixture confirms these sides and tower-envelope visualization, but actual canopy extent, site terrain and adjoining structures are not verified."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "SOM exterior/base/corner photos and Meinhardt facade brochure pages 10–11. Taper dimensions, bay counts, intermediate heights, crown braces, entrance widths and roof equipment are inferred, not surveyed. Geographic fit and maximum exterior fidelity remain pending. Cardinal entrance sides are documented; exact facade yaw, ground contact and canopy extent need real-site review. Published floor totals conflict (74, 80, 81); the model does not claim a surveyed floor schedule. Intermediate floor divisions, taper, crown base and service belts are reconstructions. Crown braces, helipad, roof plant, revolving vestibules, canopy structure and lobby details follow visible forms but lack construction drawings. The large adjoining shopping mall, ballroom annex, skywalks, landscaped water courts and neighboring Tower B are separate structures and remain outside this individual tower asset. Fins use transparent local PBR with modeled metal edges; their exact frit pattern and programmable night lighting remain unauthored. No reference photography or third-party mesh is embedded."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 28
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 28
+    },
+    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent transform/count/bounds checks and Molen renders cover instancing; other information concerns unused fallback attributes.",
+    "expandedTriangles": 938584,
+    "uniqueMeshTriangles": 485508,
+    "uniquePositionVertices": 970376,
+    "uniqueMeshes": 5,
+    "instances": 7,
+    "materials": 7,
+    "sharedGraphs": 4,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Visual integrity and local byte/layout checks; physical-device measurements pending.",
+    "notes": "Inspected master and all four runtime levels side by side. The authored skyline preserves taper, corner recesses, canopy and open crown framing in 39,800 bytes. District, street and closeup are 2.03, 2.74 and 9.66 MB. The 40.77 MB detailed master is preserved separately. Skyline plus district total less than 3 MB. Thin repeated fins alias at distance; device frame time is not measured.",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:0f5b20ba8d74aefbd95db88046ec5fcaf6cff1da8af55307d0f16bb1a6f86123",
+        "bytes": 39800,
+        "triangles": 496,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "hash": "sha256:f84a7d03b6440caf9d7dfe9f321a6358d41d3015141d6743d8c82dc5775f2da7",
+        "bytes": 2034396,
+        "triangles": 24449,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "hash": "sha256:dfc001d0c2dba59414821abcf7582f46a0b6c0ca6c8a6087720b7628928c5076",
+        "bytes": 2736544,
+        "triangles": 31176,
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:18e7454f768ef58ce5cd01157a8ac6b88488e070069a4218053838554a7cea73",
+        "bytes": 9656612,
+        "triangles": 96741,
+        "errors": 0,
+        "warnings": 0
+      }
+    ]
+  }
+}

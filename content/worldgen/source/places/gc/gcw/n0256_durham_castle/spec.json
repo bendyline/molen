@@ -1,0 +1,284 @@
+{
+  "planId": "N0256",
+  "id": "N0256",
+  "assetId": "molen.worldgen.structure.n0256_durham_castle",
+  "title": "Durham Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q752266",
+  "referenceCoordinate": {
+    "latitude": 54.7749,
+    "longitude": -1.57558
+  },
+  "visualBrief": "Durham Castle exterior: Great Hall and four domed octagonal turrets, Black Stairs, low Tunstall Gallery with upper hall, polygonal clock stair, chapel, separate raised octagonal keep, open gatehouse passage, and landscaped open bailey.",
+  "size": [
+    117.15547180175781,
+    30.270000457763672,
+    104.7057113647461
+  ],
+  "actualBounds": {
+    "min": [
+      -49.31658172607422,
+      0,
+      -34.02204132080078
+    ],
+    "max": [
+      67.8388900756836,
+      30.270000457763672,
+      70.68367004394531
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X 30.047 degrees north of east",
+    "front": "Open bailey toward native +Z; keep toward +X,+Z",
+    "origin": "Main-range mapped anchor; courtyard ground datum"
+  },
+  "sourceFacts": {
+    "identity": "Q752266 west/north ranges plus mapped keep way/81522969 and gatehouse way/81522972",
+    "mappedMainRangeEnvelopeMeters": [
+      98.284,
+      67.703
+    ],
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "Attributed OpenStreetMap building and courtyard footprints; Historic England four listed entries and Durham University courtyard photographs.",
+    "verticalDatum": "Courtyard Y=0.12; keep platform Y=10, keep corner battlements Y=30.2. Relative levels are estimated from exterior photos, not a survey."
+  },
+  "referencePages": [
+    "https://historicengland.org.uk/listing/the-list/list-entry/1121383",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1160921",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1322868",
+    "https://historicengland.org.uk/listing/the-list/list-entry/1322867",
+    "https://dur.ac.uk/things-to-do/venues/durham-castle/history-and-architecture/external-architecture-overview/",
+    "https://dur.ac.uk/things-to-do/venues/durham-castle/history-and-architecture/norman-castle/",
+    "https://www.openstreetmap.org/way/81522967"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft: terrain fit and exact architectural review pending",
+    "anchor": [
+      -1.576564741,
+      54.775561357
+    ],
+    "heading": 0.524419899749,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/81522967",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/81522956",
+      "way/81522967",
+      "way/81522969",
+      "way/81522972"
+    ],
+    "wikidataId": "Q752266",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9f8106b30aede331997f6ecd0adbb2c371823009bf30c394e495d9e74644459d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Includes mapped castle ranges, keep and gatehouse; surrounding library and city buildings excluded. Motte height is provisional."
+  },
+  "scaleBasis": "Horizontal meters from mapped components. Facade elevations, wall thickness, roof slopes, window tracery and motte heights are interpreted from the identified exterior photographs.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map data © OpenStreetMap contributors, ODbL-1.0. Original deterministic geometry; no reference photos or third-party meshes embedded.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity remains pending: rear elevation window rhythms, precise stone tracery, roof junctions, heraldic shields and figurative porch carvings need more bespoke reference work. Plain reserved panels are not complete carvings.",
+    "Motte and floor elevations are inferred from courtyard photographs. In-world terrain contact and orientation review remain pending; replaceFootprint=false.",
+    "Interior rooms, Norman Chapel vaults, Cathedral, Palace Green Library and surrounding city are outside this exterior asset.",
+    "Detailed master and four independent runtime levels share central surfaces. Physical laptop and phone performance measurements remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "castle-and-open-bailey",
+      "position": [
+        6,
+        184,
+        14
+      ],
+      "lookAt": [
+        6,
+        0,
+        13
+      ]
+    },
+    {
+      "name": "great-hall-four-domed-turrets",
+      "position": [
+        35,
+        18,
+        40
+      ],
+      "lookAt": [
+        -16,
+        11,
+        5
+      ]
+    },
+    {
+      "name": "cosin-porch-and-oriel",
+      "position": [
+        8,
+        9,
+        28
+      ],
+      "lookAt": [
+        -18,
+        8,
+        9
+      ]
+    },
+    {
+      "name": "tunstall-gallery-and-clock",
+      "position": [
+        -10,
+        13,
+        36
+      ],
+      "lookAt": [
+        9,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "chapel-and-motte",
+      "position": [
+        8,
+        11,
+        28
+      ],
+      "lookAt": [
+        27,
+        12,
+        17
+      ]
+    },
+    {
+      "name": "octagonal-keep",
+      "position": [
+        87,
+        37,
+        91
+      ],
+      "lookAt": [
+        43,
+        19,
+        44
+      ]
+    },
+    {
+      "name": "gatehouse-open-passage",
+      "position": [
+        -18,
+        8,
+        82
+      ],
+      "lookAt": [
+        -8,
+        8,
+        41
+      ]
+    },
+    {
+      "name": "north-and-west-ranges",
+      "position": [
+        -60,
+        60,
+        -89
+      ],
+      "lookAt": [
+        0,
+        11,
+        -4
+      ]
+    },
+    {
+      "name": "motte-retaining-walls",
+      "position": [
+        91,
+        33,
+        112
+      ],
+      "lookAt": [
+        38,
+        7,
+        44
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 193007,
+    "vertices": 391289,
+    "materials": 8,
+    "bytes": 16407064,
+    "sha256": "sha256:7fee2a5d8b31bbce3e59a071d8eeb7a8db12714ef718b19592cb1b84aaf4f6a8"
+  }
+}

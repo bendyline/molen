@@ -5,11 +5,12 @@
  */
 
 import { readFile, stat } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import type { Pack, PackSet } from '@bendyline/molen-pack';
 import { extractPack, PACK_SOURCE_FILE } from '@bendyline/molen-pack/node';
 import {
   formatIssues,
+  type PackManifest,
   type ProjectManifest,
   validate,
   validateByKind,
@@ -60,10 +61,47 @@ export async function contentPacksFor(
 }
 
 /**
+ * A pack source directory read in place: its id and roles from the settings file, and documents
+ * straight from disk. Opening it as a `Pack` would read and hash every file it includes (for the
+ * default worldgen pack, gigabytes of structure GLBs) only to find the few documents read here.
+ */
+class SourceDirectory {
+  constructor(
+    readonly label: string,
+    readonly manifest: Pick<PackManifest, 'id' | 'provides'>,
+  ) {}
+
+  async readJson<T = unknown>(path: string): Promise<T> {
+    const target = resolve(this.label, ...path.split('/'));
+    if (!target.startsWith(this.label + sep)) {
+      throw new Error(`pack "${this.manifest.id}" has no file "${path}"`);
+    }
+    return parseJson(await readFile(target, 'utf8')) as T;
+  }
+}
+
+async function openSourceDirectory(dir: string): Promise<SourceDirectory> {
+  const path = join(dir, PACK_SOURCE_FILE);
+  const parsed = validate('pack-source', parseJson(await readFile(path, 'utf8')));
+  if (!parsed.ok) throw new Error(`${path}:\n${parsed.formatted}`);
+  const provides = Object.fromEntries(
+    Object.entries(parsed.value.provides).map(([role, paths]) => [
+      role,
+      typeof paths === 'string' ? [paths] : [...paths],
+    ]),
+  );
+  return new SourceDirectory(dir, { id: parsed.value.id, provides });
+}
+
+/** A content pack as the worldgen loaders read it. */
+type ContentPack = Pack | SourceDirectory;
+
+/**
  * A directory holding a pack's files: a pack source directory is used as it is; a built or
  * downloaded pack is extracted once into the cache, keyed by its content hash.
  */
-export async function packDirectory(pack: Pack): Promise<string> {
+export async function packDirectory(pack: ContentPack): Promise<string> {
+  if (pack instanceof SourceDirectory) return pack.label;
   try {
     if ((await stat(pack.label)).isDirectory()) return pack.label;
   } catch {}
@@ -80,13 +118,13 @@ export async function packDirectory(pack: Pack): Promise<string> {
 const isUrl = (path: string): boolean => /^https?:\/\//.test(path);
 
 /** A path that names a content pack (built file, URL, or source directory) rather than a document. */
-async function asContentPack(path: string): Promise<Pack | undefined> {
+async function asContentPack(path: string): Promise<ContentPack | undefined> {
   if (isUrl(path) || path.endsWith('.zip')) return openContentPack(path, process.cwd());
+  let source = false;
   try {
-    if ((await stat(join(path, PACK_SOURCE_FILE))).isFile())
-      return openContentPack(path, process.cwd());
+    source = (await stat(join(path, PACK_SOURCE_FILE))).isFile();
   } catch {}
-  return undefined;
+  return source ? openSourceDirectory(resolve(path)) : undefined;
 }
 
 export interface LoadedStylePackFiles {
@@ -103,16 +141,16 @@ type PackOptions = { projectPath?: string; cwd?: string };
 /** Where `role` comes from: the named pack when it provides it, else the project's packs. */
 async function providedBy(
   role: string,
-  own: Pack | undefined,
+  own: ContentPack | undefined,
   options: PackOptions,
-): Promise<{ pack: Pack; path: string } | undefined> {
+): Promise<{ pack: ContentPack; path: string } | undefined> {
   const path = own?.manifest.provides[role]?.[0];
   if (own !== undefined && path !== undefined) return { pack: own, path };
   return (await contentPacksFor(options)).provided(role).at(-1);
 }
 
 /** A landmark catalog and its model documents, read from a pack. */
-async function landmarkDocs(source: { pack: Pack; path: string }): Promise<LandmarkDocs> {
+async function landmarkDocs(source: { pack: ContentPack; path: string }): Promise<LandmarkDocs> {
   const base = source.path.slice(0, source.path.lastIndexOf('/') + 1);
   const catalog = await source.pack.readJson<{ models?: Record<string, string> }>(source.path);
   const models: Record<string, unknown> = {};
@@ -124,7 +162,7 @@ async function landmarkDocs(source: { pack: Pack; path: string }): Promise<Landm
 
 async function withLandmarks(
   loaded: LoadedStylePackFiles,
-  own: Pack | undefined,
+  own: ContentPack | undefined,
   options: PackOptions,
 ): Promise<LoadedStylePackFiles> {
   const source = await providedBy('landmarks', own, options);
@@ -140,7 +178,7 @@ async function stylePackAt(path: string): Promise<LoadedStylePackFiles> {
   return { pack, dir, path };
 }
 
-async function stylePackIn(content: Pack): Promise<LoadedStylePackFiles> {
+async function stylePackIn(content: ContentPack): Promise<LoadedStylePackFiles> {
   const entry = content.manifest.provides.stylepack?.[0];
   if (entry === undefined) {
     throw new Error(`pack ${content.manifest.id} does not provide a "stylepack"`);

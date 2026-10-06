@@ -7,6 +7,9 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     include: ['test/golden/**/*.test.ts'],
+    // Each file starts a software-rasterized browser; serialize them just like the packages
+    // and explorer scenarios so the worldgen lineup has the runner's CPU and memory to itself.
+    fileParallelism: false,
     testTimeout: 180_000,
     hookTimeout: 60_000,
   },

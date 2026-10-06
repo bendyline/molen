@@ -4,23 +4,40 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:1f69e036c6faefac62794e753fdf30b21050acbe21f5a3c02966b2670efa3277",
   "sourceHash": "sha256:2b3179965cc3b66a6bb337915e467d42e8c1f8cfa35f8b1c7cdd973e7ff5944f",
   "bounds": {
     "aabb": {
-      "min": [-11.5, 0, -9.0288],
-      "max": [11.5, 30.5409, 7.4084]
+      "min": [
+        -11.5,
+        0,
+        -9.0288
+      ],
+      "max": [
+        11.5,
+        30.5409,
+        7.4084
+      ]
     },
     "sphere": {
-      "center": [0, 15.2705, -0.8102],
+      "center": [
+        0,
+        15.2705,
+        -0.8102
+      ],
       "radius": 16.3551
     }
   },
   "stats": {
     "triangles": 15730,
-    "vertices": 250592,
+    "vertices": 31324,
     "meshes": 1,
     "primitives": 8,
     "materials": 8,
@@ -39,49 +56,65 @@
   "materials": [
     {
       "name": "brick-wall",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "wood_painted_lap-wall",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "fabric_canvas-roof",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "wood_painted_shingle-roof",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "metal_painted-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "wood_plain-trim",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "stone_granite-foundation",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
       "name": "glazing-window",
-      "slots": ["baseColor"],
+      "slots": [
+        "baseColor"
+      ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     }
@@ -91,11 +124,88 @@
       {
         "node": "worldgen",
         "points": [
-          -11.5, 0, -9.0288, -11.5, 0, 7.4084, -11.5, 30.5409, -9.0288, -11.5, 30.5409, 7.4084,
-          11.5, 0, -9.0288, 11.5, 0, 7.4084, 11.5, 30.5409, -9.0288, 11.5, 30.5409, 7.4084
+          -11.5,
+          0,
+          -9.0288,
+          -11.5,
+          0,
+          7.4084,
+          -11.5,
+          30.5409,
+          -9.0288,
+          -11.5,
+          30.5409,
+          7.4084,
+          11.5,
+          0,
+          -9.0288,
+          11.5,
+          0,
+          7.4084,
+          11.5,
+          30.5409,
+          -9.0288,
+          11.5,
+          30.5409,
+          7.4084
         ]
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:46d841590f53164ab5d449d9cb92ce9a6ffdf354e9e09c01b850652cdec3cbfd",
+    "masterHash": "sha256:1f69e036c6faefac62794e753fdf30b21050acbe21f5a3c02966b2670efa3277",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:9ee0fb4fe31bb66e4d1785fabda119d2b04a58a36f2ce500d892dc8bab488689",
+        "bytes": 14172,
+        "gzipBytes": 7944,
+        "triangles": 1000,
+        "cpuBytes": 13152,
+        "gpuBytes": 13152,
+        "errorMeters": 9.462751766254886,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:f68bd2456ef28dfe71111366a524db3bccee614ee9e27721cc1da4157b724890",
+        "bytes": 690400,
+        "gzipBytes": 111987,
+        "triangles": 7358,
+        "cpuBytes": 680700,
+        "gpuBytes": 680700,
+        "errorMeters": 0.06032477292763033,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:d522673b21645205eeb67a0e16bb9a3eab90d094571b1ced6a2c64ab9e6e7fc8",
+        "bytes": 1320620,
+        "gzipBytes": 217968,
+        "triangles": 15730,
+        "cpuBytes": 1316424,
+        "gpuBytes": 1316424,
+        "errorMeters": 0,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:d522673b21645205eeb67a0e16bb9a3eab90d094571b1ced6a2c64ab9e6e7fc8",
+        "bytes": 1320620,
+        "gzipBytes": 217968,
+        "triangles": 15730,
+        "cpuBytes": 1316424,
+        "gpuBytes": 1316424,
+        "errorMeters": 0,
+        "drawCalls": 8
+      }
+    ]
+  }
 }

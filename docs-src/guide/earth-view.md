@@ -462,14 +462,70 @@ placement evidence. Older historical sources without a complete supported date i
 drafts. Shared placement QA uses `capture-landmark-library.mjs --viewing-date=1930-01-01` and
 records the explicit date in its hash-bound report.
 
-Geographic and category models use `StructureModelLibrary`, preserving the authored mesh
-hierarchy, UV coordinates, texture maps, material assignments and PBR parameters. Instances
-share those resources until the last reference is released. Long static models retain their
-UVs, vertex attributes and material groups when clipped at tile edges; textures do not restart
-at each seam. The library accepts static assets: skinned or animated structures require a host
-animation implementation. Procedural scatter continues to use the separate instanced prop path.
+Geographic and category models use `StructureLodStreamer`. Each asset has separately fetched
+`skyline`, `district`, `street`, and `closeup` files in its sidecar's `runtimeLods`. The default
+viewer loads skyline first and chooses detail by projected geometric error and remaining
+budgets. The source master stays available for authoring and review. Generated close-ups are
+reduced runtime models; they are not a promise of every detail in the master.
+
+The streamer prioritizes nearby placements, limits concurrent requests, reserves memory before
+loading, verifies payload hashes, and cancels unused requests. Instances keep the old level while
+the replacement is prepared, then swap atomically. Placement, heading, elevation, ground cutouts
+and bridge clipping are reapplied before publication. A five-second warm cache avoids immediately
+reloading recently released models; memory pressure can evict unused models sooner. Shared
+geometry and materials are counted once. Procedural scatter uses its separate instanced path.
+
+| Default landmark allowance | Phone/tablet | Laptop/desktop |
+| --- | ---: | ---: |
+| Resident skyline payloads, uncompressed | 3 MB | 6 MB |
+| Geometry CPU backing buffers | 64 MB | 192 MB |
+| Estimated geometry GPU uploads | 64 MB | 192 MB |
+| Shared worldgen textures, including mipmaps | 16 MB | 48 MB |
+| Triangle / draw-call allowance | 350,000 / 100 | 1,000,000 / 200 |
+| Concurrent model loads | 2 | 4 |
+| Cooperative preparation time per frame | 2 ms | 4 ms |
+
+These are decimal MB, separate from terrain, render targets, transport caches and parser/driver
+overhead. Initial payload limits cover the active skyline set, not lifetime travel downloads or
+pack metadata. Upgrades can download larger files after a one-second skyline grace period.
+Draw/triangle admission reserves twice the nominal geometry cost for extra passes; shadows and
+other renderer passes have their own costs. Preparation yields between instances; an individual
+GLB parse or GPU upload can exceed the cooperative time allowance.
+
+Touch devices or browsers reporting at most 4 GB use the phone preset. Hosts can choose explicitly:
+
+```ts
+const view = await mountEarthView({
+  canvas,
+  // ... terrain source, content and other required options
+  landmarkStreaming: {
+    mobile: true,
+    budget: { maxInitialBytes: 3_000_000, maxGpuBytes: 64_000_000 },
+  },
+});
+// view.stats().structures: resident levels, payloads, geometry, texture bytes,
+// queued/in-flight loads, upgrades, failures and evictions.
+```
+
+Runtime variants use separate vertex attribute streams so Float32 positions and Uint8 colors
+do not cause overlapping GPU uploads. The reducer preserves source material references on detailed
+levels; skyline uses a single color material and local convex pieces derived from the source.
+Small openings and fine trim can disappear in that distant silhouette. Detailed levels use
+conservative reduction and can exceed their advisory triangle targets. Expensive models stay
+coarse when an upgrade does not fit; source-authored LODs may be needed for more detail on phones.
+Geometric error is an estimate for selection, not a certified maximum deviation.
+
+Assets without current LOD metadata keep their procedural fallback in the default viewer. A host
+can deliberately select `landmarkStreaming: false` to use the original `StructureModelLibrary`
+and full imports for inspection or legacy content. Static geometry is required; animation and
+skinning need a host-specific implementation.
 
 ### Shared architectural surfaces
+
+The Earth viewer bakes shared surfaces when they are first used, with two concurrent jobs and the
+texture allowance above. Each graph is cached once for that worldgen instance. If adding a texture
+would exceed the allowance, its flat material remains usable. The library is released with the
+worldgen instance. Rejected textures do not trigger a repeated bake every frame.
 
 Authored GLB materials can opt into the same texture library as procedural buildings. Set
 the material's glTF `extras.molenSurface` (available as Three.js material `userData.molenSurface`):
@@ -525,12 +581,17 @@ of images that may come from an external cache.
 
 Mapped roads with `bridge: true` receive solid decks, edge barriers and regularly spaced
 supports in the shared terrain surface renderer, including its worker path. Road, rail and
-pedestrian spans follow mapped centerlines and widths; tunnels are omitted. Complete spans
+pedestrian spans follow mapped centerlines and widths. Complete spans
 interpolate between bank heights and connect to adjoining ground roads. Clipped spans use
 estimated terrain clearance (6 m for roads/rail, 3 m for paths); a semantic provider can set
 `deckElevation` to an absolute surveyed height. These are visual approximations: tile data
 does not establish bridge engineering type, navigation clearance, foundations or collision.
 The SR-520 preview replaces the floating section; its approaches use this same fallback.
+
+Mapped tunnels receive separate inferred underground bores and portal cuts that retain the
+terrain above them. Aircraft support queries use the bore floor while underground. Centerlines
+alone do not establish surveyed grades, widths or clearances; see [Tunnels](surface-rendering.md#tunnels)
+for the metadata overrides, inference and bounded route stitching.
 
 Regional procedural styles are separate from exact structures. The atlas's ordered rules use
 mapped building class, footprint size, context, and known height to choose a style. A rule can

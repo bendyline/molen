@@ -54,6 +54,8 @@ export interface TerrainMvtSemanticPropertyNames {
   transportationWidth: readonly string[];
   bridge: readonly string[];
   tunnel: readonly string[];
+  tunnelFloorElevation: readonly string[];
+  tunnelClearance: readonly string[];
   buildingClass: readonly string[];
   buildingSubclass: readonly string[];
   buildingHeight: readonly string[];
@@ -109,6 +111,8 @@ const DEFAULT_PROPERTIES: TerrainMvtSemanticPropertyNames = {
   transportationWidth: ['width'],
   bridge: ['is_bridge', 'bridge'],
   tunnel: ['is_tunnel', 'tunnel'],
+  tunnelFloorElevation: ['tunnel_floor_elevation'],
+  tunnelClearance: ['tunnel_clearance', 'tunnel_height'],
   buildingClass: ['kind', 'class', 'building'],
   buildingSubclass: ['kind_detail', 'subclass', 'building:use'],
   buildingHeight: ['height', 'render_height', 'building:height'],
@@ -415,6 +419,18 @@ function decodeTransportation(
     if (flagProperty(feature.properties, properties.transportationLink)) decoded.link = true;
     if (lanes !== undefined && Number.isSafeInteger(lanes) && lanes > 0) decoded.lanes = lanes;
     if (layer !== undefined) decoded.layer = layer;
+    const floor = numberProperty(
+      feature.properties,
+      properties.tunnelFloorElevation,
+      linearUnitScale,
+    );
+    const clearance = numberProperty(
+      feature.properties,
+      properties.tunnelClearance,
+      linearUnitScale,
+    );
+    if (floor !== undefined) decoded.tunnelFloorElevation = floor;
+    if (clearance !== undefined && clearance > 0) decoded.tunnelClearance = clearance;
     if (firstProperty(feature.properties, properties.transportationOneway) !== undefined)
       decoded.oneway = flagProperty(feature.properties, properties.transportationOneway);
     result.transportation.push(decoded);

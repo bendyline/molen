@@ -1,37 +1,120 @@
 {
+  "brief": {
+    "prompt": "Retrieve exterior and cockpit images for the P-51 and OH-6, and make both aircraft substantially more realistic and accurate.",
+    "variant": "original four-bladed OH-6A",
+    "units": "meters",
+    "up": "+Y",
+    "forward": "+Z",
+    "style": "reference-informed realistic proportions and mechanical details, restrained procedural materials",
+    "geometryBudget": "under 60000 imported triangles; mechanical pivots retained",
+    "collision": "existing coarse aircraft probes; importer hull extraction capped at 128"
+  },
+  "method": {
+    "geometry": "deterministic three.js analytic sections, surface patches, mechanical parts and geometry lettering",
+    "textures": "No bitmap textures or image-generation prompts; photographs used only as inspected references. All material response and printed scales are authored procedurally.",
+    "references": "REFERENCES.md"
+  },
   "asset": {
     "id": "molen.entities.aircraft.oh6",
     "sourcePath": "content/entities/source/aircraft/oh-6/models/source.glb",
+    "sourceHash": "sha256:0e98f48e8c9d6c9235ab6ef9c4cdb8358e5756f2a8b223281b649b8935b5acc4",
     "runtimePath": "content/entities/assets/molen/entities/aircraft/oh6/model.glb",
+    "runtimeHash": "sha256:4dcfe60641f7249b70df89e9e1624f0910383d5cd01d8f64b82e5e123c09c9e9",
     "bounds": {
-      "min": [-3.3022, 0.02, -4.99],
-      "max": [4.02, 2.66, 3.5995]
+      "aabb": {
+        "min": [
+          -3.9166,
+          0.008,
+          -4.9954
+        ],
+        "max": [
+          3.9166,
+          2.745,
+          3.6666
+        ]
+      },
+      "sphere": {
+        "center": [
+          0,
+          1.3765,
+          -0.6644
+        ],
+        "radius": 4.5998
+      }
     },
     "stats": {
-      "triangles": 12898,
-      "vertices": 8861,
-      "meshes": 138,
-      "primitives": 138,
-      "materials": 11,
+      "triangles": 44558,
+      "vertices": 40573,
+      "meshes": 238,
+      "primitives": 238,
+      "materials": 20,
       "textures": 0,
       "animations": 0,
-      "sizeBytes": 217248
+      "sizeBytes": 734588
     },
-    "renderedTriangles": 21798,
-    "collisionHullCount": 128,
-    "extensions": ["KHR_materials_emissive_strength", "KHR_mesh_quantization"],
-    "browser": {
-      "manifest": ".artifacts/aircraft-shell/oh6-world/experience-run.json",
-      "diagnostics": [],
-      "frames": ["01-helicopter-parked", "02-helicopter-cockpit"]
-    }
+    "collisionHullCount": 128
   },
+  "validation": {
+    "assetVerification": true,
+    "scenesValidated": 4,
+    "simulationTicksPerScene": 30,
+    "captures": {
+      "turntableAngles": 8,
+      "inSceneViews": [
+        "exterior",
+        "cockpit",
+        "panel",
+        "side"
+      ],
+      "frames": [
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_0.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_1.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_2.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_3.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_4.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_5.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_6.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_7.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/exterior.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/cockpit.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/panel.png",
+        ".artifacts/aircraft-realism/qa/shots/oh6/side.png"
+      ],
+      "hashes": {
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_0.png": "sha256:0fcd12cd53db4407ae1e78bea1cd40f702a23007d0fecd0a1ce7e828f6a043c2",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_1.png": "sha256:155ad84635cb9d52545f68d47c327a08cbe78af07fef39551864391e100c0ac3",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_2.png": "sha256:7555bbf70ac19db3a607755e513f70667e04333fc5cca1ebb8117f6cbef1163b",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_3.png": "sha256:e624f9847cad53332386954ab32d6103b36461e900cced19cca2b74632f57641",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_4.png": "sha256:741e9639913031d58676e3eea88e2e8111b2b4cf53a50bea23953001a4c4d1b2",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_5.png": "sha256:9250328ac988ea45046548df7179d8695bc680467859501e4813448ffc513446",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_6.png": "sha256:f1284c4f5cef9e7ce81e89cc7b3811d10ee11545169d1e2f43de64af9bb17d8c",
+        ".artifacts/aircraft-realism/qa/shots/oh6/angle_7.png": "sha256:7d8c9ef96164aa20af2ab72f440d3853a47139e8a36049815a239192d55b791c",
+        ".artifacts/aircraft-realism/qa/shots/oh6/exterior.png": "sha256:ae51578a4b9cbb935c2ddf74c4584d2390a1c86139f772f3949283294ed3f3ff",
+        ".artifacts/aircraft-realism/qa/shots/oh6/cockpit.png": "sha256:c8e16ae1bade93fcae92b4b4ea6580ad3561e4a23b3a5e311a07783e399ef3ff",
+        ".artifacts/aircraft-realism/qa/shots/oh6/panel.png": "sha256:62e3474532c070d97453cffafe4b5e32f0270f5f562703084bc091a0b1859b50",
+        ".artifacts/aircraft-realism/qa/shots/oh6/side.png": "sha256:2b62611cc058ed949f37df834e2ca95023385a20bc34ac591c34df96b498227d"
+      }
+    },
+    "commands": [
+      "pnpm assets:build --update-lock",
+      "node packages/tooling/dist/cli.mjs asset inspect molen.entities.aircraft.oh6 --verify --project content/entities/project.json",
+      "node .artifacts/aircraft-realism/capture-final.mjs",
+      "pnpm --filter @bendyline/molen-entities test:unit",
+      "pnpm verify",
+      "pnpm smoke:packed",
+      "pnpm docs:site:check",
+      "pnpm test:golden"
+    ],
+    "checkLogs": ".artifacts/aircraft-realism/"
+  },
+  "visualReview": "Inspected the imported GLB in eight turntable views, a lit apron, side detail and two seated panel views. Reviewed arched front/rear glazing and opaque doors, mechanical four-blade rotor head, two-blade tail rotor, braced original tail, narrow transmission fairing, louvered intakes, rear exhaust, curved low skids, readable projected boom stencils, center pedestal, tubular cyclics/collectives and seat frames.",
   "limitations": [
     "Assisted game flight, bounded pitch/bank; not certified performance or exact cockpit replicas.",
     "No autorotation, vortex-ring model, fuel/engine systems, aerobatics, weapons or crash deformation.",
     "Physics uses coarse airframe probes against nearby resident geometry; imported hull extraction is capped at 128.",
     "Cockpit controls are operated by the documented input bindings; most physical switches are visual details.",
-    "Session-local raised practice airfield; aircraft positions do not persist through page reload."
-  ],
-  "visualReview": "Inspected all eight final turntable images, lit apron, side closeups, and world-view boarding/cockpit screenshots. Opaque lower cabin panels enclose the seats, while the upper seatbacks remain visible through glazing. Forward pilot views and instrument visibility remain clear. Ground shadows and original overall scale are retained. After the OH-6 rename, four new turntable views and the lit apron scene were inspected; the source GLB geometry chunk was preserved byte for byte."
+    "Reference-informed approximation combining restored aircraft and period references; not a serial-specific cockpit replica.",
+    "Most added engine/system instruments and switches are visual details; the pre-existing simulation bindings remain live.",
+    "Rear bench and tail/engine details are simplified."
+  ]
 }

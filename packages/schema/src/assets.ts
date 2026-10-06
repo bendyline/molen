@@ -35,6 +35,27 @@ export interface AssetStats {
   sizeBytes: number;
 }
 
+/** Independently fetched, source-derived representations, ordered coarse to fine. */
+export interface AssetRuntimeLod {
+  name: 'skyline' | 'district' | 'street' | 'closeup';
+  file: string;
+  hash: string;
+  bytes: number;
+  gzipBytes: number;
+  triangles: number;
+  cpuBytes: number;
+  gpuBytes: number;
+  errorMeters: number;
+  drawCalls: number;
+}
+
+export interface AssetRuntimeLods {
+  recipe: number;
+  recipeHash?: string;
+  masterHash: string;
+  levels: AssetRuntimeLod[];
+}
+
 export interface AssetHull {
   /** Mesh-bearing node the hull was computed from. */
   node: string;
@@ -67,6 +88,8 @@ export interface AssetSidecar {
   hash: string;
   /** sha256 of the pre-import source file. */
   sourceHash?: string;
+  /** Runtime representations; files.main remains the unchanged detailed master. */
+  runtimeLods?: AssetRuntimeLods;
   bounds: AssetBounds;
   stats: AssetStats;
   /** Named mesh-bearing nodes (capped; see nodesTruncated). */
@@ -106,6 +129,37 @@ const assetSchema = z.strictObject({
     .describe('Files that make up the asset, relative to the sidecar directory.'),
   hash: sha256.describe("'sha256:<hex>' of files.main."),
   sourceHash: sha256.describe("'sha256:<hex>' of the pre-import source file.").optional(),
+  runtimeLods: z
+    .strictObject({
+      recipe: z.int().positive(),
+      recipeHash: sha256.optional(),
+      masterHash: sha256,
+      levels: z
+        .array(
+          z.strictObject({
+            name: z.enum(['skyline', 'district', 'street', 'closeup']),
+            file: containedPath,
+            hash: sha256,
+            bytes: z.int().positive(),
+            gzipBytes: z.int().positive(),
+            triangles: z.int().positive(),
+            cpuBytes: z.int().positive(),
+            gpuBytes: z.int().positive(),
+            errorMeters: z.number().finite().nonnegative(),
+            drawCalls: z.int().positive(),
+          }),
+        )
+        .length(4)
+        .refine(
+          (levels) =>
+            levels.every(
+              (level, index) => level.name === ['skyline', 'district', 'street', 'closeup'][index],
+            ),
+          'Runtime LODs must be ordered skyline, district, street, closeup',
+        ),
+    })
+    .describe('Separately fetchable source-derived runtime LODs, bound to the master hash.')
+    .optional(),
   bounds: z
     .strictObject({
       aabb: z

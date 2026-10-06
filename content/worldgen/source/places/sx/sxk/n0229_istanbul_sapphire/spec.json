@@ -1,0 +1,359 @@
+{
+  "planId": "N0229",
+  "id": "N0229",
+  "assetId": "molen.worldgen.structure.n0229_istanbul_sapphire",
+  "title": "Istanbul Sapphire",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q166882",
+  "referenceCoordinate": {
+    "latitude": 41.085,
+    "longitude": 29.005833333
+  },
+  "visualBrief": "Slightly tapered double glass envelope with three-storey garden cavities, recessed residential glazing, projecting wood balcony edges, opaque end blade, asymmetric curved retail canopy, two observation floors and a separate rooftop mast.",
+  "size": [
+    62.31999969482422,
+    261,
+    105.11197662353516
+  ],
+  "actualBounds": {
+    "min": [
+      -31.15999984741211,
+      0,
+      -65.05542755126953
+    ],
+    "max": [
+      31.15999984741211,
+      261,
+      40.056549072265625
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 21,
+    "meshInstances": 35,
+    "storedTriangles": 947096,
+    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped tower axis, approximately south",
+    "front": "-Z provisionally toward the main-road canopy",
+    "origin": "Cached tower part center at provisional pavement contact"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 261,
+    "tipMeters": 261,
+    "observatoryMeters": 234.9,
+    "aboveGroundFloors": 55,
+    "belowGroundFloors": 10,
+    "apartments": 187,
+    "residentialZones": 4
+  },
+  "appearance": {
+    "period": "Original built exterior from architect 2011/2013 publications",
+    "excluded": "Underground car parks, neighboring towers and unpublished interior apartment layouts."
+  },
+  "reconstruction": {
+    "towerEnvelopeMeters": [
+      48.832,
+      26.58
+    ],
+    "residentialBaseMeters": 24.3,
+    "workingFloorIntervalMeters": 4.3,
+    "threeStoreyGardenGroups": 16,
+    "workingRoofMeters": 239.35,
+    "tipMeters": 261,
+    "canopyExtentsZ": [
+      -65,
+      40
+    ],
+    "canopyWidthMeters": 62,
+    "planBasis": "Tower envelope is cached exact-QID building:part geometry. The architect section and photographs guide the separate skins, gallery cavities and asymmetric canopy. Canopy extents, roof datums, garden distribution, taper, frames and panel subdivisions are working reconstructions, not surveyed dimensions.",
+    "materialBasis": "Canonical painted/stainless metal, plain concrete, granite and wood graphs. Reusable PBR glazing and vertex-colored foliage; no embedded images or photographic textures.",
+    "assembly": {
+      "uniqueParts": 21,
+      "instances": 35
+    }
+  },
+  "referencePages": [
+    "https://www.tabanlioglu.com/project/sapphire/",
+    "https://www.tabanlioglu.com/au-march-2013-2/",
+    "https://www.tabanlioglu.com/larchitetto-april-2011/",
+    "https://www.skyscrapercenter.com/building/torre-costanera/748",
+    "https://www.openstreetmap.org/way/673790538"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "anchor": [
+      29.0058122,
+      41.0849531
+    ],
+    "heading": -1.54183461736,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/673790538",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/673790538"
+    ],
+    "wikidataId": "Q166882",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ec26474a41d56e1fd87252b4f55ed1e1059594562f4788acd471bd46ae9d1e01",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Exact-QID tower-part footprint; canopy and end-blade signed direction, expanded retail boundary and terrain elevations are provisional. Do not treat the tower-part rectangle as the full site."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum exterior fidelity is pending. Tower taper, window module count, cavity dimensions, balcony/plant distribution and support-floor heights require dimensioned facade and floor drawings.",
+    "The 261 m tip, 234.9 m observatory and mapped 235 m height are distinct evidence. The 239.35 m working roof and mast division remain a section-guided reconstruction, not verified height datums.",
+    "The cached footprint is a tower building:part only. Retail canopy dimensions, signed orientation, end-blade side, entrances and site ground contact require an independently registered site plan.",
+    "Transparent mall galleries and winter-garden plants represent visible exterior depth; apartment interiors, exact retail layouts, lettering and rooftop equipment still need further reference.",
+    "The 55 registry floors, 64 map levels and reconstructed facade row counts are recorded separately; facade subdivisions do not validate storey numbering."
+  ],
+  "qaCameras": [
+    {
+      "name": "outer-glass-and-seals",
+      "position": [
+        -14,
+        87,
+        -18
+      ],
+      "lookAt": [
+        -14,
+        86,
+        -12.9
+      ]
+    },
+    {
+      "name": "winter-garden-depth",
+      "position": [
+        -8,
+        79,
+        -17
+      ],
+      "lookAt": [
+        -8,
+        78,
+        -9
+      ]
+    },
+    {
+      "name": "balcony-wood-and-rail",
+      "position": [
+        8,
+        81,
+        -14
+      ],
+      "lookAt": [
+        8,
+        80,
+        -10.5
+      ]
+    },
+    {
+      "name": "support-floor-louvres",
+      "position": [
+        -12,
+        124,
+        -26
+      ],
+      "lookAt": [
+        -12,
+        121,
+        -12.8
+      ]
+    },
+    {
+      "name": "end-blade-joints",
+      "position": [
+        34,
+        125,
+        -1
+      ],
+      "lookAt": [
+        24,
+        125,
+        -1
+      ]
+    },
+    {
+      "name": "curved-canopy",
+      "position": [
+        -45,
+        47,
+        -63
+      ],
+      "lookAt": [
+        0,
+        16,
+        -31
+      ]
+    },
+    {
+      "name": "canopy-mullions",
+      "position": [
+        -10,
+        27,
+        -32
+      ],
+      "lookAt": [
+        -10,
+        13,
+        -30
+      ]
+    },
+    {
+      "name": "retail-entrance",
+      "position": [
+        1,
+        5,
+        -70
+      ],
+      "lookAt": [
+        1,
+        2,
+        -59
+      ]
+    },
+    {
+      "name": "rear-skirt",
+      "position": [
+        41,
+        24,
+        49
+      ],
+      "lookAt": [
+        0,
+        12,
+        25
+      ]
+    },
+    {
+      "name": "observation-and-roof",
+      "position": [
+        48,
+        254,
+        -46
+      ],
+      "lookAt": [
+        0,
+        235,
+        0
+      ]
+    },
+    {
+      "name": "mast",
+      "position": [
+        12,
+        257,
+        14
+      ],
+      "lookAt": [
+        0,
+        250,
+        0
+      ]
+    },
+    {
+      "name": "plan",
+      "position": [
+        0,
+        310,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -650,
+        300,
+        -760
+      ],
+      "lookAt": [
+        0,
+        125,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1547192,
+    "vertices": 3085608,
+    "materials": 9,
+    "bytes": 79531556,
+    "sha256": "sha256:506abc7a5d43de50edd7d0ef1d4612782a8051f90d4c66633c9cc6b57feffad9"
+  }
+}

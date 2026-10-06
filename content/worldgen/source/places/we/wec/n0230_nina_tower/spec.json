@@ -1,0 +1,291 @@
+{
+  "planId": "N0230",
+  "id": "N0230",
+  "assetId": "molen.worldgen.structure.n0230_nina_tower",
+  "title": "Nina Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q520839",
+  "referenceCoordinate": {
+    "latitude": 22.368611111,
+    "longitude": 114.113055555
+  },
+  "visualBrief": "Connected tall Teddy tower and lower Nina hotel tower, rounded glazed corners, silver horizontal transoms, refuge-floor louvres, asymmetric curved sail roofs, enclosed curved skybridge with separate triangular truss geometry, shared retail/convention podium, entrance glazing and terrace rails. Equivalent facade bays are reusable instances.",
+  "size": [
+    93.09708786010742,
+    320.42999267578125,
+    98.5746841430664
+  ],
+  "actualBounds": {
+    "min": [
+      -70.14708709716797,
+      0,
+      -31.149436950683594
+    ],
+    "max": [
+      22.950000762939453,
+      320.42999267578125,
+      67.42524719238281
+    ]
+  },
+  "assembly": {
+    "uniqueMeshes": 16,
+    "meshInstances": 11956,
+    "storedTriangles": 86792,
+    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the tall tower frontage",
+    "front": "-Z toward Yeung Uk Road",
+    "origin": "Working tall tower center at local pavement datum; geographic registration remains unapproved"
+  },
+  "sourceFacts": {
+    "tallTowerArchitecturalHeightMeters": 320.4,
+    "tallTowerHighestOccupiedMeters": 301.1,
+    "registryAboveGroundFloors": 80,
+    "shortTowerRoundedRegistryHeightMeters": 170,
+    "planningPodiumStoreys": 8,
+    "planningTowerStoreys": [
+      72,
+      36
+    ],
+    "hotelSkybridgeLabel": "41F",
+    "registryObservatoryMeters": 151.7,
+    "skybridgeTrussDepthMeters": 3
+  },
+  "reconstruction": {
+    "towerCentersXZ": [
+      [
+        0,
+        0
+      ],
+      [
+        -22.5,
+        44
+      ]
+    ],
+    "tallEnvelopeMeters": [
+      42.6,
+      44
+    ],
+    "shortEnvelopeMeters": [
+      42.4,
+      33.6
+    ],
+    "podiumTopMeters": 32.8,
+    "basis": "Published hotel diagram and 2018 planning plan/section, checked against the Sika exterior photograph. Roof curves, bay widths, refuge levels, small details, podium envelope and tower spacing are working reconstructions, not surveyed dimensions.",
+    "assembly": {
+      "uniqueParts": 16,
+      "instances": 11956
+    }
+  },
+  "referencePages": [
+    "https://www.skyscrapercenter.com/building/nina-tower/421",
+    "https://www.skyscrapercenter.com/complex/249",
+    "https://www.ninahotelgroup.com/media/iy4ffnai/240315-tww-fact-sheet-en.pdf",
+    "https://www.tpb.gov.hk/en/papers/TPB/TWK/A_TW_497_RV/A_TW_497_RV_Annex%20b.pdf",
+    "https://www.sika.com/dms/getdocument.get/dfedde96-0ea7-4344-97d8-59e1ff66e9a1/glo-sika-concrete-highrise-buildings-references.pdf"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "unresolved-anchor; no automatic placement approval",
+    "anchor": [
+      114.113055555,
+      22.368611111
+    ],
+    "heading": 0.24,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.tpb.gov.hk/en/papers/TPB/TWK/A_TW_497_RV/A_TW_497_RV_Annex%20b.pdf",
+    "groundModelY": 0,
+    "featureIds": [],
+    "wikidataId": "Q520839",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:572232dc1badbb9ccd4131ad6a9ac50da589141f17ae2168b2ceb3147a1919bc",
+    "mapGeometryLicense": "Reference drawing linked to Hong Kong Planning Department; model geometry is an original reconstruction.",
+    "attribution": "Hong Kong Planning Department A/TW/497; coordinate reference Wikidata CC0",
+    "notes": "Working heading and outline from the 2018 north-arrow plan. Anchor is the unverified catalog reference point. This is not OSM geometry or placement approval."
+  },
+  "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
+  "geometrySource": "Original deterministic reconstruction from linked primary references. No downloaded mesh, traced photographic texture or source publication is embedded.",
+  "sourceLicense": "Original reconstruction under repository license; publications are linked, not redistributed. Catalog coordinate: Wikidata CC0.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Geographic registration is pending. The OSM lookup was unavailable, and the catalog coordinate must not be treated as the tower-center anchor; the source frame and heading are provisional.",
+    "This is an exterior reconstruction, not maximum-fidelity completion. Measured floor polygons, curvature radii, crown rib dimensions, roof plant, facade subdivisions and true bridge curvature need further evidence.",
+    "The public podium and entrances are schematic reconstructions. Full mall frontage, signage, footbridge connections, loading/transport bays and real pavement levels remain to be authored.",
+    "Registry and planning floor counts use different scopes; hotel marketing floor labels omit numbers. Facade rows are allocated geometrically and do not certify every named storey datum."
+  ],
+  "qaCameras": [
+    {
+      "name": "facade-bays",
+      "position": [
+        27,
+        78,
+        3
+      ],
+      "lookAt": [
+        21,
+        78,
+        3
+      ]
+    },
+    {
+      "name": "rounded-corner",
+      "position": [
+        34,
+        79,
+        -34
+      ],
+      "lookAt": [
+        18,
+        78,
+        -19
+      ]
+    },
+    {
+      "name": "refuge-louvres",
+      "position": [
+        31,
+        118,
+        13
+      ],
+      "lookAt": [
+        21,
+        118,
+        13
+      ]
+    },
+    {
+      "name": "curved-skybridge",
+      "position": [
+        -38,
+        157,
+        4
+      ],
+      "lookAt": [
+        -24,
+        152,
+        26
+      ]
+    },
+    {
+      "name": "tall-sail-roof",
+      "position": [
+        -70,
+        335,
+        65
+      ],
+      "lookAt": [
+        0,
+        308,
+        0
+      ]
+    },
+    {
+      "name": "short-sail-roof",
+      "position": [
+        -75,
+        191,
+        96
+      ],
+      "lookAt": [
+        -22.5,
+        161,
+        44
+      ]
+    },
+    {
+      "name": "podium-frontage",
+      "position": [
+        -50,
+        5,
+        -42
+      ],
+      "lookAt": [
+        -43,
+        2,
+        -26
+      ]
+    },
+    {
+      "name": "site-plan",
+      "position": [
+        -18,
+        395,
+        17
+      ],
+      "lookAt": [
+        -18,
+        0,
+        18
+      ]
+    },
+    {
+      "name": "far-silhouette",
+      "position": [
+        -650,
+        340,
+        710
+      ],
+      "lookAt": [
+        -15,
+        150,
+        15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 1313564,
+    "vertices": 2627828,
+    "materials": 7,
+    "bytes": 9209716,
+    "sha256": "sha256:6c5ae84b36dc718b7eba3ae710b8a07c3f0542674f4ad442c0a7c0abe0d51cd8"
+  }
+}

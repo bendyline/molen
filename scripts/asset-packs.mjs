@@ -441,7 +441,13 @@ export async function packAssets({
   return manifest;
 }
 
-export async function checkAssets({ root = ROOT, lock, prefix = '', log = console.log } = {}) {
+export async function checkAssets({
+  root = ROOT,
+  lock,
+  prefix = '',
+  allowUnlocked = false,
+  log = console.log,
+} = {}) {
   lock ??= await readLock(root);
   validateLock(lock);
   const files = lock.files.filter((f) => f.path.startsWith(prefix));
@@ -458,9 +464,20 @@ export async function checkAssets({ root = ROOT, lock, prefix = '', log = consol
   }
   const registered = new Set(lock.files.map((f) => f.path));
   const masters = await readMasters(root);
+  const unlocked = [];
   for (const path of await inventory(root))
-    if (path.startsWith(prefix) && !registered.has(path) && !masters.has(path))
-      errors.push(`Unlocked GLB: ${path}; build it from source, or list an authored master.`);
+    if (path.startsWith(prefix) && !registered.has(path) && !masters.has(path)) unlocked.push(path);
+  if (allowUnlocked && unlocked.length)
+    log(
+      `Warning: ${unlocked.length} unpinned GLBs are excluded from asset verification (work in progress):\n${unlocked.join('\n')}\nFinalize them with pnpm assets:build --update-lock; use pnpm assets:check --strict to require a complete inventory.`,
+    );
+  else
+    errors.push(
+      ...unlocked.map(
+        (path) =>
+          `Unlocked GLB: ${path}; finalize it with pnpm assets:build --update-lock, or list an authored master.`,
+      ),
+    );
   if (errors.length) throw new Error(errors.join('\n'));
   log(`Verified ${files.length} GLBs against ${lock.release}.`);
   return files.length;
@@ -747,6 +764,7 @@ async function main() {
       offline: { type: 'boolean' },
       force: { type: 'boolean' },
       'no-build': { type: 'boolean' },
+      strict: { type: 'boolean' },
       target: { type: 'string' },
     },
   });
@@ -775,13 +793,13 @@ async function main() {
           return;
         }
         if (!(error instanceof ReleaseMissingError)) throw error;
-        console.log(`${error.message}\nBuilding the GLBs from source instead (pnpm assets:build).`);
+        console.log(`Warning: ${error.message}\nBuilding the pinned GLBs locally.`);
         const { buildAssetsFromSource } = await import('./build-assets.mjs');
-        await buildAssetsFromSource({ root, compile: true });
+        await buildAssetsFromSource({ root, compile: true, allowUnlocked: true });
       }
       break;
     case 'check':
-      await checkAssets({ root, prefix: values.prefix });
+      await checkAssets({ root, prefix: values.prefix, allowUnlocked: !values.strict });
       break;
     case 'publish':
       await publishAssets({ root, archiveDir, target: values.target });

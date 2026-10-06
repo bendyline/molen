@@ -1,0 +1,286 @@
+{
+  "planId": "N0248",
+  "id": "N0248",
+  "assetId": "molen.worldgen.structure.n0248_bran_castle",
+  "title": "Bran Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q390275",
+  "referenceCoordinate": {
+    "latitude": 45.515,
+    "longitude": 25.3671
+  },
+  "visualBrief": "Asymmetric Transylvanian castle with mapped open courtyard, round western tower, steep single-slope keep roof, scalloped rear parapet and timber belfry, projecting eastern tower chamber, south stair turret, arched galleries, well and entrance stairs.",
+  "size": [
+    49.59968185424805,
+    40.400001525878906,
+    32.27602577209473
+  ],
+  "actualBounds": {
+    "min": [
+      -24.799840927124023,
+      0,
+      -14.266719818115234
+    ],
+    "max": [
+      24.799840927124023,
+      40.400001525878906,
+      18.009305953979492
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X 39.51 degrees south of east",
+    "front": "+Z southwest",
+    "origin": "OSM castle anchor, provisional local rock contact"
+  },
+  "sourceFacts": {
+    "identity": "Exact Q390275 match on OSM relation/3300200",
+    "constructionCompleted": 1388,
+    "mappedEnvelopeMeters": [
+      47.691,
+      27.436
+    ],
+    "mappedBuildingParts": 5,
+    "courtyardHole": true,
+    "surveyedVerticalDatum": false
+  },
+  "reconstruction": {
+    "basis": "OSM outer/inner rings and five tower/roof parts; official historical chronology and visitor map; exterior and courtyard photographs.",
+    "verticalDatum": "Court 4 m above local rock contact. Main keep roof 32.5 m; belfry roof 39.1 m and finial 40.4 m. These are photograph-derived local heights, not surveyed elevations.",
+    "roofscape": "Hand-authored red-tile facets; exact roof valleys and heights remain provisional."
+  },
+  "referencePages": [
+    "https://bran-castle.com/pages/historical-chronology",
+    "https://bran-castle.com/pages/bran-fortress",
+    "https://bran-castle.com/pages/visitor-map",
+    "https://www.openstreetmap.org/relation/3300200",
+    "https://commons.wikimedia.org/wiki/File:Bran_Castle,_Transylvania_(2023).jpg",
+    "https://commons.wikimedia.org/wiki/File:Bran_castle_courtyard.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bran_castle_courtyard_round_tower.jpg"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Mapped anchor, outer ring, courtyard and tower parts; terrain contact and height fit pending",
+    "anchor": [
+      25.367082771,
+      45.515080804
+    ],
+    "heading": -0.689652279939,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/3300200",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/3300200"
+    ],
+    "wikidataId": "Q390275",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:200f3c85c8c05ab7b3a63a29ece063f839cc41ac32e31c7fa3e686c6824a7488",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Courtyard must remain open; do not replace the complete enclosing polygon with solid building volume."
+  },
+  "scaleBasis": "Mapped outlines in meters, native +X about 39.51 degrees south of east. Heights estimated from photographic proportions; conflicting OSM 50–73 m tags are not adopted as facade heights.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map geometry © OpenStreetMap contributors, ODbL-1.0. Photographs and official visitor map are references only; no pixels or third-party mesh copied.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "maximum",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Maximum fidelity remains pending: mapped horizontal layout is retained but measured elevations, roof valleys and obscured window positions require refinement.",
+    "OSM height tags from 50 to 73 m have an unresolved common datum. The authored local heights are photographic estimates, not a survey.",
+    "The courtyard gallery, well ironwork, scalloped keep parapet, entrance portal, chimneys and window rhythms use photographic proportions. Interior rooms, artworks and furniture are outside this exterior asset.",
+    "The four-meter rock contact is not the full hill. Park, forest, approach paths and terrain fitting remain separate.",
+    "Shared procedural plaster, stone, timber, ceramic tile and metal avoid embedded images. Plaster weathering and the distinctive rounded tile pattern need further material-specific refinement."
+  ],
+  "qaCameras": [
+    {
+      "name": "round-western-tower",
+      "position": [
+        -46,
+        25,
+        31
+      ],
+      "lookAt": [
+        -17,
+        18,
+        6
+      ]
+    },
+    {
+      "name": "keep-scallops-and-belfry",
+      "position": [
+        -25,
+        38,
+        -43
+      ],
+      "lookAt": [
+        -5,
+        28,
+        -9
+      ]
+    },
+    {
+      "name": "keep-steep-roof",
+      "position": [
+        -3,
+        33,
+        35
+      ],
+      "lookAt": [
+        -5,
+        28,
+        -8
+      ]
+    },
+    {
+      "name": "eastern-stone-tower",
+      "position": [
+        55,
+        27,
+        -1
+      ],
+      "lookAt": [
+        20,
+        17,
+        -4
+      ]
+    },
+    {
+      "name": "south-stair-turret",
+      "position": [
+        18,
+        20,
+        38
+      ],
+      "lookAt": [
+        5,
+        15,
+        10
+      ]
+    },
+    {
+      "name": "open-courtyard-gallery",
+      "position": [
+        -4,
+        14,
+        -1
+      ],
+      "lookAt": [
+        -8,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "courtyard-well",
+      "position": [
+        4,
+        13,
+        1
+      ],
+      "lookAt": [
+        -5,
+        5.5,
+        3
+      ]
+    },
+    {
+      "name": "southern-entry-stairs",
+      "position": [
+        21,
+        8,
+        31
+      ],
+      "lookAt": [
+        13,
+        5,
+        13
+      ]
+    },
+    {
+      "name": "courtyard-roof-plan",
+      "position": [
+        0,
+        90,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
+  "mesh": {
+    "triangles": 145600,
+    "vertices": 333850,
+    "materials": 8,
+    "bytes": 13770396,
+    "sha256": "sha256:1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff"
+  }
+}

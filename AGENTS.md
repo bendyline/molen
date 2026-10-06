@@ -112,8 +112,11 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 ## Build invariant & conventions
 
 - **Build before typecheck/test**: packages consume each other's `dist`. The root scripts encode
-  this (`pretypecheck`/`pretest:unit` run `pnpm -r build`); run `pnpm typecheck`, `pnpm test:unit`
-  from the root, or `pnpm -r build` first if invoking `tsc`/`vitest` in a package directly.
+  this (`pretypecheck`/`pretest:unit` rebuild the library packages); run `pnpm typecheck`,
+  `pnpm test:unit` from the root, or `pnpm -r --filter './packages/**' build` first if invoking
+  `tsc`/`vitest` in a package directly. `pnpm test:golden` additionally stages shared packs once
+  and builds the examples with golden suites. `pnpm assets:test` builds its schema prerequisite,
+  including when asset restoration downloads or reuses cached GLBs without compiling packages.
 - **Agents run exactly what CI runs**: `pnpm verify` (lint, typecheck, source and docs checks,
   test:unit, production audit), then `pnpm smoke:packed` (the release tarballs installed with npm
   into a fresh project), `pnpm docs:site:check` and `pnpm test:golden`. `pnpm all` is all of it in order, and
@@ -123,6 +126,16 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
   [docs-site/](docs-site/README.md) — API reference from the built `.d.mts`, CLI/MCP reference
   from `OPS_CATALOG`, sample pages from `examples/`. Preview it with `pnpm docs:site:dev`. Pages
   follow [docs-site/STYLE.md](docs-site/STYLE.md), which `pnpm docs:site:check` enforces.
+- **Model-only iteration is a targeted loop**: for structure recipes, specs and model metadata,
+  generate/import only the changed IDs, validate their geometry and source/runtime hashes, and
+  inspect the affected renders and shared-material bindings. Reuse current package builds.
+  Do not run the repository-wide suite above, npm audit, documentation builds, packed-install
+  smoke tests, or every model generator after each model or chat turn. Refresh catalogs and the
+  lock for a meaningful batch; use the full source rebuild once at a batch milestone to prove
+  reproducibility. Full engine CI belongs to runtime/build-system changes and release CI;
+  dependency audits belong to dependency/security work and CI. See the targeted authoring loop
+  in [content/ASSET-PACKS.md](content/ASSET-PACKS.md). This is the owner's model-workflow exception
+  to the general CI guidance above.
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
@@ -135,7 +148,7 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
   write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
   downloads the matching release (or builds from source when it is not published yet);
-  `pnpm assets:build` builds from source with no download. After a model change, run
+  `pnpm assets:build` builds from source with no download. After a batch of model changes, run
   `pnpm assets:build --update-lock` (or the Update asset lock workflow) and commit the source,
   regenerated metadata and lock together; never commit a GLB or upload anything. The Assets
   workflow proves the build and publishes the release. Generators must be byte-deterministic on

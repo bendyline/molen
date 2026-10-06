@@ -1,0 +1,184 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0252_hohenzollern_castle",
+  "sourceHash": "sha256:5cb6e4124350dee11d4dd9368b9ae214494f141b73d15c7d050fcf08c45838e7",
+  "runtimeHash": "sha256:6e608b386f84f7036ec3a3d9699f3c7a6b12524fbbc19d29c8de6c8371a32720",
+  "captureReportHash": "sha256:ab99b6b4d00c21dc3677b99c4e0bf868a2c1f963436ea7f882e7e46ebb2365c1",
+  "visualReview": {
+    "status": "passed",
+    "scope": "Technical exterior render integrity; architectural accuracy, topographic fit and maximum fidelity remain pending.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/mapped-court-and-ramp-plan.png",
+      "shots/west-towers-and-bastions.png",
+      "shots/north-palace-and-kaiserturm.png",
+      "shots/south-palace-and-markgraf.png",
+      "shots/courtyard-and-two-chapels.png",
+      "shots/watch-tower-and-court-stair.png",
+      "shots/christ-chapel-and-carriage-court.png",
+      "shots/upper-gate-and-drawbridge.png",
+      "shots/spiral-entry-and-eagle-gate.png"
+    ],
+    "notes": "Inspected all 14 final portable renders. Mapped horseshoe plan, independent chapels, conical and rectangular tower crowns, flat Watch Tower arcade, roof dormers, open court and multilevel entry are visible. Added continuous provisional contact skirts and carriage-court support after first renders exposed floating walls, and cut the hall roof around the Watch Tower. Exact facade rhythms, many roof-to-wall joins, massive provisional support skirts and detailed ramp/vault construction still need architectural and terrain refinement."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7fae152aaad41595f7f6b3b87aea07a3f2bd9dd5d780a6fe8ac8967bdff0251c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/mapped-court-and-ramp-plan.png",
+      "shots/shared/west-towers-and-bastions.png",
+      "shots/shared/north-palace-and-kaiserturm.png",
+      "shots/shared/south-palace-and-markgraf.png",
+      "shots/shared/courtyard-and-two-chapels.png",
+      "shots/shared/watch-tower-and-court-stair.png",
+      "shots/shared/christ-chapel-and-carriage-court.png",
+      "shots/shared/upper-gate-and-drawbridge.png",
+      "shots/shared/spiral-entry-and-eagle-gate.png"
+    ],
+    "notes": "Inspected all 13 shared-material renders. Seven shared graphs (sandstone, limestone, raw limestone, granite, slate, timber, painted metal) load once each; no embedded images. Warm palace ashlar, pale older chapel and slate roof surfaces are distinguishable. Unloading leaves zero live model geometries. The site is shown on a flat review surface, not fitted world terrain."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:bab7d65af7d8d21c133e9942869143c805cac59410cbdb2c4eb2f0e84e444e47",
+    "notes": "Exact Q156457 on OSM way/93612350 identifies the enclosure. Individual palace, chapel, tower and ramp parts preserve mapped offsets. Draft anchor [8.967537148,48.323560831], heading -0.254203978258, replaceFootprint=false. The provisional 30 m entry-to-court difference is inferred from separate map elevation tags, not a connected survey. Tower heights, terrain contact and directional fit require in-world review."
+  },
+  "fidelityReview": {
+    "target": "maximum",
+    "status": "pending",
+    "notes": "Maximum fidelity pending: no as-built measured elevations were available. Palace heights, roof ridges, tower crowns, dormers, window modules and chapel details are architectural reconstructions from references. The original 1854 elevations are design drawings rather than a current measured survey. The courtyard photograph is from 2005; the model excludes temporary modern scaffolding and does not claim a surveyed 2026 state. Spiral road centerlines and covered layers are mapped, but ramp gradients, retaining wall thickness, vault shapes and gate clearances are estimated. Supporting skirts are provisional; actual rock contour, grade and terrain contact remain unfinished. The forested mountain, distant water tower, parking buildings, vegetation/ivy, statuary, museum interiors and inaccessible casemates are outside this exterior asset. Shared sandstone, raw limestone, limestone, granite, slate, wood and painted metal surfaces carry exterior materials; no embedded photographs. Procedural masonry joints and slate courses are approximations."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "source": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "runtime": {
+      "errors": 0,
+      "warnings": 0,
+      "infos": 9
+    },
+    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
+    "triangles": 349299,
+    "vertices": 718009,
+    "materials": 9,
+    "sharedGraphs": 7,
+    "embeddedImages": 0
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "scope": "Common-camera comparison, deterministic output, download/triangle budgets and homogeneous vertex buffers. Physical devices not measured.",
+    "notes": "983 / 2999 / 11891 / 56562 triangles. Skyline plus district 331832 bytes; street 827344 bytes; closeup 4239436 bytes. Source master 30044980 bytes. All levels preserve the horseshoe palace, differentiated towers and approach loops. Skyline uses portable vertex colors; district and above use shared graphs. 37 authored-LOD regressions passed, and master regeneration is byte-identical. Architectural and physical-device performance approval remain pending.",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0w/n0252_hohenzollern_castle/model.skyline.glb",
+        "hash": "sha256:a809bba45e1d5258456603405fdaffc73d69d78fa9ffa6934aa6c8cb63cb9a3d",
+        "bytes": 90496,
+        "triangles": 983,
+        "vertices": 2311,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -87.80570220947266,
+          0,
+          -44.4900016784668
+        ],
+        "max": [
+          89.02751159667969,
+          78,
+          44.4901008605957
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0w/n0252_hohenzollern_castle/model.district.glb",
+        "hash": "sha256:17a4e9157594c48226f3f2bd1539dcbd4cd6f1707511af9465435ecf1f867bc5",
+        "bytes": 241336,
+        "triangles": 2999,
+        "vertices": 5966,
+        "materials": 7,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -87.83169555664062,
+          0,
+          -44.51993179321289
+        ],
+        "max": [
+          89.02751159667969,
+          79.19999694824219,
+          44.520057678222656
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0w/n0252_hohenzollern_castle/model.street.glb",
+        "hash": "sha256:dbacb1b312c3874376930eef062096a310c9d5da48f98e117bed97d6f5b327f2",
+        "bytes": 827344,
+        "triangles": 11891,
+        "vertices": 20731,
+        "materials": 8,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -87.83169555664062,
+          0,
+          -44.51993179321289
+        ],
+        "max": [
+          89.02751159667969,
+          79.19999694824219,
+          44.520057678222656
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0w/n0252_hohenzollern_castle/model.closeup.glb",
+        "hash": "sha256:51db6197907618b7f9c8fc1043c7f185fdf258ba8f664d110bd13e0bfb69e353",
+        "bytes": 4239436,
+        "triangles": 56562,
+        "vertices": 108035,
+        "materials": 9,
+        "sharedGraphs": 7,
+        "images": 0,
+        "min": [
+          -87.83169555664062,
+          0,
+          -44.51993179321289
+        ],
+        "max": [
+          89.02751159667969,
+          79.19999694824219,
+          44.520057678222656
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 9
+      }
+    ]
+  }
+}

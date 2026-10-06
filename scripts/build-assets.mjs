@@ -158,8 +158,7 @@ async function pool(items, concurrency, work) {
   if (failures.length) throw new Error(failures.map((error) => error.message).join('\n\n'));
 }
 
-const pythonExecutable = () =>
-  process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
+const pythonExecutable = () => (process.platform === 'win32' ? 'python' : 'python3');
 
 // Python jobs need 3.10+ and the exact versions pinned in the requirements.txt beside their
 // script (Lantern Dungeon's Pillow). Checked up front, a wrong interpreter is one clear message
@@ -203,26 +202,114 @@ export function pythonProblems(executable, found, pins) {
 }
 
 /** Fail before any generator runs when the Python jobs among `jobs` would. */
-export async function checkPython(root, jobs, executable = pythonExecutable()) {
+export async function checkPython(
+  root,
+  jobs,
+  executable = process.env.PYTHON ?? pythonExecutable(),
+  probe = spawnSync,
+) {
   const scripts = jobs.filter((job) => job.command[0] === 'python').map((job) => job.command[1]);
   if (!scripts.length) return;
   const pins = await pythonPins(root, scripts);
-  const probe = spawnSync(executable, ['-c', PYTHON_PROBE, ...pins.keys()], {
+  const result = probe(executable, ['-c', PYTHON_PROBE, ...pins.keys()], {
     cwd: root,
     encoding: 'utf8',
     windowsHide: true,
   });
-  if (probe.error || probe.status !== 0)
+  if (result.error || result.status !== 0)
     throw new Error(
-      `Python generators run ${executable}, which failed (${probe.error?.code ?? probe.stderr.trim().split('\n').at(-1)}). ${SET_PYTHON}`,
+      `Python generators run ${executable}, which failed (${result.error?.code ?? result.stderr.trim().split('\n').at(-1)}). ${SET_PYTHON}`,
     );
-  const problems = pythonProblems(executable, JSON.parse(probe.stdout), pins);
+  const problems = pythonProblems(executable, JSON.parse(result.stdout), pins);
   if (problems.length) throw new Error(problems.join('\n'));
 }
 
-function run(command, { root, log, label }) {
+/** Discover an installed Python, isolating missing pinned packages from the system interpreter. */
+export async function preparePython(
+  root,
+  jobs,
+  { executable = process.env.PYTHON, candidates, probe = spawnSync, setup, log = console.log } = {},
+) {
+  const scripts = jobs.filter((job) => job.command[0] === 'python').map((job) => job.command[1]);
+  if (!scripts.length) return;
+  // An explicit override remains authoritative: do not silently use a different interpreter.
+  if (executable !== undefined && executable !== null) {
+    await checkPython(root, jobs, executable, probe);
+    return executable;
+  }
+  const pins = await pythonPins(root, scripts);
+  const environment = join(root, OUT, 'python');
+  const local = join(
+    environment,
+    process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
+  );
+  candidates ??= [
+    local,
+    pythonExecutable(),
+    'python3.12',
+    'python3.14',
+    'python3.13',
+    'python3.11',
+    'python3.10',
+    'python',
+  ];
+  let compatible;
+  const failures = [];
+  for (const candidate of new Set(candidates)) {
+    const result = probe(candidate, ['-c', PYTHON_PROBE, ...pins.keys()], {
+      cwd: root,
+      encoding: 'utf8',
+      windowsHide: true,
+    });
+    if (result.error || result.status !== 0) continue;
+    const found = JSON.parse(result.stdout);
+    if (!pythonProblems(candidate, found, pins).length) {
+      log(`Python generators use ${candidate} (Python ${found.python.join('.')}).`);
+      return candidate;
+    }
+    if (!pythonProblems(candidate, found, new Map()).length) compatible ??= candidate;
+    else failures.push(...pythonProblems(candidate, found, new Map()));
+  }
+  if (!compatible)
+    throw new Error(
+      `No usable Python ${PYTHON_MIN.join('.')}+ found for the asset generators. ${SET_PYTHON}\n${failures.join('\n')}`,
+    );
+  setup ??= (command, args, name) =>
+    run(['python', ...args], {
+      root,
+      python: command,
+      log: join(root, OUT, `python-${name}.log`),
+      label: `Python ${name}`,
+    });
+  await mkdir(join(root, OUT), { recursive: true });
+  if (compatible !== local) {
+    log(`Creating local asset Python environment with ${compatible}: ${environment}`);
+    await setup(compatible, ['-m', 'venv', environment], 'venv');
+  }
+  const requirements = [...new Set([...pins.values()].map((pin) => pin.file))];
+  if (requirements.length) {
+    log(`Installing pinned asset dependencies in ${environment}.`);
+    await setup(
+      local,
+      [
+        '-m',
+        'pip',
+        '--disable-pip-version-check',
+        'install',
+        '--no-input',
+        ...requirements.flatMap((file) => ['-r', file]),
+      ],
+      'install',
+    );
+  }
+  await checkPython(root, jobs, local, probe);
+  log(`Python generators use ${local}.`);
+  return local;
+}
+
+function run(command, { root, log, label, python }) {
   const [program, ...args] = command;
-  const executable = program === 'node' ? process.execPath : pythonExecutable();
+  const executable = program === 'node' ? process.execPath : python;
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
     ? ''
     : ' --max-old-space-size=12288';
@@ -457,6 +544,7 @@ export async function buildAssetsFromSource({
   updateLock = false,
   force = false,
   compile = false,
+  allowUnlocked = false,
   concurrency = defaultConcurrency(),
   log = console.log,
 } = {}) {
@@ -469,7 +557,11 @@ export async function buildAssetsFromSource({
     throw new Error(
       `Asset builds use Node ${plan.node} (${PLAN} "node"); this is Node ${process.versions.node}. Switch Node major, or use pnpm assets:fetch.`,
     );
-  await checkPython(root, [...(generate ? plan.generators : []), ...(plan.afterImport ?? [])]);
+  const python = await preparePython(
+    root,
+    [...(generate ? plan.generators : []), ...(plan.afterImport ?? [])],
+    { log },
+  );
   const masters = await readMasters(root);
   const lock = (await exists(join(root, 'asset-lock.json'))) ? await readLock(root) : undefined;
   const out = join(root, OUT);
@@ -508,6 +600,7 @@ export async function buildAssetsFromSource({
         const seconds = await withWindowsRetry(() =>
           run(job.command, {
             root,
+            python,
             log: join(logs, `${job.id}.log`),
             label: `Generator ${job.id}`,
           }),
@@ -556,6 +649,7 @@ export async function buildAssetsFromSource({
       const seconds = await withWindowsRetry(() =>
         run(job.command, {
           root,
+          python,
           log: join(logs, `${job.id}.log`),
           label: `After-import ${job.id}`,
         }),
@@ -614,7 +708,7 @@ export async function buildAssetsFromSource({
   const problems = [
     ...changed.map((path) => `changed    ${path}`),
     ...missing.map((path) => `missing    ${path}`),
-    ...unexpected.map((path) => `unexpected ${path}`),
+    ...(allowUnlocked ? [] : unexpected.map((path) => `unexpected ${path}`)),
   ];
   if (problems.length && !updateLock) {
     if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
@@ -622,10 +716,16 @@ export async function buildAssetsFromSource({
       `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}\nIf the source change is intended, rerun with --update-lock (or run the Update asset lock workflow) and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
     );
   }
+  if (allowUnlocked && !updateLock && unexpected.length)
+    log(
+      `Warning: ${unexpected.length} generated GLBs are not pinned by asset-lock.json; left as local work. Restoring the pinned assets does not require finalizing these models.`,
+    );
   log(
     updateLock
       ? `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; asset-lock.json now names ${result.release}.`
-      : `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; every byte matches ${lock.release}.`,
+      : allowUnlocked
+        ? `Ready: ${lock.files.length} pinned GLBs restored from source in ${report.seconds}s; every pinned byte matches ${lock.release}.`
+        : `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; every byte matches ${lock.release}.`,
   );
   return report;
 }
