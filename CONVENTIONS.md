@@ -52,6 +52,8 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   inside a package. Headless unit/type checks do not build browser apps or their content packs.
   `pnpm test:golden` builds libraries, stages the shared packs once, and builds only examples
   with a golden suite; example suites consume those builds rather than rebuilding themselves.
+  `pnpm assets:test` builds the schema package before loading its source-bundle checks, so it
+  also works in a fresh checkout whose GLBs came from a release or cache.
 - CI runs only plain `pnpm` scripts: `pnpm lint`, `pnpm typecheck`, `pnpm source:check`,
   `pnpm test:unit`, `pnpm audit:prod`, `pnpm docs:check`, `pnpm smoke:packed`,
   `pnpm docs:site:check`, `pnpm test:golden`. Local green must equal CI green.

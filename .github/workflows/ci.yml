@@ -21,6 +21,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - uses: ./.github/actions/fetch-assets
       - run: pnpm assets:check
+      # Asset/source-bundle tests consume schema dist; `preassets:test` builds it on fresh runners.
       - run: pnpm assets:test
       # `pretypecheck` builds every package first (replaces turbo's `dependsOn: ^build`).
       - run: pnpm typecheck
