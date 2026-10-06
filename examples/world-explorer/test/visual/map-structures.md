@@ -6,7 +6,7 @@ After a workspace build, run from the repository root:
 node examples/world-explorer/test/visual/capture-map-structures.mjs
 ```
 
-It also runs in the world-explorer `test:golden` suite. The fixture is served by an isolated,
+It is a manual check; no CI suite runs it. The fixture is served by an isolated,
 temporary Vite server; it does not change the normal world explorer or its PMTiles. Chromium
 uses software WebGL. Set `PLAYWRIGHT_BROWSERS_PATH` when using a nondefault browser install.
 

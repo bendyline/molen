@@ -187,6 +187,6 @@ depth testing are active; terrain/hill occlusion culling is not implemented. See
 budget limits, worker fallbacks, timing APIs and implementation boundaries.
 
 The reusable store identity library and mapped street furniture can be reviewed with
-`?synthetic=1&stores=1&style=default`, or replayed using `test/visual/store-library.play.json`.
+`?synthetic=1&stores=1&style=default`.
 See the [recognizable places guide](../../docs-src/guide/recognizable-places.md) and
 [3D art guidelines](../../docs-src/guide/3d-art-guidelines.md) for catalog and material conventions.

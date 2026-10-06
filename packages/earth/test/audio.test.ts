@@ -1,7 +1,7 @@
 import { AircraftState } from '@bendyline/molen-kernel/aircraft';
 import { Mounted } from '@bendyline/molen-kernel/vehicles';
 import { World } from '@bendyline/molen-kernel/world';
-import type { AircraftStateData } from '@bendyline/molen-schema';
+import { type AircraftStateData, type WeatherData, weatherProfile } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import { createEarthAudio } from '../src/client/audio';
 import { ENTITY_TYPES } from './entity-types';
@@ -20,6 +20,7 @@ const bank = {
       'vehicle.door.close',
       'aircraft.engine.piston',
       'ambience.wind',
+      'ambience.rain',
       'ambience.birds',
       'ambience.city.traffic',
       'ambience.crickets',
@@ -72,6 +73,34 @@ describe('createEarthAudio', () => {
     const field = gains(900, 1.7, 400);
     expect(field['ambience.city.traffic']).toBeUndefined();
     expect(field['ambience.birds']).toBeCloseTo(0.7);
+    audio.dispose();
+  });
+
+  it('replaces birdsong with rain while it rains and brings the birds back after', async () => {
+    const audio = await createEarthAudio(packs, renderer, { onWarning: () => {} });
+    if (!audio) throw new Error('no audio');
+    let nowMs = 0;
+    // Step past the 4 s ambience fades, as frames would, then report what is still playing.
+    const after = (ms: number, weather: WeatherData) => {
+      for (const end = nowMs + ms; nowMs < end; nowMs += 250)
+        audio.update({
+          nowMs,
+          mode: 'walk',
+          position: [0, 1.7, 0],
+          heightAboveGround: 1.7,
+          weather,
+        });
+      return audio.layer.director.voices().map((v) => v.sound);
+    };
+    const sunny = after(6000, weatherProfile('sunny'));
+    expect(sunny).toContain('ambience.birds');
+    expect(sunny).not.toContain('ambience.rain');
+    const rain = after(6000, weatherProfile('rain'));
+    expect(rain).toContain('ambience.rain');
+    expect(rain).not.toContain('ambience.birds');
+    const cleared = after(6000, weatherProfile('sunny'));
+    expect(cleared).toContain('ambience.birds');
+    expect(cleared).not.toContain('ambience.rain');
     audio.dispose();
   });
 
