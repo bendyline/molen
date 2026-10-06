@@ -24,7 +24,8 @@ it('flies into the mapped Mount Baker tunnel without being lifted onto the ridge
   };
   const before = position('01-portal'),
     inside = position('02-inside');
-  expect(inside.longitude).toBeLessThan(before.longitude - 0.0002);
+  // The bore opens about 21 m (0.00028°) west of the start; the scenario flies about 50 m in.
+  expect(inside.longitude).toBeLessThan(before.longitude - 0.0005);
   // The inferred road grade here is 34–37 m; the ridge above it reaches about 80 m.
   expect(inside.altitude).toBeGreaterThan(30);
   expect(inside.altitude).toBeLessThan(45);

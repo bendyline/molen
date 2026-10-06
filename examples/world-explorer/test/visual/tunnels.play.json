@@ -17,7 +17,14 @@
       "timeoutMs": 240000
     },
     { "type": "screenshot", "name": "01-portal", "timeoutMs": 120000 },
-    { "type": "keys", "keys": ["w", "Shift"], "durationMs": 8000 },
+    { "type": "key-down", "keys": ["w", "Shift"] },
+    {
+      "type": "wait-for",
+      "note": "Fly until the camera is past -122.289 (about 50 m west; the bore opens about 21 m west), not for a fixed time: a software-rendered frame advances at most 4.2 m because dt is capped at 0.1 s, and CI rendered only two frames in an 8 s hold.",
+      "selector": "#location:text-matches(\"Lon -122[.]2(?:89|9)\")",
+      "timeoutMs": 240000
+    },
+    { "type": "key-up", "keys": ["w", "Shift"] },
     {
       "type": "wait-for-stable",
       "selector": "#status",
