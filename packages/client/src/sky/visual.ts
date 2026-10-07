@@ -308,14 +308,29 @@ export class SkyVisual {
       new THREE.Color('#b9c2cb'),
       this.cloudAttenuation * daylight * 0.6,
     );
+    // While the filtered map is active it replaces the hemisphere's diffuse light (see the
+    // renderer), so it must carry the same irradiance: the PBR shader integrates radiance over the
+    // hemisphere (π), as in reflectionStateFromLights. Unscaled palette radiance made the sky
+    // light about three times `dayAmbient`, a flat blue fill that washed out sunlit contrast.
+    const radiance = this.ambientLight.intensity / Math.PI;
     this.currentReflections = {
-      zenith: rgb(this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight)),
-      horizon: rgb(this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight)),
-      ground: rgb(this.palette.ground.clone().multiplyScalar(0.08 + daylight * 0.92)),
-      twilight: rgb(this.palette.twilight),
+      zenith: rgb(
+        this.palette.nightZenith
+          .clone()
+          .lerp(this.palette.dayZenith, daylight)
+          .multiplyScalar(radiance),
+      ),
+      horizon: rgb(
+        this.palette.nightHorizon
+          .clone()
+          .lerp(this.palette.dayHorizon, daylight)
+          .multiplyScalar(radiance),
+      ),
+      ground: rgb(this.palette.ground.clone().multiplyScalar((0.08 + daylight * 0.92) * radiance)),
+      twilight: rgb(this.palette.twilight.clone().multiplyScalar(radiance)),
       twilightStrength: smooth(-18, -4, altitude) * (1 - smooth(0, 16, altitude)),
       sunDirection,
-      sunColor: rgb(this.palette.sun),
+      sunColor: rgb(this.palette.sun.clone().multiplyScalar(radiance)),
       sunGlow: smooth(-2, 5, altitude) * 0.22,
       clouds: this.cloudAttenuation,
     };

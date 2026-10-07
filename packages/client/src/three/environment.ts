@@ -15,7 +15,7 @@ export interface EnvironmentData {
   };
   background?: string;
   fog?: { color: string; near?: number; far?: number };
-  toneMapping?: 'none' | 'aces' | 'agx';
+  toneMapping?: 'none' | 'aces' | 'agx' | 'neutral';
   exposure?: number;
   shadows?: 'off' | 'low' | 'medium' | 'high';
 }
@@ -118,6 +118,8 @@ export function applyEnvironment(renderer: Renderer, env: EnvironmentData): void
       ? THREE.ACESFilmicToneMapping
       : env.toneMapping === 'agx'
         ? THREE.AgXToneMapping
-        : THREE.NoToneMapping;
+        : env.toneMapping === 'neutral'
+          ? THREE.NeutralToneMapping
+          : THREE.NoToneMapping;
   renderer.three.toneMappingExposure = env.exposure ?? 1;
 }

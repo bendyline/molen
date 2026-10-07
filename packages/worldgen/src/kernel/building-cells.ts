@@ -12,6 +12,7 @@
  * The scale is uniform so a renderer can apply it as an object scale without distorting normals,
  * collision or picking, all of which read attributes through their item accessors.
  */
+import { SRGB_TO_LINEAR_BYTE } from './schema-common';
 import type { MeshBuffers, MeshGroup } from './types';
 
 /** Components per quantized vertex: x, y, z and one padding component. */
@@ -30,7 +31,7 @@ export interface PreparedBuildingCell {
   /** Unit normals as normalized signed bytes, (x, y, z, pad) per vertex. */
   normals: Int8Array;
   uvs: Float32Array;
-  /** Normalized RGB, (r, g, b, pad) per vertex. */
+  /** Normalized linear RGB, (r, g, b, pad) per vertex, decoded from the sRGB-encoded buffers. */
   colors: Uint8Array;
   indices: Uint16Array | Uint32Array;
   structuralIndices: Uint16Array | Uint32Array;
@@ -137,7 +138,7 @@ export function prepareBuildingCells(buffers: MeshBuffers, cellSize = 512): Prep
           ((value - (center[axis] as number)) / reach) * QUANTIZED_MAX,
         );
         normals[target] = Math.round((buffers.normals[old * 3 + axis] as number) * 127);
-        colors[target] = buffers.colors[old * 3 + axis] as number;
+        colors[target] = SRGB_TO_LINEAR_BYTE[buffers.colors[old * 3 + axis] as number] as number;
       }
       uvs[index * 2] = buffers.uvs[old * 2] as number;
       uvs[index * 2 + 1] = buffers.uvs[old * 2 + 1] as number;

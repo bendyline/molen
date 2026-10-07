@@ -8,11 +8,14 @@ inside an Electron app, as bytes in its bundle, or a file the user picks) and op
 Every release publishes these packs at `https://molen.dev/packs/` with a `molen/pack-index@1`
 index (the docs site build stages them; see [docs-site/README.md](../docs-site/README.md)), so a
 user of the npm packages runs `npx molen pack fetch https://molen.dev/packs/index.json` rather
-than building them from this directory. That index carries the core packs only. The worldgen
-pack's regional model archives (several GB of landmark models) are published unzipped at
-`https://qualla.com/_a/index.json`, which molen.dev's samples read; a style pack whose archives an
-index does not list falls back to procedural buildings. `hostPacks` in `@bendyline/molen-pack/node`
-writes that unzipped layout.
+than building them from this directory. That index carries the core packs only. Every pack,
+including the worldgen pack's regional model archives (several GB of landmark models), is also an
+asset of the rolling GitHub release `packs`
+(`npx molen pack fetch https://github.com/bendyline/molen/releases/download/packs/index.json`,
+written by `scripts/publish-pack-release.mjs` in the Release workflow), and is published unzipped
+at `https://qualla.com/_a/index.json`, which molen.dev's samples read (GitHub's downloads send no
+CORS headers). A style pack whose archives an index does not list falls back to procedural
+buildings. `hostPacks` in `@bendyline/molen-pack/node` writes the unzipped layout.
 
 Each directory here defines a logical pack. Its `molen-pack.source.json` names the pack, its
 license, which files go in, and which roles it `provides`. Hosted worldgen content is divided

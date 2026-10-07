@@ -115,6 +115,7 @@ import {
   type EarthPrefetchStats,
 } from './prefetch';
 import { EarthVehicles } from './vehicles';
+import { earthShadowFocus } from './look';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
@@ -592,11 +593,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ),
     };
   };
-  // Sun shadows: high-resolution at the Balanced level and above, medium below that, and off at
-  // the two lowest levels, where the extra shadow pass costs more than it shows.
+  // Sun shadows follow the performance tier (see EarthPerformanceTier.shadows).
   const shadowsOn = options.shadows ?? true;
   const shadowQuality = (): 'off' | 'medium' | 'high' =>
-    !shadowsOn ? 'off' : level >= 3 ? 'high' : level >= 2 ? 'medium' : 'off';
+    !shadowsOn ? 'off' : earthPerformanceTier(level).shadows;
   const worldgenCacheBytes = (): number =>
     Math.max(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget / 4);
   const viewport = (): [number, number] => [
@@ -1741,23 +1741,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         };
       }
       const [x, y, z] = current.position;
-      const ground = groundHeight(x, z) ?? y;
-      const radius =
-        mode === 'walk'
-          ? 160
-          : mode === 'drive'
-            ? 280
-            : Math.min(2_500, Math.max(300, (y - ground) * 2));
-      const forward = Math.hypot(current.direction[0], current.direction[2]) || 1;
-      const reach = radius * 0.5;
-      return {
-        center: [
-          x + (current.direction[0] / forward) * reach,
-          ground,
-          z + (current.direction[2] / forward) * reach,
-        ],
-        radius,
-      };
+      return earthShadowFocus(
+        mode === 'walk' ? 'walk' : mode === 'drive' ? 'drive' : 'fly',
+        current.position,
+        current.direction,
+        groundHeight(x, z) ?? y,
+      );
     };
 
     const frame = (now: number): void => {

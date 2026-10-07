@@ -1,13 +1,18 @@
 import { BufferAttribute } from 'three';
 import { describe, expect, it } from 'vitest';
 import { packedColorAttribute, paddedVec3Attribute } from '../../src/client/color-attribute';
+import { SRGB_TO_LINEAR_BYTE } from '../../src/kernel/schema-common';
 
 describe('packed vertex colors', () => {
-  it('preserves normalized RGB values and the source buffer with a four-byte vertex stride', () => {
+  it('decodes sRGB bytes to linear and keeps the source buffer, with a four-byte vertex stride', () => {
     const backing = new Uint8Array([99, 10, 128, 255, 0, 85, 190, 99]);
     const source = backing.subarray(1, 7);
     const before = backing.slice();
-    const legacy = new BufferAttribute(source, 3, true);
+    const legacy = new BufferAttribute(
+      Uint8Array.from(source, (value) => SRGB_TO_LINEAR_BYTE[value] as number),
+      3,
+      true,
+    );
     const attribute = packedColorAttribute(source);
     expect(attribute.itemSize).toBe(3);
     expect(attribute.normalized).toBe(true);
@@ -21,6 +26,13 @@ describe('packed vertex colors', () => {
       ]);
     }
     expect(backing).toEqual(before);
+  });
+
+  it('decodes the sRGB transfer curve at its anchors', () => {
+    expect(SRGB_TO_LINEAR_BYTE[0]).toBe(0);
+    expect(SRGB_TO_LINEAR_BYTE[255]).toBe(255);
+    // sRGB 50% grey is about 21.4% linear.
+    expect(SRGB_TO_LINEAR_BYTE[128]).toBe(55);
   });
 });
 

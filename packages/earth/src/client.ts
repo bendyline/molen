@@ -66,6 +66,14 @@ export {
   mountEarthView,
 } from './client/earth-view';
 export {
+  EARTH_EXPOSURE,
+  EARTH_LIGHTING,
+  EARTH_SKY_PALETTE,
+  EARTH_TONE_MAPPING,
+  earthHazeColor,
+  earthShadowFocus,
+} from './client/look';
+export {
   type ModelArchiveOptions,
   type ModelArchivesDoc,
   type OpenModelArchive,

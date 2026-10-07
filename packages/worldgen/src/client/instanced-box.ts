@@ -119,10 +119,12 @@ export function createInstancedPlacements(
     );
     matrix.compose(position, quaternion, scale);
     mesh.setMatrixAt(index, matrix);
+    // Placement colors are sRGB-encoded like every procedural color (see SRGB_TO_LINEAR_BYTE).
     color.setRGB(
       set.data[offset + 7] as number,
       set.data[offset + 8] as number,
       set.data[offset + 9] as number,
+      THREE.SRGBColorSpace,
     );
     mesh.setColorAt(index, color);
   }

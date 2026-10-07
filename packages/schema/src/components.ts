@@ -565,8 +565,10 @@ const environmentSchema = z.strictObject({
     .describe('Linear distance fog.')
     .optional(),
   toneMapping: z
-    .enum(['none', 'aces', 'agx'])
-    .describe('Tone-mapping operator: none, aces, or agx.')
+    .enum(['none', 'aces', 'agx', 'neutral'])
+    .describe(
+      'Tone-mapping operator: none, aces, agx, or neutral (Khronos PBR Neutral: keeps authored base colors and saturation below the highlights).',
+    )
     .optional(),
   exposure: num.positive().describe('Tone-mapping exposure multiplier (1 = neutral).').optional(),
   shadows: z
