@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pngjs from 'pngjs';
+import { modelInputHash } from '../../../packages/worldgen/scripts/structure-model-files.mjs';
 import {
   knownSourceEntries,
   structureSourcePath,
@@ -32,6 +33,10 @@ for (const id of ids) {
   if (!folder) throw new Error(`No authored source for ${id}`);
   const specBytes = await readFile(structureSourcePath(folder, 'spec.json'));
   const spec = JSON.parse(specBytes);
+  const inputHash = await modelInputHash(
+    dirname(structureSourcePath(folder, 'spec.json')),
+    spec.assetId,
+  );
   const { anchor, heading } = spec.geographicProposal;
   const factor = Math.cos((anchor[1] * Math.PI) / 180);
   const center = [
@@ -105,7 +110,7 @@ for (const id of ids) {
     candidateId: id,
     title: spec.title,
     modelFolder: folder,
-    specHash: hash(specBytes),
+    inputHash,
     anchor,
     heading,
     factor,

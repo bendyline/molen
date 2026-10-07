@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PNG } from 'pngjs';
+import { modelInputHash } from '../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourcePath } from '../../../packages/worldgen/scripts/structure-source-paths.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -11,6 +12,10 @@ const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain/g
 const folder = 'n0021_sanjo_ohashi_bridge';
 const specBytes = await readFile(structureSourcePath(folder, 'spec.json'));
 const spec = JSON.parse(specBytes);
+const inputHash = await modelInputHash(
+  dirname(structureSourcePath(folder, 'spec.json')),
+  spec.assetId,
+);
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const { anchor, heading } = spec.geographicProposal;
 const factor = Math.cos((anchor[1] * Math.PI) / 180),
@@ -108,7 +113,7 @@ const document = {
   candidateId: 'N0021',
   title: spec.title,
   modelFolder: folder,
-  specHash: hash(specBytes),
+  inputHash,
   anchor,
   heading,
   factor,
@@ -146,7 +151,7 @@ const document = {
 const profile = {
   format: 'molen/bridge-bank-evidence@1',
   candidateId: 'N0021',
-  specHash: hash(specBytes),
+  inputHash,
   sources,
   bankReference,
   proposedOrigin: bankReference.elevation - bankReference.modelHeight,

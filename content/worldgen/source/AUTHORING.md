@@ -37,7 +37,8 @@ require every independently located member, and reusable models never count as n
 3. For a new bundle, regenerate `index-structure-sources.mjs`, then import with
    `node packages/worldgen/scripts/import-and-register-next-1000.mjs --ids=N1007`.
 4. Capture portable and viewer/shared-material views, inspect the actual images, and record
-   hash-bound QA. Correct location, compass orientation and elevation datum require their own
+   QA bound to the model's `inputHash` (the readiness ledger lists it per model). Correct
+   location, compass orientation and elevation datum require their own
    evidence. A flat test terrain capture verifies transforms, not real terrain or tides.
 5. Regenerate the source and authoring indexes, readiness ledger and galleries. The commands are
    listed below. `pnpm source:check` checks the source bundles and authoring index.
@@ -2643,3 +2644,19 @@ This is a completed authoring/packaging checkpoint, **not maximum-fidelity appro
 Sforza's architectural-detail and in-world geographic-fit reviews remain pending as
 listed in its README/spec/QA. On resumption, resolve those before describing this model
 as fully complete; then continue the candidate queue. Overall completion remains 167/1000.
+
+## Review binding moves to model inputs — 2026-10-07
+
+QA records, capture reports, placement reports and bridge terrain evidence now bind to each
+model's `inputHash` instead of its source and runtime GLB SHA-256s. `modelInputHash` in
+`packages/worldgen/scripts/structure-model-files.mjs` hashes the bundle's evidence files, its
+`spec.json` without the generator-measured `mesh` and `actualBounds`, and the model-specific
+recipe files the authoring index lists. Rebuilding a model, on any machine, keeps its reviews;
+editing its inputs invalidates them. Edits to shared mesh modules or the engine do not, so
+re-capture deliberately with `--force` after such a change.
+
+The ledger was migrated in place. Each record the previous rules found current (source GLB,
+including the RGB repair, runtime GLB and spec bytes) received its model's `inputHash`; stale
+records lost their GLB hashes and stay unbound. The migration left readiness unchanged: 198
+portable, 196 shared-material and 133 maximum-fidelity reviews, 232 previews and 108 complete.
+`reviewed-glb-encoding.mjs` is retired.

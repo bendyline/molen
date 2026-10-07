@@ -135,7 +135,7 @@ try {
         { cause },
       );
     });
-  for (const { dir, spec, sourceHash } of selected) {
+  for (const { dir, spec, sourceHash, inputHash } of selected) {
     const output = outputDirectory ? resolve(outputDirectory, spec.id) : dir;
     const sidecarPath = pack.assets[spec.assetId];
     assert(sidecarPath, `${spec.id}: runtime asset is not registered`);
@@ -146,8 +146,6 @@ try {
     const placement = structureIndex
       .query([-180, -90, 180, 90], queryOptions)
       .find((entry) => entry.asset === spec.assetId);
-    const specBytes = await readFile(resolve(dir, 'spec.json'));
-    const specHash = hashEvidenceText(specBytes);
     const placementHash = placement ? hashBytes(JSON.stringify(placement)) : null;
     const sourceFrameBytes =
       spec.geographicProposal?.mapGeometrySource === 'map-frame.json'
@@ -158,9 +156,8 @@ try {
     let current =
       (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
       (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
-      prior?.sourceHash === sourceHash &&
+      prior?.inputHash === inputHash &&
       (prior?.viewingDate ?? null) === (viewingDate ?? null) &&
-      prior?.runtimeHash === sidecar.hash &&
       (prior?.reflectionMode ?? 'none') === reflectionMode &&
       (prior?.clippingMode ?? 'legacy') === clippingMode &&
       (!placement?.terrainReference ||
@@ -183,7 +180,6 @@ try {
         (prior?.fixtureHash === unreflectedFixtureHash && reflectionMode === 'none') ||
         (prior?.fixtureHash === optInUnformattedFixtureHash && reflectionMode === 'none') ||
         (prior?.fixtureHash === terrainOnlyFixtureHash && placement?.datum !== 'sea-level')) &&
-      matchesEvidenceText(specBytes, prior?.specHash) &&
       prior?.placementHash === placementHash &&
       prior?.frames?.length > 0 &&
       (!placement?.groundCutout ||
@@ -389,15 +385,13 @@ try {
     const report = {
       format: 'molen/structure-shared-capture@1',
       assetId: spec.assetId,
-      sourceHash,
-      runtimeHash: sidecar.hash,
+      inputHash,
       fixtureHash,
       ...(viewingDate !== undefined ? { viewingDate } : {}),
       ...(localFootprint ? { footprintEvidenceHash: localFootprint.hash } : {}),
       ...(localFootprint?.label ? { footprintLabel: localFootprint.label } : {}),
       reflectionMode,
       clippingMode,
-      specHash,
       placementHash,
       materialGraphs,
       frames,

@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
+import { modelInputHash } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../packages/worldgen/scripts/structure-source-paths.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -65,12 +66,13 @@ try {
     const evidenceBytes = await readFile(resolve(output, `${id}.json`));
     const evidence = JSON.parse(evidenceBytes);
     const source = structureSourceDirectory(evidence.modelFolder);
-    assert.equal(
-      hash(await readFile(resolve(source, 'spec.json'))),
-      evidence.specHash,
-      `${id}: regenerate terrain evidence for current spec`,
-    );
     const spec = JSON.parse(await readFile(resolve(source, 'spec.json')));
+    const inputHash = await modelInputHash(source, spec.assetId);
+    assert.equal(
+      inputHash,
+      evidence.inputHash,
+      `${id}: regenerate terrain evidence for the current model inputs`,
+    );
     const sidecarPath = pack.assets[spec.assetId];
     assert(sidecarPath, `${id}: runtime asset is not registered`);
     const asset = resolve(root, 'content/worldgen', dirname(sidecarPath));
@@ -162,9 +164,7 @@ try {
       format: 'molen/bridge-terrain-fit-review@1',
       candidateId: id,
       status: 'awaiting-human-image-review',
-      sourceHash,
-      runtimeHash,
-      specHash: evidence.specHash,
+      inputHash,
       terrainEvidenceHash: hash(evidenceBytes),
       fixtureHash,
       ...(reviewRoads

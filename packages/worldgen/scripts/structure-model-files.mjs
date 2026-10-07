@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { biomeJson } from './format-json.mjs';
 import {
   readStructureCollections,
@@ -62,7 +63,13 @@ export async function authoredModels() {
     if (typeof spec.assetId !== 'string' || !spec.assetId.startsWith('molen.worldgen.structure.'))
       throw new Error(`Invalid asset id in ${dir}`);
     const sourcePath = resolve(dir, 'models/source.glb');
-    models.push({ dir, spec, sourcePath, sourceHash: hashBytes(await readFile(sourcePath)) });
+    models.push({
+      dir,
+      spec,
+      sourcePath,
+      sourceHash: hashBytes(await readFile(sourcePath)),
+      inputHash: await modelInputHash(dir, spec.assetId),
+    });
   }
   for (const id of selected ?? [])
     if (!models.some((model) => selectedStructureIds([id], collections).includes(model.spec.id)))
@@ -71,6 +78,57 @@ export async function authoredModels() {
   if (new Set(models.map((model) => model.spec.assetId)).size !== models.length)
     throw new Error('Duplicate authored model asset id');
   return models;
+}
+
+// Build outputs, review records and renders in a source bundle; none of them define the model.
+const notInputs = new Set([
+  'source.json',
+  'scene.json',
+  'qa.json',
+  'capture-report.json',
+  'shared-capture-report.json',
+  'placement-report.json',
+  'import-report.json',
+]);
+let recipeIndex;
+async function modelRecipes(assetId) {
+  recipeIndex ??= readOptionalJson(resolve(content, 'source/authoring-index.json')).then(
+    (index) => new Map((index?.entries ?? []).map((entry) => [entry.assetId, entry.recipes ?? []])),
+  );
+  return (await recipeIndex).get(assetId) ?? [];
+}
+
+/** spec.json minus what generators measure from the built geometry. */
+function specInputs(bytes) {
+  const { mesh, actualBounds, ...spec } = JSON.parse(bytes);
+  return hashBytes(JSON.stringify(spec));
+}
+
+/**
+ * Hash of everything a model is authored from: its bundle's evidence and spec, plus the
+ * model-specific recipe files. Reviews bind to this, so rebuilding a model on another machine
+ * keeps them, and only an edit to the model's sources invalidates them.
+ */
+export async function modelInputHash(dir, assetId) {
+  const files = [];
+  async function walk(path) {
+    for (const entry of await readdir(path, { withFileTypes: true })) {
+      const child = resolve(path, entry.name);
+      const name = relative(dir, child).replaceAll('\\', '/');
+      if (entry.name.startsWith('.') || entry.name.endsWith('.tmp')) continue;
+      if (entry.isDirectory()) {
+        if (entry.name !== 'shots') await walk(child);
+      } else if (!notInputs.has(name) && !/\.(glb|md|png|jpe?g|webp)$/i.test(entry.name)) {
+        const bytes = await readFile(child);
+        files.push([name, name === 'spec.json' ? specInputs(bytes) : hashEvidenceText(bytes)]);
+      }
+    }
+  }
+  await walk(dir);
+  for (const path of await modelRecipes(assetId))
+    files.push([path, hashEvidenceText(await readFile(resolve(root, path)))]);
+  files.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  return hashBytes(JSON.stringify({ format: 'molen/model-inputs@1', files }));
 }
 
 /** The registry owns geographic paths; reusable category models retain their semantic home. */

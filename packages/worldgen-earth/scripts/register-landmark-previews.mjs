@@ -21,7 +21,7 @@ const path = resolve(root, 'content/earth/structures/placements.json');
 const catalog = JSON.parse(await readFile(path, 'utf8'));
 const project = JSON.parse(await readFile(resolve(content, 'project.json'), 'utf8'));
 const check = process.argv.includes('--check');
-for (const { dir, spec, sourceHash } of await authoredModels()) {
+for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const proposal = spec.geographicProposal;
   if (!proposal) throw new Error(`${spec.id}: no authored geographic proposal`);
   if (!/^Q[1-9][0-9]*$/.test(spec.wikidataId ?? ''))
@@ -86,7 +86,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
   if (check) {
     if (
       JSON.stringify(existing) !== JSON.stringify(entry) ||
-      previous?.sourceHash !== sourceHash ||
+      previous?.inputHash !== inputHash ||
       previous?.placementHash !== entryHash
     )
       throw new Error(`${spec.id}: missing or stale authored placement`);
@@ -106,8 +106,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
         {
           format: 'molen/structure-placement-report@1',
           assetId: spec.assetId,
-          sourceHash,
-          runtimeHash: sidecar.hash,
+          inputHash,
           placementHash: entryHash,
           entry,
           review:

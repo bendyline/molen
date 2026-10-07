@@ -1,9 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0021_sanjo_ohashi_bridge",
-  "sourceHash": "sha256:5bec80d763ac335c3cd21310b7390ed49e6e2e161ced9b6116272aad52c8deba",
-  "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
-  "captureReportHash": "sha256:5d00a5269593d8825cd95405443b5c1384efea8a2a99f31c03137b72b92c24f4",
+  "inputHash": "sha256:23ce3a68f223fcfcca74b626128a74abd73143f3a3e785cf4735121e91523e91",
+  "captureReportHash": "sha256:0ec66a7ca2e4663b55afa93006d28972f45b160a44badb524f323bda171972a7",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f892b5e1f7e4f9720fd119c97a8f50900e8e4d2f00c9c211b9775e0fd4879d1a",
+    "captureReportHash": "sha256:42d4b23d360afed591230ea9949cf73675342c792505ac7f6574c68c7b85a7bc",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -50,11 +49,11 @@
     "terrainReports": [
       {
         "path": "content/earth/structures/evidence/bridge-terrain/gsi/N0021-fit-report.json",
-        "hash": "sha256:bad67d490527e2e1e7d2e837fbf3b08589a0735910ad8a285d156e1fdd04f339"
+        "hash": "sha256:3748158d65689ba4cb1eb31ebb29b7ec7efb41ae3673d3d08b97073b13bb954b"
       },
       {
         "path": "content/earth/structures/evidence/bridge-terrain/gsi/N0021-roads-fit-report.json",
-        "hash": "sha256:b6c5b1b20e52c67c8f8c1f6cd95ad8160c1fad995deb074fe9073a767fc60416"
+        "hash": "sha256:71cc828c894747866df98b566b69d5219639e3c0960cc44a8b740b2c09951c94"
       }
     ],
     "notes": "Exact mapped Q3087620 bridge axis and published 73.3 × 16.7 m exterior reviewed against independent current GSI DEM1A ground. West road reference at [135.7712849734,35.0090017595] is 41.714 m; native road endpoint 4.55 m gives model origin approximately 37.16 m. The independent east road plateau at native X 40 m is 41.733 m. All eight current production terrain images inspected, including OSM carriageway/sidewalk approach geometry: clipped connector surfaces meet both modeled road ends without duplicate bridge spans or tiny inferred connector piers. The endpoint rays +2.25/+0.73 m are over the steep abutment-bank faces, not the upper road plateau, and are retained. The 1 m laser DEM preserves 6,630 null river cells; unknown riverbed is omitted and never filled or treated as zero. Host must supply fine terrain and sampleStructureTerrain using the same bank reference consistently across all resident tiles; without this callback the extended model remains deferred and its procedural fallback stays visible. No underwater footing/bathymetry survey or universal compatibility with coarse global DEM is claimed."
