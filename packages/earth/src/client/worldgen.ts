@@ -94,6 +94,12 @@ export interface CreateEarthWorldgenOptions {
   interiors?: boolean;
   /** Landcover class colors (forest, grass, park, urban_area…) over the style pack's palette. */
   landcoverColors?: Readonly<Record<string, string>>;
+  /**
+   * Material for landcover ground, usually `createTerrainGroundMaterialAsync` from
+   * `@bendyline/molen-terrain/client` so flat classes gain world-space variation. Shared with the
+   * terrain surface; the host owns and disposes it.
+   */
+  groundMaterial?: THREE.Material;
   /** Distance LOD for street props and landmarks (default true). */
   propLod?: boolean;
   /** Per-tile generation telemetry. */
@@ -265,8 +271,17 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     lodPolicy: options.lodPolicy,
     interiors: options.interiors ?? true,
     propLod: options.propLod ?? true,
-    ...(options.landcoverColors !== undefined
-      ? { landcover: { landcoverColors: options.landcoverColors } }
+    ...(options.landcoverColors !== undefined || options.groundMaterial !== undefined
+      ? {
+          landcover: {
+            ...(options.landcoverColors !== undefined
+              ? { landcoverColors: options.landcoverColors }
+              : {}),
+            ...(options.groundMaterial !== undefined
+              ? { materials: { landcover: options.groundMaterial } }
+              : {}),
+          },
+        }
       : {}),
     ...(options.onTileStats !== undefined ? { onTileStats: options.onTileStats } : {}),
     ...(workers.landcover !== undefined

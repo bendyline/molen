@@ -1,8 +1,8 @@
 /** Brasília: three concentric concrete colonnades and the two-layer spoke-wheel roof. */
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { brasiliaPlan as plan } from './brasilia-plan.mjs';
 import { lathe, transformed } from './lighthouse-models.mjs';
-import { chair, curve, face, soccerPitch } from './stadium-models.mjs';
+import { chair, curve, face, seatBand, soccerPitch } from './stadium-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2;
@@ -12,7 +12,7 @@ const concrete = [0.67, 0.66, 0.61],
   red = [0.63, 0.017, 0.024],
   dark = [0.026, 0.037, 0.039];
 const rad = (a, r, y = 0) => [Math.sin(a) * r, y, Math.cos(a) * r];
-const mix = (p, q, t) => p.map((v, i) => v + (q[i] - v) * t);
+const _mix = (p, q, t) => p.map((v, i) => v + (q[i] - v) * t);
 function fabricFace(out, points, color, expected) {
   let ps = points,
     n = normalFor(...ps.slice(0, 3));
@@ -29,14 +29,14 @@ function fabricFace(out, points, color, expected) {
     color,
   );
 }
-const ring = (out, r, y, radius, color = steel, slot = 'metal', n = 288) =>
+const ring = (out, r, y, radius, color = steel, slot = 'metal', n = 96) =>
   curve(
     out,
     Array.from({ length: n + 1 }, (_, i) => rad((i * TAU) / n, r, y)),
     radius,
     color,
     slot,
-    8,
+    4,
   );
 function rounded(a, hx, hz, r, y = 0) {
   const x = Math.sin(a),
@@ -70,26 +70,28 @@ function slab(out, ri, ro, y, depth = 0.35, color = concrete, n = 288) {
   }
 }
 function rails(out, pts, h = 1.1) {
+  // A 2.5 cm handrail as one three-sided tube with posts at every other point; the mid-rail is
+  // below the closeup's error.
   for (let i = 0; i < pts.length - 1; i++) {
-    for (const y of [h, h * 0.5])
-      tube(
-        out,
-        'metal',
-        pts[i].map((v, j) => v + (j === 1 ? y : 0)),
-        pts[i + 1].map((v, j) => v + (j === 1 ? y : 0)),
-        0.023,
-        steel,
-        6,
-      );
     tube(
       out,
       'metal',
-      pts[i],
       pts[i].map((v, j) => v + (j === 1 ? h : 0)),
-      0.025,
+      pts[i + 1].map((v, j) => v + (j === 1 ? h : 0)),
+      0.023,
       steel,
-      6,
+      3,
     );
+    if (i % 2 === 0)
+      tube(
+        out,
+        'metal',
+        pts[i],
+        pts[i].map((v, j) => v + (j === 1 ? h : 0)),
+        0.025,
+        steel,
+        3,
+      );
   }
 }
 function colonnade(out) {
@@ -103,6 +105,8 @@ function colonnade(out) {
         c = rad(a, r),
         o = transformed(out, 0, c),
         d = 0.6 + 0.075 * j;
+      // The 288 columns at 16 sides; their 3.6 cm lift rings and 2 cm form-tie marks are below
+      // the closeup's error.
       lathe(
         o,
         'concrete',
@@ -111,41 +115,8 @@ function colonnade(out) {
           [h, d],
         ],
         concrete,
-        48,
+        16,
       );
-      for (let y = 3; y < h - 1; y += 3)
-        loft(
-          o,
-          'concrete',
-          [
-            radialRing(y - 0.018, d + 0.008, d + 0.008, 48),
-            radialRing(y + 0.018, d + 0.008, d + 0.008, 48),
-          ],
-          [0.6, 0.6, 0.57],
-          { cap: false },
-        );
-      // Recessed form-tie marks remain subtle, metric, and symmetric around each cast lift.
-      for (let y = 1.4; y < h - 1; y += 3)
-        for (let k = 0; k < 4; k++) {
-          const t = (k * Math.PI) / 2,
-            p = rad(t, d + 0.009, y);
-          const points = Array.from({ length: 8 }, (_, i) => {
-            const a = (-i * TAU) / 8;
-            return [
-              p[0] + Math.cos(t) * Math.cos(a) * 0.021,
-              p[1] + Math.sin(a) * 0.021,
-              p[2] - Math.sin(t) * Math.cos(a) * 0.021,
-            ];
-          });
-          o.addConvexPolygon(
-            'concrete',
-            'palette:#ffffff',
-            points,
-            rad(t, 1),
-            (v) => [v[0], v[1]],
-            [0.53, 0.54, 0.5],
-          );
-        }
     }
     const o = transformed(out, a, [0, 0, 0]);
     beam(o, 'concrete', [0, 39.3, 133.2], [0, 48.15, 154], 0.5, 0.6, concrete);
@@ -277,13 +248,15 @@ function roof(out) {
           roofY(r) + 1.5 * Math.sin(Math.PI * u) * (0.22 + 0.78 * Math.cos(TAU * v)),
         );
       };
-      for (let u = 0; u < 6; u++)
-        for (let v = 0; v < 6; v++) {
+      // Each membrane bay in 3 x 3 facets; its 3.5-4.9 cm edge cables are below the closeup's
+      // error and white on white.
+      for (let u = 0; u < 3; u++)
+        for (let v = 0; v < 3; v++) {
           const ps = [
-            p(u / 6, v / 6),
-            p((u + 1) / 6, v / 6),
-            p((u + 1) / 6, (v + 1) / 6),
-            p(u / 6, (v + 1) / 6),
+            p(u / 3, v / 3),
+            p((u + 1) / 3, v / 3),
+            p((u + 1) / 3, (v + 1) / 3),
+            p(u / 3, (v + 1) / 3),
           ];
           fabricFace(out, ps, white, [0, 1, 0]);
           fabricFace(
@@ -293,65 +266,38 @@ function roof(out) {
             [0, -1, 0],
           );
         }
-      if (j === 0)
-        curve(
-          out,
-          Array.from({ length: 13 }, (_, k) => p(k / 12, 0)),
-          0.049,
-          white,
-        );
-      curve(
-        out,
-        Array.from({ length: 13 }, (_, k) => p(k / 12, 1)),
-        0.049,
-        white,
-      );
-      curve(
-        out,
-        Array.from({ length: 7 }, (_, k) => p(0, k / 6)),
-        0.035,
-        white,
-      );
     }
   for (let i = 0; i < 48; i++) {
     const a = (i * TAU) / 48;
     // Lower radial cable chord carries the vertical roof trusses; the upper surface is independent.
     curve(
       out,
-      Array.from({ length: 33 }, (_, j) => {
-        const r = 68 + (j * 64.5) / 32;
+      Array.from({ length: 17 }, (_, j) => {
+        const r = 68 + (j * 64.5) / 16;
         return rad(a, r, bottomY(r));
       }),
       0.087,
       steel,
       'metal',
-      12,
+      6,
     );
     curve(
       out,
-      Array.from({ length: 15 }, (_, j) => {
-        const r = 68 + (j * 64.5) / 14;
+      Array.from({ length: 8 }, (_, j) => {
+        const r = 68 + (j * 64.5) / 7;
         return rad(a, r, roofY(r) - 0.23);
       }),
       0.075,
       white,
       'metal',
-      12,
+      6,
     );
     for (let j = 0; j <= 7; j++) {
       const r = 68 + (j * 64.5) / 7;
-      tube(out, 'metal', rad(a, r, bottomY(r)), rad(a, r, roofY(r) - 0.2), 0.082, white, 12);
+      tube(out, 'metal', rad(a, r, bottomY(r)), rad(a, r, roofY(r) - 0.2), 0.082, white, 6);
       if (j < 7) {
         const next = r + 64.5 / 7;
-        tube(
-          out,
-          'metal',
-          rad(a, r, bottomY(r)),
-          rad(a, next, roofY(next) - 0.2),
-          0.057,
-          white,
-          10,
-        );
+        tube(out, 'metal', rad(a, r, bottomY(r)), rad(a, next, roofY(next) - 0.2), 0.057, white, 4);
       }
     }
     const o = transformed(out, a, rad(a, 68, 31.3));
@@ -361,12 +307,12 @@ function roof(out) {
   }
   for (let j = 0; j <= 7; j++) {
     const r = 68 + (j * 64.5) / 7;
-    ring(out, r, bottomY(r), j === 0 ? 0.18 : 0.075, steel, 'metal', 288);
+    ring(out, r, bottomY(r), j === 0 ? 0.18 : 0.075, steel, 'metal');
     ring(out, r, roofY(r) - 0.23, 0.095, white);
     for (let i = 0; i < 48; i++) {
       const a = (i * TAU) / 48,
         b = ((i + 1) * TAU) / 48;
-      tube(out, 'metal', rad(a, r, bottomY(r)), rad(b, r, roofY(r) - 0.23), 0.045, white, 8);
+      tube(out, 'metal', rad(a, r, bottomY(r)), rad(b, r, roofY(r) - 0.23), 0.045, white, 4);
     }
   }
   // Clear inner panels follow the membrane arches at their outer edge and flatten at the oculus.
@@ -386,21 +332,16 @@ function roof(out) {
         [0, 1, 0],
       );
     }
-    if (i % 2 === 0)
-      curve(
-        out,
-        Array.from({ length: 5 }, (_, j) => clear(a, 51 + (j * 17) / 4)),
-        0.04,
-        white,
-      );
-    if (i % 8 === 0) tube(out, 'metal', rad(a, 68, 31.3), clear(a, 55), 0.077, white, 12);
+    if (i % 8 === 0) tube(out, 'metal', rad(a, 68, 31.3), clear(a, 55), 0.077, white, 6);
   }
   for (const r of [51, 55, 59, 63, 67])
     curve(
       out,
-      Array.from({ length: 385 }, (_, i) => clear((i * TAU) / 384, r)),
+      Array.from({ length: 97 }, (_, i) => clear((i * TAU) / 96, r)),
       0.055,
       white,
+      'metal',
+      4,
     );
   // Sealed membrane flashing prevents a row of open gaps at the concrete compression ring.
   for (let i = 0; i < 576; i++) {
@@ -470,10 +411,23 @@ function bowl(out) {
   soccerPitch(transformed(out, 0, [0, -11.8, 0]));
   for (let k = 0; k < tiers.length; k++) {
     const t = tiers[k];
-    for (let row = 0; row < t.rows; row++)
-      for (let i = 0; i < 400; i++) {
-        const a = (i * TAU) / 400,
-          b = ((i + 1) * TAU) / 400,
+    // Treads at 240 facets a row; each run of seated facets between the 40 aisles is one seat
+    // band rather than a chair per 0.5 m.
+    const n = 240;
+    for (let row = 0; row < t.rows; row++) {
+      let run = [];
+      const flush = () => {
+        if (run.length > 1)
+          seatBand(
+            out,
+            run.filter((_, i) => i % 2 === 0 || i === run.length - 1),
+            red,
+          );
+        run = [];
+      };
+      for (let i = 0; i < n; i++) {
+        const a = (i * TAU) / n,
+          b = ((i + 1) * TAU) / n,
           p = seat(a, t, row),
           q = seat(b, t, row),
           P = seat(a, t, row + 1),
@@ -482,6 +436,7 @@ function bowl(out) {
         face(out, 'concrete', [[P[0], p[1], P[2]], [Q[0], p[1], Q[2]], Q, P], concrete, rad(a, -1));
         const sector = ((a / TAU) * 40) % 1;
         if (sector < 0.055 || sector > 0.945) {
+          flush();
           face(
             out,
             'concrete',
@@ -496,10 +451,11 @@ function bowl(out) {
           );
           continue;
         }
-        const count = Math.max(1, Math.floor(Math.hypot(p[0] - q[0], p[2] - q[2]) / 0.5));
-        for (let j = 0; j < count; j++)
-          chair(out, Math.atan2(-(q[2] - p[2]), q[0] - p[0]), mix(p, q, (j + 0.5) / count), red);
+        if (run.length === 0) run.push(p);
+        run.push(q);
       }
+      flush();
+    }
     for (let i = 0; i < 256; i++) {
       const a = (i * TAU) / 256,
         b = ((i + 1) * TAU) / 256,

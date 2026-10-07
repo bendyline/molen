@@ -15,6 +15,21 @@ const SCATTER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
   high: [9000, 1800, 350],
 };
 
+/**
+ * Ground cover (tussocks, ferns, small stones) only near the camera: the finest level on
+ * Balanced and High, none on Economy. Its own pool, so it never thins the canopy above.
+ */
+const GROUND_COVER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [0],
+  balanced: [5000],
+  high: [8000],
+};
+const GROUND_COVER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [0],
+  balanced: [3],
+  high: [4],
+};
+
 const SCATTER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [3, 2, 0],
   balanced: [4, 3, 2],
@@ -47,6 +62,8 @@ export function worldgenTileBudgetForQuality(
     maxInstancesPerRule: maxInstances,
     maxInstances,
     maxPropModels: byLevel(SCATTER_MODELS[quality], levelBelowMax),
+    maxGroundCoverInstances: byLevel(GROUND_COVER_INSTANCES[quality], levelBelowMax),
+    maxGroundCoverModels: byLevel(GROUND_COVER_MODELS[quality], levelBelowMax),
   };
   switch (quality) {
     case 'economy':

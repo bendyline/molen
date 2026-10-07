@@ -14,6 +14,7 @@ function fixture() {
     getMRT: () => null,
     getDrawingBufferSize: (target: THREE.Vector2) => target.set(320, 240),
     getPixelRatio: () => 1,
+    info: { render: { drawCalls: 0, triangles: 0 } },
   };
   const optimizer = new WebGpuSceneOptimizer(driver as unknown as WebGPURenderer);
   const scene = new THREE.Scene();
@@ -49,6 +50,19 @@ describe('WebGPU persistent buffers and command invalidation', () => {
     prepare();
     expect(driver._nodes.needsRefresh(object)).toBe(true);
     optimizer.dispose();
+    expect(driver._nodes.needsRefresh(object)).toBe(true);
+  });
+  it('refreshes bundled receivers normally while sun shadows are on', () => {
+    // Three redraws the shadow map while refreshing receivers, and a skipped refresh left
+    // replayed bundles sampling stale shadow state: the scene flashed with and without shadows.
+    const { group, prepare, driver } = fixture();
+    const monitor = { hasNode: false, hasAnimation: false, renderObjects: new WeakMap() };
+    const object = { bundle: group, getMonitor: () => monitor };
+    prepare();
+    Object.assign(group, { recordedVersion: group.version });
+    monitor.renderObjects.set(object, {});
+    expect(driver._nodes.needsRefresh(object)).toBe(false);
+    driver.shadowMap.enabled = true;
     expect(driver._nodes.needsRefresh(object)).toBe(true);
   });
   it('preserves shared instance attributes and honors writes through retained references', () => {
@@ -137,6 +151,26 @@ describe('WebGPU persistent buffers and command invalidation', () => {
     expect(group.version).toBe(version);
   });
 
+  it('draws bundled groups normally between frames and replays them unchanged after', () => {
+    // A warm-up compile between frames runs the sun's shadow pass over the scene. A tile swapped
+    // and disposed since the last prepare must not be replayed from its recorded bundle.
+    const { optimizer, group, mesh, prepare } = fixture();
+    prepare();
+    optimizer.finish();
+    expect(group.isBundleGroup).toBe(false);
+    prepare();
+    expect(group.isBundleGroup).toBe(true);
+    const version = group.version;
+    optimizer.finish();
+    prepare();
+    expect(group.isBundleGroup).toBe(true);
+    expect(group.version).toBe(version);
+    mesh.removeFromParent();
+    optimizer.finish();
+    prepare();
+    expect(group.version).toBeGreaterThan(version);
+  });
+
   it('keeps the one-time WebGPU projection initialization cached', () => {
     const { group, camera, prepare } = fixture();
     prepare();
@@ -191,9 +225,16 @@ describe('WebGPU persistent buffers and command invalidation', () => {
     material.transparent = false;
     prepare();
     expect(group.isBundleGroup).toBe(true);
+    // Sun shadows keep the main pass's bundles; a pass that installs its own render-object
+    // function (a shadow pass) draws ordinarily instead.
     driver.shadowMap.enabled = true;
     prepare();
+    expect(group.isBundleGroup).toBe(true);
+    const hook = driver.getRenderObjectFunction();
+    driver.setRenderObjectFunction(() => {});
+    prepare();
     expect(group.isBundleGroup).toBe(false);
+    driver.setRenderObjectFunction(hook);
     driver.shadowMap.enabled = false;
     const nested = optimizer.createGroup() as BundleGroup;
     group.add(nested);

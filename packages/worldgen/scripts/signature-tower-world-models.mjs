@@ -145,47 +145,15 @@ function stoneBay(out, a, b, n, low, high, stone, glass) {
     [0.5, 1 - inset],
   ])
     for (const y of [y0, y1]) {
-      beam(
-        out,
-        'metal',
-        point(u0, y, -0.12),
-        point(u1, y, -0.12),
-        0.045,
-        0.055,
-        [0.32, 0.35, 0.34],
-      );
+      // The 4.5 cm window frames are below every runtime level's error; the reveals remain.
       const reveal = [point(u0, y), point(u1, y), point(u1, y, -0.13), point(u0, y, -0.13)];
       face(out, 'cladding', y === y0 ? reveal : reveal.toReversed(), stone);
     }
-  for (const u of [inset, 0.5, 1 - inset])
-    beam(out, 'metal', point(u, y0, -0.12), point(u, y1, -0.12), 0.045, 0.055, [0.31, 0.35, 0.34]);
   for (const u of [inset, 1 - inset]) {
     const points = [point(u, y0), point(u, y1), point(u, y1, -0.13), point(u, y0, -0.13)];
     face(out, 'cladding', u === inset ? points : points.toReversed(), stone);
   }
-  for (const [u0, u1] of [
-    [0, 0.5],
-    [0.5, 1],
-  ])
-    beam(
-      out,
-      'recess',
-      point(u0, high - 0.025, 0.009),
-      point(u1, high - 0.025, 0.009),
-      0.018,
-      0.018,
-      [0.38, 0.37, 0.34],
-    );
-  for (const u of [0.14, 0.86])
-    beam(
-      out,
-      'recess',
-      point(u, low, 0.009),
-      point(u, high, 0.009),
-      0.016,
-      0.016,
-      [0.45, 0.43, 0.4],
-    );
+  // Stone joints (under 2 cm) are not modelled; the bays' depth and reveals carry the rhythm.
 }
 
 function buildUsBank(out, m) {
@@ -1366,28 +1334,11 @@ function tuntexBay(out, a, b, n, low, high, { bright = false, pink = false } = {
     quad(0, 1, low, high, trim);
     return;
   }
-  quad(0, inset, low, high, trim);
-  quad(1 - inset, 1, low, high, trim);
-  quad(inset, 1 - inset, low, y0, trim);
-  quad(inset, 1 - inset, y1, high, trim);
-  quad(inset, 1 - inset, y0, y1, glass, 'glass', -0.08);
-  for (const t of [inset, 1 - inset]) {
-    const p = [at(t, y0), at(t, y1), at(t, y1, -0.08), at(t, y0, -0.08)];
-    face(out, 'metal', t === inset ? p : p.toReversed(), trim);
-  }
-  for (const y of [y0, y1]) {
-    const p = [at(inset, y), at(1 - inset, y), at(1 - inset, y, -0.08), at(inset, y, -0.08)];
-    face(out, 'metal', y === y0 ? p : p.toReversed(), trim);
-  }
-  beam(
-    out,
-    'metal',
-    at(inset, high - 0.06, 0.025),
-    at(1 - inset, high - 0.06, 0.025),
-    0.035,
-    0.055,
-    [0.41, 0.49, 0.46],
-  );
+  // A trim face over the whole bay with its glass just in front: the 8 cm recess, reveals and
+  // head trim are below the closeup's error on a 378 m tower, and whole-bay trim faces join into
+  // one surface that LOD reduction can simplify.
+  quad(0, 1, low, high, trim);
+  quad(inset, 1 - inset, y0, y1, glass, 'glass', 0.012);
 }
 function buildTuntex(out, m) {
   const key = 'n0179_tuntex_sky_tower',

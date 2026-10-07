@@ -34,6 +34,8 @@ export class WebGpuSceneOptimizer {
   private readonly renderHook: NonNullable<ReturnType<WebGPURenderer['getRenderObjectFunction']>>;
   private readonly groups = new WeakSet<THREE.Object3D>();
   private active: RenderGroup[] = [];
+  /** Bundled groups set aside between frames; see `finish`. */
+  private suspended: RenderGroup[] = [];
   private frame = 0;
   private stableCameraFrames = 0;
   private cameraState: (number | THREE.Camera)[] = [];
@@ -69,11 +71,15 @@ export class WebGpuSceneOptimizer {
     const refresh = nodes.needsRefresh;
     nodes.needsRefresh = (object): boolean => {
       const group = object.bundle as RenderGroup | null;
+      // Sun shadows need three's normal refresh: it is what redraws the shadow map each frame,
+      // and a skipped refresh leaves replayed receivers sampling stale shadow state, so the
+      // scene flashed between shadowed and unshadowed frames. The bundles still save encoding.
       if (
         group !== null &&
         this.groups.has(group) &&
         group.eligible &&
         group.version === group.recordedVersion &&
+        !renderer.shadowMap.enabled &&
         !renderer.getMRT()?.has('velocity')
       ) {
         const monitor = object.getMonitor();
@@ -115,6 +121,10 @@ export class WebGpuSceneOptimizer {
   /** Update matrices once; Renderer suppresses Three's duplicate scene traversal for this frame. */
   prepare(scene: THREE.Scene, camera: THREE.Camera): void {
     this.frame++;
+    // Back to the state the last frame recorded in, without a version change: unchanged
+    // groups replay their bundles, and the walk below re-records the ones that changed.
+    for (const group of this.suspended) Object.assign(group, { isBundleGroup: true });
+    this.suspended = [];
     this.active = [];
     this.materialSamples.clear();
     if (scene.matrixWorldAutoUpdate) scene.updateMatrixWorld();
@@ -151,6 +161,10 @@ export class WebGpuSceneOptimizer {
       scene.environmentIntensity,
       this.renderer.toneMapping,
       this.renderer.toneMappingExposure,
+      // Shadow passes resize and rebind their depth textures; a recorded bundle must not
+      // outlive the texture it samples.
+      this.renderer.shadowMap.enabled,
+      this.renderer.shadowMap.type,
       this.renderer.outputColorSpace,
       this.frameSize.x,
       this.frameSize.y,
@@ -185,6 +199,9 @@ export class WebGpuSceneOptimizer {
       if (object instanceof THREE.Light) {
         lights.push(object, ...object.matrixWorld.elements);
         for (const value of Object.values(object)) this.sampleValue(lights, value);
+        const shadow = (object as THREE.Light & { shadow?: THREE.LightShadow }).shadow;
+        if (shadow !== undefined)
+          lights.push(object.castShadow, shadow.mapSize.x, shadow.mapSize.y, shadow.map);
       }
       if (object instanceof THREE.DirectionalLight || object instanceof THREE.SpotLight) {
         lights.push(...object.target.matrixWorld.elements);
@@ -200,10 +217,13 @@ export class WebGpuSceneOptimizer {
         own.cursor = 0;
         own.changed = false;
         own.writeArray(view);
-        // Shadow passes and scene overrides have their own render lists and callbacks.
+        // Shadow passes and scene overrides have their own render lists and callbacks. A shadow
+        // pass installs its own render-object function, which the hook check below rejects, so
+        // the main pass keeps its bundles while sun shadows are on (its objects still refresh;
+        // see needsRefresh). Light matrices are sampled above, so a moving sun or shadow focus
+        // re-records.
         own.eligible =
           cacheView &&
-          !this.renderer.shadowMap.enabled &&
           scene.overrideMaterial === null &&
           scene.onBeforeRender === THREE.Object3D.prototype.onBeforeRender &&
           this.renderer.getRenderObjectFunction() === this.renderHook &&
@@ -296,6 +316,15 @@ export class WebGpuSceneOptimizer {
       }
       group.recordedVersion = group.version;
     }
+    // Between frames the scene changes without a `prepare`: admission jobs swap and dispose
+    // tile contents, then a warm-up compile updates the sun's shadow node, which renders the
+    // scene. A bundle replayed there would still draw the disposed buffers ("used in submit
+    // while destroyed"). Bundles exist only inside this optimizer's frame.
+    for (const group of this.active) {
+      if (!group.isBundleGroup) continue;
+      Object.assign(group, { isBundleGroup: false });
+      this.suspended.push(group);
+    }
   }
 
   private sampleMatrix(matrix: THREE.Matrix4): number {
@@ -371,6 +400,7 @@ export class WebGpuSceneOptimizer {
     this.restoreRefresh();
     this.instances.dispose();
     this.active = [];
+    this.suspended = [];
     this.materialSamples.clear();
   }
 }

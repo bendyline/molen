@@ -20,7 +20,7 @@ Primary references inform original mesh geometry. No photographic pixels, Getty 
 
 ## Authored geometry and materials
 
-1,674,942 triangles, 3,200,092 vertices, 7 surface groups; 135,306,536 source bytes. SHA-256: `sha256:da8547bcb000bd778916f95520a325939bd50581ff2f2086771f7bc12a18c38e`. Actual bounds: -156.126, -0.232, -157.844 to 157.097, 40.000, 155.219 m.
+278,406 triangles, 545,656 vertices, 7 surface groups; 22,988,388 source bytes. SHA-256: `sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01`. Actual bounds: -156.126, -0.232, -157.844 to 157.097, 40.000, 155.219 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center; +Z follows its southward axis. Field and structural foot datum are native Y0; the photographed access podium rises above it."}.
 

@@ -24,6 +24,17 @@ describe('focused sun shadows', () => {
     expect(toLight.dot(toSun)).toBeCloseTo(1, 6);
     expect(camera.far).toBeGreaterThan(light.position.distanceTo(light.target.position));
     expect(light.shadow.normalBias).toBeCloseTo(texel * 1.2, 6);
+    expect(light.shadow.bias).toBeLessThan(0);
+  });
+
+  it('flips the depth bias where the shader adds it in the reversed-depth sense', () => {
+    // WebGL PCF with a reversed depth buffer adds the bias to the receiver depth unflipped, so a
+    // negative bias would push every receiver away from the light and casters would shadow
+    // themselves; the bias must point toward the light (positive) there instead.
+    const light = sun();
+    const toSun = new THREE.Vector3(-0.5, 1, 0.3).normalize();
+    focusDirectionalShadow(light, toSun, new THREE.Vector3(0, 0, 0), 400, true);
+    expect(light.shadow.bias).toBeGreaterThan(0);
   });
 
   it('moves in whole texels, so shadow edges hold still while the focus drifts', () => {

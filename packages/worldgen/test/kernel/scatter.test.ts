@@ -245,6 +245,56 @@ describe('scatter sampling', () => {
     expect(none).toHaveLength(0);
   });
 
+  it('gives ground cover its own budget, so it never thins or displaces the canopy', () => {
+    const covered: ScatterDoc = {
+      ...doc,
+      rules: [
+        ...doc.rules,
+        {
+          id: 'cover',
+          classes: ['forest'],
+          densityPerHectare: 2000,
+          minSpacing: 0.5,
+          layer: 'groundcover',
+          populations: [
+            {
+              model: 'builtin:groundcover.tuft',
+              weight: 1,
+              scale: { min: 1, max: 1 },
+              yaw: 'random',
+              align: 'normal',
+            },
+          ],
+        },
+      ],
+    };
+    const req = request([0, 0, 200, 200]);
+    const run = (scatter: ScatterDoc, extra: Partial<typeof budget> & Record<string, number>) =>
+      samplePlacements({
+        request: req,
+        doc: scatter,
+        pack: identity,
+        ground: FLAT_GROUND,
+        budget: { ...budget, maxInstances: 300, maxPropModels: 1, ...extra },
+        tier: 0,
+      });
+    const canopy = run(doc, {});
+    const both = run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 2 });
+    const tufts = both.filter((set) => set.modelRef === 'builtin:groundcover.tuft');
+    // The canopy keeps exactly its own capped instances and its one model slot.
+    expect(positions(both.filter((set) => set.modelRef !== 'builtin:groundcover.tuft'))).toEqual(
+      positions(canopy),
+    );
+    expect(tufts.reduce((sum, set) => sum + set.count, 0)).toBe(500);
+    // Without a ground cover budget the layer is simply absent.
+    expect(positions(run(covered, {}))).toEqual(positions(canopy));
+    expect(
+      run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 0 }).some(
+        (set) => set.modelRef === 'builtin:groundcover.tuft',
+      ),
+    ).toBe(false);
+  });
+
   it('flows through the batch generator with stats and hashing', () => {
     const output = generateWorldgenBatch({
       buildings: [],

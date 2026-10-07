@@ -36,6 +36,9 @@ export interface ScatterBudget {
   /** Instances the whole batch may emit, thinned uniformly across rules; 0 disables scatter. */
   maxInstances: number;
   maxPropModels: number;
+  /** Instances and model varieties for `groundcover` rules, separate from the canopy's. */
+  maxGroundCoverInstances?: number;
+  maxGroundCoverModels?: number;
 }
 
 export interface ScatterSampleInput {
@@ -137,14 +140,19 @@ export function* samplePlacementsSteps(
 ): Generator<WorldgenProgress, PlacementSet[], void> {
   const { request, doc, ground } = input;
   if (request.polygons.length === 0) return [];
-  if (input.budget.maxInstances <= 0 || input.budget.maxPropModels <= 0) return [];
+  const groundCoverInstances = input.budget.maxGroundCoverInstances ?? 0;
+  const groundCoverModels = input.budget.maxGroundCoverModels ?? 0;
+  const canopyOpen = input.budget.maxInstances > 0 && input.budget.maxPropModels > 0;
+  const groundOpen = groundCoverInstances > 0 && groundCoverModels > 0;
+  if (!canopyOpen && !groundOpen) return [];
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
   const polygonBounds = request.polygons.map((polygon) => ringBounds(polygon.ring));
   const exclusionCache = new Map<string, RasterGrid>();
   const frame = request.frame;
-  const accepted: Array<{ candidate: Candidate; model: string; rule: number }> = [];
+  const accepted: Array<{ candidate: Candidate; model: string; rule: number; ground: boolean }> =
+    [];
   const scatterId = { id: doc.id, version: doc.version };
   let visited = 0;
 
@@ -267,24 +275,42 @@ export function* samplePlacementsSteps(
       );
       ruleCandidates.length = cap;
     }
-    for (const entry of ruleCandidates) accepted.push({ ...entry, rule: ruleIndex });
+    const groundCover = rule.layer === 'groundcover';
+    for (const entry of ruleCandidates)
+      accepted.push({ ...entry, rule: ruleIndex, ground: groundCover });
     yield { done: ruleIndex + 1, total: doc.rules.length };
   }
 
-  // Cap the batch as a whole by the same acceptance draw, so thinning stays uniform across rules
-  // and a tighter budget keeps a nested subset of a looser one.
-  if (accepted.length > input.budget.maxInstances) {
-    accepted.sort(
-      (p, q) =>
-        p.candidate.u - q.candidate.u ||
-        p.rule - q.rule ||
-        p.candidate.cz - q.candidate.cz ||
-        p.candidate.cx - q.candidate.cx,
+  // Cap each pool as a whole by the same acceptance draw, so thinning stays uniform across rules
+  // and a tighter budget keeps a nested subset of a looser one. Ground cover has its own pool:
+  // thousands of clumps must never thin the trees.
+  const byDraw = (p: (typeof accepted)[number], q: (typeof accepted)[number]): number =>
+    p.candidate.u - q.candidate.u ||
+    p.rule - q.rule ||
+    p.candidate.cz - q.candidate.cz ||
+    p.candidate.cx - q.candidate.cx;
+  const pool = (ground: boolean, maxInstances: number, maxModels: number) => {
+    const entries = accepted.filter((entry) => entry.ground === ground);
+    if (entries.length > maxInstances) {
+      entries.sort(byDraw);
+      entries.length = Math.max(0, maxInstances);
+    }
+    const counts = new Map<string, number>();
+    for (const entry of entries) counts.set(entry.model, (counts.get(entry.model) ?? 0) + 1);
+    // Cap distinct models deterministically: keep the most populated sets.
+    const kept = new Set(
+      [...counts.entries()]
+        .sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1))
+        .slice(0, Math.max(0, maxModels))
+        .map(([model]) => model),
     );
-    accepted.length = input.budget.maxInstances;
-  }
+    return entries.filter((entry) => kept.has(entry.model));
+  };
   const perModel = new Map<string, Candidate[]>();
-  for (const entry of accepted) {
+  for (const entry of [
+    ...pool(false, input.budget.maxInstances, input.budget.maxPropModels),
+    ...pool(true, groundCoverInstances, groundCoverModels),
+  ]) {
     let list = perModel.get(entry.model);
     if (list === undefined) {
       list = [];
@@ -292,11 +318,8 @@ export function* samplePlacementsSteps(
     }
     list.push(entry.candidate);
   }
-  // Cap distinct models deterministically: keep the most populated sets.
   const models = [...perModel.entries()]
     .map(([model, candidates]) => ({ model, candidates }))
-    .sort((p, q) => q.candidates.length - p.candidates.length || (p.model < q.model ? -1 : 1))
-    .slice(0, Math.max(0, input.budget.maxPropModels))
     .sort((p, q) => (p.model < q.model ? -1 : p.model > q.model ? 1 : 0));
   const sets: PlacementSet[] = [];
   for (const { model, candidates } of models) {

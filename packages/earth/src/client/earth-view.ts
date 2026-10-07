@@ -46,11 +46,13 @@ import {
   cachingArchiveOpener,
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
+  createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainSurfaceRenderer,
   createTerrainSurfaceWorkerBridge,
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
+  setTerrainGroundOrigin,
   setTerrainWaterTime,
   type TerrainPyramidBudget,
   type TerrainPyramidHeightSource,
@@ -99,6 +101,14 @@ import { type EarthCredit, earthCredits } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
 import {
+  EARTH_EXPOSURE,
+  EARTH_LIGHTING,
+  EARTH_SKY_PALETTE,
+  EARTH_TONE_MAPPING,
+  EARTH_WATER_COLOR,
+  earthShadowFocus,
+} from './look';
+import {
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -115,7 +125,6 @@ import {
   type EarthPrefetchStats,
 } from './prefetch';
 import { EarthVehicles } from './vehicles';
-import { earthShadowFocus } from './look';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
@@ -469,12 +478,25 @@ const SOURCE_CHECK_DEGREES = 0.05;
 export function earthOrbitMaxRange(viewDistance: number): number {
   return Math.max(2_000, viewDistance * 0.45);
 }
+/**
+ * The shared medium-fi light rig (see look.ts) as a fixed environment. Its sky reflections are
+ * built from the background (zenith), the ambient sky (horizon) and ground colors, so it lights
+ * the scene the way the clock-driven sky does at midday.
+ */
 const DEFAULT_ENVIRONMENT: EnvironmentData = {
-  ambient: { sky: '#d7eaf2', ground: '#283b32', intensity: 0.48 },
-  sun: { direction: [-6, 10, 4], color: '#fff0ce', intensity: 2.05 },
-  background: '#8fbed3',
-  toneMapping: 'agx',
-  exposure: 0.9,
+  ambient: {
+    sky: EARTH_SKY_PALETTE.dayHorizon,
+    ground: EARTH_SKY_PALETTE.ground,
+    intensity: EARTH_LIGHTING.dayAmbient,
+  },
+  sun: {
+    direction: [-6, 10, 4],
+    color: EARTH_SKY_PALETTE.sun,
+    intensity: EARTH_LIGHTING.sunIntensity,
+  },
+  background: EARTH_SKY_PALETTE.dayZenith,
+  toneMapping: EARTH_TONE_MAPPING,
+  exposure: EARTH_EXPOSURE,
 };
 
 /**
@@ -659,7 +681,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     }
     const water: TerrainWaterMaterial = await createTerrainWaterMaterialAsync(
       {
-        color: options.style?.water ?? '#3f7d8f',
+        color: options.style?.water ?? EARTH_WATER_COLOR,
         waveScale: 0.028,
         waveStrength: 0.045,
         waveSpeed: 0.5,
@@ -667,6 +689,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => water.dispose());
+    // Terrain and landcover share one ground material with world-space variation.
+    const groundMaterial = await createTerrainGroundMaterialAsync({}, renderer.backend);
+    disposers.push(() => groundMaterial.dispose());
     void content?.stars().then(
       (stars) => {
         if (!disposed) renderer.setStarCatalog(stars);
@@ -762,6 +787,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 ...(options.style?.landcover !== undefined
                   ? { landcoverColors: options.style.landcover }
                   : {}),
+                groundMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -882,6 +908,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               ? { archive: selected.archives.elevation }
               : {}),
             ...(cacheTransport !== undefined ? { transport: cacheTransport.normal } : {}),
+            material: groundMaterial,
             frame,
             ...budget,
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
@@ -1886,6 +1913,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       }
       const origin = renderer.getWorldOrigin();
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
+      setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();

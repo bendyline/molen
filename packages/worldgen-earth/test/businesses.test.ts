@@ -270,9 +270,16 @@ it('shares an instance cap across signs, mapped objects, rooftop props and scatt
     { id: 3, class: 'bench', point: [0.9, 0.7] },
   ];
   const input = semanticTileToBatch(t, geom, { pack, places: PLACES });
-  const zero = generateWorldgenBatch({ ...input, budgets: { maxInstances: 0 } });
+  // Ground cover draws from its own pool (maxGroundCoverInstances), outside this shared cap.
+  const zero = generateWorldgenBatch({
+    ...input,
+    budgets: { maxInstances: 0, maxGroundCoverInstances: 0 },
+  });
   expect(zero.placements.filter((p) => p.modelRef !== 'builtin:box')).toHaveLength(0);
-  const one = generateWorldgenBatch({ ...input, budgets: { maxInstances: 1 } });
+  const one = generateWorldgenBatch({
+    ...input,
+    budgets: { maxInstances: 1, maxGroundCoverInstances: 0 },
+  });
   expect(one.placements.map((p) => [p.modelRef, p.count])).toEqual([
     ['builtin:sign.grocery_market', 1],
   ]);

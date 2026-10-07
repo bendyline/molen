@@ -85,7 +85,7 @@ function tube(parent, name, points, material = olive, radius = 0.014) {
       new T.CatmullRomCurve3(points.map((p) => new T.Vector3(...p))),
       points.length === 2 ? 1 : Math.max(12, points.length * 3),
       radius,
-      8,
+      6,
       false,
     ),
     material,
@@ -257,14 +257,7 @@ function cabin(parent) {
       );
     }
     // Full door outline continues below its arched window to the belly sill.
-    const phi = side * Math.PI * 0.64;
-    tube(
-      parent,
-      'door-aft-seam',
-      Array.from({ length: 14 }, (_, i) => point(1.6 + (0.77 * i) / 13, phi, 0.006)),
-      dark,
-      0.004,
-    );
+    // Door seams and cowl fasteners (3–4 mm) are not modelled: sub-pixel detail at medium-fi.
     const handle = point(1.82, side * 1.75, 0.018);
     rod(
       parent,
@@ -351,8 +344,6 @@ function engine(parent) {
         [side * 0.27, 2.305 + i * 0.025, -0.76],
         olive,
       );
-    const seam = Array.from({ length: 18 }, (_, i) => point(0.73 + i * 0.093, side * 2.6, 0.006));
-    tube(parent, 'engine-access-seam', seam, dark, 0.004);
   }
   const exit = group(parent, 'exhaust-outlet', [0, 1.42, -1.49]);
   const bend = new T.CatmullRomCurve3(
@@ -557,14 +548,6 @@ function details(parent) {
   rod(parent, 'belly-antenna', [0, 0.46, -0.1], [0, 0.18, 0.16], 0.009, dark);
   rod(parent, 'tail-antenna', [0, 1.81, -2.66], [0, 1.45, -2.92], 0.009, dark);
   sphere(parent, 'anti-collision-beacon', [0.045, 0.035, 0.045], [0, 2.47, -1.05], red);
-  // Small fasteners are batched; they should not each cost a draw call.
-  const rivets = [];
-  for (const side of [-1, 1])
-    for (let j = 0; j < 26; j++) {
-      const p = point(1.84 + j * 0.012, side * 2.65, 0.008);
-      rivets.push(new T.SphereGeometry(0.0032, 6, 4).translate(...p));
-    }
-  mesh(parent, 'cowl-fasteners', mergeGeometries(rivets), silver);
 }
 /** Merge repeated static frame segments at the root, leaving every animated child intact. */
 function mergeStaticFrames(parent) {

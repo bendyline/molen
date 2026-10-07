@@ -25,8 +25,16 @@ function transformed(out, { translation = [0, 0, 0], angle = 0 } = {}) {
   };
 }
 function lathe(o, slot, x, z, profile, color = trim, sides = 24) {
-  if (o.detail)
-    sides = Math.min(sides, o.detail === 'district' ? 6 : o.detail === 'street' ? 8 : 12);
+  if (o.detail === 'district') {
+    // From a district away a column or turret base is a plain shaft, the crown a 12-sided dome.
+    const radius = Math.max(...profile.map(([, r]) => r));
+    sides = Math.min(sides, radius > 2 ? 12 : radius > 0.6 ? 6 : 4);
+    if (radius < 1.2) profile = [profile[0], profile.at(-1)];
+  } else if (o.detail)
+    sides = Math.min(
+      sides,
+      o.detail === 'street' || Math.max(...profile.map(([, r]) => r)) < 1.5 ? 8 : 12,
+    );
   loft(
     o,
     slot,
@@ -35,10 +43,13 @@ function lathe(o, slot, x, z, profile, color = trim, sides = 24) {
   );
 }
 function path(o, slot, points, radius, color = trim, sides = 8) {
+  if (o.detail === 'district' && radius < 0.15) return;
+  if (o.detail === 'street' && radius < 0.12) return;
+  if (o.detail && radius < 0.05) return;
   if (o.detail) {
-    const step = o.detail === 'district' ? 4 : o.detail === 'street' ? 4 : 2;
+    const step = o.detail === 'district' ? 8 : o.detail === 'street' ? 4 : 2;
     points = points.filter((_, i) => i % step === 0 || i === points.length - 1);
-    sides = Math.min(sides, o.detail === 'district' ? 3 : 4);
+    sides = Math.min(sides, o.detail === 'district' || radius < 0.15 ? 3 : 4);
   }
   for (let i = 1; i < points.length; i++)
     tube(o, slot, points[i - 1], points[i], radius, color, sides);
@@ -58,7 +69,13 @@ function archPoints(x, y, z, radius, rise = radius, pointed = false, count = 32)
   });
 }
 function arch(o, x, y, z, width, rise, pointed = false, thickness = 0.14) {
-  for (const offset of [0, 0.23, 0.47])
+  const rings =
+    o.detail === 'district' || o.detail === 'street'
+      ? [0.23]
+      : o.detail === 'closeup'
+        ? [0, 0.47]
+        : [0, 0.23, 0.47];
+  for (const offset of rings)
     path(
       o,
       'concrete',
@@ -81,9 +98,22 @@ function window(o, x, y, z, w, h, { rounded = false, pointed = false, grille = 3
         ],
         color,
       );
+    if (o.detail === 'district') {
+      rect('glass', x, y, w, h, z, glass);
+      if (rounded)
+        o.addConvexPolygon(
+          'glass',
+          'palette:#ffffff',
+          archPoints(x, y + h, z - 0.03, w / 2, w * 0.375, pointed, 4).reverse(),
+          [0, 0, -1],
+          (p) => [p[0], p[1]],
+          glass,
+        );
+      return;
+    }
     rect('concrete', x, y - 0.12, w + 0.3, h + 0.24, z + 0.015, trim);
     rect('glass', x, y, w, h, z, glass);
-    if (o.detail !== 'district') {
+    if (o.detail === 'closeup') {
       for (const dx of [-w / 2, 0, w / 2]) rect('metal', x + dx, y, 0.07, h, z - 0.025, white);
       for (const dy of [0, h / 2, h]) rect('metal', x, y + dy, w, 0.065, z - 0.025, white);
     }
@@ -144,19 +174,20 @@ function window(o, x, y, z, w, h, { rounded = false, pointed = false, grille = 3
     );
 }
 function rail(o, points, y, height = 0.86) {
+  if (o.detail === 'district' || o.detail === 'street') return;
+  const line = o.detail ? points.filter((_, i) => i % 2 === 0 || i === points.length - 1) : points;
   path(
     o,
     'concrete',
-    points.map(([x, , z]) => [x, y, z]),
+    line.map(([x, , z]) => [x, y, z]),
     0.11,
   );
   path(
     o,
     'concrete',
-    points.map(([x, , z]) => [x, y + height, z]),
+    line.map(([x, , z]) => [x, y + height, z]),
     0.13,
   );
-  if (o.detail === 'district') return;
   if (o.detail) points = points.filter((_, i) => i % 2 === 0 || i === points.length - 1);
   for (let j = 1; j < points.length; j++) {
     const a = points[j - 1],
@@ -169,13 +200,22 @@ function rail(o, points, y, height = 0.86) {
       const x = a[0] + ((b[0] - a[0]) * i) / count,
         z = a[2] + ((b[2] - a[2]) * i) / count;
       if (o.detail) {
-        box(
-          o,
-          'concrete',
-          [x - 0.05, y + 0.1, z - 0.05],
-          [x + 0.05, y + height - 0.1, z + 0.05],
-          trim,
-        );
+        // A baluster seen from either side: two faces across the rail instead of a box.
+        const length = Math.hypot(b[0] - a[0], b[2] - a[2]) || 1;
+        const dx = ((b[0] - a[0]) / length) * 0.05,
+          dz = ((b[2] - a[2]) / length) * 0.05;
+        for (const side of [-1, 1])
+          face(
+            o,
+            'concrete',
+            [
+              [x - side * dx - dz * side, y + 0.1, z - side * dz + dx * side],
+              [x + side * dx - dz * side, y + 0.1, z + side * dz + dx * side],
+              [x + side * dx - dz * side, y + height - 0.1, z + side * dz + dx * side],
+              [x - side * dx - dz * side, y + height - 0.1, z - side * dz + dx * side],
+            ],
+            trim,
+          );
         continue;
       }
       lathe(
@@ -196,6 +236,21 @@ function rail(o, points, y, height = 0.86) {
   }
 }
 function balcony(o, x, y, z, r = 1.2) {
+  if (o.detail === 'district' || o.detail === 'street') {
+    lathe(
+      o,
+      'concrete',
+      x,
+      z,
+      [
+        [y - 0.55, r * 0.35],
+        [y, r],
+      ],
+      trim,
+      o.detail === 'district' ? 4 : 8,
+    );
+    return;
+  }
   lathe(
     o,
     'concrete',
@@ -236,7 +291,7 @@ function rosette(o, x, y, z, size = 0.13) {
   }
 }
 
-function bowBay(o) {
+function bowBay(o, storeys = 1) {
   const p = [
     [-1.05, 0, 0],
     [-0.69, 0, -0.64],
@@ -246,10 +301,18 @@ function bowBay(o) {
   for (let j = 1; j < p.length; j++) {
     const a = p[j - 1],
       b = p[j];
-    for (const [lo, hi] of [
-      [0, 0.85],
-      [3.6, 3.8],
-    ])
+    // A district column of stacked modules keeps the sill and head; storey bands are sub-error.
+    const bands =
+      storeys === 1
+        ? [
+            [0, 0.85],
+            [3.6, 3.8],
+          ]
+        : [
+            [0, 0.85],
+            [3.6 + 3.8 * (storeys - 1), 3.8 + 3.8 * (storeys - 1)],
+          ];
+    for (const [lo, hi] of bands)
       face(
         o,
         'concrete',
@@ -261,7 +324,7 @@ function bowBay(o) {
         ],
         stone,
       );
-    const h = 2.68;
+    const h = 2.68 + 3.8 * (storeys - 1);
     face(
       o,
       'glass',
@@ -273,16 +336,20 @@ function bowBay(o) {
       ],
       glass,
     );
-    if (o.detail === 'district') continue;
-    for (const q of [a, b])
-      beam(o, 'concrete', [q[0], 0.8, q[2]], [q[0], 3.65, q[2]], 0.1, 0.13, trim);
-    for (const yy of [0.84, 1.72, 2.63, 3.6])
-      beam(o, 'metal', [a[0], yy, a[2] - 0.04], [b[0], yy, b[2] - 0.04], 0.055, 0.055, white);
+    // String courses read at the closeup; 10 cm posts and 5 cm glazing bars only on the master.
+    if (o.detail === 'district' || o.detail === 'street') continue;
+    if (!o.detail)
+      for (const q of [a, b])
+        beam(o, 'concrete', [q[0], 0.8, q[2]], [q[0], 3.65, q[2]], 0.1, 0.13, trim);
+    if (!o.detail)
+      for (const yy of [0.84, 1.72, 2.63, 3.6])
+        beam(o, 'metal', [a[0], yy, a[2] - 0.04], [b[0], yy, b[2] - 0.04], 0.055, 0.055, white);
     for (const yy of o.detail ? [0.2, 3.72] : [0.03, 0.2, 0.7, 3.72])
       beam(o, 'concrete', [a[0], yy, a[2] - 0.11], [b[0], yy, b[2] - 0.11], 0.12, 0.16, trim);
   }
   for (const xx of [-0.42, 0, 0.42]) rosette(o, xx, 0.43, -0.69);
-  box(o, 'metal', [-0.025, 0.87, -0.7], [0.025, 3.58, -0.61], white);
+  if (!o.detail || o.detail === 'closeup')
+    box(o, 'metal', [-0.025, 0.87, -0.7], [0.025, 3.58, -0.61], white);
 }
 const bayX = [-14.0, -11.4, -8.8, -6.2, 6.2, 8.8, 11.4, 14.0];
 parts.push({
@@ -322,7 +389,7 @@ function base(o) {
   box(o, 'concrete', [-3.75, 13.5, -11.5], [3.75, 40.1, 11.5], stone);
   box(o, 'marble', [-3.75, 0, -22.105], [3.75, 0.08, 22.105], [0.65, 0.6, 0.49]);
   // Through passage: high vault, recessed side arcades, repeated pairs of half columns.
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < (o.detail === 'district' ? 0 : 9); i++) {
     const z = -21.3 + i * 5.325;
     arch(o, 0, 9.0, z, 7.5, 4.45, false, 0.23);
     for (const x of [-3.68, 3.68]) {
@@ -344,9 +411,10 @@ function base(o) {
       );
     }
   }
-  for (let i = 0; i < 40; i++) {
-    const a = (Math.PI * i) / 40,
-      b = (Math.PI * (i + 1)) / 40;
+  const facets = o.detail === 'district' ? 10 : 40;
+  for (let i = 0; i < facets; i++) {
+    const a = (Math.PI * i) / facets,
+      b = (Math.PI * (i + 1)) / facets;
     face(
       o,
       'concrete',
@@ -383,11 +451,15 @@ function base(o) {
         24,
       );
     arch(out, 0, 9, -22.4, 7.5, 4.5, false, 0.19);
-    for (const y of [12.8, 13.1, 13.45, 39.65, 40.0])
-      box(out, 'concrete', [-15.5, y, -22.38], [15.5, y + 0.15, -21.7], trim);
+    if (o.detail !== 'district')
+      for (const y of [12.8, 13.1, 13.45, 39.65, 40.0])
+        box(out, 'concrete', [-15.5, y, -22.38], [15.5, y + 0.15, -21.7], trim);
+    if (o.detail === 'district')
+      box(out, 'concrete', [-4.7, 13.5, -22.45], [4.7, 51.5, -20.4], stone);
     for (let floor = 0; floor < 10; floor++) {
       const y = 13.5 + floor * 3.8;
-      box(out, 'concrete', [-4.7, y, -22.45], [4.7, y + 3.8, -20.4], stone);
+      if (o.detail !== 'district')
+        box(out, 'concrete', [-4.7, y, -22.45], [4.7, y + 3.8, -20.4], stone);
       const center = transformed(out, { translation: [0, y, -22.48] });
       // A wider projecting central bay and paired circular side balconies.
       for (const xx of [-1.15, 1.15]) window(center, xx, 0.82, -0.44, 1.75, 2.62);
@@ -421,9 +493,10 @@ function mansard(o) {
     const x0 = side < 0 ? -15.44 : 4.9,
       x1 = side < 0 ? -4.9 : 15.44;
     const shape = (y) => (y < 43.5 ? -22.1 : -22.1 + Math.pow((y - 43.5) / 8.6, 1.7) * 3.3);
-    for (let i = 0; i < 48; i++) {
-      const y = 40.1 + i / 4,
-        yy = y + 0.25;
+    const strips = o.detail === 'district' ? 12 : 48;
+    for (let i = 0; i < strips; i++) {
+      const y = 40.1 + (i * 12) / strips,
+        yy = y + 12 / strips;
       face(
         o,
         'metal',
@@ -451,9 +524,10 @@ function mansard(o) {
       window(o, x, 44.2, shape(44.2) - 0.15, 1.4, 1.65);
       window(o, x, 47.7, shape(47.7) - 0.12, 1.4, 1.35);
       const z = shape(50.85) - 0.2;
-      const loop = Array.from({ length: 33 }, (_, i) => [
-        x + 0.58 * Math.cos((i * Math.PI) / 16),
-        50.85 + 0.54 * Math.sin((i * Math.PI) / 16),
+      const steps = o.detail === 'district' ? 8 : 32;
+      const loop = Array.from({ length: steps + 1 }, (_, i) => [
+        x + 0.58 * Math.cos((i * 2 * Math.PI) / steps),
+        50.85 + 0.54 * Math.sin((i * 2 * Math.PI) / steps),
         z,
       ]);
       path(o, 'concrete', loop, 0.12);
@@ -465,7 +539,8 @@ function mansard(o) {
         (p) => [p[0], p[1]],
         glass,
       );
-      beam(o, 'metal', [x, 50.34, z - 0.03], [x, 51.36, z - 0.03], 0.05, 0.05, white);
+      if (o.detail !== 'district')
+        beam(o, 'metal', [x, 50.34, z - 0.03], [x, 51.36, z - 0.03], 0.05, 0.05, white);
       for (const dx of [-1.22, 1.22])
         path(
           o,
@@ -565,8 +640,11 @@ function tower(o) {
       loft(
         out,
         'concrete',
-        rings.map(([y, a, r]) =>
-          radialRing(y, r, r, o.detail ? 12 : 28, [sign * (a - 1.15), -a + 0.36]),
+        (o.detail === 'district' ? [rings[0], rings.at(-1)] : rings).map(([y, a, r]) =>
+          radialRing(y, r, r, o.detail === 'district' ? 6 : o.detail ? 12 : 28, [
+            sign * (a - 1.15),
+            -a + 0.36,
+          ]),
         ),
         trim,
       );
@@ -698,8 +776,9 @@ function tower(o) {
     [0.28, 0.26, 0.22],
     24,
   );
-  tube(o, 'metal', [0, 97.2, 0.48], [0, 97.2, -0.6], 0.77, [0.25, 0.25, 0.2], 40);
-  tube(o, 'glass', [0, 97.2, -0.6], [0, 97.2, -0.64], 0.72, [0.74, 0.76, 0.67], 40);
+  const lamp = o.detail === 'district' || o.detail === 'street' ? 12 : 40;
+  tube(o, 'metal', [0, 97.2, 0.48], [0, 97.2, -0.6], 0.77, [0.25, 0.25, 0.2], lamp);
+  tube(o, 'glass', [0, 97.2, -0.6], [0, 97.2, -0.64], 0.72, [0.74, 0.76, 0.67], lamp);
 }
 parts.push({
   name: 'sculpted-tower-and-lantern',
@@ -709,8 +788,14 @@ parts.push({
 
 /** Hand-authored levels omit subpixel relief while retaining the palace's actual composition. */
 export function buildBaroloRuntime(out, detail) {
-  for (const p of parts)
+  for (const p of parts) {
+    if (detail === 'district' && p.build === bowBay) {
+      for (const instance of p.instances.filter(({ translation }) => translation[1] === 13.5))
+        bowBay(transformed({ ...out, detail }, instance), 7);
+      continue;
+    }
     for (const instance of p.instances) p.build(transformed({ ...out, detail }, instance));
+  }
 }
 export function buildBaroloSkyline(o) {
   for (const z of [-16.8, 16.8])

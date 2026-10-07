@@ -532,6 +532,8 @@ export function* generateWorldgenBatchSteps(
         maxInstancesPerRule: budgets.maxInstancesPerRule,
         maxInstances: Math.max(0, budgets.maxInstances - usedInstances),
         maxPropModels: budgets.maxPropModels,
+        maxGroundCoverInstances: budgets.maxGroundCoverInstances,
+        maxGroundCoverModels: budgets.maxGroundCoverModels,
       },
       tier: baseTier,
     });

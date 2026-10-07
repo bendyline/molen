@@ -112,22 +112,29 @@ function panel(o, a, b, c, d, { clear = false, heavy = false } = {}) {
   face(o, clear ? 'clear_glass' : 'glass', [aa, bb, cc, dd], glass);
   // A separate opaque spandrel and silver pressure plate; flat color is not a window atlas.
   if (!clear) face(o, 'glass', [mix(a, d, 0.73), mix(b, c, 0.73), cc, dd], spandrel);
+  if (!heavy) {
+    // The 2-6 cm mullions, transoms and seals are below the closeup's error on a 300 m tower:
+    // one flat mullion strip on the leading edge, shared with the neighbouring panel.
+    const w = Math.min(0.042 / Math.hypot(...b.map((v, i) => v - a[i])), 0.2);
+    face(
+      o,
+      'metal',
+      [a, mix(a, b, w), mix(d, c, w), d].map((p) => offset(p, 0.022)),
+      silver,
+    );
+    return;
+  }
+  // The open crown's heavy frames are its identity at every distance.
   for (const [p, q] of [
     [a, d],
     [b, c],
   ])
-    beam(o, 'metal', offset(p, 0.022), offset(q, 0.022), heavy ? 0.085 : 0.042, 0.075, silver);
+    beam(o, 'metal', offset(p, 0.022), offset(q, 0.022), 0.085, 0.075, silver);
   for (const t of [0, 0.73, 1]) {
     const p = mix(a, d, t),
       q = mix(b, c, t);
     beam(o, 'stainless', offset(p, 0.025), offset(q, 0.025), t === 1 ? 0.06 : 0.038, 0.055, silver);
   }
-  // Recessed seals remain geometry for close-up use.
-  for (const [p, q] of [
-    [aa, dd],
-    [bb, cc],
-  ])
-    beam(o, 'recess', offset(p, -0.018), offset(q, -0.018), 0.022, 0.025, dark);
 }
 
 // Keep the bottom pressure plate above the ground-aligned structural slab.

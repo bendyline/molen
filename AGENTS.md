@@ -19,7 +19,10 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
    [docs-src/guide/agent-loop.md](docs-src/guide/agent-loop.md) (the loop) →
    [docs-src/guide/scripting.md](docs-src/guide/scripting.md) (game logic).
    For prompt-driven models and textures, continue to
-   [docs-src/guide/3d-model-assets.md](docs-src/guide/3d-model-assets.md).
+   [docs-src/guide/3d-model-assets.md](docs-src/guide/3d-model-assets.md). Anything drawn in
+   the Earth view (buildings, styles, palettes, landmarks, vehicles, props) follows the
+   [medium-fi style guide](docs-src/guide/medium-fi.md); the corpus audit and its backlog are in
+   [content/worldgen/source/MEDIUM-FI-REVIEW.md](content/worldgen/source/MEDIUM-FI-REVIEW.md).
 2. Build once, then drive everything through the CLI (or the MCP server, which mirrors it):
 
 ```sh

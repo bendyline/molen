@@ -18,6 +18,7 @@ export const LANDMARK_LOD_LEVELS = [
   { name: 'closeup', triangles: 64000 },
 ];
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+const MAX_EXACT_DRAW_CALLS = 12;
 const recipeHash = hash(
   (
     (await readFile(new URL(import.meta.url), 'utf8')) +
@@ -152,6 +153,9 @@ function cluster(parts, grid, bounds, flat = false, minimumCells = 12) {
   return [...groups.values()].filter((group) => group.indices.length);
 }
 
+/** Largest geometric error a level may take to meet its triangle target, as extent fractions. */
+const MAXIMUM_ERROR = { 4000: 0.02, 16000: 0.006, 64000: 0.0015 };
+
 const componentCache = new WeakMap();
 function reduceComponents(parts, bounds, target) {
   const extent = Math.max(...bounds.max.map((v, a) => v - bounds.min[a]));
@@ -215,50 +219,76 @@ function reduceComponents(parts, bounds, target) {
     componentCache.set(parts, data);
   }
   const threshold = extent / (Math.sqrt(target) * 16);
-  const areas = new Map();
-  for (const component of data.components) {
-    const current = areas.get(component.group) ?? { total: 0, removed: 0 };
-    current.total += component.area;
-    areas.set(component.group, current);
-  }
-  const retained = new Map();
-  // Drop narrow trim only within a 2% surface-area allowance for its material.
-  // Glass panes, roofs and cladding are not discarded to force a triangle target.
-  for (const component of data.components) {
-    const span = component.max.map((v, a) => v - component.min[a]).sort((a, b) => a - b);
-    const area = areas.get(component.group);
-    if (span[1] < threshold && area.removed + component.area <= area.total * 0.02) {
-      area.removed += component.area;
-      continue;
+  const select = (width, allowance, smallestFirst) => {
+    const areas = new Map();
+    for (const component of data.components) {
+      const current = areas.get(component.group) ?? { total: 0, removed: 0 };
+      current.total += component.area;
+      areas.set(component.group, current);
     }
-    let list = retained.get(component.group);
-    if (!list) {
-      list = [];
-      retained.set(component.group, list);
+    const retained = new Map();
+    const order = smallestFirst ? [...data.components].reverse() : data.components;
+    for (const component of order) {
+      const span = component.max.map((v, a) => v - component.min[a]).sort((a, b) => a - b);
+      const area = areas.get(component.group);
+      if (span[1] < width && area.removed + component.area <= area.total * allowance) {
+        area.removed += component.area;
+        continue;
+      }
+      let list = retained.get(component.group);
+      if (!list) {
+        list = [];
+        retained.set(component.group, list);
+      }
+      for (const id of component.indices) list.push(id);
     }
-    for (const id of component.indices) list.push(id);
-  }
-  const count = [...retained.values()].reduce((sum, list) => sum + list.length, 0) / 3;
-  const ratio = Math.min(1, target / count),
-    groups = [];
-  let error = threshold;
-  for (const [group, list] of retained) {
-    const [indices, deviation] = MeshoptSimplifier.simplify(
-      new Uint32Array(list),
-      group.positions,
-      3,
-      Math.max(3, Math.floor((list.length * ratio) / 3) * 3),
-      threshold,
-      ['ErrorAbsolute'],
-    );
-    error = Math.max(error, threshold + deviation);
-    if (indices.length) groups.push({ ...group, indices });
-  }
-  return {
-    groups,
-    triangles: groups.reduce((sum, g) => sum + g.indices.length / 3, 0),
-    grid: error,
+    return retained;
   };
+  const simplify = (retained, budget, flags) => {
+    const count = [...retained.values()].reduce((sum, list) => sum + list.length, 0) / 3;
+    const ratio = Math.min(1, target / count);
+    const groups = [];
+    let error = threshold;
+    for (const [group, list] of retained) {
+      const [indices, deviation] = MeshoptSimplifier.simplify(
+        new Uint32Array(list),
+        group.positions,
+        3,
+        Math.max(3, Math.floor((list.length * ratio) / 3) * 3),
+        budget,
+        flags,
+      );
+      error = Math.max(error, threshold + deviation, flags.includes('Prune') ? budget : 0);
+      if (indices.length) groups.push({ ...group, indices });
+    }
+    return {
+      groups,
+      triangles: groups.reduce((sum, g) => sum + g.indices.length / 3, 0),
+      grid: error,
+    };
+  };
+  // Drop narrow trim only within a 2% surface-area allowance for its material, then simplify
+  // at the level's natural error. A level that keeps its main surfaces that way is done.
+  const trimmed = select(threshold, 0.02, false);
+  let result = simplify(trimmed, threshold, ['ErrorAbsolute']);
+  // A dense master (seat rows, mullions, lattice, cables) is not: medium-fi levels must meet
+  // their triangle targets, so the error budget doubles and meshoptimizer prunes isolated parts
+  // that fall under it. The recorded error grows with it, so the streamer uses the level from
+  // farther away. The cap depends on how close a level is seen: up to 2% of the model's extent
+  // for district, 0.6% for street, and 0.15% for the closeup, which has no finer level behind it.
+  const maximum = extent * (MAXIMUM_ERROR[target] ?? 0.02);
+  for (
+    let budget = threshold * 2;
+    result.triangles > target * 1.15 && budget <= maximum * 2;
+    budget *= 2
+  )
+    result = simplify(trimmed, Math.min(budget, maximum), ['ErrorAbsolute', 'Prune']);
+  // Full-height fins and frames are long, so pruning keeps them, yet too thin to see at the
+  // level's error, and a box cannot simplify below twelve triangles. Drop components thinner
+  // than the error, smallest first, up to a quarter of each material's surface.
+  if (result.triangles > target * 1.15)
+    result = simplify(select(maximum, 0.25, true), maximum, ['ErrorAbsolute', 'Prune']);
+  return result;
 }
 
 async function derivative(source, parts, bounds, target, flat = false) {
@@ -405,8 +435,19 @@ export async function buildLandmarkLods(sidecarPath, { force = false } = {}) {
       ),
   );
   sidecar.stats.vertices = [...positions].reduce((sum, position) => sum + position.getCount(), 0);
+  // A master under the closeup target is shipped as is, unless it would draw more than the
+  // medium-fi closeup's 12 calls: an assembly of instanced parts then gets the material-merged
+  // derivative instead. GPU-instanced meshes draw once per primitive, not once per instance.
+  const masterDocument = await io().readBinary(master);
+  const masterDrawCalls = masterDocument
+    .getRoot()
+    .listMeshes()
+    .reduce((sum, mesh) => sum + mesh.listPrimitives().length, 0);
   let exact;
-  if (triangleCount <= LANDMARK_LOD_LEVELS.at(-1).triangles) {
+  if (
+    triangleCount <= LANDMARK_LOD_LEVELS.at(-1).triangles &&
+    masterDrawCalls <= MAX_EXACT_DRAW_CALLS
+  ) {
     const original = await io().readBinary(master);
     removeSharedFallbackImages(original);
     await original.transform(prune({ keepAttributes: true, keepSolidTextures: true }));
@@ -441,7 +482,7 @@ export async function buildLandmarkLods(sidecarPath, { force = false } = {}) {
       triangles: triangleCount,
       geometryBytes: geometryBytes + instanceBytes,
       errorMeters: 0,
-      drawCalls: parts.length,
+      drawCalls: masterDrawCalls,
     };
   }
   const levels = [];

@@ -1,5 +1,5 @@
 /** Baku Flame Towers: three independently mapped curved wings and shared retail podium. */
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { loft, radialRing } from './authored-structure-mesh.mjs';
 import {
   clockwise,
   face,
@@ -7,7 +7,6 @@ import {
   mappedCap,
   mappedSolid,
   panel,
-  shift,
   tri,
 } from './signature-tower-expansion-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
@@ -179,13 +178,10 @@ function tower(out, part, height, tip, inner, floorPitch, partialSide) {
         continue;
       }
       const tint = glass.map((n) => n * (0.97 + (0.03 * ((i + j * 3) % 4)) / 3));
-      const width = Math.hypot(...p[1].map((v, n) => v - p[0][n]));
-      // The engineer specifies four-corner story-height unitized glass, not a visible diagrid.
-      panel(out, p, tint, Math.min(0.032, width * 0.08), silver);
-      if (width > 0.17 && y1 - y0 > 0.4) {
-        const n = normalFor(...p);
-        beam(out, 'metal', shift(p[0], n, 0.022), shift(p[3], n, 0.022), 0.025, 0.032, silver);
-      }
+      // The engineer specifies four-corner story-height unitized glass, not a visible diagrid. Its
+      // 3 cm frames and mullions are below every runtime level's error: the cells are one glass
+      // skin that LOD reduction can simplify.
+      face(out, 'glass', p, tint);
     }
   }
   for (let i = 0; i < plan.length; i++) {

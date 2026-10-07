@@ -1,9 +1,10 @@
 # 3D art guidelines
 
-Molen's baseline is a readable polygonal world: strong silhouettes, restrained palettes, clear
-material blocks, and modest surface detail. A building or prop should remain recognizable when
-textures are disabled. Textures add material character such as brick courses; they do not carry
-the entire identity.
+Molen's baseline is a readable polygonal world: strong silhouettes, clear, coherent palettes,
+clear material blocks, and modest surface detail. A building or prop should remain recognizable
+when textures are disabled. Textures add material character such as brick courses; they do not
+carry the entire identity. For anything shown in the Earth view, the
+[medium-fi style guide](medium-fi.md) sets the target look, palette bands and budgets.
 
 These guidelines apply to imported static GLBs, built-in instanced props, and parameterized
 worldgen buildings. They are authoring targets, not new runtime hard limits. Use the existing
@@ -89,19 +90,22 @@ Review every preset from the front, three-quarter, rear and gameplay distance
 
 ## Color, light and material response
 
-Use muted wall/ground colors and reserve saturated accents for identity and wayfinding.
-Limit each object to roughly three to five intentional colors, excluding small surface variation.
-Roof and foundation values should separate from the wall without outlining every edge.
+Use clear, hued wall and ground colors inside the lightness bands of the
+[medium-fi palette](medium-fi.md#color-and-palette), and reserve strongly saturated accents for
+identity and wayfinding. Limit each object to roughly three to five intentional colors,
+excluding small surface variation. Roof and foundation values should separate from the wall
+without outlining every edge.
 
 Author with neutral daylight, real cast shadows and a shadow-receiving ground. Base color must
 not contain baked directional shadows or highlights. Prefer rough matte paint, brick, concrete,
 wood, and coated metal; glass should read as glazing without becoming a mirror everywhere.
 Use material variation to explain construction, not to disguise missing geometry.
 
-For GLB PBR assets, base color/emissive are sRGB; normal, roughness, metalness and occlusion are
-linear data. Existing worldgen palette helpers and three.js color inputs have different conversion
-paths: compare rendered swatches when transferring colors between static and procedural assets,
-rather than copying a linear buffer value into an sRGB authoring field.
+For GLB PBR assets, base color/emissive textures are sRGB; normal, roughness, metalness and
+occlusion are linear data, and so are `COLOR_0` vertex colors and `baseColorFactor`. Worldgen
+palettes and other hex colors are sRGB, and the client decodes procedural vertex colors to linear
+before rendering, so a swatch renders as that swatch. When moving a palette color into a GLB,
+convert it from sRGB to linear rather than copying the hex value's bytes.
 
 ## Canonical material library
 

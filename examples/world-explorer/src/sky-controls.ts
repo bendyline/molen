@@ -10,10 +10,6 @@ import {
 import { Color, Fog } from 'three';
 import { localSkyDate, localSkyTime } from './sky-time.js';
 
-// TEMP look tuning: ?look={"lighting":{...},"palette":{...},"exposure":1}
-const LOOKDEBUG: { lighting?: object; palette?: object; exposure?: number } = JSON.parse(
-  new URLSearchParams(location.search).get('look') ?? '{}',
-);
 // A fixed anchor allows date changes without reallocating any sky geometry or materials.
 const EPOCH = Date.UTC(2000, 0, 1);
 
@@ -93,11 +89,11 @@ export function createSkyControls(
             mode: 'earth',
             observer: sampled,
             time: { epochMs: EPOCH },
-            palette: { ...EARTH_SKY_PALETTE, ...LOOKDEBUG.palette },
-            lighting: { ...EARTH_LIGHTING, ...LOOKDEBUG.lighting },
+            palette: EARTH_SKY_PALETTE,
+            lighting: EARTH_LIGHTING,
           },
           toneMapping: EARTH_TONE_MAPPING,
-          exposure: LOOKDEBUG.exposure ?? EARTH_EXPOSURE,
+          exposure: EARTH_EXPOSURE,
         });
         renderer.scene.fog = createEarthFog(renderer.backend);
         observerKey = key;

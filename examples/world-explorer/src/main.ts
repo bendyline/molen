@@ -22,6 +22,7 @@ import {
   createEarthFog,
   createEarthSky,
   createEarthWorldgen,
+  EARTH_WATER_COLOR,
   EarthAmbient,
   type EarthAudio,
   EarthVehicles,
@@ -39,11 +40,13 @@ import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
+  createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
+  setTerrainGroundOrigin,
   setTerrainWaterTime,
   type TerrainPackagePyramidStream,
   type TerrainPackageStream,
@@ -444,6 +447,7 @@ async function loadWorldgen(options: {
   lodPolicy: ScreenSpaceLodPolicy;
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
+  groundMaterial?: THREE.Material;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
   // Baked building materials persist across visits; ?materialCache=0 bakes every time.
@@ -476,6 +480,7 @@ async function loadWorldgen(options: {
         }
       : {},
     ...(materialStore !== undefined ? { materialStore } : {}),
+    ...(options.groundMaterial ? { groundMaterial: options.groundMaterial } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
     onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
@@ -713,7 +718,7 @@ async function main(): Promise<void> {
   startupStage('renderer');
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
-      color: '#286d83',
+      color: EARTH_WATER_COLOR,
       waveScale: 0.028,
       waveStrength: 0.045,
       waveSpeed: 0.5,
@@ -721,6 +726,12 @@ async function main(): Promise<void> {
     viewer.renderer.backend,
   );
   startupStage('water-material');
+  // One ground material for terrain and landcover, with world-space variation; `?ground=flat`
+  // keeps the solid vertex colors for comparison.
+  const groundMaterial =
+    params.get('ground') === 'flat'
+      ? undefined
+      : await createTerrainGroundMaterialAsync({}, viewer.renderer.backend);
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -753,6 +764,7 @@ async function main(): Promise<void> {
         metersPerUnit,
         quality,
         worker: useWorker,
+        ...(groundMaterial ? { groundMaterial } : {}),
         lodPolicy,
         surfaceRenderer,
       });
@@ -797,6 +809,13 @@ async function main(): Promise<void> {
           mesh: {
             materials: { water: waterMaterial },
             waterOffset: 0.65,
+            // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
+            // sits at its lower-quartile depth and shallower seabed shows through as ground, as
+            // mountEarthView avoids the same way.
+            ...(loaded.descriptor.coordinateSpace.kind === 'geospatial' ||
+            loaded.descriptor.surface?.seaLevel !== undefined
+              ? { seaLevel: loaded.descriptor.surface?.seaLevel ?? 0 }
+              : {}),
           },
         },
         ...(worldgen !== undefined
@@ -961,6 +980,7 @@ async function main(): Promise<void> {
           : {}),
         createTileGroup: () => viewer.renderer.createRenderGroup(),
         morphMilliseconds: params.has('freeze') ? 0 : 180,
+        ...(groundMaterial ? { material: groundMaterial } : {}),
         // Ground, roads and buildings receive sun shadows; tall layer parts cast them.
         shadows: shadowsWanted,
         layers: adaptiveLayers,
@@ -1604,6 +1624,7 @@ async function main(): Promise<void> {
       waterOrigin[0],
       waterOrigin[2],
     ]);
+    if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,

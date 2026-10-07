@@ -12,7 +12,11 @@ import {
 import { describe, expect, it } from 'vitest';
 import { buildingLabels, contextLabelAt, landcoverLabel } from '../src/kernel/labels';
 import { createRegionResolver } from '../src/kernel/region';
-import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
+import {
+  OPEN_GROUND_LABEL,
+  semanticTileToBatch,
+  type TileGeometry,
+} from '../src/kernel/semantic-adapter';
 import { worldgenTileBudgetForQuality } from '../src/kernel/tile-budgets';
 import { generateWorldgenTile } from '../src/kernel/tile-generate';
 import { loadDefaultAtlas, loadDefaultPack } from './helpers/pack';
@@ -332,7 +336,15 @@ describe('semantic adapter', () => {
     expect(batch.buildings[1]?.identity.startsWith('c:')).toBe(true);
     expect(batch.buildings[1]?.height).toBe(24);
     expect(batch.rules[0]?.style).toBe('molen.worldgen.pnw.house');
-    expect(batch.scatter?.polygons.filter((polygon) => polygon.seed === undefined)).toHaveLength(2);
+    // Unmapped ground first, as the whole tile, so every mapped polygon paints over it.
+    expect(batch.scatter?.polygons[0]?.label).toBe(OPEN_GROUND_LABEL);
+    expect(batch.scatter?.polygons[0]?.ring).toEqual([
+      [0, 0],
+      [geom.size, 0],
+      [geom.size, geom.size],
+      [0, geom.size],
+    ]);
+    expect(batch.scatter?.polygons.filter((polygon) => polygon.seed === undefined)).toHaveLength(3);
     expect(batch.scatter?.polygons.filter((polygon) => polygon.seed !== undefined)).toHaveLength(1);
     expect(batch.scatter?.exclusions.map((entry) => entry.kind)).toEqual([
       'buildings',

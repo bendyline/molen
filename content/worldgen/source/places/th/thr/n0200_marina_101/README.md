@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-286,882 triangles; 769,522 vertices; 4 material groups; 31,148,084 bytes. Native bounds: -32.754, 0.000, -32.000 to 24.866, 425.019, 33.949. Source hash: `sha256:434af75e3651516837a961ba6e4ee620aaf01d57400a434ec2558f948995606c`.
+233,064 triangles; 608,068 vertices; 4 material groups; 24,689,924 bytes. Native bounds: -32.754, 0.000, -32.000 to 24.866, 425.019, 33.949. Source hash: `sha256:32983a7b00ca2180904812a857dc3217de6645f5628dcd106f4bb2282d337d25`.
 
 {"up":"+Y","longAxis":"+X northeast toward Dubai","shortAxis":"+Z southeast toward Sheikh Zayed Road; -Z sea"}
 

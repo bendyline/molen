@@ -79,29 +79,43 @@ function panel(out, p, color, frame = 0.07, frameColor = metal, slot = 'metal') 
       beam(out, slot, shift(p[i], n, 0.04), shift(p[k], n, 0.04), 0.08, 0.1, frameColor);
     }
 }
+/**
+ * A framed curtain wall over the planar quad `p`, in `dx` by `dy` cells: one glass face, with
+ * every cell's frame drawn as full-length strips just proud of it and, past 15 cm, projecting
+ * beams along the same lines. A framed panel per cell made each 7 cm frame ring its own small
+ * component that no LOD level could drop or merge, so towers carried hundreds of thousands of
+ * frame triangles that no runtime level could show.
+ */
 function grid(out, p, color, dx = 1.5, dy = 3.4, frame = 0.07, frameColor = metal, slot = 'metal') {
-  const nx = Math.max(1, Math.ceil(Math.hypot(...p[1].map((v, i) => v - p[0][i])) / dx));
-  const ny = Math.max(1, Math.ceil(Math.hypot(...p[3].map((v, i) => v - p[0][i])) / dy));
-  for (let j = 0; j < ny; j++)
-    for (let i = 0; i < nx; i++) {
-      const a = lerp(p[0], p[3], j / ny),
-        b = lerp(p[1], p[2], j / ny),
-        c = lerp(p[1], p[2], (j + 1) / ny),
-        d = lerp(p[0], p[3], (j + 1) / ny);
-      panel(
-        out,
-        [
-          lerp(a, b, i / nx),
-          lerp(a, b, (i + 1) / nx),
-          lerp(d, c, (i + 1) / nx),
-          lerp(d, c, i / nx),
-        ],
-        color,
-        frame,
-        frameColor,
-        slot,
-      );
-    }
+  const width = Math.hypot(...p[1].map((v, i) => v - p[0][i])),
+    height = Math.hypot(...p[3].map((v, i) => v - p[0][i]));
+  const nx = Math.max(1, Math.ceil(width / dx));
+  const ny = Math.max(1, Math.ceil(height / dy));
+  face(out, 'glass', p, color);
+  if (!(frame > 0)) return;
+  // A cell's frame is the same fraction of the cell as `panel` draws it, capped at 22%.
+  const u = Math.min(0.22, frame / (width / nx)) / nx,
+    v = Math.min(0.22, frame / (height / ny)) / ny;
+  const n = normalFor(p[0], p[1], p[2]);
+  const at = (s, t, lift = 0.02) =>
+    shift(lerp(lerp(p[0], p[1], s), lerp(p[3], p[2], s), t), n, lift);
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  for (let i = 0; i <= nx; i++) {
+    const s0 = clamp(i / nx - u),
+      s1 = clamp(i / nx + u);
+    face(out, slot, [at(s0, 0), at(s1, 0), at(s1, 1), at(s0, 1)], frameColor);
+  }
+  for (let j = 0; j <= ny; j++) {
+    const t0 = clamp(j / ny - v),
+      t1 = clamp(j / ny + v);
+    face(out, slot, [at(0, t0), at(1, t0), at(1, t1), at(0, t1)], frameColor);
+  }
+  if (frame > 0.15) {
+    for (let i = 0; i <= nx; i++)
+      beam(out, slot, at(i / nx, 0, 0.04), at(i / nx, 1, 0.04), 0.08, 0.1, frameColor);
+    for (let j = 0; j <= ny; j++)
+      beam(out, slot, at(0, j / ny, 0.04), at(1, j / ny, 0.04), 0.08, 0.1, frameColor);
+  }
 }
 function cap(out, slot, ring, color, reverse = false) {
   const center = [
@@ -1803,6 +1817,63 @@ function buildAbeno(out, m) {
     box(out, 'metal', [x, 44.1, 17], [x + 4.5, 47.2, 25], [0.61, 0.65, 0.65]);
 }
 
+/**
+ * A vertical curtain wall on the plan edge a-b, from `y0` up to a straight roof line (`topA` at
+ * a, `topB` at b), in `dx` by `dy` cells: one glass face and full-length frame strips, cut where
+ * the roof crosses them, instead of a framed panel per cell.
+ */
+function slopedCurtain(out, a, b, y0, topA, topB, color, dx, dy, frame, frameColor) {
+  if (Math.max(topA, topB) <= y0 + 0.001) return;
+  const n = Math.max(1, Math.ceil(Math.hypot(a[0] - b[0], a[1] - b[1]) / dx));
+  const top = (s) => topA + (topB - topA) * s;
+  const corner = (s, y) => [a[0] + (b[0] - a[0]) * s, y, a[1] + (b[1] - a[1]) * s];
+  const wall = [
+    corner(0, y0),
+    corner(1, y0),
+    corner(1, Math.max(y0, topB)),
+    corner(0, Math.max(y0, topA)),
+  ];
+  if (topA <= y0 + 0.001 || topB <= y0 + 0.001) {
+    // The roof meets the floor line inside the edge: the wall is a triangle.
+    const cut = (y0 - topA) / (topB - topA);
+    const points =
+      topA <= y0 + 0.001
+        ? [corner(cut, y0), corner(1, y0), corner(1, topB)]
+        : [corner(0, y0), corner(cut, y0), corner(0, topA)];
+    if (Math.hypot(...normalFor(...points)) > 0.5) tri(out, 'glass', points, color);
+  } else face(out, 'glass', wall, color);
+  const normal = normalFor(wall[0], wall[1], wall[2]);
+  const lift = (p) => shift(p, normal, 0.02);
+  const strip = (points) => {
+    if (Math.hypot(...normalFor(...points)) > 1e-9)
+      face(out, 'metal', points.map(lift), frameColor);
+  };
+  const u = Math.min(0.22, frame / (Math.hypot(a[0] - b[0], a[1] - b[1]) / n)) / n;
+  for (let j = 0; j <= n; j++) {
+    const s0 = Math.max(0, j / n - u),
+      s1 = Math.min(1, j / n + u);
+    const t0 = top(s0),
+      t1 = top(s1);
+    if (Math.min(t0, t1) <= y0) continue;
+    strip([corner(s0, y0), corner(s1, y0), corner(s1, t1), corner(s0, t0)]);
+  }
+  // Floor lines run only where the wall stands above them; the roof edge has its own strip.
+  for (let y = y0; y < Math.max(topA, topB) - 0.001; y += dy) {
+    const lo = y - (y > y0 ? frame : 0),
+      hi = y + frame;
+    let s0 = 0,
+      s1 = 1;
+    if (topA !== topB) {
+      const s = (hi - topA) / (topB - topA);
+      if (topB > topA) s0 = Math.max(0, s);
+      else s1 = Math.min(1, s);
+    } else if (topA < hi) continue;
+    if (s1 - s0 < 1e-6) continue;
+    strip([corner(s0, lo), corner(s1, lo), corner(s1, hi), corner(s0, hi)]);
+  }
+  if (topA > y0 + frame && topB > y0 + frame)
+    strip([corner(0, topA - frame), corner(1, topB - frame), corner(1, topB), corner(0, topA)]);
+}
 function buildRyugyong(out, m) {
   const podium = localOutline(m);
   mappedSolid(out, 'stone', podium, 0, 0.5, [0.58, 0.59, 0.56]);
@@ -1826,48 +1897,20 @@ function buildRyugyong(out, m) {
       height - (rise ? (rise * (p[0] * dir[0] + p[1] * dir[1] - lo)) / (hi - lo) : 0);
     for (let i = 0; i < plan.length; i++) {
       const a = plan[i],
-        b = plan[(i + 1) % plan.length],
-        n = Math.max(1, Math.ceil(Math.hypot(a[0] - b[0], a[1] - b[1]) / 1.55));
-      for (let j = 0; j < n; j++) {
-        const p = lerp(a, b, j / n),
-          q = lerp(a, b, (j + 1) / n),
-          topP = roof(p),
-          topQ = roof(q);
-        for (let y = 11.8; y < Math.max(topP, topQ) - 0.001; y += 3.12) {
-          const yp = Math.min(y + 3.12, topP),
-            yq = Math.min(y + 3.12, topQ);
-          if (yp <= y + 0.001 || yq <= y + 0.001) {
-            const t = (y - topP) / (topQ - topP),
-              cut = lerp(p, q, Math.max(0, Math.min(1, t)));
-            const points =
-              yp <= y + 0.001
-                ? [
-                    [cut[0], y, cut[1]],
-                    [q[0], y, q[1]],
-                    [q[0], yq, q[1]],
-                  ]
-                : [
-                    [p[0], y, p[1]],
-                    [cut[0], y, cut[1]],
-                    [p[0], yp, p[1]],
-                  ];
-            if (Math.hypot(...normalFor(...points)) > 0.5)
-              tri(out, 'glass', points, [0.28, 0.4, 0.46]);
-          } else
-            panel(
-              out,
-              [
-                [p[0], y, p[1]],
-                [q[0], y, q[1]],
-                [q[0], yq, q[1]],
-                [p[0], yp, p[1]],
-              ],
-              [0.28, 0.4, 0.46],
-              0.045,
-              [0.55, 0.64, 0.68],
-            );
-        }
-      }
+        b = plan[(i + 1) % plan.length];
+      slopedCurtain(
+        out,
+        a,
+        b,
+        11.8,
+        roof(a),
+        roof(b),
+        [0.28, 0.4, 0.46],
+        1.55,
+        3.12,
+        0.045,
+        [0.55, 0.64, 0.68],
+      );
       beam(
         out,
         'metal',

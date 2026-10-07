@@ -61,6 +61,8 @@ export interface ScatterRule {
   avoid?: Partial<ScatterAvoid>;
   populations: ScatterPopulation[];
   lod?: Partial<ScatterLod>;
+  /** `canopy` (default) shares the batch budget; `groundcover` has its own (see budgets). */
+  layer?: 'canopy' | 'groundcover';
 }
 
 export interface ScatterDoc {

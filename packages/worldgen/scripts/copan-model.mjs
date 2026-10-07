@@ -1,6 +1,6 @@
 /** Copan: mapped curved slab, distinct rear systems and reusable open stair/screen meshes. */
 import { readFileSync } from 'node:fs';
-import { beam, loft } from './authored-structure-mesh.mjs';
+import { loft } from './authored-structure-mesh.mjs';
 import { compactAuthoredMesh } from './compact-authored-mesh.mjs';
 import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { transform, triangle } from './heritage-tower-detail-mesh.mjs';
@@ -110,13 +110,42 @@ const rear = [
   ...p.slice(179, 181),
   ...p.slice(196, 198),
 ];
-const plate = [...frontGlass, ...rear];
+// Floor plates follow the glass line at 2.2 m chords (about 2 cm off the curve); the window bays
+// keep the finer line.
+const plate = [...inward(samples(p.slice(0, 65), 2.16), 1.28), ...rear];
 function placement(a, b, y = 0) {
   const mid = mix(a, b, 0.5);
   return { translation: [mid[0], y, mid[1]], angle: -Math.atan2(a[1] - b[1], a[0] - b[0]) };
 }
 function edge(out, a, b, y = 0) {
   return transform(out, placement(a, b).angle, placement(a, b, y).translation);
+}
+/** A face toward +z (outward in a bay's frame). */
+function rect(out, slot, x0, x1, y0, y1, z, color) {
+  triangle(
+    out,
+    slot,
+    [
+      [x0, y0, z],
+      [x1, y0, z],
+      [x1, y1, z],
+    ],
+    color,
+  );
+  triangle(
+    out,
+    slot,
+    [
+      [x0, y0, z],
+      [x1, y1, z],
+      [x0, y1, z],
+    ],
+    color,
+  );
+}
+/** A horizontal blade along an open line, as one slab rather than a slab per sample. */
+function blade(out, line, depth, y, h, slot = 'mosaic', color = white) {
+  slab(out, [...line, ...inward(line, depth).toReversed()], y, y + h, slot, color);
 }
 function ribbon(out, line, depth, y, h, slot = 'mosaic', color = white) {
   const inside = inward(line, depth);
@@ -128,17 +157,11 @@ const windowTint = (i, variant) => {
   return glass.map((v) => v * (0.86 + n * 0.26));
 };
 function windowBay(out, width, height, variant, index) {
-  box(
-    out,
-    'glass',
-    [-width / 2 + 0.035, 0.13, -0.1],
-    [width / 2 - 0.035, height - 0.15, -0.04],
-    windowTint(index, variant),
-  );
-  for (const x of [-width / 2, 0, width / 2])
-    box(out, 'metal', [x - 0.024, 0.1, -0.09], [x + 0.024, height - 0.1, 0.03], silver);
-  for (const y of [0.1, 0.94, 1.93, height - 0.1])
-    box(out, 'metal', [-width / 2, y, -0.09], [width / 2, y + 0.035, 0.03], silver);
+  // Glass with one shared mullion and the sill line; the bay's 2-5 cm glazing bars are below
+  // the closeup's error, and the brise-soleil hides most of the front glazing anyway.
+  rect(out, 'glass', -width / 2, width / 2, 0.1, height - 0.1, -0.04, windowTint(index, variant));
+  rect(out, 'metal', -width / 2, -width / 2 + 0.048, 0.1, height - 0.1, 0.03, silver);
+  rect(out, 'metal', -width / 2, width / 2, 0.1, 0.135, 0.03, silver);
 }
 const rearSamples = samples(rear, 2.65);
 const rearBays = rearSamples.slice(0, -1).map((a, i) => {
@@ -171,9 +194,7 @@ function residentialFloor(out, variant = 0) {
           [(s * w) / 2 + 0.1, interval, 0.26],
           white,
         );
-      box(o, 'glass', [-1.13, 2.08, -0.25], [1.13, 2.73, -0.2], windowTint(i, variant));
-      for (const x of [-1.15, 0, 1.15])
-        box(o, 'metal', [x - 0.02, 2.06, -0.25], [x + 0.02, 2.76, -0.15], silver);
+      rect(o, 'glass', -1.13, 1.13, 2.08, 2.73, -0.2, windowTint(i, variant));
     }
     box(o, 'mosaic', [-w / 2, interval - 0.13, -0.4], [w / 2, interval, 0.16], gray);
   }
@@ -197,92 +218,48 @@ function residentialFloor(out, variant = 0) {
     }
   }
 }
+// The brise-soleil follows the S-curve at 2.2 m chords, enough for its large radii. Its 3 cm
+// brackets across the air gap are below the closeup's error.
+const bladeLine = samples(p.slice(0, 65), 2.16);
 function briseFloor(out, openBand = false) {
-  for (const y of openBand ? [0.03] : [0.03, 1.01, 1.99]) ribbon(out, front, 0.98, y, 0.115);
-  // Brackets bridge the open air gap between the glazing and the inner edge of each blade.
-  const supports = samples(front, 2.75),
-    inner = inward(supports, 1.3);
-  for (let i = 0; i < supports.length; i++)
-    for (const y of openBand ? [0.04] : [0.04, 1.02, 2.0])
-      beam(
-        out,
-        'metal',
-        [supports[i][0], y, supports[i][1]],
-        [inner[i][0], y, inner[i][1]],
-        0.032,
-        0.06,
-        iron,
-      );
+  for (const y of openBand ? [0.03] : [0.03, 1.01, 1.99]) blade(out, bladeLine, 0.98, y, 0.115);
 }
 function screenPanel(out) {
+  // The cobogó's 2 cm webs and 17 cm openings are below the closeup's error: a coarse lattice of
+  // white webs over the dark void reads as the same pierced screen at a fraction of the parts.
   const width = 2.3,
     height = 1.82,
-    cols = 12,
-    rows = 10,
-    joint = 0.022;
-  // Shared continuous rows and short vertical webs leave actual openings, including side reveals.
+    cols = 6,
+    rows = 4,
+    web = 0.06;
   for (let row = 0; row <= rows; row++) {
-    const y = 0.19 + (row * height) / rows;
-    box(out, 'mosaic', [-width / 2, y, -0.12], [width / 2, y + joint, 0.045], white);
+    const y = 0.19 + (row * (height - web)) / rows;
+    rect(out, 'mosaic', -width / 2, width / 2, y, y + web, 0.045, white);
   }
-  for (let col = 0; col <= cols; col++)
-    for (let row = 0; row < rows; row++) {
-      const x = -width / 2 + (col * width) / cols,
-        y = 0.19 + (row * height) / rows + joint;
-      box(out, 'mosaic', [x, y, -0.12], [x + joint, y + height / rows - joint, 0.045], white);
-    }
+  for (let col = 0; col <= cols; col++) {
+    const x = -width / 2 + (col * (width - web)) / cols;
+    rect(out, 'mosaic', x, x + web, 0.19, 0.19 + height, 0.04, white);
+  }
 }
 function stairFlight(out) {
   const radius = 1.79,
     core = 0.44,
     count = 20;
   const at = (r, a, y) => [r * Math.sin(a), y, r * Math.cos(a)];
-  tube(out, 'concrete', [0, 0, 0], [0, interval, 0], core, white, 32);
+  // Steps as single-chord treads round an 8-sided core; the 1-2 cm balusters and handrails
+  // are below the closeup's error.
+  tube(out, 'concrete', [0, 0, 0], [0, interval, 0], core, white, 8);
   for (let i = 0; i < count; i++) {
     const a = (i * tau) / count,
       b = ((i + 1) * tau) / count,
       y = ((i + 1) * interval) / count;
-    const plan = [];
-    for (let j = 0; j <= 3; j++) {
-      const q = at(radius, a + ((b - a) * j) / 3, 0);
-      plan.push([q[0], q[2]]);
-    }
-    for (let j = 3; j >= 0; j--) {
-      const q = at(core, a + ((b - a) * j) / 3, 0);
-      plan.push([q[0], q[2]]);
-    }
+    const plan = [at(radius, a, 0), at(radius, b, 0), at(core, b, 0), at(core, a, 0)].map((q) => [
+      q[0],
+      q[2],
+    ]);
     slab(out, plan, y - 0.12, y, 'concrete', white);
-    if (i > 0 && i < count - 1) {
-      for (let j = 0; j < 3; j++) {
-        const t = a + ((b - a) * j) / 3,
-          yy = ((i + j / 3) * interval) / count;
-        tube(
-          out,
-          'metal',
-          at(radius - 0.035, t, yy),
-          at(radius - 0.035, t, yy + 1.0),
-          0.0125,
-          iron,
-          6,
-        );
-        tube(
-          out,
-          'metal',
-          at(radius - 0.035, t, yy + 1.0),
-          at(radius - 0.035, t + (b - a) / 3, yy + interval / count / 3 + 1),
-          0.022,
-          iron,
-          8,
-        );
-      }
-    }
   }
   box(out, 'concrete', [-0.62, -0.1, 0.35], [0.62, 0, 3.25], white);
-  for (const x of [-0.61, 0.61]) {
-    for (let z = 1.7; z <= 3.15; z += 0.24)
-      tube(out, 'metal', [x, 0, z], [x, 1, z], 0.013, iron, 6);
-    tube(out, 'metal', [x, 1, 1.7], [x, 1, 3.25], 0.022, iron, 8);
-  }
 }
 const stairLocations = [
   { center: [61.858, 4.86], join: mix(p[66], p[82], 0.5) },

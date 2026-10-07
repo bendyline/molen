@@ -719,47 +719,51 @@ function facetedGlazing(
     )
       tri(out, slot, f, color);
   };
-  for (let y = y0; y < y1; y++)
-    for (let x = x0; x < x1; x++) {
-      const cell = clip(
-        clip(clip(clip(uv, 0, x * dx, 1), 0, (x + 1) * dx, -1), 1, y * dy, 1),
-        1,
-        (y + 1) * dy,
-        -1,
-      );
-      if (cell.length < 3) continue;
-      const area = cell.reduce(
-        (s, p, i) =>
-          s + p[0] * cell[(i + 1) % cell.length][1] - p[1] * cell[(i + 1) % cell.length][0],
-        0,
-      );
-      if (Math.abs(area) < 1e-5) continue;
-      const center = [0, 0];
-      for (const p of cell) {
-        center[0] += p[0] / cell.length;
-        center[1] += p[1] / cell.length;
-      }
-      const inner = cell.map((p) => [
-        center[0] + (p[0] - center[0]) * 0.957,
-        center[1] + (p[1] - center[1]) * 0.978,
-      ]);
-      const p = cell.map(world),
-        q = inner.map(world);
-      for (const ids of ShapeUtils.triangulateShape(
-        inner.map((v) => new Vector2(...v)),
-        [],
-      )) {
-        let t = ids.map((i) => q[i]);
-        const n = normalFor(...t);
-        if (n.reduce((s, v, i) => s + v * normal[i], 0) < 0) t = t.toReversed();
-        safeTri('glass', t, tint);
-      }
-      for (let i = 0; i < p.length; i++) {
-        const j = (i + 1) % p.length;
-        safeTri('metal', [p[i], p[j], q[j]], trim);
-        safeTri('metal', [p[i], q[j], q[i]], trim);
-      }
+  // One glass facet and its frames as strips clipped to it, just proud of the glass, instead of
+  // an inset pane and frame ring per cell. Strip widths match the old 0.957 / 0.978 cell insets.
+  const fill = (poly, slot, color, lift = 0) => {
+    if (poly.length < 3) return;
+    const points = poly.map((v) => world(v).map((x, i) => x + normal[i] * lift));
+    for (const ids of ShapeUtils.triangulateShape(
+      poly.map((v) => new Vector2(...v)),
+      [],
+    )) {
+      let t = ids.map((i) => points[i]);
+      if (normalFor(...t).reduce((s, v, i) => s + v * normal[i], 0) < 0) t = t.toReversed();
+      safeTri(slot, t, color);
     }
+  };
+  fill(uv, 'glass', tint);
+  const wx = dx * 0.0215,
+    wy = dy * 0.011;
+  for (let x = x0; x <= x1; x++)
+    fill(clip(clip(uv, 0, x * dx - wx, 1), 0, x * dx + wx, -1), 'metal', trim, 0.02);
+  for (let y = y0; y <= y1; y++)
+    fill(clip(clip(uv, 1, y * dy - wy, 1), 1, y * dy + wy, -1), 'metal', trim, 0.02);
+  // The facet's own edges carry the frame of the cells they cut.
+  const winding = Math.sign(
+    uv.reduce(
+      (s, p, i) => s + p[0] * uv[(i + 1) % uv.length][1] - p[1] * uv[(i + 1) % uv.length][0],
+      0,
+    ),
+  );
+  for (let i = 0; i < uv.length; i++) {
+    const a = uv[i],
+      b = uv[(i + 1) % uv.length],
+      length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    if (length < 1e-5) continue;
+    const across = Math.abs(b[0] - a[0]) > Math.abs(b[1] - a[1]) ? wy : wx;
+    const inward = [
+      (-(b[1] - a[1]) / length) * winding * across,
+      ((b[0] - a[0]) / length) * winding * across,
+    ];
+    fill(
+      [a, b, [b[0] + inward[0], b[1] + inward[1]], [a[0] + inward[0], a[1] + inward[1]]],
+      'metal',
+      trim,
+      0.02,
+    );
+  }
 }
 
 function clipPolygonPlane(poly, distance, sign = 1) {
@@ -1326,8 +1330,11 @@ function buildTrumpChicago(out, m) {
           const tint = blue.map(
             (v, c) => v * (0.95 + ((j * 17 + f * 3) % 5) * 0.013) + (lobby && c > 0 ? 0.02 : 0),
           );
-          panel(
+          // Vision glass with its slight tint; the 4.5 cm unit frames are below every runtime
+          // level's error, while the floor spandrels and major column lines below carry the grid.
+          face(
             out,
+            'glass',
             [
               [aa[0], y, aa[1]],
               [bb[0], y, bb[1]],
@@ -1335,9 +1342,6 @@ function buildTrumpChicago(out, m) {
               [aa[0], top, aa[1]],
             ],
             service ? [0.23, 0.28, 0.29] : tint,
-            0.045,
-            silver,
-            'stainless',
           );
         }
         if (!lobby)
@@ -1351,7 +1355,7 @@ function buildTrumpChicago(out, m) {
             silver,
           );
         if (service)
-          for (let h = y + 0.55; h < top - 0.3; h += 0.28)
+          for (let h = y + 0.55; h < top - 0.3; h += 0.84)
             beam(
               out,
               'stainless',
@@ -1669,8 +1673,10 @@ function buildGlories(out, m) {
         face(out, 'metal', [p[k], p[(k + 1) % 4], q[(k + 1) % 4], q[k]], color);
     } else face(out, 'pink', p, color);
   }
-  // Individually tilted laminated-glass louvres stand forward of the pixelated metal skin.
-  const pitch = 0.3;
+  // Tilted laminated-glass louvres stand forward of the pixelated metal skin. At medium-fi they
+  // are one band per 1.2 m (four real louvre rows) without their 2.5 cm edges and clips, which
+  // were 1.4 million triangles of sub-pixel members.
+  const pitch = 1.2;
   for (let y = 0.42; y < height - 0.18; y += pitch) {
     const s = scale(y),
       sections = Math.max(12, Math.round(n * Math.max(0.24, s)));
@@ -1682,18 +1688,10 @@ function buildGlories(out, m) {
       const p = [
         at(a + 0.012, y, 0),
         at(b - 0.012, y, 0),
-        at(b - 0.012, Math.min(height - 0.015, y + 0.255), tilt),
-        at(a + 0.012, Math.min(height - 0.015, y + 0.255), tilt),
+        at(b - 0.012, Math.min(height - 0.015, y + pitch * 0.85), tilt),
+        at(a + 0.012, Math.min(height - 0.015, y + pitch * 0.85), tilt),
       ];
       face(out, 'clear_glass', p, [0.82, 0.94, 0.95]);
-      // Fine edge and two short clips give close views physical depth without copied textures.
-      beam(out, 'metal', p[0], p[1], 0.025, 0.027, [0.63, 0.7, 0.7]);
-      if (i % 2 === 0 && y < 115)
-        for (const u of [0.08, 0.92]) {
-          const q = lerp(p[0], p[1], u),
-            r = at(a + (b - a) * u, y, 0.65);
-          beam(out, 'metal', r, q, 0.035, 0.045, [0.53, 0.59, 0.59]);
-        }
     }
   }
   // The upper dome has no colored concrete shell: framed pale glazing sits behind the slats.
@@ -1722,9 +1720,9 @@ function buildGlories(out, m) {
       );
     }
   for (let y = 115; y < 143.7; y += 1.88) {
-    const ring = Array.from({ length: 132 }, (_, i) => at(i, y, 0.36));
-    for (let i = 0; i < 132; i++)
-      beam(out, 'metal', ring[i], ring[(i + 1) % 132], 0.14, 0.18, [0.58, 0.64, 0.65]);
+    const ring = Array.from({ length: 44 }, (_, i) => at(i * 3, y, 0.36));
+    for (let i = 0; i < 44; i++)
+      beam(out, 'metal', ring[i], ring[(i + 1) % 44], 0.14, 0.18, [0.58, 0.64, 0.65]);
   }
   // Small glazed oculus seals the crown instead of leaving a pinched open pole.
   const capPlan = Array.from({ length: 64 }, (_, i) => {
@@ -1740,9 +1738,9 @@ function buildGlories(out, m) {
   );
   // Continuous service rails remain aligned to the facade and explain its large-scale rhythm.
   for (let y = 4.7; y < 114; y += 4.05) {
-    const p = Array.from({ length: n }, (_, i) => at(i, y, -0.055));
-    for (let i = 0; i < n; i++)
-      beam(out, 'metal', p[i], p[(i + 1) % n], 0.065, 0.09, [0.59, 0.64, 0.65]);
+    const p = Array.from({ length: n / 4 }, (_, i) => at(i * 4, y, -0.055));
+    for (let i = 0; i < n / 4; i++)
+      beam(out, 'metal', p[i], p[(i + 1) % (n / 4)], 0.065, 0.09, [0.59, 0.64, 0.65]);
   }
 }
 

@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-242,702 triangles; 483,174 vertices; 8 material groups; 20,311,168 bytes. Native bounds: -42.410, 0.000, -32.188 to 42.487, 297.700, 32.204. Source hash: `sha256:5a3fa6abc10d1f29be65241109d4895bb75d2f09305134912ab5bd46ec77f2af`.
+67,854 triangles; 133,478 vertices; 8 material groups; 5,623,924 bytes. Native bounds: -42.410, 0.000, -32.188 to 42.487, 297.700, 32.204. Source hash: `sha256:ea8d66e6a03e5838e8f356a64bc4cda85c108bb40f4cb111228870e40b3fa19b`.
 
 {"up":"+Y","longitudinal":"+X east-southeast along local map frame","front":"+Z south-southwest","origin":"Mapped ground-envelope center at terrain contact. Independent office plan has an explicit inferred offset."}
 

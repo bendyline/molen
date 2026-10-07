@@ -70,6 +70,7 @@ export {
   EARTH_LIGHTING,
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
+  EARTH_WATER_COLOR,
   earthHazeColor,
   earthShadowFocus,
 } from './client/look';

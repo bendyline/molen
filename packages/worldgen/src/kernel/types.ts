@@ -178,6 +178,13 @@ export interface WorldgenBudgets {
   maxInstances: number;
   /** Model varieties admitted by procedural scatter (authored identity models are separate). */
   maxPropModels: number;
+  /**
+   * Instances scatter rules on the `groundcover` layer may emit per batch: knee-high near detail
+   * with its own budget, so it never thins the canopy. 0 disables ground cover.
+   */
+  maxGroundCoverInstances: number;
+  /** Model varieties admitted for ground cover, on top of `maxPropModels`. */
+  maxGroundCoverModels: number;
   maxMaterialGroups: number;
 }
 

@@ -29,7 +29,7 @@ const materials = {
 };
 
 const pacificHeights = [
-  184, 147, 284, 58, 35, 23, 34, 50, 48, 42, 55, 46, 46, 168, 75, 260, 326, 64, 52, 93,
+  184, 147, 284, 58, 35, 23, 34, 66, 55, 42, 55, 46, 46, 168, 75, 260, 326, 64, 52, 93,
 ];
 const globalHeights = [
   381, 319, 541, 87, 88, 169, 553, 330, 50, 96, 38, 48, 172, 67, 333, 634, 508, 452, 632, 828,
@@ -63,11 +63,11 @@ function sizeFor(code) {
   const index = Number(code.slice(1)) - 1;
   switch (code[0]) {
     case 'A':
-      return [
-        index === 10 ? 70 : index === 7 || index === 8 ? 150 : index === 6 ? 140 : 65,
-        pacificHeights[index],
-        index === 7 || index === 8 ? 110 : 55,
-      ];
+      // T-Mobile Park and Lumen Field are measured footprints (with the parked roof); the rest
+      // are stylized working sizes.
+      if (index === 7) return [240, pacificHeights[index], 216];
+      if (index === 8) return [212, pacificHeights[index], 257];
+      return [index === 10 ? 70 : index === 6 ? 140 : 65, pacificHeights[index], 55];
     case 'B':
       return [
         index === 11 ? 120 : index === 13 ? 145 : 60,

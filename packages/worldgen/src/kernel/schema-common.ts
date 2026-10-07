@@ -35,6 +35,8 @@ export const BUILTIN_MODELS: readonly string[] = [
   'builtin:tree.deciduous.birch',
   'builtin:shrub',
   'builtin:rock',
+  'builtin:groundcover.tuft',
+  'builtin:groundcover.fern',
 ];
 
 export interface ParsedMaterialRef {

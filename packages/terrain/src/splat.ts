@@ -14,7 +14,7 @@ const DEFAULT_COLORS: Record<string, string> = {
 };
 
 const srgbToLinear = (v: number): number =>
-  v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 
 /**
  * Layer colors are authored as sRGB hex; the vertex color attribute is read as linear, so decode

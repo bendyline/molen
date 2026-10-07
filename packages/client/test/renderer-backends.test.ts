@@ -633,6 +633,33 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('never tears a WebGPU shadow map down once it exists, fading it out instead', async () => {
+    // three r184's WebGPU shadow node keeps sampling a disposed depth texture after being turned
+    // off and on or resized, so every submit fails; the map must keep its size and stay on.
+    const renderer = await Renderer.create({ backend: 'webgpu' });
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    renderer.setShadowQuality('high');
+    const map = light.shadow.map;
+    expect(light.castShadow).toBe(true);
+    expect(light.shadow.mapSize.x).toBe(4096);
+    renderer.setShadowQuality('off');
+    expect(light.castShadow).toBe(true);
+    expect(light.shadow.intensity).toBe(0);
+    expect(light.shadow.autoUpdate).toBe(false);
+    expect(renderer.three.shadowMap.enabled).toBe(true);
+    renderer.setShadowQuality('medium');
+    expect(light.shadow.intensity).toBe(1);
+    expect(light.shadow.autoUpdate).toBe(true);
+    expect(light.shadow.mapSize.x).toBe(4096);
+    expect(light.shadow.map).toBe(map);
+    renderer.dispose();
+  });
+
   it('keeps the static scene graph from recomposing every frame, updating the root on a rebase', () => {
     const renderer = new Renderer();
     const building = new THREE.Mesh();

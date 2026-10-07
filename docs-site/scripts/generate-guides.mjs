@@ -99,6 +99,7 @@ const GUIDE_ORDER = [
   '3d-model-assets',
   'source-bundles',
   '3d-art-guidelines',
+  'medium-fi',
   'rendering-backends',
   'sky',
   'weather',

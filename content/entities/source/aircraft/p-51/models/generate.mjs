@@ -1447,39 +1447,14 @@ function buildMarkings(g, fuselage) {
   );
 }
 
-/** Fine joints belong to removable bare-metal panels, not the filled/lacquered wing nose. */
+/**
+ * Fuel caps on the upper wing. Panel joints and cowling fasteners (2–4 mm geometry) are not
+ * modelled: under the medium-fi style guide detail thinner than a pixel at viewing distance
+ * shimmers and costs a draw each, so the bare-metal panelling reads from the painted panel
+ * colors alone. (They were 13,000 triangles and four draws.)
+ */
 function buildSurfaceDetail(g) {
-  for (const z of [1.12, 2.3, 2.94]) {
-    const points = span(-Math.PI * 0.19, Math.PI * 1.19, 0.065).map((a) =>
-      sectionPoint(station(z), a, 0.002),
-    );
-    add(g, 'cowling-panel-joints', panel, curveTube(points, 0.0022, 4));
-    for (const a of span(-Math.PI * 0.16, Math.PI * 1.16, 0.145)) {
-      const p = sectionPoint(station(z - 0.018), a, 0.0035);
-      add(g, 'cowling-fasteners', silver, new T.SphereGeometry(0.0038, 6, 4).translate(...p));
-    }
-  }
   for (const side of [-1, 1]) {
-    const seam = span(1.16, 2.9, 0.07).map((z) => [
-      side * halfWidth(station(z), 1.64, 0.002),
-      1.64,
-      z,
-    ]);
-    add(g, 'cowling-panel-joints', panel, curveTube(seam, 0.0022, 4));
-    // Rear fuselage frame joints are much subtler than the access-panel gaps.
-    for (const z of [-1.65, -2.85, -3.65, -4.4]) {
-      const angles = side === 1 ? span(-1.3, 1.3, 0.08) : span(Math.PI - 1.3, Math.PI + 1.3, 0.08);
-      add(
-        g,
-        'fuselage-skin-joints',
-        panel,
-        curveTube(
-          angles.map((a) => sectionPoint(station(z), a, 0.002)),
-          0.0016,
-          4,
-        ),
-      );
-    }
     const center = wingPoint(side)(wingStation(1.65), 0.39, 1);
     add(
       g,
@@ -1495,27 +1470,6 @@ function buildSurfaceDetail(g) {
       red,
       new T.BoxGeometry(0.046, 0.009, 0.013).translate(center[0], center[1] + 0.008, center[2]),
     );
-    // Outer gun access panel: geometrically follows the wing instead of floating over it.
-    const outline = [
-      [1.92, 0.34],
-      [2.48, 0.34],
-      [2.48, 0.65],
-      [1.92, 0.65],
-      [1.92, 0.34],
-    ];
-    const path = [];
-    for (let i = 0; i < outline.length - 1; i++) {
-      const [a, u] = outline[i],
-        [b, v] = outline[i + 1];
-      for (let j = 0; j < 12; j++) {
-        const t = j / 12,
-          p = wingPoint(side)(wingStation(a + (b - a) * t), u + (v - u) * t, 1);
-        p[1] += 0.003;
-        path.push(p);
-      }
-    }
-    path.push(path[0]);
-    add(g, 'gun-access-panel-joints', panel, curveTube(path, 0.0018, 4));
   }
 }
 

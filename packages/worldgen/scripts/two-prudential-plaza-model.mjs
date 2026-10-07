@@ -97,93 +97,72 @@ const crownPlanes = [
   [0, 0, -1, Z],
 ];
 
-/** Eight-point face with small stone arrises; independent panels leave real dark joints. */
+/**
+ * A granite panel face. The 2 cm arrises, 2.4 cm joints and 13 cm returns of the real panels are
+ * below the closeup's error on a 300 m tower, so a panel is its face.
+ */
 function stone(o, x0, x1, y0, y1, depth = 0, color = granite) {
-  const b = Math.min(0.018, (x1 - x0) / 8, (y1 - y0) / 8);
-  const ring = [
-    [x0 + b, y0],
-    [x1 - b, y0],
-    [x1, y0 + b],
-    [x1, y1 - b],
-    [x1 - b, y1],
-    [x0 + b, y1],
-    [x0, y1 - b],
-    [x0, y0 + b],
-  ];
-  o.addConvexPolygon(
+  face(
+    o,
     'cladding',
-    'palette:#ffffff',
-    ring.map(([x, y]) => [x, y, depth]),
-    [0, 0, 1],
-    (p) => [p[0], p[1]],
+    [
+      [x0, y0, depth],
+      [x1, y0, depth],
+      [x1, y1, depth],
+      [x0, y1, depth],
+    ],
     color,
   );
-  for (let i = 0; i < ring.length; i++) {
-    const a = ring[i],
-      b = ring[(i + 1) % ring.length];
-    face(
-      o,
-      'cladding',
-      [
-        [...a, depth],
-        [...b, depth],
-        [...b, depth - 0.13],
-        [...a, depth - 0.13],
-      ],
-      color,
-    );
-  }
 }
 
+/** Opaque PBR glazing (clear at the lobby); its 2.5 cm frames are sub-pixel at every level. */
 function glass(o, x0, x1, y0, y1, clear = false) {
-  const d = -0.13,
-    g = 0.025;
-  if (!clear) box(o, 'recess', [x0, y0, d - 0.05], [x1, y1, d - 0.025], black);
+  const d = -0.13;
   face(
     o,
     clear ? 'clear_glass' : 'glass',
     [
-      [x0 + g, y0 + g, d],
-      [x1 - g, y0 + g, d],
-      [x1 - g, y1 - g, d],
-      [x0 + g, y1 - g, d],
+      [x0, y0, d],
+      [x1, y0, d],
+      [x1, y1, d],
+      [x0, y1, d],
     ],
     blue,
   );
-  for (const x of [x0, x1 - g]) box(o, 'metal', [x, y0, d - 0.01], [x + g, y1, d + 0.025], metal);
-  for (const y of [y0, y1 - g]) box(o, 'metal', [x0, y, d - 0.01], [x1, y + g, d + 0.025], metal);
 }
+
+const strip = (o, slot, x0, x1, y0, y1, z, color) =>
+  face(
+    o,
+    slot,
+    [
+      [x0, y0, z],
+      [x1, y0, z],
+      [x1, y1, z],
+      [x0, y1, z],
+    ],
+    color,
+  );
 
 function bay(o, w, h, kind) {
   if (kind === 'glazed' || kind === 'lobby') {
     glass(o, 0, w, 0, h, kind === 'lobby');
-    box(o, 'stainless', [0, 0, -0.16], [0.045, h, -0.08], silver);
-    box(o, 'stainless', [w - 0.045, 0, -0.16], [w, h, -0.08], silver);
-    box(o, 'metal', [0, h - 0.1, -0.16], [w, h, -0.06], metal);
-    box(o, 'metal', [w / 2 - 0.018, 0, -0.15], [w / 2 + 0.018, h, -0.08], metal);
+    strip(o, 'stainless', 0, 0.045, 0, h, -0.08, silver);
+    strip(o, 'stainless', w - 0.045, w, 0, h, -0.08, silver);
+    strip(o, 'metal', 0, w, h - 0.1, h, -0.06, metal);
     return;
   }
+  // Granite piers either side of a recessed window with granite sill and head panels; the
+  // dark recess behind reads as the real joints' shadow from the street.
   const p = Math.min(0.4, w * 0.18),
     sill = 0.78,
-    head = h - 0.47,
-    g = 0.012;
-  box(o, 'recess', [0, 0, -0.24], [w, h, -0.15], black);
-  for (const [a, b] of [
-    [g, p - g],
-    [w - p + g, w - g],
-  ])
-    for (const [lo, hi] of [
-      [g, h / 2 - g],
-      [h / 2 + g, h - g],
-    ])
-      stone(o, a, b, lo, hi);
-  stone(o, p + g, w - p - g, g, sill - g, -0.025, [0.57, 0.57, 0.56]);
-  stone(o, p + g, w - p - g, head + g, h - g, -0.025, [0.57, 0.57, 0.56]);
+    head = h - 0.47;
+  strip(o, 'recess', 0, w, 0, h, -0.15, black);
+  stone(o, 0, p, 0, h);
+  stone(o, w - p, w, 0, h);
+  stone(o, p, w - p, 0, sill, -0.025, [0.57, 0.57, 0.56]);
+  stone(o, p, w - p, head, h, -0.025, [0.57, 0.57, 0.56]);
   glass(o, p, w - p, sill, head);
-  box(o, 'metal', [p, sill - 0.028, -0.17], [w - p, sill + 0.015, 0.035], silver);
-  box(o, 'metal', [p, head - 0.015, -0.15], [w - p, head + 0.02, 0.018], metal);
-  for (const x of [p, w - p - 0.045])
-    box(o, 'metal', [x, sill, -0.16], [x + 0.045, head, -0.09], metal);
 }
 
 // Each recess removes a strip of the north/south ends. Heights are explicitly photographic
@@ -328,14 +307,6 @@ function structural(out) {
         box(o, 'stone', [a, y - 0.16, z], [b, y - 0.02, z + W], darkStone);
         const x = sign * before;
         box(o, 'stainless', [x - 0.1, y - 0.01, z], [x + 0.1, y + 0.2, z + W], silver);
-        for (let k = 1; k < 4; k++)
-          box(
-            o,
-            'metal',
-            [a, y - 0.016, z + (k * W) / 4 - 0.008],
-            [b, y - 0.008, z + (k * W) / 4 + 0.008],
-            metal,
-          );
       }
     }
   // East entry doors (native -Z); provisional signed location within the mapped tower envelope.
@@ -382,7 +353,6 @@ function crown(o) {
           cc = mix(d, c, (j + 1) / n),
           dd = mix(d, c, j / n);
         face(roof, 'glass', [aa, bb, cc, dd], blue);
-        beam(roof, 'metal', aa, dd, 0.035, 0.05, metal);
       }
       const capA = a.map((v, k) => v + (k === 1 ? 0.11 : 0)),
         capB = b.map((v, k) => v + (k === 1 ? 0.11 : 0));
@@ -400,8 +370,6 @@ function crown(o) {
       q = ring(rn, yn);
     for (let j = 0; j < 4; j++)
       face(o, 'stainless', [p[j], p[(j + 1) % 4], q[(j + 1) % 4], q[j]], silver);
-    if (row < 15)
-      for (let j = 0; j < 4; j++) beam(o, 'metal', p[j], p[(j + 1) % 4], 0.025, 0.018, metal);
   }
   tube(o, 'stainless', [0, apex - 0.15, 0], [0, apex + 0.2, 0], 0.9, silver, 32);
 }

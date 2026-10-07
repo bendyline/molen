@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/copan-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-2,715,884 triangles; 5,029,054 vertices; 7 material groups; 9,111,604 source bytes. Source hash: `sha256:c4c9e68eea0b187848462527b490d915d0b5423f4923694f5af923fae3e643fa`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+225,758 triangles; 405,234 vertices; 7 material groups; 3,092,480 source bytes. Source hash: `sha256:e5eef1e89db408cf31505f6b711250f47d04b88879c3e4fe13f2fd3d4295be0a`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0223`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

@@ -585,6 +585,37 @@ describe('worldgen human-feature tile orchestration', () => {
     { source: 'exact merged block', side: 150, generalized: false, replaced: true },
     { source: 'generalized own footprint', side: 36, generalized: true, replaced: true },
     { source: 'generalized merged block', side: 150, generalized: true, replaced: false },
+    // A stadium bowl or cloister mapped as a ring holds its landmark's anchor in the hole.
+    { source: 'ring around its courtyard', side: 70, hole: 40, generalized: false, replaced: true },
+    {
+      source: 'block around a courtyard',
+      side: 150,
+      hole: 120,
+      generalized: false,
+      replaced: false,
+    },
+    // A landmark's own off-centre part (an observation level, a leg) lies inside its extent.
+    {
+      source: 'off-centre part inside the model',
+      side: 12,
+      offset: 10,
+      generalized: false,
+      replaced: true,
+    },
+    {
+      source: 'neighbour beside the model',
+      side: 12,
+      offset: 30,
+      generalized: false,
+      replaced: false,
+    },
+    {
+      source: 'generalized part off-centre',
+      side: 12,
+      offset: 10,
+      generalized: true,
+      replaced: false,
+    },
   ])('replaces the $source under a loaded landmark: $replaced', async (fixture) => {
     // A 40 m wide landmark anchored at world (50, 60) on a 200 m tile at the origin.
     const source = new THREE.Group().add(
@@ -592,16 +623,20 @@ describe('worldgen human-feature tile orchestration', () => {
     );
     const objects = new StructureModelLibrary(async () => source);
     const half = fixture.side / 2 / 200;
-    const [u, v] = [50 / 200, 60 / 200];
+    const shift = ('offset' in fixture ? fixture.offset : 0) / 200;
+    const [u, v] = [50 / 200 + shift, 60 / 200];
+    const square = (h: number) =>
+      [
+        [u - h, v - h],
+        [u + h, v - h],
+        [u + h, v + h],
+        [u - h, v + h],
+      ] as Array<[number, number]>;
     const footprint = {
       polygons: [
         {
-          outer: [
-            [u - half, v - half],
-            [u + half, v - half],
-            [u + half, v + half],
-            [u - half, v + half],
-          ] as Array<[number, number]>,
+          outer: square(half),
+          ...('hole' in fixture ? { holes: [square(fixture.hole / 2 / 200)] } : {}),
         },
       ],
       height: 150,
@@ -645,6 +680,182 @@ describe('worldgen human-feature tile orchestration', () => {
     expect(root?.getObjectByName('structure:tower')).toBeDefined();
     expect(buildingCounts).toEqual([fixture.replaced ? 0 : 1]);
     if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+  });
+
+  it.each([
+    // A ballpark's parked roof: mapped as its own building, off the anchor and its extent box.
+    {
+      source: 'part over the model arm',
+      box: [95, 52, 125, 68],
+      generalized: false,
+      replaced: true,
+    },
+    {
+      source: 'building beside the arm',
+      box: [95, 72, 125, 88],
+      generalized: false,
+      replaced: false,
+    },
+    { source: 'generalized arm part', box: [95, 52, 125, 68], generalized: true, replaced: false },
+  ])('replaces the $source by model footprint: $replaced', async (fixture) => {
+    // An L-shaped landmark anchored at world (50, 60): a 40 m block plus a 60 by 20 m arm east.
+    const block = new THREE.Mesh(
+      new THREE.BoxGeometry(40, 60, 40),
+      new THREE.MeshStandardMaterial(),
+    );
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(60, 50, 20), new THREE.MeshStandardMaterial());
+    arm.position.x = 50;
+    const objects = new StructureModelLibrary(async () => new THREE.Group().add(block, arm));
+    const [minX, minZ, maxX, maxZ] = fixture.box.map((value) => value / 200) as [
+      number,
+      number,
+      number,
+      number,
+    ];
+    const buildingCounts: number[] = [];
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmark',
+        entries: [
+          {
+            id: 'ballpark',
+            title: 'Ballpark',
+            asset: 'ballpark-model',
+            anchor: worldToWgs84(1, 50, 60),
+            replaceFootprint: true,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings) buildingCounts.push(request.tile.buildings.length);
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: [
+          {
+            polygons: [
+              {
+                outer: [
+                  [minX, minZ],
+                  [maxX, minZ],
+                  [maxX, maxZ],
+                  [minX, maxZ],
+                ],
+              },
+            ],
+            height: 50,
+          },
+        ],
+        ...(fixture.generalized ? { buildingsGeneralized: true } : {}),
+      },
+      context(new AbortController().signal),
+    );
+    expect(root?.getObjectByName('structure:ballpark')).toBeDefined();
+    expect(buildingCounts).toEqual([fixture.replaced ? 0 : 1]);
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+  });
+
+  it.each([
+    'landmark tile first',
+    'neighbour first',
+  ])('replaces a neighbour tile part the landmark covers: %s', async (order) => {
+    // Anchored at world (150, 60) near tile 0's east edge; its arm reaches 30 m into tile 1.
+    const block = new THREE.Mesh(
+      new THREE.BoxGeometry(40, 60, 40),
+      new THREE.MeshStandardMaterial(),
+    );
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(60, 50, 20), new THREE.MeshStandardMaterial());
+    arm.position.x = 50;
+    const objects = new StructureModelLibrary(async () => new THREE.Group().add(block, arm));
+    // Buildings handed to the generator per tile X, in call order.
+    const counts: Record<number, number[]> = { 0: [], 1: [] };
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmark',
+        entries: [
+          {
+            id: 'ballpark',
+            title: 'Ballpark',
+            asset: 'ballpark-model',
+            anchor: worldToWgs84(1, 150, 60),
+            replaceFootprint: true,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings)
+            counts[request.geom.x]?.push(request.tile.buildings.length);
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    // Tile 1 spans world X 200..400; its mapped part sits under the arm at X 205..225.
+    const part = {
+      polygons: [
+        {
+          outer: [
+            [0.025, 0.26],
+            [0.125, 0.26],
+            [0.125, 0.34],
+            [0.025, 0.34],
+          ] as Array<[number, number]>,
+        },
+      ],
+      height: 50,
+    };
+    const tile = (x: number) => {
+      const ctx = context(new AbortController().signal);
+      ctx.address = { ...ctx.address, x };
+      ctx.origin = [x * 200, 0];
+      return renderers.humanFeatures.createTile(
+        { ...createEmptyTerrainSemanticTile(), buildings: x === 1 ? [part] : [] },
+        ctx,
+      );
+    };
+    const settle = async () => {
+      for (let i = 0; i < 20; i++) await new Promise((resolve) => setTimeout(resolve, 0));
+    };
+    let landmark: THREE.Object3D | undefined;
+    if (order === 'landmark tile first') {
+      landmark = await tile(0);
+      await tile(1);
+      expect(counts[1]).toEqual([0]);
+    } else {
+      await tile(1);
+      landmark = await tile(0);
+      await settle();
+      // Generated with the part, then regenerated without it once the landmark loaded.
+      expect(counts[1]).toEqual([1, 0]);
+    }
+    expect(landmark?.getObjectByName('structure:ballpark')).toBeDefined();
+    if (landmark) renderers.humanFeatures.disposeTile?.(landmark);
+    await settle();
+    // Evicting the landmark's tile hands the neighbour its mapped building back.
+    expect(counts[1]?.at(-1)).toBe(1);
     renderers.dispose();
     objects.dispose();
   });

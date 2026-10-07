@@ -168,6 +168,157 @@
           "widthScale": { "min": 0.8, "max": 1.25 }
         }
       ]
+    },
+    {
+      "id": "meadow-groundcover",
+      "layer": "groundcover",
+      "classes": ["grass", "grassland", "meadow", "park", "garden", "cemetery"],
+      "densityPerHectare": 170,
+      "minSpacing": 1.4,
+      "clustering": { "scale": 45, "threshold": 0.3, "contrast": 1.6, "seedOffset": 7 },
+      "avoid": { "roads": 2, "buildings": 1.5, "water": 1 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 7,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:shrub",
+          "weight": 1,
+          "scale": { "min": 0.35, "max": 0.65 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.3 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "yard-groundcover",
+      "layer": "groundcover",
+      "classes": ["residential"],
+      "densityPerHectare": 60,
+      "minSpacing": 2,
+      "clustering": { "scale": 30, "threshold": 0.35, "contrast": 1.5, "seedOffset": 11 },
+      "avoid": { "roads": 3, "buildings": 2, "water": 1 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 6,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:shrub",
+          "weight": 2,
+          "scale": { "min": 0.35, "max": 0.65 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.3 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "forest-floor",
+      "layer": "groundcover",
+      "classes": ["forest", "wood"],
+      "densityPerHectare": 60,
+      "minSpacing": 2,
+      "avoid": { "roads": 2, "buildings": 2, "water": 1 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.fern",
+          "weight": 3,
+          "scale": { "min": 0.7, "max": 1.3 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.3 }
+        },
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 1,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "open-groundcover",
+      "layer": "groundcover",
+      "classes": ["open_ground"],
+      "densityPerHectare": 130,
+      "minSpacing": 1.6,
+      "clustering": { "scale": 55, "threshold": 0.28, "contrast": 1.5, "seedOffset": 13 },
+      "avoid": { "roads": 8, "buildings": 2.5, "water": 2 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 7,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:shrub",
+          "weight": 1,
+          "scale": { "min": 0.35, "max": 0.65 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.02, "saturation": 0.08, "lightness": 0.08 },
+          "widthScale": { "min": 0.8, "max": 1.3 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 1,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
     }
   ]
 }

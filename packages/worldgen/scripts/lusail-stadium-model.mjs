@@ -1,7 +1,7 @@
 /** Lusail's independent golden vessel, pierced triangular skin and double cable roof. */
 import { beam, cross, loft, normalFor, normalize, radialRing } from './authored-structure-mesh.mjs';
 import { transformed } from './lighthouse-models.mjs';
-import { chair, curve, face, soccerPitch } from './stadium-models.mjs';
+import { curve, face, seatBand, soccerPitch } from './stadium-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2;
@@ -48,7 +48,7 @@ function rounded(a, hx, hz, r, y = 0) {
   }
   return radial(a, t, y);
 }
-function ringSlab(out, fn, inner, outer, y, thick = 0.3, color = pale, n = 384) {
+function ringSlab(out, fn, inner, outer, y, thick = 0.3, color = pale, n = 192) {
   for (let i = 0; i < n; i++) {
     const a = (i * TAU) / n,
       b = ((i + 1) * TAU) / n,
@@ -66,16 +66,17 @@ function ringSlab(out, fn, inner, outer, y, thick = 0.3, color = pale, n = 384) 
     }
   }
 }
-function rail(out, fn, n = 192) {
+function rail(out, fn, n = 96) {
   const ps = Array.from({ length: n + 1 }, (_, i) => fn((i * TAU) / n));
-  for (const h of [0.5, 1.05])
-    curve(
-      out,
-      ps.map((p) => [p[0], p[1] + h, p[2]]),
-      0.025,
-      steel,
-    );
-  for (const p of ps.slice(0, -1))
+  curve(
+    out,
+    ps.map((p) => [p[0], p[1] + 1.05, p[2]]),
+    0.025,
+    steel,
+    'metal',
+    4,
+  );
+  for (const p of ps.slice(0, -1).filter((_, i) => i % 2 === 0))
     beam(out, 'metal', p, [p[0], p[1] + 1.05, p[2]], 0.04, 0.04, steel);
 }
 function shellPoint(a, t) {
@@ -85,7 +86,7 @@ function shellPoint(a, t) {
     5 + (rimY(a) - 5) * t,
   );
 }
-function continuousTube(out, points, radius, color, sides = 20) {
+function continuousTube(out, points, radius, color, sides = 8) {
   const rings = points.map((p, index) => {
     const before = points[Math.max(0, index - 1)],
       after = points[Math.min(points.length - 1, index + 1)],
@@ -106,46 +107,23 @@ function piercedTriangle(out, ps, perforation) {
     a = Math.atan2(c[0], c[2]);
   let n = normalFor(...ps);
   if (n[0] * Math.sin(a) + n[2] * Math.cos(a) < 0) n = n.map((v) => -v);
-  const rings = [
-    ps.map((p) => mix(c, p, 0.985)),
-    ps.map((p) => mix(c, p, 0.83).map((v, k) => v - n[k] * 0.19)),
-    ps.map((p) => mix(c, p, perforation).map((v, k) => v - n[k] * 0.22)),
-  ];
-  // Folded gold lips surround genuine triangular apertures; no dark decal fills them.
-  for (let j = 1; j < rings.length; j++)
-    for (let i = 0; i < 3; i++) {
-      const k = (i + 1) % 3,
-        p = [rings[j - 1][i], rings[j - 1][k], rings[j][k], rings[j][i]];
-      face(out, 'metal', p, gold, n);
-      face(
-        out,
-        'metal',
-        p.map((p) => p.map((v, k) => v - n[k] * 0.035)),
-        gold.map((v) => v * 0.72),
-        n.map((v) => -v),
-      );
-    }
+  // One folded gold lip from the panel edge to its genuine triangular aperture, outer face only:
+  // the lips' second fold and returns are below the closeup's error, and the vessel's inner face
+  // looks onto the concourse.
+  // Lips stay separate parts (inset 1.5%): welded into one pierced surface they could neither be
+  // pruned nor simplified, and the district level grew fivefold.
+  const outer = ps.map((p) => mix(c, p, 0.985)),
+    inner = ps.map((p) => mix(c, p, perforation).map((v, k) => v - n[k] * 0.22));
   for (let i = 0; i < 3; i++) {
-    const k = (i + 1) % 3,
-      p = [
-        rings[2][i],
-        rings[2][k],
-        rings[2][k].map((v, j) => v - n[j] * 0.045),
-        rings[2][i].map((v, j) => v - n[j] * 0.045),
-      ];
-    face(
-      out,
-      'metal',
-      p,
-      gold.map((v) => v * 0.65),
-      mix(rings[2][i], rings[2][k], 0.5).map((v, j) => c[j] - v),
-    );
+    const k = (i + 1) % 3;
+    face(out, 'metal', [outer[i], outer[k], inner[k], inner[i]], gold, n);
   }
 }
 function vessel(out) {
-  // Four smaller perforated fields per published triangular cladding assembly.
-  const n = 350,
-    rows = 24;
+  // The perforated triangles at 1.5 times the real pitch, about 3.6 m: the same pattern and
+  // aperture gradient at under half the fields.
+  const n = 240,
+    rows = 16;
   for (let j = 0; j < rows; j++)
     for (let i = 0; i < n; i++) {
       const a = ((i + (j % 2) * 0.5) * TAU) / n,
@@ -155,18 +133,19 @@ function vessel(out) {
         q = shellPoint(b, j / rows),
         r = shellPoint(m, (j + 1) / rows),
         s = shellPoint(m - TAU / n, (j + 1) / rows);
-      const hole = j > 20 ? 0.055 : 0.32 + 0.035 * Math.sin(j * 0.7);
+      const jj = (j * 24) / rows,
+        hole = jj > 20 ? 0.055 : 0.32 + 0.035 * Math.sin(jj * 0.7);
       piercedTriangle(out, [p, q, r], hole);
       piercedTriangle(out, [p, r, s], hole);
     }
   for (const t of [0, 0.25, 0.5, 0.75, 1])
     curve(
       out,
-      Array.from({ length: 701 }, (_, i) => shellPoint((i * TAU) / 700, t)),
+      Array.from({ length: 241 }, (_, i) => shellPoint((i * TAU) / 240, t)),
       0.08,
       gold,
       'metal',
-      8,
+      4,
     );
   // 24 plinths support48 curved legs of the independent vessel structure.
   for (let i = 0; i < 24; i++) {
@@ -191,7 +170,7 @@ function vessel(out) {
         const r = Math.hypot(p[0], p[2]);
         return [(p[0] * (r - 2.6)) / r, p[1], (p[2] * (r - 2.6)) / r];
       });
-      continuousTube(out, inner, 0.37, steel, 16);
+      continuousTube(out, inner, 0.37, steel, 8);
       for (let j = 0; j < 20; j++)
         tube(
           out,
@@ -307,7 +286,6 @@ function roof(out) {
           [0, -1, 0],
         );
       }
-      if (i % 2 === 0) curve(out, [p[0], c, p[2]], 0.043, steel, 'metal', 6);
     }
   for (let i = 0; i < 96; i++) {
     const a = (i * TAU) / 96,
@@ -316,11 +294,11 @@ function roof(out) {
         return [p[0], p[1] - 0.25, p[2]];
       }),
       lower = upper.map((p, j) => [p[0], p[1] - 4.2 - 3.7 * Math.sin((j * Math.PI) / 26), p[2]]);
-    curve(out, upper, 0.095, steel, 'metal', 8);
-    curve(out, lower, 0.11, steel, 'metal', 8);
+    curve(out, upper, 0.095, steel, 'metal', 4);
+    curve(out, lower, 0.11, steel, 'metal', 4);
     for (let j = 0; j < 27; j += 2) {
-      tube(out, 'metal', upper[j], lower[j], 0.105, steel, 8);
-      if (j < 26) tube(out, 'metal', upper[j], lower[j + 2], 0.05, steel, 6);
+      tube(out, 'metal', upper[j], lower[j], 0.105, steel, 4);
+      if (j < 26) tube(out, 'metal', upper[j], lower[j + 2], 0.05, steel, 3);
     }
   }
   for (const [height, rad] of [
@@ -330,14 +308,14 @@ function roof(out) {
   ])
     curve(
       out,
-      Array.from({ length: 385 }, (_, i) => {
-        const p = roofPoint((i * TAU) / 384, 0);
+      Array.from({ length: 193 }, (_, i) => {
+        const p = roofPoint((i * TAU) / 192, 0);
         return [p[0], p[1] + height, p[2]];
       }),
       rad,
       steel,
       'metal',
-      12,
+      6,
     );
   // Outer compression ring has distinct upper, lower and inner chords with diagonals.
   for (const [dr, dy] of [
@@ -347,18 +325,18 @@ function roof(out) {
   ])
     curve(
       out,
-      Array.from({ length: 385 }, (_, i) =>
-        radial((i * TAU) / 384, 153.5 + dr, rimY((i * TAU) / 384) + dy),
+      Array.from({ length: 193 }, (_, i) =>
+        radial((i * TAU) / 192, 153.5 + dr, rimY((i * TAU) / 192) + dy),
       ),
       0.52,
       steel,
       'metal',
-      12,
+      6,
     );
   for (let i = 0; i < 192; i++) {
     const a = (i * TAU) / 192,
       b = ((i + 1) * TAU) / 192;
-    tube(out, 'metal', radial(a, 153.5, rimY(a)), radial(b, 153.5, rimY(b) - 7.2), 0.22, steel, 8);
+    tube(out, 'metal', radial(a, 153.5, rimY(a)), radial(b, 153.5, rimY(b) - 7.2), 0.22, steel, 4);
     tube(
       out,
       'metal',
@@ -366,7 +344,7 @@ function roof(out) {
       radial(b, 149.5, rimY(b) - 4.1),
       0.18,
       steel,
-      8,
+      4,
     );
   }
   // Gold cap covers the structural ring; walkway/lights follow the oculus below.
@@ -431,7 +409,7 @@ function bowl(out) {
             t.r + row * t.run * 0.68 + dr * 0.68,
             yy,
           ),
-        n = 768,
+        n = 256,
         ps = Array.from({ length: n + 1 }, (_, i) => fn((i * TAU) / n));
       for (let i = 0; i < n; i++) {
         const a = (i * TAU) / n,
@@ -445,21 +423,25 @@ function bowl(out) {
           [-Math.sin(a), 0, -Math.cos(a)],
         );
       }
-      const ds = [0];
-      for (let i = 1; i < ps.length; i++)
-        ds.push(ds.at(-1) + Math.hypot(ps[i][0] - ps[i - 1][0], ps[i][2] - ps[i - 1][2]));
-      let j = 1;
-      const count = Math.floor(ds.at(-1) / 0.53);
-      for (let i = 0; i < count; i++) {
-        const d = (i * ds.at(-1)) / count;
-        while (ds[j] < d) j++;
-        const a = ((j - 1) * TAU) / n;
-        if (Math.abs((a / TAU) * 48 - Math.round((a / TAU) * 48)) < 0.07) continue;
-        const p = mix(ps[j - 1], ps[j], (d - ds[j - 1]) / (ds[j] - ds[j - 1])),
-          choice = (i * 7 + row * 11 + Math.floor(i / 8) * 9) % 17,
-          col =
-            choice < 3 ? [0.54, 0.52, 0.44] : choice < 9 ? [0.81, 0.77, 0.65] : [0.93, 0.89, 0.75];
-        chair(out, Math.atan2(-(ps[j][2] - ps[j - 1][2]), ps[j][0] - ps[j - 1][0]), p, col);
+      // Seats as one band per aisle section, at the ring's own facets, keeping the 48 aisles and
+      // the cream and sand mix per chord.
+      for (let k = 0; k < 48; k++) {
+        const from = Math.ceil(((k + 0.07) / 48) * n),
+          to = Math.floor(((k + 1 - 0.07) / 48) * n);
+        if (to <= from) continue;
+        let chord = 0;
+        seatBand(
+          out,
+          ps.slice(from, to + 1).filter((_, i, all) => i % 2 === 0 || i === all.length - 1),
+          () => {
+            const choice = (chord++ * 7 + row * 11 + k * 9) % 17;
+            return choice < 3
+              ? [0.54, 0.52, 0.44]
+              : choice < 9
+                ? [0.81, 0.77, 0.65]
+                : [0.93, 0.89, 0.75];
+          },
+        );
       }
     }
     rail(out, (a) => rounded(a, t.hx - 0.3, t.hz - 0.3, t.r, t.y));
@@ -521,10 +503,10 @@ function bowl(out) {
 }
 function podium(out) {
   // Ground contact is the public entrance podium; shallow outer steps meet surrounding paving.
-  ringSlab(out, radial, 132, 161, 0, 0.35, pale, 512);
+  ringSlab(out, radial, 132, 161, 0, 0.35, pale, 192);
   // The close podium is an outer annulus, leaving the depressed seating bowl open.
   for (let i = 0; i < 20; i++)
-    ringSlab(out, radial, 160 + i * 0.52, 160 + (i + 1) * 0.52, -i * 0.11, 0.12, pale, 384);
+    ringSlab(out, radial, 160 + i * 0.52, 160 + (i + 1) * 0.52, -i * 0.11, 0.12, pale, 192);
   for (let i = 0; i < 48; i++) {
     const a = ((i + 0.5) * TAU) / 48,
       p = radial(a, 159, 0),

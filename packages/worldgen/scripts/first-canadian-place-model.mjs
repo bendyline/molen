@@ -20,7 +20,8 @@ const top = 298.1,
   occupied = 287.1;
 const officeBase = occupied - 69 * interval;
 const crownBase = occupied - 2 * interval + 1.75;
-const white = [0.93, 0.94, 0.91],
+// Off-white frit (about 90% lightness): pure white spandrels over half the facade bloom in sun.
+const white = [0.8, 0.81, 0.78],
   silver = [0.61, 0.64, 0.64];
 const dark = [0.11, 0.115, 0.105],
   vision = [0.24, 0.255, 0.24];
@@ -70,74 +71,44 @@ function plate(out, y0, y1, slot = 'concrete', color = granite) {
 }
 
 /** Glass faces, metal closure strips and recessed continuous seals are distinct geometry. */
+/**
+ * A cladding or glazing face. The real panels' 1.6 cm seals, recess backing and 2.1 cm stainless
+ * frames are below the closeup's error on a 298 m tower, so a panel is its face.
+ */
 function panel(o, x0, x1, y0, y1, slot, color, depth = 0) {
   if (y1 - y0 < 0.025 || x1 - x0 < 0.025) throw new Error('FCP: invalid panel');
-  const g = 0.016,
-    t = 0.021;
-  if (slot === 'clear_glass') {
-    // Vision glazing has perimeter seals, never the solid spandrel backing.
-    for (const x of [x0, x1 - g])
-      box(o, 'recess', [x, y0, depth - 0.105], [x + g, y1, depth - 0.025], dark);
-    for (const y of [y0, y1 - g])
-      box(o, 'recess', [x0 + g, y, depth - 0.105], [x1 - g, y + g, depth - 0.025], dark);
-  } else {
-    box(o, 'recess', [x0, y0, depth - 0.105], [x1, y1, depth - 0.025], dark);
-  }
   face(
     o,
     slot,
     [
-      [x0 + g, y0 + g, depth],
-      [x1 - g, y0 + g, depth],
-      [x1 - g, y1 - g, depth],
-      [x0 + g, y1 - g, depth],
+      [x0, y0, depth],
+      [x1, y0, depth],
+      [x1, y1, depth],
+      [x0, y1, depth],
     ],
     color,
   );
-  for (const x of [x0, x1 - t])
-    box(o, 'stainless', [x, y0, depth - 0.015], [x + t, y1, depth + 0.012], silver);
-  for (const y of [y0, y1 - t])
-    box(o, 'stainless', [x0, y, depth - 0.015], [x1, y + t, depth + 0.012], silver);
 }
 
-function typical(o, row, count, corner, baseY = officeBase) {
-  const y = baseY + row * interval,
-    w = o.length / count;
-  for (let j = 0; j < count; j++) {
-    const x = j * w;
-    const tint = vision.map((v) => v + ((j % 3) - 1) * 0.007);
-    for (let half = 0; half < 2; half++) {
-      panel(
-        o,
-        x + (half * w) / 2,
-        x + ((half + 1) * w) / 2,
-        y,
-        y + 1.75,
-        'fcp_vision',
-        tint,
-        -0.085,
-      );
-      // Each existing window has a narrow vertical aluminum division.
-      box(
-        o,
-        'stainless',
-        [x + (half * w) / 2 - 0.022, y, -0.1],
-        [x + (half * w) / 2 + 0.022, y + 1.75, 0.005],
-        silver,
-      );
-    }
-    const bandTop = Math.min(y + interval, corner ? parapet : crownBase);
-    if (bandTop - y - 1.75 > 0.025)
-      panel(
-        o,
-        x,
-        x + w,
-        y + 1.75,
-        bandTop,
-        corner ? 'bronze_glass' : 'frit',
-        corner ? bronze : white,
-      );
-  }
+/**
+ * One storey of an edge: a recessed band of vision glass over a white frit (or, at the corners,
+ * bronze glass) spandrel band. The alternating stripes are the tower's identity; the window
+ * divisions are 4 cm and are not modelled.
+ */
+function typical(o, row, _count, corner, baseY = officeBase) {
+  const y = baseY + row * interval;
+  panel(o, 0, o.length, y, y + 1.75, 'fcp_vision', vision, -0.085);
+  const bandTop = Math.min(y + interval, corner ? parapet : crownBase);
+  if (bandTop - y - 1.75 > 0.025)
+    panel(
+      o,
+      0,
+      o.length,
+      y + 1.75,
+      bandTop,
+      corner ? 'bronze_glass' : 'frit',
+      corner ? bronze : white,
+    );
 }
 
 function tower(out, firstRow = 0) {
@@ -424,43 +395,24 @@ function mast(out, x, z, height, whiteTop = false) {
     ];
   const stages = Math.ceil((latticeTop - bottom) / 1.8),
     step = (latticeTop - bottom) / stages;
-  for (let j = 0; j < stages; j++) {
-    const y = bottom + j * step;
+  // A lattice as a few members: full-height legs, and a horizontal and one diagonal per face on
+  // every other stage. The 2-3 cm bracing and the climbing ladder are sub-pixel from the street.
+  const p = (a, yy) => [x + a[0], yy, z + a[1]];
+  for (const a of legs) tube(out, 'stainless', p(a, bottom), p(a, latticeTop), 0.052, silver, 6);
+  for (let j = 0; j < stages; j += 2) {
+    const y = bottom + j * step,
+      top = Math.min(latticeTop, y + 2 * step);
     for (let k = 0; k < 4; k++) {
       const a = legs[k],
         b = legs[(k + 1) % 4];
-      const p = (a, yy) => [x + a[0], yy, z + a[1]];
-      tube(out, 'stainless', p(a, y), p(a, y + step), 0.052, silver, 10);
-      tube(out, 'stainless', p(a, y), p(b, y), 0.032, silver, 8);
-      tube(out, 'stainless', p(a, y), p(b, y + step), 0.025, silver, 8);
-      tube(out, 'stainless', p(b, y), p(a, y + step), 0.025, silver, 8);
+      tube(out, 'stainless', p(a, y), p(b, y), 0.032, silver, 3);
+      tube(out, 'stainless', p(a, y), p(b, top), 0.025, silver, 3);
     }
   }
-  // Climbing ladder remains independent of the structural bracing.
-  for (const dx of [-0.22, 0.22])
-    tube(
-      out,
-      'stainless',
-      [x + dx, bottom, z - side / 2 - 0.18],
-      [x + dx, latticeTop, z - side / 2 - 0.18],
-      0.019,
-      silver,
-      8,
-    );
-  for (let y = bottom + 0.2; y < latticeTop; y += 0.3)
-    tube(
-      out,
-      'stainless',
-      [x - 0.22, y, z - side / 2 - 0.18],
-      [x + 0.22, y, z - side / 2 - 0.18],
-      0.017,
-      silver,
-      8,
-    );
   if (whiteTop) {
-    tube(out, 'metal', [x, latticeTop, z], [x, height - 0.3, z], 0.43, white, 24);
+    tube(out, 'metal', [x, latticeTop, z], [x, height - 0.3, z], 0.43, white, 12);
     for (let y = latticeTop + 0.2; y < height - 0.3; y += 1.24)
-      tube(out, 'stainless', [x, y, z], [x, y + 0.06, z], 0.45, silver, 24);
+      tube(out, 'stainless', [x, y, z], [x, y + 0.06, z], 0.45, silver, 12);
   } else {
     for (let y = latticeTop - 19; y < latticeTop - 1; y += 2.35)
       for (const sign of [-1, 1]) {

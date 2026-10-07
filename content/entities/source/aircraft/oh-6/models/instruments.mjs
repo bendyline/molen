@@ -161,7 +161,7 @@ export function instrumentParts(api) {
         for (const sy of [-1, 1])
           screw(instrument, `${id}-screw-${sx}-${sy}`, sx * r, sy * r, -0.001, r * 0.055);
     }
-    mesh(instrument, `${id}-bezel`, new T.TorusGeometry(r, r * 0.065, 8, 48), bezel);
+    mesh(instrument, `${id}-bezel`, new T.TorusGeometry(r, r * 0.065, 5, 24), bezel);
     const face = mesh(
       instrument,
       `${id}-dial`,

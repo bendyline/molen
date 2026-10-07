@@ -127,6 +127,22 @@ function slab(out, plan, y0, y1, slot = 'concrete', color = pale) {
   cap(out, p, y1, slot, color);
 }
 function pane(o, x0, x1, y0, y1, serial, transparent = false, z = 0) {
+  if (!transparent) {
+    // A flush pane keeps its slight tint; its 1.3 cm joints and 4 mm bevels are below every
+    // runtime level's error. Neighbouring panes share edges, so a facade is one surface.
+    face(
+      o,
+      'glass',
+      [
+        [x0, y0, z],
+        [x1, y0, z],
+        [x1, y1, z],
+        [x0, y1, z],
+      ],
+      tint(serial),
+    );
+    return;
+  }
   const gap = 0.013,
     bevel = 0.004;
   const ring = (g, d) => [
@@ -138,7 +154,7 @@ function pane(o, x0, x1, y0, y1, serial, transparent = false, z = 0) {
   const front = ring(gap + bevel, z),
     rim = ring(gap, z - bevel),
     seal = ring(0, z - bevel);
-  face(o, transparent ? 'clear_glass' : 'glass', front, transparent ? clear : tint(serial));
+  face(o, 'clear_glass', front, clear);
   for (let i = 0; i < 4; i++) {
     const j = (i + 1) % 4;
     face(o, 'metal', [rim[i], rim[j], front[j], front[i]], dark);
@@ -176,7 +192,8 @@ function louvres(o, x0, x1, y0, y1) {
     ],
     dark,
   );
-  const count = Math.max(2, Math.round((x1 - x0) / 0.09)),
+  // Folded fins at four times the real 9 cm pitch: the same ribbed band, a quarter of the faces.
+  const count = Math.max(2, Math.round((x1 - x0) / 0.36)),
     w = (x1 - x0) / count;
   for (let i = 0; i < count; i++) {
     const x = x0 + i * w;

@@ -39,6 +39,7 @@ import {
   type ModelLibrary,
   type ScreenSpaceLodPolicy,
   type StructureModelSource,
+  TEXTURED_SURFACE_MEAN,
   type WorldgenMaterialSet,
 } from '@bendyline/molen-worldgen/client';
 import type {
@@ -63,7 +64,14 @@ import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import { type WorldgenTileCache, worldgenTileCacheKey } from './cache';
 import { createInThreadWorldgenGenerator, withWorldgenTileCache } from './generators';
 import { resolveStructureElevation, type StructureTerrainSampler } from './structure-elevation';
-import { clipStructureObject, withoutStructureRoads } from './structure-geometry';
+import {
+  clipStructureObject,
+  footprintCovers,
+  footprintOverlapsTile,
+  type StructureFootprint,
+  structureFootprint,
+  withoutStructureRoads,
+} from './structure-geometry';
 import type { WorldgenGenerator } from './worker-bridge';
 
 /**
@@ -206,13 +214,21 @@ export function createWorldgenSemanticRenderers(
     context: TerrainPyramidTileLayerContext;
     architecture: THREE.Group;
     quality: WorldgenQualityPreset;
+    /** A neighbour's landmark footprints changed since this tile's buildings were generated. */
+    stale?: boolean;
     pending?: AbortController;
   }
   const residents = new Map<THREE.Object3D, ResidentBuildings>();
+  // Ground footprints of the `replaceFootprint` landmarks each resident tile placed, in world
+  // X/Z. A stadium anchored near a tile edge stands on its neighbours' mapped parts too.
+  const sharedFootprints = new Map<THREE.Object3D, readonly StructureFootprint[]>();
   const disposedHumanTiles = new WeakSet<THREE.Object3D>();
   let rebuilding = false;
   let disposed = false;
-  const flatMaterials = options.lodPolicy ? createVertexColorMaterialSet() : undefined;
+  // Distant levels stand in for textured buildings, so they carry the textures' mean brightness.
+  const flatMaterials = options.lodPolicy
+    ? createVertexColorMaterialSet({ surfaceMean: TEXTURED_SURFACE_MEAN })
+    : undefined;
   const models = options.models;
   const structureModels = options.structureModels ?? models;
   const structureObjects = options.structureObjects;
@@ -435,7 +451,7 @@ export function createWorldgenSemanticRenderers(
         createInstancedPlacements(
           set,
           geometry,
-          materials.materialFor('wall', 'palette:#ffffff'),
+          (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
           `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
         ),
       );
@@ -479,18 +495,31 @@ export function createWorldgenSemanticRenderers(
     ];
   }
 
-  /** The structures `group` holds a loaded model for, with each model's world X/Z extent. */
+  /**
+   * The structures `group` holds a loaded model for, with each model's world X/Z extent and, for
+   * a `replaceFootprint` model, its ground footprint.
+   */
   function placedStructures(
     group: THREE.Object3D,
+    context: TerrainPyramidTileLayerContext,
     structures: readonly StructurePlacement[],
-  ): Array<{ entry: StructurePlacement; size: readonly [number, number] }> {
+  ) {
     return structures.flatMap((entry) => {
       const object = group.getObjectByName(`structure:${entry.id}`);
       if (object === undefined) return [];
       const extent =
         (object.userData.structureExtent as THREE.Vector3 | undefined) ??
         new THREE.Box3().setFromObject(object).getSize(new THREE.Vector3());
-      return [{ entry, size: [extent.x, extent.z] as const }];
+      const footprint = entry.replaceFootprint
+        ? structureFootprint(object, group, context.origin)
+        : undefined;
+      return [
+        {
+          entry,
+          size: [extent.x, extent.z] as const,
+          ...(footprint !== undefined ? { footprint } : {}),
+        },
+      ];
     });
   }
 
@@ -498,28 +527,58 @@ export function createWorldgenSemanticRenderers(
    * Drop the building footprints that loaded landmarks stand in for: those containing a
    * `replaceFootprint` anchor. Generalized sources merge neighboring footprints at low zoom, so
    * there a footprint goes only when it is about the landmark's own size (`size`, its placed
-   * world-space X/Z extent); a larger one is a merged block of other buildings and stays.
+   * world-space X/Z extent); a larger one is a merged block of other buildings and stays. A
+   * ring footprint (a stadium bowl, a cloister) holds the anchor in its hole; it goes under the
+   * same size test, so a large courtyard block around a smaller landmark stays. In exact data a
+   * landmark's own off-centre parts (an observation level, its legs, a grandstand, a parked
+   * roof) contain no anchor, so a polygon lying wholly inside the placed model's extent goes
+   * too, as does one at least half covered by the model's own footprint (`footprint`) or by a
+   * landmark a neighbouring tile placed (`nearby`).
    */
   function withoutReplacedFootprints(
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
-    placed: ReadonlyArray<{ entry: StructurePlacement; size: readonly [number, number] }>,
+    placed: ReadonlyArray<{
+      entry: StructurePlacement;
+      size: readonly [number, number];
+      footprint?: StructureFootprint;
+    }>,
+    nearby: readonly StructureFootprint[] = [],
   ): TerrainSemanticTile {
     const anchors = placed
       .filter(({ entry }) => entry.replaceFootprint)
-      .map(({ entry, size }) => {
+      .map(({ entry, size, footprint }) => {
         const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
         const point: [number, number] = [
           (x - context.origin[0]) / context.tileSize,
           (z - context.origin[1]) / context.tileSize,
         ];
-        return { point, size };
+        return { point, size, footprint };
       });
-    if (anchors.length === 0) return tile;
+    const remote = tile.buildingsGeneralized ? [] : nearby;
+    if (anchors.length === 0 && remote.length === 0) return tile;
     const replaces = (polygon: TerrainSemanticPolygon): boolean =>
-      anchors.some(({ point, size }) => {
-        if (!pointInPolygon(point, polygon)) return false;
-        if (!tile.buildingsGeneralized) return true;
+      remote.some((footprint) => footprintCovers(footprint, polygon, context)) ||
+      anchors.some(({ point, size, footprint }) => {
+        if (!tile.buildingsGeneralized) {
+          if (footprint !== undefined && footprintCovers(footprint, polygon, context)) return true;
+          const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+          const halfU = (size[0] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;
+          const halfV = (size[1] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;
+          if (
+            minU >= point[0] - halfU &&
+            maxU <= point[0] + halfU &&
+            minV >= point[1] - halfV &&
+            maxV <= point[1] + halfV
+          )
+            return true;
+        }
+        const inCourtyard =
+          !pointInPolygon(point, polygon) &&
+          polygon.holes !== undefined &&
+          pointInPolygon(point, { outer: polygon.outer });
+        if (!inCourtyard && !pointInPolygon(point, polygon)) return false;
+        if (!tile.buildingsGeneralized && !inCourtyard) return true;
         const [minU, minV, maxU, maxV] = polygonBounds(polygon);
         return (
           (maxU - minU) * context.tileSize <= size[0] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK &&
@@ -651,6 +710,63 @@ export function createWorldgenSemanticRenderers(
     });
   }
 
+  /** The footprints other resident tiles' landmarks extend into the tile at `context`. */
+  function nearbyFootprints(
+    root: THREE.Object3D,
+    context: TerrainPyramidTileLayerContext,
+  ): StructureFootprint[] {
+    return [...sharedFootprints].flatMap(([owner, footprints]) =>
+      owner === root
+        ? []
+        : footprints.filter((footprint) => footprintOverlapsTile(footprint, context)),
+    );
+  }
+
+  /** Regenerate the resident buildings `footprints` reach, other than `owner`'s own. */
+  function restaleNeighbours(
+    owner: THREE.Object3D,
+    footprints: readonly StructureFootprint[],
+  ): void {
+    if (disposed) return;
+    let marked = false;
+    for (const [root, resident] of residents) {
+      if (root === owner || resident.tile.buildingsGeneralized) continue;
+      if (!footprints.some((footprint) => footprintOverlapsTile(footprint, resident.context)))
+        continue;
+      resident.stale = true;
+      marked = true;
+    }
+    if (marked) void rebuildResidents();
+  }
+
+  /**
+   * Publish the footprints `root`'s landmarks cover. Extended (`bounds`) models are clipped and
+   * placed in every tile they reach, so only anchored models are shared.
+   */
+  function shareFootprints(
+    root: THREE.Object3D,
+    placed: ReadonlyArray<{ entry: StructurePlacement; footprint?: StructureFootprint }>,
+  ): void {
+    const footprints = placed.flatMap(({ entry, footprint }) =>
+      footprint !== undefined && !entry.bounds ? [footprint] : [],
+    );
+    const known = sharedFootprints.has(root);
+    if (footprints.length === 0) {
+      if (known) unshareFootprints(root);
+      return;
+    }
+    sharedFootprints.set(root, footprints);
+    // A quality rebuild of the same tile re-places the same landmarks; neighbours already know.
+    if (!known) restaleNeighbours(root, footprints);
+  }
+
+  function unshareFootprints(root: THREE.Object3D): void {
+    const footprints = sharedFootprints.get(root);
+    if (footprints === undefined) return;
+    sharedFootprints.delete(root);
+    restaleNeighbours(root, footprints);
+  }
+
   function disposeHumanTile(root: THREE.Object3D): void {
     if (disposedHumanTiles.has(root)) return;
     disposedHumanTiles.add(root);
@@ -660,6 +776,8 @@ export function createWorldgenSemanticRenderers(
       interiors?.unregister(resident.architecture);
       residents.delete(root);
     }
+    // Neighbours get their mapped buildings back once the landmark standing on them is gone.
+    unshareFootprints(root);
     root.removeFromParent();
     releaseStructureModels(root);
     disposeTerrainSemanticObject(root);
@@ -685,9 +803,13 @@ export function createWorldgenSemanticRenderers(
     rebuilding = true;
     try {
       for (;;) {
-        const entry = [...residents].find(([, resident]) => resident.quality !== quality);
+        const entry = [...residents].find(
+          ([, resident]) => resident.quality !== quality || resident.stale,
+        );
         if (!entry) break;
         const [root, resident] = entry;
+        // Cleared first: a neighbour change during this rebuild queues another one.
+        resident.stale = false;
         const preset = quality;
         const controller = new AbortController();
         resident.pending = controller;
@@ -698,10 +820,12 @@ export function createWorldgenSemanticRenderers(
           replacement.name = `${root.name}:architecture`;
           const structures = structuresForTile(resident.tile, context);
           if (structures.length) await placeStructures(replacement, context, structures);
+          const placed = placedStructures(replacement, context, structures);
           const mappedTile = withoutReplacedFootprints(
             resident.tile,
             context,
-            placedStructures(replacement, structures),
+            placed,
+            nearbyFootprints(root, context),
           );
           const generated = await generate(
             mappedTile,
@@ -741,6 +865,7 @@ export function createWorldgenSemanticRenderers(
             resident.architecture = replacement;
             resident.quality = preset;
             registerInteriors(replacement, generated.output, context);
+            shareFootprints(root, placed);
             replacement = undefined;
           };
           if (context.admission)
@@ -781,18 +906,17 @@ export function createWorldgenSemanticRenderers(
         // Roads and buildings have independent worker queues. Start both before waiting, and
         // settle both so a late road result cannot leak geometry after the building job fails.
         const preset = quality;
+        let placed: ReturnType<typeof placedStructures> = [];
+        let nearby: StructureFootprint[] = [];
         const buildingsTask = (async () => {
-          let mappedTile = tile;
           // A failed or cancelled asset keeps its procedural fallback. Only confirmed, loaded
           // structures can remove a footprint; unrelated buildings still start immediately.
           if (structures.some((entry) => entry.replaceFootprint)) {
             await structureTask;
-            mappedTile = withoutReplacedFootprints(
-              tile,
-              context,
-              placedStructures(structureGroup, structures),
-            );
+            placed = placedStructures(structureGroup, context, structures);
           }
+          nearby = nearbyFootprints(group, context);
+          const mappedTile = withoutReplacedFootprints(tile, context, placed, nearby);
           return generate(mappedTile, context, { buildings: true, scatter: false }, preset);
         })();
         const roadsTask = (async (): Promise<THREE.Object3D | undefined> => {
@@ -843,7 +967,13 @@ export function createWorldgenSemanticRenderers(
         }
         stats.buildings += output.stats.buildingsRendered;
         registerInteriors(architecture, output, context);
-        residents.set(group, { tile, context, architecture, quality: preset });
+        // A neighbour may have placed or dropped a landmark while this tile generated.
+        const current = nearbyFootprints(group, context);
+        const stale =
+          current.length !== nearby.length ||
+          current.some((footprint) => !nearby.includes(footprint));
+        residents.set(group, { tile, context, architecture, quality: preset, stale });
+        shareFootprints(group, placed);
         void rebuildResidents();
         stats.boxes += output.stats.buildingsBoxed;
         stats.skippedByOwnership += output.skippedByOwnership;
@@ -955,6 +1085,7 @@ export function createWorldgenSemanticRenderers(
       disposed = true;
       for (const root of residents.keys()) disposeHumanTile(root);
       residents.clear();
+      sharedFootprints.clear();
       interiors?.dispose();
       if (ownsMaterials) materials.dispose?.();
       flatMaterials?.dispose?.();

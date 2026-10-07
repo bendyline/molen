@@ -15,10 +15,21 @@ const SLOT_ROUGHNESS: Readonly<Record<MaterialSlot, number>> = {
 };
 
 /**
- * Four-ish shared vertex-colored materials (one per slot). Every material reference collapses
- * onto the slot material, so a batch costs at most one draw call per slot.
+ * Mean linear base color of the shared tinted material graphs (siding, shingle, brick, render,
+ * concrete, membrane: 0.52–0.77, most near 0.65). A flat stand-in for a textured surface
+ * multiplies by it, so a building keeps its brightness when its textures finish loading or its
+ * level of detail changes; untinted it renders about 1.5 times brighter than up close.
  */
-export function createVertexColorMaterialSet(): WorldgenMaterialSet {
+export const TEXTURED_SURFACE_MEAN = 0.65;
+
+/**
+ * Four-ish shared vertex-colored materials (one per slot). Every material reference collapses
+ * onto the slot material, so a batch costs at most one draw call per slot. Pass `surfaceMean`
+ * (usually {@link TEXTURED_SURFACE_MEAN}) when the set stands in for textured surfaces.
+ */
+export function createVertexColorMaterialSet(
+  options: { surfaceMean?: number } = {},
+): WorldgenMaterialSet {
   const materials = new Map<MaterialSlot, THREE.MeshStandardMaterial>();
   return {
     materialFor(slot: MaterialSlot): THREE.Material {
@@ -29,6 +40,7 @@ export function createVertexColorMaterialSet(): WorldgenMaterialSet {
           roughness: SLOT_ROUGHNESS[slot],
           metalness: slot === 'window' ? 0.1 : 0,
         });
+        if (options.surfaceMean !== undefined) material.color.setScalar(options.surfaceMean);
         material.name = `worldgen:${slot}`;
         materials.set(slot, material);
       }
@@ -233,6 +245,8 @@ export function createResolvedMaterialSet(
       if (!placeholder) {
         placeholder = flat.materialFor(slot, ref).clone() as THREE.MeshStandardMaterial;
         placeholder.name = `worldgen:${ref}`;
+        // As bright as the texture that replaces it (the upgrade copies the textured color).
+        placeholder.color.setScalar(TEXTURED_SURFACE_MEAN);
         placeholders.set(ref, placeholder);
       }
       return placeholder;

@@ -31,6 +31,9 @@ export const EARTH_LIGHTING: {
   nightAmbient: number;
 } = { sunIntensity: 3.5, dayAmbient: 2, nightAmbient: 0.05 };
 
+/** Open water: a clear teal-blue that stays blue under the sky's reflection. */
+export const EARTH_WATER_COLOR = '#286d83';
+
 /**
  * Khronos PBR Neutral keeps authored base colors and their saturation below the highlights, which
  * a palette-driven world needs; AgX and ACES desaturate the mid-tones the palettes live in.
@@ -54,15 +57,12 @@ function neutralToneMap(color: Color): Color {
   return color.lerp(new Color(newPeak, newPeak, newPeak), g);
 }
 
-const encode = (v: number): number =>
-  v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(Math.max(0, v), 1 / 2.4) - 0.055;
-
 /**
  * The fog color that makes fully hazed geometry match a sky color exactly. `color` is a sky
  * palette entry or scene-linear radiance, as the sky dome draws it. WebGPU fogs before tone
- * mapping, so the radiance is used as given; WebGL fogs after tone mapping and sRGB encoding, so
- * it receives the displayed value. Distant terrain then dissolves into the horizon instead of
- * standing out as a pale band in front of it.
+ * mapping, so the radiance is used as given; WebGL fogs after tone mapping (three uploads the
+ * uniform in the output color space), so it receives the tone-mapped value. Distant terrain then
+ * dissolves into the horizon instead of standing out as a pale band in front of it.
  */
 export function earthHazeColor(
   backend: 'webgl' | 'webgpu',
@@ -72,8 +72,7 @@ export function earthHazeColor(
 ): Color {
   out.set(color);
   if (backend === 'webgpu') return out;
-  neutralToneMap(out.multiplyScalar(exposure));
-  return out.setRGB(encode(out.r), encode(out.g), encode(out.b));
+  return neutralToneMap(out.multiplyScalar(exposure));
 }
 
 /**

@@ -243,6 +243,8 @@ export class Renderer {
   private readonly optimizer: WebGpuSceneOptimizer | undefined;
   private activeSky: SkyVisual | undefined;
   private readonly reflections: SkyReflections | undefined;
+  /** Sun lights whose WebGPU shadow map exists and must not be torn down; see setShadowQuality. */
+  private readonly webgpuShadowLights = new WeakSet<THREE.DirectionalLight>();
   // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
   private readonly reflectionClearColor = Object.assign(new THREE.Color(), { a: 1 });
   private starCatalog: readonly SkyStar[] | undefined;
@@ -277,17 +279,42 @@ export class Renderer {
   setShadowQuality(quality: ShadowQuality): void {
     const enabled = quality !== 'off';
     for (const light of this.sunLights()) {
+      if (this.backend === 'webgpu' && this.webgpuShadowLights.has(light)) {
+        // three r184's WebGPU shadow node does not survive being switched off and on, resized or
+        // retyped: render objects cached for the earlier state keep sampling its disposed depth
+        // texture, every submit fails and the frame stops updating. Once a map exists it keeps
+        // its size and type; 'off' stops redrawing it and fades it out.
+        light.shadow.autoUpdate = enabled;
+        light.shadow.intensity = enabled ? 1 : 0;
+        continue;
+      }
       light.castShadow = enabled;
       if (!enabled) continue;
       const size = SHADOW_MAP_SIZE[quality];
       if (light.shadow.mapSize.x !== size) {
         light.shadow.mapSize.set(size, size);
-        light.shadow.map?.dispose();
-        light.shadow.map = null;
+        // WebGL rebuilds a missing map at the new size. WebGPU's shadow node owns its render
+        // target (and is never resized once created, above).
+        if (this.backend === 'webgl') {
+          light.shadow.map?.dispose();
+          light.shadow.map = null;
+        }
       }
+      if (this.backend === 'webgpu') this.webgpuShadowLights.add(light);
     }
+    if (this.backend === 'webgpu' && this.three.shadowMap.enabled) return;
     this.three.shadowMap.enabled = enabled;
     this.three.shadowMap.type = quality === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+  }
+
+  /** WebGL PCF shadow lookups against a reversed depth buffer; see focusDirectionalShadow. */
+  private webglReversedPcfShadows(): boolean {
+    const three = this.three as THREE.WebGLRenderer;
+    return (
+      three.state?.buffers.depth.getReversed() === true &&
+      three.shadowMap.type !== THREE.BasicShadowMap &&
+      three.shadowMap.type !== THREE.VSMShadowMap
+    );
   }
 
   /** The directional lights standing for the sun: the environment rig's, and the sky's. */
@@ -315,7 +342,13 @@ export class Renderer {
         light === this.activeSky?.sunLight
           ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
           : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
-      focusDirectionalShadow(light, direction, center, focus.radius);
+      focusDirectionalShadow(
+        light,
+        direction,
+        center,
+        focus.radius,
+        this.backend === 'webgl' && this.webglReversedPcfShadows(),
+      );
     }
   }
 

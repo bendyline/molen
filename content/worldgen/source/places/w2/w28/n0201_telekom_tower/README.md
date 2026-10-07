@@ -20,7 +20,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-1,479,966 triangles; 3,111,466 vertices; 7 material groups; 129,776,392 bytes. Native bounds: -51.051, -0.001, -39.690 to 34.460, 310.000, 39.995. Source hash: `sha256:915a7b79b8319e32eed5642fe99f2177593d8958facb25d1f964c78542d74b4f`.
+1,458,078 triangles; 3,045,802 vertices; 7 material groups; 127,149,832 bytes. Native bounds: -51.051, -0.001, -39.690 to 34.460, 310.000, 39.995. Source hash: `sha256:6b3df13bce385db0cf3045a71ac04bd55965e396e4a2151107d8c19c93f304d1`.
 
 {"up":"+Y","longAxis":"+X southeast in mapped envelope frame","shortAxis":"+Z southwest; antenna north-northwest of helipad"}
 

@@ -25,7 +25,11 @@ export {
   type InteriorStreamingStats,
 } from './client/interior-streamer';
 export type { ResolvedMaterialSet, ResolvedMaterialSetOptions } from './client/materials';
-export { createResolvedMaterialSet, createVertexColorMaterialSet } from './client/materials';
+export {
+  createResolvedMaterialSet,
+  createVertexColorMaterialSet,
+  TEXTURED_SURFACE_MEAN,
+} from './client/materials';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
   type StructureAcquireOptions,

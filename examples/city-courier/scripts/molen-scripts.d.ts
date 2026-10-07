@@ -577,7 +577,7 @@ type MolenEnvironmentData = {
     near?: number;
     far?: number;
   };
-  toneMapping?: 'none' | 'aces' | 'agx';
+  toneMapping?: 'none' | 'aces' | 'agx' | 'neutral';
   exposure?: number;
   shadows?: 'off' | 'low' | 'medium' | 'high';
 };
