@@ -1,3 +1,9 @@
+## @bendyline/molen-schema [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.5...@bendyline/molen-schema@0.0.6) (2026-10-07)
+
+### Bug Fixes
+
+* More molen content ([f3fa690](https://github.com/bendyline/molen/commit/f3fa6907eb9f3153b983d6a4fefccf030c5eec33))
+
 ## @bendyline/molen-schema [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.4...@bendyline/molen-schema@0.0.5) (2026-10-06)
 
 ### Bug Fixes

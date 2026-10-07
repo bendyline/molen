@@ -1,3 +1,10 @@
+## @bendyline/molen-kernel [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.5...@bendyline/molen-kernel@0.0.6) (2026-10-07)
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.6
+
 ## @bendyline/molen-kernel [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.4...@bendyline/molen-kernel@0.0.5) (2026-10-06)
 
 ### Bug Fixes
