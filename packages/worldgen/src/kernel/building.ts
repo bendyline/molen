@@ -522,7 +522,7 @@ export function generateBuilding(
   buildOpeningFrames(
     outline,
     site?.openings ?? [],
-    { slot: 'trim', ref: 'palette:#ffffff', color: [0.4, 0.37, 0.31] },
+    { slot: 'trim', ref: 'palette:#ffffff', color: [0.66, 0.64, 0.59] },
     input.simplified !== true && recipe.lodKeep.includes('facade-bands'),
     out,
   );

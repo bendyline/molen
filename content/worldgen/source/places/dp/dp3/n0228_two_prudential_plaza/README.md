@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-894,844 triangles; 1,760,260 vertices; 8 material groups; 5,546,212 bytes. Native bounds: -28.235, 0.000, -20.576 to 28.235, 303.300, 20.576. Source hash: `sha256:bc16932d1b6a6598c4b62fa75e08291169989a8802d1b456a5fe2392c379d291`.
+51,888 triangles; 112,964 vertices; 8 material groups; 1,268,948 bytes. Native bounds: -28.235, 0.000, -20.576 to 28.235, 303.300, 20.576. Source hash: `sha256:2392b9a0cdad878ccdcf94ac39f5bd8038362ff174f609676905a679d13ca953`.
 
 {"up":"+Y","longitudinal":"+X south along the long mapped axis","front":"-Z east toward Stetson","origin":"Cached tower envelope center at provisional local pavement contact"}
 

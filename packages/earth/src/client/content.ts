@@ -8,7 +8,9 @@ import { type AssetProvider, decodeStarCatalog, type SkyStar } from '@bendyline/
 import { createTypeLibrary, type TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
   createPackSet,
+  isDirectoryPackUrl,
   type OpenPackOptions,
+  openDirectoryPack,
   openPack,
   type Pack,
   type PackSet,
@@ -167,6 +169,30 @@ export async function openPacksFromIndex(
     extra: OpenPackOptions & { signal?: AbortSignal },
   ): Promise<Pack> => {
     const fileUrl = new URL(entry.file, url).href;
+    if (isDirectoryPackUrl(fileUrl)) {
+      // An unzipped pack: a small manifest, then one request per file. Cached files are keyed by
+      // content, so a file shared by several packs or versions is stored once.
+      const { mode: _mode, ...rest } = extra;
+      return openDirectoryPack(fileUrl, {
+        fetch: cache === undefined ? fetchImpl : cachingDocumentFetch(cache.store, fetchImpl),
+        ...rest,
+        ...(cache !== undefined
+          ? {
+              fileReader: (fileHref: string, file: { size: number; sha256: string }) =>
+                cachingRangeReader(
+                  urlRangeReader(fileHref, {
+                    size: file.size,
+                    fetch: fetchImpl,
+                    ...(rest.signal !== undefined ? { signal: rest.signal } : {}),
+                  }),
+                  cache,
+                  { key: `file:${file.sha256}`, url: fileHref, size: file.size },
+                  options.wholeBelow !== undefined ? { wholeBelow: options.wholeBelow } : {},
+                ),
+            }
+          : {}),
+      });
+    }
     if (cache === undefined) {
       return openPack(fileUrl, { fetch: fetchImpl, sizeHint: entry.size, ...extra });
     }

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
 import { createInstancedPlacements, unitBoxGeometry } from '../../src/client/instanced-box';
+import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
 import { ModelLibrary, mergeSceneGeometry } from '../../src/client/instanced-models';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
 
@@ -175,10 +176,12 @@ describe('model library', () => {
     const heading = new THREE.Vector3(1, 0, 0).applyQuaternion(quaternion);
     expect(heading.x).toBeCloseTo(0, 6);
     expect(heading.z).toBeCloseTo(-1, 6);
+    // Placement tints are sRGB-encoded like every procedural color; instances carry them linear.
     const color = new THREE.Color();
     mesh.getColorAt(0, color);
-    expect(color.r).toBeCloseTo(0.5, 5);
-    expect(color.g).toBeCloseTo(0.25, 5);
+    const expected = new THREE.Color().setRGB(0.5, 0.25, 1, THREE.SRGBColorSpace);
+    expect(color.r).toBeCloseTo(expected.r, 5);
+    expect(color.g).toBeCloseTo(expected.g, 5);
     expect(color.b).toBeCloseTo(1, 5);
     expect(mesh.boundingSphere).not.toBeNull();
     mesh.dispose();
@@ -211,6 +214,53 @@ describe('procedural vegetation', () => {
       expect(Array.from(positions.array).every(Number.isFinite)).toBe(true);
       expect(Array.from(normals.array).every(Number.isFinite)).toBe(true);
       expect(first.geometry.boundingSphere?.radius).toBeGreaterThan(0);
+    }
+    library.dispose();
+  });
+
+  it('draws ground cover only as near detail, and seats it above the scatter sink', async () => {
+    const library = new ModelLibrary();
+    for (const species of ['groundcover.tuft', 'groundcover.fern']) {
+      const ref = `builtin:${species}`;
+      const near = await library.prepare(ref);
+      const triangles = near.geometry.getAttribute('position').count / 3;
+      expect(triangles).toBeGreaterThan(0);
+      expect(triangles).toBeLessThanOrEqual(70);
+      // Scatter sinks placements 0.15 m; the clump must still stand clear of the ground.
+      expect(near.bounds.min.y).toBeGreaterThan(-0.15);
+      expect(near.bounds.max.y - 0.15).toBeGreaterThan(0.4);
+      for (const coarse of [true, 'distant'] as const)
+        expect((await library.prepare(ref, coarse)).geometry.getAttribute('position').count).toBe(
+          0,
+        );
+      // The LOD keeps the near clumps and an empty level that takes over at distance.
+      const data = new Float32Array(PLACEMENT_STRIDE * 2);
+      data.set([0, 0, 0, 0, 1, 1, 1, 1, 1, 1], 0);
+      data.set([3, 0, 2, 0, 1, 1, 1, 1, 1, 1], PLACEMENT_STRIDE);
+      const set: PlacementSet = { setId: species, modelRef: ref, count: 2, data };
+      const lod = createInstancedPlacementLod(set, [
+        near,
+        await library.prepare(ref, true),
+        await library.prepare(ref, 'distant'),
+      ]);
+      const meshes: THREE.InstancedMesh[] = [];
+      lod.traverse((object) => {
+        if ((object as THREE.InstancedMesh).isInstancedMesh)
+          meshes.push(object as THREE.InstancedMesh);
+      });
+      expect(meshes).toHaveLength(1);
+      expect(meshes[0]?.count).toBe(2);
+      const level = lod.children[0] as THREE.LOD;
+      expect(level.levels).toHaveLength(2);
+      expect((level.levels[1]?.object as THREE.Object3D).children).toHaveLength(0);
+      // With nothing near, there is nothing to draw at all.
+      expect(
+        createInstancedPlacementLod(set, [
+          await library.prepare(ref, true),
+          await library.prepare(ref, true),
+          await library.prepare(ref, 'distant'),
+        ]).children,
+      ).toHaveLength(0);
     }
     library.dispose();
   });

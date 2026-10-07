@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-469,037 triangles; 1,190,619 vertices; 6 material groups; 48,494,384 bytes. Native bounds: -75.323, 0.000, -103.055 to 73.890, 360.000, 67.818. Source hash: `sha256:47b0d06a5b185563e65353dbce5a8e68a61904e98390a53b8a7f4c5798c1c105`.
+245,998 triangles; 521,502 vertices; 6 material groups; 21,729,692 bytes. Native bounds: -75.323, 0.000, -103.055 to 73.890, 360.000, 67.818. Source hash: `sha256:43a32462343db6b559d949be5e88684508529b0e5982f962a566ecc1bdb053b5`.
 
 {"up":"+Y","longitudinal":"+X is image-right in Atkins figures2 and9","front":"+Z is image-down in those plans","origin":"Ground-level tower center derived by a signed eight-petal primary-plan/map registration"}
 

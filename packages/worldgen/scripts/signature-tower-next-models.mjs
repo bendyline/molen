@@ -41,13 +41,19 @@ function edgeFrames(plan) {
     })
     .filter((e) => e.len > 0.05);
 }
+/**
+ * Floor-by-floor glazing with concave metal spandrels. The 1.45 m mullions run the full height
+ * of each facet as single strips just proud of glass and spandrels, as on a unitized wall,
+ * rather than a framed grid per floor; the spandrel bands mark the floors.
+ */
 function floorCurtain(out, plan, y0, y1, floors, body = glass, trim = metal, spandrel = 0.55) {
   for (const { a, b, n } of edgeFrames(plan)) {
     for (let floor = 0; floor < floors; floor++) {
       const lo = y0 + ((y1 - y0) * floor) / floors,
         hi = y0 + ((y1 - y0) * (floor + 1)) / floors;
-      grid(
+      face(
         out,
+        'glass',
         [
           [a[0], lo, a[1]],
           [b[0], lo, b[1]],
@@ -55,10 +61,6 @@ function floorCurtain(out, plan, y0, y1, floors, body = glass, trim = metal, spa
           [a[0], hi - spandrel, a[1]],
         ],
         body,
-        1.45,
-        hi - lo,
-        0.035,
-        trim,
       );
       // Concave metal spandrels reflect both the sky and the glazing below.
       const levels = [
@@ -79,6 +81,15 @@ function floorCurtain(out, plan, y0, y1, floors, body = glass, trim = metal, spa
           ],
           trim,
         );
+    }
+    const length = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      columns = Math.max(1, Math.ceil(length / 1.45)),
+      half = Math.min(0.22 * (length / columns), 0.035) / length;
+    for (let i = 0; i <= columns; i++) {
+      const s0 = Math.max(0, i / columns - half),
+        s1 = Math.min(1, i / columns + half);
+      const at = (s, y) => shift([a[0] + (b[0] - a[0]) * s, y, a[1] + (b[1] - a[1]) * s], n, 0.03);
+      face(out, 'metal', [at(s0, y0), at(s1, y0), at(s1, y1), at(s0, y1)], trim);
     }
   }
 }
@@ -1422,33 +1433,57 @@ function buildLakhta(out, m) {
     return [center[0] + x * c - z * s, y, center[1] + x * s + z * c];
   };
   mappedSolid(out, 'stone', plan, 0, 0.25, [0.42, 0.46, 0.48]);
+  // The twisting glass skin, two cells per straight plan edge and three floors high, with one
+  // frame line per floor just proud of it. Its 1.5 m mullions are below the closeup's error.
   const floors = 117,
-    cols = 14;
-  for (let floor = 0; floor < floors; floor++) {
-    const y0 = 0.25 + ((449 - 0.25) * floor) / floors,
-      y1 = 0.25 + ((449 - 0.25) * (floor + 1)) / floors;
+    cols = 2,
+    band = 3,
+    level = (k) => 0.25 + ((449 - 0.25) * k) / floors;
+  const lift = (p, d) => {
+    const dx = p[0] - center[0],
+      dz = p[2] - center[1],
+      r = Math.hypot(dx, dz) || 1;
+    return [p[0] + (dx / r) * d, p[1], p[2] + (dz / r) * d];
+  };
+  for (let row = 0; row < floors; row += band) {
+    const y0 = level(row),
+      y1 = level(Math.min(floors, row + band));
     for (let e = 0; e < plan.length; e++)
-      for (let j = 0; j < cols; j++) {
-        const q = [
-          point(e, j / cols, y0),
-          point(e, (j + 1) / cols, y0),
-          point(e, (j + 1) / cols, y1),
-          point(e, j / cols, y1),
-        ];
-        panel(
+      for (let j = 0; j < cols; j++)
+        face(
           out,
-          q,
+          'glass',
+          [
+            point(e, j / cols, y0),
+            point(e, (j + 1) / cols, y0),
+            point(e, (j + 1) / cols, y1),
+            point(e, j / cols, y1),
+          ],
           [0.32, 0.46, 0.53],
-          Math.max(0.012, 0.055 * scale((y0 + y1) / 2)),
+        );
+  }
+  for (let k = 1; k < floors; k++) {
+    const y = level(k),
+      h = Math.max(0.012, 0.055 * scale(y));
+    for (let e = 0; e < plan.length; e++)
+      for (let j = 0; j < cols; j++)
+        face(
+          out,
+          'metal',
+          [
+            lift(point(e, j / cols, y - h), 0.03),
+            lift(point(e, (j + 1) / cols, y - h), 0.03),
+            lift(point(e, (j + 1) / cols, y + h), 0.03),
+            lift(point(e, j / cols, y + h), 0.03),
+          ],
           [0.61, 0.7, 0.75],
         );
-      }
   }
   // Ten continuous helical arrises distinguish the five-petal flame profile.
   for (let e = 0; e < plan.length; e++)
-    for (let j = 0; j < 117; j++) {
-      const y0 = 0.25 + ((449 - 0.25) * j) / 117,
-        y1 = 0.25 + ((449 - 0.25) * (j + 1)) / 117;
+    for (let j = 0; j < floors; j += band) {
+      const y0 = level(j),
+        y1 = level(Math.min(floors, j + band));
       tube(
         out,
         'metal',
@@ -1456,7 +1491,7 @@ function buildLakhta(out, m) {
         point(e, 0, y1),
         Math.max(0.025, 0.11 * scale(y0)),
         [0.66, 0.74, 0.79],
-        8,
+        6,
       );
     }
   for (const y of [78, 153, 228, 303, 357, 404]) {

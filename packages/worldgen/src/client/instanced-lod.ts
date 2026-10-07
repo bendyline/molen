@@ -42,6 +42,10 @@ export function createInstancedPlacementLod(
   }
   const group = new THREE.Group();
   group.name = name;
+  // A model that is near detail only (ground cover) draws nothing at its later levels.
+  const drawn = (model: PreparedModel): boolean =>
+    model.geometry.getAttribute('position').count > 0;
+  if (!drawn(models[0])) return group;
   for (const [key, indices] of cells) {
     const data = new Float32Array(indices.length * PLACEMENT_STRIDE);
     indices.forEach((index, i) => {
@@ -94,6 +98,15 @@ export function createInstancedPlacementLod(
     for (let level = 1; level < models.length; level++) {
       const model = models[level] as PreparedModel;
       if (model.geometry === models[level - 1]?.geometry) continue;
+      if (!drawn(model)) {
+        const nothing = new THREE.Group();
+        nothing.name = `${name}:${key}:lod${level}`;
+        nothing.visible = false;
+        if (lod instanceof ScreenSpaceLod)
+          lod.addDetail(nothing, ([0.45, 2][level - 1] as number) * largestScale);
+        else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
+        break;
+      }
       const mesh = new THREE.InstancedMesh(model.geometry, model.material, 0);
       mesh.count = first.count;
       mesh.instanceMatrix = first.instanceMatrix;

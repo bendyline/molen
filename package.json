@@ -20,7 +20,7 @@
     "assets:check": "node scripts/asset-packs.mjs check",
     "assets:publish": "node scripts/asset-packs.mjs publish",
     "preassets:test": "pnpm --filter @bendyline/molen-schema build",
-    "assets:test": "node --test scripts/test/asset-packs.test.mjs packages/tooling/scripts/test/landmark-lods.test.mjs",
+    "assets:test": "node --test scripts/test/asset-packs.test.mjs scripts/test/publish-pack-release.test.mjs packages/tooling/scripts/test/landmark-lods.test.mjs",
     "audit:prod": "pnpm audit --prod --audit-level critical",
     "lint": "pnpm -r lint && biome check . && node --test scripts/test/golden-ci.test.mjs && node scripts/check-release-gate.mjs && node scripts/check-package-contents.mjs && node scripts/check-shipped-docs.mjs",
     "pretest:unit": "pnpm -r --filter \"./packages/**\" build",

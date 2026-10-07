@@ -20,7 +20,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-340,488 triangles; 761,392 vertices; 5 material groups; 31,499,296 bytes. Native bounds: -37.021, 0.000, -28.073 to 32.353, 309.000, 28.073. Source hash: `sha256:182f446b6f0fa9156c6175e28b310deba04c81a5327ff6271dde5fd73460f6d3`.
+337,608 triangles; 752,752 vertices; 5 material groups; 31,153,696 bytes. Native bounds: -37.021, 0.000, -28.073 to 32.353, 309.000, 28.073. Source hash: `sha256:99f4a5e5c4a47ec97bf3a568eaae81a4771c3ca2d9b75442a4489f339aa81059`.
 
 {"up":"+Y","front":"+X toward inward apex and mast","outerLobby":"-X opposite the mast"}
 

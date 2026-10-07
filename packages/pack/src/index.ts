@@ -13,7 +13,10 @@ export {
   sha256,
 } from './build';
 export {
+  isDirectoryPackUrl,
+  type OpenDirectoryPackOptions,
   type OpenPackOptions,
+  openDirectoryPack,
   openPack,
   type Pack,
   PackEntryNotFoundError,

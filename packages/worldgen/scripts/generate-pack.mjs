@@ -690,8 +690,9 @@ const MATERIALS = {
     seed: 17,
     nodes: [
       bricks('courses', 14, 6, 0.05),
-      twoTone('shingles', 'courses', '#8c8c8c', '#d9d9d9'),
-      ...grain(16, 0.78, 7),
+      // Light enough that a roof renders near its palette swatch under multiply tinting.
+      twoTone('shingles', 'courses', '#a6a6a6', '#ececec'),
+      ...grain(16, 0.86, 7),
       multiply('out', 'shingles', 'grain'),
     ],
     outputs: { baseColor: 'out' },

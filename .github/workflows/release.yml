@@ -40,6 +40,14 @@ jobs:
       # this build is the artifact that gets deployed.
       - uses: actions/configure-pages@v5
       - run: pnpm docs:site:build
+      # The runtime content packs the build just made, landmark model archives included, become
+      # the assets of the rolling `packs` release: `npx molen pack fetch
+      # https://github.com/bendyline/molen/releases/download/packs/index.json`. molen.dev/packs
+      # keeps only the core packs (Pages publishes at most 1 GB). Only changed packs upload.
+      - name: Publish content packs to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/publish-pack-release.mjs --target ${{ github.sha }}
       # Each package has its own version line. multi-semantic-release stamps, changelogs and
       # tags every package with releasable commits, and every package whose Molen dependencies
       # release (see .releaserc.cjs and scripts/semantic-release-molen.mjs). Nothing publishes

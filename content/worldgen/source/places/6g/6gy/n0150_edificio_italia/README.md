@@ -16,7 +16,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-488,628 triangles; 1,037,860 vertices; 4 material groups; 43,229,340 bytes. Native bounds: -27.288, 0.000, -13.768 to 27.289, 165.000, 13.768. Source hash: `sha256:13c81269b8c550a8fcae08dddcc4daaa6bb89c7a7663939d734c940fa71fe323`.
+473,498 triangles; 1,003,798 vertices; 4 material groups; 41,821,548 bytes. Native bounds: -27.288, 0.000, -13.768 to 27.289, 165.000, 13.768. Source hash: `sha256:647a5c5cc663718214ebc333eaa74ce7934df878f5a1f4e8786aab629f67d23e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 

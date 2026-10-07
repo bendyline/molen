@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { SkyVisual } from '../src/sky/visual';
+import { defaultSkyPalette, SkyVisual } from '../src/sky/visual';
 import {
   reflectionStateFromLights,
   SkyReflections,
@@ -68,6 +68,32 @@ describe('shared sky reflections', () => {
     reflections.dispose();
     sky.dispose();
     night.dispose();
+  });
+
+  it('carries the sky fill the hemisphere light would, scaled by dayAmbient', () => {
+    // The map replaces the hemisphere while reflections are on, so its radiance is the
+    // hemisphere's irradiance over π: doubling dayAmbient doubles the fill, and the fill matches
+    // the light-only rig's.
+    const dim = new SkyVisual({
+      mode: 'custom',
+      sunBody: { direction: [0, 1, 0] },
+      lighting: { dayAmbient: 1 },
+    });
+    const bright = new SkyVisual({
+      mode: 'custom',
+      sunBody: { direction: [0, 1, 0] },
+      lighting: { dayAmbient: 2 },
+    });
+    const up = (sky: SkyVisual) =>
+      sampleSkyReflection(sky.reflectionState, 0, 1, 0, new THREE.Color());
+    expect(up(bright).b).toBeCloseTo(up(dim).b * 2, 6);
+    // Full daylight with no cloud: the day zenith at the ambient intensity (1) over π.
+    const zenith = new THREE.Color(defaultSkyPalette.dayZenith).multiplyScalar(1 / Math.PI);
+    dim.reflectionState.zenith.forEach((value, i) => {
+      expect(value).toBeCloseTo(zenith.toArray()[i] as number, 6);
+    });
+    dim.dispose();
+    bright.dispose();
   });
 
   it('respects a host environment and disposes only its own resources once', () => {

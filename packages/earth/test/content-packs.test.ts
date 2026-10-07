@@ -142,6 +142,92 @@ describe('Earth pack byte cache', () => {
       { url: indexUrl, range: null, ifNoneMatch: '"i1"' },
     ]);
   });
+
+  it('reads an unzipped pack file by file, then from the cache by content', async () => {
+    const model = randomBytes(300_000);
+    const doc = new TextEncoder().encode(JSON.stringify({ name: 'loose' }));
+    const files = [
+      { path: 'models/a.glb', bytes: model },
+      { path: 'docs/a.json', bytes: doc },
+    ];
+    const zipped = (await createPack(files, { id: 'example.loose', version: '1.0.0' })).manifest;
+    // The layout writeDirectoryPack produces: every file loose, the same contentHash.
+    const manifest = {
+      ...zipped,
+      blocks: {},
+      entries: Object.fromEntries(
+        Object.entries(zipped.entries).map(([path, { block: _b, offset: _o, ...entry }]) => [
+          path,
+          entry,
+        ]),
+      ),
+    };
+    const base = 'https://cdn.example/_a/';
+    const indexUrl = `${base}index.json`;
+    const manifestPath = 'example.loose/0123456789ab/molen-pack.json';
+    const served = new Map<string, Uint8Array>([
+      [`${base}${manifestPath}`, new TextEncoder().encode(JSON.stringify(manifest))],
+      ...files.map((f) => [`${base}example.loose/0123456789ab/${f.path}`, f.bytes] as const),
+    ]);
+    const index = {
+      format: 'molen/pack-index@1',
+      packs: {
+        'example.loose': {
+          file: manifestPath,
+          size: (served.get(`${base}${manifestPath}`) as Uint8Array).length,
+          version: '1.0.0',
+          contentHash: manifest.contentHash,
+        },
+      },
+    };
+    const requests: string[] = [];
+    const fetchImpl = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = String(input);
+      const headers = new Headers(init?.headers);
+      requests.push(`${url.slice(base.length)} ${headers.get('range') ?? ''}`.trim());
+      const body =
+        url === indexUrl ? new TextEncoder().encode(JSON.stringify(index)) : served.get(url);
+      if (body === undefined) return new Response('missing', { status: 404 });
+      const etag = `"${url.length}"`;
+      if (headers.get('if-none-match') === etag) return new Response(null, { status: 304 });
+      const match = /^bytes=(\d+)-(\d+)$/.exec(headers.get('range') ?? '');
+      if (match === null) return new Response(body, { headers: { etag } });
+      const start = Number(match[1]);
+      const end = Math.min(Number(match[2]), body.length - 1);
+      return new Response(body.slice(start, end + 1), {
+        status: 206,
+        headers: { 'content-range': `bytes ${start}-${end}/${body.length}`, etag },
+      });
+    }) as typeof fetch;
+    const store = createMemoryByteStore();
+
+    const cache = createBlockCache(store);
+    const [first] = await openPacksFromIndex(indexUrl, ['example.loose'], fetchImpl, {
+      byteCache: cache,
+    });
+    expect(new Uint8Array(await (first as Pack).readBytes('models/a.glb'))).toEqual(
+      new Uint8Array(model),
+    );
+    expect(await (first as Pack).readJson('docs/a.json')).toEqual({ name: 'loose' });
+    first?.close();
+    await cache.flush();
+    const firstVisit = requests.length;
+    expect(requests).toContain('index.json');
+    expect(requests).toContain(manifestPath);
+    expect(requests.some((r) => r.startsWith('example.loose/0123456789ab/models/a.glb'))).toBe(
+      true,
+    );
+
+    const [again] = await openPacksFromIndex(indexUrl, ['example.loose'], fetchImpl, {
+      byteCache: createBlockCache(store),
+    });
+    expect(new Uint8Array(await (again as Pack).readBytes('models/a.glb'))).toEqual(
+      new Uint8Array(model),
+    );
+    again?.close();
+    // The index and manifest revalidate (304); no file is fetched again.
+    expect(requests.slice(firstVisit)).toEqual(['index.json', manifestPath]);
+  });
 });
 
 describe('Earth structure catalogs', () => {

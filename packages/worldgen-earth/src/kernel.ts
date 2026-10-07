@@ -42,6 +42,7 @@ export type {
 } from './kernel/semantic-adapter';
 export {
   landcoverAreaOf,
+  OPEN_GROUND_LABEL,
   scatterRequestFromTile,
   semanticTileToBatch,
 } from './kernel/semantic-adapter';

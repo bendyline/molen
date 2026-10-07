@@ -5,23 +5,23 @@
   "doc": "Sparse pinyon and juniper stands (pine stand-in), shrubs across scrub, boulders on bare ground, a few yard trees; warm dry surface tones.",
   "version": 2,
   "surface": {
-    "default": "#a89572",
+    "default": "#b39c72",
     "colors": {
-      "forest": "#6b7a55",
-      "wood": "#6d7b58",
-      "grassland": "#b3a76f",
-      "grass": "#a9a06a",
-      "farmland": "#a99a66",
-      "scrub": "#a4956a",
-      "park": "#8d9a62",
-      "residential": "#a89a84",
-      "commercial": "#9f958a",
-      "industrial": "#948c80",
-      "urban_area": "#9c9588",
-      "beach": "#d0bc8c",
-      "sand": "#cbb383",
-      "barren": "#b39a76",
-      "wetland": "#8f9c74"
+      "forest": "#6c8250",
+      "wood": "#6e8253",
+      "grassland": "#bcae6c",
+      "grass": "#a8a862",
+      "farmland": "#b3a262",
+      "scrub": "#ad9a66",
+      "park": "#8aa25c",
+      "residential": "#b5a682",
+      "commercial": "#b3a896",
+      "industrial": "#a59b8a",
+      "urban_area": "#ada392",
+      "beach": "#dcc690",
+      "sand": "#d6bb84",
+      "barren": "#c0a274",
+      "wetland": "#8fa473"
     }
   },
   "defaults": {
@@ -118,6 +118,93 @@
           "widthScale": { "min": 0.8, "max": 1.25 }
         }
       ]
+    },
+    {
+      "id": "meadow-groundcover",
+      "layer": "groundcover",
+      "classes": ["grass", "park", "garden", "cemetery", "meadow"],
+      "densityPerHectare": 70,
+      "minSpacing": 1.4,
+      "clustering": { "scale": 45, "threshold": 0.3, "contrast": 1.6, "seedOffset": 7 },
+      "avoid": { "roads": 2, "buildings": 1.5, "water": 1 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 5,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.12 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 2,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "yard-groundcover",
+      "layer": "groundcover",
+      "classes": ["residential"],
+      "densityPerHectare": 25,
+      "minSpacing": 2,
+      "clustering": { "scale": 30, "threshold": 0.35, "contrast": 1.5, "seedOffset": 11 },
+      "avoid": { "roads": 3, "buildings": 2, "water": 1 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 3,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.12 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 2,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
+    },
+    {
+      "id": "open-groundcover",
+      "layer": "groundcover",
+      "classes": ["open_ground"],
+      "densityPerHectare": 40,
+      "minSpacing": 1.6,
+      "clustering": { "scale": 55, "threshold": 0.28, "contrast": 1.5, "seedOffset": 13 },
+      "avoid": { "roads": 8, "buildings": 2.5, "water": 2 },
+      "populations": [
+        {
+          "model": "builtin:groundcover.tuft",
+          "weight": 3,
+          "scale": { "min": 0.7, "max": 1.5 },
+          "yaw": "random",
+          "align": "normal",
+          "tint": { "hue": 0.03, "saturation": 0.1, "lightness": 0.12 },
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        },
+        {
+          "model": "builtin:rock",
+          "weight": 2,
+          "scale": { "min": 0.18, "max": 0.42 },
+          "yaw": "random",
+          "align": "normal",
+          "widthScale": { "min": 0.8, "max": 1.4 }
+        }
+      ],
+      "lod": { "keepByTier": [1, 0, 0, 0] }
     }
   ]
 }

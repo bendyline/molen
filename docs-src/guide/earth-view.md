@@ -56,6 +56,16 @@ reuses its filtered texture until lighting changes; camera movement does not reg
 Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 `view.viewer.renderer.scene.environment` takes precedence if you supply your own HDR environment.
 
+Without a `style`, the view uses the shared medium-fi look: a strong warm sun over a sky fill,
+Khronos PBR Neutral tone mapping, and haze in the sky's horizon color. Its values are exported as
+`EARTH_SKY_PALETTE`, `EARTH_LIGHTING`, `EARTH_TONE_MAPPING`, `EARTH_EXPOSURE` and
+`EARTH_WATER_COLOR`, so a host that builds its own viewer can match it. `earthHazeColor` converts
+a sky color into the fog color for the backend. Terrain and landcover share one ground material
+from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
+variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. The
+[medium-fi style guide](medium-fi.md) explains the look and the rules models follow inside it.
+
 `style` sets the look: `sky.sunElevation` and `sky.sunAzimuth` (degrees; the azimuth is a
 compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
 given the sunlight comes from the same point, so lit faces agree with the glow in the sky. `fog`,
@@ -356,13 +366,20 @@ model eviction. `build-copernicus-bridge-evidence.py` and the capture runner's
 neither capture set substitutes altered heights to make a bridge fit. These reports are research
 evidence and are excluded from the Earth runtime pack.
 
-If `replaceFootprint` is set, a mapped building is suppressed only when the anchor falls inside
-its polygon and the replacement model has loaded. Failed models keep the procedural building.
-Generalized sources (Protomaps below zoom 15, and tiles overzoomed from them) merge neighboring
-footprints, so there the polygon is suppressed only when neither side exceeds the loaded model's
-horizontal extent by more than 1.6 times plus 12 meters; a larger polygon is a merged block of
-other buildings and keeps its procedural shell. An Earth pack without a placement document still
-loads.
+If `replaceFootprint` is set, mapped buildings are suppressed only once the replacement model
+has loaded; failed models keep the procedural building. In exact data a polygon goes when the
+anchor falls inside it, when it lies wholly inside the loaded model's horizontal extent around the
+anchor, or when at least half of it stands on the model's own ground footprint (its triangles
+stamped on a 64-cell grid). The last two catch a landmark's off-centre mapped parts: a tower's
+legs and observation level, a grandstand, a ballpark's parked roof. The footprint also reaches
+neighbouring tiles, so a stadium anchored near a tile edge clears its mapped stands there too.
+Those tiles regenerate their buildings when the landmark loads, and again when its tile is evicted.
+A ring polygon whose hole holds the anchor (a stadium bowl, a cloister) goes under the size rule
+below. Generalized sources (Protomaps below zoom 15, and tiles overzoomed from them) merge
+neighboring footprints, so there the polygon must contain or ring the anchor, and is suppressed
+only when neither side exceeds the loaded model's horizontal extent by more than 1.6 times plus
+12 meters; a larger polygon is a merged block of other buildings and keeps its procedural shell.
+An Earth pack without a placement document still loads.
 
 For unsurveyed orientation, `orientation: 'mapped'` requires an explicit
 `mapIdentity: { wikidata: 'Q…', maxDistance: 150 }`. The viewer admits that model only after a

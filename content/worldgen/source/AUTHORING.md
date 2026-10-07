@@ -16,6 +16,8 @@ specifications, material graphs, sidecars and review records belong in Git.
 | Shared material graphs | `../materials/*.matgraph.json` |
 | All 1,000 candidates and current readiness | [production progress](next-1000/PROGRESS.md) |
 | Next production selection | [NEXT-300.json](next-1000/NEXT-300.json) |
+| Target look, palette bands and polygon budgets | [medium-fi style guide](../../../docs-src/guide/medium-fi.md) |
+| Corpus audit against that look, and its backlog | [MEDIUM-FI-REVIEW.md](MEDIUM-FI-REVIEW.md) |
 
 The authoring index is a static dependency and identity cross-reference. A recipe may be
 reachable from several generator jobs because they import common helpers. Its

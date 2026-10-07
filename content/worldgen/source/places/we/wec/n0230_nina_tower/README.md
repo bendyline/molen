@@ -18,7 +18,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-1,313,564 triangles; 2,627,828 vertices; 7 material groups; 9,209,716 bytes. Native bounds: -70.147, 0.000, -31.149 to 22.950, 320.430, 67.425. Source hash: `sha256:6c5ae84b36dc718b7eba3ae710b8a07c3f0542674f4ad442c0a7c0abe0d51cd8`.
+128,948 triangles; 258,596 vertices; 7 material groups; 3,554,848 bytes. Native bounds: -70.147, 0.000, -31.149 to 22.950, 320.430, 67.425. Source hash: `sha256:36eb2cc4d9919a88a6e80eed001f27f46022351f87e0a2947892075b3c88a656`.
 
 {"up":"+Y","longitudinal":"+X along the tall tower frontage","front":"-Z toward Yeung Uk Road","origin":"Working tall tower center at local pavement datum; geographic registration remains unapproved"}
 

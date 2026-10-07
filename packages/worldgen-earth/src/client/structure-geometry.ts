@@ -2,9 +2,15 @@ import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/cl
 import type {
   TerrainSemanticLine,
   TerrainSemanticPoint,
+  TerrainSemanticPolygon,
   TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import { pointInRing, wgs84ToWorld } from '@bendyline/molen-terrain/kernel';
+import {
+  pointInPolygon,
+  pointInRing,
+  polygonBounds,
+  wgs84ToWorld,
+} from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
 import type { StructurePlacement } from '../kernel/structure-index';
 
@@ -449,4 +455,133 @@ export function withoutStructureRoads(
     });
   }
   return transportation === tile.transportation ? tile : { ...tile, transportation };
+}
+
+/**
+ * Where a placed model stands, in world X/Z: its triangles' X/Z bounds stamped on a coarse grid
+ * over the model. A stadium bowl or a tower on legs covers far less ground than its bounding
+ * box, and a model near a tile edge covers its neighbours' ground too.
+ */
+export interface StructureFootprint {
+  readonly minX: number;
+  readonly minZ: number;
+  readonly cell: number;
+  readonly size: number;
+  readonly cells: Uint8Array;
+}
+
+const FOOTPRINT_GRID = 64;
+// Enough triangles to cover a 64-cell grid; denser resident levels are sampled at a stride.
+const FOOTPRINT_TRIANGLES = 50_000;
+
+/**
+ * `object`'s ground coverage, or undefined when it holds no geometry. `frame` holds tile-local
+ * meters (a tile's structure group) whose origin is the world X/Z `origin`.
+ */
+export function structureFootprint(
+  object: THREE.Object3D,
+  frame: THREE.Object3D,
+  origin: readonly [number, number],
+): StructureFootprint | undefined {
+  frame.updateWorldMatrix(true, false);
+  object.updateWorldMatrix(true, true);
+  const toFrame = frame.matrixWorld.clone().invert();
+  const meshes: Array<{ geometry: THREE.BufferGeometry; matrix: THREE.Matrix4 }> = [];
+  const bounds = new THREE.Box3();
+  object.traverse((part) => {
+    const mesh = part as THREE.Mesh;
+    if (!mesh.isMesh || mesh.geometry.getAttribute('position') === undefined) return;
+    const matrix = new THREE.Matrix4().multiplyMatrices(toFrame, mesh.matrixWorld);
+    if (mesh.geometry.boundingBox === null) mesh.geometry.computeBoundingBox();
+    bounds.union((mesh.geometry.boundingBox as THREE.Box3).clone().applyMatrix4(matrix));
+    meshes.push({ geometry: mesh.geometry, matrix });
+  });
+  if (meshes.length === 0 || bounds.isEmpty()) return undefined;
+  const cell =
+    Math.max(bounds.max.x - bounds.min.x, bounds.max.z - bounds.min.z, 1) / FOOTPRINT_GRID;
+  const footprint = {
+    minX: bounds.min.x + origin[0],
+    minZ: bounds.min.z + origin[1],
+    cell,
+    size: FOOTPRINT_GRID,
+    cells: new Uint8Array(FOOTPRINT_GRID * FOOTPRINT_GRID),
+  };
+  const column = (value: number, min: number): number =>
+    Math.max(0, Math.min(FOOTPRINT_GRID - 1, Math.floor((value - min) / cell)));
+  const corners = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()] as const;
+  for (const { geometry, matrix } of meshes) {
+    const position = geometry.getAttribute('position');
+    const index = geometry.index;
+    const triangles = Math.floor((index?.count ?? position.count) / 3);
+    const stride = Math.max(1, Math.ceil(triangles / FOOTPRINT_TRIANGLES));
+    for (let t = 0; t < triangles; t += stride) {
+      corners.forEach((corner, k) => {
+        corner.fromBufferAttribute(position, index?.getX(t * 3 + k) ?? t * 3 + k);
+        corner.applyMatrix4(matrix);
+      });
+      const [a, b, c] = corners;
+      const x1 = column(Math.max(a.x, b.x, c.x), bounds.min.x);
+      const z1 = column(Math.max(a.z, b.z, c.z), bounds.min.z);
+      for (let z = column(Math.min(a.z, b.z, c.z), bounds.min.z); z <= z1; z++)
+        for (let x = column(Math.min(a.x, b.x, c.x), bounds.min.x); x <= x1; x++)
+          footprint.cells[z * FOOTPRINT_GRID + x] = 1;
+    }
+  }
+  return footprint;
+}
+
+/** Whether `footprint` reaches into the tile at `context`. */
+export function footprintOverlapsTile(
+  footprint: StructureFootprint,
+  context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
+): boolean {
+  const extent = footprint.cell * footprint.size;
+  return (
+    footprint.minX < context.origin[0] + context.tileSize &&
+    footprint.minX + extent > context.origin[0] &&
+    footprint.minZ < context.origin[1] + context.tileSize &&
+    footprint.minZ + extent > context.origin[1]
+  );
+}
+
+/**
+ * Whether at least half of `polygon` (normalized to the tile at `context`, like every semantic
+ * polygon) lies on `footprint`, sampled on an 8 by 8 grid over the polygon's bounds.
+ */
+export function footprintCovers(
+  footprint: StructureFootprint,
+  polygon: TerrainSemanticPolygon,
+  context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
+): boolean {
+  const occupied = (u: number, v: number): boolean => {
+    const x = Math.floor(
+      (context.origin[0] + u * context.tileSize - footprint.minX) / footprint.cell,
+    );
+    const z = Math.floor(
+      (context.origin[1] + v * context.tileSize - footprint.minZ) / footprint.cell,
+    );
+    return (
+      x >= 0 &&
+      z >= 0 &&
+      x < footprint.size &&
+      z < footprint.size &&
+      footprint.cells[z * footprint.size + x] === 1
+    );
+  };
+  const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+  let inside = 0;
+  let hits = 0;
+  for (let j = 0; j < 8; j++)
+    for (let i = 0; i < 8; i++) {
+      const point: TerrainSemanticPoint = [
+        minU + ((maxU - minU) * (i + 0.5)) / 8,
+        minV + ((maxV - minV) * (j + 0.5)) / 8,
+      ];
+      if (!pointInPolygon(point, polygon)) continue;
+      inside++;
+      if (occupied(point[0], point[1])) hits++;
+    }
+  // A sliver no sample lands in is judged by its centre.
+  if (inside === 0) return occupied((minU + maxU) / 2, (minV + maxV) / 2);
+  return hits * 2 >= inside;
 }

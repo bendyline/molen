@@ -127,7 +127,9 @@ describe('splatColor banding', () => {
       20,
       0,
     );
-    expect(color).toEqual([0x60 / 255, 0x90 / 255, 0x50 / 255]);
+    // Authored sRGB, decoded to the linear values the vertex color attribute carries.
+    const linear = (v: number) => ((v / 255 + 0.055) / 1.055) ** 2.4;
+    expect(color).toEqual([linear(0x60), linear(0x90), linear(0x50)]);
   });
   it('falls back to a height ramp with no layers', () => {
     const bare = descriptor({ layers: [] });

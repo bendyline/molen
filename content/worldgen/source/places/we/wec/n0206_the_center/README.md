@@ -25,7 +25,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-522,444 triangles; 1,137,796 vertices; 6 material groups; 47,233,512 bytes. Native bounds: -56.554, 0.000, -43.646 to 48.408, 346.000, 31.540. Source hash: `sha256:a316ee3e78263e7acb0cd3f9629746f09934c3ef8b7580636f0253505d7debb0`.
+488,748 triangles; 1,036,708 vertices; 6 material groups; 43,189,992 bytes. Native bounds: -56.554, 0.000, -43.646 to 48.408, 346.000, 31.540. Source hash: `sha256:700afba565e85d7c30e2c00281a3c9fbfda4cdae9c6e6d2631ad1ee585082f7d`.
 
 {"up":"+Y","front":"+Z southwest toward Queen’s Road","longAxis":"+X southeast along the main frontage"}
 

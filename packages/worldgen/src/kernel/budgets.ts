@@ -8,6 +8,8 @@ export const DEFAULT_WORLDGEN_BUDGETS: WorldgenBudgets = Object.freeze({
   maxInstancesPerRule: 4000,
   maxInstances: 8000,
   maxPropModels: 4,
+  maxGroundCoverInstances: 4000,
+  maxGroundCoverModels: 3,
   maxMaterialGroups: 10,
 });
 

@@ -120,7 +120,7 @@ export function* generateInteriorGeometrySteps(
         [1, 1],
         [0, 1],
       ],
-      upperMissing ? parseColor(palette.wall) : [0.74, 0.86, 0.9],
+      upperMissing ? parseColor(palette.wall) : [0.88, 0.94, 0.95],
     );
   }
   const yaw = dmath.atan2(site.inward[0], site.inward[1]);

@@ -106,7 +106,9 @@ lighting changes visibly; moving the camera does not rebuild it. It is enabled b
 `mountEarthView` and the world explorer. General viewers keep the legacy default (`false`).
 The approximation provides sky reflections, not reflections of nearby buildings or trees.
 Without `environment.sky`, it uses the ambient/sun rig and background color. Its filtered map
-replaces the hemisphere's diffuse contribution during rendering to avoid lighting surfaces twice.
+replaces the hemisphere's diffuse contribution during rendering to avoid lighting surfaces twice,
+and carries the same irradiance: `sky.lighting.dayAmbient` and `nightAmbient` (or
+`environment.ambient.intensity`) set the sky fill whether reflections are on or off.
 A host-supplied `renderer.scene.environment` takes precedence; the host retains ownership of that
 texture and control of its light balance.
 Custom host meshes should use `MeshStandardMaterial` or `MeshPhysicalMaterial` for this mode;

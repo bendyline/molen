@@ -13,12 +13,19 @@ const DEFAULT_COLORS: Record<string, string> = {
   water: '#2a4a6a',
 };
 
+const srgbToLinear = (v: number): number =>
+  v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+
+/**
+ * Layer colors are authored as sRGB hex; the vertex color attribute is read as linear, so decode
+ * here. Raw bytes would render every band lighter and greyer than its swatch.
+ */
 function hexToRgb(hex: string): [number, number, number] {
   const h = hex.replace('#', '');
   return [
-    Number.parseInt(h.slice(0, 2), 16) / 255,
-    Number.parseInt(h.slice(2, 4), 16) / 255,
-    Number.parseInt(h.slice(4, 6), 16) / 255,
+    srgbToLinear(Number.parseInt(h.slice(0, 2), 16) / 255),
+    srgbToLinear(Number.parseInt(h.slice(2, 4), 16) / 255),
+    srgbToLinear(Number.parseInt(h.slice(4, 6), 16) / 255),
   ];
 }
 

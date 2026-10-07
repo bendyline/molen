@@ -1,5 +1,7 @@
 /** Shared grammar for ids and references used by every worldgen format. */
 
+import { dmath } from '@bendyline/molen-kernel/determinism';
+
 /** Namespaced dotted id, e.g. `molen.worldgen.pnw.house`. */
 export const DOTTED_ID_RE: RegExp = /^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/;
 
@@ -33,6 +35,8 @@ export const BUILTIN_MODELS: readonly string[] = [
   'builtin:tree.deciduous.birch',
   'builtin:shrub',
   'builtin:rock',
+  'builtin:groundcover.tuft',
+  'builtin:groundcover.fern',
 ];
 
 export interface ParsedMaterialRef {
@@ -53,8 +57,26 @@ export function isUrlishRef(ref: string): boolean {
   return ref.includes('/') || ref.startsWith('./') || /^https?:/.test(ref);
 }
 
-/** Parse `#rrggbb` into linear-ish RGB in 0..1 (no gamma conversion; palettes are authored in sRGB). */
+/**
+ * Parse `#rrggbb` into its sRGB-encoded components in 0..1. No gamma conversion happens here:
+ * procedural vertex colors stay sRGB-encoded through generation, and renderers decode them with
+ * {@link SRGB_TO_LINEAR_BYTE} where they become GPU attributes.
+ */
 export function parseColor(hex: string): [number, number, number] {
   const value = Number.parseInt(hex.slice(1), 16);
   return [((value >> 16) & 0xff) / 255, ((value >> 8) & 0xff) / 255, (value & 0xff) / 255];
 }
+
+/**
+ * sRGB-encoded byte to linear byte. three.js reads vertex colors as linear, so procedural colors
+ * (authored as sRGB hex) are decoded where they become GPU attributes; uploaded raw they render
+ * lighter and greyer than authored. Authored GLBs already store linear COLOR_0 and skip this.
+ */
+export const SRGB_TO_LINEAR_BYTE: Uint8Array = (() => {
+  const table = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) {
+    const v = i / 255;
+    table[i] = Math.round(255 * (v <= 0.04045 ? v / 12.92 : dmath.pow((v + 0.055) / 1.055, 2.4)));
+  }
+  return table;
+})();

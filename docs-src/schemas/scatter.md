@@ -326,6 +326,15 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
             "additionalProperties": false,
             "description": "Noise-modulated density for natural clumps and clearings."
           },
+          "layer": {
+            "default": "canopy",
+            "type": "string",
+            "enum": [
+              "canopy",
+              "groundcover"
+            ],
+            "description": "Budget pool: canopy (trees, shrubs, rocks) shares the batch instance and model caps; groundcover (knee-high near detail such as tussocks and ferns) has its own, so it never thins the canopy."
+          },
           "slopeMax": {
             "type": "number",
             "minimum": 0,

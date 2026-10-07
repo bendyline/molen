@@ -32,6 +32,19 @@ ultrawide displays. CPU caches and resident geometry have separate limits:
 | High | 2,800,000 | 2.4 px | 96 | 400 MiB | 96 MiB |
 | Ultra | 4,000,000 | 1.75 px | 128 | 544 MiB | 128 MiB |
 
+Each tier also names its sun shadow quality (`EarthPerformanceTier.shadows`): off at Minimum and
+Low, medium at Medium, and high from Balanced up. On WebGPU the main pass keeps its render bundles
+while shadows are on, but every bundled object refreshes each frame, because that refresh is what
+redraws the shadow map and keeps receivers in step with it; shadows therefore cost real CPU time
+on WebGPU, and the controller accounts for it like any other work. Bundles exist only inside
+the frame. Between frames, warm-up compiles run the sun's shadow pass over the scene, and there
+the groups draw normally, so a tile that an admission job swapped and disposed is never replayed
+from a stale bundle. Once a WebGPU shadow map
+exists it keeps its size, and "off" stops redrawing it and fades it out rather than releasing it,
+because three.js's WebGPU shadow node cannot be torn down and rebuilt in place. Tiers change cost, never the
+look: the palette, light rig and styles are the same in every tier (see the
+[medium-fi style guide](medium-fi.md#rendering-modes)).
+
 Resident byte estimates count retained height arrays, geometry attributes/indices and instance
 buffers, deduplicating shared backing storage within each object. They exclude textures, archive
 caches and GPU copies, so they are not total device memory measurements. The resident cap is soft:

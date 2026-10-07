@@ -14,6 +14,7 @@ import {
 } from '@bendyline/molen-earth/client';
 import type { World } from '@bendyline/molen-kernel/world';
 import { createPackSet } from '@bendyline/molen-pack';
+import { packIndex } from './content';
 
 const STORAGE_KEY = 'molen.world-explorer.audio';
 
@@ -48,9 +49,7 @@ export async function startExplorerAudio(
   params: URLSearchParams,
 ): Promise<EarthAudio | undefined> {
   if (params.get('audio') === '0') return undefined;
-  const packs = await openPacksFromIndex(new URL('packs/index.json', base), [
-    EARTH_PACK_IDS.sounds,
-  ]);
+  const packs = await openPacksFromIndex(packIndex(base), [EARTH_PACK_IDS.sounds]);
   if (packs.length === 0) return undefined;
   const settings = readSettings();
   const audio = await createEarthAudio(createPackSet(packs), renderer, settings);

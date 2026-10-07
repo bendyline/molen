@@ -233,6 +233,39 @@ export function chair(out, angle, p, color) {
     [0, 0, 1],
   );
 }
+/**
+ * A seating row as one band, the medium-fi rule for stadium tiers: for each chord of `line`
+ * (points at tread level, the pitch on the same side as `chair` faces), a sloped face from the
+ * seat pans' front edge to the top of the backs, and the backs' rear face. `color` is a color
+ * or a function of the chord's midpoint. A chair per 0.54 m made seating most of a stadium.
+ */
+export function seatBand(out, line, color) {
+  for (let i = 1; i < line.length; i++) {
+    const a = line[i - 1],
+      b = line[i],
+      dx = b[0] - a[0],
+      dz = b[2] - a[2],
+      length = Math.hypot(dx, dz);
+    if (length < 1e-6) continue;
+    const n = [-dz / length, 0, dx / length];
+    const at = (p, offset, rise) => [p[0] + n[0] * offset, p[1] + rise, p[2] + n[2] * offset];
+    const tint = typeof color === 'function' ? color(a.map((v, k) => (v + b[k]) / 2)) : color;
+    face(
+      out,
+      'plastic',
+      [at(a, -0.19, 0.34), at(b, -0.19, 0.34), at(b, 0.255, 0.78), at(a, 0.255, 0.78)],
+      tint,
+      [-n[0], 1, -n[2]],
+    );
+    face(
+      out,
+      'plastic',
+      [at(a, 0.29, 0.31), at(b, 0.29, 0.31), at(b, 0.29, 0.78), at(a, 0.29, 0.78)],
+      tint,
+      n,
+    );
+  }
+}
 function mix(row, col) {
   let h = Math.imul(row + 41, 2654435761) ^ Math.imul(col + 97, 1597334677);
   h ^= h >>> 16;

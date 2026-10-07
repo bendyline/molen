@@ -1,4 +1,5 @@
 import { AssetCache, createGltfLoader, MaterialResolver } from '@bendyline/molen-client';
+import { EARTH_EXPOSURE, EARTH_LIGHTING, EARTH_SKY_PALETTE } from '@bendyline/molen-earth/client';
 import {
   buffersToObject3D,
   createInstancedPlacements,
@@ -135,14 +136,22 @@ async function main(): Promise<void> {
   renderer.setPixelRatio(1);
   renderer.setSize(640, 440);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.95;
+  // The Earth view's own sun, sky fill and tone mapping, so a style reviewed here looks the way
+  // it will in the world (see the medium-fi style guide).
+  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMappingExposure = EARTH_EXPOSURE;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#e8ece3');
-  scene.add(new THREE.HemisphereLight('#fff9eb', '#9ba99b', 1.3));
-  const light = new THREE.DirectionalLight('#fff3dd', 2);
+  scene.add(
+    new THREE.HemisphereLight(
+      EARTH_SKY_PALETTE.dayHorizon,
+      EARTH_SKY_PALETTE.ground,
+      EARTH_LIGHTING.dayAmbient,
+    ),
+  );
+  const light = new THREE.DirectionalLight(EARTH_SKY_PALETTE.sun, EARTH_LIGHTING.sunIntensity);
   light.castShadow = true;
   light.shadow.mapSize.set(2048, 2048);
   light.shadow.bias = -0.0003;

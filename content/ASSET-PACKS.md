@@ -124,9 +124,14 @@ The distant skyline uses vertex colors and shader-derived flat normals, requirin
 The skyline recipe partitions source geometry into local convex pieces and simplifies their
 exterior. Small openings and thin details can disappear. The other levels weld coincident
 vertices, remove narrow trim within a 2% surface-area allowance per material, and simplify with
-a bounded error setting. Triangle targets are advisory for detailed levels: the generator
-retains geometry when further reduction would damage the main surfaces. Large stadiums and
-other dense structures can therefore remain expensive. The viewer admits an upgrade only
+a bounded error setting. When a level stays more than 15% over its triangle target, the
+generator doubles the error budget and lets meshoptimizer prune isolated parts until the level
+fits, up to 2% of the model's extent for district, 0.6% for street and 0.15% for closeup, and
+finally drops components thinner than that error (smallest first, at most a quarter of each
+material's area). The recorded error grows with the reduction, so the streamer uses the level
+from farther away. A closeup that still does not fit stays over target rather than blur; its
+master needs re-authoring. `node packages/tooling/scripts/check-medium-fi.mjs` audits every
+structure against the [medium-fi style guide](../docs-src/guide/medium-fi.md). The viewer admits an upgrade only
 within its geometry and render budgets; additional authored LODs may be needed to
 make those structures detailed on phones. Estimated geometric error is not a certified bound.
 

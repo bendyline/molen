@@ -6,6 +6,7 @@ import { Fog, type IUniform, MathUtils, Vector3 } from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import type { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import type { NodeBuilder } from 'three/webgpu';
+import { EARTH_SKY_PALETTE, earthHazeColor } from './look';
 
 /** Scattering and sun placement for the physical sky model. */
 export interface EarthSkyStyle {
@@ -19,17 +20,16 @@ export interface EarthSkyStyle {
   sunAzimuth?: number;
 }
 
-const DEFAULT_FOG = '#d6e0e3';
-
 /**
- * Distance haze. The default color is corrected for the WebGPU path, which fogs before tone
- * mapping; a custom color is used as given on both backends.
+ * Distance haze in the sky's horizon color (or `color`, read as a sky palette color), converted
+ * for the backend so fully hazed ground matches the sky behind it; see `earthHazeColor`.
  */
-export function createEarthFog(backend: 'webgl' | 'webgpu', color: string = DEFAULT_FOG): Fog {
-  const fog = new Fog(color, 2_000, 20_000);
-  // Scene-linear values that map to the same #d6e0e3 swatch under AgX at 0.9 exposure.
-  if (backend === 'webgpu' && color === DEFAULT_FOG)
-    fog.color.setRGB(1.4881064, 2.2205412, 2.5010572);
+export function createEarthFog(
+  backend: 'webgl' | 'webgpu',
+  color: string = EARTH_SKY_PALETTE.dayHorizon,
+): Fog {
+  const fog = new Fog(0xffffff, 2_000, 20_000);
+  earthHazeColor(backend, color, fog.color);
   return fog;
 }
 

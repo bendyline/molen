@@ -62,6 +62,26 @@ built.file; // 'my.props-3f2a9c1e5b7d.zip', named by a hash of its bytes
 const pack = await openDirPack('content/my-props');
 ```
 
+## Host packs unzipped
+
+A CDN serves a pack just as well with its files loose: every file is its own cacheable URL, and a
+new release uploads only the packs that changed. `hostPacks` publishes the packs a pack index lists
+that way. Each version goes to `<pack id>/<12 hex of its contentHash>/` once and never changes, so
+those files can be served as immutable, and the `index.json` it writes last is the only document
+that changes between releases:
+
+```ts
+import { hostPacks } from '@bendyline/molen-pack/node';
+
+// dist/packs/index.json lists built zips; _a/ becomes the directory to upload.
+await hostPacks('dist/packs/index.json', { outDir: '_a' });
+// _a/index.json → { "molen.sky": { "file": "molen.sky/b42226982545/molen-pack.json", … } }
+```
+
+`openPack` (and `openPacksFromIndex` in `@bendyline/molen-earth`) opens a URL ending in
+`molen-pack.json` as an unzipped pack, reading each file from its path beside the manifest.
+`writeDirectoryPack(pack, dir)` writes a single pack in that layout.
+
 ## Cache what you read
 
 `./cache` keeps the bytes of range-read archives (packs, PMTiles) across visits. Each archive is
@@ -98,12 +118,13 @@ deleted. Store failures (private browsing, quota) only cost network, never a fai
 - `openPack(input, options)` — a `Pack` from a URL, `Blob`, bytes, or a `RangeReader`, with
   `readBytes` / `readText` / `readJson` / `prefetch`. Options cover whole-or-range mode, retries,
   concurrency, progress, an expected `contentHash`, and sha256 checks per file.
+  `openDirectoryPack(url)` opens an unzipped pack from its `molen-pack.json`.
 - `createPackSet(packs)` — several packs read as one, with later packs overriding earlier ones,
   `provided(role)` to find the files a pack declares for a role, and `assetProvider()`.
 - `createPack(files, options)` / `describePack` / `packFromFiles` — build a pack, or a pack-shaped
   view of loose files, from bytes in any environment.
 - `./node`: `buildPack`, `openFilePack`, `openDirPack`, `openPackAt`, `readPackSource`,
-  `extractPack`.
+  `extractPack`, `writeDirectoryPack`, `hostPacks`.
 - `./cache`: `createBlockCache`, `createIndexedDbByteStore`, `createMemoryByteStore`,
   `cachingRangeSource`, `cachingRangeReader`, `urlRangeReader`, `cachingDocumentFetch`.
 

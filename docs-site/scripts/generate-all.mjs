@@ -25,7 +25,7 @@ function guideSidebar(guides) {
   const sections = [
     { text: 'Getting started', until: 'experience-playback' },
     { text: 'Samples and worlds', until: 'building-interiors' },
-    { text: 'Content and art', until: '3d-art-guidelines' },
+    { text: 'Content and art', until: 'medium-fi' },
     { text: 'Rendering and performance', until: 'capability-authoring' },
   ];
   const items = [];

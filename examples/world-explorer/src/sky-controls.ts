@@ -1,5 +1,12 @@
 import { applyEnvironment, type EarthObserver, type Renderer } from '@bendyline/molen-client';
-import { createEarthFog } from '@bendyline/molen-earth/client';
+import {
+  createEarthFog,
+  EARTH_EXPOSURE,
+  EARTH_LIGHTING,
+  EARTH_SKY_PALETTE,
+  EARTH_TONE_MAPPING,
+  earthHazeColor,
+} from '@bendyline/molen-earth/client';
 import { Color, Fog } from 'three';
 import { localSkyDate, localSkyTime } from './sky-time.js';
 
@@ -60,9 +67,12 @@ export function createSkyControls(
   setControls(selected);
   controls.disabled = false;
 
-  const nightFog = new Color('#080e1c');
-  const dayFog = createEarthFog(renderer.backend).color;
-  const twilightFog = new Color('#755368');
+  // Haze takes the sky dome's own horizon color through dusk and night, so distant ground always
+  // dissolves into the sky behind it.
+  const dayHorizon = new Color(EARTH_SKY_PALETTE.dayHorizon);
+  const nightHorizon = new Color(EARTH_SKY_PALETTE.nightHorizon);
+  const twilight = new Color(EARTH_SKY_PALETTE.twilight);
+  const horizon = new Color();
   return {
     update(observer) {
       // Limit observer work to roughly 100 m of travel; slider seeks remain minute-accurate.
@@ -79,10 +89,11 @@ export function createSkyControls(
             mode: 'earth',
             observer: sampled,
             time: { epochMs: EPOCH },
-            lighting: { sunIntensity: 2.05, dayAmbient: 0.48 },
+            palette: EARTH_SKY_PALETTE,
+            lighting: EARTH_LIGHTING,
           },
-          toneMapping: 'agx',
-          exposure: 0.9,
+          toneMapping: EARTH_TONE_MAPPING,
+          exposure: EARTH_EXPOSURE,
         });
         renderer.scene.fog = createEarthFog(renderer.backend);
         observerKey = key;
@@ -97,8 +108,9 @@ export function createSkyControls(
       // Carry the explorer's existing distance fade through dusk and night; no weather simulation.
       const fog = renderer.scene.fog;
       if (fog instanceof Fog) {
-        fog.color.copy(nightFog).lerp(dayFog, frame.daylight);
-        fog.color.lerp(twilightFog, Math.sin(Math.PI * frame.daylight) * 0.6);
+        horizon.copy(nightHorizon).lerp(dayHorizon, frame.daylight);
+        horizon.lerp(twilight, Math.sin(Math.PI * frame.daylight) * 0.35);
+        earthHazeColor(renderer.backend, horizon, fog.color);
       }
       const { sun, moon } = frame.earth;
       const altitude = (value: number): string =>

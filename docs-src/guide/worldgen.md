@@ -231,6 +231,17 @@ levels and can be frustum-culled independently; no per-frame placement uploads a
 `propLod: false` disables this camera LOD, and the explorer exposes `?propLod=0` for comparison.
 The explorer's `AssetCache` still resolves authored GLBs for custom packs and building props.
 
+Ground cover is the knee-high layer under all of this: `builtin:groundcover.tuft` (a grass
+tussock) and `builtin:groundcover.fern`, each under 70 triangles, plus small shrubs and stones.
+A rule joins it with `"layer": "groundcover"`, which gives it its own instance and model budget
+(`maxGroundCoverInstances`, `maxGroundCoverModels`), so thousands of clumps never thin the trees
+or take their model slots. Ground cover models draw only at the near level; the medium and far
+levels are empty, so the clumps fade out about 400 meters away instead of shimmering. The Earth
+adapter labels land that no map polygon covers `open_ground` (the `OPEN_GROUND_LABEL` export), as a
+tile-wide polygon that every mapped polygon paints over, so verges and unmapped meadows can carry
+ground cover too. The default packs place it in meadows, parks, yards, forest floors and open
+ground, on the finest tile level only, and not at Economy quality.
+
 A population's optional `widthScale: { min: 0.8, max: 1.25 }` multiplies X/Z independently of
 its uniform `scale`, allowing tall narrow trees, broad bushy trees, and spreading shrubs in the
 same draw. Width uses its own cell-hash stream, so changing it preserves positions, heights,
@@ -378,7 +389,9 @@ the instances, two levels below keeps a sparse hint, and coarser tiles carry no 
 cells draw only their active LOD; keep `maxPropModels` small because each model needs a draw per
 visible cell. The per-tile placement budgets still bound the resident instance data. Balanced quality
 allows 6,000 nearby placements, 1,200 one level below, and 250 two levels below. Economy uses
-2,200 / 400 / 0; high uses 9,000 / 1,800 / 350. The forest rules fill nearby crowns while
+2,200 / 400 / 0; high uses 9,000 / 1,800 / 350. Ground cover has its own budget on the finest
+level only: 5,000 placements and 3 models at Balanced, 8,000 and 4 at High, none at Economy.
+The forest rules fill nearby crowns while
 understory is limited to the finest tier; parks and yards retain lower densities and all
 placements retain road, building, and water clearances.
 

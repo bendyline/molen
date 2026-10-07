@@ -2,15 +2,30 @@ import { arch, box, colors, framedDeck, profile, quad, tube } from './structure-
 
 const C = colors;
 
+/**
+ * Documented paint of each suspension bridge, linear RGB for COLOR_0. A generic recipe must not
+ * repaint a known structure (medium-fi style guide): only the Golden Gate is International
+ * Orange, and that bridge has its own builder.
+ */
+const PAINT = {
+  6: [0.114, 0.212, 0.125], // Tacoma Narrows: Narrows green
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: a paint channel, not log10(e)
+  7: [0.386, 0.418, 0.434], // Bay Bridge west span: silver grey
+  8: [0.791, 0.799, 0.768], // Bay Bridge east span: white self-anchored tower
+  10: [0.205, 0.323, 0.462], // Manhattan Bridge: light blue
+  11: [0.392, 0.063, 0.045], // Williamsburg Bridge: red
+  15: [0.275, 0.376, 0.328], // Akashi Kaikyō: grey green
+};
+
 function suspension(
   out,
   length,
   width,
-  { twin = false, stone = false, truss = false, height = 155 } = {},
+  { twin = false, stone = false, truss = false, height = 155, paint = C.steel } = {},
 ) {
   const deck = 34,
     tx = length * 0.29;
-  const metal = stone ? C.steel : C.orange;
+  const metal = stone ? C.steel : paint;
   framedDeck(out, length, width, deck);
   for (const x of [-tx, tx]) {
     for (const z of [-width * 0.42, width * 0.42]) {
@@ -173,6 +188,7 @@ export function buildBridge(out, code, spec) {
       stone: id === 9,
       truss: id === 11 || id === 8,
       height: id === 15 ? 250 : id === 9 ? 90 : 170,
+      ...(PAINT[id] !== undefined ? { paint: PAINT[id] } : {}),
     });
   switch (id) {
     case 12:

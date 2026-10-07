@@ -102,23 +102,27 @@ function bay(o, width, height, louver = false) {
     ],
     color,
   );
-  // Separate aluminum pressure plates, drip edge and recessed seals; no texture copies.
-  box(o, 'metal', [0, 0, -0.09], [t, height, 0.045], silver);
-  box(o, 'metal', [width - t, 0, -0.09], [width, height, 0.045], silver);
-  for (const y of [0, height * 0.26, height - 0.15])
-    box(o, 'stainless', [t, y, -0.06], [width - t, y + 0.045, 0.065], silver);
-  box(o, 'metal', [t, height - 0.12, -0.08], [width - t, height, 0.09], pale);
-  if (louver) {
-    for (let y = 0.12; y < height - 0.22; y += 0.19)
-      box(o, 'metal', [0.07, y, 0], [width - 0.07, y + 0.055, 0.13], [0.47, 0.49, 0.45]);
-  } else {
-    box(
+  // Aluminum plates, transoms and seals are 4-9 cm, below the closeup's error on a 320 m tower:
+  // flat strips proud of the glass keep the leading mullion and the pale drip edge (shared with
+  // the neighbouring bay), and louvres are every other slat at twice the depth of face.
+  const strip = (x0, x1, y0, y1, z, color, slot = 'metal') =>
+    face(
       o,
-      'metal',
-      [width / 2 - 0.022, 0.05, -0.045],
-      [width / 2 + 0.022, height - 0.16, 0.01],
-      silver,
+      slot,
+      [
+        [x0, y0, z],
+        [x1, y0, z],
+        [x1, y1, z],
+        [x0, y1, z],
+      ],
+      color,
     );
+  strip(0, t, 0, height, 0.045, silver);
+  strip(0, width, height - 0.12, height, 0.09, pale);
+  if (louver) {
+    for (let y = 0.12; y < height - 0.22; y += 0.38)
+      strip(0.07, width - 0.07, y, y + 0.11, 0.13, [0.47, 0.49, 0.45]);
+  } else {
     face(
       o,
       'glass',

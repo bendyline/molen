@@ -117,8 +117,11 @@ export interface BuildingRecipe {
   props: RecipeProp[];
 }
 
-/** Linear tone of untinted window glass on flat (texture-less) levels. */
-export const WINDOW_GLASS: readonly [number, number, number] = [0.16, 0.19, 0.23];
+/**
+ * sRGB tone of untinted window glass on flat (texture-less) levels: a blue-grey pane a little
+ * darker than the textured window graphs, so distant facades keep legible rows of windows.
+ */
+export const WINDOW_GLASS: readonly [number, number, number] = [0.3, 0.38, 0.47];
 
 function clamp(value: number, lo: number, hi: number): number {
   return value < lo ? lo : value > hi ? hi : value;
@@ -258,7 +261,7 @@ function degreesToRise(degrees: number): number {
 
 const DEFAULT_WINDOW_PART: RecipePart = {
   ref: WHITE_REF,
-  color: [0.16, 0.19, 0.23],
+  color: [...WINDOW_GLASS],
   tint: 'none',
   uv: 'cell',
   uvScale: undefined,

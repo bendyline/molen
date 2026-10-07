@@ -19,7 +19,7 @@ Primary architect, engineer and supplier photographs/drawings consulted, not emb
 
 ## Authored geometry and materials
 
-2,263,530 triangles, 4,160,284 vertices, 8 surface groups; 176,936,904 source bytes. SHA-256: `sha256:3d1507dab4b8530ffbd491df2cd47b6a2dc19fa6dfab5209962aaaa3ee9ac75c`. Actual bounds: -155.700, -11.900, -155.700 to 155.700, 49.600, 155.700 m.
+361,242 triangles, 718,396 vertices, 8 surface groups; 30,201,456 source bytes. SHA-256: `sha256:4a1212d45834f872b1b7ee3a263289663bd81d668f37024a1685c2c0d68b2688`. Actual bounds: -155.700, -11.900, -155.700 to 155.700, 49.600, 155.700 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Circular colonnade centre at its external pedestrian contact floor. +Z follows the football-field long axis; the street approach slopes down to this floor in the architect section."}.
 

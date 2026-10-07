@@ -19,12 +19,19 @@ export {
   type TerrainArchiveSetArchiveOptions,
 } from './archive-set-client';
 export {
+  createTerrainGroundMaterial,
+  createTerrainGroundMaterialAsync,
+  isTerrainGroundMaterial,
+  setTerrainGroundOrigin,
+  type TerrainGroundMaterial,
+  type TerrainGroundMaterialOptions,
+} from './ground-material';
+export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
   type TerrainLandcoverGenerator,
   type TerrainLandcoverWorker,
 } from './landcover-worker';
-
 export {
   createTerrainLinearObject,
   joinTerrainLines,

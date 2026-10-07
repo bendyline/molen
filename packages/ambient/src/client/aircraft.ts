@@ -5,7 +5,73 @@
 
 import { type AircraftVisual, createAircraftVisual } from '@bendyline/molen-client/aircraft';
 import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
-import type * as THREE from 'three';
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+/** Node names the aircraft visual moves or toggles; everything else on an ambient copy is still. */
+function movingNodes(spec: AircraftSpec): Set<string> {
+  const visual = spec.visual;
+  return new Set([
+    ...visual.rotors.map((binding) => binding.node),
+    ...visual.gearNodes,
+    ...visual.flaps.map((binding) => binding.node),
+    ...visual.ailerons.map((binding) => binding.node),
+    ...(visual.controlStick !== undefined ? [visual.controlStick.node] : []),
+    ...(visual.collective !== undefined ? [visual.collective.node] : []),
+  ]);
+}
+
+/**
+ * An aircraft overhead is seen from hundreds of meters, so its hundreds of still parts (fuselage,
+ * wings, canopy frame, cockpit) merge into one mesh per material: a copy costs a draw per
+ * material plus its moving parts, instead of one per part (281 for the P-51). Moving parts keep
+ * their nodes and bindings. The visual is built without the interior, which is never animated
+ * overhead. Exported for tests.
+ */
+export function mergeStaticAircraftParts(model: THREE.Object3D, spec: AircraftSpec): void {
+  const moving = movingNodes(spec);
+  model.updateMatrixWorld(true);
+  const toModel = new THREE.Matrix4().copy(model.matrixWorld).invert();
+  const groups = new Map<string, { material: THREE.Material; parts: THREE.BufferGeometry[] }>();
+  const merged: THREE.Mesh[] = [];
+  const visit = (object: THREE.Object3D): void => {
+    if (moving.has(object.name)) return;
+    for (const child of [...object.children]) visit(child);
+    const mesh = object as THREE.Mesh;
+    if (!mesh.isMesh || Array.isArray(mesh.material) || (mesh as THREE.SkinnedMesh).isSkinnedMesh)
+      return;
+    const source = mesh.geometry;
+    if (source.morphAttributes.position !== undefined) return;
+    // Float copies: quantized (KHR_mesh_quantization) attributes cannot hold transformed values.
+    const geometry = new THREE.BufferGeometry();
+    for (const name of ['position', 'normal', 'color'] as const) {
+      const attribute = source.getAttribute(name);
+      if (attribute === undefined) continue;
+      const copy = new Float32Array(attribute.count * attribute.itemSize);
+      for (let i = 0; i < attribute.count; i++)
+        for (let c = 0; c < attribute.itemSize; c++)
+          copy[i * attribute.itemSize + c] = attribute.getComponent(i, c);
+      geometry.setAttribute(name, new THREE.BufferAttribute(copy, attribute.itemSize));
+    }
+    if (source.index !== null) geometry.setIndex(source.index.clone());
+    geometry.applyMatrix4(new THREE.Matrix4().multiplyMatrices(toModel, mesh.matrixWorld));
+    const key = `${mesh.material.uuid}|${[...Object.keys(geometry.attributes)].sort().join()}|${geometry.index !== null}`;
+    const group = groups.get(key) ?? { material: mesh.material, parts: [] };
+    group.parts.push(geometry);
+    groups.set(key, group);
+    mesh.removeFromParent();
+  };
+  visit(model);
+  for (const { material, parts } of groups.values()) {
+    const geometry = mergeGeometries(parts, false);
+    for (const part of parts) part.dispose();
+    if (geometry === null) continue;
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.name = `ambient-merged:${material.name}`;
+    merged.push(mesh);
+  }
+  for (const mesh of merged) model.add(mesh);
+}
 
 export interface AmbientAircraftModels {
   load(type: string): Promise<THREE.Object3D | undefined>;
@@ -113,7 +179,11 @@ export class AmbientAircraft {
         return;
       }
       if (this.disposed) return;
-      const visual = createAircraftVisual(model, spec);
+      mergeStaticAircraftParts(model, spec);
+      const visual = createAircraftVisual(model, {
+        ...spec,
+        visual: { ...spec.visual, interior: undefined },
+      });
       visual.object.traverse((object) => {
         object.userData.walkIgnore = true;
         (object as THREE.Mesh).castShadow = false;

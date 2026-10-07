@@ -146,27 +146,15 @@ function windows(out, a, b, n, lo, hi, ground = false) {
       q = [at(a, y0, -0.17), at(b, y0, -0.17), at(b, y1, -0.17), at(a, y1, -0.17)];
     for (let k = 0; k < 4; k++)
       face(out, 'limestone', [p[k], q[k], q[(k + 1) % 4], p[(k + 1) % 4]], stone);
-    grid(out, q, glass, w / 2 + 0.01, (y1 - y0) * 0.57, 0.035, silver);
-    // The aluminum spandrels are recessed behind the continuous stone piers,
-    // with real projecting central ribs rather than a printed dark stripe.
-    for (const u of [-0.33, 0, 0.33])
-      raised(
-        out,
-        at,
-        c + u * w - 0.032,
-        c + u * w + 0.032,
-        y1 + 0.08,
-        hi - 0.07,
-        -0.07,
-        [0.5, 0.52, 0.5],
-        'metal',
-      );
-    for (const edge of [i * bw + 0.08, (i + 1) * bw - 0.08])
-      raised(out, at, edge - 0.055, edge + 0.055, lo, hi, 0.048, [0.77, 0.75, 0.7]);
+    // 3.5 cm mullions are below the closeup's error on a 260 m tower: the window is its glass.
+    face(out, 'glass', q, glass);
+    // The aluminum spandrels are recessed behind the continuous stone piers. Their 6 cm ribs and
+    // the piers' 11 cm edge mouldings are below every runtime level's error, so they are omitted.
   }
 }
-function leaf(out, at, c, base, w, h, eyelets = 2) {
-  // Closed cast-aluminum pointed leaves, with actual through-holes and back faces.
+function leaf(out, at, c, base, w, h) {
+  // Closed cast-aluminum pointed leaves with back faces. Their eyelets and ribs are a few
+  // centimetres across, below the closeup's error, so the leaves are solid.
   for (const sign of [-1, 1]) {
     const cx = c + sign * w * 0.245;
     const outer = [
@@ -176,15 +164,7 @@ function leaf(out, at, c, base, w, h, eyelets = 2) {
       [cx, base + h],
       [cx - w * 0.225, base + h * 0.72],
     ];
-    const holes = Array.from({ length: eyelets / 2 }, (_, j) => {
-      const cy = base + h * (eyelets === 4 ? 0.6 + j * 0.235 : 0.72),
-        rx = w * 0.125,
-        ry = h * (eyelets === 4 ? 0.085 : 0.115);
-      return Array.from({ length: 16 }, (_, k) => {
-        const a = (-k * Math.PI) / 8;
-        return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)];
-      });
-    });
+    const holes = [];
     const all = [...outer, ...holes.flat()],
       indices = ShapeUtils.triangulateShape(
         outer.map((p) => new Vector2(...p)),
@@ -218,18 +198,6 @@ function leaf(out, at, c, base, w, h, eyelets = 2) {
           silver,
         );
       }
-    for (const dx of [-0.17, -0.06, 0.06, 0.17])
-      raised(
-        out,
-        at,
-        cx + dx * w - 0.018,
-        cx + dx * w + 0.018,
-        base,
-        base + h * 0.41,
-        0.205,
-        [0.47, 0.49, 0.47],
-        'metal',
-      );
   }
 }
 function parapet(out, a, b, n, y, kind = 0) {
@@ -243,7 +211,7 @@ function parapet(out, a, b, n, y, kind = 0) {
     const c = (i + 0.5) * bw,
       w = Math.min(1.38, bw * 0.68);
     if (kind) {
-      leaf(out, at, c, y - 0.75, w, kind === 4 ? 2.1 : 1.28, kind);
+      leaf(out, at, c, y - 0.75, w, kind === 4 ? 2.1 : 1.28);
     } else
       for (let k = -2; k <= 2; k++)
         raised(

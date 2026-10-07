@@ -37,6 +37,13 @@ export function focusDirectionalShadow(
   direction: THREE.Vector3,
   center: THREE.Vector3,
   radius: number,
+  /**
+   * The shader adds the bias in the reversed-depth sense: true for WebGL PCF shadows with a
+   * reversed depth buffer. three r184's WebGL PCF lookup adds `shadowBias` to the receiver depth
+   * even when depth is reversed (its basic and VSM lookups subtract it), so the usual negative
+   * bias pushes every receiver away from the light and casters shadow themselves entirely.
+   */
+  biasAddsTowardLight = false,
 ): void {
   const toSun = scratchForward.copy(direction).normalize();
   // Snap the focus to the shadow map's texel grid in the light's own plane, so a moving focus
@@ -77,6 +84,6 @@ export function focusDirectionalShadow(
     camera.updateProjectionMatrix();
   }
   // Bias scales with texel size: a wide box has coarse texels that would otherwise self-shadow.
-  light.shadow.bias = -0.0004;
+  light.shadow.bias = biasAddsTowardLight ? 0.0004 : -0.0004;
   light.shadow.normalBias = texel * 1.2;
 }

@@ -15,6 +15,11 @@ export interface EarthPerformanceTier {
   terrain: TerrainPyramidBudget;
   /** Ambient life caps: agents, full models, animated figures and activity radius. */
   ambient: EarthAmbientBudget;
+  /**
+   * Sun shadow map quality: high from Balanced up, medium at Medium, off at the two lowest
+   * levels, where the extra shadow pass costs more than it shows.
+   */
+  shadows: 'off' | 'medium' | 'high';
 }
 const MIB = 1024 * 1024;
 const SPECS = [
@@ -72,6 +77,7 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       activityRadius: ambient[7],
       posesPerFrame: ambient[8],
     },
+    shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
   };
 }
 

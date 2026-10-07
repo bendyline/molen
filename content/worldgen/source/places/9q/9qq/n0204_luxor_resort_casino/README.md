@@ -23,7 +23,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-276,371 triangles; 627,231 vertices; 5 material groups; 25,899,968 bytes. Native bounds: -135.873, 0.000, -194.047 to 228.950, 106.710, 91.516. Source hash: `sha256:67c7052f535bdae5c0aa5b1ff990a6d11c62bdaca283f40ca72f12de440de996`.
+271,559 triangles; 612,795 vertices; 5 material groups; 25,322,528 bytes. Native bounds: -135.873, 0.000, -194.047 to 228.950, 106.710, 91.516. Source hash: `sha256:a3aa7f4fbacb266111b7b5b93cc49869f6499340984131121d0a5fba6188195c`.
 
 {"up":"+Y","longAxis":"+X east to Sphinx and Strip obelisk","shortAxis":"+Z south; later twin wings lie north"}
 

@@ -1,3 +1,4 @@
+import { lumenField, tMobilePark } from './seattle-stadiums.mjs';
 import { arch, box, colors, gable, prism, profile, quad, tube } from './structure-mesh.mjs';
 
 const C = colors;
@@ -291,10 +292,10 @@ export function buildLandmark(out, code, spec) {
         stadium(out);
         break;
       case 8:
-        stadium(out, false, true);
+        tMobilePark(out);
         break;
       case 9:
-        stadium(out, true);
+        lumenField(out);
         break;
       case 10:
         for (const x of [-32, -11, 11, 32]) {

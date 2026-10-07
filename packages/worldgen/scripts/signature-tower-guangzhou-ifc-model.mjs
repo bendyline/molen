@@ -23,79 +23,6 @@ function inside([x, z], plan) {
   }
   return result;
 }
-function halfPlane(poly, n, d, positive = false) {
-  const out = [];
-  for (let i = 0; i < poly.length; i++) {
-    const a = poly[i],
-      b = poly[(i + 1) % poly.length],
-      da = a[0] * n[0] + a[1] * n[1] - d,
-      db = b[0] * n[0] + b[1] * n[1] - d;
-    const aa = positive ? da >= 0 : da <= 0,
-      bb = positive ? db >= 0 : db <= 0;
-    if (aa) out.push(a);
-    if (aa !== bb) out.push(mix(a, b, da / (da - db)));
-  }
-  return out;
-}
-function coloredPane(out, surface, s0, s1, y0, y1, color, trim, perimeter) {
-  const border = 0.042,
-    full = [
-      [s0, y0],
-      [s1, y0],
-      [s1, y1],
-      [s0, y1],
-    ],
-    pane = [
-      [s0 + border, y0 + border],
-      [s1 - border, y0 + border],
-      [s1 - border, y1 - border],
-      [s0 + border, y1 - border],
-    ];
-  const pos = ([s, y]) => surface(s / perimeter, y);
-  for (let i = 0; i < 4; i++)
-    face(out, 'metal', [full[i], full[(i + 1) % 4], pane[(i + 1) % 4], pane[i]].map(pos), trim);
-  const pitch = perimeter / 15,
-    slope = pitch / 54,
-    width = (1.8 - 0.85 * (y0 / 432)) * Math.sqrt(1 + slope * slope),
-    bands = [];
-  let remaining = [pane];
-  // Split the pane itself at both diagrid families. Every point has one surface,
-  // so fine front seals and transmitted braces cast no separated grid shadows.
-  for (const sign of [-1, 1]) {
-    const n = [1, sign * slope],
-      values = pane.map((p) => p[0] + sign * slope * p[1]);
-    for (
-      let i = Math.floor(Math.min(...values) / pitch) - 1;
-      i <= Math.ceil(Math.max(...values) / pitch) + 1;
-      i++
-    ) {
-      const lo = i * pitch - width / 2,
-        hi = i * pitch + width / 2,
-        next = [];
-      for (const poly of remaining) {
-        const band = halfPlane(halfPlane(poly, n, lo, true), n, hi);
-        if (band.length >= 3) bands.push(band);
-        for (const p of [halfPlane(poly, n, lo), halfPlane(poly, n, hi, true)])
-          if (p.length >= 3) next.push(p);
-      }
-      remaining = next;
-    }
-  }
-  const bandColor = color.map((v, i) => v + [0.035, 0.025, 0.02][i] * (y0 < 13 ? 2.8 : 1));
-  for (const [polys, tint] of [
-    [remaining, color],
-    [bands, bandColor],
-  ])
-    for (const poly of polys) {
-      for (let i = 1; i < poly.length - 1; i++) {
-        const pp = [poly[0], poly[i], poly[i + 1]],
-          cross2 =
-            (pp[1][0] - pp[0][0]) * (pp[2][1] - pp[0][1]) -
-            (pp[2][0] - pp[0][0]) * (pp[1][1] - pp[0][1]);
-        if (Math.abs(cross2) > 0.00001) tri(out, 'glass', pp.map(pos), tint);
-      }
-    }
-}
 function arcCurve(plan) {
   // A closed centripetal-like cubic trace retains the separately mapped rounded
   // corners while avoiding the polygonal map's visibly flat 20 m glass facets.
@@ -156,41 +83,58 @@ export function buildGuangzhouIfc(out, mapped) {
   const n = 150,
     top = 432.5,
     rows = 206;
-  const metal = [0.41, 0.53, 0.58];
-  // Blue-grey panes carry the slender physical dark seals and horizontal
-  // spandrels; the radius varies continuously instead of tiered cylinder bands.
-  for (let j = 0; j < rows; j++) {
-    const y = (top * j) / rows,
-      yy = (top * (j + 1)) / rows;
-    const vent = [108, 216, 301.5].some((b) => y >= b && y < b + 5.2);
+  // Blue-grey glass on the continuously varying radius, with the three dark vent levels. The
+  // diagrid is two families of 15 helical bands just proud of the glass, as wide as before;
+  // the 4 cm pane seals and vent louvres were sub-pixel at every runtime level.
+  const pitch = curve.perimeter / 15,
+    slope = pitch / 54;
+  const vents = [108, 216, 301.5].map((b) => {
+    const starts = Array.from({ length: rows }, (_, j) => (top * j) / rows).filter(
+      (y) => y >= b && y < b + 5.2,
+    );
+    return [starts[0], starts.at(-1) + top / rows];
+  });
+  const levels = [
+    ...new Set([...Array.from({ length: 31 }, (_, k) => (top * k) / 30), ...vents.flat()]),
+  ].sort((a, b) => a - b);
+  for (let j = 1; j < levels.length; j++) {
+    const y = levels[j - 1],
+      yy = levels[j],
+      vent = vents.some(([lo, hi]) => y >= lo && yy <= hi);
     for (let i = 0; i < n; i++) {
-      const tint = 0.018 * Math.sin(i * 2.17 + j * 0.91),
+      // A faint per-panel variation; at the old pane amplitude, tall glass slabs read as stripes.
+      const tint = 0.006 * Math.sin(i * 2.17 + j * 0.91),
         gray = vent ? [-0.105, -0.13, -0.13] : [0, 0, 0];
       const color = [0.19 + tint + gray[0], 0.34 + tint + gray[1], 0.405 + tint + gray[2]];
-      coloredPane(
-        out,
-        surface,
-        (i * curve.perimeter) / n,
-        ((i + 1) * curve.perimeter) / n,
-        y,
-        yy,
-        color,
-        vent ? [0.19, 0.25, 0.28] : metal,
-        curve.perimeter,
-      );
-      if (vent)
-        for (let k = 1; k <= 5; k++)
-          beam(
-            out,
-            'metal',
-            surface(i / n, y + (k * (yy - y)) / 6, 0.02),
-            surface((i + 1) / n, y + (k * (yy - y)) / 6, 0.02),
-            0.023,
-            0.033,
-            [0.22, 0.28, 0.3],
-          );
+      const p = [
+        surface(i / n, y),
+        surface((i + 1) / n, y),
+        surface((i + 1) / n, yy),
+        surface(i / n, yy),
+      ];
+      tri(out, 'glass', [p[0], p[1], p[2]], color);
+      tri(out, 'glass', [p[0], p[2], p[3]], color);
     }
   }
+  const brace = [0.225, 0.365, 0.425];
+  for (const sign of [-1, 1])
+    for (let i = 0; i < 15; i++)
+      for (let k = 0; k < 103; k++) {
+        const y = (top * k) / 103,
+          yy = (top * (k + 1)) / 103;
+        // Split down the centre line so the band's chord stays in front of the glass where the
+        // rounded corners turn tightly.
+        const edge = (height, side) => {
+          const width = (1.8 - 0.85 * (height / 432)) * Math.sqrt(1 + slope * slope);
+          const s = i * pitch - sign * slope * height + (side * width) / 2;
+          return surface(s / curve.perimeter, height, sign < 0 ? 0.05 : 0.055);
+        };
+        for (const [l, r] of [
+          [-1, 0],
+          [0, 1],
+        ])
+          face(out, 'metal', [edge(y, l), edge(y, r), edge(yy, r), edge(yy, l)], brace);
+      }
   // Thin coping around the roof rim, and the triangular glazed atrium skylight.
   const outer = ring(top),
     inner = ring(top, -2.1);

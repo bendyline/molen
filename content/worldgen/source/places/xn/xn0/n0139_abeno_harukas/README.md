@@ -19,7 +19,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-170,849 triangles; 494,279 vertices; 4 material groups; 19,847,060 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:d45fbad957afa01939fbda607a0068f7860ecc8b4d2c10af4171e6b8febd7e64`.
+22,049 triangles; 47,879 vertices; 4 material groups; 1,991,040 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:e2d883fc14586ea8ef47235bd3608836a01e7eaeeefd55a256231191a2265384`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Center of whole mapped podium ground datum; main tower is at nativeX about -89 m"}
 

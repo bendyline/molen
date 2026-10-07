@@ -2,7 +2,7 @@
 import { beam } from './authored-structure-mesh.mjs';
 import { fnbPlan } from './fnb-stadium-plan.mjs';
 import { transformed } from './lighthouse-models.mjs';
-import { chair, curve, face, soccerPitch } from './stadium-models.mjs';
+import { curve, face, seatBand, soccerPitch } from './stadium-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
@@ -72,7 +72,7 @@ const slots = [
 ].map((p) => Math.PI - bearing(...p) - fnbPlan.heading);
 const angleDistance = (a, b) => Math.abs(Math.atan2(Math.sin(a - b), Math.cos(a - b)));
 const inSlot = (a) => slots.some((s) => angleDistance(a, s) < 0.0105);
-function slab(out, inner, outer, y, color = concrete, slot = 'concrete', n = 480) {
+function slab(out, inner, outer, y, color = concrete, slot = 'concrete', n = 240) {
   for (let i = 0; i < n; i++) {
     const a = (i * TAU) / n,
       b = ((i + 1) * TAU) / n;
@@ -80,27 +80,34 @@ function slab(out, inner, outer, y, color = concrete, slot = 'concrete', n = 480
   }
 }
 function handrail(out, fn, color = steel) {
-  const ps = Array.from({ length: 481 }, (_, i) => fn((i * TAU) / 480));
+  // A 3.5 cm rail as a coarse four-sided tube with posts every 3 points of a 120-point ring.
+  const ps = Array.from({ length: 121 }, (_, i) => fn((i * TAU) / 120));
   curve(
     out,
     ps.map((p) => [p[0], p[1] + 1.08, p[2]]),
     0.035,
     color,
+    'metal',
+    4,
   );
-  for (let i = 0; i < 160; i++) {
+  for (let i = 0; i < 40; i++) {
     const p = ps[i * 3];
     beam(out, 'metal', p, [p[0], p[1] + 1.1, p[2]], 0.038, 0.038, color);
   }
 }
 function panels(out) {
-  const cols = 768,
+  // The calabash mosaic at half the real 768 columns: panels about 2.7 m wide keep its colour
+  // bands and pattern. Fixings and open-strip frames (1-3 cm) are below the closeup's error.
+  const cols = 384,
     rows = 36;
   for (let i = 0; i < cols; i++)
     for (let j = 0; j < rows; j++) {
-      const a = ((i + 0.012) * TAU) / cols,
-        b = ((i + 0.988) * TAU) / cols,
-        t = (j + 0.012) / rows,
-        u = (j + 0.988) / rows;
+      // Panels meet edge to edge (the real 3 cm joints are sub-pixel), so the skin is one
+      // connected surface that distant LOD levels can simplify.
+      const a = (i * TAU) / cols,
+        b = ((i + 1) * TAU) / cols,
+        t = j / rows,
+        u = (j + 1) / rows;
       const seed = ((i * 251 + j * 607 + i * j * 17) % 997) / 997;
       const mix = j > 23 ? 0.72 : j > 15 ? 0.32 : 0.11;
       const index = seed < mix ? 5 + ((i + j) % 3) : (i * 13 + j * 7) % 5;
@@ -122,27 +129,8 @@ function panels(out) {
       const open = j > 3 && j < 25 && seed > 0.74,
         cut = open ? t + (u - t) * 0.25 : t;
       const pts = [skin(a, cut), skin(b, cut), skin(b, u), skin(a, u)];
+      // Outer faces only: the skin's inner side faces the concourse, behind the stands.
       face(out, 'concrete', pts, color, azNormal(a));
-      face(
-        out,
-        'concrete',
-        pts.map((p) => [p[0] - 0.013 * Math.sin(a), p[1], p[2] - 0.013 * Math.cos(a)]),
-        color,
-        azNormal(a).map((v) => -v),
-      );
-      if (open) {
-        beam(out, 'metal', skin(a, t, -0.025), skin(b, t, -0.025), 0.025, 0.025, steel);
-        beam(out, 'metal', skin(a, cut, -0.025), skin(b, cut, -0.025), 0.025, 0.025, steel);
-        for (const ar of [a, b])
-          beam(out, 'metal', skin(ar, t, -0.025), skin(ar, cut, -0.025), 0.025, 0.025, steel);
-      }
-      // Sparse through-fixings correspond to the four-corner panel attachment system.
-      if (i % 2 === 0 && j % 2 === 0)
-        for (const ar of [a + 0.00035, b - 0.00035])
-          for (const tr of [cut + 0.002, u - 0.002]) {
-            const p = skin(ar, tr, 0.017);
-            tube(out, 'metal', p, P(ar, Math.hypot(p[0], p[2]) + 0.012, p[1]), 0.014, steel, 6);
-          }
     }
   // 120 rolled I-section facade ribs, with horizontal RHS panel rails and offset concrete feet.
   for (let i = 0; i < 120; i++) {
@@ -156,7 +144,7 @@ function panels(out) {
         u = t14 + ((1 - t14) * (j + 1)) / 24;
       beam(out, 'metal', skin(a, t, -0.36), skin(a, u, -0.36), 0.4, 0.4, steel);
     }
-    for (let j = 0; j <= 36; j++)
+    for (let j = 0; j <= 36; j += 4)
       beam(
         out,
         'metal',
@@ -207,11 +195,11 @@ function canopy(out) {
   for (let k = 0; k < 3; k++)
     curve(
       out,
-      Array.from({ length: 481 }, (_, i) => ring((i * TAU) / 480, k)),
+      Array.from({ length: 241 }, (_, i) => ring((i * TAU) / 240, k)),
       k === 2 ? 0.355 : 0.455,
       steel,
       'metal',
-      12,
+      6,
     );
   for (let i = 0; i < 120; i++) {
     const a = (i * TAU) / 120,
@@ -299,9 +287,9 @@ function bowl(out) {
           return v;
         };
       slab(out, p, q, y);
-      for (let i = 0; i < 360; i++) {
-        const a = (i * TAU) / 360,
-          b = ((i + 1) * TAU) / 360;
+      for (let i = 0; i < 180; i++) {
+        const a = (i * TAU) / 180,
+          b = ((i + 1) * TAU) / 180;
         face(
           out,
           'concrete',
@@ -317,25 +305,23 @@ function bowl(out) {
           distance[i - 1] +
             Math.hypot(length[i][0] - length[i - 1][0], length[i][2] - length[i - 1][2]),
         );
+      // Seats as one band per aisle section, in chords of up to 6 m, keeping the 44 aisles.
       const total = distance.at(-1),
-        count = Math.floor(total / 0.54);
+        along = (d) => {
+          while (index < distance.length - 1 && distance[index] < d) index++;
+          while (index > 1 && distance[index - 1] > d) index--;
+          const f = (d - distance[index - 1]) / (distance[index] - distance[index - 1]);
+          return length[index - 1].map((v, k) => v + (length[index][k] - v) * f);
+        };
       let index = 1;
-      for (let i = 0; i < count; i++) {
-        const d = (i / count) * total;
-        while (distance[index] < d) index++;
-        const f = (d - distance[index - 1]) / (distance[index] - distance[index - 1]),
-          pos = length[index - 1].map((v, k) => v + (length[index][k] - v) * f),
-          a = Math.atan2(pos[0], pos[2]);
-        if (Math.abs((i / count) * 44 - Math.round((i / count) * 44)) < 0.052) continue;
-        const seat = inSlot(a) ? [0.18, 0.21, 0.21] : [0.86, 0.27, 0.035];
-        chair(
+      for (let k = 0; k < 44; k++) {
+        const d0 = ((k + 0.052) / 44) * total,
+          d1 = ((k + 1 - 0.052) / 44) * total,
+          chords = Math.max(1, Math.ceil((d1 - d0) / 6));
+        seatBand(
           out,
-          Math.atan2(
-            -(length[index][2] - length[index - 1][2]),
-            length[index][0] - length[index - 1][0],
-          ),
-          pos,
-          seat,
+          Array.from({ length: chords + 1 }, (_, j) => along(d0 + ((d1 - d0) * j) / chords)),
+          (mid) => (inSlot(Math.atan2(mid[0], mid[2])) ? [0.18, 0.21, 0.21] : [0.86, 0.27, 0.035]),
         );
       }
     }
@@ -361,9 +347,9 @@ function bowl(out) {
     if (k) {
       const prev = tiers[k - 1],
         y0 = prev.y + prev.rows * prev.rise;
-      for (let i = 0; i < 360; i++) {
-        const a = (i * TAU) / 360,
-          b = ((i + 1) * TAU) / 360,
+      for (let i = 0; i < 180; i++) {
+        const a = (i * TAU) / 180,
+          b = ((i + 1) * TAU) / 180,
           p = rounded(
             a,
             prev.x + prev.rows * prev.run,
@@ -403,9 +389,9 @@ function bowl(out) {
       for (const y of [0.08, 1.52])
         box(o, 'concrete', [-2.75, y, 0], [2.75, y + 0.08, 0.28], cream);
     }
-  for (let i = 0; i < 360; i++) {
-    const a = (i * TAU) / 360,
-      b = ((i + 1) * TAU) / 360,
+  for (let i = 0; i < 180; i++) {
+    const a = (i * TAU) / 180,
+      b = ((i + 1) * TAU) / 180,
       p = rounded(a, 48, 64, 16),
       q = rounded(b, 48, 64, 16);
     p[1] = q[1] = 0.001;

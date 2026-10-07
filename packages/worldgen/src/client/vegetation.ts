@@ -21,6 +21,9 @@ function colored(geometry: THREE.BufferGeometry, hex: string): THREE.BufferGeome
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
   const result = geometry.index === null ? geometry : geometry.toNonIndexed();
   if (result !== geometry) geometry.dispose();
+  // Flat facets, like the architecture: each crown lobe and trunk side reads as a plane, the
+  // polygonal look of the medium-fi style, rather than smooth plastic.
+  result.computeVertexNormals();
   result.computeBoundingSphere();
   return result;
 }
@@ -145,11 +148,46 @@ function combine(parts: THREE.BufferGeometry[]): THREE.BufferGeometry {
   return geometry;
 }
 
+/** A level that draws nothing: ground cover is near detail only. */
+function empty(): THREE.BufferGeometry {
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute([], 3));
+  geometry.setAttribute('normal', new THREE.Float32BufferAttribute([], 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute([], 3));
+  return geometry;
+}
+
+/**
+ * Knee-high ground cover: squat faceted mounds that break up flat lawns and meadows near the
+ * camera. Under 70 triangles each, and nothing at the medium and far levels, where clumps this
+ * small would only shimmer.
+ */
+function groundcover(name: string): THREE.BufferGeometry | undefined {
+  switch (name) {
+    // Mounds start a few centimeters above y = 0: scatter sinks every placement 0.15 m so trees
+    // never float, and a clump that low would vanish into the draped ground.
+    case 'groundcover.tuft':
+      return combine([
+        crown([0, 0.44, 0], [0.62, 0.36, 0.54], '#6f9147', 2, true),
+        crown([0.5, 0.34, 0.2], [0.42, 0.28, 0.4], '#83a352', 4, true),
+        crown([-0.38, 0.3, -0.32], [0.38, 0.24, 0.36], '#5b7f3d', 6, true),
+      ]);
+    case 'groundcover.fern':
+      return combine([
+        crown([0, 0.44, 0], [0.78, 0.38, 0.68], '#4f7a3e', 3, true),
+        crown([0.42, 0.32, -0.36], [0.52, 0.28, 0.46], '#5f8a45', 5, true),
+      ]);
+    default:
+      return undefined;
+  }
+}
+
 /** Meter-sized trees and ground features. No textures or asset loader. */
 export function createVegetationGeometry(
   name: string,
   coarse: boolean | 'distant' = false,
 ): THREE.BufferGeometry | undefined {
+  if (name.startsWith('groundcover.')) return coarse === false ? groundcover(name) : empty();
   if (coarse === 'distant') {
     if (name.startsWith('tree.conifer')) {
       const pine = name.endsWith('pine');

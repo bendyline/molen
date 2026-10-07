@@ -2270,9 +2270,10 @@ Required: none
       "enum": [
         "none",
         "aces",
-        "agx"
+        "agx",
+        "neutral"
       ],
-      "description": "Tone-mapping operator: none, aces, or agx."
+      "description": "Tone-mapping operator: none, aces, agx, or neutral (Khronos PBR Neutral: keeps authored base colors and saturation below the highlights)."
     },
     "exposure": {
       "type": "number",

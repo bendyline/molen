@@ -543,12 +543,24 @@ window.__backendCapture = {
       }),
     );
     const errors: string[] = [];
-    const driver = renderer.three as unknown as { backend: { device: GPUDevice } };
+    const driver = renderer.three as unknown as {
+      backend: { device: GPUDevice };
+      render(scene: THREE.Scene, camera: THREE.Camera): void;
+    };
     driver.backend.device.addEventListener('uncapturederror', (event) =>
       errors.push(event.error.message),
     );
     const group = renderer.createRenderGroup();
     renderer.worldRoot.add(group);
+    // The optimizer bundles a group only inside its own frame and suspends it on finish, so
+    // sample the flag while the visible scene draws, not after render() returns.
+    let cached = false;
+    const draw = driver.render.bind(driver);
+    driver.render = (scene, camera) => {
+      if (scene === renderer.scene)
+        cached = 'isBundleGroup' in group && group.isBundleGroup === true;
+      draw(scene, camera);
+    };
     const geometry = own(new THREE.BoxGeometry(1, 1, 1));
     const material = own(new THREE.MeshStandardMaterial({ color: '#60b6ce' }));
     const instances = own(new THREE.InstancedMesh(geometry, material, 3));
@@ -611,7 +623,7 @@ window.__backendCapture = {
       }
       return {
         ...renderer.stats(),
-        cached: 'isBundleGroup' in group && group.isBundleGroup === true,
+        cached,
         storage: 'isStorageInstancedBufferAttribute' in instances.instanceMatrix,
         errors: [...errors],
       };

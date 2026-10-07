@@ -91,6 +91,9 @@ function toMeters(
   };
 }
 
+/** Scatter label for ground that no mapped landcover or land-use polygon covers. */
+export const OPEN_GROUND_LABEL = 'open_ground';
+
 /** Build the scatter request: land polygons with labels plus road, water, and building exclusions. */
 export function scatterRequestFromTile(
   tile: TerrainSemanticTile,
@@ -99,7 +102,20 @@ export function scatterRequestFromTile(
   keep: number,
 ): ScatterRequest {
   const size = geom.size;
-  const polygons: ScatterPolygon[] = [];
+  // Land no map polygon covers is still ground: verges, unmapped meadows, rough yards. A tile-wide
+  // base polygon, painted first so every mapped polygon overrides it, lets scatter rules that
+  // name the OPEN_GROUND_LABEL class reach it. Roads, water and buildings stay excluded.
+  const polygons: ScatterPolygon[] = [
+    {
+      label: OPEN_GROUND_LABEL,
+      ring: [
+        [0, 0],
+        [size, 0],
+        [size, size],
+        [0, size],
+      ],
+    },
+  ];
   for (const feature of tile.landcover) {
     const label = landcoverLabel(feature);
     for (const polygon of feature.polygons) {

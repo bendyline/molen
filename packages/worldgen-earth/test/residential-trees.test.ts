@@ -54,7 +54,12 @@ function batch(tile: TerrainSemanticTile, geom = geometry(), doc = atlas) {
 function trees(tile: TerrainSemanticTile, geom = geometry(), doc = atlas, keep = 1) {
   const input = batch(tile, geom, doc);
   if (input.scatter) input.scatter.keep = keep;
-  return generateWorldgenBatch({ ...input, ground: FLAT_GROUND }).placements.flatMap((set) =>
+  // Trees only: knee-high ground cover has its own budget pool and is not under test here.
+  return generateWorldgenBatch({
+    ...input,
+    ground: FLAT_GROUND,
+    budgets: { maxGroundCoverInstances: 0 },
+  }).placements.flatMap((set) =>
     Array.from({ length: set.count }, (_, i) => ({
       model: set.modelRef,
       x: set.data[i * 10] as number,
@@ -179,7 +184,7 @@ describe('residential tree infill', () => {
     const capped = generateWorldgenBatch({
       ...input,
       ground: FLAT_GROUND,
-      budgets: { maxInstances: 5 },
+      budgets: { maxInstances: 5, maxGroundCoverInstances: 0 },
     });
     expect(capped.placements.reduce((n, set) => n + set.count, 0)).toBe(5);
   });
