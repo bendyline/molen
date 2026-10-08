@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0272_kuressaare_castle",
+  "sourceHash": "sha256:e49a8a86aa042811f1a397a8726f38e3903eaea7d3827e0c051e188bd0ea59c2",
+  "runtimeHash": "sha256:300c7acd348bfbe984f060e1fa6e08771afa82dbbf4ce663e01c294355c6ba78",
+  "captureReportHash": "sha256:c84b85e574f6ad59017b9a151b29d89632ba05d0cdcb33a17bd42fb4fb950f5f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/northeast-gate-and-towers.png",
+      "shots/southwest-convent.png",
+      "shots/east-watchtower.png",
+      "shots/north-sturvolt.png",
+      "shots/cloister-court.png",
+      "shots/roof-and-court-plan.png"
+    ],
+    "notes": "Inspected all 11 final portable frames. Heavy northern Sturvolt, slender eastern Tall Hermann, red pyramidal roofs, inward-sloping roof ring, mapped open court, crenellated gallery and timber gate oriel are legible. Corrected buried courtyard panes and reframed the cloister camera. The gate is a real wall opening with corridor walls/soffit and a raised portcullis. Main masses follow the exact mapped plan; tower proportions and roof levels use museum dimensions, LUMIA drawings and operator photographs. Surrounding bastions and separate buildings are excluded."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f7b8ee0a653717aa7d5c08e9a5a204663ac1a8e1fd4d25083421cc24c08a9f58",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/northeast-gate-and-towers.png",
+      "shots/shared/southwest-convent.png",
+      "shots/shared/east-watchtower.png",
+      "shots/shared/north-sturvolt.png",
+      "shots/shared/cloister-court.png",
+      "shots/shared/roof-and-court-plan.png"
+    ],
+    "notes": "Inspected all 10 final shared-loader views. Limestone, ceramic tile, timber and painted metal use four shared 256² material graphs. Untextured blue-grey glass is the fifth merged group. Each graph loads once per view and unloading releases all model geometries. No embedded or private images; no baked directional light, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:287e0b01505927963b2156c926bbbcfcd585b5460e823d3fdeae7fdb6f05da41",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/northeast-gate-and-towers.png",
+      "medium-fi/southwest-convent.png",
+      "medium-fi/east-watchtower.png",
+      "medium-fi/north-sturvolt.png",
+      "medium-fi/cloister-court.png",
+      "medium-fi/roof-and-court-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 final canonical Earth-rig frames: three distances, noon/late light, Economy/High, silhouette, six architectural views and four same-camera LODs. Warm dolomite and restrained red tile fit beside procedural English terraces. Skyline retains unequal square towers, red roofs and the open courtyard; district adds apertures and gate oriel. Street adds frames, pointed cloister windows and raised portcullis. The small courtyard bowl appears only close-up. Synthetic flat ground proves appearance rather than geographic seating. Continuous-motion shimmer and physical-device performance remain pending."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "OSM relation/414356 exact Q1768091 supplies anchor[22.479324007,58.246897902], heading-0.563076620916,42.607×41.783m outline and an L-shaped courtyard. Museum/architect evidence fixes northern Sturvolt at-X/-Z and eastern Tall Hermann at+X/-Z, resolving +X32.26degrees south of east and -Z northeast gate. Published43m plan and37m defence tower are used; mapped25m height is explicitly approximate. Watchtower38.2m and intermediate elevations remain inferred. GroundModelY=0 is declared, but actual terrain and gate approach seating are unreviewed; the draft is inactive and replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The8215-triangle master uses five merged groups and four shared256² graphs; no unique textures. Hex colors decode sRGB to linear vertex tints and skyline uses the shared-surface mean. Recognition depends on tower contrast, red roof shape and courtyard plan. Fine tracery, diamond glass lattice, tiny joints, fixtures and full interiors are omitted. Roof geometry retains the mapped hole."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u6/u6r/n0272_kuressaare_castle/models/source.glb",
+        "hash": "sha256:e49a8a86aa042811f1a397a8726f38e3903eaea7d3827e0c051e188bd0ea59c2",
+        "bytes": 714300,
+        "triangles": 8215,
+        "vertices": 17013,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.glb",
+        "hash": "sha256:300c7acd348bfbe984f060e1fa6e08771afa82dbbf4ce663e01c294355c6ba78",
+        "bytes": 713804,
+        "triangles": 8215,
+        "vertices": 17013,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.skyline.glb",
+        "hash": "sha256:b85903490de1bcc55aa0e7fcaf88f8d72c227d274750646cd37b4decbc4e490f",
+        "bytes": 57168,
+        "triangles": 711,
+        "vertices": 1430,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -21.899999618530273,
+          0,
+          -21.600000381469727
+        ],
+        "max": [
+          21.899999618530273,
+          38.20000076293945,
+          21.600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.district.glb",
+        "hash": "sha256:0ad4714e0e06e2608e2a06a6aa9e0eaa74055f2d6adac4de0c1da475c85cb5d5",
+        "bytes": 145148,
+        "triangles": 1703,
+        "vertices": 3578,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.584999084472656,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.street.glb",
+        "hash": "sha256:16510651559f8df8cd899b7f350d384a6d9bb595cc28ae390c9a43cb5c288fd0",
+        "bytes": 652632,
+        "triangles": 8155,
+        "vertices": 16599,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.closeup.glb",
+        "hash": "sha256:9b0936ef0f275f1c783c06780e729b7b882b6ffcc544368e6c5472212aac6d68",
+        "bytes": 657024,
+        "triangles": 8215,
+        "vertices": 16711,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "All six GLBs have zero errors/warnings, zero images, minY=0 and maxY=38.2m. Two targeted LOD tests pass for deterministic outputs, increasing detail, triangle/download budgets, heights, external graphs and homogeneous GPU attribute component types. Unused-UV informational notices are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.skyline.glb",
+        "hash": "sha256:b85903490de1bcc55aa0e7fcaf88f8d72c227d274750646cd37b4decbc4e490f",
+        "bytes": 57168,
+        "triangles": 711,
+        "vertices": 1430,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -21.899999618530273,
+          0,
+          -21.600000381469727
+        ],
+        "max": [
+          21.899999618530273,
+          38.20000076293945,
+          21.600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.district.glb",
+        "hash": "sha256:0ad4714e0e06e2608e2a06a6aa9e0eaa74055f2d6adac4de0c1da475c85cb5d5",
+        "bytes": 145148,
+        "triangles": 1703,
+        "vertices": 3578,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.584999084472656,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.street.glb",
+        "hash": "sha256:16510651559f8df8cd899b7f350d384a6d9bb595cc28ae390c9a43cb5c288fd0",
+        "bytes": 652632,
+        "triangles": 8155,
+        "vertices": 16599,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u6/u6r/n0272_kuressaare_castle/model.closeup.glb",
+        "hash": "sha256:9b0936ef0f275f1c783c06780e729b7b882b6ffcc544368e6c5472212aac6d68",
+        "bytes": 657024,
+        "triangles": 8215,
+        "vertices": 16711,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -21.625,
+          0,
+          -23.049999237060547
+        ],
+        "max": [
+          21.6200008392334,
+          38.20000076293945,
+          21.28499984741211
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 202316,
+    "notes": "Skyline/district/street/closeup:711/1703/8155/8215triangles;57168/145148/652632/657024bytes. Initial combined geometry202316bytes excludes shared graphs. Source regeneration is byte-identical; strict medium-fi audit and recipe Biome check pass. The initial identical street/closeup levels were corrected by reserving the small court bowl for close-up. Checks were scoped to this model."
+  }
+}

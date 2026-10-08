@@ -106,6 +106,21 @@ export type {
   AmbientVehicleType,
 } from './kernel/templates';
 export { CAR_COLORS, DEFAULT_TEMPLATES, DEFAULT_TYPES, pickWeighted } from './kernel/templates';
+export type { WildlifeAgent, WildlifeBudget, WildlifeWorld } from './kernel/wildlife';
+export {
+  stepWildlife,
+  WILDLIFE_CELL_METERS,
+  WILDLIFE_TICK_RATE,
+  wildlifeCandidates,
+} from './kernel/wildlife';
+export type {
+  WildlifeChoice,
+  WildlifeFamily,
+  WildlifeHabitat,
+  WildlifeMotion,
+  WildlifeSpecies,
+} from './kernel/wildlife-types';
+export { WILDLIFE_FAMILIES, wildlifeSpeciesSchema } from './kernel/wildlife-types';
 
 import { registerAmbientSchema } from './kernel/schema';
 

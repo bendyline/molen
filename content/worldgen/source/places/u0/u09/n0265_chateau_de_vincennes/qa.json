@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0265_chateau_de_vincennes",
+  "sourceHash": "sha256:592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f",
+  "runtimeHash": "sha256:bfb2c48c99665b0615d91fb44d50934372b76152060a180ba6a9a2ecf87cbeb7",
+  "captureReportHash": "sha256:d71a690d3e6cef108be95eef1f111f5134742dac44d6c9f1dd5520d123f1ed06",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/keep-and-chatelet.png",
+      "shots/chapel-west-rose.png",
+      "shots/royal-court.png",
+      "shots/tour-du-village.png",
+      "shots/compound-plan.png",
+      "shots/keep-west-and-covered-walk.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Tall rounded-corner keep, covered chemise and chatelet, pointed Sainte-Chapelle, Tour du Village and paired royal pavilions retain separate identities in the broad compound. Corrected unsupported northern roof volumes and hidden windows on projecting pavilion ends. Simplified present-day parapets, facade rhythms and rose window follow medium-fi scope. Moat walls extend below the flat preview ground."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:353e7f389e4e026a2a0a5fde12a6eb20910d166b917263820cebdecf892dbd08",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/keep-and-chatelet.png",
+      "shots/shared/chapel-west-rose.png",
+      "shots/shared/royal-court.png",
+      "shots/shared/tour-du-village.png",
+      "shots/shared/compound-plan.png",
+      "shots/shared/keep-west-and-covered-walk.png"
+    ],
+    "notes": "Inspected all 10 shared-loader frames. Limestone, slate and ceramic tile graphs each load once. Five merged groups include local glazing and door/flag colors without private images. Unload releases all model geometries. Shadows are supplied by the renderer rather than baked into colors."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f37d5bf9c091f25ad4fea898355466dafe84e384b5135a04579803eb5b223149",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/keep-and-chatelet.png",
+      "medium-fi/chapel-west-rose.png",
+      "medium-fi/royal-court.png",
+      "medium-fi/tour-du-village.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/keep-west-and-covered-walk.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architectural views and four same-camera LOD comparisons. Procedural Paris mansard buildings provide synthetic scale/palette context. The tall keep, chapel roof/buttresses and broad royal enclosure remain legible across levels. District retains coarse facade rhythms; skyline drops minor openings and entrance bridge detail. Flat review ground uses the declared court plane and hides the lower moat walls. Real terrain, continuous-motion shimmer and physical devices remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID OSM way/23032971 establishes the compound frame at [2.435779375,48.842783541], heading 1.438616485431. Native +X is north toward Tour du Village and +Z east. Fourteen IGN BD TOPO building features are retained with CLEABS identifiers and attributed plan geometry. Aggregate features require reconstructed subdivisions and roofs. Keep plan precision is 3m and height precision 2.5m in IGN. Court Y=0 and moat base Y=-6m are declared attachment assumptions; actual moat excavation, entrance and stepped terrain contact remain unverified. Placement remains inactive draft with replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. Source itself has 12218 triangles, five merged groups and three shared graphs. Four individually authored levels meet triangle and download budgets. Colors decode from sRGB; skyline compensates for shared surface mean. Coarse rose/tracery, window rhythm and buttresses replace sculpted microdetail. No per-stone meshes, baked lighting or private/embedded images. This approves asset appearance, not terrain fit."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/models/source.glb",
+        "hash": "sha256:592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f",
+        "bytes": 1225900,
+        "triangles": 12218,
+        "vertices": 29894,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.glb",
+        "hash": "sha256:bfb2c48c99665b0615d91fb44d50934372b76152060a180ba6a9a2ecf87cbeb7",
+        "bytes": 1225400,
+        "triangles": 12218,
+        "vertices": 29894,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.skyline.glb",
+        "hash": "sha256:2a47db271259b39a591e3e0aff54094b9109331776e65b28bb358be1907b741a",
+        "bytes": 60372,
+        "triangles": 729,
+        "vertices": 1518,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -175,
+          -6,
+          -106
+        ],
+        "max": [
+          175,
+          59,
+          111.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.district.glb",
+        "hash": "sha256:c70bfb318b3b9f613e81ca795ebb1a24b19f1809278bdab1b8cc93176159a3d4",
+        "bytes": 257816,
+        "triangles": 3474,
+        "vertices": 6417,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.73204803466797
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.street.glb",
+        "hash": "sha256:ae01305fcd8ea6695e54b74538125c7c97bba37df811e05ac8a1d50832494322",
+        "bytes": 840920,
+        "triangles": 11602,
+        "vertices": 21259,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.94985961914062
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.closeup.glb",
+        "hash": "sha256:79626506e4e68ee7824fa0b12504773e8c3f93c9e45ae71d644b2741ee7c931d",
+        "bytes": 884364,
+        "triangles": 12218,
+        "vertices": 22363,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Zero errors and warnings across source, imported model and all four LODs. Every level has minimum Y=-6m and maximum Y=59m. Main keep uses the published 50m height; upper watchturret and flagmast are reconstructed. Two targeted tests pass for deterministic levels, budgets, external surfaces and homogeneous GPU attribute buffers. Unused UV informational messages are expected for externally bound surfaces."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.skyline.glb",
+        "hash": "sha256:2a47db271259b39a591e3e0aff54094b9109331776e65b28bb358be1907b741a",
+        "bytes": 60372,
+        "triangles": 729,
+        "vertices": 1518,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -175,
+          -6,
+          -106
+        ],
+        "max": [
+          175,
+          59,
+          111.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.district.glb",
+        "hash": "sha256:c70bfb318b3b9f613e81ca795ebb1a24b19f1809278bdab1b8cc93176159a3d4",
+        "bytes": 257816,
+        "triangles": 3474,
+        "vertices": 6417,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.73204803466797
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.street.glb",
+        "hash": "sha256:ae01305fcd8ea6695e54b74538125c7c97bba37df811e05ac8a1d50832494322",
+        "bytes": 840920,
+        "triangles": 11602,
+        "vertices": 21259,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.94985961914062
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.closeup.glb",
+        "hash": "sha256:79626506e4e68ee7824fa0b12504773e8c3f93c9e45ae71d644b2741ee7c931d",
+        "bytes": 884364,
+        "triangles": 12218,
+        "vertices": 22363,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -175.3000030517578,
+          -6,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 318188,
+    "notes": "Skyline/district/street/closeup contain 729/3474/11602/12218 triangles and 60372/257816/840920/884364 bytes. Initial combined payload is 318188 bytes, excluding shared graphs. Source generation is byte-identical; no unrelated model generators or dependency audits were run."
+  }
+}

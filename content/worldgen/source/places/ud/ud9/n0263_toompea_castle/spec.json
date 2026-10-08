@@ -1,0 +1,243 @@
+{
+  "planId": "N0263",
+  "id": "N0263",
+  "assetId": "molen.worldgen.structure.n0263_toompea_castle",
+  "title": "Toompea Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q859010",
+  "referenceCoordinate": {
+    "latitude": 59.435555555,
+    "longitude": 24.737222222
+  },
+  "visualBrief": "Mapped Toompea compound with pink east and south palace fronts, Baroque central gable, open courts, grey Riigikogu building, limestone western wall, Tall Hermann flag tower, Landskrone and console-mounted Pilsticker.",
+  "mediumFiContext": {
+    "scale": "2.1",
+    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse"
+  },
+  "size": [
+    140.55306243896484,
+    57.599998474121094,
+    85.08803176879883
+  ],
+  "actualBounds": {
+    "min": [
+      -70.24906158447266,
+      -12,
+      -41.0438232421875
+    ],
+    "max": [
+      70.30400085449219,
+      45.599998474121094,
+      44.04420852661133
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north along the palace",
+    "front": "+Z east toward Castle Square",
+    "origin": "Mapped compound center; Y=0 Castle Square attachment plane; western foundations extend to Y=-12"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/3502552 exact Wikidata Q859010; separate named tower and building-part polygons",
+    "mappedCourtyards": 3,
+    "mappedTallHermannHeightMeters": 45.6,
+    "mappedLandskroneHeightMeters": 28,
+    "mappedPilstickerHeightMeters": 32,
+    "publishedWesternFacadeLengthMeters": 149,
+    "publishedFlagElevationAboveSeaMeters": 95,
+    "surveyedVerticalDatum": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "pink": "#e6b4ae",
+      "cream": "#eee6d9",
+      "grey": "#adb4ba",
+      "stone": "#c9bc9f",
+      "roof": "#aa6e54",
+      "metal": "#68716c",
+      "glass": "#4d6178",
+      "trim": "#49545e",
+      "paving": "#b8b0a0",
+      "gold": "#cfb66b",
+      "blue": "#3985be",
+      "black": "#3b3e42",
+      "white": "#eeeae2"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Tall Hermann with its broad cylindrical crown and Estonian tricolor",
+      "Pink palace with a curved central gable, balcony and three entrance arches",
+      "Limestone west curtain and grey courtyard parliament with triangular cornice"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM component footprints and heights, Riigikogu architectural descriptions and official exterior photographs",
+    "scope": "Present-day exterior compound; no room interiors, adjacent cathedral, Governor’s Garden or cliff terrain",
+    "referenceState": "Three surviving towers; the demolished Stür den Kerl is deliberately absent"
+  },
+  "referencePages": [
+    "https://www.riigikogu.ee/en/visit-us/toompea-castle/toompea-castle-riigikogu-building/",
+    "https://www.riigikogu.ee/en/visit-us/toompea-castle/tall-hermann-toompea-towers/",
+    "https://www.riigikogu.ee/en/visit-us/photos-castle-riigikogu/",
+    "https://www.openstreetmap.org/relation/3502552",
+    "https://www.openstreetmap.org/relation/3502550"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed mapped frame; cliff, corner ground datums and real-site contact pending",
+    "anchor": [
+      24.737375127,
+      59.435763956
+    ],
+    "heading": 1.685266971193793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=24.7355,59.4348,24.7392,59.4368",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/3502552"
+    ],
+    "wikidataId": "Q859010",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5b671037b819566c5c033823076663cd46e857658f9d27343448c635e4578fac",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Mapped horizontal scale and component height tags. Castle Square is Y=0. Tall Hermann starts at -12m and its stone crown is 33.6m, retaining 45.6m tower height; a reconstructed 12m mast reaches 45.6m above the square. Northern bases -7m/-3m and all inter-part vertical offsets are photographic estimates, not an elevation survey. The published 95m flag elevation is not used as model height.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Footprints © OpenStreetMap contributors, ODbL-1.0. Riigikogu photographs are linked visual evidence, not redistributed textures or geometry.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Heights tagged in OSM use different local ground levels; reconstructed offsets, roof junctions and northern terrain require geographic review.",
+    "The Baroque gable, state arms, triangular ornament and stone corbels are simplified medium-fi geometry. Flags are static geometric tricolors. No navigable interiors.",
+    "Synthetic neighbor renders do not verify castle-rock fit, continuous-motion shimmer or physical-device performance."
+  ],
+  "qaCameras": [
+    {
+      "name": "east-palace-and-gable",
+      "position": [
+        -24,
+        16,
+        120
+      ],
+      "lookAt": [
+        -23,
+        9,
+        38
+      ]
+    },
+    {
+      "name": "west-wall-and-hermann",
+      "position": [
+        -105,
+        40,
+        -112
+      ],
+      "lookAt": [
+        -10,
+        10,
+        -26
+      ]
+    },
+    {
+      "name": "parliament-courtyard",
+      "position": [
+        -41,
+        9,
+        7
+      ],
+      "lookAt": [
+        -9,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "mapped-courtyard-plan",
+      "position": [
+        0,
+        240,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "hermann-crown-and-flag",
+      "position": [
+        -92,
+        44,
+        -60
+      ],
+      "lookAt": [
+        -64,
+        34,
+        -33
+      ]
+    },
+    {
+      "name": "north-console-and-landskrone",
+      "position": [
+        126,
+        27,
+        12
+      ],
+      "lookAt": [
+        57,
+        12,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve mapped courtyards, the three surviving towers and distinct palace/parliament elevations within the medium-fi budgets.",
+  "mesh": {
+    "triangles": 9769,
+    "vertices": 27003,
+    "materials": 5,
+    "bytes": 1092484,
+    "sha256": "sha256:e447957fc4808006037199c1e31d5dcafb394480cc946882444190bc61cac70a"
+  }
+}

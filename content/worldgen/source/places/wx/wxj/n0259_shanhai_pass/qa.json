@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0259_shanhai_pass",
+  "sourceHash": "sha256:264019eec2598887face6903d649a43be545adde05f337cde20cfd10c265667f",
+  "runtimeHash": "sha256:bdb4892f71ccae4536ac595b43d7cb8b8dabca5e53addebf82fef2135d7471f1",
+  "captureReportHash": "sha256:b850a7ce8802ee8940374f30b1e74d5639fb95c5545dd7b167d3efd600339485",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/gate-arch-and-roof-tiers.png",
+      "shots/west-gallery-and-plaque.png",
+      "shots/hip-and-gable-profile.png",
+      "shots/roof-plan-and-wall-contact.png",
+      "shots/through-passage.png",
+      "shots/upper-gallery-rhythm.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Open arch, paired roof tiers, hip-and-gable crown and upper gallery read from front, rear, side and overhead. West inscription faces outward. Exterior reconstruction at medium-fi fidelity, not an archaeological survey."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:57de21c5f0c736d828c70edb00170a06efa4463a285dc75346b9dc8b45c315aa",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/gate-arch-and-roof-tiers.png",
+      "shots/shared/west-gallery-and-plaque.png",
+      "shots/shared/hip-and-gable-profile.png",
+      "shots/shared/roof-plan-and-wall-contact.png",
+      "shots/shared/through-passage.png",
+      "shots/shared/upper-gallery-rhythm.png"
+    ],
+    "notes": "Inspected all 10 shared-surface frames. Brick, slate and wood graphs load once each; four merged material groups; zero embedded images. Model-library unload leaves zero live geometry. Isolated library captures retain their older lighting fixture; medium-fi lighting acceptance is in the separate context report."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2cca3f7f8e6955cd83b2bc2a6341659423409c74a5d62b4808aec891bb2662c1",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/gate-arch-and-roof-tiers.png",
+      "medium-fi/west-gallery-and-plaque.png",
+      "medium-fi/hip-and-gable-profile.png",
+      "medium-fi/roof-plan-and-wall-contact.png",
+      "medium-fi/through-passage.png",
+      "medium-fi/upper-gallery-rhythm.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 context frames: three distances, noon and late afternoon, Economy without cast shadows and High, untextured skyline silhouette, six identity details and four equal-camera LOD comparisons. Gate is coherent beside procedural siheyuan shells, roof darker than walls, clear red gallery. Base touches Y=0 and the arch stays open in every level. Simplified window rhythm, calligraphy and roof ornament are deliberate. Static switch comparisons show bounded detail changes; continuous-motion shimmer and physical-device performance remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Named East Gate way/414001373; no exact-QID OSM tag. Draft anchor [119.753742,40.009332], heading 2.5025517303973333 radians. Wider pass fortifications excluded. Terrain contact and real-world fit need separate verification; replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md; source itself has 5,338 triangles rather than a larger hidden master. Three identity features, correct color-space conversion, three shared graphs and four material groups. All runtime levels fit their budgets. Deliberate abstractions and geographic uncertainty are declared in spec.json."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wx/wxj/n0259_shanhai_pass/models/source.glb",
+        "hash": "sha256:264019eec2598887face6903d649a43be545adde05f337cde20cfd10c265667f",
+        "bytes": 460532,
+        "triangles": 5338,
+        "vertices": 10938,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.glb",
+        "hash": "sha256:bdb4892f71ccae4536ac595b43d7cb8b8dabca5e53addebf82fef2135d7471f1",
+        "bytes": 460112,
+        "triangles": 5338,
+        "vertices": 10938,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.skyline.glb",
+        "hash": "sha256:fc135d48d07b7a91363a7cd5a87b3ae141349e7db8d974658f3dea1029ff2dc5",
+        "bytes": 31932,
+        "triangles": 342,
+        "vertices": 792,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          25.700000762939453,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.district.glb",
+        "hash": "sha256:74e51c545d5595e689c63efa8c7a8c7d02ebf0d590b1a5f4ba3eb142424807c7",
+        "bytes": 114052,
+        "triangles": 1394,
+        "vertices": 2800,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.street.glb",
+        "hash": "sha256:997111d56299cb0a3d1d92aa639de8df19298df2219e6f9a5dbcb2c62487eaa0",
+        "bytes": 354404,
+        "triangles": 4522,
+        "vertices": 8954,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.closeup.glb",
+        "hash": "sha256:d677a05cb0393638ea9f49d38671371db2fae187e97e30c3c5a9b03c0b4fb5f0",
+        "bytes": 415752,
+        "triangles": 5338,
+        "vertices": 10522,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      }
+    ],
+    "notes": "Zero errors and warnings across source, import and four runtime GLBs. Unused-UV information is expected for external shared procedural surfaces. Model-only deterministic LOD tests passed, with homogeneous attribute buffer views."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.skyline.glb",
+        "hash": "sha256:fc135d48d07b7a91363a7cd5a87b3ae141349e7db8d974658f3dea1029ff2dc5",
+        "bytes": 31932,
+        "triangles": 342,
+        "vertices": 792,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          25.700000762939453,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.district.glb",
+        "hash": "sha256:74e51c545d5595e689c63efa8c7a8c7d02ebf0d590b1a5f4ba3eb142424807c7",
+        "bytes": 114052,
+        "triangles": 1394,
+        "vertices": 2800,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.street.glb",
+        "hash": "sha256:997111d56299cb0a3d1d92aa639de8df19298df2219e6f9a5dbcb2c62487eaa0",
+        "bytes": 354404,
+        "triangles": 4522,
+        "vertices": 8954,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/wx/wxj/n0259_shanhai_pass/model.closeup.glb",
+        "hash": "sha256:d677a05cb0393638ea9f49d38671371db2fae187e97e30c3c5a9b03c0b4fb5f0",
+        "bytes": 415752,
+        "triangles": 5338,
+        "vertices": 10522,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -38,
+          0,
+          -14
+        ],
+        "max": [
+          38,
+          26.510921478271484,
+          13.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      }
+    ],
+    "initialDownloadBytes": 145984,
+    "notes": "Authored skyline/district/street/closeup use 342/1394/4522/5338 triangles. Skyline compensates shared-surface brightness with the canonical 0.65 mean; three near levels use the same shared textures. Actual phone/laptop frame-time measurements remain pending."
+  }
+}

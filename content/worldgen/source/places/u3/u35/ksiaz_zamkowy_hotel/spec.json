@@ -1,0 +1,231 @@
+{
+  "planId": "KSI_A04",
+  "id": "KSI_A04",
+  "assetId": "molen.worldgen.structure.ksiaz_zamkowy_hotel",
+  "title": "Hotel Zamkowy at Książ",
+  "category": "historic-entrance-building",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "entrance-buildings",
+    "identity": {
+      "type": "way",
+      "id": 236837151
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.293447978199982,
+    "latitude": 50.84326817593619
+  },
+  "size": [
+    13.9846773147583,
+    15.699999809265137,
+    23.03628635406494
+  ],
+  "actualBounds": {
+    "min": [
+      -6.987207412719727,
+      0,
+      -11.515392303466797
+    ],
+    "max": [
+      6.997469902038574,
+      15.699999809265137,
+      11.520894050598145
+    ]
+  },
+  "visualBrief": "Detached pale hotel with red pitched roof,shallow front pediment and merged dormers.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X toward castle approach entrance,approximately east-north-east",
+    "longitudinal": "+Z approximately south-south-east",
+    "origin": "Mapped building envelope center;Y0 estimated local ground contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e9ce98",
+      "trim": "#eee5cd",
+      "stone": "#c9b392",
+      "roof": "#a85d48",
+      "bronze": "#817466",
+      "glass": "#4d6178",
+      "door": "#967556"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/236837151",
+    "mappedTags": {
+      "addr:city": "Wałbrzych",
+      "addr:city:simc": "0983681",
+      "addr:housenumber": "5",
+      "addr:postcode": "58-306",
+      "addr:street": "Piastów Śląskich",
+      "building": "hotel",
+      "name": "Hotel Zamkowy",
+      "name:de": "Schlosshotel",
+      "name:pl": "Hotel Zamkowy",
+      "roof:colour": "#E96B39",
+      "source": "photograph",
+      "source:addr": "EMUiA (emuia.gugik.gov.pl)",
+      "source_ref": "https://www.flickr.com/photos/124589265@N07/13998418040/",
+      "stars": "3",
+      "tourism": "hotel"
+    },
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "The hotel operator identifies three palace annexes;official heritage designation includes entrance buildings. This fourth nearby mapped Hotel Zamkowy is separately identified,with its role in the designated ensemble unconfirmed."
+  },
+  "reconstruction": {
+    "basis": "Own attributed map footprint;two levels for gatehouse/side wings;mansard tags for side wings. Photographs guide visible composition,not exact dimensions.",
+    "scope": "One independent entrance component of N0291. This does not complete the entire castle/park ensemble.",
+    "registration": "Shared signed axis from mapped castle approach. Own center/footprint preserved. Vertical datum and actual terrain fit remain pending."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://www.ksiazhotel.pl/hotel",
+    "https://ksiazhotel.pl/pokoj-2os-komfort-oficyna",
+    "https://commons.wikimedia.org/wiki/File:Ksiaz_w_jesiennej_scenerii.jpg",
+    "https://www.openstreetmap.org/way/236837151"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.293447978199982,
+      50.84326817593619
+    ],
+    "heading": 0.6179489906819999,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/236837151"
+    ],
+    "source": "https://www.openstreetmap.org/way/236837151",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5be0c69979514cf404034a18561720838195abd884a8c2b6df11329dfee4414c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring and approach-facing axes;roof/body heights and local ground datum estimated. Inactive until terrain/facade fit reviewed. No independent Wikidata identity claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "One component only;N0291 full site remains incomplete.",
+    "Footprint is attributed map geometry;heights,openings,dormers and roof profiles are photographic interpretations.",
+    "No independent Wikidata identity.",
+    "Hotel Zamkowy inclusion in the official heritage entrance group remains unconfirmed.",
+    "No interiors,signage,statue likenesses or unique textures. Geographic/terrain fit and physical-device timing pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "principal-facade",
+      "position": [
+        55,
+        14,
+        0
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "opposite-facade",
+      "position": [
+        -55,
+        14,
+        0
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-footprint",
+      "position": [
+        0,
+        70,
+        16
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "facade-and-roof-junction",
+      "position": [
+        27,
+        17,
+        30
+      ],
+      "lookAt": [
+        5,
+        9,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1327,
+    "vertices": 3981,
+    "materials": 5,
+    "bytes": 162456,
+    "sha256": "sha256:3bed108692457c378a70257d188bd683440d26e319a0ed597ac48368bb141004"
+  }
+}

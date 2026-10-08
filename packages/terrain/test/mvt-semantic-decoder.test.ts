@@ -353,7 +353,13 @@ describe('MVT decoder subclass, layer, and name', () => {
           {
             id: 9,
             type: 3,
-            properties: { kind: 'residential', kind_detail: 'suburban' },
+            properties: {
+              kind: 'residential',
+              kind_detail: 'suburban',
+              crop: 'dates',
+              trees: 'date_palms',
+              irrigated: 'yes',
+            },
             geometry: [outer],
           },
         ],
@@ -377,6 +383,9 @@ describe('MVT decoder subclass, layer, and name', () => {
       id: 9,
       class: 'residential',
       subclass: 'suburban',
+      crop: 'dates',
+      trees: 'date_palms',
+      irrigated: true,
     });
   });
 });
@@ -456,6 +465,8 @@ it('preserves POI identity, detail and measured props independently of label min
             height: 12,
             diameter_crown: 5,
             leaf_type: 'needleleaved',
+            species: 'Picea abies',
+            genus: 'Picea',
             direction: 90,
           },
           geometry: [[{ x: 2048, y: 1024 }]],
@@ -491,6 +502,8 @@ it('preserves POI identity, detail and measured props independently of label min
     height: 24,
     crownDiameter: 10,
     leafType: 'needleleaved',
+    species: 'Picea abies',
+    genus: 'Picea',
     heading: Math.PI / 2,
   });
   expect(tile.pois?.[2]?.capacity).toBe(12);

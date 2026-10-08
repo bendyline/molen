@@ -5,11 +5,60 @@ import {
   hashString,
   type LandmarkLibrary,
   type ModelPlacementRequest,
+  type PlantPreset,
   type ScatterExclusion,
   unit01,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
+import type { RegionalEnvironment } from './regional-environment';
 import type { TileGeometry } from './semantic-adapter';
+
+/** Mapped identity outranks habitat: planted and introduced trees remain where the source puts them. */
+function mappedPlant(
+  poi: TerrainPoiFeature,
+  identity: string,
+  x: number,
+  z: number,
+  environment?: RegionalEnvironment,
+): PlantPreset | undefined {
+  if (environment === undefined) return undefined;
+  const normalize = (value: string) => value.trim().toLowerCase().replace(/\s+/g, ' ');
+  for (const name of [poi.species, poi.genus, poi.species?.split(' ')[0]]) {
+    if (!name) continue;
+    const exact = environment.library.taxa.get(normalize(name));
+    if (exact !== undefined) return exact;
+  }
+  const scatter = environment.scatterAt(x, z);
+  const rule = scatter?.rules.find((entry) => entry.classes.includes('park'));
+  const candidates = (rule?.populations ?? [])
+    .flatMap((population) => {
+      const plant = environment.library.plants[population.model];
+      if (
+        plant === undefined ||
+        plant.height < 2 ||
+        !['broadleaf', 'conifer', 'palm'].includes(plant.family)
+      )
+        return [];
+      const leafType =
+        plant.leafType ?? (plant.family === 'conifer' ? 'needleleaved' : 'broadleaved');
+      if (
+        (poi.leafType === 'needleleaved' || poi.subclass === 'conifer') &&
+        leafType !== 'needleleaved'
+      )
+        return [];
+      if (poi.leafType === 'broadleaved' && leafType !== 'broadleaved') return [];
+      return [{ plant, weight: population.weight }];
+    })
+    .sort((a, b) => (a.plant.id < b.plant.id ? -1 : a.plant.id > b.plant.id ? 1 : 0));
+  let target =
+    unit01(hashString(`mapped-tree|${identity}`), 0) *
+    candidates.reduce((sum, item) => sum + item.weight, 0);
+  for (const candidate of candidates) {
+    target -= candidate.weight;
+    if (target < 0) return candidate.plant;
+  }
+  return undefined;
+}
 
 export function mappedPoiIdentity(poi: TerrainPoiFeature, geom: TileGeometry): string {
   return poi.id !== undefined
@@ -60,6 +109,7 @@ export function mappedPropRequests(
   geom: TileGeometry,
   trees: boolean,
   furniture: Pick<LandmarkLibrary, 'get'> | undefined,
+  environment?: RegionalEnvironment,
 ): ModelPlacementRequest[] {
   if (geom.levelBelowMax !== 0) return [];
   const output: ModelPlacementRequest[] = [],
@@ -74,17 +124,42 @@ export function mappedPropRequests(
       scale: [number, number, number] = [1, 1, 1];
     let yaw = 0;
     if (poi.class === 'tree' && trees) {
+      const plant = mappedPlant(
+        poi,
+        identity,
+        geom.originX + u * geom.size,
+        geom.originZ + v * geom.size,
+        environment,
+      );
       const needle = poi.leafType === 'needleleaved' || poi.subclass === 'conifer';
-      model = needle ? 'builtin:tree.mapped.needleleaf' : 'builtin:tree.mapped.broadleaf';
+      model =
+        plant === undefined
+          ? needle
+            ? 'builtin:tree.mapped.needleleaf'
+            : 'builtin:tree.mapped.broadleaf'
+          : (environment?.modelAt(
+              plant.id,
+              geom.originX + u * geom.size,
+              geom.originZ + v * geom.size,
+            ) ?? plant.id);
       const h = Math.max(
         0.5,
         Math.min(
           80,
-          poi.height ?? (needle ? 12 : 8) * (0.8 + unit01(hashString(identity), 0) * 0.4),
+          poi.height ??
+            (plant?.height ?? (needle ? 12 : 8)) * (0.8 + unit01(hashString(identity), 0) * 0.4),
         ),
       );
-      const diameter = Math.max(0.3, Math.min(40, poi.crownDiameter ?? h * (needle ? 0.45 : 0.65)));
-      scale = [diameter, h, diameter];
+      const diameter = Math.max(
+        0.3,
+        Math.min(
+          40,
+          poi.crownDiameter ?? h * (plant ? plant.width / plant.height : needle ? 0.45 : 0.65),
+        ),
+      );
+      scale = plant
+        ? [diameter / plant.width, h / plant.height, diameter / plant.width]
+        : [diameter, h, diameter];
       yaw = unit01(hashString(identity), 1) * dmath.TAU;
     } else if (furniture !== undefined) {
       model = (

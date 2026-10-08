@@ -19,6 +19,11 @@ import {
 import { createPlacesContent, type PlacesContent, type PlacesContentDocs } from './places';
 import { createRegionResolver, type RegionResolver } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
+import {
+  createRegionalEnvironment,
+  type RegionalEnvironment,
+  type RegionalEnvironmentDocs,
+} from './regional-environment';
 import type { TileGeometry } from './semantic-adapter';
 import { worldgenBuildingCellSize } from './tile-budgets';
 import { generateWorldgenTileSteps, type WorldgenTileOutput } from './tile-generate';
@@ -27,6 +32,7 @@ export interface WorldgenWorkerConfigure {
   kind: 'configure';
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
+  environment?: RegionalEnvironmentDocs;
   metersPerUnit: number;
   /** Places content as documents; the worker builds the libraries (none when omitted). */
   places?: PlacesContentDocs;
@@ -83,6 +89,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
   let pack: ResolvedStylePack | undefined;
   let atlas: RegionAtlasDoc | undefined;
   let regions: RegionResolver | undefined;
+  let environment: RegionalEnvironment | undefined;
   let places: PlacesContent | undefined;
   const cancelled = new Set<number>();
   const active = new Set<number>();
@@ -107,6 +114,7 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
           pack,
           ...(atlas !== undefined ? { atlas } : {}),
           ...(regions !== undefined ? { regions } : {}),
+          ...(environment !== undefined ? { environment } : {}),
           ...(places !== undefined ? { places } : {}),
           ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
           ...(request.features !== undefined ? { features: request.features } : {}),
@@ -172,6 +180,10 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
               ? createRegionResolver(message.atlas, { metersPerUnit: message.metersPerUnit })
               : undefined;
           places = message.places !== undefined ? createPlacesContent(message.places) : undefined;
+          environment =
+            message.environment !== undefined
+              ? createRegionalEnvironment(message.environment, message.metersPerUnit, regions)
+              : undefined;
           return;
         case 'cancel':
           if (active.has(message.id)) cancelled.add(message.id);

@@ -1,0 +1,232 @@
+{
+  "planId": "N0262",
+  "id": "N0262",
+  "assetId": "molen.worldgen.structure.n0262_stirling_castle",
+  "title": "Stirling Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q756268",
+  "referenceCoordinate": {
+    "latitude": 56.123888888,
+    "longitude": -3.947777777
+  },
+  "visualBrief": "Present-day fortified compound with ochre Great Hall, open Lion’s Den palace court, Chapel Royal, King’s Old Building, low twin-drum Forework and walled Nether Bailey.",
+  "mediumFiContext": {
+    "scale": "2.1",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    131.7362289428711,
+    34,
+    298.4288635253906
+  ],
+  "actualBounds": {
+    "min": [
+      -65.88556671142578,
+      0,
+      -159.27728271484375
+    ],
+    "max": [
+      65.85066223144531,
+      34,
+      139.15158081054688
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z southeast toward the entrance",
+    "front": "+Z southeast",
+    "origin": "Mapped compound frame center; Y=0 synthetic lower-bailey datum"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/100542995 exact Wikidata Q756268; named component footprints including relation/1083531 palace",
+    "mappedCourtyard": true,
+    "surveyedVerticalDatum": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#bdbaad",
+      "trim": "#dedbcf",
+      "ochre": "#f0dba0",
+      "roof": "#616875",
+      "pane": "#4d6178",
+      "paving": "#b8b0a0",
+      "lawn": "#91a86e"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Ochre Great Hall with crow-stepped gables and paired dais bays",
+      "Renaissance palace around the open Lion’s Den",
+      "Truncated twin-drum gatehouse and elongated fortified site"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM component footprints and Historic Environment Scotland architectural inventory, route plan and exterior photographs",
+    "scope": "Exterior ensemble and simplified defensive enclosure; interiors, gardens outside the wall, statues and volcanic cliff excluded",
+    "referenceState": "Present-day restored Great Hall and truncated Forework; not a reconstruction of the tall medieval gatehouse"
+  },
+  "referencePages": [
+    "https://portal.historicenvironment.scot/designation/SM90291",
+    "https://www.historicenvironment.scot/publications/all/publication/?publicationId=420047e5-b241-4318-9127-a5f400f193f9",
+    "https://app-hes-pubs-prod-neu-01.azurewebsites.net/api/file/1a36b0f6-f3e3-4374-b1d2-a603009ca16a",
+    "https://www.openstreetmap.org/way/100542995",
+    "https://www.openstreetmap.org/relation/1083531"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed component frame; steep castle-rock terrain and elevation datum pending",
+    "anchor": [
+      -3.948153826,
+      56.124036337
+    ],
+    "heading": 0.7346639643808965,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-3.9510,56.1219,-3.9446,56.1262",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/100542995"
+    ],
+    "wikidataId": "Q756268",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:52b1d0096e8ddba62ae1bd08aa9dc359ef0928b51d8d106495392af95d188eb0",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Mapped plan dimensions. Synthetic lower-bailey datum Y=0; inner close Y=8. Hall eaves 22m and chimney 34m, palace ridge 27.5m, gatehouse wallwalk 15m above datum are proportional photographic estimates, not surveyed heights.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Footprints © OpenStreetMap contributors, ODbL-1.0. HES guide images are linked visual evidence only; no third-party images or meshes are redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Heights, relative court levels, roof shapes, ornamental rhythms and small turrets are photographic approximations. Individual Renaissance sculptures and interior rooms are omitted.",
+    "Northern magazines and outer ancillary buildings are simplified; the esplanade, cliffs and off-site gardens are excluded.",
+    "Context renders use synthetic procedural neighbors. Geographic placement, continuous-motion shimmer and physical-device performance remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "forework-and-ochre-hall",
+      "position": [
+        70,
+        35,
+        148
+      ],
+      "lookAt": [
+        7,
+        16,
+        41
+      ]
+    },
+    {
+      "name": "inner-close",
+      "position": [
+        -12,
+        14,
+        8
+      ],
+      "lookAt": [
+        21,
+        19,
+        9
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        0,
+        475,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "lions-den-and-palace",
+      "position": [
+        -87,
+        64,
+        96
+      ],
+      "lookAt": [
+        -26,
+        15,
+        34
+      ]
+    },
+    {
+      "name": "gate-passage",
+      "position": [
+        1,
+        6.6,
+        90
+      ],
+      "lookAt": [
+        6,
+        7,
+        60
+      ]
+    },
+    {
+      "name": "north-bailey-and-chapel",
+      "position": [
+        106,
+        65,
+        -139
+      ],
+      "lookAt": [
+        -4,
+        14,
+        -18
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve the mapped compound and identity features; each level removes selected detail within medium-fi budgets.",
+  "mesh": {
+    "triangles": 8327,
+    "vertices": 18489,
+    "materials": 5,
+    "bytes": 768644,
+    "sha256": "sha256:ccc7e8dc71d97488c56879f42e20bd27356fd2685bca5de765a5f169fd20f938"
+  }
+}

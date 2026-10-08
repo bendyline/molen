@@ -17,6 +17,7 @@ import {
   hasUsableStructurePlacement,
   historicalIdentityResolved,
 } from './historical-placement.mjs';
+import { reviewedMediumFi } from './medium-fi-readiness.mjs';
 import { readinessSourceIdentity } from './readiness-source-identity.mjs';
 import { reviewedSourceMapFrame } from './reviewed-source-map-frame.mjs';
 
@@ -137,9 +138,20 @@ async function modelReadiness(candidate, geo) {
     Boolean(placementHash) &&
     qa.geographicReview?.status === 'passed' &&
     qa.geographicReview?.placementHash === placementHash;
+  const fidelityTarget = spec?.fidelityTarget === 'medium-fi' ? 'medium-fi' : 'maximum';
+  const mediumFiReviewed =
+    fidelityTarget === 'medium-fi' &&
+    sidecar &&
+    (await reviewedMediumFi({
+      qa,
+      reportBytes: await bytes(`${sourceDirectory}/medium-fi-report.json`),
+      sidecar,
+      readImage: (path) => bytes(`${sourceDirectory}/${path}`),
+    }));
   const fidelityReviewed =
     reviewMatches &&
-    qa.fidelityReview?.target === 'maximum' &&
+    qa.fidelityReview?.target === fidelityTarget &&
+    (fidelityTarget !== 'medium-fi' || mediumFiReviewed) &&
     qa.fidelityReview?.status === 'passed' &&
     typeof qa.fidelityReview?.notes === 'string' &&
     qa.fidelityReview.notes.trim().length > 0;
@@ -164,7 +176,7 @@ async function modelReadiness(candidate, geo) {
   if (!visualReviewed) blockers.push('visual-review-missing-or-unbound');
   if (needsSharedReview && !sharedReviewed)
     blockers.push('shared-surface-review-missing-or-unbound');
-  if (!fidelityReviewed) blockers.push('maximum-fidelity-review-missing-or-unbound');
+  if (!fidelityReviewed) blockers.push(`${fidelityTarget}-fidelity-review-missing-or-unbound`);
   if (geo.orientationStatus === 'unresolved' && !localFrame)
     blockers.push('orientation-unresolved');
   if (!geographicReviewed) blockers.push('geographic-review-missing-or-unbound');
@@ -230,7 +242,7 @@ async function modelReadiness(candidate, geo) {
       note: 'Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs.',
     },
     fidelityQa: {
-      target: 'maximum',
+      target: fidelityTarget,
       hashBoundReviewPassed: fidelityReviewed,
       declaredQuality: spec?.quality ?? null,
       notes: qa?.fidelityReview?.notes ?? null,
@@ -328,7 +340,7 @@ const output = {
   format: 'molen/structure-readiness@1',
   title: 'Next 1,000 structure production and placement readiness',
   policy:
-    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound maximum-fidelity, visual and geographic review plus an active runtime placement.',
+    'All current catalog identities remain visible. Missing geometry, undirected map axes, missing datum/facade review and unbound screenshots remain explicit blockers. ready requires hash-bound fidelity against the declared standard, visual and geographic review plus an active runtime placement. New medium-fi reviews also bind all four runtime LODs and the required context captures; legacy maximum-fidelity reviews retain their original meaning.',
   counts,
   candidates: records,
 };
@@ -349,7 +361,9 @@ Generated from source masters, imported sidecars, geographic placements and hash
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
 There are ${counts.authoredAssets} authored assets, ${counts.importedAssets} imported assets and ${counts.placedAssets} active geographic asset previews.
 A candidate is complete only after its current source/runtime,
-portable render, shared-material render, geographic fit and maximum exterior fidelity pass.
+portable render, shared-material render, geographic fit and its declared fidelity standard pass.
+New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
+approvals retain their original scope and are not automatically medium-fi approvals.
 
 | Stage | Models |
 | --- | ---: |
@@ -358,7 +372,7 @@ portable render, shared-material render, geographic fit and maximum exterior fid
 | Portable visual reviews passed | ${counts.visualReviews} |
 | Shared-material reviews passed | ${counts.sharedSurfaceReviews} |
 | Active geographic previews | ${counts.previewPlacements} |
-| Maximum exterior fidelity reviews passed | ${counts.fidelityReviews} |
+| Declared fidelity reviews passed | ${counts.fidelityReviews} |
 | Complete | ${counts.ready} |
 | Source models still to author | ${counts.candidates - counts.sourceModels} |
 
@@ -369,7 +383,7 @@ captures. Editing those inputs invalidates older approvals; rebuilding the same 
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 
-| ID | Model | Runtime triangles | Visual | Shared materials | Placement review | Maximum fidelity | Complete |
+| ID | Model | Runtime triangles | Visual | Shared materials | Placement review | Declared fidelity | Complete |
 | --- | --- | ---: | --- | --- | --- | --- | --- |
 ${records
   .filter((record) => record.model.source.present || record.collection?.sourceCount > 0)

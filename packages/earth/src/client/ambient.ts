@@ -44,6 +44,8 @@ export interface EarthAmbientSettings {
   pedestrians?: boolean;
   rail?: boolean;
   aircraft?: boolean;
+  /** Habitat and range constrained animals when the wildlife content pack is loaded. */
+  wildlife?: boolean;
   drivingSide?: 'right' | 'left';
 }
 

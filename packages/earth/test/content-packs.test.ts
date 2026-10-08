@@ -247,6 +247,7 @@ describe('Earth structure catalogs', () => {
     const style = fakePack('molen.worldgen.default', 'worldgen', {
       stylepack: ['stylepack.json'],
       landmarks: ['landmarks/catalog.json'],
+      'regional-catalog': ['regional.catalog.json'],
     });
     const earth = fakePack('molen.earth', 'earth', {
       atlas: ['world.atlas.json'],
@@ -255,6 +256,24 @@ describe('Earth structure catalogs', () => {
     });
     const content = await loadEarthContent([style, earth]);
     expect(content.worldgenError).toBeUndefined();
+    expect(content.worldgen?.environment?.atlas).toBeUndefined();
+    expect(content.worldgen?.environment?.catalogs[0]?.id).toBe('molen.worldgen.regional');
+    const ecology = fakePack('molen.ecology', 'ecology', {
+      'ecology-atlas': ['ecoregions.json'],
+      'regional-catalog': ['regional.catalog.json'],
+    });
+    const complete = await loadEarthContent([style, earth, ecology]);
+    expect(complete.worldgenError).toBeUndefined();
+    expect(complete.worldgen?.environment?.atlas?.regions).toHaveLength(847);
+    expect(complete.worldgen?.environment?.catalogs).toHaveLength(2);
+    const wildlife = fakePack('molen.wildlife', 'wildlife', {
+      'wildlife-ranges': ['ranges.json'],
+      'regional-catalog': ['regional.catalog.json'],
+    });
+    const withAnimals = await loadEarthContent([style, earth, ecology, wildlife]);
+    expect(withAnimals.worldgenError).toBeUndefined();
+    expect(withAnimals.worldgen?.environment?.catalogs).toHaveLength(3);
+    expect(withAnimals.worldgen?.environment?.wildlifeRanges?.taxa).toHaveLength(21);
     expect(content.worldgen?.structures.entries.some((entry) => entry.title.includes('520'))).toBe(
       true,
     );

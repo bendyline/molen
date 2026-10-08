@@ -17,6 +17,7 @@ export interface ProjectedRegion {
   region: AtlasRegion;
   bounds: WorldBounds;
   polygons: Vec2[][];
+  polygonBounds: WorldBounds[];
 }
 
 export interface RegionResolver {
@@ -62,15 +63,39 @@ function projectRegion(region: AtlasRegion, metersPerUnit: number): ProjectedReg
     }
     bounds = [minX, minZ, maxX, maxZ];
   }
-  return { region, bounds, polygons };
+  const polygonBounds = polygons.map((ring): WorldBounds => {
+    let minX = Infinity,
+      minZ = Infinity,
+      maxX = -Infinity,
+      maxZ = -Infinity;
+    for (const [x, z] of ring) {
+      minX = Math.min(minX, x);
+      minZ = Math.min(minZ, z);
+      maxX = Math.max(maxX, x);
+      maxZ = Math.max(maxZ, z);
+    }
+    return [minX, minZ, maxX, maxZ];
+  });
+  return { region, bounds, polygons, polygonBounds };
 }
 
-function inBounds(bounds: WorldBounds, x: number, z: number): boolean {
-  return x >= bounds[0] && x <= bounds[2] && z >= bounds[1] && z <= bounds[3];
+function inBounds(bounds: WorldBounds, x: number, z: number, pad = 0): boolean {
+  return (
+    x >= bounds[0] - pad && x <= bounds[2] + pad && z >= bounds[1] - pad && z <= bounds[3] + pad
+  );
 }
 
-function boundsOverlap(a: WorldBounds, b: WorldBounds): boolean {
-  return a[0] <= b[2] && b[0] <= a[2] && a[1] <= b[3] && b[1] <= a[3];
+function boundsOverlap(a: WorldBounds, b: WorldBounds, pad = 0): boolean {
+  return a[0] - pad <= b[2] && b[0] <= a[2] + pad && a[1] - pad <= b[3] && b[1] <= a[3] + pad;
+}
+
+function distanceSquared(x: number, z: number, a: Vec2, b: Vec2): number {
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1];
+  const length = dx * dx + dz * dz;
+  const t =
+    length === 0 ? 0 : Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length));
+  return (x - a[0] - t * dx) ** 2 + (z - a[1] - t * dz) ** 2;
 }
 
 export function createRegionResolver(
@@ -78,6 +103,7 @@ export function createRegionResolver(
   options: RegionResolverOptions,
 ): RegionResolver {
   const projected = atlas.regions.map((region) => projectRegion(region, options.metersPerUnit));
+  const fallback = atlas.fallbackDistanceMeters ?? 0;
   return {
     atlas,
     resolve(x, z) {
@@ -86,17 +112,54 @@ export function createRegionResolver(
         if (!inBounds(entry.bounds, x, z)) continue;
         if (
           entry.polygons.length > 0 &&
-          !entry.polygons.some((ring) => pointInRing([x, z], ring))
+          !entry.polygons.some(
+            (ring, i) =>
+              inBounds(entry.polygonBounds[i] as WorldBounds, x, z) && pointInRing([x, z], ring),
+          )
         ) {
           continue;
         }
         if (best === undefined || entry.region.priority > best.region.priority) best = entry;
       }
+      // Exact containment always wins. Only fill small unclassified gaps left by coarse coasts.
+      if (best === undefined && fallback > 0) {
+        let nearest = fallback * fallback;
+        for (const entry of projected) {
+          if (!inBounds(entry.bounds, x, z, fallback)) continue;
+          for (let index = 0; index < entry.polygons.length; index++) {
+            if (!inBounds(entry.polygonBounds[index] as WorldBounds, x, z, fallback)) continue;
+            const ring = entry.polygons[index] as Vec2[];
+            for (let i = 0; i < ring.length; i++) {
+              const distance = distanceSquared(
+                x,
+                z,
+                ring[i] as Vec2,
+                ring[(i + 1) % ring.length] as Vec2,
+              );
+              if (
+                distance < nearest - 1e-6 ||
+                (distance <= nearest + 1e-6 &&
+                  (best === undefined || entry.region.priority > best.region.priority))
+              ) {
+                nearest = distance;
+                best = entry;
+              }
+            }
+          }
+        }
+      }
       return best?.region;
     },
     intersecting(bounds) {
       return projected
-        .filter((entry) => boundsOverlap(entry.bounds, bounds))
+        .filter(
+          (entry) =>
+            boundsOverlap(entry.bounds, bounds, fallback) &&
+            (entry.polygons.length === 0 ||
+              entry.polygonBounds.some((ringBounds) =>
+                boundsOverlap(ringBounds, bounds, fallback),
+              )),
+        )
         .map((entry) => entry.region);
     },
   };

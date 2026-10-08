@@ -30,6 +30,7 @@ export {
   createVertexColorMaterialSet,
   TEXTURED_SURFACE_MEAN,
 } from './client/materials';
+export { createPlantGeometry } from './client/plant-geometry';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
   type StructureAcquireOptions,

@@ -408,6 +408,23 @@ A serialized generation request: labeled building outlines, optional labeled pol
                 },
                 "description": "Open ring of [x, z] points (no repeated closing point)."
               },
+              "holes": {
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "type": "array",
+                  "items": {
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "[x, z] in local meters."
+                  },
+                  "description": "Open ring of [x, z] points (no repeated closing point)."
+                }
+              },
               "polyline": {
                 "minItems": 2,
                 "type": "array",
@@ -420,6 +437,10 @@ A serialized generation request: labeled building outlines, optional labeled pol
                   },
                   "description": "[x, z] in local meters."
                 }
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "number",

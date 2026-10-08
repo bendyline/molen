@@ -8,6 +8,7 @@ import { createHeightSampler, type ResolvedStylePack } from '@bendyline/molen-wo
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
+import type { RegionalEnvironment } from '../kernel/regional-environment';
 import { generateWorldgenTileSteps, type WorldgenTileOutput } from '../kernel/tile-generate';
 import type { WorldgenTileCache } from './cache';
 import {
@@ -19,6 +20,7 @@ import {
 export interface InThreadGeneratorOptions {
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
+  environment?: RegionalEnvironment;
   /** Landmarks and business identities for mapped places (none when omitted). */
   places?: PlacesContent;
   /** Buildings generated between cooperative yields (default 48). */
@@ -49,6 +51,7 @@ export function createInThreadWorldgenGenerator(
           pack,
           ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
           ...(options.regions !== undefined ? { regions: options.regions } : {}),
+          ...(options.environment !== undefined ? { environment: options.environment } : {}),
           ...(options.places !== undefined ? { places: options.places } : {}),
           ...(request.budgets !== undefined ? { budgets: request.budgets } : {}),
           ...(request.features !== undefined ? { features: request.features } : {}),

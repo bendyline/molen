@@ -26,6 +26,8 @@ into a shared core and regional model archives while retaining that logical pack
 | [entities/](entities/) | `molen.entities` | Entity type documents (trees, boulder, aircraft, vehicles), their generated scripts, and glTF models with `molen/asset@1` sidecars |
 | [worldgen/](worldgen/) | `molen.worldgen.default` | The default style pack: archstyles, material graphs, scatter rules, props, landmarks, and the structure catalog |
 | [earth/](earth/) | `molen.earth` | The region atlas and the business identity catalog |
+| [ecology/](ecology/) | `molen.ecology` | Compact attributed ecoregions, procedural plants, seasonal/cultivated planting, habitat and ground palettes |
+| [wildlife/](wildlife/) | `molen.wildlife` | Compact attributed mammal country limits, procedural animal recipes and habitat populations; depends on the ecology catalog |
 | [sky/](sky/) | `molen.sky` | The Bright Star Catalogue as `molen/stars@1` binary columns |
 | [sounds/](sounds/) | `molen.sounds` | 63 CC0 sounds and six music tracks behind a `molen/soundbank@1` bank; provenance in `sources.json` and `NOTICE.md` |
 

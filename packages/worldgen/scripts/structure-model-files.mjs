@@ -56,7 +56,7 @@ export async function authoredModels() {
     .split(',');
   const expanded = selectedStructureIds(selected, collections);
   const models = [];
-  for (const dir of await authoredModelDirectories()) {
+  for (const dir of await authoredModelDirectories(expanded)) {
     const spec = await readOptionalJson(resolve(dir, 'spec.json'));
     if (!spec || (expanded && !expanded.includes(spec.id))) continue;
     validateCollectionSpec(spec, collections);
@@ -132,11 +132,19 @@ export async function modelInputHash(dir, assetId) {
 }
 
 /** The registry owns geographic paths; reusable category models retain their semantic home. */
-export async function authoredModelDirectories() {
+/** Explicit auxiliary site components can use the same targeted import/capture loop.
+ * Unselected historical/site bundles retain their existing independent workflow. */
+export function authoredPlaceEntries(entries, selection) {
+  return entries.filter(
+    (entry) => entry.collection === 'next-1000' || selection?.includes(entry.candidateId),
+  );
+}
+
+export async function authoredModelDirectories(selection) {
   await assertSourceRegistryCurrent();
-  const places = knownSourceEntries()
-    .filter((entry) => entry.collection === 'next-1000')
-    .map((entry) => structureSourceDirectory(entry.key));
+  const places = authoredPlaceEntries(knownSourceEntries(), selection).map((entry) =>
+    structureSourceDirectory(entry.key),
+  );
   const genericRoot = resolve(content, 'source/map-structures');
   const generic = await readdir(genericRoot, { withFileTypes: true }).catch((error) => {
     if (error.code === 'ENOENT') return [];

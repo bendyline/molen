@@ -1,0 +1,256 @@
+{
+  "planId": "N0280",
+  "id": "N0280",
+  "assetId": "molen.worldgen.structure.n0280_trakai_island_castle",
+  "title": "Trakai Island Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q1482013",
+  "referenceCoordinate": {
+    "latitude": 54.6525,
+    "longitude": 24.933055555
+  },
+  "visualBrief": "Restored Trakai compound with open trapezoidal forecourt,three cone-roof corner towers,arched entry tower,western casemate and separate open-court ducal palace with a tall gabled donjon,short wooden bridge and stone precinct.",
+  "mediumFiContext": {
+    "scale": "1.25",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    122.69164276123047,
+    33,
+    130.9732437133789
+  ],
+  "actualBounds": {
+    "min": [
+      -34.386085510253906,
+      0,
+      -24
+    ],
+    "max": [
+      88.30555725097656,
+      33,
+      106.9732437133789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z southwest toward forecourt and approach;palace side wings lie along Z",
+    "lateral": "+X southeast across palace wings",
+    "origin": "Cached palace map-frame center;not whole-compound center;provisional flat groundY0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/3111261 exact Q1482013 palace multipolygon only",
+    "mappedPalacePlanMeters": [
+      38.019,
+      35.269
+    ],
+    "mappedPalaceCourtyardHoles": 1,
+    "documentedPlannedDonjonMeters": {
+      "width": 9.2,
+      "depth": 9.6,
+      "height": 33
+    },
+    "forecourtMetricSurvey": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "brick": "#c68d70",
+      "stone": "#c0b69e",
+      "roof": "#b77556",
+      "wood": "#987b58",
+      "trim": "#dfc7a1",
+      "glass": "#4d6178",
+      "paving": "#b5b0a3"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Three faceted red-tile cone towers and square arched entrance",
+      "Open trapezoidal forecourt with long western casemate",
+      "Separate U-shaped palace,tall gabled donjon and connecting bridge"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Exact cached palace footprint/courtyard,museum tower dimensions,primary2023 archaeological site plan and current official municipal aerial/approach photos. Forecourt shape and component controls are interpretive traces.",
+    "heightDatum": "33m donjon follows documented planned historical height,not a new restored-tower survey. Other tower radii/heights,casemate elevations,roofs,wallwalks,bridge and attachment levels are inferred.",
+    "scope": "Restored palace with open inner court,tall donjon,trapezoidal open forecourt,three corner towers,entry tower,western casemate,curtains,palace precinct and short connecting bridge. No lake/island terrain,long shore approach bridge,trees,boats,interiors or modern temporary works.",
+    "registration": "Exact cached relation covers palace only. Whole-compound pixel trace is approximately scaled and visually aligned,not georeferenced component-by-component. Direction,terrain,moat,bridge levels and replacement fit pending;inactive draft."
+  },
+  "referencePages": [
+    "https://trakaimuziejus.lt/en/apie-mus/salos_pilis/",
+    "https://atl.lad.lt/2023/122-129.pdf",
+    "https://www.trakai-visit.lt/en/trakai-island-castle/",
+    "https://www.govilnius.lt/visit-vilnius/places/trakai-castle",
+    "https://www.openstreetmap.org/relation/3111261"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Inactive geographic draft;review pending",
+    "anchor": [
+      24.934056788,
+      54.652709433
+    ],
+    "heading": -1.112277445339,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/3111261",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/3111261"
+    ],
+    "wikidataId": "Q1482013",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8a6c8f58f5de2c7c91b0cca7a7b80a6a1423156d2098ff8cbbf95ea71a975414",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Cached palace frame and approximate whole-castle trace;forecourt registration,restored heights,moat/bridge levels,terrain and direction require real-site review."
+  },
+  "scaleBasis": "Mapped palace38.019×35.269m;primary archaeological site-plan forecourt trace at50/135m per pixel. Donjon9.2×9.6m/33m is a documented historical plan,not current as-built survey. Other dimensions are photo-based estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors,ODbL-1.0. Research photos and archaeological aerial plan linked only,not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors. Trakai History Museum,Lithuanian Archaeological Society/Tautvydas Bajarūnas,Trakai Tourism Information Centre and Go Vilnius.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Mapped relation3111261 is only the ducal palace. Whole compound is not represented by that38×35m footprint. Forecourt uses sparse primary-plan pixel trace at50/135m per pixel,visually aligned to the palace,not a current metric survey.",
+    "Museum and archaeological paper describe planned historical donjon9.2×9.6m and33m height. The restored tower may differ;33m roof ridge is an authoring interpretation. All other roof heights,radii,wall levels,openings and buttresses are inferred from photos.",
+    "Aerial reference contains excavation overlays and temporary works;these do not ship as textures or structures. Photograph lighting is not baked into materials.",
+    "FlatY0 does not model island,moat or lake levels. Short connecting bridge is approximate;long public shore bridge,island terrain,trees,boats,interiors and temporary works excluded.",
+    "Geographic orientation,compound registration,terrain seating and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic context neighbors and flat ground do not verify real Trakai terrain.",
+    "Four shared256² graphs supply brick,granite,ceramic tile and plain wood;blue-grey glass is untextured. Research remains linked evidence only. Fine stone joints,carvings,balusters,glazing bars and wires omitted.",
+    "Physical laptop/phone timings and continuous-motion LOD shimmer remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-cones-and-entry",
+      "position": [
+        137,
+        26,
+        157
+      ],
+      "lookAt": [
+        49,
+        11,
+        64
+      ]
+    },
+    {
+      "name": "palace-donjon",
+      "position": [
+        67,
+        28,
+        52
+      ],
+      "lookAt": [
+        0,
+        19,
+        7
+      ]
+    },
+    {
+      "name": "two-open-courts",
+      "position": [
+        22,
+        240,
+        37
+      ],
+      "lookAt": [
+        22,
+        0,
+        37
+      ]
+    },
+    {
+      "name": "entry-passage",
+      "position": [
+        90,
+        9,
+        116
+      ],
+      "lookAt": [
+        56,
+        4,
+        82
+      ]
+    },
+    {
+      "name": "palace-wood-gallery",
+      "position": [
+        0,
+        8.5,
+        2.5
+      ],
+      "lookAt": [
+        -3.56,
+        8,
+        -3.7
+      ]
+    },
+    {
+      "name": "moat-bridge-and-casemates",
+      "position": [
+        -56,
+        50,
+        27
+      ],
+      "lookAt": [
+        3,
+        7,
+        37
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Retain Trakai tower/forecourt/palace hierarchy,open courts,real gate voids and short connecting bridge in compact shared-material LODs.",
+  "mesh": {
+    "triangles": 3386,
+    "vertices": 10158,
+    "materials": 5,
+    "bytes": 409548,
+    "sha256": "sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1"
+  }
+}

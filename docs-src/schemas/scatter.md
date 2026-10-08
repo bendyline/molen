@@ -291,6 +291,68 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
             "minimum": 0,
             "description": "Minimum spacing hint in meters."
           },
+          "rows": {
+            "type": "object",
+            "properties": {
+              "spacing": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 100,
+                "description": "Distance between cultivation rows, meters."
+              },
+              "interval": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 100,
+                "description": "Distance between plants along a row, meters."
+              },
+              "angle": {
+                "default": 0,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 180,
+                "description": "Grid rotation in degrees from world X."
+              },
+              "jitter": {
+                "default": 0.04,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.2,
+                "description": "Fractional cell jitter; 0 gives exact rows."
+              }
+            },
+            "required": [
+              "spacing",
+              "interval"
+            ],
+            "additionalProperties": false,
+            "description": "Optional world-anchored cultivation grid. Density may thin it, but cannot overfill it."
+          },
+          "nearWater": {
+            "type": "object",
+            "properties": {
+              "maxDistance": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 500,
+                "description": "Maximum horizontal distance from mapped water edges, meters."
+              },
+              "classes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Optional water labels; omitted accepts any mapped water."
+              }
+            },
+            "required": [
+              "maxDistance"
+            ],
+            "additionalProperties": false,
+            "description": "Require mapped water nearby, at the exclusion raster resolution. Water itself remains excluded."
+          },
           "clustering": {
             "type": "object",
             "properties": {

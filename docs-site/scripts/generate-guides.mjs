@@ -86,6 +86,7 @@ const GUIDE_ORDER = [
   'terrain',
   'earth-view',
   'worldgen',
+  'regional-world',
   'surface-rendering',
   'structure-library',
   'recognizable-places',

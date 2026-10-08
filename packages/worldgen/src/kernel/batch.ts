@@ -12,7 +12,7 @@ import { MeshBufferBuilder } from './mesh-buffers';
 import type { PropPlacement } from './props';
 import { buildingMetrics } from './recipe';
 import { type StyleRule, selectStyle } from './rules';
-import { samplePlacementsSteps } from './scatter';
+import { type ScatterSampleInput, samplePlacementsSteps } from './scatter';
 import { hashString } from './seed';
 import { packIdentity, type ResolvedStylePack } from './stylepack';
 import {
@@ -43,6 +43,8 @@ export interface WorldgenBatchInput {
   rules?: StyleRule[];
   fallbackStyle?: string;
   scatterId?: string;
+  /** A composed scatter channel with its own identity and optional spatial rule gate. */
+  scatterEnvironment?: Pick<ScatterSampleInput, 'doc' | 'pack' | 'acceptsRule' | 'modelAt'>;
   budgets?: Partial<WorldgenBudgets>;
   /** Detail tier for the batch (0 = full). */
   tier?: number;
@@ -521,12 +523,20 @@ export function* generateWorldgenBatchSteps(
     });
   for (const set of buildingProps) if (!signModels.has(set.modelRef)) admit(set);
   const scatterId = input.scatterId ?? pack.root.defaults.scatter;
-  const scatterDoc = scatterId !== undefined ? pack.scatters[scatterId] : undefined;
+  const scatterDoc =
+    input.scatterEnvironment?.doc ??
+    (scatterId !== undefined ? pack.scatters[scatterId] : undefined);
   if (input.scatter !== undefined && scatterDoc !== undefined) {
     const scattered = yield* samplePlacementsSteps({
       request: input.scatter,
       doc: scatterDoc,
-      pack: identity,
+      pack: input.scatterEnvironment?.pack ?? identity,
+      ...(input.scatterEnvironment?.acceptsRule !== undefined
+        ? { acceptsRule: input.scatterEnvironment.acceptsRule }
+        : {}),
+      ...(input.scatterEnvironment?.modelAt !== undefined
+        ? { modelAt: input.scatterEnvironment.modelAt }
+        : {}),
       ground,
       budget: {
         maxInstancesPerRule: budgets.maxInstancesPerRule,

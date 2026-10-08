@@ -2,9 +2,11 @@ import { FrameAdmissionQueue } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { Heightfield } from '../src/heightfield';
+import { buildChunkGeometry } from '../src/mesh';
 import {
   createTerrainPyramidStream,
   selectTerrainPyramidTiles,
+  surfaceDescriptor,
   type TerrainPyramidHeightSource,
   type TerrainPyramidTileLayer,
   terrainPyramidBudgetForQuality,
@@ -49,6 +51,58 @@ const VIEW = {
 };
 
 describe('screen-space terrain pyramid', () => {
+  it.each([
+    false,
+    true,
+  ])('applies spatial colors to world coordinates on prepared=%s meshes and preserves declined vertices', async (prepared) => {
+    const d = descriptor({ origin: [100, 200], maxLevel: 0, skirts: false });
+    const calls: number[][] = [];
+    const source: TerrainPyramidHeightSource = { load: async (address) => flatTile(d, address) };
+    if (prepared)
+      source.loadPrepared = async (address) => {
+        const heightfield = flatTile(d, address);
+        return {
+          heightfield,
+          geometry: buildChunkGeometry(
+            heightfield,
+            surfaceDescriptor(d, address),
+            address.x,
+            address.z,
+            { localCoordinates: true },
+          ),
+        };
+      };
+    const stream = createTerrainPyramidStream(d, source, {
+      initialView: { ...VIEW, position: [102, 10, 202] },
+      maxScreenSpaceError: 10000,
+      viewDistance: 100,
+      maxSelectedTiles: 1,
+      maxResidentTiles: 2,
+      maxConcurrentLoads: 1,
+      surfaceColor(x, y, z, slope, base) {
+        calls.push([x, y, z, slope, ...base]);
+        return x === 100 ? [0.1, 0.2, 0.3] : x === 108 ? undefined : [Number.NaN, 0, 0];
+      },
+    });
+    try {
+      await stream.whenIdle();
+      const mesh = stream.object.getObjectByName('surface:0/0/0') as THREE.Mesh;
+      const colors = mesh.geometry.getAttribute('color');
+      expect(calls).toHaveLength(9);
+      for (const [i, sample] of calls.entries()) {
+        expect(sample[0]).toBeGreaterThanOrEqual(100);
+        expect(sample[2]).toBeGreaterThanOrEqual(200);
+        expect(sample[3]).toBe(0);
+        const expected = sample[0] === 100 ? [0.1, 0.2, 0.3] : sample.slice(4);
+        expect(colors.getX(i)).toBeCloseTo(expected[0] ?? 0);
+        expect(colors.getY(i)).toBeCloseTo(expected[1] ?? 0);
+        expect(colors.getZ(i)).toBeCloseTo(expected[2] ?? 0);
+      }
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('refines detailed ancestors in small families instead of waiting for every distant leaf', async () => {
     const d = descriptor();
     const pending = new Map<string, (object: THREE.Object3D) => void>();

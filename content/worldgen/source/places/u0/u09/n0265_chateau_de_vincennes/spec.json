@@ -1,0 +1,248 @@
+{
+  "planId": "N0265",
+  "id": "N0265",
+  "assetId": "molen.worldgen.structure.n0265_chateau_de_vincennes",
+  "title": "Château de Vincennes",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q663673",
+  "referenceCoordinate": {
+    "latitude": 48.842777777,
+    "longitude": 2.435833333
+  },
+  "visualBrief": "Present-day Vincennes compound: round-cornered tall keep and covered chemise, Gothic Sainte-Chapelle, Tour du Village, reduced enceinte towers, paired royal pavilions and open courts.",
+  "mediumFiContext": {
+    "scale": "3.8",
+    "neighborStyle": "molen.worldgen.catalog.paris_mansard"
+  },
+  "size": [
+    377.3000030517578,
+    65,
+    219.96961212158203
+  ],
+  "actualBounds": {
+    "min": [
+      -175.3000030517578,
+      -6,
+      -105.96961212158203
+    ],
+    "max": [
+      202,
+      59,
+      114
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north toward Tour du Village",
+    "front": "+Z east across the main court",
+    "origin": "OSM compound center; court Y=0, moat wall bases Y=-6m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/23032971 exact Wikidata Q663673",
+    "buildingPlans": "IGN BD TOPO V3; 14 component features retained with stable CLEABS identifiers",
+    "keepPublishedHeightMeters": 50,
+    "keepSquareCoreMeters": 16.2,
+    "keepWallThicknessMeters": 3.25,
+    "chapelInteriorMeters": [
+      40,
+      12,
+      20
+    ],
+    "ignHeightMeters": {
+      "keep": 50.1,
+      "chapel": 32.6,
+      "villageTower": 42
+    }
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e6dcc7",
+      "trim": "#efe5d1",
+      "slate": "#626b74",
+      "tile": "#ac775c",
+      "glass": "#4d6178",
+      "paving": "#b6b0a1",
+      "door": "#78594a",
+      "red": "#ba394a",
+      "blue": "#3e6098",
+      "white": "#eae5db",
+      "lawn": "#8aa065"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Tall four-turret keep and separate covered chemise",
+      "Sainte-Chapelle with west rose, pointed bays and buttresses",
+      "Tour du Village and broad enclosure with paired slate-roofed royal pavilions"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM compound and IGN component footprints; CMN visitor plan and current official photographs",
+    "scope": "Present-day exterior compound, covered keep enclosure, chapel, royal pavilions and ancillary ranges; terrain, gardens, buried manor remains and interiors excluded",
+    "referenceState": "Reduced perimeter towers and uncrenellated present keep parapets; no reconstruction of vanished medieval towers"
+  },
+  "referencePages": [
+    "https://www.chateau-de-vincennes.fr/en/discover/una-fortaleza-real",
+    "https://www.chateau-de-vincennes.fr/enseignants/mediatheque-espace-enseignant/fiche-de-visite",
+    "https://www.chateau-de-vincennes.fr/en/discover/history-of-the-chateau-de-vincennes",
+    "https://www.openstreetmap.org/way/23032971",
+    "https://www.data.gouv.fr/datasets/bd-topo-r"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed map frame and IGN parts; terrain/moat and entrance contact pending",
+    "anchor": [
+      2.435779375,
+      48.842783541
+    ],
+    "heading": 1.438616485431,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/23032971",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/23032971"
+    ],
+    "wikidataId": "Q663673",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce05a6fee1527949c5642138423d6ff975a709b1adbbab350b0599361fc1c092",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "IGN plan precision for keep 3m and height precision 2.5m. Main keep height uses CMN 50m. Compound height fields are not treated as uniform roofs. Moat -6m, flag 59m, pavilions, window rhythms and smaller roofs are reconstructed. Court Y=0; actual stepped ground requires geographic review.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. OSM identity/frame © OpenStreetMap contributors ODbL-1.0. Component plan geometry © IGN BD TOPO, Licence Ouverte 2.0. Research photos/plans linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0; © IGN BD TOPO, Licence Ouverte 2.0, retrieved 2026-10-07. Official CMN references are linked evidence only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "IGN aggregate shapes require reconstructed partitions and roof heights; individual windows, porticoes and turrets are simplified.",
+    "Exterior-only reconstruction; glass is opaque PBR and no public interiors are implied.",
+    "Moat depth, real terrain seating, camera-motion shimmer and physical-device performance remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "keep-and-chatelet",
+      "position": [
+        22,
+        31,
+        19
+      ],
+      "lookAt": [
+        -21,
+        24,
+        -73
+      ]
+    },
+    {
+      "name": "chapel-west-rose",
+      "position": [
+        -52,
+        20,
+        -28
+      ],
+      "lookAt": [
+        -43,
+        17,
+        50
+      ]
+    },
+    {
+      "name": "royal-court",
+      "position": [
+        -20,
+        60,
+        20
+      ],
+      "lookAt": [
+        -128,
+        10,
+        20
+      ]
+    },
+    {
+      "name": "tour-du-village",
+      "position": [
+        235,
+        22,
+        22
+      ],
+      "lookAt": [
+        168,
+        19,
+        18
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        0,
+        580,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "keep-west-and-covered-walk",
+      "position": [
+        -75,
+        33,
+        -150
+      ],
+      "lookAt": [
+        -21,
+        22,
+        -79
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Retain the spatially separated keep, chapel and royal court with distinct silhouettes and inexpensive shared materials.",
+  "mesh": {
+    "triangles": 12218,
+    "vertices": 29894,
+    "materials": 5,
+    "bytes": 1225900,
+    "sha256": "sha256:592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f"
+  }
+}

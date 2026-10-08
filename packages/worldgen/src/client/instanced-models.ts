@@ -8,7 +8,9 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { generateLandmarkModel } from '../kernel/landmark-models';
 import type { LandmarkDefinitions } from '../kernel/landmark-types';
+import type { PlantPreset } from '../kernel/plant-types';
 import { packedColorAttribute } from './color-attribute';
+import { createPlantGeometry } from './plant-geometry';
 import { createVegetationGeometry } from './vegetation';
 
 export interface PreparedModel {
@@ -182,13 +184,15 @@ export class ModelLibrary {
     private readonly landmarks: LandmarkDefinitions = {},
     /** Release source glTF geometry after merging it (for uncached models). */
     private readonly disposeLoadedScene = false,
+    /** Pack-authored recipes share the same instancing path and have three independent LODs. */
+    private readonly plants: Readonly<Record<string, PlantPreset>> = {},
   ) {
     this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
     this.material.name = 'worldgen:models';
   }
 
   private key(ref: string, coarse: boolean | 'distant'): string {
-    return coarse && ref.startsWith('builtin:')
+    return coarse && (ref.startsWith('builtin:') || this.plants[ref] !== undefined)
       ? `${ref}:${coarse === 'distant' ? 'distant' : 'coarse'}`
       : ref;
   }
@@ -252,6 +256,17 @@ export class ModelLibrary {
   }
 
   private async load(ref: string, coarse: boolean | 'distant'): Promise<PreparedModel> {
+    const plant = this.plants[ref];
+    if (plant !== undefined) {
+      const geometry = createPlantGeometry(plant, coarse);
+      return {
+        ref,
+        geometry,
+        material: this.material,
+        bounds: geometry.boundingBox ?? new THREE.Box3(),
+        builtin: false,
+      };
+    }
     if (ref.startsWith('builtin:')) {
       const geometry = builtinGeometry(ref.slice('builtin:'.length), coarse, this.landmarks);
       if (geometry === undefined) throw new Error(`unknown builtin model "${ref}"`);

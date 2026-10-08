@@ -269,6 +269,7 @@ describe('scatter sampling', () => {
       ],
     };
     const req = request([0, 0, 200, 200]);
+    const visited = new Set<string>();
     const run = (scatter: ScatterDoc, extra: Partial<typeof budget> & Record<string, number>) =>
       samplePlacements({
         request: req,
@@ -277,6 +278,10 @@ describe('scatter sampling', () => {
         ground: FLAT_GROUND,
         budget: { ...budget, maxInstances: 300, maxPropModels: 1, ...extra },
         tier: 0,
+        acceptsRule: (rule) => {
+          visited.add(rule.id);
+          return true;
+        },
       });
     const canopy = run(doc, {});
     const both = run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 2 });
@@ -287,7 +292,9 @@ describe('scatter sampling', () => {
     );
     expect(tufts.reduce((sum, set) => sum + set.count, 0)).toBe(500);
     // Without a ground cover budget the layer is simply absent.
+    visited.clear();
     expect(positions(run(covered, {}))).toEqual(positions(canopy));
+    expect(visited.has('cover')).toBe(false);
     expect(
       run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 0 }).some(
         (set) => set.modelRef === 'builtin:groundcover.tuft',

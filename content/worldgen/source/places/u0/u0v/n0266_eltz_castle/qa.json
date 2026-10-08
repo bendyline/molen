@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0266_eltz_castle",
+  "sourceHash": "sha256:21a46ad8431c67f07a0f2a3a1ca066ead258597edccc2378486237d59156c474",
+  "runtimeHash": "sha256:6b89dcd12d1430b474d38ce3a8cf131ec84d0406b5b048e5bf7074ee6913afa1",
+  "captureReportHash": "sha256:6c100684554f5b227393b9febd6410b9482cde732b4a3b11f7ada16ffcfe6e09",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-gate-and-rodendorf.png",
+      "shots/east-kempenich.png",
+      "shots/south-platteltz.png",
+      "shots/west-rubenach.png",
+      "shots/open-court.png",
+      "shots/compound-plan.png"
+    ],
+    "notes": "Inspected all11 portable frames. The open courtyard and adjoining family-house massing, steep roofs, polygonal timber bays, white Rübenach upper band, ochre Platt-Eltz and projecting Kempenich timber gable remain distinct. Corrected coplanar faces that hid the white band, overly uniform facade rhythms and the Kempenich gable placement. Lowest foundations export at Y=0 so review views show the lower floors. Windows, roofs and outbuildings are original simplified reconstructions from owner references, not surveyed replicas."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5ae8101cc51b0c12ef284bc61a1c37ad0ed74f0c756d9ad7949d1f7c9f5c2887",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-gate-and-rodendorf.png",
+      "shots/shared/east-kempenich.png",
+      "shots/shared/south-platteltz.png",
+      "shots/shared/west-rubenach.png",
+      "shots/shared/open-court.png",
+      "shots/shared/compound-plan.png"
+    ],
+    "notes": "Inspected all10 shared-loader frames. Sandstone, lime plaster, slate and wood graphs each load once. Five merged material groups include opaque local glass; no private or embedded images. Unloading releases all model geometries. No directional lighting or AO is baked into the model."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:020afda93c711ae3dc9c24df0a6eff0e2ba3856449dc0c70ead2b8f00b338153",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-gate-and-rodendorf.png",
+      "medium-fi/east-kempenich.png",
+      "medium-fi/south-platteltz.png",
+      "medium-fi/west-rubenach.png",
+      "medium-fi/open-court.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all23 canonical Earth-rig frames at three distances, noon/late light and Economy/High; untextured silhouette, six architectural views and four same-camera LOD comparisons. German Fachwerk procedural houses provide synthetic scale and palette context. Roof cluster, open court and pale/red projecting bays carry the silhouette; street adds shutters and timber diagonals. Skyline drops minor bays/openings and fills the small approach span. Shadows and palette remain coherent across modes. The flat ground is at the lowest model base, below the raised inner court; it does not approve the real rocky terrain, continuous-motion shimmer or physical-device performance."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID OSM way/238981197 supplies the main-building frame at [7.336610781,50.205058905], heading1.510444051141. Owner plan compass and northern gate resolve +X north and +Z east. The mapped65.003×35.497m outline covers the main castle only. House partitions and immediate outer-bailey positions are reconstructed from the owner plan. Exported foundation Y=0 and inner court Y=8m use groundModelY=8 for terrain attachment. Published35m towers include lower floors below the court; the60m rock spur is not building geometry. Actual slope, gate approaches and terrace contact remain unverified. Placement stays inactive draft with replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. The source master has5356 triangles, five merged groups and four shared graphs. All four individually authored levels meet triangle/download budgets. sRGB palettes decode to linear and skyline compensates for the texture mean. Coarse facade rhythms, octagonal bays and timber panels replace per-stone or carved microdetail. No unique textures or baked shading. This approves asset appearance, not terrain fit."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0v/n0266_eltz_castle/models/source.glb",
+        "hash": "sha256:21a46ad8431c67f07a0f2a3a1ca066ead258597edccc2378486237d59156c474",
+        "bytes": 606620,
+        "triangles": 5356,
+        "vertices": 14976,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.glb",
+        "hash": "sha256:6b89dcd12d1430b474d38ce3a8cf131ec84d0406b5b048e5bf7074ee6913afa1",
+        "bytes": 606132,
+        "triangles": 5356,
+        "vertices": 14976,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.skyline.glb",
+        "hash": "sha256:4ffa051a296bdf88245f25d7d0ad6afe89ebe0874694524b70878402319d223c",
+        "bytes": 88592,
+        "triangles": 986,
+        "vertices": 2258,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -17.74799919128418
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.district.glb",
+        "hash": "sha256:bdfe651442cff1b061d692c75f588b2975dd476829a0c51c81c791078e51fa61",
+        "bytes": 264292,
+        "triangles": 3316,
+        "vertices": 6618,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.street.glb",
+        "hash": "sha256:882b2fec72047f3a878edca789e6298cf778235fefef24ceb966fa8edafc1e72",
+        "bytes": 419536,
+        "triangles": 5308,
+        "vertices": 10598,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.closeup.glb",
+        "hash": "sha256:e4d1efdb2dce9db555b661b56451dc9e3090522e83f9b59b35b62425aa16e2ca",
+        "bytes": 424144,
+        "triangles": 5356,
+        "vertices": 10718,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Source, imported runtime and four LODs have zero errors and warnings. All levels have minY=0 and maxY=36.5m; courtyard attachment is8m. Two targeted tests pass for deterministic levels, geometry/download budgets, external surfaces and homogeneous GPU attribute buffers. Unused UV informational messages are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.skyline.glb",
+        "hash": "sha256:4ffa051a296bdf88245f25d7d0ad6afe89ebe0874694524b70878402319d223c",
+        "bytes": 88592,
+        "triangles": 986,
+        "vertices": 2258,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -17.74799919128418
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.district.glb",
+        "hash": "sha256:bdfe651442cff1b061d692c75f588b2975dd476829a0c51c81c791078e51fa61",
+        "bytes": 264292,
+        "triangles": 3316,
+        "vertices": 6618,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.street.glb",
+        "hash": "sha256:882b2fec72047f3a878edca789e6298cf778235fefef24ceb966fa8edafc1e72",
+        "bytes": 419536,
+        "triangles": 5308,
+        "vertices": 10598,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0v/n0266_eltz_castle/model.closeup.glb",
+        "hash": "sha256:e4d1efdb2dce9db555b661b56451dc9e3090522e83f9b59b35b62425aa16e2ca",
+        "bytes": 424144,
+        "triangles": 5356,
+        "vertices": 10718,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -34.494606018066406,
+          0,
+          -18.40999984741211
+        ],
+        "max": [
+          85,
+          36.5,
+          28.62548065185547
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 352884,
+    "notes": "Skyline/district/street/closeup use986/3316/5308/5356 triangles and88592/264292/419536/424144 bytes. Combined initial payload352884bytes excludes shared graphs. Regeneration is byte-identical. No unrelated model generators, dependency audits or engine-wide suite were run."
+  }
+}

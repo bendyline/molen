@@ -1,0 +1,243 @@
+{
+  "planId": "N0274",
+  "id": "N0274",
+  "assetId": "molen.worldgen.structure.n0274_hermann_castle",
+  "title": "Hermann Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q660001",
+  "referenceCoordinate": {
+    "latitude": 59.375555555,
+    "longitude": 28.200833333
+  },
+  "visualBrief": "Restored Narva castle: off-white Tall Hermann with projecting timber hoarding and red gable, inward red-roofed stone convent around an open court, southwest octagonal turret and broad western/northern yards.",
+  "mediumFiContext": {
+    "scale": "1.2",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    210.33499908447266,
+    51,
+    177.9810028076172
+  ],
+  "actualBounds": {
+    "min": [
+      -105.29299926757812,
+      0,
+      -89.44200134277344
+    ],
+    "max": [
+      105.04199981689453,
+      51,
+      88.53900146484375
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast,11.35 degrees north of east",
+    "front": "-X Western Yard; river on +X; North Yard toward -Z",
+    "origin": "Mapped entire site center, provisional court and ground attachment Y=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/5434279 exact Q660001",
+    "mappedSitePlanMeters": [
+      210.085,
+      177.077
+    ],
+    "publishedTallHermannHeightMeters": 51,
+    "publishedHistoricalCastellSideMeters": 40
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#cdb68c",
+      "render": "#e9e0cb",
+      "trim": "#d7c9ad",
+      "roof": "#b56449",
+      "slate": "#626971",
+      "wood": "#795b43",
+      "glass": "#4d6178",
+      "paving": "#b5afa1",
+      "grass": "#859f67"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Off-white square Tall Hermann with dark projecting timber gallery and steep red gable",
+      "Warm stone convent, inward red roof fields, open inner court and small southwest octagonal turret",
+      "Large open Western Yard, separate North Yard, restored Stone Hall and perimeter walls"
+    ]
+  },
+  "reconstruction": {
+    "basis": "OSM site perimeter, operator Western Yard plan and current restored museum photographs",
+    "scope": "Convent exterior and open courts, abbreviated workshops, Stone Hall and curtain walls. Natural cliffs, moat/river and Ivangorod excluded."
+  },
+  "referencePages": [
+    "https://narvamuuseum.ee/en/muuseum/narva-castle/",
+    "https://narvamuuseum.ee/en/muuseum/meie-ajalugu/",
+    "https://narvamuuseum.ee/en/muuseum/projects/projektid/castle-development/",
+    "https://narvamuuseum.ee/userfiles/files/LH-AS-1_Asendiplaan.pdf",
+    "https://narvamuuseum.ee/en/muuseum/north-courtyard/",
+    "https://bastion.visitnarva.ee/wp-content/uploads/2024/02/narva-bastions-route-booklet-en.pdf",
+    "https://www.openstreetmap.org/relation/5434279"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain and approaches pending",
+    "anchor": [
+      28.200695255,
+      59.375639522
+    ],
+    "heading": 0.198046850682,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/5434279",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/5434279"
+    ],
+    "wikidataId": "Q660001",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3760c4c950a98462cc34d6b2b6a6f6a0e1a37a7f94f91334ba511dfad17372bd",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Western Yard, eastern convent and northwest main tower resolve the signed site axis. Actual terrain/cliff and approach seating pending."
+  },
+  "scaleBasis": "Mapped210.085×177.077m site fixes plan registration. Interpreted modern convent about45×43m; published40m refers to historical castell. Tall Hermann reaches published51m, datum unspecified. All lower elevations, gallery/eaves and component dimensions inferred, not surveyed.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Museum/architect drawings and photographs linked as research references, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Narva Museum operator plan/photos and city bastion booklet used as research only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original medium-fi reconstruction, not a conservation survey.",
+    "Published51m tower datum unspecified; all other heights and plan components interpreted.",
+    "Current restored hoarding modeled as seen; museum questions its historical authenticity.",
+    "Fine joints, narrow loops, full interiors, tiny flags/fixtures and elaborate workshop equipment omitted.",
+    "Ceramic roof graph supplies low-frequency seams for both red tiles and grey small turret roof, tinted separately.",
+    "Actual terrain contact/approaches, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "western-yard-and-white-tower",
+      "position": [
+        -125,
+        53,
+        35
+      ],
+      "lookAt": [
+        40,
+        19,
+        17
+      ]
+    },
+    {
+      "name": "river-side-convent",
+      "position": [
+        155,
+        60,
+        108
+      ],
+      "lookAt": [
+        49,
+        18,
+        22
+      ]
+    },
+    {
+      "name": "northern-yard-and-entry",
+      "position": [
+        90,
+        64,
+        -138
+      ],
+      "lookAt": [
+        57,
+        13,
+        -15
+      ]
+    },
+    {
+      "name": "tower-gable-and-hoarding",
+      "position": [
+        -25,
+        55,
+        62
+      ],
+      "lookAt": [
+        42,
+        35,
+        11
+      ]
+    },
+    {
+      "name": "inward-roofs-and-open-court",
+      "position": [
+        85,
+        60,
+        54
+      ],
+      "lookAt": [
+        50,
+        17,
+        27
+      ]
+    },
+    {
+      "name": "three-courtyard-plan",
+      "position": [
+        0,
+        330,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve white tower/red gable, timber gallery, open roof-ring court and broad forecourts in all levels; near levels add sparse openings, workshops and selected benches.",
+  "mesh": {
+    "triangles": 5406,
+    "vertices": 11814,
+    "materials": 5,
+    "bytes": 493300,
+    "sha256": "sha256:d8d6baa55ca67f9494f2005f513202daba332ae5987a8ca50353b92be61677b8"
+  }
+}

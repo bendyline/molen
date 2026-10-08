@@ -4,7 +4,12 @@ import { execFileSync } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import polygonClipping from 'polygon-clipping';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
+import {
+  additionalArchitectureRegions,
+  architectureRegionForCountry,
+} from './architecture-geography.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = JSON.parse(
@@ -12,6 +17,9 @@ const catalog = JSON.parse(
 );
 const path = resolve(root, '../../content/earth/world.atlas.json');
 const atlas = JSON.parse(await readFile(path, 'utf8'));
+const countryData = JSON.parse(
+  await readFile(resolve(root, '../../content/earth/source/architecture-countries.json'), 'utf8'),
+);
 const homes = new Set(['house', 'bungalow', 'cabin', 'farmhouse', 'townhouse']);
 const residential = [
   'house',
@@ -170,12 +178,47 @@ for (const [id, title, bbox, countries, priority] of regions) {
   if (buildings.length)
     atlas.regions.push({ id: `library.${id}`, title, priority, bbox, bindings: { buildings } });
 }
+for (const [id, title] of additionalArchitectureRegions)
+  atlas.regions.push({ id: `library.${id}`, title, priority: 2, bindings: { buildings: [] } });
+const outlines = new Map();
+for (const country of countryData.countries) {
+  const id = architectureRegionForCountry(country);
+  const polygons = outlines.get(id) ?? [];
+  polygons.push(...country.polygons);
+  outlines.set(id, polygons);
+}
+for (const region of atlas.regions) {
+  if (region.id === 'us.pnw' || region.id === 'us.southwest') {
+    // Retain these subnational rectangles, masked by actual North American land outlines.
+    const [west, south, east, north] = region.bbox;
+    const rectangle = [
+      [
+        [west, south],
+        [east, south],
+        [east, north],
+        [west, north],
+      ],
+    ];
+    region.polygons = outlines
+      .get('library.north_america')
+      .flatMap((ring) =>
+        polygonClipping.intersection([ring], rectangle).map((polygon) => polygon[0]),
+      );
+    continue;
+  }
+  const polygons = outlines.get(region.id);
+  if (!polygons?.length)
+    throw new Error(`Architectural region has no country outlines: ${region.id}`);
+  region.polygons = polygons;
+  delete region.bbox;
+}
 atlas.default.buildings = rulesFor(
   catalog.entries.filter(
     (entry) => entry.style.startsWith('molen.worldgen.catalog.') && entry.region === 'global',
   ),
 );
-atlas.version = 3;
+atlas.version = 4;
+atlas.fallbackDistanceMeters = 2500;
 // Conservative climate priors: unclassified regions do not acquire inferred canopy.
 atlas.default.treeFillFactor = 0;
 for (const region of atlas.regions) {
@@ -183,19 +226,23 @@ for (const region of atlas.regions) {
   if (fill !== undefined) region.bindings.treeFillFactor = fill;
 }
 atlas.doc =
-  'The default 120-structure library supplies deterministic regional architectural variety. Broad geographic envelopes and documented precedents are visual priors, not surveyed building identities. Explicit styles and source dimensions win; unmeasured low-rise residential features use stable weighted variants. Existing regional and worldwide fallbacks remain available.';
+  'Country-shaped architectural envelopes derived from Natural Earth Admin 0 Countries 1:50m 5.1.1 (public domain), simplified at 0.02 degrees. These are coarse visual priors, not surveyed building identities or a political boundary service. The default style pack regional catalog provides ordinary type-specific architecture; legacy precedent bindings remain for hosts without it. Explicit styles and source dimensions win. See architecture-geography.NOTICE.txt for source provenance.';
 const output = execFileSync(
   process.execPath,
   [
     resolve(root, '../../node_modules/@biomejs/biome/bin/biome'),
     'format',
+    '--files-max-size=10000000',
     '--stdin-file-path',
     // Generated content is excluded from automatic formatting to preserve hashes.
     // Format this input as ordinary JSON before comparison, without editing that content.
     resolve(root, 'generated-atlas.json'),
   ],
-  { input: `${formatJson(atlas)}\n`, encoding: 'utf8' },
+  { input: `${formatJson(atlas)}\n`, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
 );
+if (!output.trim())
+  throw new Error('Atlas formatter returned no content; refusing to overwrite the atlas');
+JSON.parse(output);
 if (process.argv.includes('--check')) {
   if ((await readFile(path, 'utf8')).replaceAll('\r\n', '\n') !== output.replaceAll('\r\n', '\n'))
     throw new Error(

@@ -89,6 +89,73 @@ function details(edge = EDGE, input = INPUT, windows = WINDOWS): MeshBuffers {
 }
 
 describe('adaptive architectural details', () => {
+  if (INPUT.windows === undefined) throw new Error('Missing facade test windows');
+  const windows = INPUT.windows;
+  it.each([
+    'single',
+    'double',
+    'service',
+  ] as const)('fits a bounded %s entrance and preserves structural openings', (style) => {
+    const outline: Vec2[] = [
+      [0, 0],
+      [16, 0],
+      [16, 9],
+      [0, 9],
+    ];
+    const input: FacadeInput = {
+      ...INPUT,
+      rings: [outline],
+      topAt: () => 5,
+      floorCount: 1,
+      groundFloorHeight: 5,
+      windows: { ...windows, style: 'none' },
+      details: {
+        entrance: {
+          width: style === 'service' ? 3.4 : 1.2,
+          height: style === 'service' ? 3.1 : 2.2,
+          style,
+        },
+      },
+    };
+    const meshFor = (patch: Partial<FacadeInput>) => {
+      const out = new MeshBufferBuilder();
+      buildFacade({ ...input, ...patch }, out);
+      return out.finalize();
+    };
+    const mesh = meshFor({});
+    soundMesh(mesh);
+    expect(mesh.triangleCount).toBeLessThan(80);
+    expect(meshFor({ raised: true }).vertexCount).toBe(0);
+    expect(
+      meshFor({ structuralOpenings: [{ edge: 1, bottom: 0, top: 2.2, start: 2, end: 3 }] })
+        .vertexCount,
+    ).toBe(0);
+    expect(meshFor({ openGroundEdges: new Set([1]) }).vertexCount).toBe(0);
+    expect(meshFor({ seamEdges: new Set([0, 1, 2, 3]) }).vertexCount).toBe(0);
+    expect(meshFor({ topAt: () => 1.5 }).vertexCount).toBe(0);
+    expect(meshFor({}).positions).toEqual(mesh.positions);
+  });
+
+  it('reserves the selected entrance bay instead of overlapping a ground-floor window', () => {
+    const input: FacadeInput = {
+      ...INPUT,
+      rings: [
+        [
+          [0, 0],
+          [16, 0],
+          [16, 9],
+          [0, 9],
+        ],
+      ],
+      details: undefined,
+    };
+    const baseline = buildFacade(input, new MeshBufferBuilder());
+    const result = buildFacade(
+      { ...input, details: { entrance: { width: 1.2, height: 2.2, style: 'single' } } },
+      new MeshBufferBuilder(),
+    );
+    expect(result.windows).toBe(baseline.windows - 1);
+  });
   it.each([0, 0.61, 1.57])('rotates real facade geometry with the wall at %s radians', (angle) => {
     const c = Math.cos(angle),
       s = Math.sin(angle);

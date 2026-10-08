@@ -34,6 +34,10 @@ export interface TerrainLandcoverFeature {
   polygons: TerrainSemanticPolygon[];
   /** Optional normalized vegetation/decorator density multiplier. */
   density?: number;
+  /** Optional observed cultivation tags. Absence is unknown, never inferred irrigation. */
+  crop?: string;
+  trees?: string;
+  irrigated?: boolean;
 }
 
 export interface TerrainWaterFeature {
@@ -111,6 +115,8 @@ export interface TerrainPoiFeature extends TerrainStructureIdentity {
   /** Rotation about +Y in radians; local model front is +Z. */
   heading?: number;
   leafType?: string;
+  species?: string;
+  genus?: string;
   capacity?: number;
 }
 
@@ -220,7 +226,15 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
     const path = `/pois/${index}`;
     assertClass(feature.class, `${path}/class`);
     assertPoint(feature.point, `${path}/point`);
-    for (const key of ['name', 'brand', 'brandId', 'subclass', 'leafType'] as const)
+    for (const key of [
+      'name',
+      'brand',
+      'brandId',
+      'subclass',
+      'leafType',
+      'species',
+      'genus',
+    ] as const)
       if (feature[key] !== undefined) assertClass(feature[key], `${path}/${key}`);
     for (const key of ['height', 'crownDiameter', 'capacity'] as const) {
       if (feature[key] === undefined) continue;
@@ -232,6 +246,11 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
   for (let index = 0; index < tile.landcover.length; index++) {
     const feature = tile.landcover[index] as TerrainLandcoverFeature;
     assertClass(feature.class, `/landcover/${index}/class`);
+    for (const key of ['crop', 'trees'] as const) {
+      if (feature[key] !== undefined) assertClass(feature[key], `/landcover/${index}/${key}`);
+    }
+    if (feature.irrigated !== undefined && typeof feature.irrigated !== 'boolean')
+      throw new Error(`/landcover/${index}/irrigated must be boolean`);
     if (feature.subclass !== undefined) {
       assertClass(feature.subclass, `/landcover/${index}/subclass`);
     }

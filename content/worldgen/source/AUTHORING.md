@@ -2660,3 +2660,2527 @@ including the RGB repair, runtime GLB and spec bytes) received its model's `inpu
 records lost their GLB hashes and stay unbound. The migration left readiness unchanged: 198
 portable, 196 shared-material and 133 maximum-fidelity reviews, 232 previews and 108 complete.
 `reviewed-glb-encoding.mjs` is retired.
+
+### Resumed under medium-fi — 2026-10-07 — N0259 Shanhai Pass
+
+The owner's revised `docs-src/guide/medium-fi.md` supersedes the earlier maximum-detail
+request for new work. Preserve recognizable forms, linear glTF colors, shared 256² graphs,
+2–5 material groups and the 1k/4k/16k/64k triangle targets. Do not build enormous masters
+whose details disappear in every runtime level.
+
+Authored the **Zhendong Gate** at Shanhai Pass, Q1048381, from official scenic-area
+dimensions and photographs plus named OSM way/414001373. The local scope is the gate,
+platform and short wall attachments; it excludes the wider fortified town, barbican and
+coastal Laolongtou. The mapped feature has no Wikidata tag. Anchor
+`[119.753742,40.009332]`, heading `2.5025517303973333` radians, remains a **draft** with
+`replaceFootprint=false` until actual terrain and orientation are reviewed.
+
+Source bundle: `places/wx/wxj/n0259_shanhai_pass/`.
+Recipe: `packages/worldgen/scripts/shanhai-pass-model.mjs`.
+The source itself is **5,338 triangles / 460,532 bytes**, with four merged material groups
+and three existing graphs (brick, slate, wood). No bitmap textures are embedded.
+
+| Runtime level | Triangles | GLB bytes | Draw calls |
+| --- | ---: | ---: | ---: |
+| Skyline | 342 | 31,932 | 1 |
+| District | 1,394 | 114,052 | 4 |
+| Street | 4,522 | 354,404 | 4 |
+| Closeup | 5,338 | 415,752 | 4 |
+
+Initial skyline plus district: **145,984 bytes**. Source, imported master and four LODs
+pass Khronos validation without errors or warnings. The two targeted LOD tests pass;
+source regeneration is byte-identical. Material-library unloading leaves zero live model
+geometries, with each of the three material graphs loaded once.
+
+Inspected **44 captures**: 11 portable, 10 shared-material loader views, and 23 new medium-fi
+views. The new fixture uses canonical Earth colors and Neutral tone mapping, actual procedural
+siheyuan neighbors, three distances, noon/late afternoon, Economy without cast shadows and
+High, a texture-free silhouette, detail cameras and same-camera LOD comparisons. The QA record
+binds these images and LOD hashes. Geographic fit, continuous-motion shimmer and physical
+phone/laptop performance remain unmeasured. The older loader fixture's lighting is not used
+as the medium-fi lighting approval.
+
+Repeat the context capture with:
+`node examples/world-explorer/test/visual/capture-medium-fi.mjs --ids=n0259_shanhai_pass`.
+Inspect every frame before recording approval. The readiness ledger now accepts the declared
+medium-fi standard only with the required hash-bound evidence; four targeted rejection tests
+cover stale LODs/images, missing views, wrong lighting, excessive triangles and unsafe paths.
+Legacy maximum-fidelity approvals retain their old scope.
+
+Lock **`assets-0e47610f806493b9`** pins **2,314 GLBs**: six new entries; all 2,308 prior
+pins unchanged. Only the new model's outputs were generated. No Git mutations or uploads ran.
+Schema/client builds were refreshed because the existing schema rejected Neutral tone mapping.
+Worldgen compiled successfully; its package-level check then stopped on the existing stale
+Space Needle source GLB. That unrelated model was not regenerated.
+
+The refreshed local ledger reports **269 authored/imported candidates**, 193 declared-fidelity
+reviews and 108 fully ready candidates. The drop from the previous ready count reflects existing
+local output/metadata differences and changed shared graphs, not deletion of models: 68 older
+candidates fail source/runtime hash checks, and only 199 shared-material reviews are current.
+Example local GLBs for N0138, N0139, N0142 and N0143 also differ from their existing lock pins.
+Their files and pins were preserved. Reconcile those outputs separately; do not label an old
+review current after a material or geometry change. There are **371 registered structures**
+across the full library and **372 source bundles**.
+
+**Next authoring candidate: N0260 Khotyn Fortress, Q141012.** Use the medium-fi standard and
+the new context review. The desktop's long-running goal still reports `paused`; this turn
+resumed model work under the owner's message, without changing the goal's stale maximum-detail
+objective or claiming that its automatic continuation was resumed.
+
+## 2026-10-07 — Khotyn Fortress, medium-fi
+
+N0260 now has a reproducible inner-citadel source recipe, imported asset and four authored
+runtime levels. The state reserve's plan, photographs and component dimensions inform the
+five towers, curved walls, brick bands, palace, chapel, well pavilion and entrance bridge.
+The wider outer fortress is excluded. See
+[source bundle](places/u8/u8d/n0260_khotyn_fortress/README.md) and
+[recorded limitations](places/u8/u8d/n0260_khotyn_fortress/spec.json).
+
+The source itself has 8,615 triangles and five material groups. Limestone, brick, cedar
+shingles and wood come from four central material graphs; no private images are embedded.
+Colors are decoded from sRGB to linear vertex values.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 891 | 72,904 | 1 |
+| District | 3,703 | 293,496 | 5 |
+| Street | 7,959 | 621,824 | 5 |
+| Closeup | 8,615 | 669,616 | 5 |
+
+Initial skyline plus district is **366,400 bytes**, excluding the shared texture library.
+All six GLBs pass Khronos validation with zero errors and warnings. Two targeted tests
+pass for deterministic LOD generation, download budgets, shared bindings and homogeneous
+attribute uploads. Source regeneration is byte-identical; the strict medium-fi audit passes.
+
+All **44 captures** were inspected: 11 portable, 10 shared-loader, 23 canonical Earth
+context views. Review corrections included the stone well pavilion, covered veranda,
+arched windows and courtyard/wall contact. The context fixture now accepts per-model camera
+scale and procedural neighbor style; Khotyn uses Ukrainian cottage shells. Previous default
+fixture behavior is preserved, and existing captures retain their recorded fixture hashes.
+
+Geographic approval remains **pending**. Exact-QID OSM relation/8520372 describes the
+larger fortress, not the inner citadel's footprint. The native plan, candidate anchor,
+signed heading and foundation datum remain reconstructed. The elevated bridge approach
+needs terrain integration. Its catalog entry stays inactive (`draft`, `replaceFootprint=false`).
+Synthetic ground contact and static LOD comparisons do not constitute real-site fit or
+physical-device performance approval.
+
+Lock **`assets-ebd027e1515832ad`** contains **2,320 GLBs**: six added, all 2,314 previous
+pins preserved. Catalogs report **270 authored/imported candidates**, 202 current source/runtime
+hash pairs, 268 portable reviews, 200 shared-material reviews, 194 declared-fidelity reviews,
+and **108 fully ready** candidates. The 68 pre-existing stale local outputs remain unreconciled.
+The full library contains **372 registered structures** and **373 source bundles**.
+
+The long-running goal now reports **active**. The owner's medium-fi direction supersedes
+the older maximum-fidelity wording in its objective. **Next candidate: N0261 Royal Castle
+in Warsaw (Q756098)**, followed by Stirling Castle and Toompea Castle. Continue the targeted
+authoring loop; no repository-wide audit, unrelated regeneration, Git mutation or upload is
+needed for each model.
+
+## 2026-10-07 — Royal Castle in Warsaw, medium-fi
+
+N0261 is authored, imported and visually reviewed. Its
+[source bundle](places/u3/u3q/n0261_royal_castle_in_warsaw/README.md) contains an attributed
+OSM palace/courtyard frame and linked museum references. The original recipe constructs the
+five-wing exterior, Clock Gate and tower, paired corner crowns, Wladyslaw courtyard tower,
+Gothic brick wall, three pale river pavilions and low library wing. The lower gardens,
+Kubicki Arcades, neighboring Copper-Roof Palace and room interiors are outside this model.
+
+The medium-fi source master has **27,495 triangles**, six merged material groups, and no
+embedded images. Five shared graphs cover plaster, limestone, brick, ceramic tile and copper;
+glazing is local PBR. The sixth group preserves the distinct exposed courtyard brickwork.
+Vertex colors are linear values decoded from the sRGB palette.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 717 | 60,848 | 1 |
+| District | 3,859 | 307,320 | 6 |
+| Street | 14,183 | 1,109,164 | 6 |
+| Closeup | 27,495 | 2,147,804 | 6 |
+
+Initial skyline plus district: **368,168 bytes**, excluding the shared material library.
+All six source/runtime GLBs pass Khronos validation with zero errors or warnings. Targeted
+LOD tests pass for determinism, shared bindings, budgets and homogeneous attribute buffers.
+The strict medium-fi audit passes. Geometry changes were limited to this candidate.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth
+context frames. Review caught and corrected inward-facing facade details, duplicated
+courtyard windows, trim crossing the entrance, partly buried dormers and an uncovered
+roof junction. Clock Gate remains open in all LODs. The context uses procedural Bohemian
+townhouses, noon/late-afternoon light, Economy/High, three distances, a texture-free
+silhouette and same-camera LOD comparisons. Shared graphs load once each; unloading
+leaves zero live model geometries. Near-only finials add 1.2m to the far silhouette,
+within the 1.5m authored error allowance.
+
+**Geographic fit remains pending.** Relation/64436 gives the exact mapped identity and
+courtyard. Native +Z faces west into Castle Square, with heading -1.6320593581624288 at
+[21.014829838, 52.247715277]. Heights and the vertical datum are photographic estimates;
+the museum's historical 40m tower description is not presented as a current surveyed
+finial height. River escarpment and terrain contact need review before activating the
+placement. Its status stays `draft`, with `replaceFootprint=false`. Physical-device
+timing and continuous-motion shimmer remain unmeasured.
+
+Lock **`assets-a78ecf6703d99d17`** pins **2,326 GLBs**: six added and all 2,320 prior pins
+preserved. No Git operations or uploads were performed. **Next candidate: N0262 Stirling
+Castle (Q756268)**, then N0263 Toompea Castle. Continue with the medium-fi standard and the
+targeted authoring loop.
+
+The refreshed ledger reports **271 authored/imported candidates**, 203 verified source/runtime
+hash pairs, 269 portable reviews, 201 shared-material reviews, 195 declared-fidelity reviews
+and **108 fully ready** candidates. The existing 68 stale local output pairs remain untouched.
+Across the whole library there are **373 registered structures** and **374 source bundles**.
+
+For the next model, Stirling's cached exact-QID way/100542995 is a 316.942 × 129.675m site
+boundary with no courtyard holes; it must not be extruded as one building. Start with Historic
+Environment Scotland's [site description](https://portal.historicenvironment.scot/designation/SM90291),
+[statement of significance](https://www.historicenvironment.scot/publications/all/publication/?publicationId=ccc58e47-48f3-4697-8b73-a8b800ebf353)
+and [overview route plan](https://www.historicenvironment.scot/publications/all/publication/?publicationId=420047e5-b241-4318-9127-a5f400f193f9).
+
+## 2026-10-07 — Stirling Castle, medium-fi
+
+N0262 is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gcv/n0262_stirling_castle/README.md) contains attributed OSM
+component footprints and linked Historic Environment Scotland references. The castle boundary
+is treated as a compound: the ochre Great Hall, palace and open Lion's Den, Chapel Royal,
+King's Old Building, truncated Forework, magazines and defensive enclosure are separate forms.
+The model depicts the restored present-day exterior. Interiors, volcanic cliff terrain,
+esplanade and off-site gardens are excluded.
+
+The source master itself has **8,327 triangles**, five merged material groups and no embedded
+images. Sandstone, plaster and slate use three shared 256² graphs; glazing and lawn use local
+PBR colors. Palettes are converted from sRGB into linear vertex values. Small window bars
+were removed; only the Hall's large windows retain bars at the compound's roughly 0.45m
+detail cutoff.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 1,000 | 88,764 | 1 |
+| District | 3,424 | 261,144 | 5 |
+| Street | 6,527 | 464,836 | 5 |
+| Closeup | 8,327 | 556,856 | 5 |
+
+Initial skyline plus district is **349,908 bytes**, excluding the shared material library.
+All six source/runtime GLBs pass Khronos validation with zero errors or warnings. Source
+regeneration is byte-identical. Two targeted tests pass for deterministic levels, download
+and triangle budgets, shared bindings and homogeneous GPU attribute buffers. The strict
+medium-fi audit passes.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth context
+views. Corrections addressed the entrance ramp, outer gate alignment and wall connection,
+subsurface ancillary windows, roof chimneys and overly yellow stone tint. The context includes
+procedural English terrace shells, three distances, noon/late light, Economy/High, an untextured
+silhouette and same-camera LOD comparisons. Shared graphs load once each; unloading leaves zero
+live model geometries. This is static visual QA, not physical-device timing or motion testing.
+
+**Geographic fit remains pending.** Exact-QID way/100542995 identifies the compound, and
+relation/1083531 supplies the palace courtyard. Native +Z faces southeast at heading
+0.7346639643808965 from anchor [-3.948153826, 56.124036337]. Relative court levels and heights
+are reconstructed. The steep volcanic outcrop needs terrain-aware placement review; the
+placement stays `draft`, with `replaceFootprint=false`.
+
+Lock **`assets-eb7a2bf27f67243d`** pins **2,332 GLBs**: six added and all 2,326 prior pins
+preserved. The ledger now reports **272 authored/imported candidates**, 204 current hash pairs,
+270 portable reviews, 202 shared-material reviews, 196 declared-fidelity reviews and
+**108 fully ready** candidates. The existing 68 stale local output pairs remain untouched.
+The whole library has **374 registered structures** and **375 source bundles**.
+
+**Next candidate: N0263 Toompea Castle (Q859010).** Continue using the medium-fi standard,
+individual source recipes, shared materials and targeted review. The active goal's older
+maximum-fidelity wording is superseded by the owner's medium-fi instruction.
+
+## 2026-10-07 — Toompea Castle, medium-fi
+
+N0263 is authored, imported and visually reviewed. Its
+[source bundle](places/ud/ud9/n0263_toompea_castle/README.md) contains attributed OSM component
+footprints and linked Riigikogu references. The pink palace, curved central gable, grey courtyard
+parliament, western limestone curtain, Tall Hermann, Pilsticker and Landskrone are individually
+represented. The demolished fourth tower, neighboring cathedral, gardens and cliff terrain are
+excluded. Courtyards stay open; the model does not promise navigable interiors.
+
+The source master itself has **9,769 triangles**, five merged material groups and no embedded
+images. Plaster, limestone and ceramic tile use three shared 256² graphs. Glazing and geometric
+tricolors use local PBR colors. sRGB palettes are decoded to linear vertex values; skyline colors
+compensate for the shared surface mean. Northern roofs use mapped corners rather than bounding
+rectangles that would extend beyond the walls.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 982 | 87,880 | 1 |
+| District | 3,475 | 267,960 | 5 |
+| Street | 6,709 | 508,988 | 5 |
+| Closeup | 9,769 | 747,672 | 5 |
+
+Initial skyline plus district is **355,840 bytes**, excluding the shared material library.
+All six source/runtime GLBs pass Khronos validation with zero errors or warnings. The source
+regenerates byte-identically. Two targeted tests pass for LOD determinism, budgets, reusable
+material bindings and homogeneous GPU attribute buffers. Strict medium-fi audit passes.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth context
+views. Corrections addressed hidden windows, facade orientation, mapped roof extents and the
+three recessed palace entrances. Synthetic Bohemian townhouses provide scale/palette context.
+Three distances, noon/late light, Economy/High, untextured silhouette and same-camera LOD
+comparisons are recorded. Each shared graph loads once; unloading leaves zero live model
+geometries. Physical-device timing and continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** Exact-QID relation/3502552 supplies the compound; its three
+towers and separate building parts are attributed in `map-frame.json`. Native +X is north and
++Z east, with heading 1.685266971193793 at [24.737375127, 59.435763956]. Castle Square is the
+declared Y=0 attachment plane; the western foundation extends to -12m. The 45.6m Tall Hermann
+height tag is retained between that base and its stone crown; a reconstructed 12m mast rises
+above it. Published sea-level elevations are not treated as model heights. Relative ground
+offsets require real terrain review. Flat context ground clips lower western/northern geometry
+and must not be taken as contact approval. Placement stays `draft`, `replaceFootprint=false`.
+
+Lock **`assets-5ac0279ec1158f7c`** pins **2,338 GLBs**: six added and all 2,332 prior pins
+preserved. The ledger reports **273 authored/imported candidates**, 205 current hash pairs,
+271 portable reviews, 203 shared-material reviews, 197 declared-fidelity reviews and
+**108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
+The whole library has **375 registered structures** and **376 source bundles**.
+
+**Next candidate: N0264 Riga Castle (Q322183)**, followed by N0265 Château de Vincennes.
+Continue using the medium-fi standard, individual source recipes, shared materials and targeted
+review. No Git operations or uploads were performed.
+
+## 2026-10-07 — Riga Castle, medium-fi
+
+N0264 is authored, imported and visually reviewed. Its
+[source bundle](places/ud/ud1/n0264_riga_castle/README.md) records the attributed OSM compound
+outline, two courtyard holes, official presidency/museum references and Sudraba Arhitektura's
+restoration drawings. White medieval ranges, Holy Spirit and Lead towers, square stair towers,
+yellow presidential forecourt, Erker and the Three Stars steeple are individually represented.
+Neighboring church spires, gardens, river walls and interiors are excluded. Courtyards stay open;
+the modern gallery is a simplified opaque PBR volume.
+
+The source master itself has **6,891 triangles**, six merged material groups and no embedded
+images. Plaster, limestone, ceramic tile and copper use four shared graphs. Glass and flag/finial
+colors are local PBR values. The six-group rationale is recorded in the spec. Patinated copper
+reuses the common graph with high roughness and low metallic weight. Palettes decode from sRGB
+to linear vertex colors; skyline compensates for the shared surface mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 659 | 55,464 | 1 |
+| District | 2,762 | 205,232 | 6 |
+| Street | 4,979 | 364,116 | 6 |
+| Closeup | 6,891 | 513,260 | 6 |
+
+Initial skyline plus district is **260,696 bytes**, excluding the shared material library.
+All six source/runtime GLBs pass Khronos validation with zero errors or warnings. Riga source
+regeneration is byte-identical; the preceding Toompea model also retains its exact source bytes
+after the new shared patina alias. Two targeted tests pass for LOD determinism, budgets, shared
+bindings and homogeneous GPU attribute buffers. Strict medium-fi audit passes.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth context
+views. Corrections addressed dark copper, square stair-tower roof alignment, noisy cornice blocks
+and detail-camera framing. Synthetic Bohemian townhouses provide scale/palette context. Three
+distances, noon/late light, Economy/High, untextured silhouette and same-camera LOD comparisons
+are recorded. Each graph loads once; unloading leaves zero live model geometries. Physical-device
+timing and continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** Exact-QID relation/1393926 supplies the compound and two court
+holes. Component subdivisions are reconstructed from plans/photos rather than claimed as surveyed
+map parts. Native +X runs southeast along the river, +Z southwest toward Daugava, at heading
+-1.090082784479 from anchor [24.10056334, 56.950966917]. Published medieval elevation labels are
+shifted +1.8m to a conservative external Y=0 plane. Northern ranges and the 56.75m steeple maximum
+retain estimated heights. Actual entrance and river-side terrain contact require review; flat
+context ground is not site approval. Placement stays `draft`, `replaceFootprint=false`.
+
+Lock **`assets-d882a9b02ac98523`** pins **2,344 GLBs**: six added and all 2,338 prior pins
+preserved. The ledger reports **274 authored/imported candidates**, 206 current hash pairs,
+272 portable reviews, 204 shared-material reviews, 198 declared-fidelity reviews and
+**108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
+The whole library has **376 registered structures** and **377 source bundles**.
+
+**Next candidate: N0265 Château de Vincennes (Q663673).** Continue the medium-fi standard,
+individual source recipes, shared materials and targeted review. No Git operations or uploads
+were performed.
+
+## 2026-10-07 — Château de Vincennes, medium-fi
+
+N0265 is authored, imported and visually reviewed. The
+[source bundle](places/u0/u09/n0265_chateau_de_vincennes/README.md) retains the exact-QID OSM
+compound frame and fourteen attributed IGN BD TOPO component features, including stable CLEABS
+identifiers and reported precision. CMN's official visitor plan and current photographs guide
+the reconstruction. The keep, covered chemise and châtelet, Sainte-Chapelle, Tour du Village,
+paired royal pavilions, porticoes and ancillary ranges are individually represented. The model
+uses the present reduced perimeter towers and keep parapets; it does not restore vanished towers.
+
+The source master itself has **12,218 triangles**, five merged material groups and no embedded
+images. Limestone, slate and ceramic tile use three shared material graphs. Glass, doors and
+the flag use local PBR colors. Palettes decode from sRGB to linear vertex colors; the skyline
+compensates for the shared texture mean. Architectural photographs and plans are linked research
+references and are not redistributed or used as textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 729 | 60,372 | 1 |
+| District | 3,474 | 257,816 | 5 |
+| Street | 11,602 | 840,920 | 5 |
+| Closeup | 12,218 | 884,364 | 5 |
+
+Initial skyline plus district is **318,188 bytes**, excluding shared graphs. All six GLBs pass
+Khronos validation with zero errors or warnings. Source regeneration is byte-identical. Two
+targeted tests pass for deterministic LODs, geometry/download budgets, shared surfaces and
+homogeneous GPU attribute buffers. Strict medium-fi audit and recipe Biome checks pass.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth context
+views. Corrections addressed unsupported northern roof volumes, hidden end-pavilion windows,
+covered-walk openings, district facade rhythms and review framing. Paris mansard procedural
+buildings provide synthetic context. Three distances, noon/late light, Economy/High, untextured
+silhouette and same-camera LOD comparisons are recorded. Each shared graph loads once; unloading
+leaves zero live model geometries. Physical-device timing and continuous-motion shimmer remain
+unmeasured. Skyline omits minor openings and entrance bridge detail.
+
+**Geographic fit remains pending.** Anchor [2.435779375, 48.842783541] and heading 1.438616485431
+come from exact-QID way/23032971. Native +X points north toward Tour du Village, +Z east. The
+OSM outline includes the grounds and moat and is not extruded as a building. IGN plans place
+the major components independently; merged castle features need reconstructed subdivisions and
+roofs. The keep's stated IGN plan/height precisions are 3m/2.5m. Its main 50m height follows CMN;
+watchturret, 59m flagmast maximum and smaller details are reconstructed. Court Y=0 and moat base
+Y=-6m are declared assumptions. Flat context ground conceals the lower moat walls and is not
+real-site approval. Placement stays `draft`, `replaceFootprint=false`.
+
+Lock **`assets-1e1d81de3de11a52`** pins **2,350 GLBs**: six added and all 2,344 prior pins
+preserved. The ledger reports **275 authored/imported candidates**, 207 current hash pairs,
+273 portable reviews, 205 shared-material reviews, 199 declared-fidelity reviews and
+**108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
+The whole library has **377 registered structures** and **378 source bundles**.
+
+**Next candidate: N0266 Eltz Castle (Q153426)**, followed by N0267 Heidelberg Castle.
+Continue using the owner's medium-fi standard, source recipes, shared materials and targeted
+review. No Git operations or uploads were performed.
+
+## 2026-10-07 — Eltz Castle, medium-fi
+
+N0266 is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0v/n0266_eltz_castle/README.md) records the exact-QID OSM main-building
+frame and links the owner's numbered plan, scaled section and exterior/courtyard photographs.
+The eight adjoining family houses, open court, steep slate roofs, polygonal timber bays,
+Rübenach white upper band, Platt-Eltz and projecting Kempenich gable are individually represented.
+The immediate northern outer bailey includes the gate, short approach bridge and three
+outbuildings. The distant ruined outer ward, terrain and interiors are excluded.
+
+The source master has **5,356 triangles**, five merged material groups and **no embedded images**.
+Sandstone, lime plaster, slate and wood reuse four shared material graphs; glass is local PBR.
+Palette colors decode from sRGB to linear vertex colors. The skyline compensates for the
+shared texture mean. Reference photographs and plans are linked research, not shipped textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 986 | 88,592 | 1 |
+| District | 3,316 | 264,292 | 5 |
+| Street | 5,308 | 419,536 | 5 |
+| Closeup | 5,356 | 424,144 | 5 |
+
+Initial skyline plus district totals **352,884 bytes**, excluding shared graphs. All six GLBs
+pass Khronos validation with zero errors or warnings. Source regeneration is byte-identical.
+Two targeted LOD tests, strict medium-fi audit and recipe Biome checks pass. Runtime attribute
+buffers have homogeneous component types, avoiding the duplicated GPU upload layout.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth context
+views. Corrections removed coplanar faces that hid the Rübenach band, differentiated facade
+rhythms, located the Kempenich gable on the east and exposed the lower floors in review views.
+German Fachwerk procedural houses supply synthetic context at three distances, noon/late light
+and Economy/High. Silhouette and same-camera LOD comparisons are recorded. Skyline omits minor
+bays/openings and fills the small approach span. Each shared graph loads once, and unloading
+leaves zero live model geometries. Continuous-motion shimmer and physical-device performance
+remain unmeasured.
+
+**Geographic fit remains pending.** Exact-QID way/238981197 supplies anchor
+[7.336610781, 50.205058905], heading 1.510444051141 and the 65.003×35.497m main-building footprint.
+The owner's plan compass and north entrance resolve native +X north and +Z east. House
+partitions, roof profiles, outbuilding positions and terrace levels are reconstructed. The
+published 35m towers include lower slope floors; the 60m rock spur is terrain, not building
+height. Exported foundations sit at Y=0, the court at Y=8m and the highest chimney at 36.5m;
+the source proposal records `groundModelY=8` for court attachment. The inactive draft does not
+apply that offset yet; terrain approval must resolve the final runtime transform. Flat review
+ground at the lowest base is not real-site
+approval. Placement remains `draft` with `replaceFootprint=false` until slopes and entrances
+are checked.
+
+Lock **`assets-d13b05eb99cac498`** pins **2,356 GLBs**, adding six while preserving all 2,350
+existing pins. The ledger reports **276 authored/imported candidates**, 208 current hash pairs,
+274 portable reviews, 206 shared-material reviews, 200 declared-fidelity reviews and
+**108 fully ready** candidates. The 68 existing stale local output pairs remain untouched.
+The whole library has **378 registered structures** and **379 source bundles**.
+
+**Next candidate: N0267 Heidelberg Castle (Q327265).** Continue individual medium-fi recipes,
+shared materials and targeted review. No Git operations or uploads were performed.
+
+## 2026-10-07 — Heidelberg Castle, medium-fi
+
+N0267 is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0y/n0267_heidelberg_castle/README.md) links the owner's current-site
+isometric plan, wing photographs and architectural history. The model preserves restored
+Friedrich twin gables, roofless Ottheinrich and English wings, open bell-tower crown, gate tower,
+broken Dicker/Krautturm masonry, detached fallen wall, north viewing terrace and west moat walls.
+The source represents the current ruin, not an invented historical roof reconstruction.
+
+The source master has **6,948 triangles**, five merged groups, **752,596 bytes** and no embedded
+images. Sandstone, lime plaster, slate and ceramic tile use four shared graphs; opaque glass
+is local PBR. sRGB palette tints decode to linear and skyline uses the shared-texture mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 904 | 79,644 | 1 |
+| District | 2,896 | 218,108 | 5 |
+| Street | 5,182 | 384,524 | 5 |
+| Closeup | 6,948 | 524,328 | 5 |
+
+Initial skyline plus district totals **297,752 bytes**, excluding shared graphs. All six GLBs
+pass Khronos validation with zero errors/warnings. Source regeneration is byte-identical.
+Two targeted LOD tests, the strict medium-fi audit and recipe Biome check pass. Attribute buffer
+component types remain homogeneous. No unrelated generators or dependency audits were run.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+Corrected missing wing basements, broken-tower normals, oversized tower openings, English-wing
+alignment, north terrace seating and adjoining gate ranges. Reviews cover three distances,
+noon/late light, Economy/High, untextured silhouette and four same-camera LODs. Synthetic German
+Fachwerk neighbors provide scale/palette context. Skyline drops window perforations and uses
+fewer tower facets while retaining open roof volumes and identity masses. Shared graphs load
+once per view and unloading leaves zero model geometries. Physical-device performance and
+continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** OSM way/254154168 gives anchor [8.715271675,49.41059654] and
+heading -1.430862687712; north terrace and south gate resolve +X south, +Z west. The mapped
+273.118×214.468m envelope contains gardens, not individual building footprints. Wings and
+height datums are manually reconstructed from the owner plan/photos; building-part requests
+returned429. The gate follows its published52m height from the moat base; courtY=12m is inferred.
+The proposed groundModelY=12 is not applied to the inactive draft transform. Actual hillside,
+court, moat and bridge contact must be checked before activation. The flat review scene is not
+terrain approval. Placement remains draft with replaceFootprint=false. Distant gardens,
+terrain and palace interiors are outside this asset's scope.
+
+Lock **assets-c657de436586763f** pins **2,362 GLBs**, adding six while preserving all 2,356 prior
+entries. Readiness reports **277 authored/imported**, 209 current hash pairs, 275 portable
+reviews, 207 shared-material reviews, 201 declared-fidelity reviews and **108 fully ready**.
+The 68 pre-existing stale local output pairs are untouched. The whole library has **379
+registered structures** and **380 source bundles**.
+
+Continue with the next unauthored candidate after N0267, using medium-fi and individual source
+recipes. No Git operations or uploads were performed.
+
+## 2026-10-07 — Hohensalzburg Fortress, medium-fi
+
+N0268 is authored, imported and visually reviewed. Its
+[source bundle](places/u2/u23/n0268_hohensalzburg_fortress/README.md) links current owner
+photographs, Salzburg's municipal architecture history and the Salzburg Museum Hettwer plan.
+The broad white high palace, eight shallow parallel roofs, corner fire walls, green Krautturm
+lantern, chapel spire, open courts and stepped artillery terraces survive all four levels.
+The original 1220 core (22×33m) is distinguished from the later enlarged palace; current roof
+form follows the 1643 replacement.
+
+The source master has **5,419 triangles**, five merged groups, **529,524 bytes** and no embedded
+images. Lime plaster, limestone, slate and patinated copper use four shared 256² graphs;
+opaque glass is local PBR. sRGB palette tints decode to linear; skyline uses the shared-texture mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 957 | 76,548 | 1 |
+| District | 3,327 | 257,124 | 5 |
+| Street | 4,743 | 362,244 | 5 |
+| Closeup | 5,419 | 409,216 | 5 |
+
+Initial skyline plus district totals **333,672 bytes**, excluding shared graphs. All six GLBs
+pass Khronos validation with zero errors/warnings. Source regeneration is byte-identical.
+Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass. GPU attribute
+component types remain homogeneous. No unrelated model rebuild or dependency audit was run.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+Checks cover three distances, noon/late light, Economy/High, untextured silhouette, six
+architecture cameras and four same-camera LODs. Corrected the palace foundation gap,
+gate arch normals and northwestern entry position. Foundation skirts reach the declared base
+so terrain can cover their lower portions. Those skirts are not a modeled mountain or a survey
+of the visible cliff. The shared graphs each load once, and unloading leaves zero model
+geometries. Physical-device performance and continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** Full OSM fortress way/58379993 supplies anchor
+[13.04787405,47.7952134] and heading0.255395266735. The cached global match way/58379483 is the
+17×9m Georgskirche, not the whole fortress. The source-local frame corrects the new asset's
+draft and retains the chapel as an orientation control; +X points east-northeast, -Z toward
+the old town. The full precinct does not provide surveyed footprints for every wing.
+CourtY=30m, upper terrace33m and maximum60m are reconstructed relative elevations informed
+by the published 30m Kuenburg bastion. Proposed groundModelY=30 is not applied to the inactive
+draft transform. Actual hillside, court and approach contact must be checked before activation.
+Synthetic flat-ground review is not geographic approval. replaceFootprint=false. Distant
+fortifications and palace interiors are outside the asset scope.
+
+Lock **assets-c83af7d9f4bcb8ae** pins **2,368 GLBs**, adding six
+while preserving all 2,362 previous entries. Readiness reports **278 authored/imported**,
+210 current hash pairs, 276 portable reviews, 208 shared-material reviews, 202 declared-fidelity
+reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
+The complete library contains **380 registered structures** and **381 source bundles**.
+
+Continue with the next unauthored candidate after N0268, using the medium-fi standard.
+No Git operations or uploads were performed.
+
+## 2026-10-07 — Vaduz Castle, medium-fi
+
+N0269 is authored, imported and visually reviewed. Its
+[source bundle](places/u0/u0q/n0269_vaduz_castle/README.md) links municipal heritage information,
+current official tourism imagery, architectural history and the published Amt für Kultur
+research model. The square keep, roofed southern roundel with timber hoarding, open northern
+roundel, cream residence, crossed gables and valley curtain establish the silhouette. Red/white
+shutters, dormers and crenellations appear at nearer levels. Wing dimensions and most elevations
+are reconstructed approximations, not surveyed measurements.
+
+The source master has **6,623 triangles**, five merged groups, **707,688 bytes** and no embedded
+images. Lime plaster, limestone, ceramic tile and plain wood use four shared 256² graphs;
+opaque glass is local PBR. sRGB palette tints decode to linear; skyline uses the shared-texture mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 820 | 64,184 | 1 |
+| District | 2,625 | 207,476 | 5 |
+| Street | 5,501 | 454,256 | 5 |
+| Closeup | 6,623 | 540,680 | 5 |
+
+Initial skyline plus district totals **271,660 bytes**, excluding shared graphs. All six GLBs
+pass Khronos validation with zero errors/warnings. Source regeneration is byte-identical.
+Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass. GPU attribute
+component types remain homogeneous. Checks were scoped to this model.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+Checks cover three distances, noon/late light, Economy/High, untextured silhouette, six
+architecture cameras and four same-camera LODs. Darkened the tile palette and lowered the
+inner-court camera after the first captures. Shared graphs load once per view; unloading leaves
+zero live model geometries. Physical-device performance and continuous-motion shimmer remain
+unmeasured.
+
+**Geographic fit remains pending.** Complete compound OSM relation/1252853 supplies anchor
+[9.52434566,47.139574837] and heading 1.549323723192. +X points north, about 1.23 degrees east of
+true north; -Z faces west toward Vaduz and the Rhine valley. The mapped main building is about
+75.448×52.756m with three internal holes and a tagged height of 30m. The western curtain and
+internal wings use photographic/research-model reconstruction. Proposed court and
+groundModelY=4.5m are not applied to the inactive draft. Actual hillside, courtyard and approach
+contact require in-world review before activation. Synthetic flat-ground renders do not
+establish terrain fit. replaceFootprint=false. Interiors and distant estate grounds are omitted.
+
+Lock **assets-90a3afe91141aa38** pins **2,374 GLBs**, adding six
+while preserving all 2,368 previous entries. Readiness reports **279 authored/imported**,
+211 current hash pairs, 277 portable reviews, 209 shared-material reviews, 203 declared-fidelity
+reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
+The complete library contains **381 registered structures** and **382 source bundles**.
+
+Continue with N0270 Conwy Castle, using the medium-fi standard. No Git operations or uploads
+were performed.
+
+## 2026-10-07 — Conwy Castle, medium-fi
+
+N0270 is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gcm/n0270_conwy_castle/README.md) links Cadw's ground plan, current
+operator photographs and architectural records. Eight open round towers, four taller eastern
+stair turrets, the bent southern hall range, two wards and low end barbicans carry recognition.
+The current ruin stays roofless except for the documented recessed slate chapel roof.
+Internal walls and most relative elevations are approximate reconstructions.
+
+The source master has **11,944 triangles**, five merged groups, **1,305,620 bytes** and no embedded
+images. Limestone, sandstone, slate and wood use four shared 256² graphs; courtyard grass uses
+a local tint. sRGB palettes decode to linear, and skyline uses the shared-texture mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 927 | 74,248 | 1 |
+| District | 3,816 | 289,256 | 4 |
+| Street | 9,520 | 683,896 | 5 |
+| Closeup | 11,944 | 843,304 | 5 |
+
+Initial skyline plus district totals **363,504 bytes**, excluding shared graphs. All six GLBs
+pass Khronos validation with zero errors/warnings. Source regeneration is byte-identical.
+Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass. GPU attribute
+component types remain homogeneous. Checks were scoped to this model.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+Review includes three distances, noon/late light, Economy/High, silhouette, six architectural
+views and four same-camera LODs. Corrected the pointed arch profiles, extended the royal-hall
+arch into both walls, cooled the stone tint and reframed the great-hall camera. The skyline
+retains towers and wards while dropping windows, low turrets, footings and hall arches.
+Each shared graph loads once per view, and unloading releases all model geometries.
+Physical-device performance and continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** OSM way/52467063 supplies anchor [-3.82555084,53.280022417]
+and heading 0.07442147105 for the 122.293×58.695m footprint. River-facing east barbican and
+western town entry resolve +X about 4.26 degrees north of east. Tower lobes provide controls;
+the northwest tower and internal rooms also use the Cadw plan and aerial. The cached 30m
+height has no reference and is provisional. Cadw's 27m curtain and 41m tower heights are
+above the river; those are not substituted for model-ground heights. Proposed court and
+groundModelY=2m are not applied to the inactive draft. Actual bedrock, courtyard, entrance and
+neighboring bridge contact require in-world review before activation. Synthetic flat-ground
+renders do not establish terrain fit. replaceFootprint=false. Town walls and bridges are
+outside this asset's scope.
+
+Lock **assets-8cfe363dcaa350c2** pins **2,380 GLBs**, adding six
+while preserving all 2,374 previous entries. Readiness reports **280 authored/imported**,
+212 current hash pairs, 278 portable reviews, 210 shared-material reviews, 204 declared-fidelity
+reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
+The complete library contains **382 registered structures** and **383 source bundles**.
+
+Continue with N0271 Swallow's Nest, using the medium-fi standard. No Git operations or uploads
+were performed.
+
+## 2026-10-07 — Swallow's Nest, medium-fi
+
+N0271 is authored, imported and visually reviewed. Its
+[source bundle](places/sz/szb/n0271_swallow_s_nest/README.md) records the exact mapped building,
+museum gallery references and photographs after the November 2020 restoration. The small
+limestone folly has three stepped masses, a round eastern tower with four crown spires,
+four lower hall pinnacles, a projecting balcony and a narrow wraparound terrace.
+Intermediate dimensions and relief are reconstructed, not surveyed.
+
+The source master has **9,123 triangles**, five merged groups, **969,276 bytes** and no embedded
+images. Limestone, concrete, painted metal and wood use four shared 256² material graphs;
+blue-grey glass uses an untextured tint. Palettes decode sRGB to linear vertex colors, and
+skyline uses the shared-texture mean.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 688 | 57,432 | 1 |
+| District | 2,663 | 216,776 | 5 |
+| Street | 8,555 | 672,296 | 5 |
+| Closeup | 9,123 | 714,804 | 5 |
+
+Initial skyline plus district geometry totals **274,208 bytes**, excluding shared graphs.
+All six GLBs pass Khronos validation with zero errors/warnings. Source regeneration is
+byte-identical. Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass.
+GPU attribute component types remain homogeneous. Checks were scoped to this model.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+Review includes three distances, noon/late light, Economy/High, silhouette, six architectural
+views and four same-camera LODs. Corrected tower panes hidden by the cylindrical wall and
+changed hall openings to glazing with a wooden mullion. Each shared graph loads once per view;
+unloading releases all model geometries. Physical-device performance and continuous-motion
+shimmer remain unmeasured.
+
+**Geographic fit remains pending.** OSM way/103635688 supplies the exact Q1353643 identity,
+anchor [34.128585443,44.430632946], heading 0.347692146382 and 20.238×7.245m building footprint.
+The eastern circular tower resolves +X about 19.92 degrees north of east. The published 12m
+building height is separate from the roughly 40m natural cliff. The terrace is approximate;
+proposed groundModelY=.4m is not applied to the inactive draft. Actual cliff contact, western
+approach and balcony clearances require geographic review. replaceFootprint=false. Synthetic
+flat-ground renders establish appearance only. Natural rock, remote paths and other buildings
+are outside the model's scope.
+
+Lock **assets-8be453f32c407af2** pins **2,386 GLBs**, adding six
+while preserving all 2,380 previous entries. Readiness reports **281 authored/imported**,
+213 current hash pairs, 279 portable reviews, 211 shared-material reviews, 205 declared-fidelity
+reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched.
+The full library contains **383 registered structures** and **384 source bundles**.
+
+Continue with N0272 Kuressaare Castle under the medium-fi standard. No Git operations or uploads
+were performed.
+
+## 2026-10-07 — Kuressaare Castle, medium-fi
+
+N0272 is authored, imported and visually reviewed. Its
+[source bundle](places/u6/u6r/n0272_kuressaare_castle/README.md) records museum dimensions,
+the exact mapped building/courtyard, LUMIA's floor plans and cross-section, and operator tour
+photographs. The square dolomite convent building retains northern Sturvolt, slender eastern
+Tall Hermann, red pyramidal roofs, inward-sloping main roof fields, an open L-shaped court,
+crenellated defence gallery and timber gate oriel. Tour overhead scene 216 resolved the roof
+direction; the courtyard windows use scene 75. Intermediate heights remain reconstructed.
+
+The source master has **8,215 triangles**, five merged groups, **714,300 bytes** and no embedded
+images. Limestone, ceramic tile, timber and painted metal use four shared 256² graphs;
+blue-grey glass is an untextured tint. Colors decode sRGB to linear vertex tints; skyline uses
+the shared-texture mean. Research drawings and photographs are linked, not redistributed.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 711 | 57,168 | 1 |
+| District | 1,703 | 145,148 | 5 |
+| Street | 8,155 | 652,632 | 5 |
+| Closeup | 8,215 | 657,024 | 5 |
+
+Initial skyline plus district geometry totals **202,316 bytes**, excluding shared graphs.
+All six GLBs pass Khronos validation with zero errors/warnings. Source regeneration is
+byte-identical. Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass.
+GPU attribute component types remain homogeneous. Checks were scoped to this model.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+The review covers three distances, noon/late light, Economy/High, silhouette, six architecture
+views and four same-camera LODs. Corrected buried courtyard panes and moved the cloister camera.
+Reserved the small court bowl for close-up, resolving initially identical street/closeup levels.
+Each shared graph loads once per view; unloading releases all model geometries. Physical-device
+performance and continuous-motion shimmer remain unmeasured.
+
+**Geographic fit remains pending.** Exact Q1768091 OSM relation/414356 supplies anchor
+[22.479324007,58.246897902], heading -0.563076620916, 42.607×41.783m outline and courtyard hole.
+The northern defence tower and eastern watchtower resolve +X 32.26 degrees south of east and
+-Z northeast gate. The museum publishes a 43m square plan and 37m defence tower. Map height
+25m has an explicit approximation note and is not used for the tallest tower. The 37m source
+does not state its roof/finial datum; the model includes the finial within that height.
+Watchtower 38.2m, eaves and intermediate levels are inferred from drawings and photos.
+GroundModelY=0 is declared, but actual terrain contact and gate approach await in-world review.
+The draft remains inactive, with replaceFootprint=false. Synthetic flat-ground renders establish
+appearance only. Bastions, moat, Cannon Tower and neighboring buildings are outside this asset.
+
+Lock **assets-d11650b8295965d0** pins **2,392 GLBs**, adding six
+while preserving all 2,386 prior entries. Readiness reports **282 authored/imported**, 214 current
+hash pairs, 280 portable reviews, 212 shared-material reviews, 206 declared-fidelity reviews and
+**108 fully ready**. The 68 pre-existing stale local pairs remain untouched. The full library
+contains **384 registered structures** and **385 source bundles**.
+
+Continue with N0273 Caernarfon Castle under the medium-fi standard. No Git operations or uploads
+were performed.
+
+## 2026-10-07 — Caernarfon Castle, medium-fi
+
+N0273 is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gck/n0273_caernarfon_castle/README.md) records the mapped perimeter,
+Cadw ground plan and listed-building inventory, plus current operator and Buttress architect
+photographs/drawings. Recognition comes from the polygonal towers, Eagle Tower's three turrets,
+banded river curtain, two open wards and contrasting gatehouses. The near levels include
+selected restored timber decks, glazed lift lobby and surviving range foundations.
+
+The source master has **16,236 triangles**, five merged groups, **1,788,164 bytes** and no images.
+Limestone, timber and painted metal use three shared 256² graphs; glazing and grass are
+untextured tints. Broad masonry bands share the limestone group through linear vertex colors.
+The recipe decodes sRGB colors and compensates skyline tint by the shared graph mean.
+Photographs and drawings are linked references, not redistributed textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 722 | 60,452 | 1 |
+| District | 3,836 | 307,816 | 3 |
+| Street | 15,366 | 1,182,216 | 5 |
+| Closeup | 16,236 | 1,250,296 | 5 |
+
+Initial skyline plus district geometry totals **368,268 bytes**, excluding shared graphs.
+All six GLBs pass Khronos validation with zero errors/warnings. Source regeneration is
+byte-identical. Two targeted LOD tests, strict medium-fi audit and recipe Biome check pass;
+GPU attribute component types are homogeneous. Checks were scoped to the model.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+They cover three distances, noon/late light, Economy/High, silhouette, six architecture views
+and four same-camera LODs. Reduced an over-detailed district level by abbreviating interior
+banding and crenellations; restored selective turret crowns to retain the 35m silhouette.
+Removed duplicate straight-wall battlements and aligned Queen's Gate tunnel to the tower pair.
+Close-up adds selected seating, window divisions and coarse eroded figures; fine joints,
+narrow arrow loops, micro-bevels, full stair systems and interiors are omitted. Each graph loads
+once per view and unloading releases model geometries. Continuous-motion shimmer and physical
+device performance remain unmeasured.
+
+**Geographic fit remains pending.** Exact Q275128 way/70264991 supplies anchor
+[-4.277013785,53.139327542], heading 0.189928481827 and 174.55×65.474m perimeter. The western
+Eagle Tower, northern King's Gate and eastern Queen's Gate resolve +X 10.88 degrees north
+of east, with -Z facing the town. Foundations Y=0, court/groundModelY=2m, tower/curtain heights,
+35m maximum and gate deck levels are inferred from plan/photographic ratios, not surveyed.
+Actual rock, river-facing contact and both gate approaches require in-world review. The draft
+remains inactive, replaceFootprint=false. Synthetic flat-ground captures establish appearance.
+Town walls, approach bridge, quay and natural terrain are outside the model.
+
+Lock **assets-42f21e65bc015c84** pins **2,398 GLBs**, adding six
+and preserving all 2,392 previous entries. Readiness reports **283 authored/imported**, 215
+current hash pairs, 281 portable reviews, 213 shared-material reviews, 207 declared-fidelity
+reviews and **108 fully ready**. The 68 pre-existing stale local pairs remain untouched. Full
+library: **385 registered structures**, **386 source bundles**.
+
+Continue with N0274 under the medium-fi standard. No Git operations or uploads were performed.
+
+## 2026-10-07 — Hermann Castle, medium-fi
+
+N0274 is authored, imported and visually reviewed. Its
+[source bundle](places/ud/uds/n0274_hermann_castle/README.md) records the exact mapped site,
+Narva Museum's Western Yard site plan, architectural history and current restored photographs.
+The off-white Tall Hermann, red gable and projecting dark timber gallery/oriel, inward roof ring,
+open inner court and southwest octagonal turret establish identity. Stone Hall, northern/western
+forecourts, perimeter walls and representative craft shelters complete the present site arrangement.
+The demolished arsenal is marked with paving strips, not reconstructed as a building.
+
+The source master has **5,406 triangles**, five merged groups, **493,300 bytes**, and zero images.
+Limestone, tile and timber use three shared 256² graphs; glazing and lawn are untextured tints.
+Off-white tower and warm masonry share the limestone graph through vertex colors. A separately
+tinted tile graph supplies simplified seams on the grey small turret roof. Colors decode from
+sRGB to linear; skyline uses the shared graph mean. Research images and drawings are linked,
+not redistributed or used as model textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 814 | 64,464 | 1 |
+| District | 1,520 | 123,864 | 5 |
+| Street | 2,958 | 234,168 | 5 |
+| Closeup | 5,406 | 411,884 | 5 |
+
+Initial skyline plus district geometry totals **188,328 bytes**, excluding shared graphs.
+All six GLBs pass Khronos validation with zero errors/warnings. Two targeted LOD tests,
+strict medium-fi audit, recipe Biome and byte-identical source regeneration pass. GPU attribute
+component types are homogeneous. Checks were scoped to Hermann; no dependency audit or broad
+model rebuild was run.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+The set covers three distances, noon/late light, Economy/High, silhouette, six architecture
+views and four same-camera LODs. Corrected an overly regular first-pass facade grid to sparse
+local openings and broad bare masonry. Skyline retains the tower/gable/hoarding, small turret,
+roof ring and forecourt masses. Near levels add gallery supports, windows, selected strips,
+craft shelters and benches. Each graph loads once per view; unloading releases model geometry.
+Continuous-motion shimmer and physical-device performance remain unmeasured.
+
+**Geographic fit remains pending.** Exact Q660001 relation/5434279 supplies anchor
+[28.200695255,59.375639522], heading0.198046850682 and210.085×177.077m entire-site perimeter.
+Museum LH-AS-1 plan aligned by corresponding perimeter controls resolves the western forecourt,
+eastern convent, northwest Tall Hermann and North Yard. Component positions are interpreted
+approximations, not cadastral or conservation measurements. The modern convent envelope is about
+45×43m; the city booklet's40m dimension concerns the historical castell. Museum publishes Tall
+Hermann51m with unspecified datum; other heights and groundY0 are inferred. Current restored
+gable and hoarding are modeled as observed, with the museum's authenticity caveat recorded.
+Actual cliff-side seating and north/west approaches require in-world review. Draft remains
+inactive, replaceFootprint=false. No fabricated cliff, moat, river or Ivangorod Fortress.
+Synthetic flat-ground captures establish appearance only.
+
+Lock **assets-4b2fb3ba972af0c1** pins **2,404 GLBs**, adding six
+and preserving all 2,398 previous entries. Readiness: **284 authored/imported**, 216 current hash
+pairs, 282 portable reviews, 214 shared-material reviews, 208 declared-fidelity reviews and
+**108 fully ready**. The 68 pre-existing stale local pairs remain untouched. Full library:
+**386 registered structures**, **387 source bundles**.
+
+Continue with N0275 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+
+## 2026-10-07 — Dublin Castle, medium-fi
+
+N0275 is authored, imported and visually reviewed. Its
+[source bundle](places/gc/gc7/n0275_dublin_castle/README.md) records the exact mapped campus,
+OPW site plans, architectural descriptions and current exterior/aerial photographs. Recognition
+comes from the round Record Tower beside the pinnacled Gothic Chapel Royal, the Bedford octagonal
+clock tower and green ogee dome above an open Upper Court, and the circular Dubh Linn garden
+south of painted State Apartments. Blue Bermingham Tower, Chester Beatty's U-shaped brick range
+and clock cupola, the castellated Coach House and abbreviated existing peripheral ranges complete
+the interpreted exterior campus. Strategic-plan future proposals are excluded.
+
+The source master has **10,334 triangles**, **1,060,080 bytes**, seven merged groups and zero images.
+Stone, brick, render, slate and copper use five shared 256² graphs; glazing/lawn are untextured
+tints. The mixed campus needs seven groups to retain masonry/render and slate/copper differences.
+Colors decode sRGB to linear, and skyline applies the shared graph mean. Research photographs
+are linked as evidence, never shipped or used as textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| Skyline | 946 | 71,556 | 1 |
+| District | 3,921 | 300,672 | 7 |
+| Street | 7,706 | 585,996 | 7 |
+| Closeup | 10,334 | 775,936 | 7 |
+
+Initial skyline plus district geometry totals **372,228 bytes**, excluding shared graph downloads.
+All six GLBs pass Khronos validation with zero errors/warnings. Two Dublin-specific LOD tests,
+strict medium-fi audit, recipe Biome and byte-identical source regeneration pass. GPU attribute
+component types are homogeneous. Checks were scoped to Dublin, with no dependency audit,
+engine-wide suite or unrelated source rebuild.
+
+Inspected **44 final captures**: 11 portable, 10 shared-loader and 23 canonical Earth-rig frames.
+The set covers three distances, noon/late light, Economy/High, silhouette, six architectural
+views and four same-camera LODs. Corrected a below-ground doorway sill and southwest courtyard
+connection, and reduced the first 52,986-triangle master by replacing hidden frame sides with
+planar strips and restricting trim to selected bays. A dedicated skyline stays below 1,000
+triangles while retaining the round towers, Gothic roof/pinnacle profile, green clock pavilions,
+open courtyard massing and circular garden. All levels retain the same mapped ground boundary,
+avoiding an initial ground-plane change at the skyline switch. Each graph loads once per view;
+eviction disposes model geometry. Continuous-motion shimmer and physical-device performance
+remain unmeasured. Demonstrative procedural neighbors in the review rig are not actual map data.
+
+**Geographic fit remains pending.** Exact Q742767 way/350242806 supplies anchor
+[-6.266610512,53.342658821], heading0.217908808734 and262.431×245.981m entire-campus perimeter,
+not building footprints. Three interpreted corresponding perimeter points align OPW's north-up
+base plan with the mapped site; the illustrated current-campus map and aerial photos cross-check
+the layout. All component dimensions and elevations are inferred, including Bedford's34m finial
+and Record Tower's24.8m crown. No surveyed or published overall height is claimed. Painted rear
+bands and serpent garden paths are stylized interpretations. Actual terrain, entry approaches
+and interactions with mapped building footprints need in-world review. Draft remains inactive,
+replaceFootprint=false. Synthetic flat-ground images establish appearance only.
+
+Lock **assets-084fe10c9bf6f301** pins **2,410 GLBs**, adding six and preserving all 2,404 previous entries.
+Readiness: **285 authored/imported**, 217 current hash pairs, 283 portable reviews, 215 shared-material
+reviews, 209 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local pairs
+remain untouched. Full library: **387 registered structures**, **388 source bundles**.
+
+Continue with N0276 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+
+## 2026-10-07 — Miramare Castle, medium-fi
+
+N0276 is authored, imported and visually reviewed. Its
+[source bundle](places/u2/u21/n0276_miramare_castle/README.md) preserves the exact mapped
+building outline, primary museum architecture/tower references and links to current government
+museum photographs. Recognition comes from ivory angled crenellated wings, the square southwest
+clock tower and four corner turrets, and selected rounded window groups, recessed tall stair
+glazing and projecting sea-side bay. A landward paired-window pavilion interrupts the facade;
+low pitched roof fields stay behind the parapets. The park, Castelletto, cliff, terrace retaining
+walls and interior are outside this building asset.
+
+The source master has **9,918 triangles**, **1,042,572 bytes**, three merged groups and no images.
+Limestone and slate use two shared 256² graphs; blue-grey glass is an untextured tint. Colors
+decode sRGB to linear. The hand-authored skyline applies the shared graph mean. Research photos
+remain linked evidence, never textures or redistributed source files.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 862 | 69,792 | 1 |
+| district | 3,424 | 254,072 | 3 |
+| street | 7,418 | 539,192 | 3 |
+| closeup | 9,918 | 698,192 | 3 |
+
+Initial skyline plus district geometry is **323,864 bytes**, excluding shared graph downloads.
+All six GLBs pass Khronos validation with zero errors/warnings. Two targeted Miramare LOD tests,
+strict medium-fi audit, recipe Biome and byte-identical source regeneration pass. GPU attribute
+component types are homogeneous. Checks were scoped to Miramare, with no dependency audit,
+engine-wide suite or unrelated generator rebuild.
+
+Inspected **44 final frames**: 11 portable, 10 shared-loader and 23 canonical Earth-rig views.
+They cover three distances, noon/late light, Economy/High, silhouette, six architectural views
+and four same-camera LODs. Fixed inward-facing stair glazing, overlapping generic windows and
+wing parapets crossing the clock face. The skyline keeps the angled footprint, tower and corner
+turret/crenellation profile under 1,000 triangles, dropping subpixel parapet underside/end faces.
+Near details use sparse planar surrounds, not closed frames on every bay. Every level retains
+the mapped ground outline and Y0 attachment. Both shared graphs load once per view; unloading
+disposes model geometries. Physical-device performance and continuous-motion shimmer remain
+unmeasured. Demonstrative procedural neighbors in the flat review scene are not actual Trieste
+map data.
+
+**Geographic fit remains pending.** Exact Q165069 way/361092895 supplies the 60.48×33.574m
+building outline, anchor [13.712453245,45.702528846] and heading0.008338727695. Primary views
+resolve the southwest clock tower and axis sign. The museum's published **35m is above sea**;
+the model's **29m is above a provisional terraceY0**, inferred with an approximate6m offset
+from exterior photographs. This is not a surveyed datum conversion. Other elevations, windows
+and pavilions are interpreted. Real terrain, approaches and mapped-footprint replacement need
+in-world review. Draft remains inactive, replaceFootprint=false. Synthetic captures establish
+appearance only.
+
+Lock **assets-cd70c1168a7ef183** pins **2,416 GLBs**, adding six and preserving all 2,410 previous pins.
+Readiness: **286 authored/imported**, 218 current hash pairs, 284 portable reviews, 216 shared-material
+reviews, 210 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
+pairs remain untouched. Full library: **388 registered structures**, **389 source bundles**.
+
+Continue with N0277 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+
+## 2026-10-07 — Lubart's Castle, medium-fi
+
+N0277 is authored, imported and visually reviewed. Its
+[source bundle](places/u9/u94/n0277_lubart_s_castle/README.md) preserves the corrected whole-castle
+compound outline and linked primary museum aerial/exterior photographs, city tower description
+and regional architecture references. Recognition comes from three differently capped brick
+towers in an irregular triangular enclosure, the buttressed west entry with a real open portal,
+and the covered timber wall walk. The open court contains the cream noble-house range, an ochre
+columned book museum and the contemporary blue-grey church excavation cover. No destroyed full
+palace, restored medieval church, lower castle, neighbors or temporary event structures are recreated.
+
+The source master has **4,497 triangles**, **506,992 bytes**, eight merged groups and no images.
+Six shared 256² graphs supply brick, limestone, lime plaster, cedar shingle, painted metal and
+plain wood. Glass and lawn stay untextured. The mixed-campus material count is declared; vertex
+colors decode sRGB to linear. Photographs remain linked research, never private textures.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 882 | 66,348 | 1 |
+| district | 2,551 | 187,880 | 8 |
+| street | 4,197 | 288,472 | 8 |
+| closeup | 4,497 | 310,004 | 8 |
+
+Initial skyline plus district geometry is **254,228 bytes**, excluding shared graph downloads.
+All six GLBs pass Khronos validation with zero errors/warnings. Two targeted LOD tests, strict
+medium-fi audit, recipe Biome and byte-identical source regeneration pass. GPU attribute
+component types are homogeneous. Checks were scoped to Lubart, with no dependency audit,
+engine-wide suite or unrelated model regeneration.
+
+Inspected **44 final frames**: 11 portable, 10 shared-loader and 23 canonical Earth-rig captures,
+covering three distances, noon/late, Economy/High, silhouette, six architectural cameras and
+four same-camera LODs. Fixed missing entry-side curtain segments and disconnected gallery roof
+fields. The hand-authored skyline keeps the three-tower/open-court hierarchy, portal, buttresses
+and covered roof under 1,000 triangles. District adds sparse openings, street adds gallery posts,
+loopholes and cornices, closeup adds selected planar surrounds. Repeated details merge by material;
+fine rails, wires and carving are omitted. All levels retain the same base footprint, Y0 and 28m
+maximum. Each shared graph loads once per view and unloading disposes geometry. Physical-device
+performance and continuous-motion shimmer/pop remain unmeasured. Demonstration procedural
+neighbors and flat review ground are not actual Lutsk map data.
+
+**Geographic fit remains pending.** The existing automated Q1866166 match at way/564453419 is
+the **church ruins**, not the castle perimeter. Correct castle compound way/633707797 supplies
+115.949×100.204m plan, anchor [25.323548196,50.738747737] and heading0.776523631346. Both identities
+and the church outline are documented in source-local map-frame.json; broad cached evidence is
+preserved. Current operator aerial resolves west entry, north Bishop and southeast Styr tower.
+Entry28m/Styr27m are chosen within conflicting27–28m primary descriptions. Bishop's published
+13.5m has uncertain roof/datum extent; the13.5m body plus inferred7m roof is an explicit
+interpretation, not a verified20.5m total. Individual component plans/elevations and flat courtyard
+Y0 remain approximate, and roof overhangs broaden the compound envelope. Real hill terrain,
+approaches and footprint replacement need in-world review. Draft is inactive,replaceFootprint=false.
+
+Lock **assets-585c566f921335be** pins **2,422 GLBs**, adding six and preserving all 2,416 previous pins.
+Readiness: **287 authored/imported**, 219 current hash pairs, 285 portable reviews, 217 shared-material
+reviews, 211 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
+pairs remain untouched. Full library: **389 registered structures**, **390 source bundles**.
+
+Continue with N0278 under docs-src/guide/medium-fi.md. No Git operations or uploads were performed.
+
+## 2026-10-07 — Kamianets-Podilskyi Castle, medium-fi
+
+N0278 is authored, imported and visually reviewed. Its
+[source bundle](places/u8/u8d/n0278_kamianets_podilskyi_castle/README.md) contains an interpretive
+trace of the original Sitsinsky ground plan, qualified by the city architectural walk and current
+municipal photograph. Recognition comes from the irregular open limestone court, tall pointed
+northern roofs with warm arched crown bands, broad-capped square/octagonal/round Papal tower,
+pentagonal New East corner and paired open western bastion. Lower outer courts and casemate
+ranges remain subordinate. The separate New Castle hornwork, river-level Water tower, canyon,
+city bridge and removed Stanislaw/Black gates are excluded.
+
+The source master has **4,182 triangles**, **494,304 bytes**, six merged groups and no images.
+Five shared 256² graphs supply limestone, brick, lime plaster, cedar shingle and plain wood.
+Blue-grey glass stays untextured. Hard architectural normals, 8/12/16-sided towers and linear
+vertex tints follow the medium-fi guide. Photographs and plans remain linked research.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 850 | 70,724 | 1 |
+| district | 1,646 | 138,828 | 5 |
+| street | 2,814 | 228,712 | 6 |
+| closeup | 4,182 | 335,420 | 6 |
+
+Initial skyline plus district geometry is **209,552 bytes**, excluding shared graph downloads.
+All six GLBs pass Khronos validation with zero errors/warnings. Two targeted LOD tests, strict
+medium-fi audit, recipe Biome and byte-identical source regeneration pass. GPU attribute
+component types are homogeneous. Checks were scoped to this model; no dependency audit,
+engine-wide suite or unrelated model regeneration was run.
+
+Inspected **44 final frames**: 11 portable, 10 shared-loader and 23 canonical Earth-rig views,
+including distances, noon/late lighting, Economy/High, untextured silhouette, architectural
+cameras and four same-camera LODs. Corrected hidden crown apertures and aligned Papal windows
+with its staged body. Skyline preserves the open court, tower/roof hierarchy, real entry void
+and lower ranges. District adds sparse apertures; street adds gunhole/crown rhythm and limited
+stone bands; closeup adds selected planar surrounds. All levels retain Y0 and 35m maximum.
+Facet reductions vary the maximum X extent by 0.68m; static transitions show expected detail
+changes. Shared graphs load once per view and all geometry disposes on unloading. Physical
+device performance and continuous-motion shimmer remain unmeasured. Synthetic flat ground and
+procedural neighbors do not establish actual Kamianets placement.
+
+**Geographic fit remains pending.** Exact way/274749273 is a broad site boundary with defenses
+and approach, not an inner building footprint. It is retained as evidence and never extruded
+as a solid body. The modeled inner plan uses an interpretive diagram trace, X0.6/Z0.52m per pixel,
+within the approximate published old-castle dimensions. Individual tower positions, radii,
+heights, roof slopes and facade details are inferred, not a current survey. Reference anchor
+[26.5625,48.67333333] is not surveyed courtyard center; northwest/southeast sign is interpreted,
+and exact map registration remains pending. The 35m tallest roof is a visual target, not a
+verified height. Flat Y0 does not represent the sloped court or canyon. Activation, terrain
+seating and footprint replacement require in-world review; replaceFootprint=false.
+
+Lock **assets-7d94ad2bc8df2698** pins **2,428 GLBs**, adding six and preserving all 2,422 previous pins.
+Readiness: **288 authored/imported**, 220 current hash pairs, 286 portable reviews, 218 shared
+reviews, 212 declared-fidelity reviews and **108 fully ready**. The 68 pre-existing stale local
+pairs remain untouched. Full library: **390 registered structures**, **391 source bundles**.
+
+Continue with N0279 Gripsholm Castle under docs-src/guide/medium-fi.md. No Git operations or
+uploads were performed. The active project still has 712 candidates without authored models.
+
+## 2026-10-07 — Gripsholm and Trakai, medium-fi
+
+N0279 [Gripsholm Castle](places/u6/u6s/n0279_gripsholm_castle/README.md) and N0280
+[Trakai Island Castle](places/u9/u99/n0280_trakai_island_castle/README.md) are authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+Editable recipes, qualified map controls, primary references, source/runtime metadata,
+four runtime levels and hash-bound reviews are registered with the source build.
+
+Gripsholm retains two mapped courtyard holes, four distinct faceted copper tower caps,
+the tall open lantern, stepped brick dormers, lower tiled wings and a northwest entrance
+passage. Its master has **5,247 triangles**, **626,436 bytes**, six merged groups and no
+images. Five shared 256² graphs supply brick, granite, limestone, oxidized copper and tile;
+glass remains untextured. Its exact mapped compound is 137.835×63.929m. Tower heights and
+roof profiles are photo-based estimates, with the highest cap interpreted at 42m.
+
+Trakai retains the separate ducal palace and trapezoidal forecourt, three cone-roof corner
+towers, square entry, tall gabled donjon, open courts and short connecting bridge. Its
+master has **3,386 triangles**, **409,548 bytes**, five merged groups and no images. Four
+shared 256² graphs supply brick, granite, tile and plain wood; glass is untextured. Corrected
+the palace wing steps to honor the mapped courtyard edges, aligned the wood galleries with
+those walls and adjusted the review cameras to show the gallery and whole compound.
+
+| Model | Level | Triangles | GLB bytes | Material groups |
+| --- | --- | ---: | ---: | ---: |
+| Gripsholm Castle | skyline | 943 | 79,804 | 1 |
+| Gripsholm Castle | district | 2,497 | 209,564 | 6 |
+| Gripsholm Castle | street | 4,061 | 317,096 | 6 |
+| Gripsholm Castle | closeup | 5,247 | 395,488 | 6 |
+| Trakai Island Castle | skyline | 612 | 53,228 | 1 |
+| Trakai Island Castle | district | 1,358 | 112,760 | 5 |
+| Trakai Island Castle | street | 2,926 | 213,940 | 5 |
+| Trakai Island Castle | closeup | 3,386 | 249,256 | 5 |
+
+Initial skyline plus district geometry is **289,368 bytes** for Gripsholm and **165,988 bytes**
+for Trakai, excluding shared graph downloads. All per-level budgets pass. Each model has
+**44 inspected final frames**: 11 portable, 10 shared-loader and 23 canonical Earth-rig
+captures, covering noon/late lighting, Economy/High, street/block/skyline, untextured
+silhouette, six architectural views and four same-camera LODs. Architectural normals are
+hard; tower facets reduce at distance. All LODs keep Y0 and their maximum roof height.
+Shared graphs load once per view, and eviction disposes all geometry. Physical-device
+timings and continuous-motion shimmer/pop remain unmeasured.
+
+All 12 new GLBs pass Khronos validation with zero errors/warnings and zero embedded images.
+Four targeted LOD tests, strict medium-fi audits, recipe lint checks and byte-identical
+targeted source regeneration pass. GPU attribute component types are homogeneous. A test
+expectation was corrected to Trakai's actual shared brick binding. Validation was scoped
+to the changed models; no dependency audit, full engine CI or unrelated model generation
+was performed.
+
+**Geographic fit remains pending for both.** Gripsholm's building relation includes the
+compound and both courts, but no measured heights or terrain datum. Trakai's relation
+covers only the 38.019×35.269m palace. Its whole forecourt is a sparse interpretive trace of
+the primary 2023 archaeological Figure1/page124, approximately scaled at 50/135m per pixel
+and visually aligned to the palace frame. The museum's historical planned donjon dimensions
+9.2×9.6m/33m are not a current restored-tower survey. Other dimensions are photo estimates.
+Flat review ground and procedural neighbors are synthetic. Real-site direction, full
+component registration, moat/bridge levels, terrain seating and replacement require
+in-world review; both drafts remain inactive with replaceFootprint=false. Lake/island
+terrain, long shore bridge, remote buildings, trees, boats and interiors are excluded.
+Research photographs and plans remain linked evidence, never embedded model textures.
+
+Lock **assets-19990bd81a0bdc1d** pins **2,440 GLBs**, adding 12 and preserving all **2,428** previous
+pins. This targeted checkpoint preserves unrelated locked bytes; it is not a new clean
+cross-platform source-build proof. Readiness: **290 authored/imported**, 222 current hash
+pairs, 288 portable reviews, 220 shared reviews, 214 fidelity reviews and **108 fully ready**.
+The 68 existing stale local pairs remain untouched. Full library: **392 registered
+structures**, **393 source bundles**. Catalogs, readiness and both galleries are current.
+
+Continue with **N0281 Acrocorinth** using the medium-fi guide. The active project has
+710 candidates without authored models. No Git operations or uploads were performed.
+
+## 2026-10-07 — Acrocorinth, medium-fi
+
+N0281 [Acrocorinth](places/sw/sw8/n0281_acrocorinth/README.md) is authored, imported and
+visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md). The deterministic
+[recipe](../../../packages/worldgen/scripts/acrocorinth-model.mjs) and its source controls,
+licensed archaeological lines, terrain grid and references reconstruct the surviving
+fortified ridge, three successive western gates, inner towers, rectangular Ottoman keep,
+small citadel, low cistern boundary and selected roofless remains.
+
+The Ministry's six official photographs were inspected. ASCSA's primary Acrocorinth layer
+supplies 192 records, 209 parts and 2,321 points. Selected wall courses are transformed from
+their ellipsoidal orthographic CRS, rounded and simplified; their height and completeness
+are not surveyed. The cached exact-QID OSM way is an archaeological site boundary, not a
+building or a curtain footprint. It differs visibly from the archaeological wall plan and
+is used for identity and the provisional frame, without extruding that polygon into walls.
+
+The 960×640m relative terrain patch uses 425 bilinear Mapzen/Terrarium samples at 40m
+spacing, from approximately 30m EU-DEM source data. Subtracting 258.37m gives a Y0 minimum
+and 312.85m relative summit. Native origin is [22.873283683, 37.891346465], with provisional
+heading -0.026117351143 rad. This datum is not the ground height at that origin. Individual
+gate thresholds, openings, wall heights, cliff/outcrop coverage and terraces are estimates.
+
+The generated master has **6,430 triangles**, **774,372 bytes**, four merged groups and no
+embedded images. Three existing shared 256² graphs supply limestone, weathered limestone
+and gravel. Terrain and recess colors are untextured. Physical-repeat UVs and linear
+vertex tints preserve the common material library. Fine joints, slits, railings, carving,
+microbevels and lost roofs are excluded; selected broad battlements and gate panels carry
+recognition. Small unidentified remains stay roofless; the living Agios Dimitrios church
+is not guessed onto an uncertain line in the plan.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 714 | 65,188 | 1 |
+| district | 2,222 | 190,436 | 3 |
+| street | 4,212 | 376,196 | 4 |
+| closeup | 6,430 | 558,928 | 4 |
+
+Initial skyline plus district geometry is **255,624 bytes**, excluding shared graph
+downloads. All levels meet the medium-fi caps, preserve the same horizontal bounds and
+relative summit, and use homogeneous GPU attribute types. Wall footings follow each
+level's actual triangular terrain. Gate thresholds, keep footing and summit nodes are
+shared across levels. Coarse terrain tessellation and outcrop masks still change across
+distant levels; continuous-motion pop and shimmer need further assessment.
+
+**44 final frames were inspected**: 11 portable, 10 shared-loader and 23 canonical Earth-rig
+views covering noon/late, Economy/High, street/block/skyline, untextured silhouette, six
+architectural cameras and four same-camera LODs. The first review caught an oversized
+cistern slab/block; it was replaced by low terrain-following edges. Rocky outcrops were
+broadened and the keep camera tightened. A large-context review-camera clipping issue
+was fixed in the fixture; distant views were recaptured and inspected. No runtime viewer
+behavior was changed by that fixture adjustment. Synthetic sparse Italian-palazzo neighbors
+and a flat plane do not establish a real Greek hill context or terrain fit.
+
+All six GLBs pass Khronos validation with zero errors/warnings and no images. Two targeted
+LOD tests, the strict medium-fi audit, recipe/fixture lint and byte-identical source
+regeneration pass. Shared graphs load once per view; eviction leaves no live model
+geometry. LOD recipe hashes include map controls, archaeological lines and terrain grid.
+Generated READMEs can now state model-specific provenance. Physical laptop/phone timing
+and continuous-motion behavior remain unmeasured. No dependency audit, full engine CI
+or unrelated model generation was run for this model iteration.
+
+**Geographic activation remains pending.** Historic plan registration, current surviving
+state, signed direction, vertical datum, gate-footing corrections and patch-edge blending
+with host terrain need in-world review. Patch edges are visibly unblended over the flat
+review plane. The draft remains inactive with replaceFootprint=false. Modern approach
+roads, vegetation, visitor fixtures, interiors and buried archaeology are outside scope.
+
+The adapted archaeological data and this asset's model geometry are **CC-BY-SA-4.0**,
+credited to James A. Herbst, Corinth Excavations, American School of Classical Studies
+at Athens. Generator code keeps the repository license. The source bundle retains
+[license and attribution](places/sw/sw8/n0281_acrocorinth/LICENSE.md), OSM identity/frame
+attribution and Copernicus/EU-DEM terrain credits. Research photographs remain external
+evidence and do not ship as textures or images.
+
+Lock **assets-9825da683e562e3a** now pins **2,446 GLBs**, adding six and preserving all **2,440**
+previous pins. This is a scoped checkpoint, not a clean cross-platform full-source rebuild.
+Readiness: **291 authored/imported**, 223 current hash pairs, 289 portable reviews,
+221 shared reviews, 215 fidelity reviews and **108 fully ready**. The 68 old stale local
+pairs remain untouched. Full library: **393 registered structures / 394 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0282 Akershus Fortress**, following medium-fi. **709** candidates lack
+authored models. The project remains active; no Git operations or uploads were performed.
+
+## 2026-10-07 — Akershus Fortress, medium-fi
+
+N0282 [Akershus Fortress](places/u4/u4x/n0282_akershus_fortress/README.md) is authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+The deterministic [recipe](../../../packages/worldgen/scripts/akershus-fortress-model.mjs)
+and source controls reconstruct an open-court castle, two broad-capped clock spires,
+stepped brick gables, stone lower towers, terraced ramparts and selected inner-fortress
+supporting buildings. This is an approximate exterior study, not a surveyed whole-site model.
+
+Agency and museum photographs and the primary Forsvarsbygg Fortress Trail isometric
+diagram were inspected. The cached exact-QID OSM relation maps the castle ring and one
+courtyard only. Its 117.171×53.677m plan is rotated into native +X east/+Z south, heading 0,
+at [10.736251164, 59.906686713]. Wider walls, bastions, building centers and ponds are
+estimated from the unscaled isometric plan; current wider-site mapping was unavailable.
+All elevations are estimates: castle court Y12 and highest spire Y54 over a provisional
+lower-ground Y0 are authoring values, not measured elevations or actual tower heights.
+OSM ele27 is not used as a surveyed vertical datum.
+
+The master has **3,883 triangles**, **470,460 bytes**, eight merged groups and no embedded
+images. Six existing shared 256² graphs supply granite, brick, slate, ceramic tile, copper
+and lime plaster. Glazing and terraced ground remain untextured. Metric repeat UVs, linear
+vertex tints and hard face normals follow the common style. Individual bricks, thin rails,
+microbevels, interiors and demolished historic defenses are excluded.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 997 | 88,136 | 1 |
+| district | 2,119 | 188,236 | 8 |
+| street | 3,779 | 327,120 | 8 |
+| closeup | 3,883 | 334,084 | 8 |
+
+Initial skyline plus district geometry is **276,372 bytes**, excluding shared graph
+downloads. All levels meet the medium-fi caps. Ground Y0 and the provisional highest
+spire remain stable; small horizontal bound differences follow wall-thickness and bend
+simplification. Distant stepped outlines change between levels; continuous-motion pop
+and shimmer still need assessment. The detail master is preserved separately.
+
+**44 final frames were inspected**: 11 portable, 10 shared-loader and 23 canonical
+Earth-rig views covering noon/late, Economy/High, three distances, untextured silhouette,
+six architectural cameras and four same-camera LODs. Review caught an entrance blocked
+by two intersecting wall segments, supporting buildings outside the estimated enclosure,
+buried clock faces and pond surfaces, floating chimneys and roof daylight seams. These
+were repaired, including thick stepped gables and roof underside caps; every final
+capture was regenerated and inspected after the last geometry change.
+
+All six GLBs pass Khronos validation with zero errors/warnings and no images. Two
+targeted LOD tests, strict medium-fi budget audit, recipe lint and byte-identical source
+regeneration pass. Shared graphs load once per view and unload leaves no live model
+geometry. GPU attribute buffer views use homogeneous types. Physical laptop/phone
+timing and continuous-motion LOD behavior remain unmeasured. No full engine suite,
+dependency audit or unrelated generator was run for this model iteration.
+
+**Geographic activation remains pending.** Whole-site registration, temporal state,
+clock-tower attachments, signed orientation, vertical datum, terrain blending and
+footprint replacement need in-world review. The inactive draft uses replaceFootprint=false.
+Synthetic sparse Swedish-cottage neighbors and flat review ground are not an Oslo shore
+or a terrain-fit test. Modern southern/eastern offices and the Armed Forces Museum
+complex, harbor, trees, artillery, sculptures and fine fixtures are outside this study.
+
+Original geometry follows the repository license. Castle data retains OpenStreetMap
+ODbL attribution; research photographs and the brochure remain external references and
+do not ship as textures. Source geometry, controls, references, captures and QA are
+indexed in the geographic source folder.
+
+Lock **assets-d81313320b3b2f56** pins **2,452 GLBs**, adding six and preserving all **2,446**
+previous entries. This is a scoped checkpoint, not a clean cross-platform full-source
+rebuild. Readiness: **292 authored/imported**, 224 current hash pairs, 290 portable
+reviews, 222 shared reviews, 216 fidelity reviews and **108 fully ready**. The 68 old
+stale local pairs remain untouched. Full library: **394 registered structures / 395
+source bundles**. Catalogs, readiness and both galleries are current.
+
+Continue with **N0283 Beaumaris Castle**, following medium-fi. **708** candidates lack
+authored models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Beaumaris Castle, medium-fi
+
+N0283 [Beaumaris Castle](places/gc/gcm/n0283_beaumaris_castle/README.md) is authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+The deterministic [recipe](../../../packages/worldgen/scripts/beaumaris-castle-model.mjs)
+reconstructs the present-day squat, roofless concentric defenses: six inner towers,
+twin-D north/south gatehouses, five shallow north-hall openings, lower outer tower
+circuit, offset sea gate, barbican, surviving dock wall and low unfinished foundations.
+
+Cadw's primary ground plan with its 30m scale bar and three official exterior photographs
+were inspected. Solid/visible walls are distinguished from dashed lost structures and
+unfinished accommodation. Selected factual plan controls are approximate; no diagram
+image or copied vector geometry ships in the bundle. The exact-QID cached OSM way maps
+the outer castle/dock silhouette, 144.312×106.348m, rather than the inner footprints or
+current waterline. The native frame swaps its axes: +X across the ward and +Z toward the
+sea dock, provisional heading 0.26314714676 rad at [-4.089706701, 53.26470434]. All vertical
+dimensions are estimates: flat Y0 datum, ward Y0.6 and highest northern turret Y17.6.
+
+The source master has **6,071 triangles**, **635,876 bytes**, four merged material groups
+and no embedded images. Three existing shared 256² graphs provide limestone, weathered
+limestone and wood. Ground, paving and water use vertex colors. Metric repeat UVs,
+linear tints and flat normals follow the common style. Sparse broad coping remnants and
+true hall/gate openings carry detail. Lost roofs and unbuilt upper stories remain absent;
+individual joints, arrow-loop arrays, thin rails, microbevels and complete interiors are
+outside this exterior study. The full detailed source is preserved separately.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 993 | 81,560 | 1 |
+| district | 2,843 | 225,784 | 4 |
+| street | 5,255 | 409,244 | 4 |
+| closeup | 6,071 | 472,608 | 4 |
+
+Initial skyline plus district geometry is **307,344 bytes**, excluding shared graph
+downloads. Skyline retains concentric hierarchy, six inner towers, twin gatehouses and
+the dock/moat identity. Four minor outer towers and low unfinished footings disappear
+at that level; district restores the full 16-tower outer circuit. Distant round forms
+use six sides. Ground Y0 and the highest turret stay stable, with at most 0.027m change
+in maximum X across levels. Static detail changes are visible; continuous-motion pop,
+shimmer and the actual adaptive streaming path still require separate assessment.
+
+**44 final frames were inspected**: 11 portable, 10 shared-loader and 23 canonical
+Earth-rig captures covering three distances, noon/late, Economy/High, untextured
+silhouette, six architectural views and four same-camera LODs. Review caught a pool-like
+rectangular moat, unstable LOD turret height and incorrect pointed hall-window profiles.
+Water now follows narrow northern/western defenses and a dock study surface; the former
+eastern moat remains dry. Island sides reach ground Y0. Turret coping no longer increases
+the highest extent at detailed levels. Gate-body/hall tops align, and the five hall
+arches are shallow and segmental as in the official photograph. Overview cameras were
+tightened; all final captures were regenerated after the last change.
+
+Synthetic English terraces over flat ground supply a style comparison, not a real
+Beaumaris shoreline. Two architectural context views are partly occluded by neighbors;
+the clean shared-loader views show these details. Moat strips and the dock surface are
+opaque study colors, not current mapped water polygons or engine water simulation.
+
+All six GLBs pass Khronos validation with zero errors/warnings and no images. Two
+targeted LOD tests, strict medium-fi budget audit, recipe lint and byte-identical source
+regeneration pass. Shared graphs load once per view, and unloading leaves no live model
+geometry. GPU attribute buffer views use homogeneous types. Physical laptop/phone
+measurements and continuous-motion LOD behavior remain unmeasured. No repository-wide
+suite, dependency audit or unrelated model generator was run for this model iteration.
+
+**Geographic activation remains pending.** Exact inner-plan registration, signed
+orientation, current completeness, vertical datum, shore/terrain fit, moat overlap and
+footprint replacement need in-world review. The inactive draft uses replaceFootprint=false.
+Town/coastline walls, demolished mill, visitor center, trees, modern fixtures and buried
+structures are excluded. Original model geometry follows the repository license, with
+OSM ODbL attribution retained; Cadw photographs/plan stay external research references.
+
+Lock **assets-6b5217b4beb24ffa** pins **2,458 GLBs**, adding six and preserving all **2,452**
+previous entries. This is a scoped checkpoint, not a clean cross-platform full-source
+rebuild. Readiness: **293 authored/imported**, 225 current hash pairs, 291 portable
+reviews, 223 shared reviews, 217 fidelity reviews and **108 fully ready**. The 68 old
+stale local pairs remain untouched. Full library: **395 registered structures / 396
+source bundles**. Catalogs, readiness and both galleries are current.
+
+Continue with **N0284 Dover Castle**, following medium-fi. **707** candidates lack
+authored models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Dover Castle, medium-fi
+
+N0284 [Dover Castle](places/u1/u10/n0284_dover_castle/README.md) is authored, imported
+and visually reviewed against [medium-fi](../../../docs-src/guide/medium-fi.md).
+The deterministic [recipe](../../../packages/worldgen/scripts/dover-castle-model.mjs)
+keeps the square Great Tower and stepped forebuilding, layered hill defenses, northern
+spur and gate, selected later barracks, cruciform church and octagonal Roman pharos.
+It is a current exterior study, with no underground tunnels or lost-building completion.
+
+English Heritage's current aerial and primary architectural descriptions were inspected.
+The privately inspected phased diagram stays external: no image or traced vectors ship.
+Cached exact-QID OSM way 26658038 maps the whole compound. Its building=yes tag is
+treated as terrain extent, rather than a single occupied building. Native axes are +X
+east/+Z south at [1.322679734, 51.129258466], heading 0. Original internal controls are
+estimates; live OSM and alternate Overpass requests returned 429. Mixed-source DEM
+samples at 40m spacing supply a relative authoring hill, with explicitly estimated
+flattened keep/ward and church terraces. The boundary datum is 24.6150421994m absolute;
+the model reaches 112.5049578006m relative to it. The documented 25.3m keep and surviving
+19m pharos heights are above their estimated pads, not surveyed absolute elevations.
+
+The preserved master has **4,590 triangles**, **554,036 bytes**, five merged groups,
+four existing shared 256² graphs (limestone, granite, slate, brick) and no images.
+Grass, chalk, paving and recesses use vertex colors. Metric-repeat UVs, linear tints,
+flat architectural normals and faceted round forms follow the common style. Broad
+courses, selected real openings and coping carry close detail; individual joints,
+thin railings, microbevels, vehicles, trees, full interiors and buried elements are absent.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 954 | 80,508 | 1 |
+| district | 2,724 | 212,900 | 6 |
+| street | 4,350 | 352,776 | 6 |
+| closeup | 4,590 | 371,496 | 6 |
+
+Initial skyline plus district geometry is **293,408 bytes**, excluding shared graph
+transfers. Skyline retains the keep/forebuilding, layered defenses and church/pharos.
+Eight main inner mural towers survive far; district adds six secondary towers, smaller
+outer towers and barracks. Common terrain topology and attachment datums keep Y0 and
+the maximum height stable across all four levels. The pharos remains octagonal.
+
+**80 final frames were inspected**: 11 portable, 10 shared-loader, 23 canonical Earth-rig
+views and 36 ordered forward/reverse camera samples across resident LOD switches.
+The static review covers three distances, noon/late, Economy/High, untextured silhouette,
+architectural views and matched-camera LODs. It caught radial terrain ridges, floating
+barracks, boundary seams and an overly brick-red lighthouse. A common clipped triangular
+grid now supplies the ground and foundations; edge caps share grid intersections. The
+pharos is flint with broad brick tile bands. The motion sweep caught far walls sinking
+through the hill then reappearing at district. Recursive terrain-profile samples retain
+the wall outline; subpixel far wall tops are omitted to keep the skyline budget.
+
+Selected minor details add visibly during upgrades. No whole-model disappearance or
+gross base movement appears in the sampled sweep. This preloaded fixture does not test
+automatic LOD selection, asynchronous/network upgrades, subframe shimmer or physical
+device timing. Synthetic English terraces are a style comparison, not real Dover
+surroundings. The hill is an authoring patch with artificial boundary sides, not a chalk
+cliff reconstructed around the entire castle.
+
+All six current GLBs pass Khronos validation with zero errors/warnings and no images.
+Two targeted LOD tests, strict medium-fi audit, recipe lint and byte-identical source
+regeneration pass. Shared graphs load once per view; unloading leaves zero live model
+geometries. Attribute buffer views use homogeneous component types. No repository-wide
+suite, dependency audit or unrelated generator was run for this model iteration.
+
+**Geographic activation remains pending.** Exact internal plan, signed orientation,
+current completeness, vertical datum, host terrain blending and footprint replacement
+need in-world review. The inactive draft uses replaceFootprint=false. Original geometry
+follows the repository license; OSM ODbL attribution and mixed-source terrain attribution
+are retained. Research photographs and copyrighted diagrams remain external references.
+
+Lock **assets-6e03553d1645aa40** pins **2,464 GLBs**, adding six and preserving all **2,458**
+previous entries. This is a scoped checkpoint, not a clean cross-platform source rebuild.
+Readiness: **294 authored/imported**, 226 current hash pairs, 292 portable reviews,
+224 shared reviews, 218 fidelity reviews and **108 fully ready**. The 68 older stale local
+pairs remain untouched. Full library: **396 registered structures / 397 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0285 Corvin Castle** under medium-fi. **706** candidates lack authored
+models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Corvin Castle, medium-fi
+
+N0285 [Corvin Castle](places/u8/u80/n0285_corvin_castle/README.md) is authored, imported
+and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+The deterministic [recipe](../../../packages/worldgen/scripts/corvin-castle-model.mjs)
+keeps the steep flared square gate roof, conical patterned tower, four projecting palace
+oriels, varied Gothic roofline, open two-level court loggia, timber entrance bridge and
+detached Neboisa tower joined by a narrow open arcade.
+
+Five operator photographs and the primary operator tour were inspected. Cached exact-QID
+OSM way 1327914056 supplies the 125.819×61.936m exterior envelope and detached gallery,
+at [22.888262641, 45.749130243], undirected heading 0.984834753738 rad. Internal controls,
+roof heights, rock plinth, bridge direction and 71m bridge length are original estimates.
+The exterior outline is evidence, not a filled building. Main court Y9 and valley Y0 are
+estimated attachment planes. The operator reports the gate at 22m without a clear height
+definition: this study interprets it as body height and adds an estimated 14m roof. The
+painted tower's reported 30m is interpreted as body plus roof; Neboisa gallery dimensions
+35.5×2.4×15m are documented. Other vertical dimensions and small-tower positions remain
+estimated. No photograph, copyrighted diagram image or third-party vector geometry ships.
+
+The preserved source master has **5,936 triangles**, **715,876 bytes**, six merged groups
+and no embedded images. Four existing shared 256² graphs provide limestone, terracotta
+tile, slate and wood. Rock, paving and recesses also use vertex palettes. Broad cone
+patterning uses vertex-colored facets. Metric UVs, linear tints and flat architecture
+follow the shared style; rounds use six far and 16 near sides. Selected broad Gothic
+openings carry the close detail. No individual joints, microbevels, thin rails, complete
+tracery, finials, flags, statues, full interiors or modern fixtures were authored.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 862 | 70,712 | 1 |
+| district | 1,152 | 99,312 | 6 |
+| street | 2,868 | 215,284 | 6 |
+| closeup | 5,936 | 486,204 | 6 |
+
+Initial skyline plus district geometry is **170,024 bytes**, excluding shared graph
+transfers. The bridge, gallery arches, courtyard and all four oriels remain at skyline.
+Common bounds stay [-62.6, 0, -94] to [65.205, 45, 35.19] at every level. Selected court
+loggia, window and coping detail arrives near; base and primary roof massing stay fixed.
+
+**80 final frames were inspected**: 11 portable, 10 shared-loader, 23 canonical Earth-rig
+views and 36 forward/reverse camera samples through forced resident LODs. Review replaced
+overly triangular court/gate arches with faceted two-center profiles and restored the
+four oriels far. Context scale changed from 4 to 1.75 so the model and procedural Balkan
+konak neighbors can be compared at street, block and skyline distances. Noon/late and
+Economy/High, untextured silhouette and matched-camera LOD views were reviewed. Selected
+detail adds visibly, without whole-model disappearance or gross base movement in the
+sampled sweep. Some close architectural views intentionally crop roof edges. Synthetic
+neighbors and flat review ground are a style comparison, not real Hunedoara surroundings.
+
+All six GLBs pass Khronos validation with zero errors/warnings and no images. Two targeted
+LOD tests, strict medium-fi budget audit, recipe lint and byte-identical source regeneration
+pass. Each graph loads once per view; unloading leaves zero live model geometries. Runtime
+attribute buffer views use homogeneous component types. The sweep preloads models and
+does not certify automatic LOD selection, asynchronous/network upgrades, subframe shimmer
+or physical laptop/phone timing. No full engine CI, dependency audit or unrelated generator
+was run for this model iteration.
+
+**Geographic activation remains pending.** Signed facing, exact internal footprints, tower
+identification, bridge gradient, valley/court datum, host terrain, current completeness and
+footprint replacement need in-world review. The inactive draft uses replaceFootprint=false.
+Original geometry follows the repository license; OSM ODbL attribution is retained and
+operator research photos remain external references.
+
+Lock **assets-10f261c91242e273** pins **2,470 GLBs**, adding six and preserving all **2,464**
+previous entries. This is a scoped checkpoint, not a clean cross-platform source rebuild.
+Readiness: **295 authored/imported**, 227 current hash pairs, 293 portable reviews,
+225 shared reviews, 219 fidelity reviews and **108 fully ready**. The 68 older stale local
+pairs remain untouched. Full library: **397 registered structures / 398 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0286 Kroměříž Castle**, following medium-fi. **705** candidates lack authored
+models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Kroměříž Castle, medium-fi
+
+N0286 [Kroměříž Castle](places/u2/u2u/n0286_kromeriz_castle/README.md) is authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+The deterministic [recipe](../../../packages/worldgen/scripts/kromeriz-castle-model.mjs)
+retains the mapped open courtyard, quadrangular Baroque palace, cream facade rhythm,
+red lower roof pitches and broad green upper panels, garden arcade, and stacked copper
+tower with an open lantern. Review fixed omitted windows on short mapped facade edges.
+
+Six operator photographs and primary tower/architectural pages were inspected. Cached
+exact-QID OSM relation 33992 supplies the 103.556×93.322 m outer envelope and courtyard
+hole at [17.393266452, 49.300303249], undirected heading -0.813010109964 rad. Both wall
+rings are retained rather than filling the palace as a solid mass. The operator documents
+84 m tower height and 40 m viewing gallery. Palace 32 m eave/40 m upper roof, tower footprint,
+roof pitches/plateau, portico and window controls are original estimates. No operator
+photograph or third-party diagram/vector geometry ships. OSM attribution is retained.
+
+The preserved master has **12,897 triangles**, **1,551,244 bytes**, six merged groups
+and zero embedded images. Four existing shared 256² graphs provide lime plaster,
+limestone, ceramic tile and copper. Metric UVs and linear tints carry the real cream/red/
+green identity. Flat architecture and faceted roofs follow medium-fi. Tower roof profiles
+use 8 sides far and 16 near. Thin rails, joints, microbevels, complete ornament/statues,
+clock hands/numerals, full interiors and the neighboring cathedral/Mill Gate are omitted;
+the finial is a broad symbolic cap. No unique textures, baked light or AO are used.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 879 | 71,584 | 1 |
+| district | 1,711 | 146,044 | 6 |
+| street | 3,865 | 329,180 | 6 |
+| closeup | 12,897 | 1,139,688 | 6 |
+
+Initial skyline plus district geometry is **217,628 bytes**, excluding shared graph
+transfers. Ground Y0, gallery Y40 and tower Y84 datums stay fixed. Minor trim expands the
+skyline envelope by less than 0.3 m at higher levels. The court, red/green roof planes,
+tower bulbs, lantern openings and garden arcade persist far. Sparse window rows arrive
+at district, full rhythm/pilasters at street, selected lintels and sills close up.
+
+**80 final frames were inspected**: 11 portable, 10 shared-loader, 23 canonical Earth-rig
+views and 36 ordered forward/reverse camera samples through resident forced LODs.
+Noon/late, Economy/High, three distances beside synthetic Bohemian-townhouse neighbors,
+untextured silhouette and four matched-camera levels were reviewed. The large cream/red/
+green palette reads without shadows. Copper’s metal shader has a stronger lighting response
+than the flat far surface; roof faceting and detail arrival remain visible level changes.
+There was no whole-model disappearance or gross base shift in sampled sweeps. Closest
+samples intentionally crop the tower top. Flat ground/synthetic neighbors are a style
+comparison, not actual Kroměříž surroundings. Resident forced levels do not certify real
+adaptive selection, network loading/upgrades, subframe shimmer or physical-device timing.
+
+All six GLBs pass Khronos validation with zero errors/warnings. Expected unused UV
+informational notices reflect external shared graphs. Two targeted deterministic LOD,
+triangle/download-budget and GPU-layout tests, strict medium-fi audit, recipe lint and
+byte-identical source regeneration passed. Each graph loads once per view; unloading leaves
+zero live model geometries. Attribute buffer views use homogeneous component types.
+No dependency audit, full engine CI or unrelated generator was run for this model iteration.
+
+**Geographic activation remains pending.** Signed garden/town-facing direction, tower/roof
+fit, host terrain/base plane, current completeness and footprint replacement need in-world
+review. The draft is inactive and uses replaceFootprint=false. Visual approval does not
+claim exact geographic fit.
+
+Lock **assets-c2d6ecfb7fa02088** pins **2,476 GLBs**, adding six and preserving all **2,470**
+previous entries. This scoped checkpoint does not prove a clean cross-platform rebuild.
+Readiness: **296 authored/imported**, 228 current hash pairs, 294 portable reviews,
+226 shared reviews, 220 fidelity reviews and **108 fully ready**. The 68 older stale local
+pairs remain untouched. Full library: **398 registered structures / 399 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0287 Elmina Castle** under medium-fi. **704** candidates lack authored
+models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Elmina Castle, medium-fi
+
+N0287 [Elmina Castle](places/eb/ebz/n0287_elmina_castle/README.md) is authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+Its deterministic [recipe](../../../packages/worldgen/scripts/elmina-castle-model.mjs)
+represents battered white fort walls and projecting bastions, stepped governor blocks
+with a red roof and open upper gallery, an open main court with the brick-pilastered
+former church, a genuinely open smaller court, and a timber approach bridge.
+
+Four operator, tourism and primary-photographer images were inspected. The operator
+documents four storeys and an open court. No exact footprint was resolved; both attempted
+map read endpoints returned rate limits. All metric controls, the 134×113 m envelope,
+31 m maximum, bastion outline, building arrangement, gallery, bridge and height datums
+are original estimates. No mapped geometry, third-party diagram, research photograph
+or bitmap texture ships. The reference coordinate is [-1.348211, 5.08274]; heading 0
+is an unresolved placeholder. **Geographic activation remains pending**: signed direction,
+scale, terrain/base plane and site completeness need verification. The draft stays inactive
+with replaceFootprint=false. Appearance acceptance does not certify geographic fit.
+
+The preserved master has **17,627 triangles**, **2,119,224 bytes**, seven merged material
+groups and zero embedded images. Five existing shared 256² graphs provide lime plaster,
+limestone, ceramic tile, brick and timber. Metric UVs, linear vertex tints, flat architectural
+faces and faceted curves carry the identity. Thin balusters, joints, microbevels, weathering
+gradients, complete statuary/lettering, interiors and dungeon routes are omitted. Six merged
+static cannon forms appear close up. Nearby Fort St. Jago, harbour and cathedral are excluded.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 995 | 79,924 | 1 |
+| district | 1,435 | 120,596 | 6 |
+| street | 4,229 | 299,248 | 6 |
+| closeup | 17,627 | 1,201,360 | 7 |
+
+Initial skyline plus district geometry is **200,520 bytes**, excluding shared graph transfers.
+All four levels retain Y0 footing, Y4 court, Y10 battery and Y31 roof maximum. Windows arrive
+at district, full facade rhythm and selected battery openings at street, and sills, parapet
+openings and cannon details near. Review corrected courtyard-camera framing and replaced
+the skyline's generic texture mean with measured linear averages of its actual shared graphs.
+This reduced color mismatch; texture/shadow response and added details still make switches visible.
+
+**80 final frames were inspected**: 11 portable, 10 shared-loader, 23 canonical Earth-rig
+views and 36 ordered approach/retreat samples through resident forced levels. Three distances,
+noon/late light, Economy/High, silhouette and matched-camera LODs were reviewed beside synthetic
+West African compound neighbors. There was no whole-model disappearance or base shift in the
+samples. The closest samples intentionally crop bastion edges. Synthetic neighbors and flat
+ground are style context, not actual Elmina geography. Preloaded forced levels do not certify
+automatic selection, network loading/upgrades, subframe shimmer or physical-device timing.
+
+All six GLBs pass Khronos validation with zero errors/warnings. Two targeted deterministic LOD,
+budget and GPU-layout tests, strict medium-fi audit, recipe lint and byte-identical source
+regeneration pass. Shared graphs load once per view; unload leaves zero live model geometries.
+Attribute bufferViews use homogeneous component types. No full engine CI, dependency audit or
+unrelated generator was run for this model iteration.
+
+Lock **assets-b111ebc8b1294b68** pins **2,482 GLBs**, adding six and preserving all **2,476**
+previous entries. This scoped checkpoint does not prove a clean cross-platform rebuild.
+Readiness: **297 authored/imported**, 229 current hash pairs, 295 portable reviews,
+227 shared reviews, 221 fidelity reviews and **108 fully ready**. The 68 older stale local
+pairs remain untouched. Full library: **399 registered structures / 400 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0288 Konopiště Castle** under medium-fi. **703** candidates lack authored
+models. The project remains active; no Git mutations or uploads were performed.
+
+## 2026-10-08 — Konopiště Castle, medium-fi
+
+N0288 [Konopiště Castle](places/u2/u2f/n0288_konopiste_castle/README.md) is authored,
+imported and visually reviewed under [medium-fi](../../../docs-src/guide/medium-fi.md).
+Its deterministic [recipe](../../../packages/worldgen/scripts/konopiste-castle-model.mjs)
+represents two genuinely open mapped courtyards, cream quadrangular wings and red roofs,
+a dominant round keep with overhanging gallery and cone, smaller square-topped corner rooms
+with broad timber crosses, stepped dormers, a glazed-arch stone terrace and open pointed
+court loggia. This depicts an original approximation of the current exterior, rather than
+the castle's original seven-tower fortress form.
+
+Eight architectural photographs were inspected: four from the National Heritage Institute's
+official exterior gallery and four from primary photographers Lukáš Kalista and Sergey
+Ashmarin. They remain external research; no photograph, copied mesh or unique texture ships.
+Cached exact-Q744016 OSM relation 282741 supplies the full outer wall ring and two courtyard
+holes, separately attributed under ODbL-1.0. The mapped envelope is **83.567×50.131 m**.
+All heights, roof ridges, tower upper rooms, dormers, terrace/loggia attachments and height
+datums are estimates. The contradictory mapped one-level tag is explicitly rejected as
+storey/height evidence. North upper-room and courtyard-bay details are less certain than
+the photographed southern facade and keep. Estimated attachments extend the model beyond
+the mapped wall envelope. The modeled maximum is **49.5 m**, not a documented measurement.
+
+The preserved master has **17,454 triangles**, **2,098,088 bytes**, six merged material
+groups and zero embedded images. Four existing shared 256² graphs provide lime plaster,
+limestone, ceramic tile and timber. Palette colors are decoded to linear vertex tints;
+UV repeats use central metric scales. Flat architectural faces, 12–16-sided near towers
+and selective broad details follow the medium-fi standard. Thin balusters, flags/spires,
+shutter slats, individual joints, statuary, lettering, weathering gradients, microbevels
+and full interiors are omitted. Railings use chunky panels; the courtyard arches are real
+voids, while the terrace arches contain opaque blue-grey glass.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 677 | 57,420 | 1 |
+| district | 1,396 | 120,384 | 6 |
+| street | 10,536 | 920,324 | 6 |
+| closeup | 17,454 | 1,547,996 | 6 |
+
+Initial skyline plus district geometry is **177,804 bytes**, excluding shared graph transfers.
+All levels retain Y0 footing, Y4.8 court, Y22 main eave, Y28 main ridge and Y49.5 keep maximum.
+District adds window/dormer rhythm; street adds shutters, terrace glazing, court arches and
+corbels; closeup adds broad frames. Skyline tinting uses measured linear averages of the
+actual shared graphs. Added details, facets and material/shadow response make switches visible.
+
+Visual review caught roof triangulation that filled the courts; convex enclosing ridge rings
+corrected it. A targeted regression check now requires both courtyard centers to remain open
+through all four levels. Review also corrected the front-facing terrace glazing. **80 final
+frames were inspected**: 11 portable, 10 shared-loader, 23 canonical Earth-rig views and 36
+ordered approach/retreat samples through resident forced levels. Three distances, noon/late
+light, Economy/High, silhouette and matched-camera LODs were reviewed beside synthetic Bohemian
+townhouse neighbors. The castle does not wholly disappear or shift in these samples. Closest
+views intentionally crop the keep tip and outer wings. Synthetic neighbors and flat ground
+are style context, not real-site evidence. The preloaded fixture does not certify automatic
+LOD selection, network upgrades, subframe shimmer or physical-device timing.
+
+All six GLBs pass Khronos validation with zero errors/warnings. Three targeted deterministic
+LOD, cap, GPU-layout and courtyard-opening tests, strict medium-fi audit, recipe lint and
+byte-identical source regeneration pass. Shared graphs read once per view; unload leaves zero
+live model geometries. Attribute bufferViews use homogeneous component types. No full engine
+CI, dependency audit or unrelated model generator was run for this iteration.
+
+**Geographic activation remains pending.** Anchor [14.656541475,49.779576024] and undirected
+axis -0.117875714253 come from the cached map frame. Signed southern-facade direction,
+estimated roof/tower/terrace fit, terrain/base datum and complete site fit need review.
+The draft stays inactive with replaceFootprint=false. Appearance acceptance does not certify
+geographic fit.
+
+Lock **assets-e6a29a1f01779ff3** pins **2,488 GLBs**, adding six and preserving all **2,482**
+previous entries. This scoped checkpoint does not prove a clean cross-platform rebuild.
+Readiness: **298 authored/imported**, 230 current hash pairs, 296 portable reviews,
+228 shared reviews, 222 fidelity reviews and **108 fully ready**. The 68 older stale local
+pairs remain untouched. Full library: **400 registered structures / 401 source bundles**.
+Catalogs, readiness and both galleries are current.
+
+Continue with **N0289 Castel Nuovo** under medium-fi. **702** candidates lack authored models.
+The project remains active; no Git mutations or uploads were performed. Use a full source
+rebuild once at the upcoming 300-authored milestone to check batch reproducibility.
+
+## 2026-10-08 — Castel Nuovo medium-fi checkpoint
+
+**N0289 Castel Nuovo** is source-authored, imported and appearance-reviewed under
+[medium-fi](../../../../docs-src/guide/medium-fi.md). Source bundle:
+`places/sr/sr6/n0289_castel_nuovo`; deterministic recipe:
+`packages/worldgen/scripts/castel-nuovo-model.mjs`.
+
+Seven primary architectural photos were inspected: three operator/ministry images and four
+photographer views of the aerial plan, entrance, marine elevation and courtyard. Municipality,
+Campania, Ministry of Culture and Italian Institute of Castles references support the architecture.
+The cached exact-Q781219 relation15009683 supplies the **120.337×112.652m** footing envelope and
+one courtyard. Upper curtains, tower shafts, gate, chapel, hall and approach are original estimates.
+**All exterior heights are estimates; maximum40m is not measured.** Mapped ele40 is elevation;
+the documented Barons Hall interior26m square/28m high is not an exterior dimensional survey.
+
+Three identity groups survive skyline: five round crenellated towers and battered footings,
+pale stacked marble gate with actual openings, and the open court inside tufo curtain wings.
+Street adds nine court arcades,31 southern gallery arches,rose-window chapel,raised hall,stair
+and rounded glazed marine loggia. Selected corbels,niches and relief bands are broad geometry.
+Fine fluting/scales,flags,joints,lettering,microbevels,full sculpture and interiors are omitted.
+Four existing256²graphs—basalt,sandstone,marble and timber—are reused; six merged groups near,
+one skyline. No photographs,unique textures,baked shadows or AO are embedded.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 821 | 67,444 | 1 |
+| district | 1,374 | 115,844 | 6 |
+| street | 5,946 | 451,092 | 6 |
+| closeup | 7,590 | 595,048 | 6 |
+
+Source master **914,372 bytes /7,590 triangles**; initial skyline plus district **183,288 bytes**,
+excluding shared graph transfers. Linear palette tints and measured per-graph means keep far
+colors consistent. Ground/base and maximum are stable across levels. Far crowns are simpler;
+street adds gallery/corbel/window rhythm;closeup adds broad relief and frame detail.
+
+Review found the court backdrop in front of its arcade,then moved it behind. Gate rear-wall
+openings and rounded marine glazing were corrected. **80 final frames inspected**:11 portable,
+10 shared-loader,23 canonical Earth-rig and36 ordered resident approach/retreat samples.
+Economy/High,noon/late light,silhouette,architectural views and matched-camera levels were checked.
+Synthetic Italian-palazzo neighbors and flat ground compare style,not real Naples geography.
+Details/facets/shadow response make switches visible;closest samples intentionally crop outer
+parts. Forced resident samples do not certify adaptive streaming,network upgrades,subframe
+shimmer or physical-device timing.
+
+All six GLBs pass Khronos validation with zero errors/warnings. Three targeted deterministic,
+budget,GPU-layout and courtyard/gate/arcade-opening tests pass,as do strict medium-fi audit,
+recipe lint and byte-identical source regeneration. Each shared graph reads once per view;
+unload leaves zero live model geometries. No full engine CI,dependency audit or unrelated model
+generator was run in this model-only iteration.
+
+**Geographic activation remains pending.** Cached anchor[14.253249701,40.838300344] and undirected
+axis-0.308685078188 do not certify signed western-gate direction,upper attachment fit or terrain
+datum. Draft inactive,replaceFootprint=false. Appearance approval does not certify geographic fit.
+
+Lock **assets-d7622424766063c1** pins **2,494 GLBs**,adding six while preserving all **2,488** prior
+entries. Readiness: **299 authored/imported**,231 current hash pairs,297 portable reviews,
+229 shared reviews,223 fidelity reviews and **108 fully ready**. The68 older stale local pairs
+remain untouched. Full library: **401 registered structures /402 source bundles**. Catalogs,
+readiness and both galleries are current. This scoped checkpoint does not prove a clean
+cross-platform source rebuild.
+
+Continue with **N0290 Warwick Castle** under medium-fi;**701** candidates lack authored models.
+The full1000 project remains active. Perform one full source rebuild at the upcoming
+300-authored milestone to check batch reproducibility. No Git mutations or uploads performed.
+
+## 2026-10-08 — Warwick Castle medium-fi / 300-authored milestone
+
+**N0290 Warwick Castle** is source-authored, imported and appearance-reviewed under
+[medium-fi](../../../../docs-src/guide/medium-fi.md). Source bundle:
+`places/gc/gcq/n0290_warwick_castle`; deterministic recipe:
+`packages/worldgen/scripts/warwick-castle-model.mjs`.
+
+Seven operator/photographer images were inspected, covering the courtyard, river face,
+Caesar's lobes, gatehouse and motte. Three operator/Historic England pages and cached exact
+Q941276 relation553839 support the architecture and **158.229×102.573m** mapped envelope.
+The operator publishes **Guy29m and Caesar40m local tower heights with different bases**.
+Court/GuyY11, lower CaesarY0 and the common maximumY40 are inferred, not a surveyed datum.
+Historic England describes Caesar as trilobed; the operator says quatrefoil. Three prominent
+lobes are an interpretation of the inspected photographs. Upper form, window/roof rhythm,
+motte, approach, retaining bank and attachment dimensions remain estimates.
+
+Three identity groups survive skyline: polygonal Guy and lobed two-stage Caesar towers,
+clocked twin-turret gatehouse/barbican, and the open court with castellated river ranges and
+stepped motte. Street adds Gothic bays, broad mullions/corbels, clock hands, low slate roofs,
+chimneys, western towers and the arched approach. The actual gate/barbican passage remains open.
+Fine lattice, flags, joints, full lettering, microbevels and interiors are omitted. River-facing
+proxy terrain was changed to sandstone during review; basement terraces/openings remain coarse
+and some are obscured by the proxy bank. Mill, weir, river, outer parks and visitor infrastructure
+are outside this castle exterior bundle.
+
+Three existing256² graphs—sandstone, slate and timber—are reused. Five merged material groups
+near, one skyline. No photographs, unique textures, baked shadows or AO are embedded. Linear
+palette tints, metric UVs and measured graph means keep distant colors consistent.
+
+| Level | Triangles | GLB bytes | Material groups |
+| --- | ---: | ---: | ---: |
+| skyline | 938 | 78,620 | 1 |
+| district | 3,884 | 331,768 | 5 |
+| street | 7,301 | 622,952 | 5 |
+| closeup | 8,649 | 742,064 | 5 |
+
+Source master **1,040,976 bytes /8,649 triangles**; initial skyline plus district **410,388 bytes**,
+excluding shared graph transfers. All levels meet1,000/4,000/16,000/64,000 triangle caps and keep
+Y0/Y40 bounds. Homogeneous attribute bufferView types avoid mixed-type GPU upload duplication.
+
+**80 final frames inspected**:11 portable,10 shared-loader,23 canonical Earth-rig and36 ordered
+resident approach/retreat samples. Economy/High, noon/late light, silhouette, six architectural
+views and four matched-camera levels were reviewed. Synthetic English-terrace neighbors at
+scale2 and flat ground compare style, not actual Warwick geography. Crowns, facets, windows,
+bridge arches and trim make switches visible; closest samples intentionally crop outer parts.
+Forced resident samples do not certify adaptive selection, network upgrades, subframe shimmer
+or physical-device timing. Each shared graph reads once per view; unload leaves zero live model
+geometries. All six GLBs have zero Khronos errors/warnings, no images, and current hashes.
+Three targeted deterministic/budget/layout and courtyard/gate/barbican-opening tests, strict
+medium-fi audit, recipe lint and byte-identical source regeneration pass.
+
+**Geographic activation remains pending.** Cached anchor[-1.585265184,52.279577946] and
+undirected axis0.789464883642 do not certify signed entrance direction, relative tower/base
+datum, motte/approach fit or real terrain. Draft inactive, replaceFootprint=false. Appearance
+approval does not certify geographic fit.
+
+### Full source rebuild at the batch milestone
+
+`node scripts/build-assets.mjs --jobs=2` passed on this Windows/Node24.18.0 host in **755 seconds**.
+All **22 generators**, **77 refreshed imports /370 current imports** and **402 runtime LOD builds**
+completed. Every one of **2,500 GLBs exactly matches** lock **assets-ff23588263c306fd**: zero changed,
+missing or unexpected files. This proves local reconstruction from source; CI still establishes
+the same result on other platforms. The scoped lock added Warwick's six outputs while preserving
+all2,494 previous entries. GLBs remain ignored build outputs; no Git mutations or uploads.
+
+The verifying build preserved existing metadata and reported69 differences. Inspection found
+**58 stale LOD recipe cache hashes**; these were refreshed from the successful build, with all
+other sidecar fields, model bytes and level hashes preserved. **11 existing specifications retain
+earlier map-frame hashes**:N0164,N0175,N0183,N0189,N0191,N0193,N0194,N0199,N0205,N0206,N0207.
+Their direct recipe facts match; geographic proposal comparisons differ only in mapGeometryHash.
+Those evidence discrepancies remain explicit for reviewed reconciliation.
+
+The rebuild repaired the68 older local source/runtime mismatches. **All300 authored pairs now
+verify**, while68 older portable approvals reference prior runtime bytes and need renewed review.
+Current counts: **300 authored/imported**, 230 portable reviews,
+228 shared reviews, 165 fidelity reviews,
+232 active geographic previews and **108 fully ready**. Previous higher review counts described
+the former local files. No approval was transferred to rebuilt bytes without evidence. Full
+library: **402 registered structures /403 source bundles**. Catalogs, readiness and both galleries
+are current. No repository-wide engine CI, dependency audit or unrelated documentation build.
+
+Continue with **N0291 Książ Castle and park complex** under medium-fi, retaining the named complex
+scope. **700 candidates lack authored models**. The full1,000 project remains active; older
+capture/evidence renewal and geographic fit remain required before claiming completion.
+
+## 2026-10-08 — Książ castle core / shared-texture preview
+
+Authored/imported **N0291 Książ Castle and park complex — castle/terrace core only** under
+`docs-src/guide/medium-fi.md`. Source: `places/u3/u35/n0291_ksiaz_castle_and_park_complex`;
+recipe: `packages/worldgen/scripts/ksiaz-castle-model.mjs`. Exact-Q738109 relation9821066
+provides the98.17×61.243m castle ring and two courtyards. Operator47m central tower and the
+academic10.5×11.5m original tower plan inform the model. Common datum,courtY13 to towerY60,
+other heights,roof/terrace controls and signed placement remain estimates. The original
+rock/retaining proxy seats the core atY0;it is not a surveyed landscape.
+
+**The entire named site remains incomplete.** The official2025 designation defines associated
+entrance buildings,mausoleum,three park gates,two Swiss houses,Old Książ ruin,five stables,
+covered riding hall,carriage house,forge,forester house and the separate Palm House with
+greenhouses,boiler/administration/utility/residential buildings and gardens. All required
+groups are retained in `site-parts.json`;core appearance approval does not approve full scope.
+Continue these components as independently anchored source-specific models,then review their
+coverage and actual terrain/placement. Do not silently reduce the candidate to the castle.
+
+The core uses **five existing shared256²graphs**:sandstone,lime plaster,ceramic tile,bronze
+and plain timber. Glass/turf are intentionally flat;seven merged near groups and one far draw.
+Metric repeat UVs,linear palette tint and actual graph means preserve distant color. No embedded
+or unique textures,research photograph pixels,baked shadows or AO. Shared material references
+resolve through the world viewer's shared cache;each graph read once across the captured views.
+The source README now chooses the shared textured capture via an optional study preview path;
+the next-1000 gallery also uses the hash-reviewed shared image. **Use textured runtime views
+as primary catalog/appearance evidence for subsequent models**;portable flat captures remain
+separate geometry fallback evidence. Reuse the canonical graph even when its pattern is an
+approximation;do not fork a texture simply for a model's color.
+
+Final source6535triangles/788236bytes;runtime787588bytes. Source hash
+`7d330b7fab85ddfe0acdcb47ec6057f32d51d5784a3365b1833f216c3e3288a3`;
+runtime hash`6a9274d7caa424acbdc84d85a3e53fb8d76b6c1b1a94a9f4e2b1994dda50923f`.
+Skyline/district/street/closeup: **747/1818/5815/6535 triangles**,
+**62828/155980/500300/525212 bytes**;initial skyline+district **218808bytes** excluding shared
+graph transfers. Buffers use homogeneous component types to avoid duplicated GPU uploads.
+**80 current frames inspected**:11portable,10shared,23Earth and36ordered resident LOD samples.
+Review corrected unsupported gallery/walls,western spire prominence,main dome/lantern collar
+and outward hall glazing normals. Real devices,automatic LOD selection,network upgrades and
+subframe shimmer remain pending. Six Khronos validations:0errors/warnings,no images. Three
+targeted LOD/determinism/buffer/court checks,strict medium-fi audit,recipe lint and exact source
+regeneration pass. Source/core appearance passed;whole-site fidelity and geographic activation
+pending,with inactive draft and replaceFootprint=false.
+
+Lock **assets-9960504e56112263** pins **2506 outputs**,adding only six new validated files while
+preserving2500prior entries. GLBs remain ignored outputs. Catalogs/source recipe index refreshed:
+**301 authored/imported next-1000 candidates**,231portable reviews,229shared reviews,
+165fidelity reviews,232active geographic previews and **108fully ready**. Full library:
+403registered structures/404source bundles.699candidates still lack models,and N0291has only
+its core. The older68portable review renewals and11map-frame evidence reconciliations recorded
+at the300-model milestone remain outstanding. No repository-wide rebuild,audit,engine CI,
+Git mutation or upload was performed for this model iteration.
+
+## 2026-10-08 — Książ missing west gable and roof joins
+
+The user reported a missing portion of the displayed castle. The prior west gable was a
+single inward-facing triangle placed inside the roof,so it disappeared from the west view.
+Replaced it with a supported projecting bay,stepped outward-facing gable and floor/gable
+openings. Its mass survives all four runtime levels. The bay and profile are photographic
+interpretations,not measured facade dimensions.
+
+The previous independent roof patches also left broad unroofed strips over the body.
+Joined the main pitched ranges using convex planar clipping:remove hidden overlaps,clip
+to the mapped castle footprint and both court holes,and close clipped eaves to the walls.
+Small footprint deviations use a low tiled junction. The first distance-field infill was
+visually rejected for overlapping facets. Final shared overhead and elevation images were
+inspected after the joined-roof replacement. Preserve the full mapped outline near;skyline
+uses fewer ranges,omits tiny eave closures and removes plan deviations below3.5m. Roof
+pitches/ridges remain approximate. Float32 rounding before face construction discards
+clipping slivers that would collapse in the exported GLB.
+
+Current master **7839 triangles / 944716 bytes**;runtime **944068 bytes**.
+Current source hash: `sha256:450e52235e1bb5e3b91f8576aa0afaefc32aa99c67f9257fc439df355244ca0e`;runtime: `sha256:20f1ea4531fa1d3ef91e04cb8bd46ad779544ca13d8b7eefaf7c04130d3e53f4`.
+Skyline/district/street/closeup: **993/2914/7119/7839 triangles**,
+**92312/278728/649772/674684 bytes**. Initial skyline+district **371040 bytes**,
+excluding shared texture/graph transfers. The same five canonical shared materials remain
+in use;no unique/embedded images. Six Khronos validations have zero errors/warnings.
+Four targeted tests pass,including a new west-facing gable/covered roof-junction regression
+and the existing open-court checks across every level. Strict medium-fi audit has no
+findings;source regeneration is byte-identical. Recipe/tests formatted. **80 refreshed
+frames inspected** and current source/runtime/report hashes bound in `qa.json`.
+
+Only the castle's six lock entries changed;the other2500are preserved. Current pin:
+**assets-6985f3487528e5e9**,2506outputs. Source indexes and galleries refreshed. The previous
+castle-core entry's byte/triangle counts and pin are historical and superseded by this entry.
+**The entire named heritage ensemble remains incomplete:**entrance/forecourt buildings,
+park components and separate Palm House still pending in `site-parts.json`. Core appearance
+approval does not certify full site scope,real geographic placement or device performance.
+This correction adds no new completed candidate. No full rebuild,audit,Git mutation or upload.
+
+## 2026-10-08 — Książ entrance components / partial site
+
+Following the missing-section repair, authored four independently addressable components beside
+N0291: KSI_A01 gatehouse, KSI_A02 northern side wing, KSI_A03 southern side wing and KSI_A04
+Hotel Zamkowy. Source and runtime folders are under `places/u3/u35/ksiaz_*`; stable asset IDs
+are `molen.worldgen.structure.ksiaz_*`. Each has its own attributed OSM way, outline, origin
+and signed forecourt axis. No independent Wikidata IDs were invented. The whole castle/park
+candidate remains incomplete; Hotel Zamkowy membership in the designated entrance group is
+unconfirmed. Parent `site-parts.json` links the three entrance exteriors and the nearby hotel.
+
+Recipes: `packages/worldgen/scripts/ksiaz-entrance-models.mjs` and
+`generate-ksiaz-entrances.mjs`, registered as `worldgen-ksiaz-entrances` in asset-build.json.
+The normal full source-build import plan discovers all four source manifests, with optimization
+disabled. Explicit auxiliary IDs can use the existing targeted import/capture tools; default
+next-1000 discovery continues its existing scope. Four dedicated runtime recipes generate
+skyline, district, street and closeup levels. Masters remain source outputs; GLBs remain ignored.
+
+Reviewed recognizable gatehouse twin octagonal upper towers/domes and arched library facade,
+lower side-wing ranges with dormers/raised end pavilions, and the detached hotel's pitched roof
+and front pediment. Corrected duplicate facade panes, panes buried inside the round gatehouse
+base, octagonal pane planes, end-pavilion doors, and cropped whole-facade review cameras.
+Roofs are joined over each mapped outline. Heights, roof profiles and facade openings remain
+photographic interpretations, without interiors or unique detailing of statues/signs.
+
+Existing shared 256² plaster, ceramic tile and sandstone graphs serve all four; the gatehouse
+also uses bronze and the other buildings use timber doors. Four shared graphs per model,
+five merged near material groups, one skyline group, flat blue-grey glass, metric UVs and linear
+palette colors. No embedded/unique images or redistributed research photos. Shared-loader
+reports show one read per graph and zero live model geometries after eviction. Catalog source
+READMEs use textured shared-loader previews as their main illustration.
+
+| Component | Master triangles / bytes | Skyline / district / street / closeup triangles | Initial bytes |
+| --- | --- | --- | --- |
+| Gatehouse | 1700 / 207212 | 468 / 576 / 1380 / 1700 | 100888 |
+| North side wing | 2317 / 281256 | 239 / 405 / 1807 / 2317 | 68380 |
+| South side wing | 2480 / 300816 | 156 / 326 / 1890 / 2480 | 50308 |
+| Hotel Zamkowy | 1327 / 162456 | 51 / 113 / 977 / 1327 | 21472 |
+
+Initial bytes are skyline plus district GLBs, excluding shared graph transfers. All runtime
+levels meet medium-fi polygon, material and initial-download targets, and use homogeneous
+attribute buffers to avoid mixed-type GPU duplication. Twenty-four Khronos validations:
+zero errors/warnings and zero images; expected unused-UV informational notices only.
+Eight dedicated LOD/geometry/determinism/layout/window-facing tests and three source-discovery
+tests passed. Strict targeted medium-fi audit and authoring lint passed. Source generators
+--check and import --check match current bytes. Import-plan discovery proves four normal
+source-to-runtime registrations. This is targeted reconstruction evidence, not a full-library
+source rebuild or physical-device benchmark.
+
+Inspected **152 current frames**: nine portable, eight shared-loader and 21 Earth-rig views per
+component. Earth reviews include three distances, two light conditions, Economy/High, silhouette,
+four architectural views and four forced levels. Captures and QA are bound to current source,
+runtime, graphs and frame hashes. A transient browser buffer-space failure was retried serially;
+only successful final captures were accepted. Resident still views do not prove adaptive
+streaming, motion, network upgrades or hardware frame rates.
+
+Four **inactive drafts** record own OSM anchors, heading 0.617948990682 and estimated Y0 terrain
+contact, with replaceFootprint=false. Coordinate round-trip errors are below 1.1mm; that verifies
+the reconstruction, not surveyed source accuracy or real terrain fit. No broad map name matcher
+or parent QID is reused for these components. Facade/vertical fit and final whole-site coverage
+remain pending. Other N0291 park, stable and Palm House groups still need independent models.
+
+Lock **assets-7ef0f380be67a3b0** pins **2530 outputs**, adding only 24 validated files and preserving
+2506 earlier entries. Source/recipe indexes and galleries refreshed: **407 registered structure
+models / 408 source bundles**. Next-1000 remains **301 authored/imported candidates**, 231 portable
+reviews, 229 shared reviews, 165 fidelity reviews, 232 active previews and **108 fully ready**;
+these auxiliary components do not advance complete-candidate counts. 699 candidates still lack
+models. The earlier portable-review and map-frame reconciliation debt remains outstanding.
+No full engine suite, npm audit, full-library source rebuild, Git mutation or upload was run.
+
+## 2026-10-08 — Książ mausoleum and forge exteriors
+
+Added independently addressable KSI_P01 Hochberg mausoleum and KSI_P02 forge under
+places/u3/u35/ksiaz_hochberg_mausoleum and places/u3/u35/ksiaz_forge. Each preserves its own
+OSM outline, origin and longest-edge native axis. The mausoleum uses mapped Q30083059;
+the forge has no independent QID and does not borrow the parent's identity or a broad name match.
+Both remain inactive geographic drafts with replaceFootprint=false. Coordinate reconstruction
+errors below 0.7mm verify arithmetic, not surveyed accuracy, facade bearing or terrain fit.
+
+The mausoleum exterior follows the primary 2013 restoration report and a 2019 southeast
+photograph: stepped octagonal walls, cream/apricot panels, four oculi, red mansard roof, sandstone
+surrounds and roof cross. Entry on the opposite northwest bay is provisional. Crypt, vault,
+interior and surveyed heights are not authored. The forge follows its OSM-linked 2014 photograph:
+L-shaped rubble walls, brick upper band, two recessed arched timber doors, shallow roof and
+chimney. Portal returns seal the wall-to-door recesses. Unseen elevations and current appearance
+remain unconfirmed. Parent site-parts.json records these exterior models without approving
+the full castle/park ensemble; park gates, stables, Palm House and landscape groups remain pending.
+
+Source-only generator generate-ksiaz-park-structures.mjs and recipe ksiaz-park-models.mjs
+are registered in asset-build.json and the authored LOD registry. The normal source-build
+import plan discovers both source manifests with optimization disabled. Generators --check
+and imports --check reproduce current outputs. No GLBs were committed or uploaded.
+Each model uses six existing shared 256² graphs, seven merged near material groups, flat muted
+glazing, metric UVs and linear palette tints. Skyline has one group and uses actual baked graph
+means. No unique images or redistributed reference photographs/PDFs are included.
+
+| Exterior | Master triangles / bytes | Skyline / district / street / closeup triangles | Initial bytes |
+| --- | --- | --- | --- |
+| Mausoleum | 1343 / 165288 | 139 / 221 / 1023 / 1343 | 40444 |
+| Forge | 554 / 70568 | 92 / 176 / 454 / 554 | 29236 |
+
+Initial bytes are skyline plus district, excluding shared graph transfers. All levels meet
+medium-fi caps and retain homogeneous attribute buffers. Twelve Khronos validations have zero
+errors/warnings and no embedded images. Four targeted tests passed: deterministic detail/budget
+and vertex layout for both models, the concave forge roof and real portal openings. Strict
+targeted medium-fi audit and recipe/test lint passed; canonical runtime paths validated.
+Inspected 76 current frames: nine portable, eight shared-loader and 21 Earth-rig views per model.
+QA binds current source/runtime, spec, material graphs, LODs and inspected image hashes. Each
+graph is read once by the shared loader; eviction leaves zero model geometry. Resident still
+views do not prove adaptive streaming, network upgrades, motion or physical-device frame rates.
+
+Lock assets-9f50c1331e769e1e adds only twelve validated outputs and preserves all 2530 earlier entries,
+for 2542 total. Indexes/galleries now contain 409 registered models / 410 source bundles.
+Next-1000 remains 301 authored/imported candidates and 108 fully ready; these separate site
+components do not count as newly completed plan candidates. The full N0291 complex is still
+incomplete. Prior portable-review and map-frame reconciliation debt remains outstanding.
+No full-library rebuild, engine CI, dependency audit, Git mutation or upload was run this batch.
+
+## 2026-10-08 — Książ park gates and remaining site gaps
+
+Added KSI_G01 Jeździecka park gate and KSI_G02 Hochberg avenue gate as separate source bundles
+under places/u3/u35. Each uses its own mapped gate node and adjoining path controls, rather
+than an invented building footprint or the castle identity. Their original medium-fi geometry
+includes a clear passage, open iron leaves, urns and curved wings. The northern gate has tall
+railings and a connected crest; the southern gate has low walls and simplified sphinx figures.
+Appearance follows source-linked 2014 photographs. Current restoration state, dimensions,
+signed facing and terrain fit remain pending; placements are inactive with replaceFootprint=false.
+
+| Gate | Master triangles / bytes | Skyline / district / street / closeup triangles | Initial bytes |
+| --- | --- | --- | --- |
+| Jeździecka | 4820 / 580380 | 796 / 1516 / 4148 / 4820 | 223132 |
+| Hochberg avenue | 4308 / 518944 | 792 / 1404 / 3636 / 4308 | 210316 |
+
+Initial bytes are skyline plus district, excluding shared graph transfers. Both use two existing
+shared 256² material graphs, two merged near groups and one skyline group, with metric UVs and
+linear palette colors. No unique images or copied research photographs ship in the models.
+Twelve Khronos validations have zero errors/warnings; four targeted gate geometry, clear-passage,
+determinism, budget and vertex-layout checks passed. Inspected 76 hash-bound frames across the
+portable, shared-loader and Earth-rig captures. Shared graphs load once and unload leaves zero
+model geometries. The targeted strict medium-fi audit has no findings. Source generator --check
+and import --check reproduce both current assets. These still captures do not establish adaptive
+streaming performance, physical-device timing or real geographic fit.
+
+Lock assets-30b25a83b4979c5e adds twelve outputs while preserving all 2542 earlier entries,
+for 2554 total. Catalogs contain 411 registered models / 412 source bundles; the geographic
+gallery has 411 imported entries. Next-1000 remains 301 authored/imported candidates and 108
+fully ready. Auxiliary site models do not count as newly completed plan candidates.
+
+The full N0291 ensemble remains incomplete. The third Lion Gate has independent map/photo
+research but no model yet. A separately mapped Powder Tower is approximately 119 m from the
+castle recipe's approximate tower control. site-parts.json records this unresolved placement;
+direct identification and terrace attachment are required before replacing existing geometry.
+The castle's current west gable and roof joins are present in saved captures. Four focused N0291
+regression checks passed when investigating the user's further missing-section report; no
+additional castle geometry was changed without identifying the affected section.
+
+No engine-wide suite, dependency audit, full-library rebuild, Git mutation or upload ran.
+
+## 2026-10-08 — Książ Lion Gate exterior
+
+Added KSI_G03 ksiaz_lion_gate under places/u3/u35 as an independently addressable component
+of N0291. Its own Brama Lwów node/2618881852 and three adjoining path controls establish anchor
+[16.3176525,50.8512115] and native heading -0.3083258982962207. Dimensions, signed sculpture/
+facade facing, current restoration and terrain datum remain provisional. The placement is an
+inactive draft with replaceFootprint=false, without a parent QID or broad map-name matcher.
+
+Original medium-fi geometry follows Irena Goderska's 2012 primary photograph: square chamfered
+sandstone piers, broad cornices, seated lions with shields, rising curved wing walls and folded
+iron leaves. The opening remains clear to the sky at every level. Corrected tangent-block gaps
+by sharing mitered wall/coping vertices, seated the sculptures on their plinths, and replaced
+masonry joints on the lions with the existing raw-sandstone graph. Corrected an unsupported
+carving material slot to supported trim; a focused regression check now covers supported shared
+bindings. Heraldic relief, facial likeness, hair strands and current restoration are not claimed.
+
+The master is 3040 triangles / 367248 bytes; runtime master is 366892 bytes. Runtime levels are
+448 / 1464 / 3040 / 3040 triangles and 43704 / 151236 / 316376 / 316376 bytes. Initial skyline
+plus district download is 194940 bytes, excluding shared graph transfers. Three existing shared
+256² graphs serve coursed sandstone, continuous raw sandstone carvings and painted metal,
+with three merged near groups and one far group, metric UVs, linear palette tints and actual
+baked graph means. No unique images, copied photographs or mixed-type GPU buffer views.
+
+Six Khronos GLB validations have zero errors/warnings. Seven gate tests passed deterministic
+levels, budgets, supported shared bindings, clear passages, open sky and two sculpture silhouettes.
+Source scene validates and simulates for 30 ticks. Source generator --check reproduces all three
+gate masters; import --check verifies the Lion Gate. Strict targeted medium-fi audit and authoring
+lint pass. The registered Assets generator and normal import plan include this source bundle.
+This is targeted reconstruction evidence, not a full-library source rebuild.
+
+Inspected 38 current hash-bound frames: nine portable, eight shared-loader and 21 Earth-rig
+views covering three distances, two light conditions, Economy/High, silhouette, four detail
+cameras and four forced levels. Three graphs each load once, and eviction leaves zero live
+model geometries. Resident captures do not prove network upgrades, adaptive streaming, motion
+or physical-device timing. Geographic and whole-site fidelity remain pending.
+
+Lock assets-fedf2ab30094c2bc adds exactly six outputs while preserving 2554 earlier entries,
+for 2560 total. Source/authoring indexes and galleries contain 413 source bundles / 412
+registered imported models. All three park-gate exteriors are recorded in site-parts.json;
+N0291 remains incomplete, including stable/Palm House/landscape groups and the Powder Tower
+placement discrepancy. Next-1000 stays at 301 authored/imported candidates and 108 fully ready.
+These site components do not count as separately completed plan candidates. No engine-wide
+CI, npm audit, full-library rebuild, Git mutation or upload ran in this batch.
+
+## 2026-10-08 — Książ forester’s house exterior
+
+Added KSI_S01 ksiaz_forester_house under places/u3/u35 as an independently addressable
+component of N0291. Own way/262236292 at Jeździecka 9 supplies 17 distinct footprint vertices,
+anchor [16.30370172124799,50.84432313943821] and native heading -0.8912217878661122.
+All outline vertices reconstruct within 0.6 mm; that proves coordinate arithmetic only.
+Facade facing, heights, current appearance and terrain fit remain pending. The placement is
+an inactive draft with replaceFootprint=false; no parent QID or broad name matcher is reused.
+
+Original medium-fi geometry follows Gliwi’s 2016 primary photograph and the map-linked 2014
+side photograph: steep tiled roof, cream timber-framed main gable, dormer, small entrance
+gable, shutters and two chimneys. The first render exposed a dormer window above its roof
+and unsupported tall roof notches caused by lower-wall recesses. Corrected both and seated
+the dormer into the slope. Ground walls retain the map outline; roof subdivision and unseen
+elevations remain photographic interpretations. Research photographs are not redistributed.
+
+Master: 1468 triangles / 179376 bytes. Runtime master: 178892 bytes. Skyline, district, street
+and closeup: 204 / 286 / 1148 / 1468 triangles and 17968 / 29076 / 102716 / 129992 bytes.
+Initial skyline plus district is 47044 bytes, excluding shared graph transfers. Four existing
+256² graphs serve plaster, tile, rubble and timber; flat glazing adds a fifth near group.
+One far group uses the baked graph means, with metric UVs and linear palette tints nearby.
+No unique images or mixed-type runtime GPU buffer views.
+
+Inspected 38 final hash-bound frames: nine portable, eight shared-loader and 21 Earth-rig
+views across three distances, noon/late lighting, Economy/High, silhouette, four architectural
+cameras and four forced levels. Each graph loads once; eviction leaves zero live geometry.
+This resident review does not measure downloads, adaptive upgrades, motion or actual devices.
+
+Six Khronos validations have zero errors/warnings. Three focused tests pass deterministic
+levels, budgets, supported bindings, continuous roof coverage and dormer containment.
+Source generator --check reproduces the source bytes; import --check verifies the runtime.
+The source scene validates and simulates for 30 ticks; targeted strict medium-fi audit and
+authoring lint pass. The registered Assets generator and normal import plan include it.
+
+Lock assets-2307be1e8a345f4b adds exactly six outputs, preserving all 2560 previous entries,
+for 2566 total. Catalogs now contain 414 source bundles / 413 registered imported models.
+The forester exterior is recorded in site-parts.json; N0291 remains incomplete, including
+Swiss houses, stable/Palm House/landscape groups and the Powder Tower placement discrepancy.
+Next-1000 remains 301 authored/imported candidates and 108 fully ready; auxiliary site
+components do not count as separately completed plan candidates. No repository-wide CI,
+npm audit, full-library rebuild, Git mutation or upload ran for this model.
+
+## 2026-10-08 — Książ Swiss Houses I and II
+
+Added KSI_S02 ksiaz_swiss_house_i and KSI_S03 ksiaz_swiss_house_ii under places/u3/u35.
+Each retains its own mapped footprint (ways 255269521 and 255269530), address and official
+NID identity. Five/four distinct vertices reconstruct within 0.6 mm. This verifies coordinate
+arithmetic only: facade direction, estimated dimensions, present condition and terrain fit
+remain pending. Both placements are inactive drafts without footprint replacement, parent
+QIDs or broad name matching. Separate neighboring annexes/fences are outside these models.
+
+Original medium-fi geometry follows Irena Goderska’s primary 2012 photographs: plaster walls,
+blind panels, red mansard hips, curved dormers with real oval openings, cream cornices and
+brick chimneys. House II also has its photographed eyebrow rooflight. Corrected entry cornices
+that initially poked through straight roof slopes: the actual lower eaves now curve upward
+with connected soffits. Research photos are evidence only and are not redistributed.
+
+Masters are 933/977 triangles and 115612/120896 bytes. Runtime masters are 115064/120348 bytes.
+House I skyline/district/street/closeup: 189/249/813/933 triangles, 17772/27332/73288/83512 bytes.
+House II: 184/261/857/977 triangles, 17348/28344/76508/86732 bytes. Initial downloads are
+45104/45692 bytes, excluding shared graphs. Five existing 256² graphs provide plaster, tile,
+rubble, brick and timber; flat glazing adds a sixth near group. One far group uses their baked
+means. Metric UVs, linear colors, zero embedded images and homogeneous GPU attribute buffers.
+
+Inspected all 76 final hash-bound frames: nine portable, eight shared-loader and 21 Earth-rig
+views per house. These cover three distances, noon/late afternoon, Economy/High, silhouette,
+architectural views and four forced LODs. Each graph is read once and eviction leaves zero
+live geometry. This resident review does not measure adaptive streaming or physical devices.
+
+All 12 Khronos validations report zero errors/warnings. Three focused tests pass deterministic
+LODs, budgets, supported material bindings, roof continuity and unobstructed oval windows.
+Source --check and import --check verify both current hashes. Both scenes validate and simulate
+30 ticks; strict medium-fi audits and scoped authoring lint pass. The normal import plan and
+registered Assets generator include both models.
+
+Lock assets-47e3f12d16574f23 adds exactly 12 outputs, preserving all 2566 prior entries, for
+2578 total. Catalogs contain 416 source bundles / 415 registered imported models. Both exteriors
+are recorded in site-parts.json; N0291 remains incomplete, including stable/Palm House/landscape
+groups and the Powder Tower placement discrepancy. Next-1000 remains 301 authored/imported
+candidates and 108 fully ready; auxiliary components are not extra completed plan candidates.
+
+## 2026-10-08 — Old Książ surviving-wall exterior
+
+Added KSI_R01 old_ksiaz_ruins under places/u3/u35 as a separate N0291 component. Own ruin
+way/239074431 carries Q9386558 and NID A/5214/621. Its envelope is a site boundary, not a solid
+building footprint. Geometry follows four individually mapped wall traces: 805533435,
+805533436, 805533437 and 898350440. All 36 source coordinate samples reconstruct within
+0.6 mm. This proves coordinate arithmetic only; heights, photographic wall associations,
+terrace/cliff contact, current condition and unmapped remains still need review.
+
+Original medium-fi masonry follows Pnapora’s 2014 exterior photographs, Piotrus’s 2014 side
+photographs and Izabela Marek’s 2012 interior panorama. Broken high walls, three upper pointed
+openings, a long pierced wall, an arched limestone portal and open low wall traces remain
+roofless. No site-envelope fill, restored roof, historical rooms or research images ship.
+Corrected slab-cap/reveal winding, a missing third upper opening and a cropped overhead camera.
+The declared review scope is the mapped-wall interpretation, not an exhaustive surveyed ruin.
+
+Master: 2264 triangles / 274080 bytes. Runtime master: 273744 bytes. Skyline/district/street/
+closeup: 656/1384/2264/2264 triangles, 45388/89052/140968/140968 bytes. Initial skyline plus
+district is 134440 bytes, excluding shared graphs. Three existing 256² graphs provide rubble,
+brick and dressed limestone; three near draws and one far draw. Metric UVs, linear palette,
+baked far means, zero embedded images and homogeneous GPU attribute buffers.
+
+Inspected all 38 final hash-bound portable, shared-loader and Earth-rig frames. Three distances,
+noon/late afternoon, Economy/High, silhouette, architectural views and all four forced levels
+preserve the broken-wall/opening identity. Each graph reads once; eviction leaves zero live
+geometry. Resident captures do not establish actual terraced terrain fit or adaptive streaming.
+
+Six Khronos validations report zero errors/warnings. Two focused tests pass deterministic
+levels, budgets, bindings, homogeneous attributes, true portal/upper-window holes and outward
+base caps. Source --check and import --check verify exact current bytes. The scene validates
+and simulates 30 ticks; strict medium-fi audit and scoped lint pass. The normal import plan
+and registered Assets generator include the source-built model.
+
+Lock assets-7270414e4073035b adds six outputs while preserving all 2578 prior entries, for
+2584 total. Catalogs contain 417 source bundles / 416 registered imported models. Placement
+ksiaz.old-ruins remains an inactive draft without footprint replacement. N0291 stays incomplete:
+stable/Palm House/landscape groups, ruin terrain and unmapped remains, geographic reviews and
+the Powder Tower discrepancy remain outstanding. This auxiliary model does not increment
+the next-1000 completion count. No full-library rebuild, repository CI, audit or upload ran.
+
+## 2026-10-08 — Książ stable ensemble exterior
+
+KSI_E01, `places/u3/u35/ksiaz_stable_ensemble`, is one source-built exterior asset containing
+the five named stable ranges, current carriage house, gate and residence towers, administration,
+former canteen and covered riding hall with connecting ranges. The 2005 primary monograph's
+numbered plan identifies the ranges; the operator aerial supports the overall roof arrangement.
+The old carriage-house range (stable IV) and current carriage house are distinct parts.
+
+The attributed 69-coordinate stable outline and 28-coordinate proposed hall-complex outline
+retain the open courtyard and secondary entrance. The main tower has an actual arched passage.
+All 97 map coordinates reconstruct within 0.664 mm; this proves arithmetic, not geographic fit.
+Part boundaries, upper-storey footprint, heights, roof profiles, facade bays and the common Y0
+are interpretations. Hall association, current details and real terrain require review.
+
+Reviewed renders exposed unroofed porch/corner projections, a turret roof that missed its own
+ring, omitted residence upper wall planes and facade details partly hidden behind sloping
+mapped walls. These were repaired in the durable recipe. Every mapped stable perimeter segment
+now has roof coverage at every level; facade detail planes follow the mapped wall slopes.
+
+Master: 9592 triangles / 1155164 bytes; imported master: 1154540 bytes. Skyline/district/street/
+closeup: 972/3604/8632/9592 triangles and 81828/300156/742056/830116 bytes. Initial skyline plus
+district is 381984 bytes, excluding shared graphs. Six existing 256² plaster, tile, slate,
+rubble, timber and limestone graphs are shared; muted glazing adds the seventh near group.
+One far group bakes matching means. Metric UVs, linear palette, zero embedded images and
+homogeneous GPU attribute buffers are preserved.
+
+Inspected 38 final hash-bound portable, shared-loader and Earth-rig frames, including a closer
+gate/carriage view. Each shared graph reads once; eviction leaves zero live geometry. Six
+Khronos validations have zero errors/warnings. Three focused tests pass deterministic levels,
+budgets, bindings, homogeneous attributes, open quadrangle and entrances, hall roof, and
+coverage of all 68 stable perimeter segments. Source/import checks, scoped lint, strict
+medium-fi audit, scene validation and a 30-tick simulation pass. Actual terrain, walking/
+collision, adaptive streaming and physical device performance remain unreviewed.
+
+Lock `assets-7f3651e893f2df17` adds six outputs, preserves all 2584 prior entries and pins 2590
+files. `ksiaz.stable-ensemble` remains an inactive draft with footprint replacement disabled.
+The Assets generator and normal import plan reproduce the model from source. N0291 remains
+incomplete: Palm House/landscape, geographic reviews, ruin terrain/unmapped remains and the
+Powder Tower discrepancy still need work. This connected auxiliary asset does not increment
+the next-1000 candidate completion count. No full-library rebuild, repository CI, audit,
+upload or Git mutation ran.
+
+### 2026-10-08 — KSI_L01 Lubiechów Palm House connected exterior
+
+Added an independently identified N0291 auxiliary source bundle at
+`places/u3/u35/ksiaz_palm_house` and source generator
+`packages/worldgen/scripts/generate-ksiaz-palm-house.mjs`. Own OSM relation 3532583
+retains the outer ring, both courtyard holes and main entrance; 54 map coordinate
+samples round-trip within 0.615 mm. Operator page/gallery and official scope plan
+support the 15 m central hall, brick piers, cream cornice, green barrel roof/lantern
+and polygonal glazed porch. Connected low glasshouse roof partitions, pane counts,
+unseen elevations, other heights and current alteration state are interpretations.
+
+Master: 5,919 triangles / 713,020 bytes; runtime: 712,604 bytes. Skyline/district/street/closeup
+use 995/3983/5739/5919 triangles and 76568/342912/495980/512900 bytes. Initial levels
+total 419,480 bytes, excluding shared graph transfers. Three existing 256² brick,
+lime plaster and painted metal graphs use metric UVs and linear palette tints;
+opaque muted glazing adds a fourth material. One far group uses baked surface
+means. No embedded/new images or copied photo textures. Attribute buffers are
+homogeneous and graphs read once; unload leaves zero live model geometries.
+
+Inspected 38 bound final frames: 9 portable, 8 shared and 21 Earth-rig frames. Closed
+greenhouse gable gaps, reduced excessive glazing specular facets and retained
+five low roof sheds per side from district onward to remove roof-count popping.
+Skyline intentionally simplifies low roofs. Three focused tests pass deterministic
+LOD/layout/budgets, two open courts, central hall/porch, closed gables, roof coverage
+within 2 mm and inward courtyard walls. Six Khronos validations report zero errors/
+warnings. Strict medium-fi audit, source scene validation and a 30-tick simulation pass.
+
+Lock `assets-bb5516502f9eaa6f` adds six outputs and preserves all 2590 prior records,
+pinning 2596 files. Normal import plan and Assets source generator are registered.
+`ksiaz.palm-house` remains an inactive draft with footprint replacement disabled.
+Arithmetic and synthetic-ground appearance do not approve real terrain, measured
+dimensions, collision, adaptive streaming or physical-device performance. The
+independent greenhouse group, boiler, administration, utility building, residence
+and garden/landscape remain pending; N0291 whole-site completion stays incomplete.
+This auxiliary asset does not increment next-1000 candidate completion. No full
+library rebuild, engine CI, npm audit, upload or Git mutation ran for this batch.
+
+### 2026-10-08 — KSI_L02–L05 Palm House service exteriors
+
+Added administration, utility, residence and boiler/north service range source bundles
+under `places/u3/u35/ksiaz_palm_*`, generated by
+`packages/worldgen/scripts/generate-ksiaz-palm-services.mjs`. Individual NID records
+and the 1994 survey cards identify all four exteriors. The official ensemble plan
+places the boiler in the main complex’s north range, distinct from the long utility
+building south of administration. Own OSM rings preserve both utility outlines and
+the residence’s attached west annex as separate components. Associations, present
+restoration, heights and actual terrain contact remain proposed. No parent QID reuse.
+
+| Component | Master triangles | Initial skyline + district bytes |
+| --- | ---: | ---: |
+| ksiaz_palm_administration | 2587 | 63152 |
+| ksiaz_palm_utility | 3693 | 69916 |
+| ksiaz_palm_residence | 2245 | 53544 |
+| ksiaz_palm_boiler_range | 4137 | 60012 |
+
+All four use five existing 256² plaster, tile, rubble, timber and brick material
+graphs, metric UVs, linear palette tints and baked far means. Near models merge
+into six materials including muted opaque glazing; far models use one. No new or
+embedded images and no redistributed survey scans or photo textures. Corrected a
+west porch roof recess, inward utility cross-gable and unsupported chimney slot.
+
+Inspected 152 final hash-bound frames (38 per model), plus two combined Palm House
+flat-ground views using the five assets’ relative map anchors and headings. Nine
+focused tests pass reproducibility, browser budgets, GPU layout, supported shared
+slots, complete mapped roof coverage/ground walls and primary facade visibility.
+Twenty-four Khronos validations report zero errors/warnings; strict medium-fi audit
+and all four source-scene validations/30-tick simulations pass. Refreshed only the
+stale worldgen bundle required by current styles. No full engine CI or npm audit.
+
+Lock `assets-2c05610301313e42` adds 24 outputs and preserves all 2596 prior records,
+pinning 2620 files. Normal source import and the Assets generator are registered.
+Placements remain inactive drafts, with footprint replacement disabled. Synthetic
+composition does not approve actual slopes, vertical datums, current-state fidelity,
+collision, adaptive streaming or physical-device performance. Separate greenhouse
+groups and landscape remain unmodeled; N0291 whole-site completion remains incomplete.
+These auxiliaries do not increment next-1000 candidate completion.
+
+### 2026-10-08 — N0292 Devín Castle draft
+
+Added the reproducible Devín source bundle under
+`places/u2/u2s/n0292_devin_castle`, generated by
+`packages/worldgen/scripts/devin-castle-model.mjs` through the existing signature
+generator and normal source-import workflow. Own east/south map frame preserves
+41 surviving masonry features separately from the site envelope. Model includes
+roofless upper/middle ruins, lower curtains, Garay/Bathory palace remnants, named
+archaeological foundations, exposed faceted cliff and the independent hollow
+octagonal Maiden Tower with published2.8m diameter and4.88m height. Primary museum
+photos/navigation diagram were researched but are not redistributed as textures
+or used as licensed metric traces. Coarse attributed DEM and original cliff
+controls are checked-in source; no downloaded mesh or embedded/new image.
+
+Master:4802triangles/579452bytes. Skyline/district/street/closeup:
+546/2372/4802/4802triangles, respectively. Initial skyline+district:
+286884bytes before shared materials. Four existing256-square material graphs
+(dry stone, weathered limestone, brick and gravel), metric UVs, linear palette
+tints and baked far means; five near material groups/one far.
+
+Inspected41 hash-bound portable/shared/Earth frames. Corrected cliff overhang,
+floating approach walls and steps, and Maiden merlon diameter. Four focused tests
+pass deterministic geometry/budgets/GPU layout, roofless court, published tower
+shape and actual cliff contact. Six Khronos validations have zero errors/warnings;
+strict medium-fi audit and source scene validation/30-tick simulation pass.
+676 map samples reconstruct within2mm; this is coordinate arithmetic only.
+
+Lock `assets-4e727d38f027ccf6` adds six outputs and preserves all2620 earlier
+records, pinning2626 files. Draft placement uses heading0, explicit geographic
+extent and a35.04m native anchor terrain reference. Host terrain blending, actual
+cliff/terrace levels, absolute datum, complete surviving gate passages and wall
+openings, current-state fidelity, collision and physical-device/streaming review
+remain pending. Placement is inactive and footprint replacement disabled. This
+is an authored medium-fi draft, not a completed unique landmark/site.
+
+### 2026-10-08 — N0292 Devín missing-section correction
+
+Connected every mapped upper-cliff boundary vertex to the rock cap. The previous
+sparse side perimeter made the upper entrance sample coarse DEM about43m below
+the courtyard. Eight focused regressions now cover that contact as well as
+deterministic LODs/budgets/GPU layout, hollow Maiden dimensions, roofless court,
+approach-wall contact, actual aperture clearance, site crop and reveal normals.
+
+New checked-in openings.json controls five exact mapped entrance nodes, six
+photo-informed wall apertures and five mapped approach routes. Openings remove
+wall geometry and include masonry reveals; dimensions/current door states remain
+estimates. Fixed five reversed reveal triangles and replaced duplicated attic
+face rows with one full-thickness profile on each mapped wall. Grass terrain is
+clipped to the attributed site outline. Primary museum research stays private;
+reference URLs/hashes and attributed own map controls are source documents.
+
+Master8494triangles/1022556bytes; runtime1022064bytes. Four LODs:
+811/3435/8494/8494triangles. Initial skyline+district422972bytes before the four
+shared256-square dry stone, weathered limestone, brick and gravel graphs.
+Five near groups/one far; no embedded/new images. Inspected47 hash-bound final
+portable/shared/Earth frames. Six Khronos validations report zero errors/warnings;
+strict medium-fi audit and source scene validation/30-tick simulation pass.
+
+Lock assets-8757c03c829e4807 replaces exactly six Devín outputs and preserves all2620
+other records. Draft extent covers the union of every LOD plus2cm. Heading0 and
+the35.04m terrain reference are retained. Real terrain/datum, wall/aperture
+dimensions and associations, current-state fidelity, collision, continuous LOD
+transition and physical-device review remain pending. Placement stays inactive
+with footprint replacement disabled; this revision is not a newly completed site.

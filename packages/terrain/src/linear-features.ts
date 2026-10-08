@@ -116,7 +116,7 @@ export class TerrainSurfaceMeshBuilder {
 
   polygon(
     points: readonly TerrainSemanticPoint[],
-    color: THREE.Color,
+    color: THREE.Color | ((x: number, z: number) => THREE.Color),
     elevation: number,
     absolute = false,
   ): void {
@@ -125,7 +125,8 @@ export class TerrainSurfaceMeshBuilder {
         for (const p of [a, b, c]) {
           this.positions.push(p[0], p[1] + elevation, p[2]);
           this.normals.push(p[3], p[4], p[5]);
-          this.colors.push(color.r, color.g, color.b);
+          const tint = typeof color === 'function' ? color(p[0], p[2]) : color;
+          this.colors.push(tint.r, tint.g, tint.b);
         }
       });
       return;
@@ -135,7 +136,8 @@ export class TerrainSurfaceMeshBuilder {
       for (const p of [clipped[0], clipped[i], clipped[i + 1]] as TerrainSemanticPoint[]) {
         this.positions.push(p[0], elevation, p[1]);
         this.normals.push(0, 1, 0);
-        this.colors.push(color.r, color.g, color.b);
+        const tint = typeof color === 'function' ? color(p[0], p[1]) : color;
+        this.colors.push(tint.r, tint.g, tint.b);
       }
     }
   }
@@ -163,7 +165,7 @@ export class TerrainSurfaceMeshBuilder {
 export function appendTerrainSurfaceArea(
   builder: TerrainSurfaceMeshBuilder,
   polygon: TerrainSemanticPolygon,
-  color: THREE.Color,
+  color: THREE.Color | ((x: number, z: number) => THREE.Color),
   elevation: number,
 ): void {
   const rings = [polygon.outer, ...(polygon.holes ?? [])].map((ring) =>

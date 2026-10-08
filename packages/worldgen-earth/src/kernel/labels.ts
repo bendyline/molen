@@ -28,9 +28,28 @@ export function buildingLabels(feature: TerrainBuildingFeature): string[] {
 /** Land label for scatter rules: class plus subclass so word matching sees both. */
 export function landcoverLabel(feature: TerrainLandcoverFeature): string {
   const subclass = feature.subclass?.trim();
-  return subclass !== undefined && subclass.length > 0 && subclass !== feature.class
-    ? `${feature.class} ${subclass}`
-    : feature.class;
+  const base =
+    subclass !== undefined && subclass.length > 0 && subclass !== feature.class
+      ? `${feature.class} ${subclass}`
+      : feature.class;
+  return [
+    base,
+    feature.crop ? `crop:${feature.crop}` : '',
+    feature.trees ? `trees:${feature.trees}` : '',
+    feature.irrigated === true ? 'irrigated' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
+/** A protection boundary does not describe the physical ground under it. */
+export function isLandcoverDesignation(feature: TerrainLandcoverFeature): boolean {
+  return (
+    ['nature_reserve', 'national_park', 'protected_area'].includes(feature.class) &&
+    (feature.subclass === undefined ||
+      feature.subclass === feature.class ||
+      ['nature_reserve', 'national_park', 'protected_area'].includes(feature.subclass))
+  );
 }
 
 // Land use is stronger evidence of building use than a lawn or tree canopy polygon.
@@ -61,6 +80,7 @@ export function contextLabelAt(
 ): string | undefined {
   let best: { area: number; label: string; use: boolean } | undefined;
   for (const feature of landcover) {
+    if (isLandcoverDesignation(feature)) continue;
     const label =
       feature.subclass !== undefined && LAND_USES.has(feature.subclass)
         ? feature.subclass

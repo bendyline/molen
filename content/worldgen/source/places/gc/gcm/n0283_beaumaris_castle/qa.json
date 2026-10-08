@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0283_beaumaris_castle",
+  "sourceHash": "sha256:1da3b3af8ac20f9955c4e4ed7c555649bc9ff3fce42be9f3bed9c322dcc1cad6",
+  "runtimeHash": "sha256:34869512058de75069dde99391029099ee7107d8e3840a5aa41d4847168ee856",
+  "captureReportHash": "sha256:5d17f960a98a00a7c943d75471cb816f93efefec36006942229b803360afa589",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/concentric-wards-and-six-inner-towers.png",
+      "shots/north-hall-five-openings.png",
+      "shots/south-unfinished-gate.png",
+      "shots/sea-gate-and-dock.png",
+      "shots/lower-outer-defenses-and-moat.png",
+      "shots/north-llanfaes-foundations.png"
+    ],
+    "notes": "Inspected all11 final portable frames. Roofless concentric wards,six squat inner towers,paired D-front gatehouses,five shallow north-hall arches,lower outer circuit and offset sea gate/dock are visible. Original review caught a rectangular pool,LOD height mismatch and pointed hall-window profiles. Replaced the pool with narrow northern/western moat strips and dock study,kept eastern former moat dry,added island ground sides,held highest turret at17.6m across levels,aligned gate-body/hall tops and changed windows to photo-informed shallow segmental arches. Tightened overview cameras. All final frames were recaptured after the last geometry change. Internal massing and all heights remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:3668f6fccf0bb0abf71471df83ddf9ba9e34992b3bd4e2a529dbeb99f9e61650",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/concentric-wards-and-six-inner-towers.png",
+      "shots/shared/north-hall-five-openings.png",
+      "shots/shared/south-unfinished-gate.png",
+      "shots/shared/sea-gate-and-dock.png",
+      "shots/shared/lower-outer-defenses-and-moat.png",
+      "shots/shared/north-llanfaes-foundations.png"
+    ],
+    "notes": "Inspected all10 final shared-loader frames. Four merged groups,three existing shared256² limestone,weathered limestone and plain wood graphs. Grass,paving and water use untextured vertex colors. Metric repeat UVs,sRGB-to-linear tints and flat architectural normals. No embedded images,photographic copies,baked illumination or AO. Each graph loads once per view;eviction leaves no live model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:97984f149f0d8da3f4c3cdbd37e172806f54f9e8ea4e8a76dc126771112e9f9b",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/concentric-wards-and-six-inner-towers.png",
+      "medium-fi/north-hall-five-openings.png",
+      "medium-fi/south-unfinished-gate.png",
+      "medium-fi/sea-gate-and-dock.png",
+      "medium-fi/lower-outer-defenses-and-moat.png",
+      "medium-fi/north-llanfaes-foundations.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all23 final canonical Earth-rig frames:three distances,noon/late,Economy/High,untextured skyline,six architectural views and four same-camera LODs. Skyline993triangles preserves concentric hierarchy,six inner towers/two gatehouses and sea dock/moat identity. Four minor outer towers and low unfinished footings disappear at skyline;district restores the full16-tower outer circuit and foundations;street adds sparse coping/footings;closeup increases curved facets. Six-sided distant round silhouettes,stableY0 and17.6m highest turret. Minor maximumX change is0.027m. Synthetic English terraces partly occlude two context architectural views;the clean shared-loader views show these details. Static LOD differences remain visible. Continuous-motion transition/shimmer assessment and actual adaptive-loader behavior are not certified by these static captures."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Cached exactQ756815 way48296427 maps outer castle/dock silhouette144.312×106.348m,not inner wall/tower footprints or current moat waterline. Native coordinates swap cached axes to plan+X across ward/+Z toward sea dock;anchor[-4.089706701,53.26470434],heading0.26314714676rad. Primary Cadw scale-bar plan informs approximate inner centers/gates and distinguishes surviving/unfinished/lost structures;it is not traced vector geometry. All elevations,wall thicknesses and current completeness are estimates. FlatY0/wardY0.6 and highest turret17.6m are authoring values,not actual heights or anchor elevation. Moat/dock surfaces are approximate opaque colors. Signed orientation,terrain/shore fit,temporal state and footprint replacement need in-world review. Inactive draft,replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source6071triangles,four merged groups,three shared graphs,noimages. Recognition budget goes to the squat roofless concentric plan,six inner towers,twin D-gates and dock. Selected broad coping remnants and genuine hall/gate openings;no individual stone joints,arrow-loop arrays,thin rails,microbevels,lost roofs or unbuilt upper floors. Approximate unfinished rear accommodation and Llanfaes foundations stay low. Appearance review does not certify real-site dimensions or placement."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcm/n0283_beaumaris_castle/models/source.glb",
+        "hash": "sha256:1da3b3af8ac20f9955c4e4ed7c555649bc9ff3fce42be9f3bed9c322dcc1cad6",
+        "bytes": 635876,
+        "triangles": 6071,
+        "vertices": 15561,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.glb",
+        "hash": "sha256:34869512058de75069dde99391029099ee7107d8e3840a5aa41d4847168ee856",
+        "bytes": 635448,
+        "triangles": 6071,
+        "vertices": 15561,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.skyline.glb",
+        "hash": "sha256:d684bfbe8854cb7a2f214214b523ca8847b15c0e129a4f4c619440521dc427a2",
+        "bytes": 81560,
+        "triangles": 993,
+        "vertices": 2061,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.5,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.district.glb",
+        "hash": "sha256:8666fec26f70ac13f213e44d14419f107cb415122149d89e93f5c90d66bdade7",
+        "bytes": 225784,
+        "triangles": 2843,
+        "vertices": 5662,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.5,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.street.glb",
+        "hash": "sha256:de217a22c0083363d8983b0be4ea57875bb88c5d644b5a8186a098360341fd9d",
+        "bytes": 409244,
+        "triangles": 5255,
+        "vertices": 10356,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.closeup.glb",
+        "hash": "sha256:21f58ab9c3bcc89f3a4b8308fb4de8d95867953f61e280e6c2be81fd7cbec9ea",
+        "bytes": 472608,
+        "triangles": 6071,
+        "vertices": 11980,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      }
+    ],
+    "notes": "All6 GLBs pass with zeroerrors/warnings,noimages,Y0 and17.6m provisional maximum. Informational unusedUV notices expected for external graphs. Two targeted LOD tests verify deterministic bytes,increasing detail,caps,shared limestone binding and homogeneous GPU attribute types."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.skyline.glb",
+        "hash": "sha256:d684bfbe8854cb7a2f214214b523ca8847b15c0e129a4f4c619440521dc427a2",
+        "bytes": 81560,
+        "triangles": 993,
+        "vertices": 2061,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.5,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.district.glb",
+        "hash": "sha256:8666fec26f70ac13f213e44d14419f107cb415122149d89e93f5c90d66bdade7",
+        "bytes": 225784,
+        "triangles": 2843,
+        "vertices": 5662,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.5,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.street.glb",
+        "hash": "sha256:de217a22c0083363d8983b0be4ea57875bb88c5d644b5a8186a098360341fd9d",
+        "bytes": 409244,
+        "triangles": 5255,
+        "vertices": 10356,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0283_beaumaris_castle/model.closeup.glb",
+        "hash": "sha256:21f58ab9c3bcc89f3a4b8308fb4de8d95867953f61e280e6c2be81fd7cbec9ea",
+        "bytes": 472608,
+        "triangles": 6071,
+        "vertices": 11980,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -59.97297286987305,
+          0,
+          -77.91803741455078
+        ],
+        "max": [
+          56.527095794677734,
+          17.600000381469727,
+          72.9000015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      }
+    ],
+    "initialDownloadBytes": 307344,
+    "notes": "Skyline/district/street/closeup:993/2843/5255/6071triangles and81560/225784/409244/472608bytes. Initial307344bytes excludes shared graph downloads. Strictmediumfiaudit has nofindings,recipe lint and byte-identical targeted source regeneration pass. Detailed source preserved separately. Physical laptop/phone timing and continuous-motion LOD behavior remain unmeasured."
+  }
+}

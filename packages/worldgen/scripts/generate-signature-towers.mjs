@@ -43,6 +43,7 @@ const expandedSelection = selectedStructureIds(selection, collections);
 const evidenceBytes = await readFile(resolve(root, 'content/earth/structures/georeferencing.json'));
 const evidence = JSON.parse(evidenceBytes);
 const surfaces = {
+  rubble: { graph: 'stone_drywall', slot: 'wall', roughness: 0.94, metallic: 0 },
   aggregate: { graph: 'gravel', slot: 'foundation', roughness: 0.98, metallic: 0 },
   frit: { graph: 'glass_frit_triangular', slot: 'wall', roughness: 0.2, metallic: 0 },
   fcp_vision: { slot: 'window', roughness: 0.16, metallic: 0.08, ref: 'palette:#fffefd' },
@@ -68,7 +69,9 @@ const surfaces = {
   tile: { graph: 'tile_ceramic', slot: 'roof', roughness: 0.88, metallic: 0 },
   canvas: { graph: 'fabric_canvas', slot: 'roof', roughness: 0.92, metallic: 0 },
   slate: { graph: 'slate', slot: 'roof', roughness: 0.85, metallic: 0 },
+  shingle: { graph: 'shingle_cedar', slot: 'roof', roughness: 0.9, metallic: 0 },
   sandstone: { graph: 'stone_sandstone', slot: 'wall', roughness: 0.85, metallic: 0 },
+  basalt: { graph: 'stone_basalt', slot: 'wall', roughness: 0.94, metallic: 0 },
   weathered: {
     graph: 'stone_limestone_weathered',
     slot: 'foundation',
@@ -76,6 +79,8 @@ const surfaces = {
     metallic: 0,
   },
   copper: { graph: 'metal_copper', slot: 'roof', roughness: 0.5, metallic: 0.85 },
+  // Oxidized copper uses the same shared panels with a mostly dielectric surface.
+  patina: { graph: 'metal_copper', slot: 'roof', roughness: 0.8, metallic: 0.05 },
   glass: { slot: 'window', roughness: 0.2, metallic: 0.28 },
   clear_glass: {
     slot: 'window',
@@ -352,6 +357,7 @@ for (const study of signatureTowers.filter(
     wikidataId: study.wikidataId,
     referenceCoordinate: candidate.referenceCoordinate,
     visualBrief: study.brief,
+    ...(study.mediumFiContext ? { mediumFiContext: study.mediumFiContext } : {}),
     size,
     actualBounds: { min, max },
     ...(study.encodeAssembly
@@ -403,12 +409,13 @@ for (const study of signatureTowers.filter(
       ? { portableCanonicalFallbacks: study.embeddedCanonicalGraphs }
       : {}),
     reviewStatus: 'source-geometry; near/far and shared-material captures pending',
-    fidelityTarget: 'maximum',
+    fidelityTarget: study.fidelityTarget ?? 'maximum',
     fidelityStatus: 'pending',
     limitations: study.limitations,
     qaCameras: study.qaCameras,
     importOptions: { optimize: false },
     importReason:
+      study.importReason ??
       'Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.',
     mesh: {
       triangles: mesh.triangleCount,
@@ -448,11 +455,19 @@ for (const study of signatureTowers.filter(
         id: 'environment',
         components: {
           environment: {
-            ambient: { sky: '#dce5ed', ground: '#6c7473', intensity: 1.15 },
-            sun: { direction: [-8, 14, 9], color: '#fff1d3', intensity: 2.2, castShadow: true },
-            background: '#b5d2df',
-            toneMapping: 'agx',
-            exposure: 1.08,
+            ambient:
+              study.fidelityTarget === 'medium-fi'
+                ? { sky: '#c4dcec', ground: '#7a7258', intensity: 2 }
+                : { sky: '#dce5ed', ground: '#6c7473', intensity: 1.15 },
+            sun: {
+              direction: [-8, 14, 9],
+              color: study.fidelityTarget === 'medium-fi' ? '#fff1d8' : '#fff1d3',
+              intensity: study.fidelityTarget === 'medium-fi' ? 3.5 : 2.2,
+              castShadow: true,
+            },
+            background: study.fidelityTarget === 'medium-fi' ? '#c4dcec' : '#b5d2df',
+            toneMapping: study.fidelityTarget === 'medium-fi' ? 'neutral' : 'agx',
+            exposure: study.fidelityTarget === 'medium-fi' ? 1 : 1.08,
             shadows: 'high',
           },
         },
@@ -511,7 +526,7 @@ for (const study of signatureTowers.filter(
       ],
     },
   };
-  const readme = `# ${study.title}\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Evidence and reconstruction\n\nPublished dimensions and reconstructed details are separated in spec.json. Primary references:\n\n${study.refs.map((url) => `- [Reference](${url})`).join('\n')}\n\nNo third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.\n\n## Model and axes\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} bytes. Native bounds: ${min.map((v) => v.toFixed(3)).join(', ')} to ${max.map((v) => v.toFixed(3)).join(', ')}. Source hash: \`${hash(glb)}\`.\n\n${JSON.stringify(study.nativeAxes)}\n\nThe geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Reproduce\n\nRun \`node packages/worldgen/scripts/generate-signature-towers.mjs --ids=${study.id}\` (or add \`--check\`). The generator preserves manually edited masters by checking their baseline hashes. Import through the standard authored-model workflow with optimization disabled; then capture all QA cameras, including shared-surface views.\n\n## Pending work\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nThis bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.\n`;
+  const readme = `# ${study.title}\n\n![Molen preview](${study.previewImage ?? 'preview.png'})\n\n${study.brief}\n\n## Evidence and reconstruction\n\nPublished dimensions and reconstructed details are separated in spec.json. Primary references:\n\n${study.refs.map((url) => `- [Reference](${url})`).join('\n')}\n\n${study.sourceNotice ?? 'No third-party geometry, photograph or bitmap texture is embedded. Shared surface graphs come from the central library; vertex tints carry model colors. Glazing uses PBR materials; transparent surfaces are declared per model.'}\n\n## Model and axes\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} bytes. Native bounds: ${min.map((v) => v.toFixed(3)).join(', ')} to ${max.map((v) => v.toFixed(3)).join(', ')}. Source hash: \`${hash(glb)}\`.\n\n${JSON.stringify(study.nativeAxes)}\n\nThe geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.\n\n## Reproduce\n\nRun \`node packages/worldgen/scripts/generate-signature-towers.mjs --ids=${study.id}\` (or add \`--check\`). The generator preserves manually edited masters by checking their baseline hashes. Import through the standard authored-model workflow with optimization disabled; then capture all QA cameras, including shared-surface views.\n\n## Pending work\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nThis bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.\n`;
   const geographicReadme = study.geographicNote
     ? readme.replace(
         'The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.',
@@ -528,7 +543,12 @@ for (const study of signatureTowers.filter(
   await emit(
     resolve(dir, 'README.md'),
     Buffer.from(
-      geographicReadme +
+      (study.fidelityTarget === 'medium-fi'
+        ? geographicReadme.replace(
+            'This bundle contains source geometry, not a claim of maximum-fidelity completion.',
+            'This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately.',
+          )
+        : geographicReadme) +
         (study.dataAttribution
           ? `\n## Additional geographic data\n\n${study.dataAttribution}\n`
           : ''),

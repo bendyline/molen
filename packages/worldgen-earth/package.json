@@ -45,12 +45,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown && node scripts/generate-structure-atlas.mjs --check && node scripts/validate-atlas.mjs && node scripts/validate-businesses.mjs",
+    "build": "tsdown && node ../../content/ecology/source/build-catalog.mjs --check && node ../../content/ecology/source/build-architecture.mjs --check && node ../../content/wildlife/source/build-catalog.mjs --check && node scripts/generate-structure-atlas.mjs --check && node scripts/validate-atlas.mjs && node scripts/validate-businesses.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "biome check src test scripts && node ../../scripts/check-dmath.mjs src/kernel",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@bendyline/molen-ambient": "workspace:*",
     "@bendyline/molen-kernel": "workspace:*",
     "@bendyline/molen-schema": "workspace:*",
     "@bendyline/molen-terrain": "workspace:*",

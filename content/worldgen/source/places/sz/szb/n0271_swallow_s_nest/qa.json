@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0271_swallow_s_nest",
+  "sourceHash": "sha256:0c7db20070ec6f948ab365fd15450270ecd96aeee3489309b305ac9b1a7a17e1",
+  "runtimeHash": "sha256:491ef652f9f626fbf1645a01525d4e4811d1574aafaf1a68318759c441b958a4",
+  "captureReportHash": "sha256:658fee2bf91d525d171a531762a113b8f2669209137e51473100fad99516aeb4",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/sea-tower.png",
+      "shots/south-long-face.png",
+      "shots/north-long-face.png",
+      "shots/west-entrance.png",
+      "shots/crown-and-balcony.png",
+      "shots/terrace-plan.png"
+    ],
+    "notes": "Inspected all 11 final portable frames. Three stepped masses, the round eastern tower, four tall crown spires, four lower hall pinnacles, projecting balcony and narrow terrace remain readable. Corrected curved-tower pane depth after the first render hid panes behind the wall; changed the hall openings to blue-grey glazing with a wooden mullion. Museum photographs and November 2020 restoration photographs guided proportions. No natural cliff or neighboring building was fabricated."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:a078e90f56696f33faa7678db19e9d058dff0134ddf31a6f6c0fe0e0308dd4dc",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/sea-tower.png",
+      "shots/shared/south-long-face.png",
+      "shots/shared/north-long-face.png",
+      "shots/shared/west-entrance.png",
+      "shots/shared/crown-and-balcony.png",
+      "shots/shared/terrace-plan.png"
+    ],
+    "notes": "Inspected all 10 final shared-loader views. Limestone, concrete, painted metal and wood use four shared 256² graphs; untextured blue-grey glass is the fifth group. Each graph loads once per view and unloading releases all model geometries. No embedded images, private textures, baked light, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:3b7802821f1a1975cf3b917a9279364be612c56f12528ebfda6f0065788eaf13",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/sea-tower.png",
+      "medium-fi/south-long-face.png",
+      "medium-fi/north-long-face.png",
+      "medium-fi/west-entrance.png",
+      "medium-fi/crown-and-balcony.png",
+      "medium-fi/terrace-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 final canonical Earth-rig frames: three distances, noon/late light, Economy/High, silhouette, six architectural views and four same-camera LOD views. Light grey limestone stays coherent alongside procedural Italian palazzi. Skyline preserves the stepped masses, round tower and eight spires. Finer tiers add crenellations, apertures, balcony rails and selected relief; the district terrace uses a broad parapet. The synthetic flat-ground neighborhood is a style comparison, not actual geographic approval. Continuous-motion shimmer and physical-device measurements remain pending."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact Q1353643 OSM way/103635688 supplies anchor [34.128585443,44.430632946], heading 0.347692146382 and a 20.238×7.245m building outline. The eastern cylindrical tower resolves +X about 19.92 degrees north of east. The published 12m building height is distinct from the roughly 40m natural cliff. Intermediate heights and immediate terrace are approximate. Proposed groundModelY=.4m is not applied by the inactive draft registrar. Actual cliff contact, western approach and balcony/cantilever clearances require in-world review. replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The 9123-triangle master uses five merged groups and four shared 256² graphs. Hex colors decode sRGB to linear vertex colors; skyline uses the shared-surface mean. Silhouette and identity features have priority over fine joints, iron scrollwork, fixtures and interiors. Reference images are linked only. Appearance approval is separate from geographic approval."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sz/szb/n0271_swallow_s_nest/models/source.glb",
+        "hash": "sha256:0c7db20070ec6f948ab365fd15450270ecd96aeee3489309b305ac9b1a7a17e1",
+        "bytes": 969276,
+        "triangles": 9123,
+        "vertices": 23793,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.glb",
+        "hash": "sha256:491ef652f9f626fbf1645a01525d4e4811d1574aafaf1a68318759c441b958a4",
+        "bytes": 968784,
+        "triangles": 9123,
+        "vertices": 23793,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.skyline.glb",
+        "hash": "sha256:414e5823ede6c65aba951df369271ec647d87bc426b45ac21c99d2f28e7d0a45",
+        "bytes": 57432,
+        "triangles": 688,
+        "vertices": 1442,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -11.399999618530273,
+          0,
+          -4.300000190734863
+        ],
+        "max": [
+          11.75,
+          12,
+          5.264999866485596
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.district.glb",
+        "hash": "sha256:713cd7bc00424a48aa424c05c59b35d24cb81fc282fd823d6051c37f03372f0c",
+        "bytes": 216776,
+        "triangles": 2663,
+        "vertices": 5407,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.street.glb",
+        "hash": "sha256:844f3f629b97a0eccef29cb41b12de8718d71958da644ed93a987c4694a8f7ac",
+        "bytes": 672296,
+        "triangles": 8555,
+        "vertices": 17077,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.closeup.glb",
+        "hash": "sha256:f235ff233326579a788d76a9495354ae0cd26e2c9d1630c306fac6e89f23e5e9",
+        "bytes": 714804,
+        "triangles": 9123,
+        "vertices": 18163,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "All six GLBs have zero errors/warnings, zero images, minY=0 and maxY=12m. Two targeted LOD tests cover deterministic output, triangle/download budgets, height, external materials and homogeneous GPU attribute layouts. Unused-UV informational notices are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.skyline.glb",
+        "hash": "sha256:414e5823ede6c65aba951df369271ec647d87bc426b45ac21c99d2f28e7d0a45",
+        "bytes": 57432,
+        "triangles": 688,
+        "vertices": 1442,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -11.399999618530273,
+          0,
+          -4.300000190734863
+        ],
+        "max": [
+          11.75,
+          12,
+          5.264999866485596
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.district.glb",
+        "hash": "sha256:713cd7bc00424a48aa424c05c59b35d24cb81fc282fd823d6051c37f03372f0c",
+        "bytes": 216776,
+        "triangles": 2663,
+        "vertices": 5407,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.street.glb",
+        "hash": "sha256:844f3f629b97a0eccef29cb41b12de8718d71958da644ed93a987c4694a8f7ac",
+        "bytes": 672296,
+        "triangles": 8555,
+        "vertices": 17077,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/sz/szb/n0271_swallow_s_nest/model.closeup.glb",
+        "hash": "sha256:f235ff233326579a788d76a9495354ae0cd26e2c9d1630c306fac6e89f23e5e9",
+        "bytes": 714804,
+        "triangles": 9123,
+        "vertices": 18163,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -11.569999694824219,
+          0,
+          -4.46999979019165
+        ],
+        "max": [
+          11.920000076293945,
+          12,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 274208,
+    "notes": "Skyline/district/street/closeup: 688/2663/8555/9123 triangles; 57432/216776/672296/714804 bytes. Initial combined geometry is 274208 bytes, excluding shared graphs. Source regeneration is byte-identical; strict medium-fi budget audit and recipe Biome check pass. Checks were scoped to this model."
+  }
+}

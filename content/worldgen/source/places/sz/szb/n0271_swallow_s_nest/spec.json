@@ -1,0 +1,249 @@
+{
+  "planId": "N0271",
+  "id": "N0271",
+  "assetId": "molen.worldgen.structure.n0271_swallow_s_nest",
+  "title": "Swallow's Nest",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q1353643",
+  "referenceCoordinate": {
+    "latitude": 44.43057,
+    "longitude": 34.12851
+  },
+  "visualBrief": "Small limestone seaside folly with a stepped rectangular hall, four low pinnacles, a round eastern tower with four tall crown spires, projecting balcony and wraparound terrace.",
+  "mediumFiContext": {
+    "scale": "1",
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "size": [
+    23.489999771118164,
+    12,
+    9.904999732971191
+  ],
+  "actualBounds": {
+    "min": [
+      -11.569999694824219,
+      0,
+      -4.46999979019165
+    ],
+    "max": [
+      11.920000076293945,
+      12,
+      5.434999942779541
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast, about19.92degrees north of east",
+    "front": "+X tower above sea; -X entrance toward approach",
+    "origin": "Mapped main-building center; architectural terrace baseY=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/103635688 exact Q1353643",
+    "mappedPlanMeters": [
+      20.238,
+      7.245
+    ],
+    "publishedApproximatePlanMeters": [
+      20,
+      10
+    ],
+    "publishedBuildingHeightMeters": 12
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#d4d5ce",
+      "trim": "#e4e3d9",
+      "paving": "#b9b2a3",
+      "roof": "#a3a19b",
+      "rail": "#596267",
+      "glass": "#4d6178",
+      "wood": "#8c735b"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Three stepped masses ending in an eastern cylindrical tower",
+      "Four high crown spires and four lower hall pinnacles",
+      "Projecting circular balcony, crenellations and narrow perimeter terrace"
+    ]
+  },
+  "reconstruction": {
+    "basis": "OSM outline, museum gallery and post-restoration November2020 photographs",
+    "scope": "Exterior building and immediate terrace only; the natural cliff and remote approach are separate terrain"
+  },
+  "referencePages": [
+    "https://xn-----6kcbqggkggtcllvchedg5cwa0j.xn--p1ai/galereya",
+    "https://www.culture.ru/institutes/13925/lastochkino-gnezdo",
+    "https://www.openstreetmap.org/way/103635688",
+    "https://ru.krymr.com/a/photo-lastochkino-gnezdo-rekonstruktsiya/30968661.html"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain seating pending",
+    "anchor": [
+      34.128585443,
+      44.430632946
+    ],
+    "heading": 0.347692146382,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/103635688",
+    "groundModelY": 0.4,
+    "featureIds": [
+      "way/103635688"
+    ],
+    "wikidataId": "Q1353643",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b836a5964dad2ea71532ae02b3688de10ca1f670144beb217f67fb2a0ff81853",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Exact mapped building identity. Eastern round tower fixes +X east-northeast. Cliff seating, approach and balcony clearances require terrain review."
+  },
+  "scaleBasis": "Mapped20.238×7.245m main-building footprint; published12m building height includes the spire finials. Intermediate levels, parapets, apertures, balcony and terrace dimensions inferred from photographs. Published roughly40mcliff height is not building height.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Photographs linked as research references, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0; museum and November2020 press photographs used only as visual references.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "An original medium-fi reconstruction, not a measured conservation survey.",
+    "Fine tracery, iron scrollwork, pipework and interiors omitted; masonry uses shared surfaces.",
+    "Museum photographs can be older than2020; post-restoration photographs establish main masses, not every current fixture.",
+    "Natural cliff, remote approach and neighboring buildings omitted.",
+    "Actual terrain seating, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "sea-tower",
+      "position": [
+        32,
+        15,
+        15
+      ],
+      "lookAt": [
+        4,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "south-long-face",
+      "position": [
+        -7,
+        12,
+        35
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "north-long-face",
+      "position": [
+        0,
+        13,
+        -35
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "west-entrance",
+      "position": [
+        -31,
+        12,
+        8
+      ],
+      "lookAt": [
+        -2,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "crown-and-balcony",
+      "position": [
+        21,
+        13,
+        12
+      ],
+      "lookAt": [
+        7.5,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "terrace-plan",
+      "position": [
+        0,
+        42,
+        1
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve eight spires, stepped massing and round sea tower in every level; closer tiers add pointed apertures, balcony rails and selected relief.",
+  "mesh": {
+    "triangles": 9123,
+    "vertices": 23793,
+    "materials": 5,
+    "bytes": 969276,
+    "sha256": "sha256:0c7db20070ec6f948ab365fd15450270ecd96aeee3489309b305ac9b1a7a17e1"
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "planId": "N0270",
+  "id": "N0270",
+  "assetId": "molen.worldgen.structure.n0270_conwy_castle",
+  "title": "Conwy Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q756830",
+  "referenceCoordinate": {
+    "latitude": 53.280148779,
+    "longitude": -3.825629332
+  },
+  "visualBrief": "Present-day roofless Conwy Castle: eight open round towers, four tall inner-ward stair turrets, bent south hall range, paired open wards and low end barbicans.",
+  "mediumFiContext": {
+    "scale": "1.15",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    121.5999984741211,
+    30,
+    58.959999084472656
+  ],
+  "actualBounds": {
+    "min": [
+      -60.79999923706055,
+      0,
+      -29.479999542236328
+    ],
+    "max": [
+      60.79999923706055,
+      30,
+      29.479999542236328
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east, about 4.26 degrees north of east",
+    "front": "+X river barbican; -X western town entrance",
+    "origin": "Mapped outline center; foundations Y=0, proposed courtyard Y=2m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/52467063 exact Q756830",
+    "mappedPlanMeters": [
+      122.293,
+      58.695
+    ],
+    "cachedUnreferencedMaximumHeightMeters": 30,
+    "publishedCurtainThicknessMeters": 3,
+    "publishedRiverRelativeHeightMeters": {
+      "curtain": 27,
+      "towers": 41
+    }
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#babcb4",
+      "coping": "#c9c2ae",
+      "pink": "#c9aa92",
+      "paving": "#b1ab9c",
+      "slate": "#60656a",
+      "wood": "#a18b68",
+      "grass": "#859f67"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Eight round towers and four taller eastern stair turrets",
+      "Long western ward with faceted south great hall and surviving roof arch",
+      "Smaller eastern royal ward, roofless L-shaped rooms and low end barbicans"
+    ]
+  },
+  "reconstruction": {
+    "basis": "OSM perimeter/tower lobes, Cadw ground plan and current operator photographs",
+    "scope": "Castle exterior, open wards and end barbicans; no surrounding town walls, bridges, visitor facilities or invented cliff"
+  },
+  "referencePages": [
+    "https://cadw.gov.wales/visit/places-to-visit/castell-conwy",
+    "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?id=3250",
+    "https://cadwpublic-api.azurewebsites.net/reports/sam/FullReport?id=3411&lang=en",
+    "https://commons.wikimedia.org/wiki/File:Conwy_Castle_plan.jpg",
+    "https://cadw.gov.wales/more-about-castell-conwy",
+    "https://www.openstreetmap.org/way/52467063"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain seating pending",
+    "anchor": [
+      -3.82555084,
+      53.280022417
+    ],
+    "heading": 0.07442147105,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/52467063",
+    "groundModelY": 2,
+    "featureIds": [
+      "way/52467063"
+    ],
+    "wikidataId": "Q756830",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1c391f839e1c20cc4d8986232672bec6243a6c0b17155ba3618f30b5467a9341",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "River-facing east barbican resolves +X east. Actual rock, court and west entry fit require review; inferred heights are not a survey."
+  },
+  "scaleBasis": "Mapped 122.293×58.695m outline and plan scale establish footprint. Cached 30m maximum is provisional and unreferenced. Tower bodies22m, crowns23.4m, turret tops30m, curtain16m and court2m are inferred. Published 27m/41m heights are above river and do not define model-ground elevations.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Contains information from the Cadw ground plan, Crown copyright, licensed under Open Government Licence v1.0; https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/. Reference photographs linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Cadw plan: Crown copyright, Open Government Licence v1.0. Current Cadw photographs used as visual references only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Simplified current ruin exterior; lower interiors, fine tracery and stairs abbreviated.",
+    "Tower elevations are inferred; cached30m maximum lacks a reference. River-relative published heights are distinct from model heights.",
+    "Town walls, adjacent bridges, visitor buildings and natural bedrock omitted.",
+    "Actual terrain seating, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-hall-and-towers",
+      "position": [
+        -10,
+        50,
+        135
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "north-tower-row",
+      "position": [
+        10,
+        45,
+        -140
+      ],
+      "lookAt": [
+        0,
+        12,
+        -5
+      ]
+    },
+    {
+      "name": "east-royal-turrets",
+      "position": [
+        135,
+        52,
+        -12
+      ],
+      "lookAt": [
+        18,
+        13,
+        -3
+      ]
+    },
+    {
+      "name": "west-entry",
+      "position": [
+        -130,
+        45,
+        10
+      ],
+      "lookAt": [
+        -12,
+        11,
+        -3
+      ]
+    },
+    {
+      "name": "great-hall-arch",
+      "position": [
+        -17,
+        7,
+        12
+      ],
+      "lookAt": [
+        -3,
+        14,
+        9.5
+      ]
+    },
+    {
+      "name": "castle-plan",
+      "position": [
+        0,
+        205,
+        1
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve eight hollow towers, four raised stair turrets and open wards in all levels; surviving hall arches appear from district onward.",
+  "mesh": {
+    "triangles": 11944,
+    "vertices": 32196,
+    "materials": 5,
+    "bytes": 1305620,
+    "sha256": "sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117"
+  }
+}

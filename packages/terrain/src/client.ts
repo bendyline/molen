@@ -124,6 +124,7 @@ export {
   type TerrainPyramidTileLayer,
   type TerrainPyramidTileLayerContext,
   type TerrainPyramidView,
+  type TerrainSurfaceColor,
   terrainPyramidBudgetForQuality,
 } from './pyramid-stream';
 export {
@@ -142,6 +143,7 @@ export {
   type TerrainSemanticTileSource,
   type TerrainWaterMaterial,
   type TerrainWaterMaterialOptions,
+  terrainWaterSurfaceHeight,
 } from './semantic-client';
 export {
   assertTerrainSemanticTile,

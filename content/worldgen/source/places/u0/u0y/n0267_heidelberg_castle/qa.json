@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0267_heidelberg_castle",
+  "sourceHash": "sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180",
+  "runtimeHash": "sha256:35725ebc4ad3311e233e5f12a4efe40d09a2b81a277b8e4050430fc6521bab54",
+  "captureReportHash": "sha256:cac2fec6b77043f8bea1db93761c1670c2204e215d7aa4f73af4f5db7ce5c154",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-gate-and-broken-tower.png",
+      "shots/north-terrace-and-friedrich.png",
+      "shots/west-english-wing.png",
+      "shots/east-ruined-wings.png",
+      "shots/courtyard-facades.png",
+      "shots/compound-plan.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Twin Friedrich gables, slate gate roof and lantern, octagonal open bell tower, roofless Renaissance wings, broken round towers and fallen powder-tower wedge read at their respective scales. Corrected missing wing basements, reversed broken-tower normals, overly tall tower openings, English-wing alignment, north terrace separation and gate-range overlaps. Window rhythms, wing geometry and heights are simplified reconstructions from owner references, not a survey. The moat and courtyard levels require real terrain."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ab7be084d4e85ce16c6bf6cdd5132c28b431300bbf9b4b6ebf644ec725bd0254",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-gate-and-broken-tower.png",
+      "shots/shared/north-terrace-and-friedrich.png",
+      "shots/shared/west-english-wing.png",
+      "shots/shared/east-ruined-wings.png",
+      "shots/shared/courtyard-facades.png",
+      "shots/shared/compound-plan.png"
+    ],
+    "notes": "Inspected all 10 shared-loader views. Four shared graphs (sandstone, lime plaster, slate and ceramic tile) each load once; opaque local glass forms the fifth merged group. Zero embedded or private images. Unloading releases all model geometries. No baked directional light, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f2c22bd49b0410efb45bbf010132560ebc9d321bfa93e99ec4b44ce0ac1394fb",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-gate-and-broken-tower.png",
+      "medium-fi/north-terrace-and-friedrich.png",
+      "medium-fi/west-english-wing.png",
+      "medium-fi/east-ruined-wings.png",
+      "medium-fi/courtyard-facades.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: street/block/skyline, noon/late light, Economy/High, untextured silhouette, six architecture views and four same-camera LOD views. Warm stone, pale plaster and darker roofs remain coherent beside synthetic German Fachwerk houses. Skyline preserves open roof volumes, twin gables, gate and broken towers while omitting window holes and simplifying tower facets; district introduces facade rhythm. This is synthetic asset context at the lowest moat base, not hillside approval. Continuous-motion shimmer, phone/laptop performance and terrain-dependent garden/court seating remain unverified."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID OSM way/254154168 supplies site frame at [8.715271675,49.41059654], heading -1.430862687712. North terrace and south gate resolve +X south and +Z west. The mapped 273.118×214.468m envelope includes grounds, not individual building outlines. Wing footprints are manually reconstructed from the owner current-site plan; building-part queries returned429. Exported moat foundations Y=0 and court Y=12m require groundModelY=12 in the eventual approved transform; this offset is a proposal and the inactive draft registrar transform does not apply it. Real hillside, moat, bridge and courtyard contact remain pending. replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. A 6,948-triangle source master and individually authored levels preserve the restored/ruined contrast and identity features with five groups and four shared graphs. sRGB tints decode to linear and skyline applies the shared-texture mean. Coarse pilasters, window openings and gables replace individual stonework and carved decoration. No unique textures. Asset appearance approval does not approve map or terrain fit."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/models/source.glb",
+        "hash": "sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180",
+        "bytes": 752596,
+        "triangles": 6948,
+        "vertices": 18500,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.glb",
+        "hash": "sha256:35725ebc4ad3311e233e5f12a4efe40d09a2b81a277b8e4050430fc6521bab54",
+        "bytes": 752104,
+        "triangles": 6948,
+        "vertices": 18500,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.skyline.glb",
+        "hash": "sha256:ddd5942eae142ec5608495a927981ecba5368619484fd170687ac3c4d6aaa31d",
+        "bytes": 79644,
+        "triangles": 904,
+        "vertices": 2023,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.district.glb",
+        "hash": "sha256:bd0c6b339fecb324ebee21903a7ca8db4dc6e04c00b6be542a6263fd0477b5e4",
+        "bytes": 218108,
+        "triangles": 2896,
+        "vertices": 5412,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.street.glb",
+        "hash": "sha256:2ecf79cf127b3bb2f88a2ed7ccdf42e291130eeae7345f9ed114b335db26b4ca",
+        "bytes": 384524,
+        "triangles": 5182,
+        "vertices": 9654,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.closeup.glb",
+        "hash": "sha256:7eecddc25e4d3e3ed226be4a6161fc4e9d63445a1607cfbf26d239ab4b4aab1e",
+        "bytes": 524328,
+        "triangles": 6948,
+        "vertices": 13243,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Source, runtime and four LODs: zero errors/warnings; no embedded images. All levels retain minY=0 and maxY=52m. Two targeted tests pass for byte determinism, height, triangle/download limits, external materials and homogeneous GPU attributes. Unused-UV informational messages are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.skyline.glb",
+        "hash": "sha256:ddd5942eae142ec5608495a927981ecba5368619484fd170687ac3c4d6aaa31d",
+        "bytes": 79644,
+        "triangles": 904,
+        "vertices": 2023,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.district.glb",
+        "hash": "sha256:bd0c6b339fecb324ebee21903a7ca8db4dc6e04c00b6be542a6263fd0477b5e4",
+        "bytes": 218108,
+        "triangles": 2896,
+        "vertices": 5412,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.street.glb",
+        "hash": "sha256:2ecf79cf127b3bb2f88a2ed7ccdf42e291130eeae7345f9ed114b335db26b4ca",
+        "bytes": 384524,
+        "triangles": 5182,
+        "vertices": 9654,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0y/n0267_heidelberg_castle/model.closeup.glb",
+        "hash": "sha256:7eecddc25e4d3e3ed226be4a6161fc4e9d63445a1607cfbf26d239ab4b4aab1e",
+        "bytes": 524328,
+        "triangles": 6948,
+        "vertices": 13243,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -78.75,
+          0,
+          -102.81532287597656
+        ],
+        "max": [
+          92.55503845214844,
+          52,
+          101.1500015258789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 297752,
+    "notes": "Skyline/district/street/closeup: 904/2896/5182/6948 triangles and 79644/218108/384524/524328 bytes. Initial combined payload297752bytes excludes shared graphs. Source regeneration is byte-identical, strict medium-fi audit has no findings and recipe formatting passes. Checks were limited to this model; no unrelated generators, engine CI or dependency audit."
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0262_stirling_castle",
+  "sourceHash": "sha256:ccc7e8dc71d97488c56879f42e20bd27356fd2685bca5de765a5f169fd20f938",
+  "runtimeHash": "sha256:9cd933a1b673cfed664f639e66ccc1328bfce2210148f1ea8aa34a11c619bc37",
+  "captureReportHash": "sha256:a531127f6202b99b9ee1eb156ae3be99e8f404d7232380bfce071ad2890a8017",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/forework-and-ochre-hall.png",
+      "shots/inner-close.png",
+      "shots/compound-plan.png",
+      "shots/lions-den-and-palace.png",
+      "shots/gate-passage.png",
+      "shots/north-bailey-and-chapel.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Ochre crow-stepped Great Hall, open palace court, Chapel Royal, Kings Old Building and low drum gatehouse remain distinct. The mapped site contains separate buildings and open courts. Corrected approach ramp, roof chimneys, low ancillary windows and connected outer entry walls. Interiors and individual Renaissance sculptures remain outside scope."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:da85a558d86a88275ea7ed1e3dec89e569b0f02a1fca8840900aae6444e27e0a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/forework-and-ochre-hall.png",
+      "shots/shared/inner-close.png",
+      "shots/shared/compound-plan.png",
+      "shots/shared/lions-den-and-palace.png",
+      "shots/shared/gate-passage.png",
+      "shots/shared/north-bailey-and-chapel.png"
+    ],
+    "notes": "Inspected 10 shared-loader frames. Sandstone, lime plaster and slate graphs load once each. Five material groups include local PBR glazing and lawn. No embedded images. Unload releases every model geometry. Canonical Earth lighting is reviewed in the separate medium-fi report."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:909b7fb1531e0c394d41935c9bca0db4a3965a44f88952317205b593adb96404",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/forework-and-ochre-hall.png",
+      "medium-fi/inner-close.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/lions-den-and-palace.png",
+      "medium-fi/gate-passage.png",
+      "medium-fi/north-bailey-and-chapel.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 context frames: street/block/skyline distances, noon/late light, Economy with no cast shadows and High, untextured silhouette, six architectural detail views and four same-camera LOD comparisons. English terrace shells supply procedural scale/palette context, not actual neighboring buildings. Main courtyards stay open, all levels preserve the ochre Hall and gatehouse. Near-only window bars are limited to large Hall windows at the approximately 0.45m detail cutoff. Ground datum is synthetic; steep real-site terrain, moving-camera shimmer and physical devices remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID way/100542995 identifies the compound; separate mapped parts include Great Hall way/68955265, Chapel Royal way/68955287, Kings Old Building way/68955260, gatehouse way/68955277 and palace relation/1083531 with its courtyard. Anchor [-3.948153826,56.124036337], heading 0.7346639643808965; native +Z southeast. Heights and relative terrace levels are photographic estimates. Castle-rock elevation and real entrance alignment are unreviewed. Placement remains draft and replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. The source master itself is 8327 triangles, with five merged materials and three shared graphs. All four authored LODs meet budgets. Linear vertex color conversion, no private images, no baked lighting, no per-stone geometry. Small ancillary buildings and sculpture are deliberately abstracted; real-world placement is not approved."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcv/n0262_stirling_castle/models/source.glb",
+        "hash": "sha256:ccc7e8dc71d97488c56879f42e20bd27356fd2685bca5de765a5f169fd20f938",
+        "bytes": 768644,
+        "triangles": 8327,
+        "vertices": 18489,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.glb",
+        "hash": "sha256:9cd933a1b673cfed664f639e66ccc1328bfce2210148f1ea8aa34a11c619bc37",
+        "bytes": 768152,
+        "triangles": 8327,
+        "vertices": 18489,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.skyline.glb",
+        "hash": "sha256:e65dd2b9cfcc3b4ee32d3b14138a5bdb2703857725cc191ce17d92970cd0be71",
+        "bytes": 88764,
+        "triangles": 1000,
+        "vertices": 2260,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -65.12725067138672,
+          0,
+          -159.16209411621094
+        ],
+        "max": [
+          65.70185852050781,
+          34,
+          138.7969970703125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.district.glb",
+        "hash": "sha256:d93f2cb2e4e2ae4205e659b416931b19c896243a159102dcf27fc839e4993ee1",
+        "bytes": 261144,
+        "triangles": 3424,
+        "vertices": 6519,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.73577117919922,
+          0,
+          -159.16209411621094
+        ],
+        "max": [
+          65.70584869384766,
+          34,
+          138.7969970703125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.street.glb",
+        "hash": "sha256:a923fe2efac41e41aa5818ab2ab42537811d5d1bafcb981030d9382036812c79",
+        "bytes": 464836,
+        "triangles": 6527,
+        "vertices": 11659,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.closeup.glb",
+        "hash": "sha256:ca356fcd4895e085f074fdcaaa4c5f66c6f746390f23566dc5e67f8c87b38dcd",
+        "bytes": 556856,
+        "triangles": 8327,
+        "vertices": 13915,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Zero errors and warnings for source, imported model and four runtime GLBs. All levels start at Y=0 and retain the 34m Hall chimney. Targeted tests verify deterministic bytes, budgets, shared material bindings and homogeneous GPU attribute buffers. Unused UV informational messages reflect external surface binding."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.skyline.glb",
+        "hash": "sha256:e65dd2b9cfcc3b4ee32d3b14138a5bdb2703857725cc191ce17d92970cd0be71",
+        "bytes": 88764,
+        "triangles": 1000,
+        "vertices": 2260,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -65.12725067138672,
+          0,
+          -159.16209411621094
+        ],
+        "max": [
+          65.70185852050781,
+          34,
+          138.7969970703125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.district.glb",
+        "hash": "sha256:d93f2cb2e4e2ae4205e659b416931b19c896243a159102dcf27fc839e4993ee1",
+        "bytes": 261144,
+        "triangles": 3424,
+        "vertices": 6519,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.73577117919922,
+          0,
+          -159.16209411621094
+        ],
+        "max": [
+          65.70584869384766,
+          34,
+          138.7969970703125
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.street.glb",
+        "hash": "sha256:a923fe2efac41e41aa5818ab2ab42537811d5d1bafcb981030d9382036812c79",
+        "bytes": 464836,
+        "triangles": 6527,
+        "vertices": 11659,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcv/n0262_stirling_castle/model.closeup.glb",
+        "hash": "sha256:ca356fcd4895e085f074fdcaaa4c5f66c6f746390f23566dc5e67f8c87b38dcd",
+        "bytes": 556856,
+        "triangles": 8327,
+        "vertices": 13915,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -65.88556671142578,
+          0,
+          -159.27728271484375
+        ],
+        "max": [
+          65.85066223144531,
+          34,
+          139.15158081054688
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 349908,
+    "notes": "Skyline/district/street/closeup use 1000/3424/6527/8327 triangles and 88764/261144/464836/556856 bytes. Initial payload 349908 bytes, excluding shared material graphs. The outermost small store retains a distant volume to keep the envelope consistent. Skyline uses the canonical 0.65 mean for textured surfaces; local lawn color is preserved."
+  }
+}

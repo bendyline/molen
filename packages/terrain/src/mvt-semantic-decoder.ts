@@ -351,6 +351,15 @@ function decodeLandcover(
       ...(subclass !== undefined ? { subclass } : {}),
       polygons,
       ...(density !== undefined && density >= 0 ? { density } : {}),
+      ...(optionalStringProperty(feature.properties, ['crop']) !== undefined
+        ? { crop: optionalStringProperty(feature.properties, ['crop']) }
+        : {}),
+      ...(optionalStringProperty(feature.properties, ['trees']) !== undefined
+        ? { trees: optionalStringProperty(feature.properties, ['trees']) }
+        : {}),
+      ...(feature.properties.irrigated !== undefined
+        ? { irrigated: flagProperty(feature.properties, ['irrigated']) }
+        : {}),
     };
     result.landcover.push(decoded);
   });
@@ -517,6 +526,8 @@ function decodePois(
           ['brand', ['brand']],
           ['brandId', ['brand:wikidata', 'brand_id']],
           ['leafType', ['leaf_type', 'leafType']],
+          ['species', ['species', 'species:en']],
+          ['genus', ['genus']],
         ] as const) {
           const value = optionalStringProperty(properties, names);
           if (value !== undefined) poi[field] = value;

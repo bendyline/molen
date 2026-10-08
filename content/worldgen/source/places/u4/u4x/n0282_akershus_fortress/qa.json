@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0282_akershus_fortress",
+  "sourceHash": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130",
+  "runtimeHash": "sha256:0aba5610be2efbeeca63469b3331bcfd1af8a4acb851aa47ef8a514d10b9fd1f",
+  "captureReportHash": "sha256:c264f0962d27826e574e91338f648a8476b85ca90f5fedba5835bb7b5a97cc5c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/castle-two-clock-spires.png",
+      "shots/open-court-and-roof-hierarchy.png",
+      "shots/northern-entry-vault.png",
+      "shots/stepped-gables-and-clock-lantern.png",
+      "shots/resistance-museum-guardhouse.png",
+      "shots/northern-magazine-bastions.png"
+    ],
+    "notes": "Inspected all11 final portable frames. Open castle court,two broad-capped clock spires,stepped brick gables,stone lower towers and tiered inner-fortress massing are visible. Initial review caught a closed entrance and supporting buildings outside the estimated enclosure. Cut the entry across both intersecting mapped wall segments,clamped jamb geometry,expanded the estimated supporting enclosure,moved buried clock faces and pond surfaces,and seated two chimneys. Thickened stepped gables and capped roof undersides to remove daylight seams. Every final frame was recaptured after these repairs. Wider layout and terrace elevations are approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6b9c65e46c557205924a73da0aaced4b6c507cec11f4d6d587bad3911250345d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/castle-two-clock-spires.png",
+      "shots/shared/open-court-and-roof-hierarchy.png",
+      "shots/shared/northern-entry-vault.png",
+      "shots/shared/stepped-gables-and-clock-lantern.png",
+      "shots/shared/resistance-museum-guardhouse.png",
+      "shots/shared/northern-magazine-bastions.png"
+    ],
+    "notes": "Inspected all10 final shared-loader frames. Eight merged groups,six existing shared256² brick,granite,slate,ceramic tile,copper and lime-plaster graphs. Blue-grey glazing and stepped ground remain untextured. Physical-repeat UVs and linear vertex colors;no embedded images,photographic texture copies,baked illumination or AO. Each graph loads once per view;eviction disposes all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:516d353bc8b907671720d8e7d2ab7548d568a8a0893ebfd3623401c28d82f91a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/castle-two-clock-spires.png",
+      "medium-fi/open-court-and-roof-hierarchy.png",
+      "medium-fi/northern-entry-vault.png",
+      "medium-fi/stepped-gables-and-clock-lantern.png",
+      "medium-fi/resistance-museum-guardhouse.png",
+      "medium-fi/northern-magazine-bastions.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all23 final canonical Earth-rig frames:street/block/skyline,noon/late,Economy/High,untextured silhouette,six architectural cameras and four same-camera LODs. Skyline997triangles preserves paired clock-spire caps,open-court castle massing and tiered fortress hierarchy;district adds broader openings and supporting roofs;street adds selected windows,stepped gables and clock detail;closeup refines sparse selected structure. Y0 ground and54m provisional highest spire survive all levels. Minor horizontal bounds change as wall thickness and distant bends simplify. Static LOD changes in stepped outlines remain visible and continuous-motion pop/shimmer are unmeasured. Sparse synthetic Swedish-cottage neighbors over flat ground are not the real Oslo shore or a terrain-fit test."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Cached exactQ644464 relation13931023 maps Akershus castle and its courtyard,not the whole fortress. Its117.171×53.677m castle plan is rotated from the undirected cached frame into native+Xeast/+Zsouth,heading0,anchor[10.736251164,59.906686713]. Wider enclosure,bastions,building positions,ponds,terraces,all elevations and temporal state are estimated from official photographs and an unscaled primary isometric trail plan. Current wider-site mapping was unavailable. Castle courtY12 and highest spireY54 are authoring values over provisional lower-groundY0,not actual heights or an anchor terrain elevation. OSM ele27 is not used as a surveyed datum. Exact clock-tower attachments,orientation,terrain blending and replacement fit need in-world review. Inactive draft,replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source3883triangles,eight merged groups,six shared graphs,noimages. Recognition comes from the paired clock spires,mixed masonry/stepped-gable castle wings and tiered rampart silhouette. Flat normals,sRGB-to-linear tints,blue-grey opaque glazing,dark roofs and sparse visible openings. No individual bricks,microbevels,subpixel rails,interiors or reconstructed demolished Vag(e)hals tower. Photo-informed appearance and estimated proportions do not certify whole-fortress fidelity or placement."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u4/u4x/n0282_akershus_fortress/models/source.glb",
+        "hash": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130",
+        "bytes": 470460,
+        "triangles": 3883,
+        "vertices": 11649,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.glb",
+        "hash": "sha256:0aba5610be2efbeeca63469b3331bcfd1af8a4acb851aa47ef8a514d10b9fd1f",
+        "bytes": 469760,
+        "triangles": 3883,
+        "vertices": 11649,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.skyline.glb",
+        "hash": "sha256:35d2f3d1e5efbe21950ed2670ffc8ef49e06ad9aea3fd1de2e19c6e119aec767",
+        "bytes": 88136,
+        "triangles": 997,
+        "vertices": 2243,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -92.38528442382812,
+          0,
+          -304.3764953613281
+        ],
+        "max": [
+          133.20928955078125,
+          54,
+          99.24121856689453
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.district.glb",
+        "hash": "sha256:879c34c0ff608d477112da1fd9ea36859d920572f43e58c3c767f594415c2e65",
+        "bytes": 188236,
+        "triangles": 2119,
+        "vertices": 4618,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.39990234375,
+          0,
+          -304.39617919921875
+        ],
+        "max": [
+          133.3582000732422,
+          54,
+          99.33963012695312
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.street.glb",
+        "hash": "sha256:4d998e5ead1d973d660ae612ed173edbbbe1d41ea7656660e6e0bdbfd40dbd81",
+        "bytes": 327120,
+        "triangles": 3779,
+        "vertices": 8198,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.closeup.glb",
+        "hash": "sha256:e278339b35a63ab74be1a32814fb0a68ebee64bda5f0ea1191fc466cffe1663f",
+        "bytes": 334084,
+        "triangles": 3883,
+        "vertices": 8374,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ],
+    "notes": "All6 GLBs pass with zeroerrors/warnings,noimages,Y0 and54m provisional maximum. Informational unusedUV notices are expected for external graphs. Two targeted LOD tests verify deterministic bytes,increasing detail,per-level caps,shared granite binding and homogeneous GPU attribute types."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.skyline.glb",
+        "hash": "sha256:35d2f3d1e5efbe21950ed2670ffc8ef49e06ad9aea3fd1de2e19c6e119aec767",
+        "bytes": 88136,
+        "triangles": 997,
+        "vertices": 2243,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -92.38528442382812,
+          0,
+          -304.3764953613281
+        ],
+        "max": [
+          133.20928955078125,
+          54,
+          99.24121856689453
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.district.glb",
+        "hash": "sha256:879c34c0ff608d477112da1fd9ea36859d920572f43e58c3c767f594415c2e65",
+        "bytes": 188236,
+        "triangles": 2119,
+        "vertices": 4618,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.39990234375,
+          0,
+          -304.39617919921875
+        ],
+        "max": [
+          133.3582000732422,
+          54,
+          99.33963012695312
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.street.glb",
+        "hash": "sha256:4d998e5ead1d973d660ae612ed173edbbbe1d41ea7656660e6e0bdbfd40dbd81",
+        "bytes": 327120,
+        "triangles": 3779,
+        "vertices": 8198,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u4/u4x/n0282_akershus_fortress/model.closeup.glb",
+        "hash": "sha256:e278339b35a63ab74be1a32814fb0a68ebee64bda5f0ea1191fc466cffe1663f",
+        "bytes": 334084,
+        "triangles": 3883,
+        "vertices": 8374,
+        "materials": 8,
+        "sharedGraphs": 6,
+        "images": 0,
+        "min": [
+          -92.69988250732422,
+          0,
+          -304.6953430175781
+        ],
+        "max": [
+          133.6492462158203,
+          54,
+          99.62669372558594
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 8
+      }
+    ],
+    "initialDownloadBytes": 276372,
+    "notes": "Skyline/district/street/closeup:997/2119/3779/3883triangles and88136/188236/327120/334084bytes. Initial276372bytes excludes shared graph downloads. All level caps pass. Detailed source remains a separately generated master;recipe hash binds geometry recipe and map controls. Physical laptop/phone timing and continuous-motion LOD transitions remain unmeasured."
+  }
+}

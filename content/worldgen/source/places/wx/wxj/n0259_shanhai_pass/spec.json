@@ -1,0 +1,231 @@
+{
+  "planId": "N0259",
+  "id": "N0259",
+  "assetId": "molen.worldgen.structure.n0259_shanhai_pass",
+  "title": "Shanhai Pass",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q1048381",
+  "referenceCoordinate": {
+    "latitude": 40.00916,
+    "longitude": 119.75357
+  },
+  "visualBrief": "Zhendong Gate: deep arched masonry platform, two upturned roof tiers, hip-and-gable crown and red upper gallery with a pale five-character plaque. Short city-wall attachments; no wider pass or coastal fortress.",
+  "size": [
+    76,
+    26.510921478271484,
+    27.850000381469727
+  ],
+  "actualBounds": {
+    "min": [
+      -38,
+      0,
+      -14
+    ],
+    "max": [
+      38,
+      26.510921478271484,
+      13.850000381469727
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X northwest along mapped gate face",
+    "front": "+Z outward northeast",
+    "origin": "Mapped gate platform center; ground Y=0"
+  },
+  "sourceFacts": {
+    "platformApproximateHeightMeters": 12,
+    "towerPublishedHeightMeters": 13.7,
+    "towerPublishedPlanMeters": [
+      20,
+      10.1
+    ],
+    "mapIdentity": "Named way/414001373; no Wikidata tag on the map feature",
+    "surveyedVerticalDatum": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "masonry": "#a3a093",
+      "roof": "#646961",
+      "red": "#b34837",
+      "trim": "#436d66",
+      "cream": "#e8dfbe",
+      "recess": "#3e444a",
+      "ridge": "#a99a70"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "identityFeatures": [
+      "Open arched platform",
+      "Double-eaved hip-and-gable silhouette",
+      "Red gallery and cream plaque"
+    ],
+    "materialBudget": 4
+  },
+  "reconstruction": {
+    "basis": "Official scenic-area dimensions and photographs; named OSM gate footprint",
+    "scope": "Zhendong Gate exterior with short adjoining wall stubs",
+    "referenceState": "Conserved present-day gate; temporary flags and floral displays omitted"
+  },
+  "referencePages": [
+    "https://www.shgjq.com/xwzx/283.jhtml",
+    "https://artsandculture.google.com/story/MwWhBZEOAqWBCQ?hl=zh-CN",
+    "https://www.openstreetmap.org/way/414001373"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft: named-feature orientation; real-terrain fit pending",
+    "anchor": [
+      119.753742,
+      40.009332
+    ],
+    "heading": 2.5025517303973333,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/414001373",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/414001373"
+    ],
+    "wikidataId": "Q1048381",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bd1f268f50becec94bdb67283dba1aa271585ba92133a0cddcc0c7ff4de6561c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published tower plan and height, mapped platform envelope; reconstructed eaves and ornament proportions.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map data © OpenStreetMap contributors, ODbL-1.0. Reference photographs are linked evidence, not textures or redistributed files.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Platform and wall ends simplify the mapped outline. Stair location and vertical proportions are reconstructed, not surveyed.",
+    "The 68 published arrow windows are represented by a visible rhythm, not an archaeological count. Painted patterns, calligraphy and roof beasts are deliberately simplified under the medium-fi standard.",
+    "Context review uses procedural neighbors and canonical Earth lighting; actual terrain placement remains a separate pending review. Enclosed upper interiors are not modeled."
+  ],
+  "qaCameras": [
+    {
+      "name": "gate-arch-and-roof-tiers",
+      "position": [
+        4,
+        15,
+        79
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "west-gallery-and-plaque",
+      "position": [
+        -12,
+        24,
+        -54
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "hip-and-gable-profile",
+      "position": [
+        48,
+        29,
+        6
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "roof-plan-and-wall-contact",
+      "position": [
+        18,
+        79,
+        35
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "through-passage",
+      "position": [
+        0,
+        3,
+        25
+      ],
+      "lookAt": [
+        0,
+        4,
+        -15
+      ]
+    },
+    {
+      "name": "upper-gallery-rhythm",
+      "position": [
+        20,
+        22,
+        31
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve authored medium-fi silhouette; four levels remove selected details explicitly and share central materials.",
+  "mesh": {
+    "triangles": 5338,
+    "vertices": 10938,
+    "materials": 4,
+    "bytes": 460532,
+    "sha256": "sha256:264019eec2598887face6903d649a43be545adde05f337cde20cfd10c265667f"
+  }
+}

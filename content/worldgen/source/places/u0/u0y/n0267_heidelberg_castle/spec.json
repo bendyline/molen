@@ -1,0 +1,242 @@
+{
+  "planId": "N0267",
+  "id": "N0267",
+  "assetId": "molen.worldgen.structure.n0267_heidelberg_castle",
+  "title": "Heidelberg Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q327265",
+  "referenceCoordinate": {
+    "latitude": 49.410555555,
+    "longitude": 8.715833333
+  },
+  "visualBrief": "Present-day red-sandstone palace ruins around an open court: restored twin-gabled Friedrich wing, roofless Ottheinrich and English wings, broken defensive towers and52m gate.",
+  "mediumFiContext": {
+    "scale": "3",
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "size": [
+    171.30503845214844,
+    52,
+    203.96532440185547
+  ],
+  "actualBounds": {
+    "min": [
+      -78.75,
+      0,
+      -102.81532287597656
+    ],
+    "max": [
+      92.55503845214844,
+      52,
+      101.1500015258789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X approximately south",
+    "front": "+Z approximately west",
+    "origin": "Mapped site center; lowest moat foundations Y=0, court Y=12m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/254154168 exact Wikidata Q327265",
+    "publishedGateHeightMeters": 52,
+    "publishedGateMoatWidthMeters": 20,
+    "publishedWestMoatWidthMeters": 23
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#bd8c73",
+      "warm": "#c8a080",
+      "trim": "#d6b594",
+      "plaster": "#ddcbae",
+      "slate": "#626872",
+      "tile": "#a66c52",
+      "glass": "#4d6178",
+      "paving": "#b4ada0"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Twin Friedrich gables and slate roof above the northern terrace",
+      "Roofless Ottheinrich and English wings with true through-openings",
+      "Broken round towers, fallen powder-tower wall and curved-roof gate tower"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Official current-site isometry, owner photographs and OSM site boundary",
+    "scope": "Main castle and immediate defensive terraces; no distant gardens, interiors or terrain mesh"
+  },
+  "referencePages": [
+    "https://www.schloss-heidelberg.de/en/visitor-experience/castle-garden/buildings",
+    "https://www.schloss-heidelberg.de/fileadmin/Broschueren/Abrissplaene/ssg_schloss-heidelberg_kunstfuehrer-lageplan.pdf",
+    "https://www.schloss-heidelberg.de/wissenswert-amuesant/geschichtshaeppchen",
+    "https://www.openstreetmap.org/way/254154168"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; actual terrain seating pending",
+    "anchor": [
+      8.715271675,
+      49.41059654
+    ],
+    "heading": -1.430862687712,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/254154168",
+    "groundModelY": 12,
+    "featureIds": [
+      "way/254154168"
+    ],
+    "wikidataId": "Q327265",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1576829faa225bc7015b78d229477f262303f29ce6b49c965c61c6c6f9c0a5e2",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Signed frame from south gate/north terrace; manually reconstructed wings and12m court datum need hillside/moat terrain review."
+  },
+  "scaleBasis": "Mapped273.118×214.468m site frame includes garden grounds. Individual wing footprints and heights reconstructed from owner plan/photos; gate52m from moat base, courtyard12m. No extrusion of the entire site boundary. Terrain attachment pending.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. OSM frame © OpenStreetMap contributors, ODbL-1.0. Owner references linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0; owner plans and photographs used as research.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Simplified current exterior, not a historical reconstruction or measured survey.",
+    "No unique textures, sculptures in full detail, palace interiors, terrain or distant gardens.",
+    "Hillside contact, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "south-gate-and-broken-tower",
+      "position": [
+        230,
+        100,
+        -60
+      ],
+      "lookAt": [
+        38,
+        25,
+        -25
+      ]
+    },
+    {
+      "name": "north-terrace-and-friedrich",
+      "position": [
+        -230,
+        100,
+        5
+      ],
+      "lookAt": [
+        -48,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "west-english-wing",
+      "position": [
+        -10,
+        110,
+        220
+      ],
+      "lookAt": [
+        -25,
+        24,
+        48
+      ]
+    },
+    {
+      "name": "east-ruined-wings",
+      "position": [
+        5,
+        115,
+        -220
+      ],
+      "lookAt": [
+        -10,
+        25,
+        -50
+      ]
+    },
+    {
+      "name": "courtyard-facades",
+      "position": [
+        25,
+        46,
+        2
+      ],
+      "lookAt": [
+        -40,
+        28,
+        -30
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        0,
+        365,
+        1
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Heidelberg-specific restored/ruined wing contrast, twin gables, broken towers and open courtyard at all levels.",
+  "mesh": {
+    "triangles": 6948,
+    "vertices": 18500,
+    "materials": 5,
+    "bytes": 752596,
+    "sha256": "sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180"
+  }
+}

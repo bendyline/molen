@@ -1,0 +1,249 @@
+{
+  "planId": "N0272",
+  "id": "N0272",
+  "assetId": "molen.worldgen.structure.n0272_kuressaare_castle",
+  "title": "Kuressaare Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q1768091",
+  "referenceCoordinate": {
+    "latitude": 58.24689,
+    "longitude": 22.47929
+  },
+  "visualBrief": "Square dolomite convent building with a small open courtyard, broad red roof fields sloping inward, massive northern Sturvolt, slender eastern Tall Hermann, crenellated gallery and timber gate oriel.",
+  "mediumFiContext": {
+    "scale": "1",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    43.2450008392334,
+    38.20000076293945,
+    44.334999084472656
+  ],
+  "actualBounds": {
+    "min": [
+      -21.625,
+      0,
+      -23.049999237060547
+    ],
+    "max": [
+      21.6200008392334,
+      38.20000076293945,
+      21.28499984741211
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-southeast, 32.26 degrees south of east",
+    "front": "-Z northeast gate; Sturvolt at -X/-Z and Tall Hermann at +X/-Z",
+    "origin": "Mapped building center; architectural base Y=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/414356 exact Q1768091",
+    "mappedPlanMeters": [
+      42.607,
+      41.783
+    ],
+    "publishedSquareSideMeters": 43,
+    "publishedDefenceTowerHeightMeters": 37,
+    "mappedApproximateHeightMeters": 25
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#cdbf9e",
+      "trim": "#e6dcc7",
+      "roof": "#b56749",
+      "wood": "#795e47",
+      "glass": "#4d6178",
+      "metal": "#697075",
+      "paving": "#b6b0a1"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Massive northern and slender eastern square towers with red pyramidal roofs",
+      "Square courtyard compound with inward-sloping red roof fields and open L-shaped court",
+      "Crenellated perimeter gallery and two-storey timber gate oriel"
+    ]
+  },
+  "reconstruction": {
+    "basis": "OSM outer/courtyard outlines, museum dimensions and tour photographs, LUMIA floor plans and section",
+    "scope": "Convent building exterior and courtyard; excludes wider fortress, moat and separate buildings"
+  },
+  "referencePages": [
+    "https://linnus.samu.ee/en/about-the-castle/",
+    "https://www.lumia.ee/en/projects/kuressaare-episcopal-castle",
+    "https://www.kuressaarecastle.ee/",
+    "https://whc.unesco.org/en/tentativelists/1716/",
+    "https://www.openstreetmap.org/relation/414356"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; geographic seating pending",
+    "anchor": [
+      22.479324007,
+      58.246897902
+    ],
+    "heading": -0.563076620916,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/414356",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/414356"
+    ],
+    "wikidataId": "Q1768091",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7089d47ddff42a1e2287fd71bf9c7ba7ef9d6656b77be1203841698704951946",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Northern Sturvolt and eastern Tall Hermann resolve the signed map axis; northeast gate faces -Z. Terrain and approach seating require in-world review."
+  },
+  "scaleBasis": "Mapped42.607×41.783m footprint agrees with published43m plan. Northern tower reaches37m including finial; published datum is unspecified. Watchtower38.2m, outer wall20.4m, court wall13.6m and roof/eave levels inferred from the architect section and photographs. Map25m height carries an explicit uncertainty note.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Architect drawings and photographs linked as research references, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Saaremaa Museum tour and LUMIA drawings/photos used as visual references only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original medium-fi reconstruction, not a conservation survey.",
+    "Intermediate elevations and watchtower38.2m height inferred; the published37m defence-tower datum is unspecified.",
+    "Fine tracery, diamond glazing lattice, complete interiors and fixtures omitted.",
+    "Tour predates some2024 interior changes; exterior masses cross-checked against contemporary architect photographs.",
+    "Wider fortress, bastions, moat, Cannon Tower and neighboring buildings omitted.",
+    "Actual terrain seating, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "northeast-gate-and-towers",
+      "position": [
+        0,
+        37,
+        -82
+      ],
+      "lookAt": [
+        0,
+        17,
+        -3
+      ]
+    },
+    {
+      "name": "southwest-convent",
+      "position": [
+        -45,
+        37,
+        72
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "east-watchtower",
+      "position": [
+        78,
+        39,
+        -15
+      ],
+      "lookAt": [
+        7,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "north-sturvolt",
+      "position": [
+        -65,
+        40,
+        -45
+      ],
+      "lookAt": [
+        -8,
+        19,
+        -6
+      ]
+    },
+    {
+      "name": "cloister-court",
+      "position": [
+        1.7,
+        4.5,
+        5.5
+      ],
+      "lookAt": [
+        -6.58,
+        6.7,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-court-plan",
+      "position": [
+        0,
+        120,
+        1
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve unequal square towers, red inward roof ring and open courtyard in every LOD. Closer levels add aperture rhythm, cloister windows, raised gate and bowl.",
+  "mesh": {
+    "triangles": 8215,
+    "vertices": 17013,
+    "materials": 5,
+    "bytes": 714300,
+    "sha256": "sha256:e49a8a86aa042811f1a397a8726f38e3903eaea7d3827e0c051e188bd0ea59c2"
+  }
+}

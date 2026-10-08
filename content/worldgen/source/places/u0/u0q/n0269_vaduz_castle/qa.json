@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0269_vaduz_castle",
+  "sourceHash": "sha256:14db85eb73fc00da51eab3962f57efe761e7a26c9e60796cd3eb1eae7feaae42",
+  "runtimeHash": "sha256:280a7e0f2bbdd46c0aa70370e7843b463ab2e68ee7b8212c0f2523cdd25127d4",
+  "captureReportHash": "sha256:f400fc07a6694aa47c9ddc5fc0348a77a5e7272cf57300fa5bb2e297692e4f03",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/west-valley-front.png",
+      "shots/north-open-roundel.png",
+      "shots/south-covered-roundel.png",
+      "shots/east-keep-and-roundels.png",
+      "shots/inner-court.png",
+      "shots/compound-plan.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Square keep, roofed southern roundel with timber hoarding, open northern roundel, cream residence, crossed gables, dormers, red/white shutters and valley-facing crenellated curtain remain legible. Darkened tile roofs to match the reference palette and lowered the inner-court camera. Internal wing dimensions and most elevations are approximate reconstructions from current municipal/tourism photos and the published Amt für Kultur research model. Architectural foundation skirts reach Y=0 for terrain overlap; they are not a surveyed cliff model."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d96cdf1e85698b89bfa53362d344247a9bb040718d51c4f0f56b0b64af1ad23d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/west-valley-front.png",
+      "shots/shared/north-open-roundel.png",
+      "shots/shared/south-covered-roundel.png",
+      "shots/shared/east-keep-and-roundels.png",
+      "shots/shared/inner-court.png",
+      "shots/shared/compound-plan.png"
+    ],
+    "notes": "Inspected all 10 shared-loader views. Lime plaster, limestone, ceramic tile and plain wood each load once; opaque local glass is the fifth merged group. No embedded or private images. Unloading releases all model geometries. No baked directional lighting, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6c333f7302fc03a32d5a796a3cfbc244106ae858278be500102a9cc55f4a2afe",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/west-valley-front.png",
+      "medium-fi/north-open-roundel.png",
+      "medium-fi/south-covered-roundel.png",
+      "medium-fi/east-keep-and-roundels.png",
+      "medium-fi/inner-court.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architecture views and four same-camera LOD views. Cream plaster, grey limestone and restrained brown roofs remain coherent with neighboring synthetic houses. Skyline retains the keep, two distinct roundels, roof rhythm and valley curtain; shutters, dormers and small crenellations appear nearer. Synthetic flat-ground context does not establish hillside seating. Continuous-motion shimmer and physical-device performance remain unverified."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Complete compound OSM relation/1252853 establishes anchor [9.52434566,47.139574837], heading 1.549323723192, +X north about 1.23 degrees east of true north, -Z west toward Vaduz and the Rhine valley. The approximately 75.448 by 52.756m mapped main building has three internal holes; the source-local frame preserves these controls. Height 30m is the mapped maximum. Current photographs and the published archaeological research model inform the reconstructed wings and western curtain extending beyond the main building outline. Proposed court and groundModelY=4.5m are not applied by the inactive draft registrar. Actual hillside, courtyard and approach contact remain pending. replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The 6623-triangle source master and four authored levels preserve the castle-specific keep, contrasting roundels, crossed roof masses and shutter rhythm. Five merged groups, four shared 256² graphs, no unique textures. sRGB palettes decode to linear and skyline applies the shared-texture mean. Interiors, tiny masonry and distant estate grounds are omitted. Appearance approval is separate from map/terrain approval."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0q/n0269_vaduz_castle/models/source.glb",
+        "hash": "sha256:14db85eb73fc00da51eab3962f57efe761e7a26c9e60796cd3eb1eae7feaae42",
+        "bytes": 707688,
+        "triangles": 6623,
+        "vertices": 17361,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.glb",
+        "hash": "sha256:280a7e0f2bbdd46c0aa70370e7843b463ab2e68ee7b8212c0f2523cdd25127d4",
+        "bytes": 707196,
+        "triangles": 6623,
+        "vertices": 17361,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.skyline.glb",
+        "hash": "sha256:f2e0946f4089e4545be1d754b32e824c40f3db9338eca08e4f5ca64f28abffe0",
+        "bytes": 64184,
+        "triangles": 820,
+        "vertices": 1608,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.district.glb",
+        "hash": "sha256:dd81e764100110f49fb1d18eaeb9bf9efa9c6bcf5f7d516687c44efdc0a2d98d",
+        "bytes": 207476,
+        "triangles": 2625,
+        "vertices": 5157,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.street.glb",
+        "hash": "sha256:4527adf9b494f4849162a6a1f8c45f36abb30b770ac7c6e2992d13142feee45f",
+        "bytes": 454256,
+        "triangles": 5501,
+        "vertices": 11531,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.311616897583008
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.closeup.glb",
+        "hash": "sha256:88c2eac015ca8e3e76fae38ff2aad2ac3553836d1d3b70f68b790f75f17e2d49",
+        "bytes": 540680,
+        "triangles": 6623,
+        "vertices": 13745,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Source, runtime and four LODs: zero errors/warnings, zero images, minY=0 and maxY=30m. Two targeted tests pass for determinism, height, triangle/download budgets, external materials and homogeneous GPU attribute layouts. Unused-UV informational messages are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.skyline.glb",
+        "hash": "sha256:f2e0946f4089e4545be1d754b32e824c40f3db9338eca08e4f5ca64f28abffe0",
+        "bytes": 64184,
+        "triangles": 820,
+        "vertices": 1608,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.district.glb",
+        "hash": "sha256:dd81e764100110f49fb1d18eaeb9bf9efa9c6bcf5f7d516687c44efdc0a2d98d",
+        "bytes": 207476,
+        "triangles": 2625,
+        "vertices": 5157,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.street.glb",
+        "hash": "sha256:4527adf9b494f4849162a6a1f8c45f36abb30b770ac7c6e2992d13142feee45f",
+        "bytes": 454256,
+        "triangles": 5501,
+        "vertices": 11531,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.311616897583008
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.closeup.glb",
+        "hash": "sha256:88c2eac015ca8e3e76fae38ff2aad2ac3553836d1d3b70f68b790f75f17e2d49",
+        "bytes": 540680,
+        "triangles": 6623,
+        "vertices": 13745,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -39.099998474121094,
+          0,
+          -29.749710083007812
+        ],
+        "max": [
+          38,
+          30,
+          27.5
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 271660,
+    "notes": "Skyline/district/street/closeup: 820/2625/5501/6623 triangles and 64184/207476/454256/540680 bytes. Initial combined payload 271660 bytes excludes shared graphs. Source regeneration is byte-identical; strict medium-fi audit and recipe Biome check pass. Only this model was built and checked."
+  }
+}

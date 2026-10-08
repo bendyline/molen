@@ -1,0 +1,231 @@
+{
+  "planId": "N0276",
+  "id": "N0276",
+  "assetId": "molen.worldgen.structure.n0276_miramare_castle",
+  "title": "Miramare Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q165069",
+  "referenceCoordinate": {
+    "latitude": 45.702454,
+    "longitude": 13.712318
+  },
+  "visualBrief": "Ivory Istrian stone Miramare Castle: angled eastern and taller western crenellated wings, recessed stair hall, paired/triple round-headed windows, projecting sea-side bay and square southwest clock tower with four corner turrets.",
+  "mediumFiContext": {
+    "scale": "0.7",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    62.62128257751465,
+    29,
+    35.31399917602539
+  ],
+  "actualBounds": {
+    "min": [
+      -31.51534080505371,
+      0,
+      -17.656999588012695
+    ],
+    "max": [
+      31.105941772460938,
+      29,
+      17.656999588012695
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X almost east,0.478 degrees north of east",
+    "front": "-Z landward parterre; +Z sea terrace; square clock tower at southwest(-X,+Z)",
+    "origin": "Exact mapped building footprint center, provisional terrace attachment Y=0; not sea level"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/361092895 exact Q165069",
+    "mappedBuildingPlanMeters": [
+      60.48,
+      33.574
+    ],
+    "publishedTowerHeightAboveSeaMeters": 35,
+    "towerStoreys": 7,
+    "towerInternalFloorAreaApproxSquareMeters": 25,
+    "clockFaces": 4
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#e0d9c8",
+      "trim": "#eee7d8",
+      "roof": "#66717a",
+      "glass": "#4d6178"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 3,
+    "identityFeatures": [
+      "Two ivory angled crenellated wings joined by a recessed stair hall",
+      "Square sea-side clock tower with four corner turrets",
+      "Mixed paired/triple round-headed windows and projecting sea-side window bay"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Exact mapped building outline and current government museum exterior gallery; elevations inferred",
+    "scope": "Castle exterior only, excludes park, Castelletto, cliff, terrace retaining walls and interior"
+  },
+  "referencePages": [
+    "https://miramare.cultura.gov.it/en/the-castle/",
+    "https://www.movio.beniculturali.it/pmfvg/viverelottocentoatrieste/it/8/lo-stile-architettonico",
+    "https://www.movio.beniculturali.it/pmfvg/viverelottocentoatrieste/it/101/galleria-fotografica",
+    "https://miramare.cultura.gov.it/concorso-art-bonus-il-restauro-della-torretta-del-castello-la-costruzione/",
+    "https://miramare.cultura.gov.it/wp-content/uploads/2020/09/CS_25-SETTEMBRE-2020.pdf",
+    "https://www.openstreetmap.org/way/361092895"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain/approaches pending",
+    "anchor": [
+      13.712453245,
+      45.702528846
+    ],
+    "heading": 0.008338727695,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/361092895",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/361092895"
+    ],
+    "wikidataId": "Q165069",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ad077fd6a40f5d9f67199924129afc257df3d74028d511a401f4fd53f1a098b9",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Mapped building footprint; southwest clock tower resolves axis sign. TerraceY0 and sea datum separation inferred, real terrain seating pending."
+  },
+  "scaleBasis": "Mapped60.48×33.574m footprint fixes plan. Tower29m above provisional terraceY0 is inferred using the published35m above sea and visually interpreted approximate6m sea-to-terrace offset; no surveyed datum conversion is claimed. All facade elevations and details are approximate.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Museum photographs linked as research only, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Italian Ministry of Culture / Miramare Museum primary photographs and architectural notes used as research only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original medium-fi exterior interpretation, not a conservation or cadastral survey.",
+    "The museum publishes35m above sea for the tower. SourceY0 is the local terrace plane;29m tower top is inferred from photographs with an approximate6m sea-to-terrace offset, not a surveyed conversion.",
+    "All other elevations, facade subdivisions, turrets and openings are inferred from primary museum photographs.",
+    "Exact OSM building footprint fixes plan extent/anchor; wall height transitions and roof subdivision are interpreted.",
+    "Fine masonry joints, arcature carving, coats of arms, balustrades, glazing bars, interior rooms and flag/guy wires omitted.",
+    "Park, Castelletto, sea terrace retaining cliff and neighboring buildings excluded from the building footprint asset.",
+    "Actual sloping terrain contact, approaches, geographic activation, continuous-motion shimmer and physical-device performance remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "southwest-clock-tower",
+      "position": [
+        -53,
+        30,
+        47
+      ],
+      "lookAt": [
+        -22,
+        17,
+        8
+      ]
+    },
+    {
+      "name": "landward-two-wings",
+      "position": [
+        34,
+        29,
+        -65
+      ],
+      "lookAt": [
+        0,
+        10,
+        -3
+      ]
+    },
+    {
+      "name": "recessed-stair-entrance",
+      "position": [
+        13,
+        20,
+        -34
+      ],
+      "lookAt": [
+        3,
+        9,
+        -7
+      ]
+    },
+    {
+      "name": "sea-side-window-bay",
+      "position": [
+        -12,
+        18,
+        46
+      ],
+      "lookAt": [
+        -11,
+        10,
+        12
+      ]
+    },
+    {
+      "name": "angled-east-wing",
+      "position": [
+        53,
+        28,
+        23
+      ],
+      "lookAt": [
+        17,
+        10,
+        -1
+      ]
+    },
+    {
+      "name": "mapped-building-plan",
+      "position": [
+        0,
+        107,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve angled ivory wings, square clock tower, broad crenellations and round-headed window rhythm at all levels.",
+  "mesh": {
+    "triangles": 9918,
+    "vertices": 25590,
+    "materials": 3,
+    "bytes": 1042572,
+    "sha256": "sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d"
+  }
+}

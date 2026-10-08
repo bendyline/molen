@@ -39,6 +39,8 @@ export interface RegionAtlasDoc {
   title: string;
   doc?: string;
   version: number;
+  /** Nearest-outline fallback for coarse coastline gaps, in local world meters. Default 0. */
+  fallbackDistanceMeters?: number;
   regions: AtlasRegion[];
   /** Worldwide fallback chain, evaluated after region bindings and before pack defaults. */
   default: RegionAtlasDefaults;

@@ -1,0 +1,263 @@
+{
+  "planId": "N0279",
+  "id": "N0279",
+  "assetId": "molen.worldgen.structure.n0279_gripsholm_castle",
+  "title": "Gripsholm Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q714783",
+  "referenceCoordinate": {
+    "latitude": 59.256111,
+    "longitude": 17.219167
+  },
+  "visualBrief": "Mapped Gripsholm brick castle with open inner and outer courts, four differentiated oxidized-copper tower caps, a tall open lantern, broad red helmet tower, onion cap, stepped brick dormers, low tiled wings and a real northwest entrance passage.",
+  "mediumFiContext": {
+    "scale": "0.7",
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "size": [
+    138.10299682617188,
+    42,
+    64.05071258544922
+  ],
+  "actualBounds": {
+    "min": [
+      -69.00475311279297,
+      0,
+      -32.08571243286133
+    ],
+    "max": [
+      69.0982437133789,
+      42,
+      31.96500015258789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X southeast from outer forecourt toward the four-tower core",
+    "front": "Outer entrance at-X northwest;lake-facing facades around the core;two courts remain open",
+    "origin": "Mapped building rectangle center;provisional flat ground attachmentY=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/2848711 exact Q714783 building multipolygon",
+    "mappedPlanMeters": [
+      137.835,
+      63.929
+    ],
+    "mappedCourtyardHoles": 2,
+    "verifiedTowerHeightsMeters": null
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "brick": "#c58d72",
+      "red": "#bf7965",
+      "stone": "#b9b2a2",
+      "trim": "#e4ddc9",
+      "copper": "#71877c",
+      "tile": "#ae8667",
+      "glass": "#4d6178",
+      "clock": "#3b3e42",
+      "paving": "#b5afa1"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "materialBudgetReason": "Compound shares brick, granite, limestone, oxidized copper and roof-tile graphs, plus untextured blue-grey glass. Parts merge by material.",
+    "identityFeatures": [
+      "Four brick towers with different copper caps and an open tall lantern",
+      "Small polygonal inner court and long open outer court",
+      "Stepped brick dormers and lower tiled wings around the northwest entrance"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Exact mapped building multipolygon and two courtyard holes,operator visitor map,and four current/recent operator/SFV exterior photographs. Tower centers/radii approximate visible mapped arcs;roof profiles and elevations interpret photographs.",
+    "heightDatum": "No published or mapped tower heights available in these references. Body elevations8.5–26m and tallest roof42m are visual estimates,not surveys. Actual grounds have level differences.",
+    "scope": "Castle core,four differentiated tower caps,open inner/outer courts,outer wings and entrance passage. No island/lake terrain,boats,trees,drawbridge,remote estate buildings or interiors.",
+    "registration": "Mapped137.835×63.929m body plan;exact courtyard holes retained. Roof overhangs and facet approximations extend the perimeter slightly. Northwest entrance/southeast core sign interpreted from official map,not a completed terrain or facade review."
+  },
+  "referencePages": [
+    "https://www.kungligaslotten.se/english/royal-palaces-and-sites/gripsholm-castle.html",
+    "https://www.sfv.se/vara-fastigheter/sverige/sodermanlands-lan/gripsholms-slott",
+    "https://www.kungligaslotten.se/download/18.7ce04b63167c576df6c18f72/1549446726603/Karta%20%C3%B6ver%20Gripsholms%20slott%20eng.pdf",
+    "https://www.kungligaslotten.se/english/royal-palaces-and-sites/gripsholm-castle/visit-us/practical-information-access.html",
+    "https://www.openstreetmap.org/relation/2848711"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Inactive geographic draft;review pending",
+    "anchor": [
+      17.219554949,
+      59.256010491
+    ],
+    "heading": -0.787257418369,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/2848711",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/2848711"
+    ],
+    "wikidataId": "Q714783",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8d6c83292e4f1d97fd923026b13d77678e519f28a71bffc3e7b858e2f617d69e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Mapped body/courtyard plan and northwest-entrance/southeast-core sign; heights,terrain seating and real-site fit pending."
+  },
+  "scaleBasis": "Mapped 137.835×63.929m building plan and exact two courtyard holes. Tower arc centers/radii are approximated; elevations and cap profiles are interpreted from Royal Palaces/SFV exterior photos. Highest roof42m is inferred,not surveyed.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors,ODbL-1.0. Operator photographs and visitor map linked research only,not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors. The Royal Palaces/Swedish Royal Court and Statens Fastighetsverk primary references.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Mapped parent outline and courtyard holes establish body plan. Tower centers/radii approximate arc fits;individual roof profiles,elevations,window positions,dormers and ornament are visual interpretations.",
+    "No surveyed/published heights in the selected primary references. Tallest roof42m and body elevations are inferred proportions. Roof overhangs and lower-LOD facet approximations broaden the mapped envelope.",
+    "Tower names have not been independently matched to each source-local arc;position/roof labels avoid claiming that identification. Photo-based cap assignments and northwest entrance sign remain subject to real-site review.",
+    "FlatY0 does not represent actual ground differences,lake shore or island. Drawbridge,remote estate buildings,boats,trees and interiors excluded;model scope is the castle building compound.",
+    "Geographic activation,terrain seating and footprint replacement pending;inactive research draft,replaceFootprint=false. Review context neighbors/flat ground are synthetic,not actual Mariefred terrain.",
+    "Five shared256² graphs supply brick,granite,limestone,oxidized copper and roof tile;glass is untextured. Research photos/maps linked only. No fine mortar,thin glazing bars,carved ornament,wires or railings.",
+    "Physical laptop/phone performance and continuous-motion LOD shimmer remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "four-copper-caps",
+      "position": [
+        115,
+        40,
+        96
+      ],
+      "lookAt": [
+        31,
+        18,
+        1
+      ]
+    },
+    {
+      "name": "clock-open-lantern",
+      "position": [
+        65,
+        34,
+        -67
+      ],
+      "lookAt": [
+        25,
+        29,
+        -24
+      ]
+    },
+    {
+      "name": "two-open-courts",
+      "position": [
+        0,
+        185,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "northwest-entrance",
+      "position": [
+        -109,
+        17,
+        16
+      ],
+      "lookAt": [
+        -62,
+        6,
+        12
+      ]
+    },
+    {
+      "name": "stepped-brick-dormers",
+      "position": [
+        68,
+        33,
+        64
+      ],
+      "lookAt": [
+        42,
+        24,
+        12
+      ]
+    },
+    {
+      "name": "outer-court-tiled-wings",
+      "position": [
+        -25,
+        43,
+        0
+      ],
+      "lookAt": [
+        -24,
+        0,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve two open courts,four different copper roof silhouettes,open clock lantern and stepped dormers through compact runtime levels.",
+  "mesh": {
+    "triangles": 5247,
+    "vertices": 15549,
+    "materials": 6,
+    "bytes": 626436,
+    "sha256": "sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717"
+  }
+}

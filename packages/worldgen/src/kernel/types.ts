@@ -140,7 +140,10 @@ export interface ScatterPolygon {
 
 export interface ScatterExclusion {
   ring?: Vec2[];
+  holes?: Vec2[][];
   polyline?: Vec2[];
+  /** Source category, used by habitat proximity rules (e.g. river, lake, ocean). */
+  label?: string;
   /** Polyline width in meters (the exclusion covers `width / 2 + radius` on each side). */
   width?: number;
   /** Extra clearance in meters around the ring or polyline. */

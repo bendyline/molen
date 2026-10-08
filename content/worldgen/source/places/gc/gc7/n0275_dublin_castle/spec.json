@@ -1,0 +1,270 @@
+{
+  "planId": "N0275",
+  "id": "N0275",
+  "assetId": "molen.worldgen.structure.n0275_dublin_castle",
+  "title": "Dublin Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q742767",
+  "referenceCoordinate": {
+    "latitude": 53.343109,
+    "longitude": -6.267394
+  },
+  "visualBrief": "Dublin Castle current exterior campus: open Georgian Upper and Lower Courts, Bedford clock pavilion and flanking gates, round Record and Bermingham towers, pinnacled Gothic Chapel Royal, circular Dubh Linn garden, Coach House and Chester Beatty clock range.",
+  "mediumFiContext": {
+    "scale": "1.2",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    262.43299865722656,
+    34,
+    245.97999572753906
+  ],
+  "actualBounds": {
+    "min": [
+      -131.2169952392578,
+      0,
+      -122.98999786376953
+    ],
+    "max": [
+      131.21600341796875,
+      34,
+      122.98999786376953
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast,12.49 degrees north of east",
+    "front": "+Z gardens; -Z Dame/Castle Street; Lower Court toward +X",
+    "origin": "Mapped entire campus center; provisional ground attachment Y=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/350242806 exact Q742767",
+    "mappedSitePlanMeters": [
+      262.431,
+      245.981
+    ],
+    "publishedRecordWallThicknessUpToMeters": 4.8,
+    "bedfordFacadeBays": 5,
+    "bedfordFacadeStoreys": 2
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#bdb7a6",
+      "trim": "#ded8c7",
+      "brick": "#ba8269",
+      "roof": "#68717a",
+      "copper": "#82b8a0",
+      "glass": "#4d6178",
+      "paving": "#b5afa1",
+      "grass": "#8aa065",
+      "red": "#b86f62",
+      "ochre": "#dbc480",
+      "blue": "#8cabc1",
+      "cream": "#e6decc",
+      "dark": "#4f5559"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 7,
+    "materialBudgetReason": "Seven merged groups distinguish stone/brick/render, slate/copper roofing, glazing and lawn across the mixed historic campus; five shared graphs, no private textures.",
+    "identityFeatures": [
+      "Round medieval Record Tower beside pinnacled Gothic Chapel Royal",
+      "Bedford octagonal clock tower and green ogee dome above an open court with flanking gates",
+      "Circular serpent-pattern garden south of painted State Apartments and blue Bermingham Tower"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Exact mapped campus perimeter, OPW current illustrated site map, north-up strategic-plan base map and current exterior/aerial photographs",
+    "scope": "Existing exterior ranges and courts; future proposals, neighboring buildings, full interiors and temporary events excluded"
+  },
+  "referencePages": [
+    "https://dublincastle.ie/wp-content/uploads/2017/01/DublinCastle_Maps_website.pdf",
+    "https://dublincastle.ie/strategicframeworkplan/",
+    "https://dublincastle.ie/the-medieval-tower/",
+    "https://dublincastle.ie/the-chapel-royal/",
+    "https://dublincastle.ie/the-bedford-tower-castle-gates-guard-house/",
+    "https://dublincastle.ie/the-clock-tower-building-the-state-stables/",
+    "https://dublincastle.ie/the-castle-gardens/",
+    "https://www.buildingsofireland.ie/buildings-search/building/50910292/dublin-castle-bermingham-tower-dublin-castle-dublin-2-co-dublin",
+    "https://www.openstreetmap.org/way/350242806"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain/approaches pending",
+    "anchor": [
+      -6.266610512,
+      53.342658821
+    ],
+    "heading": 0.217908808734,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/350242806",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/350242806"
+    ],
+    "wikidataId": "Q742767",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:083f20aa9a5c5216e791f26bdadcb3b846a3fa5a635376f8aad106885ed59cb9",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Signed campus axis from OPW base plan and mapped site; individual heights/dimensions inferred. Actual terrain and entry contact pending."
+  },
+  "scaleBasis": "Mapped262.431×245.981m entire campus fixes registration. All component dimensions and elevations interpreted, including Bedford34m finial and Record24.8m crown. No published overall height or surveyed component footprint is claimed.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Operator/NIAH drawings and photos linked as research only, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. OPW, Grafton and NIAH primary references used as research only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original medium-fi exterior interpretation, not a conservation or cadastral survey.",
+    "All heights, radii, component widths and openings inferred from primary photographs and plans; no surveyed elevation is claimed.",
+    "South-facing painted ranges use interpreted clear red/ochre/blue tints seen in OPW aerial evidence; paint exactness remains subject to site review.",
+    "Upper/Lower Courtyards remain open. Existing buildings are abbreviated; future strategic-plan proposals and neighboring offices are excluded.",
+    "Garden serpent paths are a broad stylized interpretation, not an exact reproduction of the paving pattern.",
+    "Fine Gothic carving, stone joints, glazing bars, statuette attributes, full interiors and tiny fixtures omitted.",
+    "Actual terrain contact, approaches, geographic activation, continuous-motion shimmer and physical-device performance remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "record-tower-and-gothic-chapel",
+      "position": [
+        62,
+        34,
+        13
+      ],
+      "lookAt": [
+        17,
+        11,
+        -40
+      ]
+    },
+    {
+      "name": "bedford-tower-and-gates",
+      "position": [
+        -57,
+        27,
+        -43
+      ],
+      "lookAt": [
+        -57,
+        15,
+        -102
+      ]
+    },
+    {
+      "name": "upper-court-brick-quadrangle",
+      "position": [
+        -90,
+        37,
+        -64
+      ],
+      "lookAt": [
+        -38,
+        8,
+        -74
+      ]
+    },
+    {
+      "name": "garden-and-painted-state-wings",
+      "position": [
+        -12,
+        40,
+        70
+      ],
+      "lookAt": [
+        -49,
+        11,
+        -33
+      ]
+    },
+    {
+      "name": "chester-beatty-and-coach-house",
+      "position": [
+        -17,
+        37,
+        3
+      ],
+      "lookAt": [
+        -62,
+        9,
+        40
+      ]
+    },
+    {
+      "name": "current-campus-plan",
+      "position": [
+        0,
+        360,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve open quadrangle, Record/chapel pairing, Bedford green clock dome, round southern garden and mixed brick/painted/stone ranges in all levels.",
+  "mesh": {
+    "triangles": 10334,
+    "vertices": 25890,
+    "materials": 7,
+    "bytes": 1060080,
+    "sha256": "sha256:2c0581c7d1f82f7fc14473f121f65eee2157d6cf38b4826ce35b2bb53641efab"
+  }
+}

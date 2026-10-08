@@ -15,6 +15,8 @@ taxonomies and 45 shared materials. The world explorer's `/structures.html` mode
 every entry and provides dimension, texture and detail controls.
 
 For enterable buildings and lazy ground-floor furnishings, see [Building interiors](building-interiors.md).
+For compact global ecological data, regional plant families, and ordinary building profiles, see
+[Regional world content](regional-world.md).
 
 ```text
 @bendyline/molen-worldgen           world-agnostic core
@@ -216,7 +218,7 @@ On the client, `ModelLibrary.prepare(ref)` turns a glTF scene into one merged ve
 geometry (material colors baked in, so an authored tree with two materials is one draw), keeps
 builtin primitives (`builtin:tree.conifer`, `builtin:shrub`, `builtin:rock`, ...) for packs
 without assets, and `createInstancedPlacements(set, geometry, material)` uploads a placement set
-as one `InstancedMesh`. The default regional scatter packs use procedural fir, pine, oak, and
+as one `InstancedMesh`. The legacy regional scatter packs use procedural fir, pine, oak, and
 birch (`builtin:tree.conifer.fir|pine`, `builtin:tree.deciduous.oak|birch`), clustered shrubs, and
 irregular rocks. Their opaque crowns, bark, and vertex colors share one geometry and material per
 species: no texture downloads, alpha cards, or per-tree scene objects. Conifers have a closed,
@@ -278,6 +280,10 @@ default, atlas default rules, atlas default style, pack rules, pack default styl
 resolved once per tile at its centre; when a tile straddles regions every building resolves at its
 own centroid. Atlas geometry is projected once into the package's world meters, so lookups are
 comparisons.
+
+When a composable regional environment is supplied, its architectural channel precedes this
+legacy chain and every building resolves at its own centroid. Its separate ecological channel
+selects each vegetation candidate by habitat geography. See [Regional world content](regional-world.md).
 
 The adapter also decides tile-edge ownership: a footprint that appears complete in two tiles is
 rendered by the tile holding more of it, and a footprint cut by both buffers is rendered piecewise

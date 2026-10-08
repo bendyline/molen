@@ -48,9 +48,12 @@ import type {
   WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
+import { isLandcoverDesignation } from '../kernel/labels';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
+import { regionScatterId } from '../kernel/region';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
+import type { RegionalEnvironment } from '../kernel/regional-environment';
 import type { TileGeometry } from '../kernel/semantic-adapter';
 import { isStructureViewingDate } from '../kernel/structure-date';
 import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
@@ -85,6 +88,8 @@ const FOOTPRINT_SLACK = 12;
 export interface WorldgenRendererOptions {
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
+  /** Must match a supplied worker's environment; content participates in tile cache keys. */
+  environment?: RegionalEnvironment;
   /**
    * Landmarks and business identities for mapped places; without them businesses are not
    * recognized and street furniture is not placed. With a worker `generator`, pass the worker the
@@ -250,6 +255,7 @@ export function createWorldgenSemanticRenderers(
     createInThreadWorldgenGenerator(pack, {
       ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
       ...(options.regions !== undefined ? { regions: options.regions } : {}),
+      ...(options.environment !== undefined ? { environment: options.environment } : {}),
       ...(options.places !== undefined ? { places: options.places } : {}),
       ...(options.yieldEveryBuildings !== undefined
         ? { yieldEveryBuildings: options.yieldEveryBuildings }
@@ -260,6 +266,10 @@ export function createWorldgenSemanticRenderers(
   const cache = options.cache;
   const atlasHash =
     options.atlas !== undefined ? hashJson(options.atlas as unknown as JsonValue) : undefined;
+  const environmentHash =
+    options.environment !== undefined
+      ? hashJson(options.environment.docs as unknown as JsonValue)
+      : null;
   const generator =
     cache !== undefined
       ? withWorldgenTileCache(base, cache, (request) =>
@@ -274,6 +284,7 @@ export function createWorldgenSemanticRenderers(
               renderCellsOnly: request.renderCellsOnly ?? false,
               identities: places?.businesses.hash ?? null,
               models: places?.landmarks.hash ?? null,
+              environment: environmentHash,
               semantics: request.tile,
               geometry: request.geom,
             } as unknown as JsonValue),
@@ -990,8 +1001,67 @@ export function createWorldgenSemanticRenderers(
   };
   const classification: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
-      const packColors = surfaceColors(pack, defaultScatterId);
+      const centerX = context.origin[0] + context.tileSize / 2;
+      const centerZ = context.origin[1] + context.tileSize / 2;
+      const environment = options.environment;
+      const regionalSurface = environment?.scatterAt(centerX, centerZ)?.surface;
+      const legacyId =
+        options.atlas !== undefined
+          ? regionScatterId(options.atlas, options.regions?.resolve(centerX, centerZ))
+          : defaultScatterId;
+      const packColors =
+        regionalSurface !== undefined
+          ? { open_ground: regionalSurface.default, ...regionalSurface.colors }
+          : surfaceColors(pack, legacyId);
       const hostColors = options.landcover?.landcoverColors;
+      const paletteAreas =
+        options.landcover?.landcoverPaletteAreas ??
+        environment?.ecology
+          ?.areas([
+            context.origin[0],
+            context.origin[1],
+            context.origin[0] + context.tileSize,
+            context.origin[1] + context.tileSize,
+          ])
+          ?.map((area) => {
+            const surface = environment.library.select(
+              area.region !== undefined ? { ecoregion: area.region } : {},
+            ).scatter?.surface;
+            return {
+              bounds: area.bounds,
+              colors: {
+                ...(surface !== undefined
+                  ? { open_ground: surface.default, ...surface.colors }
+                  : {}),
+                ...hostColors,
+              },
+            };
+          });
+      // The same inferred ground label used by scatter supplies a neutral background beneath
+      // actual land-cover polygons. The last-feature-wins clipper removes all covered faces.
+      const surfaceTile: TerrainSemanticTile =
+        environment?.hasEcology !== true
+          ? tile
+          : {
+              ...tile,
+              landcover: [
+                {
+                  id: 'regional-open-ground',
+                  class: 'open_ground',
+                  polygons: [
+                    {
+                      outer: [
+                        [0, 0],
+                        [1, 0],
+                        [1, 1],
+                        [0, 1],
+                      ],
+                    },
+                  ],
+                },
+                ...tile.landcover.filter((feature) => !isLandcoverDesignation(feature)),
+              ],
+            };
       // Host colors refine the style pack's palette class by class rather than replacing it.
       const colors =
         packColors === undefined && hostColors === undefined
@@ -1001,6 +1071,7 @@ export function createWorldgenSemanticRenderers(
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
         ...options.landcover,
         ...(colors !== undefined ? { landcoverColors: colors } : {}),
+        ...(paletteAreas !== undefined ? { landcoverPaletteAreas: paletteAreas } : {}),
         renderWater: false,
         renderTransportation: false,
         renderBuildings: false,
@@ -1009,13 +1080,17 @@ export function createWorldgenSemanticRenderers(
         options.landcoverGenerator !== undefined &&
         meshOptions.renderLandcover !== false &&
         meshOptions.renderLandcoverSurface !== false;
-      const surface = createTerrainSemanticObject(tile, context, {
+      const surface = createTerrainSemanticObject(surfaceTile, context, {
         ...meshOptions,
         ...(useSurfaceWorker ? { renderLandcoverSurface: false } : {}),
       });
       try {
         if (useSurfaceWorker) {
-          const mesh = await options.landcoverGenerator?.generate(tile, context, meshOptions);
+          const mesh = await options.landcoverGenerator?.generate(
+            surfaceTile,
+            context,
+            meshOptions,
+          );
           if (mesh) surface.add(mesh);
         }
         if (context.signal.aborted) {

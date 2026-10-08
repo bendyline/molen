@@ -1,0 +1,281 @@
+{
+  "planId": "N0282",
+  "id": "N0282",
+  "assetId": "molen.worldgen.structure.n0282_akershus_fortress",
+  "title": "Akershus Fortress",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q644464",
+  "referenceCoordinate": {
+    "latitude": 59.906605907,
+    "longitude": 10.736247885
+  },
+  "visualBrief": "Akershus inner-fortress study:open mapped castle court,two faceted clock spires,stepped-gable wings,stone lower towers,terraced bastion silhouette and selected low museums,magazines and barracks. Wider site/elevations explicitly approximate.",
+  "mediumFiContext": {
+    "scale": "2.4",
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "size": [
+    226.34912872314453,
+    54,
+    404.32203674316406
+  ],
+  "actualBounds": {
+    "min": [
+      -92.69988250732422,
+      0,
+      -304.6953430175781
+    ],
+    "max": [
+      133.6492462158203,
+      54,
+      99.62669372558594
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z south toward Munk Tower and Prince Carl bastion",
+    "lateral": "+X east toward Kongens gate",
+    "origin": "Cached castle-frame center,with unverified outer-site terrace datumY0;castle court attachmentY12m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/13931023 exactQ644464 castle only",
+    "mappedCastlePlanMeters": [
+      117.171,
+      53.677
+    ],
+    "mappedCourtyardHoles": 1,
+    "measuredTowerHeight": null,
+    "wholeFortressMetricSurvey": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "brick": "#c18e73",
+      "red": "#ae735b",
+      "stone": "#b4b19d",
+      "roof": "#606b71",
+      "tile": "#b27d5e",
+      "metal": "#8c9993",
+      "cream": "#e8d4a7",
+      "trim": "#e3d9be",
+      "glass": "#4d6178",
+      "timber": "#a49379",
+      "lawn": "#8aa065",
+      "paving": "#b4afa3",
+      "water": "#286d83",
+      "clock": "#3b3e42",
+      "gold": "#c6a45c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8,
+    "materialBudgetReason": "Six shared architectural graphs plus untextured glazing and terraced ground;parts merged by material.",
+    "identityFeatures": [
+      "Two broad-capped clock spires above a long open-court castle",
+      "Mixed stone/brick wings with stepped gables and dark roofs",
+      "Low polygonal ramparts,bastions and tiered supporting buildings"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Exact cached castle multipolygon,official museum exterior photographs,agency seaward photo and primary Fortress Trail isometric diagram.",
+    "heightDatum": "Y0 is an authoring datum near the lower northern/eastern enclosure. Castle courtY12,terraces and every elevation are estimated;OSM ele27 is not used as a verified terrain or rooftop datum. Highest spire54m is above this provisional datum,not a surveyed tower height.",
+    "scope": "Castle wings and open court,two clock spires,stepped gables,lower Munk/Knut towers,stables,selected inner ramparts/Royal bastion,northern magazine,Resistance Museum,Corps de Garde,prison/barrracks massing and two pond depressions. Southern/eastern modern Armed Forces offices,Armed Forces Museum complex,removed outer defenses,trees,interiors,artillery,memorial sculpture,terrain outside the enclosure and fine fixtures excluded.",
+    "registration": "Native frame is east/south;heading0 replaces cached undirected rectangle heading. Only castle plan is map-derived. Whole-site layout/elevations and temporal state require current mapping and in-world review. Research draft,inactive,replaceFootprint=false."
+  },
+  "referencePages": [
+    "https://www.forsvarsbygg.no/en/festningene/akershus-fortress",
+    "https://www.forsvarshistoriskmuseum.no/akershus-slott/en",
+    "https://www.forsvarshistoriskmuseum.no/historien-om-akershus-festning",
+    "https://historiaviagenselivros.com/wp-content/uploads/2017/10/akershus-fortress-mapa.pdf",
+    "https://www.openstreetmap.org/relation/13931023"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Inactive geographic draft;review pending",
+    "anchor": [
+      10.736251164,
+      59.906686713
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/13931023",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/13931023"
+    ],
+    "wikidataId": "Q644464",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:44569f16222c7d39f39b4c14049f9efe09bd53a291a72a7e645f33f283d7f858",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Castle-derived east/south frame;outer layout,heights,terraces,terrain blend and replacement fit unverified."
+  },
+  "scaleBasis": "Exact mapped castle outline/court rotated into east/south axes. Wider enclosure and buildings are approximately inferred from official isometric trail plan. All elevations and54m highest spire over provisional lower-ground datum are estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM castle data © OpenStreetMap contributors,ODbL-1.0. Primary photographs/brochure linked only,not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors;Forsvarsbygg/National Fortifications Heritage and Forsvarshistorisk museum.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Only the castle ring and courtyard are map-derived. Wider inner-fortress outline,bastions,building centers,pond shapes and depths are approximately interpreted from a primary isometric diagram with no scale. No current wider-site map retrieved;not a fully verified whole-fortress reconstruction.",
+    "All elevations and tower widths,cap profiles,gable steps,window rhythm,gate clearances,terrace slopes and opening positions are estimates. Spire54m and castle court12m are provisional values relative to a made-up lower-groundY0,not actual elevations or tower height claims. Castle footprint has small simplifications around roofs and attachments.",
+    "Two visually distinctive clock stair towers are rendered;their exact attachment positions and name-to-tower correspondence need a measured castle plan. Named northern/southern in controls to avoid false identification.",
+    "Gate passages are open geometry. Main entrance position is interpreted;no interiors or claimed accessible/collision-certified route. Historical demolished Vågehals and removed outer defenses are not rebuilt.",
+    "Modern southern/eastern Armed Forces offices and Armed Forces Museum complex,trees,artillery,memorial sculpture,interiors,harbor/quay and terrain outside the enclosure are excluded. Study covers the recognizable inner fortress,not every administrative parcel.",
+    "Stepped terraced ground is sparse authoring geometry,not sampled real terrain;outer contours need corrected registration and terrain blending. Ponds are opaque study surfaces using shared blue color,not engine water simulation.",
+    "Shared256² brick,granite,slate,ceramic-tile,copper and lime-plaster graphs;blue-grey glazing and terraced ground untextured. No research photos redistributed,no baked lighting/AO,no individual bricks or subpixel rails.",
+    "Native+X east/+Z south,heading0. Signed orientation,vertical datum,whole-site fit,temporal state and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic review context is not the real Oslo shore.",
+    "Physical laptop/phone timing and continuous-motion LOD shimmer remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "castle-two-clock-spires",
+      "position": [
+        -165,
+        69,
+        105
+      ],
+      "lookAt": [
+        -3,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "open-court-and-roof-hierarchy",
+      "position": [
+        0,
+        180,
+        0
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "northern-entry-vault",
+      "position": [
+        -3.5,
+        17,
+        -69
+      ],
+      "lookAt": [
+        -3.5,
+        16,
+        -30
+      ]
+    },
+    {
+      "name": "stepped-gables-and-clock-lantern",
+      "position": [
+        -45,
+        45,
+        -70
+      ],
+      "lookAt": [
+        -13,
+        33,
+        -28
+      ]
+    },
+    {
+      "name": "resistance-museum-guardhouse",
+      "position": [
+        -140,
+        47,
+        -172
+      ],
+      "lookAt": [
+        -38,
+        15,
+        -115
+      ]
+    },
+    {
+      "name": "northern-magazine-bastions",
+      "position": [
+        50,
+        85,
+        -389
+      ],
+      "lookAt": [
+        14,
+        10,
+        -245
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Akershus open court,two spires,stepped gables and differentiated bastion/castle hierarchy in compact shared-material levels.",
+  "mesh": {
+    "triangles": 3883,
+    "vertices": 11649,
+    "materials": 8,
+    "bytes": 470460,
+    "sha256": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130"
+  }
+}

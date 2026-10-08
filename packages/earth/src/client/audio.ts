@@ -88,6 +88,14 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
       gainFrom: [
         NEAR_GROUND,
         {
+          signal: 'host.regionalBirds',
+          curve: [
+            [0, 0],
+            [1, 1],
+          ],
+          smoothS: 4,
+        },
+        {
           signal: 'host.streetDistance',
           curve: [
             [0, 0.35],
@@ -132,7 +140,17 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
     {
       sound: 'ambience.crickets',
       when: { 'sky.daylight': { max: 0.15 }, 'weather.precipitation.kind': 'none' },
-      gainFrom: NEAR_GROUND,
+      gainFrom: [
+        NEAR_GROUND,
+        {
+          signal: 'host.regionalInsects',
+          curve: [
+            [0, 0],
+            [1, 1],
+          ],
+          smoothS: 4,
+        },
+      ],
       gain: 0.6,
       fadeS: 4,
     },
@@ -178,6 +196,8 @@ export interface EarthAudioFrame {
   heightAboveGround?: number;
   /** Weather to hear; default the renderer's current weather. */
   weather?: WeatherData;
+  /** Optional habitat levels (0..1); omission preserves generic legacy ambience. */
+  regionalAmbience?: { birds: number; insects: number };
 }
 
 export interface EarthAudio {
@@ -298,7 +318,12 @@ export async function createEarthAudio(
       };
       layer.update(frame.nowMs, listener, {
         ...(weather ? { weather } : {}),
-        host: { urban, streetDistance: street },
+        host: {
+          urban,
+          streetDistance: street,
+          regionalBirds: Math.max(0, Math.min(1, frame.regionalAmbience?.birds ?? 1)),
+          regionalInsects: Math.max(0, Math.min(1, frame.regionalAmbience?.insects ?? 1)),
+        },
       });
     },
     dispose() {

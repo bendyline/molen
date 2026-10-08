@@ -10,6 +10,15 @@ export {
   validateBusinessCatalogDocuments,
 } from './kernel/business-catalog-schema';
 export { associateBusinesses } from './kernel/businesses';
+export type {
+  EcologyArea,
+  EcologyAtlasDoc,
+  EcologyCell,
+  EcologyResolver,
+  Ecoregion,
+} from './kernel/ecology-atlas';
+export { checkEcologyAtlas, createEcologyResolver } from './kernel/ecology-atlas';
+export { ECOLOGY_ATLAS_EXAMPLE, registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
 export { buildingLabels, contextLabelAt, landcoverLabel } from './kernel/labels';
 export { mappedPropExclusions, mappedPropRequests } from './kernel/mapped-props';
 export {
@@ -35,6 +44,22 @@ export type {
   RegionAtlasDefaults,
   RegionAtlasDoc,
 } from './kernel/region-atlas-types';
+export type {
+  RegionalCatalogDoc,
+  RegionalContext,
+  RegionalLibrary,
+  RegionalMatch,
+  RegionalProfile,
+  RegionalSelection,
+  RegionalWildlifePopulation,
+} from './kernel/regional-content';
+export { createRegionalLibrary, matchesRegionalProfile } from './kernel/regional-content';
+export {
+  regionalCatalogSchema,
+  registerRegionalCatalogSchema,
+} from './kernel/regional-content-schema';
+export type { RegionalEnvironment, RegionalEnvironmentDocs } from './kernel/regional-environment';
+export { createRegionalEnvironment } from './kernel/regional-environment';
 export type {
   SemanticAdapterOptions,
   SemanticBatch,
@@ -76,6 +101,8 @@ export {
   generateWorldgenTileSteps,
   tileGroundSampler,
 } from './kernel/tile-generate';
+export type { WildlifeRangeResolver, WildlifeRangesDoc } from './kernel/wildlife-ranges';
+export { createWildlifeRangeResolver, wildlifeRangesSchema } from './kernel/wildlife-ranges';
 export type {
   WorldgenWorkerCancel,
   WorldgenWorkerConfigure,
@@ -88,10 +115,16 @@ export type {
 export { createWorldgenWorkerHandler } from './kernel/worker-protocol';
 
 import { registerBusinessCatalogSchema } from './kernel/business-catalog-schema';
+import { registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
 import { registerRegionAtlasSchema } from './kernel/region-atlas-schema';
+import { registerRegionalCatalogSchema } from './kernel/regional-content-schema';
 import { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
+import { registerWildlifeRangesSchema } from './kernel/wildlife-ranges';
 
 // Register the atlas format on import so tooling can validate it.
 registerRegionAtlasSchema();
+registerEcologyAtlasSchema();
+registerWildlifeRangesSchema();
+registerRegionalCatalogSchema();
 registerBusinessCatalogSchema();
 registerStructurePlacementsSchema();

@@ -1,0 +1,254 @@
+{
+  "planId": "N0264",
+  "id": "N0264",
+  "assetId": "molen.worldgen.structure.n0264_riga_castle",
+  "title": "Riga Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q322183",
+  "referenceCoordinate": {
+    "latitude": 56.95095,
+    "longitude": 24.100636111
+  },
+  "visualBrief": "Two-court Riga Castle with the white medieval quadrangle, flat-crowned Holy Spirit tower and flag, shallow conical Lead Tower, two square stair towers, yellow presidential ranges, small Erker and copper Three Stars steeple.",
+  "mediumFiContext": {
+    "scale": "1.8",
+    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse"
+  },
+  "size": [
+    118.92277908325195,
+    56.75,
+    89.05000305175781
+  ],
+  "actualBounds": {
+    "min": [
+      -59.372779846191406,
+      0,
+      -45.150001525878906
+    ],
+    "max": [
+      59.54999923706055,
+      56.75,
+      43.900001525878906
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X southeast along the riverbank",
+    "front": "+Z southwest toward Daugava",
+    "origin": "Mapped compound center; Y=0 conservative external attachment plane"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/1393926 exact Wikidata Q322183",
+    "mappedCourtyards": 2,
+    "architectDrawingDatumMeters": {
+      "southEave": 18.16,
+      "ridge": 25.015,
+      "leadEave": 25.34,
+      "leadTip": 30.33,
+      "southStairTowerTip": 29.485,
+      "lowestAdjacentGround": -1.8
+    },
+    "publishedHistoricalFlagMastMeters": 12
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "cream": "#eee8db",
+      "yellow": "#e6cf8f",
+      "roof": "#aa6e54",
+      "copper": "#96b8a5",
+      "stone": "#c7baa0",
+      "glass": "#4d6178",
+      "trim": "#4d585e",
+      "white": "#f0ece2",
+      "red": "#983c4c",
+      "gold": "#d8b968",
+      "paving": "#b8b0a0"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "materialBudgetReason": "Plaster, stone, tile and patinated copper carry distinct architectural surfaces; glass and flags/finials are local colors.",
+    "identityFeatures": [
+      "White four-wing medieval castle with round Holy Spirit and Lead towers",
+      "Yellow northern presidential forecourt and tall green Three Stars steeple",
+      "Open inner court, red roof ring and tall south chapel bays"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM compound outline and courtyard holes; Sudraba Arhitektura published elevations/plans and official presidency photographs",
+    "scope": "Present-day exterior castle and presidential forecourt; neighboring church spires, gardens, river walls and interiors excluded",
+    "referenceState": "Restored exterior, with the courtyard glass gallery represented as a simplified opaque PBR volume"
+  },
+  "referencePages": [
+    "https://www.president.lv/en/riga-castle",
+    "https://lnvm.gov.lv/en/riga-castle/history-of-riga-castle/",
+    "https://sudraba-arhitektura.lv/riga-castle/",
+    "https://www.openstreetmap.org/relation/1393926",
+    "https://hesihe-journals.rtu.lv/iav/article/download/IAV.2025.008/154/323"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed river-facing frame; local ground and entrance contact pending",
+    "anchor": [
+      24.10056334,
+      56.950966917
+    ],
+    "heading": -1.090082784479,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1393926",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/1393926"
+    ],
+    "wikidataId": "Q322183",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2821f5579dce5260b6caadf9f20c0211b93e30383ee477d7f0cedcbed48285cf",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Horizontal extent from OSM. Published architect elevations are shifted +1.8m to a conservative flat attachment plane. Tower positions, northern wing and Three Stars heights are photographic reconstructions; Three Stars finial maximum 56.75m is not a surveyed height. A 12m flagmast is supported by RTU historical documentation. Actual stepped street/court levels need placement review.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Footprints © OpenStreetMap contributors, ODbL-1.0. Architectural drawings and official photographs are linked research references, not redistributed images or textures.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Northern wing heights, individual tower placement and Three Stars proportions are estimates from published imagery; only the medieval elevation labels are dimensional evidence.",
+    "Courtyard arcades are shallow exterior reveals; the stair gallery is an opaque medium-fi representation. No navigable interiors or room reconstruction.",
+    "Static source review does not prove real-site terrain fit, moving-camera shimmer or physical-device performance."
+  ],
+  "qaCameras": [
+    {
+      "name": "river-front-and-flag",
+      "position": [
+        29,
+        21,
+        115
+      ],
+      "lookAt": [
+        22,
+        14,
+        21
+      ]
+    },
+    {
+      "name": "south-chapel-and-lead",
+      "position": [
+        117,
+        20,
+        -8
+      ],
+      "lookAt": [
+        50,
+        14,
+        -8
+      ]
+    },
+    {
+      "name": "medieval-courtyard",
+      "position": [
+        30,
+        22,
+        1
+      ],
+      "lookAt": [
+        14,
+        7,
+        -13
+      ]
+    },
+    {
+      "name": "mapped-two-court-plan",
+      "position": [
+        0,
+        225,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "three-stars-and-forecourt",
+      "position": [
+        -112,
+        43,
+        64
+      ],
+      "lookAt": [
+        -40,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "holy-spirit-crown",
+      "position": [
+        18,
+        40,
+        66
+      ],
+      "lookAt": [
+        -4,
+        29,
+        27
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve the paired courts, distinct tower crowns, copper steeple and asymmetric chapel windows within medium-fi budgets.",
+  "mesh": {
+    "triangles": 6891,
+    "vertices": 18917,
+    "materials": 6,
+    "bytes": 767300,
+    "sha256": "sha256:9e20d1fb890f4351f7c932cd0e3f86ddd27c5c8936ad7bc1a6404ee5151a1096"
+  }
+}

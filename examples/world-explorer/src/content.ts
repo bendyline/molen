@@ -52,6 +52,8 @@ export async function loadExplorerContent(
   const packs = await openPacksFromIndex(packIndex(base), [
     EARTH_PACK_IDS.entities,
     EARTH_PACK_IDS.earth,
+    EARTH_PACK_IDS.ecology,
+    EARTH_PACK_IDS.wildlife,
     EARTH_PACK_IDS.sky,
     ...(typeof stylePack === 'string' ? [stylePack] : []),
   ]);

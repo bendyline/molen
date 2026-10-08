@@ -10,7 +10,7 @@ import { dmath } from '@bendyline/molen-kernel/determinism';
 import { classMatches } from './classes';
 import { type Bounds2, intersectBounds, pointInPolygon, ringBounds } from './geometry2d';
 import { fbm2 } from './noise';
-import { dilate, RasterGrid, rasterizePolygon, rasterizePolyline } from './raster';
+import { RasterGrid, rasterizePolygon, rasterizePolyline } from './raster';
 import type { ScatterDoc, ScatterPopulation, ScatterRule } from './scatter-types';
 import {
   fmix32,
@@ -49,6 +49,10 @@ export interface ScatterSampleInput {
   budget: ScatterBudget;
   /** Detail tier (0 = full); selects `keepByTier`. */
   tier: number;
+  /** Optional spatial rule gate in request-local meters (e.g. ecological boundaries). */
+  acceptsRule?: (rule: ScatterRule, x: number, z: number) => boolean;
+  /** Appearance variant only (e.g. season); candidate seeds and positions remain unchanged. */
+  modelAt?: (model: string, x: number, z: number) => string;
 }
 
 interface Candidate {
@@ -98,22 +102,24 @@ function buildExclusionRaster(
   const raster = new RasterGrid(bounds, cell);
   for (const exclusion of exclusions) {
     const radius = exclusion.kind !== undefined ? avoid[exclusion.kind] : exclusion.radius;
-    if (exclusion.ring !== undefined) {
-      rasterizePolygon(raster, exclusion.ring, [], 1);
-    } else if (exclusion.polyline !== undefined) {
-      rasterizePolyline(raster, exclusion.polyline, (exclusion.width ?? 0) / 2 + radius, 1);
-    }
+    stampExclusion(raster, exclusion, radius);
   }
-  const ringRadius = Math.max(
-    0,
-    ...exclusions
-      .filter((exclusion) => exclusion.ring !== undefined)
-      .map((exclusion) =>
-        exclusion.kind !== undefined ? avoid[exclusion.kind] : exclusion.radius,
-      ),
-  );
-  if (ringRadius > 0) dilate(raster, Math.ceil(ringRadius / cell));
   return raster;
+}
+
+/** Buffer each feature independently: water's margin must not inflate a distant road's. */
+function stampExclusion(raster: RasterGrid, exclusion: ScatterExclusion, radius: number): void {
+  if (exclusion.ring !== undefined) {
+    rasterizePolygon(raster, exclusion.ring, exclusion.holes ?? [], 1);
+    if (radius > 0) {
+      for (const ring of [exclusion.ring, ...(exclusion.holes ?? [])]) {
+        const first = ring[0];
+        if (first !== undefined) rasterizePolyline(raster, [...ring, first], radius, 1);
+      }
+    }
+  } else if (exclusion.polyline !== undefined) {
+    rasterizePolyline(raster, exclusion.polyline, (exclusion.width ?? 0) / 2 + radius, 1);
+  }
 }
 
 function keepFor(rule: ScatterRule, doc: ScatterDoc, tier: number): number {
@@ -150,6 +156,7 @@ export function* samplePlacementsSteps(
   const labels = buildLabelRaster(request, rasterCell);
   const polygonBounds = request.polygons.map((polygon) => ringBounds(polygon.ring));
   const exclusionCache = new Map<string, RasterGrid>();
+  const proximityCache = new Map<string, RasterGrid>();
   const frame = request.frame;
   const accepted: Array<{ candidate: Candidate; model: string; rule: number; ground: boolean }> =
     [];
@@ -158,6 +165,9 @@ export function* samplePlacementsSteps(
 
   for (let ruleIndex = 0; ruleIndex < doc.rules.length; ruleIndex++) {
     const rule = doc.rules[ruleIndex] as ScatterRule;
+    // A closed pool must not rasterize or visit candidates only to discard them at the end.
+    // This matters especially for coarse requests, where dense understory covers a large area.
+    if (rule.layer === 'groundcover' ? !groundOpen : !canopyOpen) continue;
     if (rule.densityPerHectare <= 0) continue;
     const matches = request.polygons.map(
       (polygon) =>
@@ -190,6 +200,24 @@ export function* samplePlacementsSteps(
       exclusion = buildExclusionRaster(request.exclusions, bounds, rasterCell, avoid);
       exclusionCache.set(key, exclusion);
     }
+    let nearWater: RasterGrid | undefined;
+    if (rule.nearWater !== undefined) {
+      const proximityKey = JSON.stringify(rule.nearWater);
+      nearWater = proximityCache.get(proximityKey);
+      if (nearWater === undefined) {
+        nearWater = new RasterGrid(bounds, rasterCell);
+        for (const water of request.exclusions) {
+          if (water.kind !== 'water') continue;
+          if (
+            rule.nearWater.classes !== undefined &&
+            !classMatches(water.label ?? '', rule.nearWater.classes)
+          )
+            continue;
+          stampExclusion(nearWater, water, rule.nearWater.maxDistance);
+        }
+        proximityCache.set(proximityKey, nearWater);
+      }
+    }
     const salt = propSalt(input.pack, scatterId, rule.id);
     const cellMeters = Math.max(
       0.5,
@@ -197,6 +225,13 @@ export function* samplePlacementsSteps(
       rule.minSpacing / 0.3,
     );
     const cellFrame = cellMeters * frame.unitsPerMeter;
+    const row = rule.rows;
+    const cellX = row === undefined ? cellFrame : row.interval * frame.unitsPerMeter;
+    const cellZ = row === undefined ? cellFrame : row.spacing * frame.unitsPerMeter;
+    const angle = ((row?.angle ?? 0) * dmath.PI) / 180;
+    const cos = row === undefined ? 1 : dmath.cos(angle),
+      sin = row === undefined ? 0 : dmath.sin(angle);
+    const jitter = row?.jitter ?? JITTER;
     const weights = rule.populations.map((population) => population.weight);
     const ruleSlopeMax = rule.slopeMax ?? doc.defaults.slopeMax;
     const cap = Math.min(
@@ -206,31 +241,53 @@ export function* samplePlacementsSteps(
     const clusterScale =
       rule.clustering !== undefined ? rule.clustering.scale * frame.unitsPerMeter : 1;
     // Global (frame) coordinates of the visited bounds select the cell range.
-    const cellX0 = Math.floor(((visit[0] - frame.originX) * frame.unitsPerMeter) / cellFrame);
-    const cellX1 = Math.floor(((visit[2] - frame.originX) * frame.unitsPerMeter) / cellFrame);
-    const cellZ0 = Math.floor(((visit[1] - frame.originZ) * frame.unitsPerMeter) / cellFrame);
-    const cellZ1 = Math.floor(((visit[3] - frame.originZ) * frame.unitsPerMeter) / cellFrame);
+    const corners = [
+      [visit[0], visit[1]],
+      [visit[2], visit[1]],
+      [visit[2], visit[3]],
+      [visit[0], visit[3]],
+    ];
+    const grid = corners.map(([x = 0, z = 0]) => {
+      const gx = (x - frame.originX) * frame.unitsPerMeter,
+        gz = (z - frame.originZ) * frame.unitsPerMeter;
+      return [(gx * cos + gz * sin) / cellX, (-gx * sin + gz * cos) / cellZ];
+    });
+    const cellX0 = Math.floor(Math.min(...grid.map((p) => p[0] as number)));
+    const cellX1 = Math.floor(Math.max(...grid.map((p) => p[0] as number)));
+    const cellZ0 = Math.floor(Math.min(...grid.map((p) => p[1] as number)));
+    const cellZ1 = Math.floor(Math.max(...grid.map((p) => p[1] as number)));
     const ruleCandidates: Array<{ candidate: Candidate; model: string }> = [];
     for (let cz = cellZ0; cz <= cellZ1; cz++) {
       for (let cx = cellX0; cx <= cellX1; cx++) {
         if (++visited % CHUNK === 0) yield { done: ruleIndex, total: doc.rules.length };
         let hash = hashCoord(cx, cz, salt);
-        const gx = (cx + 0.5 + (unit01(hash, 0) - 0.5) * JITTER) * cellFrame;
-        const gz = (cz + 0.5 + (unit01(hash, 1) - 0.5) * JITTER) * cellFrame;
+        const rx = (cx + 0.5 + (unit01(hash, 0) - 0.5) * jitter) * cellX;
+        const rz = (cz + 0.5 + (unit01(hash, 1) - 0.5) * jitter) * cellZ;
+        const gx = rx * cos - rz * sin;
+        const gz = rx * sin + rz * cos;
         const x = gx / frame.unitsPerMeter + frame.originX;
         const z = gz / frame.unitsPerMeter + frame.originZ;
         if (x < bounds[0] || x >= bounds[2] || z < bounds[1] || z >= bounds[3]) continue;
         const polygonIndex = labels.get(x, z) - 1;
         if (polygonIndex < 0 || matches[polygonIndex] !== true) continue;
         const polygon = request.polygons[polygonIndex];
+        if (
+          row !== undefined &&
+          polygon !== undefined &&
+          !pointInPolygon([x, z], polygon.ring, polygon.holes)
+        )
+          continue;
         if (polygon?.seed !== undefined) {
           // Small owner patches need exact containment at land-use boundaries, beyond the mask.
           if (!pointInPolygon([x, z], polygon.ring, polygon.holes)) continue;
           hash = fmix32(hash ^ polygon.seed);
         }
         if (exclusion.get(x, z) !== 0) continue;
+        if (nearWater !== undefined && nearWater.get(x, z) === 0) continue;
         const u = unit01(hash, 2);
         let factor = request.polygons[polygonIndex]?.density ?? 1;
+        if (row !== undefined)
+          factor *= Math.min(1, (rule.densityPerHectare * row.spacing * row.interval) / 10_000);
         if (rule.clustering !== undefined) {
           const noise = fbm2(
             gx / clusterScale,
@@ -246,6 +303,8 @@ export function* samplePlacementsSteps(
           factor *= ramp < 0 ? 0 : ramp > 1 ? 1 : ramp;
         }
         if (u >= factor * keep) continue;
+        // Geographic polygon lookup is more expensive than the local masks and thinning.
+        if (input.acceptsRule !== undefined && !input.acceptsRule(rule, x, z)) continue;
         const population = rule.populations[pickWeighted(unit01(hash, 3), weights)];
         if (population === undefined) continue;
         if (ground.slopeAt(x, z) > (population.slopeMax ?? ruleSlopeMax)) continue;
@@ -261,7 +320,7 @@ export function* samplePlacementsSteps(
         const yaw = population.yaw === 'random' ? unit01(hash, 5) * dmath.TAU : 0;
         const [r, g, b] = tintFor(population, hash);
         ruleCandidates.push({
-          model: population.model,
+          model: input.modelAt?.(population.model, x, z) ?? population.model,
           candidate: { x, y: y - 0.15, z, yaw, scale, widthScale, r, g, b, u, cx, cz },
         });
       }

@@ -104,6 +104,8 @@ export interface ArchRoof {
 
 /** Metric facade ornament, fitted to actual bays and omitted when facade-bands is dropped. */
 export interface ArchFacadeDetails {
+  /** Visual ground entrance when no structural interior opening already supplies one. */
+  entrance?: { width: number; height: number; style: 'single' | 'double' | 'service' };
   shutters?: boolean;
   balconies?: { depth: number; railing: 'open' | 'solid'; every: number };
   framing?: { style: 'timber' | 'pilasters'; width: number };

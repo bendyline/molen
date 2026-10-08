@@ -169,6 +169,16 @@ const roof = z.strictObject({
 const facade = z.strictObject({
   details: z
     .strictObject({
+      entrance: z
+        .strictObject({
+          width: z.number().min(0.7).max(8),
+          height: z.number().min(1.8).max(6),
+          style: z.enum(['single', 'double', 'service']),
+        })
+        .describe(
+          'A fitted visual entrance on the longest eligible exterior edge; omitted when structural ground openings exist.',
+        )
+        .optional(),
       shutters: z.boolean().describe('Paired louvered shutters beside punched windows.').optional(),
       balconies: z
         .strictObject({

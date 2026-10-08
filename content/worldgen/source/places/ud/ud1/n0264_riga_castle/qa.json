@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0264_riga_castle",
+  "sourceHash": "sha256:9e20d1fb890f4351f7c932cd0e3f86ddd27c5c8936ad7bc1a6404ee5151a1096",
+  "runtimeHash": "sha256:9f8e6539fadcfabe276a16d8d8ef67577c96592dc672ab556055033cd888b224",
+  "captureReportHash": "sha256:5c9e80300d42b14f1cd046b36cc52353780824ae999e8281f4a47026b06d8fe5",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/river-front-and-flag.png",
+      "shots/south-chapel-and-lead.png",
+      "shots/medieval-courtyard.png",
+      "shots/mapped-two-court-plan.png",
+      "shots/three-stars-and-forecourt.png",
+      "shots/holy-spirit-crown.png"
+    ],
+    "notes": "Inspected all 11 portable frames. White medieval quadrangle, open courts, flat-crowned Holy Spirit tower with national flag, shallow conical Lead Tower, yellow presidential ranges and tall green Three Stars steeple remain distinct. Corrected square stair-tower roof alignment, noisy cornice blocks and copper tint. Modern court gallery is an opaque PBR abstraction; no navigable interiors or adjacent church spires are implied."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6ef44f3a577b3965185d9c7d09a5d6dbfdd19896cdd5e68668c1e1a5b4447efc",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/river-front-and-flag.png",
+      "shots/shared/south-chapel-and-lead.png",
+      "shots/shared/medieval-courtyard.png",
+      "shots/shared/mapped-two-court-plan.png",
+      "shots/shared/three-stars-and-forecourt.png",
+      "shots/shared/holy-spirit-crown.png"
+    ],
+    "notes": "Inspected all 10 shared-loader frames. Plaster, limestone, ceramic tile and copper graphs load once each. Six merged material groups include local glazing and flag/finial colors without private images. Patinated copper reuses the common copper graph with high roughness and low metallic weight. Unload releases every model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d034a0f85e0cae15eff8d483c3c7b40816d82f0127398c1913a2d989a18ce65f",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/river-front-and-flag.png",
+      "medium-fi/south-chapel-and-lead.png",
+      "medium-fi/medieval-courtyard.png",
+      "medium-fi/mapped-two-court-plan.png",
+      "medium-fi/three-stars-and-forecourt.png",
+      "medium-fi/holy-spirit-crown.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architectural views and four same-camera LOD comparisons. Procedural Bohemian townhouses provide synthetic scale/palette context. The medieval towers, roof ring, open courts and green steeple remain recognizable across levels. Flat review ground uses the conservative external Y=0 attachment plane. This is appearance and synthetic contact review; actual terrain, continuous-motion shimmer and physical devices remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID relation/1393926 supplies the compound outline and two courtyard holes. Anchor [24.10056334,56.950966917], heading -1.090082784479; native +X southeast along the river and +Z southwest toward Daugava. Building subdivisions are reconstructed from attributed architectural plans/photos, not claimed as surveyed OSM parts. Drawing heights are shifted +1.8m to a conservative external Y=0 plane; northern ranges and Three Stars steeple retain estimated heights. Entrance, river-side grade and terrain contact need site review. Draft remains inactive, replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. Source itself has 6891 triangles, six merged groups and four reusable graphs. The material exception separates four architectural surfaces from local glass and identity colors. Four authored LODs meet triangle/download caps. sRGB palettes decode to linear vertex colors; skyline compensates shared surface mean. No per-stone mesh, baked lighting or private/embedded images. Asset appearance approval does not approve terrain placement."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/models/source.glb",
+        "hash": "sha256:9e20d1fb890f4351f7c932cd0e3f86ddd27c5c8936ad7bc1a6404ee5151a1096",
+        "bytes": 767300,
+        "triangles": 6891,
+        "vertices": 18917,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.372779846191406,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.glb",
+        "hash": "sha256:9f8e6539fadcfabe276a16d8d8ef67577c96592dc672ab556055033cd888b224",
+        "bytes": 766740,
+        "triangles": 6891,
+        "vertices": 18917,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.372779846191406,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.skyline.glb",
+        "hash": "sha256:1c23a0ba61d87a9a4589d28aa6e6c6a15994ba50a458572ae79345928e3f3276",
+        "bytes": 55464,
+        "triangles": 659,
+        "vertices": 1392,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -59.25,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.district.glb",
+        "hash": "sha256:55259b2c2c1ca937ec6585fd861a4172eca6dba8544784b39d77b98760c5ba2b",
+        "bytes": 205232,
+        "triangles": 2762,
+        "vertices": 5043,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.3377799987793,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.street.glb",
+        "hash": "sha256:88e3024fa8946174541d09cc3b3e484121a254fdf33e79594f15087c2f3ee294",
+        "bytes": 364116,
+        "triangles": 4979,
+        "vertices": 9086,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.3377799987793,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.closeup.glb",
+        "hash": "sha256:69315721af83ec325e08199cf2816d563b564967f25ee949b4e2a626797a86be",
+        "bytes": 513260,
+        "triangles": 6891,
+        "vertices": 12910,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.372779846191406,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      }
+    ],
+    "notes": "Zero errors and warnings across source, imported model and four LODs. Every level has minimum Y=0 and maximum Y=56.75m. Deterministic LOD tests pass, including budgets, shared bindings and homogeneous GPU attribute buffers. Unused UV informational messages are expected for externally bound surfaces."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.skyline.glb",
+        "hash": "sha256:1c23a0ba61d87a9a4589d28aa6e6c6a15994ba50a458572ae79345928e3f3276",
+        "bytes": 55464,
+        "triangles": 659,
+        "vertices": 1392,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -59.25,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.district.glb",
+        "hash": "sha256:55259b2c2c1ca937ec6585fd861a4172eca6dba8544784b39d77b98760c5ba2b",
+        "bytes": 205232,
+        "triangles": 2762,
+        "vertices": 5043,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.3377799987793,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.street.glb",
+        "hash": "sha256:88e3024fa8946174541d09cc3b3e484121a254fdf33e79594f15087c2f3ee294",
+        "bytes": 364116,
+        "triangles": 4979,
+        "vertices": 9086,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.3377799987793,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/ud/ud1/n0264_riga_castle/model.closeup.glb",
+        "hash": "sha256:69315721af83ec325e08199cf2816d563b564967f25ee949b4e2a626797a86be",
+        "bytes": 513260,
+        "triangles": 6891,
+        "vertices": 12910,
+        "materials": 6,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -59.372779846191406,
+          0,
+          -45.150001525878906
+        ],
+        "max": [
+          59.54999923706055,
+          56.75,
+          43.900001525878906
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 6
+      }
+    ],
+    "initialDownloadBytes": 260696,
+    "notes": "Skyline/district/street/closeup contain 659/2762/4979/6891 triangles, 55464/205232/364116/513260 bytes. Initial combined payload is 260696 bytes, excluding shared graphs. Skyline preserves the medieval and northern court masses, principal towers, national flag and Three Stars steeple. Local identity colors remain untinted."
+  }
+}

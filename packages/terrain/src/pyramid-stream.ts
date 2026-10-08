@@ -165,6 +165,8 @@ export interface TerrainPyramidStreamOptions
   /** Optional renderer-owned tile group, e.g. a managed WebGPU render-command cache. */
   createTileGroup?: () => THREE.Group;
   material?: THREE.Material;
+  /** Optional spatial color prior, applied once before upload to both worker and local meshes. */
+  surfaceColor?: TerrainSurfaceColor;
   layers?: TerrainPyramidTileLayer[];
   /** Maximum vertices along one surface-tile edge; height sampling remains full resolution. */
   maxSurfaceTileResolution?: number;
@@ -179,6 +181,15 @@ export interface TerrainPyramidStreamOptions
   initialView?: TerrainPyramidView;
   onError?: (error: unknown, context: TerrainPyramidStreamErrorContext) => void;
 }
+
+/** World coordinates and slope, with linear RGB. Undefined preserves the package palette. */
+export type TerrainSurfaceColor = (
+  x: number,
+  y: number,
+  z: number,
+  slope: number,
+  base: readonly [number, number, number],
+) => readonly [number, number, number] | undefined;
 
 export interface TerrainPyramidStreamStats extends TerrainStreamStats {
   /** Semantic layer requests that exhausted their retry budget. */
@@ -885,6 +896,7 @@ function createSurface(
   maxResolution: number,
   prepared?: ChunkGeometry,
   neighborHeight?: TerrainNeighborHeightSampler,
+  surfaceColor?: TerrainSurfaceColor,
 ): { mesh: THREE.Mesh; bytes: number; triangles: number } {
   const step = Math.max(1, Math.ceil((descriptor.tileResolution - 1) / (maxResolution - 1)));
   const geometry =
@@ -894,6 +906,22 @@ function createSurface(
       step,
       ...(neighborHeight === undefined ? {} : { neighborHeight }),
     });
+  if (surfaceColor !== undefined) {
+    const origin = terrainPyramidTileOrigin(descriptor, address);
+    for (let i = 0; i < geometry.positions.length; i += 3) {
+      const nx = geometry.normals[i] ?? 0,
+        ny = geometry.normals[i + 1] ?? 1,
+        nz = geometry.normals[i + 2] ?? 0;
+      const color = surfaceColor(
+        origin[0] + (geometry.positions[i] ?? 0),
+        geometry.positions[i + 1] ?? 0,
+        origin[1] + (geometry.positions[i + 2] ?? 0),
+        Math.hypot(nx, nz) / Math.max(0.01, ny),
+        [geometry.colors[i] ?? 0, geometry.colors[i + 1] ?? 0, geometry.colors[i + 2] ?? 0],
+      );
+      if (color?.every(Number.isFinite)) geometry.colors.set(color, i);
+    }
+  }
   const buffer = new THREE.BufferGeometry();
   buffer.setAttribute('position', new THREE.BufferAttribute(geometry.positions, 3));
   buffer.setAttribute('normal', new THREE.BufferAttribute(geometry.normals, 3));
@@ -1493,6 +1521,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           resolution,
           prepared,
           this.levelNeighborHeight(address.level),
+          this.options.surfaceColor,
         );
         if (
           (this.options.morphMilliseconds ?? 0) > 0 &&

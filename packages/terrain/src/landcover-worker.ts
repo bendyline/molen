@@ -40,7 +40,10 @@ interface Request {
     worldSize: [number, number];
     height: { min: number; max: number };
   };
-  options: Pick<TerrainSemanticMeshOptions, 'landcoverColors' | 'landcoverOffset'>;
+  options: Pick<
+    TerrainSemanticMeshOptions,
+    'landcoverColors' | 'landcoverOffset' | 'landcoverPaletteAreas'
+  >;
 }
 interface Result {
   id: number;
@@ -177,6 +180,9 @@ export function createTerrainLandcoverWorkerBridge(
         },
         options: {
           ...(options.landcoverColors ? { landcoverColors: options.landcoverColors } : {}),
+          ...(options.landcoverPaletteAreas
+            ? { landcoverPaletteAreas: options.landcoverPaletteAreas }
+            : {}),
           ...(options.landcoverOffset !== undefined
             ? { landcoverOffset: options.landcoverOffset }
             : {}),

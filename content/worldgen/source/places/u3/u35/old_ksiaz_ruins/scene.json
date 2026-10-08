@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Old Książ ruins source review",
+  "seed": "KSI_R01",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.old_ksiaz_ruins",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            110,
+            0.2,
+            110
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#8aa065",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      42,
+      23,
+      -38
+    ],
+    "lookAt": [
+      0,
+      4,
+      0
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

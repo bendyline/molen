@@ -1,0 +1,247 @@
+{
+  "planId": "KSI_L03",
+  "id": "KSI_L03",
+  "assetId": "molen.worldgen.structure.ksiaz_palm_utility",
+  "title": "Lubiechów Palm House utility building",
+  "category": "historic-service-building",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "utility-building",
+    "identity": {
+      "type": "way",
+      "id": 396950371
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.3063185,
+    "latitude": 50.8293005
+  },
+  "size": [
+    10.849772930145264,
+    13.5,
+    40.07851600646973
+  ],
+  "actualBounds": {
+    "min": [
+      -5.222006320953369,
+      0,
+      -19.61199951171875
+    ],
+    "max": [
+      5.6277666091918945,
+      13.5,
+      20.466516494750977
+    ]
+  },
+  "visualBrief": "Both connected mapped ranges, long tiled roof, half-timbered upper east band, taller polygonal south end, boarded gable, dormers and square brick chimney.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along a mapped cross-range edge toward east",
+    "longitudinal": "+Z approximately south; signed facade interpretation follows NID elevation captions",
+    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e8dfc5",
+      "cream": "#f1ead8",
+      "ochre": "#d2bd86",
+      "stone": "#c4b091",
+      "roof": "#a5644b",
+      "timber": "#6b5948",
+      "board": "#927453",
+      "brick": "#b78362",
+      "glass": "#536a7b"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/396950371",
+    "mappedFeatures": [
+      {
+        "type": "way",
+        "id": 396950371,
+        "tags": {
+          "building": "yes",
+          "source:building": "EGiB"
+        }
+      },
+      {
+        "type": "way",
+        "id": 396950375,
+        "tags": {
+          "addr:city": "Wałbrzych",
+          "addr:housenumber": "158b",
+          "addr:street": "Wrocławska",
+          "building": "yes",
+          "source:addr": "EMUiA (emuia.gugik.gov.pl)",
+          "source:building": "EGiB"
+        }
+      }
+    ],
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Independent official NID building record, 1994-01-15 survey-card photographs and drawings, and the numbered ensemble plan. Current restoration and dimensional/terrain survey remain pending."
+  },
+  "reconstruction": {
+    "basis": "Own OSM footprint(s), official NID individual building survey card and 2025 designated ensemble plan.",
+    "scope": "Long utility range and joined polygonal south end, preserving both mapped rings.",
+    "registration": "Cardinal facade interpretation proposed; actual terrain and slope contact, current restoration and real world placement remain pending."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://zabytek.pl/en/obiekty/g-259452",
+    "https://zabytek.pl/en/obiekty/g-259452/dokumenty/PL.1.9.ZIPOZ.NID_N_02_EN.224655/1",
+    "https://www.openstreetmap.org/way/396950371"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.3063185,
+      50.8293005
+    ],
+    "heading": 0.15701657710290243,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/396950371",
+      "way/396950375"
+    ],
+    "source": "https://www.openstreetmap.org/way/396950371",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9eb750c8a17195251e82701437a88e2be3e91d7b49eb4233aa6c8ca81e659697",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring(s) and signed cross-range axes. Cardinal elevations and ensemble associations follow the individual NID survey cards; heights, current facades and ground datum are interpretations. Inactive until actual component/terrain fit is reviewed. No parent QID is reused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Own attributed mapped footprints. Heights, roof subdivisions, openings and detail are original interpretations of the 1994 NID cards. Boiler/control boundaries and adjoining annex associations remain proposed.",
+    "No independent Wikidata identifier is asserted. Cardinal facade direction follows NID captions; actual geographic fit remains unreviewed.",
+    "References show the 1994 survey state and incorporate earlier plan inventories; current restoration state is unconfirmed.",
+    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "east-timber-range-and-south-end",
+      "position": [
+        36,
+        17,
+        42
+      ],
+      "lookAt": [
+        0,
+        5,
+        1
+      ]
+    },
+    {
+      "name": "south-gable-and-chimney",
+      "position": [
+        -19,
+        15,
+        35
+      ],
+      "lookAt": [
+        0,
+        6,
+        14
+      ]
+    },
+    {
+      "name": "both-mapped-ranges-and-roofs",
+      "position": [
+        3,
+        72,
+        14
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "west-dormers-and-service-facade",
+      "position": [
+        -35,
+        18,
+        -27
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3693,
+    "vertices": 11079,
+    "materials": 6,
+    "bytes": 446828,
+    "sha256": "sha256:1a0b0ac2168146ca687e494721ec60246cd89b913560c87e1d75d06df00d1f76"
+  }
+}

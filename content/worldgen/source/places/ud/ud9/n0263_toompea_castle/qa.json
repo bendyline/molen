@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0263_toompea_castle",
+  "sourceHash": "sha256:e447957fc4808006037199c1e31d5dcafb394480cc946882444190bc61cac70a",
+  "runtimeHash": "sha256:b72ebb9d59e151fa5c63fca41db771f5c233d61b8eec89905ffd5ab0c3db687e",
+  "captureReportHash": "sha256:96c517bef3340f1382a9cd178d2c6f6c294798c11eb261454689b75fe3a04642",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/east-palace-and-gable.png",
+      "shots/west-wall-and-hermann.png",
+      "shots/parliament-courtyard.png",
+      "shots/mapped-courtyard-plan.png",
+      "shots/hermann-crown-and-flag.png",
+      "shots/north-console-and-landskrone.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Pink east palace with curved central gable and three recessed entrance doors, grey parliament with arched windows, two open courts and the three surviving towers remain distinct. Corrected hidden facade windows, western window offsets and northern roofs extending beyond mapped outlines. Roof junctions and small state-arm motifs remain medium-fi abstractions."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:be817fb4cc26b3a737669824e0b6752c8429c3dcb4668e65238b923af8b23ca9",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/east-palace-and-gable.png",
+      "shots/shared/west-wall-and-hermann.png",
+      "shots/shared/parliament-courtyard.png",
+      "shots/shared/mapped-courtyard-plan.png",
+      "shots/shared/hermann-crown-and-flag.png",
+      "shots/shared/north-console-and-landskrone.png"
+    ],
+    "notes": "Inspected all 10 shared-loader views. Lime plaster, limestone and ceramic tile graphs load once each. Five merged material groups; local glazing and tricolor/identity colors use no private images. Unload releases every model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:21b86ec8657d7522bc578c193d7fa85d7791eed62559c8abb8922e7f49ee8d30",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-palace-and-gable.png",
+      "medium-fi/west-wall-and-hermann.png",
+      "medium-fi/parliament-courtyard.png",
+      "medium-fi/mapped-courtyard-plan.png",
+      "medium-fi/hermann-crown-and-flag.png",
+      "medium-fi/north-console-and-landskrone.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architectural views and four same-camera LOD comparisons. Procedural Bohemian townhouses supply synthetic scale/palette context. Towers, palace and open courts remain recognizable across levels; closeup bars disappear in street/district. Castle Square is the declared Y=0 attachment plane. The flat review ground intentionally hides western foundations and clips lower northern floors; this is not geographic contact approval. Real-site terrain, continuous-motion shimmer and physical devices remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Exact-QID relation/3502552 with mapped castle components; Tall Hermann relation/3502550 southwest, Pilsticker relation/3502551 northwest, Landskrone relation/3502547 northeast. Anchor [24.737375127,59.435763956], heading 1.685266971193793; native +X north and +Z east. Castle Square attachment plane is Y=0, western foundations descend to -12m. Vertical offsets and roof heights are reconstructed from map tags and photos, not survey elevations. Real cliff, tower-base and entrance contact require review. Draft remains inactive, replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. Source itself is 9769 triangles with five merged groups and three reusable graphs. Four authored levels meet triangle and download caps. Vertex colors are decoded from sRGB; skyline compensates for the shared graph mean. No per-stone mesh, baked lighting or private/embedded texture. This review approves the asset appearance, not its terrain placement."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ud/ud9/n0263_toompea_castle/models/source.glb",
+        "hash": "sha256:e447957fc4808006037199c1e31d5dcafb394480cc946882444190bc61cac70a",
+        "bytes": 1092484,
+        "triangles": 9769,
+        "vertices": 27003,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.glb",
+        "hash": "sha256:b72ebb9d59e151fa5c63fca41db771f5c233d61b8eec89905ffd5ab0c3db687e",
+        "bytes": 1091992,
+        "triangles": 9769,
+        "vertices": 27003,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.skyline.glb",
+        "hash": "sha256:5cd7ac2b39171ae178a448345d54f15fb15f1ac1221367d64b6c7a8ed7973715",
+        "bytes": 87880,
+        "triangles": 982,
+        "vertices": 2238,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -70.16905975341797,
+          -12,
+          -40.096920013427734
+        ],
+        "max": [
+          70.06793975830078,
+          45.599998474121094,
+          42.50944137573242
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.district.glb",
+        "hash": "sha256:ec09317adeb3dd81cc0b9b33d80420fa5c14a9c21f066fdaebea283fc436db72",
+        "bytes": 267960,
+        "triangles": 3475,
+        "vertices": 6696,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.16905975341797,
+          -12,
+          -40.096920013427734
+        ],
+        "max": [
+          70.19593811035156,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.street.glb",
+        "hash": "sha256:7c5f61e8d6a5d4032d1f1d84ef03006a2697339381ffa60508aa5aa77a853273",
+        "bytes": 508988,
+        "triangles": 6709,
+        "vertices": 12852,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.closeup.glb",
+        "hash": "sha256:7a2a2cfa6508c50e02e4205ca07772e537f4491e7e71391ae32c6d9945f5203a",
+        "bytes": 747672,
+        "triangles": 9769,
+        "vertices": 18972,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Zero errors and warnings across source, imported model and all four LODs. Declared attachment plane is Y=0; western foundation minimum is -12m and mast maximum is 45.6m. Deterministic LOD tests pass, including budgets, external material bindings and homogeneous GPU attribute buffers. Unused UV informational messages are expected for externally bound surfaces."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.skyline.glb",
+        "hash": "sha256:5cd7ac2b39171ae178a448345d54f15fb15f1ac1221367d64b6c7a8ed7973715",
+        "bytes": 87880,
+        "triangles": 982,
+        "vertices": 2238,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -70.16905975341797,
+          -12,
+          -40.096920013427734
+        ],
+        "max": [
+          70.06793975830078,
+          45.599998474121094,
+          42.50944137573242
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.district.glb",
+        "hash": "sha256:ec09317adeb3dd81cc0b9b33d80420fa5c14a9c21f066fdaebea283fc436db72",
+        "bytes": 267960,
+        "triangles": 3475,
+        "vertices": 6696,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.16905975341797,
+          -12,
+          -40.096920013427734
+        ],
+        "max": [
+          70.19593811035156,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.street.glb",
+        "hash": "sha256:7c5f61e8d6a5d4032d1f1d84ef03006a2697339381ffa60508aa5aa77a853273",
+        "bytes": 508988,
+        "triangles": 6709,
+        "vertices": 12852,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/ud/ud9/n0263_toompea_castle/model.closeup.glb",
+        "hash": "sha256:7a2a2cfa6508c50e02e4205ca07772e537f4491e7e71391ae32c6d9945f5203a",
+        "bytes": 747672,
+        "triangles": 9769,
+        "vertices": 18972,
+        "materials": 5,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -70.24906158447266,
+          -12,
+          -41.0438232421875
+        ],
+        "max": [
+          70.30400085449219,
+          45.599998474121094,
+          44.04420852661133
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 355840,
+    "notes": "Skyline/district/street/closeup contain 982/3475/6709/9769 triangles, 87880/267960/508988/747672 bytes. Initial combined payload 355840 bytes, excluding shared graphs. Skyline retains the three surviving towers, flag, palace gable, parliament and courts; local identity colors remain untinted."
+  }
+}

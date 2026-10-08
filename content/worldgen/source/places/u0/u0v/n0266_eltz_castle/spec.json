@@ -1,0 +1,243 @@
+{
+  "planId": "N0266",
+  "id": "N0266",
+  "assetId": "molen.worldgen.structure.n0266_eltz_castle",
+  "title": "Eltz Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q153426",
+  "referenceCoordinate": {
+    "latitude": 50.205,
+    "longitude": 7.336666666
+  },
+  "visualBrief": "Eight adjoining houses around a narrow open court, steep slate roofs, red-and-cream timber oriels, pale chimneys and the lower northern outer bailey.",
+  "mediumFiContext": {
+    "scale": "1.35",
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "size": [
+    119.4946060180664,
+    36.5,
+    47.03548049926758
+  ],
+  "actualBounds": {
+    "min": [
+      -34.494606018066406,
+      0,
+      -18.40999984741211
+    ],
+    "max": [
+      85,
+      36.5,
+      28.62548065185547
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north toward the outer gate",
+    "front": "+Z east",
+    "origin": "OSM main-building center, lowest exterior foundations Y=0, inner court Y=8m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/238981197 exact Wikidata Q153426",
+    "publishedResidentialTowers": 8,
+    "publishedMaximumTowerHeightMeters": 35,
+    "rockSpurHeightMeters": 60
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#c8bca6",
+      "warm": "#d7c6a3",
+      "trim": "#efe6cf",
+      "plaster": "#eee7d8",
+      "slate": "#626b74",
+      "glass": "#4d6178",
+      "paving": "#b6b0a1",
+      "timber": "#9f4238",
+      "door": "#86644c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Tall clustered family houses around an open courtyard",
+      "Steep grey slate roofs, polygonal timber oriels and pale chimneys",
+      "Ochre Platt-Eltz, white Rübenach upper band and projecting Kempenich timber gable"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Attributed OSM main-building outline plus owner numbered plan, scaled section and current photographs",
+    "scope": "Exterior main castle and immediate outer bailey; terrain, distant ruined outer ward and interiors excluded"
+  },
+  "referencePages": [
+    "https://burg-eltz.de/en/the-castle",
+    "https://burg-eltz.de/en/history",
+    "https://burg-eltz.de/files/Unterschriften%20und%20anderes/kernburg_lageplan.pdf",
+    "https://www.openstreetmap.org/way/238981197"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed frame and reconstructed compound; slope and entrance seating pending",
+    "anchor": [
+      7.336610781,
+      50.205058905
+    ],
+    "heading": 1.510444051141,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/238981197",
+    "groundModelY": 8,
+    "featureIds": [
+      "way/238981197"
+    ],
+    "wikidataId": "Q153426",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:32322ad9f8094247cec077c50abd04334256a756b109571cc9db0510dec51f00",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Owner plan resolves north-facing outer gate; reconstructed slope levels and outbuildings still need real-site terrain review."
+  },
+  "scaleBasis": "Mapped main footprint 65.003×35.497m; reconstructed house partitions, eaves and roofs. Exported foundation Y=0, inner court Y=8m, highest ridge35.5m and chimney36.5m. Roofs stand24–27.5m above court. Published35m tower height includes lower slope floors. Outbuildings manually aligned from owner plan; terrain seating pending.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. OSM frame © OpenStreetMap contributors, ODbL-1.0. Owner research photographs/plans linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0; owner plan and photographs used as linked research evidence.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Exterior only, with simplified window rhythms and timber patterns; no photos or unique textures.",
+    "House boundaries, roof profiles, gate/outbuilding coordinates and height datums are reconstructed, not a survey.",
+    "Real terrain contact, continuous-motion shimmer and physical-device performance are pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "north-gate-and-rodendorf",
+      "position": [
+        95,
+        38,
+        -22
+      ],
+      "lookAt": [
+        19,
+        20,
+        -1
+      ]
+    },
+    {
+      "name": "east-kempenich",
+      "position": [
+        -5,
+        38,
+        85
+      ],
+      "lookAt": [
+        0,
+        19,
+        1
+      ]
+    },
+    {
+      "name": "south-platteltz",
+      "position": [
+        -82,
+        31,
+        -11
+      ],
+      "lookAt": [
+        -15,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "west-rubenach",
+      "position": [
+        7,
+        37,
+        -80
+      ],
+      "lookAt": [
+        0,
+        20,
+        -2
+      ]
+    },
+    {
+      "name": "open-court",
+      "position": [
+        -4,
+        49,
+        0
+      ],
+      "lookAt": [
+        2,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        17,
+        153,
+        0
+      ],
+      "lookAt": [
+        17,
+        8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Eltz-specific clustered houses, open courtyard, timber bays and contrasting slate roofs through every level.",
+  "mesh": {
+    "triangles": 5356,
+    "vertices": 14976,
+    "materials": 5,
+    "bytes": 606620,
+    "sha256": "sha256:21a46ad8431c67f07a0f2a3a1ca066ead258597edccc2378486237d59156c474"
+  }
+}

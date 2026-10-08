@@ -172,6 +172,12 @@ Binds archstyles and scatter rule sets to places on Earth: prioritized lon/lat r
       "maximum": 9007199254740991,
       "description": "Bump when bindings change on purpose."
     },
+    "fallbackDistanceMeters": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5000,
+      "description": "Optional nearest-outline fallback in local world meters, used only when no region contains the point. Compensates for coarse coastlines; default 0."
+    },
     "regions": {
       "default": [],
       "type": "array",

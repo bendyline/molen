@@ -6,6 +6,12 @@ import type { HeightSampler, Vec3 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { createInThreadWorldgenGenerator } from '../src/client/generators';
 import { createWorldgenWorkerBridge, type WorkerLike } from '../src/client/worker-bridge';
+import { ECOLOGY_ATLAS_EXAMPLE } from '../src/kernel/ecology-atlas-schema';
+import { createRegionResolver } from '../src/kernel/region';
+import {
+  createRegionalEnvironment,
+  type RegionalEnvironmentDocs,
+} from '../src/kernel/regional-environment';
 import type { TileGeometry } from '../src/kernel/semantic-adapter';
 import {
   createWorldgenWorkerHandler,
@@ -110,6 +116,91 @@ function fakeWorker(): WorkerLike & { results: WorldgenWorkerResult[] } {
 }
 
 describe('worldgen worker protocol', () => {
+  it.each([
+    undefined,
+    1,
+  ])('uses identical regional documents and isolated seeds on both generation paths (month=%s)', async (vegetationMonth) => {
+    const source = Object.values(pack.scatters)[0];
+    if (source === undefined) throw new Error('Missing scatter fixture');
+    const environment: RegionalEnvironmentDocs = {
+      atlas: ECOLOGY_ATLAS_EXAMPLE,
+      ...(vegetationMonth === undefined ? {} : { vegetationMonth }),
+      catalogs: [
+        {
+          format: 'molen/regional-catalog@1',
+          id: 'test.regional',
+          version: 1,
+          title: 'Regional worker fixture',
+          requires: [],
+          overrides: [],
+          profiles: [
+            {
+              id: 'test.everywhere',
+              title: 'Everywhere',
+              priority: 1,
+              match: {},
+              scatter: source.id,
+            },
+          ],
+          plants: [
+            {
+              id: 'test.plant',
+              version: 1,
+              title: 'Deciduous worker fixture',
+              family: 'broadleaf',
+              form: 'round',
+              height: 10,
+              width: 7,
+              crownBase: 0.4,
+              stemRadius: 0.3,
+              lean: 0.02,
+              foliage: '#668844',
+              bark: '#776655',
+              phenology: { spring: '#889955', autumn: '#aa9955' },
+            },
+          ],
+          scatters: [
+            {
+              ...source,
+              rules: source.rules.map((rule) => ({
+                ...rule,
+                populations: rule.populations.map((p) => ({ ...p, model: 'test.plant' })),
+              })),
+            },
+          ],
+        },
+      ],
+    };
+    const request = {
+      tile: tile(),
+      geom: { ...geom, originZ: -6_000_000 },
+      ground,
+      resolution: 65,
+      features: { buildings: true, scatter: true },
+    };
+    const regions = createRegionResolver(atlas, { metersPerUnit: 1 });
+    const direct = await createInThreadWorldgenGenerator(pack, {
+      atlas,
+      regions,
+      environment: createRegionalEnvironment(environment, 1, regions),
+    }).generate(request, new AbortController().signal);
+    const bridge = createWorldgenWorkerBridge(fakeWorker(), {
+      pack,
+      atlas,
+      metersPerUnit: 1,
+      environment,
+    });
+    const worker = await bridge.generate(request, new AbortController().signal);
+    expect(direct?.placements.length).toBeGreaterThan(0);
+    expect(
+      direct?.placements.some(
+        (set) => set.modelRef === (vegetationMonth === 1 ? 'test.plant.winter' : 'test.plant'),
+      ),
+    ).toBe(true);
+    expect(worker?.hash).toEqual(direct?.hash);
+    expect(worker?.stats).toEqual(direct?.stats);
+    bridge.dispose();
+  });
   it.each([
     false,
     true,

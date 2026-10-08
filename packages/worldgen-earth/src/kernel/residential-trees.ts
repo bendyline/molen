@@ -11,6 +11,7 @@ import {
   type BuildingRequest,
   buildingMetrics,
   buildingSeedString,
+  hashString,
   ringCentroid,
   type ScatterPolygon,
   selectStyle,
@@ -104,7 +105,16 @@ export function residentialTreePolygons(
       const fill = region?.bindings.treeFillFactor ?? atlas.default.treeFillFactor ?? 0;
       if (fill <= 0) continue;
       const scatterId = regionScatterId(atlas, region) ?? pack.root.defaults.scatter;
-      const scatter = scatterId === undefined ? undefined : pack.scatters[scatterId];
+      const regional = options.environment?.at(
+        geom.originX + center[0] * geom.size,
+        geom.originZ + center[1] * geom.size,
+      );
+      const scatter =
+        options.environment?.hasEcology === true
+          ? regional?.scatter
+          : scatterId === undefined
+            ? undefined
+            : pack.scatters[scatterId];
       // A custom scatter pack opts into inferred canopy with this dedicated label.
       const rule = scatter?.rules.find((entry) => entry.classes.includes(INFILL_LABEL));
       if (rule === undefined) continue;
@@ -122,14 +132,21 @@ export function residentialTreePolygons(
       };
       const analysis = analyzeFootprint(outline, (polygon.holes ?? []).map(toMeters));
       const styleId = selectStyle(
-        [...regionStyleRules(atlas, region), ...pack.root.defaults.rules],
+        [
+          ...(regional?.buildings ?? []),
+          ...regionStyleRules(atlas, region),
+          ...pack.root.defaults.rules,
+        ],
         buildingMetrics(request, analysis),
         pack.root.defaults.style,
         identity,
       ).style;
       const style = pack.archstyles[styleId];
       if (style === undefined) continue;
-      const seed = aspectSeed(buildingSeedString(pack.root, style, identity), 'yard-trees');
+      const seed =
+        options.environment?.hasEcology === true && scatter !== undefined
+          ? hashString(`wg1|yard|${scatter.id}@${scatter.version}|${identity}`)
+          : aspectSeed(buildingSeedString(pack.root, style, identity), 'yard-trees');
       const [minX, minZ, maxX, maxZ] = polygonBounds({ outer: outline });
       const cx = center[0] * geom.size,
         cz = center[1] * geom.size;

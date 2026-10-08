@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0268_hohensalzburg_fortress",
+  "sourceHash": "sha256:b71ddaa869e602e7492f2b0d5a3a73d5e22b7f561ef3e5952ba2b3b025fd6156",
+  "runtimeHash": "sha256:59a20923e9202dc6e172e467d4ba11d00374d10b2c9b5e0ef367ed692f734f1d",
+  "captureReportHash": "sha256:8e4aac61459a998d0c7ba05c8d2eea2ec28049c696e10c27998d9c0c96bc9fbb",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-palace-and-bastions.png",
+      "shots/south-courts-and-ranges.png",
+      "shots/west-hasengraben.png",
+      "shots/east-chapel-and-outworks.png",
+      "shots/chapel-courtyard.png",
+      "shots/compound-plan.png"
+    ],
+    "notes": "Inspected all 11 portable frames. Broad high palace, eight shallow parallel roof ridges, corner fire walls, green Krautturm lantern, chapel spire, open courts and terraced bastions read at their respective scales. Corrected the palace foundation gap, gate arch normals and northwestern gate position; lightened the plaster toward the documented off-white. Wing footprints, window rhythms and most heights are reconstructed from museum plan and current owner photographs. Architectural foundation skirts descend toY=0 for terrain overlap; the visible flat-ground lower walls are not a surveyed cliff reconstruction."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:912fb49de8b664ce89bd48890a8a4fb2d262b98977113deb08c6789bd442490c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-palace-and-bastions.png",
+      "shots/shared/south-courts-and-ranges.png",
+      "shots/shared/west-hasengraben.png",
+      "shots/shared/east-chapel-and-outworks.png",
+      "shots/shared/chapel-courtyard.png",
+      "shots/shared/compound-plan.png"
+    ],
+    "notes": "Inspected all 10 shared-loader views. Lime plaster, limestone, slate and patinated copper each load once; opaque local glass is the fifth merged group. No embedded or private images. Unloading releases all model geometries. No baked directional lighting, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ea5a0ff931f8da49239c6e7d8aed1ab295adb6581be56704c9ce4c1e5deaed50",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-palace-and-bastions.png",
+      "medium-fi/south-courts-and-ranges.png",
+      "medium-fi/west-hasengraben.png",
+      "medium-fi/east-chapel-and-outworks.png",
+      "medium-fi/chapel-courtyard.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architecture views and four same-camera LOD views. Off-white walls, grey stone, darker slate and restrained green copper remain coherent beside synthetic German Fachwerk houses. Skyline preserves roof rhythm, palace mass, lantern, spire and terraces; windows, small watch turrets, crenellations and thin outer parapets appear nearer. Foundation gap corrected. Synthetic flat-ground context does not establish hillside seating. Continuous-motion shimmer and physical-device performance remain unverified."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "Full fortress OSM way/58379993 supplies anchor[13.04787405,47.7952134], heading0.255395266735, +X east-northeast, -Z north-northwest. Cached global georeference way/58379483 describes the17×9m Georgskirche, not the entire fortress; source-local map frame corrects the asset draft and retains that chapel as a control. The site boundary is a precinct, not individual building footprints. Wing coordinates and most heights are manually reconstructed from historical museum plan and current owner photos. CourtY=30m and upper terrace33m require terrain review; published Kuenburg wall height30m informs, but does not survey, the relative datum. Proposed groundModelY=30 is not applied by the inactive draft registrar. Actual hillside, terraced courts and entry seating remain pending. replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The5419-triangle source master and four authored levels preserve fortress-specific roof rhythm, white high palace, green lantern and tiered defenses. Five merged groups, four shared256² graphs, no unique textures. sRGB palettes decode to linear and skyline applies the shared-texture mean. Detailed interiors, masonry joints and distant ramparts are omitted. Appearance approval is separate from map/terrain approval."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/models/source.glb",
+        "hash": "sha256:b71ddaa869e602e7492f2b0d5a3a73d5e22b7f561ef3e5952ba2b3b025fd6156",
+        "bytes": 529524,
+        "triangles": 5419,
+        "vertices": 12813,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.glb",
+        "hash": "sha256:59a20923e9202dc6e172e467d4ba11d00374d10b2c9b5e0ef367ed692f734f1d",
+        "bytes": 529024,
+        "triangles": 5419,
+        "vertices": 12813,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.skyline.glb",
+        "hash": "sha256:e52d9207b3ef6c4689c2d84ca086d4e2aa2435c5faa265b425242421c91a3cc5",
+        "bytes": 76548,
+        "triangles": 957,
+        "vertices": 1929,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -133,
+          0,
+          -72
+        ],
+        "max": [
+          130.84542846679688,
+          60,
+          85
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.district.glb",
+        "hash": "sha256:414efdd1691b9c2f61c11c465675e42cedd3adc68e216e8b917afcf55bff9eee",
+        "bytes": 257124,
+        "triangles": 3327,
+        "vertices": 6421,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.street.glb",
+        "hash": "sha256:1d5ffaed97649296b42a9d2e444310851caca08b403a6e75bbd141bf9d7e3f26",
+        "bytes": 362244,
+        "triangles": 4743,
+        "vertices": 9105,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.closeup.glb",
+        "hash": "sha256:7d27c4fc56c3b27efdd63a3e888f74b4b47225ca078bcb7b90e5bcfe532ffa79",
+        "bytes": 409216,
+        "triangles": 5419,
+        "vertices": 10297,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Source, runtime and four LODs: zero errors/warnings, zero images, minY=0 and maxY=60m. Two targeted tests pass for determinism, height, triangle/download budgets, external materials and homogeneous GPU attribute layouts. Unused-UV informational messages are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.skyline.glb",
+        "hash": "sha256:e52d9207b3ef6c4689c2d84ca086d4e2aa2435c5faa265b425242421c91a3cc5",
+        "bytes": 76548,
+        "triangles": 957,
+        "vertices": 1929,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -133,
+          0,
+          -72
+        ],
+        "max": [
+          130.84542846679688,
+          60,
+          85
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.district.glb",
+        "hash": "sha256:414efdd1691b9c2f61c11c465675e42cedd3adc68e216e8b917afcf55bff9eee",
+        "bytes": 257124,
+        "triangles": 3327,
+        "vertices": 6421,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.street.glb",
+        "hash": "sha256:1d5ffaed97649296b42a9d2e444310851caca08b403a6e75bbd141bf9d7e3f26",
+        "bytes": 362244,
+        "triangles": 4743,
+        "vertices": 9105,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.closeup.glb",
+        "hash": "sha256:7d27c4fc56c3b27efdd63a3e888f74b4b47225ca078bcb7b90e5bcfe532ffa79",
+        "bytes": 409216,
+        "triangles": 5419,
+        "vertices": 10297,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          0,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          60,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 333672,
+    "notes": "Skyline/district/street/closeup:957/3327/4743/5419 triangles and76548/257124/362244/409216bytes. Initial combined payload333672bytes excludes shared graphs. Source regeneration is byte-identical; strict medium-fi audit and recipe Biome check pass. Only this model was built and checked."
+  }
+}

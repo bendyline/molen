@@ -2,20 +2,22 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 268 authored assets, 268 imported assets and 232 active geographic asset previews.
+There are 302 authored assets, 302 imported assets and 232 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
-portable render, shared-material render, geographic fit and maximum exterior fidelity pass.
+portable render, shared-material render, geographic fit and its declared fidelity standard pass.
+New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
+approvals retain their original scope and are not automatically medium-fi approvals.
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 268 |
-| Runtime GLBs imported | 268 |
-| Portable visual reviews passed | 198 |
-| Shared-material reviews passed | 196 |
+| Source GLBs authored | 302 |
+| Runtime GLBs imported | 302 |
+| Portable visual reviews passed | 195 |
+| Shared-material reviews passed | 193 |
 | Active geographic previews | 232 |
-| Maximum exterior fidelity reviews passed | 133 |
-| Complete | 108 |
-| Source models still to author | 732 |
+| Declared fidelity reviews passed | 130 |
+| Complete | 105 |
+| Source models still to author | 698 |
 
 ## Authored models
 
@@ -24,7 +26,7 @@ captures. Editing those inputs invalidates older approvals; rebuilding the same 
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 
-| ID | Model | Runtime triangles | Visual | Shared materials | Placement review | Maximum fidelity | Complete |
+| ID | Model | Runtime triangles | Visual | Shared materials | Placement review | Declared fidelity | Complete |
 | --- | --- | ---: | --- | --- | --- | --- | --- |
 | N0001 | [Stari Most](../places/sr/srs/n0001_stari_most/README.md) | 56312 | Passed | Passed | Passed | Passed | Yes |
 | N0002 | [Pont de Normandie](../places/u0/u0b/n0002_pont_de_normandie/README.md) | 178388 | Passed | Not required | Pending | Pending | Pending |
@@ -60,11 +62,11 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0137 | [Mode Gakuen Cocoon Tower](../places/xn/xn7/n0137_mode_gakuen_cocoon_tower/README.md) | 173844 | Passed | Passed | Pending | Pending | Pending |
 | N0138 | [Mirante do Vale](../places/6g/6gy/n0138_mirante_do_vale/README.md) | 23200 | Pending | Pending | Pending | Pending | Pending |
 | N0139 | [Abeno Harukas](../places/xn/xn0/n0139_abeno_harukas/README.md) | 22049 | Pending | Pending | Pending | Pending | Pending |
-| N0140 | [Shanghai World Financial Center](../places/wt/wtw/n0140_shanghai_world_financial_center/README.md) | 227144 | Passed | Passed | Passed | Passed | Yes |
-| N0141 | [The Shard](../places/gc/gcp/n0141_the_shard/README.md) | 269299 | Passed | Passed | Passed | Passed | Yes |
+| N0140 | [Shanghai World Financial Center](../places/wt/wtw/n0140_shanghai_world_financial_center/README.md) | 227144 | Pending | Pending | Pending | Pending | Pending |
+| N0141 | [The Shard](../places/gc/gcp/n0141_the_shard/README.md) | 269299 | Pending | Pending | Pending | Pending | Pending |
 | N0142 | [Abraj Al Bait](../places/sg/sgu/n0142_abraj_al_bait/README.md) | 260178 | Pending | Pending | Pending | Pending | Pending |
 | N0143 | [Ryugyong Hotel](../places/wy/wyc/n0143_ryugyong_hotel/README.md) | 36147 | Pending | Pending | Pending | Pending | Pending |
-| N0144 | [Oriental Pearl Tower](../places/wt/wtw/n0144_oriental_pearl_tower/README.md) | 288124 | Passed | Passed | Passed | Passed | Yes |
+| N0144 | [Oriental Pearl Tower](../places/wt/wtw/n0144_oriental_pearl_tower/README.md) | 288124 | Pending | Pending | Pending | Pending | Pending |
 | N0145 | [Jin Mao Tower](../places/wt/wtw/n0145_jin_mao_tower/README.md) | 79841 | Pending | Pending | Pending | Pending | Pending |
 | N0146 | [Palace of Culture and Science](../places/u3/u3q/n0146_palace_of_culture_and_science/README.md) | 183246 | Passed | Passed | Passed | Pending | Pending |
 | N0147 | [Grande Arche](../places/u0/u09/n0147_grande_arche/README.md) | 22776 | Pending | Pending | Pending | Pending | Pending |
@@ -162,6 +164,40 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0256 | [Durham Castle](../places/gc/gcw/n0256_durham_castle/README.md) | 193007 | Passed | Passed | Pending | Pending | Pending |
 | N0257 | [Citadel of Salah Ed-Din](../places/sy/sy3/n0257_citadel_of_salah_ed_din/README.md) | 320144 | Passed | Passed | Pending | Pending | Pending |
 | N0258 | [Sforza Castle](../places/u0/u0n/n0258_sforza_castle/README.md) | 509200 | Passed | Passed | Pending | Pending | Pending |
+| N0259 | [Shanhai Pass](../places/wx/wxj/n0259_shanhai_pass/README.md) | 5338 | Pending | Pending | Pending | Pending | Pending |
+| N0260 | [Khotyn Fortress](../places/u8/u8d/n0260_khotyn_fortress/README.md) | 8615 | Pending | Pending | Pending | Pending | Pending |
+| N0261 | [Royal Castle in Warsaw](../places/u3/u3q/n0261_royal_castle_in_warsaw/README.md) | 27495 | Pending | Pending | Pending | Pending | Pending |
+| N0262 | [Stirling Castle](../places/gc/gcv/n0262_stirling_castle/README.md) | 8327 | Pending | Pending | Pending | Pending | Pending |
+| N0263 | [Toompea Castle](../places/ud/ud9/n0263_toompea_castle/README.md) | 9769 | Pending | Pending | Pending | Pending | Pending |
+| N0264 | [Riga Castle](../places/ud/ud1/n0264_riga_castle/README.md) | 6891 | Pending | Pending | Pending | Pending | Pending |
+| N0265 | [Château de Vincennes](../places/u0/u09/n0265_chateau_de_vincennes/README.md) | 12218 | Pending | Pending | Pending | Pending | Pending |
+| N0266 | [Eltz Castle](../places/u0/u0v/n0266_eltz_castle/README.md) | 5356 | Pending | Pending | Pending | Pending | Pending |
+| N0267 | [Heidelberg Castle](../places/u0/u0y/n0267_heidelberg_castle/README.md) | 6948 | Pending | Pending | Pending | Pending | Pending |
+| N0268 | [Hohensalzburg Fortress](../places/u2/u23/n0268_hohensalzburg_fortress/README.md) | 5419 | Pending | Pending | Pending | Pending | Pending |
+| N0269 | [Vaduz Castle](../places/u0/u0q/n0269_vaduz_castle/README.md) | 6623 | Pending | Pending | Pending | Pending | Pending |
+| N0270 | [Conwy Castle](../places/gc/gcm/n0270_conwy_castle/README.md) | 11944 | Pending | Pending | Pending | Pending | Pending |
+| N0271 | [Swallow's Nest](../places/sz/szb/n0271_swallow_s_nest/README.md) | 9123 | Pending | Pending | Pending | Pending | Pending |
+| N0272 | [Kuressaare Castle](../places/u6/u6r/n0272_kuressaare_castle/README.md) | 8215 | Pending | Pending | Pending | Pending | Pending |
+| N0273 | [Caernarfon Castle](../places/gc/gck/n0273_caernarfon_castle/README.md) | 16236 | Pending | Pending | Pending | Pending | Pending |
+| N0274 | [Hermann Castle](../places/ud/uds/n0274_hermann_castle/README.md) | 5406 | Pending | Pending | Pending | Pending | Pending |
+| N0275 | [Dublin Castle](../places/gc/gc7/n0275_dublin_castle/README.md) | 10334 | Pending | Pending | Pending | Pending | Pending |
+| N0276 | [Miramare Castle](../places/u2/u21/n0276_miramare_castle/README.md) | 9918 | Pending | Pending | Pending | Pending | Pending |
+| N0277 | [Lubart's Castle](../places/u9/u94/n0277_lubart_s_castle/README.md) | 4497 | Pending | Pending | Pending | Pending | Pending |
+| N0278 | [Kamianets-Podilskyi Castle](../places/u8/u8d/n0278_kamianets_podilskyi_castle/README.md) | 4182 | Pending | Pending | Pending | Pending | Pending |
+| N0279 | [Gripsholm Castle](../places/u6/u6s/n0279_gripsholm_castle/README.md) | 5247 | Pending | Pending | Pending | Pending | Pending |
+| N0280 | [Trakai Island Castle](../places/u9/u99/n0280_trakai_island_castle/README.md) | 3386 | Pending | Pending | Pending | Pending | Pending |
+| N0281 | [Acrocorinth](../places/sw/sw8/n0281_acrocorinth/README.md) | 6430 | Pending | Pending | Pending | Pending | Pending |
+| N0282 | [Akershus Fortress](../places/u4/u4x/n0282_akershus_fortress/README.md) | 3883 | Pending | Pending | Pending | Pending | Pending |
+| N0283 | [Beaumaris Castle](../places/gc/gcm/n0283_beaumaris_castle/README.md) | 6071 | Pending | Pending | Pending | Pending | Pending |
+| N0284 | [Dover Castle](../places/u1/u10/n0284_dover_castle/README.md) | 4590 | Pending | Pending | Pending | Pending | Pending |
+| N0285 | [Corvin Castle](../places/u8/u80/n0285_corvin_castle/README.md) | 5936 | Pending | Pending | Pending | Pending | Pending |
+| N0286 | [Kroměříž Castle](../places/u2/u2u/n0286_kromeriz_castle/README.md) | 12897 | Pending | Pending | Pending | Pending | Pending |
+| N0287 | [Elmina Castle](../places/eb/ebz/n0287_elmina_castle/README.md) | 17627 | Pending | Pending | Pending | Pending | Pending |
+| N0288 | [Konopiště Castle](../places/u2/u2f/n0288_konopiste_castle/README.md) | 17454 | Pending | Pending | Pending | Pending | Pending |
+| N0289 | [Castel Nuovo](../places/sr/sr6/n0289_castel_nuovo/README.md) | 7590 | Pending | Pending | Pending | Pending | Pending |
+| N0290 | [Warwick Castle](../places/gc/gcq/n0290_warwick_castle/README.md) | 8649 | Pending | Pending | Pending | Pending | Pending |
+| N0291 | [Książ Castle and park complex](../places/u3/u35/n0291_ksiaz_castle_and_park_complex/README.md) | 7839 | Pending | Pending | Pending | Pending | Pending |
+| N0292 | [Devín Castle](../places/u2/u2s/n0292_devin_castle/README.md) | 8494 | Pending | Pending | Pending | Pending | Pending |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |

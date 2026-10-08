@@ -1,0 +1,250 @@
+{
+  "planId": "N0269",
+  "id": "N0269",
+  "assetId": "molen.worldgen.structure.n0269_vaduz_castle",
+  "title": "Vaduz Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q694782",
+  "referenceCoordinate": {
+    "latitude": 47.139444444,
+    "longitude": 9.524444444
+  },
+  "visualBrief": "Present-day Vaduz Castle: square stone keep with pyramidal tile roof, roofed southern roundel with timber hoarding, open northern roundel, cream valley-facing residence and red/white shutters.",
+  "mediumFiContext": {
+    "scale": "1.2",
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "size": [
+    77.0999984741211,
+    30,
+    57.24971008300781
+  ],
+  "actualBounds": {
+    "min": [
+      -39.099998474121094,
+      0,
+      -29.749710083007812
+    ],
+    "max": [
+      38,
+      30,
+      27.5
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north, about1.23degrees east of true north",
+    "front": "-Z west toward Vaduz and Rhine valley",
+    "origin": "Mapped compound center; west foundationsY=0, internal courtY=4.5m"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/1252853 exact Q694782",
+    "mappedHeightMeters": 30,
+    "mappedPlanMeters": [
+      75.448,
+      52.756
+    ],
+    "northwestResidentialTowerDendroDate": 1287,
+    "southRoundelDate": 1523,
+    "northRoundelDate": "1528/29"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e7e1d3",
+      "trim": "#f0e8d7",
+      "stone": "#b7b1a5",
+      "paving": "#b2ad9f",
+      "tile": "#80664f",
+      "wood": "#947355",
+      "red": "#a24547",
+      "white": "#eee6d9",
+      "glass": "#4d6178",
+      "door": "#765d49"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Square rough-stone keep with wide pyramidal roof",
+      "Covered south roundel and contrasting open annular-roof north roundel",
+      "Cream crossed-gable residence, red/white shutters and low west curtain"
+    ]
+  },
+  "reconstruction": {
+    "basis": "OSM complete building multipolygon and current municipal/tourism photographs; architectural research model cross-checks internal arrangement",
+    "scope": "Current main compound, western curtain and immediate entry; no mountain, palace interiors, distant garden or ancillary estate buildings"
+  },
+  "referencePages": [
+    "https://www.vaduz.li/en/living-environment/living-building/listed-buildings/schloss-vaduz",
+    "https://schloss-vaduz-erleben.li/en/",
+    "https://historisches-lexikon.li/Vaduz_%28Schloss%29",
+    "https://historisches-lexikon.li/Datei:Schloss_Vaduz_Modell_MA.jpg",
+    "https://www.openstreetmap.org/relation/1252853"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; terrain seating pending",
+    "anchor": [
+      9.52434566,
+      47.139574837
+    ],
+    "heading": 1.549323723192,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/1252853",
+    "groundModelY": 4.5,
+    "featureIds": [
+      "relation/1252853"
+    ],
+    "wikidataId": "Q694782",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c0fba8099b44addc978d6c07056b1d20b0d629935e7b15dc815a128a69a46c12",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Covered south/open north roundels resolve the signed axis; wing fit, outer curtain and4.5m court datum require real hillside review."
+  },
+  "scaleBasis": "OSM 75.448×52.756m main building envelope and mapped30m height; outer west curtain extends beyond that building footprint. Roundels approximated from mapped lobes; wing divisions and elevations inferred from official photographs. Court4.5m is a proposed datum, not a terrain survey.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0; research photographs linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Official municipal/tourism images and the Amt für Kultur architectural research model used as references.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Simplified present exterior; internal wing dimensions and most heights inferred, not surveyed.",
+    "No interiors, mountain mesh, private textures or distant estate grounds.",
+    "Actual hillside seating, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "west-valley-front",
+      "position": [
+        5,
+        45,
+        -115
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "north-open-roundel",
+      "position": [
+        110,
+        46,
+        2
+      ],
+      "lookAt": [
+        5,
+        12,
+        1
+      ]
+    },
+    {
+      "name": "south-covered-roundel",
+      "position": [
+        -108,
+        44,
+        -8
+      ],
+      "lookAt": [
+        -10,
+        13,
+        3
+      ]
+    },
+    {
+      "name": "east-keep-and-roundels",
+      "position": [
+        5,
+        54,
+        112
+      ],
+      "lookAt": [
+        -1,
+        13,
+        7
+      ]
+    },
+    {
+      "name": "inner-court",
+      "position": [
+        7,
+        10,
+        0.5
+      ],
+      "lookAt": [
+        -13,
+        13,
+        -3
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        0,
+        155,
+        1
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve the asymmetric pair of roundels, square keep, valley residences and open core court through all four levels.",
+  "mesh": {
+    "triangles": 6623,
+    "vertices": 17361,
+    "materials": 5,
+    "bytes": 707688,
+    "sha256": "sha256:14db85eb73fc00da51eab3962f57efe761e7a26c9e60796cd3eb1eae7feaae42"
+  }
+}

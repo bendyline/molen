@@ -88,6 +88,48 @@ const rule = z.strictObject({
     .max(20000)
     .describe('Target instances per hectare before clustering and polygon density.'),
   minSpacing: z.number().nonnegative().describe('Minimum spacing hint in meters.').default(2),
+  rows: z
+    .strictObject({
+      spacing: z.number().min(0.5).max(100).describe('Distance between cultivation rows, meters.'),
+      interval: z
+        .number()
+        .min(0.5)
+        .max(100)
+        .describe('Distance between plants along a row, meters.'),
+      angle: z
+        .number()
+        .min(0)
+        .max(180)
+        .describe('Grid rotation in degrees from world X.')
+        .default(0),
+      jitter: z
+        .number()
+        .min(0)
+        .max(0.2)
+        .describe('Fractional cell jitter; 0 gives exact rows.')
+        .default(0.04),
+    })
+    .describe(
+      'Optional world-anchored cultivation grid. Density may thin it, but cannot overfill it.',
+    )
+    .optional(),
+  nearWater: z
+    .strictObject({
+      maxDistance: z
+        .number()
+        .positive()
+        .max(500)
+        .describe('Maximum horizontal distance from mapped water edges, meters.'),
+      classes: z
+        .array(z.string().min(1))
+        .min(1)
+        .describe('Optional water labels; omitted accepts any mapped water.')
+        .optional(),
+    })
+    .describe(
+      'Require mapped water nearby, at the exclusion raster resolution. Water itself remains excluded.',
+    )
+    .optional(),
   clustering: z
     .strictObject({
       scale: z.number().positive().describe('Noise wavelength in meters.'),
@@ -123,7 +165,7 @@ const rule = z.strictObject({
     .optional(),
 });
 
-const scatterSchema = z.strictObject({
+export const scatterSchema: z.ZodType<ScatterDoc> = z.strictObject({
   format: z.literal('molen/scatter@1').describe("Format envelope; always 'molen/scatter@1'."),
   id: z
     .string()
@@ -170,6 +212,16 @@ export function validateScatter(data: unknown): ValidationIssue[] {
   const ids = new Set<string>();
   doc.rules.forEach((rule, index) => {
     const path = `/rules/${index}`;
+    if (
+      rule.rows !== undefined &&
+      Math.min(rule.rows.spacing, rule.rows.interval) * (1 - rule.rows.jitter) < rule.minSpacing
+    ) {
+      issues.push({
+        path: `${path}/rows`,
+        code: 'row_spacing',
+        message: 'Row spacing after jitter must respect minSpacing',
+      });
+    }
     if (ids.has(rule.id)) {
       issues.push({
         path: `${path}/id`,

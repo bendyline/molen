@@ -1,0 +1,260 @@
+{
+  "planId": "N0260",
+  "id": "N0260",
+  "assetId": "molen.worldgen.structure.n0260_khotyn_fortress",
+  "title": "Khotyn Fortress",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q141012",
+  "referenceCoordinate": {
+    "latitude": 48.521944444,
+    "longitude": 26.498333333
+  },
+  "visualBrief": "Five-tower inner citadel with tall curved stone walls, red-brick geometric bands, shingled roofs, open courtyard, palace, chapel, well and wooden entrance bridge. The surrounding Ottoman earthworks are outside this model.",
+  "mediumFiContext": {
+    "scale": "2.4",
+    "neighborStyle": "molen.worldgen.catalog.ukrainian_cottage"
+  },
+  "size": [
+    61.53668785095215,
+    54,
+    129.93999862670898
+  ],
+  "actualBounds": {
+    "min": [
+      -32.136688232421875,
+      0,
+      -54.29999923706055
+    ],
+    "max": [
+      29.399999618530273,
+      54,
+      75.63999938964844
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z approximately SSE toward entrance",
+    "front": "+Z entrance bridge",
+    "origin": "Reconstructed citadel center; lowest foundation Y=0, courtyard Y=24"
+  },
+  "sourceFacts": {
+    "southwestTowerDiameterMeters": 14,
+    "northTowerPlanMeters": [
+      18,
+      19
+    ],
+    "eastTowerPlanMeters": [
+      6,
+      6
+    ],
+    "palacePlanMeters": [
+      17,
+      10.5
+    ],
+    "barracksPlanMeters": [
+      29,
+      15
+    ],
+    "wellRoofPlanMeters": [
+      7,
+      7
+    ],
+    "publishedHeightsUseDifferentDatums": true,
+    "surveyedVerticalDatum": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#bbb7a2",
+      "brick": "#ab5944",
+      "roof": "#626d7f",
+      "wood": "#a08459",
+      "cream": "#ded9bd",
+      "recess": "#424c54",
+      "paving": "#aaa894"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Five differently shaped roofed towers",
+      "Tall curved limestone enclosure with red geometric brick bands",
+      "Open court, palace, chapel and elevated timber entry bridge"
+    ]
+  },
+  "reconstruction": {
+    "basis": "State reserve architectural inventory, photographs and axonometric plan; exact-QID OSM identity for the wider fortress",
+    "scope": "Inner citadel exterior and entrance bridge",
+    "referenceState": "Conserved present-day fortress; construction fittings and temporary exhibits omitted"
+  },
+  "referencePages": [
+    "https://khotynska-fortecya.cv.ua/mapa_forteci",
+    "https://khotynska-fortecya.cv.ua/istoriya-khotynskoyi-fortetsi-en",
+    "https://www.openstreetmap.org/relation/8520372"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Draft citadel anchor and signed heading; real-terrain fit pending",
+    "anchor": [
+      26.498333333,
+      48.521944444
+    ],
+    "heading": 0.3615025578499,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/8520372",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/8520372"
+    ],
+    "wikidataId": "Q141012",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:25122fff5b4a3f8111294ee77479880192cc8eabc9c2a8c78cf79a4f10166792",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Published component dimensions; reconstructed inter-tower spacing and wall curves. Tower heights above the courtyard are used, not external rock-datum heights of 55–68m.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Map identity © OpenStreetMap contributors, ODbL-1.0. Reserve images are linked references, not redistributed textures or geometry.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "The native plan is an original reconstruction from the reserve diagram, not a surveyed footprint. West-tower 5m published diameter has an ambiguous internal/external datum; 9m exterior is a photographic estimate.",
+    "Foundation depth, courtyard level, bridge piers and adjoining ground are schematic. The wider outer fortress, moat terrain and church beyond the citadel are excluded.",
+    "Brick crosses, window rhythm, stairs and wooden fittings are selectively abstracted under medium-fi. Closed interiors and the 50m well shaft are omitted.",
+    "Procedural-neighbor context is a style and LOD review, not evidence of geographic fit."
+  ],
+  "qaCameras": [
+    {
+      "name": "entrance-and-five-towers",
+      "position": [
+        65,
+        57,
+        138
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ]
+    },
+    {
+      "name": "river-wall-brick-bands",
+      "position": [
+        107,
+        42,
+        -10
+      ],
+      "lookAt": [
+        0,
+        25,
+        -4
+      ]
+    },
+    {
+      "name": "north-tower-and-west-wall",
+      "position": [
+        -83,
+        67,
+        -110
+      ],
+      "lookAt": [
+        0,
+        30,
+        -10
+      ]
+    },
+    {
+      "name": "courtyard-plan",
+      "position": [
+        0,
+        155,
+        12
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "open-entrance-passage",
+      "position": [
+        5,
+        26,
+        80
+      ],
+      "lookAt": [
+        5,
+        27,
+        15
+      ]
+    },
+    {
+      "name": "palace-and-chapel",
+      "position": [
+        0,
+        37,
+        18
+      ],
+      "lookAt": [
+        -2,
+        32,
+        -21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve medium-fi silhouette and five material groups; authored LODs remove features by viewing distance.",
+  "mesh": {
+    "triangles": 8615,
+    "vertices": 17621,
+    "materials": 5,
+    "bytes": 740964,
+    "sha256": "sha256:1ee9d2ca9c81ab2bdf617202b1e5458b64c6332a189e1478f4a27ad656e55e69"
+  }
+}

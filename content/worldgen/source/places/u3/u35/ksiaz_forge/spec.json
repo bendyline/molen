@@ -1,0 +1,245 @@
+{
+  "planId": "KSI_P02",
+  "id": "KSI_P02",
+  "assetId": "molen.worldgen.structure.ksiaz_forge",
+  "title": "Książ forge",
+  "category": "historic-service-building",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "forge",
+    "identity": {
+      "type": "way",
+      "id": 281941091
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.29343073991423,
+    "latitude": 50.84406274984602
+  },
+  "size": [
+    20.573999404907227,
+    7.820000171661377,
+    20.447999954223633
+  ],
+  "actualBounds": {
+    "min": [
+      -10.286999702453613,
+      0,
+      -10.223999977111816
+    ],
+    "max": [
+      10.286999702453613,
+      7.820000171661377,
+      10.223999977111816
+    ]
+  },
+  "visualBrief": "L-shaped service building with rubble stone walls, brick upper band, two arched timber double doors, shallow roof and a tall masonry chimney.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped edge in source vertex order",
+    "longitudinal": "+Z perpendicular to mapped edge",
+    "origin": "Own mapped envelope center; Y0 estimated local terrain contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "cream": "#f1e5c7",
+      "panel": "#e8b584",
+      "stone": "#dbccb0",
+      "roof": "#be7756",
+      "rubble": "#d0c3aa",
+      "brick": "#ce8e72",
+      "slate": "#798184",
+      "timber": "#af946b",
+      "metal": "#738276",
+      "glass": "#536c7c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/281941091",
+    "mappedTags": {
+      "building": "yes",
+      "heritage": "2",
+      "heritage:operator": "nid",
+      "historic": "yes",
+      "name": "Kuźnia",
+      "name:de": "Schmiede",
+      "name:pl": "Kuźnia",
+      "ref:nid": "A/4627/481",
+      "source": "photograph",
+      "source_ref": "https://www.flickr.com/photos/124589265@N07/14185032925/"
+    },
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Independent mapped historic forge with photograph linked in the OSM source reference. Two arched doors, stone masonry, brick upper band and chimney follow that 2014 photograph."
+  },
+  "reconstruction": {
+    "basis": "Own attributed map footprint and linked primary photographs; source interpretation rather than surveyed dimensions.",
+    "scope": "Independent exterior component of N0291; full castle and park remains incomplete.",
+    "registration": "Own map-derived axis and anchor; photograph-facing and vertical terrain fit must be checked before activation."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://www.flickr.com/photos/124589265@N07/14185032925/",
+    "https://www.openstreetmap.org/way/281941091"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.29343073991423,
+      50.84406274984602
+    ],
+    "heading": -0.41369712162005695,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/281941091"
+    ],
+    "source": "https://www.openstreetmap.org/way/281941091",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bf91615aacdf40a1d63287c88f47907a5c143bc8425f1d0109d4f119a5ce6a1e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Footprint is attributed map geometry. Heights, openings, roof profiles and details are photographic interpretations.",
+    "No independent Wikidata identifier known.",
+    "Forge appearance follows a 2014 photograph; present appearance and unseen elevations are not confirmed.",
+    "No unique textures, copied photographs, signage or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "arched-door-court",
+      "position": [
+        22,
+        7,
+        18
+      ],
+      "lookAt": [
+        -4,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "outer-stone-walls",
+      "position": [
+        -25,
+        12,
+        -23
+      ],
+      "lookAt": [
+        -1,
+        3,
+        -1
+      ]
+    },
+    {
+      "name": "roof-and-footprint",
+      "position": [
+        0,
+        39,
+        6
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "portals-and-chimney",
+      "position": [
+        22,
+        9,
+        7
+      ],
+      "lookAt": [
+        -4,
+        3.5,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 554,
+    "vertices": 1662,
+    "materials": 7,
+    "bytes": 70568,
+    "sha256": "sha256:995c57accb804a35a20e80da5940be526a0c4833615935952bd61306ce36ca7d"
+  }
+}

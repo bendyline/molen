@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { afterEach, beforeEach, expect, it } from 'vitest';
-import { checkSourceRegistry } from '../scripts/structure-model-files.mjs';
+import { authoredPlaceEntries, checkSourceRegistry } from '../scripts/structure-model-files.mjs';
 
 let dir;
 beforeEach(async () => {
@@ -39,4 +39,12 @@ it('rejects missing registered bundles while retaining research-only registered 
   await mkdir(join(dir, sourcePath), { recursive: true });
   await writeFile(join(dir, sourcePath, 'map-frame.json'), '{}');
   await expect(checkSourceRegistry(options)).resolves.toBeUndefined();
+});
+
+it('includes explicitly selected auxiliary components without sweeping in other site bundles', () => {
+  const core = { candidateId: 'N0291', collection: 'next-1000' },
+    gate = { candidateId: 'KSI_A01', collection: 'site-structures' },
+    legacy = { candidateId: 'A02', collection: 'site-structures' };
+  expect(authoredPlaceEntries([core, gate, legacy])).toEqual([core]);
+  expect(authoredPlaceEntries([core, gate, legacy], ['KSI_A01'])).toEqual([core, gate]);
 });

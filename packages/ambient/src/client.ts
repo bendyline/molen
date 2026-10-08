@@ -22,6 +22,12 @@ export type {
   AmbientRenderStats,
 } from './client/renderer';
 export { createAmbientRenderer } from './client/renderer';
+export { type WildlifeRenderBudget, WildlifeRenderer } from './client/wildlife';
+export {
+  type WildlifeGeometry,
+  type WildlifeTier,
+  wildlifeGeometry,
+} from './client/wildlife-geometry';
 
 // A page validates scenes before it mounts: importing the client half alone registers the
 // ambient components and format.

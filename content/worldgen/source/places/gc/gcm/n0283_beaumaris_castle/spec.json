@@ -1,0 +1,243 @@
+{
+  "planId": "N0283",
+  "id": "N0283",
+  "assetId": "molen.worldgen.structure.n0283_beaumaris_castle",
+  "title": "Beaumaris Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q756815",
+  "referenceCoordinate": {
+    "latitude": 53.264908,
+    "longitude": -4.08957
+  },
+  "visualBrief": "Present-day roofless concentric castle:six squat inner towers,twin-D gatehouses,five north-hall openings,lower outer tower circuit,offset sea gate,low unfinished foundations and moat/dock study.",
+  "mediumFiContext": {
+    "scale": "1.5",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    116.50006866455078,
+    17.600000381469727,
+    150.8180389404297
+  ],
+  "actualBounds": {
+    "min": [
+      -59.97297286987305,
+      0,
+      -77.91803741455078
+    ],
+    "max": [
+      56.527095794677734,
+      17.600000381469727,
+      72.9000015258789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward the sea gate and dock",
+    "lateral": "+X across the inner ward toward the chapel tower",
+    "origin": "Cached outer-castle rectangle center;provisional flat ground datumY0,ward surfaceY0.6"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/48296427 exactQ756815",
+    "mappedOuterPlanMeters": [
+      144.312,
+      106.348
+    ],
+    "innerTowers": 6,
+    "outerTowers": 16,
+    "measuredTowerHeight": null
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#b7b59f",
+      "coping": "#c6bfa8",
+      "weathered": "#a9aa96",
+      "grass": "#8aa065",
+      "paving": "#b4afa3",
+      "water": "#286d83",
+      "wood": "#b59a74"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 4,
+    "identityFeatures": [
+      "Squat six-tower inner ward with two twin-D gatehouses",
+      "Lower concentric outer tower circuit around grass wards",
+      "Offset sea gate,moat and surviving dock wall"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Cached exact-QID OSM outer-wall/dock outline plus Cadw primary ground plan,scale bar and three current official exterior photographs.",
+    "heightDatum": "Flat authoring datumY0,ward surfaceY0.6;all wall and tower elevations including17.6m highest northern stair turret are estimates,not surveyed heights.",
+    "scope": "Surviving concentric roofless wards,six large inner towers,two twin-D gatehouses,five north-gate hall openings,outer tower circuit,sea gate,barbican,dock remnant,low unfinished Llanfaes foundations and moat study.",
+    "registration": "Plan-axis native frame,heading0.263147147rad toward mapped dock. Geographical dimensions and internal proportions are approximate;current moat boundary,vertical datum and exact fit need in-world review. Inactive draft,replaceFootprint=false."
+  },
+  "referencePages": [
+    "https://cadw.gov.wales/visit/places-to-visit/beaumaris-castle?lang=en",
+    "https://cadw.gov.wales/media/1099",
+    "https://cadw.gov.wales/beaumaris-castle-access-guide",
+    "https://www.openstreetmap.org/way/48296427"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Inactive geographic draft;review pending",
+    "anchor": [
+      -4.089706701,
+      53.26470434
+    ],
+    "heading": 0.26314714676,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/48296427",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/48296427"
+    ],
+    "wikidataId": "Q756815",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5717f1d14043f54d1215013efe42f513e7a09669d3d13b00711864dae00daf7e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Plan frame disambiguated toward sea dock;internal plan,elevations,moat,terrain and exact replacement fit remain unverified."
+  },
+  "scaleBasis": "Cached mapped outer castle/dock perimeter and primary30m scale-bar plan;internal plan controls approximate and all vertical dimensions estimated.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. Cached OSM data © OpenStreetMap contributors,ODbL-1.0. Cadw research images linked only,not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors;Cadw,Welsh Government architectural references.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Approximate current roofless exterior study. Cached OSM outer outline and primary scaled plan inform controls,but internal tower centers,gate bodies,wall thicknesses and all elevations are inferred rather than surveyed.",
+    "Y0 flat authoring datum and17.6m highest northern stair turret are estimates. No sampled terrain or measured anchor elevation. Ground contact and actual street/shore elevation need review.",
+    "Inner towers and south gate remain squat;lost roofs,unbuilt upper stories and dashed buried walls are not reconstructed as complete medieval buildings. Selected low footings only;no complete interiors or circulation/collision certification.",
+    "Moat is approximate opaque blue strips along the north/west defenses and a dock study surface,not a current waterline polygon or engine water simulation. Eastern former moat stays dry. Dock is a surviving wall study;coastline/town walls and demolished mill excluded.",
+    "Selected broad parapet remnants and genuine gate/hall openings survive;individual arrow loops,stone joints,thin rails,modern access fixtures,trees and visitor center excluded.",
+    "Shared256² limestone,weathered limestone and wood graphs;ground/water remain untextured. Research images not redistributed;no baked light or AO.",
+    "Heading0.263147147rad uses the mapped dock to disambiguate the plan axis. Signed orientation,whole-site fit,moat overlap,temporal state and footprint replacement remain pending. Inactive draft,replaceFootprint=false.",
+    "Synthetic English-terrace review context is not the real Beaumaris shore;physical laptop/phone timing and continuous-motion LOD behavior remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "concentric-wards-and-six-inner-towers",
+      "position": [
+        -110,
+        100,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        -14
+      ]
+    },
+    {
+      "name": "north-hall-five-openings",
+      "position": [
+        0.3,
+        8,
+        -5
+      ],
+      "lookAt": [
+        0.3,
+        9,
+        -35
+      ]
+    },
+    {
+      "name": "south-unfinished-gate",
+      "position": [
+        -38,
+        15,
+        52
+      ],
+      "lookAt": [
+        0,
+        5,
+        22
+      ]
+    },
+    {
+      "name": "sea-gate-and-dock",
+      "position": [
+        -44,
+        25,
+        80
+      ],
+      "lookAt": [
+        -6,
+        4,
+        45
+      ]
+    },
+    {
+      "name": "lower-outer-defenses-and-moat",
+      "position": [
+        -120,
+        14,
+        -64
+      ],
+      "lookAt": [
+        -40,
+        5,
+        -35
+      ]
+    },
+    {
+      "name": "north-llanfaes-foundations",
+      "position": [
+        34,
+        19,
+        -101
+      ],
+      "lookAt": [
+        20,
+        3,
+        -65
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep the roofless concentric wards,six inner towers and open north-hall/sea-gate identity in compact shared-material levels.",
+  "mesh": {
+    "triangles": 6071,
+    "vertices": 15561,
+    "materials": 4,
+    "bytes": 635876,
+    "sha256": "sha256:1da3b3af8ac20f9955c4e4ed7c555649bc9ff3fce42be9f3bed9c322dcc1cad6"
+  }
+}

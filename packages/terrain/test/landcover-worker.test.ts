@@ -123,8 +123,22 @@ describe('land-cover worker', () => {
     const { tile, context } = fixture();
     const thread = worker();
     const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
-    const options = { landcoverColors: { forest: '#123456' }, landcoverOffset: 0.3 };
+    const options = {
+      landcoverColors: { forest: '#123456' },
+      landcoverOffset: 0.3,
+      landcoverPaletteAreas: [
+        { bounds: [200, 400, 250, 501] as const, colors: { forest: '#ff0000' } },
+        { bounds: [250, 400, 301, 501] as const, colors: { forest: '#00ff00' } },
+      ],
+    };
     const direct = createLandcoverMesh(tile, context, options) as THREE.Mesh;
+    const position = direct.geometry.getAttribute('position'),
+      color = direct.geometry.getAttribute('color');
+    for (let i = 0; i < position.count; i++) {
+      const west = position.getX(i) < 50;
+      expect(color.getX(i)).toBe(west ? 1 : 0);
+      expect(color.getY(i)).toBe(west ? 0 : 1);
+    }
     const before = context.heightfield.sampleHeight(235, 450);
     const result = bridge.generate(tile, context, options);
     thread.run();

@@ -30,7 +30,12 @@ export {
   type EarthSkyStyle,
   updateEarthFog,
 } from './client/atmosphere';
-export { type EarthCredit, earthCredits, formatEarthCredits } from './client/attribution';
+export {
+  type EarthCredit,
+  earthCredits,
+  formatEarthCredits,
+  regionalEarthAttribution,
+} from './client/attribution';
 export {
   createEarthAudio,
   EARTH_AUDIO_ENVIRONMENT,
@@ -105,7 +110,9 @@ export {
   earthPrefetchTargets,
   extrapolateTrack,
 } from './client/prefetch';
+export { createRegionalGroundColor } from './client/regional-ground';
 export { EarthVehicles, type EarthVehiclesOptions } from './client/vehicles';
+export { EarthWildlife, type EarthWildlifeStats } from './client/wildlife';
 export {
   type CreateEarthWorldgenOptions,
   createEarthWorldgen,

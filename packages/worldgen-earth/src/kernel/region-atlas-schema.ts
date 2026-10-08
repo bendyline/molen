@@ -68,6 +68,14 @@ const regionAtlasSchema = z.strictObject({
   title: z.string().min(1),
   doc: z.string().optional(),
   version: z.int().min(1).describe('Bump when bindings change on purpose.').default(1),
+  fallbackDistanceMeters: z
+    .number()
+    .min(0)
+    .max(5000)
+    .describe(
+      'Optional nearest-outline fallback in local world meters, used only when no region contains the point. Compensates for coarse coastlines; default 0.',
+    )
+    .optional(),
   regions: z
     .array(region)
     .describe('Regions in document order (ties resolve to the first).')

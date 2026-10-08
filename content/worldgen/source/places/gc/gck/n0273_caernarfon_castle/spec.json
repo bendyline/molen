@@ -1,0 +1,241 @@
+{
+  "planId": "N0273",
+  "id": "N0273",
+  "assetId": "molen.worldgen.structure.n0273_caernarfon_castle",
+  "title": "Caernarfon Castle",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q275128",
+  "referenceCoordinate": {
+    "latitude": 53.139306,
+    "longitude": -4.276889
+  },
+  "visualBrief": "Present-day Caernarfon: nine polygonal towers, three Eagle turrets, grey/warm banded river walls, two open wards, raised Queen's Gate and restored timber King's Gate decks.",
+  "mediumFiContext": {
+    "scale": "1.15",
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "size": [
+    174.90860748291016,
+    35,
+    65.98348236083984
+  ],
+  "actualBounds": {
+    "min": [
+      -87.54071807861328,
+      0,
+      -32.94542694091797
+    ],
+    "max": [
+      87.36788940429688,
+      35,
+      33.038055419921875
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast,10.88 degrees north of east",
+    "front": "-Z town-facing King's Gate; +Z Seiont river curtain",
+    "origin": "Mapped perimeter center; architectural foundations Y=0, provisional courtyard Y=2"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/70264991 exact Q275128",
+    "mappedPlanMeters": [
+      174.55,
+      65.474
+    ],
+    "publishedEagleWallThicknessMeters": 5.4864,
+    "publishedEagleTurrets": 3
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#bcb6a4",
+      "band": "#989082",
+      "coping": "#c8bda1",
+      "paving": "#b5af9f",
+      "wood": "#b0a28e",
+      "glass": "#4d6178",
+      "metal": "#657078",
+      "grass": "#859f67"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Eagle Tower at the west end with three tall polygonal turrets",
+      "Long figure-eight plan, polygonal towers and banded south/east limestone walls",
+      "Town-facing King's Gate and elevated Queen's Gate; open wards and contemporary timber decks"
+    ]
+  },
+  "reconstruction": {
+    "basis": "Mapped lobes, Cadw ground plan/inventory and current operator/architect photos",
+    "scope": "Castle exterior, open wards, low ruined ranges and2023 gatehouse surfaces; town walls, quay and bedrock excluded"
+  },
+  "referencePages": [
+    "https://cadw.gov.wales/visit/places-to-visit/castell-caernarfon",
+    "https://cadw.gov.wales/more-about-castell-caernarfon",
+    "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?id=3814",
+    "https://cadwpublic-api.azurewebsites.net/reports/sam/FullReport?id=3417&lang=en",
+    "https://commons.wikimedia.org/wiki/File:Caernarfon_Castle_plan_labelled.png",
+    "https://buttress.net/projects/caernarfon-castle-gatehouse",
+    "https://buttress.net/journal/2023/08/30/detail-upper-deck-seating-caernarfon-castle",
+    "https://www.openstreetmap.org/way/70264991"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Research frame only; geographic contact pending",
+    "anchor": [
+      -4.277013785,
+      53.139327542
+    ],
+    "heading": 0.189928481827,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/70264991",
+    "groundModelY": 2,
+    "featureIds": [
+      "way/70264991"
+    ],
+    "wikidataId": "Q275128",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:251765d837a92650853a0e481271bc087406e66b45293933aa02f0601d91c7a7",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Western Eagle Tower, north King's Gate and east Queen's Gate resolve the signed map axis. Relative elevations are inferred; actual terrain and approach fit remain pending."
+  },
+  "scaleBasis": "Mapped174.55×65.474m outline fixes plan. Overall35m maximum, tower/curtain elevations, court2m and gate deck19.1m are inferred from primary photos and architectural ratios; no surveyed height is claimed.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original geometry under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0. Contains information from Cadw ground plan, Crown copyright, Open Government Licence v1.0; https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/. Reference photographs/drawings linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0. Cadw plan: Crown copyright, Open Government Licence v1.0. Operator and Buttress photographs used as visual references only.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Original medium-fi current exterior; tower interiors, fine carvings, galleries and stair systems abbreviated.",
+    "All elevations and rear tower edges are approximate, not surveyed.",
+    "Town walls, external bridge/quay and natural rock omitted.",
+    "Actual terrain/gate approach fit, continuous-motion shimmer and physical-device performance pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "river-curtain",
+      "position": [
+        0,
+        70,
+        190
+      ],
+      "lookAt": [
+        0,
+        12,
+        8
+      ]
+    },
+    {
+      "name": "town-gate",
+      "position": [
+        12,
+        65,
+        -195
+      ],
+      "lookAt": [
+        10,
+        14,
+        -10
+      ]
+    },
+    {
+      "name": "eagle-turrets",
+      "position": [
+        -150,
+        60,
+        30
+      ],
+      "lookAt": [
+        -62,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "east-gate-and-watch",
+      "position": [
+        165,
+        60,
+        45
+      ],
+      "lookAt": [
+        55,
+        13,
+        8
+      ]
+    },
+    {
+      "name": "restored-kings-gate",
+      "position": [
+        12,
+        34,
+        22
+      ],
+      "lookAt": [
+        9,
+        17,
+        -13
+      ]
+    },
+    {
+      "name": "two-ward-plan",
+      "position": [
+        0,
+        260,
+        1
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve polygonal tower rhythm, Eagle's three raised turrets and open figure-eight wards across all levels; shared materials carry broad masonry bands without unique textures.",
+  "mesh": {
+    "triangles": 16236,
+    "vertices": 44172,
+    "materials": 5,
+    "bytes": 1788164,
+    "sha256": "sha256:de64bc71d2a140862b42bfc76fd24f7581d81da9333069a84a0bfbd3a7b481a1"
+  }
+}

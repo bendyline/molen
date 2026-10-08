@@ -1,0 +1,241 @@
+{
+  "planId": "N0281",
+  "id": "N0281",
+  "assetId": "molen.worldgen.structure.n0281_acrocorinth",
+  "title": "Acrocorinth",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q420810",
+  "referenceCoordinate": {
+    "latitude": 37.89142,
+    "longitude": 22.870921
+  },
+  "visualBrief": "Fortified twin ridge with three successive western gates,surviving terrain-following curtains,inner towers,rectangular Ottoman summit keep,citadel,cistern terrace and selected roofless remains. A relative terrain study,not a flat site-boundary extrusion.",
+  "mediumFiContext": {
+    "scale": "12",
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "size": [
+    960,
+    312.8500061035156,
+    640
+  ],
+  "actualBounds": {
+    "min": [
+      -480,
+      0,
+      -320
+    ],
+    "max": [
+      480,
+      312.8500061035156,
+      320
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X approximately east along the ridge",
+    "lateral": "+Z approximately south toward the Ottoman keep",
+    "origin": "Cached OSM site-boundary frame anchor;relative terrain datum258.37m,not local anchor ground height"
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/146863144 exact Q420810 archaeological site,not a curtain footprint",
+    "documentedWallLengthMeters": 3000,
+    "documentedAreaHectares": 24,
+    "archaeologicalSurveyRecords": 192,
+    "archaeologicalSurveyParts": 209,
+    "terrainGridSamples": 425,
+    "terrainGridSpacingMeters": 40
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#c8bea6",
+      "infill": "#cfb88f",
+      "rock": "#b7ae9a",
+      "grass": "#8ca164",
+      "paving": "#aaa59a",
+      "recess": "#4d6178"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Twin rocky ridge with surviving terrain-following curtains",
+      "Three successive western entrances with open passages and a broad blind arch",
+      "Small rectangular southwest Ottoman keep within its own citadel"
+    ]
+  },
+  "reconstruction": {
+    "basis": "ASCSA Acrocorinth line plan,official Ministry2023 drone views,cached OSM site identity and40m sampled Mapzen/Terrain Tiles relief grid.",
+    "heightDatum": "DEM minimum258.37m subtracted from elevations;estimated architectural heights added locally. Lowest terrain sample isY0,highest unbuilt terrain312.85m. Gate thresholds and terrace heights are interpreted,not surveyed.",
+    "scope": "Fortified twin ridge terrain patch,selected surviving curtain courses,three successive western entrances,inner-line towers,Ottoman rectangular keep and citadel,large cistern terrace and selected roofless ruins. Modern roads,vegetation,interiors,site fixtures and lost roofs excluded.",
+    "registration": "Historic2D GIS plan does not certify current completeness or elevations. Orthographic conversion and boundary differences need real-site review. Relief patch needs host-terrain blending before activation;inactive research draft."
+  },
+  "referencePages": [
+    "https://castleroute.culture.gov.gr/en/acrocorinth/",
+    "https://www.ascsa.edu.gr/excavations/ancient-corinth/digital-corinth/maps-gis-data-and-archaeological-data-for-corinth-and-greece",
+    "https://github.com/tilezen/joerd/blob/master/docs/data-sources.md",
+    "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+    "https://www.openstreetmap.org/way/146863144"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Inactive geographic draft;terrain/placement review pending",
+    "anchor": [
+      22.873283683,
+      37.891346465
+    ],
+    "heading": -0.026117351143,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/146863144",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/146863144"
+    ],
+    "wikidataId": "Q420810",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7642f4922f376a0e07657d3a54af78beb986a7f6a0052dfba3b9c2d1ca010b86",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "notes": "Relative datum258.37m,not anchor-ground elevation. Surviving GIS plan and coarse terrain need absolute registration,gate-footing and host-terrain blending review before activation."
+  },
+  "scaleBasis": "Meter-scale ASCSA line plan in ellipsoidal orthographic CRS. Relative terrain from40m bilinear samples of approximately30m source DEM;258.37m datum. Architectural heights/openings are photo estimates.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Acrocorinth model geometry and adapted ASCSA wall data:CC-BY-SA-4.0,James A.Herbst/Corinth Excavations/ASCSA. Generator code remains under repository license. OSM identity/frame:ODbL-1.0. Copernicus/EU-DEM terrain attribution retained.",
+  "dataAttribution": "James A.Herbst,Corinth Excavations,American School of Classical Studies at Athens;© OpenStreetMap contributors;Hellenic Ministry of Culture;Mapzen/Terrain Tiles;produced using Copernicus data and information funded by the European Union - EU-DEM layers.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Primary GIS plan gives2D surviving archaeological wall lines,not a present-day3D survey. Some courses have gaps;roofless remains are not reconstructed as complete historical buildings. Small interior ruin identities remain unconfirmed.",
+    "Terrarium terrain samples mix30m-resolution source data. A960×640m patch and estimated gate thresholds cannot establish centimeter-level footings,cliff shape or terrace elevations. Terrain is a relative study patch;patch edges require host-terrain blending and local corrections.",
+    "The cached OSM archaeological-site boundary is not the curtain footprint. GIS and OSM outlines differ;absolute registration,signed direction,temporal state and vertical datum require in-world review. Inactive draft;replaceFootprint=false.",
+    "Three gate widths/heights,blind arches,bastions,keep elevations,merlons,cistern terrace and ruin wall heights are approximate photo interpretations. Extent-based closeup detail omits joints,arrow slits,fine battlements,carvings and railings.",
+    "Modern approach road,vegetation,visitor fixtures,interiors,buried archaeology,lost roofs and all minor individual remains are excluded. The living AgiosDimitrios church is not guessed onto an unidentified outline.",
+    "ASCSA adapted wall data and this asset geometry areCC-BY-SA-4.0;generator code remains under repository license. OSM identity/frame areODbL-1.0. Copernicus/EU-DEM terrain attribution retained. Research photographs are linked only,never redistributed or used as textures.",
+    "Shared256² limestone,weathered limestone and gravel graphs plus untextured terrain/recess colors. No embedded images,baked lighting or AO. Physical-device timings and continuous-motion LOD behavior remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "ridge-and-western-gates",
+      "position": [
+        -950,
+        640,
+        580
+      ],
+      "lookAt": [
+        -120,
+        200,
+        40
+      ]
+    },
+    {
+      "name": "surviving-wall-plan",
+      "position": [
+        0,
+        1500,
+        1
+      ],
+      "lookAt": [
+        0,
+        120,
+        0
+      ]
+    },
+    {
+      "name": "outer-arched-passage",
+      "position": [
+        -461,
+        145,
+        114
+      ],
+      "lookAt": [
+        -399,
+        135,
+        80
+      ]
+    },
+    {
+      "name": "three-successive-gates",
+      "position": [
+        -545,
+        250,
+        195
+      ],
+      "lookAt": [
+        -300,
+        175,
+        77
+      ]
+    },
+    {
+      "name": "ottoman-keep-and-citadel",
+      "position": [
+        -219,
+        288,
+        270
+      ],
+      "lookAt": [
+        -160,
+        248,
+        200
+      ]
+    },
+    {
+      "name": "inner-gate-blind-arch",
+      "position": [
+        -315,
+        214,
+        105
+      ],
+      "lookAt": [
+        -234,
+        201,
+        74
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Acrocorinth ridge,successive gate hierarchy and open ruins with shared materials and independent compact detail levels.",
+  "mesh": {
+    "triangles": 6430,
+    "vertices": 19290,
+    "materials": 4,
+    "bytes": 774372,
+    "sha256": "sha256:49eeb61fed8d0796fb0d4aebf8f8a0c21f644a923795e184bf09df32215adafb"
+  }
+}

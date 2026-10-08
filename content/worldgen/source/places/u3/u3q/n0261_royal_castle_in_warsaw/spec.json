@@ -1,0 +1,256 @@
+{
+  "planId": "N0261",
+  "id": "N0261",
+  "assetId": "molen.worldgen.structure.n0261_royal_castle_in_warsaw",
+  "title": "Royal Castle in Warsaw",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q756098",
+  "referenceCoordinate": {
+    "latitude": 52.247777777,
+    "longitude": 21.014166666
+  },
+  "visualBrief": "Mapped five-wing palace and courtyard, red Castle Square facade, pale river pavilions, Clock Tower, corner turrets and Wladyslaw courtyard tower. Present-day reconstructed exterior with tiled roofs and patinated copper crowns.",
+  "mediumFiContext": {
+    "scale": "2.9",
+    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse"
+  },
+  "size": [
+    154.093505859375,
+    45.20000076293945,
+    149.85400009155273
+  ],
+  "actualBounds": {
+    "min": [
+      -98.45572662353516,
+      0,
+      -98.54399871826172
+    ],
+    "max": [
+      55.637779235839844,
+      45.20000076293945,
+      51.310001373291016
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X south along city facade",
+    "front": "+Z west toward Castle Square",
+    "origin": "Mapped bounding-frame center; courtyard and city-side ground Y=0"
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/64436 exact Wikidata Q756098",
+    "mappedCourtyard": true,
+    "historicalClockTowerPublishedHeightMeters": 40,
+    "currentClockTowerModeledFinialMeters": 45.2,
+    "surveyedVerticalDatum": false
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "red": "#c97e65",
+      "court": "#d48c63",
+      "cream": "#e0dcc9",
+      "stone": "#cac4ac",
+      "roof": "#a96247",
+      "copper": "#5d927d",
+      "glass": "#415a60",
+      "brick": "#ae7159",
+      "clock": "#444c48",
+      "gold": "#d4b76b"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "identityFeatures": [
+      "Red city facade with a central clock tower and paired green corner crowns",
+      "Irregular five-wing court and Wladyslaw tower",
+      "Pale river facade with three projecting pavilions"
+    ],
+    "materialReason": "Separate brick graph retains the exposed Gothic courtyard wall; the other five groups serve render, stone trim, tile, copper and glass."
+  },
+  "reconstruction": {
+    "basis": "Exact-QID OSM palace and courtyard footprint; museum facade, courtyard and drone photographs; museum architectural history",
+    "scope": "Palace exterior and attached low library wing; gardens, Kubicki Arcades and neighboring Copper-Roof Palace excluded",
+    "referenceState": "Reconstructed present-day palace; historical narrative informs identity, not a dated historical model"
+  },
+  "referencePages": [
+    "https://biuroprasowe.zamek-krolewski.pl/en/presskit/category/28345",
+    "https://www.zamek-krolewski.pl/strona/historia/603-zamek-wazow-i-krolow-rodakow-1587-1696",
+    "https://zamek-krolewski.pl/en/strona/accessibility/2508-description-architectural-accessibility-royal-castle",
+    "https://www.openstreetmap.org/relation/64436"
+  ],
+  "geographicProposal": {
+    "status": "research-only",
+    "reviewStatus": "Signed mapped frame; river escarpment and terrain datum pending",
+    "anchor": [
+      21.014829838,
+      52.247715277
+    ],
+    "heading": -1.6320593581624288,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/relation/64436",
+    "groundModelY": 0,
+    "featureIds": [
+      "relation/64436"
+    ],
+    "wikidataId": "Q756098",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2923d3c7f6d0965320f6b06f9858ec7e5cdf28d893a9743db264002e31b5f238",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false
+  },
+  "scaleBasis": "Mapped plan scale; 19.2m main eaves and 27m ridges estimated from facade proportions. Museum history gives a 40m historical clock tower; current finial height and dome stages are photographic estimates, not surveyed measurements.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
+  "dataAttribution": "Footprint © OpenStreetMap contributors, ODbL-1.0. Museum photographs are linked visual evidence only; no third-party images or meshes are redistributed.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Small mapped steps, roof hips, facade bays and tower heights are reconstructed from photographs. Sculpture, heraldry, clocks and copper crowns are abstracted for medium-fi.",
+    "Clock Gate remains open. Other visitor portals are represented externally; room interiors and a navigable museum layout are outside scope.",
+    "The lower river garden and Kubicki Arcades have different terrain levels and are excluded. A flat native Y=0 datum needs escarpment-aware placement review.",
+    "Context review uses procedural neighbors. Real geographic fit, continuous motion and physical-device performance remain separate checks."
+  ],
+  "qaCameras": [
+    {
+      "name": "city-facade-and-clock",
+      "position": [
+        20,
+        33,
+        166
+      ],
+      "lookAt": [
+        0,
+        19,
+        45
+      ]
+    },
+    {
+      "name": "river-facade-and-crowns",
+      "position": [
+        -116,
+        51,
+        -128
+      ],
+      "lookAt": [
+        -34,
+        16,
+        -20
+      ]
+    },
+    {
+      "name": "pentagonal-courtyard-plan",
+      "position": [
+        -20,
+        210,
+        -2
+      ],
+      "lookAt": [
+        -20,
+        0,
+        -2
+      ]
+    },
+    {
+      "name": "clock-gate-passage",
+      "position": [
+        0,
+        2.5,
+        73
+      ],
+      "lookAt": [
+        0,
+        3,
+        20
+      ]
+    },
+    {
+      "name": "wladyslaw-and-gothic-wall",
+      "position": [
+        -7,
+        20,
+        35
+      ],
+      "lookAt": [
+        -1,
+        19,
+        -22
+      ]
+    },
+    {
+      "name": "copper-clock-crown",
+      "position": [
+        24,
+        36,
+        88
+      ],
+      "lookAt": [
+        0,
+        31,
+        46
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Keep the researched medium-fi identity; each LOD removes selected geometry without generic substitutions.",
+  "mesh": {
+    "triangles": 27495,
+    "vertices": 57565,
+    "materials": 6,
+    "bytes": 2406004,
+    "sha256": "sha256:098fc682a3c9db2045c141d0331b88d51144ed2007d9b8188ed5c24b9924c852"
+  }
+}

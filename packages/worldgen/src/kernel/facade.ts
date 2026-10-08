@@ -78,6 +78,8 @@ export interface FacadeInput {
     start?: number;
     end?: number;
   }[];
+  /** Internal layout reservation so a fallback entrance does not overlap a punched window. */
+  entranceReservation?: { edge: number; start: number; end: number };
 }
 
 export interface FacadeStats {
@@ -455,6 +457,14 @@ function buildWindows(
       const hash = hashCoord(edge.key, floor * 1024 + bay, input.salt);
       if (unit01(hash, 0) >= windows.probabilityPerBay) continue;
       const centre = start + (bay + 0.5) * input.bayWidth;
+      const entrance = input.entranceReservation;
+      if (
+        floor === 0 &&
+        entrance?.edge === edge.key &&
+        centre + width / 2 > entrance.start - 0.15 &&
+        centre - width / 2 < entrance.end + 0.15
+      )
+        continue;
       const y0 = floorBase + sill;
       if (y0 + height > edge.top - 0.05) continue;
       wallQuad(
@@ -513,6 +523,39 @@ function buildBands(edge: Edge, input: FacadeInput, out: MeshBufferBuilder, stat
 /** Emit windows and bands for every edge of the rings; returns what was placed. */
 export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeStats {
   const stats: FacadeStats = { windows: 0, storefronts: 0, bands: 0 };
+  const entrance = input.details?.entrance;
+  let entranceEdge: Edge | undefined;
+  // Interior generation owns actual traversable openings. This fallback is facade appearance,
+  // and must never paste an opaque panel across a door the walker can enter.
+  if (
+    entrance !== undefined &&
+    input.raised !== true &&
+    !input.openGroundEdges?.size &&
+    !input.structuralOpenings?.some(
+      (opening) => opening.bottom < input.base + input.groundFloorHeight,
+    )
+  ) {
+    const ring = input.rings[0] ?? [];
+    for (let index = 0; index < ring.length; index++) {
+      if (input.seamEdges?.has(index)) continue;
+      const edge = edgeOf(ring, index, 0, input);
+      if (
+        edge.length < entrance.width + 2 * input.cornerMargin ||
+        edge.top < input.base + entrance.height + 0.2
+      )
+        continue;
+      if (entranceEdge === undefined || edge.length > entranceEdge.length) entranceEdge = edge;
+    }
+    if (entranceEdge !== undefined)
+      input = {
+        ...input,
+        entranceReservation: {
+          edge: entranceEdge.key,
+          start: (entranceEdge.length - entrance.width) / 2,
+          end: (entranceEdge.length + entrance.width) / 2,
+        },
+      };
+  }
   const detailBudget = { remaining: 3600 };
   let remainingEdges = input.rings.reduce((count, ring) => count + ring.length, 0);
   input.rings.forEach((ring, ringIndex) => {
@@ -534,5 +577,68 @@ export function buildFacade(input: FacadeInput, out: MeshBufferBuilder): FacadeS
       }
     }
   });
+  if (
+    entrance !== undefined &&
+    entranceEdge !== undefined &&
+    input.entranceReservation !== undefined
+  ) {
+    const edge = entranceEdge,
+      { start, end } = input.entranceReservation;
+    const bottom = input.base + 0.035,
+      top = bottom + entrance.height;
+    const panel: WallSurface = {
+      ...input.trim,
+      color: [input.trim.color[0] * 0.42, input.trim.color[1] * 0.42, input.trim.color[2] * 0.42],
+    };
+    wallQuad(edge, 0.065, start, end, bottom, top, UNIT_UV, panel, out);
+    windowFrame(edge, start, end, bottom, top, input.trim, out, input.relief === true, true);
+    if (entrance.style === 'service') {
+      // Broad shutter panels read as a working loading entrance, with bounded horizontal ribs.
+      for (let i = 1; i < 7; i++) {
+        const y = bottom + (entrance.height * i) / 7;
+        wallQuad(edge, 0.075, start + 0.04, end - 0.04, y, y + 0.025, UNIT_UV, input.trim, out);
+      }
+    } else {
+      const panes = entrance.style === 'double' ? 2 : 1;
+      for (let pane = 0; pane < panes; pane++) {
+        const centre = start + ((pane + 0.5) * entrance.width) / panes;
+        const half = (entrance.width / panes) * 0.3;
+        wallQuad(
+          edge,
+          0.075,
+          centre - half,
+          centre + half,
+          bottom + entrance.height * 0.46,
+          top - 0.22,
+          UNIT_UV,
+          input.window,
+          out,
+        );
+        wallQuad(
+          edge,
+          0.09,
+          centre + half - 0.03,
+          centre + half + 0.02,
+          bottom + 0.9,
+          bottom + 1.08,
+          UNIT_UV,
+          input.trim,
+          out,
+        );
+      }
+      if (panes === 2)
+        wallQuad(
+          edge,
+          0.08,
+          (start + end) / 2 - 0.035,
+          (start + end) / 2 + 0.035,
+          bottom,
+          top,
+          UNIT_UV,
+          input.trim,
+          out,
+        );
+    }
+  }
   return stats;
 }

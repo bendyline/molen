@@ -33,7 +33,7 @@ describe('region atlas', () => {
     expect(validateByKind('region-atlas' as never, REGION_ATLAS_EXAMPLE).ok).toBe(true);
     const styleIds = new Set(Object.keys(pack.archstyles));
     const scatterIds = new Set(Object.keys(pack.scatters));
-    expect(atlas.regions).toHaveLength(45);
+    expect(atlas.regions).toHaveLength(53);
     for (const region of atlas.regions) {
       for (const rule of region.bindings.buildings) {
         expect(styleIds.has(rule.style), rule.style).toBe(true);
@@ -100,8 +100,67 @@ describe('region atlas', () => {
     [121.56, 25.03, 'library.taiwan'],
     [100.5, 13.75, 'library.mainland_southeast_asia'],
     [8.54, 47.38, 'library.alps'],
+    [16.37, 48.21, 'library.alps'],
+    [19.04, 47.5, 'library.eastern_europe'],
+    [30.31, 59.94, 'library.russia'],
+    [37.62, 55.75, 'library.russia'],
+    [76.89, 43.24, 'library.central_asia'],
+    [31.24, 30.04, 'library.nile'],
+    [15.3, -4.32, 'library.central_africa'],
+    [-58.38, -34.6, 'library.southern_south_america'],
+    [-84.08, 9.93, 'library.central_america'],
+    [103.82, 1.35, 'library.maritime_southeast_asia'],
+    [147.18, -9.48, 'library.melanesia'],
+    [-171.76, -13.83, 'library.pacific'],
+    [-179.9, -16.5, 'library.fiji'],
   ] as const)('chooses the appropriate regional precedent at %s,%s', (lon, lat, id) => {
     expect(resolver.resolve(...world(lon, lat))?.id).toBe(id);
+  });
+
+  it('uses nearest outlines only in small uncovered gaps, keeping containment authoritative', () => {
+    const r = createRegionResolver(
+      {
+        format: 'molen/region-atlas@1',
+        id: 'test.coast',
+        title: 'Coarse coast',
+        version: 1,
+        fallbackDistanceMeters: 1000,
+        default: { buildings: [] },
+        regions: [
+          {
+            id: 'west',
+            priority: 10,
+            polygons: [
+              [
+                [-1, -1],
+                [0, -1],
+                [0, 1],
+                [-1, 1],
+              ],
+            ],
+            bindings: { buildings: [] },
+          },
+          {
+            id: 'east',
+            priority: 0,
+            polygons: [
+              [
+                [0.002, -1],
+                [1, -1],
+                [1, 1],
+                [0.002, 1],
+              ],
+            ],
+            bindings: { buildings: [] },
+          },
+        ],
+      },
+      { metersPerUnit: 1 },
+    );
+    expect(r.resolve(50, 0)?.id).toBe('west');
+    expect(r.resolve(250, 0)?.id).toBe('east');
+    expect(r.resolve(300_000, 0)).toBeUndefined();
+    expect(r.intersecting([50, -1, 51, 1]).map((entry) => entry.id)).toContain('west');
   });
 
   it('builds the rule chain and scatter binding for a region', () => {

@@ -29,13 +29,21 @@ import {
   stylePackAssetIndex,
 } from '@bendyline/molen-worldgen/kernel';
 import {
+  checkEcologyAtlas,
   createPlacesContent,
+  createRegionalLibrary,
   createStructureIndex,
+  createWildlifeRangeResolver,
+  type EcologyAtlasDoc,
   type PlacesContent,
   type PlacesContentDocs,
   type RegionAtlasDoc,
+  type RegionalEnvironmentDocs,
+  regionalCatalogSchema,
   type StructureCatalogDoc,
   type StructureIndex,
+  type WildlifeRangesDoc,
+  wildlifeRangesSchema,
 } from '@bendyline/molen-worldgen-earth/kernel';
 import { withModelArchives } from './model-archives';
 
@@ -46,12 +54,16 @@ export const EARTH_PACK_IDS: {
   readonly earth: 'molen.earth';
   readonly sky: 'molen.sky';
   readonly sounds: 'molen.sounds';
+  readonly ecology: 'molen.ecology';
+  readonly wildlife: 'molen.wildlife';
 } = {
   entities: 'molen.entities',
   style: 'molen.worldgen.default',
   earth: 'molen.earth',
   sky: 'molen.sky',
   sounds: 'molen.sounds',
+  ecology: 'molen.ecology',
+  wildlife: 'molen.wildlife',
 };
 
 /** Worldgen style, region atlas and recognizable places, resolved from the packs. */
@@ -60,6 +72,8 @@ export interface EarthWorldgenContent {
   /** Pack id of the style pack, for addressing its assets. */
   styleId: string;
   atlas: RegionAtlasDoc;
+  /** Compact ecological geography and composable channels from every opened regional pack. */
+  environment?: RegionalEnvironmentDocs;
   places: PlacesContent;
   /** The same places content as plain documents, for the generation worker. */
   placesDocs: PlacesContentDocs;
@@ -131,6 +145,55 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
       entries: structures.flatMap((doc) => doc.entries),
       rules: structures.flatMap((doc) => doc.rules ?? []),
     }),
+  };
+}
+
+async function readRegionalContent(
+  opened: readonly Pack[],
+  stylePack: ResolvedStylePack,
+): Promise<RegionalEnvironmentDocs | undefined> {
+  const atlasSources = opened.flatMap((pack) =>
+    (pack.manifest.provides['ecology-atlas'] ?? []).map((path) => ({ pack, path })),
+  );
+  const catalogSources = opened.flatMap((pack) =>
+    (pack.manifest.provides['regional-catalog'] ?? []).map((path) => ({ pack, path })),
+  );
+  const rangeSources = opened.flatMap((pack) =>
+    (pack.manifest.provides['wildlife-ranges'] ?? []).map((path) => ({ pack, path })),
+  );
+  if (rangeSources.length > 1)
+    throw new Error('Regional catalogs support at most one wildlife range atlas');
+  if (catalogSources.length === 0) return undefined;
+  if (atlasSources.length > 1)
+    throw new Error('Regional catalogs support at most one ecological atlas');
+  const source = atlasSources[0];
+  const [atlas, catalogs, wildlifeRanges] = await Promise.all([
+    source?.pack.readJson<EcologyAtlasDoc>(source.path),
+    Promise.all(
+      catalogSources.map(async ({ pack, path }) =>
+        regionalCatalogSchema.parse(await pack.readJson(path)),
+      ),
+    ),
+    rangeSources[0]?.pack
+      .readJson<WildlifeRangesDoc>(rangeSources[0].path)
+      .then((doc) => wildlifeRangesSchema.parse(doc)),
+  ]);
+  if (atlas !== undefined) checkEcologyAtlas(atlas);
+  if (wildlifeRanges !== undefined) createWildlifeRangeResolver(wildlifeRanges);
+  const library = createRegionalLibrary(catalogs, stylePack);
+  if (
+    atlas === undefined &&
+    library.profiles.some(
+      ({ match }) =>
+        match.biomes !== undefined || match.realms !== undefined || match.ecoregions !== undefined,
+    )
+  )
+    throw new Error('Ecological profile selectors require an ecological atlas');
+  if (library.catalogs.length === 0) return undefined;
+  return {
+    ...(atlas !== undefined ? { atlas } : {}),
+    ...(wildlifeRanges !== undefined ? { wildlifeRanges } : {}),
+    catalogs: [...library.catalogs],
   };
 }
 
@@ -271,6 +334,8 @@ export async function loadEarthContent(
       if (styles === undefined) throw new Error(`style pack "${styleId}" is not open`);
       if (earth === undefined) throw new Error(`the ${EARTH_PACK_IDS.earth} pack is not open`);
       worldgen = await readWorldgen(styles, earth);
+      const environment = await readRegionalContent(opened, worldgen.pack);
+      if (environment !== undefined) worldgen.environment = environment;
     } catch (error) {
       worldgenError = `Style pack "${styleId}" unavailable: ${(error as Error).message}`;
     }

@@ -97,7 +97,7 @@ import {
   earthSunDirection,
   updateEarthFog,
 } from './atmosphere';
-import { type EarthCredit, earthCredits } from './attribution';
+import { type EarthCredit, earthCredits, regionalEarthAttribution } from './attribution';
 import { createEarthAudio, type EarthAudio, type EarthAudioOptions } from './audio';
 import type { EarthContent } from './content';
 import {
@@ -124,7 +124,9 @@ import {
   type EarthPrefetchResult,
   type EarthPrefetchStats,
 } from './prefetch';
+import { createRegionalGroundColor } from './regional-ground';
 import { EarthVehicles } from './vehicles';
+import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
 import { createEarthWorldgen, type EarthViewWorkers, type EarthWorldgen } from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
@@ -234,6 +236,8 @@ export interface EarthTerrainSource {
 export interface EarthViewOptions {
   /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
   viewingDate?: string;
+  /** Explicit month (1..12) for regional foliage; remount to change. Omitted means leaf-on. */
+  vegetationMonth?: number;
   /** Fine/cross-tile landmark ground heights in the active terrain's vertical reference. */
   sampleStructureTerrain?: StructureTerrainSampler;
   /** Shared sky/ground reflections for metal and glass. Defaults to true. */
@@ -361,6 +365,7 @@ export interface EarthViewStats {
   frameLatitude: number;
   /** Ambient life counts, when it is on. */
   ambient?: EarthAmbientStats;
+  wildlife?: EarthWildlifeStats;
   /**
    * Building generation since the current terrain stream started, when content packs are
    * loaded: tiles generated, buildings drawn as geometry, and instanced stand-ins.
@@ -529,6 +534,7 @@ interface EarthStack {
   vehicles: EarthVehicles | undefined;
   aircraft: EarthAircraft | undefined;
   ambient: EarthAmbient | undefined;
+  wildlife: EarthWildlife | undefined;
   viewDistance: number;
   dispose(): void;
 }
@@ -548,6 +554,13 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+  if (
+    options.vegetationMonth !== undefined &&
+    (!Number.isInteger(options.vegetationMonth) ||
+      options.vegetationMonth < 1 ||
+      options.vegetationMonth > 12)
+  )
+    throw new Error('vegetationMonth must be an integer from 1 through 12');
   const { canvas, content, signal } = options;
   const sourceAbort = new AbortController();
   const forwardAbort = (): void => sourceAbort.abort();
@@ -784,6 +797,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           content?.worldgen !== undefined
             ? createEarthWorldgen({
                 ...(options.viewingDate !== undefined ? { viewingDate: options.viewingDate } : {}),
+                ...(options.vegetationMonth !== undefined
+                  ? { vegetationMonth: options.vegetationMonth }
+                  : {}),
                 ...(options.style?.landcover !== undefined
                   ? { landcoverColors: options.style.landcover }
                   : {}),
@@ -819,6 +835,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         let sidecars: Omit<EarthPrefetchArchives, 'elevation'> = {};
         // Ambient life reads the decoded road tiles as the features layer builds them.
         const ambientTiles = ambientSettings !== undefined ? new SemanticTileBuffer() : undefined;
+        const wildlifeWanted =
+          ambientSettings !== undefined &&
+          ambientSettings.wildlife !== false &&
+          (worldgen?.environment?.library.animals.size ?? 0) > 0;
+        const wildlifeCover = wildlifeWanted ? new SemanticTileBuffer() : undefined;
+        const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
@@ -854,10 +876,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               },
               landcoverLayer:
                 worldgen !== undefined
-                  ? { visible: true, renderer: worldgen.classification }
+                  ? {
+                      visible: true,
+                      renderer:
+                        wildlifeCover !== undefined
+                          ? observeSemanticTiles(worldgen.classification, wildlifeCover)
+                          : worldgen.classification,
+                    }
                   : { visible: true },
               featuresLayer: (() => {
-                const inner =
+                const sourceRenderer =
                   worldgen !== undefined
                     ? worldgen.humanFeatures
                     : createDefaultTerrainSemanticRenderer({
@@ -865,6 +893,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                         renderLandcover: false,
                         renderWater: false,
                       });
+                const inner =
+                  wildlifeFeatures === undefined
+                    ? sourceRenderer
+                    : observeSemanticTiles(sourceRenderer, wildlifeFeatures);
                 return {
                   visible: true,
                   renderer:
@@ -900,6 +932,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (elevationWorker !== undefined) parts.push(() => elevationWorker.terminate());
         const budget = terrainBudget();
         const [viewWidth, viewHeight] = viewport();
+        const regionalGroundColor =
+          options.style?.ground === undefined
+            ? createRegionalGroundColor(worldgen?.environment)
+            : undefined;
         const opened = await createTerrainPackagePyramidStream(
           withGroundColors(pkg, options.style?.ground),
           {
@@ -909,6 +945,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               : {}),
             ...(cacheTransport !== undefined ? { transport: cacheTransport.normal } : {}),
             material: groundMaterial,
+            ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
             frame,
             ...budget,
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
@@ -976,6 +1013,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           parts.push(() => created.dispose());
         }
         let ambient: EarthAmbient | undefined;
+        let wildlife: EarthWildlife | undefined;
         let aircraft: EarthAircraft | undefined;
         const vehicles =
           content?.types !== undefined
@@ -1023,6 +1061,30 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             created.dispose();
           });
         }
+        if (
+          wildlifeCover !== undefined &&
+          wildlifeFeatures !== undefined &&
+          worldgen?.environment !== undefined
+        ) {
+          const created = new EarthWildlife(
+            worldgen.environment,
+            stream.object,
+            (object) => {
+              void renderer.prepareObject(object);
+            },
+            pkg.surface?.seaLevel ?? 0,
+          );
+          wildlife = created;
+          created.setBudget(ambientBudget());
+          if (!ambientOn) created.setEnabled(false);
+          wildlifeCover.attach(created.landcover);
+          wildlifeFeatures.attach(created.features);
+          parts.push(() => {
+            wildlifeCover.detach();
+            wildlifeFeatures.detach();
+            created.dispose();
+          });
+        }
         return {
           frameLatitude,
           metersPerUnit,
@@ -1033,6 +1095,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           vehicles,
           aircraft,
           ambient,
+          wildlife,
           viewDistance: budget.viewDistance,
           dispose: cleanup,
         };
@@ -1451,6 +1514,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         orbit.setRangeLimits({ maxRange: earthOrbitMaxRange(budget.viewDistance) });
         current.worldgen?.setQuality(quality());
         current.ambient?.setBudget(ambientBudget());
+        current.wildlife?.setBudget(ambientBudget());
         current.worldgen?.setCacheBudget(worldgenCacheBytes());
         void current.surface
           .setOptions({
@@ -1525,7 +1589,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             stack = next;
             emit('terrainchange', {
               ...(source.key !== undefined ? { key: source.key } : {}),
-              credits: earthCredits(pkg.attribution),
+              credits: earthCredits([
+                ...pkg.attribution,
+                ...regionalEarthAttribution(content?.worldgen?.environment),
+              ]),
             });
           }
         } catch (error) {
@@ -1880,6 +1947,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         }
         current.ambient?.update(dt);
         current.ambient?.render(pose.position, dt);
+        current.wildlife?.update(dt, pose.position);
         current.surface.updateSignals(
           current.ambient
             ? current.ambient.world.tick / current.ambient.world.tickRate
@@ -1907,6 +1975,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           forward: pose.direction,
           // The sound rules call flying an aircraft 'pilot'.
           mode: mode === 'fly' ? 'pilot' : mode,
+          ...(current?.wildlife !== undefined
+            ? { regionalAmbience: current.wildlife.ambience(pose.position) }
+            : {}),
           ...(ground !== undefined ? { heightAboveGround: pose.position[1] - ground } : {}),
           ...(mode === 'walk' ? { grounded: walker.grounded } : {}),
         });
@@ -1982,7 +2053,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       viewer,
       input,
       get credits() {
-        return earthCredits(pkg.attribution);
+        return earthCredits([
+          ...pkg.attribution,
+          ...regionalEarthAttribution(content?.worldgen?.environment),
+        ]);
       },
       get mode() {
         return mode;
@@ -2076,6 +2150,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           triangles: renderStats.triangles,
           frameLatitude,
           ...(stack?.ambient !== undefined ? { ambient: stack.ambient.stats() } : {}),
+          ...(stack?.wildlife !== undefined ? { wildlife: stack.wildlife.stats() } : {}),
           ...(stack?.worldgen?.structureStats()
             ? { structures: stack.worldgen.structureStats() }
             : {}),
@@ -2108,6 +2183,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (ambientSettings === undefined) return;
         ambientOn = enabled;
         stack?.ambient?.setEnabled(enabled);
+        stack?.wildlife?.setEnabled(enabled);
       },
       setPaused(next) {
         if (next === paused || disposed) return;

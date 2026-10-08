@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Trakai Island Castle asset preview",
+  "seed": "N0280",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.n0280_trakai_island_castle",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            209.55718994140625,
+            0.2,
+            209.55718994140625
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#777b72",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      195,
+      135,
+      200
+    ],
+    "lookAt": [
+      22,
+      9,
+      35
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "planId": "KSI_S01",
+  "id": "KSI_S01",
+  "assetId": "molen.worldgen.structure.ksiaz_forester_house",
+  "title": "Książ forester’s house",
+  "category": "historic-service-building",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "forester-house",
+    "identity": {
+      "type": "way",
+      "id": 262236292
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.30370172124799,
+    "latitude": 50.84432313943821
+  },
+  "size": [
+    13.396999835968018,
+    11.804239273071289,
+    13.700000286102295
+  ],
+  "actualBounds": {
+    "min": [
+      -6.697000026702881,
+      0,
+      -6.840000152587891
+    ],
+    "max": [
+      6.699999809265137,
+      11.804239273071289,
+      6.860000133514404
+    ]
+  },
+  "visualBrief": "Own jogged footprint with a steep red tiled roof, cream timber-framed main gable, side dormer, small entrance gable, shutters and two masonry chimneys.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped edge in source vertex order",
+    "longitudinal": "+Z perpendicular to mapped edge",
+    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#c4b398",
+      "cream": "#f1ead8",
+      "stone": "#d0c3aa",
+      "roof": "#cb8058",
+      "timber": "#6b5948",
+      "shutter": "#b58760",
+      "glass": "#536c7c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/262236292",
+    "mappedTags": {
+      "addr:city": "Wałbrzych",
+      "addr:city:simc": "0983681",
+      "addr:housenumber": "9",
+      "addr:postcode": "58-306",
+      "addr:street": "Jeździecka",
+      "building": "yes",
+      "heritage": "2",
+      "heritage:operator": "nid",
+      "name": "Leśniczówka",
+      "ref:nid": "A/572/2",
+      "source": "photograph",
+      "source:addr": "gugik.gov.pl",
+      "source_ref": "https://www.flickr.com/photos/124589265@N07/14162255536/"
+    },
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Independent heritage house at Jeździecka 9. Exterior identity follows Gliwi’s 2016 photograph and the 2014 primary photograph linked in the mapped feature."
+  },
+  "reconstruction": {
+    "basis": "Own 17-vertex attributed map footprint and primary photographs of the timber gables, dormer and tiled roofs. Heights, roof subdivision and facade details are interpreted.",
+    "scope": "Independent exterior component of N0291; castle and park ensemble remains incomplete.",
+    "registration": "Own map-derived axis and anchor; signed facade orientation and vertical terrain fit must be checked before activation."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://commons.wikimedia.org/wiki/File:Le%C5%9Bnicz%C3%B3wka_(Ksi%C4%85%C5%BC).jpg",
+    "https://www.flickr.com/photos/124589265@N07/14162255536/",
+    "https://www.openstreetmap.org/way/262236292"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.30370172124799,
+      50.84432313943821
+    ],
+    "heading": -0.8912217878661122,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/262236292"
+    ],
+    "source": "https://www.openstreetmap.org/way/262236292",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d338f8b38b030106861e71f8c333a90cc7124f0f292cd66e6c50bf8af48a175d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.",
+    "No independent Wikidata identifier is asserted; main facade facing remains provisional.",
+    "References show 2014/2016 appearance; current restoration state is unconfirmed.",
+    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "main-gable-and-shutters",
+      "position": [
+        -20,
+        12,
+        25
+      ],
+      "lookAt": [
+        -0.5,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "entrance-gable-and-dormer",
+      "position": [
+        -27,
+        11,
+        -12
+      ],
+      "lookAt": [
+        -1,
+        4.5,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-own-footprint",
+      "position": [
+        3,
+        38,
+        5
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "rear-gable-and-service-porch",
+      "position": [
+        24,
+        12,
+        -24
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1468,
+    "vertices": 4404,
+    "materials": 5,
+    "bytes": 179376,
+    "sha256": "sha256:40e324c15a97feec647f7960fee5eb3bf365eb2b3ba0fb0b659bbd6cc61488bd"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+  "sourceHash": "sha256:b54d87c6d727d00adde604e91a86e7c101448c166ef89a3edeaa7727a2de2f4b",
+  "runtimeHash": "sha256:b31fcbabc171132a531ac01145b7cd087b69615af0b88d41f44391e8e9e0f9be",
+  "captureReportHash": "sha256:1af0708bb46c81f00ec0252b1608b057c95e60728cd363a8e38b041be7582e67",
+  "visualReview": {
+    "status": "passed",
+    "notes": "Inspected nine portable geometry views. Own footprint and joined roofs retained; window overlaps corrected; grounded exterior only. Architectural heights and opening placement are estimates.",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/principal-facade.png",
+      "shots/opposite-facade.png",
+      "shots/roof-and-footprint.png",
+      "shots/facade-and-roof-junction.png"
+    ]
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:1e027576dd592b3d9f8f474481586bb9f6c80c208cdeeacd81aa4bdefb02c671",
+    "notes": "Inspected eight shared-loader views. Existing 256² plaster, tile and sandstone graphs, plus gatehouse bronze or timber doors, use metric repeats and linear tints; flat blue-grey glass. No embedded or unique images. Each graph read once and unload leaves zero model geometry. Gatehouse lower round-bay panes follow actual mapped walls; upper panes follow octagonal faces.",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/principal-facade.png",
+      "shots/shared/opposite-facade.png",
+      "shots/shared/roof-and-footprint.png",
+      "shots/shared/facade-and-roof-junction.png"
+    ]
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:065e20823a5c68112ce2708bed8500a3c9393859861f480400206f2bb9fbf52a",
+    "notes": "Inspected 21 Earth-rig views: three distances, noon/late lighting, Economy/High, flat silhouette, four architectural views and four runtime levels. Identity mass and ground contact retained while near adornment drops out. Synthetic neighbors are style context only; physical-device timing and geographic fit remain pending.",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/principal-facade.png",
+      "medium-fi/opposite-facade.png",
+      "medium-fi/roof-and-footprint.png",
+      "medium-fi/facade-and-roof-junction.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ]
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:9a3b8ccd5c89bd66740f8070507133fb34b4783611aaf9627ab14ac209ea9865",
+    "notes": "Own OSM ring round-trip error below 2mm and heading 0.6179489906819999 align independently addressable components. This verifies coordinate reconstruction only, not source accuracy or surveyed ground levels. Inactive draft; no footprint replacement or independent QID claimed.",
+    "mapGeometryHash": "sha256:60dd3aab54deb259295b8eb0b124ab8cb6e7723ed71d0700e194cb6197625d83",
+    "coordinateRoundTripErrorMeters": 0.0007411998203685904
+  },
+  "fidelityReview": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Approximate exterior appearance reviewed for this component. Actual facade azimuth, vertical terrain fit and the parent whole-site scope remain pending."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u35/ksiaz_south_officina/models/source.glb",
+        "hash": "sha256:b54d87c6d727d00adde604e91a86e7c101448c166ef89a3edeaa7727a2de2f4b",
+        "bytes": 300816,
+        "triangles": 2480,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.glb",
+        "hash": "sha256:b31fcbabc171132a531ac01145b7cd087b69615af0b88d41f44391e8e9e0f9be",
+        "bytes": 300332,
+        "triangles": 2480,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.skyline.glb",
+        "hash": "sha256:0a5ede0f7d676ac77a78efd30b99469a01da11f4e038b75aa934ecdd597dbd8f",
+        "bytes": 16636,
+        "triangles": 156,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -24.017000198364258,
+          0,
+          -9.383000373840332
+        ],
+        "max": [
+          23.947999954223633,
+          13.800000190734863,
+          9.755999565124512
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.district.glb",
+        "hash": "sha256:076654790ff03eadf31aefaeb15ce015fd062c67c48d5cbe495a395078477e05",
+        "bytes": 33672,
+        "triangles": 326,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -24.083148956298828,
+          0,
+          -9.471794128417969
+        ],
+        "max": [
+          23.967161178588867,
+          13.800000190734863,
+          9.790251731872559
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.street.glb",
+        "hash": "sha256:12989d270df3ee3d1569ce6a7a0b443cc22e1a0a970017a735609a2424b98734",
+        "bytes": 172860,
+        "triangles": 1890,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.closeup.glb",
+        "hash": "sha256:0089fe7143787cf6be1b3c0d113c954cbced645f4dacfdab695d8208c1cad155",
+        "bytes": 226368,
+        "triangles": 2480,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "Six files have zero errors/warnings, zero images, ground at Y0, and five or fewer merged groups. Expected unused-UV informational notices only. Targeted determinism, polygon, download, homogeneous-buffer and window-facing checks passed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.skyline.glb",
+        "hash": "sha256:0a5ede0f7d676ac77a78efd30b99469a01da11f4e038b75aa934ecdd597dbd8f",
+        "bytes": 16636,
+        "triangles": 156,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -24.017000198364258,
+          0,
+          -9.383000373840332
+        ],
+        "max": [
+          23.947999954223633,
+          13.800000190734863,
+          9.755999565124512
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.district.glb",
+        "hash": "sha256:076654790ff03eadf31aefaeb15ce015fd062c67c48d5cbe495a395078477e05",
+        "bytes": 33672,
+        "triangles": 326,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -24.083148956298828,
+          0,
+          -9.471794128417969
+        ],
+        "max": [
+          23.967161178588867,
+          13.800000190734863,
+          9.790251731872559
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.street.glb",
+        "hash": "sha256:12989d270df3ee3d1569ce6a7a0b443cc22e1a0a970017a735609a2424b98734",
+        "bytes": 172860,
+        "triangles": 1890,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "assetId": "molen.worldgen.structure.ksiaz_south_officina",
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/u3/u35/ksiaz_south_officina/model.closeup.glb",
+        "hash": "sha256:0089fe7143787cf6be1b3c0d113c954cbced645f4dacfdab695d8208c1cad155",
+        "bytes": 226368,
+        "triangles": 2480,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -24.205591201782227,
+          0,
+          -9.572674751281738
+        ],
+        "max": [
+          24.126502990722656,
+          15.399999618530273,
+          9.934672355651855
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 50308,
+    "notes": "Skyline/district/street/closeup all meet medium-fi caps. Initial bytes exclude shared graph transfers. Resident still-frame appearance reviewed; motion, adaptive streaming and hardware timing pending."
+  }
+}

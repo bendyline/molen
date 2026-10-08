@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0270_conwy_castle",
+  "sourceHash": "sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117",
+  "runtimeHash": "sha256:b62b9e3000b65d25225e56af069b0cf1e35288b3e825652f26ba2d2e85f9345d",
+  "captureReportHash": "sha256:f6a1d55bd8eb777997fd5911fd71f6183fc6d2d7da96bd090d56a4704ae0cf12",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/south-hall-and-towers.png",
+      "shots/north-tower-row.png",
+      "shots/east-royal-turrets.png",
+      "shots/west-entry.png",
+      "shots/great-hall-arch.png",
+      "shots/castle-plan.png"
+    ],
+    "notes": "Inspected all 11 final portable frames. Eight open round towers, four taller eastern stair turrets, faceted southern great-hall range, two open wards, roofless royal rooms and low end barbicans remain legible. Changed triangular hall arches to curved pointed profiles, extended the royal arch into both support walls, cooled the stone palette and moved the great-hall camera. Main tower lobes follow the mapped perimeter; internal walls and most relative elevations are approximations based on the Cadw plan and current operator photographs. No historical roofs or whitewash were reconstructed over the current ruin."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f3c587814c5fa1b4ee5d075969d616e6f4d0220643d8ea321fc1010268f55e44",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/south-hall-and-towers.png",
+      "shots/shared/north-tower-row.png",
+      "shots/shared/east-royal-turrets.png",
+      "shots/shared/west-entry.png",
+      "shots/shared/great-hall-arch.png",
+      "shots/shared/castle-plan.png"
+    ],
+    "notes": "Inspected all 10 final shared-loader views. Limestone, sandstone, slate and wood graphs each load once; local grass tint is the fifth merged group. No embedded or private images. Unloading releases all model geometries. No baked directional lighting, shadows or AO."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d6aea03d2b12867cf7d34716ec8db792bdf3d09022553b273dadaf2c7923f1c0",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-hall-and-towers.png",
+      "medium-fi/north-tower-row.png",
+      "medium-fi/east-royal-turrets.png",
+      "medium-fi/west-entry.png",
+      "medium-fi/great-hall-arch.png",
+      "medium-fi/castle-plan.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 23 final canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architecture views and four same-camera LOD views. Grey masonry, restrained pink sandstone details and dark recessed chapel slate remain coherent beside procedural English terraces. Skyline preserves eight hollow towers, four taller stair turrets and two open wards; distant windows, low barbican turrets, footings and hall arches drop out. Closer tiers add crenellations, surviving arches, openings and selected visitor bridge details. Synthetic flat-ground context does not establish actual rock or approach seating. Continuous-motion shimmer and physical-device performance remain unverified."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": null,
+    "notes": "OSM way/52467063 supplies the exact Q756830 identity, anchor [-3.82555084,53.280022417], heading 0.07442147105 and 122.293×58.695m plan. East river barbican and west town entrance resolve +X about 4.26 degrees north of east. Most tower centers approximate mapped lobes; northwest tower and internal rooms use the Cadw plan and aerial. Cached Wikidata 30m height lacks a reference and is provisional. Cadw monument heights (27m curtain and 41m towers) are above river, not model-ground elevations. Inferred court and groundModelY=2m are not applied by the inactive draft registrar. Actual bedrock, courtyard, western entry and neighboring bridge contact remain pending. replaceFootprint=false."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The 11944-triangle source master preserves the present ruin silhouette and plan with five merged groups, four shared 256² graphs and no unique textures. Palette colors decode sRGB to linear; skyline applies the shared-texture mean. Fine masonry, tracery and complete stairs are omitted. Most halls and towers stay roofless. Appearance approval is separate from map/terrain approval."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcm/n0270_conwy_castle/models/source.glb",
+        "hash": "sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117",
+        "bytes": 1305620,
+        "triangles": 11944,
+        "vertices": 32196,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.glb",
+        "hash": "sha256:b62b9e3000b65d25225e56af069b0cf1e35288b3e825652f26ba2d2e85f9345d",
+        "bytes": 1305128,
+        "triangles": 11944,
+        "vertices": 32196,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.skyline.glb",
+        "hash": "sha256:a575a27865680283bf7170d82f306e328d2f4e261f7ed982e66d0d36dc0d087c",
+        "bytes": 74248,
+        "triangles": 927,
+        "vertices": 1869,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -60.73423385620117,
+          0,
+          -28.61983871459961
+        ],
+        "max": [
+          59.73916244506836,
+          30,
+          28.53275489807129
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.district.glb",
+        "hash": "sha256:015970f0951eee39d2d13f728b89656911dffd7702a08c92d5299b71cc419b32",
+        "bytes": 289256,
+        "triangles": 3816,
+        "vertices": 7264,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.36807632446289
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.36739730834961
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.street.glb",
+        "hash": "sha256:f23dfd268f85655d698bc4f0170da0ccfe93e7f2db398c423227b290ca724911",
+        "bytes": 683896,
+        "triangles": 9520,
+        "vertices": 17244,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.closeup.glb",
+        "hash": "sha256:3d8789307912c9f807585c5c8d19495076aa1d7f9c4fb3d5123b3e4cb01b45ce",
+        "bytes": 843304,
+        "triangles": 11944,
+        "vertices": 21268,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "notes": "All six GLBs have zero errors/warnings, zero images, minY=0 and maxY=30m. Two targeted tests pass for deterministic levels, height, triangle/download budgets, external materials and homogeneous GPU attribute layouts. Unused-UV informational messages are expected for externally bound graphs."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.skyline.glb",
+        "hash": "sha256:a575a27865680283bf7170d82f306e328d2f4e261f7ed982e66d0d36dc0d087c",
+        "bytes": 74248,
+        "triangles": 927,
+        "vertices": 1869,
+        "materials": 1,
+        "sharedGraphs": 0,
+        "images": 0,
+        "min": [
+          -60.73423385620117,
+          0,
+          -28.61983871459961
+        ],
+        "max": [
+          59.73916244506836,
+          30,
+          28.53275489807129
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.district.glb",
+        "hash": "sha256:015970f0951eee39d2d13f728b89656911dffd7702a08c92d5299b71cc419b32",
+        "bytes": 289256,
+        "triangles": 3816,
+        "vertices": 7264,
+        "materials": 4,
+        "sharedGraphs": 3,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.36807632446289
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.36739730834961
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.street.glb",
+        "hash": "sha256:f23dfd268f85655d698bc4f0170da0ccfe93e7f2db398c423227b290ca724911",
+        "bytes": 683896,
+        "triangles": 9520,
+        "vertices": 17244,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.closeup.glb",
+        "hash": "sha256:3d8789307912c9f807585c5c8d19495076aa1d7f9c4fb3d5123b3e4cb01b45ce",
+        "bytes": 843304,
+        "triangles": 11944,
+        "vertices": 21268,
+        "materials": 5,
+        "sharedGraphs": 4,
+        "images": 0,
+        "min": [
+          -60.79999923706055,
+          0,
+          -29.479999542236328
+        ],
+        "max": [
+          60.79999923706055,
+          30,
+          29.479999542236328
+        ],
+        "errors": 0,
+        "warnings": 0,
+        "infos": 5
+      }
+    ],
+    "initialDownloadBytes": 363504,
+    "notes": "Skyline/district/street/closeup: 927/3816/9520/11944 triangles and 74248/289256/683896/843304 bytes. Initial combined geometry payload 363504 bytes excludes shared graphs. Source regeneration is byte-identical; strict medium-fi audit and recipe Biome check pass. Checks were scoped to this model."
+  }
+}

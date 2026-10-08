@@ -1,0 +1,178 @@
+{
+  "objective": "Accurate, beautiful global regional coverage across plants, wildlife, ground appearance, and ordinary regional architecture",
+  "status": "complete",
+  "completed": "2026-10-08",
+  "coverageLevel": "Global habitat and construction-family coverage with bounded procedural detail; the fidelity limits below remain explicit.",
+  "phases": [
+    {
+      "id": "foundation",
+      "status": "complete",
+      "deliverables": [
+        "compact attributed ecological atlas",
+        "composable regional content with independent ecological and architectural channels",
+        "per-placement geographic selection",
+        "worker/cache/pack integration",
+        "coverage diagnostics"
+      ]
+    },
+    {
+      "id": "contrasting-environments",
+      "status": "complete",
+      "deliverables": [
+        "Sonoran desert",
+        "tropical coast",
+        "wet tropical forest",
+        "Mediterranean",
+        "Pacific Northwest",
+        "boreal and alpine",
+        "bounded procedural families and LODs",
+        "ordinary regional buildings"
+      ]
+    },
+    {
+      "id": "global-coverage",
+      "status": "complete",
+      "deliverables": [
+        "all terrestrial biome groups",
+        "realm-specific vegetation",
+        "wetlands and mangroves",
+        "cultivated and urban planting",
+        "seasonal appearance",
+        "modern and traditional architectural weighting"
+      ]
+    },
+    {
+      "id": "wildlife",
+      "status": "complete",
+      "deliverables": [
+        "habitat and range constrained populations",
+        "birds and quadrupeds",
+        "additional body families",
+        "bounded deterministic behavior",
+        "water and flight support",
+        "regional ambient audio"
+      ]
+    },
+    {
+      "id": "acceptance",
+      "status": "complete",
+      "deliverables": [
+        "geographic and ecological regression fixtures",
+        "worker parity and deterministic seeds",
+        "pack download and cache checks",
+        "walking/driving/flying visual review",
+        "Economy and High visual/performance review",
+        "repository CI checks"
+      ]
+    }
+  ],
+  "atlas": {
+    "source": "RESOLVE Ecoregions 2017",
+    "cellDegrees": 0.25,
+    "sourceRegions": 847,
+    "representedRegions": 843,
+    "bytes": 316597,
+    "gzipBytes": 76498,
+    "subgridRegions": [
+      "Knysna-Amatole montane forests",
+      "Serengeti volcanic grasslands",
+      "Southeast US mixed woodlands and savannas",
+      "Enriquillo wetlands"
+    ],
+    "interpretation": "Potential habitat only. Actual terrain land cover controls placement. Uncovered cells remain identifiable. No claim of species presence."
+  },
+  "implemented": {
+    "composition": [
+      "versioned regional modules with explicit dependency/override resolution",
+      "independent ecological and architectural selection per point",
+      "architecture-only loading without ecological data",
+      "style-pack-scoped architecture and missing-reference validation",
+      "worker parity and content-hash cache identity",
+      "per-vertex regional ground palettes on semantic surfaces and bare/distant terrain, with host override precedence",
+      "protected-area designations preserve underlying physical habitat and remain available for wildlife context",
+      "seed isolation from unrelated modules"
+    ],
+    "plants": {
+      "presets": 58,
+      "habitats": 36,
+      "families": 12,
+      "delivery": "data recipes with opaque procedural near/medium/far geometry, no plant GLB downloads",
+      "mappedTrees": "source species/genus and measured dimensions take precedence; otherwise use compatible local park trees",
+      "cultivation": "world-anchored rows, nine observed crop types, crop/trees/irrigated source metadata",
+      "habitatContext": "water-proximity requirements, preserved dry island holes, coastal mangrove and riparian gating",
+      "seasonality": "explicit month, hemisphere/latitude deciduous calendar, 30 derived spring/autumn/winter presets, stable plant positions; neutral tropical and evergreen appearance"
+    },
+    "architecture": {
+      "constructionFamilies": 13,
+      "recipes": 91,
+      "regionalEnvelopes": 53,
+      "uses": ["detached", "attached", "apartments", "commercial", "civic", "industrial", "farm"],
+      "selection": "mapped use and dimensions before neighborhood inference; named precedents remain explicit",
+      "entrances": "bounded single/double/service facade entrances, reserved ground-floor bays, structural-opening and raised-building precedence; visual, not traversable interiors",
+      "geography": "Natural Earth 1:50m 5.1.1 exterior outlines, simplified at 0.02 degrees, 241 country/territory features; bounded 2.5 km nearest-outline fallback for uncovered coastal gaps"
+    },
+    "wildlife": {
+      "recipes": 30,
+      "namedMammals": 21,
+      "functionalGroups": 9,
+      "rangeSource": "Mammal Diversity Database v2.5, CC BY 4.0",
+      "rangeGrid": "Natural Earth 50m map units, quarter-degree centers, 247 countries/territories",
+      "packBytes": 36762,
+      "rangeGzipBytes": 29824,
+      "simulation": "20 Hz deterministic bounded wandering with per-step habitat/range checks",
+      "rendering": "shared procedural opaque skinned geometry, one draw per visible animal, near/medium/far",
+      "integration": "mountEarthView and World Explorer, finest displayed landcover/features, shared water datum, independent budgets, disposal",
+      "sound": "existing generic birds/crickets gated by habitat and season; no species recording claims"
+    }
+  },
+  "verification": [
+    "The cultivation and seasonality milestone passed all 943 unit tests: worldgen 316, terrain 291, worldgen-earth 243, earth 93.",
+    "All four affected packages typechecked after the cultivation and seasonality changes.",
+    "Plant geometry tests validate every preset at every LOD for finite normals, nondegenerate geometry, ground alignment and bounded triangle counts.",
+    "96 controlled landscape frames refreshed across sixteen habitats/cultivated scenes, Economy/High and walking/driving/flying views using shared Earth lighting. Includes East African savanna, Australian forest, Sundarbans mangrove, Tibetan alpine steppe, Sahara scrub and Arctic tundra. These baked flat fixtures are not live viewer performance benchmarks; Economy intentionally omits grass/fern groundcover.",
+    "58 plant presets, cultivation/phenology metadata and compact ecological geography packed to 102,598 bytes (molen.ecology-da324a25a637.zip).",
+    "32 architectural tests pass, covering geographic city fixtures, coastal fallback, ordinary use selection, all 91 recipes, source-height preservation, and deterministic generation.",
+    "All 13 final architectural family lineups recaptured at two angles through the real worldgen material pipeline, including entrances and refined wall palettes, with no material failures. Every ordinary recipe meets the medium-fi requirement that at least one third of its wall palette has visible hue.",
+    "Architecture-only and combined ecology/architecture content-pack loading pass without fetching model bytes.",
+    "Mapped species/genus decoding, regional tree selection, source crown/height scaling and seed isolation pass targeted tests.",
+    "Catalog, architecture recipe, architectural atlas and existing 120-structure source regeneration checks pass.",
+    "Rotated cultivation rows preserve tile continuity, holes and nested thinning; mangroves require mapped wetland/water; observed date crops override the surrounding desert habitat.",
+    "Seasons reverse across hemispheres, preserve placement buffers, and produce byte-identical worker and in-thread results. All 88 authored/derived plant variants pass geometry checks at all LODs.",
+    "Banana, winter oak and winter larch were imported, inspected and rendered at three angles. Orchard and seasonal landscape fixtures were captured; final standard landscape captures use the corrected Earth palette, intensity and tone mapping.",
+    "Shipped guide updated and schema documentation regenerated for all 37 formats and 48 components.",
+    "Wildlife milestone: Earth 97, ambient 68, worldgen-earth 247 unit tests passed; subsequent targeted seasonal and audio tests passed. The first full pnpm verify and smoke:packed runs passed; final gates are tracked below.",
+    "Thirty animal recipes pass all three LOD checks (near <=4000, medium <=900, far <=300 triangles); six families were captured via public asset import/inspection/rendering, with three refined shapes recaptured.",
+    "Wildlife range source hashes verified and deterministic regeneration check passed. Wildlife pack builds to 36,762 bytes. World Explorer and affected package typechecks passed before final documentation updates.",
+    "Schema reference regenerated for 38 formats and 48 components. Regional source credits now reach viewer attribution.",
+    "Twelve wildlife body/motion examples recaptured at three changing poses each with the actual skinning renderer and deterministic movement; all finite, one visible animal per case, no page errors. Reptile limbs/tails, squirrel tail silhouette and elephant skin accents were refined after review.",
+    "Real mapped terrain reviewed at Seattle, Tucson, Manaus, Kyoto, Suva and Catania. The five new extracts use pinned 2026-10-08 Protomaps data and attributed Mapzen elevation snapshots. Completed captures report zero failed/loading tiles and no page errors.",
+    "Tucson review found and fixed generic green bare terrain and nature-reserve polygons obscuring vegetation. Regression tests cover physical habitat retention and local/worker-prepared vertex color parity; all 49 terrain-stream tests, 21 adapter tests, two ground-palette tests and affected typechecks passed.",
+    "Seattle high-quality scatter CPU profiling improved the same coarse tile from about 10.3 seconds to 50 milliseconds by skipping unrelated architectural polygon lookups and disabled groundcover rules. Plant counts remained unchanged. Live steady-state measurements are machine-specific (90 frames, median/p95 approximately 16.7/16.8 milliseconds).",
+    "Public mountEarthView acceptance exercised actual walking, car acceleration, and flight at roughly 200 m above ground on Tucson terrain with no API/page/tile failures. The sloped-road car visual issue is recorded separately below.",
+    "Final pnpm verify passed, including 2,677 Vitest tests plus Node suites and source/schema checks. pnpm smoke:packed passed with 16 tarballs and seven scaffolded/checked/tested/built templates. pnpm docs:site:check passed. pnpm test:golden passed with 47 tests and ten environment-dependent WebGPU-related skips.",
+    "Local review gallery contains 150 captures, with functional category and text filters; live and controlled evidence remain labeled separately. All captured artifacts stay local and no generated GLBs were added to Git or uploaded."
+  ],
+  "remaining": [],
+  "acceptanceArtifacts": {
+    "gallery": ".artifacts/regional-world/review.html",
+    "verify": ".artifacts/regional-world/verify-final.log",
+    "packedInstall": ".artifacts/regional-world/smoke-packed-final.log",
+    "docs": ".artifacts/regional-world/docs-site-check-final.log",
+    "golden": ".artifacts/regional-world/golden-final.log",
+    "live": ".artifacts/regional-world/live",
+    "landscapes": ".artifacts/regional-world/landscapes/evidence.json",
+    "architecture": ".artifacts/regional-world/architecture/evidence.json",
+    "wildlifeMotion": ".artifacts/regional-world/wildlife-motion/evidence.json",
+    "publicMount": ".artifacts/regional-world/mounted/tucson-mount-balanced.json"
+  },
+  "fidelityLimits": [
+    "Quarter-degree ecology is a potential-habitat prior, not present-day vegetation mapping. Four small source regions remain below grid resolution; detailed transitions require finer local evidence.",
+    "Named mammals use native-country limits plus biome and actual habitat, not detailed occupancy maps. Migration, sex/age variation, social herds and species-specific audio are not modeled.",
+    "Thirteen construction families are broad visual priors, not a survey of individual buildings, local heritage or every city's rural/urban distribution. Missing mapped footprints are not invented.",
+    "Mapped crops and coarse deciduous seasons are supported; richer irrigation, agricultural calendars and seasonal drying of waterways need additional source evidence.",
+    "Headless Chromium timing is evidence for this machine only; high-detail Kyoto/Seattle views can retain approximately 1 GiB of geometry, so lower quality/adaptive budgets remain necessary on smaller devices."
+  ],
+  "observedAdjacentIssues": [
+    "The Tucson public-mount driving capture showed the sedan partially below a sloped road surface after acceleration. Regional terrain and vegetation rendered correctly; vehicle/road grounding needs a separate navigation fix."
+  ]
+}
