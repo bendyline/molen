@@ -1,24 +1,25 @@
 #!/usr/bin/env node
 // Build every repository GLB from checked-in source. asset-build.json lists the generator programs
 // that write source GLBs; every source bundle (source.json) says how its models become runtime
-// GLBs; asset-lock.json pins the exact bytes the result must have. Nothing is downloaded, so a
-// fresh checkout proves the lock. The Assets workflow runs exactly this before it publishes.
+// GLBs. The result is stamped with the key of those inputs (scripts/asset-inputs.mjs), never
+// compared with bytes built elsewhere. CI runs exactly this when no bundle exists for its inputs.
 import { spawn, spawnSync } from 'node:child_process';
 import { copyFile, lstat, mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { availableParallelism, totalmem } from 'node:os';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { isDeepStrictEqual, parseArgs } from 'node:util';
+import { assetInputs, changedInputs } from './asset-inputs.mjs';
 import {
   ASSET_ROOTS,
-  createLock,
+  bundleFiles,
+  clearStamp,
   fileInfo,
   inventory,
-  readLock,
   readMasters,
-  recordInstalled,
+  readStamp,
   safePath,
-  writeLock,
+  writeStamp,
 } from './asset-packs.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -403,7 +404,7 @@ async function biomeFormat(root, text) {
 
 /**
  * A verifying build leaves committed text as it found it and reports what the generators would
- * change; `accept` (--update-lock) keeps real changes, laid out as the committed file was.
+ * change; `accept` keeps real changes, laid out as the committed file was.
  */
 async function reconcileText(root, before, accept) {
   const after = await readText(root);
@@ -541,18 +542,16 @@ async function withWindowsRetry(work) {
 export async function buildAssetsFromSource({
   root = ROOT,
   generate = true,
-  updateLock = false,
   force = false,
   compile = false,
-  allowUnlocked = false,
   concurrency = defaultConcurrency(),
   log = console.log,
 } = {}) {
   root = resolve(root);
   const started = Date.now();
   const plan = validatePlan(await readJson(join(root, PLAN)));
-  // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so a lock
-  // only holds for one: build with any other and every byte comparison would be noise.
+  // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so committed
+  // metadata only matches builds on one; switching would rewrite it.
   if (process.versions.node.split('.')[0] !== plan.node)
     throw new Error(
       `Asset builds use Node ${plan.node} (${PLAN} "node"); this is Node ${process.versions.node}. Switch Node major, or use pnpm assets:fetch.`,
@@ -563,7 +562,10 @@ export async function buildAssetsFromSource({
     { log },
   );
   const masters = await readMasters(root);
-  const lock = (await exists(join(root, 'asset-lock.json'))) ? await readLock(root) : undefined;
+  // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
+  const inputs = await assetInputs(root);
+  const previous = await readStamp(root);
+  await clearStamp(root);
   const out = join(root, OUT);
   const logs = join(out, 'logs');
   await rm(logs, { recursive: true, force: true });
@@ -588,12 +590,12 @@ export async function buildAssetsFromSource({
     // aside makes every build a clean build: generator guards never see a stale output.
     const generated = new Set([
       ...(await inventory(root)),
-      ...(lock?.files.map((f) => f.path) ?? []),
+      ...(previous?.files.map((f) => f.path) ?? []),
     ]);
     for (const path of [...masters, ...importOutputs]) generated.delete(path);
     const backup = join(out, 'previous');
     const moved = await stageAside(root, [...generated], backup);
-    const locked = new Set(lock?.files.map((f) => f.path));
+    const owned = new Set(previous?.files.map((f) => f.path));
     log(`Running ${plan.generators.length} generators (${concurrency} at a time).`);
     try {
       await pool(plan.generators, concurrency, async (job) => {
@@ -614,9 +616,9 @@ export async function buildAssetsFromSource({
       await reconcileText(root, text, false);
       throw error;
     }
-    // A moved GLB that is neither locked nor rebuilt is someone's work: keep it, report it below.
-    // Locked outputs stay in the backup, so a generator that stopped producing one is caught.
-    await restoreMoved(root, moved, backup, (path) => !locked.has(path));
+    // A moved GLB the last build or fetch did not place, and no generator rebuilt, is someone's
+    // work: keep it. Outputs of the previous bundle stay in the backup, so stale ones disappear.
+    await restoreMoved(root, moved, backup, (path) => !owned.has(path));
   }
 
   const pending = [];
@@ -660,72 +662,33 @@ export async function buildAssetsFromSource({
     await reconcileText(root, text, false);
     throw error;
   }
-  report.metadata = await reconcileText(root, text, updateLock);
+  report.metadata = await reconcileText(root, text, false);
 
-  const built = [];
-  for (const path of await inventory(root)) {
-    if (masters.has(path)) continue;
-    built.push({ path, ...(await fileInfo(join(root, path))) });
-  }
-  const expected = new Map((lock?.files ?? []).map((file) => [file.path, file]));
-  const produced = new Map(built.map((file) => [file.path, file]));
-  const missing = [...expected.keys()].filter((path) => !produced.has(path));
-  const unexpected = built.filter((file) => !expected.has(file.path)).map((file) => file.path);
-  const changed = built
-    .filter((file) => expected.has(file.path))
-    .filter((file) => expected.get(file.path).sha256 !== file.sha256)
-    .map((file) => file.path);
+  const built = await bundleFiles(root);
+  await writeStamp(root, { ...inputs, from: 'build', prefix: '', files: built });
   Object.assign(report, {
     files: built.length,
     seconds: Math.round((Date.now() - started) / 1000),
-    lock: { release: lock?.release, missing, unexpected, changed },
+    bundle: { release: inputs.release, key: inputs.key },
   });
-  let result = lock;
-  if (updateLock) {
-    result = createLock(built, lock?.repository);
-    await writeLock(root, result);
-    report.lock.updated = result.release;
-    await recordInstalled(root, built);
-  } else {
-    await recordInstalled(
-      root,
-      built.filter((file) => expected.get(file.path)?.sha256 === file.sha256),
-    );
-  }
   await writeFile(join(out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   await rm(join(out, 'previous'), { recursive: true, force: true });
 
   const annotate = process.env.GITHUB_ACTIONS === 'true';
   if (report.metadata.changed.length || report.metadata.added.length) {
     log(
-      updateLock
-        ? `Generators changed ${report.metadata.changed.length} and added ${report.metadata.added.length} metadata files; review them with the lock:`
-        : `Generators would change ${report.metadata.changed.length} committed metadata files (kept as committed; --update-lock accepts) and added ${report.metadata.added.length}:`,
+      `Generators would change ${report.metadata.changed.length} committed metadata files (kept as committed) and added ${report.metadata.added.length}:`,
     );
     for (const path of [...report.metadata.changed, ...report.metadata.added].slice(0, 200))
       log(annotate ? `::warning file=${path}::Regenerated metadata differs from Git` : `  ${path}`);
   }
-  const problems = [
-    ...changed.map((path) => `changed    ${path}`),
-    ...missing.map((path) => `missing    ${path}`),
-    ...(allowUnlocked ? [] : unexpected.map((path) => `unexpected ${path}`)),
-  ];
-  if (problems.length && !updateLock) {
-    if (annotate) for (const line of problems.slice(0, 50)) log(`::error::${line}`);
-    throw new Error(
-      `${problems.length} built GLBs differ from asset-lock.json (${lock?.release ?? 'no lock'}):\n${problems.slice(0, 100).join('\n')}${problems.length > 100 ? `\n… ${problems.length - 100} more` : ''}\nIf the source change is intended, rerun with --update-lock (or run the Update asset lock workflow) and commit the lock with it. Report: ${join(OUT, 'report.json')}`,
-    );
-  }
-  if (allowUnlocked && !updateLock && unexpected.length)
+  const after = await assetInputs(root);
+  if (after.key !== inputs.key)
     log(
-      `Warning: ${unexpected.length} generated GLBs are not pinned by asset-lock.json; left as local work. Restoring the pinned assets does not require finalizing these models.`,
+      `Warning: the build changed its own inputs, so this checkout now names ${after.release}, not ${inputs.release}. Commit the changes and rebuild:\n${changedInputs(inputs.inputs, after.inputs).slice(0, 20).join('\n')}`,
     );
   log(
-    updateLock
-      ? `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; asset-lock.json now names ${result.release}.`
-      : allowUnlocked
-        ? `Ready: ${lock.files.length} pinned GLBs restored from source in ${report.seconds}s; every pinned byte matches ${lock.release}.`
-        : `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s; every byte matches ${lock.release}.`,
+    `${generate ? 'Built' : 'Imported'} ${built.length} GLBs in ${report.seconds}s as ${inputs.release}.`,
   );
   return report;
 }
@@ -735,7 +698,6 @@ async function main() {
     options: {
       'import-one': { type: 'string' },
       'no-generate': { type: 'boolean' },
-      'update-lock': { type: 'boolean' },
       force: { type: 'boolean' },
       compile: { type: 'boolean' },
       jobs: { type: 'string' },
@@ -751,7 +713,6 @@ async function main() {
     throw new Error('--jobs expects a positive integer.');
   await buildAssetsFromSource({
     generate: !values['no-generate'],
-    updateLock: values['update-lock'],
     force: values.force,
     compile: values.compile,
     ...(concurrency ? { concurrency } : {}),

@@ -1,6 +1,34 @@
 {
   "format": "molen/asset-build@2",
   "node": "24",
+  "repository": "bendyline/molen",
+  "inputs": {
+    "version": 1,
+    "data": [
+      "assets/structures",
+      "content/entities/source",
+      "content/worldgen/source",
+      "content/worldgen/materials",
+      "content/earth/structures/georeferencing.json",
+      "examples/lantern-dungeon/asset-src",
+      "examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md"
+    ],
+    "exclude": [
+      "shots/",
+      "preview.png",
+      "*.md",
+      "*.html",
+      "asset.json",
+      "project.json",
+      "qa.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "placement-report.json",
+      "import-report.json",
+      "texture-audit.json",
+      "material-texture-audit.json"
+    ]
+  },
   "generators": [
     {
       "id": "worldgen-stadiums",
