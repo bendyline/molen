@@ -31,7 +31,7 @@ const project = await readOptionalJson(projectPath);
 const reflections = process.argv.includes('--reflections');
 const antialias = process.argv.includes('--antialias');
 const fitShadows = process.argv.includes('--fit-shadows');
-for (const { dir, spec, sourceHash } of await authoredModels()) {
+for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const sidecarPath = project?.assets?.[spec.assetId];
   if (!sidecarPath) throw new Error(`${spec.id}: runtime asset is not registered`);
   const sidecar = await readOptionalJson(resolve(content, sidecarPath));
@@ -43,8 +43,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
   const reportPath = resolve(dir, 'capture-report.json');
   const previous = await readOptionalJson(reportPath);
   const current =
-    previous?.sourceHash === sourceHash &&
-    previous?.runtimeHash === sidecar.hash &&
+    previous?.inputHash === inputHash &&
     matchesEvidenceText(sceneBytes, previous?.sceneHash) &&
     previous?.captureVersion === 3 &&
     (previous?.antialias ?? false) === antialias &&
@@ -129,8 +128,7 @@ for (const { dir, spec, sourceHash } of await authoredModels()) {
         ...(reflections ? { reflectionMode: 'sky-pmrem' } : {}),
         assetId: spec.assetId,
         qaCamerasHash: hashBytes(JSON.stringify(spec.qaCameras ?? {})),
-        sourceHash,
-        runtimeHash: sidecar.hash,
+        inputHash,
         sceneHash,
         frames,
         stateHash: scene.stateHash,

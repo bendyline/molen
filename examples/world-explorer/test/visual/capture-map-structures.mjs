@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
+import { modelInputHash } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '../../../..');
@@ -126,19 +127,11 @@ try {
   const assets = {};
   for (const id of ['map_smock_windmill', 'map_wind_turbine']) {
     const ref = `molen.worldgen.structure.${id}`;
-    const sidecarPath = pack.assets[ref];
-    assert(sidecarPath, `${ref}: runtime asset is not registered`);
-    const sidecar = JSON.parse(
-      await readFile(resolve(root, 'content/worldgen', sidecarPath), 'utf8'),
-    );
+    assert(pack.assets[ref], `${ref}: runtime asset is not registered`);
     assets[ref] = {
-      sourceHash: hash(
-        await readFile(
-          resolve(root, `content/worldgen/source/map-structures/${id}/models/source.glb`),
-        ),
-      ),
-      runtimeHash: hash(
-        await readFile(resolve(root, 'content/worldgen', dirname(sidecarPath), sidecar.files.main)),
+      inputHash: await modelInputHash(
+        resolve(root, `content/worldgen/source/map-structures/${id}`),
+        ref,
       ),
     };
   }

@@ -10,19 +10,17 @@ portable render, shared-material render, geographic fit and maximum exterior fid
 | --- | ---: |
 | Source GLBs authored | 268 |
 | Runtime GLBs imported | 268 |
-| Current source and runtime hashes verified | 268 |
-| Portable visual reviews passed | 266 |
-| Shared-material reviews passed | 264 |
+| Portable visual reviews passed | 198 |
+| Shared-material reviews passed | 196 |
 | Active geographic previews | 232 |
-| Maximum exterior fidelity reviews passed | 192 |
-| Complete | 167 |
+| Maximum exterior fidelity reviews passed | 133 |
+| Complete | 108 |
 | Source models still to author | 732 |
 
 ## Authored models
 
-Review labels bind the current source and runtime to inspected captures. Geometry changes invalidate
-older approvals. The RGB alignment repair preserves a review only when the exact historical source
-bytes can be reconstructed and the runtime bytes, inspected images and material graphs still match.
+Review labels bind each model's source inputs (its spec, evidence and recipe files) to the inspected
+captures. Editing those inputs invalidates older approvals; rebuilding the same inputs does not.
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 
@@ -60,85 +58,85 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0033 | [Circle Bridge](../places/u3/u3b/n0033_circle_bridge/README.md) | 166522 | Passed | Passed | Pending | Pending | Pending |
 | N0136 | [Willis Tower](../places/dp/dp3/n0136_willis_tower/README.md) | 726110 | Passed | Passed | Passed | Passed | Yes |
 | N0137 | [Mode Gakuen Cocoon Tower](../places/xn/xn7/n0137_mode_gakuen_cocoon_tower/README.md) | 173844 | Passed | Passed | Pending | Pending | Pending |
-| N0138 | [Mirante do Vale](../places/6g/6gy/n0138_mirante_do_vale/README.md) | 86720 | Passed | Passed | Passed | Passed | Yes |
-| N0139 | [Abeno Harukas](../places/xn/xn0/n0139_abeno_harukas/README.md) | 170849 | Passed | Passed | Passed | Passed | Yes |
+| N0138 | [Mirante do Vale](../places/6g/6gy/n0138_mirante_do_vale/README.md) | 23200 | Pending | Pending | Pending | Pending | Pending |
+| N0139 | [Abeno Harukas](../places/xn/xn0/n0139_abeno_harukas/README.md) | 22049 | Pending | Pending | Pending | Pending | Pending |
 | N0140 | [Shanghai World Financial Center](../places/wt/wtw/n0140_shanghai_world_financial_center/README.md) | 227144 | Passed | Passed | Passed | Passed | Yes |
 | N0141 | [The Shard](../places/gc/gcp/n0141_the_shard/README.md) | 269299 | Passed | Passed | Passed | Passed | Yes |
-| N0142 | [Abraj Al Bait](../places/sg/sgu/n0142_abraj_al_bait/README.md) | 817086 | Passed | Passed | Passed | Pending | Pending |
-| N0143 | [Ryugyong Hotel](../places/wy/wyc/n0143_ryugyong_hotel/README.md) | 812701 | Passed | Passed | Passed | Passed | Yes |
+| N0142 | [Abraj Al Bait](../places/sg/sgu/n0142_abraj_al_bait/README.md) | 260178 | Pending | Pending | Pending | Pending | Pending |
+| N0143 | [Ryugyong Hotel](../places/wy/wyc/n0143_ryugyong_hotel/README.md) | 36147 | Pending | Pending | Pending | Pending | Pending |
 | N0144 | [Oriental Pearl Tower](../places/wt/wtw/n0144_oriental_pearl_tower/README.md) | 288124 | Passed | Passed | Passed | Passed | Yes |
-| N0145 | [Jin Mao Tower](../places/wt/wtw/n0145_jin_mao_tower/README.md) | 218313 | Passed | Passed | Passed | Passed | Yes |
+| N0145 | [Jin Mao Tower](../places/wt/wtw/n0145_jin_mao_tower/README.md) | 79841 | Pending | Pending | Pending | Pending | Pending |
 | N0146 | [Palace of Culture and Science](../places/u3/u3q/n0146_palace_of_culture_and_science/README.md) | 183246 | Passed | Passed | Passed | Pending | Pending |
-| N0147 | [Grande Arche](../places/u0/u09/n0147_grande_arche/README.md) | 371160 | Passed | Passed | Passed | Pending | Pending |
+| N0147 | [Grande Arche](../places/u0/u09/n0147_grande_arche/README.md) | 22776 | Pending | Pending | Pending | Pending | Pending |
 | N0148 | [Edifício Altino Arantes](../places/6g/6gy/n0148_edificio_altino_arantes/README.md) | 32360 | Passed | Passed | Pending | Pending | Pending |
 | N0149 | [30 St Mary Axe](../places/gc/gcp/n0149_30_st_mary_axe/README.md) | 94364 | Passed | Passed | Pending | Pending | Pending |
-| N0150 | [Edifício Itália](../places/6g/6gy/n0150_edificio_italia/README.md) | 488628 | Passed | Passed | Passed | Passed | Yes |
-| N0151 | [Montparnasse Tower](../places/u0/u09/n0151_montparnasse_tower/README.md) | 89632 | Passed | Passed | Passed | Passed | Yes |
-| N0152 | [Trump Tower](../places/dr/dr5/n0152_trump_tower/README.md) | 93621 | Passed | Passed | Passed | Passed | Yes |
-| N0153 | [7 World Trade Center](../places/dr/dr5/n0153_7_world_trade_center/README.md) | 84972 | Passed | Passed | Passed | Passed | Yes |
-| N0154 | [International Commerce Centre](../places/we/wec/n0154_international_commerce_centre/README.md) | 455150 | Passed | Passed | Passed | Passed | Yes |
-| N0155 | [New York Times Building](../places/dr/dr5/n0155_new_york_times_building/README.md) | 212151 | Passed | Passed | Passed | Passed | Yes |
+| N0150 | [Edifício Itália](../places/6g/6gy/n0150_edificio_italia/README.md) | 473498 | Pending | Pending | Pending | Pending | Pending |
+| N0151 | [Montparnasse Tower](../places/u0/u09/n0151_montparnasse_tower/README.md) | 9424 | Pending | Pending | Pending | Pending | Pending |
+| N0152 | [Trump Tower](../places/dr/dr5/n0152_trump_tower/README.md) | 19067 | Pending | Pending | Pending | Pending | Pending |
+| N0153 | [7 World Trade Center](../places/dr/dr5/n0153_7_world_trade_center/README.md) | 4832 | Pending | Pending | Pending | Pending | Pending |
+| N0154 | [International Commerce Centre](../places/we/wec/n0154_international_commerce_centre/README.md) | 121424 | Pending | Pending | Pending | Pending | Pending |
+| N0155 | [New York Times Building](../places/dr/dr5/n0155_new_york_times_building/README.md) | 125459 | Pending | Pending | Pending | Pending | Pending |
 | N0156 | [Bank of China Tower](../places/we/wec/n0156_bank_of_china_tower/README.md) | 156097 | Passed | Passed | Passed | Passed | Yes |
 | N0157 | [Woolworth Building](../places/dr/dr5/n0157_woolworth_building/README.md) | 137916 | Passed | Passed | Passed | Pending | Pending |
-| N0158 | [Turning Torso](../places/u3/u3c/n0158_turning_torso/README.md) | 69986 | Passed | Passed | Passed | Passed | Yes |
-| N0159 | [Commerzbank Tower](../places/u0/u0y/n0159_commerzbank_tower/README.md) | 214907 | Passed | Passed | Passed | Passed | Yes |
-| N0160 | [Lakhta Centre](../places/ud/udt/n0160_lakhta_centre/README.md) | 197762 | Passed | Passed | Passed | Passed | Yes |
-| N0161 | [Kuala Lumpur Tower](../places/w2/w28/n0161_kuala_lumpur_tower/README.md) | 96580 | Passed | Passed | Passed | Passed | Yes |
-| N0162 | [Q1 Tower](../places/r7/r7j/n0162_q1_tower/README.md) | 195163 | Passed | Passed | Passed | Passed | Yes |
-| N0163 | [Landmark 81](../places/w3/w3g/n0163_landmark_81/README.md) | 512049 | Passed | Passed | Passed | Pending | Pending |
-| N0164 | [CITIC Plaza](../places/ws/ws0/n0164_citic_plaza/README.md) | 1186200 | Passed | Passed | Passed | Passed | Yes |
-| N0165 | [Bank of America Tower](../places/dr/dr5/n0165_bank_of_america_tower/README.md) | 436461 | Passed | Passed | Passed | Passed | Yes |
-| N0166 | [Kingdom Centre](../places/th/th3/n0166_kingdom_centre/README.md) | 313550 | Passed | Passed | Passed | Passed | Yes |
-| N0167 | [Shun Hing Square](../places/ws/ws1/n0167_shun_hing_square/README.md) | 495525 | Passed | Passed | Passed | Passed | Yes |
-| N0168 | [Zifeng Tower](../places/wt/wts/n0168_zifeng_tower/README.md) | 301407 | Passed | Passed | Passed | Passed | Yes |
-| N0169 | [Mercury City Tower](../places/uc/ucf/n0169_mercury_city_tower/README.md) | 176721 | Passed | Passed | Passed | Passed | Yes |
-| N0170 | [Messeturm](../places/u0/u0y/n0170_messeturm/README.md) | 243716 | Passed | Passed | Passed | Passed | Yes |
-| N0171 | [875 North Michigan Avenue](../places/dp/dp3/n0171_875_north_michigan_avenue/README.md) | 148110 | Passed | Passed | Passed | Passed | Yes |
-| N0172 | [Aon Center](../places/dp/dp3/n0172_aon_center/README.md) | 169774 | Passed | Passed | Passed | Passed | Yes |
-| N0173 | [Torre Glòries](../places/sp/sp3/n0173_torre_glories/README.md) | 1555592 | Passed | Passed | Passed | Passed | Yes |
-| N0174 | [Trump International Hotel and Tower](../places/dp/dp3/n0174_trump_international_hotel_and_tower/README.md) | 185089 | Passed | Passed | Passed | Passed | Yes |
-| N0175 | [Almas Tower](../places/th/thr/n0175_almas_tower/README.md) | 469037 | Passed | Passed | Passed | Passed | Yes |
-| N0176 | [U.S. Bank Tower](../places/9q/9q5/n0176_u_s_bank_tower/README.md) | 701784 | Passed | Passed | Passed | Passed | Yes |
-| N0177 | [40 Wall Street](../places/dr/dr5/n0177_40_wall_street/README.md) | 435262 | Passed | Passed | Passed | Passed | Yes |
-| N0178 | [Merdeka 118](../places/w2/w28/n0178_merdeka_118/README.md) | 149888 | Passed | Passed | Passed | Passed | Yes |
-| N0179 | [Tuntex Sky Tower](../places/ws/wsj/n0179_tuntex_sky_tower/README.md) | 458842 | Passed | Passed | Passed | Passed | Yes |
-| N0180 | [Al Hamra Tower](../places/tj/tj4/n0180_al_hamra_tower/README.md) | 162957 | Passed | Passed | Passed | Passed | Yes |
-| N0181 | [Central Plaza](../places/we/wec/n0181_central_plaza/README.md) | 169555 | Passed | Passed | Passed | Passed | Yes |
-| N0182 | [23 Marina](../places/th/thr/n0182_23_marina/README.md) | 534269 | Passed | Passed | Passed | Passed | Yes |
+| N0158 | [Turning Torso](../places/u3/u3c/n0158_turning_torso/README.md) | 62506 | Pending | Pending | Pending | Pending | Pending |
+| N0159 | [Commerzbank Tower](../places/u0/u0y/n0159_commerzbank_tower/README.md) | 54151 | Pending | Pending | Pending | Pending | Pending |
+| N0160 | [Lakhta Centre](../places/ud/udt/n0160_lakhta_centre/README.md) | 15202 | Pending | Pending | Pending | Pending | Pending |
+| N0161 | [Kuala Lumpur Tower](../places/w2/w28/n0161_kuala_lumpur_tower/README.md) | 91444 | Pending | Pending | Pending | Pending | Pending |
+| N0162 | [Q1 Tower](../places/r7/r7j/n0162_q1_tower/README.md) | 106501 | Pending | Pending | Pending | Pending | Pending |
+| N0163 | [Landmark 81](../places/w3/w3g/n0163_landmark_81/README.md) | 72981 | Pending | Pending | Pending | Pending | Pending |
+| N0164 | [CITIC Plaza](../places/ws/ws0/n0164_citic_plaza/README.md) | 74676 | Pending | Pending | Pending | Pending | Pending |
+| N0165 | [Bank of America Tower](../places/dr/dr5/n0165_bank_of_america_tower/README.md) | 19475 | Pending | Pending | Pending | Pending | Pending |
+| N0166 | [Kingdom Centre](../places/th/th3/n0166_kingdom_centre/README.md) | 217710 | Pending | Pending | Pending | Pending | Pending |
+| N0167 | [Shun Hing Square](../places/ws/ws1/n0167_shun_hing_square/README.md) | 311345 | Pending | Pending | Pending | Pending | Pending |
+| N0168 | [Zifeng Tower](../places/wt/wts/n0168_zifeng_tower/README.md) | 154955 | Pending | Pending | Pending | Pending | Pending |
+| N0169 | [Mercury City Tower](../places/uc/ucf/n0169_mercury_city_tower/README.md) | 16573 | Pending | Pending | Pending | Pending | Pending |
+| N0170 | [Messeturm](../places/u0/u0y/n0170_messeturm/README.md) | 31792 | Pending | Pending | Pending | Pending | Pending |
+| N0171 | [875 North Michigan Avenue](../places/dp/dp3/n0171_875_north_michigan_avenue/README.md) | 146050 | Pending | Pending | Pending | Pending | Pending |
+| N0172 | [Aon Center](../places/dp/dp3/n0172_aon_center/README.md) | 168138 | Pending | Pending | Pending | Pending | Pending |
+| N0173 | [Torre Glòries](../places/sp/sp3/n0173_torre_glories/README.md) | 142044 | Pending | Pending | Pending | Pending | Pending |
+| N0174 | [Trump International Hotel and Tower](../places/dp/dp3/n0174_trump_international_hotel_and_tower/README.md) | 80651 | Pending | Pending | Pending | Pending | Pending |
+| N0175 | [Almas Tower](../places/th/thr/n0175_almas_tower/README.md) | 245998 | Pending | Pending | Pending | Pending | Pending |
+| N0176 | [U.S. Bank Tower](../places/9q/9q5/n0176_u_s_bank_tower/README.md) | 130716 | Pending | Pending | Pending | Pending | Pending |
+| N0177 | [40 Wall Street](../places/dr/dr5/n0177_40_wall_street/README.md) | 431590 | Pending | Pending | Pending | Pending | Pending |
+| N0178 | [Merdeka 118](../places/w2/w28/n0178_merdeka_118/README.md) | 144834 | Pending | Pending | Pending | Pending | Pending |
+| N0179 | [Tuntex Sky Tower](../places/ws/wsj/n0179_tuntex_sky_tower/README.md) | 108530 | Pending | Pending | Pending | Pending | Pending |
+| N0180 | [Al Hamra Tower](../places/tj/tj4/n0180_al_hamra_tower/README.md) | 155029 | Pending | Pending | Pending | Pending | Pending |
+| N0181 | [Central Plaza](../places/we/wec/n0181_central_plaza/README.md) | 169555 | Pending | Pending | Pending | Pending | Pending |
+| N0182 | [23 Marina](../places/th/thr/n0182_23_marina/README.md) | 452069 | Pending | Pending | Pending | Pending | Pending |
 | N0183 | [Lotte World Tower](../places/wy/wyd/n0183_lotte_world_tower/README.md) | 563015 | Passed | Passed | Passed | Passed | Yes |
-| N0184 | [Rose Tower](../places/th/thr/n0184_rose_tower/README.md) | 623688 | Passed | Passed | Passed | Passed | Yes |
+| N0184 | [Rose Tower](../places/th/thr/n0184_rose_tower/README.md) | 623480 | Pending | Pending | Pending | Pending | Pending |
 | N0185 | [China Media Group Guanghua Road Office Area](../places/wx/wx4/n0185_china_media_group_guanghua_road_office_area/README.md) | 199468 | Passed | Passed | Passed | Passed | Yes |
-| N0186 | [Guangzhou International Finance Center](../places/ws/ws0/n0186_guangzhou_international_finance_center/README.md) | 425949 | Passed | Passed | Passed | Passed | Yes |
-| N0187 | [Ping An Finance Centre](../places/ws/ws1/n0187_ping_an_finance_centre/README.md) | 588158 | Passed | Passed | Passed | Passed | Yes |
-| N0188 | [70 Pine Street](../places/dr/dr5/n0188_70_pine_street/README.md) | 576846 | Passed | Passed | Passed | Passed | Yes |
-| N0189 | [Yokohama Landmark Tower](../places/xn/xn7/n0189_yokohama_landmark_tower/README.md) | 151118 | Passed | Passed | Passed | Passed | Yes |
-| N0190 | [30 Rockefeller Plaza](../places/dr/dr5/n0190_30_rockefeller_plaza/README.md) | 1007083 | Passed | Passed | Passed | Passed | Yes |
-| N0191 | [Flame Towers](../places/tp/tp5/n0191_flame_towers/README.md) | 493615 | Passed | Passed | Passed | Passed | Yes |
-| N0192 | [MetLife Building](../places/dr/dr5/n0192_metlife_building/README.md) | 444875 | Passed | Passed | Passed | Passed | Yes |
-| N0193 | [Metropolitan Life Insurance Company Tower](../places/dr/dr5/n0193_metropolitan_life_insurance_company_tower/README.md) | 290454 | Passed | Passed | Passed | Passed | Yes |
-| N0194 | [Emirates Office Tower](../places/th/thr/n0194_emirates_office_tower/README.md) | 346148 | Passed | Passed | Passed | Passed | Yes |
-| N0195 | [3 World Trade Center](../places/dr/dr5/n0195_3_world_trade_center/README.md) | 295672 | Passed | Passed | Passed | Passed | Yes |
-| N0196 | [Princess Tower](../places/th/thr/n0196_princess_tower/README.md) | 737002 | Passed | Passed | Passed | Passed | Yes |
-| N0197 | [432 Park Avenue](../places/dr/dr5/n0197_432_park_avenue/README.md) | 299488 | Passed | Passed | Passed | Passed | Yes |
-| N0198 | [Citigroup Center](../places/dr/dr5/n0198_citigroup_center/README.md) | 462042 | Passed | Passed | Passed | Passed | Yes |
-| N0199 | [Jumeirah Emirates Towers Hotel](../places/th/thr/n0199_jumeirah_emirates_towers_hotel/README.md) | 340488 | Passed | Passed | Passed | Passed | Yes |
-| N0200 | [Marina 101](../places/th/thr/n0200_marina_101/README.md) | 286882 | Passed | Passed | Passed | Passed | Yes |
-| N0201 | [Telekom Tower](../places/w2/w28/n0201_telekom_tower/README.md) | 1479966 | Passed | Passed | Passed | Passed | Yes |
-| N0202 | [Cayan Tower](../places/th/thr/n0202_cayan_tower/README.md) | 498522 | Passed | Passed | Passed | Passed | Yes |
-| N0203 | [Torre Moeve](../places/ez/ezj/n0203_torre_moeve/README.md) | 421986 | Passed | Passed | Passed | Passed | Yes |
-| N0204 | [Luxor Resort & Casino](../places/9q/9qq/n0204_luxor_resort_casino/README.md) | 276371 | Passed | Passed | Passed | Passed | Yes |
+| N0186 | [Guangzhou International Finance Center](../places/ws/ws0/n0186_guangzhou_international_finance_center/README.md) | 36534 | Pending | Pending | Pending | Pending | Pending |
+| N0187 | [Ping An Finance Centre](../places/ws/ws1/n0187_ping_an_finance_centre/README.md) | 245790 | Pending | Pending | Pending | Pending | Pending |
+| N0188 | [70 Pine Street](../places/dr/dr5/n0188_70_pine_street/README.md) | 539422 | Pending | Pending | Pending | Pending | Pending |
+| N0189 | [Yokohama Landmark Tower](../places/xn/xn7/n0189_yokohama_landmark_tower/README.md) | 93742 | Pending | Pending | Pending | Pending | Pending |
+| N0190 | [30 Rockefeller Plaza](../places/dr/dr5/n0190_30_rockefeller_plaza/README.md) | 201315 | Pending | Pending | Pending | Pending | Pending |
+| N0191 | [Flame Towers](../places/tp/tp5/n0191_flame_towers/README.md) | 68737 | Pending | Pending | Pending | Pending | Pending |
+| N0192 | [MetLife Building](../places/dr/dr5/n0192_metlife_building/README.md) | 437075 | Pending | Pending | Pending | Pending | Pending |
+| N0193 | [Metropolitan Life Insurance Company Tower](../places/dr/dr5/n0193_metropolitan_life_insurance_company_tower/README.md) | 289882 | Pending | Pending | Pending | Pending | Pending |
+| N0194 | [Emirates Office Tower](../places/th/thr/n0194_emirates_office_tower/README.md) | 343268 | Pending | Pending | Pending | Pending | Pending |
+| N0195 | [3 World Trade Center](../places/dr/dr5/n0195_3_world_trade_center/README.md) | 295672 | Pending | Pending | Pending | Pending | Pending |
+| N0196 | [Princess Tower](../places/th/thr/n0196_princess_tower/README.md) | 699554 | Pending | Pending | Pending | Pending | Pending |
+| N0197 | [432 Park Avenue](../places/dr/dr5/n0197_432_park_avenue/README.md) | 292272 | Pending | Pending | Pending | Pending | Pending |
+| N0198 | [Citigroup Center](../places/dr/dr5/n0198_citigroup_center/README.md) | 369848 | Pending | Pending | Pending | Pending | Pending |
+| N0199 | [Jumeirah Emirates Towers Hotel](../places/th/thr/n0199_jumeirah_emirates_towers_hotel/README.md) | 337608 | Pending | Pending | Pending | Pending | Pending |
+| N0200 | [Marina 101](../places/th/thr/n0200_marina_101/README.md) | 233064 | Pending | Pending | Pending | Pending | Pending |
+| N0201 | [Telekom Tower](../places/w2/w28/n0201_telekom_tower/README.md) | 1458078 | Pending | Pending | Pending | Pending | Pending |
+| N0202 | [Cayan Tower](../places/th/thr/n0202_cayan_tower/README.md) | 489408 | Pending | Pending | Pending | Pending | Pending |
+| N0203 | [Torre Moeve](../places/ez/ezj/n0203_torre_moeve/README.md) | 410898 | Pending | Pending | Pending | Pending | Pending |
+| N0204 | [Luxor Resort & Casino](../places/9q/9qq/n0204_luxor_resort_casino/README.md) | 271559 | Pending | Pending | Pending | Pending | Pending |
 | N0205 | [Seagram Building](../places/dr/dr5/n0205_seagram_building/README.md) | 286644 | Passed | Passed | Passed | Passed | Yes |
-| N0206 | [The Center](../places/we/wec/n0206_the_center/README.md) | 522444 | Passed | Passed | Passed | Passed | Yes |
-| N0207 | [Bank of America Plaza](../places/dn/dn5/n0207_bank_of_america_plaza/README.md) | 407421 | Passed | Passed | Passed | Passed | Yes |
+| N0206 | [The Center](../places/we/wec/n0206_the_center/README.md) | 488748 | Pending | Pending | Pending | Pending | Pending |
+| N0207 | [Bank of America Plaza](../places/dn/dn5/n0207_bank_of_america_plaza/README.md) | 401609 | Pending | Pending | Pending | Pending | Pending |
 | N0209 | [Bitexco Financial Tower](../places/w3/w3g/n0209_bitexco_financial_tower/README.md) | 315402 | Passed | Passed | Pending | Pending | Pending |
-| N0218 | [4 World Trade Center](../places/dr/dr5/n0218_4_world_trade_center/README.md) | 242702 | Passed | Passed | Pending | Pending | Pending |
+| N0218 | [4 World Trade Center](../places/dr/dr5/n0218_4_world_trade_center/README.md) | 67854 | Pending | Pending | Pending | Pending | Pending |
 | N0222 | [One Canada Square](../places/gc/gcp/n0222_one_canada_square/README.md) | 964326 | Passed | Passed | Pending | Pending | Pending |
-| N0223 | [Edifício Copan](../places/6g/6gy/n0223_edificio_copan/README.md) | 119600 | Passed | Passed | Pending | Pending | Pending |
-| N0227 | [First Canadian Place](../places/dp/dpz/n0227_first_canadian_place/README.md) | 165344 | Passed | Passed | Pending | Pending | Pending |
-| N0228 | [Two Prudential Plaza](../places/dp/dp3/n0228_two_prudential_plaza/README.md) | 45962 | Passed | Passed | Pending | Pending | Pending |
+| N0223 | [Edifício Copan](../places/6g/6gy/n0223_edificio_copan/README.md) | 40446 | Pending | Pending | Pending | Pending | Pending |
+| N0227 | [First Canadian Place](../places/dp/dpz/n0227_first_canadian_place/README.md) | 24708 | Pending | Pending | Pending | Pending | Pending |
+| N0228 | [Two Prudential Plaza](../places/dp/dp3/n0228_two_prudential_plaza/README.md) | 9600 | Pending | Pending | Pending | Pending | Pending |
 | N0229 | [Istanbul Sapphire](../places/sx/sxk/n0229_istanbul_sapphire/README.md) | 947096 | Passed | Passed | Pending | Pending | Pending |
-| N0230 | [Nina Tower](../places/we/wec/n0230_nina_tower/README.md) | 86792 | Passed | Passed | Pending | Pending | Pending |
-| N0232 | [Gran Torre Costanera](../places/66/66j/n0232_gran_torre_costanera/README.md) | 177840 | Passed | Passed | Pending | Pending | Pending |
+| N0230 | [Nina Tower](../places/we/wec/n0230_nina_tower/README.md) | 19502 | Pending | Pending | Pending | Pending | Pending |
+| N0232 | [Gran Torre Costanera](../places/66/66j/n0232_gran_torre_costanera/README.md) | 23066 | Pending | Pending | Pending | Pending | Pending |
 | N0233 | [China World Trade Center Tower III](../places/wx/wx4/n0233_china_world_trade_center_tower_iii/README.md) | 485508 | Passed | Passed | Pending | Pending | Pending |
 | N0234 | [Barolo Palace](../places/69/69y/n0234_barolo_palace/README.md) | 646738 | Passed | Passed | Pending | Pending | Pending |
 | N0235 | [Millennium Tower](../places/u2/u2e/n0235_millennium_tower/README.md) | 30296 | Passed | Passed | Pending | Pending | Pending |
@@ -270,11 +268,11 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0684 | [Wembley Stadium](../places/gc/gcp/n0684_wembley_stadium/README.md) | 903922 | Passed | Passed | Passed | Passed | Yes |
 | N0685 | [Stade de France](../places/u0/u09/n0685_stade_de_france/README.md) | 911098 | Passed | Passed | Passed | Passed | Yes |
 | N0686 | [Beijing National Stadium](../places/wx/wx4/n0686_beijing_national_stadium/README.md) | 1465414 | Passed | Passed | Passed | Passed | Yes |
-| N0687 | [FNB Stadium](../places/ke/ke7/n0687_fnb_stadium/README.md) | 1674942 | Passed | Passed | Passed | Passed | Yes |
+| N0687 | [FNB Stadium](../places/ke/ke7/n0687_fnb_stadium/README.md) | 278406 | Pending | Pending | Pending | Pending | Pending |
 | N0688 | [Arena AufSchalke](../places/u1/u1j/n0688_arena_aufschalke/README.md) | 865090 | Passed | Passed | Passed | Passed | Yes |
 | N0689 | [Hampden Park](../places/gc/gcu/n0689_hampden_park/README.md) | 1118062 | Passed | Passed | Passed | Passed | Yes |
 | N0690 | [Mineirão](../places/7h/7h2/n0690_mineirao/README.md) | 1216324 | Passed | Passed | Passed | Passed | Yes |
-| N0691 | [Lusail Stadium](../places/th/ths/n0691_lusail_stadium/README.md) | 2069882 | Passed | Passed | Passed | Passed | Yes |
+| N0691 | [Lusail Stadium](../places/th/ths/n0691_lusail_stadium/README.md) | 500330 | Pending | Pending | Pending | Pending | Pending |
 | N0692 | [Munich Olympic Stadium](../places/u2/u28/n0692_munich_olympic_stadium/README.md) | 4116886 | Passed | Passed | Passed | Passed | Yes |
 | N0693 | [Stade Vélodrome](../places/sp/spe/n0693_stade_velodrome/README.md) | 1291404 | Passed | Passed | Passed | Passed | Yes |
 | N0694 | [Rostov Arena](../places/ub/ubk/n0694_rostov_arena/README.md) | 1141392 | Passed | Passed | Passed | Passed | Yes |
@@ -286,7 +284,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0700 | [Rostec Arena](../places/u3/u3w/n0700_rostec_arena/README.md) | 685662 | Passed | Passed | Passed | Passed | Yes |
 | N0701 | [Samara Arena](../places/v1/v17/n0701_samara_arena/README.md) | 1350270 | Passed | Passed | Passed | Passed | Yes |
 | N0702 | [Kazimierz Górski National Stadium](../places/u3/u3q/n0702_kazimierz_gorski_national_stadium/README.md) | 1489974 | Passed | Passed | Passed | Passed | Yes |
-| N0703 | [Estádio Nacional de Brasília](../places/6v/6vj/n0703_estadio_nacional_de_brasilia/README.md) | 2263530 | Passed | Passed | Passed | Passed | Yes |
+| N0703 | [Estádio Nacional de Brasília](../places/6v/6vj/n0703_estadio_nacional_de_brasilia/README.md) | 361242 | Pending | Pending | Pending | Pending | Pending |
 | N0704 | [Volgograd Arena](../places/ub/ubx/n0704_volgograd_arena/README.md) | 1655874 | Passed | Passed | Passed | Passed | Yes |
 | N0705 | [BC Place](../places/c2/c2b/n0705_bc_place/README.md) | 1736182 | Passed | Passed | Passed | Passed | Yes |
 | N0706 | [Khalifa International Stadium](../places/th/thk/n0706_khalifa_international_stadium/README.md) | 1147020 | Passed | Passed | Passed | Passed | Yes |

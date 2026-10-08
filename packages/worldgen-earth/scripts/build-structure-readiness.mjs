@@ -5,9 +5,8 @@ import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 import { formatJson } from '../../worldgen/scripts/format-json.mjs';
-import { reviewedGlbEncoding } from '../../worldgen/scripts/reviewed-glb-encoding.mjs';
 import { validateStructureCollections } from '../../worldgen/scripts/structure-collections.mjs';
-import { writeIndex } from '../../worldgen/scripts/structure-model-files.mjs';
+import { modelInputHash, writeIndex } from '../../worldgen/scripts/structure-model-files.mjs';
 import {
   knownSourceEntries,
   structureSourceDirectory,
@@ -88,36 +87,21 @@ async function modelReadiness(candidate, geo) {
   const qa = reviewBytes ? JSON.parse(reviewBytes) : undefined;
   const spec = specBytes ? JSON.parse(specBytes) : undefined;
   const capture = captureBytes ? JSON.parse(captureBytes) : undefined;
-  const sourceHash = source ? hash(source) : undefined,
-    runtimeHash = runtime ? hash(runtime) : undefined;
-  const sourceDeclared = sourceManifest?.files?.models?.find(
-    (model) => model.assetId === asset,
-  )?.sha256;
-  const sourceMatches = Boolean(
-    sourceHash && sourceDeclared === sourceHash && sidecar?.sourceHash === sourceHash,
-  );
-  const runtimeMatches = Boolean(
-    runtimeHash && sidecar?.hash === runtimeHash && sidecar?.id === asset,
-  );
+  // Reviews bind to the model's inputs, not to GLB bytes, so a rebuild on any machine keeps them.
+  const inputHash = sourceManifest
+    ? await modelInputHash(resolve(root, sourceDirectory), asset)
+    : undefined;
   const images = await imageFiles(sourceDirectory);
   const placement = placements.entries.find((entry) => entry.asset === asset);
   const placementHash = placement ? hash(JSON.stringify(placement)) : null;
-  const encoding = reviewedGlbEncoding(source, sourceHash);
-  const reviewMatches = Boolean(
-    sourceHash &&
-      runtimeHash &&
-      qa &&
-      encoding.matchesSource(qa.sourceHash) &&
-      qa.runtimeHash === runtimeHash,
-  );
+  const reviewMatches = Boolean(source && runtime && inputHash && qa?.inputHash === inputHash);
   // A model hash alone does not bind a review to the actual renders the reviewer saw.
   // Keep the report and every reviewed frame in the evidence chain as well.
   const reviewedFrames = qa?.visualReview?.inspectedFrames ?? [];
   let capturesMatch = Boolean(
     captureBytes &&
       matchesEvidenceText(captureBytes, qa?.captureReportHash) &&
-      encoding.matchesSource(capture?.sourceHash) &&
-      capture?.runtimeHash === runtimeHash &&
+      capture?.inputHash === inputHash &&
       reviewedFrames.length > 0,
   );
   for (const path of reviewedFrames) {
@@ -132,10 +116,7 @@ async function modelReadiness(candidate, geo) {
   let sharedMatches = Boolean(
     sharedCaptureBytes &&
       matchesEvidenceText(sharedCaptureBytes, qa?.sharedSurfaceReview?.captureReportHash) &&
-      encoding.matchesSource(sharedCapture?.sourceHash) &&
-      sharedCapture?.runtimeHash === runtimeHash &&
-      specBytes &&
-      encoding.matchesSpec(specBytes, sharedCapture?.specHash) &&
+      sharedCapture?.inputHash === inputHash &&
       sharedFrames.length > 0,
   );
   for (const path of sharedFrames) {
@@ -180,8 +161,6 @@ async function modelReadiness(candidate, geo) {
     blockers.push(`identity:${rejected.reasonCode}`);
   if (!source) blockers.push('source-model-missing');
   if (!runtime || !sidecar) blockers.push('runtime-import-missing');
-  if (source && runtime && !sourceMatches) blockers.push('source-hash-unverified');
-  if (runtime && !runtimeMatches) blockers.push('runtime-hash-unverified');
   if (!visualReviewed) blockers.push('visual-review-missing-or-unbound');
   if (needsSharedReview && !sharedReviewed)
     blockers.push('shared-surface-review-missing-or-unbound');
@@ -208,20 +187,11 @@ async function modelReadiness(candidate, geo) {
     },
     model: {
       quality: spec?.quality ?? null,
-      source: {
-        present: Boolean(source),
-        path: sourcePath,
-        hash: sourceHash ?? null,
-        matchesManifestAndImport: sourceMatches,
-        ...(reviewMatches && qa.sourceHash !== sourceHash
-          ? { reviewedEncoding: { repair: 'rgb-u8-four-byte-stride', sourceHash: qa.sourceHash } }
-          : {}),
-      },
+      inputHash: inputHash ?? null,
+      source: { present: Boolean(source), path: sourcePath },
       runtime: {
         present: Boolean(runtime && sidecar),
         path: runtimePath,
-        hash: runtimeHash ?? null,
-        matchesSidecar: runtimeMatches,
         triangles: sidecar?.stats?.triangles ?? null,
       },
       assetRegistered,
@@ -257,7 +227,7 @@ async function modelReadiness(candidate, geo) {
       captureFilesExist: images.length > 0,
       reviewedCaptureHashesMatch: capturesMatch,
       hashBoundReviewPassed: visualReviewed,
-      note: 'Existing images are inspectable evidence, but their presence alone does not establish review against the current model hash.',
+      note: 'Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs.',
     },
     fidelityQa: {
       target: 'maximum',
@@ -337,9 +307,6 @@ const counts = {
   sourceFacts: records.filter((record) => record.sourceFacts.available).length,
   sourceModels: records.filter((record) => record.model.source.present).length,
   runtimeModels: records.filter((record) => record.model.runtime.present).length,
-  verifiedHashes: records.filter(
-    (record) => record.model.source.matchesManifestAndImport && record.model.runtime.matchesSidecar,
-  ).length,
   mapAxes: records.filter((record) => record.geographic.orientationEvidence === 'axis-only').length,
   identityReview: records.filter((record) => record.currentWorldReview).length,
   visualReviews: records.filter((record) => record.visualQa.hashBoundReviewPassed).length,
@@ -388,7 +355,6 @@ portable render, shared-material render, geographic fit and maximum exterior fid
 | --- | ---: |
 | Source GLBs authored | ${counts.sourceModels} |
 | Runtime GLBs imported | ${counts.runtimeModels} |
-| Current source and runtime hashes verified | ${counts.verifiedHashes} |
 | Portable visual reviews passed | ${counts.visualReviews} |
 | Shared-material reviews passed | ${counts.sharedSurfaceReviews} |
 | Active geographic previews | ${counts.previewPlacements} |
@@ -398,9 +364,8 @@ portable render, shared-material render, geographic fit and maximum exterior fid
 
 ## Authored models
 
-Review labels bind the current source and runtime to inspected captures. Geometry changes invalidate
-older approvals. The RGB alignment repair preserves a review only when the exact historical source
-bytes can be reconstructed and the runtime bytes, inspected images and material graphs still match.
+Review labels bind each model's source inputs (its spec, evidence and recipe files) to the inspected
+captures. Editing those inputs invalidates older approvals; rebuilding the same inputs does not.
 See the [gallery](gallery.html) for renders and the [full readiness ledger](../../../earth/structures/readiness.json)
 for exact blockers, identity issues and all 1,000 candidates.
 

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
@@ -7,20 +7,20 @@ import { tmpdir } from 'node:os';
 import { basename, join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
 import * as tar from 'tar';
+import { assetInputs } from '../asset-inputs.mjs';
 import {
   archivePath,
+  bundleFiles,
   checkAssets,
-  createLock,
   fetchAssets,
   fileInfo,
   packAssets,
   publishAssets,
   ReleaseMissingError,
-  readLock,
-  validateLock,
-  validateReleaseManifest,
+  readStamp,
+  validateManifest,
   verifyArchive,
-  writeLock,
+  writeStamp,
 } from '../asset-packs.mjs';
 import {
   buildAssetsFromSource,
@@ -34,14 +34,25 @@ import { checkSourceBundles } from '../check-source-bundles.mjs';
 
 const roots = [];
 const quiet = () => {};
-async function fixture({ masters = [] } = {}) {
+const recipe = 'inputs/recipe.json';
+/** A git checkout whose asset inputs are one recipe file, so equal recipes name equal bundles. */
+async function fixture({ masters = [], source = '{"shape":"cube"}' } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'molen-assets-'));
   roots.push(root);
+  execFileSync('git', ['init', '-q'], { cwd: root });
   await writeFile(join(root, 'LICENSE'), 'Fixture license\n');
   await writeFile(
     join(root, 'asset-build.json'),
-    JSON.stringify({ format: 'molen/asset-build@2', generators: [], masters }),
+    JSON.stringify({
+      format: 'molen/asset-build@2',
+      node: process.versions.node.split('.')[0],
+      repository: 'bendyline/molen',
+      inputs: { version: 1, data: ['inputs'], exclude: ['*.md'] },
+      generators: [],
+      masters,
+    }),
   );
+  await asset(root, recipe, Buffer.from(source));
   return root;
 }
 afterEach(async () => {
@@ -54,29 +65,28 @@ async function asset(root, path, bytes = Buffer.from('test geometry')) {
   await mkdir(join(root, path, '..'), { recursive: true });
   await writeFile(join(root, path), bytes);
 }
-/** Lock whatever GLBs a fixture holds, as the Update asset lock workflow would. */
-async function lockFixture(root, paths) {
-  const files = [];
-  for (const path of paths) files.push({ path, ...(await fileInfo(join(root, path))) });
-  const lock = createLock(files);
-  await writeLock(root, lock);
-  return lock;
+/** Stamp whatever GLBs a fixture holds as its installed bundle, as a build would. */
+async function installFixture(root) {
+  const current = await assetInputs(root);
+  const files = await bundleFiles(root);
+  await writeStamp(root, { ...current, from: 'build', files });
+  return { ...current, files };
 }
-/** Serve a packed release from `source` the way GitHub's download URLs would. */
+/** Serve a packed bundle from `source` the way GitHub's download URLs would. */
 function releaseServer(source, requested = []) {
   return async (url) => {
     const file = url.split('/').at(-1);
     requested.push(file);
-    const lock = await readLock(source);
+    const { release } = await assetInputs(source);
     const dir = join(source, '.artifacts/asset-packs');
     if (file === 'asset-manifest.json') {
       try {
-        return new Response(await readFile(join(dir, lock.release, file)));
+        return new Response(await readFile(join(dir, release, file)));
       } catch {
         return new Response('Not Found', { status: 404 });
       }
     }
-    const manifest = JSON.parse(await readFile(join(dir, lock.release, 'asset-manifest.json')));
+    const manifest = JSON.parse(await readFile(join(dir, release, 'asset-manifest.json')));
     return new Response(
       await readFile(
         archivePath(
@@ -87,32 +97,29 @@ function releaseServer(source, requested = []) {
     );
   };
 }
-async function publishedFixture(paths) {
-  const source = await fixture();
+async function publishedFixture(paths, options) {
+  const source = await fixture(options);
   for (const [path, bytes] of paths) await asset(source, path, bytes);
-  const lock = await lockFixture(
-    source,
-    paths.map(([path]) => path),
-  );
+  const installed = await installFixture(source);
   const manifest = await packAssets({ root: source, log: quiet });
-  return { source, lock, manifest };
+  return { source, installed, manifest };
 }
 
-test('the lock pins file bytes only, so its release name is known before anything is packed', async () => {
-  const root = await fixture();
-  await asset(root, 'content/entities/assets/tree/model.glb', Buffer.from('b'));
-  await asset(root, 'assets/test/model.glb', Buffer.from('a'));
-  const lock = await lockFixture(root, [
-    'content/entities/assets/tree/model.glb',
-    'assets/test/model.glb',
-  ]);
-  assert.deepEqual(
-    lock.files.map((f) => f.path),
-    ['assets/test/model.glb', 'content/entities/assets/tree/model.glb'],
-  );
-  assert.match(lock.release, /^assets-[a-f0-9]{16}$/);
-  assert.deepEqual(createLock([...lock.files].reverse()), lock);
-  assert.equal(await checkAssets({ root, log: quiet }), 2);
+test('the bundle is named by its inputs, never by the bytes a build produced', async () => {
+  const one = await fixture();
+  const two = await fixture();
+  await asset(one, 'assets/test/model.glb', Buffer.from('built on one machine'));
+  await asset(two, 'assets/test/model.glb', Buffer.from('built on another'));
+  const a = await installFixture(one);
+  const b = await installFixture(two);
+  assert.match(a.release, /^assets-[a-f0-9]{16}$/);
+  assert.equal(a.key, b.key);
+  // Documents are excluded; any real input names a new bundle.
+  await asset(two, 'inputs/notes.md', Buffer.from('review notes'));
+  assert.equal((await assetInputs(two)).key, a.key);
+  await asset(two, recipe, Buffer.from('{"shape":"sphere"}'));
+  assert.notEqual((await assetInputs(two)).key, a.key);
+  assert.equal((await checkAssets({ root: one, log: quiet })).stamp.release, a.release);
 });
 
 test('packs, then restores exact bytes into a fresh checkout and reuses the archives offline', async () => {
@@ -128,7 +135,6 @@ test('packs, then restores exact bytes into a fresh checkout and reuses the arch
     ['worldgen-models-c2-part-001.tar.gz', 'worldgen-sources-c2-part-001.tar.gz'],
   );
   const fresh = await fixture();
-  await writeLock(fresh, published.lock);
   const requested = [];
   await fetchAssets({
     root: fresh,
@@ -141,14 +147,15 @@ test('packs, then restores exact bytes into a fresh checkout and reuses the arch
     'worldgen-sources-c2-part-001.tar.gz',
   ]);
   assert.deepEqual(await readFile(join(fresh, source)), bytes);
-  assert.equal(await checkAssets({ root: fresh, log: quiet }), 2);
+  assert.equal((await readStamp(fresh)).from, 'fetch');
+  await checkAssets({ root: fresh, log: quiet });
   await rm(join(fresh, runtime));
   const fail = () => {
     throw Error('Must not download cached archives');
   };
   await fetchAssets({ root: fresh, offline: true, fetchImpl: fail, log: quiet });
   await fetchAssets({ root: fresh, fetchImpl: fail, log: quiet });
-  assert.equal(await checkAssets({ root: fresh, log: quiet }), 2);
+  await checkAssets({ root: fresh, log: quiet });
 });
 
 test('restores a cached source build into a fresh checkout before its release is published', async () => {
@@ -156,10 +163,9 @@ test('restores a cached source build into a fresh checkout before its release is
   const path = 'content/entities/assets/tree/model.glb';
   const bytes = Buffer.from('source-built geometry');
   await asset(source, path, bytes);
-  const lock = await lockFixture(source, [path]);
+  await installFixture(source);
   await packAssets({ root: source, log: quiet });
   const fresh = await fixture();
-  await writeLock(fresh, lock);
   await cp(join(source, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
     recursive: true,
   });
@@ -171,16 +177,15 @@ test('restores a cached source build into a fresh checkout before its release is
     },
     log: quiet,
   });
-  assert.deepEqual(await readFile(join(fresh, path)), bytes);
-  assert.equal(await checkAssets({ root: fresh, log: quiet }), 1);
+  assert.deepEqual(await readFile(join(fresh, path), 'utf8'), bytes.toString());
+  await checkAssets({ root: fresh, log: quiet });
 });
 
-test('reports an unpublished snapshot distinctly so callers can build from source', async () => {
+test('reports an unpublished bundle distinctly so callers can build from source', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
-  const lock = await lockFixture(root, ['assets/test/model.glb']);
+  await installFixture(root);
   const fresh = await fixture();
-  await writeLock(fresh, lock);
   await assert.rejects(
     fetchAssets({ root: fresh, fetchImpl: releaseServer(root), log: quiet }),
     (error) => error instanceof ReleaseMissingError && /not published yet/.test(error.message),
@@ -197,7 +202,7 @@ test('separates geographic groups and honors a bounded source-byte budget', asyn
     (p) => `content/worldgen/assets/places/${p}/model.glb`,
   );
   for (const path of paths) await asset(root, path, Buffer.alloc(80, 19));
-  await lockFixture(root, paths);
+  await installFixture(root);
   const manifest = await packAssets({ root, budget: 100, log: quiet });
   assert.deepEqual(
     manifest.archives.map((a) => a.file),
@@ -220,7 +225,7 @@ test('names reusable models, content roles and example sources without geographi
     'examples/lantern-dungeon/public/assets/item/model.glb',
   ];
   for (const path of paths) await asset(root, path);
-  await lockFixture(root, paths);
+  await installFixture(root);
   const manifest = await packAssets({ root, log: quiet });
   assert.deepEqual(
     manifest.archives.map((a) => a.file),
@@ -243,44 +248,51 @@ test('restores only the requested prefix and downloads nothing for unrelated pla
     [chicago, Buffer.from('chicago')],
   ]);
   const root = await fixture();
-  await writeLock(root, published.lock);
   const requested = [];
+  const prefix = 'content/worldgen/assets/places/c2/';
   await fetchAssets({
     root,
-    prefix: 'content/worldgen/assets/places/c2/',
+    prefix,
     fetchImpl: releaseServer(published.source, requested),
     log: quiet,
   });
   assert.deepEqual(requested, ['asset-manifest.json', 'worldgen-models-c2-part-001.tar.gz']);
   await assert.rejects(readFile(join(root, chicago)), /ENOENT/);
+  await checkAssets({ root, prefix, log: quiet });
+  await assert.rejects(checkAssets({ root, log: quiet }), /Only .* is installed/);
+  await assert.rejects(packAssets({ root, log: quiet }), /Only .* is installed/);
 });
 
-test('replaces its own stale outputs but refuses to overwrite a locally built GLB', async () => {
-  const path = 'assets/test/model.glb';
-  const first = await publishedFixture([[path, Buffer.from('version one')]]);
-  const second = await publishedFixture([[path, Buffer.from('version two')]]);
+test('a new bundle replaces the old one and removes its stale outputs, but not local work', async () => {
+  const kept = 'assets/test/model.glb';
+  const dropped = 'assets/test/retired.glb';
+  const local = 'assets/test/local.glb';
+  const first = await publishedFixture([
+    [kept, Buffer.from('version one')],
+    [dropped, Buffer.from('retired')],
+  ]);
+  const second = await publishedFixture([[kept, Buffer.from('version two')]], {
+    source: '{"shape":"sphere"}',
+  });
   const root = await fixture();
-  await writeLock(root, first.lock);
   await fetchAssets({ root, fetchImpl: releaseServer(first.source), log: quiet });
-  // A newer lock: the installed file is a stale download and is replaced without --force.
-  await writeLock(root, second.lock);
+  await asset(root, local, Buffer.from('my work in progress'));
+  // The recipe changes, so the checkout now names the second bundle.
+  await asset(root, recipe, Buffer.from('{"shape":"sphere"}'));
   await fetchAssets({ root, fetchImpl: releaseServer(second.source), log: quiet });
-  assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
-  // A GLB this tooling did not install is local work.
-  await asset(root, path, Buffer.from('local build'));
-  await assert.rejects(
-    fetchAssets({ root, fetchImpl: releaseServer(second.source), log: quiet }),
-    /Refusing to overwrite locally built GLBs/,
-  );
-  assert.equal(await readFile(join(root, path), 'utf8'), 'local build');
+  assert.equal(await readFile(join(root, kept), 'utf8'), 'version two');
+  await assert.rejects(readFile(join(root, dropped)), /ENOENT/);
+  assert.equal(await readFile(join(root, local), 'utf8'), 'my work in progress');
+  // A same-size edit to an installed file is caught by check and undone by --force.
+  await asset(root, kept, Buffer.from('version 2!!'));
+  await assert.rejects(checkAssets({ root, log: quiet }), /Changed assets\/test\/model.glb/);
   await fetchAssets({ root, force: true, fetchImpl: releaseServer(second.source), log: quiet });
-  assert.equal(await readFile(join(root, path), 'utf8'), 'version two');
+  assert.equal(await readFile(join(root, kept), 'utf8'), 'version two');
 });
 
 test('rejects corrupt downloads without installing any GLB', async () => {
   const published = await publishedFixture([['assets/test/model.glb', Buffer.from('ok')]]);
   const root = await fixture();
-  await writeLock(root, published.lock);
   const serve = releaseServer(published.source);
   await assert.rejects(
     fetchAssets({
@@ -294,45 +306,47 @@ test('rejects corrupt downloads without installing any GLB', async () => {
   await assert.rejects(readFile(join(root, 'assets/test/model.glb')), /ENOENT/);
 });
 
-test('rejects a release manifest that does not cover exactly the locked files', async () => {
+test('rejects a manifest that does not cover exactly its files or names other inputs', async () => {
   const published = await publishedFixture([
     ['assets/test/a.glb', Buffer.from('a')],
     ['assets/test/b.glb', Buffer.from('b')],
   ]);
-  const { lock, manifest } = published;
+  const { installed, manifest } = published;
   const missing = structuredClone(manifest);
   missing.archives[0].files.pop();
-  assert.throws(() => validateReleaseManifest(missing, lock), /missing 1 assets/);
+  assert.throws(() => validateManifest(missing, installed), /missing 1 assets/);
   const extra = structuredClone(manifest);
   extra.archives[0].files.push('assets/test/c.glb');
-  assert.throws(() => validateReleaseManifest(extra, lock), /unexpected asset/);
-  const other = structuredClone(manifest);
-  other.release = 'assets-0000000000000000';
-  assert.throws(() => validateReleaseManifest(other, lock), /does not describe/);
+  assert.throws(() => validateManifest(extra, installed), /unexpected asset/);
+  assert.throws(
+    () => validateManifest(manifest, { ...installed, key: '0'.repeat(64) }),
+    /does not describe/,
+  );
   for (const name of ['../x-part-001.tar.gz', 'x/part-001.tar.gz', 'C:\\x-part-001.tar.gz']) {
     const renamed = structuredClone(manifest);
     renamed.archives[0].file = name;
-    assert.throws(() => validateReleaseManifest(renamed, lock), /Invalid archive/);
+    assert.throws(() => validateManifest(renamed, installed), /Invalid archive/);
   }
 });
 
-test('rejects traversal, case-colliding destinations and tampered locks', async () => {
-  const lock = createLock([{ path: 'assets/test/model.glb', size: 4, sha256: 'a'.repeat(64) }]);
+test('rejects traversal and case-colliding destinations in a manifest', async () => {
+  const { installed, manifest } = await publishedFixture([
+    ['assets/test/model.glb', Buffer.from('ok')],
+  ]);
   for (const path of [
     '../outside.glb',
     'assets/../../outside.glb',
     'assets/C:/outside.glb',
     'assets/a\\b.glb',
     'assets/CON.glb',
-  ])
-    assert.throws(() => createLock([{ ...lock.files[0], path }]), /Unsafe asset path/);
-  assert.throws(
-    () => createLock([lock.files[0], { ...lock.files[0], path: 'assets/test/MODEL.glb' }]),
-    /duplicate asset/,
-  );
-  const changed = structuredClone(lock);
-  changed.files[0].sha256 = '0'.repeat(64);
-  assert.throws(() => validateLock(changed), /snapshot does not match/);
+  ]) {
+    const unsafe = structuredClone(manifest);
+    unsafe.files[0].path = path;
+    assert.throws(() => validateManifest(unsafe, installed), /Unsafe asset path/);
+  }
+  const duplicate = structuredClone(manifest);
+  duplicate.files.unshift({ ...duplicate.files[0], path: 'assets/test/MODEL.glb' });
+  assert.throws(() => validateManifest(duplicate, installed), /duplicate asset/);
 });
 
 test('rejects unexpected archive members even when the archive hash is correct', async () => {
@@ -362,7 +376,6 @@ test('rejects unexpected archive members even when the archive hash is correct',
 test('refuses to hydrate through a symlinked parent', async () => {
   const published = await publishedFixture([['assets/test/model.glb', Buffer.from('ok')]]);
   const root = await fixture();
-  await writeLock(root, published.lock);
   const outside = await fixture();
   await symlink(outside, join(root, 'assets'), 'junction');
   await assert.rejects(
@@ -372,57 +385,29 @@ test('refuses to hydrate through a symlinked parent', async () => {
   await assert.rejects(readFile(join(outside, 'test/model.glb')), /ENOENT/);
 });
 
-test('flags GLBs that are neither locked nor declared masters', async () => {
+test('check explains changed inputs, reports missing files and notes local work', async () => {
   const master = 'content/entities/source/vehicles/van/models/source.glb';
   const root = await fixture({ masters: [master] });
+  await assert.rejects(checkAssets({ root, log: quiet }), /No asset bundle is installed/);
   await asset(root, 'assets/test/model.glb');
   await asset(root, master);
-  await lockFixture(root, ['assets/test/model.glb']);
-  assert.equal(await checkAssets({ root, log: quiet }), 1);
+  await installFixture(root);
   await asset(root, 'assets/test/new.glb');
-  await assert.rejects(checkAssets({ root, log: quiet }), /Unlocked GLB: assets\/test\/new.glb/);
-  await rm(join(root, 'assets/test/model.glb'));
-  await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
-});
-
-test('local checks warn about unfinished GLBs while pinned bytes and packing remain strict', async () => {
-  const root = await fixture();
-  const pinned = 'assets/test/model.glb';
-  const unfinished = 'assets/test/new.glb';
-  await asset(root, pinned);
-  const lock = await lockFixture(root, [pinned]);
-  await asset(root, unfinished, Buffer.from('unfinished'));
   const messages = [];
-  assert.equal(
-    await checkAssets({ root, allowUnlocked: true, log: (message) => messages.push(message) }),
-    1,
-  );
-  assert.match(messages[0], /Warning: 1 unpinned GLBs/);
-  assert.ok(messages[0].includes(unfinished));
-  assert.deepEqual(await readLock(root), lock);
-  assert.equal(await readFile(join(root, unfinished), 'utf8'), 'unfinished');
+  await checkAssets({ root, log: (message) => messages.push(message) });
+  assert.match(messages[0], /1 GLBs on disk are local work/);
   const command = resolve('scripts/asset-packs.mjs');
+  const key = spawnSync(process.execPath, [command, 'key', '--root', root], { encoding: 'utf8' });
+  assert.equal(key.stdout.trim(), (await assetInputs(root)).release);
+  await asset(root, recipe, Buffer.from('{"shape":"torus"}'));
+  await assert.rejects(checkAssets({ root, log: quiet }), /other inputs.*\n.*inputs\/recipe.json/s);
   const checked = spawnSync(process.execPath, [command, 'check', '--root', root], {
     encoding: 'utf8',
   });
-  assert.equal(checked.status, 0, checked.stderr);
-  assert.match(checked.stdout, /Warning: 1 unpinned GLBs/);
-  const strict = spawnSync(process.execPath, [command, 'check', '--root', root, '--strict'], {
-    encoding: 'utf8',
-  });
-  assert.equal(strict.status, 1);
-  assert.match(strict.stderr, /Unlocked GLB/);
-  await assert.rejects(packAssets({ root, log: quiet }), /Unlocked GLB/);
-  await asset(root, pinned, Buffer.from('changed'));
-  await assert.rejects(
-    checkAssets({ root, allowUnlocked: true, log: quiet }),
-    /Changed assets\/test\/model.glb/,
-  );
-  await rm(join(root, pinned));
-  await assert.rejects(
-    checkAssets({ root, allowUnlocked: true, log: quiet }),
-    /Missing assets\/test\/model.glb/,
-  );
+  assert.equal(checked.status, 1);
+  await installFixture(root);
+  await rm(join(root, 'assets/test/model.glb'));
+  await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
 });
 
 async function sourceBundleFixture(root, { models = [{ path: 'models/source.glb' }] } = {}) {
@@ -446,75 +431,22 @@ async function sourceBundleFixture(root, { models = [{ path: 'models/source.glb'
   return path;
 }
 
-test('source checks skip unfinished models until pinned, and strict checks include them', async () => {
+test('source checks require every bundle to be complete', async () => {
   const root = await fixture();
-  const ready = 'assets/test/model.glb';
-  await asset(root, ready);
-  await lockFixture(root, [ready]);
   const path = await sourceBundleFixture(root);
-  const source = `${path}/models/source.glb`;
-  const messages = [];
-  assert.deepEqual(
-    await checkSourceBundles({
-      root,
-      allowUnlocked: true,
-      log: (message) => messages.push(message),
-    }),
-    { verified: 0, skipped: 1 },
-  );
-  assert.match(messages[0], /Warning: skipping unpinned model source bundle/);
   await assert.rejects(checkSourceBundles({ root, log: quiet }), /ENOENT/);
-  await asset(root, source);
-  await lockFixture(root, [ready, source]);
-  // Once pinned, the incomplete evidence blocks both modes.
-  await assert.rejects(
-    checkSourceBundles({ root, allowUnlocked: true, log: quiet }),
-    /reference.json/,
-  );
+  await asset(root, `${path}/models/source.glb`);
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), /reference.json/);
   await writeFile(join(root, path, 'reference.json'), '{}');
-  assert.deepEqual(await checkSourceBundles({ root, allowUnlocked: true, log: quiet }), {
-    verified: 1,
-    skipped: 0,
-  });
+  assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
   await writeFile(join(root, path, 'omitted.json'), '{}');
   await assert.rejects(
-    checkSourceBundles({ root, allowUnlocked: true, log: quiet }),
+    checkSourceBundles({ root, log: quiet }),
     /source files missing from manifest: omitted.json/,
   );
-});
-
-test('authored masters, pinned runtime models and non-model sources still require complete bundles', async () => {
-  const source = 'content/entities/source/test/models/source.glb';
-  const masterRoot = await fixture({ masters: [source] });
-  await asset(masterRoot, 'assets/test/model.glb');
-  await asset(masterRoot, source);
-  await lockFixture(masterRoot, ['assets/test/model.glb']);
-  await sourceBundleFixture(masterRoot);
-  await assert.rejects(
-    checkSourceBundles({ root: masterRoot, allowUnlocked: true, log: quiet }),
-    /reference.json/,
-  );
-
-  const runtimeRoot = await fixture();
-  await asset(runtimeRoot, 'content/entities/assets/test/model.glb');
-  await lockFixture(runtimeRoot, ['content/entities/assets/test/model.glb']);
-  await sourceBundleFixture(runtimeRoot, {
-    models: [{ path: 'models/source.glb', output: 'assets/test/asset.json' }],
-  });
-  await writeFile(join(runtimeRoot, 'content/entities/project.json'), '{}');
-  await assert.rejects(
-    checkSourceBundles({ root: runtimeRoot, allowUnlocked: true, log: quiet }),
-    /models\/source.glb/,
-  );
-
   const dataRoot = await fixture();
-  await asset(dataRoot, 'assets/test/model.glb');
-  await lockFixture(dataRoot, ['assets/test/model.glb']);
   await sourceBundleFixture(dataRoot, { models: [] });
-  await assert.rejects(
-    checkSourceBundles({ root: dataRoot, allowUnlocked: true, log: quiet }),
-    /reference.json/,
-  );
+  await assert.rejects(checkSourceBundles({ root: dataRoot, log: quiet }), /reference.json/);
 });
 
 function fakeGitHub(release, { existing } = {}) {
@@ -551,14 +483,14 @@ function fakeGitHub(release, { existing } = {}) {
   return { runGh, commands, uploaded };
 }
 
-test('packs and publishes a snapshot only after every attachment digest is verified', async () => {
+test('packs and publishes a bundle only after every attachment digest is verified', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
-  const lock = await lockFixture(root, ['assets/test/model.glb']);
-  const github = fakeGitHub(lock.release);
+  const { release } = await installFixture(root);
+  const github = fakeGitHub(release);
   assert.equal(
     await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet }),
-    lock.release,
+    release,
   );
   assert.deepEqual(github.uploaded.map((a) => a.name).sort(), [
     'ASSET-NOTICES.txt',
@@ -572,16 +504,16 @@ test('packs and publishes a snapshot only after every attachment digest is verif
 test('replaces a draft attachment from an interrupted run and rejects stray attachments', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
-  const lock = await lockFixture(root, ['assets/test/model.glb']);
-  const github = fakeGitHub(lock.release, {
-    existing: { id: 123, draft: true, tag_name: lock.release },
+  const { release } = await installFixture(root);
+  const github = fakeGitHub(release, {
+    existing: { id: 123, draft: true, tag_name: release },
   });
   github.uploaded.push({ id: 1, name: 'assets-test-part-001.tar.gz', size: 1, digest: 'sha256:0' });
   await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet });
   assert.ok(github.commands.some((args) => args.includes('DELETE')));
   assert.equal(github.uploaded.length, 3);
-  const stray = fakeGitHub(lock.release, {
-    existing: { id: 123, draft: true, tag_name: lock.release },
+  const stray = fakeGitHub(release, {
+    existing: { id: 123, draft: true, tag_name: release },
   });
   stray.uploaded.push({ id: 2, name: 'other.tar.gz', size: 1, digest: 'sha256:0' });
   await assert.rejects(
@@ -590,16 +522,16 @@ test('replaces a draft attachment from an interrupted run and rejects stray atta
   );
 });
 
-test('leaves an already published snapshot untouched', async () => {
+test('leaves an already published bundle untouched', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');
-  const lock = await lockFixture(root, ['assets/test/model.glb']);
-  const github = fakeGitHub(lock.release, {
-    existing: { id: 9, draft: false, tag_name: lock.release },
+  const { release } = await installFixture(root);
+  const github = fakeGitHub(release, {
+    existing: { id: 9, draft: false, tag_name: release },
   });
   assert.equal(
     await publishAssets({ root, target: 'a'.repeat(40), runGh: github.runGh, log: quiet }),
-    lock.release,
+    release,
   );
   assert.equal(github.commands.length, 1);
 });
@@ -821,17 +753,8 @@ test('does not accept an environment whose dependency installation left pins mis
   );
 });
 
-test('source restoration tolerates work in progress while enforcing every pinned byte', async () => {
+test('a build stamps the inputs it started from, drops stale outputs and keeps local work', async () => {
   const root = await fixture();
-  await writeFile(
-    join(root, 'asset-build.json'),
-    JSON.stringify({
-      format: 'molen/asset-build@2',
-      node: process.versions.node.split('.')[0],
-      generators: [],
-      masters: [],
-    }),
-  );
   // No jobs load packages in this fixture; satisfy the build preflight without compiling.
   for (const path of [
     'packages/schema/dist/index.mjs',
@@ -842,30 +765,24 @@ test('source restoration tolerates work in progress while enforcing every pinned
     await mkdir(join(root, path, '..'), { recursive: true });
     await writeFile(join(root, path), '');
   }
-  const pinned = 'assets/ready/model.glb';
-  const unfinished = 'assets/in-progress/model.glb';
-  await asset(root, pinned);
-  await lockFixture(root, [pinned]);
-  await asset(root, unfinished, Buffer.from('unfinished geometry'));
+  const stale = 'assets/retired/model.glb';
+  const local = 'assets/in-progress/model.glb';
+  await asset(root, stale, Buffer.from('previous bundle'));
+  await installFixture(root);
+  await asset(root, local, Buffer.from('unfinished geometry'));
   const messages = [];
-  const options = { root, generate: false, log: (message) => messages.push(message) };
-  // A full source verification still requires unfinished outputs to be finalized in the lock.
-  await assert.rejects(buildAssetsFromSource(options), /unexpected.*assets\/in-progress/);
-  const report = await buildAssetsFromSource({ ...options, allowUnlocked: true });
-  assert.deepEqual(report.lock.unexpected, [unfinished]);
-  assert.ok(messages.some((message) => /^Warning:.*not pinned/.test(message)));
-  assert.match(messages.at(-1), /1 pinned GLBs restored/);
-  assert.equal((await readLock(root)).files.length, 1);
-  assert.equal(await readFile(join(root, unfinished), 'utf8'), 'unfinished geometry');
-  // In-progress work never excuses a changed or missing required asset.
-  await asset(root, pinned, Buffer.from('changed geometry'));
-  await assert.rejects(
-    buildAssetsFromSource({ ...options, allowUnlocked: true }),
-    /changed.*assets\/ready/,
+  const report = await buildAssetsFromSource({ root, log: (message) => messages.push(message) });
+  const { release } = await assetInputs(root);
+  assert.equal(report.bundle.release, release);
+  // No generator rebuilt the previous bundle's output, so it is gone; local work is untouched.
+  await assert.rejects(readFile(join(root, stale)), /ENOENT/);
+  assert.equal(await readFile(join(root, local), 'utf8'), 'unfinished geometry');
+  const stamp = await readStamp(root);
+  assert.equal(stamp.from, 'build');
+  assert.deepEqual(
+    stamp.files.map((f) => f.path),
+    [local],
   );
-  await rm(join(root, pinned));
-  await assert.rejects(
-    buildAssetsFromSource({ ...options, allowUnlocked: true }),
-    /missing.*assets\/ready/,
-  );
+  assert.ok(messages.at(-1).endsWith(`as ${release}.`));
+  await checkAssets({ root, log: quiet });
 });

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Repository GLB snapshots. Every GLB pinned by asset-lock.json is a build output of checked-in
-// source (scripts/build-assets.mjs). The Assets workflow builds them from a clean checkout and
-// publishes the snapshot as a GitHub release; `fetch` restores that release as a download cache
-// and falls back to building from source when the snapshot is not published yet. These archives
-// restore repository build inputs; the molen/pack@1 pipeline still builds the runtime packs.
+// Repository GLB bundles. Every GLB except the authored masters is a build output of checked-in
+// source (scripts/build-assets.mjs). A bundle is named by the hash of its inputs
+// (scripts/asset-inputs.mjs), so nothing pins output bytes: CI builds a bundle once when the
+// inputs change and publishes it as a GitHub release, `fetch` restores it, and falls back to
+// building from source when it is not published yet. These archives restore repository build
+// outputs; the molen/pack@1 pipeline still builds the runtime packs.
 import { execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { createReadStream, createWriteStream } from 'node:fs';
@@ -25,16 +26,16 @@ import { pipeline } from 'node:stream/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import * as tar from 'tar';
+import { assetInputs, changedInputs } from './asset-inputs.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const LOCK = 'asset-lock.json';
-const LOCK_FORMAT = 'molen/asset-lock@2';
-const RELEASE_MANIFEST = 'asset-manifest.json';
-const RELEASE_FORMAT = 'molen/asset-release@1';
+const MANIFEST = 'asset-manifest.json';
+const MANIFEST_FORMAT = 'molen/asset-bundle@1';
 const NOTICES = 'ASSET-NOTICES.txt';
 const OUTPUT = '.artifacts/asset-packs';
-// Content hashes of GLBs this tool installed; a local GLB matching its entry is safe to replace.
-const INSTALLED = 'installed.json';
+// Which bundle the GLBs on disk are, whether it was built or fetched, and every file it holds.
+const STAMP = 'installed.json';
+const STAMP_FORMAT = 'molen/asset-install@1';
 export const ASSET_ROOTS = ['content', 'assets', 'examples'];
 const SKIP = new Set([
   'node_modules',
@@ -53,11 +54,9 @@ const MAX_FILE = 1024 ** 3;
 const MAX_ARCHIVE = 2 * 1024 ** 3 - 1;
 const ARCHIVE_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*-part-[0-9]{3,}\.tar\.gz$/;
 const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
-const digest = (value) => createHash('sha256').update(value).digest('hex');
 const same = (a, b) => a?.size === b.size && a?.sha256 === b.sha256;
-const byPath = (a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
 
-/** The release for a lock is not on GitHub yet; the caller may build from source instead. */
+/** The bundle for these inputs is not on GitHub yet; the caller may build from source instead. */
 export class ReleaseMissingError extends Error {}
 
 async function maybeStat(path) {
@@ -130,7 +129,7 @@ export async function inventory(root = ROOT) {
   return paths.sort();
 }
 
-/** Committed binary masters: authored GLBs with no generator. They live in Git, not the lock. */
+/** Committed binary masters: authored GLBs with no generator. They are inputs, not outputs. */
 export async function readMasters(root = ROOT) {
   const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
   if (!Array.isArray(plan.masters)) throw new Error('asset-build.json must list its masters.');
@@ -138,39 +137,20 @@ export async function readMasters(root = ROOT) {
   return new Set(plan.masters);
 }
 
-// ---------------------------------------------------------------------------------------------
-// asset-lock.json: the exact bytes the checked-in source builds to. Nothing in it depends on
-// archive bytes, so a lock can be committed before its release exists and CI can publish it.
-
-export function snapshotOf(files) {
-  return digest(JSON.stringify(files.map((f) => [f.path, f.size, f.sha256])));
+/** The GLBs a build leaves: everything on disk except the committed masters. */
+export async function bundleFiles(root = ROOT) {
+  const masters = await readMasters(root);
+  const files = [];
+  for (const path of await inventory(root))
+    if (!masters.has(path)) files.push({ path, ...(await fileInfo(join(root, path))) });
+  return files;
 }
 
-export function createLock(files, repository = 'bendyline/molen') {
-  const sorted = files.map(({ path, size, sha256 }) => ({ path, size, sha256 })).sort(byPath);
-  const snapshot = snapshotOf(sorted);
-  return validateLock({
-    format: LOCK_FORMAT,
-    repository,
-    release: `assets-${snapshot.slice(0, 16)}`,
-    snapshot,
-    files: sorted,
-  });
-}
-
-export function validateLock(lock) {
-  if (
-    lock?.format !== LOCK_FORMAT ||
-    !/^[\w.-]+\/[\w.-]+$/.test(lock.repository) ||
-    !/^assets-[a-f0-9]{16}$/.test(lock.release) ||
-    !SHA.test(lock.snapshot) ||
-    !Array.isArray(lock.files) ||
-    !lock.files.length
-  )
-    throw new Error(`Invalid ${LOCK}; rebuild it with pnpm assets:build --update-lock.`);
+function validateFiles(files, label) {
+  if (!Array.isArray(files) || !files.length) throw new Error(`${label} lists no assets.`);
   const seen = new Set();
   let previous;
-  for (const file of lock.files) {
+  for (const file of files) {
     safePath(file.path);
     const key = file.path.toLowerCase();
     if (
@@ -182,46 +162,37 @@ export function validateLock(lock) {
     )
       throw new Error(`Invalid or duplicate asset: ${file.path}`);
     if (previous !== undefined && previous >= file.path)
-      throw new Error(`${LOCK} is not sorted by path at ${file.path}`);
+      throw new Error(`${label} is not sorted by path at ${file.path}`);
     seen.add(key);
     previous = file.path;
   }
-  const snapshot = snapshotOf(lock.files);
-  if (snapshot !== lock.snapshot || lock.release !== `assets-${snapshot.slice(0, 16)}`)
-    throw new Error(`${LOCK} snapshot does not match its files.`);
-  return lock;
-}
-
-export async function readLock(root = ROOT) {
-  return validateLock(JSON.parse(await readFile(join(root, LOCK), 'utf8')));
-}
-
-export async function writeLock(root, lock) {
-  await writeFile(join(root, LOCK), json(validateLock(lock)));
+  return files;
 }
 
 // ---------------------------------------------------------------------------------------------
-// asset-manifest.json: a release attachment describing its archives. Every file it names must be
-// exactly the lock's set; member bytes are checked against the committed lock, never the manifest.
+// asset-manifest.json: a release attachment naming the inputs' key, every file in the bundle and
+// the archives that hold them. Downloads are verified against it.
 
-export function validateReleaseManifest(manifest, lock) {
+export function validateManifest(manifest, { repository, key }) {
+  const release = `assets-${key.slice(0, 16)}`;
   if (
-    manifest?.format !== RELEASE_FORMAT ||
-    manifest.repository !== lock.repository ||
-    manifest.release !== lock.release ||
-    manifest.snapshot !== lock.snapshot ||
+    manifest?.format !== MANIFEST_FORMAT ||
+    manifest.repository !== repository ||
+    manifest.key !== key ||
+    manifest.release !== release ||
     !Array.isArray(manifest.archives) ||
     !manifest.archives.length ||
     manifest.archives.length > 990
   )
-    throw new Error(`Release manifest does not describe ${lock.release}.`);
+    throw new Error(`Bundle manifest does not describe ${release}.`);
+  validateFiles(manifest.files, release);
   if (
     manifest.notices?.file !== NOTICES ||
     !SHA.test(manifest.notices.sha256) ||
     !Number.isSafeInteger(manifest.notices.size)
   )
     throw new Error('Missing asset license notices.');
-  const sizes = new Map(lock.files.map((f) => [f.path, f.size]));
+  const sizes = new Map(manifest.files.map((f) => [f.path, f.size]));
   const covered = new Set();
   const names = new Set();
   for (const archive of manifest.archives) {
@@ -240,15 +211,47 @@ export function validateReleaseManifest(manifest, lock) {
     let expanded = 0;
     for (const path of archive.files) {
       if (!sizes.has(path) || covered.has(path))
-        throw new Error(`Release archive ${archive.file} lists an unexpected asset: ${path}`);
+        throw new Error(`Bundle archive ${archive.file} lists an unexpected asset: ${path}`);
       covered.add(path);
       expanded += sizes.get(path);
     }
     if (expanded > MAX_FILE) throw new Error(`Archive expands beyond 1 GiB: ${archive.file}`);
   }
   if (covered.size !== sizes.size)
-    throw new Error(`Release ${lock.release} is missing ${sizes.size - covered.size} assets.`);
+    throw new Error(`Bundle ${release} is missing ${sizes.size - covered.size} assets.`);
   return manifest;
+}
+
+// ---------------------------------------------------------------------------------------------
+// installed.json: which bundle the GLBs on disk are. The build and fetch write it, so it describes
+// files this tooling placed; anything else on disk is local work it leaves alone.
+
+export async function readStamp(root = ROOT) {
+  try {
+    const stamp = JSON.parse(await readFile(join(root, OUTPUT, STAMP), 'utf8'));
+    return stamp?.format === STAMP_FORMAT ? stamp : undefined;
+  } catch (error) {
+    if (error.code === 'ENOENT') return undefined;
+    throw error;
+  }
+}
+
+export async function writeStamp(root, { key, release, from, prefix = '', inputs, files }) {
+  await mkdir(join(root, OUTPUT), { recursive: true });
+  const stamp = { format: STAMP_FORMAT, key, release, from, prefix, inputs, files };
+  await writeFile(join(root, OUTPUT, STAMP), json(stamp));
+}
+
+export async function clearStamp(root = ROOT) {
+  await rm(join(root, OUTPUT, STAMP), { force: true });
+}
+
+/** Why the installed bundle is not this checkout's: the inputs that changed, briefly. */
+function explain(stamp, current) {
+  const changed = changedInputs(stamp?.inputs, current.inputs);
+  if (!changed.length) return '';
+  const shown = changed.slice(0, 20).join('\n');
+  return `\nChanged inputs:\n${shown}${changed.length > 20 ? `\n… ${changed.length - 20} more` : ''}`;
 }
 
 export function groups(files, budget) {
@@ -304,11 +307,11 @@ async function findArchive(directory, archive) {
   }
 }
 
-/** Check an archive's own hash, then every member against the committed lock. */
-export async function verifyArchive(path, archive, lockFiles) {
+/** Check an archive's own hash, then every member against the bundle manifest. */
+export async function verifyArchive(path, archive, files) {
   if (!same(await fileInfo(path), archive))
     throw new Error(`Archive checksum mismatch: ${archive.file}`);
-  const expected = new Map(archive.files.map((p) => [p, lockFiles.get(p)]));
+  const expected = new Map(archive.files.map((p) => [p, files.get(p)]));
   const seen = new Set();
   const errors = [];
   await tar.t({
@@ -348,24 +351,7 @@ async function pool(items, concurrency, work) {
   return results;
 }
 
-export async function readInstalled(root) {
-  try {
-    return JSON.parse(await readFile(join(root, OUTPUT, INSTALLED), 'utf8'));
-  } catch (error) {
-    if (error.code === 'ENOENT') return {};
-    throw error;
-  }
-}
-
-/** Record GLBs whose bytes came from this tooling (a release or a build that matched the lock). */
-export async function recordInstalled(root, files) {
-  const installed = await readInstalled(root);
-  for (const file of files) installed[file.path] = file.sha256;
-  await mkdir(join(root, OUTPUT), { recursive: true });
-  await writeFile(join(root, OUTPUT, INSTALLED), json(installed));
-}
-
-/** Archive the locked GLBs, exactly as they are on disk, as a publishable release. */
+/** Archive the installed bundle, exactly as it is on disk, as a publishable release. */
 export async function packAssets({
   root = ROOT,
   outDir = join(root, OUTPUT),
@@ -375,11 +361,11 @@ export async function packAssets({
 } = {}) {
   if (!Number.isSafeInteger(budget) || budget < 1 || budget > MAX_FILE)
     throw new Error('Invalid archive budget.');
-  const lock = await readLock(root);
-  await checkAssets({ root, lock, log: () => {} });
-  const lockFiles = new Map(lock.files.map((f) => [f.path, f]));
+  const { stamp, repository } = await checkAssets({ root, log: () => {} });
+  if (stamp.prefix) throw new Error('Packing needs the whole bundle; fetch it without --prefix.');
+  const files = new Map(stamp.files.map((f) => [f.path, f]));
   await mkdir(outDir, { recursive: true });
-  const archives = await pool(groups(lock.files, budget), concurrency, async (group) => {
+  const archives = await pool(groups(stamp.files, budget), concurrency, async (group) => {
     const file = `${group.key}.tar.gz`;
     const temporary = join(outDir, `${randomUUID()}.part`);
     try {
@@ -403,7 +389,7 @@ export async function packAssets({
         ...(await fileInfo(temporary)),
         files: group.files.map((f) => f.path),
       };
-      await verifyArchive(temporary, archive, lockFiles);
+      await verifyArchive(temporary, archive, files);
       const destination = archivePath(outDir, archive);
       await mkdir(dirname(destination), { recursive: true });
       await rename(temporary, destination);
@@ -416,7 +402,7 @@ export async function packAssets({
     }
   });
   archives.sort((a, b) => (a.file < b.file ? -1 : 1));
-  const releaseDir = join(outDir, lock.release);
+  const releaseDir = join(outDir, stamp.release);
   await mkdir(releaseDir, { recursive: true });
   const notices = [];
   for (const path of ['LICENSE', 'content/worldgen/NOTICE.md', 'content/entities/NOTICE.md']) {
@@ -425,62 +411,54 @@ export async function packAssets({
   }
   if (!notices.length) throw new Error('No asset license notices found.');
   await writeFile(join(releaseDir, NOTICES), notices.join('\n\n'));
-  const manifest = validateReleaseManifest(
+  const manifest = validateManifest(
     {
-      format: RELEASE_FORMAT,
-      repository: lock.repository,
-      release: lock.release,
-      snapshot: lock.snapshot,
+      format: MANIFEST_FORMAT,
+      repository,
+      release: stamp.release,
+      key: stamp.key,
+      files: stamp.files,
       notices: { file: NOTICES, ...(await fileInfo(join(releaseDir, NOTICES))) },
       archives,
     },
-    lock,
+    { repository, key: stamp.key },
   );
-  await writeFile(join(releaseDir, RELEASE_MANIFEST), json(manifest));
-  log(`${lock.files.length} GLBs in ${archives.length} archives for release ${lock.release}`);
+  await writeFile(join(releaseDir, MANIFEST), json(manifest));
+  log(`${stamp.files.length} GLBs in ${archives.length} archives for release ${stamp.release}`);
   return manifest;
 }
 
-export async function checkAssets({
-  root = ROOT,
-  lock,
-  prefix = '',
-  allowUnlocked = false,
-  log = console.log,
-} = {}) {
-  lock ??= await readLock(root);
-  validateLock(lock);
-  const files = lock.files.filter((f) => f.path.startsWith(prefix));
+/** The installed GLBs are this checkout's bundle: its inputs' key, with every file intact. */
+export async function checkAssets({ root = ROOT, prefix = '', log = console.log } = {}) {
+  const current = await assetInputs(root);
+  const stamp = await readStamp(root);
+  if (!stamp)
+    throw new Error('No asset bundle is installed; run pnpm assets:fetch (or pnpm assets:build).');
+  if (stamp.key !== current.key)
+    throw new Error(
+      `The installed GLBs are ${stamp.release}, built from other inputs than this checkout's ${current.release}; run pnpm assets:fetch or pnpm assets:build.${explain(stamp, current)}`,
+    );
+  if (!prefix.startsWith(stamp.prefix))
+    throw new Error(`Only ${stamp.prefix} is installed; run pnpm assets:fetch without --prefix.`);
+  const files = stamp.files.filter((f) => f.path.startsWith(prefix));
   if (!files.length) throw new Error(`No assets match prefix: ${prefix}`);
   const errors = [];
   for (const file of files) {
     const path = await localPath(root, file.path);
-    if (!(await maybeStat(path)))
-      errors.push(`Missing ${file.path}; run pnpm assets:fetch (or pnpm assets:build).`);
+    if (!(await maybeStat(path))) errors.push(`Missing ${file.path}; run pnpm assets:fetch.`);
     else if (!same(await fileInfo(path), file))
-      errors.push(
-        `Changed ${file.path}; rebuild with pnpm assets:build, and --update-lock to accept it.`,
-      );
+      errors.push(`Changed ${file.path}; run pnpm assets:build, or pnpm assets:fetch --force.`);
   }
-  const registered = new Set(lock.files.map((f) => f.path));
-  const masters = await readMasters(root);
-  const unlocked = [];
-  for (const path of await inventory(root))
-    if (path.startsWith(prefix) && !registered.has(path) && !masters.has(path)) unlocked.push(path);
-  if (allowUnlocked && unlocked.length)
-    log(
-      `Warning: ${unlocked.length} unpinned GLBs are excluded from asset verification (work in progress):\n${unlocked.join('\n')}\nFinalize them with pnpm assets:build --update-lock; use pnpm assets:check --strict to require a complete inventory.`,
-    );
-  else
-    errors.push(
-      ...unlocked.map(
-        (path) =>
-          `Unlocked GLB: ${path}; finalize it with pnpm assets:build --update-lock, or list an authored master.`,
-      ),
-    );
   if (errors.length) throw new Error(errors.join('\n'));
-  log(`Verified ${files.length} GLBs against ${lock.release}.`);
-  return files.length;
+  const listed = new Set(stamp.files.map((f) => f.path));
+  const masters = await readMasters(root);
+  const local = (await inventory(root)).filter(
+    (path) => path.startsWith(prefix) && !listed.has(path) && !masters.has(path),
+  );
+  if (local.length)
+    log(`Note: ${local.length} GLBs on disk are local work outside ${stamp.release}.`);
+  log(`Verified ${files.length} GLBs of ${stamp.release}.`);
+  return { stamp, repository: current.repository };
 }
 
 async function download(url, path, expected, fetchImpl) {
@@ -511,30 +489,30 @@ async function download(url, path, expected, fetchImpl) {
   }
 }
 
-const releaseUrl = (lock, file) =>
-  `https://github.com/${lock.repository}/releases/download/${lock.release}/${file}`;
+const releaseUrl = ({ repository, release }, file) =>
+  `https://github.com/${repository}/releases/download/${release}/${file}`;
 
-async function releaseManifest(lock, archiveDir, offline, fetchImpl) {
+async function releaseManifest(current, archiveDir, offline, fetchImpl) {
   // The published manifest is cached apart from a local `pack`: archives are not byte-reproducible,
   // so a local packing only stands in for the release when working offline.
-  const cached = join(archiveDir, 'published', `${lock.release}.json`);
-  const packed = join(archiveDir, lock.release, RELEASE_MANIFEST);
+  const cached = join(archiveDir, 'published', `${current.release}.json`);
+  const packed = join(archiveDir, current.release, MANIFEST);
   for (const path of offline ? [cached, packed] : [cached]) {
     if (await maybeStat(path))
-      return validateReleaseManifest(JSON.parse(await readFile(path, 'utf8')), lock);
+      return validateManifest(JSON.parse(await readFile(path, 'utf8')), current);
   }
   if (offline)
-    throw new ReleaseMissingError(`Offline and ${lock.release} is not cached in ${archiveDir}.`);
-  const response = await fetchImpl(releaseUrl(lock, RELEASE_MANIFEST), {
+    throw new ReleaseMissingError(`Offline and ${current.release} is not cached in ${archiveDir}.`);
+  const response = await fetchImpl(releaseUrl(current, MANIFEST), {
     signal: AbortSignal.timeout(60_000),
   });
   if (response.status === 404)
     throw new ReleaseMissingError(
-      `Release ${lock.release} is not published yet. The Assets workflow publishes it once this asset-lock.json reaches main.`,
+      `Bundle ${current.release} is not published yet. CI publishes it once these inputs reach main.`,
     );
-  if (!response.ok) throw new Error(`Release manifest download failed: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`Bundle manifest download failed: HTTP ${response.status}`);
   const text = await response.text();
-  const manifest = validateReleaseManifest(JSON.parse(text), lock);
+  const manifest = validateManifest(JSON.parse(text), current);
   await mkdir(dirname(cached), { recursive: true });
   await writeFile(cached, text);
   return manifest;
@@ -548,7 +526,6 @@ async function removeStage(path, parent) {
 
 export async function fetchAssets({
   root = ROOT,
-  lock,
   archiveDir = join(root, OUTPUT),
   offline = false,
   force = false,
@@ -556,67 +533,64 @@ export async function fetchAssets({
   fetchImpl = fetch,
   log = console.log,
 } = {}) {
-  lock ??= await readLock(root);
-  validateLock(lock);
-  const lockFiles = new Map(lock.files.map((f) => [f.path, f]));
-  const installed = await readInstalled(root);
-  const wanted = [];
-  const conflicts = [];
-  let selected = 0;
-  for (const file of lock.files.filter((f) => f.path.startsWith(prefix))) {
-    selected++;
-    const path = await localPath(root, file.path);
-    if (!(await maybeStat(path))) {
-      wanted.push(file);
-      continue;
+  const current = await assetInputs(root);
+  const stamp = await readStamp(root);
+  if (!force && stamp?.key === current.key && prefix.startsWith(stamp.prefix)) {
+    const files = stamp.files.filter((f) => f.path.startsWith(prefix));
+    let present = files.length > 0;
+    for (const file of files)
+      if ((await maybeStat(await localPath(root, file.path)))?.size !== file.size) present = false;
+    if (present) {
+      log(`Ready: ${files.length} GLBs of ${current.release} (nothing to restore).`);
+      return files.length;
     }
-    const info = await fileInfo(path);
-    if (same(info, file)) continue;
-    // A GLB this tooling installed is a stale build output; anything else is local work.
-    if (force || installed[file.path] === info.sha256) wanted.push(file);
-    else conflicts.push(file.path);
   }
-  if (!selected) throw new Error(`No assets match prefix: ${prefix}`);
-  if (conflicts.length)
-    throw new Error(
-      `Refusing to overwrite locally built GLBs that differ from ${LOCK}:\n${conflicts.join('\n')}\nRebuild them with pnpm assets:build, or pass --force to restore the pinned versions.`,
-    );
-  if (!wanted.length) {
-    log(`Ready: ${selected} pinned GLBs (nothing to restore).`);
-    return selected;
+  const manifest = await releaseManifest(current, archiveDir, offline, fetchImpl);
+  const files = manifest.files.filter((f) => f.path.startsWith(prefix));
+  if (!files.length) throw new Error(`No assets match prefix: ${prefix}`);
+  const byPath = new Map(manifest.files.map((f) => [f.path, f]));
+  // Files the stamp says this tool placed are trusted by size; anything else is hashed.
+  const placed = new Map((stamp?.files ?? []).map((f) => [f.path, f]));
+  const wanted = new Set();
+  for (const file of files) {
+    const stat = await maybeStat(await localPath(root, file.path));
+    if (force || !stat || stat.size !== file.size) wanted.add(file.path);
+    else if (
+      !same(placed.get(file.path), file) &&
+      !same(await fileInfo(join(root, file.path)), file)
+    )
+      wanted.add(file.path);
   }
-  const manifest = await releaseManifest(lock, archiveDir, offline, fetchImpl);
-  const needed = new Set(wanted.map((f) => f.path));
   const staging = join(root, OUTPUT, 'staging');
   await mkdir(staging, { recursive: true });
   let restored = 0;
   for (const archive of manifest.archives) {
-    const files = archive.files.filter((path) => needed.has(path)).map((p) => lockFiles.get(p));
-    if (!files.length) continue;
+    const members = archive.files.filter((path) => wanted.has(path)).map((p) => byPath.get(p));
+    if (!members.length) continue;
     let path = await findArchive(archiveDir, archive);
     if (!path) {
       if (offline) throw new Error(`Offline archive missing or corrupt: ${archive.file}`);
       log(`Downloading ${archive.file}`);
       path = archivePath(archiveDir, archive);
       await mkdir(dirname(path), { recursive: true });
-      await download(releaseUrl(lock, archive.file), path, archive, fetchImpl);
+      await download(releaseUrl(current, archive.file), path, archive, fetchImpl);
     }
-    await verifyArchive(path, archive, lockFiles);
+    await verifyArchive(path, archive, byPath);
     const stage = await mkdtemp(join(staging, 'restore-'));
     try {
-      const members = new Set(files.map((f) => f.path));
+      const names = new Set(members.map((f) => f.path));
       await tar.x({
         file: path,
         cwd: stage,
         strict: true,
         noMtime: true,
-        filter: (name, entry) => members.has(name) && entry.type === 'File',
+        filter: (name, entry) => names.has(name) && entry.type === 'File',
       });
-      for (const file of files) {
+      for (const file of members) {
         if (!same(await fileInfo(join(stage, file.path)), file))
           throw new Error(`Extracted checksum mismatch: ${file.path}`);
       }
-      for (const file of files) {
+      for (const file of members) {
         const destination = await localPath(root, file.path);
         await mkdir(dirname(destination), { recursive: true });
         const temporary = `${destination}.${randomUUID()}.part`;
@@ -627,20 +601,24 @@ export async function fetchAssets({
           await rm(temporary, { force: true });
         }
       }
-      await recordInstalled(root, files);
-      restored += files.length;
-      log(`Restored ${files.length} GLBs from ${archive.file}`);
+      restored += members.length;
+      log(`Restored ${members.length} GLBs from ${archive.file}`);
     } finally {
       await removeStage(stage, staging);
     }
   }
-  log(`Ready: ${selected} pinned GLBs (${restored} restored from ${lock.release}).`);
-  return selected;
+  // Outputs of the previous bundle that this one no longer has are stale; local work stays.
+  if (!prefix && stamp && !stamp.prefix)
+    for (const file of stamp.files)
+      if (!byPath.has(file.path)) await rm(await localPath(root, file.path), { force: true });
+  await writeStamp(root, { ...current, from: 'fetch', prefix, files });
+  log(`Ready: ${files.length} GLBs of ${current.release} (${restored} restored).`);
+  return files.length;
 }
 
 /**
- * Publish the lock's snapshot as the immutable release it names, packing the local GLBs first.
- * An already published snapshot is left alone: its archives were verified when they went up.
+ * Publish the packed bundle for this checkout's inputs as the release it names. An already
+ * published bundle is left alone: its archives were verified when they went up.
  */
 export async function publishAssets({
   root = ROOT,
@@ -651,7 +629,8 @@ export async function publishAssets({
 } = {}) {
   if (!/^[a-f0-9]{40}$/.test(target ?? ''))
     throw new Error('Publishing requires --target <existing 40-character GitHub commit SHA>.');
-  const lock = await readLock(root);
+  const current = await assetInputs(root);
+  const { repository, release } = current;
   const gh =
     runGh ??
     ((args) =>
@@ -662,17 +641,17 @@ export async function publishAssets({
       }));
   // List releases rather than treating arbitrary authentication/network failures as "not found".
   const releases = JSON.parse(
-    gh(['api', '--paginate', '--slurp', `repos/${lock.repository}/releases?per_page=100`]),
+    gh(['api', '--paginate', '--slurp', `repos/${repository}/releases?per_page=100`]),
   ).flat();
-  let release = releases.find((r) => r.tag_name === lock.release);
-  if (release && !release.draft) {
-    log(`Already published https://github.com/${lock.repository}/releases/tag/${lock.release}`);
-    return lock.release;
+  let published = releases.find((r) => r.tag_name === release);
+  if (published && !published.draft) {
+    log(`Already published https://github.com/${repository}/releases/tag/${release}`);
+    return release;
   }
-  const releaseDir = join(archiveDir, lock.release);
-  const manifestPath = join(releaseDir, RELEASE_MANIFEST);
+  const releaseDir = join(archiveDir, release);
+  const manifestPath = join(releaseDir, MANIFEST);
   if (!(await maybeStat(manifestPath))) await packAssets({ root, outDir: archiveDir, log });
-  const manifest = validateReleaseManifest(JSON.parse(await readFile(manifestPath, 'utf8')), lock);
+  const manifest = validateManifest(JSON.parse(await readFile(manifestPath, 'utf8')), current);
   const paths = new Map();
   for (const archive of manifest.archives) {
     const path = await findArchive(archiveDir, archive);
@@ -682,30 +661,30 @@ export async function publishAssets({
   if (!same(await fileInfo(join(releaseDir, NOTICES)), manifest.notices))
     throw new Error('Asset notices checksum mismatch.');
   paths.set(NOTICES, join(releaseDir, NOTICES));
-  paths.set(RELEASE_MANIFEST, manifestPath);
+  paths.set(MANIFEST, manifestPath);
   const uploads = [
     ...manifest.archives,
     manifest.notices,
-    { file: RELEASE_MANIFEST, ...(await fileInfo(manifestPath)) },
+    { file: MANIFEST, ...(await fileInfo(manifestPath)) },
   ];
-  if (!release) {
+  if (!published) {
     const request = join(releaseDir, 'release-request.json');
     await writeFile(
       request,
       json({
-        tag_name: lock.release,
+        tag_name: release,
         target_commitish: target,
-        name: `Molen asset snapshot ${lock.snapshot.slice(0, 12)}`,
-        body: `${lock.files.length} GLBs built from source at ${target} by the Assets workflow.\n\nRestore them in a checkout whose \`asset-lock.json\` names \`${lock.release}\` with \`pnpm assets:fetch\`, or rebuild them from source with \`pnpm assets:build\`: the lock pins the exact bytes either way. \`${RELEASE_MANIFEST}\` lists the archives; see ${NOTICES} for licenses.\n\nThese are repository build outputs. Applications use Molen's runtime content packs.\n`,
+        name: `Molen asset bundle ${current.key.slice(0, 12)}`,
+        body: `${manifest.files.length} GLBs built from source at ${target}.\n\nRestore them with \`pnpm assets:fetch\` in any checkout whose asset inputs hash to \`${release}\` (\`node scripts/asset-packs.mjs key\`), or rebuild them with \`pnpm assets:build\`. \`${MANIFEST}\` lists the archives; see ${NOTICES} for licenses.\n\nThese are repository build outputs. Applications use Molen's runtime content packs.\n`,
         draft: true,
         make_latest: 'false',
       }),
     );
     // Use the create response's ID: GitHub's release list can lag behind a new draft.
-    release = JSON.parse(
-      gh(['api', '--method', 'POST', `repos/${lock.repository}/releases`, '--input', request]),
+    published = JSON.parse(
+      gh(['api', '--method', 'POST', `repos/${repository}/releases`, '--input', request]),
     );
-    if (!release?.draft) throw new Error('Could not create the draft asset release.');
+    if (!published?.draft) throw new Error('Could not create the draft asset release.');
   }
   const listAssets = () =>
     JSON.parse(
@@ -713,7 +692,7 @@ export async function publishAssets({
         'api',
         '--paginate',
         '--slurp',
-        `repos/${lock.repository}/releases/${release.id}/assets?per_page=100`,
+        `repos/${repository}/releases/${published.id}/assets?per_page=100`,
       ]),
     ).flat();
   const remote = listAssets();
@@ -727,31 +706,23 @@ export async function publishAssets({
       // An interrupted run's draft may hold another packing of the same files. Drafts are not
       // public, and every attachment is verified again below before the release is published.
       log(`Replacing draft attachment ${upload.file}`);
-      gh(['api', '--method', 'DELETE', `repos/${lock.repository}/releases/assets/${existing.id}`]);
+      gh(['api', '--method', 'DELETE', `repos/${repository}/releases/assets/${existing.id}`]);
     }
     log(`Uploading ${upload.file}`);
-    gh(['release', 'upload', lock.release, paths.get(upload.file), '--repo', lock.repository]);
+    gh(['release', 'upload', release, paths.get(upload.file), '--repo', repository]);
   }
   const uploaded = listAssets();
   const expected = new Set(uploads.map((u) => u.file));
   const extra = uploaded.filter((a) => !expected.has(a.name)).map((a) => a.name);
-  if (extra.length) throw new Error(`Draft ${lock.release} has unexpected attachments: ${extra}`);
+  if (extra.length) throw new Error(`Draft ${release} has unexpected attachments: ${extra}`);
   for (const file of uploads) {
     const asset = uploaded.find((a) => a.name === file.file);
     if (asset?.size !== file.size || asset?.digest !== `sha256:${file.sha256}`)
       throw new Error(`Uploaded asset integrity check failed: ${file.file}`);
   }
-  gh([
-    'release',
-    'edit',
-    lock.release,
-    '--repo',
-    lock.repository,
-    '--draft=false',
-    '--latest=false',
-  ]);
-  log(`Published https://github.com/${lock.repository}/releases/tag/${lock.release}`);
-  return lock.release;
+  gh(['release', 'edit', release, '--repo', repository, '--draft=false', '--latest=false']);
+  log(`Published https://github.com/${repository}/releases/tag/${release}`);
+  return release;
 }
 
 async function main() {
@@ -764,15 +735,28 @@ async function main() {
       offline: { type: 'boolean' },
       force: { type: 'boolean' },
       'no-build': { type: 'boolean' },
-      strict: { type: 'boolean' },
+      explain: { type: 'boolean' },
       target: { type: 'string' },
     },
   });
   const root = resolve(values.root ?? ROOT);
   const archiveDir = resolve(values['archive-dir'] ?? join(root, OUTPUT));
   if (positionals.length !== 1)
-    throw new Error('Usage: node scripts/asset-packs.mjs pack|fetch|check|publish [options]');
+    throw new Error('Usage: node scripts/asset-packs.mjs key|pack|fetch|check|publish [options]');
   switch (positionals[0]) {
+    case 'key': {
+      const current = await assetInputs(root);
+      console.log(current.release);
+      if (values.explain) {
+        const stamp = await readStamp(root);
+        console.log(
+          stamp?.key === current.key
+            ? 'The installed bundle matches these inputs.'
+            : `Installed: ${stamp?.release ?? 'none'}${explain(stamp, current)}`,
+        );
+      }
+      break;
+    }
     case 'pack':
       await packAssets({ root, outDir: archiveDir });
       break;
@@ -793,19 +777,19 @@ async function main() {
           return;
         }
         if (!(error instanceof ReleaseMissingError)) throw error;
-        console.log(`Warning: ${error.message}\nBuilding the pinned GLBs locally.`);
+        console.log(`Warning: ${error.message}\nBuilding the bundle locally.`);
         const { buildAssetsFromSource } = await import('./build-assets.mjs');
-        await buildAssetsFromSource({ root, compile: true, allowUnlocked: true });
+        await buildAssetsFromSource({ root, compile: true });
       }
       break;
     case 'check':
-      await checkAssets({ root, prefix: values.prefix, allowUnlocked: !values.strict });
+      await checkAssets({ root, prefix: values.prefix });
       break;
     case 'publish':
       await publishAssets({ root, archiveDir, target: values.target });
       break;
     default:
-      throw new Error('Expected pack, fetch, check or publish.');
+      throw new Error('Expected key, pack, fetch, check or publish.');
   }
 }
 

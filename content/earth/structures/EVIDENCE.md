@@ -53,16 +53,15 @@ the measured axis as a draft; it neither renders the model nor replaces mapped r
 ## Enforceable readiness ledger
 
 `readiness.json` covers every candidate and reads the actual source GLB, source manifest,
-runtime GLB, imported sidecar, project registry, capture files and geographic records. It
-verifies current SHA-256 values; stale imports remain visible as blockers.
+runtime GLB, imported sidecar, project registry, capture files and geographic records. Missing
+sources or imports remain visible as blockers.
 
 Images existing on disk are evidence to inspect, not automatic visual approval. A source
 folder may add `qa.json` after review:
 
 ```json
 {
-  "sourceHash": "sha256:<current-source-hash>",
-  "runtimeHash": "sha256:<current-runtime-hash>",
+  "inputHash": "sha256:<current-model-input-hash>",
   "captureReportHash": "sha256:<current-capture-report-hash>",
   "visualReview": { "status": "passed", "inspectedFrames": ["preview.png", "shots/near-detail.png"] },
   "geographicReview": { "status": "passed", "placementHash": "sha256:<current-placement-record-hash>" },
@@ -71,10 +70,12 @@ folder may add `qa.json` after review:
 ```
 
 The review must describe the inspected views and remaining limitations in the model's README.
-The capture report must bind the same source and runtime hashes. Every inspected frame must
+`inputHash` is the model's `model.inputHash` in `readiness.json`: a hash of its spec, evidence
+and recipe files, so a rebuild keeps the review and an edit to those inputs invalidates it.
+The capture report must bind the same `inputHash`. Every inspected frame must
 exist and match its report hash; edited screenshots or a replacement capture report invalidate
 the visual review until inspected again.
-`ready` requires all three hash-bound reviews, valid source/import hashes, registry presence,
+`ready` requires all three hash-bound reviews, present source and import, registry presence,
 resolved orientation evidence, no current-world identity exclusion and an active placement.
 Maximum-fidelity review is separate from rendering correctly: the reviewer must compare the
 modeled structural details against cited references and record remaining omissions. The ledger

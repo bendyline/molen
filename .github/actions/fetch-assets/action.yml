@@ -1,17 +1,25 @@
 name: Restore repository GLBs
 description: >-
-  Download the GLB snapshot pinned by asset-lock.json. When the Assets workflow has not published
-  that snapshot yet (a pull request that changes models), build it from source instead.
+  Restore the asset bundle named by this checkout's asset inputs (scripts/asset-inputs.mjs):
+  from the Actions cache, else from its GitHub release, else by building it from source when no
+  bundle exists for these inputs yet (a pull request that changes models).
+outputs:
+  built:
+    description: "'true' when this job built the bundle from source."
+    value: ${{ steps.fetch.outputs.build == 'true' }}
 runs:
   using: composite
   steps:
+    - id: key
+      shell: bash
+      run: echo "release=$(node scripts/asset-packs.mjs key)" >> "$GITHUB_OUTPUT"
     - id: cache
       uses: actions/cache/restore@v4
       with:
         path: .artifacts/asset-packs/
-        key: molen-glbs-${{ hashFiles('asset-lock.json') }}
+        key: molen-assets-${{ steps.key.outputs.release }}
     - id: fetch
-      name: Restore GLBs from the release
+      name: Restore GLBs from the bundle
       shell: bash
       run: |
         set +e
@@ -23,8 +31,8 @@ runs:
         status=$?
         if [ "$status" -eq 3 ]; then echo "build=true" >> "$GITHUB_OUTPUT"; exit 0; fi
         exit "$status"
-    # asset-build.json pins the Node major that produced the lock; the job's own Node comes back
-    # afterwards, so the rest of the job still tests the version it asked for.
+    # asset-build.json pins the Node major the committed metadata was generated with; the job's
+    # own Node comes back afterwards, so the rest of the job still tests the version it asked for.
     - if: steps.fetch.outputs.build == 'true'
       id: node
       shell: bash
@@ -43,15 +51,18 @@ runs:
       run: |
         pip install -r examples/lantern-dungeon/tools/requirements.txt
         pnpm assets:build --compile
-        # Make the verified source build restorable before its release exists. The check job
-        # saves it once; dependent jobs and reruns restore it offline instead of rebuilding.
+        # Make the build restorable before its release exists: dependent jobs and reruns restore
+        # it offline, and on main the publish job uploads these archives.
         pnpm assets:pack
     - if: steps.fetch.outputs.build == 'true'
       uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node.outputs.version }}
-    - if: steps.cache.outputs.cache-hit != 'true'
+    # A pull request that only downloaded the release reads main's cache instead of saving a copy.
+    - if: >-
+        steps.cache.outputs.cache-hit != 'true' &&
+        (steps.fetch.outputs.build == 'true' || github.ref == 'refs/heads/main')
       uses: actions/cache/save@v4
       with:
         path: .artifacts/asset-packs/
-        key: molen-glbs-${{ hashFiles('asset-lock.json') }}
+        key: molen-assets-${{ steps.key.outputs.release }}

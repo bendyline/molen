@@ -11,6 +11,8 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
+    outputs:
+      assets-built: ${{ steps.assets.outputs.built }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -19,7 +21,9 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: ./.github/actions/fetch-assets
+      # Restores the bundle for these asset inputs, building it once if none exists yet.
+      - id: assets
+        uses: ./.github/actions/fetch-assets
       - run: pnpm assets:check
       # Asset/source-bundle tests consume schema dist; `preassets:test` builds it on fresh runners.
       - run: pnpm assets:test
@@ -31,6 +35,33 @@ jobs:
       # Source bundles are part of `pnpm verify`, the release gate; CI runs the same checks.
       - run: pnpm source:check
       - run: pnpm audit:prod
+
+  publish-assets:
+    # A push to main whose asset inputs had no bundle: check built and packed it, so publish it as
+    # the release those inputs name. Idempotent; other runs then download it.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.check.outputs.assets-built == 'true'
+    runs-on: ubuntu-latest
+    needs: check
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - id: key
+        run: echo "release=$(node scripts/asset-packs.mjs key)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache/restore@v4
+        with:
+          path: .artifacts/asset-packs/
+          key: molen-assets-${{ steps.key.outputs.release }}
+          fail-on-cache-miss: true
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm assets:publish --target "$GITHUB_SHA"
 
   docs-site:
     # The molen.dev site generates its API reference from the built `.d.mts`, its CLI/MCP
