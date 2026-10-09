@@ -5184,3 +5184,624 @@ the35.04m terrain reference are retained. Real terrain/datum, wall/aperture
 dimensions and associations, current-state fidelity, collision, continuous LOD
 transition and physical-device review remain pending. Placement stays inactive
 with footprint replacement disabled; this revision is not a newly completed site.
+
+### 2026-10-08 — N0293 Rumeli Hisarı draft
+
+Added the reproducible source bundle under
+`places/sx/sxk/n0293_rumeli_hisar`, with checked-in map frame, coarse attributed
+DEM, shared-material means, references and independent authored LOD recipes in
+`packages/worldgen/scripts/rumeli-fortress-model.mjs`. Existing signature
+generator and normal source-import workflow recreate every output. Preserved
+raw reversed-looking relation roles separately from the interpreted open court.
+Three stepped roofless hollow towers retain published heights22/21/28m and
+Halil’s twelve-sided lower body. Ten mapped circular bastions, three estimated
+square defenses, original forecourt, five actual cut gates, selected slits,
+mapped mosque envelope and terrain-following walls/paths are authored.
+
+Master15946triangles/1916772bytes; runtime1916276bytes. Authored levels
+987/3841/12231/15946triangles; initial two-level download413004bytes before
+shared materials. Four existing256-square dry stone, brick, gravel and ceramic
+tile graphs; metric UVs, linear palette and baked far means. No embedded/new
+images or third-party mesh; private reference photographs are not distributed.
+
+Inspected47 final portable/shared/Earth frames. Fixed wall footing interpolation,
+sea-gate camera height and overlapping forecourt masonry at that passage.
+Five model regressions and four source-discovery regressions pass. Six Khronos
+validations report zero errors/warnings; strict medium-fi audit, scene validation
+and30-tick simulation pass.420 map samples round-trip within0.7mm.
+Capture-input hashing now excludes the generated Earth review report; a regression
+proves capture-only edits preserve the hash while geometry edits invalidate it.
+
+All six outputs are validated and registered through the existing source generator
+and import/LOD workflow. The current asset-bundle pipeline names releases by
+source inputs; this targeted authoring pass does not stamp or publish a full bundle.
+No output lock is created. Heading0, union-of-all-level extent and23.63m native anchor
+terrain reference are recorded. Real host terrain/datum, terrace layout, gate
+associations and dimensions, present mosque/restoration state, circulation,
+visitor infrastructure, fidelity and physical-device/streaming measurements
+remain pending. Placement is an inactive draft with footprint replacement off.
+This is an authored draft and does not increment fully completed landmarks.
+
+### 2026-10-08 — N0294 Aljafería draft
+
+Added the original reproducible source bundle under
+`places/ez/ezr/n0294_aljaferia`, with own attributed map-frame/courtyard/entrance
+and bridge controls, private-reference URLs/hashes, shared-material means, and
+`packages/worldgen/scripts/aljaferia-palace-model.mjs`. The existing signature
+generator, normal source import and four authored LOD recipes rebuild all outputs.
+Six round east towers,26m rectangular Trovador, three open roof courts, selected
+lobed Taifa arcades and backing doors, formal beds/pools, gallery/chapel facade,
+tiled historic wings and flat stepped parliament hall remain distinct.
+
+Master18094triangles/2175792bytes; runtime2175092bytes. Browser levels
+993/3730/14636/18094triangles, initial skyline+district436988bytes before
+shared material transfers, near closeup1709660bytes. Six existing256-square
+limestone, lime plaster, brick, ceramic tile, wood and gravel graphs; metric UVs,
+linear palette and measured far means. Eight merged material groups near and
+one far. No embedded/new textures, research-photo textures or downloaded mesh.
+
+Inspected47 final portable/shared/Earth frames. Corrected court-wall obstruction
+of parliament/chapel facades, added actual portico backing apertures/recesses,
+and filled/aligned the missing upper wall below the south reception wing.
+Seven focused model regressions pass; six Khronos validations have zero errors
+and warnings. Strict medium-fi audit, targeted source generator --check, scene
+validation and30-tick simulation pass.108 map samples reconstruct within0.63mm.
+Shared loader reads each graph once and unloading leaves no live geometries.
+
+Published16.5×12m Trovador plan differs from the current mapped18.317m north
+edge; the recipe retains map span,12m published depth and26m published height,
+and records the unresolved difference. Other component heights, aperture/door
+positions, roof partitions and moat are photographic estimates. Heading0 and
+all-level bounds are recorded. Moat drops4.5m below palace attachmentY0; actual
+host terrain cutout/datum, ground/bridge fit, current restoration state, detailed
+ornament/interiors/circulation and fidelity remain pending. Physical-device
+performance and continuous streaming/upgrades also remain unmeasured.
+Placement stays an inactive draft, footprint replacement off. This increases
+authored drafts, not fully completed landmarks. Current source-input-based
+asset workflow owns full-bundle stamping/publishing; no output lock or release
+is created during this targeted model pass.
+
+### 2026-10-08 — N0295 Pembroke Castle draft
+
+Original source bundle: `places/gc/gch/n0295_pembroke_castle`, with separately
+attributed map point/components and oblique entrance route, published keep and
+Wogan dimensions, original editable geometry controls, raw Terrarium reference
+grid and existing shared-material means.
+`packages/worldgen/scripts/pembroke-castle-model.mjs` joins the existing
+signature generator, source import and four authored browser recipes.
+
+Circular25m keep with recessed dome, offset gatehouse and physical oblique
+passage, low curved barbican, hollow towers and irregular open ward, roofless
+Great/Norman/western halls, low ruined inner-gate footings, StAnne projection,
+original schematic visitor map and simplified cliff/Wogan masonry render.
+Removed the duplicate western-hall solid and aligned the cave front to close
+unsupported gaps. Local aperture-plane rejection avoids splitting unrelated
+triangles.
+
+Master14971triangles/1800592bytes; imported runtime1799956bytes. Four
+levels770/3947/13485/14971triangles,429856bytes for initial skyline+district
+before shared materials,closeup1306280bytes. Five existing256-square rubble,
+raw limestone,gravel,wood andslate graphs; central metric repeats,linear vertex
+tints and measured far means. Seven merged groups near,one far,no embedded
+images,new textures,photo textures,downloaded model or copied map artwork.
+
+Inspected47 final portable/shared/Earth frames. Six targeted model regressions
+pass; six Khronos validations have zero errors/warnings; strict medium-fi,
+scoped LOD/source checks,scene validation and30tick simulation pass.429 map
+samples reconstruct within0.67mm. Shared materials read once and unload leaves
+zero live model geometries. Rebuilds come from registered source. No full bundle
+stamp,lock,release upload or repository-wide verification in this model pass.
+
+Exact identity is a map node. Nearby named wall/tower traces are separately
+associated; some east/StAnne traces explicitly warn about accuracy. Published
+keep25×16m and cave23×18×5m/floor9–10mOD guide the source. Coarse DEM peaks
+near13.77m and does not resolve that cave section; original datum2.5m/plateau
+Y15 are provisional. Preserve this discrepancy. Other heights,wall thickness,
+room/aperture partitions,restored turrets,barbican and cliff form are estimates.
+Real vertical datum,host terrain blend/cutout,approaches,current restoration
+state,full interior/circulation/collision and site fidelity need review. Physical
+laptop/phone timing and continuous streaming/upgrades remain pending. Placement
+stays inactive with footprint replacement off; this adds an authored draft,not
+a fully completed landmark.
+
+### 2026-10-08 — N0296 Kalmar Castle draft
+
+Source bundle: `places/u6/u65/n0296_kalmar_castle`. Exact-QID relation,
+separately attributed map components, original editable controls, owner/operator
+references and shared-material means drive `kalmar-castle-model.mjs`, registered
+through the signature generator, source import and four authored browser levels.
+
+Four dark gabled wings surround an open irregular courtyard. Three round and one
+dodecagonal corner tower carry distinct copper helmets. Western Kuretornet has
+an open lantern and physical old entrance. Selected white Renaissance gables,
+original well canopy, outer defenses, four cannon towers, curved fort passage
+and timber bridge are represented. Corrected inward roof-cap undersides that
+vanished through backface culling; complete western-wall gate envelope, union
+of curved passage apertures and bounded cannon-tower windows are verified.
+
+Master 9673 triangles / 1165336 bytes; imported runtime 1164636 bytes. Skyline,
+district, street and closeup: 1000/3237/7140/9673 triangles. Initial skyline plus
+district 388464 bytes before shared materials; closeup 877640 bytes. Six existing
+256-square rubble, raw limestone, lime plaster, copper, standing-seam metal and
+gravel graphs use linear tints and central metric UV repeats. Source and runtime
+roof bindings agree via per-study overrides. Bridge timber uses brown-tinted
+gravel as a material approximation. Eight merged groups near, one far; flat
+glass/grass, no embedded or new images, photo textures or downloaded model.
+
+Inspected 47 final portable/shared/Earth images. Seven focused regressions pass,
+including the roof-underside check that failed before the winding fix. Six Khronos
+validations have zero errors/warnings. Strict medium-fi, scoped LOD and source
+checks pass; scene validation and 30-tick simulation passed. 341 map samples
+reconstruct within 0.695mm. Shared graphs read once; eviction leaves zero live
+model geometry. Reproducible source is registered; no whole-bundle release stamp
+or upload in this model pass.
+
+No primary numeric vertical dimensions verified. Heights, platform Y4.2, roof
+profiles, Renaissance gables, well, apertures and bank/defense section are original
+photographic estimates. Coast defenses descend to Y0.3. Current 2013–14 kitchen
+extension is acknowledged but its verified footprint remains unresolved. Real
+terrain/moat/coast/vertical registration, bridge access and current site fidelity
+need review. Full interiors, sculpture, inscriptions, exhibits and walkable
+circulation/collision are incomplete. Physical laptop/phone timing and continuous
+streaming/upgrades remain pending. Placement stays inactive with footprint
+replacement off; this is an authored exterior draft, not a completed landmark.
+
+### 2026-10-08 — N0296 mapped palace roof coverage repair
+
+The owner reported a missing building section. Inspection found the four-corner
+roof envelope stopped inside the mapped eastern and northern palace walls,
+exposing broad flat wall caps. Editable outer/inner eave polylines now follow
+those physical walls and the courtyard. Roof panels span the full wing width;
+the concealed flat wall caps are omitted. The regression failed on the old
+model and passes at all four levels.
+
+Only Kalmar was rebuilt/imported. Master 9633 triangles / 1160536 bytes;
+runtime 1159836 bytes; levels 990/3197/7100/9633 triangles.
+Initial skyline plus district 389208 bytes. Inspected all 47
+regenerated portable/shared/Earth frames. Eight targeted tests and six Khronos
+validations pass; six existing shared graphs, no embedded or new textures.
+Current-site fidelity and geographic/terrain review remain pending; placement
+remains an inactive draft.
+
+### 2026-10-08 — N0297 Nuremberg Castle draft
+
+Source bundle: `places/u0/u0z/n0297_nuremberg_castle`. Exact-QID node,
+separately attributed building/tower/fortification traces, primary operator
+plans/photos and city guide drive `nuremberg-castle-model.mjs`. Registered
+source import and four authored browser levels reproduce the GLBs.
+
+Three historic precincts preserve Sinwell's projecting observation floor and
+Renaissance helm, open imperial court/Palas/Kemenate/double chapel/Heidenturm,
+half-timbered bailey and well house, three physical gates, Pentagonal Tower,
+steep five-row stables dormers and Luginsland corner oriels. Mapped bastions
+and original schematic gardens remain distinct. Closed missing hip-edge wall
+sections, omitted dormers crossing clipped roof edges, seated Sinwell on the
+bailey and added provisional support beneath the eastern plinths.
+
+Master 8152 triangles / 982804 bytes; runtime 982104 bytes.
+Levels 985/3279/5293/8152 triangles; initial skyline plus district 403936 bytes;
+closeup 767580 bytes. Six existing 256-square sandstone/raw sandstone,
+lime plaster, wood, tile and gravel graphs; linear tints, metric UV repeats,
+flat glass/grass, eight near material groups and one far. No embedded/new
+textures, photo textures or downloaded model. Graphs read once; eviction
+leaves no live model geometry.
+
+Inspected 47 final portable/shared/Earth images. Eight focused checks, six
+Khronos validations with no errors/warnings, strict medium-fi/scoped LOD/source
+checks and scene validation/30-tick simulation pass. 416 mapped samples
+reconstruct within 0.691mm. Documented Sinwell height remains 41m from plinth
+to weather vane. All other heights/roof partitions and current terrain section
+remain estimated; raw OSM heights are not surveyed primary dimensions. Native
+datum 320.29m, attachment Y17.2, rock terraces and eastern foundations are
+provisional. Real terrain/approach/vertical registration and current-site
+fidelity need review. Placement remains inactive with footprint replacement
+off. This is an authored exterior draft, not a completed landmark.
+
+### 2026-10-08 — N0298 Egeskov Castle draft
+
+Source: `places/u1/u1z/n0298_egeskov_castle`, deterministic
+`egeskov-castle-model.mjs`, attributed exact-QID main footprint and
+separate current gate/annex/passages/east footbridge traces. Primary operator
+architecture and heritage-research photos guide original exterior geometry.
+Twin longhouses, four stepped gables, two copper spires, square clock/stair
+tower and current low gate wing with dormers survive through four levels.
+The historic gatehouse tower removed in the1920s is excluded.
+
+Master 15218 triangles / 1830356 bytes;
+levels 987/3458/14778/15218 triangles; initial 442276 bytes,
+closeup 1535032 bytes. Six existing256-square shared graphs,linear
+tints,metric UVs,seven near groups,one far. Graphs read once; eviction
+leaves no live geometry. No embedded/new texture or downloaded model.
+
+Inspected47 final portable/shared/Earth images. Eight focused checks and
+six Khronos validations with no errors/warnings pass; source/strict medium-fi/
+LOD checks and scene validation/30-tick simulation pass. Corrected missing
+stair-roof corner,inward facade panes/reflected gate-roof winding,flat dormer
+feet and inward clipped rear gate-wall triangles. The winding regression
+failed before repair. 186 map samples reconstruct within0.692mm.
+
+All vertical sections/apertures/bridge details are original estimates; no
+primary surveyed height found. Water attachmentY0.3 and lake/shore/terrain
+fit remain provisional. Current exterior fidelity/geographic review pending;
+placement inactive and footprint replacement off. This is an authored draft,
+not a completed landmark.
+
+### 2026-10-08 — N0299 Wawel Castle draft
+
+Source: `places/u2/u2y/n0299_wawel_castle`, deterministic
+`wawel-castle-model.mjs`, exact-QID palace relation2270819, courtyard
+way117749419 and separately attributed roofs,towers and two entry routes.
+Current museum/city references guide three residential wings,southern
+curtain,open Renaissance courtyard,two lower arcade tiers,tall upper
+columns,steep red roofs,two northern copper helms,eastern projections
+and adjacent brick Senator tower. Cathedral/detached hill towers are
+separate objects,not absorbed into this palace asset.
+
+Master 23061 triangles / 2771512 bytes;
+levels 984/3935/14551/23061 triangles; initial 462372 bytes,
+closeup 1906700 bytes. Six existing256-square shared graphs,linear
+tints,metric repeats,seven near groups,one far. Graphs read once; unload
+leaves no live geometry. No embedded/new image or downloaded model.
+
+Inspected44 final portable/shared/Earth images. Seven focused checks
+and six Khronos validations without errors/warnings pass; source/strict
+medium-fi/LOD checks and scene validation/30-tick simulation pass.
+Fixed incomplete roof control,duplicate exterior walls,inward helm/dormer
+normals,generic Senator cone,floating lower masonry,passage base-height
+API and a gallery column blocking the Berrecci route. Passage regression
+failed before repair. 424 map samples reconstruct within0.651mm.
+
+All authored vertical sections,roof partitions,bay counts,apertures and
+helm profiles are original photographic estimates; Senator39m is only
+an OSMtag,no primary surveyed palace height verified. Court attachment
+Y8.2 and actual hill/floor/terrace/entry slope remain provisional. Fine
+frescoes/heraldry/sculpture,interior rooms and walkable collision excluded.
+Full exterior fidelity/geographic review pending; placement inactive and
+footprint replacement off. This is an authored draft,not a completed
+landmark.
+
+### 2026-10-08 — N0298 Egeskov entrance correction
+
+Passed each passage's source-defined floor height separately from detail
+level to the aperture helper; the old call incorrectly used detail1/2/3
+as metres. Near wall openings now remain clear at floor+0.1m,including
+closeup. The separate estimated0.28m castle threshold is preserved.
+Rejected complete gate windows/trim intersecting the arch after an
+inspected close-up exposed glazing crossing the opening. Both regression
+checks fail before repair and pass afterward. Rebuilt source/runtime/four
+levels and inspected all47 refreshed portable/shared/Earth frames.
+
+Master 15116 triangles / 1818116 bytes;
+levels 991/3038/14644/15116 triangles; initial 397188 bytes,
+closeup 1523944 bytes before shared graphs. Nine focused checks
+and six Khronos validations without errors/warnings pass. Current hashes
+and source inventory refreshed. Geographic/current-site fidelity remain
+pending; existing inactive placement preserved.
+
+### 2026-10-08 — N0300 Saint Michael's Castle draft
+
+Source: `places/ud/udt/n0300_saint_michael_s_castle`, original deterministic
+`saint-michaels-castle-model.mjs`. Exact-QID castle relation238571,
+three separately attributed courtyard rings and mapped south passage.
+Museum descriptions/photos and original courtyard,west and aerial
+photographers guide the rounded salmon exterior,green roofs,church
+dome/gold spire,river dome/lantern,south pediment/obelisks and north
+colonnade/balcony/stair. All three courts remain open to the sky;
+south passage is physically open in district/street/closeup.
+
+Master 17128 triangles / 2059596 bytes;
+levels 605/1825/12653/17128 triangles. Initial skyline+district
+243720 bytes before shared surfaces;closeup 1555704 bytes.
+Six existing256-square shared graphs,linear tints,metric repeats,
+seven near groups and one far. Graphs read once;unload leaves
+zero live geometry. No embedded/new image or downloaded model.
+
+Inspected44 final portable/shared/Earth views. Refined roof tessellation,
+curved apse windows,upper pavilion court windows and pediment moldings/
+inset. Darker green roofs follow medium-fi;skyline retains obelisks and
+coarse north stair. Six focused checks and six Khronos validations
+without errors/warnings pass;scoped source/import/LOD/strict-medium-fi
+checks and scene validation/30-tick simulation pass.139 map samples
+reconstruct within0.640mm;union bounds cover all levels.
+
+All vertical sections,domes/lantern/spire,roof profiles,window/column
+counts,obelisks,stairs and floor contacts are original estimates. No
+primary surveyed vertical dimensions verified. Older primary photos
+supplement current museum views;current-site alterations need review.
+Fine sculpture/heraldry/inscriptions/niches,interiors,detached pavilions,
+monuments,bridges,water/embankments/gardens and walkable collision
+are excluded or separate objects. Real-site fit/full fidelity pending;
+placement inactive and footprint replacement off. Authored draft,
+not a completed landmark.
+
+### 2026-10-08 — N0301 Hochosterwitz Castle draft
+
+Source: `places/u2/u26/n0301_hochosterwitz_castle`, original deterministic
+`hochosterwitz-castle-model.mjs`. Exact-QID summit castle122050909,
+14 separately named mapped gates/passages,church/chapel,45defensive
+wall polygons,18secondary footprints and attributed approach routes.
+Operator photos/descriptions guide the U-shaped summit/open court,
+slate roofs/turret cones,square tower/gallery and ascending gates.
+
+Master 16490 triangles / 1982548 bytes;
+levels 986/3757/14954/16490 triangles. Initial skyline+district
+464788 bytes before shared textures;closeup 1618888 bytes.
+Five existing256-square graphs,linear tints,metric repeats,six near
+groups and one far. Graphs read once;unload leaves zero live geometry.
+No embedded/new texture image,operator photo or downloaded mesh.
+
+Inspected44 final portable/shared/Earth frames. Repaired bent-passage
+reveal unions,Float32 degenerate faces/winding and principal windows
+buried behind the mapped facade. Six focused tests and six Khronos
+validations without errors/warnings pass;scoped source/import checks
+and scene validation/30-tick simulation pass.1079 source map samples
+reconstruct within0.672mm;all-level padded bounds cover the draft.
+
+A separate source49x49 numerical hill fixture retains2401 coarse
+Terrarium samples within1.222mm after PNG decode. The runtime model
+contains architecture only. Earth-rig review now loads this separate
+hill,centers cameras vertically and keeps synthetic neighbors outside
+the tile. Capture caches also bind source/runtime hashes directly.
+
+The hill is coarse research data,not a surveyed/certified terrain fit.
+Some wall/gate contacts still float or embed;terraces/stairs/routes need
+site fitting. Architectural heights,roof/turret/spire sections,apertures
+and bay counts remain original estimates. Fine heraldry/reliefs,inscriptions,
+frescos,interiors,railway mechanics,gardens/vegetation and walkable collision
+are excluded or separate. Full medium-fi,geographic and exterior-fidelity
+reviews pending;draft placement inactive,footprint replacement off.
+This is an authored draft,not a completed landmark.
+
+### 2026-10-09 — N0302 Liechtenstein Castle draft
+
+Source: `places/u2/u2e/n0302_liechtenstein_castle`,original deterministic
+`liechtenstein-castle-model.mjs`,exact-QID Austrian castle and separately
+mapped east tower/gatehouse/curtain wall/services/access traces. Primary operator
+photos/Oliver Bolch guide the west keep/corbel gallery/round oriel,continuous
+red palas roof/south cross-gable/five open upper arches,grey east-tower roof,
+south turret and arched lower gate. Nearby Schloss Q1726817 and vanished
+historic forecourt buildings are excluded. Natural exposed ridge is terrain.
+
+Master 5371 triangles/648248 bytes;
+four levels 667/2124/5357/5371 triangles;initial 278024 bytes,
+closeup 553316 bytes. Five existing shared256-square graphs,linear
+tints,metric repeats,six near groups,one far. No embedded/new image or downloaded mesh.
+
+Inspected44 final portable/shared/Earth images. Nine focused checks and six
+Khronos validations with zero errors/warnings pass;targeted source/import/LOD/
+strict medium-fi checks and scene validation/30-tick simulation pass.117 map
+points reconstruct within0.642mm. Corrected tower-roof footprint and main-roof
+continuity. Explicit isolated preview groundY-8.3 exposes lower gate/walls
+that the defaultY0 stage plane hid;default/geographic review paths unchanged.
+
+All vertical sections and terrace contacts are estimates;no primary surveyed
+height verified. Rocky ridge,terrace/stair grades and facade/geographic fit
+require actual-site review. Medium-fi/geographic/fidelity status pending;
+placement inactive,replacement off. Authored draft,not a completed landmark.
+
+### 2026-10-09 — N0303 Arundel Castle draft
+
+Source: `places/gc/gcp/n0303_arundel_castle`, original deterministic
+`arundel-castle-model.mjs`. Exact-QID relation1118816, both mapped voids,
+separate keep and service route retain attributed original controls. Operator
+exteriors and VisitEngland aerial guide the hollow shell keep/motte, northern
+defenses, open residential quadrangle, Gothic windows, corbelled towers, slate
+roofs and original estimated courtyard lawn/gravel/fountain.
+
+Master 15379 triangles/1850024 bytes;
+four levels 973/3603/14869/15379 triangles. Initial
+skyline+district 407240 bytes; closeup 1378452 bytes before shared
+textures. Six existing256-square graphs, linear tints, metric repeats, eight
+near groups and one far group. No embedded/new image or downloaded mesh.
+
+Inspected44 final portable/shared/Earth images. Seven focused tests and all
+six Khronos validations pass with zero errors/warnings. Scoped source/import/
+LOD/strict medium-fi and scene validation/30-tick simulation pass.322 original
+map samples reconstruct within0.679mm. Fixed the bent tunnel cut and overlapping
+reveals, tiny Float32 slivers and duplicated invisible roof/parapet geometry.
+Shared graphs read once and unload leaves zero live model geometry.
+
+Published approximate motte/keep dimensions are preserved alongside the larger
+current mapped keep/annex footprint. Other vertical/roof/facade controls remain
+estimates. Detached chapel, cathedral, lodge, natural escarpment, gardens,
+interiors, fine carving and collision certification are excluded or separate.
+The synthetic neighbor fixture is not actual estate geography. Natural terrain,
+bailey datum, facade fit and exterior fidelity require actual-site review.
+Medium-fi/geographic/fidelity pending; placement inactive, replacement off.
+Authored draft, not a completed landmark.
+
+### 2026-10-09 — N0304 Leeds Castle draft
+
+Source: `places/u1/u10/n0304_leeds_castle`, original deterministic
+`leeds-castle-model.mjs`. Exact-QID relation6941053, current component footprints,
+Gloriette courtyard, island, curtain and entrance routes preserve attributed
+original controls. Operator exterior/aerial photographs and Historic England
+facts guide New Castle/octagonal towers, hollow Gloriette/bell tower, covered
+bridge/two water arches, Maidens Tower/bath arches, southwest gatehouse,
+low curtain and entrance bridge. No primary numeric architectural heights verified.
+
+Master 11749 triangles/1413956 bytes;
+four levels 850/2899/11719/11749 triangles. Initial
+skyline+district 338888 bytes; closeup 1061532 bytes before shared
+textures. Five existing256-square graphs, linear tints, metric repeats, seven
+near groups and one far group. No embedded/new image or downloaded mesh.
+
+Inspected44 final portable/shared/Earth images. Nine focused tests and all six
+Khronos validations pass with zero errors/warnings. Scoped source/import/LOD/
+strict medium-fi checks and30-tick scene capture pass.292 map samples reconstruct
+within0.682mm. Removed the water-level slab under the arches and a diagonal
+foundation wall across the channel, moved an unsupported Gloriette chimney
+onto its roof and fixed its vertical contact, and joined the oval drive surface.
+Expanded roof coverage checks to all four main building footprints. Shared graphs
+read once and unload leaves zero live model geometry.
+
+Vertical sections, openings and water/bailey attachment remain original estimates.
+Detached Fairfax Courtyard/service buildings, parkland, moat/natural terrain,
+vegetation, interiors and full outer barbican archaeology excluded or separate.
+Synthetic regional houses and flat review ground are a style fixture. Actual
+lake/shore datum, terrain, facade fit, exterior fidelity and physical device
+performance remain pending. Medium-fi/geographic/fidelity pending; placement
+inactive, replacement off. Authored draft, not a completed landmark.
+
+### 2026-10-09 — N0305 Turku Castle draft
+
+Source: `places/u6/u6x/n0305_turku_castle`, original deterministic
+`turku-castle-model.mjs`. Exact-QID castle way466736288, two separately mapped
+sections,17 building parts, three courtyard surfaces and mapped passage routes
+preserve attributed original controls. Museum tower totals38/32m agree with OSM.
+Museum courtyard photographs, VisitTurku aerial and2023 city aerial guide copper
+main wings, exposed stone/plaster, elevated timber/gallery glass, white bailey,
+grey roofs, southeast round tower, annexes and three actual arched passages.
+
+Master 6844 triangles/825888 bytes;
+four levels 875/1656/6844/6844 triangles. Initial
+skyline+district 246316 bytes; closeup 733104 bytes before shared
+textures. Seven existing256-square graphs, linear tints, metric repeats,
+eight near groups and one far group. No embedded/new image or downloaded mesh.
+
+Inspected44 portable/shared/Earth images. Seven focused geometry tests and six
+Khronos validations pass with zero errors/warnings. Scoped source/import/LOD/
+strict medium-fi checks and30-tick scene capture pass.514 mapped samples round
+trip within0.666mm. Corrected skipped gallery glazing, two inverted plaster
+patches beneath low annexes, accumulated skyline simplification and round tower
+centering. Roof checks cover all17 parts; three routes, three courts and gallery
+clearance survive. Shared graphs read once; unload leaves zero live geometry.
+
+Other mapped heights include photographic estimates; original pitches, window/
+aperture sections, plaster patches, common courtyard datum and rocky west
+approach remain unverified. Nearby cottages/warehouses, park, natural rock,
+port development, vegetation, interiors, ramps and fine heraldry are excluded
+or separate. Synthetic northern houses are a style fixture. Actual site fit,
+continuous LOD switches and physical device performance pending. Medium-fi/
+geographic/fidelity pending; placement inactive, replacement off. Authored draft,
+not a completed landmark.
+
+### 2026-10-09 — N0306 Gediminas' Tower exterior
+
+Source: `places/u9/u99/n0306_gediminas_tower`; original deterministic
+`gediminas-tower-model.mjs`. Exact tower way24569542 and two actual upper
+parts90844046/90844047 preserve octagons and6/12m floor setbacks. Broader
+same-QID Upper Castle node325130082 excluded. Current three-storey tower,
+stone cladding, arched windows, courtyard door, open parapet terrace, glazed
+roof access and tricolor use official museum/tourism references. Historic
+fourth floor/telegraph house, palace/curtain ruins and hill remain separate.
+
+Master2492 triangles/303052bytes. Four levels510/1520/2468/2492;
+initial199064bytes; closeup256304bytes before five existing256-square
+shared graphs. Seven near groups/one skyline group; no embedded/new image.
+
+Inspected45 final portable/shared/Earth images. Seven focused tests and six
+Khronos validations pass, all0errors/warnings; scoped source/import/LOD/strict
+medium-fi audit passes. Fixed ground-penetrating door trim and cleared two
+detail cameras of synthetic neighbors. Open terrace,24 recessed apertures,
+eight parapet gaps and three original octagons survive the runtime levels.
+
+North-up footprint and actual semantic placement/terrain-reference path
+reviewed;27 WGS84 controls round trip within0.573mm. Only local asset loads,
+all five graphs read once and eviction leaves zero live model geometry.
+Horizontal placement/orientation, exterior and medium-fi approved with explicit
+mapper/photo estimates. Flat geographic fixture does not certify the rocky
+hill micrograde; local grading, interior access and physical-device timings
+remain unverified. This is an exterior visualization, not a measured survey.
+
+### 2026-10-09 — N0307 Ljubljana Castle exterior draft
+
+Source: `places/u2/u24/n0307_ljubljana_castle`, original deterministic
+`ljubljana-castle-model.mjs`. Exact-QID castle way5821190, relation2326426,
+courtyard hole174281987, fifteen mapped building parts and east passage/bridge
+retain attributed original controls. Current operator photographs and component
+descriptions guide the white clock/viewing tower, open terrace/two flags,
+round/pentagonal towers, brown roofed wings, chapel, four projecting bays,
+modern glazed halls, upper funicular shell and ticket-office shell.
+
+Master 5691 triangles/687424 bytes;
+four levels 932/2206/5691/5691 triangles. Initial
+skyline+district 287268 bytes; closeup 539272 bytes before shared
+textures. Six existing256-square graphs, linear tints, metric repeats,
+eight near groups and one flat far group. No embedded/new image or copied mesh.
+Street/closeup share bytes because the exterior already meets the street budget.
+
+Inspected44 final portable/shared/Earth images. Corrected long roof ridges
+rotated by uneven map vertex spacing; ridges now align to the longest mapped
+wall. Removed Float32 clip slivers and bounded distant outline simplification.
+Seven focused tests pass: all-part roof coverage, open court, real mapped
+passage through both walls, open clock terrace, identity/datum distinction,
+deterministic budgets/materials/GPU layouts and finite geometry. Six Khronos
+validations have zero errors/warnings. Scoped LOD/strict medium-fi budget checks
+and30-tick capture pass.297 map samples roundtrip within0.688mm. Shared graphs
+read once; unload leaves zero live model geometry.
+
+Operator viewing-platform400m altitude and1982 raise1.2m are not a surveyed
+relative tower height. Mapper component heights, original roof/opening/bay
+sections, provisional courtY6 and exterior-baseY0 require actual-site review.
+The raised entrance bridge floats over the flat review stage; real hill and
+bridge grades are unresolved. Synthetic continental houses are a style
+fixture. Interiors/exhibits, heraldry, furniture, vegetation, natural hill,
+surrounding city, funicular rails/vehicle and surveyed bridge piers are separate.
+Physical laptop/phone and continuous LOD measurements remain pending.
+Visual/shared rendering accepted; medium-fi/geographic/fidelity pending.
+Placement inactive/draft; footprint replacement off. Authored exterior draft,
+not a completed landmark.
+
+### 2026-10-09 — N0308 São Jorge exterior draft
+
+Source: `places/ey/eyc/n0308_castle_of_saint_george`, original deterministic
+`sao-jorge-castle-model.mjs`. Exact castle1382432568/Q636780, southern/eastern
+barbican27022973, current museum168984058, actual hillside tower591833135 and
+149-step link83388706 retain223 attributed coordinate samples. Operator current
+photos/diagram guide ten outer towers plus one central tower, two open courts,
+divider, two roofed north towers, periscope/flags, actual gates/bridges, museum
+envelope/current ruin arches and long hillside stair. Raw interior tower246379169
+has a conflicting São Lourenço label; its footprint guides the central tower,
+while the real hillside tower is kept independently identified.
+
+Master 6923 triangles/834820 bytes;
+four levels 996/3932/6923/6923 triangles. Initial skyline+district
+444324 bytes; closeup 651404 bytes before shared material cache.
+Five existing256-square graphs, metric repeats, linear tints, seven near groups
+and one flat far group. No embedded/new image, copied mesh or photo texture.
+Street/closeup share bytes because the complete current draft meets street caps.
+
+Inspected47 portable/shared/Earth frames. Fixed museum roof cells/gable edges,
+duplicate terrace caps, concave bridge-side fans and sloping hill-wall rails.
+Gate ray tests caught the lower parapet crossing its entrance; apertures now
+clip those rails as well. Filtered aperture operations to intersecting faces;
+district crenellations simplify and skyline omits tiny inner stairs/ruins.
+Nine focused tests, six zero-error/warning Khronos validations, targeted LOD/
+strict medium-fi budget checks and30-tick portable scene capture pass.
+223 map controls reconstruct within0.665mm. Shared graphs read once; unload
+leaves zero live model geometry and restores the ground.
+
+The operator's Observatory111.229m is absolute altitude; Palace Tower7.6by10m
+is approximate. Heights, outer-tower returns, roofs, gates, museum section and
+main courtY25 versus hillside towerY0 are original estimates. The main castle
+and museum float over flat test ground; actual hill/museum/bridge/stair common
+datum is unresolved. Synthetic Mediterranean houses are a style fixture.
+Museum interiors/exhibits, fine archaeology, statues/heraldry, furniture,
+vegetation, natural hill, adjacent neighborhood/church and whole city wall
+are separate or pending. Physical device/continuous LOD review remains pending.
+Visual/shared rendering accepted; medium-fi/geographic/fidelity pending.
+Placement inactive/draft; footprint replacement off. Authored exterior draft,
+not a completed landmark.
+
+### 2026-10-09 — N0308 terrain contact investigation
+
+Added separate17x17 research hill from289 attributed coarse Mapzen Terrarium
+samples, numeric PNG16 and source/height comparison records. DGT public
+viewer heights111–112m conflict with coarse values89.70m at the main
+anchor and64.24m at São Lourenço. The current research zero64.70m seats
+only the original court anchorY25; no flattening or retaining-wall invention.
+Museum samples descend14.33m under its flat model floor. Fine DGT MDT
+collections are described as private-access; authenticated download was
+not attempted. Source provenance and limits are retained in the bundle.
+
+All six model hashes unchanged, initial landmark download444324bytes.
+Ten focused checks pass, including289 decoded heights within1mm, and
+scoped runtime integrity check passes. Inspected47 refreshed renders and
+full-size gateway/court/hill/museum views. Source and Earth-rig hill
+captures expose buried entrances/court floor/lower barbican and floating
+northern/museum foundations. Raised entrance camera above the terrain;
+isolated shared-material geometry still contains the doorway/roof sections.
+Shared surfaces pass, portable visual acceptance returns to pending.
+Medium-fi/geographic/fidelity remain pending and placement stays inactive.
+The user’s unnamed missing-building section remains unidentified.

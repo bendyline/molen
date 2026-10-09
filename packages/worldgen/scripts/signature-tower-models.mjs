@@ -1,5 +1,7 @@
 import { acrocorinthStudy } from './acrocorinth-model.mjs';
 import { akershusStudy } from './akershus-fortress-model.mjs';
+import { aljaferiaStudy } from './aljaferia-palace-model.mjs';
+import { arundelStudy } from './arundel-castle-model.mjs';
 import { beaumarisStudy } from './beaumaris-castle-model.mjs';
 import { bratislavaStudy } from './bratislava-castle-model.mjs';
 import { budaStudy } from './buda-castle-model.mjs';
@@ -11,13 +13,18 @@ import { devinStudy } from './devin-castle-model.mjs';
 import { doverStudy } from './dover-castle-model.mjs';
 import { dublinStudy } from './dublin-castle-model.mjs';
 import { durhamStudy } from './durham-castle-model.mjs';
+import { egeskovStudy } from './egeskov-castle-model.mjs';
 import { elminaStudy } from './elmina-castle-model.mjs';
 import { eltzStudy } from './eltz-castle-model.mjs';
+import { gediminasStudy } from './gediminas-tower-model.mjs';
 import { gripsholmStudy } from './gripsholm-castle-model.mjs';
+import { haapsaluStudy } from './haapsalu-castle-model.mjs';
 import { heidelbergStudy } from './heidelberg-castle-model.mjs';
 import { hermannStudy } from './hermann-castle-model.mjs';
+import { hochosterwitzStudy } from './hochosterwitz-castle-model.mjs';
 import { hohensalzburgStudy } from './hohensalzburg-fortress-model.mjs';
 import { hohenzollernStudy } from './hohenzollern-castle-model.mjs';
+import { kalmarStudy } from './kalmar-castle-model.mjs';
 import { kamianetsStudy } from './kamianets-castle-model.mjs';
 import { kernaveStudy } from './kernave-landscape-model.mjs';
 import { khotynStudy } from './khotyn-fortress-model.mjs';
@@ -25,21 +32,31 @@ import { konopisteStudy } from './konopiste-castle-model.mjs';
 import { kromerizStudy } from './kromeriz-castle-model.mjs';
 import { ksiazStudy } from './ksiaz-castle-model.mjs';
 import { kuressaareStudy } from './kuressaare-castle-model.mjs';
+import { leedsStudy } from './leeds-castle-model.mjs';
+import { liechtensteinStudy } from './liechtenstein-castle-model.mjs';
+import { ljubljanaStudy } from './ljubljana-castle-model.mjs';
 import { lubartStudy } from './lubart-castle-model.mjs';
 import { miramareStudy } from './miramare-castle-model.mjs';
 import { nesvizhStudy } from './nesvizh-castle-model.mjs';
+import { nurembergStudy } from './nuremberg-castle-model.mjs';
+import { pembrokeStudy } from './pembroke-castle-model.mjs';
 import { rigaStudy } from './riga-castle-model.mjs';
+import { rumeliStudy } from './rumeli-fortress-model.mjs';
+import { saintMichaelStudy } from './saint-michaels-castle-model.mjs';
 import { salahStudy } from './salah-citadel-model.mjs';
+import { saoJorgeStudy } from './sao-jorge-castle-model.mjs';
 import { sforzaStudy } from './sforza-castle-model.mjs';
 import { shanhaiStudy } from './shanhai-pass-model.mjs';
 import { stirlingStudy } from './stirling-castle-model.mjs';
 import { swallowsNestStudy } from './swallows-nest-model.mjs';
 import { toompeaStudy } from './toompea-castle-model.mjs';
 import { trakaiStudy } from './trakai-castle-model.mjs';
+import { turkuStudy } from './turku-castle-model.mjs';
 import { vaduzStudy } from './vaduz-castle-model.mjs';
 import { vincennesStudy } from './vincennes-castle-model.mjs';
 import { warsawStudy } from './warsaw-royal-castle-model.mjs';
 import { warwickStudy } from './warwick-castle-model.mjs';
+import { wawelStudy } from './wawel-castle-model.mjs';
 /** Three individually researched tower reconstructions. All dimensions are meters. */
 
 import { alamutStudy } from './alamut-castle-model.mjs';
@@ -501,6 +518,23 @@ export const signatureTowers = [
   warwickStudy,
   ksiazStudy,
   devinStudy,
+  rumeliStudy,
+  aljaferiaStudy,
+  pembrokeStudy,
+  kalmarStudy,
+  nurembergStudy,
+  egeskovStudy,
+  wawelStudy,
+  saintMichaelStudy,
+  hochosterwitzStudy,
+  liechtensteinStudy,
+  arundelStudy,
+  leedsStudy,
+  turkuStudy,
+  gediminasStudy,
+  ljubljanaStudy,
+  saoJorgeStudy,
+  haapsaluStudy,
   durhamStudy,
   budaStudy,
   nesvizhStudy,

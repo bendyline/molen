@@ -2,6 +2,16 @@ import {
   buildAlamutRuntime,
   buildAlamutSkyline,
 } from '../../worldgen/scripts/alamut-castle-model.mjs';
+import {
+  aljaferiaSurfaces,
+  buildAljaferiaRuntime,
+  buildAljaferiaSkyline,
+} from '../../worldgen/scripts/aljaferia-palace-model.mjs';
+import {
+  arundelSurfaces,
+  buildArundelRuntime,
+  buildArundelSkyline,
+} from '../../worldgen/scripts/arundel-castle-model.mjs';
 import { buildBranRuntime, buildBranSkyline } from '../../worldgen/scripts/bran-castle-model.mjs';
 import {
   buildBratislavaRuntime,
@@ -18,9 +28,34 @@ import {
   buildDurhamSkyline,
 } from '../../worldgen/scripts/durham-castle-model.mjs';
 import {
+  buildEgeskovRuntime,
+  buildEgeskovSkyline,
+  egeskovSurfaces,
+} from '../../worldgen/scripts/egeskov-castle-model.mjs';
+import {
+  buildGediminasRuntime,
+  buildGediminasSkyline,
+  gediminasSurfaces,
+} from '../../worldgen/scripts/gediminas-tower-model.mjs';
+import {
+  buildHaapsaluRuntime,
+  buildHaapsaluSkyline,
+  haapsaluSurfaces,
+} from '../../worldgen/scripts/haapsalu-castle-model.mjs';
+import {
+  buildHochosterwitzRuntime,
+  buildHochosterwitzSkyline,
+  hochosterwitzSurfaces,
+} from '../../worldgen/scripts/hochosterwitz-castle-model.mjs';
+import {
   buildHohenzollernRuntime,
   buildHohenzollernSkyline,
 } from '../../worldgen/scripts/hohenzollern-castle-model.mjs';
+import {
+  buildKalmarRuntime,
+  buildKalmarSkyline,
+  kalmarSurfaces,
+} from '../../worldgen/scripts/kalmar-castle-model.mjs';
 import {
   buildKernaveRuntime,
   buildKernaveSkyline,
@@ -29,15 +64,55 @@ import {
   buildKhotynRuntime,
   buildKhotynSkyline,
 } from '../../worldgen/scripts/khotyn-fortress-model.mjs';
+import {
+  buildLeedsRuntime,
+  buildLeedsSkyline,
+  leedsSurfaces,
+} from '../../worldgen/scripts/leeds-castle-model.mjs';
+import {
+  buildLiechtensteinRuntime,
+  buildLiechtensteinSkyline,
+  liechtensteinSurfaces,
+} from '../../worldgen/scripts/liechtenstein-castle-model.mjs';
+import {
+  buildLjubljanaRuntime,
+  buildLjubljanaSkyline,
+  ljubljanaSurfaces,
+} from '../../worldgen/scripts/ljubljana-castle-model.mjs';
 import { buildMirRuntime, buildMirSkyline } from '../../worldgen/scripts/mir-castle-model.mjs';
 import {
   buildNesvizhRuntime,
   buildNesvizhSkyline,
 } from '../../worldgen/scripts/nesvizh-castle-model.mjs';
 import {
+  buildNurembergRuntime,
+  buildNurembergSkyline,
+  nurembergSurfaces,
+} from '../../worldgen/scripts/nuremberg-castle-model.mjs';
+import {
+  buildPembrokeRuntime,
+  buildPembrokeSkyline,
+  pembrokeSurfaces,
+} from '../../worldgen/scripts/pembroke-castle-model.mjs';
+import {
+  buildRumeliRuntime,
+  buildRumeliSkyline,
+  rumeliSurfaces,
+} from '../../worldgen/scripts/rumeli-fortress-model.mjs';
+import {
+  buildSaintMichaelRuntime,
+  buildSaintMichaelSkyline,
+  saintMichaelSurfaces,
+} from '../../worldgen/scripts/saint-michaels-castle-model.mjs';
+import {
   buildSalahRuntime,
   buildSalahSkyline,
 } from '../../worldgen/scripts/salah-citadel-model.mjs';
+import {
+  buildSaoJorgeRuntime,
+  buildSaoJorgeSkyline,
+  saoJorgeSurfaces,
+} from '../../worldgen/scripts/sao-jorge-castle-model.mjs';
 import {
   buildSforzaRuntime,
   buildSforzaSkyline,
@@ -51,9 +126,19 @@ import {
   buildStirlingSkyline,
 } from '../../worldgen/scripts/stirling-castle-model.mjs';
 import {
+  buildTurkuRuntime,
+  buildTurkuSkyline,
+  turkuSurfaces,
+} from '../../worldgen/scripts/turku-castle-model.mjs';
+import {
   buildWarsawRuntime,
   buildWarsawSkyline,
 } from '../../worldgen/scripts/warsaw-royal-castle-model.mjs';
+import {
+  buildWawelRuntime,
+  buildWawelSkyline,
+  wawelSurfaces,
+} from '../../worldgen/scripts/wawel-castle-model.mjs';
 /** Source-authored silhouettes for landmarks whose open crowns defeat automatic reduction. */
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
@@ -507,6 +592,197 @@ const recipes = {
     data: entranceData,
     errorMeters: 1,
     surfaces: ksiazEntranceSurfaces,
+  },
+  'molen.worldgen.structure.n0297_nuremberg_castle': {
+    build: buildNurembergSkyline,
+    levels: buildNurembergRuntime,
+    source: '../../worldgen/scripts/nuremberg-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: nurembergSurfaces,
+  },
+  'molen.worldgen.structure.n0298_egeskov_castle': {
+    build: buildEgeskovSkyline,
+    levels: buildEgeskovRuntime,
+    source: '../../worldgen/scripts/egeskov-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: egeskovSurfaces,
+  },
+  'molen.worldgen.structure.n0299_wawel_castle': {
+    build: buildWawelSkyline,
+    levels: buildWawelRuntime,
+    source: '../../worldgen/scripts/wawel-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2y/n0299_wawel_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: wawelSurfaces,
+  },
+  'molen.worldgen.structure.n0300_saint_michael_s_castle': {
+    build: buildSaintMichaelSkyline,
+    levels: buildSaintMichaelRuntime,
+    source: '../../worldgen/scripts/saint-michaels-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/surface-means.json',
+    ],
+    errorMeters: 6,
+    surfaces: saintMichaelSurfaces,
+  },
+  'molen.worldgen.structure.n0301_hochosterwitz_castle': {
+    build: buildHochosterwitzSkyline,
+    levels: buildHochosterwitzRuntime,
+    source: '../../worldgen/scripts/hochosterwitz-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/surface-means.json',
+      '../../../content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/terrain-samples.json',
+    ],
+    errorMeters: 6,
+    surfaces: hochosterwitzSurfaces,
+  },
+  'molen.worldgen.structure.n0302_liechtenstein_castle': {
+    build: buildLiechtensteinSkyline,
+    levels: buildLiechtensteinRuntime,
+    source: '../../worldgen/scripts/liechtenstein-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/surface-means.json',
+    ],
+    errorMeters: 2.5,
+    surfaces: liechtensteinSurfaces,
+  },
+  'molen.worldgen.structure.n0303_arundel_castle': {
+    build: buildArundelSkyline,
+    levels: buildArundelRuntime,
+    source: '../../worldgen/scripts/arundel-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gcp/n0303_arundel_castle/surface-means.json',
+    ],
+    errorMeters: 5,
+    surfaces: arundelSurfaces,
+  },
+  'molen.worldgen.structure.n0304_leeds_castle': {
+    build: buildLeedsSkyline,
+    levels: buildLeedsRuntime,
+    source: '../../worldgen/scripts/leeds-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u1/u10/n0304_leeds_castle/surface-means.json',
+    ],
+    errorMeters: 2,
+    surfaces: leedsSurfaces,
+  },
+  'molen.worldgen.structure.n0305_turku_castle': {
+    build: buildTurkuSkyline,
+    levels: buildTurkuRuntime,
+    source: '../../worldgen/scripts/turku-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u6x/n0305_turku_castle/surface-means.json',
+    ],
+    errorMeters: 2,
+    surfaces: turkuSurfaces,
+  },
+  'molen.worldgen.structure.n0306_gediminas_tower': {
+    build: buildGediminasSkyline,
+    levels: buildGediminasRuntime,
+    source: '../../worldgen/scripts/gediminas-tower-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/map-frame.json',
+      '../../../content/worldgen/source/places/u9/u99/n0306_gediminas_tower/surface-means.json',
+    ],
+    errorMeters: 0.5,
+    surfaces: gediminasSurfaces,
+  },
+  'molen.worldgen.structure.n0307_ljubljana_castle': {
+    build: buildLjubljanaSkyline,
+    levels: buildLjubljanaRuntime,
+    source: '../../worldgen/scripts/ljubljana-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: ljubljanaSurfaces,
+  },
+  'molen.worldgen.structure.n0308_castle_of_saint_george': {
+    build: buildSaoJorgeSkyline,
+    levels: buildSaoJorgeRuntime,
+    source: '../../worldgen/scripts/sao-jorge-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/map-frame.json',
+      '../../../content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: saoJorgeSurfaces,
+  },
+  'molen.worldgen.structure.n0309_haapsalu_castle': {
+    build: buildHaapsaluSkyline,
+    levels: buildHaapsaluRuntime,
+    source: '../../worldgen/scripts/haapsalu-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/map-frame.json',
+      '../../../content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: haapsaluSurfaces,
+  },
+  'molen.worldgen.structure.n0296_kalmar_castle': {
+    build: buildKalmarSkyline,
+    levels: buildKalmarRuntime,
+    source: '../../worldgen/scripts/kalmar-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/map-frame.json',
+      '../../../content/worldgen/source/places/u6/u65/n0296_kalmar_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: kalmarSurfaces,
+  },
+  'molen.worldgen.structure.n0295_pembroke_castle': {
+    build: buildPembrokeSkyline,
+    levels: buildPembrokeRuntime,
+    source: '../../worldgen/scripts/pembroke-castle-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/map-frame.json',
+      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/relief-grid.json',
+      '../../../content/worldgen/source/places/gc/gch/n0295_pembroke_castle/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: pembrokeSurfaces,
+  },
+  'molen.worldgen.structure.n0294_aljaferia': {
+    build: buildAljaferiaSkyline,
+    levels: buildAljaferiaRuntime,
+    source: '../../worldgen/scripts/aljaferia-palace-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/map-frame.json',
+      '../../../content/worldgen/source/places/ez/ezr/n0294_aljaferia/surface-means.json',
+    ],
+    errorMeters: 1,
+    surfaces: aljaferiaSurfaces,
+  },
+  'molen.worldgen.structure.n0293_rumeli_hisar': {
+    build: buildRumeliSkyline,
+    levels: buildRumeliRuntime,
+    source: '../../worldgen/scripts/rumeli-fortress-model.mjs',
+    data: [
+      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/map-frame.json',
+      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/relief-grid.json',
+      '../../../content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/surface-means.json',
+      '../../worldgen/scripts/authored-wall-openings.mjs',
+    ],
+    errorMeters: 2,
+    surfaces: rumeliSurfaces,
   },
   'molen.worldgen.structure.n0292_devin_castle': {
     build: buildDevinSkyline,

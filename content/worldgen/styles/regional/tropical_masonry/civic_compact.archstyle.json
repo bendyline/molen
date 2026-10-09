@@ -1,0 +1,390 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.regional.tropical_masonry.civic.compact",
+  "title": "Warm-climate masonry: civic: compact facade",
+  "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "school",
+      "kindergarten",
+      "hospital",
+      "clinic",
+      "university",
+      "public",
+      "civic",
+      "government"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 2.85,
+      "max": 3.1
+    },
+    "heightFallback": [
+      {
+        "when": {
+          "class": [
+            "hospital",
+            "university"
+          ]
+        },
+        "levels": {
+          "min": 2,
+          "max": 4
+        }
+      },
+      {
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    ],
+    "groundFit": "platform-average",
+    "foundation": {
+      "height": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 18,
+      "minWingArea": 40,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [
+      {
+        "aboveHeight": 40,
+        "inset": 3
+      }
+    ],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0,
+      "max": 0.096
+    },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": {
+          "height": {
+            "min": 0.298,
+            "max": 0.468
+          },
+          "thickness": 0.25
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 2.58,
+        "max": 2.795
+      },
+      "cornerMargin": 0.8
+    },
+    "windows": {
+      "style": "punched",
+      "width": {
+        "min": 1.233,
+        "max": 1.402
+      },
+      "height": {
+        "min": 1.391,
+        "max": 1.659
+      },
+      "sill": {
+        "min": 0.8,
+        "max": 0.95
+      },
+      "probabilityPerBay": 0.845,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.4,
+          "max": 0.7
+        }
+      },
+      "floorLines": true,
+      "cornice": {
+        "height": 0.3
+      }
+    },
+    "details": {
+      "entrance": {
+        "width": 1.9,
+        "height": 2.5,
+        "style": "double"
+      },
+      "awnings": {
+        "depth": 0.51
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stucco",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        3,
+        3
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "palette:#ffffff",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.concrete_plain",
+          "weight": 1
+        }
+      ],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        2,
+        2
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_grid",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#cbc4b6",
+          "weight": 3,
+          "name": "concrete"
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 2,
+          "name": "warm panel"
+        },
+        {
+          "color": "#a8634b",
+          "weight": 2,
+          "name": "brick"
+        },
+        {
+          "color": "#e3ded3",
+          "weight": 2,
+          "name": "light panel"
+        },
+        {
+          "color": "#7d93a8",
+          "weight": 1,
+          "name": "steel blue"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.06
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#a9a59c",
+          "weight": 3,
+          "name": "gravel"
+        },
+        {
+          "color": "#c4c0b6",
+          "weight": 1,
+          "name": "membrane"
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.04
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#3b3e42",
+          "weight": 3
+        },
+        {
+          "color": "#7c7d7c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0,
+        "lightness": 0.04
+      }
+    },
+    "foundation": {
+      "entries": [
+        {
+          "color": "#8f8c86",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.04
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#c4caba",
+          "weight": 1
+        },
+        {
+          "color": "#d6b7a3",
+          "weight": 1
+        },
+        {
+          "color": "#c3cbd0",
+          "weight": 1
+        },
+        {
+          "color": "#e0d6bd",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#bab8a9",
+          "weight": 1
+        },
+        {
+          "color": "#a9aaa0",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_trim": {
+      "entries": [
+        {
+          "color": "#dcd8cc",
+          "weight": 1
+        },
+        {
+          "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
+      },
+      {
+        "minTier": 2,
+        "keep": [
+          "roof-shape"
+        ]
+      }
+    ]
+  }
+}

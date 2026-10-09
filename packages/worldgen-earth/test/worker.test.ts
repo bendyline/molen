@@ -162,10 +162,26 @@ describe('worldgen worker protocol', () => {
           scatters: [
             {
               ...source,
-              rules: source.rules.map((rule) => ({
-                ...rule,
-                populations: rule.populations.map((p) => ({ ...p, model: 'test.plant' })),
-              })),
+              rules: source.rules.flatMap((rule) => [
+                {
+                  ...rule,
+                  populations: rule.populations.map((p) => ({ ...p, model: 'test.plant' })),
+                },
+                {
+                  ...rule,
+                  id: `${rule.id}_brush`,
+                  layer: 'understory' as const,
+                  clustering: {
+                    scale: 48,
+                    threshold: 0.2,
+                    contrast: 2,
+                    seedOffset: 7,
+                    sharedSeed: 71,
+                    detailScale: 5,
+                  },
+                  populations: rule.populations.map((p) => ({ ...p, model: 'builtin:shrub' })),
+                },
+              ]),
             },
           ],
         },
@@ -176,6 +192,7 @@ describe('worldgen worker protocol', () => {
       geom: { ...geom, originZ: -6_000_000 },
       ground,
       resolution: 65,
+      budgets: { maxUnderstoryInstances: 100, maxUnderstoryModels: 1 },
       features: { buildings: true, scatter: true },
     };
     const regions = createRegionResolver(atlas, { metersPerUnit: 1 });
@@ -192,6 +209,7 @@ describe('worldgen worker protocol', () => {
     });
     const worker = await bridge.generate(request, new AbortController().signal);
     expect(direct?.placements.length).toBeGreaterThan(0);
+    expect(direct?.placements.some((set) => set.modelRef === 'builtin:shrub')).toBe(true);
     expect(
       direct?.placements.some(
         (set) => set.modelRef === (vegetationMonth === 1 ? 'test.plant.winter' : 'test.plant'),

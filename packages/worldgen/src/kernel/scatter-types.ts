@@ -28,6 +28,9 @@ export interface ScatterAltitude {
 export interface ScatterPopulation {
   /** Asset id (pack or imported namespace) or `builtin:<name>`. */
   model: string;
+  /** Interchangeable forms, sampled independently of species and placement. Under the model
+   * budget, unretained variants use model. All forms must suit the same habitat/scale bounds. */
+  variants?: Array<{ model: string; weight: number }>;
   weight: number;
   scale: NumberRange;
   /** Independent multiplier of X/Z scale (crown width/bushiness); defaults to 1. */
@@ -47,6 +50,10 @@ export interface ScatterClustering {
   /** Steepness of the density ramp above the threshold. */
   contrast: number;
   seedOffset: number;
+  /** Optional common density field across layers of this document. Placement seeds stay independent. */
+  sharedSeed?: number;
+  /** Smaller wavelength for clumps inside the broad density patches, meters. */
+  detailScale?: number;
 }
 
 export interface ScatterRule {
@@ -65,8 +72,8 @@ export interface ScatterRule {
   avoid?: Partial<ScatterAvoid>;
   populations: ScatterPopulation[];
   lod?: Partial<ScatterLod>;
-  /** `canopy` (default) shares the batch budget; `groundcover` has its own (see budgets). */
-  layer?: 'canopy' | 'groundcover';
+  /** Trees, shoulder-height brush, and low ground detail have independent budget pools. */
+  layer?: 'canopy' | 'understory' | 'groundcover';
 }
 
 export interface ScatterDoc {

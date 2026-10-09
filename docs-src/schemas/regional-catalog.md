@@ -563,6 +563,17 @@ Composable ecological and architectural channels with explicit dependency versio
                       "minimum": -9007199254740991,
                       "maximum": 9007199254740991,
                       "description": "Decorrelates rules sharing a class."
+                    },
+                    "sharedSeed": {
+                      "type": "integer",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991,
+                      "description": "Shared density field across layers; does not change placement seeds."
+                    },
+                    "detailScale": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "description": "Wavelength of smaller clumps inside density patches, meters."
                     }
                   },
                   "required": [
@@ -576,9 +587,10 @@ Composable ecological and architectural channels with explicit dependency versio
                   "type": "string",
                   "enum": [
                     "canopy",
+                    "understory",
                     "groundcover"
                   ],
-                  "description": "Budget pool: canopy (trees, shrubs, rocks) shares the batch instance and model caps; groundcover (knee-high near detail such as tussocks and ferns) has its own, so it never thins the canopy."
+                  "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
                 },
                 "slopeMax": {
                   "type": "number",
@@ -635,6 +647,31 @@ Composable ecological and architectural channels with explicit dependency versio
                         "minimum": 0,
                         "maximum": 1000,
                         "description": "Relative weight among sibling entries; 0 disables the entry."
+                      },
+                      "variants": {
+                        "minItems": 1,
+                        "maxItems": 16,
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "model": {
+                              "type": "string",
+                              "pattern": "^(builtin:[a-z][a-z0-9_.]*|[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+)$"
+                            },
+                            "weight": {
+                              "type": "number",
+                              "exclusiveMinimum": 0,
+                              "maximum": 1000
+                            }
+                          },
+                          "required": [
+                            "model",
+                            "weight"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "description": "Interchangeable model forms sampled independently of species. Unretained forms fall back to model under the model budget; all must share habitat and scale bounds."
                       },
                       "scale": {
                         "type": "object",
@@ -825,7 +862,13 @@ Composable ecological and architectural channels with explicit dependency versio
               "fern",
               "reed",
               "mangrove",
-              "deadwood"
+              "deadwood",
+              "shrub",
+              "thicket",
+              "forb",
+              "vine",
+              "mat",
+              "fallenwood"
             ]
           },
           "form": {
@@ -870,6 +913,18 @@ Composable ecological and architectural channels with explicit dependency versio
             "pattern": "^#[0-9a-fA-F]{6}$"
           },
           "bark": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "shapeSeed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 65535
+          },
+          "patch": {
+            "type": "boolean"
+          },
+          "climber": {
             "type": "string",
             "pattern": "^#[0-9a-fA-F]{6}$"
           },

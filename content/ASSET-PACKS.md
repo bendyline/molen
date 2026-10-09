@@ -89,6 +89,8 @@ For an individual structure, generate and import only its ID. For example:
 node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0228
 # Only when a new source bundle was added:
 node packages/worldgen/scripts/index-structure-sources.mjs
+# When a source bundle or model recipe was added, before import and review captures:
+node packages/worldgen/scripts/index-structure-authoring.mjs
 node packages/worldgen/scripts/import-next-1000-models.mjs --ids=N0228
 node packages/tooling/scripts/generate-landmark-lods.mjs --ids=N0228
 ```
@@ -98,6 +100,8 @@ hashes. During geometry iteration, inspect the silhouette and affected detail vi
 model's geometry is stable, capture and inspect its complete required portable/shared-material
 review set. Re-render when geometry, materials, placement or capture behavior changes; do not
 re-render unchanged models. Placement changes additionally require a geographic fit review.
+Register new recipes before the final captures: review input hashes include the recipe files
+listed in the authoring index, so adding that registration later invalidates those reviews.
 
 Refresh the catalog, galleries and aggregate texture inventory once per meaningful batch.
 After the selected generators and imports have run, a local lock checkpoint can use

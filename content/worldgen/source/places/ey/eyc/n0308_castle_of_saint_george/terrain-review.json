@@ -1,0 +1,291 @@
+{
+  "format": "molen/structure-terrain-review@1",
+  "candidateId": "N0308",
+  "status": "pending",
+  "anchor": [
+    -9.133459014,
+    38.713919369
+  ],
+  "sourceDocumentation": "https://github.com/tilezen/joerd/blob/master/docs/data-sources.md",
+  "license": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+  "attribution": "Mapzen Terrain Tiles; European Environment Agency / European Commission EU-DEM and other source contributors",
+  "sources": [
+    {
+      "name": "Mapzen coarse mixed-source Terrarium elevation",
+      "grid": "relief-grid.json",
+      "tileUrls": [
+        "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/14/7776/6278.png"
+      ]
+    },
+    {
+      "name": "DGT public point-cloud viewer position heights",
+      "url": "https://portugal3d.dgterritorio.gov.pt/continente",
+      "licenseReference": "https://www.dgterritorio.gov.pt/dados-abertos",
+      "attribution": "Direção-Geral do Território",
+      "interpretation": "Unspecified surface/resolution and rounded integer heights. Nearly constant111–112m across courts, towers, museum and downhill tower; not accepted as bare-earth controls.",
+      "samples": [
+        {
+          "id": "castle-anchor",
+          "point": [
+            0,
+            0
+          ],
+          "coordinate": [
+            -9.133459014,
+            38.713919369
+          ],
+          "terrariumElevation": 89.7,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.713919369,-9.133459014?location=portugal",
+          "responseHash": "sha256:5ce0fffae583cdee6859af00a153b7d9e03d276353a3bde6931aa658d80426a7"
+        },
+        {
+          "id": "west-court",
+          "point": [
+            -22,
+            -5
+          ],
+          "coordinate": [
+            -9.13371229454713,
+            38.71396428476421
+          ],
+          "terrariumElevation": 86.82,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71396428476421,-9.13371229454713?location=portugal",
+          "responseHash": "sha256:8dcd89a52bfbf920c146b08a9d7cbc85a6509ef375ad9a6703d24422460a47c3"
+        },
+        {
+          "id": "east-court",
+          "point": [
+            15,
+            -5
+          ],
+          "coordinate": [
+            -9.133286322717865,
+            38.71396428476421
+          ],
+          "terrariumElevation": 89.18,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71396428476421,-9.133286322717865?location=portugal",
+          "responseHash": "sha256:9c899623f3ae8d238db3734c89739978f34834af0bdbc33f6082c35a798f7502"
+        },
+        {
+          "id": "palace-tower",
+          "point": [
+            -36,
+            25
+          ],
+          "coordinate": [
+            -9.133873473077124,
+            38.71369479017897
+          ],
+          "terrariumElevation": 90.21,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71369479017897,-9.133873473077124?location=portugal",
+          "responseHash": "sha256:3bb5b97af829dce7f888e65ab1dbdd6591e3e3bf40e1235ddb049090ea4a902c"
+        },
+        {
+          "id": "observatory-tower",
+          "point": [
+            27,
+            25
+          ],
+          "coordinate": [
+            -9.133148169692157,
+            38.71369479017897
+          ],
+          "terrariumElevation": 94.35,
+          "viewerElevation": 110,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71369479017897,-9.133148169692157?location=portugal",
+          "responseHash": "sha256:50bdeaf99e6887b201e066b7a8bdf408035d30f38fd9fe0fef897387edd80141"
+        },
+        {
+          "id": "northwest-tower",
+          "point": [
+            -26,
+            -30
+          ],
+          "coordinate": [
+            -9.1337583455557,
+            38.714188863585235
+          ],
+          "terrariumElevation": 79.92,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.714188863585235,-9.1337583455557?location=portugal",
+          "responseHash": "sha256:0b19a4f8f06f9ed28db478a667de62e6a2087e6158064ca3756f347a9d45e2a1"
+        },
+        {
+          "id": "north-east",
+          "point": [
+            30,
+            -25
+          ],
+          "coordinate": [
+            -9.13311363143573,
+            38.714143947821036
+          ],
+          "terrariumElevation": 84.1,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.714143947821036,-9.13311363143573?location=portugal",
+          "responseHash": "sha256:11447e851f73cac352dd92d6d4edf8308886bdd2b0753eeec9b06e1f237d1706"
+        },
+        {
+          "id": "barbican-south",
+          "point": [
+            -6,
+            37
+          ],
+          "coordinate": [
+            -9.133528090512854,
+            38.71358699234488
+          ],
+          "terrariumElevation": 94.72,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71358699234488,-9.133528090512854?location=portugal",
+          "responseHash": "sha256:32124d38691bc8c727758b5c7bc89d31b6ab5bafc2eb8100c68dfb47b494e185"
+        },
+        {
+          "id": "barbican-east",
+          "point": [
+            36,
+            20
+          ],
+          "coordinate": [
+            -9.133044554922876,
+            38.713739705943176
+          ],
+          "terrariumElevation": 93.44,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.713739705943176,-9.133044554922876?location=portugal",
+          "responseHash": "sha256:2eecdef4320c772c176118015ea7bf6dc3a18b63708ec1cec12091c8f7c4c0f6"
+        },
+        {
+          "id": "museum-north",
+          "point": [
+            -42,
+            50
+          ],
+          "coordinate": [
+            -9.133942549589976,
+            38.713470211357944
+          ],
+          "terrariumElevation": 90.2,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.713470211357944,-9.133942549589976?location=portugal",
+          "responseHash": "sha256:ea6e919fd1fd3e0c376d8ecb4c5457260b0b66fbbedbdf969c573e2667630a14"
+        },
+        {
+          "id": "museum-centre",
+          "point": [
+            -50,
+            95
+          ],
+          "coordinate": [
+            -9.134034651607115,
+            38.71306596948009
+          ],
+          "terrariumElevation": 84.51,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71306596948009,-9.134034651607115?location=portugal",
+          "responseHash": "sha256:0372b1c966450708b57edcdc423850fabddea2ac6cd1cf1b5bbe1e911d534cf3"
+        },
+        {
+          "id": "museum-south",
+          "point": [
+            -54,
+            138
+          ],
+          "coordinate": [
+            -9.134080702615684,
+            38.712679693907916
+          ],
+          "terrariumElevation": 75.87,
+          "viewerElevation": 112,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.712679693907916,-9.134080702615684?location=portugal",
+          "responseHash": "sha256:93eabad4ef9b20167f4d5d58c1753a8aed8f2342b06628a01979c581b26d851c"
+        },
+        {
+          "id": "sao-lourenco-tower",
+          "point": [
+            -65,
+            -71
+          ],
+          "coordinate": [
+            -9.13420734288925,
+            38.71455717285173
+          ],
+          "terrariumElevation": 64.24,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71455717285173,-9.13420734288925?location=portugal",
+          "responseHash": "sha256:5a190a64115129f2c66d9503006562ed5ea120978a2706be02e19dc32cc637ed"
+        },
+        {
+          "id": "north-slope",
+          "point": [
+            0,
+            -85
+          ],
+          "coordinate": [
+            -9.133459014,
+            38.7146829369915
+          ],
+          "terrariumElevation": 63.72,
+          "viewerElevation": 111,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.7146829369915,-9.133459014?location=portugal",
+          "responseHash": "sha256:805beb190293ad1401332760c9d27b17f8eaa20b2451502bf2eb800cacc17694"
+        },
+        {
+          "id": "south-slope",
+          "point": [
+            0,
+            185
+          ],
+          "coordinate": [
+            -9.133459014,
+            38.71225748572438
+          ],
+          "terrariumElevation": 76.24,
+          "viewerElevation": 106,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.71225748572438,-9.133459014?location=portugal",
+          "responseHash": "sha256:8aa85cffe2e6bac0c6da5bf833e6e1d2fe9bfe19bae83bc71b585237277e9d09"
+        },
+        {
+          "id": "west-slope",
+          "point": [
+            -150,
+            50
+          ],
+          "coordinate": [
+            -9.135185926821347,
+            38.713470211357944
+          ],
+          "terrariumElevation": 58.45,
+          "viewerElevation": 76,
+          "url": "https://portugal3d.dgterritorio.gov.pt/search/position/38.713470211357944,-9.135185926821347?location=portugal",
+          "responseHash": "sha256:103367fc91b161a976eec3ef5bf2e54a2b4684f1ecbca5870f69ab5d9468368c"
+        }
+      ]
+    }
+  ],
+  "preview": {
+    "descriptor": "qa-terrain.json",
+    "heightmap": "qa-heightmap.png",
+    "heightRangeMeters": {
+      "min": -31,
+      "max": 32
+    },
+    "datumElevationMeters": 64.7,
+    "normalization": "Subtract the coarse DEM value at the castle anchor minus the existing provisional courtY25. This seats only the horizontal anchor at the proposed court height; no terrace/footing edits, surface offsets or certified absolute datum. Architecture has not been changed to match this research hill.",
+    "samples": 289,
+    "gridSpacingMeters": 25,
+    "correctionsApplied": []
+  },
+  "observations": [
+    "Coarse DEM anchor89.70m, hillside tower64.24m: relative drop25.46m agrees approximately with provisional court25 versus hillside tower0, but does not establish footings.",
+    "Castle corners span coarse79.92–94.35m while architectural court is flat. The main walls/towers can still float or embed on this smooth DEM.",
+    "Museum-north90.20m versus museum-south75.87m:14.33m descent under a single modeled floor. The real ledge/retaining section or independent wing levels must be resolved; do not flatten the ground to disguise this.",
+    "DGT public viewer query111–112m differs substantially from the coarse DEM and the historical operator observatory111.229m absolute altitude. These are separate observations; no source is silently converted into a relative tower height.",
+    "DGT public catalog exposes MDT50cm/2m descriptions but marks the raster collections access private and license proprietary. Bulk acquisition was not attempted. Official open-data policy refers to CC-BY4.0; authenticated download/license clarification may provide the required precise ground controls."
+  ],
+  "limitations": "Research preview only.25m interpolated sample spacing is not a25m survey; underlying mixed DEM sources are coarser and may miss terraces/cliffs/buildings. Hill stays separate from all runtime GLBs. No local ground flattening or added retaining walls. Geographic/fidelity approval and physical terrain alignment remain pending."
+}

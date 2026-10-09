@@ -34,7 +34,10 @@ import {
 } from '../../../packages/worldgen-earth/dist/kernel.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const out = resolve(root, '.artifacts/regional-world/landscapes');
+const out = resolve(
+  root,
+  `.artifacts/regional-world/${process.argv.includes('--brush') ? 'landscape-brush' : process.argv.includes('--diversity') ? 'landscape-diversity' : 'landscapes'}`,
+);
 await mkdir(out, { recursive: true });
 const json = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
 const pack = await resolveStylePackDocuments(

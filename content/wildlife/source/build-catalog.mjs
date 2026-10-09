@@ -1,5 +1,6 @@
 /** Procedural body recipes and conservative habitat priors; source-derived ranges are separate. */
 import { readFile, writeFile } from 'node:fs/promises';
+import { animalVariants } from './animal-variants.mjs';
 
 const root = new URL('../', import.meta.url);
 const animals = [];
@@ -443,6 +444,20 @@ animal(
   ['meadow', 'grass', 'park'],
   { motion: 'fly', clearance: 0.6, speed: 0.2, roam: 3, rest: 0, density: 30, margin: 0.05 },
 );
+const baseAnimals = [...animals];
+animals.splice(0, animals.length, ...baseAnimals.flatMap(animalVariants));
+const baseRules = [...rules];
+rules.splice(
+  0,
+  rules.length,
+  ...baseRules.flatMap((rule) =>
+    ['', '.compact', '.rangy'].map((suffix) => ({
+      ...rule,
+      animal: `${rule.animal}${suffix}`,
+      density: rule.density / 3,
+    })),
+  ),
+);
 const doc = {
   format: 'molen/regional-catalog@1',
   id: 'molen.wildlife.regional',
@@ -472,5 +487,5 @@ if (process.argv.includes('--check')) {
     throw new Error('Wildlife catalog is stale; run build-catalog.mjs');
 } else await writeFile(path, text);
 console.log(
-  `${animals.length} wildlife recipes, ${animals.filter((animal) => animal.taxon).length} named mammal taxa`,
+  `${animals.length} wildlife recipes, ${new Set(animals.filter((animal) => animal.taxon).map((animal) => animal.taxon)).size} named mammal taxa`,
 );

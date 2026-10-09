@@ -87,6 +87,7 @@ const notInputs = new Set([
   'qa.json',
   'capture-report.json',
   'shared-capture-report.json',
+  'medium-fi-report.json',
   'placement-report.json',
   'import-report.json',
 ]);

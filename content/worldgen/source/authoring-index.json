@@ -83,6 +83,8 @@
         "packages/worldgen/scripts/acrocorinth-model.mjs",
         "packages/worldgen/scripts/akershus-fortress-model.mjs",
         "packages/worldgen/scripts/alamut-castle-model.mjs",
+        "packages/worldgen/scripts/aljaferia-palace-model.mjs",
+        "packages/worldgen/scripts/arundel-castle-model.mjs",
         "packages/worldgen/scripts/authored-glb-assembly.mjs",
         "packages/worldgen/scripts/authored-structure-mesh.mjs",
         "packages/worldgen/scripts/authored-wall-openings.mjs",
@@ -103,22 +105,27 @@
         "packages/worldgen/scripts/dublin-castle-model.mjs",
         "packages/worldgen/scripts/durham-castle-model.mjs",
         "packages/worldgen/scripts/edinburgh-castle-model.mjs",
+        "packages/worldgen/scripts/egeskov-castle-model.mjs",
         "packages/worldgen/scripts/elmina-castle-model.mjs",
         "packages/worldgen/scripts/eltz-castle-model.mjs",
         "packages/worldgen/scripts/embed-graph-fallbacks.mjs",
         "packages/worldgen/scripts/evidence-text-hash.mjs",
         "packages/worldgen/scripts/first-canadian-place-model.mjs",
         "packages/worldgen/scripts/four-world-trade-center-model.mjs",
+        "packages/worldgen/scripts/gediminas-tower-model.mjs",
         "packages/worldgen/scripts/generate-signature-towers.mjs",
         "packages/worldgen/scripts/gran-torre-costanera-model.mjs",
         "packages/worldgen/scripts/gripsholm-castle-model.mjs",
+        "packages/worldgen/scripts/haapsalu-castle-model.mjs",
         "packages/worldgen/scripts/heidelberg-castle-model.mjs",
         "packages/worldgen/scripts/hermann-castle-model.mjs",
+        "packages/worldgen/scripts/hochosterwitz-castle-model.mjs",
         "packages/worldgen/scripts/hofburg-palace-model.mjs",
         "packages/worldgen/scripts/hohensalzburg-fortress-model.mjs",
         "packages/worldgen/scripts/hohenzollern-castle-model.mjs",
         "packages/worldgen/scripts/install-deterministic-math.mjs",
         "packages/worldgen/scripts/istanbul-sapphire-model.mjs",
+        "packages/worldgen/scripts/kalmar-castle-model.mjs",
         "packages/worldgen/scripts/kamianets-castle-model.mjs",
         "packages/worldgen/scripts/karlstejn-castle-model.mjs",
         "packages/worldgen/scripts/kernave-landscape-model.mjs",
@@ -128,6 +135,9 @@
         "packages/worldgen/scripts/kronborg-castle-model.mjs",
         "packages/worldgen/scripts/ksiaz-castle-model.mjs",
         "packages/worldgen/scripts/kuressaare-castle-model.mjs",
+        "packages/worldgen/scripts/leeds-castle-model.mjs",
+        "packages/worldgen/scripts/liechtenstein-castle-model.mjs",
+        "packages/worldgen/scripts/ljubljana-castle-model.mjs",
         "packages/worldgen/scripts/lubart-castle-model.mjs",
         "packages/worldgen/scripts/malbork-castle-model.mjs",
         "packages/worldgen/scripts/millennium-tower-model.mjs",
@@ -138,11 +148,16 @@
         "packages/worldgen/scripts/nesvizh-castle-model.mjs",
         "packages/worldgen/scripts/neuschwanstein-castle-model.mjs",
         "packages/worldgen/scripts/nina-tower-model.mjs",
+        "packages/worldgen/scripts/nuremberg-castle-model.mjs",
         "packages/worldgen/scripts/one-canada-square-model.mjs",
+        "packages/worldgen/scripts/pembroke-castle-model.mjs",
         "packages/worldgen/scripts/prague-castle-model.mjs",
         "packages/worldgen/scripts/rembrandt-tower-model.mjs",
         "packages/worldgen/scripts/riga-castle-model.mjs",
+        "packages/worldgen/scripts/rumeli-fortress-model.mjs",
+        "packages/worldgen/scripts/saint-michaels-castle-model.mjs",
         "packages/worldgen/scripts/salah-citadel-model.mjs",
+        "packages/worldgen/scripts/sao-jorge-castle-model.mjs",
         "packages/worldgen/scripts/sforza-castle-model.mjs",
         "packages/worldgen/scripts/shanhai-pass-model.mjs",
         "packages/worldgen/scripts/shard-tower-model.mjs",
@@ -185,12 +200,14 @@
         "packages/worldgen/scripts/takht-e-soleyman-model.mjs",
         "packages/worldgen/scripts/toompea-castle-model.mjs",
         "packages/worldgen/scripts/trakai-castle-model.mjs",
+        "packages/worldgen/scripts/turku-castle-model.mjs",
         "packages/worldgen/scripts/two-prudential-plaza-model.mjs",
         "packages/worldgen/scripts/vaduz-castle-model.mjs",
         "packages/worldgen/scripts/vincennes-castle-model.mjs",
         "packages/worldgen/scripts/warsaw-royal-castle-model.mjs",
         "packages/worldgen/scripts/wartburg-castle-model.mjs",
         "packages/worldgen/scripts/warwick-castle-model.mjs",
+        "packages/worldgen/scripts/wawel-castle-model.mjs",
         "packages/worldgen/scripts/windsor-castle-model.mjs"
       ]
     },
@@ -6788,6 +6805,363 @@
       ],
       "recipes": [
         "packages/worldgen/scripts/devin-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0293_rumeli_hisar",
+      "candidateId": "N0293",
+      "title": "Rumeli Hisarı",
+      "sourceBundle": "content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0293_rumeli_hisar",
+          "output": "assets/places/sx/sxk/n0293_rumeli_hisar/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:1d0258086ab366cac08fea36dc2ab34c408cb794cf6c5d645da9f5384c73090c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/rumeli-fortress-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0294_aljaferia",
+      "candidateId": "N0294",
+      "title": "Aljafería",
+      "sourceBundle": "content/worldgen/source/places/ez/ezr/n0294_aljaferia/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0294_aljaferia",
+          "output": "assets/places/ez/ezr/n0294_aljaferia/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:81270adc954535bfe938f16e1edecbf39cc0e674ebbf12f5ca5ba4a05d4f41be"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/aljaferia-palace-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
+      "candidateId": "N0295",
+      "title": "Pembroke Castle",
+      "sourceBundle": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
+          "output": "assets/places/gc/gch/n0295_pembroke_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:10961af60023dbb13174f3007af7ea6ec0d9d5a6e7944d285ed06ae386d66910"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/pembroke-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
+      "candidateId": "N0296",
+      "title": "Kalmar Castle",
+      "sourceBundle": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
+          "output": "assets/places/u6/u65/n0296_kalmar_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/kalmar-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0297_nuremberg_castle",
+      "candidateId": "N0297",
+      "title": "Nuremberg Castle",
+      "sourceBundle": "content/worldgen/source/places/u0/u0z/n0297_nuremberg_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0297_nuremberg_castle",
+          "output": "assets/places/u0/u0z/n0297_nuremberg_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:5ad45217b302e304fd1b7347d0a17d31431279146c7640c842d53b8d1a762ed0"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/nuremberg-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0298_egeskov_castle",
+      "candidateId": "N0298",
+      "title": "Egeskov Castle",
+      "sourceBundle": "content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0298_egeskov_castle",
+          "output": "assets/places/u1/u1z/n0298_egeskov_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:bf3387f77e0e719b436a4455a8e96a126c6ebaced229ae156f812cd9d232ca24"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/egeskov-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0299_wawel_castle",
+      "candidateId": "N0299",
+      "title": "Wawel Castle",
+      "sourceBundle": "content/worldgen/source/places/u2/u2y/n0299_wawel_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0299_wawel_castle",
+          "output": "assets/places/u2/u2y/n0299_wawel_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:585826749e3d3b2f6b5f6510528977aba9aab011b88b6d4c6b26459b7988ff15"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/wawel-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0300_saint_michael_s_castle",
+      "candidateId": "N0300",
+      "title": "Saint Michael's Castle",
+      "sourceBundle": "content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0300_saint_michael_s_castle",
+          "output": "assets/places/ud/udt/n0300_saint_michael_s_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/saint-michaels-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0301_hochosterwitz_castle",
+      "candidateId": "N0301",
+      "title": "Hochosterwitz Castle",
+      "sourceBundle": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0301_hochosterwitz_castle",
+          "output": "assets/places/u2/u26/n0301_hochosterwitz_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/hochosterwitz-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0302_liechtenstein_castle",
+      "candidateId": "N0302",
+      "title": "Liechtenstein Castle",
+      "sourceBundle": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0302_liechtenstein_castle",
+          "output": "assets/places/u2/u2e/n0302_liechtenstein_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:4ba0f40b52b388cf74f02c6f243a2e4b70d7db25a7081043696efd79f596e641"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/liechtenstein-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0303_arundel_castle",
+      "candidateId": "N0303",
+      "title": "Arundel Castle",
+      "sourceBundle": "content/worldgen/source/places/gc/gcp/n0303_arundel_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0303_arundel_castle",
+          "output": "assets/places/gc/gcp/n0303_arundel_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:432c23cd81b9906115543bd1f4d7b941e42204ed848d5b93d732821d39c7818c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/arundel-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0304_leeds_castle",
+      "candidateId": "N0304",
+      "title": "Leeds Castle",
+      "sourceBundle": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0304_leeds_castle",
+          "output": "assets/places/u1/u10/n0304_leeds_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:a10423a135cedf41c195722ffcc0de7e7dd7d1235674b8a4983e219e09db78a8"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/leeds-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0305_turku_castle",
+      "candidateId": "N0305",
+      "title": "Turku Castle",
+      "sourceBundle": "content/worldgen/source/places/u6/u6x/n0305_turku_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0305_turku_castle",
+          "output": "assets/places/u6/u6x/n0305_turku_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:48c1c41f347c996f1384fb2dca43b3ac5575b9791f2ea3763e9dbb6f27131cdd"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/turku-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0306_gediminas_tower",
+      "candidateId": "N0306",
+      "title": "Gediminas' Tower",
+      "sourceBundle": "content/worldgen/source/places/u9/u99/n0306_gediminas_tower/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0306_gediminas_tower",
+          "output": "assets/places/u9/u99/n0306_gediminas_tower/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:191eaf6a39378e9388528d1b706552113233fef590a989abb18ce0c756c34d3b"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/gediminas-tower-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0307_ljubljana_castle",
+      "candidateId": "N0307",
+      "title": "Ljubljana Castle",
+      "sourceBundle": "content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0307_ljubljana_castle",
+          "output": "assets/places/u2/u24/n0307_ljubljana_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:0698f5f9812c27937dc561ada53b47f1b812391d90b8f99369643b87d7a81346"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/ljubljana-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0308_castle_of_saint_george",
+      "candidateId": "N0308",
+      "title": "Castle of Saint George",
+      "sourceBundle": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0308_castle_of_saint_george",
+          "output": "assets/places/ey/eyc/n0308_castle_of_saint_george/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/sao-jorge-castle-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0309_haapsalu_castle",
+      "candidateId": "N0309",
+      "title": "Haapsalu Castle",
+      "sourceBundle": "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0309_haapsalu_castle",
+          "output": "assets/places/ud/ud2/n0309_haapsalu_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:fa7d84b624c9766b0770ac0effa7083e467cc4ca5ad5ba651ccf819db995ab21"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-signature-towers"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/haapsalu-castle-model.mjs"
       ]
     },
     {

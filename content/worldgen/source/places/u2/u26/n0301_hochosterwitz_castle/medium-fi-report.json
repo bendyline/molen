@@ -1,0 +1,989 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0301_hochosterwitz_castle",
+  "sourceHash": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5",
+  "runtimeHash": "sha256:ed404d86a6790570cf7f1c978fd00ccd39f27bad45592b9396eed1d9363a227e",
+  "fixtureHash": "sha256:6f1a0758392988f361002e335f7c804a25b28c61ba5f0b7acb1e507ac0ca64b3",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 3934,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:2712c5ab941b0c87a24f47b4f070d126ea5550782482701a8974265d244c34ba",
+      "bytes": 92348,
+      "gzipBytes": 25340,
+      "triangles": 986,
+      "cpuBytes": 90912,
+      "gpuBytes": 90912,
+      "errorMeters": 6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:9c1103d907d46ffbc8af0553ade991fdc4ae28c251f82a359c7c95f115255777",
+      "bytes": 372440,
+      "gzipBytes": 132180,
+      "triangles": 3757,
+      "cpuBytes": 365052,
+      "gpuBytes": 365052,
+      "errorMeters": 1.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:fdf729c9bfa4a855c455f0dd8aa6a242c783a8724576eeb9a5b214b6538e72a9",
+      "bytes": 1441656,
+      "gzipBytes": 473726,
+      "triangles": 14954,
+      "cpuBytes": 1434220,
+      "gpuBytes": 1434220,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d67534ada314ae2fd0bbc00ae2e9d0d108b1c5519e1bcf29fcae8f8bab26ab46",
+      "bytes": 1618888,
+      "gzipBytes": 544585,
+      "triangles": 16490,
+      "cpuBytes": 1611448,
+      "gpuBytes": 1611448,
+      "errorMeters": 0.15,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "qa-terrain.json",
+      "hash": "sha256:3cc8646a9014b802e386347c0aa4d2b3feedfed173da67e8a4ec786bd2dc2396"
+    },
+    "heightmap": {
+      "path": "qa-heightmap.png",
+      "hash": "sha256:6ac8178b3801df0311bcb4b90eaa0506877537e008919c2a1c6bb229dc728ed4"
+    }
+  },
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:034108d29de4727483eb780184196afce768b6b4767736561229d1df7671e763",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          63.08980000000001,
+          101.1565,
+          111.62120000000002
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fa0f02bfb43bb0d83cad9e840fd7f961f60ec2cd9e5815df1c4175a430940eaa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          63.08980000000001,
+          101.1565,
+          111.62120000000002
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:36f6760b417c8d9b4a9279a2a7ceec2d2645580a68e51fd973c951a0e3952878",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          63.08980000000001,
+          101.1565,
+          111.62120000000002
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:f88ec3449053e8c21985656a5d7c210631dbf6a4eb229fb51c317609edfe34aa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          63.08980000000001,
+          101.1565,
+          111.62120000000002
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b1edc4cc70009c95c11e1043740e67d4b33b7886bf11ac1677918bed8d64fb27",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 12685,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:70a36d66a52b042c9d04ad2efcb1b6b90d4c26f3dc283f073f6896dedf537fca",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 12685,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:45404e590d2753e7c45a270c7d2cce2ae7274b978b8efeeb2817a1b54b171df5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 12685,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:82b5039620b1b7b75a97b6f23c63e67cec44c9d5d737909411e2694d562fd603",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 12685,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:42fcd8d883b19a8f91c56e6fb364fa0e3727e5c346ce791603d2e6a622efe465",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 9914,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          325.8898,
+          234.35649999999998,
+          567.0212
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:af17cc621f7c46d5a85ce57f1eef49df098a4365e842cbec24d64ca5b7dfd950",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 9914,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          325.8898,
+          234.35649999999998,
+          567.0212
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:a6beb1180e59e2a3b68a1836f50c00e5303bd1a6fca07d61f5dc4266704f8845",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 9914,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          325.8898,
+          234.35649999999998,
+          567.0212
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:383439fa344a56cb64986ce4922e7a7f445ad539ee2f56f5beb7ec23fbf322cd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 9914,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          325.8898,
+          234.35649999999998,
+          567.0212
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:e8ec46d2177371d1b7d096c56357d5e65956fda9c5fff8ccd04694af758647e1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 5980,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          325.8898,
+          234.35649999999998,
+          567.0212
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/summit-west-front.png",
+      "hash": "sha256:850d4b425b81b84a104e4060f03d299b778aa6d5397a38ab6ae5b201cb5afe79",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          -112.657904245793,
+          115,
+          -54.1589938140078
+        ],
+        "lookAt": [
+          -9.01263233966344,
+          103,
+          -4.332719505120624
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/open-summit-court.png",
+      "hash": "sha256:ef0e354e798881af1c223094495a224c3eff302ccfe0523a3650c6424dd5fc10",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          16.083860879625316,
+          100,
+          -1.1442985645618782
+        ],
+        "lookAt": [
+          -0.6068686152231586,
+          103,
+          -10.277728858257408
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/south-gallery.png",
+      "hash": "sha256:d2a717efef253e50106be27be55ba8aa56e5a22834f9b0e00b4d644aaec43d3e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          -39.86101944710974,
+          123,
+          82.91621752490364
+        ],
+        "lookAt": [
+          -11.230351380371404,
+          104,
+          25.668642501569693
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/gate-approach.png",
+      "hash": "sha256:0ff2ac06c157f0d4f2a447dd7fe53b012f9eceacf9c7412c4098c14049fb0257",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          220,
+          160,
+          -200
+        ],
+        "lookAt": [
+          0,
+          47,
+          -68
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/church-and-upper-gates.png",
+      "hash": "sha256:c3968c011f3b14876544e11dd30223f045e2d5746f99b843e33a529f46650a9f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          -180,
+          138,
+          50
+        ],
+        "lookAt": [
+          -70,
+          86,
+          -8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/mapped-plan.png",
+      "hash": "sha256:54414d63dc95a1a337e0b9c806782521cfd9521242115036608365fb841c38c9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          -20,
+          320,
+          -30
+        ],
+        "lookAt": [
+          -20,
+          40,
+          -30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2a6101770f71d3718f37e528fe20b3482183a7ad7e4edf05e523690de4e65966",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 9914,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:70a36d66a52b042c9d04ad2efcb1b6b90d4c26f3dc283f073f6896dedf537fca",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 12685,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:f01c1e88bd9cf9fdc51718191532866d846654325bec3e81410e01912bd69457",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 23882,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:cf8e7e974d3cd22c4bf791822cb1b438b9adff76d7dd82a84eb3aa5ca42a2bb7",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 25418,
+        "groundY": -65,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/qa-heightmap.png"
+        },
+        "position": [
+          151.28979999999999,
+          165.9565,
+          264.62120000000004
+        ],
+        "lookAt": [
+          -23.3102,
+          74.1565,
+          -37.7788
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
+        "contextScale": 1.8
+      }
+    }
+  ],
+  "errors": []
+}

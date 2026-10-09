@@ -2,6 +2,8 @@
 // presets and habitat associations belong to this downloadable content pack.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { brushComposition, brushPlants } from './brush-presets.mjs';
+import { plantVariants } from './plant-variants.mjs';
 
 const root = new URL('../', import.meta.url);
 const deciduous = new Set([
@@ -274,28 +276,43 @@ const plants = [
     crownBase: 0.47,
     stemRadius: 0.36,
   }),
-  plant('scrub', 'Temperate scrub canopy', 'broadleaf', 'round', 1.8, 2.5, '#7b915b', {
+  plant('scrub', 'Temperate scrub canopy', 'shrub', 'round', 1.8, 2.5, '#7b915b', {
     crownBase: 0.1,
     stemRadius: 0.06,
   }),
-  plant('dry_scrub', 'Sparse dryland shrub', 'broadleaf', 'round', 1.2, 1.8, '#a1a17c', {
+  plant('dry_scrub', 'Sparse dryland shrub', 'shrub', 'branching', 1.2, 1.8, '#a1a17c', {
     crownBase: 0.08,
     stemRadius: 0.04,
   }),
-  plant('heath', 'Low heath and tundra shrub', 'broadleaf', 'round', 0.6, 1.3, '#8d9570', {
+  plant('heath', 'Low heath and tundra shrub', 'shrub', 'round', 0.6, 1.3, '#8d9570', {
     crownBase: 0.02,
     stemRadius: 0.025,
   }),
-  plant('chaparral', 'Mediterranean sclerophyll shrub', 'broadleaf', 'round', 2.5, 3.5, '#859075', {
+  plant('chaparral', 'Mediterranean sclerophyll shrub', 'thicket', 'round', 2.5, 3.5, '#859075', {
     crownBase: 0.08,
     stemRadius: 0.09,
   }),
-  plant('grass', 'Temperate meadow grass clump', 'grass', 'round', 0.55, 0.9, '#93a66a'),
-  plant('dry_grass', 'Dry grass tussock', 'grass', 'round', 0.65, 1, '#b6ae78'),
-  plant('savanna_grass', 'Tall savanna grass clump', 'grass', 'round', 1.3, 1.2, '#c0b479'),
-  plant('alpine_grass', 'Low alpine grass clump', 'grass', 'round', 0.25, 0.6, '#9ba57e'),
+  plant('grass', 'Temperate meadow grass patch', 'grass', 'round', 0.65, 2.8, '#93a66a', {
+    patch: true,
+    bark: '#ada87b',
+  }),
+  plant('dry_grass', 'Dry grass tussock patch', 'grass', 'round', 0.75, 2.8, '#b6ae78', {
+    patch: true,
+    bark: '#b6a17c',
+  }),
+  plant('savanna_grass', 'Tall savanna grass patch', 'grass', 'round', 1.5, 3.6, '#c0b479', {
+    patch: true,
+    bark: '#b6a17c',
+  }),
+  plant('alpine_grass', 'Low alpine grass patch', 'grass', 'round', 0.3, 1.8, '#9ba57e', {
+    patch: true,
+    bark: '#a6a17d',
+  }),
   plant('fern', 'Humid forest fern clump', 'fern', 'round', 0.85, 1.4, '#679454'),
-  plant('reeds', 'Wetland reed clump', 'reed', 'columnar', 1.9, 1.1, '#9aa465'),
+  plant('reeds', 'Wetland reed patch', 'reed', 'columnar', 1.9, 3, '#9aa465', {
+    patch: true,
+    bark: '#b5a47b',
+  }),
   plant('banana', 'Cultivated banana broad leaves', 'banana', 'paddle', 4.5, 4.5, '#78a052', {
     bark: '#a4ab72',
     stemRadius: 0.18,
@@ -324,14 +341,21 @@ const plants = [
     stemRadius: 0.3,
     lean: 0.08,
   }),
+  ...brushPlants(plant),
 ];
 
+const basePlants = [...plants];
+plants.splice(0, plants.length, ...basePlants.flatMap(plantVariants));
 const refs = new Set(plants.map((entry) => entry.id));
 const population = (name, weight = 1) => {
   const model = `molen.ecology.plant.${name}`;
   if (!refs.has(model)) throw new Error(`Unknown plant ${name}`);
   return {
     model,
+    variants: ['', '.spreading', '.slender'].map((suffix) => ({
+      model: `${model}${suffix}`,
+      weight: 1,
+    })),
     weight,
     scale: { min: 0.75, max: 1.2 },
     widthScale: { min: 0.85, max: 1.15 },
@@ -397,8 +421,12 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     orchard = ['fruit_tree'],
     wetland = ['reeds'],
     grasslandTrees = 0,
-    groundDensity = surface === desert ? 90 : surface === dry ? 260 : 440,
+    groundDensity = surface === desert ? 110 : surface === dry ? 2200 : 4200,
   } = settings;
+  const brush = brushComposition(
+    name,
+    surface === desert ? 'desert' : surface === dry ? 'dry' : surface === wet ? 'wet' : 'temperate',
+  );
   const rules = [];
   const add = (ruleId, classes, names, density, layer = 'canopy', extra = {}) => {
     if (!names.length || density <= 0) return;
@@ -464,11 +492,77 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     });
   }
   add('open_woodland', ['grassland', 'savanna'], trees, grasslandTrees);
+  const brushClustering = {
+    scale: 48,
+    threshold: 0.22,
+    contrast: 2,
+    seedOffset: 7,
+    sharedSeed: 71,
+    detailScale: 7,
+  };
+  const naturalClasses = ['forest', 'wood', 'scrub', 'heath'];
+  add('brush_layer', naturalClasses, brush.shrubs, brush.density, 'understory', {
+    notClasses: wildExclusions,
+    minSpacing: 0.5,
+    avoid: { roads: 2, buildings: 2, water: 0.6 },
+    clustering: brushClustering,
+  });
+  add('open_brush', ['grassland', 'savanna'], brush.shrubs, brush.density * 0.12, 'understory', {
+    notClasses: wildExclusions,
+    minSpacing: 0.5,
+    avoid: { roads: 2, buildings: 2, water: 0.6 },
+    clustering: { ...brushClustering, threshold: 0.38 },
+  });
+  if (brush.climbers)
+    add('supported_climbers', ['forest', 'wood'], ['liana_canopy'], 14, 'canopy', {
+      notClasses: wildExclusions,
+    });
   add('understory', ['forest', 'wood', 'scrub'], cover, groundDensity, 'groundcover', {
     notClasses: wildExclusions,
+    avoid: { roads: 0.35, buildings: 0.5, water: 0.25 },
+    clustering: { ...brushClustering, detailScale: 3 },
   });
-  add('meadow', ['grass', 'grassland', 'meadow'], cover, 650, 'groundcover');
+  add('herb_patches', naturalClasses, brush.herbs, groundDensity * 0.45, 'groundcover', {
+    notClasses: wildExclusions,
+    avoid: { roads: 0.35, buildings: 0.5, water: 0.25 },
+    clustering: { ...brushClustering, detailScale: 3 },
+  });
+  add(
+    'forest_floor',
+    ['forest', 'wood'],
+    brush.floor.filter((p) => p !== 'fallen_log'),
+    1000,
+    'groundcover',
+    {
+      notClasses: wildExclusions,
+      avoid: { roads: 1, buildings: 1, water: 0.4 },
+      clustering: { ...brushClustering, detailScale: 5 },
+    },
+  );
+  if (brush.floor.includes('fallen_log'))
+    add('forest_debris', ['forest', 'wood'], ['fallen_log'], 12, 'understory', {
+      notClasses: wildExclusions,
+      minSpacing: 0.5,
+      avoid: { roads: 3, buildings: 3, water: 1 },
+      clustering: brushClustering,
+    });
+  add(
+    'meadow',
+    ['grass', 'grassland', 'meadow'],
+    [...cover, ...brush.herbs],
+    surface === desert ? 180 : 4800,
+    'groundcover',
+    {
+      avoid: { roads: 0.35, buildings: 0.5, water: 0.25 },
+      clustering: { ...brushClustering, detailScale: 3 },
+    },
+  );
   add('wetland', ['wetland', 'marsh', 'reedbed'], wetland, 210, 'groundcover');
+  if (name !== 'ice')
+    add('wetland_floor', ['wetland', 'marsh', 'reedbed'], ['sedge_patch'], 1600, 'groundcover', {
+      avoid: { roads: 0.35, buildings: 0.5, water: 0.25 },
+      clustering: { ...brushClustering, detailScale: 3 },
+    });
   // Ecological geography permits mangroves; actual mapped water/wetland constrains their belt.
   if (mangrove)
     add('mangrove_wetland', ['wetland', 'marsh'], ['mangrove'], 110, 'canopy', {

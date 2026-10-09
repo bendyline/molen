@@ -256,14 +256,23 @@ export function validateStylePackBundle(pack: ResolvedStylePack): ValidationIssu
     }
     doc.rules.forEach((rule, ruleIndex) => {
       rule.populations.forEach((population, index) => {
-        if (!modelKnown(pack, population.model)) {
-          issues.push({
-            path: `/scatter/${id}/rules/${ruleIndex}/populations/${index}/model`,
-            code: 'unknown_model',
-            message: `model "${population.model}" is not a pack asset, an imported namespace, or a builtin`,
-          });
-        } else if (pack.assets[population.model] !== undefined) {
-          usedAssets.add(population.model);
+        for (const [model, suffix] of [
+          [population.model, 'model'],
+          ...(population.variants ?? []).map((variant, v) => [
+            variant.model,
+            `variants/${v}/model`,
+          ]),
+        ]) {
+          if (model === undefined) continue;
+          if (!modelKnown(pack, model)) {
+            issues.push({
+              path: `/scatter/${id}/rules/${ruleIndex}/populations/${index}/${suffix}`,
+              code: 'unknown_model',
+              message: `model "${model}" is not a pack asset, an imported namespace, or a builtin`,
+            });
+          } else if (pack.assets[model] !== undefined) {
+            usedAssets.add(model);
+          }
         }
       });
     });

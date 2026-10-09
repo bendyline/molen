@@ -92,9 +92,9 @@ const surfaces = {
   recess: { slot: 'wall', roughness: 0.88, metallic: 0 },
 };
 
-function mappedBuilder(builder, used) {
+function mappedBuilder(builder, used, overrides = {}) {
   const prepare = (component, normal) => {
-    const surface = surfaces[component];
+    const surface = overrides[component] ?? surfaces[component];
     if (!surface) throw new Error(`Unmapped component ${component}`);
     const ref = surface.graph
       ? `matgraph:molen.worldgen.material.${surface.graph}`
@@ -269,7 +269,7 @@ for (const study of signatureTowers.filter(
   }
   const out = new MeshBufferBuilder(),
     used = new Map();
-  study.build(mappedBuilder(out, used), mapped);
+  study.build(mappedBuilder(out, used, study.surfaceOverrides), mapped);
   const mesh = out.finalize();
   if (study.id === 'N0144') smoothMeshNormals(mesh, ['wall'], 30);
   if (study.smoothSlots) smoothMeshNormals(mesh, study.smoothSlots, 30);
@@ -285,7 +285,7 @@ for (const study of signatureTowers.filter(
       ? study.encodeAssembly((build, name) => {
           const partBuilder = new MeshBufferBuilder(),
             partUsed = new Map();
-          build(mappedBuilder(partBuilder, partUsed));
+          build(mappedBuilder(partBuilder, partUsed, study.surfaceOverrides));
           const partMesh = partBuilder.finalize();
           validateAuthoredMesh(partMesh, `${study.id}/${name}`);
           return encodeGlb(
@@ -478,6 +478,7 @@ for (const study of signatureTowers.filter(
   };
   if (study.previewGround === false)
     scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (study.previewTerrain) scene.terrain = study.previewTerrain;
   const optional = (
     await readdir(dir).catch((e) => {
       if (e.code === 'ENOENT') return [];

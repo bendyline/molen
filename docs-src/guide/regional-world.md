@@ -22,7 +22,7 @@ catalogs across those packs, validates references, and passes plain documents to
 An architecture-only catalog works without an ecological atlas. A catalog scoped to a different
 style pack is omitted, so a custom style pack can retain the ecological content.
 
-The ecological atlas and catalog total about 99 KB gzip. Its 58 procedural plant presets need no
+The ecological atlas and catalog total about 166 KB gzip (169 KB as a content pack). Its 234 procedural plant presets need no
 GLB downloads. The architectural atlas is about 313 KB gzip; ordinary regional recipes are small
 JSON files using the default pack's shared material graphs. Authored landmark GLBs continue to
 use the existing geographically sharded, lazy model archives.
@@ -100,9 +100,55 @@ placement seeds stay tied to individual scatter IDs/versions rather than unrelat
 ## Plant and building selection
 
 The plant families cover broadleaf, conifer, palm, cactus, succulent, bamboo, banana, grass, fern, reed,
-mangrove, and deadwood silhouettes. Habitats combine canopy, understory, ground cover, open land,
+mangrove, deadwood, shrub, thicket, forb, vine, mat, and fallen-wood silhouettes. Habitats combine canopy, understory, ground cover, open land,
 parks, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
 desert profiles and avoid applying Australian eucalyptus profiles to New Zealand.
+
+Each of the 78 plant forms has a base, spreading, and slender preset, available in
+every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
+crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
+trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
+All 18 procedural families share the existing near/medium/far triangle limits.
+
+### Brush and ground coverage
+
+Shrubs and thickets have multiple stems and foliage at several heights. Grass and reed `patch`
+recipes contain five tussocks with seed heads; fern colonies contain three overlapping plants.
+Herb patches, trailing ground vines, low moss/litter mats, fallen trunks and small trees fill the
+space below the canopy. Humid tropical `climber` recipes add vines around their own generated
+trunk and hanging from their branches. They do not attach to arbitrary mapped trees or buildings.
+
+Natural forest, wood, scrub and heath receive an `understory` scatter layer. Open grassland and
+savanna receive sparser brush. Cultivated polygons, parks, gardens and residential land do not
+receive wild overgrowth from these rules. Explicit wetland labels permit sedge patches; desert
+profiles retain sparse dry forms and never acquire humid forest plants.
+
+The optional clustering `sharedSeed` coordinates broad patches across vegetation layers while
+keeping each rule's placements independent. `detailScale` adds smaller clumps and gaps inside
+those patches. These are deterministic visual density fields, not a simulation of individual
+plants competing for sunlight or measured local occupancy. Low vegetation uses smaller path and
+building clearances than trees; road surfaces, buildings and water remain excluded.
+
+Earth tiles reserve `maxUnderstoryInstances` / `maxUnderstoryModels` separately from canopy and
+groundcover. At the finest level, Economy allows 450 brush instances/two models, Balanced
+1,600/three, and High 2,400/four. One coarser level retains 80/250/400 instances respectively;
+coarser levels omit brush. Existing groundcover instance caps stay at 0/5,000/8,000, with
+0/five/seven model slots. Economy keeps simplified shrub masses while omitting fine blades and
+litter. These are per-tile limits, not whole-scene frame-rate guarantees.
+
+The 234 recipes produce 324 appearances including the existing seasonal variants. All geometry
+is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
+ecology pack and no GLB downloads. Reproduce comparison captures with
+`node content/ecology/source/preview-regions.mjs --brush` and
+`node content/ecology/source/preview-diversity.mjs --brush` in the engine repository.
+
+Scatter populations can supply weighted `variants: [{ model, weight }]`. The parent `model`
+is their interchangeable fallback and its `weight` still controls species proportions. Variant
+selection uses an independent random stream, keeping positions, density, crop rows and ordinary
+quality thinning intact. A tile reserves a base form for each retained species before admitting
+extra variants into spare model slots. Unretained forms use that base instead of disappearing;
+Economy and distant views therefore show fewer forms without increasing draw limits. Variant
+recipes must be suitable for the same habitat and placement-scale bounds as their parent.
 
 Mapped trees preserve source `species`, `genus`, `leafType`, `height`, and `crownDiameter` when
 available. Exact species names take precedence over genus names; preset `taxa` names match
@@ -141,13 +187,17 @@ at high latitudes. Tropical locations stay leaf-on; evergreen plants do not beco
 does not infer local weather, snow, tropical wet/dry seasons, crop harvest dates, or climate change.
 Remount with another month to change appearance.
 
-The ordinary architectural catalog supplies 91 recipes across 13 construction families and seven
+The ordinary architectural catalog supplies 273 recipes across 13 construction families and seven
 uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm
 buildings. Mapped use wins over neighborhood inference. Taller measured residential buildings
 select compatible apartment recipes; source footprint, height, and levels still control the
 generated geometry. Named precedents from the 120-entry structure library remain available
 explicitly. Without evidence of age, the ordinary catalog does not randomly assign an iconic
 historic building type to an untyped home.
+Each family/use has three weighted recipes: base, compact facade, and open facade. Stable building
+identity selects their window/bay rhythm, roof weighting, eaves, parapets and supported facade
+details. The facade names do not resize the mapped building. Explicit original recipe IDs remain
+available, and identity-free selection keeps the base recipe.
 
 Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred
 entrance fits an eligible exterior wall, reserves a ground-floor window bay, and yields to known
@@ -163,10 +213,12 @@ different order does not change selection. Earth and World Explorer load it by d
 is in the host's pack index. `ambient: { wildlife: false }` disables animals in `mountEarthView`;
 World Explorer accepts `?wildlife=0`. Frozen captures retain the existing ambient opt-in rule.
 
-The first catalog has 30 recipes: 21 named mammal taxa and nine functional bird, reptile, fish,
-and insect groups. Mammal country membership comes from Mammal Diversity Database v2.5 under
+The catalog has 90 recipes: three adult body/coat forms for each of 21 named mammal taxa and nine
+functional bird, reptile, fish, and insect groups. These are modest visual variations, not claims
+about sex, age or subspecies. Each trio shares habitat/range/season gates and divides the previous
+visual density equally; total expected abundance and population caps stay unchanged. Mammal country membership comes from Mammal Diversity Database v2.5 under
 CC BY 4.0. A quarter-degree Natural Earth map-unit grid preserves overseas territory distinctions.
-The range document compresses to about 30 KB; the recipe catalog adds a few KB. No animal GLBs
+The range document compresses to about 30 KB; the recipe catalog adds about 6 KB (40 KB as a content pack). No animal GLBs
 are downloaded. Source hashes, transformations, licenses, and limitations ship in the pack.
 
 Country membership is a coarse limit, not within-country occupancy. Named taxa require an

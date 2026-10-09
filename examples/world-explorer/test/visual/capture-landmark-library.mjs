@@ -93,6 +93,9 @@ const originContactFixtureHash =
 // An opt-in source label changes only the placement caption for non-OSM reference data.
 const osmCaptionFixtureHash =
   'sha256:1fdd7e5e99dbdd7f25f2c656a2f6d782fada208969740897011b66b32f5ffe44';
+// An explicit isolated-stage datum preserves the default rendering path for all other assets.
+const zeroReviewDatumFixtureHash =
+  'sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36';
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const selected = await authoredModels();
@@ -153,10 +156,21 @@ try {
         : undefined;
     const localFootprint = sourceLocalFootprint(spec, sourceFrameBytes);
     const prior = await readOptionalJson(resolve(output, 'shared-capture-report.json'));
+    const reviewGroundY =
+      spec.mediumFiContext?.groundY === undefined
+        ? undefined
+        : Number(spec.mediumFiContext.groundY);
+    assert(
+      reviewGroundY === undefined || Number.isFinite(reviewGroundY),
+      'Invalid review ground datum',
+    );
     let current =
       (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
       (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
       prior?.inputHash === inputHash &&
+      prior?.sourceHash === sourceHash &&
+      prior?.runtimeHash === sidecar.hash &&
+      (prior?.reviewGroundY ?? null) === (reviewGroundY ?? null) &&
       (prior?.viewingDate ?? null) === (viewingDate ?? null) &&
       (prior?.reflectionMode ?? 'none') === reflectionMode &&
       (prior?.clippingMode ?? 'legacy') === clippingMode &&
@@ -166,6 +180,7 @@ try {
           frame.state?.terrainSamples?.some((sample) => sample.placementId === placement.id),
         )) &&
       (matchesEvidenceText(fixtureBytes, prior?.fixtureHash) ||
+        (prior?.fixtureHash === zeroReviewDatumFixtureHash && reviewGroundY === undefined) ||
         prior?.fixtureHash === osmCaptionFixtureHash ||
         prior?.fixtureHash === originContactFixtureHash ||
         prior?.fixtureHash === conventionAssetFixtureHash ||
@@ -230,6 +245,7 @@ try {
     const mounted = await page.evaluate((input) => window.landmarkLibraryQA.mount(input), {
       asset: spec.assetId,
       title: spec.title,
+      reviewGroundY,
       placement,
       footprint,
       footprintLabel: localFootprint?.label,
@@ -276,6 +292,7 @@ try {
       );
     } else {
       assert.deepEqual(mounted.loads, [spec.assetId]);
+      assert.equal(mounted.reviewGroundY, reviewGroundY ?? 0);
     }
     for (const surface of spec.sharedSurfaces ?? []) {
       assert(mounted.surfaces[`worldgen:${surface.ref}`], `Missing shared texture: ${surface.ref}`);
@@ -386,6 +403,9 @@ try {
       format: 'molen/structure-shared-capture@1',
       assetId: spec.assetId,
       inputHash,
+      sourceHash,
+      runtimeHash: sidecar.hash,
+      reviewGroundY: reviewGroundY ?? null,
       fixtureHash,
       ...(viewingDate !== undefined ? { viewingDate } : {}),
       ...(localFootprint ? { footprintEvidenceHash: localFootprint.hash } : {}),

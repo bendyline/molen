@@ -78,12 +78,14 @@ describe('shipped global ecological coverage', () => {
       winter = run(1);
     expect(winter.some((set) => set.modelRef.endsWith('.winter'))).toBe(true);
     expect(
-      winter.map((set) => ({
-        ...set,
-        modelRef: set.modelRef.replace(/\.winter$/, ''),
-        setId: set.setId.replace(/\.winter$/, ''),
-      })),
-    ).toEqual(summer);
+      winter
+        .map((set) => ({
+          ...set,
+          modelRef: set.modelRef.replace(/\.winter$/, ''),
+          setId: set.setId.replace(/\.winter$/, ''),
+        }))
+        .sort((a, b) => a.modelRef.localeCompare(b.modelRef)),
+    ).toEqual([...summer].sort((a, b) => a.modelRef.localeCompare(b.modelRef)));
   });
   it('uses observed cultivation and water context without turning dry desert or inland forest into palms and mangroves', () => {
     const env = createRegionalEnvironment({ atlas, catalogs: [catalog] }, 1);
@@ -127,8 +129,12 @@ describe('shipped global ecological coverage', () => {
         budget: { maxInstances: 2000, maxInstancesPerRule: 2000, maxPropModels: 12 },
       });
     const dates = run();
-    expect(dates.map((set) => set.modelRef)).toEqual(['molen.ecology.plant.date_palm']);
-    expect(dates[0]?.count).toBeGreaterThan(300);
+    expect(new Set(dates.map((set) => set.modelRef))).toEqual(
+      new Set(
+        ['', '.spreading', '.slender'].map((suffix) => `molen.ecology.plant.date_palm${suffix}`),
+      ),
+    );
+    expect(dates.reduce((sum, set) => sum + set.count, 0)).toBeGreaterThan(300);
     const land = tile.landcover[0];
     if (!land) throw new Error('Missing land fixture');
     tile.landcover[0] = {
@@ -213,7 +219,9 @@ describe('shipped global ecological coverage', () => {
     if (!palm) throw new Error('Missing coconut palm');
     expect(result[0]?.model).toBe(palm.id);
     expect(result[0]?.scale).toEqual([9 / palm.width, 18 / palm.height, 9 / palm.width]);
-    expect(result[1]?.model).toBe('molen.ecology.plant.mesquite');
+    expect(result[1]?.model?.replace(/\.(spreading|slender)$/, '')).toBe(
+      'molen.ecology.plant.mesquite',
+    );
     expect(result[2]?.model).toBe('builtin:tree.mapped.needleleaf');
     expect(result[2]?.scale).toEqual([5, 12, 5]);
     expect(result[3]?.model).toBe('molen.ecology.plant.stone_pine');
@@ -250,10 +258,14 @@ describe('shipped global ecological coverage', () => {
     }
     for (const scatter of catalog.scatters)
       for (const rule of scatter.rules)
-        for (const population of rule.populations)
+        for (const population of rule.populations) {
           expect(library.plants[population.model], population.model).toBeDefined();
-    expect(atlasBytes.length + catalogBytes.length).toBeLessThan(2_000_000);
-    expect(gzipSync(atlasBytes).length + gzipSync(catalogBytes).length).toBeLessThan(150_000);
+          expect(population.variants).toHaveLength(3);
+          for (const variant of population.variants ?? [])
+            expect(library.plants[variant.model], variant.model).toBeDefined();
+        }
+    expect(atlasBytes.length + catalogBytes.length).toBeLessThan(2_500_000);
+    expect(gzipSync(atlasBytes).length + gzipSync(catalogBytes).length).toBeLessThan(190_000);
   });
 
   it('distinguishes representative regions without exporting iconic species to the wrong realm', () => {

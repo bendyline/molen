@@ -1,0 +1,1722 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0308_castle_of_saint_george",
+  "inputHash": "sha256:51b6e1ec221511954c86c91a9fc02c84ac22e47bff366d994101b6e83071f4c3",
+  "sourceHash": "sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c",
+  "runtimeHash": "sha256:c34df7f651b658cc59525c6c1968ba1dc645487711c57eb9e87cc10ab581a2d0",
+  "captureReportHash": "sha256:2d3bcac34b1f2beb54601412c762fed62eca866a4ed2b8bdc94b69d57f9e89fc",
+  "visualReview": {
+    "status": "pending",
+    "captureReportHash": "sha256:2d3bcac34b1f2beb54601412c762fed62eca866a4ed2b8bdc94b69d57f9e89fc",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/southern-towers-and-moat.png",
+      "shots/two-courts-and-divider.png",
+      "shots/northern-roofed-towers.png",
+      "shots/eastern-gateway-and-bridge.png",
+      "shots/main-gateway-and-periscope.png",
+      "shots/hillside-tower-and-stair.png",
+      "shots/museum-and-palace-remains.png"
+    ],
+    "notes": "Inspected twelve portable frames: preview, four isolated turntable angles and seven architectural cameras. Added a separate coarse numerical hill, preserving the full source geometry. The ground intrudes into the south/east courts, entrance and lower barbican; north tower/wall and museum sections can float above the smoothed slope. Raising the entrance camera toY40 removes camera burial but correctly leaves the terrain obstruction visible. Isolated geometry and shared-material views show the apertures, roofed towers and museum roof intact. Portable ground-contact acceptance is pending; this does not identify the user’s unnamed missing-building section."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:093659ffa2c6c8f2025d1f01d217c44159e57fba39aaaa0e6fa57025f761d66d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/southern-towers-and-moat.png",
+      "shots/shared/two-courts-and-divider.png",
+      "shots/shared/northern-roofed-towers.png",
+      "shots/shared/eastern-gateway-and-bridge.png",
+      "shots/shared/main-gateway-and-periscope.png",
+      "shots/shared/hillside-tower-and-stair.png",
+      "shots/shared/museum-and-palace-remains.png"
+    ],
+    "notes": "Inspected eleven isolated shared-viewer frames, including full-size entrance, roof and courtyard views. Source and all six model bytes unchanged. Five existing256-square limestone, tile, metal, wood and gravel graphs read once; seven near groups, no embedded images. Gateways, roofed northern towers, two court floors, museum roof and149-step hillside link are present in the isolated geometry. This fixture has flatY0 ground and provides no terrain approval. Unload disposes all model geometries and restores the ground."
+  },
+  "mediumFiReview": {
+    "status": "pending",
+    "captureReportHash": "sha256:43a4cce42ce969180652358ed5479d6eaf6a11cef15906422720199b9c8f5a07",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southern-towers-and-moat.png",
+      "medium-fi/two-courts-and-divider.png",
+      "medium-fi/northern-roofed-towers.png",
+      "medium-fi/eastern-gateway-and-bridge.png",
+      "medium-fi/main-gateway-and-periscope.png",
+      "medium-fi/hillside-tower-and-stair.png",
+      "medium-fi/museum-and-palace-remains.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected twenty-four Earth-rig frames: three distances, two light settings, Economy/High, silhouette, seven architectural cameras and four forced LODs. Separate hash-bound17x17 coarse heightfield uses289 attributed samples,64.70m provisional zero and no terrain corrections. Hill/tree/city context is not included in any runtime GLB. Research ground buries parts of the entrance/courts/barbican and exposes floating north foundations and museum floor. Main cameraY40 stays above ground. Palette/shared surfaces and LOD budgets remain coherent, but visible ground contacts are unacceptable for geographic activation. Synthetic neighbors outside the hill tile, forced transitions and desktop software captures do not certify real Lisbon terrain or physical phone/laptop behavior."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:580916329f31d3971fcc4c7f6239bd91d7005eb29cfe414429433f1c95731153",
+    "mapGeometryHash": "sha256:0404fe7c102609dc0c6372936654fdc569c54ffa0d997a3b02a23d948f8492d9",
+    "coordinateRoundTripErrorMeters": 0.0006646585849734914,
+    "mapCoordinateSamples": 223,
+    "notes": "223 attributed coordinates reconstruct within0.665mm. Exact castle1382432568/Q636780, barbican27022973, museum168984058 and actual hillside tower591833135 with149-step83388706 link retain native East/South heading0. Conflicting raw interior São Lourenço label246379169 remains in evidence but is not propagated as model identity. Padded bounds contain all six GLBs. Operator observatory111.229m is absolute altitude, not a relative tower height; courtY25/hillsideY0 and bridge/terrace sections remain provisional. Placement draft/inactive; footprint replacement off. Terrain comparison now retained in terrain-review.json: coarse DEM89.70m at anchor,64.24m at hillside tower and90.20→75.87m under museum. Separate research hill uses64.70m datum to map only the anchor to provisional courtY25, without flattening contacts. DGT public viewer rounded heights111–112m across much of the site have unspecified surface/resolution and are not accepted as bare-earth controls. Fine MDT catalog describes private-access raster data; no authenticated download attempted. Actual site terraces, stair grades and museum retaining/wing sections remain unresolved."
+  },
+  "fidelityReview": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Current operator photos/diagram and published eleven-tower/two-court descriptions guide original geometry. Palace Tower7.6by10m is an approximate primary plan fact; outer tower returns, east/south tower plans, heights, gateway/parapet/roof/window sections, museum envelope and hillside rise remain photographic estimates. Royal residence is represented by current museum/exterior ruins, not vanished full palace. Fine archaeological ruins, museum interiors/exhibits, statues, heraldry, furniture, vegetation, natural hill, surrounding neighborhood/church and whole77-tower Fernandine city wall remain separate or pending. No copied photo/plan/mesh redistributed. A coarse numeric hill is now an isolated preview fixture. It exposes buried/missing-looking entrance/courtyard sections and floating foundations rather than fixing or approving them. Runtime geometry is unchanged; no source master detail was discarded."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/models/source.glb",
+        "hash": "sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c",
+        "bytes": 834820,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.glb",
+        "hash": "sha256:c34df7f651b658cc59525c6c1968ba1dc645487711c57eb9e87cc10ab581a2d0",
+        "bytes": 834180,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.skyline.glb",
+        "hash": "sha256:c5aa305219e5a3ef3eb8b88b4f2ce607aec060494c458d61cd9f1943a06ac39d",
+        "bytes": 88808,
+        "triangles": 996,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -74.4209976196289,
+          0,
+          -79.39700317382812
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.district.glb",
+        "hash": "sha256:2bf66f90591f55d003c229cb2c44300c54e5cf944361e75fa7b14f19cf3bea65",
+        "bytes": 355516,
+        "triangles": 3932,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.street.glb",
+        "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
+        "bytes": 651404,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.closeup.glb",
+        "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
+        "bytes": 651404,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "notes": "Source and five runtime files retain the exact previously validated hashes: no geometry change. Ten focused tests pass, including289 numerical terrain samples decoded within1mm and preservation of unresolved museum grade. Scoped runtime import/inspect check passes. Portable scene simulates30ticks during capture with hash sha256:188e5ccc53e6875454d5b09e07ebfaca9197cfda6c7512f1cea892ade9681fcb. PNG is16-bit numeric ground data, not a per-building material texture."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.skyline.glb",
+        "hash": "sha256:c5aa305219e5a3ef3eb8b88b4f2ce607aec060494c458d61cd9f1943a06ac39d",
+        "bytes": 88808,
+        "triangles": 996,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -74.4209976196289,
+          0,
+          -79.39700317382812
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.district.glb",
+        "hash": "sha256:2bf66f90591f55d003c229cb2c44300c54e5cf944361e75fa7b14f19cf3bea65",
+        "bytes": 355516,
+        "triangles": 3932,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.street.glb",
+        "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
+        "bytes": 651404,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ey/eyc/n0308_castle_of_saint_george/model.closeup.glb",
+        "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
+        "bytes": 651404,
+        "triangles": 6923,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -74.55441284179688,
+          0,
+          -79.5303955078125
+        ],
+        "max": [
+          43.94876480102539,
+          54,
+          145.56900024414062
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "initialDownloadBytes": 444324,
+    "notes": "996/3932/6923/6923 triangles. Initial 444324 bytes; closeup 651404 bytes before shared textures. Material groups1/6/7/7; graphs0/4/5/5. Skinny stairs/windows simplify by level. No mixed component-type GPU uploads. Physical phones/laptops, continuous upgrades and actual terrain attachment remain pending."
+  },
+  "terrainFixtureReview": {
+    "status": "pending",
+    "descriptorHash": "sha256:88a315bfeb84aab5950bd0c71c33b33b6e50820261bba335022fe3732563b024",
+    "heightmapHash": "sha256:bfcdc21d12f3607fc097fd7b6d0446cdb467ba3e82c831a62133d552b55a2607",
+    "sourceGridHash": "sha256:ba385e388420b230cb6550879a2df3c19740745e1fc8a6c221b042eaba393d0b",
+    "researchReportHash": "sha256:ad3626279fd1bb06c3dc43a989e8ebb6c3c6ccdd3873b531fe90ea125dc12814",
+    "samples": 289,
+    "quantizationErrorLimitMeters": 0.001,
+    "geometryChanged": false,
+    "correctionsApplied": [],
+    "notes": "Preview-only coarse ground. Numeric reproducibility passed; actual foundations/terraces and source vertical reference unresolved."
+  },
+  "terrainContactReview": {
+    "status": "pending",
+    "reviewedAt": "2026-10-09",
+    "inputHash": "sha256:51b6e1ec221511954c86c91a9fc02c84ac22e47bff366d994101b6e83071f4c3",
+    "sourceHash": "sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c",
+    "runtimeHash": "sha256:c34df7f651b658cc59525c6c1968ba1dc645487711c57eb9e87cc10ab581a2d0",
+    "descriptorHash": "sha256:88a315bfeb84aab5950bd0c71c33b33b6e50820261bba335022fe3732563b024",
+    "heightmapHash": "sha256:bfcdc21d12f3607fc097fd7b6d0446cdb467ba3e82c831a62133d552b55a2607",
+    "basis": "Bilinear samples of the unchanged coarse research hill at source-defined aperture centrelines and footprint corners. Numerical diagnostic only; no surveyed accuracy or geometric corrections.",
+    "geometryChanged": false,
+    "terrainChanged": false,
+    "counts": {
+      "contact": 1,
+      "embedded": 54,
+      "floating": 56,
+      "aperture-covered": 2
+    },
+    "samples": [
+      {
+        "part": "gateway-main",
+        "role": "mouth-a",
+        "point": [
+          -1.21,
+          17.648
+        ],
+        "modelY": 25,
+        "terrainY": 27.857,
+        "clearanceMeters": -2.857,
+        "apertureTopY": 29.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-main",
+        "role": "centre",
+        "point": [
+          0.831,
+          25.383
+        ],
+        "modelY": 25,
+        "terrainY": 29.241,
+        "clearanceMeters": -4.241,
+        "apertureTopY": 29.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-main",
+        "role": "mouth-b",
+        "point": [
+          2.872,
+          33.118
+        ],
+        "modelY": 25,
+        "terrainY": 29.731,
+        "clearanceMeters": -4.731,
+        "apertureTopY": 29.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-barbican-south",
+        "role": "mouth-a",
+        "point": [
+          2.533,
+          32.624
+        ],
+        "modelY": 25,
+        "terrainY": 29.698,
+        "clearanceMeters": -4.698,
+        "apertureTopY": 29.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-barbican-south",
+        "role": "centre",
+        "point": [
+          3.211,
+          35.547
+        ],
+        "modelY": 25,
+        "terrainY": 29.874,
+        "clearanceMeters": -4.874,
+        "apertureTopY": 29.8,
+        "classification": "aperture-covered"
+      },
+      {
+        "part": "gateway-barbican-south",
+        "role": "mouth-b",
+        "point": [
+          3.889,
+          38.469
+        ],
+        "modelY": 25,
+        "terrainY": 30.043,
+        "clearanceMeters": -5.043,
+        "apertureTopY": 29.8,
+        "classification": "aperture-covered"
+      },
+      {
+        "part": "gateway-east",
+        "role": "mouth-a",
+        "point": [
+          17.059,
+          9.243
+        ],
+        "modelY": 25,
+        "terrainY": 27.088,
+        "clearanceMeters": -2.088,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-east",
+        "role": "centre",
+        "point": [
+          24.557,
+          9.42
+        ],
+        "modelY": 25,
+        "terrainY": 27.35,
+        "clearanceMeters": -2.35,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-east",
+        "role": "mouth-b",
+        "point": [
+          32.054,
+          9.597
+        ],
+        "modelY": 25,
+        "terrainY": 27.134,
+        "clearanceMeters": -2.134,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-barbican-east",
+        "role": "mouth-a",
+        "point": [
+          29.845,
+          9.518
+        ],
+        "modelY": 25,
+        "terrainY": 27.203,
+        "clearanceMeters": -2.203,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-barbican-east",
+        "role": "centre",
+        "point": [
+          33.343,
+          9.637
+        ],
+        "modelY": 25,
+        "terrainY": 27.093,
+        "clearanceMeters": -2.093,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-barbican-east",
+        "role": "mouth-b",
+        "point": [
+          36.84,
+          9.756
+        ],
+        "modelY": 25,
+        "terrainY": 26.982,
+        "clearanceMeters": -1.982,
+        "apertureTopY": 29.6,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-divider-south",
+        "role": "mouth-a",
+        "point": [
+          -7.931,
+          13.799
+        ],
+        "modelY": 25,
+        "terrainY": 26.625,
+        "clearanceMeters": -1.625,
+        "apertureTopY": 28.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-divider-south",
+        "role": "centre",
+        "point": [
+          -8.302,
+          16.272
+        ],
+        "modelY": 25,
+        "terrainY": 26.998,
+        "clearanceMeters": -1.998,
+        "apertureTopY": 28.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-divider-south",
+        "role": "mouth-b",
+        "point": [
+          -8.674,
+          18.744
+        ],
+        "modelY": 25,
+        "terrainY": 27.37,
+        "clearanceMeters": -2.37,
+        "apertureTopY": 28.8,
+        "classification": "embedded"
+      },
+      {
+        "part": "gateway-divider-north",
+        "role": "mouth-a",
+        "point": [
+          -9.603,
+          -17.625
+        ],
+        "modelY": 25,
+        "terrainY": 19.836,
+        "clearanceMeters": 5.164,
+        "apertureTopY": 28.8,
+        "classification": "floating"
+      },
+      {
+        "part": "gateway-divider-north",
+        "role": "centre",
+        "point": [
+          -5.623,
+          -17.224
+        ],
+        "modelY": 25,
+        "terrainY": 20.244,
+        "clearanceMeters": 4.756,
+        "apertureTopY": 28.8,
+        "classification": "floating"
+      },
+      {
+        "part": "gateway-divider-north",
+        "role": "mouth-b",
+        "point": [
+          -1.643,
+          -16.824
+        ],
+        "modelY": 25,
+        "terrainY": 20.653,
+        "clearanceMeters": 4.347,
+        "apertureTopY": 28.8,
+        "classification": "floating"
+      },
+      {
+        "part": "gateway-betrayal",
+        "role": "mouth-a",
+        "point": [
+          -7.818,
+          -38.829
+        ],
+        "modelY": 25,
+        "terrainY": 13.791,
+        "clearanceMeters": 11.209,
+        "apertureTopY": 27.6,
+        "classification": "floating"
+      },
+      {
+        "part": "gateway-betrayal",
+        "role": "centre",
+        "point": [
+          -8.2,
+          -35.35
+        ],
+        "modelY": 25,
+        "terrainY": 14.855,
+        "clearanceMeters": 10.145,
+        "apertureTopY": 27.6,
+        "classification": "floating"
+      },
+      {
+        "part": "gateway-betrayal",
+        "role": "mouth-b",
+        "point": [
+          -8.582,
+          -31.871
+        ],
+        "modelY": 25,
+        "terrainY": 15.919,
+        "clearanceMeters": 9.081,
+        "apertureTopY": 27.6,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-palace",
+        "role": "corner-1",
+        "point": [
+          -43.342,
+          33.159
+        ],
+        "modelY": 19,
+        "terrainY": 24.393,
+        "clearanceMeters": -5.393,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-palace",
+        "role": "corner-2",
+        "point": [
+          -41.692,
+          24.086
+        ],
+        "modelY": 19,
+        "terrainY": 24.214,
+        "clearanceMeters": -5.214,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-palace",
+        "role": "corner-3",
+        "point": [
+          -38.452,
+          24.676
+        ],
+        "modelY": 19,
+        "terrainY": 24.792,
+        "clearanceMeters": -5.792,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-palace",
+        "role": "corner-4",
+        "point": [
+          -34.795,
+          31.901
+        ],
+        "modelY": 19,
+        "terrainY": 25.724,
+        "clearanceMeters": -6.724,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-palace",
+        "role": "corner-5",
+        "point": [
+          -35.29,
+          34.617
+        ],
+        "modelY": 19,
+        "terrainY": 25.772,
+        "clearanceMeters": -6.772,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-1",
+        "point": [
+          -36.828,
+          13.978
+        ],
+        "modelY": 19,
+        "terrainY": 23.426,
+        "clearanceMeters": -4.426,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-2",
+        "point": [
+          -39.711,
+          13.711
+        ],
+        "modelY": 19,
+        "terrainY": 22.963,
+        "clearanceMeters": -3.963,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-3",
+        "point": [
+          -39.251,
+          8.657
+        ],
+        "modelY": 19,
+        "terrainY": 22.274,
+        "clearanceMeters": -3.274,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-4",
+        "point": [
+          -36.367,
+          8.924
+        ],
+        "modelY": 19,
+        "terrainY": 22.731,
+        "clearanceMeters": -3.731,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-5",
+        "point": [
+          -33.977,
+          9.142
+        ],
+        "modelY": 19,
+        "terrainY": 23.109,
+        "clearanceMeters": -4.109,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-south",
+        "role": "corner-6",
+        "point": [
+          -34.438,
+          14.196
+        ],
+        "modelY": 19,
+        "terrainY": 23.809,
+        "clearanceMeters": -4.809,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-1",
+        "point": [
+          -35.75,
+          -0.438
+        ],
+        "modelY": 19,
+        "terrainY": 21.365,
+        "clearanceMeters": -2.365,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-2",
+        "point": [
+          -40.12,
+          -0.994
+        ],
+        "modelY": 19,
+        "terrainY": 20.618,
+        "clearanceMeters": -1.618,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-3",
+        "point": [
+          -39.555,
+          -5.325
+        ],
+        "modelY": 19,
+        "terrainY": 19.655,
+        "clearanceMeters": -0.655,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-4",
+        "point": [
+          -35.186,
+          -4.757
+        ],
+        "modelY": 19,
+        "terrainY": 20.397,
+        "clearanceMeters": -1.397,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-5",
+        "point": [
+          -32.806,
+          -4.446
+        ],
+        "modelY": 19,
+        "terrainY": 20.803,
+        "clearanceMeters": -1.803,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-middle",
+        "role": "corner-6",
+        "point": [
+          -33.37,
+          -0.127
+        ],
+        "modelY": 19,
+        "terrainY": 21.774,
+        "clearanceMeters": -2.774,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-1",
+        "point": [
+          -32.189,
+          -19.195
+        ],
+        "modelY": 19,
+        "terrainY": 17.299,
+        "clearanceMeters": 1.701,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-2",
+        "point": [
+          -35.976,
+          -20.386
+        ],
+        "modelY": 19,
+        "terrainY": 16.506,
+        "clearanceMeters": 2.494,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-3",
+        "point": [
+          -34.673,
+          -24.527
+        ],
+        "modelY": 19,
+        "terrainY": 15.676,
+        "clearanceMeters": 3.324,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-4",
+        "point": [
+          -30.886,
+          -23.336
+        ],
+        "modelY": 19,
+        "terrainY": 16.463,
+        "clearanceMeters": 2.537,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-5",
+        "point": [
+          -28.597,
+          -22.616
+        ],
+        "modelY": 19,
+        "terrainY": 16.942,
+        "clearanceMeters": 2.058,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-west-north",
+        "role": "corner-6",
+        "point": [
+          -29.9,
+          -18.475
+        ],
+        "modelY": 19,
+        "terrainY": 17.781,
+        "clearanceMeters": 1.219,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-1",
+        "point": [
+          -20.767,
+          -34.546
+        ],
+        "modelY": 19,
+        "terrainY": 14.157,
+        "clearanceMeters": 4.843,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-2",
+        "point": [
+          -22.287,
+          -38.219
+        ],
+        "modelY": 19,
+        "terrainY": 12.89,
+        "clearanceMeters": 6.11,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-3",
+        "point": [
+          -17.067,
+          -40.379
+        ],
+        "modelY": 19,
+        "terrainY": 12.606,
+        "clearanceMeters": 6.394,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-4",
+        "point": [
+          -15.173,
+          -36.138
+        ],
+        "modelY": 19,
+        "terrainY": 14.08,
+        "clearanceMeters": 4.92,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-5",
+        "point": [
+          -14.133,
+          -32.483
+        ],
+        "modelY": 19,
+        "terrainY": 15.307,
+        "clearanceMeters": 3.693,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northwest-roof",
+        "role": "corner-6",
+        "point": [
+          -19.727,
+          -30.891
+        ],
+        "modelY": 19,
+        "terrainY": 15.382,
+        "clearanceMeters": 3.618,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-1",
+        "point": [
+          -1.406,
+          -34.579
+        ],
+        "modelY": 19,
+        "terrainY": 15.612,
+        "clearanceMeters": 3.388,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-2",
+        "point": [
+          -0.338,
+          -39.466
+        ],
+        "modelY": 19,
+        "terrainY": 14.156,
+        "clearanceMeters": 4.844,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-3",
+        "point": [
+          6.021,
+          -38.075
+        ],
+        "modelY": 19,
+        "terrainY": 14.778,
+        "clearanceMeters": 4.222,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-4",
+        "point": [
+          5.074,
+          -33.722
+        ],
+        "modelY": 19,
+        "terrainY": 16.122,
+        "clearanceMeters": 2.878,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-5",
+        "point": [
+          4.602,
+          -30.153
+        ],
+        "modelY": 19,
+        "terrainY": 17.231,
+        "clearanceMeters": 1.769,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-north-roof",
+        "role": "corner-6",
+        "point": [
+          -1.878,
+          -31.01
+        ],
+        "modelY": 19,
+        "terrainY": 16.698,
+        "clearanceMeters": 2.302,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-1",
+        "point": [
+          25.929,
+          -27.934
+        ],
+        "modelY": 19,
+        "terrainY": 18.453,
+        "clearanceMeters": 0.547,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-2",
+        "point": [
+          25.972,
+          -33.21
+        ],
+        "modelY": 19,
+        "terrainY": 16.795,
+        "clearanceMeters": 2.205,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-3",
+        "point": [
+          33.364,
+          -33.143
+        ],
+        "modelY": 19,
+        "terrainY": 16.713,
+        "clearanceMeters": 2.287,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-4",
+        "point": [
+          33.312,
+          -27.978
+        ],
+        "modelY": 19,
+        "terrainY": 18.327,
+        "clearanceMeters": 0.673,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-5",
+        "point": [
+          33.333,
+          -24.478
+        ],
+        "modelY": 19,
+        "terrainY": 19.391,
+        "clearanceMeters": -0.391,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-northeast",
+        "role": "corner-6",
+        "point": [
+          25.95,
+          -24.434
+        ],
+        "modelY": 19,
+        "terrainY": 19.523,
+        "clearanceMeters": -0.523,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-east-middle",
+        "role": "corner-1",
+        "point": [
+          24.7,
+          -1.6
+        ],
+        "modelY": 19,
+        "terrainY": 25.51,
+        "clearanceMeters": -6.51,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-east-middle",
+        "role": "corner-2",
+        "point": [
+          31.5,
+          -1.6
+        ],
+        "modelY": 19,
+        "terrainY": 25.336,
+        "clearanceMeters": -6.336,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-east-middle",
+        "role": "corner-3",
+        "point": [
+          31.5,
+          5
+        ],
+        "modelY": 19,
+        "terrainY": 26.482,
+        "clearanceMeters": -7.482,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-east-middle",
+        "role": "corner-4",
+        "point": [
+          24.7,
+          5
+        ],
+        "modelY": 19,
+        "terrainY": 26.686,
+        "clearanceMeters": -7.686,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-observatory",
+        "role": "corner-1",
+        "point": [
+          23.4,
+          18.3
+        ],
+        "modelY": 19,
+        "terrainY": 28.666,
+        "clearanceMeters": -9.666,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-observatory",
+        "role": "corner-2",
+        "point": [
+          33.2,
+          18.3
+        ],
+        "modelY": 19,
+        "terrainY": 28.355,
+        "clearanceMeters": -9.355,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-observatory",
+        "role": "corner-3",
+        "point": [
+          33.2,
+          29
+        ],
+        "modelY": 19,
+        "terrainY": 29.451,
+        "clearanceMeters": -10.451,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-observatory",
+        "role": "corner-4",
+        "point": [
+          23.4,
+          29
+        ],
+        "modelY": 19,
+        "terrainY": 29.804,
+        "clearanceMeters": -10.804,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-ulysses",
+        "role": "corner-1",
+        "point": [
+          -10.4,
+          26
+        ],
+        "modelY": 19,
+        "terrainY": 28.297,
+        "clearanceMeters": -9.297,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-ulysses",
+        "role": "corner-2",
+        "point": [
+          4.4,
+          24.8
+        ],
+        "modelY": 19,
+        "terrainY": 29.259,
+        "clearanceMeters": -10.259,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-ulysses",
+        "role": "corner-3",
+        "point": [
+          3.4,
+          34.4
+        ],
+        "modelY": 19,
+        "terrainY": 29.809,
+        "clearanceMeters": -10.809,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-ulysses",
+        "role": "corner-4",
+        "point": [
+          -10.6,
+          35.6
+        ],
+        "modelY": 19,
+        "terrainY": 28.87,
+        "clearanceMeters": -9.87,
+        "classification": "embedded"
+      },
+      {
+        "part": "tower-central",
+        "role": "corner-1",
+        "point": [
+          -4.785,
+          -15.533
+        ],
+        "modelY": 25,
+        "terrainY": 20.732,
+        "clearanceMeters": 4.268,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-central",
+        "role": "corner-2",
+        "point": [
+          -5.897,
+          -11.414
+        ],
+        "modelY": 25,
+        "terrainY": 21.674,
+        "clearanceMeters": 3.326,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-central",
+        "role": "corner-3",
+        "point": [
+          -1.232,
+          -10.156
+        ],
+        "modelY": 25,
+        "terrainY": 22.356,
+        "clearanceMeters": 2.644,
+        "classification": "floating"
+      },
+      {
+        "part": "tower-central",
+        "role": "corner-4",
+        "point": [
+          -0.12,
+          -14.275
+        ],
+        "modelY": 25,
+        "terrainY": 21.41,
+        "clearanceMeters": 3.59,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-1",
+        "point": [
+          -36,
+          23
+        ],
+        "modelY": 25,
+        "terrainY": 24.91,
+        "clearanceMeters": 0.09,
+        "classification": "contact"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-2",
+        "point": [
+          -31,
+          -18
+        ],
+        "modelY": 25,
+        "terrainY": 17.749,
+        "clearanceMeters": 7.251,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-3",
+        "point": [
+          -19,
+          -32
+        ],
+        "modelY": 25,
+        "terrainY": 15.089,
+        "clearanceMeters": 9.911,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-4",
+        "point": [
+          -4,
+          -31
+        ],
+        "modelY": 25,
+        "terrainY": 16.54,
+        "clearanceMeters": 8.46,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-5",
+        "point": [
+          -16.5,
+          14
+        ],
+        "modelY": 25,
+        "terrainY": 25.908,
+        "clearanceMeters": -0.908,
+        "classification": "embedded"
+      },
+      {
+        "part": "courtyard-1",
+        "role": "corner-6",
+        "point": [
+          -16,
+          23
+        ],
+        "modelY": 25,
+        "terrainY": 27.395,
+        "clearanceMeters": -2.395,
+        "classification": "embedded"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-1",
+        "point": [
+          -2.5,
+          -31
+        ],
+        "modelY": 25,
+        "terrainY": 16.654,
+        "clearanceMeters": 8.346,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-2",
+        "point": [
+          24.3,
+          -25
+        ],
+        "modelY": 25,
+        "terrainY": 19.372,
+        "clearanceMeters": 5.628,
+        "classification": "floating"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-3",
+        "point": [
+          24.3,
+          20
+        ],
+        "modelY": 25,
+        "terrainY": 28.947,
+        "clearanceMeters": -3.947,
+        "classification": "embedded"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-4",
+        "point": [
+          4,
+          22
+        ],
+        "modelY": 25,
+        "terrainY": 28.787,
+        "clearanceMeters": -3.787,
+        "classification": "embedded"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-5",
+        "point": [
+          3.7,
+          15.2
+        ],
+        "modelY": 25,
+        "terrainY": 27.655,
+        "clearanceMeters": -2.655,
+        "classification": "embedded"
+      },
+      {
+        "part": "courtyard-2",
+        "role": "corner-6",
+        "point": [
+          -12,
+          13.5
+        ],
+        "modelY": 25,
+        "terrainY": 26.221,
+        "clearanceMeters": -1.221,
+        "classification": "embedded"
+      },
+      {
+        "part": "museum",
+        "role": "corner-1",
+        "point": [
+          -47.433,
+          35.274
+        ],
+        "modelY": 25,
+        "terrainY": 23.791,
+        "clearanceMeters": 1.209,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-2",
+        "point": [
+          -36.48,
+          38.914
+        ],
+        "modelY": 25,
+        "terrainY": 25.771,
+        "clearanceMeters": -0.771,
+        "classification": "embedded"
+      },
+      {
+        "part": "museum",
+        "role": "corner-3",
+        "point": [
+          -40.467,
+          56.87
+        ],
+        "modelY": 25,
+        "terrainY": 25.162,
+        "clearanceMeters": -0.162,
+        "classification": "embedded"
+      },
+      {
+        "part": "museum",
+        "role": "corner-4",
+        "point": [
+          -40.736,
+          66.243
+        ],
+        "modelY": 25,
+        "terrainY": 24.606,
+        "clearanceMeters": 0.394,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-5",
+        "point": [
+          -40.936,
+          73.089
+        ],
+        "modelY": 25,
+        "terrainY": 24.2,
+        "clearanceMeters": 0.8,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-6",
+        "point": [
+          -32.962,
+          73.323
+        ],
+        "modelY": 25,
+        "terrainY": 25.647,
+        "clearanceMeters": -0.647,
+        "classification": "embedded"
+      },
+      {
+        "part": "museum",
+        "role": "corner-7",
+        "point": [
+          -34.508,
+          125.754
+        ],
+        "modelY": 25,
+        "terrainY": 16.684,
+        "clearanceMeters": 8.316,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-8",
+        "point": [
+          -46.66,
+          125.398
+        ],
+        "modelY": 25,
+        "terrainY": 14.871,
+        "clearanceMeters": 10.129,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-9",
+        "point": [
+          -47.259,
+          145.569
+        ],
+        "modelY": 25,
+        "terrainY": 10.91,
+        "clearanceMeters": 14.09,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-10",
+        "point": [
+          -58.734,
+          145.235
+        ],
+        "modelY": 25,
+        "terrainY": 8.903,
+        "clearanceMeters": 16.097,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-11",
+        "point": [
+          -58.021,
+          120.99
+        ],
+        "modelY": 25,
+        "terrainY": 13.505,
+        "clearanceMeters": 11.495,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-12",
+        "point": [
+          -56.562,
+          71.486
+        ],
+        "modelY": 25,
+        "terrainY": 21.05,
+        "clearanceMeters": 3.95,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-13",
+        "point": [
+          -55.581,
+          71.519
+        ],
+        "modelY": 25,
+        "terrainY": 21.283,
+        "clearanceMeters": 3.717,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-14",
+        "point": [
+          -55.381,
+          64.729
+        ],
+        "modelY": 25,
+        "terrainY": 21.688,
+        "clearanceMeters": 3.312,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-15",
+        "point": [
+          -55.138,
+          56.447
+        ],
+        "modelY": 25,
+        "terrainY": 22.182,
+        "clearanceMeters": 2.818,
+        "classification": "floating"
+      },
+      {
+        "part": "museum",
+        "role": "corner-16",
+        "point": [
+          -53.965,
+          56.48
+        ],
+        "modelY": 25,
+        "terrainY": 22.463,
+        "clearanceMeters": 2.537,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-1",
+        "point": [
+          -62.156,
+          -73.062
+        ],
+        "modelY": 0,
+        "terrainY": -0.804,
+        "clearanceMeters": 0.804,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-2",
+        "point": [
+          -63.858,
+          -71.137
+        ],
+        "modelY": 0,
+        "terrainY": -0.457,
+        "clearanceMeters": 0.457,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-3",
+        "point": [
+          -64.71,
+          -70.246
+        ],
+        "modelY": 0,
+        "terrainY": -0.308,
+        "clearanceMeters": 0.308,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-4",
+        "point": [
+          -65.439,
+          -69.456
+        ],
+        "modelY": 0,
+        "terrainY": -0.176,
+        "clearanceMeters": 0.176,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-5",
+        "point": [
+          -67.428,
+          -67.24
+        ],
+        "modelY": 0,
+        "terrainY": 0.186,
+        "clearanceMeters": -0.186,
+        "classification": "embedded"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-6",
+        "point": [
+          -74.421,
+          -73.575
+        ],
+        "modelY": 0,
+        "terrainY": -1.973,
+        "clearanceMeters": 1.973,
+        "classification": "floating"
+      },
+      {
+        "part": "hillside-tower",
+        "role": "corner-7",
+        "point": [
+          -69.148,
+          -79.397
+        ],
+        "modelY": 0,
+        "terrainY": -2.849,
+        "clearanceMeters": 2.849,
+        "classification": "floating"
+      }
+    ],
+    "report": "TERRAIN-CONTACTS.md"
+  }
+}

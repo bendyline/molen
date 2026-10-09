@@ -138,6 +138,8 @@ interface ReviewInput {
   viewingDate?: string;
   asset: string;
   title: string;
+  /** Explicit isolated-stage datum; never changes a geographic terrain placement. */
+  reviewGroundY?: number;
   placement?: StructurePlacement;
   /** Actual mapped perimeter, not a generated footprint. Coordinates are WGS84. */
   footprint?: [number, number][];
@@ -182,6 +184,7 @@ function unload() {
   tileRoot = undefined;
   geographicRenderers = undefined;
   selectionBounds = undefined;
+  ground.position.y = -0.04;
   groundCutouts.update(scene);
   renderer.render(scene, camera);
   return {
@@ -317,6 +320,10 @@ async function mount(input: ReviewInput) {
   }
   scene.updateMatrixWorld(true);
   bounds.setFromObject(object);
+  if (!geographicRenderers && input.reviewGroundY !== undefined) {
+    if (!Number.isFinite(input.reviewGroundY)) throw new Error('Invalid isolated review datum');
+    ground.position.y = input.reviewGroundY - 0.04;
+  }
   caption('#title', input.title);
   return telemetry();
 }
@@ -397,6 +404,7 @@ function telemetry() {
     meshes,
     triangles,
     bounds: { min: bounds.min.toArray(), max: bounds.max.toArray() },
+    reviewGroundY: geographicRenderers ? null : (active?.reviewGroundY ?? 0),
     surfaces: Object.fromEntries(
       [...materials]
         .filter((material) => material.name.startsWith('worldgen:matgraph:'))

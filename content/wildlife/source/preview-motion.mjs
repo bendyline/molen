@@ -8,7 +8,10 @@ const root = fileURLToPath(new URL('../../../', import.meta.url));
 const require = createRequire(resolve(root, 'examples/world-explorer/package.json'));
 const { createServer } = await import(pathToFileURL(require.resolve('vite')).href);
 const { chromium } = createRequire(resolve(root, 'packages/tooling/package.json'))('playwright');
-const out = resolve(root, '.artifacts/regional-world/wildlife-motion');
+const out = resolve(
+  root,
+  `.artifacts/regional-world/${process.argv.includes('--diversity') ? 'wildlife-motion-diversity' : 'wildlife-motion'}`,
+);
 await mkdir(out, { recursive: true });
 const server = await createServer({
   configFile: false,

@@ -44,6 +44,8 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const previous = await readOptionalJson(reportPath);
   const current =
     previous?.inputHash === inputHash &&
+    previous?.sourceHash === sourceHash &&
+    previous?.runtimeHash === sidecar.hash &&
     matchesEvidenceText(sceneBytes, previous?.sceneHash) &&
     previous?.captureVersion === 3 &&
     (previous?.antialias ?? false) === antialias &&
@@ -129,6 +131,8 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
         assetId: spec.assetId,
         qaCamerasHash: hashBytes(JSON.stringify(spec.qaCameras ?? {})),
         inputHash,
+        sourceHash,
+        runtimeHash: sidecar.hash,
         sceneHash,
         frames,
         stateHash: scene.stateHash,

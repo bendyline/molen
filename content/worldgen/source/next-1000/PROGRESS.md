@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 302 authored assets, 302 imported assets and 232 active geographic asset previews.
+There are 318 authored assets, 318 imported assets and 233 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 302 |
-| Runtime GLBs imported | 302 |
-| Portable visual reviews passed | 195 |
-| Shared-material reviews passed | 193 |
-| Active geographic previews | 232 |
-| Declared fidelity reviews passed | 130 |
-| Complete | 105 |
-| Source models still to author | 698 |
+| Source GLBs authored | 318 |
+| Runtime GLBs imported | 318 |
+| Portable visual reviews passed | 208 |
+| Shared-material reviews passed | 207 |
+| Active geographic previews | 233 |
+| Declared fidelity reviews passed | 131 |
+| Complete | 106 |
+| Source models still to author | 682 |
 
 ## Authored models
 
@@ -198,6 +198,22 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0290 | [Warwick Castle](../places/gc/gcq/n0290_warwick_castle/README.md) | 8649 | Pending | Pending | Pending | Pending | Pending |
 | N0291 | [Książ Castle and park complex](../places/u3/u35/n0291_ksiaz_castle_and_park_complex/README.md) | 7839 | Pending | Pending | Pending | Pending | Pending |
 | N0292 | [Devín Castle](../places/u2/u2s/n0292_devin_castle/README.md) | 8494 | Pending | Pending | Pending | Pending | Pending |
+| N0293 | [Rumeli Hisarı](../places/sx/sxk/n0293_rumeli_hisar/README.md) | 15946 | Passed | Passed | Pending | Pending | Pending |
+| N0294 | [Aljafería](../places/ez/ezr/n0294_aljaferia/README.md) | 18094 | Passed | Passed | Pending | Pending | Pending |
+| N0295 | [Pembroke Castle](../places/gc/gch/n0295_pembroke_castle/README.md) | 14971 | Passed | Passed | Pending | Pending | Pending |
+| N0296 | [Kalmar Castle](../places/u6/u65/n0296_kalmar_castle/README.md) | 9633 | Passed | Passed | Pending | Pending | Pending |
+| N0297 | [Nuremberg Castle](../places/u0/u0z/n0297_nuremberg_castle/README.md) | 8152 | Passed | Passed | Pending | Pending | Pending |
+| N0298 | [Egeskov Castle](../places/u1/u1z/n0298_egeskov_castle/README.md) | 15116 | Passed | Passed | Pending | Pending | Pending |
+| N0299 | [Wawel Castle](../places/u2/u2y/n0299_wawel_castle/README.md) | 23061 | Pending | Pending | Pending | Pending | Pending |
+| N0300 | [Saint Michael's Castle](../places/ud/udt/n0300_saint_michael_s_castle/README.md) | 17128 | Pending | Pending | Pending | Pending | Pending |
+| N0301 | [Hochosterwitz Castle](../places/u2/u26/n0301_hochosterwitz_castle/README.md) | 16490 | Passed | Passed | Pending | Pending | Pending |
+| N0302 | [Liechtenstein Castle](../places/u2/u2e/n0302_liechtenstein_castle/README.md) | 5371 | Passed | Passed | Pending | Pending | Pending |
+| N0303 | [Arundel Castle](../places/gc/gcp/n0303_arundel_castle/README.md) | 15379 | Passed | Passed | Pending | Pending | Pending |
+| N0304 | [Leeds Castle](../places/u1/u10/n0304_leeds_castle/README.md) | 11749 | Passed | Passed | Pending | Pending | Pending |
+| N0305 | [Turku Castle](../places/u6/u6x/n0305_turku_castle/README.md) | 6844 | Passed | Passed | Pending | Pending | Pending |
+| N0306 | [Gediminas' Tower](../places/u9/u99/n0306_gediminas_tower/README.md) | 2492 | Passed | Passed | Passed | Passed | Yes |
+| N0307 | [Ljubljana Castle](../places/u2/u24/n0307_ljubljana_castle/README.md) | 5691 | Passed | Passed | Pending | Pending | Pending |
+| N0308 | [Castle of Saint George](../places/ey/eyc/n0308_castle_of_saint_george/README.md) | 6923 | Pending | Passed | Pending | Pending | Pending |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |

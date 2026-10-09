@@ -6,7 +6,11 @@ import { previewWorldgen } from '../../../packages/tooling/dist/index.mjs';
 import { architectureFamilies } from './architecture-families.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const out = resolve(root, '.artifacts/regional-world/architecture');
+const variants = process.argv.includes('--variants') ? ['', '.compact', '.open'] : [''];
+const out = resolve(
+  root,
+  `.artifacts/regional-world/${variants.length > 1 ? 'architecture-diversity' : 'architecture'}`,
+);
 await mkdir(out, { recursive: true });
 const selected = process.argv
   .filter((arg) => arg.startsWith('--family='))
@@ -27,22 +31,24 @@ for (const family of architectureFamilies) {
     format: 'molen/worldgen-batch@1',
     name: `${family.title} ordinary buildings`,
     ground: { kind: 'flat', height: 0, dx: 0, dz: 0 },
-    buildings: entries.map(([type, label, width, depth, levels], i) => {
-      const x = (i % 4) * 36,
-        z = Math.floor(i / 4) * 36;
-      return {
-        identity: `regional-qa:${type}`,
-        labels: [label],
-        levels,
-        style: `molen.worldgen.regional.${family.id}.${type}`,
-        outline: [
-          [x, z],
-          [x + width, z],
-          [x + width, z + depth],
-          [x, z + depth],
-        ],
-      };
-    }),
+    buildings: variants.flatMap((suffix, row) =>
+      entries.map(([type, label, width, depth, levels], i) => {
+        const x = (variants.length > 1 ? i : i % 4) * 36,
+          z = (variants.length > 1 ? row : Math.floor(i / 4)) * 42;
+        return {
+          identity: `regional-qa:${type}${suffix}`,
+          labels: [label],
+          levels,
+          style: `molen.worldgen.regional.${family.id}.${type}${suffix}`,
+          outline: [
+            [x, z],
+            [x + width, z],
+            [x + width, z + depth],
+            [x, z + depth],
+          ],
+        };
+      }),
+    ),
     tier: 0,
   };
   const batchPath = resolve(out, `${family.id}.batch.json`);
@@ -51,7 +57,7 @@ for (const family of architectureFamilies) {
     packPath: resolve(root, 'content/worldgen'),
     batchPath,
     angles: 2,
-    size: [1440, 900],
+    size: [variants.length > 1 ? 1920 : 1440, 1000],
     outPath: resolve(out, `${family.id}.png`),
   });
   if (!result.ok || result.materialFailures?.length) throw new Error(JSON.stringify(result));

@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Saint Michael's Castle asset preview",
+  "seed": "N0300",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.n0300_saint_michael_s_castle",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            218.99049072265626,
+            0.2,
+            218.99049072265626
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#777b72",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      196.85566571597158,
+      110,
+      112.46264657886033
+    ],
+    "lookAt": [
+      5.377959751921834,
+      23,
+      0.27847604333022113
+    ],
+    "fov": 42
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

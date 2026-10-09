@@ -32,6 +32,15 @@ function mappedPlant(
   const rule = scatter?.rules.find((entry) => entry.classes.includes('park'));
   const candidates = (rule?.populations ?? [])
     .flatMap((population) => {
+      if (!population.variants) return [population];
+      const total = population.variants.reduce((sum, v) => sum + v.weight, 0);
+      return population.variants.map((v) => ({
+        ...population,
+        model: v.model,
+        weight: (population.weight * v.weight) / total,
+      }));
+    })
+    .flatMap((population) => {
       const plant = environment.library.plants[population.model];
       if (
         plant === undefined ||

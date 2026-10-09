@@ -1,0 +1,356 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.regional.south_asian.apartments.open",
+  "title": "South Asian concrete and render: apartments: open facade",
+  "doc": "Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "apartments",
+      "dormitory",
+      "residential"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 2.85,
+      "max": 3.1
+    },
+    "heightFallback": [
+      {
+        "when": {
+          "areaMax": 180
+        },
+        "levels": {
+          "min": 2,
+          "max": 3
+        }
+      },
+      {
+        "levels": {
+          "min": 3,
+          "max": 5
+        }
+      }
+    ],
+    "groundFit": "platform-average",
+    "foundation": {
+      "height": {
+        "min": 0.3,
+        "max": 0.4
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "rectangles",
+      "maxWingSpan": 20,
+      "minWingArea": 5,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": true,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0,
+      "max": 0.138
+    },
+    "complexFootprint": "wings",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": {
+          "height": {
+            "min": 0.392,
+            "max": 0.616
+          },
+          "thickness": 0.25
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 3.36,
+        "max": 3.66
+      },
+      "cornerMargin": 0.5
+    },
+    "windows": {
+      "style": "punched",
+      "width": {
+        "min": 1.593,
+        "max": 1.829
+      },
+      "height": {
+        "min": 1.222,
+        "max": 1.457
+      },
+      "sill": {
+        "min": 0.8,
+        "max": 0.95
+      },
+      "probabilityPerBay": 0.722,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.32,
+          "max": 0.32
+        }
+      },
+      "floorLines": true,
+      "cornice": {
+        "height": 0.16
+      }
+    },
+    "details": {
+      "entrance": {
+        "width": 1.9,
+        "height": 2.5,
+        "style": "double"
+      },
+      "balconies": {
+        "depth": 1.12,
+        "railing": "open",
+        "every": 1
+      },
+      "awnings": {
+        "depth": 0.784
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stucco",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        2,
+        1.6
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "palette:#ffffff",
+          "weight": 1
+        }
+      ],
+      "palette": "regional_trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        2,
+        2
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone",
+          "weight": 1
+        }
+      ],
+      "palette": "foundation",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        2,
+        2
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_punched",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#d2d1c1",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.025,
+        "lightness": 0.025
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#a2a69e",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.025,
+        "lightness": 0.025
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#dfd7c2",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.025,
+        "lightness": 0.025
+      }
+    },
+    "foundation": {
+      "entries": [
+        {
+          "color": "#b4aa93",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.008,
+        "saturation": 0.025,
+        "lightness": 0.025
+      }
+    },
+    "regional_wall": {
+      "entries": [
+        {
+          "color": "#dfc2b1",
+          "weight": 1
+        },
+        {
+          "color": "#becbd0",
+          "weight": 1
+        },
+        {
+          "color": "#ddd6c1",
+          "weight": 1
+        },
+        {
+          "color": "#c8d0bf",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_roof": {
+      "entries": [
+        {
+          "color": "#a9aaa0",
+          "weight": 1
+        },
+        {
+          "color": "#bab8a9",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    },
+    "regional_trim": {
+      "entries": [
+        {
+          "color": "#dcd8cc",
+          "weight": 1
+        },
+        {
+          "color": "#8c918c",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.015,
+        "lightness": 0.025
+      }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture",
+          "facade-bands"
+        ]
+      },
+      {
+        "minTier": 2,
+        "keep": [
+          "roof-shape"
+        ]
+      }
+    ]
+  }
+}

@@ -50,6 +50,19 @@ const population = z.strictObject({
     .regex(MODEL_REF_RE, "must be 'builtin:<name>' or a namespaced asset id")
     .describe("Model: an asset id (e.g. 'molen.entities.tree.conifer.fir') or 'builtin:<name>'."),
   weight,
+  variants: z
+    .array(
+      z.strictObject({
+        model: z.string().regex(MODEL_REF_RE),
+        weight: z.number().finite().positive().max(1000),
+      }),
+    )
+    .min(1)
+    .max(16)
+    .describe(
+      'Interchangeable model forms sampled independently of species. Unretained forms fall back to model under the model budget; all must share habitat and scale bounds.',
+    )
+    .optional(),
   scale: range('uniform scale'),
   widthScale: z
     .strictObject({
@@ -136,13 +149,22 @@ const rule = z.strictObject({
       threshold: unit.describe('Noise value below which density is zero.').default(0.35),
       contrast: z.number().positive().describe('Steepness of the density ramp.').default(1.4),
       seedOffset: z.int().describe('Decorrelates rules sharing a class.').default(0),
+      sharedSeed: z
+        .int()
+        .describe('Shared density field across layers; does not change placement seeds.')
+        .optional(),
+      detailScale: z
+        .number()
+        .positive()
+        .describe('Wavelength of smaller clumps inside density patches, meters.')
+        .optional(),
     })
     .describe('Noise-modulated density for natural clumps and clearings.')
     .optional(),
   layer: z
-    .enum(['canopy', 'groundcover'])
+    .enum(['canopy', 'understory', 'groundcover'])
     .describe(
-      'Budget pool: canopy (trees, shrubs, rocks) shares the batch instance and model caps; groundcover (knee-high near detail such as tussocks and ferns) has its own, so it never thins the canopy.',
+      'Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees.',
     )
     .default('canopy'),
   slopeMax: unit.describe('Slope limit for this rule (0 = flat, 1 = vertical).').optional(),

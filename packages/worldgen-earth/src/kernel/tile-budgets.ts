@@ -26,8 +26,20 @@ const GROUND_COVER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> =
 };
 const GROUND_COVER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
   economy: [0],
-  balanced: [3],
-  high: [4],
+  balanced: [5],
+  high: [7],
+};
+
+// Broad shrub masses survive Economy and one coarser tile; blades and litter remain near-only.
+const UNDERSTORY_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [450, 80],
+  balanced: [1600, 250],
+  high: [2400, 400],
+};
+const UNDERSTORY_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
+  economy: [2, 1],
+  balanced: [3, 2],
+  high: [4, 2],
 };
 
 const SCATTER_MODELS: Record<WorldgenQualityPreset, readonly number[]> = {
@@ -64,6 +76,8 @@ export function worldgenTileBudgetForQuality(
     maxPropModels: byLevel(SCATTER_MODELS[quality], levelBelowMax),
     maxGroundCoverInstances: byLevel(GROUND_COVER_INSTANCES[quality], levelBelowMax),
     maxGroundCoverModels: byLevel(GROUND_COVER_MODELS[quality], levelBelowMax),
+    maxUnderstoryInstances: byLevel(UNDERSTORY_INSTANCES[quality], levelBelowMax),
+    maxUnderstoryModels: byLevel(UNDERSTORY_MODELS[quality], levelBelowMax),
   };
   switch (quality) {
     case 'economy':

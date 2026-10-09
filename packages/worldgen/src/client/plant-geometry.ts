@@ -1,12 +1,15 @@
 /** Opaque, faceted plant families with bounded geometry and independent near/medium/far meshes. */
 import * as THREE from 'three';
 import type { PlantPreset } from '../kernel/plant-types';
+import { unit01 } from '../kernel/seed';
+import { addBrushGeometry, addClimberGeometry } from './brush-geometry';
 
 type Point = [number, number, number];
 type Detail = boolean | 'distant';
 const TAU = Math.PI * 2;
 
 class PlantMesh {
+  constructor(private readonly seed = 0) {}
   readonly positions: number[] = [];
   readonly colors: number[] = [];
   private readonly colorCache = new Map<string, THREE.Color>();
@@ -38,7 +41,11 @@ class PlantMesh {
       rings.push(
         Array.from({ length: sides }, (_, side): Point => {
           const angle = (side * TAU) / sides;
-          const radius = (radii[i] as number) * (1 + irregularity * Math.sin(angle * 3 + i * 0.9));
+          const phase = this.seed ? unit01(this.seed, 40) * TAU : 0;
+          const radius =
+            (radii[i] as number) *
+            (1 + irregularity * Math.sin(angle * 3 + i * 0.9 + phase)) *
+            (this.seed ? 0.94 + 0.12 * unit01(this.seed, i + 50) : 1);
           const point = center
             .clone()
             .addScaledVector(u, Math.cos(angle) * radius)
@@ -76,6 +83,7 @@ class PlantMesh {
 
   /** A closed irregular crown; tip rings have one vertex, so no degenerate triangles. */
   crown(center: Point, size: Point, hex: string, sides: number, phase: number): void {
+    if (this.seed) phase += unit01(this.seed, 41) * TAU;
     const profiles =
       sides >= 8
         ? [
@@ -239,13 +247,18 @@ class PlantMesh {
 
 /** Generated once per model/LOD and shared by all instances. */
 export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THREE.BufferGeometry {
-  const mesh = new PlantMesh();
+  const seed = p.shapeSeed ?? 0;
+  const mesh = new PlantMesh(seed);
+  const vary = (value: number, amount: number, stream: number): number =>
+    value * (seed ? 1 + (unit01(seed, stream) * 2 - 1) * amount : 1);
+  const angleFor = (angle: number, index: number): number =>
+    angle + (seed ? (unit01(seed, index + 80) * 2 - 1) * 0.42 : 0);
   const h = p.height,
     r = p.width / 2,
     base = p.crownBase * h;
   const far = detail === 'distant',
     medium = detail === true;
-  const ground = p.family === 'grass' || p.family === 'fern' || p.family === 'reed';
+  const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat'].includes(p.family);
   if (ground && detail !== false) return mesh.finish();
   const trunkTop: Point = [p.lean * h, base, 0];
   const trunk = (top = trunkTop, radius = p.stemRadius): void => {
@@ -257,7 +270,9 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     );
   };
 
-  if (p.leafless === true && (p.family === 'broadleaf' || p.family === 'conifer')) {
+  if (addBrushGeometry(mesh, p, detail)) {
+    // Patch families share the same normalization, materials and LOD cache as trees.
+  } else if (p.leafless === true && (p.family === 'broadleaf' || p.family === 'conifer')) {
     const needle = p.family === 'conifer';
     const top = h * (needle ? 1 : 0.86);
     mesh.tube(
@@ -272,7 +287,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     );
     const count = far ? 2 : medium ? 4 : 9;
     for (let i = 0; i < count; i++) {
-      const angle = i * 2.39996;
+      const angle = angleFor(i * 2.39996, i);
       const y = h * (p.crownBase * 0.7 + (i / count) * (0.76 - p.crownBase * 0.7));
       const reach = r * (p.family === 'conifer' ? 1 - i / (count + 1) : 0.62 + (i % 3) * 0.18);
       const tip: Point = [
@@ -309,7 +324,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     trunk([0, h * 0.72, 0], p.stemRadius);
     const count = far ? 3 : medium ? 5 : 8;
     for (let i = 0; i < count; i++) {
-      const angle = i * 2.39996;
+      const angle = angleFor(i * 2.39996, i);
       if (far)
         mesh.leaf(
           [0, h * (0.58 + 0.03 * (i % 4)), 0],
@@ -324,7 +339,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
         mesh.blade(
           [0, h * (0.53 + 0.04 * (i % 4)), 0],
           angle,
-          r * (0.75 + 0.12 * (i % 3)),
+          vary(r * (0.75 + 0.12 * (i % 3)), 0.16, i),
           h * (0.24 - 0.1 * (i % 4)),
           r * 0.25,
           p.foliage,
@@ -335,10 +350,10 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     trunk([p.lean * h, h * 0.78, 0]);
     const leaves = far ? 3 : 8;
     for (let i = 0; i < leaves; i++) {
-      const angle = (i * TAU) / leaves + Math.sin(i * 2.4) * 0.1;
+      const angle = angleFor((i * TAU) / leaves + Math.sin(i * 2.4) * 0.1, i);
       const root: Point = [p.lean * h, h * 0.78, 0];
-      const reach = r * (0.8 + (0.2 * (i % 3)) / 2);
-      const rise = r * (0.6 - 0.4 * (i % 4));
+      const reach = vary(r * (0.8 + (0.2 * (i % 3)) / 2), 0.16, i);
+      const rise = vary(r * (0.6 - 0.4 * (i % 4)), 0.2, i + 12);
       if (!medium && !far && p.form === 'feather') {
         mesh.leaf(root, angle, reach, rise, r * 0.11, p.foliage, true);
         const arch = reach * 0.16;
@@ -392,9 +407,9 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     );
     if (p.form === 'branching')
       for (let i = 0; i < (far ? 2 : 3); i++) {
-        const angle = i * 2.5,
+        const angle = angleFor(i * 2.5, i),
           reach = r * (i === 0 ? 0.8 : 0.65),
-          y = h * (0.35 + i * 0.14);
+          y = vary(h * (0.35 + i * 0.14), 0.12, i);
         const end = y + h * (0.34 - i * 0.035);
         if (far) {
           mesh.tube(
@@ -433,7 +448,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
         );
   } else if (p.family === 'fern') {
     for (let i = 0; i < 3; i++) {
-      const angle = (i * TAU) / 3;
+      const angle = angleFor((i * TAU) / 3, i);
       const root: Point = [0, 0.16, 0];
       mesh.leaf(root, angle, r, h * 0.62, r * 0.025, p.foliage, true);
       for (const t of [0.3, 0.6]) {
@@ -442,7 +457,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
           mesh.leaf(
             at,
             angle + side * 0.9,
-            r * (0.65 - t * 0.3),
+            vary(r * (0.65 - t * 0.3), 0.18, i),
             h * 0.12,
             r * 0.1,
             p.foliage,
@@ -453,8 +468,8 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   } else if (p.family === 'succulent' || ground) {
     const leaves = p.family === 'succulent' ? (far ? 3 : medium ? 7 : 12) : 7;
     for (let i = 0; i < leaves; i++) {
-      const angle = i * 2.39996,
-        spread = (0.45 + (i % 3) * 0.27) * r;
+      const angle = angleFor(i * 2.39996, i),
+        spread = vary((0.45 + (i % 3) * 0.27) * r, 0.18, i);
       mesh.leaf(
         [Math.cos(angle) * r * 0.08, 0.16, Math.sin(angle) * r * 0.08],
         angle,
@@ -468,7 +483,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   } else if (p.family === 'bamboo') {
     const stems = far ? 2 : medium ? 3 : 5;
     for (let i = 0; i < stems; i++) {
-      const angle = i * 2.4,
+      const angle = angleFor(i * 2.4, i),
         x = Math.cos(angle) * r * 0.3,
         z = Math.sin(angle) * r * 0.3;
       const top = h * (0.7 + (0.3 * (i + 1)) / stems);
@@ -532,7 +547,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     if (!far)
       for (let i = 0; i < 3; i++) {
         const y = h * (0.35 + i * 0.2),
-          angle = i * 2.4;
+          angle = angleFor(i * 2.4, i);
         mesh.tube(
           [
             [y * p.lean, y, 0],
@@ -579,12 +594,12 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       );
     else {
       trunk();
-      const lobes = medium ? 3 : 5;
+      const lobes = medium ? 3 : p.climber ? 4 : 5;
       for (let i = 0; i < lobes; i++) {
-        const angle = i * 2.4,
+        const angle = angleFor(i * 2.4, i),
           x = p.lean * h + Math.cos(angle) * r * 0.42,
           z = Math.sin(angle) * r * 0.42;
-        const y = base + canopyHeight * (0.45 + (i % 3) * 0.09);
+        const y = base + vary(canopyHeight * (0.45 + (i % 3) * 0.09), 0.15, i);
         const branchBase = base * (0.55 + (i % 3) * 0.06);
         mesh.tube(
           [
@@ -605,7 +620,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       }
       if (p.family === 'mangrove')
         for (let i = 0; i < (medium ? 3 : 5); i++) {
-          const angle = i * 2.4;
+          const angle = angleFor(i * 2.4, i);
           mesh.tube(
             [
               [0, base * 0.45, 0],
@@ -618,6 +633,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
         }
     }
   }
+  if (!far && !medium && !p.leafless) addClimberGeometry(mesh, p);
   const geometry = mesh.finish();
   const box = geometry.boundingBox as THREE.Box3;
   const size = box.getSize(new THREE.Vector3());

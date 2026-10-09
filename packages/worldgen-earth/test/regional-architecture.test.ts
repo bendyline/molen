@@ -39,9 +39,33 @@ const selected = (
     { ...metrics, labels, ...overrides },
     pack.root.defaults.style,
     'same-building',
-  ).style;
+  ).style.replace(/\.(compact|open)$/, '');
 
 describe('ordinary regional architecture', () => {
+  it('selects all three recipes for every family and use from stable building identities', () => {
+    for (const profile of doc.profiles) {
+      const seen = new Set<string>();
+      for (const rule of profile.buildings ?? []) {
+        if (!rule.style.startsWith('molen.worldgen.regional.') || seen.has(rule.style)) continue;
+        seen.add(rule.style);
+        expect(rule.variants).toHaveLength(3);
+        const rules = [{ ...rule, when: undefined }];
+        const draws = Array.from(
+          { length: 100 },
+          (_, i) => selectStyle(rules, metrics, rule.style, `regional-building-${i}`).style,
+        );
+        expect(new Set(draws)).toEqual(new Set(rule.variants?.map((v) => v.style)));
+        expect(selectStyle(rules, metrics, rule.style).style).toBe(rule.style);
+        expect(draws).toEqual(
+          Array.from(
+            { length: 100 },
+            (_, i) => selectStyle(rules, metrics, rule.style, `regional-building-${i}`).style,
+          ),
+        );
+      }
+      expect(seen.size).toBe(7);
+    }
+  });
   it('keeps at least a third of every ordinary wall palette visibly colored, as required by medium-fi', () => {
     for (const style of Object.values(pack.archstyles)) {
       if (!style.id.startsWith('molen.worldgen.regional.')) continue;
@@ -101,7 +125,7 @@ describe('ordinary regional architecture', () => {
     const styles = Object.values(pack.archstyles).filter((style) =>
       style.id.startsWith('molen.worldgen.regional.'),
     );
-    expect(styles).toHaveLength(91);
+    expect(styles).toHaveLength(273);
     for (const style of styles) {
       const build = () => {
         const builder = new MeshBufferBuilder();

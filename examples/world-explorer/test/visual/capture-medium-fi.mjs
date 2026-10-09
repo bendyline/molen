@@ -2,7 +2,7 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { dirname, resolve } from 'node:path';
+import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
 import { structureSourceDirectory } from '../../../../packages/worldgen/scripts/structure-source-paths.mjs';
@@ -48,6 +48,24 @@ try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 760 } });
     page.on('pageerror', (e) => errors.push(e.message));
     const context = new URLSearchParams(spec.mediumFiContext ?? {});
+    const sourceScene = JSON.parse(await readFile(resolve(dir, 'scene.json')));
+    const terrainFixture = {};
+    if (sourceScene.terrain) {
+      for (const key of ['descriptor', 'heightmap']) {
+        const file = sourceScene.terrain[key];
+        if (typeof file !== 'string') throw new Error(`Missing terrain ${key}`);
+        const local = resolve(dir, file),
+          sourceRelative = relative(dir, local).replaceAll('\\', '/');
+        if (
+          isAbsolute(sourceRelative) ||
+          sourceRelative === '..' ||
+          sourceRelative.startsWith('../')
+        )
+          throw new Error('Terrain fixture escapes source');
+        context.set(`terrain${key}`, relative(root, local).replaceAll('\\', '/'));
+        terrainFixture[key] = { path: file, hash: hash(await readFile(local)) };
+      }
+    }
     await page.goto(
       `http://127.0.0.1:${server.httpServer.address().port}/medium-fi.html?id=${encodeURIComponent(id)}&${context}`,
     );
@@ -88,7 +106,10 @@ try {
       rig: await page.evaluate(() => window.mediumFi.rig),
       neighborTriangles: await page.evaluate(() => window.mediumFi.neighborTriangles),
       runtimeLods: sidecar.runtimeLods.levels,
-      context: 'Synthetic procedural neighbors at Y=0; not evidence of geographic fit.',
+      terrainFixture,
+      context: sourceScene.terrain
+        ? 'Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.'
+        : `Synthetic procedural neighbors at review Y=${spec.mediumFiContext?.groundY ?? 0}; not evidence of geographic fit.`,
       status: 'captures-pending-inspection',
       frames,
       errors,

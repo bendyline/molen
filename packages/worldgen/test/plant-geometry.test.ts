@@ -18,6 +18,28 @@ const plants = Object.values(
 );
 
 describe('regional procedural plants', () => {
+  it('varies branching and fronds in every family without changing bounds, density or topology', () => {
+    expect(catalog.plants).toHaveLength(234);
+    expect(plants).toHaveLength(324);
+    const families = new Map(catalog.plants.map((p) => [p.family, p]));
+    expect(families.size).toBe(18);
+    for (const p of families.values()) {
+      const base = createPlantGeometry({ ...p, shapeSeed: 0 });
+      const a = createPlantGeometry({ ...p, shapeSeed: 137 });
+      const b = createPlantGeometry({ ...p, shapeSeed: 911 });
+      expect(a.getAttribute('position').array, p.family).not.toEqual(
+        base.getAttribute('position').array,
+      );
+      expect(a.getAttribute('position').array, p.family).not.toEqual(
+        b.getAttribute('position').array,
+      );
+      expect(a.getAttribute('position').count).toBe(base.getAttribute('position').count);
+      expect(a.boundingBox?.max.y).toBeCloseTo(base.boundingBox?.max.y ?? 0, 4);
+      base.dispose();
+      a.dispose();
+      b.dispose();
+    }
+  });
   it('keeps every preset finite, ground aligned, outward wound, and bounded at all detail levels', () => {
     expect(plants.length).toBeGreaterThanOrEqual(40);
     for (const p of plants) {
@@ -26,7 +48,7 @@ describe('regional procedural plants', () => {
         const g = createPlantGeometry(p, detail);
         const positions = g.getAttribute('position'),
           normals = g.getAttribute('normal');
-        const ground = ['grass', 'fern', 'reed'].includes(p.family);
+        const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat'].includes(p.family);
         counts.push(positions.count / 3);
         expect(positions.count / 3, `${p.id}/${detail}`).toBeLessThanOrEqual(
           detail === 'distant' ? 64 : detail ? 140 : 450,

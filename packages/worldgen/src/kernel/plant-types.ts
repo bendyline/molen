@@ -18,7 +18,13 @@ export interface PlantPreset {
     | 'fern'
     | 'reed'
     | 'mangrove'
-    | 'deadwood';
+    | 'deadwood'
+    | 'shrub'
+    | 'thicket'
+    | 'forb'
+    | 'vine'
+    | 'mat'
+    | 'fallenwood';
   form: 'round' | 'columnar' | 'umbrella' | 'feather' | 'fan' | 'branching' | 'paddle';
   /** Mature silhouette bounds in meters; scatter supplies modest individual variation. */
   height: number;
@@ -30,6 +36,12 @@ export interface PlantPreset {
   lean: number;
   foliage: string;
   bark: string;
+  /** Stable branching/frond variation. Omitted or zero preserves the original shape. */
+  shapeSeed?: number;
+  /** Low vegetation assembled as a patch rather than one isolated stem. */
+  patch?: boolean;
+  /** Foliage on bounded vines supported by this broadleaf tree's own trunk and branches. */
+  climber?: string;
   /** Source species/genus names represented by this silhouette; exact case-insensitive matches. */
   taxa?: string[];
   /** Botanical leaf category when it differs from the procedural silhouette family. */
@@ -57,6 +69,12 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
     'reed',
     'mangrove',
     'deadwood',
+    'shrub',
+    'thicket',
+    'forb',
+    'vine',
+    'mat',
+    'fallenwood',
   ]),
   form: z.enum(['round', 'columnar', 'umbrella', 'feather', 'fan', 'branching', 'paddle']),
   height: z.number().min(0.1).max(100),
@@ -66,6 +84,9 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
   lean: z.number().min(0).max(0.5),
   foliage: z.string().regex(COLOR_RE),
   bark: z.string().regex(COLOR_RE),
+  shapeSeed: z.int().min(0).max(65535).optional(),
+  patch: z.boolean().optional(),
+  climber: z.string().regex(COLOR_RE).optional(),
   taxa: z.array(z.string().min(1)).min(1).optional(),
   leafType: z.enum(['broadleaved', 'needleleaved']).optional(),
   phenology: z

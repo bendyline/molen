@@ -1,6 +1,9 @@
 /** Isolated asset review in a synthetic Earth-style block; never geographic-fit evidence. */
 import { MaterialResolver } from '@bendyline/molen-client';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
+import { validateByKind } from '@bendyline/molen-schema';
+import { createTerrainObject } from '@bendyline/molen-terrain/client';
+import { heightfieldFromPng, type TerrainDescriptor } from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
   createResolvedMaterialSet,
@@ -81,6 +84,54 @@ const library = new StructureModelLibrary(
   { resolveSurface: ({ ref, slot }) => materials.materialFor(slot, ref) },
 );
 const scene = new THREE.Scene();
+const terrainDescriptor = contextOptions.get('terraindescriptor'),
+  terrainHeightmap = contextOptions.get('terrainheightmap');
+let groundY = Number(contextOptions.get('groundY') ?? 0);
+if (!Number.isFinite(groundY)) throw new Error('Invalid review ground datum');
+let neighborPositions = [
+  [-64, -30],
+  [-62, 25],
+  [62, -30],
+  [63, 25],
+  [-26, -58],
+  [22, -61],
+  [-95, -72],
+  [88, -71],
+].map(([x, z]) => [x * contextScale, z * contextScale]);
+const reviewCenter = terrainDescriptor ? sidecar.bounds.sphere.center : [0, 0, 0];
+if (terrainDescriptor || terrainHeightmap) {
+  if (!terrainDescriptor || !terrainHeightmap) throw new Error('Incomplete terrain fixture');
+  const checked = validateByKind('terrain', await read(terrainDescriptor));
+  if (!checked.ok) throw new Error(checked.formatted);
+  const descriptor = checked.value as TerrainDescriptor;
+  const response = await fetch(base + terrainHeightmap);
+  if (!response.ok) throw new Error(`${terrainHeightmap}: ${response.status}`);
+  const field = heightfieldFromPng(descriptor, new Uint8Array(await response.arrayBuffer()));
+  const hill = createTerrainObject(field, descriptor);
+  hill.traverse((o) => {
+    if ((o as THREE.Mesh).isMesh) {
+      o.castShadow = true;
+      o.receiveShadow = true;
+    }
+  });
+  scene.add(hill);
+  groundY = descriptor.height.min;
+  // Synthetic neighbors stay outside the hill tile, so they cannot cut into the fortifications.
+  const [x, z] = descriptor.origin,
+    w = descriptor.chunkSize * descriptor.gridSize[0],
+    d = descriptor.chunkSize * descriptor.gridSize[1],
+    gap = 35;
+  neighborPositions = [
+    [x - gap, z + d * 0.25],
+    [x - gap, z + d * 0.75],
+    [x + w + gap, z + d * 0.25],
+    [x + w + gap, z + d * 0.75],
+    [x + w * 0.25, z - gap],
+    [x + w * 0.75, z - gap],
+    [x + w * 0.25, z + d + gap],
+    [x + w * 0.75, z + d + gap],
+  ];
+}
 scene.background = new THREE.Color(EARTH_SKY_PALETTE.dayHorizon);
 scene.add(
   new THREE.HemisphereLight(
@@ -100,28 +151,20 @@ sun.shadow.camera.top = 140 * contextScale;
 sun.shadow.camera.bottom = -140 * contextScale;
 sun.shadow.camera.far = 650 * contextScale;
 scene.add(sun, sun.target);
+sun.target.position.set(reviewCenter[0], reviewCenter[1], reviewCenter[2]);
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(2200, 2200),
   new THREE.MeshStandardMaterial({ color: '#aaa59a', roughness: 1 }),
 );
 ground.rotation.x = -Math.PI / 2;
-ground.position.y = -0.02;
+ground.position.y = groundY - 0.02;
 ground.receiveShadow = true;
 scene.add(ground);
 const context = new THREE.Group();
 scene.add(context);
 const builder = new MeshBufferBuilder();
 const style = (await read(`content/worldgen/${pack.styles[neighborStyle]}`)) as ArchStyleDoc;
-for (const [i, [x, z]] of [
-  [-64, -30],
-  [-62, 25],
-  [62, -30],
-  [63, 25],
-  [-26, -58],
-  [22, -61],
-  [-95, -72],
-  [88, -71],
-].entries()) {
+for (const [i, [x, z]] of neighborPositions.entries()) {
   const w = 15 + (i % 3) * 3,
     d = 12 + (i % 2) * 4;
   generateBuilding(
@@ -134,12 +177,12 @@ for (const [i, [x, z]] of [
           [w / 2, -d / 2],
           [w / 2, d / 2],
           [-w / 2, d / 2],
-        ].map(([a, b]) => [a + x * contextScale, b + z * contextScale]),
+        ].map(([a, b]) => [a + x, b + z]),
         levels: 1 + (i % 3 === 0 ? 1 : 0),
       },
       style,
       pack: { name: pack.name, version: pack.version },
-      ground: FLAT_GROUND,
+      ground: { ...FLAT_GROUND, sampleHeight: () => groundY },
       tier: 0,
     },
     builder,
@@ -221,13 +264,18 @@ function view(options: View = {}) {
   });
   renderer.setPixelRatio(mode === 'economy' ? 0.65 : 1);
   sun.position.set(
-    (time === 'noon' ? -100 : -240) * contextScale,
-    (time === 'noon' ? 290 : 75) * contextScale,
-    160 * contextScale,
+    (time === 'noon' ? -100 : -240) * contextScale + reviewCenter[0],
+    (time === 'noon' ? 290 : 75) * contextScale + reviewCenter[1],
+    160 * contextScale + reviewCenter[2],
   );
   const positions = { street: [48, 26, 83], block: [97, 62, 168], skyline: [194, 100, 336] };
-  const p = options.position ?? positions[distance].map((v) => v * contextScale),
-    look = options.lookAt ?? [0, 11 * contextScale, 0];
+  const p =
+      options.position ?? positions[distance].map((v, i) => v * contextScale + reviewCenter[i]),
+    look = options.lookAt ?? [
+      reviewCenter[0],
+      11 * contextScale + reviewCenter[1],
+      reviewCenter[2],
+    ];
   camera.position.set(p[0], p[1], p[2]);
   camera.lookAt(look[0], look[1], look[2]);
   renderer.render(scene, camera);
@@ -241,7 +289,10 @@ function view(options: View = {}) {
     mode,
     drawCalls: renderer.info.render.calls,
     triangles: renderer.info.render.triangles,
-    groundY: 0,
+    groundY,
+    terrainFixture: terrainDescriptor
+      ? { descriptor: terrainDescriptor, heightmap: terrainHeightmap }
+      : null,
     position: p,
     lookAt: look,
     graphReads: { ...graphReads },

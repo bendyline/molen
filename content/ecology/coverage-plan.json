@@ -93,18 +93,19 @@
       "seed isolation from unrelated modules"
     ],
     "plants": {
-      "presets": 58,
+      "presets": 234,
       "habitats": 36,
-      "families": 12,
+      "families": 18,
       "delivery": "data recipes with opaque procedural near/medium/far geometry, no plant GLB downloads",
       "mappedTrees": "source species/genus and measured dimensions take precedence; otherwise use compatible local park trees",
       "cultivation": "world-anchored rows, nine observed crop types, crop/trees/irrigated source metadata",
       "habitatContext": "water-proximity requirements, preserved dry island holes, coastal mangrove and riparian gating",
-      "seasonality": "explicit month, hemisphere/latitude deciduous calendar, 30 derived spring/autumn/winter presets, stable plant positions; neutral tropical and evergreen appearance"
+      "seasonality": "Explicit month and hemisphere/latitude calendar; 90 derived spring/autumn/winter forms (324 total plant appearances), stable instance positions; neutral tropical and evergreen appearance.",
+      "brush": "Independent canopy, understory and groundcover budgets; multi-stem shrubs, thickets, herb and fern colonies, grass/sedge patches, ground runners, moss, litter, fallen wood, saplings and supported tropical tree vines."
     },
     "architecture": {
       "constructionFamilies": 13,
-      "recipes": 91,
+      "recipes": 273,
       "regionalEnvelopes": 53,
       "uses": ["detached", "attached", "apartments", "commercial", "civic", "industrial", "farm"],
       "selection": "mapped use and dimensions before neighborhood inference; named precedents remain explicit",
@@ -112,13 +113,13 @@
       "geography": "Natural Earth 1:50m 5.1.1 exterior outlines, simplified at 0.02 degrees, 241 country/territory features; bounded 2.5 km nearest-outline fallback for uncovered coastal gaps"
     },
     "wildlife": {
-      "recipes": 30,
+      "recipes": 90,
       "namedMammals": 21,
       "functionalGroups": 9,
       "rangeSource": "Mammal Diversity Database v2.5, CC BY 4.0",
       "rangeGrid": "Natural Earth 50m map units, quarter-degree centers, 247 countries/territories",
-      "packBytes": 36762,
-      "rangeGzipBytes": 29824,
+      "packBytes": 40036,
+      "rangeGzipBytes": 29907,
       "simulation": "20 Hz deterministic bounded wandering with per-step habitat/range checks",
       "rendering": "shared procedural opaque skinned geometry, one draw per visible animal, near/medium/far",
       "integration": "mountEarthView and World Explorer, finest displayed landcover/features, shared water datum, independent budgets, disposal",
@@ -174,5 +175,118 @@
   ],
   "observedAdjacentIssues": [
     "The Tucson public-mount driving capture showed the sedan partially below a sloped road surface after acceleration. Regional terrain and vegetation rendered correctly; vehicle/road grounding needs a separate navigation fix."
-  ]
+  ],
+  "brushCoverage": {
+    "status": "complete",
+    "completed": "2026-10-08",
+    "objective": "Fill the space between trees with regionally appropriate, irregular layers of brush and ground vegetation while keeping downloads and rendering bounded.",
+    "plantsAdded": 60,
+    "baseFormsAdded": 20,
+    "familiesAdded": ["shrub", "thicket", "forb", "vine", "mat", "fallenwood"],
+    "habitats": 36,
+    "composition": [
+      "Separate shrub/sapling/debris budget preserves the canopy pool and survives Economy quality.",
+      "Shared world-anchored broad density fields align vegetation patches; finer fields break them into clumps and gaps without changing placement seed independence.",
+      "Grass and reed patches contain five tussocks and seed heads; fern patches contain three overlapping plants. Low herb, runner, moss and litter meshes share recipe geometry.",
+      "Forest, scrub and heath receive layered brush; grassland receives sparse brush; mapped wetlands receive sedges. Managed parks, gardens, residential land and crops do not receive wild overgrowth.",
+      "Desert profiles remain sparse and dry. Humid forest forms require compatible regional habitat and mapped land cover; the existing coarse atlas is unchanged.",
+      "Tropical climber recipes wind around their generated trunk and hang from its actual branches."
+    ],
+    "budgets": {
+      "understoryInstancesFinest": { "economy": 450, "balanced": 1600, "high": 2400 },
+      "understoryModelsFinest": { "economy": 2, "balanced": 3, "high": 4 },
+      "understoryInstancesOneLevelCoarser": { "economy": 80, "balanced": 250, "high": 400 },
+      "understoryModelsOneLevelCoarser": { "economy": 1, "balanced": 2, "high": 2 },
+      "groundcoverInstancesFinest": { "economy": 0, "balanced": 5000, "high": 8000 },
+      "groundcoverModelsFinest": { "economy": 0, "balanced": 5, "high": 7 },
+      "coarseBehavior": "Understory is disabled two levels below finest; fine ground geometry remains near-only. These are per-tile caps, not device frame-rate guarantees."
+    },
+    "delivery": {
+      "ecologyPackBytes": 169079,
+      "previousEcologyPackBytes": 144126,
+      "addedBytes": 24953,
+      "catalogAndAtlasGzipBytes": 165984,
+      "plantModelDownloads": 0
+    },
+    "verification": [
+      "All 234 presets and 324 seasonal appearances pass finite geometry, ground alignment, nondegenerate outward triangles and near/medium/far triangle budgets.",
+      "Regression tests cover independent layer budgets, canopy preservation, deterministic tile splitting and thinning, shared multi-scale clustering, road exclusion, managed land, sparse deserts and worker/in-thread parity.",
+      "All 124 new captures inspected: sixteen habitat/cultivation fixtures at Economy/High in walking/driving/flying views, plus fourteen representative model families/forms at two angles. Before/after gallery controls and mobile layout pass browser checks. Controlled flat fixtures are not live performance measurements.",
+      "High-quality controlled fixtures increased total placements from 995 to 9,589 in Amazon forest, 999 to 8,484 in temperate forest, and 1,053 to 6,546 on the Pacific coast. Park and crop fixture counts remain unchanged. A patch is one placement containing several plants; these counts are visual workload measurements, not botanical abundance.",
+      "Real Seattle-area World Explorer reached grounded walking with zero page errors and zero failed/loading tiles. Balanced frame intervals over 90 frames had median/p95 about 16.7 ms on this machine. It fetched the new 169,079-byte ecology pack.",
+      "Real Seattle High tile profiling measured scatter CPU at 423 ms for level 15, 101 ms for level 14 and 72 ms for level 13 on this machine.",
+      "Full lint and typecheck passed. All 2,758 Vitest unit tests passed; the docs-site Node lock suite hit a Windows EPERM race and passed all three tests on isolated retry. Final brush/worker regression tests and affected package typecheck passed.",
+      "Source and schema checks and 31 asset-pipeline tests passed. Production audit passed its critical-severity gate. Packed install passed with 16 tarballs and seven scaffolded/checked/tested/built templates. Full documentation site generation/build and direct generated-content check passed.",
+      "The direct golden suite against the successfully built examples passed 47 tests, with ten environment-dependent WebGPU-related skips. Aggregate command limitations remain recorded below."
+    ],
+    "limits": [
+      "These are generic structural habitat forms, not additional named botanical taxa or measured plant occupancy. Clustering does not model sunlight competition or growth.",
+      "Climbers attach only within their own generated host mesh; arbitrary mapped trees, fences and walls are not overgrown. This milestone does not add wind animation or per-vertex terrain draping.",
+      "The aggregate pnpm verify gate stops at assets:check because the shared checkout has no installed asset-bundle record. No full asset restore was performed over concurrent landmark work.",
+      "Later docs:site:check and test:golden prebuild hooks encountered a stale structure source index from concurrent landmark authoring. Direct documentation checks and golden tests use the packages/examples successfully built earlier in this milestone."
+    ],
+    "artifacts": {
+      "gallery": ".artifacts/regional-world/brush-review.html",
+      "galleryValidation": ".artifacts/regional-world/brush-gallery-check.json",
+      "densityComparison": ".artifacts/regional-world/brush-density-comparison.json",
+      "habitats": ".artifacts/regional-world/landscape-brush/evidence.json",
+      "models": ".artifacts/regional-world/brush-models/evidence.json",
+      "live": ".artifacts/regional-world/live/brush-seattle-balanced.json",
+      "profile": ".artifacts/regional-world/brush-profile.log",
+      "packs": ".artifacts/regional-world/brush-pack-report.json",
+      "unit": ".artifacts/regional-world/brush-unit.log",
+      "nodeSuiteRetry": ".artifacts/regional-world/brush-site-lock-retry.log",
+      "verify": ".artifacts/regional-world/brush-verify.log",
+      "packedInstall": ".artifacts/regional-world/brush-smoke-packed.log",
+      "docs": ".artifacts/regional-world/brush-site-check-direct.log",
+      "golden": ".artifacts/regional-world/brush-golden-direct.log"
+    }
+  },
+  "diversityExpansion": {
+    "status": "complete",
+    "objective": "Triple every existing plant and wildlife recipe and regional family/building-use combination while retaining compact packs, geographic accuracy and bounded rendering.",
+    "milestones": [
+      {
+        "id": "recipes",
+        "status": "complete",
+        "plants": 174,
+        "seasonalAppearances": 264,
+        "habitats": 36,
+        "wildlife": 90,
+        "buildings": 273
+      },
+      {
+        "id": "selection-and-packaging",
+        "status": "complete",
+        "ecologyPackBytes": 144126,
+        "wildlifePackBytes": 40036,
+        "result": "Weighted independent plant forms preserve species ratios, positions and density. Spare model slots admit variants; unavailable slots fall back to base forms. Wildlife trios split their prior density. Regional building identities select three facade/roof recipes per use."
+      },
+      {
+        "id": "acceptance",
+        "status": "complete",
+        "result": "All 202 comparison, habitat and wildlife motion images inspected. All 32 habitat/quality comparisons retain their previous per-species plant counts. Full lint, typecheck, 2747 Vitest tests plus Node suites, source bundles, schema docs and 31 asset-pipeline tests passed. Packed installation and public site checks passed. Golden tests passed: 47 tests, with ten environment-dependent WebGPU skips. The aggregate verify limitation is recorded below."
+      }
+    ],
+    "limits": [
+      "Visual forms do not add botanical taxa, habitat classifications, mammal ranges, age/sex identification or surveyed local architecture.",
+      "Low quality and distant tiles reserve existing model budgets and may show only the base form of each species.",
+      "pnpm verify stopped at assets:check because this shared checkout has no installed asset-bundle record. The full asset corpus was not restored over concurrent landmark authoring."
+    ],
+    "artifacts": {
+      "gallery": ".artifacts/regional-world/diversity-review.html",
+      "packs": ".artifacts/regional-world/diversity-pack-report.json",
+      "geometryAndSelection": ".artifacts/regional-world/diversity-unit.log",
+      "modelComparisons": ".artifacts/regional-world/diversity/evidence.json",
+      "buildingComparisons": ".artifacts/regional-world/architecture-diversity/evidence.json",
+      "habitats": ".artifacts/regional-world/landscape-diversity/evidence.json",
+      "wildlifeMotion": ".artifacts/regional-world/wildlife-motion-diversity/evidence.json",
+      "densityComparison": ".artifacts/regional-world/diversity-density-comparison.json",
+      "galleryValidation": ".artifacts/regional-world/diversity-gallery-check.json",
+      "verify": ".artifacts/regional-world/diversity-verify.log",
+      "packedInstall": ".artifacts/regional-world/diversity-smoke-packed.log",
+      "docs": ".artifacts/regional-world/diversity-site-check.log",
+      "golden": ".artifacts/regional-world/diversity-golden.log"
+    }
+  }
 }

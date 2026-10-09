@@ -42,7 +42,7 @@ describe('regional wildlife content', () => {
     );
   });
   it('ships bounded compact recipes and attributed ranges', () => {
-    expect(fauna.animals).toHaveLength(30);
+    expect(fauna.animals).toHaveLength(90);
     expect(ranges.taxa).toHaveLength(21);
     expect(
       gzipSync(read('wildlife/ranges.json')).length +
@@ -51,6 +51,37 @@ describe('regional wildlife content', () => {
     expect(
       ranges.sources.every((source) => ['CC-BY-4.0', 'public-domain'].includes(source.license)),
     ).toBe(true);
+  });
+
+  it('keeps each body variant in its original range and habitat, splitting visual density three ways', () => {
+    const species = new Map(fauna.animals?.map((animal) => [animal.id, animal]));
+    const rules = fauna.populations?.[0]?.rules ?? [];
+    expect(rules).toHaveLength(90);
+    for (const base of fauna.animals ?? []) {
+      if (/\.(compact|rangy)$/.test(base.id)) continue;
+      const original = rules.find((r) => r.animal === base.id);
+      for (const suffix of ['.compact', '.rangy']) {
+        const variant = species.get(`${base.id}${suffix}`);
+        expect(variant?.range).toBe(base.range);
+        expect(variant?.taxon).toBe(base.taxon);
+        expect(variant?.body.details).toEqual(base.body.details);
+        expect(variant?.inactiveInWinter).toBe(base.inactiveInWinter);
+        expect(rules.find((r) => r.animal === variant?.id)).toEqual({
+          ...original,
+          animal: variant?.id,
+        });
+      }
+    }
+    // Representative original visual priors remain totals, not totals per body variant.
+    expect(
+      rules
+        .filter((r) => r.animal.startsWith('molen.wildlife.animal.flower_visiting_insect'))
+        .reduce((sum, r) => sum + r.density, 0),
+    ).toBe(30);
+    const [x, z] = projectWgs84(134, -24);
+    const ids = env.wildlife(x, z).map((c) => c.species.id);
+    expect(ids.filter((id) => id.includes('.red_kangaroo'))).toHaveLength(3);
+    expect(ids.some((id) => id.includes('.red_fox'))).toBe(false);
   });
 
   it('separates native mammal ranges and overseas territory geography', () => {

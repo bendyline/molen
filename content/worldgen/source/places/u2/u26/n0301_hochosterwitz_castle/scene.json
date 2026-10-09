@@ -1,0 +1,81 @@
+{
+  "format": "molen/scene@3",
+  "name": "Hochosterwitz Castle asset preview",
+  "seed": "N0301",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.n0301_hochosterwitz_castle",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      220,
+      190,
+      230
+    ],
+    "lookAt": [
+      -15,
+      75,
+      -40
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "qa-terrain.json",
+    "heightmap": "qa-heightmap.png"
+  }
+}

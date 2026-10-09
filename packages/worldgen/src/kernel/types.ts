@@ -188,6 +188,9 @@ export interface WorldgenBudgets {
   maxGroundCoverInstances: number;
   /** Model varieties admitted for ground cover, on top of `maxPropModels`. */
   maxGroundCoverModels: number;
+  /** Separate shoulder-height brush pool; omitted or zero disables it. */
+  maxUnderstoryInstances?: number;
+  maxUnderstoryModels?: number;
   maxMaterialGroups: number;
 }
 

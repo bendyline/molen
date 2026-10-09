@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { architectureFamilies } from './architecture-families.mjs';
+import { architectureVariants } from './architecture-variants.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../worldgen');
 const read = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
@@ -158,11 +159,21 @@ for (const family of architectureFamilies) {
     if (family.veranda && type === 'detached')
       style.facade.details.veranda = { depth: family.veranda, columns: true };
     if (type === 'attached') style.roof.overhang = range(0.1, 0.25);
-    const path = `styles/regional/${family.id}/${type}.archstyle.json`;
-    pack.styles[style.id] = path;
-    await write(path, style);
+    for (const variant of architectureVariants(style)) {
+      const suffix = variant.id === style.id ? '' : `_${variant.id.split('.').at(-1)}`;
+      const path = `styles/regional/${family.id}/${type}${suffix}.archstyle.json`;
+      pack.styles[variant.id] = path;
+      await write(path, variant);
+    }
   }
-  const use = (type, when) => ({ when, style: id(family.id, type) });
+  const use = (type, when) => ({
+    when,
+    style: id(family.id, type),
+    variants: ['', '.compact', '.open'].map((suffix) => ({
+      style: `${id(family.id, type)}${suffix}`,
+      weight: 1,
+    })),
+  });
   const residential = [...classes.detached, ...classes.attached];
   // Type-specific rules precede context guesses. A school in a residential block stays a school.
   const rules = [
@@ -204,7 +215,7 @@ if (check) {
 console.log(
   JSON.stringify({
     families: architectureFamilies.length,
-    styles: architectureFamilies.length * Object.keys(sources).length,
+    styles: architectureFamilies.length * Object.keys(sources).length * 3,
     profiles: catalog.profiles.length,
   }),
 );
