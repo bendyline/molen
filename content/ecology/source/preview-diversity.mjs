@@ -6,6 +6,7 @@ import { wildlifeGeometry } from '../../../packages/ambient/dist/client.mjs';
 import {
   importAsset,
   inspectAsset,
+  runSimulation,
   screenshotAsset,
   screenshotScene,
 } from '../../../packages/tooling/dist/index.mjs';
@@ -14,7 +15,11 @@ import { encodeGlb } from '../../../packages/worldgen/dist/kernel.mjs';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const brush = process.argv.includes('--brush');
-const out = resolve(root, `.artifacts/regional-world/${brush ? 'brush-models' : 'diversity'}`);
+const agriculture = process.argv.includes('--agriculture');
+const out = resolve(
+  root,
+  `.artifacts/regional-world/${agriculture ? 'agriculture-models' : brush ? 'brush-models' : 'diversity'}`,
+);
 await mkdir(out, { recursive: true });
 const projectPath = resolve(out, 'project.json');
 try {
@@ -44,51 +49,65 @@ const { plants } = JSON.parse(
 const { animals } = JSON.parse(
   await readFile(resolve(root, 'content/wildlife/regional.catalog.json'), 'utf8'),
 );
-const plantNames = brush
+const plantNames = agriculture
   ? [
-      'scrub',
-      'dry_scrub',
-      'chaparral',
-      'grass',
-      'fern_colony',
-      'shade_shrub',
-      'thorn_thicket',
-      'bramble',
-      'broadleaf_herbs',
-      'ground_vine',
-      'moss_mat',
-      'leaf_litter',
-      'fallen_log',
-      'liana_canopy',
+      'maize',
+      'soybean',
+      'wheat',
+      'rice',
+      'cotton',
+      'sugarcane',
+      'sunflower',
+      'rapeseed',
+      'root_crop',
+      'sorghum',
     ]
-  : [
-      'oak',
-      'spruce',
-      'coconut',
-      'saguaro',
-      'agave',
-      'bamboo',
-      'banana',
-      'grass',
-      'fern',
-      'reeds',
-      'mangrove',
-      'snag',
-    ];
-const animalNames = brush
-  ? []
-  : [
-      'roe_deer',
-      'red_fox',
-      'red_squirrel',
-      'european_hare',
-      'red_kangaroo',
-      'savanna_elephant',
-      'woodland_songbird',
-      'warm_ground_lizard',
-      'freshwater_fish_group',
-      'flower_visiting_insect',
-    ];
+  : brush
+    ? [
+        'scrub',
+        'dry_scrub',
+        'chaparral',
+        'grass',
+        'fern_colony',
+        'shade_shrub',
+        'thorn_thicket',
+        'bramble',
+        'broadleaf_herbs',
+        'ground_vine',
+        'moss_mat',
+        'leaf_litter',
+        'fallen_log',
+        'liana_canopy',
+      ]
+    : [
+        'oak',
+        'spruce',
+        'coconut',
+        'saguaro',
+        'agave',
+        'bamboo',
+        'banana',
+        'grass',
+        'fern',
+        'reeds',
+        'mangrove',
+        'snag',
+      ];
+const animalNames =
+  brush || agriculture
+    ? []
+    : [
+        'roe_deer',
+        'red_fox',
+        'red_squirrel',
+        'european_hare',
+        'red_kangaroo',
+        'savanna_elephant',
+        'woodland_songbird',
+        'warm_ground_lizard',
+        'freshwater_fish_group',
+        'flower_visiting_insect',
+      ];
 const requested = process.argv.filter((a) => a.startsWith('--name=')).map((a) => a.slice(7));
 const evidence = [];
 for (const [kind, catalog, names, suffixes] of [
@@ -166,7 +185,7 @@ for (const [kind, catalog, names, suffixes] of [
       clearColor: '#cbd8dc',
     });
     if (!shot.ok) throw new Error(shot.error);
-    if (brush) {
+    if (brush || agriculture) {
       const scenePath = resolve(out, `${name}.scene.json`);
       await writeFile(
         scenePath,
@@ -219,6 +238,8 @@ for (const [kind, catalog, names, suffixes] of [
         ),
       );
       const frames = [];
+      const simulation = await runSimulation({ scenePath, projectPath, ticks: 30 });
+      if (!simulation.ok) throw new Error(simulation.error);
       for (const [i, side] of [1, -1].entries()) {
         const path = resolve(out, name, `context_${i}.png`);
         const result = await screenshotScene({

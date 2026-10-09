@@ -106,6 +106,40 @@ const terrainPackageSchema = z.strictObject({
     .literal('molen/terrain-package@1')
     .describe("Format envelope; always 'molen/terrain-package@1'."),
   name: z.string().min(1).describe('Package name.'),
+  agriculture: z
+    .strictObject({
+      urlTemplate: z
+        .string()
+        .min(1)
+        .refine(
+          (url) => ['{z}', '{x}', '{y}'].every((part) => url.includes(part)),
+          'Expected XYZ URL template',
+        )
+        .describe(
+          'Versioned agricultural JSON tile URL, relative to this package or absolute; {z}/{x}/{y} placeholders.',
+        ),
+      level: z
+        .int()
+        .min(0)
+        .max(20)
+        .describe('Single stored XYZ level; finer views use the corresponding parent grid.'),
+      source: z.string().min(1).describe('Pinned dataset identity, checked against every tile.'),
+      year: z
+        .int()
+        .min(1900)
+        .max(2200)
+        .describe('Observation year, not the current growing season.'),
+      maxTileBytes: z
+        .int()
+        .min(1024)
+        .max(1048576)
+        .describe('Uncompressed download bound; default 131072 bytes.')
+        .optional(),
+    })
+    .describe(
+      'Optional global or regional agricultural retrieval dataset; missing tiles retain basemap/fallback crops. Include its license in attribution.',
+    )
+    .optional(),
   version: z.string().min(1).describe("Package version string, e.g. '2026.08'."),
   coordinateSpace: coordinateSpace.describe(
     'Coordinate space the package covers: local metric or geospatial.',

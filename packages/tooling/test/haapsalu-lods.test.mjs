@@ -108,6 +108,18 @@ it('keeps the main courtyard open above its paving instead of capping it at the3
   }
 });
 
+it('includes the separately mapped entrance-side wall through every level', () => {
+  const feature = frame.geometry.rawFeatures.find((w) => w.id === 148228814);
+  expect(k.museum.connectorWay).toBe(feature.id);
+  for (const d of [0, 1, 2, 3])
+    for (const t of [0.2, 0.5, 0.8]) {
+      const p = feature.points[0].map((v, i) => v + t * (feature.points[1][i] - v));
+      const hits = downward(capture(haapsaluParts.museum, d), p);
+      expect(hits[0]?.slot).toBe('stone');
+      expect(50 - hits[0].distance).toBeCloseTo(k.museum.connectorTopY, 4);
+    }
+});
+
 it('leaves the large west arch clear through the exterior wall and across the lower terrace cap', () => {
   for (const d of [1, 2, 3]) {
     const h = haapsaluMuseumOpenings(d).find((h) => h.id === 'great-west-arch'),

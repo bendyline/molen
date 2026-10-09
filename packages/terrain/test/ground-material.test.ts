@@ -21,7 +21,9 @@ describe('terrain ground variation', () => {
   it('adds world-space variation to the WebGL vertex-color ground', () => {
     const material = createTerrainGroundMaterial();
     expect(material.vertexColors).toBe(true);
-    expect(material.customProgramCacheKey()).toBe('terrain-ground@1');
+    expect(material.customProgramCacheKey()).not.toBe(
+      createTerrainGroundMaterial({ agriculture: true }).customProgramCacheKey(),
+    );
     const shader = compile(material);
     expect(shader.vertexShader).toContain('vTerrainGround =');
     expect(shader.fragmentShader).toContain(

@@ -268,6 +268,13 @@ export function createTerrainObject(
   }
   return group;
 }
+export { createAgricultureTileEnricher } from './agriculture-client';
+export {
+  applyAgricultureGrid,
+  decodeAgricultureGrid,
+  type TerrainAgricultureGrid,
+  type TerrainAgricultureSource,
+} from './agriculture-grid';
 export type {
   ElevationStageTiming,
   ElevationWorkerLike,

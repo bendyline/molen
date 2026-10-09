@@ -6,6 +6,7 @@ import {
   seasonalPlantPresets,
   type WorldgenBatchInput,
 } from '@bendyline/molen-worldgen/kernel';
+import { agriculturalPlantPresets } from './agriculture';
 import { createEcologyResolver, type EcologyAtlasDoc, type EcologyResolver } from './ecology-atlas';
 import { plantCalendar } from './plant-calendar';
 import type { RegionResolver, WorldBounds } from './region';
@@ -41,6 +42,7 @@ export interface RegionalEnvironment {
   at(x: number, z: number): RegionalSelection;
   /** Vegetation/ground channel only; avoids unrelated architectural polygon lookups. */
   scatterAt(x: number, z: number): ScatterDoc | undefined;
+  agricultureAt(x: number, z: number): RegionalSelection;
   modelAt(model: string, x: number, z: number): string;
   seasonAt(z: number): PlantSeason;
   /** Range + potential habitat + observed local context, before actual-surface placement. */
@@ -65,10 +67,13 @@ export function createRegionalEnvironment(
       ? undefined
       : createWildlifeRangeResolver(docs.wildlifeRanges, metersPerUnit);
   const source = createRegionalLibrary(docs.catalogs);
-  const library =
-    docs.vegetationMonth === undefined
-      ? source
-      : { ...source, plants: seasonalPlantPresets(source.plants) };
+  const library = {
+    ...source,
+    plants: agriculturalPlantPresets(
+      docs.vegetationMonth === undefined ? source.plants : seasonalPlantPresets(source.plants),
+      source.crops,
+    ),
+  };
   const seasonAt = plantCalendar(docs.vegetationMonth, metersPerUnit);
   const modelAt = (model: string, _x: number, z: number): string => {
     const plant = source.plants[model];
@@ -109,6 +114,9 @@ export function createRegionalEnvironment(
   );
   const at = (x: number, z: number) => selectAt(x, z, true);
   const scatterAt = (x: number, z: number) => selectAt(x, z, scatterUsesRegions).scatter;
+  const agricultureUsesRegions = library.profiles.some(
+    (profile) => profile.agriculture !== undefined && profile.match.regions !== undefined,
+  );
   return {
     docs,
     ecology,
@@ -117,6 +125,7 @@ export function createRegionalEnvironment(
     wildlifeRanges,
     at,
     scatterAt,
+    agricultureAt: (x, z) => selectAt(x, z, agricultureUsesRegions),
     modelAt,
     seasonAt,
     wildlife(x, z, context = {}) {

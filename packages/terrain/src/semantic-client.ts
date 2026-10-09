@@ -3,6 +3,8 @@
 import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
+import { appendAgricultureAttributes } from './agriculture-surface';
+import { createTerrainGroundMaterial } from './ground-material';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
@@ -265,11 +267,7 @@ const DEFAULT_TREE_CANOPY_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#2f633d',
   roughness: 0.96,
 });
-const DEFAULT_LANDCOVER_MATERIAL = new THREE.MeshStandardMaterial({
-  vertexColors: true,
-  roughness: 0.98,
-  metalness: 0,
-});
+const DEFAULT_LANDCOVER_MATERIAL = createTerrainGroundMaterial({ agriculture: true, strength: 0 });
 const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#b9ab96',
   roughness: 0.84,
@@ -602,7 +600,9 @@ export function createLandcoverMesh(
   for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
     const feature = tile.landcover[featureIndex];
     if (feature === undefined) continue;
-    const color = landcoverColor(feature.class, options);
+    const color = feature.cultivation
+      ? new THREE.Color(feature.cultivation.color)
+      : landcoverColor(feature.class, options);
     const palettes = options.landcoverPaletteAreas?.map((area) => ({
       bounds: area.bounds,
       color: landcoverColor(feature.class, {
@@ -610,7 +610,7 @@ export function createLandcoverMesh(
       }),
     }));
     const colorAt =
-      palettes === undefined
+      palettes === undefined || feature.cultivation !== undefined
         ? color
         : (x: number, z: number): THREE.Color => {
             const worldX = context.origin[0] + x,
@@ -626,8 +626,10 @@ export function createLandcoverMesh(
     const offset =
       (options.landcoverOffset ?? 0.18) +
       (featureIndex / Math.max(1, tile.landcover.length - 1)) * 0.064;
+    const start = builder.vertexCount;
     for (const polygon of visible[featureIndex] ?? [])
       appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
+    appendAgricultureAttributes(builder, start, feature);
   }
   const mesh = builder.mesh(
     'semantic:landcover',

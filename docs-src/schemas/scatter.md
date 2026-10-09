@@ -294,6 +294,11 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
           "rows": {
             "type": "object",
             "properties": {
+              "headland": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30
+              },
               "spacing": {
                 "type": "number",
                 "minimum": 0.5,
@@ -405,7 +410,8 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
             "enum": [
               "canopy",
               "understory",
-              "groundcover"
+              "groundcover",
+              "agriculture"
             ],
             "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
           },
@@ -531,9 +537,10 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
                   "type": "string",
                   "enum": [
                     "random",
-                    "none"
+                    "none",
+                    "rows"
                   ],
-                  "description": "Random heading or fixed."
+                  "description": "Random, fixed, or aligned with cultivation rows."
                 },
                 "align": {
                   "default": "up",

@@ -1,6 +1,7 @@
 /** Off-thread terrain-grid draping and vertex welding. No WebGL context is created in workers. */
 import * as THREE from 'three';
 import { markTerrainGroundSurface } from './ground-cutout';
+import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { createLandcoverMesh, type TerrainSemanticMeshOptions } from './semantic-client';
@@ -51,6 +52,8 @@ interface Result {
     positions: Float32Array;
     normals: Float32Array;
     colors: Float32Array;
+    agricultureRows: Float32Array;
+    agricultureSoil: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
   error?: string;
@@ -76,6 +79,8 @@ export function installTerrainLandcoverWorker(
           positions: mesh.geometry.getAttribute('position').array as Float32Array,
           normals: mesh.geometry.getAttribute('normal').array as Float32Array,
           colors: mesh.geometry.getAttribute('color').array as Float32Array,
+          agricultureRows: mesh.geometry.getAttribute('agricultureRows').array as Float32Array,
+          agricultureSoil: mesh.geometry.getAttribute('agricultureSoil').array as Float32Array,
           indices: mesh.geometry.index?.array as Uint16Array | Uint32Array,
         };
         mesh.geometry.dispose();
@@ -109,7 +114,7 @@ export function createTerrainLandcoverWorkerBridge(
   let nextId = 1;
   let disposed = false;
   // Match the in-thread landcover material; custom materials remain on the rendering thread.
-  const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.98 });
+  const material = createTerrainGroundMaterial({ agriculture: true, strength: 0 });
   const pump = (): void => {
     if (active || disposed) return;
     while (queue.length) {
@@ -139,6 +144,8 @@ export function createTerrainLandcoverWorkerBridge(
       geometry.setAttribute('position', new THREE.BufferAttribute(data.positions, 3));
       geometry.setAttribute('normal', new THREE.BufferAttribute(data.normals, 3));
       geometry.setAttribute('color', new THREE.BufferAttribute(data.colors, 3));
+      geometry.setAttribute('agricultureRows', new THREE.BufferAttribute(data.agricultureRows, 4));
+      geometry.setAttribute('agricultureSoil', new THREE.BufferAttribute(data.agricultureSoil, 3));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);
       markTerrainGroundSurface(mesh);

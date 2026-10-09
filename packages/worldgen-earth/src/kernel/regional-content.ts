@@ -8,6 +8,12 @@ import {
   type StyleRule,
   validateScatter,
 } from '@bendyline/molen-worldgen/kernel';
+import {
+  type AgricultureCrop,
+  type AgricultureProfile,
+  agricultureCropSchema,
+  agricultureProfileSchema,
+} from './agriculture-types';
 import type { Ecoregion } from './ecology-atlas';
 
 export interface RegionalMatch {
@@ -28,6 +34,7 @@ export interface RegionalProfile {
   scatter?: string;
   buildings?: StyleRule[];
   wildlife?: string;
+  agriculture?: AgricultureProfile;
 }
 
 export interface RegionalWildlifePopulation {
@@ -60,6 +67,7 @@ export interface RegionalCatalogDoc {
   plants?: PlantPreset[];
   animals?: WildlifeSpecies[];
   populations?: RegionalWildlifePopulation[];
+  crops?: AgricultureCrop[];
   /** Bind architecture to this style-pack identity. Other hosts omit this whole module. */
   stylePack?: string;
 }
@@ -76,6 +84,8 @@ export interface RegionalSelection {
   architectureProfile?: string;
   wildlife?: RegionalWildlifePopulation;
   wildlifeProfile?: string;
+  agriculture?: AgricultureProfile;
+  agricultureProfile?: string;
 }
 
 export interface RegionalLibrary {
@@ -86,6 +96,7 @@ export interface RegionalLibrary {
   readonly taxa: ReadonlyMap<string, PlantPreset>;
   readonly animals: ReadonlyMap<string, WildlifeSpecies>;
   readonly populations: ReadonlyMap<string, RegionalWildlifePopulation>;
+  readonly crops: ReadonlyMap<string, AgricultureCrop>;
   select(context: RegionalContext): RegionalSelection;
 }
 
@@ -155,6 +166,7 @@ export function createRegionalLibrary(
   const plants = new Map<string, PlantPreset>();
   const animals = new Map<string, WildlifeSpecies>();
   const populations = new Map<string, RegionalWildlifePopulation>();
+  const crops = new Map<string, AgricultureCrop>();
   for (const doc of ordered) {
     const replaced = new Set<string>();
     const local = new Set<string>();
@@ -186,6 +198,7 @@ export function createRegionalLibrary(
     for (const plant of doc.plants ?? []) insert(plantPresetSchema.parse(plant), plants);
     for (const animal of doc.animals ?? []) insert(wildlifeSpeciesSchema.parse(animal), animals);
     for (const population of doc.populations ?? []) insert(population, populations);
+    for (const crop of doc.crops ?? []) insert(agricultureCropSchema.parse(crop), crops);
     for (const override of doc.overrides)
       if (!replaced.has(override)) throw new Error(`Unused regional override: ${override}`);
   }
@@ -193,6 +206,18 @@ export function createRegionalLibrary(
     (a, b) => b.priority - a.priority || (a.id < b.id ? -1 : 1),
   );
   const taxa = new Map<string, PlantPreset>();
+  const cropAliases = new Map<string, string>();
+  for (const crop of crops.values()) {
+    for (const alias of crop.aliases) {
+      const key = alias.toLowerCase().trim().replace(/[ -]+/g, '_');
+      const previous = cropAliases.get(key);
+      if (previous && previous !== crop.id) throw new Error(`Ambiguous crop alias: ${alias}`);
+      cropAliases.set(key, crop.id);
+    }
+    for (const model of [crop.model, ...(crop.variants ?? [])]) {
+      if (!plants.has(model)) throw new Error(`Missing agricultural plant: ${model}`);
+    }
+  }
   for (const population of populations.values()) {
     const used = new Set<string>();
     for (const rule of population.rules) {
@@ -213,6 +238,11 @@ export function createRegionalLibrary(
   }
   for (let i = 0; i < sorted.length; i++) {
     const profile = sorted[i] as RegionalProfile;
+    if (profile.agriculture !== undefined) {
+      agricultureProfileSchema.parse(profile.agriculture);
+      for (const choice of [...profile.agriculture.crops, ...(profile.agriculture.orchards ?? [])])
+        if (!crops.has(choice.crop)) throw new Error(`Missing agricultural crop: ${choice.crop}`);
+    }
     if (profile.scatter !== undefined && !scatters.has(profile.scatter))
       throw new Error(`Missing regional scatter: ${profile.scatter}`);
     if (profile.wildlife !== undefined && !populations.has(profile.wildlife))
@@ -231,7 +261,8 @@ export function createRegionalLibrary(
       if (
         (profile.scatter !== undefined && other.scatter !== undefined) ||
         (profile.buildings !== undefined && other.buildings !== undefined) ||
-        (profile.wildlife !== undefined && other.wildlife !== undefined)
+        (profile.wildlife !== undefined && other.wildlife !== undefined) ||
+        (profile.agriculture !== undefined && other.agriculture !== undefined)
       )
         throw new Error(`Ambiguous regional channel: ${profile.id} and ${other.id}`);
     }
@@ -244,6 +275,7 @@ export function createRegionalLibrary(
     taxa,
     animals,
     populations,
+    crops,
     select(context) {
       const selection: RegionalSelection = {};
       for (const profile of sorted) {
@@ -259,6 +291,10 @@ export function createRegionalLibrary(
         if (selection.wildlife === undefined && profile.wildlife !== undefined) {
           selection.wildlife = populations.get(profile.wildlife) as RegionalWildlifePopulation;
           selection.wildlifeProfile = profile.id;
+        }
+        if (selection.agriculture === undefined && profile.agriculture !== undefined) {
+          selection.agriculture = profile.agriculture;
+          selection.agricultureProfile = profile.id;
         }
       }
       return selection;

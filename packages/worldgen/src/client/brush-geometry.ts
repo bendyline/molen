@@ -23,6 +23,65 @@ export function addBrushGeometry(mesh: Mesh, p: PlantPreset, detail: boolean | '
   const h = p.height,
     r = p.width / 2;
   const rnd = (i: number) => unit01(p.shapeSeed || 701, i);
+  if (p.family === 'crop') {
+    const grain = p.cropKind === 'cereal' || p.cropKind === 'rice';
+    const maize = p.cropKind === 'maize' || p.cropKind === 'cane';
+    const broad = p.cropKind === 'broadleaf' || p.cropKind === 'roots' || p.cropKind === 'cotton';
+    const count = grain ? 7 : maize ? 4 : 3;
+    for (let i = 0; i < count; i++) {
+      const x = -r * 0.85 + (i / (count - 1)) * r * 1.7;
+      const z = (rnd(i + 9) - 0.5) * r * 0.16;
+      const height = h * (0.82 + rnd(i + 3) * 0.18);
+      const top: Point = [x + h * 0.025, height, z];
+      mesh.tube([[x, 0, z], top], [p.stemRadius, p.stemRadius * 0.45], 3, p.bark);
+      if (p.cropStage === 'stubble') continue;
+      const leaves = grain ? 3 : 6;
+      for (let j = 0; j < leaves; j++) {
+        const y = height * (0.18 + (j * 0.65) / leaves);
+        const a = i * 0.7 + j * 2.4;
+        mesh.leaf(
+          [x, y, z],
+          a,
+          broad ? r * 0.31 : r * 0.34,
+          height * (broad ? 0.15 : 0.22),
+          r * (broad ? 0.19 : maize ? 0.085 : 0.045),
+          p.foliage,
+          true,
+        );
+      }
+      if (p.cropStage === 'sown' || p.cropStage === 'growing') continue;
+      if (p.cropKind === 'maize')
+        mesh.crown(
+          [x + r * 0.04, height * 0.63, z],
+          [r * 0.035, h * 0.14, r * 0.035],
+          p.foliage,
+          4,
+          i,
+        );
+      if (grain || p.cropKind === 'maize')
+        mesh.crown(top, [r * 0.025, h * 0.2, r * 0.025], p.bark, 3, i);
+      if (p.cropKind === 'sunflower') {
+        mesh.crown(top, [r * 0.13, h * 0.1, r * 0.1], '#d4b851', 6, i);
+        mesh.crown(
+          [top[0], top[1] + h * 0.04, top[2]],
+          [r * 0.065, h * 0.04, r * 0.055],
+          '#756146',
+          5,
+          i,
+        );
+      }
+      if (p.cropKind === 'cotton')
+        for (const side of [-1, 1])
+          mesh.crown(
+            [x + side * r * 0.11, height * 0.75, z],
+            [r * 0.07, h * 0.12, r * 0.07],
+            '#e0dcc7',
+            4,
+            i,
+          );
+    }
+    return true;
+  }
   const at = (i: number, radius: number, y: number): Point => {
     const angle = i * 2.39996 + rnd(i) * 0.8;
     return [Math.cos(angle) * radius, y, Math.sin(angle) * radius];

@@ -15,6 +15,8 @@ specifications, material graphs, sidecars and review records belong in Git.
 | Runtime sidecars | `../assets/places/<geohash2>/<geohash3>/<model-key>/asset.json` |
 | Shared material graphs | `../materials/*.matgraph.json` |
 | All 1,000 candidates and current readiness | [production progress](next-1000/PROGRESS.md) |
+| Selected round, pause state and completion gates | [CURRENT-ROUND.md](next-1000/CURRENT-ROUND.md) |
+| Existing-output and review reconciliation | [STATUS-RECONCILIATION.json](next-1000/STATUS-RECONCILIATION.json) |
 | Next production selection | [NEXT-300.json](next-1000/NEXT-300.json) |
 | Target look, palette bands and polygon budgets | [medium-fi style guide](../../../docs-src/guide/medium-fi.md) |
 | Corpus audit against that look, and its backlog | [MEDIUM-FI-REVIEW.md](MEDIUM-FI-REVIEW.md) |
@@ -5805,3 +5807,32 @@ isolated shared-material geometry still contains the doorway/roof sections.
 Shared surfaces pass, portable visual acceptance returns to pending.
 Medium-fi/geographic/fidelity remain pending and placement stays inactive.
 The user’s unnamed missing-building section remains unidentified.
+
+### 2026-10-09 — paused model status reconciliation
+
+Goal and generation remain paused. Refreshed the offline readiness ledger and
+progress table: 319 authored/imported next-1000 models, 681 without source
+models, and 106 existing readiness approvals. Stream-hashed all existing
+source/runtime/LOD files without generating, importing or capturing models.
+All 319 source-manifest/import hashes match their existing files. Found
+134 source-spec hash discrepancies, 77 stale LOD recipe fingerprints,
+one missing four-LOD set (Haapsalu), 108 portable capture input mismatches
+and 276 capture/model built-byte discrepancies. Input-bound approvals are
+not revoked solely for different rebuilt bytes. Fourteen existing ready
+records also match spec/integrity and current LOD checks; that intersection
+is not a new complete-model count or a visual/geographic certification.
+
+The next selected round is N0309 Haapsalu Castle only, documented in
+[CURRENT-ROUND.md](next-1000/CURRENT-ROUND.md). Its entrance-side wall
+source change is unbuilt; existing 4905-triangle source/import remain.
+Runtime LOD files/registration are missing, twelve portable captures
+use older inputs, and shared/medium-fi/geographic review is unfinished.
+Source README now labels this checkpoint explicitly. Seven historical
+checks do not imply that LOD files were written or the model is complete.
+
+Each round names one building and evidence gates. Stop at an exact checkpoint
+or documented blocker instead of silently switching candidates. The unnamed
+missing-building report is separate and remains unidentified; no repeated
+clarification or unrelated test count should be presented as its resolution.
+No GLBs, geometry, lock, placements, QA approvals, Git state or release
+outputs were changed by this reconciliation.

@@ -71,7 +71,10 @@ const population = z.strictObject({
     })
     .describe('Independent X/Z scale multiplier for crown width/bushiness; omitted means 1.')
     .optional(),
-  yaw: z.enum(['random', 'none']).describe('Random heading or fixed.').default('random'),
+  yaw: z
+    .enum(['random', 'none', 'rows'])
+    .describe('Random, fixed, or aligned with cultivation rows.')
+    .default('random'),
   align: z
     .enum(['up', 'normal'])
     .describe('Upright, or tilted to the ground normal.')
@@ -103,6 +106,7 @@ const rule = z.strictObject({
   minSpacing: z.number().nonnegative().describe('Minimum spacing hint in meters.').default(2),
   rows: z
     .strictObject({
+      headland: z.number().min(0).max(30).optional(),
       spacing: z.number().min(0.5).max(100).describe('Distance between cultivation rows, meters.'),
       interval: z
         .number()
@@ -162,7 +166,7 @@ const rule = z.strictObject({
     .describe('Noise-modulated density for natural clumps and clearings.')
     .optional(),
   layer: z
-    .enum(['canopy', 'understory', 'groundcover'])
+    .enum(['canopy', 'understory', 'groundcover', 'agriculture'])
     .describe(
       'Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees.',
     )

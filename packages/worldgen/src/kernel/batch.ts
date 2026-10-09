@@ -546,6 +546,8 @@ export function* generateWorldgenBatchSteps(
         maxGroundCoverModels: budgets.maxGroundCoverModels,
         maxUnderstoryInstances: budgets.maxUnderstoryInstances ?? 0,
         maxUnderstoryModels: budgets.maxUnderstoryModels ?? 0,
+        maxAgricultureInstances: budgets.maxAgricultureInstances ?? 0,
+        maxAgricultureModels: budgets.maxAgricultureModels ?? 0,
       },
       tier: baseTier,
     });

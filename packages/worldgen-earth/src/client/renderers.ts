@@ -48,6 +48,7 @@ import type {
   WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
+import { prepareAgricultureTile } from '../kernel/agriculture';
 import { isLandcoverDesignation } from '../kernel/labels';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
@@ -1001,6 +1002,11 @@ export function createWorldgenSemanticRenderers(
   };
   const classification: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
+      tile = prepareAgricultureTile(
+        tile,
+        geometryFor(context, metersPerUnit),
+        options.environment,
+      ).tile;
       const centerX = context.origin[0] + context.tileSize / 2;
       const centerZ = context.origin[1] + context.tileSize / 2;
       const environment = options.environment;

@@ -1,5 +1,6 @@
 /** Convenience wiring from optional terrain-package sidecars to adaptive semantic layers. */
 
+import { createAgricultureTileEnricher } from './agriculture-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
   createTerrainPackageCombinedSemanticSource,
@@ -134,6 +135,12 @@ export async function createTerrainPackageSemanticLayers(
       semantics.features.maxLevel,
     );
   }
+  // Enrich the completed joins, so retrieved cells cannot hide a separate mapped land-use
+  // archive. Share the cache between visual layers and leave hydrology reads independent.
+  const enrich =
+    pkg.agriculture && pkg.coordinateSpace.kind === 'geospatial' && pkg.tileMatrix.scheme === 'xyz'
+      ? createAgricultureTileEnricher(pkg.agriculture, options.baseUrl)
+      : (source: TerrainPackageSemanticSource) => source;
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;
@@ -159,7 +166,7 @@ export async function createTerrainPackageSemanticLayers(
       createTerrainSemanticPyramidLayer({
         id: style.id ?? 'land-classification',
         category: 'classification',
-        source: classificationSource,
+        source: enrich(classificationSource),
         renderer:
           style.renderer ??
           createDefaultTerrainSemanticRenderer({
@@ -251,7 +258,7 @@ export async function createTerrainPackageSemanticLayers(
       createTerrainSemanticPyramidLayer({
         id: style.id ?? 'human-features',
         category: 'human-feature',
-        source: surfaceSource,
+        source: enrich(surfaceSource),
         renderer: tunnels
           ? withTerrainTunnels(
               inner,

@@ -193,12 +193,36 @@
       "Tropical climber recipes wind around their generated trunk and hang from its actual branches."
     ],
     "budgets": {
-      "understoryInstancesFinest": { "economy": 450, "balanced": 1600, "high": 2400 },
-      "understoryModelsFinest": { "economy": 2, "balanced": 3, "high": 4 },
-      "understoryInstancesOneLevelCoarser": { "economy": 80, "balanced": 250, "high": 400 },
-      "understoryModelsOneLevelCoarser": { "economy": 1, "balanced": 2, "high": 2 },
-      "groundcoverInstancesFinest": { "economy": 0, "balanced": 5000, "high": 8000 },
-      "groundcoverModelsFinest": { "economy": 0, "balanced": 5, "high": 7 },
+      "understoryInstancesFinest": {
+        "economy": 450,
+        "balanced": 1600,
+        "high": 2400
+      },
+      "understoryModelsFinest": {
+        "economy": 2,
+        "balanced": 3,
+        "high": 4
+      },
+      "understoryInstancesOneLevelCoarser": {
+        "economy": 80,
+        "balanced": 250,
+        "high": 400
+      },
+      "understoryModelsOneLevelCoarser": {
+        "economy": 1,
+        "balanced": 2,
+        "high": 2
+      },
+      "groundcoverInstancesFinest": {
+        "economy": 0,
+        "balanced": 5000,
+        "high": 8000
+      },
+      "groundcoverModelsFinest": {
+        "economy": 0,
+        "balanced": 5,
+        "high": 7
+      },
       "coarseBehavior": "Understory is disabled two levels below finest; fine ground geometry remains near-only. These are per-tile caps, not device frame-rate guarantees."
     },
     "delivery": {
@@ -287,6 +311,86 @@
       "packedInstall": ".artifacts/regional-world/diversity-smoke-packed.log",
       "docs": ".artifacts/regional-world/diversity-site-check.log",
       "golden": ".artifacts/regional-world/diversity-golden.log"
+    }
+  },
+  "agricultureExpansion": {
+    "status": "implemented-and-verified",
+    "completed": "2026-10-09",
+    "objective": "Render observed agricultural land as coherent fields, regional crop mixtures and mapped farm buildings, with optional small global-source retrieval grids.",
+    "phases": [
+      {
+        "id": "field-rendering",
+        "status": "complete",
+        "result": "Mapped shapes and holes, deterministic rows, headlands, soil bands, independent agriculture budgets, worker and WebGL/TSL paths."
+      },
+      {
+        "id": "regional-crops-and-buildings",
+        "status": "complete",
+        "result": "22 crop recipes, 30 new annual plant forms and 120 derived growth-stage forms; all 36 habitat defaults plus 10 independent agricultural overrides. Existing 13 farm architecture families gain mapped farmyard and agricultural-building selection."
+      },
+      {
+        "id": "global-retrieval-pipeline",
+        "status": "complete",
+        "result": "Qualla compiler reads worldwide WorldCover COG windows into bounded sparse grids; optional categorical COG adapters refine crops. Resumable builds, recipe identity, source/year attribution and release verifier. Terrain packages wire retrieval into both viewer hosts."
+      },
+      {
+        "id": "acceptance",
+        "status": "complete",
+        "result": "Six real WorldCover sample tiles across six continents total 14713 JSON bytes. Fifteen composition/season/quality/shader captures plus public crop asset import/inspect/simulation/capture. Real streamed Iowa flight/walk has no browser exceptions; one 200 retrieval and one neighboring 404, with fallback intact."
+      },
+      {
+        "id": "production-data-rollout",
+        "status": "not-published",
+        "result": "Only the six-tile acceptance shard has been materialized. Bulk geographic builds, actual crop-classification inputs and versioned hosting are separate Qualla release work; no production URL is invented."
+      }
+    ],
+    "measurements": {
+      "ecologyPackBytes": 172581,
+      "ecologyAtlasAndCatalogGzipBytes": 169410,
+      "totalPlantRecipes": 264,
+      "totalPlantAppearancesWithSeasonsAndCropStages": 474,
+      "cropRecipes": 22,
+      "agriculturalOverrides": 10,
+      "retrievalSampleTiles": 6,
+      "retrievalSampleJsonBytes": 14713
+    },
+    "verification": {
+      "passed": [
+        "workspace package build and full typecheck",
+        "all package unit suites, with affected suites rerun after fixes",
+        "lint",
+        "schema docs and public site check",
+        "16 packed tarballs and 7 scaffolds",
+        "golden rendering suites",
+        "asset pipeline tests",
+        "production audit critical-level gate",
+        "5 Qualla offline raster tests and 9 terrain-package tests",
+        "retrieval tile hashes and manifests"
+      ],
+      "limitations": [
+        "Aggregate pnpm verify stops at assets:check: no installed asset-bundle record in this shared checkout. The full corpus was not restored over landmark authoring.",
+        "Source verification validated 670 logical bundles, then stopped on the unrelated stale structure authoring index. Agriculture and architecture generators pass --check.",
+        "Qualla full typecheck remains blocked by existing @bendyline/gezk knowledge API mismatches; no agriculture diagnostics.",
+        "A Windows docs-site lock test failed once with EPERM and passed its targeted rerun.",
+        "Production audit passes its critical-level gate but reports one existing high-severity dependency advisory."
+      ]
+    },
+    "limits": [
+      "Historical WorldCover 2021 observations identify cropland extent, not current crop species. WorldCereal refinement is supported but its raw crop rasters have not been built into the sample release.",
+      "Fallback mixtures and seasons are authored visual priors. Natural habitat boundaries do not become surveyed crop or parcel boundaries.",
+      "Unknown field divisions and row angles are inferred; irrigation, terraces, crop rotation and multiple annual harvests are not simulated.",
+      "Near-field crop geometry is thinned by a per-tile budget; distant surfaces carry the field pattern. It is not a plant-by-plant agricultural simulation.",
+      "Node-material acceptance exercises TSL through WebGL; native WebGPU coverage depends on the test device."
+    ],
+    "artifacts": {
+      "gallery": ".artifacts/regional-world/agriculture-review.html",
+      "live": ".artifacts/regional-world/live/iowa-corn-field.json",
+      "pack": ".artifacts/regional-world/agriculture-pack-report.json",
+      "dataset": ".artifacts/regional-world/agriculture-dataset-report.json",
+      "models": ".artifacts/regional-world/agriculture-models/evidence.json",
+      "comparisons": ".artifacts/regional-world/agriculture/evidence.json",
+      "unit": ".artifacts/regional-world/agriculture-final-unit.log",
+      "golden": ".artifacts/regional-world/agriculture-golden.log"
     }
   }
 }

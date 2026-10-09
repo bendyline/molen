@@ -5,15 +5,15 @@
   "counts": {
     "candidates": 1000,
     "sourceFacts": 1000,
-    "sourceModels": 318,
-    "runtimeModels": 318,
+    "sourceModels": 319,
+    "runtimeModels": 319,
     "mapAxes": 780,
     "identityReview": 20,
     "visualReviews": 208,
     "sharedSurfaceReviews": 207,
     "previewPlacements": 233,
-    "authoredAssets": 318,
-    "importedAssets": 318,
+    "authoredAssets": 319,
+    "importedAssets": 319,
     "placedAssets": 233,
     "fidelityReviews": 131,
     "ready": 106
@@ -10173,7 +10173,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:383cdc6753238f0c47afcb4939dd6f89c32e130178ffcf4fea49de079699951a",
+        "inputHash": "sha256:057e30a05c44954e71a6d6b9c520ad11d35c46c1ecb209572e3ecd99618b2d07",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/wt/wtw/n0140_shanghai_world_financial_center/models/source.glb"
@@ -10270,7 +10270,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:631c54370711fe63edfccb5fd71a2b629a1a9a4abd72543fff9de3ae9d1bb858",
+        "inputHash": "sha256:909be7475981eddb6200fafe128e1136d0cd326a8c9b9beb806430cd59c484af",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/gc/gcp/n0141_the_shard/models/source.glb"
@@ -10563,7 +10563,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:84dcec0ae2e26ca1d3b63069627069670acfaef465a45c4b26b2b8ae208fea7b",
+        "inputHash": "sha256:071964e4cfc88bf40ed6ad9ab32714989c277f29f4b97005efebd4e30a3f5af7",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/wt/wtw/n0144_oriental_pearl_tower/models/source.glb"
@@ -27529,10 +27529,9 @@
       "asset": "molen.worldgen.structure.n0309_haapsalu_castle",
       "readiness": "incomplete",
       "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
         "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
+        "shared-surface-review-missing-or-unbound",
+        "medium-fi-fidelity-review-missing-or-unbound",
         "orientation-unresolved",
         "geographic-review-missing-or-unbound",
         "runtime-placement-inactive"
@@ -27545,14 +27544,18 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:1dd1a80a07c29a2918edcfe427db982e7e59c52bb95126527ce8c1c3a11a7a7d",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ud/ud2/n0309_haapsalu_castle/model.glb",
+          "triangles": 4905
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "reference-only",
@@ -27567,20 +27570,33 @@
         "placementHash": null
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/preview.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/cathedral-and-baptistry.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/clock-and-west-wing.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/clock-tower-detail.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/east-ruin-and-entrance.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/northwest-wall-gap.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/open-court-and-folded-stairs.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/outer-enclosure-and-towers.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ud/ud2/n0309_haapsalu_castle/shots/turntable/angle_3.png"
+        ],
+        "captureFilesExist": true,
         "reviewedCaptureHashesMatch": false,
         "hashBoundReviewPassed": false,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
+        "target": "medium-fi",
         "hashBoundReviewPassed": false,
-        "declaredQuality": null,
+        "declaredQuality": "detailed",
         "notes": null
       },
       "sharedSurfaceQa": {
-        "required": false,
+        "required": true,
         "reviewedCaptureHashesMatch": false,
         "hashBoundReviewPassed": false,
         "captureFiles": []

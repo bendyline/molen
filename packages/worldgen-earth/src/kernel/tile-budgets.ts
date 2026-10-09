@@ -78,6 +78,14 @@ export function worldgenTileBudgetForQuality(
     maxGroundCoverModels: byLevel(GROUND_COVER_MODELS[quality], levelBelowMax),
     maxUnderstoryInstances: byLevel(UNDERSTORY_INSTANCES[quality], levelBelowMax),
     maxUnderstoryModels: byLevel(UNDERSTORY_MODELS[quality], levelBelowMax),
+    maxAgricultureInstances: byLevel(
+      quality === 'economy' ? [500, 100] : quality === 'balanced' ? [3500, 600] : [6500, 1000],
+      levelBelowMax,
+    ),
+    maxAgricultureModels: byLevel(
+      quality === 'economy' ? [2, 1] : quality === 'balanced' ? [5, 3] : [8, 4],
+      levelBelowMax,
+    ),
   };
   switch (quality) {
     case 'economy':

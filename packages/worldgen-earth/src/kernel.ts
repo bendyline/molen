@@ -1,3 +1,9 @@
+export {
+  agriculturalPlantPresets,
+  agricultureStage,
+  prepareAgricultureTile,
+} from './kernel/agriculture';
+export type { AgricultureCrop, AgricultureProfile } from './kernel/agriculture-types';
 export type {
   BusinessCatalog,
   BusinessProfile,

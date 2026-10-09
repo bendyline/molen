@@ -20,7 +20,14 @@ const server = await createServer({
   server: { host: '127.0.0.1', port: 0, fs: { allow: [root] } },
 });
 let browser;
-const evidence = { name, quality, pageErrors: [], warnings: [], frames: [] };
+const evidence = {
+  name,
+  quality,
+  pageErrors: [],
+  warnings: [],
+  frames: [],
+  agricultureRequests: [],
+};
 try {
   await server.listen();
   browser = await chromium.launch({
@@ -29,6 +36,13 @@ try {
   });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   page.on('pageerror', (error) => evidence.pageErrors.push(error.message));
+  page.on('response', (response) => {
+    if (response.url().includes('/agriculture/'))
+      evidence.agricultureRequests.push({
+        url: response.url(),
+        status: response.status(),
+      });
+  });
   page.on('console', (message) => {
     if (['warning', 'error'].includes(message.type()) && evidence.warnings.length < 60)
       evidence.warnings.push(message.text());

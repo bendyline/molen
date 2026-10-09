@@ -191,6 +191,8 @@ export interface WorldgenBudgets {
   /** Separate shoulder-height brush pool; omitted or zero disables it. */
   maxUnderstoryInstances?: number;
   maxUnderstoryModels?: number;
+  maxAgricultureInstances?: number;
+  maxAgricultureModels?: number;
   maxMaterialGroups: number;
 }
 

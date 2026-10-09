@@ -24,7 +24,8 @@ export interface PlantPreset {
     | 'forb'
     | 'vine'
     | 'mat'
-    | 'fallenwood';
+    | 'fallenwood'
+    | 'crop';
   form: 'round' | 'columnar' | 'umbrella' | 'feather' | 'fan' | 'branching' | 'paddle';
   /** Mature silhouette bounds in meters; scatter supplies modest individual variation. */
   height: number;
@@ -42,6 +43,8 @@ export interface PlantPreset {
   patch?: boolean;
   /** Foliage on bounded vines supported by this broadleaf tree's own trunk and branches. */
   climber?: string;
+  cropKind?: 'maize' | 'cereal' | 'rice' | 'broadleaf' | 'cotton' | 'cane' | 'sunflower' | 'roots';
+  cropStage?: 'sown' | 'growing' | 'mature' | 'ripe' | 'stubble';
   /** Source species/genus names represented by this silhouette; exact case-insensitive matches. */
   taxa?: string[];
   /** Botanical leaf category when it differs from the procedural silhouette family. */
@@ -75,6 +78,7 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
     'vine',
     'mat',
     'fallenwood',
+    'crop',
   ]),
   form: z.enum(['round', 'columnar', 'umbrella', 'feather', 'fan', 'branching', 'paddle']),
   height: z.number().min(0.1).max(100),
@@ -87,6 +91,10 @@ export const plantPresetSchema: z.ZodType<PlantPreset> = z.strictObject({
   shapeSeed: z.int().min(0).max(65535).optional(),
   patch: z.boolean().optional(),
   climber: z.string().regex(COLOR_RE).optional(),
+  cropKind: z
+    .enum(['maize', 'cereal', 'rice', 'broadleaf', 'cotton', 'cane', 'sunflower', 'roots'])
+    .optional(),
+  cropStage: z.enum(['sown', 'growing', 'mature', 'ripe', 'stubble']).optional(),
   taxa: z.array(z.string().min(1)).min(1).optional(),
   leafType: z.enum(['broadleaved', 'needleleaved']).optional(),
   phenology: z

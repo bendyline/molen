@@ -143,7 +143,7 @@ describe('land-cover worker', () => {
     const result = bridge.generate(tile, context, options);
     thread.run();
     const mesh = (await result) as THREE.Mesh;
-    for (const attr of ['position', 'normal', 'color']) {
+    for (const attr of ['position', 'normal', 'color', 'agricultureRows', 'agricultureSoil']) {
       expect(mesh.geometry.getAttribute(attr).array).toEqual(
         direct.geometry.getAttribute(attr).array,
       );
@@ -176,6 +176,36 @@ describe('land-cover worker', () => {
     const failed = bridge.generate(tile, context, {});
     thread.fail();
     await expect(failed).rejects.toThrow('worker crashed');
+    bridge.dispose();
+  });
+  it('preserves nonzero agricultural attributes through worker transfer', async () => {
+    const { tile, context } = fixture();
+    tile.landcover[0]!.cultivation = {
+      fieldId: 'field',
+      crop: 'maize',
+      evidence: 'inferred',
+      source: 'fixture',
+      stage: 'mature',
+      color: '#83a65c',
+      soil: '#ad9678',
+      rowAngle: 12,
+      spacing: 1.15,
+      pattern: 'rows',
+    };
+    const thread = worker();
+    const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
+    const direct = createLandcoverMesh(tile, context, {}) as THREE.Mesh;
+    const pending = bridge.generate(tile, context, {});
+    thread.run();
+    const mesh = (await pending) as THREE.Mesh;
+    for (const name of ['agricultureRows', 'agricultureSoil']) {
+      expect(mesh.geometry.getAttribute(name).array).toEqual(
+        direct.geometry.getAttribute(name).array,
+      );
+      expect([...mesh.geometry.getAttribute(name).array].some((value) => value !== 0)).toBe(true);
+    }
+    direct.geometry.dispose();
+    mesh.geometry.dispose();
     bridge.dispose();
   });
 });

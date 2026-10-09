@@ -1,4 +1,10 @@
 export {
+  applyAgricultureGrid,
+  decodeAgricultureGrid,
+  type TerrainAgricultureGrid,
+  type TerrainAgricultureSource,
+} from './agriculture-grid';
+export {
   createTerrainArchiveSetRouter,
   encodeTerrainArchiveSetCells,
   encodeTerrainArchiveSetPartitions,
@@ -136,7 +142,9 @@ export {
 export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
+  type TerrainAgricultureObservation,
   type TerrainBuildingFeature,
+  type TerrainCultivation,
   type TerrainLandcoverFeature,
   type TerrainPoiFeature,
   type TerrainSemanticLine,

@@ -51,7 +51,7 @@ const classes = {
     'government',
   ],
   industrial: ['industrial', 'warehouse', 'factory', 'workshop', 'hangar'],
-  farm: ['barn', 'farm_auxiliary', 'stable'],
+  farm: ['barn', 'farm_auxiliary', 'stable', 'cowshed', 'sty', 'agricultural'],
 };
 const pack = await read('stylepack.json');
 const precedents = await read('structures/catalog.json');
@@ -187,6 +187,7 @@ for (const family of architectureFamilies) {
     use('apartments', { class: residential, heightMin: 12 }),
     use('attached', { class: classes.attached }),
     use('detached', { class: classes.detached }),
+    use('farm', { class: ['yes', 'building'], contextClass: ['farmyard'] }),
     use('apartments', { class: ['yes', 'building'], contextClass: ['residential'], levelsMin: 4 }),
     use('apartments', { class: ['yes', 'building'], contextClass: ['residential'], heightMin: 12 }),
     use('industrial', { class: ['yes', 'building'], contextClass: ['industrial'] }),

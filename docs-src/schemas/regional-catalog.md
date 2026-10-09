@@ -297,6 +297,62 @@ Composable ecological and architectural channels with explicit dependency versio
           "wildlife": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+          },
+          "agriculture": {
+            "type": "object",
+            "properties": {
+              "crops": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "crop": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+                    },
+                    "weight": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "crop",
+                    "weight"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "orchards": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "crop": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+                    },
+                    "weight": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "crop",
+                    "weight"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "tropical": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "crops"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [
@@ -477,6 +533,11 @@ Composable ecological and architectural channels with explicit dependency versio
                 "rows": {
                   "type": "object",
                   "properties": {
+                    "headland": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 30
+                    },
                     "spacing": {
                       "type": "number",
                       "minimum": 0.5,
@@ -588,7 +649,8 @@ Composable ecological and architectural channels with explicit dependency versio
                   "enum": [
                     "canopy",
                     "understory",
-                    "groundcover"
+                    "groundcover",
+                    "agriculture"
                   ],
                   "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
                 },
@@ -714,9 +776,10 @@ Composable ecological and architectural channels with explicit dependency versio
                         "type": "string",
                         "enum": [
                           "random",
-                          "none"
+                          "none",
+                          "rows"
                         ],
-                        "description": "Random heading or fixed."
+                        "description": "Random, fixed, or aligned with cultivation rows."
                       },
                       "align": {
                         "default": "up",
@@ -868,7 +931,8 @@ Composable ecological and architectural channels with explicit dependency versio
               "forb",
               "vine",
               "mat",
-              "fallenwood"
+              "fallenwood",
+              "crop"
             ]
           },
           "form": {
@@ -928,6 +992,29 @@ Composable ecological and architectural channels with explicit dependency versio
             "type": "string",
             "pattern": "^#[0-9a-fA-F]{6}$"
           },
+          "cropKind": {
+            "type": "string",
+            "enum": [
+              "maize",
+              "cereal",
+              "rice",
+              "broadleaf",
+              "cotton",
+              "cane",
+              "sunflower",
+              "roots"
+            ]
+          },
+          "cropStage": {
+            "type": "string",
+            "enum": [
+              "sown",
+              "growing",
+              "mature",
+              "ripe",
+              "stubble"
+            ]
+          },
           "taxa": {
             "minItems": 1,
             "type": "array",
@@ -978,6 +1065,94 @@ Composable ecological and architectural channels with explicit dependency versio
           "lean",
           "foliage",
           "bark"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "crops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+          },
+          "aliases": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "model": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+          },
+          "variants": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+            }
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "annual",
+              "orchard",
+              "vineyard",
+              "pasture",
+              "fallow"
+            ]
+          },
+          "spacing": {
+            "type": "number",
+            "minimum": 0.25,
+            "maximum": 30
+          },
+          "interval": {
+            "type": "number",
+            "minimum": 0.25,
+            "maximum": 30
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "soil": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "ripe": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "sowingMonth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "growingMonths": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 11
+          }
+        },
+        "required": [
+          "id",
+          "aliases",
+          "model",
+          "kind",
+          "spacing",
+          "interval",
+          "color",
+          "soil",
+          "ripe",
+          "sowingMonth",
+          "growingMonths"
         ],
         "additionalProperties": false
       }

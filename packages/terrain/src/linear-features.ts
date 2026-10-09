@@ -67,6 +67,24 @@ export class TerrainSurfaceMeshBuilder {
   private readonly positions: number[] = [];
   private readonly colors: number[] = [];
   private readonly normals: number[] = [];
+  private readonly attributes = new Map<string, { size: number; values: number[] }>();
+  get vertexCount(): number {
+    return this.positions.length / 3;
+  }
+
+  /** Decorate a just-appended feature without coupling the draper to its semantic meaning. */
+  attributeSince(
+    name: string,
+    size: number,
+    start: number,
+    sample: (x: number, z: number) => number[],
+  ): void {
+    const entry = this.attributes.get(name) ?? { size, values: [] };
+    while (entry.values.length < start * size) entry.values.push(0);
+    for (let i = start; i < this.vertexCount; i++)
+      entry.values.push(...sample(this.positions[i * 3]!, this.positions[i * 3 + 2]!));
+    this.attributes.set(name, entry);
+  }
   constructor(readonly context: TerrainPyramidTileLayerContext) {}
 
   /** Clip a convex 3D face to this tile, interpolating heights at its boundaries. */
@@ -152,6 +170,10 @@ export class TerrainSurfaceMeshBuilder {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.colors, 3));
     geometry.setAttribute('normal', new THREE.Float32BufferAttribute(this.normals, 3));
+    for (const [name, entry] of this.attributes) {
+      while (entry.values.length < this.vertexCount * entry.size) entry.values.push(0);
+      geometry.setAttribute(name, new THREE.Float32BufferAttribute(entry.values, entry.size));
+    }
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
     mesh.receiveShadow = true;

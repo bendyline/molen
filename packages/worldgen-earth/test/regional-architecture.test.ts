@@ -115,6 +115,9 @@ describe('ordinary regional architecture', () => {
       expect(selected(region, ['house'], { levels: 5 })).toMatch(/\.apartments$/);
       expect(selected(region, ['house'], { height: 18 })).toMatch(/\.apartments$/);
       expect(selected(region, ['yes'], { context: 'industrial' })).toMatch(/\.industrial$/);
+      expect(selected(region, ['yes'], { context: 'farmyard' })).toMatch(/\.farm$/);
+      expect(selected(region, ['cowshed'])).toMatch(/\.farm$/);
+      expect(selected(region, ['school'], { context: 'farmyard' })).toMatch(/\.civic$/);
       expect(selected(region, ['gassho_farmhouse'])).toBe(
         'molen.worldgen.catalog.gassho_farmhouse',
       );

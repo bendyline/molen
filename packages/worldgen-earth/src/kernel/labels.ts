@@ -10,6 +10,7 @@ import type {
   TerrainSemanticPolygon,
 } from '@bendyline/molen-terrain/kernel';
 import { pointInPolygon, polygonArea } from '@bendyline/molen-terrain/kernel';
+import { agricultureFieldLabel } from './agriculture';
 
 /** Specific building use when present; generic outline/part tags never override that use. */
 export function buildingLabels(feature: TerrainBuildingFeature): string[] {
@@ -37,6 +38,9 @@ export function landcoverLabel(feature: TerrainLandcoverFeature): string {
     feature.crop ? `crop:${feature.crop}` : '',
     feature.trees ? `trees:${feature.trees}` : '',
     feature.irrigated === true ? 'irrigated' : '',
+    feature.cultivation
+      ? `agricultural_field ${agricultureFieldLabel(feature.cultivation.fieldId)}`
+      : '',
   ]
     .filter(Boolean)
     .join(' ');

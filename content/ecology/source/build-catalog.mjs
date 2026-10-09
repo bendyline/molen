@@ -2,6 +2,12 @@
 // presets and habitat associations belong to this downloadable content pack.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import {
+  agricultureCrops,
+  agricultureForHabitat,
+  agricultureOverrides,
+  agriculturePlants,
+} from './agriculture-presets.mjs';
 import { brushComposition, brushPlants } from './brush-presets.mjs';
 import { plantVariants } from './plant-variants.mjs';
 
@@ -342,6 +348,7 @@ const plants = [
     lean: 0.08,
   }),
   ...brushPlants(plant),
+  ...agriculturePlants(plant),
 ];
 
 const basePlants = [...plants];
@@ -596,7 +603,14 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     },
     rules,
   });
-  profiles.push({ id: `molen.ecology.habitat.${name}`, title, priority, match, scatter: id });
+  profiles.push({
+    id: `molen.ecology.habitat.${name}`,
+    title,
+    priority,
+    match,
+    scatter: id,
+    agriculture: agricultureForHabitat(name),
+  });
 }
 
 const wet = colors('#6e8863', '#406647', '#829660');
@@ -977,6 +991,9 @@ habitat(
   { priority: 40, forestDensity: 145, parkTrees: ['maple', 'oak'] },
 );
 
+const agriculturalProfiles = agricultureOverrides(
+  JSON.parse(await readFile(new URL('ecoregions.json', root), 'utf8')).regions,
+);
 const doc = {
   format: 'molen/regional-catalog@1',
   id: 'molen.ecology.regional',
@@ -984,9 +1001,10 @@ const doc = {
   title: 'Global habitat and procedural plant foundation',
   requires: [],
   overrides: [],
-  profiles,
+  profiles: [...profiles, ...agriculturalProfiles],
   scatters,
   plants,
+  crops: agricultureCrops(),
 };
 const bytes = `${JSON.stringify(doc, null, 2)}\n`;
 const destination = new URL('regional.catalog.json', root);

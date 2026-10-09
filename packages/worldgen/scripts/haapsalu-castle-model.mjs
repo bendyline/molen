@@ -410,6 +410,16 @@ function museum(out, d) {
   cap(cut(out, holes), ring, m.lowTerraceY, 'paving', d);
   wallPath(out, m.outerPath, m.outerTop, m.outerWidth, m.lowTerraceY, d, holes);
   wallPath(out, m.innerPath, m.innerTop, m.innerWidth, m.lowTerraceY, d, holes);
+  // The separate mapped entrance-side wall is outside the museum polygon.
+  const connector = frame.geometry.rawFeatures.find((w) => w.id === m.connectorWay).points;
+  wallPath(
+    out,
+    connector,
+    connector.map(() => m.connectorTopY),
+    m.innerWidth,
+    0,
+    d,
+  );
   // Separate exposed room partitions, not a solid upper U-shaped block.
   if (d >= 1)
     for (const z of m.partitionRows) {

@@ -258,7 +258,7 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     base = p.crownBase * h;
   const far = detail === 'distant',
     medium = detail === true;
-  const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat'].includes(p.family);
+  const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat', 'crop'].includes(p.family);
   if (ground && detail !== false) return mesh.finish();
   const trunkTop: Point = [p.lean * h, base, 0];
   const trunk = (top = trunkTop, radius = p.stemRadius): void => {

@@ -1,5 +1,12 @@
 # Haapsalu Castle
 
+**Paused, unfinished draft — 2026-10-09.** The entrance-side wall is present in editable
+source but has not been rebuilt into the existing GLB. The twelve portable captures refer
+to earlier inputs; four registered runtime LODs, shared/medium-fi review reports and
+geographic approval are missing. The source and imported master hashes below describe
+the existing build, not completion of the current recipe. See the
+[selected round and completion checklist](../../../../next-1000/CURRENT-ROUND.md).
+
 ![Molen preview](preview.png)
 
 Current Haapsalu: roofed cathedral, circular baptismal chapel and lower side roofs, tall round clock tower with curved cone, roofless U-shaped main-castle upper rooms, black modern pavilion/folded stairs and mapped curtain/tower remains.

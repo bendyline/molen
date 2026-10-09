@@ -19,10 +19,10 @@ const plants = Object.values(
 
 describe('regional procedural plants', () => {
   it('varies branching and fronds in every family without changing bounds, density or topology', () => {
-    expect(catalog.plants).toHaveLength(234);
-    expect(plants).toHaveLength(324);
+    expect(catalog.plants).toHaveLength(264);
+    expect(plants).toHaveLength(354);
     const families = new Map(catalog.plants.map((p) => [p.family, p]));
-    expect(families.size).toBe(18);
+    expect(families.size).toBe(19);
     for (const p of families.values()) {
       const base = createPlantGeometry({ ...p, shapeSeed: 0 });
       const a = createPlantGeometry({ ...p, shapeSeed: 137 });
@@ -48,7 +48,7 @@ describe('regional procedural plants', () => {
         const g = createPlantGeometry(p, detail);
         const positions = g.getAttribute('position'),
           normals = g.getAttribute('normal');
-        const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat'].includes(p.family);
+        const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat', 'crop'].includes(p.family);
         counts.push(positions.count / 3);
         expect(positions.count / 3, `${p.id}/${detail}`).toBeLessThanOrEqual(
           detail === 'distant' ? 64 : detail ? 140 : 450,

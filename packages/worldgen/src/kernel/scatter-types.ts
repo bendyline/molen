@@ -35,7 +35,7 @@ export interface ScatterPopulation {
   scale: NumberRange;
   /** Independent multiplier of X/Z scale (crown width/bushiness); defaults to 1. */
   widthScale?: NumberRange;
-  yaw: 'random' | 'none';
+  yaw: 'random' | 'none' | 'rows';
   align: 'up' | 'normal';
   tint?: ScatterTint;
   slopeMax?: number;
@@ -63,7 +63,7 @@ export interface ScatterRule {
   densityPerHectare: number;
   minSpacing: number;
   /** Regular cultivation grid, anchored in the same global frame as natural scatter. */
-  rows?: { spacing: number; interval: number; angle: number; jitter: number };
+  rows?: { spacing: number; interval: number; angle: number; jitter: number; headland?: number };
   /** Require mapped water within this horizontal distance; never invent an oasis from climate. */
   nearWater?: { maxDistance: number; classes?: string[] };
   clustering?: ScatterClustering;
@@ -73,7 +73,7 @@ export interface ScatterRule {
   populations: ScatterPopulation[];
   lod?: Partial<ScatterLod>;
   /** Trees, shoulder-height brush, and low ground detail have independent budget pools. */
-  layer?: 'canopy' | 'understory' | 'groundcover';
+  layer?: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
 }
 
 export interface ScatterDoc {

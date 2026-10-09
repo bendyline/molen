@@ -6,6 +6,7 @@ import {
   styleRuleSchema,
 } from '@bendyline/molen-worldgen/kernel';
 import { z } from 'zod';
+import { agricultureCropSchema, agricultureProfileSchema } from './agriculture-types';
 import type { RegionalCatalogDoc } from './regional-content';
 
 const id = z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/);
@@ -32,10 +33,12 @@ export const regionalCatalogSchema: z.ZodType<RegionalCatalogDoc> = z.strictObje
       scatter: id.optional(),
       buildings: z.array(styleRuleSchema).optional(),
       wildlife: id.optional(),
+      agriculture: agricultureProfileSchema.optional(),
     }),
   ),
   scatters: z.array(scatterSchema),
   plants: z.array(plantPresetSchema).optional(),
+  crops: z.array(agricultureCropSchema).optional(),
   animals: z.array(wildlifeSpeciesSchema).optional(),
   populations: z
     .array(

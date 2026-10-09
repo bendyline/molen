@@ -9,6 +9,8 @@ export interface TerrainGroundMaterialOptions {
   roughness?: number;
   /** Variation amount: 0 is the flat vertex color, 1 the default, up to 2. */
   strength?: number;
+  /** Landcover geometries carry per-field row and soil attributes. */
+  agriculture?: boolean;
 }
 
 /** Vertex-colored ground for either the legacy WebGL renderer or the WebGPU node renderer. */
@@ -114,21 +116,37 @@ export function createTerrainGroundMaterial(
       terrainGroundStrength: state.strength,
     });
     shader.vertexShader = `
+      ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil;' : ''}
       varying vec2 vTerrainGround;
       uniform vec2 terrainGroundOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
-       vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;`,
+       vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;
+       ${options.agriculture ? 'vAgricultureRows = agricultureRows; vAgricultureSoil = agricultureSoil;' : ''}`,
     );
     shader.fragmentShader = `${GLSL}
+      ${options.agriculture ? 'varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil;' : ''}
     ${shader.fragmentShader}`.replace(
       '#include <color_fragment>',
       `#include <color_fragment>
+       ${
+         options.agriculture
+           ? `
+       float phase = vAgricultureRows.x;
+       float rowFade = 1.0 - smoothstep(0.18, 0.65, fwidth(phase));
+       float band = 1.0 - smoothstep(0.15, 0.36, abs(fract(phase) - 0.5));
+       float coverage = mix(0.6, band, rowFade) * vAgricultureRows.w * clamp(vAgricultureRows.y / 3.0, 0.0, 1.0);
+       vec3 fieldColor = mix(vAgricultureSoil, diffuseColor.rgb, coverage);
+       float strip = (fract(phase / 8.0) < 0.5 ? 0.97 : 1.03);
+       strip = mix(1.0, strip, 1.0 - smoothstep(0.18, 0.65, fwidth(phase / 8.0)));
+       diffuseColor.rgb = mix(diffuseColor.rgb, fieldColor * strip, vAgricultureRows.z);`
+           : ''
+}
        diffuseColor.rgb *= terrainGroundFactor(diffuseColor.rgb, length(vViewPosition));`,
     );
   };
-  material.customProgramCacheKey = (): string => 'terrain-ground@1';
+  material.customProgramCacheKey = (): string => `terrain-ground@2:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -160,6 +178,11 @@ export async function createTerrainGroundMaterialAsync(
       vec3,
       vec4,
       vertexColor,
+      attribute,
+      varying,
+      fwidth,
+      abs,
+      step,
     },
   ] = await Promise.all([import('three/webgpu'), import('three/tsl')]);
   type F = Node<'float'>;
@@ -212,7 +235,27 @@ export async function createTerrainGroundMaterialAsync(
   // The node renderer multiplies colorNode by the vertex color itself (vertexColors stays on);
   // the factor reads the vertex color only to find green ground.
   const color = materialColor as unknown as Node<'vec4'>;
-  material.colorNode = vec4(color.rgb.mul(tint.mul(lum)), color.a);
+  let factor = tint.mul(lum);
+  if (options.agriculture) {
+    const rows = varying(attribute('agricultureRows', 'vec4')) as unknown as Node<'vec4'>;
+    const soil = varying(attribute('agricultureSoil', 'vec3')) as unknown as Node<'vec3'>;
+    const phase = rows.x;
+    const fade = smoothstep(0.18, 0.65, fwidth(phase)).oneMinus();
+    const band = smoothstep(0.15, 0.36, abs(fract(phase).sub(0.5))).oneMinus();
+    const coverage = mix(0.6, band, fade)
+      .mul(rows.w)
+      .mul(clamp(rows.y.div(3), 0, 1));
+    const strip = mix(
+      1,
+      step(0.5, fract(phase.div(8)))
+        .mul(0.06)
+        .add(0.97),
+      smoothstep(0.18, 0.65, fwidth(phase.div(8))).oneMinus(),
+    );
+    const field = mix(soil, base, coverage).mul(strip);
+    factor = factor.mul(mix(base, field, rows.z).div(max(base, vec3(0.001))));
+  }
+  material.colorNode = vec4(color.rgb.mul(factor), color.a);
   states.set(material, { origin, strength: amount });
   return material;
 }

@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 318 authored assets, 318 imported assets and 233 active geographic asset previews.
+There are 319 authored assets, 319 imported assets and 233 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 318 |
-| Runtime GLBs imported | 318 |
+| Source GLBs authored | 319 |
+| Runtime GLBs imported | 319 |
 | Portable visual reviews passed | 208 |
 | Shared-material reviews passed | 207 |
 | Active geographic previews | 233 |
 | Declared fidelity reviews passed | 131 |
 | Complete | 106 |
-| Source models still to author | 682 |
+| Source models still to author | 681 |
 
 ## Authored models
 
@@ -214,6 +214,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0306 | [Gediminas' Tower](../places/u9/u99/n0306_gediminas_tower/README.md) | 2492 | Passed | Passed | Passed | Passed | Yes |
 | N0307 | [Ljubljana Castle](../places/u2/u24/n0307_ljubljana_castle/README.md) | 5691 | Passed | Passed | Pending | Pending | Pending |
 | N0308 | [Castle of Saint George](../places/ey/eyc/n0308_castle_of_saint_george/README.md) | 6923 | Pending | Passed | Pending | Pending | Pending |
+| N0309 | [Haapsalu Castle](../places/ud/ud2/n0309_haapsalu_castle/README.md) | 4905 | Pending | Pending | Pending | Pending | Pending |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209054 | Passed | Passed | Pending | Pending | Pending |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 83212 | Passed | Passed | Pending | Pending | Pending |

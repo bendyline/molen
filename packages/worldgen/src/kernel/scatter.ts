@@ -41,6 +41,8 @@ export interface ScatterBudget {
   maxGroundCoverModels?: number;
   maxUnderstoryInstances?: number;
   maxUnderstoryModels?: number;
+  maxAgricultureInstances?: number;
+  maxAgricultureModels?: number;
 }
 
 export interface ScatterSampleInput {
@@ -155,7 +157,10 @@ export function* samplePlacementsSteps(
   const understoryInstances = input.budget.maxUnderstoryInstances ?? 0;
   const understoryModels = input.budget.maxUnderstoryModels ?? 0;
   const understoryOpen = understoryInstances > 0 && understoryModels > 0;
-  if (!canopyOpen && !groundOpen && !understoryOpen) return [];
+  const agricultureInstances = input.budget.maxAgricultureInstances ?? 0;
+  const agricultureModels = input.budget.maxAgricultureModels ?? 0;
+  const agricultureOpen = agricultureInstances > 0 && agricultureModels > 0;
+  if (!canopyOpen && !groundOpen && !understoryOpen && !agricultureOpen) return [];
   const bounds = request.emitBounds;
   const rasterCell = rasterCellFor(bounds);
   const labels = buildLabelRaster(request, rasterCell);
@@ -168,7 +173,7 @@ export function* samplePlacementsSteps(
     model: string;
     base: string;
     rule: number;
-    layer: 'canopy' | 'understory' | 'groundcover';
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
   }> = [];
   const scatterId = { id: doc.id, version: doc.version };
   let visited = 0;
@@ -179,7 +184,13 @@ export function* samplePlacementsSteps(
     // This matters especially for coarse requests, where dense understory covers a large area.
     const layer = rule.layer ?? 'canopy';
     if (
-      layer === 'groundcover' ? !groundOpen : layer === 'understory' ? !understoryOpen : !canopyOpen
+      layer === 'agriculture'
+        ? !agricultureOpen
+        : layer === 'groundcover'
+          ? !groundOpen
+          : layer === 'understory'
+            ? !understoryOpen
+            : !canopyOpen
     )
       continue;
     if (rule.densityPerHectare <= 0) continue;
@@ -300,6 +311,38 @@ export function* samplePlacementsSteps(
           if (!pointInPolygon([x, z], polygon.ring, polygon.holes)) continue;
           hash = fmix32(hash ^ polygon.seed);
         }
+        if (row?.headland && polygon) {
+          let margin = false;
+          for (const ring of [polygon.ring, ...(polygon.holes ?? [])]) {
+            for (let i = 0; i < ring.length; i++) {
+              const a = ring[i]!,
+                b = ring[(i + 1) % ring.length]!;
+              // Request clipping boundaries are not field edges. Buffered source edges remain.
+              if (
+                (Math.abs(a[0] - b[0]) < 0.001 &&
+                  (Math.abs(a[0] - bounds[0]) < 0.001 || Math.abs(a[0] - bounds[2]) < 0.001)) ||
+                (Math.abs(a[1] - b[1]) < 0.001 &&
+                  (Math.abs(a[1] - bounds[1]) < 0.001 || Math.abs(a[1] - bounds[3]) < 0.001))
+              )
+                continue;
+              const dx = b[0] - a[0],
+                dz = b[1] - a[1],
+                length = dx * dx + dz * dz;
+              const t =
+                length > 0
+                  ? Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length))
+                  : 0;
+              const ex = x - a[0] - t * dx,
+                ez = z - a[1] - t * dz;
+              if (ex * ex + ez * ez < row.headland * row.headland) {
+                margin = true;
+                break;
+              }
+            }
+            if (margin) break;
+          }
+          if (margin) continue;
+        }
         if (exclusion.get(x, z) !== 0) continue;
         if (nearWater !== undefined && nearWater.get(x, z) === 0) continue;
         const u = unit01(hash, 2);
@@ -340,7 +383,12 @@ export function* samplePlacementsSteps(
           population.widthScale === undefined
             ? 1
             : sampleRange(population.widthScale, unit01(hash, 9));
-        const yaw = population.yaw === 'random' ? unit01(hash, 5) * dmath.TAU : 0;
+        const yaw =
+          population.yaw === 'random'
+            ? unit01(hash, 5) * dmath.TAU
+            : population.yaw === 'rows'
+              ? -angle
+              : 0;
         const [r, g, b] = tintFor(population, hash);
         ruleCandidates.push({
           model: (() => {
@@ -381,7 +429,7 @@ export function* samplePlacementsSteps(
     p.candidate.cz - q.candidate.cz ||
     p.candidate.cx - q.candidate.cx;
   const pool = (
-    layer: 'canopy' | 'understory' | 'groundcover',
+    layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture',
     maxInstances: number,
     maxModels: number,
   ) => {
@@ -418,6 +466,7 @@ export function* samplePlacementsSteps(
     ...pool('canopy', input.budget.maxInstances, input.budget.maxPropModels),
     ...pool('understory', understoryInstances, understoryModels),
     ...pool('groundcover', groundCoverInstances, groundCoverModels),
+    ...pool('agriculture', agricultureInstances, agricultureModels),
   ]) {
     let list = perModel.get(entry.model);
     if (list === undefined) {

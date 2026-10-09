@@ -26,6 +26,7 @@ import {
   type WorldgenBatchInput,
   type WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
+import { prepareAgricultureTile, withAgricultureRules } from './agriculture';
 import { identityFor } from './building-identity';
 import { buildingPieces } from './building-parts';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
@@ -196,6 +197,8 @@ export function semanticTileToBatch(
   geom: TileGeometry,
   options: SemanticAdapterOptions,
 ): SemanticBatch {
+  const agriculture = prepareAgricultureTile(tile, geom, options.environment);
+  tile = agriculture.tile;
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;
   const tileBounds: [number, number, number, number] = [
@@ -287,7 +290,10 @@ export function semanticTileToBatch(
   const scatterId =
     (atlas !== undefined ? regionScatterId(atlas, centreRegion) : undefined) ??
     options.pack.root.defaults.scatter;
-  const scatterEnvironment = options.environment?.scatter(tileBounds);
+  const scatterEnvironment = withAgricultureRules(
+    options.environment?.scatter(tileBounds),
+    agriculture.rules,
+  );
   const ecologicalRegions = options.environment?.ecology?.intersecting(tileBounds);
   const profileAtCenter = options.environment?.at(
     geom.originX + size / 2,

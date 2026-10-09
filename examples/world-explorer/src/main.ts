@@ -744,6 +744,9 @@ async function main(): Promise<void> {
     params.get('ground') === 'flat'
       ? undefined
       : await createTerrainGroundMaterialAsync({}, viewer.renderer.backend);
+  const fieldMaterial = groundMaterial
+    ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
+    : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -776,7 +779,7 @@ async function main(): Promise<void> {
         metersPerUnit,
         quality,
         worker: useWorker,
-        ...(groundMaterial ? { groundMaterial } : {}),
+        ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
         lodPolicy,
         surfaceRenderer,
       });
@@ -1687,6 +1690,7 @@ async function main(): Promise<void> {
       waterOrigin[2],
     ]);
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
+    if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,

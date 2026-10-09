@@ -22,7 +22,7 @@ catalogs across those packs, validates references, and passes plain documents to
 An architecture-only catalog works without an ecological atlas. A catalog scoped to a different
 style pack is omitted, so a custom style pack can retain the ecological content.
 
-The ecological atlas and catalog total about 166 KB gzip (169 KB as a content pack). Its 234 procedural plant presets need no
+The ecological atlas and catalog total about 169 KB gzip (173 KB as a content pack). Its 264 procedural plant presets need no
 GLB downloads. The architectural atlas is about 313 KB gzip; ordinary regional recipes are small
 JSON files using the default pack's shared material graphs. Authored landmark GLBs continue to
 use the existing geographically sharded, lazy model archives.
@@ -108,7 +108,7 @@ Each of the 78 plant forms has a base, spreading, and slender preset, available 
 every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
 crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
 trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
-All 18 procedural families share the existing near/medium/far triangle limits.
+All 19 procedural families share the existing near/medium/far triangle limits.
 
 ### Brush and ground coverage
 
@@ -136,7 +136,7 @@ coarser levels omit brush. Existing groundcover instance caps stay at 0/5,000/8,
 0/five/seven model slots. Economy keeps simplified shrub masses while omitting fine blades and
 litter. These are per-tile limits, not whole-scene frame-rate guarantees.
 
-The 234 recipes produce 324 appearances including the existing seasonal variants. All geometry
+The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
 is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
 ecology pack and no GLB downloads. Reproduce comparison captures with
 `node content/ecology/source/preview-regions.mjs --brush` and
@@ -204,6 +204,103 @@ entrance fits an eligible exterior wall, reserves a ground-floor window bay, and
 structural openings, open ground floors, and raised buildings. It is a visual entrance; it does
 not create a traversable opening or claim a surveyed door position. Industrial and farm recipes
 also include high windows and larger service doors.
+
+## Agricultural land use
+
+All 36 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
+agricultural overrides (including the Corn Belt, Cerrado/Pampas and Indus/Gangetic plains). It activates only on
+mapped or retrieved farmland, cropland, orchards, vineyards, plantations and pasture. Climate
+alone never turns natural habitat into a farm. Ordinary farmland receives agricultural
+appearance from the ecology pack without another download.
+
+The 22 crop recipes cover maize, soybean, small cereals, rice, cotton, sugarcane, sunflower,
+rapeseed, root vegetables, sorghum; olive, fruit, date, coconut, oil-palm, coffee, tea, banana,
+rubber and grape cultivation; and pasture/fallow surfaces. Ten annual forms each have three
+procedural variants. The complete catalog now has 264 plant recipes and 474 appearances with
+crop stages and deciduous seasons. Several source tags share a visual recipe: wheat, barley
+and rye use the small-cereal model. Preserve the source `crop` tag when presenting observations;
+`cultivation.crop` identifies a rendering recipe.
+
+Selection uses explicit `crop`/`trees` tags first, then a sufficiently confident retrieved crop,
+then a deterministic regional mixture. Iowa's temperate mixture favors maize and soybeans;
+Mediterranean profiles include olives and vines, Asian profiles include rice, and tropical
+profiles include cane and plantation forms. These mixtures are authored visual priors, not
+acreage statistics or a claim about this year's crop. The current Protomaps basemap collapses
+some agricultural classes to farmland and does not generally retain crop tags, so inference
+remains important even where field outlines are mapped.
+
+The pure `prepareAgricultureTile` adapter derives matching surface and scatter parameters in
+workers and the renderer. It retains holes, rejects roads/buildings/water and steep slopes,
+reserves headlands, aligns plants to world-anchored rows, and excludes competing wild brush
+inside cultivated fields. Known field identifiers retain their variation across clipping;
+a supplied full-field anchor also stabilizes regional selection. Unnamed polygons are divided
+on a fixed projected grid, clipped to agricultural land. These visual divisions are not surveyed
+parcels. Derived `cultivation` metadata records recipe, `mapped`/`classified`/`inferred` evidence,
+source, observation year where known, growth stage and row angle.
+
+Near views instance bounded plant patches and orchard trees. Distant views retain soil/crop
+bands through an antialiased procedural shader without downloading textures or drawing each
+plant. Agriculture has a separate instance/model budget: finest-level Economy 500/2, Balanced
+3,500/5 and High 6,500/8. Annual patches disappear at medium detail; Economy uses their surface
+patterns. Both WebGL and node-material paths consume the same field attributes, including
+worker-built landcover. Custom ground materials must opt into `{ agriculture: true }` and use
+landcover geometry's attributes; use a separate material for bare elevation meshes.
+
+An explicit vegetation month selects sown, growing, mature, ripe or stubble appearances; the
+default is mature. Coarse authored calendars shift six months in the southern hemisphere.
+Tropical crops stay mature without a source calendar. Retrieved sowing/harvest months are
+absolute calendar months and override that shift. This is illustrative growth, not a crop
+rotation, weather, irrigation or multiple-cropping simulation. Mapped barns, sheds, stables
+and generic buildings inside mapped farmyards select the regional farm architecture. A field
+never invents a building footprint.
+
+### Optional global retrieval
+
+A terrain package may declare a compact `agriculture` source:
+
+```json
+{
+  "urlTemplate": "https://your-host.example/agriculture/worldcover-2021-v1/{z}/{x}/{y}.json",
+  "level": 10,
+  "source": "esa-worldcover-2021-v200",
+  "year": 2021,
+  "maxTileBytes": 131072
+}
+```
+
+This is a hosting example, not a deployed release. Earth View and World Explorer consume it
+automatically for geospatial XYZ packages, after overzooming and joining semantic archives.
+They share up to 32 parent-grid requests between visual layers, bound uncompressed responses,
+validate coordinates/provenance and retain the basemap on missing or failed requests. Hydrology
+does not request agricultural data. Add the source's license and attribution to the terrain
+package; large source rasters stay outside ecology content packs.
+
+`molen/agriculture-grid@1` uses a small palette and row-major `[count, paletteIndex]` runs.
+Index zero is unknown/non-crop; a positive entry without a crop supplies only agricultural
+extent. Optional crop, source confidence, irrigation and calendar information refine appearance.
+Cells supplement missing land use; mapped surfaces and explicit crops take precedence.
+Area-weighted majority observations refine untagged farmland while retaining mapped outlines.
+At most 256 additional polygons are admitted per semantic tile.
+
+The sibling Qualla repository's `pipeline/agriculture/` compiler reads range-addressable
+[ESA WorldCover 2021 v200](https://esa-worldcover.org/en/data-access) COG windows and reduces
+cropland class 40 to conservative sampled-majority cells. Its default is 64×64 cells per level-10
+tile: about 612 projected meters per cell, with smaller ground distances toward the poles.
+It supports every continent and bounded resumable shards. Source URLs, recipe/payload hashes,
+year, attribution and exact covered tile inventory accompany each dataset. A partial shard
+is never advertised as global coverage.
+
+Optional categorical COG adapters support global
+[WorldCereal 2021 products](https://esa-worldcereal.org/en/products/global-maps), including maize
+and spring/winter cereals, and regional refinements. WorldCereal's cereal class is not a specific
+wheat observation. Raw classification rasters are required; colored map previews are unsuitable.
+The checked six-continent WorldCover sample is historical extent data, not crop-type evidence.
+Production hosting and larger geographic builds are separate Qualla release operations.
+
+`preview-agriculture.mjs` captures controlled six-region farm compositions, growth stages,
+inference, near/far views and shader paths. `preview-diversity.mjs --agriculture` builds real GLB
+review assets and exercises public import, inspection, simulation and capture APIs. Fixtures
+are labeled separately from observations; inspect live terrain before claiming local accuracy.
 
 ## Wildlife and habitat sound
 

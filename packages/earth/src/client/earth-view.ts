@@ -702,9 +702,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => water.dispose());
-    // Terrain and landcover share one ground material with world-space variation.
+    // Both surfaces use world-space variation; only landcover carries crop-row attributes.
     const groundMaterial = await createTerrainGroundMaterialAsync({}, renderer.backend);
     disposers.push(() => groundMaterial.dispose());
+    const fieldMaterial = await createTerrainGroundMaterialAsync(
+      { agriculture: true },
+      renderer.backend,
+    );
+    disposers.push(() => fieldMaterial.dispose());
     void content?.stars().then(
       (stars) => {
         if (!disposed) renderer.setStarCatalog(stars);
@@ -803,7 +808,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 ...(options.style?.landcover !== undefined
                   ? { landcoverColors: options.style.landcover }
                   : {}),
-                groundMaterial,
+                groundMaterial: fieldMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -1985,6 +1990,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       const origin = renderer.getWorldOrigin();
       setTerrainWaterTime(water, now / 1000, [origin[0], origin[2]]);
       setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
+      setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();
