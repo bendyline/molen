@@ -251,6 +251,8 @@ export class Renderer {
   private activeWeather: WeatherVisual | undefined;
   private weatherTimeOverride: number | undefined;
   private readonly weatherLightIntensities = new WeakMap<THREE.Light, number>();
+  /** The hemisphere the sky reflection map stands in for, and its authored visibility. */
+  private hiddenAmbient: { light: THREE.HemisphereLight; visible: boolean } | undefined;
   private environmentSeconds = 0;
   private environmentTimeOverride: number | undefined;
   private readonly lastRenderStats = { drawCalls: 0, triangles: 0 };
@@ -1109,14 +1111,10 @@ export class Renderer {
       );
       if (this.reflections.active) reflectedAmbient = sky?.ambientLight ?? ambient;
     }
-    const ambientIntensity = reflectedAmbient?.intensity;
+    this.hideReflectedAmbient(reflectedAmbient);
     const baseFog = this.scene.fog;
     if (weather) this.scene.fog = weather.fogFor(baseFog, sky?.frame);
     try {
-      // The PMREM supplies both diffuse sky irradiance and specular reflection. Keeping the
-      // hemisphere during this draw would light diffuse surfaces twice. Restore the authored
-      // light afterward, so weather updates and host inspection see its original intensity.
-      if (reflectedAmbient) reflectedAmbient.intensity = 0;
       if (sky) {
         sky.update(this.environmentTimeOverride ?? this.environmentSeconds);
         sky.prepareCamera(this.camera);
@@ -1143,10 +1141,29 @@ export class Renderer {
       this.lastRenderStats.drawCalls = 'drawCalls' in info ? info.drawCalls : info.calls;
       this.lastRenderStats.triangles = info.triangles;
     } finally {
-      if (reflectedAmbient && ambientIntensity !== undefined)
-        reflectedAmbient.intensity = ambientIntensity;
       this.scene.fog = baseFog;
     }
+  }
+
+  /**
+   * The PMREM supplies both diffuse sky irradiance and specular reflection, so while it is the
+   * scene environment the hemisphere it was sampled from must not light surfaces as well. The
+   * light is hidden, between frames too, rather than dimmed for the visible draw alone: three's
+   * WebGPU renderer updates light uniforms once per frame of its own clock, and warm-up compiles
+   * finish between viewer frames, so a light restored after each draw could leave its full
+   * intensity in the next frame's uniforms and the whole scene flashed bright for that frame.
+   * Its intensity stays the authored value for weather and hosts; it shows again when a host
+   * environment takes over or the renderer is disposed.
+   */
+  private hideReflectedAmbient(light: THREE.HemisphereLight | undefined): void {
+    const hidden = this.hiddenAmbient;
+    if (hidden !== undefined && hidden.light !== light) {
+      hidden.light.visible = hidden.visible;
+      this.hiddenAmbient = undefined;
+    }
+    if (light === undefined) return;
+    this.hiddenAmbient ??= { light, visible: light.visible };
+    light.visible = false;
   }
 
   private renderScene(): void {
@@ -1201,6 +1218,7 @@ export class Renderer {
     this.activeWeather?.dispose();
     this.activeWeather = undefined;
     this.reflections?.dispose();
+    this.hideReflectedAmbient(undefined);
     findEnvironmentRig(this.scene)?.traverse((object) => {
       if (object instanceof THREE.Light) object.dispose();
     });

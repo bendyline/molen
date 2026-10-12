@@ -82,9 +82,12 @@ describe('renderer backend selection', () => {
     const originalIntensity = ambient.intensity;
     (backend === 'webgl' ? webgl : webgpu).render.mockImplementation((scene: THREE.Scene) => {
       if (scene === renderer.scene)
-        expect((renderer.sky?.ambientLight ?? ambient).intensity).toBe(0);
+        expect((renderer.sky?.ambientLight ?? ambient).visible).toBe(false);
     });
     renderer.render();
+    // Still hidden between frames, so warm-up compiles light the scene as the draw does; the
+    // authored intensity is untouched.
+    expect(ambient.visible).toBe(false);
     expect(ambient.intensity).toBe(originalIntensity);
     expect(renderer.scene.environment).toBe(texture);
     expect(filter.update).toHaveBeenCalledTimes(1);
@@ -95,19 +98,29 @@ describe('renderer backend selection', () => {
     renderer.setSky({ mode: 'custom', sunBody: { direction: [0, 1, 0] } });
     renderer.render();
     expect(filter.update).toHaveBeenCalledTimes(2);
+    const skyAmbient = renderer.sky?.ambientLight as THREE.HemisphereLight;
+    expect(skyAmbient.visible).toBe(false);
+    expect(ambient.visible).toBe(true);
     renderer.setWeather({ clouds: { coverage: 1 } });
     renderer.render();
     expect(filter.update).toHaveBeenCalledTimes(3);
     const host = new THREE.Texture();
     renderer.scene.environment = host;
     (backend === 'webgl' ? webgl : webgpu).render.mockImplementation((scene: THREE.Scene) => {
-      if (scene === renderer.scene) expect(renderer.sky?.ambientLight.intensity).toBeGreaterThan(0);
+      if (scene === renderer.scene) {
+        expect(skyAmbient.visible).toBe(true);
+        expect(skyAmbient.intensity).toBeGreaterThan(0);
+      }
     });
     renderer.render();
     expect(renderer.scene.environment).toBe(host);
     renderer.scene.environment = texture;
+    (backend === 'webgl' ? webgl : webgpu).render.mockImplementation(() => {});
+    renderer.render();
+    expect(skyAmbient.visible).toBe(false);
     renderer.dispose();
     renderer.dispose();
+    expect(skyAmbient.visible).toBe(true);
     expect(filter.dispose).toHaveBeenCalledTimes(1);
     expect(renderer.scene.environment).toBeNull();
     host.dispose();

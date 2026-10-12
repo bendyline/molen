@@ -33,8 +33,13 @@ const showcase = computed(
 );
 const pillars = computed(() => (frontmatter.value.pillars ?? []) as Pillar[]);
 
-/** /play/ and /packs/ are staged beside the site, not pages: load them in full (see config.mts). */
-const target = (link: string) => (/^\/(?:play|packs)(?:[/?#]|$)/.test(link) ? '_self' : undefined);
+/**
+ * /play/ and /packs/ are staged beside the site, not pages: load them in full (see config.mts).
+ * Full https://molen.dev/ URLs to them need it too. On molen.dev they are same-origin, so without
+ * a `target` the client router intercepts the click and renders its 404 page.
+ */
+const HOSTED = /^(?:https:\/\/molen\.dev)?\/(?:play|packs)(?:[/?#]|$)/;
+const target = (link: string) => (HOSTED.test(link) ? '_self' : undefined);
 </script>
 
 <template>
